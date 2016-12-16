@@ -4,19 +4,20 @@ import com.google.gson.Gson;
 
 import java.io.IOException;
 
+import io.reactivex.disposables.CompositeDisposable;
 import okhttp3.ResponseBody;
 
 /**
  * Created by Administrator on 2016/12/15 0015.
  */
 
-public  class BaseCommonPresenter<T,V extends IBaseView<T>> implements IBasePresenter {
+public  class BaseRetrofitPresenter<T,V extends IBaseView<T>> implements IBasePresenter {
 
     public V view;
     @Override
     public void unSubscribe() {
         if(mCompositeSubscription != null){
-            mCompositeSubscription.unsubscribe();
+            mCompositeSubscription.dispose();
         }
     }
     /**
@@ -26,13 +27,13 @@ public  class BaseCommonPresenter<T,V extends IBaseView<T>> implements IBasePres
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      */
-    protected CompositeSubscription mCompositeSubscription;
+    protected CompositeDisposable mCompositeSubscription;
 
     public T view;
 
-    public BaseCommonPresenter(T view) {
+    public BaseRetrofitPresenter(T view) {
         //创建 CompositeSubscription 对象 使用CompositeSubscription来持有所有的Subscriptions，然后在onDestroy()或者onDestroyView()里取消所有的订阅。
-        mCompositeSubscription = new CompositeSubscription();
+        mCompositeSubscription = new CompositeDisposable();
         // 构建 ApiWrapper 对象
         mApiWrapper = new ApiWrapper();
         this.view  = view;
