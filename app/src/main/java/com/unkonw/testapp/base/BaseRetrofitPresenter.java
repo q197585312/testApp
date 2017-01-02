@@ -1,6 +1,11 @@
 package com.unkonw.testapp.base;
 
 import com.google.gson.Gson;
+import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
+import com.unkonw.testapp.utils.ToastUtils;
+
+import org.reactivestreams.Subscriber;
+import org.reactivestreams.Subscription;
 
 import java.io.IOException;
 
@@ -13,7 +18,7 @@ import okhttp3.ResponseBody;
 
 public  class BaseRetrofitPresenter<T,V extends IBaseView<T>> implements IBasePresenter {
 
-    public V view;
+    public V baseView;
     @Override
     public void unSubscribe() {
         if(mCompositeSubscription != null){
@@ -23,20 +28,19 @@ public  class BaseRetrofitPresenter<T,V extends IBaseView<T>> implements IBasePr
     /**
      * Api类的包装 对象
      */
-    protected ApiWrapper mApiWrapper;
+    protected Api mApiWrapper;
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      */
     protected CompositeDisposable mCompositeSubscription;
 
-    public T view;
 
-    public BaseRetrofitPresenter(T view) {
+    public BaseRetrofitPresenter(V view) {
         //创建 CompositeSubscription 对象 使用CompositeSubscription来持有所有的Subscriptions，然后在onDestroy()或者onDestroyView()里取消所有的订阅。
         mCompositeSubscription = new CompositeDisposable();
         // 构建 ApiWrapper 对象
-        mApiWrapper = new ApiWrapper();
-        this.view  = view;
+        mApiWrapper = new Api();
+        this.baseView  = view;
     }
 
     /**
@@ -48,19 +52,12 @@ public  class BaseRetrofitPresenter<T,V extends IBaseView<T>> implements IBasePr
      */
     protected <E> Subscriber newMySubscriber(final SimpleMyCallBack onNext) {
         return new Subscriber<E>() {
-            @Override
-            public void onCompleted() {
-                if (view != null) {
-                    view.hideLoading();
-                }
-                onNext.onCompleted();
-            }
 
             @Override
             public void onError(Throwable e) {
                 if (e instanceof Api.APIException) {
                     Api.APIException exception = (Api.APIException) e;
-                    if (view != null) {
+                    if (baseView != null) {
                         ToastUtils.showShort(exception.message);
                     }
                 } else if (e instanceof HttpException) {
@@ -80,14 +77,27 @@ public  class BaseRetrofitPresenter<T,V extends IBaseView<T>> implements IBasePr
                     }
                 }
 //                e.printStackTrace();
-                if (view != null) {
-                    view.hideLoading();
+                if (baseView != null) {
+                    baseView.hideLoading();
                 }
             }
 
             @Override
+            public void onComplete() {
+                if (baseView != null) {
+                    baseView.hideLoading();
+                }
+                onNext.onCompleted();
+            }
+
+            @Override
+            public void onSubscribe(Subscription s) {
+
+            }
+
+            @Override
             public void onNext(E t) {
-                if (!mCompositeSubscription.isUnsubscribed()) {
+                if (!mCompositeSubscription.isDisposed()) {
                     onNext.onNext(t);
                 }
             }
