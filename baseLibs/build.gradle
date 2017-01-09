@@ -1,9 +1,16 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
+        minSdkVersion 9
+        targetSdkVersion 25
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+}
+   /* defaultConfig {
         applicationId "com.unkonw.testapp"
         minSdkVersion 14
         targetSdkVersion 25
@@ -18,7 +25,7 @@ android {
         }
     }
 }
-
+*/
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
