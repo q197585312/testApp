@@ -3,7 +3,6 @@ package com.unkonw.testapp;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
 import com.orhanobut.logger.Logger;
 
@@ -34,17 +33,11 @@ public class MainActivity extends AppCompatActivity {
         int mCurrentOrientation = getResources().getConfiguration().orientation;
         if ( mCurrentOrientation == Configuration.ORIENTATION_PORTRAIT ) {
             // If current screen is portrait
-            setContentView(R.layout.mainP);
-            //注意，这里删除了init()，否则又初始化了，状态就丢失
-            findViews();
-            setListensers();
 
         } else if ( mCurrentOrientation == Configuration.ORIENTATION_LANDSCAPE ) {
             //If current screen is landscape
-            setContentView(R.layout.mainL);
-            //注意，这里删除了init()，否则又初始化了，状态就丢失
-            findViews();
-            setListensers();
+
+
 
         }
     }
