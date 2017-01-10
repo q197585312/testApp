@@ -1,16 +1,6 @@
 package com.unkonw.testapp.base;
 
-import com.google.gson.Gson;
-import com.jakewharton.retrofit2.adapter.rxjava2.HttpException;
-import com.unkonw.testapp.utils.ToastUtils;
-
-import org.reactivestreams.Subscriber;
-import org.reactivestreams.Subscription;
-
-import java.io.IOException;
-
 import io.reactivex.disposables.CompositeDisposable;
-import okhttp3.ResponseBody;
 
 /**
  * Created by Administrator on 2016/12/15 0015.
@@ -25,10 +15,13 @@ public  class BaseRetrofitPresenter<T,V extends IBaseView<T>> implements IBasePr
             mCompositeSubscription.dispose();
         }
     }
+
+
+
     /**
      * Api类的包装 对象
      */
-    protected Api mApiWrapper;
+    protected ApiWrapper mApiWrapper;
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      */
@@ -39,8 +32,8 @@ public  class BaseRetrofitPresenter<T,V extends IBaseView<T>> implements IBasePr
         //创建 CompositeSubscription 对象 使用CompositeSubscription来持有所有的Subscriptions，然后在onDestroy()或者onDestroyView()里取消所有的订阅。
         mCompositeSubscription = new CompositeDisposable();
         // 构建 ApiWrapper 对象
-        mApiWrapper = new Api();
         this.baseView  = view;
+        this.mApiWrapper = new ApiWrapper();
     }
 
     /**
@@ -50,7 +43,7 @@ public  class BaseRetrofitPresenter<T,V extends IBaseView<T>> implements IBasePr
      * @param <E>
      * @return
      */
-    protected <E> Subscriber newMySubscriber(final SimpleMyCallBack onNext) {
+   /* protected <E> Subscriber newMySubscriber(final SimpleMyCallBack onNext) {
         return new Subscriber<E>() {
 
             @Override
@@ -103,5 +96,5 @@ public  class BaseRetrofitPresenter<T,V extends IBaseView<T>> implements IBasePr
             }
 
         };
-    }
+    }*/
 }

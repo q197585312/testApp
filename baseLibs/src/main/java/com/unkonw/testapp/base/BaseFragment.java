@@ -15,7 +15,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by anzhuo002 on 2016/7/5.
  */
 
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements View.OnClickListener{
+public abstract class BaseFragment<T extends IBasePresenter> extends Fragment implements View.OnClickListener{
     public BaseActivity mContext;
     public View mContentView = null;
     /**
@@ -25,7 +25,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
     /**
      * Api类的包装 对象
      */
-    public Api mApiWrapper;
+/*    public Api mApiWrapper;*/
 
     public  T presenter;
 
@@ -51,7 +51,7 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
         super.onDestroy();
         //解绑 presenter
         if (presenter != null) {
-            presenter.unsubscribe();
+            presenter.unSubscribe();
         }
     }
 
@@ -73,7 +73,6 @@ public abstract class BaseFragment<T extends BasePresenter> extends Fragment imp
      */
     public void initApi() {
         mCompositeSubscription  = mContext.getCompositeSubscription();
-        mApiWrapper = mContext.getApiWrapper();
     }
     /**
      * 设置布局文件

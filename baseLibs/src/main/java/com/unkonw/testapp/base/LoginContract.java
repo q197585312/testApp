@@ -1,13 +1,12 @@
 package com.unkonw.testapp.base;
 
-import com.unkonw.testapp.UserDate;
+import com.unkonw.testapp.LoginInfo;
 
 public interface LoginContract {
-    interface View extends IBaseView<UserDate> {
-        void loginSuccess(UserDate data);
+    interface View extends IBaseView<String> {
     }
 
     interface Presenter extends IBasePresenter {
-        void login();
+        void login(LoginInfo info);
     }
 }

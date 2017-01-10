@@ -28,7 +28,7 @@ import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
  * Created by Administrator on 2016/12/15 0015.
  */
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
+public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatActivity {
     protected AppCompatActivity mContext;
     /**
      * 页面布局的 根view
@@ -46,7 +46,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
     /**
      * Api类的包装 对象
      */
-    protected Api mApiWrapper;
+//    protected ApiWrapper mApiWrapper;
     public T presenter;
     /**
      * 加载对话框
@@ -108,7 +108,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         //创建 CompositeSubscription 对象 使用CompositeSubscription来持有所有的Subscriptions，然后在onDestroy()或者onDestroyView()里取消所有的订阅。
         mCompositeSubscription = new CompositeDisposable();
         // 构建 ApiWrapper 对象
-        mApiWrapper = new Api();
+//        mApiWrapper = new ApiWrapper();
     }
 
     /**
@@ -174,12 +174,12 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         }
         return mCompositeSubscription;
     }
-    public Api getApiWrapper() {
+/*    public Api getApiWrapper() {
         if (mApiWrapper == null) {
-            mApiWrapper = new Api();
+            mApiWrapper = new ApiWrapper();
         }
         return mApiWrapper;
-    }
+    }*/
     /**
      * 创建相应的 presenter
      */
@@ -203,7 +203,7 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         }
         //解绑 presenter
         if (presenter != null) {
-            presenter.unsubscribe();
+            presenter.unSubscribe();
         }
     }
 

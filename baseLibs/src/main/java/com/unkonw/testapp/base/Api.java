@@ -31,7 +31,7 @@ public class Api {
      * 服务器地址
      */
     // 请求公共部分
-    private static final String BASE_URL = "https://api.baobaobooks.com/";
+    private static final String BASE_URL = "http://ag09.gd88.info/OLTGames/";
 
     // 消息头
     private static final String HEADER_X_HB_Client_Type = "X-HB-Client-Type";
@@ -72,12 +72,12 @@ public class Api {
             OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(15, TimeUnit.SECONDS)
                     .addInterceptor(interceptor)
-                    .addInterceptor(mInterceptor)
+//                    .addInterceptor(mInterceptor)
                     .cache(cache)
                     .build();
 
             retrofit = new Retrofit.Builder()
-                    .client(client)
+//                    .client(client)
                     .baseUrl(BASE_URL)
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -92,7 +92,7 @@ public class Api {
      * @param <T>
      * @return
      */
-    protected <T > Flowable<T> applySchedulers(Flowable<T> responseObservable) {
+    public  <T > Flowable<T> applySchedulers(Flowable<T> responseObservable) {
         return responseObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Function<T, Flowable<T>>() {
