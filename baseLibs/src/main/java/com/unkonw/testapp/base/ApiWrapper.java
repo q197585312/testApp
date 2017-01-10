@@ -12,7 +12,7 @@ public class ApiWrapper extends Api {
  *    String loginParams = "txtLang=0&txtAcctid="+afbApp.getUser().getName()+"&txtPwd="+afbApp.getUser().getPassword()+"&OsType=Android"+"&OsVersion="+version;
  strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LOGIN_URL, loginParams);
  * */
-    public Flowable<String> getUerInfo(LoginInfo mLoginParams) {
+    public Call<String> getUerInfo(LoginInfo mLoginParams) {
         return applySchedulers(getService().getUserInfo(mLoginParams.getTxtLang()
                 ,mLoginParams.getTxtAcctid()
                 ,mLoginParams.getTxtPwd()

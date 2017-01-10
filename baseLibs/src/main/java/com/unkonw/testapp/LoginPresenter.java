@@ -16,6 +16,7 @@ public class LoginPresenter extends BaseRetrofitPresenter<String,LoginContract.V
     @Override
     public void login(LoginInfo info) {
 
+
         Disposable subscription = mApiWrapper.getUerInfo(info)
                 .subscribe(new Consumer<String>() {
                     @Override

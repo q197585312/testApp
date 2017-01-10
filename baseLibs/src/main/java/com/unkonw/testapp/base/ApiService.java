@@ -4,8 +4,10 @@ package com.unkonw.testapp.base;
 import com.unkonw.testapp.LoginInfo;
 
 import io.reactivex.Flowable;
+import retrofit2.Call;
 import retrofit2.http.Body;
-import retrofit2.http.Query;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.POST;
 
 
@@ -22,7 +24,7 @@ public interface ApiService {
     @POST("login.jsp")
     Flowable<String> getPersonalInfo(@Body LoginInfo mLoginParams);
 
-
+    @FormUrlEncoded
     @POST("login.jsp")
-    Flowable<String> getUserInfo(@Query("txtLang")String txtLang, @Query("txtAcctid")String txtAcctid, @Query("txtPwd")String txtPwd, @Query("osType")String osType, @Query("osVersion")String osVersion);
+    Call<String> getUserInfo(@Field("txtLang")String txtLang, @Field("txtAcctid")String txtAcctid, @Field("txtPwd")String txtPwd, @Field("osType")String osType, @Field("osVersion")String osVersion);
 }
