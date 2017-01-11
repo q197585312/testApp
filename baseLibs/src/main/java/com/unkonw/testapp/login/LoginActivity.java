@@ -2,10 +2,15 @@ package com.unkonw.testapp.login;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 
 import com.unkonw.testapp.R;
 import com.unkonw.testapp.libs.base.BaseActivity;
+import com.unkonw.testapp.libs.utils.AutoUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 /**
@@ -13,12 +18,18 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
  */
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
+    @Bind(R.id.login_btn)
+    Button loginBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.login);
-        createPresenter(new LoginPresenter(this));
+        AutoUtils.setSize(this,false,480,800);
 
+        setContentView(R.layout.login);
+        ButterKnife.bind(this);
+        createPresenter(new LoginPresenter(this));
+        AutoUtils.auto(this);
     }
 
     @Override
@@ -37,10 +48,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
 
-
     @Override
     public void onGetData(final String data) {
-               ToastUtils.showShort(data);
+        ToastUtils.showShort(data);
     }
 
 }
