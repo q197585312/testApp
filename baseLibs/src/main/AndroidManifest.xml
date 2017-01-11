@@ -3,13 +3,13 @@
     package="com.unkonw.testapp">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
-        android:name=".base.HaiBaoApplication"
+        android:name=".libs.base.BaseApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"
+        <activity android:name=".login.LoginActivity"
             android:configChanges="orientation|keyboardHidden|screenSize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
