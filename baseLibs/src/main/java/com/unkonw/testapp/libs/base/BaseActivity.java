@@ -9,11 +9,14 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.Window;
 
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.DialogLoading;
+
+import butterknife.ButterKnife;
 
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
@@ -49,6 +52,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     protected DialogLoading loading;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         super.onCreate(savedInstanceState);
         // 设置不能横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
@@ -60,6 +64,8 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     public void setContentView(int layoutResID) {
         View view = LayoutInflater.from(this).inflate(layoutResID, null);
         setContentView(view);
+
+        ButterKnife.bind(this);
     }
     @Override
     public void setContentView(View view) {
@@ -121,6 +127,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         if (presenter != null) {
             presenter.unSubscribe();
         }
+        ButterKnife.unbind(this);
     }
 
     /**

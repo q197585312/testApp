@@ -1,11 +1,5 @@
 package com.unkonw.testapp.libs.widget;
 
-import android.app.AlertDialog;
-import android.app.Dialog;
-import android.content.Context;
-
-import com.unkonw.testapp.R;
-
 /**
  * dialog的管理类 门面模式
  */
@@ -23,20 +17,20 @@ public class DialogManager {
 	/**
 	 *  show 分享的对话框
      */
-	public static Dialog showShareDialog(Context context, ShareDialog.ShareInterface mShareInterface) {
+	/*public static Dialog showShareDialog(Context context, ShareDialog.ShareInterface mShareInterface) {
 		ShareDialog mShareDialog = new ShareDialog(context, R.style.BaseDialogTheme,mShareInterface);
 		mShareDialog.show();
 		return mShareDialog;
 	}
 
-	/**
+	*//**
 	 * 显示 AlertMessage的对话框
-     */
+     *//*
 	public static Dialog showAlertDialog(Context context, AlertMessage mAlertMessage, AlertDialog.AlertButtonClick mAlertButtonClick) {
 		AlertDialog mAlertDialog = new AlertDialog(context,R.style.BaseDialogTheme,mAlertMessage,mAlertButtonClick);
 		mAlertDialog.show();
 		return mAlertDialog;
-	}
+	}*/
 
 
 

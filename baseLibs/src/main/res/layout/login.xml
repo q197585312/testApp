@@ -3,8 +3,9 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
     <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:id="@+id/login_btn"
+        android:layout_width="240px"
+        android:layout_height="100px"
         android:onClick="onCLickLogin"
         android:text="Login"/>
 
