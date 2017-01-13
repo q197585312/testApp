@@ -1,4 +1,4 @@
-package com.unkonw.testapp;
+package com.unkonw.testapp.training;
 
 import android.content.Context;
 import android.content.res.Configuration;
