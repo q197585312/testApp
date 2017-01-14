@@ -15,7 +15,7 @@ public class InjectUtils {
         Class<?> clazz=context.getClass();
         Class<?>[] declaredClasses = clazz.getDeclaredClasses();
         for (Class<?> declaredClass : declaredClasses) {
-            ViewInject annotationsByType = declaredClass.getAnnotation(ViewInject.class);
+//            ViewInject annotationsByType = declaredClass.getAnnotation(ViewInject.class);
         }
     }
     private static void injectLayout(Context context) {

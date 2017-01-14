@@ -2,6 +2,7 @@ package com.unkonw.testapp.libs.base;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.view.Window;
 
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.utils.AutoUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.DialogLoading;
 
@@ -53,6 +55,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
+
         super.onCreate(savedInstanceState);
         // 设置不能横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
@@ -62,10 +65,18 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     }
     @Override
     public void setContentView(int layoutResID) {
+        Configuration configuration = getResources().getConfiguration();
+        if(configuration.orientation== Configuration.ORIENTATION_PORTRAIT){
+            AutoUtils.setSize(this,false,720,1280);
+        } else {
+            AutoUtils.setSize(this,false,1280,720);
+        }
+
         View view = LayoutInflater.from(this).inflate(layoutResID, null);
         setContentView(view);
-
+        AutoUtils.auto(this);
         ButterKnife.bind(this);
+
     }
     @Override
     public void setContentView(View view) {
