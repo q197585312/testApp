@@ -13,4 +13,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="btn"/>
+    <com.unkonw.testapp.training.ScrollLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="This is first child view"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="This is second child view"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="This is third child view"/>
+    </com.unkonw.testapp.training.ScrollLayout>
 </LinearLayout>

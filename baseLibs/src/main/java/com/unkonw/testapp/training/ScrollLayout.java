@@ -15,37 +15,48 @@ import com.orhanobut.logger.Logger;
  */
 
 public class ScrollLayout extends ViewGroup {
+    /**
+     * 用于完成滚动操作的实例
+     */
+    private Scroller mScroller;
 
-    private int scaledTouchSlop;
-    private Scroller scroller;
+    /**
+     * 判定为拖动的最小移动像素数
+     */
+    private int mTouchSlop;
+
+    /**
+     * 手机按下时的屏幕坐标
+     */
+    private float mXDown;
+
+    /**
+     * 手机当时所处的屏幕坐标
+     */
+    private float mXMove;
+
+    /**
+     * 上次触发ACTION_MOVE事件时的屏幕坐标
+     */
+    private float mXLastMove;
+
+    /**
+     * 界面可滚动的左边界
+     */
     private int leftBorder;
-    private int rightBorder;
-    private float rawX;
-    private float lastX;
-    private float rawX2;
 
-    public ScrollLayout(Context context) {
-        super(context);
-    }
+    /**
+     * 界面可滚动的右边界
+     */
+    private int rightBorder;
 
     public ScrollLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
-        scroller = new Scroller(context);
-        scaledTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();//
-    }
-
-    @Override
-    protected void onLayout(boolean b, int i, int i1, int i2, int i3) {
-        if(b){
-            int childCount = getChildCount();
-            for (int i4 = 0; i4 < childCount; i4++) {
-                View childView = getChildAt(i);
-                // 为ScrollerLayout中的每一个子控件在水平方向上进行布局
-                childView.layout(i * childView.getMeasuredWidth(), 0, (i + 1) * childView.getMeasuredWidth(), childView.getMeasuredHeight());
-            }
-        }
-        leftBorder = getChildAt(0).getLeft();
-        rightBorder = getChildAt(getChildCount() - 1).getRight();
+        // 第一步，创建Scroller的实例
+        mScroller = new Scroller(context);
+        ViewConfiguration configuration = ViewConfiguration.get(context);
+        // 获取TouchSlop值
+        mTouchSlop = configuration.getScaledPagingTouchSlop();
     }
 
     @Override
@@ -53,35 +64,86 @@ public class ScrollLayout extends ViewGroup {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int childCount = getChildCount();
         for (int i = 0; i < childCount; i++) {
-           measureChild( getChildAt(i),widthMeasureSpec,heightMeasureSpec);
+            View childView = getChildAt(i);
+            // 为ScrollerLayout中的每一个子控件测量大小
+            measureChild(childView, widthMeasureSpec, heightMeasureSpec);
+        }
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        if (changed) {
+            int childCount = getChildCount();
+            for (int i = 0; i < childCount; i++) {
+                View childView = getChildAt(i);
+                // 为ScrollerLayout中的每一个子控件在水平方向上进行布局
+                childView.layout(i * childView.getMeasuredWidth(), 0, (i + 1) * childView.getMeasuredWidth(), childView.getMeasuredHeight());
+            }
+            // 初始化左右边界值
+            leftBorder = getChildAt(0).getLeft();
+            rightBorder = getChildAt(getChildCount() - 1).getRight();
         }
     }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        int action = ev.getAction() & MotionEvent.ACTION_MASK;
-       switch (action) {
-           case MotionEvent.ACTION_DOWN:
-               rawX = ev.getRawX();
-               lastX=rawX;
-               break;
-           case MotionEvent.ACTION_MOVE:
-               rawX2 = ev.getRawX();
-               float v = rawX2 - rawX;
-               lastX=rawX2;
-               if(v>scaledTouchSlop) {
-                   Logger.d("v>"+scaledTouchSlop);
-                   return true;
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mXDown = ev.getRawX();
+                mXLastMove = mXDown;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                mXMove = ev.getRawX();
+                float diff = Math.abs(mXMove - mXDown);
+                mXLastMove = mXMove;
+                // 当手指拖动值大于TouchSlop值时，认为应该进行滚动，拦截子控件的事件
+                if (diff > mTouchSlop) {
+                    Logger.d("手指拖动值大于TouchSlop值时"+diff+":"+mTouchSlop);
+                    return true;
 
-               }
-               break;
-       }
+                }
+                else{
+                    Logger.d("手指拖动值小于TouchSlop值时"+diff+":"+mTouchSlop);
+                }
+                break;
+        }
         return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-
+        switch (event.getAction()) {
+            case MotionEvent.ACTION_MOVE:
+                mXMove = event.getRawX();
+                int scrolledX = (int) (mXLastMove - mXMove);
+                if (getScrollX() + scrolledX < leftBorder) {
+                    scrollTo(leftBorder, 0);
+                    return true;
+                } else if (getScrollX() + getWidth() + scrolledX > rightBorder) {
+                    scrollTo(rightBorder - getWidth(), 0);
+                    return true;
+                }
+                scrollBy(scrolledX, 0);
+                mXLastMove = mXMove;
+                break;
+            case MotionEvent.ACTION_UP:
+                // 当手指抬起时，根据当前的滚动值来判定应该滚动到哪个子控件的界面
+                int targetIndex = (getScrollX() + getWidth() / 2) / getWidth();
+                int dx = targetIndex * getWidth() - getScrollX();
+                // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
+                mScroller.startScroll(getScrollX(), 0, dx, 0);
+                invalidate();
+                break;
+        }
         return super.onTouchEvent(event);
+    }
+
+    @Override
+    public void computeScroll() {
+        // 第三步，重写computeScroll()方法，并在其内部完成平滑滚动的逻辑
+        if (mScroller.computeScrollOffset()) {
+            scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
+            invalidate();
+        }
     }
 }
