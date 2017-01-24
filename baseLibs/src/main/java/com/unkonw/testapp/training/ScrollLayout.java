@@ -1,6 +1,7 @@
 package com.unkonw.testapp.training;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -61,17 +62,29 @@ public class ScrollLayout extends ViewGroup {
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+
+        int getModeW= MeasureSpec.getMode(widthMeasureSpec);
+        int getSizeW= MeasureSpec.getSize(widthMeasureSpec);
+        int getModeH=MeasureSpec.getMode(heightMeasureSpec);
+        int getSizeH=MeasureSpec.getSize(heightMeasureSpec);
+
+
+        Logger.d("onMeasure"+";getModeW="+getModeW+";getSizeW="+getSizeW);
+        Logger.d("onMeasure"+";getModeH="+getModeH+";getSizeH="+getSizeH);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        int childCount = getChildCount();
-        for (int i = 0; i < childCount; i++) {
-            View childView = getChildAt(i);
+
+       /**
+        * int childCount = getChildCount();
+        * for (int i = 0; i < childCount; i++) {
+         *   View childView = getChildAt(i);
             // 为ScrollerLayout中的每一个子控件测量大小
             measureChild(childView, widthMeasureSpec, heightMeasureSpec);
-        }
+        }*/
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        Logger.d("onLayout;changed="+changed+";l="+l+";t="+t+";r="+r+";b="+b);
         if (changed) {
             int childCount = getChildCount();
             for (int i = 0; i < childCount; i++) {
@@ -83,6 +96,12 @@ public class ScrollLayout extends ViewGroup {
             leftBorder = getChildAt(0).getLeft();
             rightBorder = getChildAt(getChildCount() - 1).getRight();
         }
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        Logger.d("onDraw");
+        super.onDraw(canvas);
     }
 
     @Override
@@ -123,7 +142,7 @@ public class ScrollLayout extends ViewGroup {
                     scrollTo(rightBorder - getWidth(), 0);
                     return true;
                 }
-                scrollBy(scrolledX, 0);
+                scrollBy(scrolledX, 0);//里面的内容滑动 也就是childView滑动
                 mXLastMove = mXMove;
                 break;
             case MotionEvent.ACTION_UP:
