@@ -3,4 +3,50 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+    <!--blue-->
+    <color name="blue_dark">#4578e4</color>
+    <color name="blue">#4285f4</color>
+    <color name="blue_word">#009fe8</color>
+    <color name="blue1">#5a96dd</color>
+    <color name="blue_300">#42c6ff</color>
+    <color name="white">@android:color/white</color>
+    <!--black-grey-->
+    <color name="black">@android:color/black</color>
+    <color name="black_grey">#333333</color>
+    <color name="grey_dark">#7f7f7f</color>
+    <color name="grey_light">#bfbfbf</color>
+    <color name="grey_background">#e5e5e5</color>
+    <color name="grey_background_trans">#aae5e5e5</color>
+    <color name="grey_thick_line">#ededed</color>
+    <color name="grey_button">#bebebe</color>
+    <color name="grey_line_button">#9f9f9f</color>
+    <color name="grey_dark_word">#4c4c4c</color>
+    <color name="grey_dialog_background">#f0f0f0</color>
+    <color name="grey_default_bg">#ecebf1</color>
+    <color name="colorPrimaryLight">#cfd8dc</color>
+    <color name="gray_dark">#616161</color>
+    <!--transparent-->
+    <color name="transparent">@android:color/transparent</color>
+    <color name="trans_black">#77000000</color>
+    <color name="trans_white">#66ffffff</color>
+    <!--red-->
+    <color name="red">#ff0000</color>
+    <color name="red_background">#ff4a4a</color>
+    <color name="orange_dark">#ff3300</color>
+    <color name="red_title">#ad0c11</color>
+
+
+    <color name="brown">#5d4037</color>
+
+
+
+    <!--orange-->
+
+
+    <!--green-->
+    <color name="green500">#4CAF50</color>
+    <color name="green900">#379e48</color>
+    <!--other-->
+    <color name="background_tab_pressed">#6633B5E5</color>
 </resources>

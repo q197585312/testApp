@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/grey_default_bg"
+    tools:ignore="ContentDescription"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_layout" />
+
+
+
+        <RadioGroup
+            android:gravity="right"
+            android:id="@+id/login_language_rg"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="right"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/login_china_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:button="@null"
+                android:gravity="center" />
+
+            <RadioButton
+                android:checked="true"
+                android:id="@+id/login_english_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:button="@null"
+                android:gravity="center" />
+<!--
+            <RadioButton
+                android:id="@+id/login_thai_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/cambodian_flag_seleter"
+                android:button="@null"
+                android:gravity="center" />
+            <RadioButton
+                android:id="@+id/login_indonesia_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/indonesia_flag_seleter"
+                android:button="@null"
+                android:gravity="center" />
+            <RadioButton
+                android:id="@+id/login_malaysia_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/malaysia_flag_seleter"
+                android:button="@null"
+                android:gravity="center" />
+            <RadioButton
+                android:id="@+id/login_thailand_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/thailand_flag_seleter"
+                android:button="@null"
+                android:gravity="center" />
+            <RadioButton
+                android:id="@+id/login_korea_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/korea_flag_seleter"
+                android:button="@null"
+                android:gravity="center" />
+            <RadioButton
+                android:id="@+id/login_vietnam_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/vietnam_flag_seleter"
+                android:button="@null"
+                android:gravity="center" />-->
+
+        </RadioGroup>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+
+        <EditText
+            android:id="@+id/login_username_edt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:hint="@string/Account"
+            android:maxLength="11"
+            android:padding="15dp"
+            android:maxLines="1"
+            android:textColor="@color/black_grey"
+            android:textSize="17sp" />
+
+
+        <EditText
+            android:id="@+id/login_password_edt"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:gravity="center_vertical"
+            android:hint="@string/Password"
+            android:inputType="textPassword"
+            android:padding="15dp"
+            android:maxLines="1"
+            android:textColor="@color/black_grey"
+            android:textSize="17sp" />
+
+        <Button
+            android:id="@+id/login_login_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:onClick="clickLogin"
+            android:text="@string/Login"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="10dp">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="vertical"
+      >
+        <TextView
+            android:id="@+id/login_forget_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:clickable="true"
+            android:onClick="clickDigWeb"
+            android:layout_marginBottom="10dp"
+           />
+
+        <Button
+            android:id="@+id/login_register_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:onClick="clickRegister"
+            android:textColor="@android:color/white"
+            android:textSize="15dip" />
+        <TextView
+            android:id="@+id/tv_login_version"
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/grey_dark"
+            android:text="1.00"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    </FrameLayout>
+
+</LinearLayout>
