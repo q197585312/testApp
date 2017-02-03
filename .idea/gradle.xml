@@ -5,10 +5,11 @@
       <GradleProjectSettings>
         <option name="distributionType" value="LOCAL" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="D:\androidStudio\gradle\gradle-2.14.1" />
+        <option name="gradleHome" value="D:\studio\gradle\gradle-2.14.1" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Afb88" />
             <option value="$PROJECT_DIR$/baseLibs" />
           </set>
         </option>
