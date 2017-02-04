@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">TestApp</string>
     <string name="sss">手指拖动值大于TouchSlop值时</string>
+    <string name="app">我的App</string>
 </resources>

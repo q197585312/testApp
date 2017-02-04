@@ -8,13 +8,12 @@ import android.widget.RelativeLayout;
 import com.orhanobut.logger.Logger;
 import com.unkonw.testapp.R;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
 
 
 public class MainActivity extends AppCompatActivity {
 
-    @Bind(R.id.activity_main)
+//    @Bind(R.id.activity_main)
     RelativeLayout activityMain;
 
     @Override
