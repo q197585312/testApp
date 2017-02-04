@@ -8,7 +8,6 @@
     android:minHeight="44dp"
     app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    app:navigationIcon="@mipmap/arrow_left_white"
     >
         <TextView
             android:id="@+id/toolbar_title"
@@ -17,10 +16,9 @@
             android:textSize="16sp"
             android:gravity="center"
             android:layout_gravity="center"
-            android:text="我的App"
+            android:text="@string/app"
             android:textColor="@android:color/white" />
 
-        <include layout="@layout/include_search_layout"/>
     <TextView
         android:id="@+id/toolbar_right_tv"
         android:layout_width="wrap_content"

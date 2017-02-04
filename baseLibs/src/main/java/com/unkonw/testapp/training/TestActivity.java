@@ -11,20 +11,18 @@ import com.unkonw.testapp.R;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.AutoUtils;
 
-import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2017/1/14 0014.
  */
 
 public class TestActivity extends BaseActivity {
-    @Bind(R.id.btn_test)
+//    @Bind(R.id.btn_test)
     Button btnTest;
-    @Bind(R.id.ll_parent)
+//    @Bind(R.id.ll_parent)
     LinearLayout llParent;
-    @Bind(R.id.btn_test2)
+//    @Bind(R.id.btn_test2)
     Button btnTest2;
     private GestureManager manager;
 
@@ -86,13 +84,13 @@ public class TestActivity extends BaseActivity {
         }
     }
 
-    @OnClick(R.id.btn_test)
+//    @OnClick(R.id.btn_test)
     public void onClick(View v) {
         llParent.scrollBy(-AutoUtils.getDisplayWidthValue(360), -AutoUtils.getDisplayWidthValue(640));
     }
 
 
-    @OnClick(R.id.btn_test2)
+//    @OnClick(R.id.btn_test2)
     public void onClick() {
         llParent.scrollTo(-AutoUtils.getDisplayWidthValue(360),-AutoUtils.getDisplayWidthValue(640));
     }

@@ -1,14 +1,14 @@
-package com.unkonw.testapp.login;
+package com.nanyang.app.login;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
-import com.unkonw.testapp.R;
+import com.nanyang.app.R;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-
-import butterknife.ButterKnife;
+import com.unkonw.testapp.login.LoginContract;
+import com.unkonw.testapp.login.LoginInfo;
+import com.unkonw.testapp.login.LoginPresenter;
 
 
 /**
@@ -16,17 +16,13 @@ import butterknife.ButterKnife;
  */
 
 public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
-    Button loginBtn;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-        setContentView(R.layout.login);
-        ButterKnife.bind(this);
+        setContentView(R.layout.activity_login);
         createPresenter(new LoginPresenter(this));
-
     }
 
     @Override
