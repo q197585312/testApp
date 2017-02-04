@@ -42,7 +42,7 @@
 
 
     <!--orange-->
-
+<color name="yellow_button">#feca34</color>
 
     <!--green-->
     <color name="green500">#4CAF50</color>

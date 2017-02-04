@@ -68,7 +68,8 @@ public class ScrollLayout extends ViewGroup {
         int getModeH=MeasureSpec.getMode(heightMeasureSpec);
         int getSizeH=MeasureSpec.getSize(heightMeasureSpec);
 
-
+//        measureChildWithMargins();
+//        measureChild();
         Logger.d("onMeasure"+";getModeW="+getModeW+";getSizeW="+getSizeW);
         Logger.d("onMeasure"+";getModeH="+getModeH+";getSizeH="+getSizeH);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
@@ -84,6 +85,8 @@ public class ScrollLayout extends ViewGroup {
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
+
+//        super.onLayout();
         Logger.d("onLayout;changed="+changed+";l="+l+";t="+t+";r="+r+";b="+b);
         if (changed) {
             int childCount = getChildCount();

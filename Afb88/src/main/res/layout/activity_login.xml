@@ -12,106 +12,107 @@
         android:visibility="gone" />
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@drawable/rectangle_green_gradient"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:orientation="vertical">
-    <RadioGroup
-        android:id="@+id/login_language_rg"
-        android:layout_width="wrap_content"
-        android:layout_height="32dp"
-        android:layout_gravity="right"
-        android:layout_margin="5dp"
-        android:gravity="right"
-        android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/login_china_rb"
-            android:layout_width="32dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/flag_china_selector"
-            android:button="@null"
-            android:gravity="center" />
+        <RadioGroup
+            android:id="@+id/login_language_rg"
+            android:layout_width="wrap_content"
+            android:layout_height="32dp"
+            android:layout_gravity="right"
+            android:layout_margin="5dp"
+            android:gravity="right"
+            android:orientation="horizontal">
 
-        <RadioButton
-            android:id="@+id/login_english_rb"
-            android:layout_width="32dp"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
-            android:background="@drawable/flag_british_selector"
-            android:button="@null"
-            android:checked="true"
-            android:gravity="center" />
+            <RadioButton
+                android:id="@+id/login_china_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/flag_china_selector"
+                android:button="@null"
+                android:gravity="center" />
 
-    </RadioGroup>
+            <RadioButton
+                android:id="@+id/login_english_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/flag_british_selector"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center" />
+        </RadioGroup>
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="30dp"
-        android:src="@mipmap/logo" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical"
-        android:padding="10dp">
-
-
-        <EditText
-            android:id="@+id/login_username_edt"
+        <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical"
-            android:hint="@string/Account"
-            android:maxLength="11"
-            android:maxLines="1"
-            android:padding="15dp"
-            android:textColorHint="@color/black_grey"
-            android:textColor="@color/black_grey"
-            android:textSize="17sp" />
+            android:layout_height="80dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="30dp"
+            android:src="@mipmap/logo" />
 
-
-        <EditText
-            android:textColorHint="@color/black_grey"
-            android:id="@+id/login_password_edt"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginTop="10dp"
-            android:gravity="center_vertical"
-            android:hint="@string/Password"
-            android:inputType="textPassword"
-            android:maxLines="1"
-            android:padding="15dp"
-            android:textColor="@color/black_grey"
-            android:textSize="17sp" />
-
-        <Button
-            android:background="@drawable/rectangle_yellow_bottom_corner5"
-            android:id="@+id/login_login_btn"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:gravity="center"
-            android:text="@string/Login"
-            android:textColor="@android:color/white"
-            android:textSize="15sp" />
+            android:orientation="vertical"
+            android:padding="15dp">
 
-        <Button
-            android:textAllCaps="false"
-            android:background="@color/transparent"
-            android:id="@+id/login_register_btn"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/No_Account"
-            android:gravity="center"
-            android:textColor="@android:color/white"
-            android:textSize="15sp" />
-    </LinearLayout>
+            <EditText
+                android:id="@+id/login_username_edt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:drawableBottom="@drawable/line_white"
+                android:drawablePadding="5dp"
+                android:drawableRight="@drawable/ic_perm_identity"
+                android:gravity="center_vertical"
+                android:hint="@string/Account"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textColorHint="@color/trans_white"
+                android:textSize="17sp" />
+
+            <EditText
+                android:id="@+id/login_password_edt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="15dp"
+                android:background="@null"
+                android:drawableBottom="@drawable/line_white"
+                android:drawablePadding="5dp"
+                android:drawableRight="@drawable/ic_lock"
+                android:gravity="center_vertical"
+                android:hint="@string/Password"
+                android:inputType="textPassword"
+                android:maxLines="1"
+                android:textColor="@color/white"
+                android:textColorHint="@color/trans_white"
+                android:textSize="17sp" />
+
+            <Button
+                android:id="@+id/login_login_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@color/yellow_button"
+                android:gravity="center"
+                android:text="@string/Login"
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
+
+            <Button
+                android:id="@+id/login_register_btn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/transparent"
+                android:gravity="center"
+                android:text="@string/No_Account"
+                android:textColor="@android:color/white"
+                android:textSize="15sp" />
+        </LinearLayout>
     </LinearLayout>
 
     <LinearLayout
@@ -130,8 +131,6 @@
             android:clickable="true"
             android:gravity="center"
             android:textSize="14sp" />
-
-
         <TextView
             android:id="@+id/tv_login_version"
             android:layout_width="wrap_content"
@@ -142,5 +141,4 @@
             android:text="1.00"
             android:textColor="@color/grey_dark" />
     </LinearLayout>
-
 </LinearLayout>
