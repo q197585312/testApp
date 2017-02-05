@@ -13,7 +13,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@drawable/rectangle_green_gradient"
         android:orientation="vertical">
 
@@ -50,10 +51,11 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="30dp"
+            android:layout_marginTop="80dp"
             android:src="@mipmap/logo" />
 
         <LinearLayout
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
@@ -61,7 +63,7 @@
             android:padding="15dp">
 
             <EditText
-                android:id="@+id/login_username_edt"
+                android:id="@+id/edt_login_username"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@null"
@@ -76,7 +78,7 @@
                 android:textSize="17sp" />
 
             <EditText
-                android:id="@+id/login_password_edt"
+                android:id="@+id/edt_login_password"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
@@ -93,7 +95,7 @@
                 android:textSize="17sp" />
 
             <Button
-                android:id="@+id/login_login_btn"
+                android:id="@+id/btn_login_login"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
@@ -103,15 +105,16 @@
                 android:textColor="@android:color/white"
                 android:textSize="15sp" />
 
-            <Button
-                android:id="@+id/login_register_btn"
+            <TextView
+                android:layout_marginTop="25dp"
+                android:id="@+id/tv_login_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/transparent"
                 android:gravity="center"
                 android:text="@string/No_Account"
                 android:textColor="@android:color/white"
-                android:textSize="15sp" />
+                android:textSize="14sp" />
         </LinearLayout>
     </LinearLayout>
 
@@ -123,22 +126,24 @@
         android:padding="10dp">
 
         <TextView
-            android:id="@+id/login_forget_tv"
+            android:id="@+id/tv_login_forget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
             android:clickable="true"
             android:gravity="center"
+            android:textColor="@color/green900"
+            android:text="@string/Forget_password"
             android:textSize="14sp" />
         <TextView
             android:id="@+id/tv_login_version"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
-            android:text="1.00"
-            android:textColor="@color/grey_dark" />
+            android:text="version:1.00"
+            android:textColor="@color/black_grey" />
     </LinearLayout>
 </LinearLayout>

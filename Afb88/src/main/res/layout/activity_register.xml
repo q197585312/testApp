@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rectangle_green_gradient_line"
+    android:orientation="vertical" >
+
+    <include layout="@layout/toolbar_layout"
+        />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:orientation="vertical" >
+
+            <EditText
+                android:layout_marginTop="10dp"
+                android:id="@+id/edt_account"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Account"
+                android:text=""
+                android:textColorHint="@color/trans_white"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableBottom="@drawable/line_white"
+
+                />
+            <TextView
+                android:id="@+id/tv_account_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_grey"
+                android:text="Ok"
+                 />
+            <EditText
+                android:id="@+id/edt_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Password"
+                android:text=""
+                android:textColorHint="@color/trans_white"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableBottom="@drawable/line_white"
+                android:inputType="textPassword" />
+            <TextView
+                android:id="@+id/tv_password_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_grey"
+                android:text="Ok"
+                />
+            <EditText
+                android:id="@+id/edt_password_repeat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Repeat_password"
+                android:text=""
+                android:textColorHint="@color/trans_white"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableBottom="@drawable/line_white"
+                android:inputType="textPassword" />
+            <TextView
+                android:id="@+id/tv_password_repeat_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_grey"
+                android:text="Ok"
+                />
+            <EditText
+                android:id="@+id/edt_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Call_phone_number"
+                android:text=""
+                android:textColorHint="@color/trans_white"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableBottom="@drawable/line_white"
+                android:inputType="phone" />
+            <TextView
+                android:id="@+id/tv_phone_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_grey"
+                android:text="Ok"
+                />
+            <EditText
+                android:id="@+id/edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/Email"
+                android:text=""
+                android:textColorHint="@color/trans_white"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:drawableBottom="@drawable/line_white"
+                android:inputType="textEmailAddress" />
+            <TextView
+                android:id="@+id/tv_email_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_grey"
+                android:text="Ok"
+                />
+            <Button
+                android:layout_marginTop="20dp"
+                android:background="@color/yellow_button"
+                android:id="@+id/btn_submit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                android:text="@string/Submit"/>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

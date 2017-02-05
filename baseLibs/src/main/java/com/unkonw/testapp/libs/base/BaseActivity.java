@@ -43,10 +43,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
      */
 //    protected CompositeDisposable mCompositeSubscription;
 
-    /**
-     * Api类的包装 对象
-     */
-//    protected ApiWrapper mApiWrapper;
+
     public T presenter;
     /**
      * 加载对话框
@@ -105,11 +102,11 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     /**
      * 初始化view
      */
-    public abstract void initView();
+    public void initView(){}
     /**
      * 绑定事件
      */
-    public abstract void bindEvent();
+    public void bindEvent(){}
 
 
     /**

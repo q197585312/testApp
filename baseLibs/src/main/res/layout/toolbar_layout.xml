@@ -10,7 +10,7 @@
     app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
     >
         <TextView
-            android:id="@+id/toolbar_title"
+            android:id="@+id/tv_toolbar_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="16sp"
@@ -20,7 +20,7 @@
             android:textColor="@android:color/white" />
 
     <TextView
-        android:id="@+id/toolbar_right_tv"
+        android:id="@+id/tv_toolbar_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="12sp"

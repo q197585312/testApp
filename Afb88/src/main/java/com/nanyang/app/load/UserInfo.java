@@ -1,4 +1,4 @@
-package com.unkonw.testapp.login;
+package com.nanyang.app.load;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/1/10 0010.
  */
-public class LoginInfo {
+public class UserInfo {
     /*String loginParams = "txtLang=0&txtAcctid="+afbApp.getUser().getName()+"&txtPwd="+afbApp.getUser().getPassword()+"&OsType=Android"+"&OsVersion="+version;
     strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LOGIN_URL, loginParams);*/
     String txtLang;
@@ -55,7 +55,7 @@ public class LoginInfo {
         OsVersion = osVersion;
     }
 
-    public LoginInfo(String txtLang, String txtAcctid, String txtPwd, String osType, String osVersion) {
+    public UserInfo(String txtLang, String txtAcctid, String txtPwd, String osType, String osVersion) {
         this.txtLang = txtLang;
         this.txtAcctid = txtAcctid;
         this.txtPwd = txtPwd;

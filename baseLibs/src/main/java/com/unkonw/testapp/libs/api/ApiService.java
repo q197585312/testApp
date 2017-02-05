@@ -39,4 +39,9 @@ public interface ApiService {
     @POST("login.jsp")
     @FormUrlEncoded
     Call<String> getData(@FieldMap Map<String,String> map );
+
+    /*Load模块*/
+    /*登录*/
+    @GET
+    public  Flowable<String> doLogin(@Url String url) ;
 }

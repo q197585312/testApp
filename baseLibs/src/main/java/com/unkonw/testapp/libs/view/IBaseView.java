@@ -6,6 +6,7 @@ package com.unkonw.testapp.libs.view;
 
 public interface IBaseView<T> {
     void onGetData(T data);
+
     void hideLoadingDialog();
     void showLoadingDialog();
 }
