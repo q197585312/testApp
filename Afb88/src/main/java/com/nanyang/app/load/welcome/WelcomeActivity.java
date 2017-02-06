@@ -99,6 +99,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
         builder.setView(v);
 
         downloadDialog = builder.create();
+        downloadDialog.setCanceledOnTouchOutside(false);
         downloadDialog.show();
         presenter.updateVersion();
     }
