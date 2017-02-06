@@ -7,6 +7,7 @@ import com.unkonw.testapp.login.ResBaseBean;
 import java.util.Map;
 
 import io.reactivex.Flowable;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
@@ -33,7 +34,7 @@ public interface ApiService {
     @POST("login.jsp")
     Flowable<String> getUserInfo(@Field("txtLang")String txtLang, @Field("txtAcctid")String txtAcctid, @Field("txtPwd")String txtPwd, @Field("osType")String osType, @Field("osVersion")String osVersion);
     @GET
-    public Call<ResBaseBean<DataBean>> checkVersion(@Url String url) ;
+    Call<ResBaseBean<DataBean>> checkVersion(@Url String url) ;
 
 
     @POST("login.jsp")
@@ -41,7 +42,17 @@ public interface ApiService {
     Call<String> getData(@FieldMap Map<String,String> map );
 
     /*Load模块*/
-    /*登录*/
+    /*welcome*/
+    @GET("http://www.appgd88.com/afb88version.php?app=android")
+    Flowable<String> checkVersion() ;
+
+    @GET("http://appgd88.com/afb88/download/android/afb88.apk")
+    Flowable<ResponseBody> updateVersion() ;
+
+    /*login*/
     @GET
-    public  Flowable<String> doLogin(@Url String url) ;
+    Flowable<String> doLogin(@Url String url) ;
+
+
+
 }

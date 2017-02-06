@@ -6,12 +6,17 @@ import android.app.ActivityManager;
 import android.app.KeyguardManager;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.telephony.TelephonyManager;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.Toast;
+
+import com.unkonw.testapp.libs.base.BaseApplication;
 
 import java.io.File;
 import java.security.MessageDigest;
@@ -132,5 +137,13 @@ public final class SystemTool {
 
 		return (int) (mi.availMem / 1048576L);
 	}
+	/**
+	 */
+	public static PackageInfo getPackageInfo(Context context) throws PackageManager.NameNotFoundException {
 
+			PackageManager manager =context.getPackageManager();
+			return manager.getPackageInfo(context.getPackageName(),0);
+
+
+	}
 }
