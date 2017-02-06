@@ -9,7 +9,8 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
-import com.orhanobut.logger.Logger;
+import cn.finalteam.toolsfinal.logger.Logger;
+
 
 /**
  * Created by Administrator on 2017/1/14 0014.
@@ -70,8 +71,8 @@ public class ScrollLayout extends ViewGroup {
 
 //        measureChildWithMargins();
 //        measureChild();
-        Logger.d("onMeasure"+";getModeW="+getModeW+";getSizeW="+getSizeW);
-        Logger.d("onMeasure"+";getModeH="+getModeH+";getSizeH="+getSizeH);
+        Logger.getDefaultLogger().d("onMeasure"+";getModeW="+getModeW+";getSizeW="+getSizeW);
+        Logger.getDefaultLogger().d("onMeasure"+";getModeH="+getModeH+";getSizeH="+getSizeH);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
        /**
@@ -87,7 +88,7 @@ public class ScrollLayout extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
 
 //        super.onLayout();
-        Logger.d("onLayout;changed="+changed+";l="+l+";t="+t+";r="+r+";b="+b);
+        Logger.getDefaultLogger().d("onLayout;changed="+changed+";l="+l+";t="+t+";r="+r+";b="+b);
         if (changed) {
             int childCount = getChildCount();
             for (int i = 0; i < childCount; i++) {
@@ -103,7 +104,7 @@ public class ScrollLayout extends ViewGroup {
 
     @Override
     protected void onDraw(Canvas canvas) {
-        Logger.d("onDraw");
+        Logger.getDefaultLogger().d("onDraw");
         super.onDraw(canvas);
     }
 
@@ -120,12 +121,12 @@ public class ScrollLayout extends ViewGroup {
                 mXLastMove = mXMove;
                 // 当手指拖动值大于TouchSlop值时，认为应该进行滚动，拦截子控件的事件
                 if (diff > mTouchSlop) {
-                    Logger.d("手指拖动值大于TouchSlop值时"+diff+":"+mTouchSlop);
+                    Logger.getDefaultLogger().d("手指拖动值大于TouchSlop值时"+diff+":"+mTouchSlop);
                     return true;
 
                 }
                 else{
-                    Logger.d("手指拖动值小于TouchSlop值时"+diff+":"+mTouchSlop);
+                    Logger.getDefaultLogger().d("手指拖动值小于TouchSlop值时"+diff+":"+mTouchSlop);
                 }
                 break;
         }

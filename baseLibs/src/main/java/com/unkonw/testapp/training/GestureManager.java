@@ -7,6 +7,8 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.widget.Button;
 
+import cn.finalteam.toolsfinal.logger.Logger;
+
 
 /**
  * Created by Administrator on 2017/1/13.
@@ -43,7 +45,7 @@ public class GestureManager {
         mVelocityTracker.computeCurrentVelocity(1000);
         // 获取在1秒内X方向所滑动像素值
         int xVelocity = (int) mVelocityTracker.getXVelocity();
-        com.orhanobut.logger.Logger.d(""+xVelocity);
+        Logger.getDefaultLogger().d(""+xVelocity);
         return Math.abs(xVelocity);
     }
 

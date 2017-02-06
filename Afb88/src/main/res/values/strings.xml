@@ -9,4 +9,8 @@
     <string name="Call_phone_number">Call-phone number</string>
     <string name="Email">E-mail</string>
     <string name="Submit">Submit</string>
+    <string name="Update">Update</string>
+    <string name="download_now">Pro, a new version faster download now!</string>
+    <string name="OK">OK</string>
+    <string name="Loading">Loading...</string>
 </resources>

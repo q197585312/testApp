@@ -7,7 +7,9 @@ import android.content.CursorLoader;
 import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
+import android.support.annotation.RequiresApi;
 
 import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
@@ -117,6 +119,7 @@ public final class MyFileUtils {
 		return in2b;
 	}
 
+	@RequiresApi(api = Build.VERSION_CODES.HONEYCOMB)
 	public static File uri2File(Activity aty, Uri uri) {
 		if (SystemTool.getSDKVersion() < 11) {
 			String[] proj = { "_data" };

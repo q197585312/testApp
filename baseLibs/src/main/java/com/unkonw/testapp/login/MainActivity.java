@@ -5,10 +5,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.RelativeLayout;
 
-import com.orhanobut.logger.Logger;
 import com.unkonw.testapp.R;
 
 import butterknife.ButterKnife;
+import cn.finalteam.toolsfinal.logger.Logger;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -18,22 +18,22 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        Logger.d("onCreate");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         UserDate userDate = (UserDate) getLastCustomNonConfigurationInstance();
         if (userDate != null)
-            Logger.i(userDate.toString());
+            Logger.getDefaultLogger().d(userDate.toString());
         else {
-            Logger.i("userDate == null");
+            Logger.getDefaultLogger().d("userDate == null");
         }
     }
 
     @Override
     public Object onRetainCustomNonConfigurationInstance() {
         UserDate userDate = new UserDate();
-        Logger.i(userDate.toString());
+        Logger.getDefaultLogger().d(userDate.toString());
         return userDate;
     }
 
@@ -54,37 +54,37 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        Logger.d("onStart");
+        Logger.getDefaultLogger().d("onStart");
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
-        Logger.d("onRestart");
+        Logger.getDefaultLogger().d("onRestart");
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        Logger.d("onResume");
+        Logger.getDefaultLogger().d("onResume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
-        Logger.d("onPause");
+        Logger.getDefaultLogger().d("onPause");
     }
 
     @Override
     protected void onStop() {
         super.onStop();
-        Logger.d("onStop");
+        Logger.getDefaultLogger().d("onStop");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        Logger.d("onDestroy");
+        Logger.getDefaultLogger().d("onDestroy");
     }
 
 
