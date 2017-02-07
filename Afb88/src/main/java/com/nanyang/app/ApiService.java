@@ -18,7 +18,6 @@ import retrofit2.http.Url;
 
 
 /**
- * Created by Sunflower on 2015/11/4.
  */
 public interface ApiService {
 
@@ -50,10 +49,11 @@ public interface ApiService {
     Flowable<ResponseBody> updateVersion() ;
 
     /*login*/
+    //http://www.jan88.net/Default1.aspx?lang=eng
+    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1537757816&LID=a01c99aa6487a0b5&_=1486482785410
+    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1537757816&wd=&ia=0&LID=a7ebaf34bf9ffc7f&_=1486482785411
     @FormUrlEncoded
     @POST("http://www.doo88.org/Default1.aspx")
     Flowable<String> doLogin(@FieldMap Map<String,String> info) ;
-
-
 
 }
