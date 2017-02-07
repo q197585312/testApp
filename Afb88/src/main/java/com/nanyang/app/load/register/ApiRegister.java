@@ -1,6 +1,7 @@
 package com.nanyang.app.load.register;
 
 
+import com.nanyang.app.ApiService;
 import com.nanyang.app.load.UserInfo;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.login.DataBean;
@@ -20,10 +21,10 @@ public class ApiRegister extends Api {
  strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LOGIN_URL, loginParams);
  * */
     public Flowable<String> getPersonalInfo(UserInfo mLoginParams) {
-        return applySchedulers(getService().getPersonalInfo(mLoginParams.getMap()));
+        return applySchedulers(getService(ApiService.class).getPersonalInfo(mLoginParams.getMap()));
     }
     public Flowable<String> getData(UserInfo mLoginParams) {
-        return applySchedulers(getService().getUserInfo(mLoginParams.getTxtLang()
+        return applySchedulers(getService(ApiService.class).getUserInfo(mLoginParams.getTxtLang()
                 ,mLoginParams.getTxtAcctid()
                 ,mLoginParams.getTxtPwd()
                 ,mLoginParams.getOsType()
@@ -31,11 +32,11 @@ public class ApiRegister extends Api {
         ));
     }
     public Call<ResBaseBean<DataBean>> checkVersion(String url) {
-        return getService().checkVersion(url);
+        return getService(ApiService.class).checkVersion(url);
 
     }
     public Call<String> getData(Map<String,String> params) {
-        return getService().getData(params);
+        return getService(ApiService.class).getData(params);
 
     }
 }

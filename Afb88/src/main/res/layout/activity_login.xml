@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_default_bg"
+    android:background="@mipmap/login_bg"
     android:orientation="vertical"
     tools:ignore="ContentDescription">
 
@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/rectangle_green_gradient"
         android:orientation="vertical">
 
         <RadioGroup
@@ -72,6 +71,7 @@
                 android:drawableRight="@drawable/ic_perm_identity"
                 android:gravity="center_vertical"
                 android:hint="@string/Account"
+                android:text="demoafbAi2"
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:textColorHint="@color/trans_white"
@@ -80,6 +80,7 @@
             <EditText
                 android:id="@+id/edt_login_password"
                 android:layout_width="match_parent"
+                android:text="123123aa"
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
                 android:background="@null"

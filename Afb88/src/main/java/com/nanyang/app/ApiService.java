@@ -1,4 +1,4 @@
-package com.unkonw.testapp.libs.api;
+package com.nanyang.app;
 
 
 import com.unkonw.testapp.login.DataBean;
@@ -28,18 +28,18 @@ public interface ApiService {
      */
     @POST("login.jsp")
     @FormUrlEncoded
-    Flowable<String> getPersonalInfo(@FieldMap Map<String,String> mLoginParams);
+    Flowable<String> getPersonalInfo(@FieldMap Map<String, String> mLoginParams);
 
     @FormUrlEncoded
     @POST("login.jsp")
-    Flowable<String> getUserInfo(@Field("txtLang")String txtLang, @Field("txtAcctid")String txtAcctid, @Field("txtPwd")String txtPwd, @Field("osType")String osType, @Field("osVersion")String osVersion);
+    Flowable<String> getUserInfo(@Field("txtLang") String txtLang, @Field("txtAcctid") String txtAcctid, @Field("txtPwd") String txtPwd, @Field("osType") String osType, @Field("osVersion") String osVersion);
     @GET
     Call<ResBaseBean<DataBean>> checkVersion(@Url String url) ;
 
 
     @POST("login.jsp")
     @FormUrlEncoded
-    Call<String> getData(@FieldMap Map<String,String> map );
+    Call<String> getData(@FieldMap Map<String, String> map);
 
     /*Load模块*/
     /*welcome*/
@@ -50,8 +50,9 @@ public interface ApiService {
     Flowable<ResponseBody> updateVersion() ;
 
     /*login*/
-    @GET
-    Flowable<String> doLogin(@Url String url) ;
+    @FormUrlEncoded
+    @POST("http://www.doo88.org/Default1.aspx")
+    Flowable<String> doLogin(@FieldMap Map<String,String> info) ;
 
 
 
