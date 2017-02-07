@@ -13,4 +13,6 @@
     <string name="download_now">Pro, a new version faster download now!</string>
     <string name="OK">OK</string>
     <string name="Loading">Loading...</string>
+    <string name="Account_empty">Account can\'t be empty!</string>
+    <string name="Password_empty">Password can\'t be empty</string>
 </resources>

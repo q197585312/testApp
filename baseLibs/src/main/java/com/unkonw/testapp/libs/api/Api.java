@@ -41,14 +41,15 @@ public class Api {
     private static final String HEADER_X_HB_Client_Type = "X-HB-Client-Type";
     private static final String FROM_ANDROID = "ayb-android";
 
-    private static ApiService service;
-    private static Retrofit retrofit;
 
-    public static ApiService getService() {
+    private static Retrofit retrofit;
+    private static Object service;
+
+    public static  <T> T getService(Class<T> cls) {
         if (service == null) {
-            service = getRetrofit().create(ApiService.class);
+            service = getRetrofit().create(cls);
         }
-        return service;
+        return (T) service;
     }
 
     /**

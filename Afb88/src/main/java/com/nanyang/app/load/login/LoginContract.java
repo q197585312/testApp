@@ -6,6 +6,7 @@ import com.unkonw.testapp.libs.view.IBaseView;
 public interface LoginContract {
     interface View extends IBaseView<String> {
        void onFailed(String error);
+        void promptMsg(int msgRes);
     }
 
     interface Presenter extends IBasePresenter {
