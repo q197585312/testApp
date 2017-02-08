@@ -11,11 +11,8 @@ import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
 import io.reactivex.disposables.CompositeDisposable;
 
-/**
- * Created by anzhuo002 on 2016/7/5.
- */
 
-public abstract class BaseFragment<T extends IBasePresenter> extends Fragment implements View.OnClickListener{
+public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
     public BaseActivity mContext;
     public View mContentView = null;
     /**
@@ -81,9 +78,9 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
      */
     public abstract int onSetLayoutId();
 
-    public abstract void initView();
+    public void initView(){}
 
-    public abstract void bindEvent();
+    public void bindEvent(){}
 
     public void showToast(String content) {
         mContext.showToast(content);
@@ -107,10 +104,5 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     public void skipAct(Class clazz, Bundle bundle, int flags) {
         mContext.skipAct(clazz,bundle,flags);
     }
-
-    public void test() {
-
-    }
-
 
 }

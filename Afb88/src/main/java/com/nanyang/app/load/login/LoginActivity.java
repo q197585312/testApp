@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.nanyang.app.R;
 import com.nanyang.app.load.register.RegisterActivity;
 import com.nanyang.app.main.BaseToolbarActivity;
+import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import butterknife.Bind;
@@ -64,6 +65,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> implement
     @Override
     public void onGetData(String data) {
         ToastUtils.showShort(data);
+        skipAct(MainActivity.class);
     }
 
     @Override

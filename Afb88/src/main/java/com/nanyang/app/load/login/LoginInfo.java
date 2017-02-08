@@ -73,7 +73,6 @@ import java.util.Map;
         map.put("password_clear",password_clear);
         map.put("password_password",password_password);
         map.put("btnSignIn",btnSignIn);
-
         return map;
     }
 }

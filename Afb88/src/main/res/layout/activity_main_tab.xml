@@ -1,0 +1,92 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_layout"
+
+        />
+
+    <FrameLayout
+        android:id="@+id/fl_main_content"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <LinearLayout
+        android:id="@+id/ll_tab_menu_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/grey_default_bg"
+        android:baselineAligned="false"
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+        <FrameLayout
+            android:id="@+id/fl_menu_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_tab_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@mipmap/main_menu_a_hover"
+                android:text="Home"
+                android:textColor="@color/green900" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_menu_center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_tab_center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@mipmap/main_menu_user"
+                android:text="Center"
+                android:textColor="@color/black_grey" />
+        </FrameLayout>
+
+
+        <FrameLayout
+            android:id="@+id/fl_menu_order"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_tab_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@mipmap/main_menu_order"
+                android:text="Order"
+                android:textColor="@color/black_grey" />
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_menu_more"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1">
+
+            <TextView
+
+                android:id="@+id/tv_tab_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableTop="@mipmap/main_menu_more"
+                android:text="More"
+                android:textColor="@color/black_grey" />
+        </FrameLayout>
+    </LinearLayout>
+
+</LinearLayout>
