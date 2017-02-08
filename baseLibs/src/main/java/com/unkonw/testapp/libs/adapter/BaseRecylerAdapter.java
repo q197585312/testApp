@@ -37,10 +37,11 @@ public abstract class BaseRecylerAdapter<T> extends RecyclerView.Adapter<MyRecyl
     @Override
     public final void onBindViewHolder(MyRecylerViewHolder holder, int position) {
         holder.getHolderView().setTag(position);
-        convert(holder, position);
+        T item = getItem(position);
+        convert(holder, position,item);
     }
 
-    public abstract void convert(MyRecylerViewHolder holder, int position);
+    public abstract void convert(MyRecylerViewHolder holder, int position,T item);
 
     public T getItem(int positon) {
         return mDatas != null && mDatas.size() > positon ? mDatas.get(positon) : null;

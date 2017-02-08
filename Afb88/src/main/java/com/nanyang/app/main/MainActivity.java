@@ -32,6 +32,7 @@ public class MainActivity extends BaseToolbarActivity {
         ButterKnife.bind(this);
         flCurrentMenu=flMenuHome;
         addFragmentToActivity(homeFragment,R.id.fl_main_content);
+
     }
 
     @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_order, R.id.fl_menu_more})

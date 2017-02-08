@@ -15,4 +15,13 @@
     <string name="Loading">Loading...</string>
     <string name="Account_empty">Account can\'t be empty!</string>
     <string name="Password_empty">Password can\'t be empty</string>
+    <string name="Sportbook">Sportbook</string>
+    <string name="Live_Casino">Live Casino</string>
+    <string name="Games">Games</string>
+    <string name="Keno">Keno</string>
+    <string name="Poker">Poker</string>
+    <string name="Lottery">Lottery</string>
+    <string name="Roulette">Roulette</string>
+    <string name="Casino">Casino</string>
+    <string name="Discount">Discount</string>
 </resources>

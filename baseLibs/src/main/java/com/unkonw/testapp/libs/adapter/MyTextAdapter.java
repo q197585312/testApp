@@ -21,7 +21,7 @@ public class MyTextAdapter extends BaseRecylerAdapter<String>{
      * @param position
      */
     @Override
-    public void convert(MyRecylerViewHolder holder, int position) {
+    public void convert(MyRecylerViewHolder holder, int position,String text) {
         holder.setText(R.id.title, "youxin***" + position);
     }
 }

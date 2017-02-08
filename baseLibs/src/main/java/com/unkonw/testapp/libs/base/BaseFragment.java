@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
+import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 
 
@@ -35,11 +36,12 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        if (mContentView == null) {
-            mContentView = inflater.inflate(onSetLayoutId(), container, false);
-            initView();
-            bindEvent();
-        }
+
+        View mContentView = inflater
+                .inflate(onSetLayoutId(), container, false);
+        ButterKnife.bind(this, mContentView);
+        initView();
+        bindEvent();
         return mContentView;
     }
 
@@ -50,6 +52,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
         if (presenter != null) {
             presenter.unSubscribe();
         }
+
     }
 
     /**
@@ -105,4 +108,9 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
         mContext.skipAct(clazz,bundle,flags);
     }
 
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
 }
