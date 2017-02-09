@@ -24,4 +24,5 @@
     <string name="Roulette">Roulette</string>
     <string name="Casino">Casino</string>
     <string name="Discount">Discount</string>
+    <string name="Logout">Logout</string>
 </resources>
