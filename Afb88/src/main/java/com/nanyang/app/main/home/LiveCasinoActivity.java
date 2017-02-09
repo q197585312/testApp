@@ -6,28 +6,26 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
+import com.nanyang.app.main.BaseToolbarActivity;
 import com.nanyang.app.main.MenuItemInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 
-public class HomeFragment extends BaseFragment {
+/**
+ * Created by Administrator on 2017/2/9.
+ */
 
-
+public class LiveCasinoActivity extends BaseToolbarActivity {
     @Bind(R.id.iv_banner)
     ImageView ivBanner;
     @Bind(R.id.rv_content)
     RecyclerView rvContent;
 
-    @Override
-    public int onSetLayoutId() {
-        return R.layout.fragment_home;
-    }
 
     @Override
     public void initView() {
@@ -55,6 +53,5 @@ public class HomeFragment extends BaseFragment {
         };
         rvContent.setAdapter(adapter);
     }
-
 
 }

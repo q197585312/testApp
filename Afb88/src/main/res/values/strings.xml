@@ -25,4 +25,13 @@
     <string name="Casino">Casino</string>
     <string name="Discount">Discount</string>
     <string name="Logout">Logout</string>
+    <string name="Edit_infomation">Edit infomation</string>
+    <string name="Recharge">Recharge</string>
+    <string name="Withdrawals">Withdrawals</string>
+    <string name="My_order">My order</string>
+    <string name="History_record">History record</string>
+    <string name="Modify_password">Modify password</string>
+    <string name="Game_type">Game type</string>
+    <string name="Start_time">Start time</string>
+    <string name="End_time">End time</string>
 </resources>

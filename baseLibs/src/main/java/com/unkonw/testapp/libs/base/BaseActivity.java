@@ -50,11 +50,12 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
      * 加载对话框
      */
     protected DialogLoading loading;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         //全屏
-        getWindow().setFlags(WindowManager.LayoutParams. FLAG_FULLSCREEN , WindowManager.LayoutParams. FLAG_FULLSCREEN);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         super.onCreate(savedInstanceState);
         // 设置不能横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
@@ -62,13 +63,14 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         //Activity管理
         ActivityPageManager.getInstance().addActivity(this);
     }
+
     @Override
     public void setContentView(int layoutResID) {
         Configuration configuration = getResources().getConfiguration();
-        if(configuration.orientation== Configuration.ORIENTATION_PORTRAIT){
-            AutoUtils.setSize(this,false,720,1280);
+        if (configuration.orientation == Configuration.ORIENTATION_PORTRAIT) {
+            AutoUtils.setSize(this, false, 720, 1280);
         } else {
-            AutoUtils.setSize(this,false,1280,720);
+            AutoUtils.setSize(this, false, 1280, 720);
         }
 
         View view = LayoutInflater.from(this).inflate(layoutResID, null);
@@ -76,6 +78,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         ButterKnife.bind(this);
 
     }
+
     @Override
     public void setContentView(View view) {
         super.setContentView(view);
@@ -83,6 +86,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         //初始化页面
         init();
     }
+
     /**
      * 初始化页面
      */
@@ -91,6 +95,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         initView();
         bindEvent();
     }
+
     protected void initFromWhere() {
         if (null != getIntent().getExtras()) {
             if (getIntent().getExtras().containsKey("fromWhere")) {
@@ -98,17 +103,22 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
             }
         }
     }
+
     public String getFromWhere() {
         return fromWhere;
     }
+
     /**
      * 初始化view
      */
-    public void initView(){}
+    public void initView() {
+    }
+
     /**
      * 绑定事件
      */
-    public void bindEvent(){}
+    public void bindEvent() {
+    }
 
 
     /**
@@ -120,6 +130,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         }
 
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -145,13 +156,26 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
      * @param fragment
      * @param frameId
      */
-    protected void addFragmentToActivity(@NonNull Fragment fragment, int frameId) {
+    protected void showFragmentToActivity(@NonNull Fragment fragment, int frameId) {
         checkNotNull(fragment);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        transaction.add(frameId, fragment);
+        if (!fragment.isAdded()) {
+            transaction.add(frameId, fragment);
+
+        }
+        transaction.show(fragment);
         transaction.commit();
     }
 
+
+    protected void hideFragmentToActivity(@NonNull Fragment fragment) {
+        checkNotNull(fragment);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (fragment.isAdded()) {
+            transaction.hide(fragment);
+        }
+        transaction.commit();
+    }
 
     /**
      * 显示一个Toast信息

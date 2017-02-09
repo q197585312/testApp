@@ -10,7 +10,7 @@ import java.util.List;
  * Created by anzhuo002 on 2016/7/5.
  */
 
-public class MyTextAdapter extends BaseRecylerAdapter<String>{
+public class MyTextAdapter extends BaseRecyclerAdapter<String> {
     public MyTextAdapter(Context context, List<String> mDatas) {
         super(context, mDatas, android.R.layout.browser_link_context_header);
     }
@@ -21,7 +21,7 @@ public class MyTextAdapter extends BaseRecylerAdapter<String>{
      * @param position
      */
     @Override
-    public void convert(MyRecylerViewHolder holder, int position,String text) {
+    public void convert(MyRecyclerViewHolder holder, int position, String text) {
         holder.setText(R.id.title, "youxin***" + position);
     }
 }

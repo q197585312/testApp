@@ -23,13 +23,13 @@ import com.unkonw.testapp.R;
 /**
  * Created by zzho on 2015/12/30.
  */
-public class MyRecylerViewHolder extends RecyclerView.ViewHolder{
+public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
 
     public DisplayImageOptions options ;
     private final SparseArray<View> mViews= new SparseArray<View>();
     private View mConvertView;
 
-    public MyRecylerViewHolder(View itemView)
+    public MyRecyclerViewHolder(View itemView)
     {
         super(itemView);
         mConvertView=itemView;
@@ -94,14 +94,14 @@ public class MyRecylerViewHolder extends RecyclerView.ViewHolder{
      * @param text
      * @return
      */
-    public MyRecylerViewHolder setText(int viewId, String text)
+    public MyRecyclerViewHolder setText(int viewId, String text)
     {
         TextView view = getView(viewId);
         view.setText(text);
         return this;
     }
 
-    public MyRecylerViewHolder setTextColor(int viewId, int colorId){
+    public MyRecyclerViewHolder setTextColor(int viewId, int colorId){
         TextView view = getView(viewId);
         view.setTextColor(colorId);
         return this;
@@ -114,7 +114,7 @@ public class MyRecylerViewHolder extends RecyclerView.ViewHolder{
      * @param drawableId
      * @return
      */
-    public MyRecylerViewHolder setImageResource(int viewId, int drawableId)
+    public MyRecyclerViewHolder setImageResource(int viewId, int drawableId)
     {
         ImageView view = getView(viewId);
         view.setImageResource(drawableId);
@@ -128,7 +128,7 @@ public class MyRecylerViewHolder extends RecyclerView.ViewHolder{
      * @param viewId
      * @return
      */
-    public MyRecylerViewHolder setImageBitmap(int viewId, Bitmap bm)
+    public MyRecyclerViewHolder setImageBitmap(int viewId, Bitmap bm)
     {
         ImageView view = getView(viewId);
         view.setImageBitmap(bm);
@@ -141,7 +141,7 @@ public class MyRecylerViewHolder extends RecyclerView.ViewHolder{
      * @param viewId
      * @return
      */
-    public MyRecylerViewHolder setImageByUrl(int viewId, String url)
+    public MyRecyclerViewHolder setImageByUrl(int viewId, String url)
     {
         if(!TextUtils.isEmpty(url)){
             ImageView img = getView(viewId);
@@ -169,7 +169,7 @@ public class MyRecylerViewHolder extends RecyclerView.ViewHolder{
      * @param viewId
      * @return
      */
-    public MyRecylerViewHolder setImageByUrlHasTag(int viewId, final String url, DisplayImageOptions option)
+    public MyRecyclerViewHolder setImageByUrlHasTag(int viewId, final String url, DisplayImageOptions option)
     {
         ImageView img = getView(viewId);
         img.setTag(url);

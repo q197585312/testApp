@@ -1,4 +1,4 @@
-package com.nanyang.app.main.center;
+package com.nanyang.app.main.order;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -15,7 +15,7 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class PersonalCenterFragment extends BaseFragment {
+public class OrderFragment extends BaseFragment {
 
 
     @Bind(R.id.rv_content)
@@ -23,7 +23,7 @@ public class PersonalCenterFragment extends BaseFragment {
 
     @Override
     public int onSetLayoutId() {
-        return R.layout.fragment_center;
+        return R.layout.fragment_order;
     }
 
     @Override

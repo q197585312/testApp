@@ -12,36 +12,36 @@ import java.util.List;
 /**
  * Created by zzho on 2015/12/30.
  */
-public abstract class BaseRecylerAdapter<T> extends RecyclerView.Adapter<MyRecylerViewHolder> implements View.OnLongClickListener, View.OnClickListener {
+public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecyclerViewHolder> implements View.OnLongClickListener, View.OnClickListener {
     protected List<T> mDatas = new ArrayList<T>();
     private int mLayoutId;
     private LayoutInflater mLayoutInflater;
 
-    public BaseRecylerAdapter(Context context, List<T> mDatas, int layoutId) {
+    public BaseRecyclerAdapter(Context context, List<T> mDatas, int layoutId) {
         mLayoutInflater = LayoutInflater.from(context);
         this.mLayoutId = layoutId;
         this.mDatas = mDatas;
     }
 
     @Override
-    public MyRecylerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public MyRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(mLayoutId, parent, false);
         if (mOnItemClickLitener != null)
             view.setOnClickListener(this);
         if (mOnItemLongClickLitener != null)
             view.setOnLongClickListener(this);
-        MyRecylerViewHolder holder = new MyRecylerViewHolder(view);
+        MyRecyclerViewHolder holder = new MyRecyclerViewHolder(view);
         return holder;
     }
 
     @Override
-    public final void onBindViewHolder(MyRecylerViewHolder holder, int position) {
+    public final void onBindViewHolder(MyRecyclerViewHolder holder, int position) {
         holder.getHolderView().setTag(position);
         T item = getItem(position);
         convert(holder, position,item);
     }
 
-    public abstract void convert(MyRecylerViewHolder holder, int position,T item);
+    public abstract void convert(MyRecyclerViewHolder holder, int position, T item);
 
     public T getItem(int positon) {
         return mDatas != null && mDatas.size() > positon ? mDatas.get(positon) : null;
@@ -122,7 +122,7 @@ public abstract class BaseRecylerAdapter<T> extends RecyclerView.Adapter<MyRecyl
     /**
      * 该方法需要在setAdapter之前调用
      */
-    public BaseRecylerAdapter<T> setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
+    public BaseRecyclerAdapter<T> setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
         this.mOnItemClickLitener = mOnItemClickLitener;
         return this;
     }
@@ -130,7 +130,7 @@ public abstract class BaseRecylerAdapter<T> extends RecyclerView.Adapter<MyRecyl
     /**
      * 该方法需要在setAdapter之前调用
      */
-    public BaseRecylerAdapter<T> setOnLongItemClickLitener(OnItemLongClickLitener mOnItemLongClickLitener) {
+    public BaseRecyclerAdapter<T> setOnLongItemClickLitener(OnItemLongClickLitener mOnItemLongClickLitener) {
         this.mOnItemLongClickLitener = mOnItemLongClickLitener;
         return this;
     }
