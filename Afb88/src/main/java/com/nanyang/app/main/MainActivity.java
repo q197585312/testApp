@@ -13,9 +13,6 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-/**
- * Created by Administrator on 2017/2/8.
- */
 
 public class MainActivity extends BaseToolbarActivity {
 
