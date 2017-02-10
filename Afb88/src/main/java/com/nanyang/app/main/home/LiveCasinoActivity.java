@@ -6,8 +6,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseToolbarActivity;
-import com.nanyang.app.main.MenuItemInfo;
+import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.MenuItemInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 

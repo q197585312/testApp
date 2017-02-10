@@ -12,7 +12,7 @@ public class ForgetActivity extends BaseActivity{
     }
 
     @Override
-    public void bindEvent() {
+    public void initData() {
 
     }
 }

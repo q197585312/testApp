@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.MenuItemInfo;
+import com.nanyang.app.MenuItemInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;

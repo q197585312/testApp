@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
@@ -26,6 +27,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
 /*    public Api mApiWrapper;*/
 
     public  T presenter;
+    protected BasePopupWindow popWindow;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,7 +43,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
                 .inflate(onSetLayoutId(), container, false);
         ButterKnife.bind(this, mContentView);
         initView();
-        bindEvent();
+        initData();
         return mContentView;
     }
 
@@ -83,7 +85,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
 
     public void initView(){}
 
-    public void bindEvent(){}
+    public void initData(){}
 
     public void showToast(String content) {
         mContext.showToast(content);
@@ -106,6 +108,15 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
 
     public void skipAct(Class clazz, Bundle bundle, int flags) {
         mContext.skipAct(clazz,bundle,flags);
+    }
+    public BasePopupWindow createPopupWindow(BasePopupWindow popupWindow){
+       return this.popWindow=mContext.createPopupWindow(popupWindow);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        mContext.stopPopupWindow();
     }
 
     @Override

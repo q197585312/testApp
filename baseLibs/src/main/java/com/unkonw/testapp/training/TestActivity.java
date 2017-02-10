@@ -32,7 +32,7 @@ public class TestActivity extends BaseActivity {
     }
 
     @Override
-    public void bindEvent() {
+    public void initData() {
 
     }
 

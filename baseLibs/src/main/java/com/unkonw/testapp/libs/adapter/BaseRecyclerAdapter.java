@@ -26,9 +26,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     @Override
     public MyRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = mLayoutInflater.inflate(mLayoutId, parent, false);
-        if (mOnItemClickLitener != null)
+        if (mOnItemClickListener != null)
             view.setOnClickListener(this);
-        if (mOnItemLongClickLitener != null)
+        if (mOnItemLongClickListener != null)
             view.setOnLongClickListener(this);
         MyRecyclerViewHolder holder = new MyRecyclerViewHolder(view);
         return holder;
@@ -90,48 +90,49 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
      * 点击事件的 处理   start
      */
 
-    private OnItemClickLitener mOnItemClickLitener;
-    private OnItemLongClickLitener mOnItemLongClickLitener;
+    private OnItemClickListener mOnItemClickListener;
+    private OnItemLongClickListener mOnItemLongClickListener;
 
     @Override
     public void onClick(View view) {
         int position = (Integer) view.getTag();
-        if (mOnItemClickLitener != null)
-            mOnItemClickLitener.onItemClick(view, position);
+        T item=getItem(position);
+        if (mOnItemClickListener != null)
+            mOnItemClickListener.onItemClick(view,item, position);
     }
 
     @Override
     public boolean onLongClick(View view) {
         int position = (Integer) view.getTag();
-        if (mOnItemLongClickLitener != null) {
-            mOnItemLongClickLitener.onItemLongClick(view, position);
+        if (mOnItemLongClickListener != null) {
+            mOnItemLongClickListener.onItemLongClick(view,getItem(position), position);
             return true;
         }
         return false;
     }
 
 
-    public interface OnItemClickLitener {
-        void onItemClick(View view, int position);
+    public interface OnItemClickListener<T> {
+        void onItemClick(View view, T item, int position);
     }
 
-    public interface OnItemLongClickLitener {
-        void onItemLongClick(View view, int position);
+    public interface OnItemLongClickListener<T> {
+        void onItemLongClick(View view, T item, int position);
     }
 
     /**
      * 该方法需要在setAdapter之前调用
      */
-    public BaseRecyclerAdapter<T> setOnItemClickLitener(OnItemClickLitener mOnItemClickLitener) {
-        this.mOnItemClickLitener = mOnItemClickLitener;
+    public BaseRecyclerAdapter<T> setOnItemClickListener(OnItemClickListener mOnItemClickListener) {
+        this.mOnItemClickListener = mOnItemClickListener;
         return this;
     }
 
     /**
      * 该方法需要在setAdapter之前调用
      */
-    public BaseRecyclerAdapter<T> setOnLongItemClickLitener(OnItemLongClickLitener mOnItemLongClickLitener) {
-        this.mOnItemLongClickLitener = mOnItemLongClickLitener;
+    public BaseRecyclerAdapter<T> setOnLongItemClickListener(OnItemLongClickListener mOnItemLongClickListener) {
+        this.mOnItemLongClickListener = mOnItemLongClickListener;
         return this;
     }
 }

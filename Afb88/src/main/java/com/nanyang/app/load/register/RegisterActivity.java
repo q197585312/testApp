@@ -7,7 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseToolbarActivity;
+import com.nanyang.app.BaseToolbarActivity;
 
 import butterknife.Bind;
 import butterknife.OnClick;

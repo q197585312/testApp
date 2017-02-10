@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.load.register.RegisterActivity;
-import com.nanyang.app.main.BaseToolbarActivity;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -46,15 +46,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> implement
         createPresenter(new LoginPresenter(this));
     }
 
-    @Override
-    public void initView() {
-
-    }
-
-    @Override
-    public void bindEvent() {
-
-    }
 
 /*    public void onCLickLogin(View v) {
 //        presenter.login(new UserInfo("0", "DLDLDLYY15", "111111", "Android", "1.0").getMap());

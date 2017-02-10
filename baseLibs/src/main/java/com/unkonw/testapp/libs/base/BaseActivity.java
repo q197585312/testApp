@@ -17,6 +17,7 @@ import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.AutoUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.DialogLoading;
 
 import butterknife.ButterKnife;
@@ -50,6 +51,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
      * 加载对话框
      */
     protected DialogLoading loading;
+    protected BasePopupWindow popWindow;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,7 +95,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     public void init() {
         initFromWhere();
         initView();
-        bindEvent();
+        initData();
     }
 
     protected void initFromWhere() {
@@ -117,7 +119,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     /**
      * 绑定事件
      */
-    public void bindEvent() {
+    public void initData() {
     }
 
 
@@ -128,7 +130,25 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         if (presenter != null) {
             this.presenter = presenter;
         }
-
+    }
+    public BasePopupWindow createPopupWindow(BasePopupWindow basePopupWindow){
+        if(popWindow!=null){
+            popWindow.closePopupWindow();
+            popWindow=null;
+        }
+        this.popWindow =basePopupWindow;
+        return popWindow;
+    }
+    public void stopPopupWindow(){
+        if(popWindow!=null) {
+            popWindow.closePopupWindow();
+            popWindow=null;
+        }
+    }
+    @Override
+    protected void onStop() {
+        super.onStop();
+        stopPopupWindow();
     }
 
     @Override

@@ -5,19 +5,21 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.PersonalCenterFragment;
 import com.nanyang.app.main.home.HomeFragment;
 import com.nanyang.app.main.more.DiscountFragment;
 import com.nanyang.app.main.order.OrderFragment;
 import com.unkonw.testapp.libs.base.BaseFragment;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends BaseToolbarActivity {
+public class MainActivity extends BaseToolbarActivity <MainPresenter> implements MainContract.View {
 
     @Bind(R.id.fl_menu_home)
     FrameLayout flMenuHome;
@@ -35,13 +37,12 @@ public class MainActivity extends BaseToolbarActivity {
         ButterKnife.bind(this);
         flCurrentMenu=flMenuHome;
         showFragmentToActivity(homeFragment,R.id.fl_main_content);
-
+        createPresenter(new MainPresenter(this));
     }
 
     @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_order, R.id.fl_menu_more})
     public void onClick(View view) {
         clickTabMenu((FrameLayout)view );
-
     }
 
     private void clickTabMenu(FrameLayout fl) {
@@ -89,5 +90,15 @@ public class MainActivity extends BaseToolbarActivity {
             flCurrentMenu=fl;
         }
 
+    }
+
+    @Override
+    public void onFailed(String error) {
+        ToastUtils.showShort(error);
+    }
+
+    @Override
+    public void onGetData(String data) {
+        ToastUtils.showShort(data);
     }
 }

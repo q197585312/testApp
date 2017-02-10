@@ -34,4 +34,8 @@
     <string name="Game_type">Game type</string>
     <string name="Start_time">Start time</string>
     <string name="End_time">End time</string>
+    <string name="Today">Today</string>
+    <string name="Ball">Ball</string>
+    <string name="Early">Early</string>
+    <string name="Cancel">Cancel</string>
 </resources>

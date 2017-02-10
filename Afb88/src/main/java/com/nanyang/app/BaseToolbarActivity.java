@@ -1,10 +1,9 @@
-package com.nanyang.app.main;
+package com.nanyang.app;
 
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.widget.TextView;
 
-import com.nanyang.app.R;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 

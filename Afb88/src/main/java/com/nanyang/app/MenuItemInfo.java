@@ -1,4 +1,4 @@
-package com.nanyang.app.main;
+package com.nanyang.app;
 
 import java.io.Serializable;
 
