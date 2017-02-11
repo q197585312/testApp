@@ -30,14 +30,14 @@ public class DiscountFragment extends BaseFragment {
         super.initView();
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext,  LinearLayoutManager.VERTICAL, false);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(mLayoutManager);
-        List<CiscountItemInfo> dataList = new ArrayList<>();
-        dataList.add(new CiscountItemInfo(R.mipmap.discount_banner));
-        dataList.add(new CiscountItemInfo(R.mipmap.discount_banner));
-        dataList.add(new CiscountItemInfo(R.mipmap.discount_banner));
+        List<DiscountItemInfo> dataList = new ArrayList<>();
+        dataList.add(new DiscountItemInfo(R.mipmap.discount_banner));
+        dataList.add(new DiscountItemInfo(R.mipmap.discount_banner));
+        dataList.add(new DiscountItemInfo(R.mipmap.discount_banner));
 
-        BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<CiscountItemInfo>(mContext, dataList, R.layout.discount_item_image) {
+        BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<DiscountItemInfo>(mContext, dataList, R.layout.discount_item_image) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, CiscountItemInfo item) {
+            public void convert(MyRecyclerViewHolder holder, int position, DiscountItemInfo item) {
                 ImageView iv = holder.getView(R.id.iv_pic);
                 iv.setImageResource(item.getRes());
             }
