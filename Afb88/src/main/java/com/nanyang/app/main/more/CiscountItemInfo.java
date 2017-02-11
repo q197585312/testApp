@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Administrator on 2017/2/9.
  */
 
-public class DiscountItemInfo implements Serializable {
+public class CiscountItemInfo implements Serializable {
     int res;
 
     public int getRes() {
@@ -17,7 +17,7 @@ public class DiscountItemInfo implements Serializable {
         this.res = res;
     }
 
-    public DiscountItemInfo(int res) {
+    public CiscountItemInfo(int res) {
         this.res = res;
     }
 }
