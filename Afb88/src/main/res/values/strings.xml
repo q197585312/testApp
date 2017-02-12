@@ -38,4 +38,8 @@
     <string name="Ball">Ball</string>
     <string name="Early">Early</string>
     <string name="Cancel">Cancel</string>
+    <string name="refresh">Refresh</string>
+    <string name="collection">Collection</string>
+    <string name="menu">Menu</string>
+    <string name="mix">Mix Parlay</string>
 </resources>
