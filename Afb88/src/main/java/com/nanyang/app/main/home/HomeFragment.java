@@ -39,8 +39,8 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView() {
         super.initView();
-        GridLayoutManager mLayoutManager = new GridLayoutManager(mContext, 3, GridLayoutManager.VERTICAL, false);//设置为一个3列的纵向网格布局
-        rvContent.setLayoutManager(mLayoutManager);
+        GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
+        rvContent.setLayoutManager(layoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
         dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.Sportbook)));
         dataList.add(new MenuItemInfo(R.mipmap.home_live, getString(R.string.Live_Casino)));
@@ -60,15 +60,17 @@ public class HomeFragment extends BaseFragment {
                 tv.setText(item.getText());
             }
         };
-        rvContent.setAdapter(adapter);
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
                 if(item.getText().equals(getString(R.string.Sportbook))){
+                    skipAct(SportActivity.class);
 
                 }
             }
         });
+        rvContent.setAdapter(adapter);
+
     }
 
     @Override
@@ -85,7 +87,7 @@ public class HomeFragment extends BaseFragment {
                 super.initView(view);
                 RecyclerView rv = (RecyclerView)view.findViewById(R.id.rv_list);
                 LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
-                rvContent.setLayoutManager(mLayoutManager);
+                rv.setLayoutManager(mLayoutManager);
                 List<MenuItemInfo> data=new ArrayList<>();
                 data.add(new MenuItemInfo(0,getString(R.string.Today)));
                 data.add(new MenuItemInfo(0,getString(R.string.Ball)));

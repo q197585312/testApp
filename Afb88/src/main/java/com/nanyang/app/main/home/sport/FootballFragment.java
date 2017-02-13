@@ -1,13 +1,20 @@
 package com.nanyang.app.main.home.sport;
 
-import com.unkonw.testapp.libs.base.BaseFragment;
-
+import com.nanyang.app.R;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 /**
  * Created by Administrator on 2017/2/12 0012.
  */
 
-public class FootballFragment extends BaseFragment<FootballPresenter> implements SportContract.View<String>  {
+public class FootballFragment extends BaseSportFragment<FootballPresenter> implements SportContract.View<Object>  {
+    @Override
+    public void initData() {
+        super.initData();
+        createPresenter(new FootballPresenter(this));
+        presenter.refresh();
+    }
+
     @Override
     public void onFailed(String error) {
 
@@ -16,13 +23,19 @@ public class FootballFragment extends BaseFragment<FootballPresenter> implements
 
     @Override
     public int onSetLayoutId() {
-        return 0;
+        return R.layout.fragment_football;
     }
 
 
 
     @Override
-    public void onGetData(String data) {
+    public void onGetData(Object data) {
+        ToastUtils.showShort(data.toString());
 
+    }
+
+    @Override
+    public String getTitle() {
+        return getString(R.string.Football);
     }
 }

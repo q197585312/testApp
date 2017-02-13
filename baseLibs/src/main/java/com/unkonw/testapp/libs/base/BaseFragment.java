@@ -28,6 +28,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
 
     public  T presenter;
     protected BasePopupWindow popWindow;
+    private String title;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -123,5 +124,13 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+    public String getTitle() {
+        return title;
+    }
+
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }

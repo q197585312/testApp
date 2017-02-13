@@ -42,4 +42,7 @@
     <string name="collection">Collection</string>
     <string name="menu">Menu</string>
     <string name="mix">Mix Parlay</string>
+    <string name="Football">Footb</string>
+    <string name="Basketball">Basketball</string>
+    <string name="Volleyball">Volleyball</string>
 </resources>

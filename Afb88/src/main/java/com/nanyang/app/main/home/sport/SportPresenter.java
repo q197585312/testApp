@@ -11,16 +11,5 @@ abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresen
 
 
 
-    @Override
-    public void refresh() {
-    }
-    @Override
-    public void collection() {
-    }
-    @Override
-    public void menu() {
-    }
-    @Override
-    public void mix() {
-    }
+
 }

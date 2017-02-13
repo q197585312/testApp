@@ -73,7 +73,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> implement
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
-                //http://a8197c.a36588.com/Public/validate.aspx?us=demoafbAi2&k=a7c7366ecd6041489d08ecb9ac1f39c9&r=732357946&lang=EN-US
+
                 String us=edtLoginUsername.getText().toString();
                 String k=edtLoginPassword.getText().toString();//"a7c7366ecd6041489d08ecb9ac1f39c9"
                 presenter.login(new LoginInfo(us,k));

@@ -15,6 +15,8 @@ import java.util.Map;
     password_clear	PASSWORD
     password_password	123123aa
     btnSignIn	Login*/
+    private String __VIEWSTATE="/wEPDwUKLTE5MDg0OTk2OA9kFgJmD2QWBAIBDxYCHgVzdHlsZQUxYmFja2dyb3VuZDp1cmwoaW1hZ2VzL2xvZ2luX0VOLVVTLnBuZykgbm8tcmVwZWF0OxYCZg9kFgICBw8PFgIeBFRleHQFBUxvZ2luZGQCAg8WAh8ABTliYWNrZ3JvdW5kOnVybChpbWFnZXMvbGlzdF9FTi1VUy5wbmcpIG5vLXJlcGVhdCBjZW50ZXIgMDtkZILSIuTLgS/8hJa3J23I5k+x06BDeZByAtaTINV609ga";
+    private String __EVENTVALIDATION="/wEdAAZJEHwPoiWZZuqEe34w850kiHrx0gRh57qNYHb+gYJUfmN6ZYJNGAQHn0c9zMgZU3A/F856zktixbVekFwCZlBeynuqL3cQJfeeYQ4/gSeOva+f28GNV31+z65DbDqxMS6LpyUyt/tbENTU5voMwX/lJJ3P7TiZYvPQJfOZvT/XIA==";
 
     private String lstLang ="Default.aspx?lang=EN-US";
     private String txtUserName;
@@ -73,6 +75,9 @@ import java.util.Map;
         map.put("password_clear",password_clear);
         map.put("password_password",password_password);
         map.put("btnSignIn",btnSignIn);
+        map.put("__VIEWSTATE",__VIEWSTATE);
+        map.put("__EVENTVALIDATION",__EVENTVALIDATION);
+
         return map;
     }
 }

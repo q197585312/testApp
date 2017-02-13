@@ -177,17 +177,18 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
      * @param frameId
      */
     protected void showFragmentToActivity(@NonNull Fragment fragment, int frameId) {
+        showFragmentToActivity(fragment,frameId,null);
+    }
+
+    protected void showFragmentToActivity(@NonNull Fragment fragment, int frameId,String tag) {
         checkNotNull(fragment);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (!fragment.isAdded()) {
-            transaction.add(frameId, fragment);
-
+            transaction.add(frameId, fragment,tag);
         }
         transaction.show(fragment);
         transaction.commit();
     }
-
-
     protected void hideFragmentToActivity(@NonNull Fragment fragment) {
         checkNotNull(fragment);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();

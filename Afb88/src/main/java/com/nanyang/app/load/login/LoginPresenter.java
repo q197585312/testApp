@@ -1,14 +1,23 @@
 package com.nanyang.app.load.login;
 
 
+import com.nanyang.app.ApiService;
 import com.nanyang.app.R;
+import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View, ApiLogin> implements LoginContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
@@ -49,10 +58,33 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View, A
     public void login(LoginInfo info) {
         if(checkUserAvailable(info)) {
             Disposable subscription = mApiWrapper.doLogin(info)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(Schedulers.io())
+                    .flatMap(new Function<String, Flowable<String>>() {
+                        @Override
+                        public Flowable<String> apply(String s) throws Exception {
+                            String regex=".*<script language='javascript'>window.open\\('(.*?)'.*?";
+                            Pattern p= Pattern.compile(regex);
+                            Matcher m=p.matcher(s);
+                            if(m.find()){
+                                String url=m.group(1);
+                                return Api.getService(ApiService.class).timerRun2(url);
+                            }
+                            return null;
+                        }
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+
                     .subscribe(new Consumer<String>() {//onNext
                         @Override
-                        public void accept(String Str) throws Exception {
-                            baseView.onGetData(Str);
+                        public void accept(String str) throws Exception {
+                                if(str.contains("window.open(")) {
+                                    baseView.onGetData("Login Success");
+                                }
+                            else{
+                                    baseView.onFailed("Login Failed");
+                                }
                         }
                     }, new Consumer<Throwable>() {//错误
                         @Override
