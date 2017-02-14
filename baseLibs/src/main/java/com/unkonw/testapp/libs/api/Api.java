@@ -87,13 +87,12 @@ public class Api {
             OkHttpClient client=new OkHttpClient.Builder()
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .writeTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(300, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
                     .addNetworkInterceptor(
-                            new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS))
+                            new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                     .cookieJar(new CookieManger(BaseApplication.getInstance()))
                     .cache(cache)
-                    .addInterceptor(new HttpLoggingInterceptor())//日志
-                    .addInterceptor( mInterceptor)
+//                    .addInterceptor( mInterceptor)
                     .build();
 
             retrofit = new Retrofit.Builder()

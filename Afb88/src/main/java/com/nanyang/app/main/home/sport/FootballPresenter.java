@@ -1,8 +1,12 @@
 package com.nanyang.app.main.home.sport;
 
+import android.support.annotation.NonNull;
+import android.util.Log;
+
 import com.nanyang.app.ApiService;
 import com.unkonw.testapp.libs.api.Api;
 
+import org.json.JSONArray;
 import org.reactivestreams.Subscription;
 
 import java.util.regex.Matcher;
@@ -55,6 +59,23 @@ FootballPresenter extends SportPresenter<Object,ApiSport> {
                         return null;
                     }
                 })
+                .map(new Function<String,String>() {
+
+                    @Override
+                    public String apply(String s) throws Exception {
+                        JSONArray jsonArray =new  JSONArray(s);
+                        if(jsonArray.length()>4){
+                            JSONArray jsonArray2= jsonArray.getJSONArray(3);
+                            if(jsonArray2.length()>0){
+                                
+                                for (int i = 0; i < jsonArray2.length(); i++) {
+                                    JSONArray jsonArray3= jsonArray.getJSONArray(i);
+                                }
+                            }
+                        }
+                        return jsonArray.toString();
+                    }
+                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Object>() {//onNext
@@ -92,5 +113,15 @@ FootballPresenter extends SportPresenter<Object,ApiSport> {
     @Override
     public void mix() {
     }
-
+    @NonNull
+    protected String getFormatString(String strRes) {
+        if (strRes != null && !strRes.equals("")) {
+            strRes.replaceAll("<br>", " ");
+//            strRes = Html.fromHtml(strRes).toString();
+            strRes.replaceAll("\\n", " ");
+            strRes = strRes.replaceAll(" +", " ");
+            Log.w("HttpVolley", strRes);
+        }
+        return strRes;
+    }
 }
