@@ -38,7 +38,7 @@ FootballPresenter extends SportPresenter<List<MatchBean> , ApiSport> {
     private List<TableModuleBean> filterData;
     private List<TableModuleBean> pageData;
 
-    public FootballPresenter(SportContract.View<List<TableModuleBean>> view) {
+    public FootballPresenter(SportContract.View<List<MatchBean>> view) {
         super(view);
     }
 

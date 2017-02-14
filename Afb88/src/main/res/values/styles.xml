@@ -15,4 +15,16 @@
         <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
         <item name="android:progressDrawable">@drawable/progressbar_mini</item>
     </style>
+
+    <style name="text_normal">
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">normal</item>
+    </style>
+
+    <style name="text_bold">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style>
 </resources>

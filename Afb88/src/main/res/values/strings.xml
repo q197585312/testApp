@@ -45,4 +45,6 @@
     <string name="Football">Football</string>
     <string name="Basketball">Basketball</string>
     <string name="Volleyball">Volleyball</string>
+    <string name="not_started">Not start</string>
+    <string name="min">m</string>
 </resources>

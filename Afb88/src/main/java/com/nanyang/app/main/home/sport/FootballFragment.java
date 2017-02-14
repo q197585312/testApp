@@ -32,6 +32,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     RecyclerView rvContent;
     @Bind(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
+    private String modleType;
 
     @Override
     public void initData() {
@@ -54,10 +55,10 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                 dateTv.setTextAppearance(mContext, R.style.text_normal);
                 dateTv.setPadding(0, 0, 0, 0);
 
-                if (item.getIsRun() != null && item.getIsRun().equals("true") || modleType.equals("Running")) {
-                    dateTv.setTextAppearance(context, R.style.text_bold);
+                if (modleType.equals("Running")) {
+                    dateTv.setTextAppearance(mContext, R.style.text_bold);
                     dateTv.setPadding(0, 0, 10, 0);
-                    helper.setVisible(R.id.module_match_live_iv, false);
+                    helper.getView(R.id.module_match_live_iv).setVisibility(View.GONE);
                     if (item.getRunHomeScore() != null && item.getRunAwayScore() != null && !item.getRunAwayScore().equals("") && !item.getRunHomeScore().equals("")) {
                         String shome = item.getRunHomeScore();
                         String sAway = item.getRunAwayScore();
@@ -74,20 +75,20 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                         try {
 
                             if (item.getStatus().equals("0")) {
-                                timeTv.setText(context.getString(R.string.not_started));
+                                timeTv.setText(getString(R.string.not_started));
                             } else if (item.getStatus().equals("2")) {
                                 min = Integer.valueOf(item.getCurMinute());
                                 start = 45;
                                 min = min + start;
                                 if (min < 130 && min > 0) {
-                                    timeTv.setText(min + context.getString(R.string.min));
+                                    timeTv.setText(min + mContext.getString(R.string.min));
                                 } else {
                                     timeTv.setText("");
                                 }
                             } else /*if (item.getStatus().equals("1")) */ {
                                 min = Integer.valueOf(item.getCurMinute());
                                 if (min < 130 && min > 0) {
-                                    timeTv.setText(min + context.getString(R.string.min));
+                                    timeTv.setText(min + mContext.getString(R.string.min));
                                 } else {
                                     timeTv.setText("");
                                 }
@@ -99,24 +100,26 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                             timeTv.setText("");
                         }
                     }
-                    dateTv.setTextColor(context.getResources().getColor(R.color.red_table_title));
-                    timeTv.setTextColor(context.getResources().getColor(R.color.red_table_title));
+                    dateTv.setTextColor(mContext.getResources().getColor(R.color.red_title));
+                    timeTv.setTextColor(mContext.getResources().getColor(R.color.red_title));
                 } else {
-                    helper.setVisible(R.id.module_match_live_iv, true);
-                    helper.setBackgroundRes(R.id.module_match_live_iv, R.mipmap.live_green_left_arrow_white);
+                    TextView tvLive=helper.getView(R.id.module_match_live_iv);
+                            tvLive.setText("LIVE");
+//                    helper.setBackgroundRes(R.id.module_match_live_iv, R.mipmap.live_green_left_arrow_white);
                     helper.setText(R.id.module_match_live_iv, "");
-                    dateTv.setTextColor(context.getResources().getColor(R.color.grey_light));
-                    timeTv.setTextColor(context.getResources().getColor(R.color.grey_light));
+                    dateTv.setTextColor(mContext.getResources().getColor(R.color.grey_light));
+                    timeTv.setTextColor(mContext.getResources().getColor(R.color.grey_light));
 //                    helper.setText(R.id.module_match_date_tv, item.getMatchDate());
 
-                    helper.setTextSize(R.id.module_match_date_tv, 10);
+                   TextView tvDate= helper.getView(R.id.module_match_date_tv);
+                    tvDate.setTextSize(10);
                     String date = item.getMatchDate().substring(0, 5);
                     helper.setText(R.id.module_match_date_tv, date);
 
                     String time = item.getMatchDate();
                     if (time.length() >6) {
                         time = time.substring(time.length() - 7, time.length());
-                        time = TimeUtils.dateFormatChange(time, "KK:mmaa", "HH:mm", Locale.ENGLISH);
+//                        time = TimeUtils.dateFormatChange(time, "KK:mmaa", "HH:mm", Locale.ENGLISH);
                     }
                     helper.setText(R.id.module_match_time_tv, time);
                     if (betType == TableAdapterHelper.ClearanceBet && modleType.equals("Early")) {
@@ -125,8 +128,8 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     }
                     if (!item.getLive().equals("")) {
                         helper.setBackgroundRes(R.id.module_match_live_iv, 0);
-                        helper.setTextColorRes(R.id.module_match_live_iv, R.color.red_table_title);
-                        helper.setTextColorRes(R.id.module_match_date_tv, R.color.red_table_title);
+                        helper.setTextColorRes(R.id.module_match_live_iv, R.color.red_title);
+                        helper.setTextColorRes(R.id.module_match_date_tv, R.color.red_title);
                         helper.setText(R.id.module_match_live_iv, "");
                         helper.setText(R.id.module_match_date_tv, "");
                         if (!item.getLive().equals("")) {
@@ -169,11 +172,11 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     helper.setVisibility(R.id.module_match_left2_ll, View.INVISIBLE);
                 } else {
                     if (item.getHandicapBeans().get(0).getIsHomeGive().equals("true")) {
-                        helper.setTextColorRes(R.id.module_match_home_team_tv, R.color.red_table_title);
+                        helper.setTextColorRes(R.id.module_match_home_team_tv, R.color.red_title);
                         helper.setTextColorRes(R.id.module_match_visiting_team_tv, R.color.black_grey);
                     } else {
                         helper.setTextColorRes(R.id.module_match_home_team_tv, R.color.black_grey);
-                        helper.setTextColorRes(R.id.module_match_visiting_team_tv, R.color.red_table_title);
+                        helper.setTextColorRes(R.id.module_match_visiting_team_tv, R.color.red_title);
                     }
                     String homeRank = item.getHomeRank();
                     String awayRank = item.getAwayRank();
@@ -201,7 +204,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                         b.putSerializable(AppConfig.ACTION_KEY_INITENT_DATA, item);
                         b.putString(AppConfig.ACTION_KEY_INITENT_STRING, modleType);
                         b.putInt(AppConfig.ACTION_KEY_INITENT_INT, betType);
-                        AppTool.activiyJump(context, VsActivity.class, b);
+                        AppTool.activiyJump(mContext, VsActivity.class, b);
                     }
                 });
                 if (betType == TableAdapterHelper.ClearanceBet) {
@@ -219,9 +222,9 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     helper.setBackgroundRes(R.id.module_match_collection_tv, R.mipmap.star_solid_yellow);
                 }
                 if (item.getRCHome() == null || item.getRCHome().equals("0") || item.getRCHome().equals("0")) {
-                    helper.setVisible(R.id.module_match_home_rea_card_tv, false);
+                    helper.getView(R.id.module_match_home_rea_card_tv, false);
                 } else {
-                    helper.setVisible(R.id.module_match_home_rea_card_tv, true);
+                    helper.getView(R.id.module_match_home_rea_card_tv).
                     if (item.getRCHome().equals("1"))
                         helper.setBackgroundRes(R.id.module_match_home_rea_card_tv, R.drawable.rectangle_red_card1);
                     else if (item.getRCHome().equals("2"))
@@ -230,9 +233,9 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                         helper.setBackgroundRes(R.id.module_match_home_rea_card_tv, R.drawable.rectangle_red_card3);
                 }
                 if (item.getRCAway() == null || item.getRCAway().equals("0") || item.getRCAway().equals("")) {
-                    helper.setVisible(R.id.module_match_away_rea_card_tv, false);
+                    helper.getView(R.id.module_match_away_rea_card_tv, false);
                 } else {
-                    helper.setVisible(R.id.module_match_away_rea_card_tv, true);
+                    helper.getView(R.id.module_match_away_rea_card_tv).setVisibility(View.VISIBLE);
                     if (item.getRCAway().equals("1"))
                         helper.setBackgroundRes(R.id.module_match_away_rea_card_tv, R.drawable.rectangle_red_card1);
                     else if (item.getRCAway().equals("2"))
@@ -253,7 +256,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                         Id组成	联赛id,主队id,客队id                        Ot	t (today)	 e(Early)	r(Running)
                             */
                         clickLocalCollection(getItem(position));
-//                        TableHttpHelper<String> helper1 = new TableHttpHelper<String>(context, ct, new ThreadEndT<String>(new TypeToken<String>() {
+//                        TableHttpHelper<String> helper1 = new TableHttpHelper<String>(mContext, ct, new ThreadEndT<String>(new TypeToken<String>() {
 //                        }.getType()) {
 //                            @Override
 //                            public void endT(String result) {
@@ -290,15 +293,15 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     vps.add(vp);
                 }
                 if (item.getType() == MatchBean.Type.ITME) {
-                    helper.setVisible(R.id.module_match_title_tv, false);
-                    helper.setVisible(R.id.module_match_head_v, false);
+                    helper.getView(R.id.module_match_title_tv, false);
+                    helper.getView(R.id.module_match_head_v, false);
 
                 } else {
-                    helper.setVisible(R.id.module_match_title_tv, true);
-                    helper.setVisible(R.id.module_match_head_v, true);
+                    helper.getView(R.id.module_match_title_tv).setVisibility(View.VISIBLE);
+                    helper.getView(R.id.module_match_head_v).setVisibility(View.VISIBLE);
                     helper.setText(android.R.id.text1, item.getLeagueBean().getModuleTitle());
                     if (position == 0) {
-                        helper.setVisible(R.id.module_match_head_v, false);
+                        helper.getView(R.id.module_match_head_v, false);
                     }
                 }
 
