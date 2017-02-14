@@ -2,6 +2,8 @@ package com.unkonw.testapp.libs.api;
 
 //import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.unkonw.testapp.libs.base.BaseApplication;
 import com.unkonw.testapp.libs.utils.ToStringConverterFactory;
@@ -94,12 +96,14 @@ public class Api {
                     .cache(cache)
 //                    .addInterceptor( mInterceptor)
                     .build();
-
+            Gson gson = new GsonBuilder()
+                    .setLenient()
+                    .create();
             retrofit = new Retrofit.Builder()
                     .client(client)
                     .baseUrl(BASE_URL)
                     .addConverterFactory(new ToStringConverterFactory())
-                    .addConverterFactory(GsonConverterFactory.create())
+                    .addConverterFactory(GsonConverterFactory.create(gson))
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                     .build();
         }

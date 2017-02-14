@@ -33,7 +33,7 @@ public class LiveCasinoActivity extends BaseToolbarActivity {
         GridLayoutManager mLayoutManager = new GridLayoutManager(mContext, 3, GridLayoutManager.VERTICAL, false);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(mLayoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
-        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.Sportbook)));
+        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.SportBook)));
         dataList.add(new MenuItemInfo(R.mipmap.home_live, getString(R.string.Live_Casino)));
         dataList.add(new MenuItemInfo(R.mipmap.home_games, getString(R.string.Games)));
         dataList.add(new MenuItemInfo(R.mipmap.home_keno, getString(R.string.Keno)));

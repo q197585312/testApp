@@ -85,6 +85,8 @@ public interface ApiService {
     Flowable<String> goRefresh();
     @GET
     Flowable<String> timerRun2(@Url  String url);
+    @GET
+    Flowable<String> goFootball(@Url  String url);
 //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1819037080&LID=&_=1486867176438
 //    http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1763152739&LID=&_=1486534793736
     //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1763152739&wd=&ia=0&LID=&_=1486534793737

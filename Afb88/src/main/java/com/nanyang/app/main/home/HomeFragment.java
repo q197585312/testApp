@@ -42,7 +42,7 @@ public class HomeFragment extends BaseFragment {
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(layoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
-        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.Sportbook)));
+        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.SportBook)));
         dataList.add(new MenuItemInfo(R.mipmap.home_live, getString(R.string.Live_Casino)));
         dataList.add(new MenuItemInfo(R.mipmap.home_games, getString(R.string.Games)));
         dataList.add(new MenuItemInfo(R.mipmap.home_keno, getString(R.string.Keno)));
@@ -63,7 +63,7 @@ public class HomeFragment extends BaseFragment {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
-                if(item.getText().equals(getString(R.string.Sportbook))){
+                if(item.getText().equals(getString(R.string.SportBook))){
                     skipAct(SportActivity.class);
 
                 }

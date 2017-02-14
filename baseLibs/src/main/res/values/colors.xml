@@ -26,6 +26,7 @@
     <color name="grey_default_bg">#ecebf1</color>
     <color name="colorPrimaryLight">#cfd8dc</color>
     <color name="gray_dark">#616161</color>
+
     <!--transparent-->
     <color name="transparent">@android:color/transparent</color>
     <color name="trans_black">#77000000</color>

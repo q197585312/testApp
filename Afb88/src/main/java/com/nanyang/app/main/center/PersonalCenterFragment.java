@@ -32,7 +32,7 @@ public class PersonalCenterFragment extends BaseFragment {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext,  LinearLayoutManager.VERTICAL, false);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(mLayoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
-        dataList.add(new MenuItemInfo(R.mipmap.center_info_head, getString(R.string.Edit_infomation)));
+        dataList.add(new MenuItemInfo(R.mipmap.center_info_head, getString(R.string.Edit_information)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_recharge, getString(R.string.Recharge)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_withdrawals, getString(R.string.Withdrawals)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_order, getString(R.string.My_order)));

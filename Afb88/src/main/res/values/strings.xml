@@ -15,7 +15,7 @@
     <string name="Loading">Loading...</string>
     <string name="Account_empty">Account can\'t be empty!</string>
     <string name="Password_empty">Password can\'t be empty</string>
-    <string name="Sportbook">Sportbook</string>
+    <string name="SportBook">SportBook</string>
     <string name="Live_Casino">Live Casino</string>
     <string name="Games">Games</string>
     <string name="Keno">Keno</string>
@@ -25,7 +25,7 @@
     <string name="Casino">Casino</string>
     <string name="Discount">Discount</string>
     <string name="Logout">Logout</string>
-    <string name="Edit_infomation">Edit infomation</string>
+    <string name="Edit_information">Edit information</string>
     <string name="Recharge">Recharge</string>
     <string name="Withdrawals">Withdrawals</string>
     <string name="My_order">My order</string>
@@ -42,7 +42,7 @@
     <string name="collection">Collection</string>
     <string name="menu">Menu</string>
     <string name="mix">Mix Parlay</string>
-    <string name="Football">Footb</string>
+    <string name="Football">Football</string>
     <string name="Basketball">Basketball</string>
     <string name="Volleyball">Volleyball</string>
 </resources>

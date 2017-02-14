@@ -6,9 +6,14 @@ import com.nanyang.app.R;
  * Created by Administrator on 2017/2/12 0012.
  */
 
-public class BasketballFragment extends BaseSportFragment<FootballPresenter> implements SportContract.View<String>  {
+public class BasketballFragment extends BaseSportFragment<SportPresenter> implements SportContract.View<String>  {
     @Override
     public void onFailed(String error) {
+
+    }
+
+    @Override
+    public void onPageData(int page, String pageData) {
 
     }
 
