@@ -10,6 +10,8 @@ abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresen
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
 
 
+    @Override
+    public void refresh(String type) {
 
-
+    }
 }

@@ -26,7 +26,7 @@ import butterknife.Bind;
 
 
 public class SportActivity extends BaseToolbarActivity<Presenter> {
-    BaseSportFragment footballFragment = new FootballFragment();
+    FootballFragment footballFragment = new FootballFragment();
     BaseSportFragment basketballFragment = new BasketballFragment();
     BaseSportFragment volleyballFragment = new VolleyballFragment();
 
@@ -104,14 +104,19 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
     @Override
     public void initData() {
         super.initData();
-        showFragmentToActivity(footballFragment, R.id.fl_content,getString(R.string.Football));
-        String ballType=getIntent().getStringExtra(AppConstant.KEY_STRING);
+        showFragmentToActivity(footballFragment, R.id.fl_content, getString(R.string.Football));
+        String ballType = getIntent().getStringExtra(AppConstant.KEY_STRING);
         tvToolbarTitle.setText(ballType);
-        currentTag =getString(R.string.Football);
+        currentTag = getString(R.string.Football);
         mapFragmnet = new HashMap<>();
         mapFragmnet.put(getString(R.string.Football), footballFragment);
         mapFragmnet.put(getString(R.string.Basketball), basketballFragment);
         mapFragmnet.put(getString(R.string.Volleyball), volleyballFragment);
+        String type = getIntent().getStringExtra(AppConstant.KEY_STRING);
+        if (type != null) {
+            footballFragment.createPresenter(new FootballPresenter(footballFragment));
+            footballFragment.presenter.refresh(type);
+        }
     }
 
     private void selectFragmentTag(String tag) {

@@ -71,12 +71,7 @@ public class HomeFragment extends BaseFragment {
         });
         rvContent.setAdapter(adapter);
 
-    }
-
-    @Override
-    public void initData() {
-        super.initData();
-        createPopupWindow(new BasePopupWindow(mContext,rvContent, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+        createPopupWindow(new BasePopupWindow(mContext,rvContent, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {//创建
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;

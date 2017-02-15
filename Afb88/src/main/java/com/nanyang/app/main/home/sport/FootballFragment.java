@@ -27,11 +27,8 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     @Override
     public void initData() {
         super.initData();
-        createPresenter(new FootballPresenter(this));
-        presenter.refresh();
         initAdapter();
     }
-
     private void initAdapter() {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         rvContent.setLayoutManager(mLayoutManager);

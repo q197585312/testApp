@@ -76,25 +76,17 @@ public interface ApiService {
     //http://a8197c.a36588.com/main.aspx
     @GET("http://a8197c.a36588.com/main.aspx")
     Flowable<String> main() ;
-    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1819037080&LID=&_=1486867176438
-    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1819037080&LID=79cd1df6b9ec83ba&_=1486867176440
-    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1819037080&LID=7c2b8abe85bb3831&_=1486867176524
-    @GET("http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1819037080")
-    Flowable<String> goData();
+
+
+    @GET
+    Flowable<String> getData(@Url String url);
+
     @GET("http://a8197c.a36588.com/_view/RMOdds2.aspx")
     Flowable<String> goRefresh();
     @GET
     Flowable<String> timerRun2(@Url  String url);
     @GET
     Flowable<String> goFootball(@Url  String url);
-//http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1819037080&LID=&_=1486867176438
-//    http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1763152739&LID=&_=1486534793736
-    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1763152739&wd=&ia=0&LID=&_=1486534793737
-    //http://a8197c.a36588.com/pgajaxS.axd?T=CHKST&P=100
-    //http://a8197c.a36588.com/pgajaxS.axd?T=CHKST&P=001
-    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1763152739&LID=5e4900fc4fa7c7c&_=1486534793738
-    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1763152739&wd=&ia=0&LID=33771458aceb4a03&_=1486534793739
-    //#		a8197c.a36588.com	/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1763152739&LID=20bff9e1091626e7&_=1486534793740
-    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1763152739&LID=dd28a82f31f912d&_=1486534793743
+
 
 }

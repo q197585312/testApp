@@ -10,7 +10,7 @@ public interface SportContract {
     }
 
     interface Presenter extends IBasePresenter {
-        void refresh();
+        void refresh(String type);
         void collection();
         void menu();
         void mix();

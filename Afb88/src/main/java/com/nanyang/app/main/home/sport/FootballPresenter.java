@@ -4,12 +4,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.model.TableModuleBean;
 import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
-import com.unkonw.testapp.libs.api.Api;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,8 +18,6 @@ import org.reactivestreams.Subscription;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -46,19 +44,25 @@ FootballPresenter extends SportPresenter<List<MatchBean> , ApiSport> {
     public ApiSport createRetrofitApi() {
         return new ApiSport() {
             @Override
-            Flowable<String> refresh() {
-                return applySchedulers(getService(ApiService.class).goRefresh());
+            Flowable<String> getData(String url) {
+                return applySchedulers(getService(ApiService.class).getData(url));
             }
         };
     }
 
     //  String regex=".*timerRun2\\('(.*?)'.*timerToday2\\('(.*?)'.*?";
     @Override
-    public void refresh() {
-        Disposable subscription = mApiWrapper.refresh()
-                .subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .flatMap(new Function<String, Flowable<String>>() {
+    public void refresh(String type) {
+        String url;
+        if(type.equals("Running"))
+            url=AppConstant.URL_RUNING;
+        else if(type.equals("Today"))
+            url=AppConstant.URL_TODAY;
+        else{
+            url=AppConstant.URL_EARLY;
+        }
+        Disposable subscription = mApiWrapper.getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+               /* .flatMap(new Function<String, Flowable<String>>() {
                     @Override
                     public Flowable<String> apply(String s) throws Exception {
 //                        String regex = ".*timerRun2\\('(.*?)'.*?";
@@ -71,7 +75,7 @@ FootballPresenter extends SportPresenter<List<MatchBean> , ApiSport> {
                         }
                         return null;
                     }
-                })
+                })*/
                 .map(new Function<String, List<TableModuleBean>>() {
 
                     @Override
