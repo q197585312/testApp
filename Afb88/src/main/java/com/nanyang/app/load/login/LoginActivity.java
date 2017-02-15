@@ -9,8 +9,8 @@ import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.load.register.RegisterActivity;
-import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.main.MainActivity;
+import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import butterknife.Bind;
@@ -21,7 +21,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/1/10 0010.
  */
 
-public class LoginActivity extends BaseToolbarActivity<LoginPresenter> implements LoginContract.View {
+public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
 
 
     @Bind(R.id.login_language_rg)

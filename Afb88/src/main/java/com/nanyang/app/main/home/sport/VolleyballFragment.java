@@ -13,6 +13,11 @@ public class VolleyballFragment extends BaseSportFragment<FootballPresenter> imp
 
     }
 
+    @Override
+    public void onPageData(int page, String pageData) {
+
+    }
+
 
     @Override
     public int onSetLayoutId() {

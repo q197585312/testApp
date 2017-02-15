@@ -8,12 +8,14 @@
         android:layout_width="match_parent"
         android:padding="5dp"
         android:layout_height="20dp"
+        android:background="@color/green_light_white"
         />
     <TextView
+        android:background="@color/green_light"
         android:id="@+id/module_match_title_tv"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:textColor="@color/white"
+        android:textColor="@color/green900"
         android:text="联赛名称"
         android:textSize="11sp"
         android:maxLines="1"
@@ -21,11 +23,11 @@
         android:paddingTop="2dp"
         android:paddingBottom="2dp"
         android:layout_weight="1"
-        android:gravity="center_vertical|left"
+        android:gravity="center"
         />
 
     <LinearLayout
-
+        android:background="@color/green_light_white"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
@@ -169,7 +171,7 @@
           android:layout_width="0.6dp"
           android:layout_height="match_parent"/>
 
-        <nanyang.com.dig88.LinkedViewPager.ViewPager
+        <com.nanyang.app.myView.LinkedViewPager.ViewPager
             android:id="@+id/module_center_vp"
             android:layout_width="140dp"
             android:layout_height="match_parent"/>

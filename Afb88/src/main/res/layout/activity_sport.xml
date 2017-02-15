@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/iv_add"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
             android:background="@color/green_light_white"
             android:contentDescription="@null"
             android:src="@mipmap/add_green" />

@@ -2,26 +2,37 @@ package com.nanyang.app;
 
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.TextView;
 
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
-import butterknife.Bind;
-
-/**
- * Created by Administrator on 2017/2/4 0004.
- */
-
 public abstract class BaseToolbarActivity<T extends IBasePresenter> extends BaseActivity<T> {
     @Nullable
-    @Bind(R.id.tv_toolbar_title)
+    protected
     TextView tvToolbarTitle;
     @Nullable
-    @Bind(R.id.tv_toolbar_right)
+    protected
     TextView tvToolbarRight;
     @Nullable
-    @Bind(R.id.toolbar)
+    protected
     Toolbar toolbar;
+
+    @Override
+    public void initData() {
+        super.initData();
+        toolbar= (Toolbar) findViewById(R.id.toolbar);
+        tvToolbarRight= (TextView) findViewById(R.id.tv_toolbar_right);
+        tvToolbarTitle= (TextView) findViewById(R.id.tv_toolbar_title);
+        toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
+        toolbar.setBackgroundResource(R.drawable.rectangle_green_gradient_line);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
 
 }

@@ -64,7 +64,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
                 if(item.getText().equals(getString(R.string.SportBook))){
-                    skipAct(SportActivity.class);
+                 popWindow.showPopupCenterWindow();
 
                 }
             }
@@ -90,7 +90,7 @@ public class HomeFragment extends BaseFragment {
                 rv.setLayoutManager(mLayoutManager);
                 List<MenuItemInfo> data=new ArrayList<>();
                 data.add(new MenuItemInfo(0,getString(R.string.Today)));
-                data.add(new MenuItemInfo(0,getString(R.string.Ball)));
+                data.add(new MenuItemInfo(0,getString(R.string.Running)));
                 data.add(new MenuItemInfo(0,getString(R.string.Early)));
                 data.add(new MenuItemInfo(0,getString(R.string.Cancel)));
                 BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, data, R.layout.text_base) {
