@@ -1,23 +1,14 @@
 package com.nanyang.app.main.home.sport;
 
-import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.TextView;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.MatchBean;
-import com.nanyang.app.main.home.sport.model.TableModuleBean;
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import butterknife.Bind;
 
@@ -43,6 +34,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     }
 
     private void initAdapter() {
+/*
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         rvContent.setLayoutManager(mLayoutManager);
 
@@ -85,7 +77,9 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                                 } else {
                                     timeTv.setText("");
                                 }
-                            } else /*if (item.getStatus().equals("1")) */ {
+                            } else */
+/*if (item.getStatus().equals("1")) *//*
+ {
                                 min = Integer.valueOf(item.getCurMinute());
                                 if (min < 130 && min > 0) {
                                     timeTv.setText(min + mContext.getString(R.string.min));
@@ -248,13 +242,15 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     @Override
                     public void onClick(View v) {
                         //收藏 取消收藏
-                        /*添加我的最爱:
+                        */
+/*添加我的最爱:
                         添加我的最爱:
                         http://mobilesport.dig88api.com/_View/Favourite.aspx?id=29278,139575,55712&IsAdd=True&ot=t
                         消除我的最爱:
                         http://mobilesport.dig88api.com/_View/Favourite.aspx?id=29278,139575,55712&IsAdd=False&ot=t
                         Id组成	联赛id,主队id,客队id                        Ot	t (today)	 e(Early)	r(Running)
-                            */
+                            *//*
+
                         clickLocalCollection(getItem(position));
 //                        TableHttpHelper<String> helper1 = new TableHttpHelper<String>(mContext, ct, new ThreadEndT<String>(new TypeToken<String>() {
 //                        }.getType()) {
@@ -321,6 +317,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
             }
         });
         rvContent.setAdapter(baseRecyclerAdapter);
+*/
 
 
     }
