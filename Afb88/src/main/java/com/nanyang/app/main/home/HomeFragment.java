@@ -84,10 +84,18 @@ public class HomeFragment extends BaseFragment {
                 LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
                 rv.setLayoutManager(mLayoutManager);
                 List<MenuItemInfo> data=new ArrayList<>();
-                data.add(new MenuItemInfo(0,getString(R.string.Today)));
-                data.add(new MenuItemInfo(0,getString(R.string.Running)));
-                data.add(new MenuItemInfo(0,getString(R.string.Early)));
-                data.add(new MenuItemInfo(0,getString(R.string.Cancel)));
+                MenuItemInfo menuItemInfo = new MenuItemInfo(0, getString(R.string.Today));
+                menuItemInfo.setType("Today");
+                MenuItemInfo menuItemInfo1 = new MenuItemInfo(0, getString(R.string.Running));
+                menuItemInfo1.setType("Running");
+                MenuItemInfo menuItemInfo2 = new MenuItemInfo(0, getString(R.string.Early));
+                menuItemInfo2.setType("Early");
+                MenuItemInfo menuItemInfo3 = new MenuItemInfo(0, getString(R.string.Cancel));
+                menuItemInfo3.setType("");
+                data.add(menuItemInfo);
+                data.add(menuItemInfo1);
+                data.add(menuItemInfo2);
+                data.add(menuItemInfo3);
                 BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, data, R.layout.text_base) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
@@ -111,7 +119,7 @@ public class HomeFragment extends BaseFragment {
                         }
                         else{
                             Bundle b=new Bundle();
-                            b.putString(AppConstant.KEY_STRING,item.getText());
+                            b.putString(AppConstant.KEY_STRING,item.getType());
                             skipAct(SportActivity.class,b);
                         }
                     }

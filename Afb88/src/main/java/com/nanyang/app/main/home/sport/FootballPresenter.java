@@ -27,6 +27,8 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
+import static com.unkonw.testapp.libs.api.Api.getService;
+
 
 public class
 FootballPresenter extends SportPresenter<List<MatchBean> , ApiSport> {
@@ -61,7 +63,7 @@ FootballPresenter extends SportPresenter<List<MatchBean> , ApiSport> {
         else{
             url=AppConstant.URL_EARLY;
         }
-        Disposable subscription = mApiWrapper.getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+        Disposable subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                /* .flatMap(new Function<String, Flowable<String>>() {
                     @Override
                     public Flowable<String> apply(String s) throws Exception {

@@ -9,7 +9,7 @@ import io.reactivex.disposables.CompositeDisposable;
  * Created by Administrator on 2016/12/15 0015.
  */
 
-public abstract class BaseRetrofitPresenter<T, V extends IBaseView<T>,A extends Api> implements IBasePresenter {
+public abstract class BaseRetrofitPresenter<T, V extends IBaseView<T>> implements IBasePresenter {
 
 
     public V baseView;
@@ -26,7 +26,7 @@ public abstract class BaseRetrofitPresenter<T, V extends IBaseView<T>,A extends 
      * Api类的包装 对象
      */
 
-    public A mApiWrapper;
+    public Api mApiWrapper;
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      */
@@ -40,6 +40,8 @@ public abstract class BaseRetrofitPresenter<T, V extends IBaseView<T>,A extends 
         this.mApiWrapper = createRetrofitApi();
     }
 
-    public abstract  A createRetrofitApi() ;
+    public  Api createRetrofitApi() {
+        return  new Api();
+    }
 
 }

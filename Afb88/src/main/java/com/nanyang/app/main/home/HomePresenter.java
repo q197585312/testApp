@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home;
 
 
+import com.nanyang.app.ApiService;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
@@ -9,7 +10,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
-class HomePresenter extends BaseRetrofitPresenter<String, HomeContract.View, ApiHome> implements HomeContract.Presenter {
+import static com.unkonw.testapp.libs.api.Api.getService;
+
+class HomePresenter extends BaseRetrofitPresenter<String, HomeContract.View> implements HomeContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     HomePresenter(HomeContract.View view) {
         super(view);
@@ -24,7 +27,9 @@ class HomePresenter extends BaseRetrofitPresenter<String, HomeContract.View, Api
 
     @Override
     public void getBallURl() {
-        Disposable subscription = mApiWrapper.getBallUrl()
+        Disposable subscription =
+                mApiWrapper.applySchedulers(getService(ApiService.class).main())
+//                mApiWrapper.getBallUrl()
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String Str) throws Exception {

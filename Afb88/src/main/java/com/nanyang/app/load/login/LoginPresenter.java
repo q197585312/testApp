@@ -3,7 +3,6 @@ package com.nanyang.app.load.login;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.R;
-import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
@@ -19,16 +18,14 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View, ApiLogin> implements LoginContract.Presenter {
+import static com.unkonw.testapp.libs.api.Api.getService;
+
+class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> implements LoginContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     LoginPresenter(LoginContract.View view) {
         super(view);
     }
 
-    @Override
-    public ApiLogin createRetrofitApi() {
-        return new ApiLogin();
-    }
 
    /* @Override
     public void login(Map<String,String> info) {
@@ -57,7 +54,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View, A
     @Override
     public void login(LoginInfo info) {
         if(checkUserAvailable(info)) {
-            Disposable subscription = mApiWrapper.doLogin(info)
+            Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).doLogin(info.getMap()))
                     .subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
                     .flatMap(new Function<String, Flowable<String>>() {
@@ -68,7 +65,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View, A
                             Matcher m=p.matcher(s);
                             if(m.find()){
                                 String url=m.group(1);
-                                return Api.getService(ApiService.class).timerRun2(url);
+                                return getService(ApiService.class).timerRun2(url);
                             }
                             return null;
                         }

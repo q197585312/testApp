@@ -101,9 +101,20 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         rv_list.setAdapter(baseRecyclerAdapter);
     }
 
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    String type="";
+
     @Override
     public void initData() {
         super.initData();
+        type = getIntent().getStringExtra(AppConstant.KEY_STRING);
         showFragmentToActivity(footballFragment, R.id.fl_content, getString(R.string.Football));
         String ballType = getIntent().getStringExtra(AppConstant.KEY_STRING);
         tvToolbarTitle.setText(ballType);
@@ -112,11 +123,8 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         mapFragmnet.put(getString(R.string.Football), footballFragment);
         mapFragmnet.put(getString(R.string.Basketball), basketballFragment);
         mapFragmnet.put(getString(R.string.Volleyball), volleyballFragment);
-        String type = getIntent().getStringExtra(AppConstant.KEY_STRING);
-        if (type != null) {
-            footballFragment.createPresenter(new FootballPresenter(footballFragment));
-            footballFragment.presenter.refresh(type);
-        }
+
+
     }
 
     private void selectFragmentTag(String tag) {

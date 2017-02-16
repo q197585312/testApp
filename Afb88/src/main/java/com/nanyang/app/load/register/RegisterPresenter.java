@@ -1,7 +1,7 @@
 package com.nanyang.app.load.register;
 
 
-import com.nanyang.app.load.login.ApiLogin;
+import com.nanyang.app.ApiService;
 import com.nanyang.app.load.UserInfo;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -11,7 +11,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
-public class RegisterPresenter extends BaseRetrofitPresenter<String,RegisterContract.View,ApiRegister> implements RegisterContract.Presenter {
+import static com.unkonw.testapp.libs.api.Api.getService;
+
+public class RegisterPresenter extends BaseRetrofitPresenter<String,RegisterContract.View> implements RegisterContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     public RegisterPresenter(RegisterContract.View view) {
         super(view);
@@ -48,7 +50,8 @@ public class RegisterPresenter extends BaseRetrofitPresenter<String,RegisterCont
 
     @Override
     public void register(UserInfo info) {
-        Disposable subscription = mApiWrapper.getPersonalInfo(info)
+        Disposable subscription =mApiWrapper.applySchedulers(getService(ApiService.class).getPersonalInfo(info.getMap()))
+//                mApiWrapper.getPersonalInfo(info)
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String Str) throws Exception {
