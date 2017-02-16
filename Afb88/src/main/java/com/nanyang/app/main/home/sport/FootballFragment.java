@@ -1,15 +1,10 @@
 package com.nanyang.app.main.home.sport;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +22,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
+import cn.finalteam.toolsfinal.DeviceUtils;
+
+import static cn.finalteam.toolsfinal.DeviceUtils.dip2px;
 
 
 public class FootballFragment extends BaseSportFragment<FootballPresenter> implements SportContract.View<List<MatchBean>> {
@@ -42,6 +39,8 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     ViewPager vpHeader;
     private String modelType = "Today";
     BaseRecyclerAdapter<MatchBean> baseRecyclerAdapter;
+    private ArrayList<ViewPager> vps;
+    private int vpPosition=0;
 
     @Override
     public void initData() {
@@ -52,10 +51,11 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     }
 
     private void initAdapter() {
+        vps = new ArrayList<>();
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         rvContent.setLayoutManager(mLayoutManager);
         baseRecyclerAdapter = new BaseRecyclerAdapter<MatchBean>(mContext, new ArrayList<MatchBean>(), R.layout.sport_match_item) {
-            private ArrayList<ViewPager> vps;
+
             public String oldModuleTitle;
             public String oldHomeGive;
             public String oldAwayName;
@@ -348,7 +348,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
             @Override
             protected void convert(ViewHolder helper, final HandicapBean handicapBean, final int position) {
                 final MatchBean bean = getExtraData();
-                if (handicapBean.getHasHdp().equals("false")) {
+                if (handicapBean.getHasHdp().equals("0")) {
                     helper.setText(R.id.viewpager_match_visit_hdp_tv, "");
                     helper.setText(R.id.viewpager_match_home_hdp_tv, "");
                     helper.setText(R.id.viewpager_match_home_hdpodds_tv, "");
@@ -357,7 +357,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     String hdpS = handicapBean.getHdp();
                     hdpS = hdpS.replace("-", "/");
 
-                    if (handicapBean.getIsHomeGive().equals("true")) {
+                    if (handicapBean.getIsHomeGive().equals("1")) {
                         helper.setText(R.id.viewpager_match_visit_hdp_tv, "");
                         helper.setText(R.id.viewpager_match_home_hdp_tv, hdpS);
 
@@ -366,12 +366,12 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                         helper.setText(R.id.viewpager_match_visit_hdp_tv, hdpS);
                     }
                     boolean isAnmiation = false;
-                    if (handicapBean.getIsHdpNew().equals("true"))
+                    if (handicapBean.getIsHdpNew().equals("1"))
                         isAnmiation = true;
                     setValue(helper, R.id.viewpager_match_home_hdpodds_tv, handicapBean.getHomeHdpOdds(), isAnmiation);
                     TextView home_hdpodds_tv = helper.retrieveView(R.id.viewpager_match_home_hdpodds_tv);
                     clickBet(home_hdpodds_tv, handicapBean, bean, position, handicapBean.getHomeHdpOdds(), "home", handicapBean.getHdp());
-                    if (handicapBean.getIsHdpNew().equals("true"))
+                    if (handicapBean.getIsHdpNew().equals("1"))
                         isAnmiation = true;
                     setValue(helper, R.id.viewpager_match_visit_hdpodds_tv, handicapBean.getAwayHdpOdds(), isAnmiation);
 
@@ -407,7 +407,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                 }
 
                 baseRecyclerAdapter.getItem(getParentPosition()).getHandicapBeans().get(position).setIsOUNew("1");
-                notifyClearanceBet(baseRecyclerAdapter.getItem(getParentPosition()), position, helper);
+//                notifyClearanceBet(baseRecyclerAdapter.getItem(getParentPosition()), position, helper);
             }
 
             protected void clickBet(final TextView tv, final HandicapBean handicapBean, final MatchBean bean, final int position, final String overOdds, final String over, final String ou) {
@@ -431,8 +431,8 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                                 mDY += Math.abs(curY - mLY);
                                 mLX = curX;
                                 mLY = curY;
-                                int dis = ScreenUtil.dip2px(context, 2);
-                                if (ScreenUtil.getScreenWidthPix(context) >= 1920) {
+                                int dis =dip2px(mContext, 2);
+                                if (DeviceUtils.getScreenPix(mContext).widthPixels >= 1920) {
                                     dis = dis + 5;
                                 }
                                 if (mDX > dis || mDY > dis) {
@@ -445,12 +445,12 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                                 if (isClick) {
                                     tv.getParent().requestDisallowInterceptTouchEvent(true);
                                     if ("0".equals(handicapBean.getIsInetBet())) {
-                                        Toast.makeText(context, R.string.not_allowed_to_bet, Toast.LENGTH_LONG).show();
+                                        Toast.makeText(mContext, R.string.not_allowed_to_bet, Toast.LENGTH_LONG).show();
                                     } else {
-                                        if (betType == 0)
+//                                        if (betType == 0)
                                             showBetPop(v, bean, position, overOdds, over, ou);
-                                        else if (betType == ClearanceBet)
-                                            handleClearanceBet(v, baseRecyclerAdapter.getItem(getParentPosition()), position, over, ou, overOdds, handicapBean.getIsHomeGive());
+//                                        else if (betType == ClearanceBet)
+//                                            handleClearanceBet(v, baseRecyclerAdapter.getItem(getParentPosition()), position, over, ou, overOdds, handicapBean.getIsHomeGive());
 
                                     }
                                 }
@@ -470,10 +470,10 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     return;
                 }
                 helper.setText(id, f);
-                helper.setTextColor(id, context.getResources().getColor(R.color.black_grey));
+                helper.setTextColor(id, mContext.getResources().getColor(R.color.black_grey));
 
 
-                if (isAnimation && updateType != 1) {
+              /*  if (isAnimation && updateType != 1) {
 
                     helper.setAnimation(id, getAnimation(new Animation.AnimationListener() {
                         @Override
@@ -492,12 +492,12 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                         }
                     }));
 
-                }
+                }*/
             }
 
             private void showBetPop(View v, MatchBean bean, int position, String odds, String type, String ou) {
 
-                betPop = new BetBasePop(context, v, 700, LinearLayout.LayoutParams.WRAP_CONTENT);
+               /* betPop = new BetBasePop(mContext, v, 700, LinearLayout.LayoutParams.WRAP_CONTENT);
                 //String b,String sc, String oId, String odds, boolean isRunning, String oId_fh
                 if (position == 0) {
                     BettingInfoBean info = new BettingInfoBean("s", type, "", ou, odds,
@@ -507,15 +507,15 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     BettingInfoBean info = new BettingInfoBean("s", type, "", ou, odds,
                             bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", bean.getHandicapBeans().get(1).getSocOddsId(), 1, modleType.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("true"));
                     betPop.getData(info);
-                    betPop.setBetSelectionType(context.getString(R.string.half_time));
+                    betPop.setBetSelectionType(mContext.getString(R.string.half_time));
                 }
-                betPop.showPopupCenterWindow();
+                betPop.showPopupCenterWindow();*/
             }
 
 
             @Override
             protected int getPageLayoutRes() {
-                return R.layout.item_table_module_center_viewpager;
+                return R.layout.sport_item_table_module_viewpager;
             }
         };
         contentPageAdapter.setExtraData(datas);
@@ -532,6 +532,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
 
             @Override
             public void onPageSelected(int position) {
+
                 if (vpPosition != position) {
                     vpPosition = position;
                 }
