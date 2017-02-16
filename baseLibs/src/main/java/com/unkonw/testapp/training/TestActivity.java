@@ -10,6 +10,10 @@ import android.widget.LinearLayout;
 import com.unkonw.testapp.R;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.AutoUtils;
+import com.unkonw.testapp.libs.utils.ToastUtils;
+
+import java.util.ArrayList;
+import java.util.Arrays;
 
 import butterknife.ButterKnife;
 
@@ -18,13 +22,16 @@ import butterknife.ButterKnife;
  */
 
 public class TestActivity extends BaseActivity {
-//    @Bind(R.id.btn_test)
+    //    @Bind(R.id.btn_test)
     Button btnTest;
-//    @Bind(R.id.ll_parent)
+//        @Bind(R.id.ll_parent)
     LinearLayout llParent;
-//    @Bind(R.id.btn_test2)
+    //    @Bind(R.id.btn_test2)
     Button btnTest2;
+
     private GestureManager manager;
+    private ScrollLayout s1;
+    private ScrollLayout s2;
 
     @Override
     public void initView() {
@@ -42,6 +49,9 @@ public class TestActivity extends BaseActivity {
         setContentView(R.layout.text_btn);
         ButterKnife.bind(this);
         testGesture();
+        s1=(ScrollLayout)findViewById(R.id.sl_1);
+        s2=(ScrollLayout)findViewById(R.id.sl_2);
+        s1.setForllowScrolls(new ArrayList<ScrollLayout>(Arrays.asList(s2)));
     }
 
     private void testGesture() {
@@ -49,7 +59,7 @@ public class TestActivity extends BaseActivity {
         manager = new GestureManager(mContext);
         final GestureDetector gestureDetector = new GestureDetector(mContext, new
                 GestureL());
-        btnTest.setOnTouchListener(new View.OnTouchListener() {
+      /*  btnTest.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View view, MotionEvent motionEvent) {
                 gestureDetector.onTouchEvent(motionEvent);
@@ -60,7 +70,7 @@ public class TestActivity extends BaseActivity {
                 //滑动    GestureL.onDown  (GestureL.java:15)   GestureL.onShowPress  (GestureL.java:21)    GestureL.onScroll  (GestureL.java:32)  GestureL.onFling  (GestureL.java:43)//抛出就不执行后面的
 
             }
-        });
+        });*/
     }
 
     private void testVelocityTracker(MotionEvent motionEvent) {
@@ -84,14 +94,18 @@ public class TestActivity extends BaseActivity {
         }
     }
 
-//    @OnClick(R.id.btn_test)
+    //    @OnClick(R.id.btn_test)
     public void onClick(View v) {
         llParent.scrollBy(-AutoUtils.getDisplayWidthValue(360), -AutoUtils.getDisplayWidthValue(640));
     }
 
 
-//    @OnClick(R.id.btn_test2)
+    //    @OnClick(R.id.btn_test2)
     public void onClick() {
-        llParent.scrollTo(-AutoUtils.getDisplayWidthValue(360),-AutoUtils.getDisplayWidthValue(640));
+        llParent.scrollTo(-AutoUtils.getDisplayWidthValue(360), -AutoUtils.getDisplayWidthValue(640));
+    }
+
+    public void clickB1(View view) {
+        ToastUtils.showShort("B1");
     }
 }

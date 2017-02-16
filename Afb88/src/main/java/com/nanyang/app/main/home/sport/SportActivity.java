@@ -81,9 +81,9 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
     private void setChooseTypeAdapter(RecyclerView rv_list) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
         List<MenuItemInfo> types=new ArrayList<>();
-        types.add(new MenuItemInfo(0,getString(R.string.Today)));
-        types.add(new MenuItemInfo(0,getString(R.string.Running)));
-        types.add(new MenuItemInfo(0,getString(R.string.Early)));
+        types.add(new MenuItemInfo(0,getString(R.string.Today),"Toady"));
+        types.add(new MenuItemInfo(0,getString(R.string.Running),"Running"));
+        types.add(new MenuItemInfo(0,getString(R.string.Early),"Early"));
         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, types, R.layout.text_base) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {

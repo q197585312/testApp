@@ -153,7 +153,7 @@
                     />
                 <TextView
                     android:layout_marginLeft="2dp"
-                    android:id="@+id/module_match_visiting_team_tv"
+                    android:id="@+id/module_match_away_team_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawablePadding="5dp"
@@ -174,7 +174,9 @@
         <com.nanyang.app.myView.LinkedViewPager.ViewPager
             android:id="@+id/module_center_vp"
             android:layout_width="140dp"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
+
+        </com.nanyang.app.myView.LinkedViewPager.ViewPager>
 
         <View
             android:background="@color/grey_thick_line"
@@ -185,7 +187,6 @@
             android:id="@+id/module_right_mark_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-
             android:drawableRight="@mipmap/sport_add_oval_yellow" />
     </LinearLayout>
     <View

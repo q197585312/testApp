@@ -13,7 +13,7 @@ public class BasketballFragment extends BaseSportFragment<SportPresenter> implem
     }
 
     @Override
-    public void onPageData(int page, String pageData) {
+    public void onPageData(int page, String pageData,String type) {
 
     }
 

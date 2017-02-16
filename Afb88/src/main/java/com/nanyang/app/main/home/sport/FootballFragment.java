@@ -1,27 +1,46 @@
 package com.nanyang.app.main.home.sport;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
+import com.nanyang.app.myView.LinkedViewPager.ViewPager;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.utils.ViewHolder;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 
 public class FootballFragment extends BaseSportFragment<FootballPresenter> implements SportContract.View<List<MatchBean>> {
 
     @Bind(R.id.rv_content)
     RecyclerView rvContent;
-    private String modleType = "Today";
+    @Bind(R.id.tv_total_match)
+    TextView tvTotalMatch;
+    @Bind(R.id.tv_odds_type)
+    TextView tvOddsType;
+    @Bind(R.id.vp_header)
+    ViewPager vpHeader;
+    private String modelType = "Today";
     BaseRecyclerAdapter<MatchBean> baseRecyclerAdapter;
 
     @Override
@@ -29,12 +48,14 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         super.initData();
         initAdapter();
         createPresenter(new FootballPresenter(this));
-        presenter.refresh(((SportActivity)getActivity()).getType());
+        presenter.refresh(((SportActivity) getActivity()).getType());
     }
+
     private void initAdapter() {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         rvContent.setLayoutManager(mLayoutManager);
         baseRecyclerAdapter = new BaseRecyclerAdapter<MatchBean>(mContext, new ArrayList<MatchBean>(), R.layout.sport_match_item) {
+            private ArrayList<ViewPager> vps;
             public String oldModuleTitle;
             public String oldHomeGive;
             public String oldAwayName;
@@ -42,16 +63,30 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
 
             @Override
             public void convert(MyRecyclerViewHolder helper, int position, MatchBean item) {
+                TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
+                View headV = helper.getView(R.id.module_match_head_v);
                 TextView dateTv = helper.getView(R.id.module_match_date_tv);
                 TextView timeTv = helper.getView(R.id.module_match_time_tv);
                 TextView liveTv = helper.getView(R.id.module_match_live_iv);
+
+                TextView homeTv = helper.getTextView(R.id.module_match_home_team_tv);
+                TextView awayTv = helper.getTextView(R.id.module_match_away_team_tv);
+
+                TextView tvRightMark = helper.getView(R.id.module_right_mark_tv);
+                View llLeft1 = helper.getView(R.id.module_match_left1_ll);
+                View llLeft2 = helper.getView(R.id.module_match_left2_ll);
+                TextView tvCollection = helper.getView(R.id.module_match_collection_tv);
+
+                liveTv.setTextColor(getResources().getColor(R.color.google_yellow));
+                dateTv.setTextColor(getResources().getColor(R.color.google_yellow));
+                timeTv.setTextColor(getResources().getColor(R.color.green_light));
                 dateTv.setTextAppearance(mContext, R.style.text_normal);
                 dateTv.setPadding(0, 0, 0, 0);
 
-                if (modleType.equals("Running")) {
+                if (modelType.equals("Running")) {
                     dateTv.setTextAppearance(mContext, R.style.text_bold);
                     dateTv.setPadding(0, 0, 10, 0);
-                    helper.getView(R.id.module_match_live_iv).setVisibility(View.GONE);
+                    liveTv.setVisibility(View.GONE);
                     if (item.getRunHomeScore() != null && item.getRunAwayScore() != null && !item.getRunAwayScore().equals("") && !item.getRunHomeScore().equals("")) {
                         String shome = item.getRunHomeScore();
                         String sAway = item.getRunAwayScore();
@@ -97,42 +132,34 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     timeTv.setTextColor(mContext.getResources().getColor(R.color.red_title));
                 } else {
 
-                    liveTv.setText("LIVE");
-//                    helper.getView(R.id.module_match_live_iv, R.mipmap.live_green_left_arrow_white)).set
-                    helper.setText(R.id.module_match_live_iv, "");
-                    dateTv.setTextColor(mContext.getResources().getColor(R.color.grey_light));
-                    timeTv.setTextColor(mContext.getResources().getColor(R.color.grey_light));
-//                    helper.setText(R.id.module_match_date_tv, item.getMatchDate());
                     dateTv.setTextSize(10);
                     String date = item.getMatchDate().substring(0, 5);
                     helper.setText(R.id.module_match_date_tv, date);
 
                     String time = item.getMatchDate();
-                    if (time.length() > 6) {
+                   /* if (time.length() > 6) {
                         time = time.substring(time.length() - 7, time.length());
-//                        time = TimeUtils.dateFormatChange(time, "KK:mmaa", "HH:mm", Locale.ENGLISH);
-                    }
-                    helper.setText(R.id.module_match_time_tv, time);
-                    if (/*betType == TableAdapterHelper.ClearanceBet &&*/ modleType.equals("Early")) {
+                        time = TimeUtils.dateFormatChange(time, "KK:mmaa", "HH:mm", Locale.ENGLISH);
+                    }*/
+                    timeTv.setText(time);
+                    if (/*betType == TableAdapterHelper.ClearanceBet &&*/ modelType.equals("Early")) {
 //                        helper.setText(R.id.module_match_date_tv, item.getWorkingDate().substring(0,5));
-                        helper.setText(R.id.module_match_date_tv, item.getMatchDate().substring(0, 5));
+//                        helper.setText(R.id.module_match_date_tv, item.getMatchDate().substring(0, 5));
                     }
                     if (!item.getLive().equals("")) {
-                        helper.getView(R.id.module_match_live_iv).setBackgroundResource(0);
-                        liveTv = helper.getView(R.id.module_match_live_iv);
-                        liveTv.setTextColor(getResources().getColor(R.color.red_title));
-                        dateTv.setTextColor(getResources().getColor(R.color.red_title));
-                        helper.setText(R.id.module_match_live_iv, "");
-                        helper.setText(R.id.module_match_date_tv, "");
-                        if (!item.getLive().equals("")) {
+                        if (item.getLive().contains("LIVE")) {
+                            dateTv.setText("LIVE");
+                            liveTv.setVisibility(View.GONE);
+                        } else {
                             String channel = item.getLive();
-                            String[] channels = channel.split("%");
-                            if (channels != null && channels.length == 1) {
+                            channel = Html.fromHtml(channel).toString();
+                            String[] channels = channel.split("\n");
+                            if (channels.length == 1) {
                                 liveTv.setVisibility(View.GONE);
                                 if (channel.trim().length() > 6)
                                     dateTv.setTextSize(8);
-                                helper.setText(R.id.module_match_date_tv, channel.trim());
-                            } else if (channels != null && channels.length == 2) {
+                                dateTv.setText(channel.trim());
+                            } else if (channels.length == 2) {
                                 liveTv.setTextSize(7);
                                 if (channels[1].trim().length() >= 6)
                                     dateTv.setTextSize(8);
@@ -140,11 +167,12 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                                     dateTv.setTextSize(9);
                                 }
                                 liveTv.setVisibility(View.VISIBLE);
-                                helper.setText(R.id.module_match_live_iv, channels[0].trim());
-                                helper.setText(R.id.module_match_date_tv, channels[1].trim());
+                                liveTv.setText(channels[0].trim());
+                                dateTv.setText(channels[1].trim());
                             }
                         }
                     }
+
                 }
 
                 if (position > 0) {
@@ -153,13 +181,11 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     oldHomeGive = getItem(position - 1).getHandicapBeans().get(0).getIsHomeGive();
                     oldModuleTitle = getItem(position - 1).getLeagueBean().getModuleTitle();
                 }
-                TextView tvRightMark = helper.getView(R.id.module_right_mark_tv);
-                View llLeft1 = helper.getView(R.id.module_match_left1_ll);
-                View llLeft2 = helper.getView(R.id.module_match_left2_ll);
-                TextView tvCollection = helper.getView(R.id.module_match_collection_tv);
+
+
                 if (item.getLeagueBean().getModuleTitle().equals(oldModuleTitle) /*&& betType != TableAdapterHelper.ClearanceBet */ && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getHandicapBeans().get(0).getIsHomeGive())) {
-                    helper.setText(R.id.module_match_home_team_tv, "");
-                    helper.setText(R.id.module_match_visiting_team_tv, "");
+                    awayTv.setText("");
+                    homeTv.setText("");
                    /* if (betType != TableAdapterHelper.ClearanceBet) {
                         helper.setVisibility(R.id.module_match_collection_tv, View.INVISIBLE);
                     }*/
@@ -169,14 +195,13 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     llLeft2.setVisibility(View.INVISIBLE);
 
                 } else {
-                    TextView tvHomeTeam = helper.getView(R.id.module_match_home_team_tv);
-                    TextView tvVisiting = helper.getView(R.id.module_match_visiting_team_tv);
-                    if (item.getHandicapBeans().get(0).getIsHomeGive().equals("true")) {
-                        tvHomeTeam.setTextColor(getResources().getColor(R.color.red_title));
-                        tvVisiting.setTextColor(getResources().getColor(R.color.black_grey));
+
+                    if (item.getHandicapBeans().get(0).getIsHomeGive().equals("1")) {
+                        homeTv.setTextColor(getResources().getColor(R.color.google_yellow));
+                        awayTv.setTextColor(getResources().getColor(R.color.black_grey));
                     } else {
-                        tvHomeTeam.setTextColor(getResources().getColor(R.color.black_grey));
-                        tvVisiting.setTextColor(getResources().getColor(R.color.red_title));
+                        homeTv.setTextColor(getResources().getColor(R.color.black_grey));
+                        awayTv.setTextColor(getResources().getColor(R.color.google_yellow));
                     }
                     String homeRank = item.getHomeRank();
                     String awayRank = item.getAwayRank();
@@ -188,10 +213,9 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     if (homeRank != null && !homeRank.equals("")) {
                         home = "[" + homeRank + "]" + home;
                     }
-                    helper.setText(R.id.module_match_home_team_tv, home);
-                    helper.setText(R.id.module_match_visiting_team_tv, away);
+                    homeTv.setText(home);
+                    awayTv.setText(away);
                     tvRightMark.setVisibility(View.VISIBLE);
-
                     tvCollection.setVisibility(View.VISIBLE);
                     llLeft1.setVisibility(View.VISIBLE);
                     llLeft2.setVisibility(View.VISIBLE);
@@ -203,7 +227,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     }
                     /* Bundle b = new Bundle();
                         b.putSerializable(AppConfig.ACTION_KEY_INITENT_DATA, item);
-                        b.putString(AppConfig.ACTION_KEY_INITENT_STRING, modleType);
+                        b.putString(AppConfig.ACTION_KEY_INITENT_STRING, modelType);
                         b.putInt(AppConfig.ACTION_KEY_INITENT_INT, betType);
                         AppTool.activiyJump(mContext, VsActivity.class, b);*/
                 });
@@ -218,7 +242,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
 //
 //                }
                 /*
-                if (localCollectionMap.get(modleType + "+" + item.getLeagueBean().getModuleTitle()) == null || localCollectionMap.get(modleType + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(modleType + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway())) {
+                if (localCollectionMap.get(modelType + "+" + item.getLeagueBean().getModuleTitle()) == null || localCollectionMap.get(modelType + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(modelType + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway())) {
                     helper.getView(R.id.module_match_collection_tv).set R.mipmap.star_outline_grey);
                 } else {
                     helper.getView(R.id.module_match_collection_tv).set R.mipmap.star_solid_yellow);
@@ -247,31 +271,277 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                 }
                 final TextView ct = helper.getView(R.id.module_match_collection_tv);*/
 
-               /* ViewPager vp = helper.getView(R.id.module_center_vp);
+                ViewPager vp = helper.getView(R.id.module_center_vp);
                 handleViewPager(vp, item, position);
-                vps.add(headerPager);
+                vps.add(vpHeader);
                 if (!vps.contains(vp)) {
                     vps.add(vp);
-                }*/
-            /*    if (item.getType() == MatchBean.Type.ITME) {
-
-                    helper.getView(R.id.module_match_title_tv, false);
-                    helper.getView(R.id.module_match_head_v, false);
+                }
+                if (item.getType() == MatchBean.Type.ITME) {
+                    matchTitleTv.setVisibility(View.GONE);
+                    headV.setVisibility(View.GONE);
 
                 } else {
-                    helper.getView(R.id.module_match_title_tv).setVisibility(View.VISIBLE);
-                    helper.getView(R.id.module_match_head_v).setVisibility(View.VISIBLE);
-                    helper.setText(android.R.id.text1, item.getLeagueBean().getModuleTitle());
+                    matchTitleTv.setVisibility(View.VISIBLE);
+                    headV.setVisibility(View.VISIBLE);
+                    matchTitleTv.setText(item.getLeagueBean().getModuleTitle());
                     if (position == 0) {
-                        helper.getView(R.id.module_match_head_v, false);
+                        headV.setVisibility(View.GONE);
                     }
-                }*/
+                }
 
             }
         };
         rvContent.setAdapter(baseRecyclerAdapter);
+    }
+
+    protected void handleViewPager(final ViewPager centerVp, MatchBean datas, int position) {
+        centerVp.setOnTouchListener(new View.OnTouchListener() {
+            private float mDX, mDY, mLX, mLY;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent ev) {
+                switch (ev.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mDX = mDY = 0f;
+                        mLX = ev.getX();
+                        mLY = ev.getY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        final float curX = ev.getX();
+                        final float curY = ev.getY();
+                        mDX += Math.abs(curX - mLX);
+                        mDY += Math.abs(curY - mLY);
+                        mLX = curX;
+                        mLY = curY;
+
+                        if (mDX > mDY) {
+                       /*     contentSv.setCanPullDown(false);
+                            contentSv.setCanPullUp(false);
+                            contentSv.setEnabled(false);*/
+                            if (centerVp.getParent() != null) {
+                                centerVp.getParent().requestDisallowInterceptTouchEvent(true);
+                            }
+                            return false;
+                        }
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        centerVp.getParent().requestDisallowInterceptTouchEvent(false);
+                      /*  contentSv.setCanPullDown(true);
+                        contentSv.setCanPullUp(true);
+                        contentSv.setEnabled(true);*/
+                        break;
+                }
+                return false;
+            }
+
+        });
+//                if(centerVp.getAdapter()!=null){
+//                    MyPagerAdapter<HandicapBean> recycledAdapter= (MyPagerAdapter<HandicapBean>) centerVp.getAdapter();
+//                    recycledAdapter.setExtraData(datas);
+//                    recycledAdapter.setParentPosition(position);
+//                    recycledAdapter.setDatas(datas.getHandicapBeans());
+//                    recycledAdapter.notifyDataSetChanged();
+//                }else{
+        MyPagerAdapter<HandicapBean> contentPageAdapter = new MyPagerAdapter<HandicapBean>(mContext) {
+
+            @Override
+            protected void convert(ViewHolder helper, final HandicapBean handicapBean, final int position) {
+                final MatchBean bean = getExtraData();
+                if (handicapBean.getHasHdp().equals("false")) {
+                    helper.setText(R.id.viewpager_match_visit_hdp_tv, "");
+                    helper.setText(R.id.viewpager_match_home_hdp_tv, "");
+                    helper.setText(R.id.viewpager_match_home_hdpodds_tv, "");
+                    helper.setText(R.id.viewpager_match_visit_hdpodds_tv, "");
+                } else {
+                    String hdpS = handicapBean.getHdp();
+                    hdpS = hdpS.replace("-", "/");
+
+                    if (handicapBean.getIsHomeGive().equals("true")) {
+                        helper.setText(R.id.viewpager_match_visit_hdp_tv, "");
+                        helper.setText(R.id.viewpager_match_home_hdp_tv, hdpS);
+
+                    } else {
+                        helper.setText(R.id.viewpager_match_home_hdp_tv, "");
+                        helper.setText(R.id.viewpager_match_visit_hdp_tv, hdpS);
+                    }
+                    boolean isAnmiation = false;
+                    if (handicapBean.getIsHdpNew().equals("true"))
+                        isAnmiation = true;
+                    setValue(helper, R.id.viewpager_match_home_hdpodds_tv, handicapBean.getHomeHdpOdds(), isAnmiation);
+                    TextView home_hdpodds_tv = helper.retrieveView(R.id.viewpager_match_home_hdpodds_tv);
+                    clickBet(home_hdpodds_tv, handicapBean, bean, position, handicapBean.getHomeHdpOdds(), "home", handicapBean.getHdp());
+                    if (handicapBean.getIsHdpNew().equals("true"))
+                        isAnmiation = true;
+                    setValue(helper, R.id.viewpager_match_visit_hdpodds_tv, handicapBean.getAwayHdpOdds(), isAnmiation);
+
+                    TextView awayHdpodds_tv = helper.retrieveView(R.id.viewpager_match_visit_hdpodds_tv);
+                    clickBet(awayHdpodds_tv, handicapBean, bean, position, handicapBean.getAwayHdpOdds(), "away", handicapBean.getHdp());
+                }
+
+                baseRecyclerAdapter.getItem(getParentPosition()).getHandicapBeans().get(position).setIsHdpNew("0");
+
+                if (handicapBean.getHasOu().equals("1")) {
+                    helper.setText(R.id.viewpager_match_ou_tv, "");
+                    helper.setText(R.id.viewpager_match_ou2_tv, "");
+                    helper.setText(R.id.viewpager_match_underodds_tv, "");
+                    helper.setText(R.id.viewpager_match_overodds_tv, "");
+                } else {
+                    String ou = handicapBean.getOU();
+                    ou = ou.replace("-", "/");
+                    helper.setText(R.id.viewpager_match_ou_tv, ou);
+                    helper.setText(R.id.viewpager_match_ou2_tv, "");
+                    boolean isAnmiation = false;
+                    if (handicapBean.getIsOUNew().equals("1"))
+                        isAnmiation = true;
+                    setValue(helper, R.id.viewpager_match_underodds_tv, handicapBean.getUnderOdds(), isAnmiation);
+                    TextView underodds_tv = helper.retrieveView(R.id.viewpager_match_underodds_tv);
+                    clickBet(underodds_tv, handicapBean, bean, position, handicapBean.getUnderOdds(), "under", handicapBean.getOU());
+
+                    if (handicapBean.getIsOUNew().equals("0"))
+                        isAnmiation = true;
+                    setValue(helper, R.id.viewpager_match_overodds_tv, handicapBean.getOverOdds(), isAnmiation);
+                    TextView overoddsTv = helper.retrieveView(R.id.viewpager_match_overodds_tv);
+                    clickBet(overoddsTv, handicapBean, bean, position, handicapBean.getOverOdds(), "over", handicapBean.getOU());
+
+                }
+
+                baseRecyclerAdapter.getItem(getParentPosition()).getHandicapBeans().get(position).setIsOUNew("1");
+                notifyClearanceBet(baseRecyclerAdapter.getItem(getParentPosition()), position, helper);
+            }
+
+            protected void clickBet(final TextView tv, final HandicapBean handicapBean, final MatchBean bean, final int position, final String overOdds, final String over, final String ou) {
+                tv.setOnTouchListener(new View.OnTouchListener() {
+                    private float mDX, mDY, mLX, mLY;
+                    boolean isClick = true;
+
+                    @Override
+                    public boolean onTouch(View v, MotionEvent ev) {
+                        switch (ev.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                isClick = true;
+                                mDX = mDY = 0f;
+                                mLX = ev.getX();
+                                mLY = ev.getY();
+                                break;
+                            case MotionEvent.ACTION_MOVE:
+                                final float curX = ev.getX();
+                                final float curY = ev.getY();
+                                mDX += Math.abs(curX - mLX);
+                                mDY += Math.abs(curY - mLY);
+                                mLX = curX;
+                                mLY = curY;
+                                int dis = ScreenUtil.dip2px(context, 2);
+                                if (ScreenUtil.getScreenWidthPix(context) >= 1920) {
+                                    dis = dis + 5;
+                                }
+                                if (mDX > dis || mDY > dis) {
+                                    isClick = false;
+                                    tv.setEnabled(false);
+                                }
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                tv.setEnabled(true);
+                                if (isClick) {
+                                    tv.getParent().requestDisallowInterceptTouchEvent(true);
+                                    if ("0".equals(handicapBean.getIsInetBet())) {
+                                        Toast.makeText(context, R.string.not_allowed_to_bet, Toast.LENGTH_LONG).show();
+                                    } else {
+                                        if (betType == 0)
+                                            showBetPop(v, bean, position, overOdds, over, ou);
+                                        else if (betType == ClearanceBet)
+                                            handleClearanceBet(v, baseRecyclerAdapter.getItem(getParentPosition()), position, over, ou, overOdds, handicapBean.getIsHomeGive());
+
+                                    }
+                                }
+                                tv.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        return isClick;
+                    }
+                });
+
+            }
+
+            private void setValue(final ViewHolder helper, final int id, String f, boolean isAnimation) {
+                if (f.equals("")) {
+                    helper.setText(id, "");
+                    return;
+                }
+                helper.setText(id, f);
+                helper.setTextColor(id, context.getResources().getColor(R.color.black_grey));
 
 
+                if (isAnimation && updateType != 1) {
+
+                    helper.setAnimation(id, getAnimation(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            helper.setBackgroundColorRes(id, R.color.dig_game_bg);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            helper.setBackgroundColorRes(id, R.color.white);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                            helper.setBackgroundColorRes(id, R.color.dig_game_bg);
+                        }
+                    }));
+
+                }
+            }
+
+            private void showBetPop(View v, MatchBean bean, int position, String odds, String type, String ou) {
+
+                betPop = new BetBasePop(context, v, 700, LinearLayout.LayoutParams.WRAP_CONTENT);
+                //String b,String sc, String oId, String odds, boolean isRunning, String oId_fh
+                if (position == 0) {
+                    BettingInfoBean info = new BettingInfoBean("s", type, "", ou, odds,
+                            bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, modleType.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("true"));
+                    betPop.getData(info);
+                } else {
+                    BettingInfoBean info = new BettingInfoBean("s", type, "", ou, odds,
+                            bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", bean.getHandicapBeans().get(1).getSocOddsId(), 1, modleType.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("true"));
+                    betPop.getData(info);
+                    betPop.setBetSelectionType(context.getString(R.string.half_time));
+                }
+                betPop.showPopupCenterWindow();
+            }
+
+
+            @Override
+            protected int getPageLayoutRes() {
+                return R.layout.item_table_module_center_viewpager;
+            }
+        };
+        contentPageAdapter.setExtraData(datas);
+        contentPageAdapter.setParentPosition(position);
+        contentPageAdapter.setDatas(datas.getHandicapBeans());
+        centerVp.setAdapter(contentPageAdapter);
+//                }
+        centerVp.setFollowViewPagers(vps);
+        centerVp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if (vpPosition != position) {
+                    vpPosition = position;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        centerVp.setCurrentItem(vpPosition);
     }
 
     @Override
@@ -280,8 +550,11 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     }
 
     @Override
-    public void onPageData(int page, List<MatchBean> pageData) {
+    public void onPageData(int page, List<MatchBean> pageData, String modelType) {
+        this.modelType = modelType;
         baseRecyclerAdapter.addAllAndClear(pageData);
+        String size = pageData.size() + "";
+        tvTotalMatch.setText(size);
     }
 
 
@@ -300,6 +573,5 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     public String getTitle() {
         return getString(R.string.Football);
     }
-
 
 }

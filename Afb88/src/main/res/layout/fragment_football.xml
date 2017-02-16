@@ -58,29 +58,13 @@
             android:text="@string/Matchs"
             android:textColor="@color/white" />
 
-        <LinearLayout
+        <com.nanyang.app.myView.LinkedViewPager.ViewPager
+            android:id="@+id/vp_header"
             android:layout_width="140dp"
-            android:layout_height="wrap_content"
+            android:layout_height="20dp"
             android:orientation="horizontal">
 
-            <TextView
-                android:gravity="center"
-                android:text="Full HDP"
-                android:textSize="12sp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textColor="@color/white" />
-
-            <TextView
-                android:gravity="center"
-                android:text="Full O/U"
-                android:textSize="12sp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:textColor="@color/white" />
-        </LinearLayout>
+        </com.nanyang.app.myView.LinkedViewPager.ViewPager>
 
         <TextView
             android:textSize="12sp"

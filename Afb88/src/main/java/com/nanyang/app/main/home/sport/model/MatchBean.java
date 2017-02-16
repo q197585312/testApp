@@ -226,6 +226,34 @@ public class MatchBean implements Serializable {
     public void setHandicapBeans(List<HandicapBean> handicapBeans) {
         this.handicapBeans = handicapBeans;
     }
+
+    @Override
+    public String toString() {
+        return "MatchBean{" +
+                "HomeRank='" + HomeRank + '\'' +
+                ", AwayRank='" + AwayRank + '\'' +
+                ", Live='" + Live + '\'' +
+                ", type=" + type +
+                ", Key='" + Key + '\'' +
+                ", MatchDate='" + MatchDate + '\'' +
+                ", WorkingDate='" + WorkingDate + '\'' +
+                ", Away='" + Away + '\'' +
+                ", Home='" + Home + '\'' +
+                ", HomeId='" + HomeId + '\'' +
+                ", AwayId='" + AwayId + '\'' +
+                ", IsInFavourite='" + IsInFavourite + '\'' +
+                ", RCHome='" + RCHome + '\'' +
+                ", RCAway='" + RCAway + '\'' +
+                ", handicapBeans=" + handicapBeans +
+                ", otherDataBean=" + otherDataBean +
+                ", CurMinute='" + CurMinute + '\'' +
+                ", RunHomeScore='" + RunHomeScore + '\'' +
+                ", RunAwayScore='" + RunAwayScore + '\'' +
+                ", Status='" + Status + '\'' +
+                ", leagueBean=" + leagueBean +
+                '}';
+    }
+
     @Override
     public boolean equals(Object obj) {
         boolean result = false;

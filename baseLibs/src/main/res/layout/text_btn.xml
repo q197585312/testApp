@@ -14,19 +14,58 @@
         android:layout_height="wrap_content"
         android:text="btn"/>
     <com.unkonw.testapp.training.ScrollLayout
+        android:id="@+id/sl_1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="100dp">
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
         <Button
-            android:layout_width="match_parent"
+            android:onClick="clickB1"
+            android:textColor="@color/white"
+            android:layout_width="0dp"
+            android:layout_weight="1"
             android:layout_height="100dp"
             android:text="This is first child view"/>
-
+            <Button
+                android:onClick="clickB2"
+                android:textColor="@color/white"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="100dp"
+                android:text="This is first child view"/>
+        </LinearLayout>
         <Button
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:text="This is second child view"/>
 
         <Button
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="This is third child view"/>
+    </com.unkonw.testapp.training.ScrollLayout>
+    <com.unkonw.testapp.training.ScrollLayout
+        android:id="@+id/sl_2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <Button
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="This is first child view"/>
+
+        <Button
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="This is second child view"/>
+
+        <Button
+            android:textColor="@color/white"
             android:layout_width="match_parent"
             android:layout_height="100dp"
             android:text="This is third child view"/>
