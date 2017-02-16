@@ -26,7 +26,7 @@ import butterknife.Bind;
 
 
 public class SportActivity extends BaseToolbarActivity<Presenter> {
-    FootballFragment footballFragment = new FootballFragment();
+    BaseSportFragment footballFragment = new FootballFragment();
     BaseSportFragment basketballFragment = new BasketballFragment();
     BaseSportFragment volleyballFragment = new VolleyballFragment();
 
@@ -50,6 +50,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
 
     private String currentTag;
     private HashMap<String, BaseSportFragment> mapFragmnet;
+    private BaseSportFragment currentFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,6 +96,8 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
+                if(currentFragment.presenter!=null)
+                    ((SportPresenter)currentFragment.presenter).refresh(item.getType());
                 popWindow.closePopupWindow();
             }
         });
@@ -116,6 +119,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         super.initData();
         type = getIntent().getStringExtra(AppConstant.KEY_STRING);
         showFragmentToActivity(footballFragment, R.id.fl_content, getString(R.string.Football));
+        currentFragment=footballFragment;
         String ballType = getIntent().getStringExtra(AppConstant.KEY_STRING);
         tvToolbarTitle.setText(ballType);
         currentTag = getString(R.string.Football);
@@ -133,6 +137,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
             hideFragmentToActivity(mapFragmnet.get(currentTag));
             showFragmentToActivity(mapFragmnet.get(tag), R.id.fl_content,tag);
             currentTag = tag;
+            currentFragment=mapFragmnet.get(currentTag);
         }
     }
 
