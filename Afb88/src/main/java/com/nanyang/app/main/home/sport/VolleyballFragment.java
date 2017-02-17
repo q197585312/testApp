@@ -18,6 +18,11 @@ public class VolleyballFragment extends BaseSportFragment<FootballPresenter> imp
 
     }
 
+    @Override
+    public String getType() {
+        return "";
+    }
+
 
     @Override
     public int onSetLayoutId() {

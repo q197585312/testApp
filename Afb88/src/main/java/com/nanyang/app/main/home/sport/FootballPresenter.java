@@ -10,6 +10,7 @@ import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.model.TableModuleBean;
 import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
+import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,7 +55,10 @@ FootballPresenter extends SportPresenter<List<MatchBean>, ApiSport> {
 
     //  String regex=".*timerRun2\\('(.*?)'.*timerToday2\\('(.*?)'.*?";
     @Override
-    public void refresh(final String type) {
+    public void refresh(String type) {
+        if(type.equals("")){
+            type=baseView.getType();
+        }
         String url;
         if (type.equals("Running"))
             url = AppConstant.URL_RUNING;
@@ -63,6 +67,7 @@ FootballPresenter extends SportPresenter<List<MatchBean>, ApiSport> {
         else {
             url = AppConstant.URL_EARLY;
         }
+        final String finalType = type;
         Disposable subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                /* .flatMap(new Function<String, Flowable<String>>() {
                     @Override
@@ -90,7 +95,7 @@ FootballPresenter extends SportPresenter<List<MatchBean>, ApiSport> {
                 .subscribe(new Consumer<List<TableModuleBean>>() {//onNext
                     @Override
                     public void accept(List<TableModuleBean> allData) throws Exception {
-                        initAllData(allData, type);
+                        initAllData(allData, finalType);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -259,5 +264,33 @@ FootballPresenter extends SportPresenter<List<MatchBean>, ApiSport> {
     @Override
     public void mix() {
     }
+    private void showCurrentData() {
+        pageData = pageData(filterData);
+        baseView.onPageData(page, toMatchList(pageData), baseView.getType());
+    }
 
+    public void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
+        if (page == 0) {
+            refresh("");
+        } else {
+            page--;
+            showCurrentData();
+            if (page == 0) {
+                swipeToLoadLayout.setLoadMoreEnabled(true);
+            }
+        }
+        swipeToLoadLayout.setRefreshing(false);
+    }
+
+
+    public void onNext(SwipeToLoadLayout swipeToLoadLayout) {
+        if (filterData != null && (page + 1) * pageSize < filterData.size()) {
+            page++;
+            showCurrentData();
+        } else {
+            swipeToLoadLayout.setLoadMoreEnabled(false);
+        }
+        swipeToLoadLayout.setLoadingMore(false);
+
+    }
 }

@@ -7,6 +7,7 @@ public interface SportContract {
     interface View<T> extends IBaseView<T> {
        void onFailed(String error);
         void onPageData(int page, T pageData,String type);
+        String getType();
     }
 
     interface Presenter extends IBasePresenter {

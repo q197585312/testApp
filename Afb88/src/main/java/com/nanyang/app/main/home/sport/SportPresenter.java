@@ -14,4 +14,6 @@ abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresen
     public void refresh(String type) {
 
     }
+
+
 }

@@ -23,6 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class SportActivity extends BaseToolbarActivity<Presenter> {
@@ -47,7 +49,6 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
     @Bind(R.id.ll_sport_menu_bottom)
     LinearLayout llSportMenuBottom;
 
-
     private String currentTag;
     private HashMap<String, BaseSportFragment> mapFragmnet;
     private BaseSportFragment currentFragment;
@@ -56,23 +57,24 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport);
-        tvToolbarRight.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.sport_list_layer,0);
+        ButterKnife.bind(this);
+        tvToolbarRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_list_layer, 0);
         tvToolbarRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              createPopupWindow(new BasePopupWindow(mContext,v, LinearLayout.LayoutParams.MATCH_PARENT,300) {
-                  @Override
-                  protected int onSetLayoutRes() {
-                      return R.layout.popupwindow_choice_ball_type;
-                  }
+                createPopupWindow(new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, 300) {
+                    @Override
+                    protected int onSetLayoutRes() {
+                        return R.layout.popupwindow_choice_ball_type;
+                    }
 
-                  @Override
-                  protected void initView(View view) {
-                      super.initView(view);
-                      RecyclerView rv_list=(RecyclerView)view.findViewById(R.id.rv_list);
-                      setChooseTypeAdapter(rv_list);
-                  }
-              });
+                    @Override
+                    protected void initView(View view) {
+                        super.initView(view);
+                        RecyclerView rv_list = (RecyclerView) view.findViewById(R.id.rv_list);
+                        setChooseTypeAdapter(rv_list);
+                    }
+                });
                 popWindow.showPopupDownWindow();
             }
         });
@@ -80,10 +82,10 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
 
     private void setChooseTypeAdapter(RecyclerView rv_list) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
-        List<MenuItemInfo> types=new ArrayList<>();
-        types.add(new MenuItemInfo(0,getString(R.string.Today),"Toady"));
-        types.add(new MenuItemInfo(0,getString(R.string.Running),"Running"));
-        types.add(new MenuItemInfo(0,getString(R.string.Early),"Early"));
+        List<MenuItemInfo> types = new ArrayList<>();
+        types.add(new MenuItemInfo(0, getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getString(R.string.Early), "Early"));
         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, types, R.layout.text_base) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
@@ -96,8 +98,8 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
-                if(currentFragment.presenter!=null)
-                    ((SportPresenter)currentFragment.presenter).refresh(item.getType());
+                if (currentFragment.presenter != null)
+                    ((SportPresenter) currentFragment.presenter).refresh(item.getType());
                 popWindow.closePopupWindow();
             }
         });
@@ -112,14 +114,14 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         this.type = type;
     }
 
-    String type="";
+    String type = "";
 
     @Override
     public void initData() {
         super.initData();
         type = getIntent().getStringExtra(AppConstant.KEY_STRING);
         showFragmentToActivity(footballFragment, R.id.fl_content, getString(R.string.Football));
-        currentFragment=footballFragment;
+        currentFragment = footballFragment;
         String ballType = getIntent().getStringExtra(AppConstant.KEY_STRING);
         tvToolbarTitle.setText(ballType);
         currentTag = getString(R.string.Football);
@@ -135,10 +137,22 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         if (!currentTag.equals(tag)) {
             tvTitle.setText(tag);
             hideFragmentToActivity(mapFragmnet.get(currentTag));
-            showFragmentToActivity(mapFragmnet.get(tag), R.id.fl_content,tag);
+            showFragmentToActivity(mapFragmnet.get(tag), R.id.fl_content, tag);
             currentTag = tag;
-            currentFragment=mapFragmnet.get(currentTag);
+            currentFragment = mapFragmnet.get(currentTag);
         }
     }
 
+    @OnClick({R.id.tv_refresh, R.id.tv_collection, R.id.tv_menu})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_refresh:
+                ((SportPresenter)(currentFragment.presenter)).refresh("");
+                break;
+            case R.id.tv_collection:
+                break;
+            case R.id.tv_menu:
+                break;
+        }
+    }
 }

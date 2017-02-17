@@ -34,11 +34,16 @@ public class GoogleRefreshHeaderView extends FrameLayout implements SwipeTrigger
         super(context, attrs, defStyleAttr);
         ringProgressDrawable = new RingProgressDrawable(context);
         Resources res = getResources();
+
         ringProgressDrawable.setColors(
-                res.getColor(R.color.google_blue),
+                0x4285F4,
+                0xEA4335,
+                0x34A853,
+                0xFBBC05
+              /*  res.getColor(R.color.google_blue),
                 res.getColor(R.color.google_red),
                 res.getColor(R.color.google_yellow),
-                res.getColor(R.color.google_green));
+                res.getColor(R.color.google_green)*/);
         mTriggerOffset = context.getResources().getDimensionPixelOffset(R.dimen.refresh_trigger_offset_google);
     }
 

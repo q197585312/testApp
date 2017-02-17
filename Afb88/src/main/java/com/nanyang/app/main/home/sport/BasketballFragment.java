@@ -17,6 +17,11 @@ public class BasketballFragment extends BaseSportFragment<SportPresenter> implem
 
     }
 
+    @Override
+    public String getType() {
+        return "";
+    }
+
 
     @Override
     public int onSetLayoutId() {

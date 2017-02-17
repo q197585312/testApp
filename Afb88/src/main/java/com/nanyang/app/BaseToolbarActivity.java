@@ -35,4 +35,18 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         });
     }
 
+    @Nullable
+    public TextView getTvToolbarTitle() {
+        return tvToolbarTitle;
+    }
+
+    @Nullable
+    public TextView getTvToolbarRight() {
+        return tvToolbarRight;
+    }
+
+    @Nullable
+    public Toolbar getToolbar() {
+        return toolbar;
+    }
 }
