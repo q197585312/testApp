@@ -105,7 +105,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/module_match_home_rea_card_tv"
+                    android:id="@+id/module_match_home_red_card_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingLeft="1dp"
@@ -137,7 +137,7 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
                 <TextView
-                    android:id="@+id/module_match_away_rea_card_tv"
+                    android:id="@+id/module_match_away_red_card_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"

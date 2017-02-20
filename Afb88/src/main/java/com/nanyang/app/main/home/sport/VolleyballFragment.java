@@ -1,6 +1,8 @@
 package com.nanyang.app.main.home.sport;
 
 
+import android.view.View;
+
 import com.nanyang.app.R;
 
 /**
@@ -16,11 +18,6 @@ public class VolleyballFragment extends BaseSportFragment<FootballPresenter> imp
     @Override
     public void onPageData(int page, String pageData,String type) {
 
-    }
-
-    @Override
-    public String getType() {
-        return "";
     }
 
 
@@ -39,5 +36,10 @@ public class VolleyballFragment extends BaseSportFragment<FootballPresenter> imp
     @Override
     public String getTitle() {
         return getString(R.string.Volleyball);
+    }
+
+    @Override
+    public void toolbarRightClick(View v) {
+
     }
 }

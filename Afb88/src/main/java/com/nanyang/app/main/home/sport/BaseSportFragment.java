@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport;
 
+import android.view.View;
+
 import com.unkonw.testapp.libs.base.BaseFragment;
 
 public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFragment<T> {
@@ -9,5 +11,5 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
     }
 
 
-
+    public abstract void toolbarRightClick(View v);
 }

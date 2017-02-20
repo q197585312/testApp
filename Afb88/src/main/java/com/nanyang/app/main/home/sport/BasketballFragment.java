@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport;
 
+import android.view.View;
+
 import com.nanyang.app.R;
 
 /**
@@ -17,10 +19,6 @@ public class BasketballFragment extends BaseSportFragment<SportPresenter> implem
 
     }
 
-    @Override
-    public String getType() {
-        return "";
-    }
 
 
     @Override
@@ -41,4 +39,8 @@ public class BasketballFragment extends BaseSportFragment<SportPresenter> implem
     }
 
 
+    @Override
+    public void toolbarRightClick(View v) {
+
+    }
 }

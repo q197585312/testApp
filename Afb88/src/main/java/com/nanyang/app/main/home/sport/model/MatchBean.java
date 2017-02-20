@@ -18,7 +18,6 @@ public class MatchBean implements Serializable {
     String Home;
     String HomeId;
     String AwayId;//客队 id
-    String IsInFavourite;
     String RCHome;
     String RCAway;
     List<HandicapBean> handicapBeans;
@@ -29,8 +28,24 @@ public class MatchBean implements Serializable {
     String Status;
     LeagueBean leagueBean;
 
-    public MatchBean(String homeRank, String awayRank, String homeId, String awayId, String key, String matchDate, String workingDate, String away, String home, List<HandicapBean> handicapBeans, String isInFavourite, String rcHome, String rcAway, VsOtherDataBean otherDataBean,  String CurMinute,
-                     String RunHomeScore, String RunAwayScore , String Live, String Status) {
+    public MatchBean(String homeRank,
+                     String awayRank,
+                     String homeId,
+                     String awayId,
+                     String key,
+                     String matchDate,
+                     String workingDate,
+                     String away,
+                     String home,
+                     List<HandicapBean> handicapBeans,
+                     String rcHome,
+                     String rcAway,
+                     VsOtherDataBean otherDataBean,
+                     String CurMinute,
+                     String RunHomeScore,
+                     String RunAwayScore ,
+                     String Live,
+                     String Status) {
         Key=key;
         MatchDate = matchDate;
         WorkingDate = workingDate;
@@ -39,7 +54,6 @@ public class MatchBean implements Serializable {
         HomeId=homeId;
         AwayId=awayId;
         this.handicapBeans = handicapBeans;
-        IsInFavourite=isInFavourite;
         RCHome=rcHome;
         RCAway=rcAway;
         this.otherDataBean=otherDataBean;
@@ -134,14 +148,6 @@ public class MatchBean implements Serializable {
 
     public void setRCAway(String RCAway) {
         this.RCAway = RCAway;
-    }
-
-    public String getIsInFavourite() {
-        return IsInFavourite;
-    }
-
-    public void setIsInFavourite(String isInFavourite) {
-        IsInFavourite = isInFavourite;
     }
 
     public LeagueBean getLeagueBean() {
@@ -241,7 +247,7 @@ public class MatchBean implements Serializable {
                 ", Home='" + Home + '\'' +
                 ", HomeId='" + HomeId + '\'' +
                 ", AwayId='" + AwayId + '\'' +
-                ", IsInFavourite='" + IsInFavourite + '\'' +
+
                 ", RCHome='" + RCHome + '\'' +
                 ", RCAway='" + RCAway + '\'' +
                 ", handicapBeans=" + handicapBeans +

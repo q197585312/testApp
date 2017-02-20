@@ -1,8 +1,6 @@
 package com.nanyang.app.main.home.sport;
 
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.FrameLayout;
@@ -12,15 +10,9 @@ import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -62,49 +54,11 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         tvToolbarRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                createPopupWindow(new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, 300) {
-                    @Override
-                    protected int onSetLayoutRes() {
-                        return R.layout.popupwindow_choice_ball_type;
-                    }
-
-                    @Override
-                    protected void initView(View view) {
-                        super.initView(view);
-                        RecyclerView rv_list = (RecyclerView) view.findViewById(R.id.rv_list);
-                        setChooseTypeAdapter(rv_list);
-                    }
-                });
-                popWindow.showPopupDownWindow();
+                currentFragment.toolbarRightClick(v);
             }
         });
     }
 
-    private void setChooseTypeAdapter(RecyclerView rv_list) {
-        rv_list.setLayoutManager(new LinearLayoutManager(mContext));
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getString(R.string.Running), "Running"));
-        types.add(new MenuItemInfo(0, getString(R.string.Early), "Early"));
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, types, R.layout.text_base) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                TextView tv = holder.getView(R.id.item_text_tv);
-                tv.setPadding(0, 0, 0, 0);
-                tv.setText(item.getText());
-            }
-
-        };
-        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-            @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                if (currentFragment.presenter != null)
-                    ((SportPresenter) currentFragment.presenter).refresh(item.getType());
-                popWindow.closePopupWindow();
-            }
-        });
-        rv_list.setAdapter(baseRecyclerAdapter);
-    }
 
     public String getType() {
         return type;
@@ -147,7 +101,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_refresh:
-                ((SportPresenter)(currentFragment.presenter)).refresh("");
+                ((SportPresenter) (currentFragment.presenter)).refresh("");
                 break;
             case R.id.tv_collection:
                 break;
