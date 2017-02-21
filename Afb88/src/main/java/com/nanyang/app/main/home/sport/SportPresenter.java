@@ -33,7 +33,7 @@ abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresen
         //%@/_Bet/JRecPanel.aspx?g=2&b=%@&oId=%@&odds=%f
         StringBuilder builder=new StringBuilder();
         //"http://mobilesport.dig88api.com/_bet/JRecPanel.aspx?"
-        builder.append(AppConstant.HOST);
+        builder.append(AppConstant.HOST+"_bet/JRecPanel.aspx?");
         if(info.getGt()!=null&&!info.getGt().equals(""))
             builder.append("gt="+info.getGt());
         if(info.getB().equals("1")||info.getB().equals("X")||info.getB().equals("2")||info.getB().equals("odd")||info.getB().equals("even"))
@@ -50,6 +50,7 @@ abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresen
             builder.append("&isRun=true");
         if(info.getIsFH()==1&&info.getSocOddsId_FH()!=null&& !info.getSocOddsId_FH().equals(""))
             builder.append("&isFH=true&oId_fh="+info.getSocOddsId_FH());
+        //http://a8197c.a36588.com/_bet/JRecPanel.aspx?g=2&b=home_par&oId=12036347&odds=17.6
         Disposable subscription=mApiWrapper.applySchedulers(getService(ApiService.class).addMixParlayBet(builder.toString()))
 
                 .subscribe(new Consumer<BettingParPromptBean>() {//onNext

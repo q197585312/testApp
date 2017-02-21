@@ -737,17 +737,17 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
 
         if (model.equals("away")) {
             helper.setBackgroundRes(R.id.viewpager_match_visit_hdpodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
-            helper.setTextColorRes(R.id.viewpager_match_visit_hdpodds_tv, R.color.transparent);
+            helper.setTextColorRes(R.id.viewpager_match_visit_hdpodds_tv, R.color.white);
 
         } else if (model.equals("home")) {
             helper.setBackgroundRes(R.id.viewpager_match_home_hdpodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
-            helper.setTextColorRes(R.id.viewpager_match_home_hdpodds_tv, R.color.transparent);
+            helper.setTextColorRes(R.id.viewpager_match_home_hdpodds_tv, R.color.white);
         } else if (model.equals("over")) {
             helper.setBackgroundRes(R.id.viewpager_match_overodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
-            helper.setTextColorRes(R.id.viewpager_match_overodds_tv, R.color.transparent);
+            helper.setTextColorRes(R.id.viewpager_match_overodds_tv, R.color.white);
         } else if (model.equals("under")) {
             helper.setBackgroundRes(R.id.viewpager_match_underodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
-            helper.setTextColorRes(R.id.viewpager_match_underodds_tv, R.color.transparent);
+            helper.setTextColorRes(R.id.viewpager_match_underodds_tv, R.color.white);
         }
     }
 
@@ -758,7 +758,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
             if (result.size() == 0) {
                 llMixParlayOrder.setVisibility(View.GONE);
             } else {
-                tvMixParlayOrder.setText(result.size());
+                tvMixParlayOrder.setText(result.size()+"");
                 llMixParlayOrder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
