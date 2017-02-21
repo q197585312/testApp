@@ -1,6 +1,7 @@
 package com.nanyang.app;
 
 
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.unkonw.testapp.login.DataBean;
 import com.unkonw.testapp.login.ResBaseBean;
 
@@ -88,5 +89,8 @@ public interface ApiService {
     @GET
     Flowable<String> goFootball(@Url  String url);
 
-
+    @GET
+    Flowable<BettingParPromptBean> addMixParlayBet(@Url String s);
+    @GET
+    BettingParPromptBean removeMixOrder(@Url String url);
 }

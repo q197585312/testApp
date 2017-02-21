@@ -13,12 +13,14 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
+import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
+import com.nanyang.app.main.home.sport.model.BettingInfoBean;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
@@ -35,8 +37,10 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -201,7 +205,6 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                                     }
                                     break;
                                 default:
-/*if (item.getStatus().equals("1")) */
                                     min = Integer.valueOf(item.getCurMinute());
                                     if (min < 130 && min > 0) {
                                         timeTv.setText(min + mContext.getString(R.string.min));
@@ -502,7 +505,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                 }
 
                 baseRecyclerAdapter.getItem(getParentPosition()).getHandicapBeans().get(position).setIsOUNew("1");
-//                notifyClearanceBet(baseRecyclerAdapter.getItem(getParentPosition()), position, helper);
+                notifyClearanceBet(baseRecyclerAdapter.getItem(getParentPosition()), position, helper);
             }
 
             private String changeValueS(String v) {
@@ -514,10 +517,8 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     if (Float.valueOf(v) == 0) {
                         return "";
                     }
-                    if (!presenter.isMixParlay())
-                        p = decimalFormat.format(Float.valueOf(v) / 10);//format 返回的是字符串
-                    else
-                        p = decimalFormat.format(Float.valueOf(v));//format 返回的是字符串收藏不除以10
+                    p = decimalFormat.format(Float.valueOf(v) / 10);//format 返回的是字符串
+
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                 }
@@ -606,51 +607,39 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                 });
 
             }
-            private void addMixParlayBet(View v, final MatchBean item, final int position, String modle, final String hdp, final String odds, final String ishoneGive) {
+
+            private void addMixParlayBet(View v, final MatchBean item, final int position, String model, final String hdp, final String odds, final String isHomeGive) {
+
                 if (item != null) {
-                    final String recordModel = modle;
-                    BettingDataHelper bettingDataHelper = new BettingDataHelper(context, null, new ThreadEndT<BettingParPromptBean>(new TypeToken<BettingParPromptBean>() {
-                    }.getType()) {
-                        @Override
-                        public void endT(BettingParPromptBean result, int model) {
-                            if (result != null)
-                                ((BaseActivity) context).getApp().setBetParList(result);
-                            clickBackground(recordModel, hdp, odds, item, position, ishoneGive);
-                            countBet();
-                        }
+                    final String recordModel = model;
+                    BettingInfoBean modlemap = new BettingInfoBean("s", recordModel, "", hdp, odds, item.getHome(), item.getAway(), item.getLeagueBean().getModuleTitle(),
+                            item.getHandicapBeans().get(0).getSocOddsId(), item.getHandicapBeans().get(1).getSocOddsId(), position, model.equals("Running"), isHomeGive.equals("1"));
+                    Map<Integer, BettingInfoBean> positionMap = new HashMap<>();
+                    positionMap.put(position, modlemap);
+                    Map<String, Map<Integer, BettingInfoBean>> keyMap = new HashMap<>();
+                    keyMap.put(item.getKey(), positionMap);
 
-                        @Override
-                        public void endString(String result, int model) {
-
-                        }
-
-                        @Override
-                        public void endError(String error) {
-                            if (error != null && !error.equals(""))
-                                Toast.makeText(context, error, Toast.LENGTH_SHORT).show();
-                            countBet();
-                            adapter.notifyDataSetChanged();
-                        }
-                    });
-                    modle = modle + "_par";
+                    model = model + "_par";
 
                     final String SocOddsId = item.getHandicapBeans().get(0).getSocOddsId();
-                    String SocOddsId_FH="";
-                    if(position==1)
-                        SocOddsId_FH=item.getHandicapBeans().get(1).getSocOddsId();
-                    BettingInfoBean m1 = new BettingInfoBean("", modle, "", hdp, odds, item.getHome(), item.getAway(), item.getLeagueBean().getModuleTitle(),
-                            SocOddsId, SocOddsId_FH, position, modleType.equals("Running"), ishoneGive.equals("true"));
-                    bettingDataHelper.getData(m1);
-                    ((TextView) v).setBackgroundResource(R.drawable.rectangle_blue_table_bg_allradius5);
-                    ((TextView) v).setTextColor(white);
+                    String SocOddsId_FH = "";
+                    if (position == 1)
+                        SocOddsId_FH = item.getHandicapBeans().get(1).getSocOddsId();
+                    BettingInfoBean m1 = new BettingInfoBean("", model, "", hdp, odds, item.getHome(), item.getAway(), item.getLeagueBean().getModuleTitle(),
+                            SocOddsId, SocOddsId_FH, position, model.equals("Running"), isHomeGive.equals("1"));
+                    presenter.addMixParlayBet(m1, keyMap, item);
+
+                    v.setBackgroundResource(R.drawable.sport_mix_parlay_bet_green_bg);
+                    ((TextView) v).setTextColor(getResources().getColor(R.color.white));
 
                 } else {
-                    ((BaseActivity) context).getApp().setBetDetail(null);
+                    getApp().setBetDetail(null);
                     countBet();
-                    adapter.notifyDataSetChanged();
+                    baseRecyclerAdapter.notifyDataSetChanged();
                 }
 
             }
+
             private void setValue(final ViewHolder helper, final int id, String f, boolean isAnimation) {
                 if (f.equals("")) {
                     helper.setText(id, "");
@@ -732,6 +721,55 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         centerVp.setCurrentItem(vpPosition);
     }
 
+    private void notifyClearanceBet(MatchBean item, int position, ViewHolder helper) {
+        if (getApp().getBetDetail() == null || item == null)
+            return;
+        Map<String, Map<Integer, BettingInfoBean>> keyMap = getApp().getBetDetail().get(item.getHome() + "+" + item.getAway());
+        if (keyMap == null)
+            return;
+        Map<Integer, BettingInfoBean> positionMap = keyMap.get(item.getKey());
+        if (positionMap == null)
+            return;
+        BettingInfoBean modelInfo = positionMap.get(position);
+        if (modelInfo == null)
+            return;
+        String model = modelInfo.getB();
+
+        if (model.equals("away")) {
+            helper.setBackgroundRes(R.id.viewpager_match_visit_hdpodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
+            helper.setTextColorRes(R.id.viewpager_match_visit_hdpodds_tv, R.color.transparent);
+
+        } else if (model.equals("home")) {
+            helper.setBackgroundRes(R.id.viewpager_match_home_hdpodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
+            helper.setTextColorRes(R.id.viewpager_match_home_hdpodds_tv, R.color.transparent);
+        } else if (model.equals("over")) {
+            helper.setBackgroundRes(R.id.viewpager_match_overodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
+            helper.setTextColorRes(R.id.viewpager_match_overodds_tv, R.color.transparent);
+        } else if (model.equals("under")) {
+            helper.setBackgroundRes(R.id.viewpager_match_underodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
+            helper.setTextColorRes(R.id.viewpager_match_underodds_tv, R.color.transparent);
+        }
+    }
+
+    public void countBet() {
+        llMixParlayOrder.setVisibility(View.VISIBLE);
+        Map<String, Map<String, Map<Integer, BettingInfoBean>>> result = getApp().getBetDetail();
+        if (result != null) {
+            if (result.size() == 0) {
+                llMixParlayOrder.setVisibility(View.GONE);
+            } else {
+                tvMixParlayOrder.setText(result.size());
+                llMixParlayOrder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        skipAct(MixOrderListActivity.class);
+                    }
+                });
+            }
+        } else
+            llMixParlayOrder.setVisibility(View.GONE);
+    }
+
     @Override
     public void onFailed(String error) {
 
@@ -750,6 +788,34 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         }
     }
 
+    @Override
+    public void onAddMixSucceed(BettingParPromptBean result, Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
+        if (result != null)
+            getApp().setBetParList(result);
+        saveBetMap(keyMap, item);
+        countBet();
+    }
+
+    @Override
+    public void onAddMixFailed(String message) {
+        countBet();
+        baseRecyclerAdapter.notifyDataSetChanged();
+    }
+
+    private void saveBetMap(Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
+        if (item == null) {
+            getApp().setBetDetail(null);
+        } else {
+            getApp().getBetDetail().put(item.getHome() + "+" + item.getAway(), keyMap);
+            baseRecyclerAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void mixParlayCLick(View buttonView) {
+        presenter.mixParlay();
+
+    }
 
     @Override
     public void onGetData(List<MatchBean> data) {

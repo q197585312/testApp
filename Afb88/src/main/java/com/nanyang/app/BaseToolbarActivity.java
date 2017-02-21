@@ -49,4 +49,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public Toolbar getToolbar() {
         return toolbar;
     }
+    public  AfbApplication getApp(){
+        return (AfbApplication) getApplication();
+    }
 }

@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,12 +33,13 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
     TextView tvCollection;
     @Bind(R.id.tv_menu)
     TextView tvMenu;
-    @Bind(R.id.cb_mix)
-    CheckBox cbMix;
+    @Bind(R.id.tv_mix)
+    TextView tvMix;
     @Bind(R.id.tv_title)
     TextView tvTitle;
     @Bind(R.id.ll_sport_menu_bottom)
     LinearLayout llSportMenuBottom;
+    boolean isMix = false;
 
     private String currentTag;
     private HashMap<String, BaseSportFragment> mapFragmnet;
@@ -57,6 +57,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                 currentFragment.toolbarRightClick(v);
             }
         });
+
     }
 
 
@@ -97,7 +98,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         }
     }
 
-    @OnClick({R.id.tv_refresh, R.id.tv_collection, R.id.tv_menu})
+    @OnClick({R.id.tv_refresh, R.id.tv_collection, R.id.tv_menu, R.id.tv_mix})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_refresh:
@@ -106,6 +107,15 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
             case R.id.tv_collection:
                 break;
             case R.id.tv_menu:
+                break;
+            case R.id.tv_mix:
+                tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
+                currentFragment.mixParlayCLick(view);
+                isMix = !isMix;
+                if (isMix)
+                    tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_oval_u_green, 0, 0);
+                else
+                    tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_oval_u_black, 0, 0);
                 break;
         }
     }

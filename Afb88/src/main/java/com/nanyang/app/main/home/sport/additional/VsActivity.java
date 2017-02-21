@@ -1,52 +1,12 @@
 package com.nanyang.app.main.home.sport.additional;
 
-import android.os.Bundle;
-import android.os.Handler;
-import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import butterknife.Bind;
-import butterknife.BindColor;
-import butterknife.BindString;
-import nanyang.com.dig88.Adapter.MyFragmentPagerAdapter;
-import nanyang.com.dig88.Config.AppConfig;
-import nanyang.com.dig88.Entity.ScaleBean;
-import nanyang.com.dig88.Entity.VsCellBean;
-import nanyang.com.dig88.Entity.VsTableRowBean;
-import nanyang.com.dig88.Fragment.BaseFragment;
-import nanyang.com.dig88.R;
-import nanyang.com.dig88.Table.Thread.TableHttpHelper;
-import nanyang.com.dig88.Table.Thread.ThreadEndT;
-import nanyang.com.dig88.Table.entity.MatchBean;
-import nanyang.com.dig88.Table.entity.PopMenuItemBean;
-import nanyang.com.dig88.Table.entity.VsOtherDataBean;
-import nanyang.com.dig88.Table.fragment.BetSingleDoubleFragment;
-import nanyang.com.dig88.Table.fragment.CorrectFragment;
-import nanyang.com.dig88.Table.fragment.ScaleFragment;
-import nanyang.com.dig88.Table.utils.TableAdapterHelper;
-import nanyang.com.dig88.Table.utils.TableDataHelper;
-import nanyang.com.dig88.Util.WebSiteUrl;
-import xs.com.mylibrary.allinone.util.AppTool;
-import xs.com.mylibrary.allinone.util.StringUtils;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.myview.indicator.PagerSlidingTabStrip;
-import xs.com.mylibrary.popupwindow.AbsListPopupWindow;
+import com.unkonw.testapp.libs.base.BaseActivity;
 
 /**
  * Created by Administrator on 2015/10/22.
  */
-public class VsActivity extends GameBaseActivity {
-    @Bind(R.id.ballgame_tabs_pstabs)
+public class VsActivity extends BaseActivity {
+   /* @Bind(R.id.ballgame_tabs_pstabs)
     PagerSlidingTabStrip ballgameTabsPstabs;
     @Bind(R.id.ballgame_pager_vp)
     ViewPager ballgamePagerVp;
@@ -127,14 +87,14 @@ public class VsActivity extends GameBaseActivity {
         this.betType = betType;
     }
 
-    /*http://mobilesport.dig88api.com/_view/MoreBet_App.aspx?oId=9070882&home=Arsenal&away=DinamoZagreb&moduleTitle=UEFACHAMPIONSLEAGUE&date=03:45AM&isRun=false&t=1448371159386
+    *//*http://mobilesport.dig88api.com/_view/MoreBet_App.aspx?oId=9070882&home=Arsenal&away=DinamoZagreb&moduleTitle=UEFACHAMPIONSLEAGUE&date=03:45AM&isRun=false&t=1448371159386
     Oid	全场id
     Home	主队名
     Away	客队名
     ModuleTitle	联赛名
     Date	MatchDate(比赛时间)
     IsRun	是否为Running  isRun !=true时,有HalfTimeFullTime(HTFT)数据出现
-    */
+    *//*
     private void getData() {
         if(betType==TableAdapterHelper.ClearanceBet){
             initFirstData( item.getOtherDataBean());
@@ -207,10 +167,10 @@ public class VsActivity extends GameBaseActivity {
                 new VsTableRowBean("csr",Arrays.asList(new VsCellBean("3:0",result.getFHCS().getC3_0(),"30",result.getFHCS().getOid()),new VsCellBean("3:3",result.getFHCS().getC3_3(),"33",result.getFHCS().getOid()),new VsCellBean("0:3",result.getFHCS().getC0_3(),"3",result.getFHCS().getOid()))),
                 new VsTableRowBean("csr",Arrays.asList(new VsCellBean("3:1",result.getFHCS().getC3_1(),"31",result.getFHCS().getOid()),new VsCellBean("",result.getFHCS().getC4_4(),result.getFHCS().getOid()),new VsCellBean("1:3",result.getFHCS().getC1_3(),"13",result.getFHCS().getOid()))),
                 new VsTableRowBean("csr",Arrays.asList(new VsCellBean("3:2",result.getFHCS().getC3_2(),"32",result.getFHCS().getOid()),new VsCellBean(getString(R.string.other),result.getFHCS().getAOS(),"80",result.getFHCS().getOid()),new VsCellBean("2:3",result.getFHCS().getC2_3(),"23",result.getFHCS().getOid())),true)
-                /*new VsTableRowBean("csr",Arrays.asList(new VsCellBean("4:0",result.getFHCS().getC4_0(),result.getFHCS().getOid()),new VsCellBean("","",0),new VsCellBean("4:0",result.getFHCS().getC0_4(),result.getFHCS().getOid()))),
+                *//*new VsTableRowBean("csr",Arrays.asList(new VsCellBean("4:0",result.getFHCS().getC4_0(),result.getFHCS().getOid()),new VsCellBean("","",0),new VsCellBean("4:0",result.getFHCS().getC0_4(),result.getFHCS().getOid()))),
                 new VsTableRowBean("csr",Arrays.asList(new VsCellBean("4:1",result.getFHCS().getC4_1(),result.getFHCS().getOid()),new VsCellBean("","",0),new VsCellBean("4:1",result.getFHCS().getC1_4(),result.getFHCS().getOid()))),
                 new VsTableRowBean("csr",Arrays.asList(new VsCellBean("4:2",result.getFHCS().getC4_2(),result.getFHCS().getOid()),new VsCellBean("","",0),new VsCellBean("4:2",result.getFHCS().getC2_4(),result.getFHCS().getOid()))),
-                new VsTableRowBean("csr",Arrays.asList(new VsCellBean("4:3",result.getFHCS().getC4_3(),result.getFHCS().getOid()),new VsCellBean("","",0),new VsCellBean("4:3",result.getFHCS().getC3_4(),result.getFHCS().getOid())),true)*/);
+                new VsTableRowBean("csr",Arrays.asList(new VsCellBean("4:3",result.getFHCS().getC4_3(),result.getFHCS().getOid()),new VsCellBean("","",0),new VsCellBean("4:3",result.getFHCS().getC3_4(),result.getFHCS().getOid())),true)*//*);
         cf.setData(rows);
     }
 
@@ -275,14 +235,14 @@ public class VsActivity extends GameBaseActivity {
                 return R.id.gridview_content_gv;
             }
         };
-       /* menuPop.setData(Arrays.asList(new PopMenuItemBean(R.drawable.flag_m_grey500, getString(R.string.selected_compared), getString(R.string.all_match)),
+       *//* menuPop.setData(Arrays.asList(new PopMenuItemBean(R.drawable.flag_m_grey500, getString(R.string.selected_compared), getString(R.string.all_match)),
                 new PopMenuItemBean(R.drawable.layers_m_grey500, getString(R.string.selected_handicap), getString(R.string.hk_handicap)),
                 new PopMenuItemBean(R.drawable.slideshow_play_m_grey500, getString(R.string.live_video), ""),
                 new PopMenuItemBean(R.drawable.store_m_grey500, getString(R.string.live_score), ""),
                 new PopMenuItemBean(R.drawable.schedule_m_grey500, getString(R.string.sort_by_time), ""),
                 new PopMenuItemBean(R.drawable.tap_and_play_m_grey500, getString(R.string.end_push), ""),
                 new PopMenuItemBean(R.drawable.description_m_grey500, getString(R.string.score_push), "")
-        ));*/
+        ));*//*
         int x = ballgameBottomLl.getLeft();
         int y = ballgameBottomLl.getBottom();
         menuPop.showPopupAtLocation(x, y - 245);
@@ -331,5 +291,5 @@ public class VsActivity extends GameBaseActivity {
         removeTableDataUpdate();
     }
     Handler handler=new Handler();
-
+*/
 }

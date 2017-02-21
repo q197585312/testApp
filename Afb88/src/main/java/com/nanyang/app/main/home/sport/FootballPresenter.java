@@ -6,6 +6,8 @@ import android.support.annotation.Nullable;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.model.BettingInfoBean;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
@@ -21,10 +23,14 @@ import org.reactivestreams.Subscription;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -103,9 +109,65 @@ FootballPresenter extends SportPresenter<List<MatchBean>, ApiSport> {
     @Override
     public void mixParlay() {
         isMixParlay = !isMixParlay;
+        clearMixOrder();
         refresh("");
     }
+    private void clearMixOrder() {
 
+        if(  ((FootballFragment)baseView).getApp().getBetDetail()!=null&&  ((FootballFragment)baseView).getApp().getBetDetail().size()>0) {
+            Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
+                @Override
+                public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
+                    Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it =   ((FootballFragment)baseView).getApp().getBetDetail().entrySet().iterator();
+                    BettingParPromptBean data = null;
+                    while (it.hasNext()) {
+                        Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>> keyItem = it.next();
+                        Iterator<Map.Entry<String, Map<Integer, BettingInfoBean>>> itt = keyItem.getValue().entrySet().iterator();
+                        while (itt.hasNext()) {
+                            Iterator<Map.Entry<Integer, BettingInfoBean>> ittt = itt.next().getValue().entrySet().iterator();
+                            while (ittt.hasNext()) {
+                                BettingInfoBean item = ittt.next().getValue();
+                                if (item != null) {
+                                    data=removeBetItem(item);
+                                }
+                            }
+                        }
+                    }
+                    e.onNext(data);
+                }
+            }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Consumer<BettingParPromptBean>() {
+                @Override
+                public void accept(BettingParPromptBean o) throws Exception {
+                    baseView.onAddMixSucceed(o,null,null);
+                }
+            }
+            );
+
+
+        }
+    }
+    protected BettingParPromptBean removeBetItem(final BettingInfoBean item) {
+
+        String ParUrl = "";
+
+        for (BettingParPromptBean.BetParBean aitem :   ((FootballFragment)baseView).getApp().getBetParList().getBetPar()) {
+            if (item.getHome().equals(aitem.getHome()) && item.getAway().equals(aitem.getAway())) {
+                ParUrl = aitem.getParUrl();
+                break;
+            }
+        }
+        String url;
+        if (!ParUrl.equals("")) {
+            if (item.getIsFH() == 0)
+                url=ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId();
+            else {
+                url=ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId_FH();
+            }
+          return getService(ApiService.class).removeMixOrder(url);
+        } else {
+            return null;
+        }
+    }
 
     @Override
     public void refresh(String type) {

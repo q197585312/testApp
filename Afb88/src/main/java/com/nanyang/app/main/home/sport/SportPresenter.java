@@ -2,20 +2,19 @@ package com.nanyang.app.main.home.sport;
 
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
-import com.nanyang.app.main.home.sport.model.TableModuleBean;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
 
-import java.util.List;
+import java.util.Map;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -30,10 +29,11 @@ abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresen
     public void refresh(String type) {
 
     }
-    public  void addMixParlayBet(BettingInfoBean info){
+    public  void addMixParlayBet(BettingInfoBean info, final Map<String, Map<Integer, BettingInfoBean>> keyMap, final MatchBean item){
+        //%@/_Bet/JRecPanel.aspx?g=2&b=%@&oId=%@&odds=%f
         StringBuilder builder=new StringBuilder();
         //"http://mobilesport.dig88api.com/_bet/JRecPanel.aspx?"
-        builder.append(WebSiteUrl.SporSoccerGameBet);
+        builder.append(AppConstant.HOST);
         if(info.getGt()!=null&&!info.getGt().equals(""))
             builder.append("gt="+info.getGt());
         if(info.getB().equals("1")||info.getB().equals("X")||info.getB().equals("2")||info.getB().equals("odd")||info.getB().equals("even"))
@@ -50,42 +50,17 @@ abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresen
             builder.append("&isRun=true");
         if(info.getIsFH()==1&&info.getSocOddsId_FH()!=null&& !info.getSocOddsId_FH().equals(""))
             builder.append("&isFH=true&oId_fh="+info.getSocOddsId_FH());
-        helper.getData(builder.toString(), "", TableDataHelper.ModelType.Default);
-        switch (type) {
+        Disposable subscription=mApiWrapper.applySchedulers(getService(ApiService.class).addMixParlayBet(builder.toString()))
 
-        Disposable subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-               /* .flatMap(new Function<String, Flowable<String>>() {
+                .subscribe(new Consumer<BettingParPromptBean>() {//onNext
                     @Override
-                    public Flowable<String> apply(String s) throws Exception {
-//                        String regex = ".*timerRun2\\('(.*?)'.*?";
-                        String regex = ".*timerToday2\\('(.*?)'.*?";
-                        Pattern p = Pattern.compile(regex);
-                        Matcher m = p.matcher(s);
-                        if (m.find()) {
-                            String url = "http://a8197c.a36588.com/_view/" + m.group(1) + "&LID=&_=1486612091203";
-                            return Api.getService(ApiService.class).goFootball(url);
-                        }
-                        return null;
-                    }
-                })*/
-                .map(new Function<String, List<TableModuleBean>>() {
-
-                    @Override
-                    public List<TableModuleBean> apply(String s) throws Exception {
-                        return parseTableModuleBeen(s);
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<TableModuleBean>>() {//onNext
-                    @Override
-                    public void accept(List<TableModuleBean> allData) throws Exception {
-                        initAllData(allData);
+                    public void accept(BettingParPromptBean allData) throws Exception {
+                        baseView.onAddMixSucceed(allData,keyMap,item);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onFailed(throwable.getMessage());
+                        baseView.onAddMixFailed(throwable.getMessage());
                         baseView.hideLoadingDialog();
                     }
                 }, new Action() {//完成

@@ -77,8 +77,8 @@
             android:textColor="@color/grey_dark"
             android:textSize="10sp" />
 
-        <CheckBox
-            android:id="@+id/cb_mix"
+        <TextView
+            android:id="@+id/tv_mix"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:gravity="center"

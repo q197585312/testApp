@@ -4,6 +4,11 @@ package com.nanyang.app.main.home.sport;
 import android.view.View;
 
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.model.BettingInfoBean;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.MatchBean;
+
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/2/12 0012.
@@ -17,6 +22,16 @@ public class VolleyballFragment extends BaseSportFragment<FootballPresenter> imp
 
     @Override
     public void onPageData(int page, String pageData,String type) {
+
+    }
+
+    @Override
+    public void onAddMixSucceed(BettingParPromptBean allData, Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
+
+    }
+
+    @Override
+    public void onAddMixFailed(String message) {
 
     }
 
