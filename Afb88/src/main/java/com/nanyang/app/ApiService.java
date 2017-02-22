@@ -81,6 +81,8 @@ public interface ApiService {
 
     @GET
     Flowable<String> getData(@Url String url);
+    @GET
+   <T> T getDataT(@Url String url);
 
     @GET("http://a8197c.a36588.com/_view/RMOdds2.aspx")
     Flowable<String> goRefresh();

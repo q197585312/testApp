@@ -1,0 +1,182 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/bet_pop_parent_ll"
+    android:gravity="center"
+    android:background="@drawable/rectangle_white_graystroke_radius5">
+
+
+        <LinearLayout
+            style="@style/style_match_wrap"
+            android:orientation="vertical">
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/bet_module_title_tv"
+                style="@style/text_wrap_black12"
+                android:textStyle="bold"
+                android:textColor="@color/grey_dark"
+                android:layout_margin="10dp"
+                android:text="" />
+
+            <LinearLayout
+                android:id="@+id/betting_groups_ll"
+                style="@style/style_match_wrap"
+                android:paddingBottom="5dp"
+               >
+
+                <TextView
+                    android:id="@+id/bet_home_tv"
+                    style="@style/style_weight_horizontal"
+                    android:textColor="@color/grey_dark"
+                    android:textSize="12sp"
+                    android:gravity="center"
+                    android:text="中国队" />
+
+                <TextView
+                    style="@style/style_wrap_wrap"
+                    android:text="VS"
+                    android:textSize="12sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/grey_dark" />
+
+                <TextView
+                    android:textColor="@color/grey_dark"
+                    android:id="@+id/bet_away_tv"
+                    android:textSize="12sp"
+                    style="@style/style_weight_horizontal"
+                    android:gravity="center"
+                    android:text="外国队" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/betting_center_ll"
+            android:layout_margin="15dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/betting_groups_ll"
+           android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rectangle_gray_graystroke_radius5"
+            android:gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/bet_name_tv"
+                android:padding="5dp"
+                android:textColor="@color/black_grey"
+                style="@style/style_match_wrap"
+                android:gravity="center"/>
+
+                <TextView
+                    android:id="@+id/bet_hdp_tv"
+                    android:textColor="@color/black_grey"
+                    android:gravity="center"
+                    android:padding="5dp"
+                    style="@style/style_match_wrap"
+                    android:text="-1.07 @ 111"
+                  />
+
+        </LinearLayout>
+        <TextView
+            android:id="@+id/bet_half_tv"
+            android:layout_margin="5dp"
+            style="@style/style_match_wrap"
+            android:text=""
+            android:gravity="center"/>
+        <View
+           style="@style/line_horizontal_grey1"/>
+        <LinearLayout
+            android:layout_marginTop="10dp"
+            android:id="@+id/bet_amount_ll"
+            android:orientation="horizontal"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+          >
+            <TextView
+                android:text="@string/bet_amount"
+               style="@style/text_wrap_black12" />
+            <EditText
+                android:id="@+id/bet_amount_edt"
+                android:hint="@string/betting_amount"
+                android:padding="3dp"
+                android:textSize="12sp"
+                android:inputType="number"
+                android:gravity="center"
+                android:textColor="@color/black_grey"
+                android:background="@drawable/rectangle_white_graystroke_radius5"
+                android:layout_marginLeft="5dp"
+              style="@style/style_weight_horizontal"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_alignLeft="@+id/betting_center_ll"
+            android:id="@+id/bet_gain_ll"
+            android:layout_below="@+id/bet_amount_ll"
+            android:orientation="horizontal"
+            android:layout_width="150dp"
+            android:layout_marginTop="10dp"
+            android:layout_height="wrap_content"
+            >
+
+            <TextView
+                android:text="@string/min_bet"
+                style="@style/text_wrap_black12"
+                android:id="@+id/textView" />
+
+            <TextView
+                android:id="@+id/bet_max_win_tv"
+                android:layout_marginLeft="5dp"
+                android:gravity="center"
+                style="@style/style_weight_horizontal"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_alignLeft="@+id/betting_center_ll"
+            android:layout_marginTop="10dp"
+            android:id="@+id/bet_limit_ll"
+            android:layout_below="@+id/bet_gain_ll"
+            android:orientation="horizontal"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            >
+            <TextView
+                android:gravity="center"
+                android:text="@string/max_bet"
+                style="@style/text_wrap_black12" />
+            <TextView
+                android:id="@+id/bet_max_bet_tv"
+                android:gravity="center"
+                android:layout_marginLeft="5dp"
+                style="@style/style_weight_horizontal"/>
+        </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:layout_alignLeft="@+id/betting_center_ll"
+        android:layout_marginTop="10dp"
+        android:id="@+id/bet_max_payout"
+        android:layout_below="@+id/bet_gain_ll"
+        android:orientation="horizontal"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        >
+        <TextView
+            android:gravity="center"
+            android:text="最大注码:"
+            style="@style/text_wrap_black12" />
+        <TextView
+            android:id="@+id/bet_max_payout_tv"
+            android:gravity="center"
+            android:layout_marginLeft="5dp"
+            style="@style/style_weight_horizontal"/>
+    </LinearLayout>
+
+        <TextView
+            android:id="@+id/bet_sure_btn"
+            android:text="@string/bet"
+            android:layout_marginTop="10dp"
+            android:textColor="@color/white"
+            android:gravity="center"
+            android:padding="10dp"
+            android:layout_below="@+id/bet_limit_ll"
+            android:background="@drawable/rectangle_blue_bottomradius5"
+            android:layout_alignParentBottom="true"
+            style="@style/style_match_wrap_padding5"/>
+</LinearLayout>

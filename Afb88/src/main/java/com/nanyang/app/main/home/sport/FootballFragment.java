@@ -18,9 +18,11 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
+import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
@@ -71,6 +73,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     LinearLayout llMixParlayOrder;
     private ArrayList<ViewPager> vps;
     private int vpPosition = 0;
+    private BetBasePop betPop;
 
     @Override
     public void initData() {
@@ -673,19 +676,23 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
 
             private void showBetPop(View v, MatchBean bean, int position, String odds, String type, String ou) {
 
-               /* betPop = new BetBasePop(mContext, v, 700, LinearLayout.LayoutParams.WRAP_CONTENT);
+                betPop = new BetBasePop(mContext, v, 700, LinearLayout.LayoutParams.WRAP_CONTENT);
                 //String b,String sc, String oId, String odds, boolean isRunning, String oId_fh
+                BettingInfoBean info;
                 if (position == 0) {
-                    BettingInfoBean info = new BettingInfoBean("s", type, "", ou, odds,
-                            bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, modleType.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("true"));
-                    betPop.getData(info);
+                    info = new BettingInfoBean("s", type, "", ou, odds,
+                            bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
+
+
                 } else {
-                    BettingInfoBean info = new BettingInfoBean("s", type, "", ou, odds,
-                            bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", bean.getHandicapBeans().get(1).getSocOddsId(), 1, modleType.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("true"));
-                    betPop.getData(info);
+                    info = new BettingInfoBean("s", type, "", ou, odds,
+                            bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", bean.getHandicapBeans().get(1).getSocOddsId(), 1, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
+
                     betPop.setBetSelectionType(mContext.getString(R.string.half_time));
                 }
-                betPop.showPopupCenterWindow();*/
+                info=betPop.initData(info);
+                presenter.getBetPopupData(info);
+                createPopupWindow(betPop);
             }
 
 
@@ -758,7 +765,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
             if (result.size() == 0) {
                 llMixParlayOrder.setVisibility(View.GONE);
             } else {
-                tvMixParlayOrder.setText(result.size()+"");
+                tvMixParlayOrder.setText(result.size() + "");
                 llMixParlayOrder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -800,6 +807,18 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     public void onAddMixFailed(String message) {
         countBet();
         baseRecyclerAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onGetBetSucceed(BettingPromptBean allData) {
+        betPop.setBetData(allData,presenter);
+        betPop.showPopupCenterWindow();
+    }
+
+    @Override
+    public void onBetSucceed(String allData) {
+        ToastUtils.showShort(allData);
+        betPop.closePopupWindow();
     }
 
     private void saveBetMap(Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
