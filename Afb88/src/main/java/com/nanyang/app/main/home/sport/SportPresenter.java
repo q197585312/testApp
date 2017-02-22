@@ -92,7 +92,7 @@ abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresen
 
     public void getBetPopupData(BettingInfoBean info) {
         StringBuilder betUrl = getBetUrl(info);
-        Flowable<BettingPromptBean> flowable = getService(ApiService.class).getDataT(betUrl.toString());
+        Flowable<BettingPromptBean> flowable = getService(ApiService.class).getBetData(betUrl.toString());
         Disposable subscription=mApiWrapper.applySchedulers(flowable)
                 .subscribe(new Consumer<BettingPromptBean>() {//onNext
                     @Override
@@ -122,7 +122,7 @@ abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresen
 
     @Override
     public void bet(String s) {
-        Flowable<String> flowable = getService(ApiService.class).getDataT(s);
+        Flowable<String> flowable = getService(ApiService.class).getData(s);
         Disposable subscription=mApiWrapper.applySchedulers(flowable)
                 .subscribe(new Consumer<String>() {//onNext
                     @Override

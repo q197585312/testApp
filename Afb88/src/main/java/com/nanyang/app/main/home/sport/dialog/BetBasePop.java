@@ -8,6 +8,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.SportContract;
@@ -51,8 +52,7 @@ public class BetBasePop extends BasePopupWindow {
     View parentV;
     @Bind(R.id.bet_half_tv)
     TextView halfTv;
-    @Bind(R.id.bet_max_payout_tv)
-    TextView betPayoutTv;
+
     @BindString(R.string.loading)
     String loading;
     BettingPromptBean bean;
@@ -332,7 +332,7 @@ public class BetBasePop extends BasePopupWindow {
             }
         }
         betNameTv.setText(state);
-        betHdpTv.setText(hdp + "@" + info.getOdds());
+        betHdpTv.setText(hdp + "@" + AfbUtils.changeValueS(info.getOdds()) );
 
         betSureBtn.setOnClickListener(new View.OnClickListener() {
             @Override

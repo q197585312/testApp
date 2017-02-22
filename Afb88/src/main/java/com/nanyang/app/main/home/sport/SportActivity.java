@@ -105,18 +105,16 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                 ((SportPresenter) (currentFragment.presenter)).refresh("");
                 break;
             case R.id.tv_collection:
+                currentFragment.collectionClick(tvCollection);
                 break;
             case R.id.tv_menu:
                 break;
             case R.id.tv_mix:
-                tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
-                currentFragment.mixParlayCLick(view);
-                isMix = !isMix;
-                if (isMix)
-                    tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_oval_u_green, 0, 0);
-                else
-                    tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_oval_u_black, 0, 0);
+
+                if (currentFragment.mixParlayCLick(tvMix))
+                    tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
                 break;
+
         }
     }
 }

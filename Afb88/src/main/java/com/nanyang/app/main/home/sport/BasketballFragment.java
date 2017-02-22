@@ -5,6 +5,7 @@ import android.view.View;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 
 import java.util.Map;
@@ -31,6 +32,16 @@ public class BasketballFragment extends BaseSportFragment<SportPresenter> implem
 
     @Override
     public void onAddMixFailed(String message) {
+
+    }
+
+    @Override
+    public void onGetBetSucceed(BettingPromptBean allData) {
+
+    }
+
+    @Override
+    public void onBetSucceed(String allData) {
 
     }
 

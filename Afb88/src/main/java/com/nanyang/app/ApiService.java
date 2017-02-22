@@ -2,6 +2,7 @@ package com.nanyang.app;
 
 
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.unkonw.testapp.login.DataBean;
 import com.unkonw.testapp.login.ResBaseBean;
 
@@ -82,7 +83,7 @@ public interface ApiService {
     @GET
     Flowable<String> getData(@Url String url);
     @GET
-   <T> T getDataT(@Url String url);
+    Flowable<BettingPromptBean> getBetData(@Url String url);
 
     @GET("http://a8197c.a36588.com/_view/RMOdds2.aspx")
     Flowable<String> goRefresh();

@@ -13,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
@@ -37,7 +38,6 @@ import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -511,22 +511,6 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                 notifyClearanceBet(baseRecyclerAdapter.getItem(getParentPosition()), position, helper);
             }
 
-            private String changeValueS(String v) {
-                if (v == null || v.equals(""))
-                    return "";
-                DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
-                String p = "";
-                try {
-                    if (Float.valueOf(v) == 0) {
-                        return "";
-                    }
-                    p = decimalFormat.format(Float.valueOf(v) / 10);//format 返回的是字符串
-
-                } catch (NumberFormatException e) {
-                    e.printStackTrace();
-                }
-                return p;
-            }
 
             private String changeValueF(String f) {
                 if (f.equals("") || f.startsWith("-"))
@@ -648,7 +632,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     helper.setText(id, "");
                     return;
                 }
-                helper.setText(id, changeValueS(f));
+                helper.setText(id, AfbUtils.changeValueS(f));
                 helper.setTextColor(id, mContext.getResources().getColor(R.color.black_grey));
 
 
@@ -690,7 +674,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
 
                     betPop.setBetSelectionType(mContext.getString(R.string.half_time));
                 }
-                info=betPop.initData(info);
+                info = betPop.initData(info);
                 presenter.getBetPopupData(info);
                 createPopupWindow(betPop);
             }
@@ -811,7 +795,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
 
     @Override
     public void onGetBetSucceed(BettingPromptBean allData) {
-        betPop.setBetData(allData,presenter);
+        betPop.setBetData(allData, presenter);
         betPop.showPopupCenterWindow();
     }
 
@@ -831,9 +815,19 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     }
 
     @Override
-    public void mixParlayCLick(View buttonView) {
+    public boolean mixParlayCLick(TextView tvMix) {
         presenter.mixParlay();
+        if (presenter.isMixParlay())
+            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_oval_u_green, 0, 0);
+        else
+            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_oval_u_black, 0, 0);
+        return presenter.isMixParlay();
+    }
 
+    @Override
+    public boolean collectionClick(TextView tvCollection) {
+        presenter.collection();
+        return presenter.isCollection();
     }
 
     @Override

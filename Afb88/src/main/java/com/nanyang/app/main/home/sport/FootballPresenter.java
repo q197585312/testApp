@@ -57,6 +57,10 @@ FootballPresenter extends SportPresenter<List<MatchBean>, ApiSport> {
         isMixParlay = mixParlay;
     }
 
+    public boolean isCollection() {
+        return isCollection;
+    }
+
     private boolean isCollection = false;
     private boolean isMixParlay = false;
     private Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
@@ -76,12 +80,7 @@ FootballPresenter extends SportPresenter<List<MatchBean>, ApiSport> {
         };
     }
 
-    @Override
-    public void collection() {
-        isCollection = !isCollection;
-        filterData(allData);
-        showCurrentData();
-    }
+
 
     boolean isItemCollection(MatchBean item) {
         return !(localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()) == null || localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
@@ -105,9 +104,22 @@ FootballPresenter extends SportPresenter<List<MatchBean>, ApiSport> {
     @Override
     public void menu() {
     }
-
+    @Override
+    public void collection() {
+        if(isMixParlay){
+            ToastUtils.showShort("MixParlay Has No Collection");
+            return;
+        }
+        isCollection = !isCollection;
+        filterData(allData);
+        showCurrentData();
+    }
     @Override
     public void mixParlay() {
+        if(type.equals("Running")){
+            ToastUtils.showShort("Running Has No MixParlay");
+            return;
+        }
         isMixParlay = !isMixParlay;
         clearMixOrder();
         refresh("");
