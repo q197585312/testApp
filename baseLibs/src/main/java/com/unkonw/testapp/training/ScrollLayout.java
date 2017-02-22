@@ -1,7 +1,7 @@
 package com.unkonw.testapp.training;
 
 import android.content.Context;
-import android.graphics.Canvas;
+import android.support.v4.view.ViewConfigurationCompat;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
@@ -9,14 +9,13 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
-import cn.finalteam.toolsfinal.logger.Logger;
-
+import java.util.List;
 
 /**
- * Created by Administrator on 2017/1/14 0014.
+ * Created by guolin on 16/1/12.
  */
-
 public class ScrollLayout extends ViewGroup {
+
     /**
      * 用于完成滚动操作的实例
      */
@@ -51,6 +50,7 @@ public class ScrollLayout extends ViewGroup {
      * 界面可滚动的右边界
      */
     private int rightBorder;
+    private List<ScrollLayout> scrolls;
 
     public ScrollLayout(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -58,37 +58,22 @@ public class ScrollLayout extends ViewGroup {
         mScroller = new Scroller(context);
         ViewConfiguration configuration = ViewConfiguration.get(context);
         // 获取TouchSlop值
-        mTouchSlop = configuration.getScaledPagingTouchSlop();
+        mTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(configuration);
     }
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-
-        int getModeW= MeasureSpec.getMode(widthMeasureSpec);
-        int getSizeW= MeasureSpec.getSize(widthMeasureSpec);
-        int getModeH=MeasureSpec.getMode(heightMeasureSpec);
-        int getSizeH=MeasureSpec.getSize(heightMeasureSpec);
-
-//        measureChildWithMargins();
-//        measureChild();
-        Logger.getDefaultLogger().d("onMeasure"+";getModeW="+getModeW+";getSizeW="+getSizeW);
-        Logger.getDefaultLogger().d("onMeasure"+";getModeH="+getModeH+";getSizeH="+getSizeH);
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-
-       /**
-        * int childCount = getChildCount();
-        * for (int i = 0; i < childCount; i++) {
-         *   View childView = getChildAt(i);
+        int childCount = getChildCount();
+        for (int i = 0; i < childCount; i++) {
+            View childView = getChildAt(i);
             // 为ScrollerLayout中的每一个子控件测量大小
             measureChild(childView, widthMeasureSpec, heightMeasureSpec);
-        }*/
+        }
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
-
-//        super.onLayout();
-        Logger.getDefaultLogger().d("onLayout;changed="+changed+";l="+l+";t="+t+";r="+r+";b="+b);
         if (changed) {
             int childCount = getChildCount();
             for (int i = 0; i < childCount; i++) {
@@ -100,12 +85,6 @@ public class ScrollLayout extends ViewGroup {
             leftBorder = getChildAt(0).getLeft();
             rightBorder = getChildAt(getChildCount() - 1).getRight();
         }
-    }
-
-    @Override
-    protected void onDraw(Canvas canvas) {
-        Logger.getDefaultLogger().d("onDraw");
-        super.onDraw(canvas);
     }
 
     @Override
@@ -121,13 +100,15 @@ public class ScrollLayout extends ViewGroup {
                 mXLastMove = mXMove;
                 // 当手指拖动值大于TouchSlop值时，认为应该进行滚动，拦截子控件的事件
                 if (diff > mTouchSlop) {
-                    Logger.getDefaultLogger().d("手指拖动值大于TouchSlop值时"+diff+":"+mTouchSlop);
+                    if (getParent() != null) {
+                        getParent().requestDisallowInterceptTouchEvent(true);
+                    }
                     return true;
+                }
 
-                }
-                else{
-                    Logger.getDefaultLogger().d("手指拖动值小于TouchSlop值时"+diff+":"+mTouchSlop);
-                }
+                break;
+            case MotionEvent.ACTION_UP:
+                getParent().requestDisallowInterceptTouchEvent(false);
                 break;
         }
         return super.onInterceptTouchEvent(ev);
@@ -146,7 +127,7 @@ public class ScrollLayout extends ViewGroup {
                     scrollTo(rightBorder - getWidth(), 0);
                     return true;
                 }
-                scrollBy(scrolledX, 0);//里面的内容滑动 也就是childView滑动
+                scrollBy(scrolledX, 0);
                 mXLastMove = mXMove;
                 break;
             case MotionEvent.ACTION_UP:
@@ -161,6 +142,7 @@ public class ScrollLayout extends ViewGroup {
         return super.onTouchEvent(event);
     }
 
+
     @Override
     public void computeScroll() {
         // 第三步，重写computeScroll()方法，并在其内部完成平滑滚动的逻辑
@@ -168,5 +150,29 @@ public class ScrollLayout extends ViewGroup {
             scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
             invalidate();
         }
+    }
+
+    @Override
+    public void scrollBy(int x, int y) {
+        super.scrollBy(x, y);
+        if(scrolls!=null){
+            for (ScrollLayout scroll : scrolls) {
+                scroll.scrollBy(x,y);
+            }
+        }
+    }
+
+    @Override
+    public void scrollTo(int x, int y) {
+        super.scrollTo(x, y);
+        if(scrolls!=null){
+            for (ScrollLayout scroll : scrolls) {
+                if(!scroll.equals(this))
+                scroll.scrollTo(x,y);
+            }
+        }
+    }
+    public void setForllowScrolls(List<ScrollLayout> scrolls){
+        this.scrolls=scrolls;
     }
 }

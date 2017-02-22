@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport;
+package com.nanyang.app.main.home.sport.model;
 
 /**
  * Created by Administrator on 2017/2/13.

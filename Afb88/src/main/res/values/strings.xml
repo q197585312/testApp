@@ -47,6 +47,14 @@
     <string name="Volleyball">Volleyball</string>
     <string name="not_started">Not start</string>
     <string name="min">m</string>
+    <string name="Total">Total</string>
+    <string name="Odds_Type">Odds Type</string>
+    <string name="AOS">AOS</string>
+    <string name="Matchs">Matchs</string>
+    <string name="Running">Running</string>
+    <string name="not_allowed_to_bet">Not allowed to bet</string>
+    <string name="no_records">No records</string>
+    <string name="ORDER">ORDER</string>
     <string name="gd_porker">GD Porker</string>
     <string name="abf88_Porker">ABF88 Porker</string>
     <string name="yt_porker">YT Porker</string>

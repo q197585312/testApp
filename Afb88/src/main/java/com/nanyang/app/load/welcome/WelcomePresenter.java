@@ -3,6 +3,7 @@ package com.nanyang.app.load.welcome;
 
 import android.os.Environment;
 
+import com.nanyang.app.ApiService;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
@@ -17,7 +18,9 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import okhttp3.ResponseBody;
 
-class WelcomePresenter extends BaseRetrofitPresenter<String, WelcomeContract.View, ApiWelcome> implements WelcomeContract.Presenter {
+import static com.unkonw.testapp.libs.api.Api.getService;
+
+class WelcomePresenter extends BaseRetrofitPresenter<String, WelcomeContract.View> implements WelcomeContract.Presenter {
     //构造 （activity implements v, 然后WelcomePresenter(this)构造出来）
     WelcomePresenter(WelcomeContract.View view) {
         super(view);
@@ -31,7 +34,8 @@ class WelcomePresenter extends BaseRetrofitPresenter<String, WelcomeContract.Vie
 
     @Override
     public void checkVersion(final String versionName) {
-        Disposable subscription = mApiWrapper.checkVersion()
+        Disposable subscription =mApiWrapper.applySchedulers(getService(ApiService.class).checkVersion())
+//                mApiWrapper.checkVersion()
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String response) throws Exception {
@@ -60,7 +64,8 @@ class WelcomePresenter extends BaseRetrofitPresenter<String, WelcomeContract.Vie
 
     @Override
     public void updateVersion() {
-        Disposable subscription = mApiWrapper.updateVersion()
+        Disposable subscription =mApiWrapper.applySchedulers(getService(ApiService.class).updateVersion())
+//                mApiWrapper.updateVersion()
                 .subscribe(new Consumer<ResponseBody>() {//onNext
                     @Override
                     public void accept(ResponseBody response) throws Exception {

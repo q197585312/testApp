@@ -1,60 +1,184 @@
 package com.nanyang.app.main.home.sport;
 
+import android.os.Bundle;
+import android.support.v4.view.ViewCompat;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.additional.VsActivity;
+import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
+import com.nanyang.app.main.home.sport.model.BettingInfoBean;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
+import com.nanyang.app.myView.LinkedViewPager.ViewPager;
+import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.utils.ViewHolder;
+import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
+import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
+import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
+import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
+import java.util.Map;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import cn.finalteam.toolsfinal.DeviceUtils;
 
-/**
- * Created by Administrator on 2017/2/12 0012.
- */
+import static cn.finalteam.toolsfinal.DeviceUtils.dip2px;
+
 
 public class FootballFragment extends BaseSportFragment<FootballPresenter> implements SportContract.View<List<MatchBean>> {
-    @Bind(R.id.tvRefresh)
-    TextView tvRefresh;
-    @Bind(R.id.rv_content)
+
+    @Bind(R.id.swipe_target)
     RecyclerView rvContent;
+    @Bind(R.id.tv_total_match)
+    TextView tvTotalMatch;
+    @Bind(R.id.tv_odds_type)
+    TextView tvOddsType;
+    @Bind(R.id.vp_header)
+    ViewPager vpHeader;
     @Bind(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
-    private String modleType;
+
+
+    BaseRecyclerAdapter<MatchBean> baseRecyclerAdapter;
+    @Bind(R.id.tv_mix_parlay_order)
+    TextView tvMixParlayOrder;
+    @Bind(R.id.ll_mix_parlay_order)
+    LinearLayout llMixParlayOrder;
+    private ArrayList<ViewPager> vps;
+    private int vpPosition = 0;
 
     @Override
     public void initData() {
         super.initData();
-        createPresenter(new FootballPresenter(this));
-        presenter.refresh();
         initAdapter();
+        createPresenter(new FootballPresenter(this));
+        presenter.setType(((SportActivity) getActivity()).getType());
+        presenter.refresh(((SportActivity) getActivity()).getType());
+
+    }
+
+    @Override
+    public void toolbarRightClick(View v) {
+
+        createPopupWindow(
+                new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, 300) {
+                    @Override
+                    protected int onSetLayoutRes() {
+                        return R.layout.popupwindow_choice_ball_type;
+                    }
+
+                    @Override
+                    protected void initView(View view) {
+                        super.initView(view);
+                        RecyclerView rv_list = (RecyclerView) view.findViewById(R.id.rv_list);
+                        setChooseTypeAdapter(rv_list);
+                    }
+                });
+        popWindow.showPopupDownWindow();
+    }
+
+    private void setChooseTypeAdapter(RecyclerView rv_list) {
+        rv_list.setLayoutManager(new LinearLayoutManager(mContext));
+        List<MenuItemInfo> types = new ArrayList<>();
+        types.add(new MenuItemInfo(0, getString(R.string.Today), "Today"));
+        if (!presenter.isMixParlay()) {
+            types.add(new MenuItemInfo(0, getString(R.string.Running), "Running"));
+        }
+        types.add(new MenuItemInfo(0, getString(R.string.Early), "Early"));
+        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, types, R.layout.text_base) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
+                TextView tv = holder.getView(R.id.item_text_tv);
+                tv.setPadding(0, 0, 0, 0);
+                tv.setText(item.getText());
+            }
+
+        };
+        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+            @Override
+            public void onItemClick(View view, MenuItemInfo item, int position) {
+                presenter.refresh(item.getType());
+                popWindow.closePopupWindow();
+            }
+        });
+        rv_list.setAdapter(baseRecyclerAdapter);
     }
 
     private void initAdapter() {
-/*
+        vps = new ArrayList<>();
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         rvContent.setLayoutManager(mLayoutManager);
+        baseRecyclerAdapter = new BaseRecyclerAdapter<MatchBean>(mContext, new ArrayList<MatchBean>(), R.layout.sport_match_item) {
 
+            String oldModuleTitle;
+            String oldHomeGive;
+            String oldAwayName;
+            String oldHomeName;
 
-        BaseRecyclerAdapter<MatchBean> baseRecyclerAdapter = new BaseRecyclerAdapter<MatchBean>(mContext,  new ArrayList<>(), R.layout.sport_match_item) {
             @Override
-            public void convert(MyRecyclerViewHolder helper, int position, MatchBean item) {
+            public void convert(MyRecyclerViewHolder helper, final int position, final MatchBean item) {
+                TextView homeRedCardTv = helper.getView(R.id.module_match_home_red_card_tv);
+                TextView awayRedCardTv = helper.getView(R.id.module_match_away_red_card_tv);
+                TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
+                View headV = helper.getView(R.id.module_match_head_v);
                 TextView dateTv = helper.getView(R.id.module_match_date_tv);
                 TextView timeTv = helper.getView(R.id.module_match_time_tv);
+                TextView liveTv = helper.getView(R.id.module_match_live_iv);
+
+                TextView homeTv = helper.getTextView(R.id.module_match_home_team_tv);
+                TextView awayTv = helper.getTextView(R.id.module_match_away_team_tv);
+
+                TextView tvRightMark = helper.getView(R.id.module_right_mark_tv);
+                View llLeft1 = helper.getView(R.id.module_match_left1_ll);
+                View llLeft2 = helper.getView(R.id.module_match_left2_ll);
+                final TextView tvCollection = helper.getView(R.id.module_match_collection_tv);
+
+                liveTv.setTextColor(getResources().getColor(R.color.google_yellow));
+                dateTv.setTextColor(getResources().getColor(R.color.google_yellow));
+                timeTv.setTextColor(getResources().getColor(R.color.green_light));
                 dateTv.setTextAppearance(mContext, R.style.text_normal);
                 dateTv.setPadding(0, 0, 0, 0);
+                tvCollection.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        presenter.collectionItem(getItem(position));
+                        notifyDataSetChanged();
+                    }
+                });
 
-                if (modleType.equals("Running")) {
+                if (presenter.getType().equals("Running")) {
                     dateTv.setTextAppearance(mContext, R.style.text_bold);
                     dateTv.setPadding(0, 0, 10, 0);
-                    helper.getView(R.id.module_match_live_iv).setVisibility(View.GONE);
+                    liveTv.setVisibility(View.GONE);
                     if (item.getRunHomeScore() != null && item.getRunAwayScore() != null && !item.getRunAwayScore().equals("") && !item.getRunHomeScore().equals("")) {
-                        String shome = item.getRunHomeScore();
+                        String sHome = item.getRunHomeScore();
                         String sAway = item.getRunAwayScore();
-                        dateTv.setText(shome + "-" + sAway);
+                        dateTv.setText(sHome + "-" + sAway);
 
                     } else {
                         dateTv.setText("");
@@ -62,30 +186,32 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     if (item.getLive().contains("HT")) {
                         timeTv.setText("HT");
                     } else {
-                        int min = 0;
-                        int start = 0;
+                        int min;
+                        int start;
                         try {
 
-                            if (item.getStatus().equals("0")) {
-                                timeTv.setText(getString(R.string.not_started));
-                            } else if (item.getStatus().equals("2")) {
-                                min = Integer.valueOf(item.getCurMinute());
-                                start = 45;
-                                min = min + start;
-                                if (min < 130 && min > 0) {
-                                    timeTv.setText(min + mContext.getString(R.string.min));
-                                } else {
-                                    timeTv.setText("");
-                                }
-                            } else */
-/*if (item.getStatus().equals("1")) *//*
- {
-                                min = Integer.valueOf(item.getCurMinute());
-                                if (min < 130 && min > 0) {
-                                    timeTv.setText(min + mContext.getString(R.string.min));
-                                } else {
-                                    timeTv.setText("");
-                                }
+                            switch (item.getStatus()) {
+                                case "0":
+                                    timeTv.setText(getString(R.string.not_started));
+                                    break;
+                                case "2":
+                                    min = Integer.valueOf(item.getCurMinute());
+                                    start = 45;
+                                    min = min + start;
+                                    if (min < 130 && min > 0) {
+                                        timeTv.setText(min + mContext.getString(R.string.min));
+                                    } else {
+                                        timeTv.setText("");
+                                    }
+                                    break;
+                                default:
+                                    min = Integer.valueOf(item.getCurMinute());
+                                    if (min < 130 && min > 0) {
+                                        timeTv.setText(min + mContext.getString(R.string.min));
+                                    } else {
+                                        timeTv.setText("");
+                                    }
+                                    break;
                             }
 
 
@@ -97,57 +223,50 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     dateTv.setTextColor(mContext.getResources().getColor(R.color.red_title));
                     timeTv.setTextColor(mContext.getResources().getColor(R.color.red_title));
                 } else {
-                    TextView tvLive=helper.getView(R.id.module_match_live_iv);
-                            tvLive.setText("LIVE");
-//                    helper.setBackgroundRes(R.id.module_match_live_iv, R.mipmap.live_green_left_arrow_white);
-                    helper.setText(R.id.module_match_live_iv, "");
-                    dateTv.setTextColor(mContext.getResources().getColor(R.color.grey_light));
-                    timeTv.setTextColor(mContext.getResources().getColor(R.color.grey_light));
-//                    helper.setText(R.id.module_match_date_tv, item.getMatchDate());
-
-                   TextView tvDate= helper.getView(R.id.module_match_date_tv);
-                    tvDate.setTextSize(10);
-                    String date = item.getMatchDate().substring(0, 5);
-                    helper.setText(R.id.module_match_date_tv, date);
-
-                    String time = item.getMatchDate();
-                    if (time.length() >6) {
-                        time = time.substring(time.length() - 7, time.length());
-//                        time = TimeUtils.dateFormatChange(time, "KK:mmaa", "HH:mm", Locale.ENGLISH);
+                    if (presenter.isMixParlay()) {
+                        tvCollection.setVisibility(View.GONE);
                     }
-                    helper.setText(R.id.module_match_time_tv, time);
-                    if (betType == TableAdapterHelper.ClearanceBet && modleType.equals("Early")) {
-//                        helper.setText(R.id.module_match_date_tv, item.getWorkingDate().substring(0,5));
-                        helper.setText(R.id.module_match_date_tv, item.getMatchDate().substring(0, 5));
+                    dateTv.setTextSize(10);
+                    String date = item.getMatchDate().substring(0, 5);
+                    dateTv.setText(date);
+                    String time = item.getMatchDate();
+                    if (time.length() > 6) {
+                        time = time.substring(time.length() - 7, time.length());
+                        time = TimeUtils.dateFormatChange(time, "KK:mmaa", "HH:mm", Locale.ENGLISH);
+                    }
+                    timeTv.setText(time);
+                    if (presenter.isMixParlay() && presenter.getType().equals("Early")) {
+                        dateTv.setText(item.getMatchDate().substring(0, 5));
                     }
                     if (!item.getLive().equals("")) {
-                        helper.setBackgroundRes(R.id.module_match_live_iv, 0);
-                        helper.setTextColorRes(R.id.module_match_live_iv, R.color.red_title);
-                        helper.setTextColorRes(R.id.module_match_date_tv, R.color.red_title);
-                        helper.setText(R.id.module_match_live_iv, "");
-                        helper.setText(R.id.module_match_date_tv, "");
-                        if (!item.getLive().equals("")) {
+                        if (item.getLive().contains("LIVE")) {
+                            dateTv.setText("LIVE");
+                            liveTv.setVisibility(View.GONE);
+                        } else {
                             String channel = item.getLive();
-                            String[] channels = channel.split("%");
-                            if (channels != null && channels.length == 1) {
-                                helper.setVisibility(R.id.module_match_live_iv, View.GONE);
-                                if(channel.trim().length()>6)
-                                    helper.setTextSize(R.id.module_match_date_tv,8);
-                                helper.setText(R.id.module_match_date_tv, channel.trim());
-                            } else if (channels != null && channels.length == 2) {
-                                helper.setTextSize(R.id.module_match_live_iv, 7);
-                                if(channels[1].trim().length()>=6)
-                                    helper.setTextSize(R.id.module_match_date_tv, 8);
-                                else{
-                                    helper.setTextSize(R.id.module_match_date_tv, 9);
+                            channel = Html.fromHtml(channel).toString();
+                            String[] channels = channel.split("\n");
+                            if (channels.length == 1) {
+                                liveTv.setVisibility(View.GONE);
+                                if (channel.trim().length() > 6)
+                                    dateTv.setTextSize(8);
+                                dateTv.setText(channel.trim());
+                            } else if (channels.length == 2) {
+                                liveTv.setTextSize(7);
+                                if (channels[1].trim().length() >= 6)
+                                    dateTv.setTextSize(8);
+                                else {
+                                    dateTv.setTextSize(9);
                                 }
-                                helper.setVisibility(R.id.module_match_live_iv, View.VISIBLE);
-                                helper.setText(R.id.module_match_live_iv, channels[0].trim());
-                                helper.setText(R.id.module_match_date_tv, channels[1].trim());
+                                liveTv.setVisibility(View.VISIBLE);
+                                liveTv.setText(channels[0].trim());
+                                dateTv.setText(channels[1].trim());
                             }
                         }
                     }
+
                 }
+
                 if (position > 0) {
                     oldHomeName = getItem(position - 1).getHome();
                     oldAwayName = getItem(position - 1).getAway();
@@ -155,22 +274,22 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     oldModuleTitle = getItem(position - 1).getLeagueBean().getModuleTitle();
                 }
 
-                if (item.getLeagueBean().getModuleTitle().equals(oldModuleTitle) && betType != TableAdapterHelper.ClearanceBet && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getHandicapBeans().get(0).getIsHomeGive())) {
-                    helper.setText(R.id.module_match_home_team_tv, "");
-                    helper.setText(R.id.module_match_visiting_team_tv, "");
-                    if (betType != TableAdapterHelper.ClearanceBet) {
-                        helper.setVisibility(R.id.module_match_collection_tv, View.INVISIBLE);
-                    }
-                    helper.setVisibility(R.id.module_right_mark_tv, View.INVISIBLE);
-                    helper.setVisibility(R.id.module_match_left1_ll, View.INVISIBLE);
-                    helper.setVisibility(R.id.module_match_left2_ll, View.INVISIBLE);
+
+                if (item.getLeagueBean().getModuleTitle().equals(oldModuleTitle) && !presenter.isMixParlay() && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getHandicapBeans().get(0).getIsHomeGive())) {
+                    awayTv.setText("");
+                    homeTv.setText("");
+                    tvRightMark.setVisibility(View.INVISIBLE);
+                    llLeft1.setVisibility(View.INVISIBLE);
+                    llLeft2.setVisibility(View.INVISIBLE);
+
                 } else {
-                    if (item.getHandicapBeans().get(0).getIsHomeGive().equals("true")) {
-                        helper.setTextColorRes(R.id.module_match_home_team_tv, R.color.red_title);
-                        helper.setTextColorRes(R.id.module_match_visiting_team_tv, R.color.black_grey);
+
+                    if (item.getHandicapBeans().get(0).getIsHomeGive().equals("1")) {
+                        homeTv.setTextColor(getResources().getColor(R.color.google_yellow));
+                        awayTv.setTextColor(getResources().getColor(R.color.black_grey));
                     } else {
-                        helper.setTextColorRes(R.id.module_match_home_team_tv, R.color.black_grey);
-                        helper.setTextColorRes(R.id.module_match_visiting_team_tv, R.color.red_title);
+                        homeTv.setTextColor(getResources().getColor(R.color.black_grey));
+                        awayTv.setTextColor(getResources().getColor(R.color.google_yellow));
                     }
                     String homeRank = item.getHomeRank();
                     String awayRank = item.getAwayRank();
@@ -182,144 +301,473 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     if (homeRank != null && !homeRank.equals("")) {
                         home = "[" + homeRank + "]" + home;
                     }
-                    helper.setText(R.id.module_match_home_team_tv, home);
-                    helper.setText(R.id.module_match_visiting_team_tv, away);
-                    helper.setVisibility(R.id.module_right_mark_tv, View.VISIBLE);
-                    if (betType != TableAdapterHelper.ClearanceBet) {
-                        helper.setVisibility(R.id.module_match_collection_tv, View.VISIBLE);
-                    }
-                    helper.setVisibility(R.id.module_match_left1_ll, View.VISIBLE);
-                    helper.setVisibility(R.id.module_match_left2_ll, View.VISIBLE);
+                    homeTv.setText(home);
+                    awayTv.setText(away);
+                    tvRightMark.setVisibility(View.VISIBLE);
+                    tvCollection.setVisibility(View.VISIBLE);
+                    llLeft1.setVisibility(View.VISIBLE);
+                    llLeft2.setVisibility(View.VISIBLE);
+
                 }
-                helper.setClickLisenter(R.id.module_right_mark_tv, new View.OnClickListener() {
+                tvRightMark.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         Bundle b = new Bundle();
-                        b.putSerializable(AppConfig.ACTION_KEY_INITENT_DATA, item);
-                        b.putString(AppConfig.ACTION_KEY_INITENT_STRING, modleType);
-                        b.putInt(AppConfig.ACTION_KEY_INITENT_INT, betType);
-                        AppTool.activiyJump(mContext, VsActivity.class, b);
+                        b.putSerializable(AppConstant.KEY_DATA, item);
+                        b.putString(AppConstant.KEY_STRING, presenter.getType());
+                        b.putBoolean(AppConstant.KEY_BOOLEAN, presenter.isMixParlay());
+                        skipAct(VsActivity.class, b);
                     }
+
                 });
-                if (betType == TableAdapterHelper.ClearanceBet) {
-                    helper.setVisibility(R.id.module_match_collection_tv, View.GONE);
-                }
-//                if (item.getIsInFavourite().equals("true")) {
-//                    helper.setBackgroundRes(R.id.module_match_collection_tv, R.mipmap.star_solid_yellow);
-//                } else {
-//                    helper.setBackgroundRes(R.id.module_match_collection_tv, R.mipmap.star_outline_grey);
-//
-//                }
-                if (localCollectionMap.get(modleType + "+" + item.getLeagueBean().getModuleTitle()) == null || localCollectionMap.get(modleType + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(modleType + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway())) {
-                    helper.setBackgroundRes(R.id.module_match_collection_tv, R.mipmap.star_outline_grey);
+                if (presenter.isItemCollection(item))
+                    tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_soild);
+                else
+                    tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_not_soild);
+
+                if (item.getRCHome() == null || item.getRCHome().equals("0") || item.getRCHome().equals("")) {
+                    homeRedCardTv.setVisibility(View.GONE);
                 } else {
-                    helper.setBackgroundRes(R.id.module_match_collection_tv, R.mipmap.star_solid_yellow);
-                }
-                if (item.getRCHome() == null || item.getRCHome().equals("0") || item.getRCHome().equals("0")) {
-                    helper.getView(R.id.module_match_home_rea_card_tv, false);
-                } else {
-                    helper.getView(R.id.module_match_home_rea_card_tv).
-                    if (item.getRCHome().equals("1"))
-                        helper.setBackgroundRes(R.id.module_match_home_rea_card_tv, R.drawable.rectangle_red_card1);
-                    else if (item.getRCHome().equals("2"))
-                        helper.setBackgroundRes(R.id.module_match_home_rea_card_tv, R.drawable.rectangle_red_card2);
-                    else
-                        helper.setBackgroundRes(R.id.module_match_home_rea_card_tv, R.drawable.rectangle_red_card3);
+                    homeRedCardTv.setVisibility(View.VISIBLE);
+                    switch (item.getRCHome()) {
+                        case "1":
+                            homeRedCardTv.setBackgroundResource(R.mipmap.red_card1);
+                            break;
+                        case "2":
+                            homeRedCardTv.setBackgroundResource(R.mipmap.red_card2);
+                            break;
+                        default:
+                            homeRedCardTv.setBackgroundResource(R.mipmap.red_card3);
+                            break;
+                    }
                 }
                 if (item.getRCAway() == null || item.getRCAway().equals("0") || item.getRCAway().equals("")) {
-                    helper.getView(R.id.module_match_away_rea_card_tv, false);
+                    awayRedCardTv.setVisibility(View.GONE);
                 } else {
-                    helper.getView(R.id.module_match_away_rea_card_tv).setVisibility(View.VISIBLE);
-                    if (item.getRCAway().equals("1"))
-                        helper.setBackgroundRes(R.id.module_match_away_rea_card_tv, R.drawable.rectangle_red_card1);
-                    else if (item.getRCAway().equals("2"))
-                        helper.setBackgroundRes(R.id.module_match_away_rea_card_tv, R.drawable.rectangle_red_card2);
-                    else
-                        helper.setBackgroundRes(R.id.module_match_away_rea_card_tv, R.drawable.rectangle_red_card3);
-                }
-                final TextView ct = helper.getView(R.id.module_match_collection_tv);
-                helper.setClickLisenter(R.id.module_match_collection_tv, new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //收藏 取消收藏
-                        */
-/*添加我的最爱:
-                        添加我的最爱:
-                        http://mobilesport.dig88api.com/_View/Favourite.aspx?id=29278,139575,55712&IsAdd=True&ot=t
-                        消除我的最爱:
-                        http://mobilesport.dig88api.com/_View/Favourite.aspx?id=29278,139575,55712&IsAdd=False&ot=t
-                        Id组成	联赛id,主队id,客队id                        Ot	t (today)	 e(Early)	r(Running)
-                            *//*
-
-                        clickLocalCollection(getItem(position));
-//                        TableHttpHelper<String> helper1 = new TableHttpHelper<String>(mContext, ct, new ThreadEndT<String>(new TypeToken<String>() {
-//                        }.getType()) {
-//                            @Override
-//                            public void endT(String result) {
-//                                helper.setBackgroundRes(R.id.module_match_collection_tv, R.mipmap.star_solid_yellow);
-//                                getItem(position).setIsInFavourite("true");
-//                            }
-//
-//                            @Override
-//                            public void endString(String result) {
-//                                helper.setBackgroundRes(R.id.module_match_collection_tv, R.mipmap.star_outline_grey);
-//                                getItem(position).setIsInFavourite("false");
-//
-//                            }
-//
-//                            @Override
-//                            public void endError(String error) {
-//
-//                            }
-//                        });
-//                        if (item.getIsInFavourite().equals("true")) {
-//                            helper1.updateData(WebSiteUrl.SportUrl + "_View/Favourite.aspx?id=" + item.getLeagueBean().getModuleId() + "," + item.getHomeId() + "," + item.getAwayId() + "&IsAdd=False&ot=" +
-//                                    modleType.substring(0, 1).toLowerCase(), "");
-//                        } else {
-//                            helper1.getData(WebSiteUrl.SportUrl + "_View/Favourite.aspx?id=" + item.getLeagueBean().getModuleId() + "," + item.getHomeId() + "," + item.getAwayId() + "&IsAdd=True&ot=" +
-//                                    modleType.substring(0, 1).toLowerCase(), "");
-//                        }
+                    awayRedCardTv.setVisibility(View.VISIBLE);
+                    switch (item.getRCAway()) {
+                        case "1":
+                            awayRedCardTv.setBackgroundResource(R.mipmap.red_card1);
+                            break;
+                        case "2":
+                            awayRedCardTv.setBackgroundResource(R.mipmap.red_card2);
+                            break;
+                        default:
+                            awayRedCardTv.setBackgroundResource(R.mipmap.red_card3);
+                            break;
                     }
-
-                });
+                }
                 ViewPager vp = helper.getView(R.id.module_center_vp);
                 handleViewPager(vp, item, position);
-                vps.add(headerPager);
+                vps.add(vpHeader);
                 if (!vps.contains(vp)) {
                     vps.add(vp);
                 }
                 if (item.getType() == MatchBean.Type.ITME) {
-                    helper.getView(R.id.module_match_title_tv, false);
-                    helper.getView(R.id.module_match_head_v, false);
+                    matchTitleTv.setVisibility(View.GONE);
+                    headV.setVisibility(View.GONE);
 
                 } else {
-                    helper.getView(R.id.module_match_title_tv).setVisibility(View.VISIBLE);
-                    helper.getView(R.id.module_match_head_v).setVisibility(View.VISIBLE);
-                    helper.setText(android.R.id.text1, item.getLeagueBean().getModuleTitle());
+                    matchTitleTv.setVisibility(View.VISIBLE);
+                    headV.setVisibility(View.VISIBLE);
+                    matchTitleTv.setText(item.getLeagueBean().getModuleTitle());
                     if (position == 0) {
-                        helper.getView(R.id.module_match_head_v, false);
+                        headV.setVisibility(View.GONE);
                     }
                 }
 
             }
         };
-        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MatchBean>() {
+        rvContent.setAdapter(baseRecyclerAdapter);
+
+        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
-            public void onItemClick(View view, MatchBean item, int position) {
-                if(item.getText().equals(getString(R.string.Cancel))){
-                    closePopupWindow();
-                }
-                else{
-                    Bundle b=new Bundle();
-                    b.putString(AppConstant.KEY_STRING,item.getText());
-                    skipAct(SportActivity.class,b);
+            public void onRefresh() {
+                presenter.onPrevious(swipeToLoadLayout);
+            }
+        });
+        swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                presenter.onNext(swipeToLoadLayout);
+            }
+        });
+
+        rvContent.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (!ViewCompat.canScrollVertically(recyclerView, 1)) {
+                        swipeToLoadLayout.setLoadingMore(true);
+                    }
                 }
             }
         });
-        rvContent.setAdapter(baseRecyclerAdapter);
-*/
+    }
+
+    protected void handleViewPager(final ViewPager centerVp, MatchBean datas, int position) {
+        centerVp.setOnTouchListener(new View.OnTouchListener() {
+            private float mDX, mDY, mLX, mLY;
+
+            @Override
+            public boolean onTouch(View v, MotionEvent ev) {
+                switch (ev.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        mDX = mDY = 0f;
+                        mLX = ev.getX();
+                        mLY = ev.getY();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        final float curX = ev.getX();
+                        final float curY = ev.getY();
+                        mDX += Math.abs(curX - mLX);
+                        mDY += Math.abs(curY - mLY);
+                        mLX = curX;
+                        mLY = curY;
+
+                        if (mDX > mDY) {
+                            if (centerVp.getParent() != null) {
+                                centerVp.getParent().requestDisallowInterceptTouchEvent(true);
+                            }
+                            return false;
+                        }
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        centerVp.getParent().requestDisallowInterceptTouchEvent(false);
+
+                        break;
+                }
+                return false;
+            }
+
+        });
+
+        MyPagerAdapter<HandicapBean> contentPageAdapter = new MyPagerAdapter<HandicapBean>(mContext) {
+
+            @Override
+            protected void convert(ViewHolder helper, final HandicapBean handicapBean, final int position) {
+                final MatchBean bean = getExtraData();
+                if (handicapBean.getHasHdp().equals("0")) {
+                    helper.setText(R.id.viewpager_match_visit_hdp_tv, "");
+                    helper.setText(R.id.viewpager_match_home_hdp_tv, "");
+                    helper.setText(R.id.viewpager_match_home_hdpodds_tv, "");
+                    helper.setText(R.id.viewpager_match_visit_hdpodds_tv, "");
+                } else {
+                    String hdpS = handicapBean.getHdp();
+                    hdpS = changeValueF(hdpS);
+                    if (handicapBean.getIsHomeGive().equals("1")) {
+                        helper.setText(R.id.viewpager_match_visit_hdp_tv, "");
+                        helper.setText(R.id.viewpager_match_home_hdp_tv, hdpS);
+
+                    } else {
+                        helper.setText(R.id.viewpager_match_home_hdp_tv, "");
+                        helper.setText(R.id.viewpager_match_visit_hdp_tv, hdpS);
+                    }
+                    boolean isAnmiation = false;
+                    if (handicapBean.getIsHdpNew().equals("1"))
+                        isAnmiation = true;
+                    setValue(helper, R.id.viewpager_match_home_hdpodds_tv, handicapBean.getHomeHdpOdds(), isAnmiation);
+                    TextView home_hdpodds_tv = helper.retrieveView(R.id.viewpager_match_home_hdpodds_tv);
+                    clickBet(home_hdpodds_tv, handicapBean, bean, position, handicapBean.getHomeHdpOdds(), "home", handicapBean.getHdp());
+                    if (handicapBean.getIsHdpNew().equals("1"))
+                        isAnmiation = true;
+                    setValue(helper, R.id.viewpager_match_visit_hdpodds_tv, handicapBean.getAwayHdpOdds(), isAnmiation);
+
+                    TextView awayHdpodds_tv = helper.retrieveView(R.id.viewpager_match_visit_hdpodds_tv);
+                    clickBet(awayHdpodds_tv, handicapBean, bean, position, handicapBean.getAwayHdpOdds(), "away", handicapBean.getHdp());
+                }
+
+                baseRecyclerAdapter.getItem(getParentPosition()).getHandicapBeans().get(position).setIsHdpNew("0");
+
+                if (handicapBean.getHasOu().equals("0")) {
+                    helper.setText(R.id.viewpager_match_ou_tv, "");
+                    helper.setText(R.id.viewpager_match_ou2_tv, "");
+                    helper.setText(R.id.viewpager_match_underodds_tv, "");
+                    helper.setText(R.id.viewpager_match_overodds_tv, "");
+                } else {
+                    String ou = handicapBean.getOU();
+                    ou = changeValueF(ou);
+                    helper.setText(R.id.viewpager_match_ou_tv, ou);
+                    helper.setText(R.id.viewpager_match_ou2_tv, "");
+                    boolean isAnmiation = false;
+                    if (handicapBean.getIsOUNew().equals("1"))
+                        isAnmiation = true;
+                    setValue(helper, R.id.viewpager_match_underodds_tv, handicapBean.getUnderOdds(), isAnmiation);
+                    TextView underodds_tv = helper.retrieveView(R.id.viewpager_match_underodds_tv);
+                    clickBet(underodds_tv, handicapBean, bean, position, handicapBean.getUnderOdds(), "under", handicapBean.getOU());
+
+                    if (handicapBean.getIsOUNew().equals("0"))
+                        isAnmiation = true;
+                    setValue(helper, R.id.viewpager_match_overodds_tv, handicapBean.getOverOdds(), isAnmiation);
+                    TextView overoddsTv = helper.retrieveView(R.id.viewpager_match_overodds_tv);
+                    clickBet(overoddsTv, handicapBean, bean, position, handicapBean.getOverOdds(), "over", handicapBean.getOU());
+
+                }
+
+                baseRecyclerAdapter.getItem(getParentPosition()).getHandicapBeans().get(position).setIsOUNew("1");
+                notifyClearanceBet(baseRecyclerAdapter.getItem(getParentPosition()), position, helper);
+            }
+
+            private String changeValueS(String v) {
+                if (v == null || v.equals(""))
+                    return "";
+                DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
+                String p = "";
+                try {
+                    if (Float.valueOf(v) == 0) {
+                        return "";
+                    }
+                    p = decimalFormat.format(Float.valueOf(v) / 10);//format 返回的是字符串
+
+                } catch (NumberFormatException e) {
+                    e.printStackTrace();
+                }
+                return p;
+            }
+
+            private String changeValueF(String f) {
+                if (f.equals("") || f.startsWith("-"))
+                    return "";
+                if (!presenter.isMixParlay()) {
+                    try {
+                        float v = Float.valueOf(f);
+                        int i;
+                        i = (int) (v / 0.5);   //先取商
+                        if (v == 0.5 * i) {
+                            return subZeroAndDot(v);
+                        } else {
+                            return subZeroAndDot((float) (v - 0.25)) + "-" + subZeroAndDot((float) (v + 0.25));
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                return f;
+            }
+
+            String subZeroAndDot(float s) {
+                String ss = s + "";
+                if (ss.indexOf(".") > 0) {
+                    ss = ss.replaceAll("0+?$", "");//去掉多余的0
+                    ss = ss.replaceAll("[.]$", "");//如最后一位是.则去掉
+                }
+                return ss;
+            }
+
+            void clickBet(final TextView tv, final HandicapBean handicapBean, final MatchBean bean, final int position, final String overOdds, final String over, final String ou) {
+                tv.setOnTouchListener(new View.OnTouchListener() {
+                    private float mDX, mDY, mLX, mLY;
+                    boolean isClick = true;
+
+                    @Override
+                    public boolean onTouch(View v, MotionEvent ev) {
+                        switch (ev.getAction()) {
+                            case MotionEvent.ACTION_DOWN:
+                                isClick = true;
+                                mDX = mDY = 0f;
+                                mLX = ev.getX();
+                                mLY = ev.getY();
+                                break;
+                            case MotionEvent.ACTION_MOVE:
+                                final float curX = ev.getX();
+                                final float curY = ev.getY();
+                                mDX += Math.abs(curX - mLX);
+                                mDY += Math.abs(curY - mLY);
+                                mLX = curX;
+                                mLY = curY;
+                                int dis = dip2px(mContext, 2);
+                                if (DeviceUtils.getScreenPix(mContext).widthPixels >= 1920) {
+                                    dis = dis + 5;
+                                }
+                                if (mDX > dis || mDY > dis) {
+                                    isClick = false;
+                                    tv.setEnabled(false);
+                                }
+                                break;
+                            case MotionEvent.ACTION_UP:
+                                tv.setEnabled(true);
+                                if (isClick) {
+                                    tv.getParent().requestDisallowInterceptTouchEvent(true);
+                                    if ("0".equals(handicapBean.getIsInetBet())) {
+                                        Toast.makeText(mContext, R.string.not_allowed_to_bet, Toast.LENGTH_LONG).show();
+                                    } else {
+                                        if (presenter.isMixParlay()) {
+                                            addMixParlayBet(v, baseRecyclerAdapter.getItem(getParentPosition()), position, over, ou, overOdds, handicapBean.getIsHomeGive());
+                                        } else
+                                            showBetPop(v, bean, position, overOdds, over, ou);
+                                    }
+                                }
+                                tv.getParent().requestDisallowInterceptTouchEvent(false);
+                                break;
+                        }
+
+                        return isClick;
+                    }
+                });
+
+            }
+
+            private void addMixParlayBet(View v, final MatchBean item, final int position, String model, final String hdp, final String odds, final String isHomeGive) {
+
+                if (item != null) {
+                    final String recordModel = model;
+                    BettingInfoBean modlemap = new BettingInfoBean("s", recordModel, "", hdp, odds, item.getHome(), item.getAway(), item.getLeagueBean().getModuleTitle(),
+                            item.getHandicapBeans().get(0).getSocOddsId(), item.getHandicapBeans().get(1).getSocOddsId(), position, model.equals("Running"), isHomeGive.equals("1"));
+                    Map<Integer, BettingInfoBean> positionMap = new HashMap<>();
+                    positionMap.put(position, modlemap);
+                    Map<String, Map<Integer, BettingInfoBean>> keyMap = new HashMap<>();
+                    keyMap.put(item.getKey(), positionMap);
+
+                    model = model + "_par";
+
+                    final String SocOddsId = item.getHandicapBeans().get(0).getSocOddsId();
+                    String SocOddsId_FH = "";
+                    if (position == 1)
+                        SocOddsId_FH = item.getHandicapBeans().get(1).getSocOddsId();
+                    BettingInfoBean m1 = new BettingInfoBean("", model, "", hdp, odds, item.getHome(), item.getAway(), item.getLeagueBean().getModuleTitle(),
+                            SocOddsId, SocOddsId_FH, position, model.equals("Running"), isHomeGive.equals("1"));
+                    presenter.addMixParlayBet(m1, keyMap, item);
+
+                    v.setBackgroundResource(R.drawable.sport_mix_parlay_bet_green_bg);
+                    ((TextView) v).setTextColor(getResources().getColor(R.color.white));
+
+                } else {
+                    getApp().setBetDetail(null);
+                    countBet();
+                    baseRecyclerAdapter.notifyDataSetChanged();
+                }
+
+            }
+
+            private void setValue(final ViewHolder helper, final int id, String f, boolean isAnimation) {
+                if (f.equals("")) {
+                    helper.setText(id, "");
+                    return;
+                }
+                helper.setText(id, changeValueS(f));
+                helper.setTextColor(id, mContext.getResources().getColor(R.color.black_grey));
 
 
+              /*  if (isAnimation && updateType != 1) {
+
+                    helper.setAnimation(id, getAnimation(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            helper.setBackgroundColorRes(id, R.color.dig_game_bg);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            helper.setBackgroundColorRes(id, R.color.white);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                            helper.setBackgroundColorRes(id, R.color.dig_game_bg);
+                        }
+                    }));
+
+                }*/
+            }
+
+            private void showBetPop(View v, MatchBean bean, int position, String odds, String type, String ou) {
+
+               /* betPop = new BetBasePop(mContext, v, 700, LinearLayout.LayoutParams.WRAP_CONTENT);
+                //String b,String sc, String oId, String odds, boolean isRunning, String oId_fh
+                if (position == 0) {
+                    BettingInfoBean info = new BettingInfoBean("s", type, "", ou, odds,
+                            bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, modleType.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("true"));
+                    betPop.getData(info);
+                } else {
+                    BettingInfoBean info = new BettingInfoBean("s", type, "", ou, odds,
+                            bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", bean.getHandicapBeans().get(1).getSocOddsId(), 1, modleType.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("true"));
+                    betPop.getData(info);
+                    betPop.setBetSelectionType(mContext.getString(R.string.half_time));
+                }
+                betPop.showPopupCenterWindow();*/
+            }
+
+
+            @Override
+            protected int getPageLayoutRes() {
+                return R.layout.sport_item_table_module_viewpager;
+            }
+        };
+        contentPageAdapter.setExtraData(datas);
+        contentPageAdapter.setParentPosition(position);
+        contentPageAdapter.setDatas(datas.getHandicapBeans());
+        centerVp.setAdapter(contentPageAdapter);
+//                }
+        centerVp.setFollowViewPagers(vps);
+        centerVp.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+
+                if (vpPosition != position) {
+                    vpPosition = position;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
+        centerVp.setCurrentItem(vpPosition);
+    }
+
+    private void notifyClearanceBet(MatchBean item, int position, ViewHolder helper) {
+        if (getApp().getBetDetail() == null || item == null)
+            return;
+        Map<String, Map<Integer, BettingInfoBean>> keyMap = getApp().getBetDetail().get(item.getHome() + "+" + item.getAway());
+        if (keyMap == null)
+            return;
+        Map<Integer, BettingInfoBean> positionMap = keyMap.get(item.getKey());
+        if (positionMap == null)
+            return;
+        BettingInfoBean modelInfo = positionMap.get(position);
+        if (modelInfo == null)
+            return;
+        String model = modelInfo.getB();
+
+        if (model.equals("away")) {
+            helper.setBackgroundRes(R.id.viewpager_match_visit_hdpodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
+            helper.setTextColorRes(R.id.viewpager_match_visit_hdpodds_tv, R.color.white);
+
+        } else if (model.equals("home")) {
+            helper.setBackgroundRes(R.id.viewpager_match_home_hdpodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
+            helper.setTextColorRes(R.id.viewpager_match_home_hdpodds_tv, R.color.white);
+        } else if (model.equals("over")) {
+            helper.setBackgroundRes(R.id.viewpager_match_overodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
+            helper.setTextColorRes(R.id.viewpager_match_overodds_tv, R.color.white);
+        } else if (model.equals("under")) {
+            helper.setBackgroundRes(R.id.viewpager_match_underodds_tv, R.drawable.sport_mix_parlay_bet_green_bg);
+            helper.setTextColorRes(R.id.viewpager_match_underodds_tv, R.color.white);
+        }
+    }
+
+    public void countBet() {
+        llMixParlayOrder.setVisibility(View.VISIBLE);
+        Map<String, Map<String, Map<Integer, BettingInfoBean>>> result = getApp().getBetDetail();
+        if (result != null) {
+            if (result.size() == 0) {
+                llMixParlayOrder.setVisibility(View.GONE);
+            } else {
+                tvMixParlayOrder.setText(result.size()+"");
+                llMixParlayOrder.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        skipAct(MixOrderListActivity.class);
+                    }
+                });
+            }
+        } else
+            llMixParlayOrder.setVisibility(View.GONE);
     }
 
     @Override
@@ -328,17 +776,46 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     }
 
     @Override
-    public void onPageData(int page, List<MatchBean> pageData) {
-
-
+    public void onPageData(int page, List<MatchBean> pageData, String modelType) {
+        baseRecyclerAdapter.addAllAndClear(pageData);
+        String size = pageData.size() + "";
+        tvTotalMatch.setText(size);
+        ((BaseToolbarActivity) getActivity()).getTvToolbarTitle().setText(modelType);
+        if (presenter.isMixParlay()) {
+            llMixParlayOrder.setVisibility(View.VISIBLE);
+        } else {
+            llMixParlayOrder.setVisibility(View.GONE);
+        }
     }
-
 
     @Override
-    public int onSetLayoutId() {
-        return R.layout.fragment_football;
+    public void onAddMixSucceed(BettingParPromptBean result, Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
+        if (result != null)
+            getApp().setBetParList(result);
+        saveBetMap(keyMap, item);
+        countBet();
     }
 
+    @Override
+    public void onAddMixFailed(String message) {
+        countBet();
+        baseRecyclerAdapter.notifyDataSetChanged();
+    }
+
+    private void saveBetMap(Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
+        if (item == null) {
+            getApp().setBetDetail(null);
+        } else {
+            getApp().getBetDetail().put(item.getHome() + "+" + item.getAway(), keyMap);
+            baseRecyclerAdapter.notifyDataSetChanged();
+        }
+    }
+
+    @Override
+    public void mixParlayCLick(View buttonView) {
+        presenter.mixParlay();
+
+    }
 
     @Override
     public void onGetData(List<MatchBean> data) {
@@ -350,5 +827,28 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         return getString(R.string.Football);
     }
 
+    @Override
+    public int onSetLayoutId() {
+        return R.layout.fragment_football;
+    }
 
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        ButterKnife.unbind(this);
+    }
+
+    @OnClick(R.id.ll_mix_parlay_order)
+    public void onClick(View v) {
+
+    }
 }

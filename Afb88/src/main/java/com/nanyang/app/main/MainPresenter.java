@@ -1,6 +1,7 @@
 package com.nanyang.app.main;
 
 
+import com.nanyang.app.ApiService;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
@@ -9,7 +10,9 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
-class MainPresenter extends BaseRetrofitPresenter<String, MainContract.View, ApiMain> implements MainContract.Presenter {
+import static com.unkonw.testapp.libs.api.Api.getService;
+
+class MainPresenter extends BaseRetrofitPresenter<String, MainContract.View> implements MainContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     MainPresenter(MainContract.View view) {
         super(view);
@@ -25,7 +28,8 @@ class MainPresenter extends BaseRetrofitPresenter<String, MainContract.View, Api
     @Override
     public void main(String str) {
 
-            Disposable subscription = mApiWrapper.goMain()
+            Disposable subscription =  mApiWrapper.applySchedulers(getService(ApiService.class).main())
+//                    mApiWrapper.goMain()
                     .subscribe(new Consumer<String>() {//onNext
                         @Override
                         public void accept(String Str) throws Exception {

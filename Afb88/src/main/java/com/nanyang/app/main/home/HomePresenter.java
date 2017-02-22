@@ -1,8 +1,7 @@
-package com.nanyang.app.load.register;
+package com.nanyang.app.main.home;
 
 
 import com.nanyang.app.ApiService;
-import com.nanyang.app.load.UserInfo;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
@@ -13,50 +12,28 @@ import io.reactivex.functions.Consumer;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-public class RegisterPresenter extends BaseRetrofitPresenter<String,RegisterContract.View> implements RegisterContract.Presenter {
+class HomePresenter extends BaseRetrofitPresenter<String, HomeContract.View> implements HomeContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
-    public RegisterPresenter(RegisterContract.View view) {
+    HomePresenter(HomeContract.View view) {
         super(view);
     }
 
     @Override
-    public ApiRegister createRetrofitApi() {
-        return new ApiRegister();
+    public ApiHome createRetrofitApi() {
+        return new ApiHome();
     }
 
-   /* @Override
-    public void login(Map<String,String> info) {
-
-
-        Call<String> call = mApiWrapper.getData( info);
-        call.enqueue(new Callback<String>() {//异步请求
-            @Override
-            public void onResponse(Call<String> call, final Response<String> response) {
-                if (response.isSuccessful() ) {
-                    baseView.onGetData(response.body());
-                } else {
-                    baseView.onGetData("失败");
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<String> call, final Throwable t) {
-                baseView.onGetData(t.getMessage());
-            }
-        });
-    }*/
 
 
     @Override
-    public void register(UserInfo info) {
-        Disposable subscription =mApiWrapper.applySchedulers(getService(ApiService.class).getPersonalInfo(info.getMap()))
-//                mApiWrapper.getPersonalInfo(info)
+    public void getBallURl() {
+        Disposable subscription =
+                mApiWrapper.applySchedulers(getService(ApiService.class).main())
+//                mApiWrapper.getBallUrl()
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String Str) throws Exception {
                         baseView.onGetData(Str);
-                        baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -78,6 +55,4 @@ public class RegisterPresenter extends BaseRetrofitPresenter<String,RegisterCont
                 });
         mCompositeSubscription.add(subscription);
     }
-
-
 }

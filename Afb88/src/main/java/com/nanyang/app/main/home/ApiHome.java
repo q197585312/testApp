@@ -1,4 +1,4 @@
-package com.nanyang.app.main;
+package com.nanyang.app.main.home;
 
 
 import com.nanyang.app.ApiService;
@@ -9,7 +9,7 @@ import io.reactivex.Flowable;
 /**
  * Api类的包装
  */
-public class ApiMain extends Api {
+public class ApiHome extends Api {
 
 
     Flowable<String> getBallUrl() {
