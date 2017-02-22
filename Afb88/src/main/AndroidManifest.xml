@@ -45,6 +45,8 @@
         <activity android:name=".main.MainActivity"/>
         <activity android:name=".load.register.RegisterActivity"/>
         <activity android:name=".main.home.sport.SportActivity"/>
+        <activity android:name=".main.home.poker.PokerCasinoActivity"/>
+        <activity android:name=".main.home.discount.DiscountActivity"/>
     </application>
 
 </manifest>

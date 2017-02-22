@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.discount.DiscountActivity;
+import com.nanyang.app.main.home.poker.PokerCasinoActivity;
 import com.nanyang.app.main.home.sport.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -65,7 +67,16 @@ public class HomeFragment extends BaseFragment {
             public void onItemClick(View view, MenuItemInfo item, int position) {
                 if(item.getText().equals(getString(R.string.SportBook))){
                     skipAct(SportActivity.class);
-
+                }else if(item.getText().equals(getString(R.string.Poker))){
+                    Bundle b = new Bundle();
+                    b.putString("activity","Porker");
+                    skipAct(PokerCasinoActivity.class,b);
+                }else if(item.getText().equals(getString(R.string.Live_Casino))){
+                    Bundle b = new Bundle();
+                    b.putString("activity","Live");
+                    skipAct(PokerCasinoActivity.class,b);
+                }else if (item.getText().equals(getString(R.string.Discount))){
+                    skipAct(DiscountActivity.class);
                 }
             }
         });
@@ -113,8 +124,7 @@ public class HomeFragment extends BaseFragment {
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         if(item.getText().equals(getString(R.string.Cancel))){
                             closePopupWindow();
-                        }
-                        else{
+                        } else{
                             Bundle b=new Bundle();
                             b.putString(AppConstant.KEY_STRING,item.getText());
                             skipAct(SportActivity.class,b);
