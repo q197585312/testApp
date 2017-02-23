@@ -6,10 +6,17 @@ import com.unkonw.testapp.libs.view.IBaseView;
 
 public interface RegisterContract {
     interface View extends IBaseView<String> {
-       void onFailed(String error);
+        void onFailed(String error);
     }
 
     interface Presenter extends IBasePresenter {
+
         void register(UserInfo info);
+
+        void checkUserName(RegisterInfo info);
+
+        void initBank();
+
+        void initCurrency();
     }
 }

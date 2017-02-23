@@ -34,7 +34,7 @@ public interface ApiService {
     @POST("login.jsp")
     Flowable<String> getUserInfo(@Field("txtLang") String txtLang, @Field("txtAcctid") String txtAcctid, @Field("txtPwd") String txtPwd, @Field("osType") String osType, @Field("osVersion") String osVersion);
     @GET
-    Call<ResBaseBean<DataBean>> checkVersion(@Url String url) ;
+    Call<ResBaseBean<DataBean>> checkVersion(@Url String url);
 
 
     @POST("login.jsp")
@@ -93,4 +93,8 @@ public interface ApiService {
     Flowable<BettingParPromptBean> addMixParlayBet(@Url String s);
     @GET
     BettingParPromptBean removeMixOrder(@Url String url);
+    //注册时检测用户帐号
+    @FormUrlEncoded
+    @POST("http://www.afbasia88.com/_view/Register1.aspx")
+    Flowable<String> checkUserName(@FieldMap Map<String,String> info);
 }

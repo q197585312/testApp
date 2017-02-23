@@ -3,6 +3,8 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:background="@drawable/rectangle_green_gradient"
     android:layout_height="match_parent">
+    <include layout="@layout/toolbar_layout"
+        android:visibility="gone"/>
     <ImageView
         android:id="@+id/iv_banner"
         android:contentDescription="@null"
