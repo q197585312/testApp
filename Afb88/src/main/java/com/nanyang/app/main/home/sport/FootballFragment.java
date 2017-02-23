@@ -20,7 +20,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.dialog.BetBasePop;
-import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
+//import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
@@ -753,7 +753,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                 llMixParlayOrder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        skipAct(MixOrderListActivity.class);
+//                        skipAct(MixOrderListActivity.class);
                     }
                 });
             }

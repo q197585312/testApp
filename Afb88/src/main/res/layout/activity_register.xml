@@ -3,121 +3,248 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/rectangle_green_gradient_line"
-    android:orientation="vertical" >
+    android:orientation="vertical">
 
-    <include layout="@layout/toolbar_layout"
-        />
+    <include layout="@layout/toolbar_layout" />
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <EditText
-                android:layout_marginTop="10dp"
+                android:textSize="17sp"
                 android:id="@+id/edt_account"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
                 android:hint="@string/Account"
-                android:text=""
-                android:textColorHint="@color/trans_white"
-                android:maxLines="1"
-                android:textColor="@color/black"
+                android:background="@null"
                 android:drawableBottom="@drawable/line_white"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="@color/trans_white"
 
                 />
+
             <TextView
+                android:visibility="invisible"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_account_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black_grey"
-                android:text="Ok"
-                 />
+                android:text=""
+                android:textColor="@color/black_grey" />
+
             <EditText
+                android:textSize="17sp"
+                android:background="@null"
+                android:drawableBottom="@drawable/line_white"
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="0dp"
                 android:hint="@string/Password"
-                android:text=""
-                android:textColorHint="@color/trans_white"
+                android:inputType="textPassword"
                 android:maxLines="1"
+                android:text=""
                 android:textColor="@color/black"
-                android:drawableBottom="@drawable/line_white"
-                android:inputType="textPassword" />
+                android:textColorHint="@color/trans_white" />
+
             <TextView
+                android:visibility="invisible"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_password_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black_grey"
-                android:text="Ok"
-                />
+                android:text=""
+                android:textColor="@color/black_grey" />
+
             <EditText
+                android:background="@null"
+                android:drawableBottom="@drawable/line_white"
                 android:id="@+id/edt_password_repeat"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:textSize="17sp"
                 android:hint="@string/Repeat_password"
-                android:text=""
-                android:textColorHint="@color/trans_white"
+                android:inputType="textPassword"
                 android:maxLines="1"
+                android:text=""
                 android:textColor="@color/black"
-                android:drawableBottom="@drawable/line_white"
-                android:inputType="textPassword" />
+                android:textColorHint="@color/trans_white" />
+
             <TextView
+                android:visibility="invisible"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_password_repeat_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black_grey"
-                android:text="Ok"
-                />
-            <EditText
-                android:id="@+id/edt_phone"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/Call_phone_number"
                 android:text=""
-                android:textColorHint="@color/trans_white"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                android:drawableBottom="@drawable/line_white"
-                android:inputType="phone" />
+                android:textColor="@color/black_grey" />
+
+
             <TextView
-                android:id="@+id/tv_phone_prompt"
+                android:id="@+id/tv_currency"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:textSize="17sp"
+                android:hint="Currency"
+                android:drawableRight="@mipmap/drop"
+                android:maxLines="1"
+                android:text=""
+                android:drawableBottom="@drawable/line_white"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:id="@+id/tv_currency_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black_grey"
-                android:text="Ok"
-                />
+                android:text=""
+                android:textColor="@color/black_grey" />
             <EditText
+                android:background="@null"
+                android:drawableBottom="@drawable/line_white"
+                android:id="@+id/edt_contactnum"
+                android:layout_width="match_parent"
+                android:textSize="17sp"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:hint="Contact Number"
+                android:inputType="phone"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="@color/trans_white" />
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:id="@+id/tv_contactnum_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black_grey" />
+            <EditText
+                android:background="@null"
+                android:drawableBottom="@drawable/line_white"
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:layout_weight="1"
+                android:layout_height="0dp"
                 android:hint="@string/Email"
-                android:text=""
-                android:textColorHint="@color/trans_white"
+                android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:text=""
                 android:textColor="@color/black"
-                android:drawableBottom="@drawable/line_white"
-                android:inputType="textEmailAddress" />
+                android:textColorHint="@color/trans_white" />
+
             <TextView
+                android:visibility="invisible"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_email_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/black_grey"
-                android:text="Ok"
-                />
+                android:text=""
+                android:textColor="@color/black_grey" />
+            <TextView
+                android:id="@+id/tv_bankname"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:hint="bankname"
+                android:inputType="phone"
+                android:textSize="17sp"
+                android:drawableRight="@mipmap/drop"
+                android:maxLines="1"
+                android:text=""
+                android:drawableBottom="@drawable/line_white"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:id="@+id/tv_bankname_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black_grey" />
+            <EditText
+                android:background="@null"
+                android:drawableBottom="@drawable/line_white"
+                android:id="@+id/edt_accountname"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:textSize="17sp"
+                android:hint="Account Name"
+                android:inputType="textEmailAddress"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="@color/trans_white" />
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:id="@+id/tv_accountname_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black_grey" />
+            <EditText
+                android:id="@+id/edt_accountnumber"
+                android:layout_width="match_parent"
+                android:layout_weight="1"
+                android:layout_height="0dp"
+                android:hint="Account Number"
+                android:inputType="phone"
+                android:textSize="17sp"
+                android:background="@null"
+                android:drawableBottom="@drawable/line_white"
+                android:maxLines="1"
+                android:text=""
+                android:textColor="@color/black"
+                android:textColorHint="@color/trans_white" />
+
+            <TextView
+                android:visibility="invisible"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
+                android:id="@+id/tv_accountnumber_prompt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/black_grey" />
+
             <Button
-                android:layout_marginTop="20dp"
-                android:background="@color/yellow_button"
                 android:id="@+id/btn_submit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/white"
-                android:text="@string/Submit"/>
+                android:layout_marginTop="20dp"
+                android:background="@color/yellow_button"
+                android:text="@string/Submit"
+                android:textColor="@color/white" />
         </LinearLayout>
 
 

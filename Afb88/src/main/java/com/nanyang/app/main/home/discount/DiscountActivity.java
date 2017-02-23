@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.discount;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
 import android.widget.ImageView;
 
 import com.nanyang.app.BaseToolbarActivity;
@@ -27,10 +28,10 @@ public class DiscountActivity extends BaseToolbarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_discount);
-//        rvContent = (RecyclerView) findViewById(R.id.rv_content);
         initUI();
     }
     public void initUI() {
+        toolbar.setVisibility(View.VISIBLE);
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext,  LinearLayoutManager.VERTICAL, false);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(mLayoutManager);
         List<DiscountItemInfo> dataList = new ArrayList<>();
