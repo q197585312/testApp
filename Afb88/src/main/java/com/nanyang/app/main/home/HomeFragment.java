@@ -65,26 +65,24 @@ public class HomeFragment extends BaseFragment {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
-                if(item.getText().equals(getString(R.string.SportBook))){
-                 popWindow.showPopupCenterWindow();
-
-                    skipAct(SportActivity.class);
-                }else if(item.getText().equals(getString(R.string.Poker))){
+                if (item.getText().equals(getString(R.string.SportBook))) {
+                    popWindow.showPopupCenterWindow();
+                } else if (item.getText().equals(getString(R.string.Poker))) {
                     Bundle b = new Bundle();
-                    b.putString("activity","Porker");
-                    skipAct(PokerCasinoActivity.class,b);
-                }else if(item.getText().equals(getString(R.string.Live_Casino))){
+                    b.putString("activity", "Porker");
+                    skipAct(PokerCasinoActivity.class, b);
+                } else if (item.getText().equals(getString(R.string.Live_Casino))) {
                     Bundle b = new Bundle();
-                    b.putString("activity","Live");
-                    skipAct(PokerCasinoActivity.class,b);
-                }else if (item.getText().equals(getString(R.string.Discount))){
+                    b.putString("activity", "Live");
+                    skipAct(PokerCasinoActivity.class, b);
+                } else if (item.getText().equals(getString(R.string.Discount))) {
                     skipAct(DiscountActivity.class);
                 }
             }
         });
         rvContent.setAdapter(adapter);
 
-        createPopupWindow(new BasePopupWindow(mContext,rvContent, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {//创建
+        createPopupWindow(new BasePopupWindow(mContext, rvContent, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {//创建
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -93,10 +91,10 @@ public class HomeFragment extends BaseFragment {
             @Override
             protected void initView(View view) {
                 super.initView(view);
-                RecyclerView rv = (RecyclerView)view.findViewById(R.id.rv_list);
+                RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
                 LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
                 rv.setLayoutManager(mLayoutManager);
-                List<MenuItemInfo> data=new ArrayList<>();
+                List<MenuItemInfo> data = new ArrayList<>();
                 MenuItemInfo menuItemInfo = new MenuItemInfo(0, getString(R.string.Today));
                 menuItemInfo.setType("Today");
                 MenuItemInfo menuItemInfo1 = new MenuItemInfo(0, getString(R.string.Running));
@@ -127,12 +125,12 @@ public class HomeFragment extends BaseFragment {
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
-                        if(item.getText().equals(getString(R.string.Cancel))){
+                        if (item.getText().equals(getString(R.string.Cancel))) {
                             closePopupWindow();
-                        } else{
-                            Bundle b=new Bundle();
-                            b.putString(AppConstant.KEY_STRING,item.getType());
-                            skipAct(SportActivity.class,b);
+                        } else {
+                            Bundle b = new Bundle();
+                            b.putString(AppConstant.KEY_STRING, item.getType());
+                            skipAct(SportActivity.class, b);
                         }
                     }
                 });

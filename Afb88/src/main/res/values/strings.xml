@@ -60,4 +60,35 @@
     <string name="yt_porker">YT Porker</string>
     <string name="p885_porker">885 Porker</string>
     <string name="dig_porker">DIG Porker</string>
+    <string name="loading">Loading</string>
+    <string name="win">Win</string>
+    <string name="draw">Draw</string>
+    <string name="odd">Odd</string>
+    <string name="even">Even</string>
+    <string name="double_chance">Double chance</string>
+    <string name="x1">X1</string>
+    <string name="x2">2X</string>
+    <string name="x12">12</string>
+    <string name="half_full_time">Half/Full Time</string>
+
+    <string name="first_last_goal">First/Last Goal</string>
+    <string name="total_goals">Total Goals</string>
+    <string name="correct_full">FT Correct Score</string>
+    <string name="correct_half">FH Correct Score</string>
+    <string name="first_goal">First Goal</string>
+    <string name="last_goal">Last Goal</string>
+    <string name="no_goal">No Goal</string>
+    <string name="under">Under</string>
+    <string name="over">Over</string>
+    <string name="Input_the_amount_of_bets_please">Input the amount of bets please</string>
+    <string name="invalid_amount_bet">Invalid amount bet</string>
+    <string name="full_time">Full Time</string>
+    <string name="half_time">First Half</string>
+    <string name="odd_even">Odd/Even</string>
+    <string name="correct_score">Correct Score</string>
+    <string name="bet_amount">amount</string>
+    <string name="betting_amount">Bet Amount</string>
+    <string name="max_bet">Max Bet:</string>
+    <string name="min_bet">Min Bet:</string>
+    <string name="bet">Bet</string>
 </resources>

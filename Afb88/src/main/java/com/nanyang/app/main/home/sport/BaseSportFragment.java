@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport;
 
 import android.view.View;
+import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -17,7 +18,11 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
         return (AfbApplication) getActivity().getApplication();
     }
 
-    public void mixParlayCLick(View buttonView) {
+    public boolean mixParlayCLick(TextView buttonView) {
+        return false;
+    }
 
+    public boolean collectionClick(TextView tvCollection) {
+        return false;
     }
 }
