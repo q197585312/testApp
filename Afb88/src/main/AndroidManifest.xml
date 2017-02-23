@@ -54,6 +54,7 @@
         </activity>
         <activity android:name=".main.home.poker.PokerCasinoActivity"/>
         <activity android:name=".main.home.discount.DiscountActivity"/>
+        <activity android:name=".main.home.sport.mixparlayList.MixOrderListActivity" />
     </application>
 
 </manifest>

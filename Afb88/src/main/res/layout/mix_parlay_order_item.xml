@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.nanyang.app.myView.SlidingButtonView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:layout_marginBottom="1dp"
+    android:id="@+id/sbv"
+    android:background="@android:color/white">
+    <!--    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+            <TextView
+                android:id="@+id/tv_delete"
+                android:layout_height="match_parent"
+                android:layout_width="80dp"
+                android:gravity="center"
+                android:layout_toRightOf="@+id/layout_content"
+                android:text="删 除"
+                android:background="@drawable/btn_click_red_havebackground"
+                android:textColor="#DDFFFFFF"
+                />
+            <RelativeLayout
+                android:id="@+id/layout_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_height="match_parent"
+                    android:layout_width="match_parent"
+                    android:textSize="50dp"
+                    android:textColor="#DD000000"
+                    android:background="@drawable/btn_click_black_havebackground"
+                    />
+            </RelativeLayout>
+
+        </RelativeLayout>-->
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:id="@+id/ll_content_parent"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="@color/grey_dark" />
+
+            <TextView
+                android:id="@+id/clearance_type_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="足球"
+                android:textSize="10sp"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/grey_dark" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp">
+
+                <TextView
+                    android:id="@+id/clearance_home_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="足球"
+                    android:textColor="@color/blue_word"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="VS"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/clearance_away_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:text="足球"
+                    android:textColor="@color/black_grey"
+                    android:textSize="12sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/betting_terms"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/clearance_odds_content_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:text=""
+                    android:textSize="10sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:layout_marginTop="5dp"
+                android:background="@color/grey_dark" />
+
+        </LinearLayout>
+    </LinearLayout>
+    <TextView
+        android:id="@+id/tv_delete"
+        android:layout_width="60dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:background="@color/red_background"
+        android:gravity="center"
+        android:padding="7dip"
+        android:text="@string/delete"
+        android:textColor="#FFF"
+        android:textSize="12sp" />
+</com.nanyang.app.myView.SlidingButtonView>

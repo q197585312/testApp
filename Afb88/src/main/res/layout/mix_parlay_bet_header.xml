@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/selectable_text_parent_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/green900"
+    android:orientation="vertical">
+
+    <View android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/grey_dark"/>
+
+    <LinearLayout
+        android:id="@+id/header_clearance_select_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:paddingBottom="5dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="5dp">
+        <ImageView
+            android:id="@+id/header_clearance_more_mark_iv"
+            android:layout_marginRight="2dp"
+          android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_down_drop_white"/>
+        <LinearLayout
+
+          android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp">
+
+            <TextView
+                android:id="@+id/header_clearance_amount_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_grey"
+                android:textSize="12sp"
+                android:text="5 X 12注" />
+        </LinearLayout>
+        <TextView
+            android:layout_gravity="center_vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black_grey"
+            android:textSize="12sp"
+            />
+        <EditText
+            android:id="@+id/header_clearance_odds_edt"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/rectangle_white_green_stroke_grey_corner5"
+            android:layout_width="80dp"
+            android:layout_margin="3dp"
+            android:inputType="number"
+            android:layout_height="match_parent"
+            />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/grey_dark"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp" />
+
+</LinearLayout>

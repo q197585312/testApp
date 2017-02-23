@@ -1,0 +1,21 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:paddingLeft="5dp"
+    android:id="@+id/selectable_text_parent_ll"
+    android:layout_height="match_parent">
+    <TextView
+        android:gravity="center_vertical"
+        android:id="@+id/selectable_text_content_tv"
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black_grey"
+        android:textSize="10sp"
+        android:drawableRight="@mipmap/menu_right_hover"/>
+    <View
+      android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/grey_dark"
+        android:layout_marginLeft="5dp"/>
+
+</LinearLayout>

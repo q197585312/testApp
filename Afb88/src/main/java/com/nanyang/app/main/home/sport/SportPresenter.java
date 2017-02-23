@@ -22,8 +22,8 @@ import io.reactivex.functions.Consumer;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresenter<T, SportContract.View<T>> implements SportContract.Presenter {
-    public SportPresenter(SportContract.View<T> view) {
+public abstract class SportPresenter<T,V extends SportContract.View<T>> extends BaseRetrofitPresenter<T,V> implements SportContract.Presenter {
+    public SportPresenter(V view) {
         super(view);
     }
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
@@ -148,5 +148,27 @@ abstract class SportPresenter<T, A extends  ApiSport> extends BaseRetrofitPresen
                     }
                 });
         mCompositeSubscription.add(subscription);
+    }
+    public BettingParPromptBean removeBetItem(final BettingInfoBean item) {
+
+        String ParUrl = "";
+
+        for (BettingParPromptBean.BetParBean aitem :   ((FootballFragment)baseView).getApp().getBetParList().getBetPar()) {
+            if (item.getHome().equals(aitem.getHome()) && item.getAway().equals(aitem.getAway())) {
+                ParUrl = aitem.getParUrl();
+                break;
+            }
+        }
+        String url;
+        if (!ParUrl.equals("")) {
+            if (item.getIsFH() == 0)
+                url=ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId();
+            else {
+                url=ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId_FH();
+            }
+            return getService(ApiService.class).removeMixOrder(url);
+        } else {
+            return null;
+        }
     }
 }

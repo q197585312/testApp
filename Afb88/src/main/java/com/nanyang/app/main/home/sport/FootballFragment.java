@@ -805,6 +805,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         betPop.closePopupWindow();
     }
 
+
     private void saveBetMap(Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
         if (item == null) {
             getApp().setBetDetail(null);

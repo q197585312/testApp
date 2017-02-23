@@ -42,7 +42,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 
 class
-FootballPresenter extends SportPresenter<List<MatchBean>, ApiSport> {
+FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List<MatchBean>>> {
     private List<TableModuleBean> allData;
     private int page;
     final int pageSize = 15;
@@ -158,28 +158,7 @@ FootballPresenter extends SportPresenter<List<MatchBean>, ApiSport> {
 
         }
     }
-    protected BettingParPromptBean removeBetItem(final BettingInfoBean item) {
 
-        String ParUrl = "";
-
-        for (BettingParPromptBean.BetParBean aitem :   ((FootballFragment)baseView).getApp().getBetParList().getBetPar()) {
-            if (item.getHome().equals(aitem.getHome()) && item.getAway().equals(aitem.getAway())) {
-                ParUrl = aitem.getParUrl();
-                break;
-            }
-        }
-        String url;
-        if (!ParUrl.equals("")) {
-            if (item.getIsFH() == 0)
-                url=ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId();
-            else {
-                url=ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId_FH();
-            }
-          return getService(ApiService.class).removeMixOrder(url);
-        } else {
-            return null;
-        }
-    }
 
     @Override
     public void refresh(String type) {

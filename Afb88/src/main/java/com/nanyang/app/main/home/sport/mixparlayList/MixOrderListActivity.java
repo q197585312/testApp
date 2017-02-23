@@ -1,93 +1,154 @@
 package com.nanyang.app.main.home.sport.mixparlayList;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.reflect.TypeToken;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.model.BettingInfoBean;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.BettingPromptBean;
+import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
+import com.nanyang.app.main.home.sport.model.LeagueBean;
+import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.myView.SlidingButtonView;
+import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupwindow;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.BindString;
+import cn.finalteam.toolsfinal.StringUtils;
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2017/2/21.
  */
-public class MixOrderListActivity extends BaseToolbarActivity{
+public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresenter> implements MixOrderListContract.View {
 
-    @Bind(R.id.slideCutListView)
-    DelSlideListView slideCutListView;
-    @Bind(R.id.clearance_bottom_fsvlst)
-    FSVListView fsvlst;
+    @Bind(R.id.rv_content)
+    RecyclerView rvContent;
+
     @BindString(R.string.loading)
     String loading;
-    private AdapterViewContent<BettingInfoBean> contentList;
+
     private HashMap<LeagueBean, Boolean> selecteds = new HashMap<>();
-    private boolean editable;
-    private BettingParPromptBean datas;
+    private BettingParPromptBean dataBean;
     private Map<Boolean, Integer> selectedMap = new HashMap<>();
-    AdapterViewContent<ClearanceBetAmountBean> bottomContent;
-    private boolean shouldShow;
-    private ClearanceBetAmountBean selectedBean;
-    private TableHttpHelper<Object> betHttpHelper;
+
+
     private TextView headOddsEdt;
     private ImageView moreIv;
     private TextView headAmountTv;
     private String betUrl;
     private Map<String, Map<String, Map<Integer, BettingInfoBean>>> datasMap;
     List<BettingInfoBean> betInfos;
+    BaseRecyclerAdapter<BettingInfoBean> listAdapter;
+    private LinearLayout llBottom;
+    private TextView footerCountTv;
+    private TextView footerContentTv;
+    private Button footerCancelBtn;
+    private ClearanceBetAmountBean selectedBean;
 
     @Override
-    protected int getLayoutRes() {
-        return R.layout.activity_clearance_bet;
-    }
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_mix_parlay_list);
+        createPresenter(new MixOrderListPresenter(this));
 
-    @Override
-    protected void initData(Bundle savedInstanceState) {
-        super.initData(savedInstanceState);
-        rightTv.setText(R.string.edit);
-        rightTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                delectedModle();
-            }
-        });
-        datas = getApp().getBetParList();
-        datasMap=getApp().getBetDetail();
         initBottomListData();
         initListData();
     }
 
-    private void delectedModle() {
-        editable = !editable;
-        contentList.notifyDataSetChanged();
-        slideCutListView.reset(true);
+    private void initListData() {
+        if (dataBean != null) {
+            rvContent.setLayoutManager(new LinearLayoutManager(mContext));
+            listAdapter = new BaseRecyclerAdapter<BettingInfoBean>(mContext, new ArrayList<BettingInfoBean>(), R.layout.mix_parlay_order_item) {
+                @Override
+                public void convert(MyRecyclerViewHolder helper, final int position, final BettingInfoBean item) {
+                    final SlidingButtonView mMenu = helper.getView(R.id.sbv);
+                    helper.setText(R.id.clearance_type_tv, getString(R.string.football));
+                    if (item.getIsFH() == 1) {
+                        helper.setText(R.id.clearance_type_tv, getString(R.string.football) + "(" + getString(R.string.half_time) + ")");
+                    }
+                    helper.setText(R.id.clearance_home_tv, item.getHome());
+                    helper.setText(R.id.clearance_away_tv, item.getAway());
+                    setOddsText(helper, item);
+                    LinearLayout ll = helper.getView(R.id.ll_content_parent);
+                    TextView tvDelete = helper.getView(R.id.tv_delete);
+                    ll.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //判断是否有删除菜单打开
+                            if (menuIsOpen(mMenu)) {
+                                closeMenu(mMenu);//关闭菜单
+                            }
+                        }
+                    });
+                    tvDelete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            removeBetItem(v, position, item, true);
+                        }
+                    });
+                }
+
+                /**
+                 * 关闭菜单
+                 */
+                public void closeMenu(SlidingButtonView mMenu) {
+                    mMenu.closeMenu();
+
+                }
+
+                /**
+                 * 判断是否有菜单打开
+                 */
+                public Boolean menuIsOpen(SlidingButtonView mMenu) {
+                    if (mMenu != null) {
+                        return true;
+                    }
+                    return false;
+                }
+
+            };
+            presenter.obtainListData();
+        }
     }
 
+
     private void initBottomListData() {
-        View header = LayoutInflater.from(mContext).inflate(R.layout.header_clearance_bet_bottom, null);
-        View footer = LayoutInflater.from(mContext).inflate(R.layout.footer_clearance_bet_bottom, null);
-        View selectLl = header.findViewById(R.id.header_clearance_select_ll);
+        View selectLl = findViewById(R.id.header_clearance_select_ll);
         //header
-        headAmountTv = (TextView) header.findViewById(R.id.header_clearance_amount_tv);
-        headOddsEdt = (TextView) header.findViewById(R.id.header_clearance_odds_edt);
-        moreIv = (ImageView) header.findViewById(R.id.header_clearance_more_mark_iv);
+        headAmountTv = (TextView) findViewById(R.id.header_clearance_amount_tv);
+        headOddsEdt = (TextView) findViewById(R.id.header_clearance_odds_edt);
+        moreIv = (ImageView) findViewById(R.id.header_clearance_more_mark_iv);
         //footer
-        final TextView footerCountTv = (TextView) footer.findViewById(R.id.footer_clearance_count_tv);
-        TextView footerContentTv = (TextView) footer.findViewById(R.id.footer_clearance_content_tv);
-        Button footerBetTv = (Button) footer.findViewById(R.id.footer_clearance_bet_submit_btn);
-        Button footerCancelbtn = (Button) footer.findViewById(R.id.footer_clearance_bet_cancel_btn);
+        footerCountTv = (TextView) findViewById(R.id.footer_clearance_count_tv);
+        footerContentTv = (TextView) findViewById(R.id.footer_clearance_content_tv);
+        Button footerBetTv = (Button) findViewById(R.id.footer_clearance_bet_submit_btn);
+        footerCancelBtn = (Button) findViewById(R.id.footer_clearance_bet_cancel_btn);
         selectLl.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -100,322 +161,171 @@ public class MixOrderListActivity extends BaseToolbarActivity{
                 submitParBet(v);
             }
         });
-        footerCancelbtn.setOnClickListener(new View.OnClickListener() {
+        footerCancelBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 cancelBet(v);
             }
         });
-        fsvlst.addFooterView(footer, null, false);
-        fsvlst.addHeaderView(header, null, false);
 
-        footerCountTv.setText(getString(R.string.odds) + datas.getPayoutOdds() + "");
-        footerContentTv.setText(getString(R.string.max_bet) + datas.getMaxLimit() + "    " + getString(R.string.min_bet) + datas.getMinLimit());
+        footerCountTv.setText(getString(R.string.odds) + dataBean.getPayoutOdds() + "");
+        footerContentTv.setText(getString(R.string.max_bet) + dataBean.getMaxLimit() + "    " + getString(R.string.min_bet) + dataBean.getMinLimit());
         selectedMap.put(true, 0);
-        bottomContent = new AdapterViewContent<>(mContext, fsvlst);
-        bottomContent.setBaseAdapter(new QuickAdapterImp<ClearanceBetAmountBean>() {
-            @Override
-            public int getBaseItemResource() {
-                return R.layout.item_selectable_text;
-            }
+        llBottom = (LinearLayout) findViewById(R.id.ll_bottom_content);
+        presenter.showSelectedList();
+    }
 
-            @Override
-            public void convert(ViewHolder helper, ClearanceBetAmountBean item, int position) {
-                helper.setText(R.id.selectable_text_content_tv, item.getTitle());
-                TextView contentTv = helper.retrieveView(R.id.selectable_text_content_tv);
+    private void addBottomDate(List<ClearanceBetAmountBean> data) {
+
+        selectedBean = data.get(0);
+        if (data.size() > 0) {
+            for (int position = 0; position < data.size(); position++) {
+                final ClearanceBetAmountBean clearanceBetAmountBean = data.get(position);
+                View inflate = LayoutInflater.from(mContext).inflate(R.layout.selected_text_item, null, false);
+                TextView viewById = (TextView) llBottom.findViewById(R.id.selectable_text_content_tv);
+                viewById.setText(clearanceBetAmountBean.getTitle());
                 if (position == selectedMap.get(true)) {
-                    footerCountTv.setText(item.getTitle());
-                    contentTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.hook_red_small, 0);
+                    footerCountTv.setText(clearanceBetAmountBean.getTitle());
+                    viewById.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.menu_right_hover, 0);
                 } else {
-                    contentTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                    viewById.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 }
+                final int finalPosition = position;
+                inflate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        selectedMap.put(true, finalPosition);
+                        headAmountTv.setText(clearanceBetAmountBean.getTitle());
+                        selectedBean = clearanceBetAmountBean;
+                    }
+                });
+                llBottom.addView(inflate);
             }
-        });
-        bottomContent.setItemClick(new ItemCLickImp<ClearanceBetAmountBean>() {
-            @Override
-            public void itemCLick(View view, ClearanceBetAmountBean t, int position) {
-                position = position - 1;
-                selectedMap.put(true, position);
-                headAmountTv.setText(t.getTitle());
-                bottomContent.notifyDataSetChanged();
-                selectedBean=t;
-            }
-        });
-        showSelectedList();
+        }
+        headAmountTv.setText(selectedBean.getTitle());
     }
 
     private void cancelBet(View v) {
-        if(betInfos!=null&& betInfos.size()>0) {
-            int i =0;
+        if (betInfos != null && betInfos.size() > 0) {
+            int i = 0;
             for (BettingInfoBean item : betInfos) {
-                removeBetItem(v,i,item,false);
+                removeBetItem(v, i, item, false);
                 i++;
             }
         }
     }
 
     private void submitParBet(View v) {
-        setDialog(new BlockDialog(mContext, loading));
+
         String amt = headOddsEdt.getText().toString().trim();
-        if (StringUtils.isNull(mContext, amt, getString(R.string.input_bet_amount_please)))
+        if(StringUtils.isEmpty(amt)){
+            ToastUtils.showShort(R.string.input_bet_amount_please);
             return;
-        if (datas == null || datas.getBetPar().size() < 3) {
-            Toast.makeText(mContext, getString(R.string.clearance_should_be_more_than_three), Toast.LENGTH_SHORT).show();
-            return;
+        }else if(dataBean == null || dataBean.getBetPar().size() < 3){
+
+            ToastUtils.showShort(R.string.clearance_should_be_more_than_three);
+                return;
+
         }
-        int count=Integer.valueOf(amt);
-        if(!datas.getMaxLimit().equals("")&&!datas.getMaxLimit().equals("0")&&!datas.getMinLimit().equals("")) {
-            int max = Integer.valueOf(datas.getMaxLimit());
-            int min = Integer.valueOf(datas.getMinLimit());
-            int amount= Integer.valueOf(amt);
-            if (amount<min||amount>max){
-                Toast.makeText(mContext,getString(R.string.invalid_amount_bet),Toast.LENGTH_SHORT).show();
+        if (!dataBean.getMaxLimit().equals("") && !dataBean.getMaxLimit().equals("0") && !dataBean.getMinLimit().equals("")) {
+            int max = Integer.valueOf(dataBean.getMaxLimit());
+            int min = Integer.valueOf(dataBean.getMinLimit());
+            int amount = Integer.valueOf(amt);
+            if (amount < min || amount > max) {
+                Toast.makeText(mContext, getString(R.string.invalid_amount_bet), Toast.LENGTH_SHORT).show();
                 headOddsEdt.setText("");
                 return;
             }
         }
-        betHttpHelper = new TableHttpHelper<>(mContext, null, new ThreadEndT<Object>(null) {
+        else {
+            betUrl= AppConstant.HOST + "_bet/" + dataBean.getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + dataBean.getExRate();
+            presenter.bet(betUrl);
 
-            @Override
-            public void endT(Object result,int model) {
-                if (result != null) {
+        }
 
-                    CheckEnd(result.toString());
-                }
-                dismissBlockDialog();
-            }
 
-            @Override
-            public void endString(String result,int model) {
-                dismissBlockDialog();
-            }
-
-            @Override
-            public void endError(String error) {
-                dismissBlockDialog();
-                CheckEnd(error);
-            }
-        });
-        showBlockDialog();
-        betUrl= WebSiteUrl.SportUrl + "_bet/" + datas.getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + datas.getExRate();
-        betHttpHelper.getData(betUrl, "", TableDataHelper.ModelType.Running);
     }
 
     private void CheckEnd(String result) {
-        if(result==null){
-            Toast.makeText(mContext,getString(R.string.xiazhucuowu), Toast.LENGTH_SHORT).show();
+        if (result == null) {
+            Toast.makeText(mContext, getString(R.string.bet_failed), Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if ( result.startsWith("Parlay")||result.contains("r=")) {
-            Toast.makeText(mContext, getString(R.string.xiazhusuccess), Toast.LENGTH_SHORT).show();
+        if (result.startsWith("Parlay") || result.contains("r=")) {
+            Toast.makeText(mContext, getString(R.string.bet_succeed), Toast.LENGTH_SHORT).show();
             getApp().setBetParList(null);
             getApp().setBetDetail(null);
             finish();
-        } else if(result.startsWith("MULTIBET")){
+        } else if (result.startsWith("MULTIBET")) {
             getApp().setBetParList(null);
             getApp().setBetDetail(null);
             finish();
-        }else if(result.startsWith("PARCHG")) {
-            BaseYseNoChoosePopupwindow pop=new BaseYseNoChoosePopupwindow(mContext,slideCutListView) {
+        } else if (result.startsWith("PARCHG")) {
+            BaseYseNoChoosePopupwindow pop = new BaseYseNoChoosePopupwindow(mContext, rvContent) {
                 @Override
                 protected void clickSure(View v) {
-                    showBlockDialog();
-                    betHttpHelper.getData(betUrl, "", TableDataHelper.ModelType.Running);
+                    presenter.bet(betUrl);
                 }
             };
             pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-            pop.getChooseMessage().setText(result+" "+getString(R.string.do_you_bet_again));
+            pop.getChooseMessage().setText(result + " " + getString(R.string.do_you_bet_again));
             pop.getChooseSureTv().setText(getString(R.string.sure));
             pop.getChooseCancelTv().setText(getString(R.string.cancel));
             pop.showPopupCenterWindow();
-        }else{
-            Toast.makeText(mContext,result, Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
         }
     }
 
     private void changeSelectedList() {
-        shouldShow = !shouldShow;
-        showSelectedList();
-    }
-
-    private void showSelectedList() {
-        if(datas==null)
-            return;
-        moreIv.setVisibility(View.VISIBLE);
-        if (datas!=null&&datas.getBetPar()!=null&&datas.getBetPar().size() < 8 && datas.getBetPar().size() > 2) {
-            if(selectedBean==null||selectedBean.getTitle().equals(""))
-                selectedBean = new ClearanceBetAmountBean(1, datas.getBetPar().size() + "  X  1");
+        if (llBottom.getVisibility() == View.GONE) {
+            llBottom.setVisibility(View.VISIBLE);
         } else {
-            selectedBean = new ClearanceBetAmountBean(1, "");
-        }
-        if (shouldShow) {
-            moreIv.setImageResource(R.drawable.oval_blue_light_arrow_up);
-            int size = datas.getBetPar().size();
-            if (size == 3) {
-                bottomContent.setData(Arrays.asList(new ClearanceBetAmountBean(1, "3  X  1"), new ClearanceBetAmountBean(3, "3  X  3"), new ClearanceBetAmountBean(4, "3  X  4")));
-            } else if (size == 4) {
-                bottomContent.setData(Arrays.asList(new ClearanceBetAmountBean(1, "4  X  1"), new ClearanceBetAmountBean(4, "4  X  4"), new ClearanceBetAmountBean(5, "4  X  5"), new ClearanceBetAmountBean(6, "4  X  6")));
-            } else if (size == 5) {
-                bottomContent.setData(Arrays.asList(new ClearanceBetAmountBean(1, "5  X  1"), new ClearanceBetAmountBean(5, "5  X  5"), new ClearanceBetAmountBean(6, "5  X  6"), new ClearanceBetAmountBean(10, "5  X  10")
-                        , new ClearanceBetAmountBean(16, "5  X  16"), new ClearanceBetAmountBean(20, "5  X  20"), new ClearanceBetAmountBean(26, "5  X  26")));
-            } else if (size == 6) {
-                bottomContent.setData(Arrays.asList(new ClearanceBetAmountBean(1, "6  X  1"), new ClearanceBetAmountBean(6, "6  X  6"), new ClearanceBetAmountBean(7, "6  X  7"), new ClearanceBetAmountBean(15, "6  X  15"),
-                        new ClearanceBetAmountBean(20, "6  X  20"), new ClearanceBetAmountBean(35, "6  X  35"), new ClearanceBetAmountBean(42, "6  X  42"), new ClearanceBetAmountBean(50, "6  X  50"), new ClearanceBetAmountBean(57, "6  X  57")));
-            } else if (size == 7) {
-                bottomContent.setData(Arrays.asList(new ClearanceBetAmountBean(1, "7  X  1"), new ClearanceBetAmountBean(7, "7  X  7"), new ClearanceBetAmountBean(8, "7  X  8"), new ClearanceBetAmountBean(21, "7  X  21"), new ClearanceBetAmountBean(28, "7  X  28"),
-                        new ClearanceBetAmountBean(29, "7  X  29"), new ClearanceBetAmountBean(35, "7  X  35"), new ClearanceBetAmountBean(56, "7  X  56"), new ClearanceBetAmountBean(70, "7  X  70"), new ClearanceBetAmountBean(91, "7  X  91"),
-                        new ClearanceBetAmountBean(98, "7  X  98"), new ClearanceBetAmountBean(99, "7  X  99"), new ClearanceBetAmountBean(112, "7  X  112"), new ClearanceBetAmountBean(119, "7  X  119"), new ClearanceBetAmountBean(120, "7  X  120")));
-            } else {
-                bottomContent.setData(new ArrayList<ClearanceBetAmountBean>());
-                selectedBean = new ClearanceBetAmountBean(1, "");
-                moreIv.setVisibility(View.GONE);
-            }
-        } else {
-            bottomContent.setData(new ArrayList<ClearanceBetAmountBean>());
-            moreIv.setImageResource(R.drawable.oval_blue_light_arrow_down);
-            if (datas==null||datas.getBetPar()==null||datas.getBetPar().size() < 3) {
-                moreIv.setVisibility(View.GONE);
-            }
-            headAmountTv.setText(selectedBean.getTitle());
-        }
-
-    }
-
-
-    private void initListData() {
-        if (datas != null) {
-            contentList = new AdapterViewContent<BettingInfoBean>(mContext, slideCutListView);
-            contentList.setBaseAdapter(new QuickAdapterImp<BettingInfoBean>() {
-                @Override
-                public int getBaseItemResource() {
-                    return R.layout.item_clearance_content;
-                }
-
-                @Override
-                public void convert(ViewHolder helper, final BettingInfoBean item, final int position) {
-                    helper.setText(R.id.clearance_type_tv, getString(R.string.football));
-                    if(item.getIsFH()==1){
-                        helper.setText(R.id.clearance_type_tv, getString(R.string.football)+"("+getString(R.string.half_time)+")");
-                    }
-                    helper.setText(R.id.clearance_home_tv, item.getHome());
-                    helper.setText(R.id.clearance_away_tv, item.getAway());
-                    setOddsText(helper, item);
-                    helper.setVisible(R.id.selectable_left_deleted_iv, editable);
-                    helper.setClickLisenter(R.id.selectable_left_deleted_iv, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            removeBetItem(v, position, item,true);
-
-                        }
-                    });
-                    helper.setClickLisenter(R.id.delete_action, new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            removeBetItem(v, position, item,true);
-                        }
-                    });
-                }
-            });
-            Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = datasMap.entrySet().iterator();
-            betInfos=new ArrayList<>();
-            while (it.hasNext()){
-                Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>> keyItem = it.next();
-                Iterator<Map.Entry<String, Map<Integer, BettingInfoBean>>> itt = keyItem.getValue().entrySet().iterator();
-                while (itt.hasNext()){
-                    Iterator<Map.Entry<Integer, BettingInfoBean>> ittt = itt.next().getValue().entrySet().iterator();
-                    while (ittt.hasNext()){
-                        BettingInfoBean item = ittt.next().getValue();
-                        if(item!=null){
-                            betInfos.add(item);
-                        }
-                    }
-                }
-            }
-            contentList.setData(betInfos);
+            llBottom.setVisibility(View.GONE);
         }
     }
+
 
     protected void removeBetItem(View v, final int position, final BettingInfoBean item, final boolean shouldRemove) {
-        setDialog(new BlockDialog(mContext, getResources().getString(R.string.loading)));
-        final TableHttpHelper<BettingParPromptBean> deleteHttpHelper = new TableHttpHelper<>(mContext,null, new ThreadEndT<BettingParPromptBean>(new TypeToken<BettingParPromptBean>() {
-        }.getType()) {
+
+        Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
             @Override
-            public void endT(BettingParPromptBean result,int model) {
-                dismissBlockDialog();
-                datas = result;
-                datasMap.remove(item.getHome() + "+" + item.getAway());
-                getApp().setBetParList(result);
-                if(shouldRemove) {
-                    contentList.removeItem(position);
-                    showSelectedList();
-                }
-                else if(result==null||result.getBetPar()==null||result.getBetPar().size()<1){
-                    getApp().setBetDetail(null);
-                    getApp().setBetParList(result);
-                    finish();
-
-                }
+            public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
+                BettingParPromptBean bettingParPromptBean = presenter.removeBetItem(item);
+                e.onNext(bettingParPromptBean);
             }
+        }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingParPromptBean>() {
+                                                                                                                             @Override
+                                                                                                                             public void accept(BettingParPromptBean o) throws Exception {
+                                                                                                                                 onAddMixSucceed(o, null, null);
+                                                                                                                             }
+                                                                                                                         }
+        );
 
-            @Override
-            public void endString(String result,int model) {
-
-            }
-
-            @Override
-            public void endError(String error) {
-                dismissBlockDialog();
-
-            }
-        });
-        showBlockDialog();
-        String ParUrl="";
-        if(datas==null){
-            dismissBlockDialog();
-            return;
-        }
-        for(BettingParPromptBean.BetParBean aitem:datas.getBetPar()){
-            if(item.getHome().equals(aitem.getHome())&&item.getAway().equals(aitem.getAway())){
-                ParUrl=aitem.getParUrl();
-                break;
-            }
-        }
-        if(!ParUrl.equals("")) {
-            if(item.getIsFH()==0)
-                deleteHttpHelper.getData(ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId(), "", 0);
-            else{
-                deleteHttpHelper.getData(ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId_FH(), "", 0);
-            }
-        }
-        else{
-            dismissBlockDialog();
-        }
     }
 
-    public void setOddsText(ViewHolder helper, BettingInfoBean item) {
+    public void setOddsText(MyRecyclerViewHolder helper, BettingInfoBean item) {
         String hdp = "";
         String b = item.getB();
         String sc = item.getSc();
         String state = "";
         if (b.equals("1"))
             state = item.getHome() + "(" + mContext.getString(R.string.win) + ")";
-        else if(b.equals("1_par"))
-            state = "1X2:"+item.getHome() + "(" + mContext.getString(R.string.win) + ")";
+        else if (b.equals("1_par"))
+            state = "1X2:" + item.getHome() + "(" + mContext.getString(R.string.win) + ")";
         else if (b.equals("2"))
             state = item.getAway() + "(" + mContext.getString(R.string.win) + ")";
-        else if(b.equals("2_par")){
-            state ="1X2:"+ item.getAway() + "(" + mContext.getString(R.string.win) + ")";
-        }
-        else if (b.equals("x") || b.equals("X"))
+        else if (b.equals("2_par")) {
+            state = "1X2:" + item.getAway() + "(" + mContext.getString(R.string.win) + ")";
+        } else if (b.equals("x") || b.equals("X"))
             state = item.getHome() + "(" + mContext.getString(R.string.draw) + ")";
-        else if(b.equals("X_par")){
-            state = "1X2:"+ item.getHome() + "(" + mContext.getString(R.string.draw) + ")";
-        }
-        else if (b.contains("odd")) {
-            state = "OE:"+mContext.getString(R.string.odd);
+        else if (b.equals("X_par")) {
+            state = "1X2:" + item.getHome() + "(" + mContext.getString(R.string.draw) + ")";
+        } else if (b.contains("odd")) {
+            state = "OE:" + mContext.getString(R.string.odd);
         } else if (b.contains("even")) {
-            state =  "OE:"+mContext.getString(R.string.even);
+            state = "OE:" + mContext.getString(R.string.even);
 
         } else if (b.equals("csr")) {
             if (sc != null) {
@@ -485,16 +395,15 @@ public class MixOrderListActivity extends BaseToolbarActivity{
                     hdp = "7&Over";
             }
         } else if (b.equals("away")) {
-            state = "HDP:"+item.getAway();
+            state = "HDP:" + item.getAway();
         } else if (b.equals("home")) {
-            state = "HDP:"+item.getHome();
+            state = "HDP:" + item.getHome();
         } else if (b.equals("under")) {
-            state = "OU:"+getString(R.string.under);
+            state = "OU:" + getString(R.string.under);
         } else if (b.equals("over")) {
             state = "OU:" + getString(R.string.over);
-        }
-        else {
-            state=item.getB();
+        } else {
+            state = item.getB();
         }
         if (item.getHdp() != null) {
             if ((item.isHomeGiven() && b.equals("home")) || (!item.isHomeGiven() && b.equals("away")))
@@ -502,9 +411,68 @@ public class MixOrderListActivity extends BaseToolbarActivity{
             else
                 hdp = item.getHdp();
         }
-        if(item.getIsFH()==1){
-            state=state+"("+getString(R.string.half_time)+")";
+        if (item.getIsFH() == 1) {
+            state = state + "(" + getString(R.string.half_time) + ")";
         }
         helper.setText(R.id.clearance_odds_content_tv, state + "  " + hdp + "@" + item.getOdds());
+    }
+
+    @Override
+    public void onFailed(String error) {
+
+    }
+
+    @Override
+    public void onPageData(int page, Object pageData, String type) {
+
+    }
+
+    @Override
+    public void onAddMixFailed(String message) {
+
+    }
+
+    @Override
+    public void onGetBetSucceed(BettingPromptBean allData) {
+
+    }
+
+    @Override
+    public void onBetSucceed(String result) {
+        CheckEnd(result.toString());
+    }
+
+    @Override
+    public void onAddMixSucceed(BettingParPromptBean result, Map keyMap, MatchBean item) {
+        dataBean = result;
+        datasMap.remove(item.getHome() + "+" + item.getAway());
+        getApp().setBetParList(result);
+        presenter.obtainListData();
+        if (result == null || result.getBetPar() == null || result.getBetPar().size() < 1) {
+            getApp().setBetDetail(null);
+            getApp().setBetParList(result);
+            finish();
+
+        }
+    }
+
+    @Override
+    public void obtainListData(ArrayList<BettingInfoBean> betInfo) {
+        listAdapter.addAllAndClear(betInfo);
+    }
+
+    @Override
+    public void obtainBottomData(List<ClearanceBetAmountBean> data) {
+        addBottomDate(data);
+    }
+/*
+    @Override
+    public void onGetData(String data) {
+
+    }*/
+
+    @Override
+    public void onGetData(Object data) {
+
     }
 }
