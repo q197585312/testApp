@@ -5,12 +5,16 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.myView.LinkedViewPager.Utils.StringUtils;
+import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -84,19 +88,69 @@ public class RegisterActivity extends BaseToolbarActivity<RegisterPresenter> imp
     private void initCheck() {
         edtAccount.setOnFocusChangeListener(this);
         edtPassword.setOnFocusChangeListener(this);
+        edtPasswordRepeat.setOnFocusChangeListener(this);
+        edtContactnum.setOnFocusChangeListener(this);
+        edtEmail.setOnFocusChangeListener(this);
+        edtAccountname.setOnFocusChangeListener(this);
+        edtAccountnumber.setOnFocusChangeListener(this);
     }
 
-    @OnClick(R.id.btn_submit)
+    @OnClick({R.id.btn_submit, R.id.tv_currency, R.id.tv_bankname})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_submit:
-               /* UserInfo userInfo=new UserInfo()
-                presenter.register();*/
+                bankName = tvBankName.getText().toString();
+                String currencyId = getCurrencyId();
+                accountNum = edtAccountnumber.getText().toString();
+                RegisterInfo userInfo = new RegisterInfo(account, password, passwordRepeat, currencyId, contactNum, email, bankName, accountName, accountNum);
+                if (accountOk && passwordOk && passwordRepeatOk && emailOk && contactNumOk && accountNameOk && !TextUtils.isEmpty(bankName) && !TextUtils.isEmpty(currencyId) && !TextUtils.isEmpty(accountNum)) {
+                    presenter.register(userInfo);
+                } else {
+                    Toast.makeText(mContext, "少了参数", Toast.LENGTH_SHORT).show();
+                }
+                break;
+            case R.id.tv_currency:
+                presenter.initCurrency();
+                BaseListPopupWindow<String> popu = new BaseListPopupWindow<String>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, tvCurrency, tvCurrencyPorompt) {
+                    @Override
+                    public int getRecyclerViewId() {
+                        return R.id.base_rc;
+                    }
+
+                    @Override
+                    public List<String> getData() {
+                        return presenter.currencyList;
+                    }
+                };
+                popu.showPopupDownWindow();
+                break;
+            case R.id.tv_bankname:
+                presenter.initBank();
+                BaseListPopupWindow<String> popupWindow = new BaseListPopupWindow<String>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, tvBankName, tvBankNamePrompt) {
+                    @Override
+                    public int getRecyclerViewId() {
+                        return R.id.base_rc;
+                    }
+
+                    @Override
+                    public List<String> getData() {
+                        return presenter.bankList;
+                    }
+                };
+                popupWindow.showPopupDownWindow();
                 break;
         }
 
     }
 
+    private String getCurrencyId() {
+        if (!TextUtils.isEmpty(tvCurrency.getText().toString())) {
+            return presenter.currencyMap.get(tvCurrency.getText().toString());
+        }
+        return null;
+    }
+
+    String bankName;
     String account;
     String password;
     String passwordRepeat;
@@ -109,7 +163,6 @@ public class RegisterActivity extends BaseToolbarActivity<RegisterPresenter> imp
     boolean passwordRepeatOk;
     boolean emailOk;
     boolean contactNumOk;
-    boolean accountNumOk;
     boolean accountNameOk;
 
     @Override
@@ -202,13 +255,13 @@ public class RegisterActivity extends BaseToolbarActivity<RegisterPresenter> imp
                 if (!b) {
                     if (!TextUtils.isEmpty(accountNum)) {
                         tvAccountnumberPrompt.setText("OK");
-                        accountNumOk = true;
                     } else {
                         tvAccountnumberPrompt.setText("Account Number empty.Please check!");
-                        accountNumOk = false;
                     }
                 }
                 break;
         }
     }
+
+
 }

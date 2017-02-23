@@ -18,6 +18,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:textSize="17sp"
                 android:id="@+id/edt_account"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
@@ -35,15 +36,16 @@
 
             <TextView
                 android:visibility="invisible"
-                android:layout_marginTop="10px"
-                android:layout_marginBottom="10px"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_account_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ok"
+                android:text=""
                 android:textColor="@color/black_grey" />
 
             <EditText
+                android:textSize="17sp"
                 android:background="@null"
                 android:drawableBottom="@drawable/line_white"
                 android:id="@+id/edt_password"
@@ -59,12 +61,12 @@
 
             <TextView
                 android:visibility="invisible"
-                android:layout_marginTop="10px"
-                android:layout_marginBottom="10px"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_password_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ok"
+                android:text=""
                 android:textColor="@color/black_grey" />
 
             <EditText
@@ -74,6 +76,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0dp"
+                android:textSize="17sp"
                 android:hint="@string/Repeat_password"
                 android:inputType="textPassword"
                 android:maxLines="1"
@@ -83,12 +86,12 @@
 
             <TextView
                 android:visibility="invisible"
-                android:layout_marginTop="10px"
-                android:layout_marginBottom="10px"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_password_repeat_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ok"
+                android:text=""
                 android:textColor="@color/black_grey" />
 
 
@@ -97,7 +100,9 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0dp"
+                android:textSize="17sp"
                 android:hint="Currency"
+                android:drawableRight="@mipmap/drop"
                 android:maxLines="1"
                 android:text=""
                 android:drawableBottom="@drawable/line_white"
@@ -105,22 +110,23 @@
 
             <TextView
                 android:visibility="invisible"
-                android:layout_marginTop="10px"
-                android:layout_marginBottom="10px"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_currency_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ok"
+                android:text=""
                 android:textColor="@color/black_grey" />
             <EditText
                 android:background="@null"
                 android:drawableBottom="@drawable/line_white"
                 android:id="@+id/edt_contactnum"
                 android:layout_width="match_parent"
+                android:textSize="17sp"
                 android:layout_weight="1"
                 android:layout_height="0dp"
                 android:hint="Contact Number"
-                android:inputType="textEmailAddress"
+                android:inputType="phone"
                 android:maxLines="1"
                 android:text=""
                 android:textColor="@color/black"
@@ -128,18 +134,19 @@
 
             <TextView
                 android:visibility="invisible"
-                android:layout_marginTop="10px"
-                android:layout_marginBottom="10px"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_contactnum_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ok"
+                android:text=""
                 android:textColor="@color/black_grey" />
             <EditText
                 android:background="@null"
                 android:drawableBottom="@drawable/line_white"
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
+                android:textSize="17sp"
                 android:layout_weight="1"
                 android:layout_height="0dp"
                 android:hint="@string/Email"
@@ -151,12 +158,12 @@
 
             <TextView
                 android:visibility="invisible"
-                android:layout_marginTop="10px"
-                android:layout_marginBottom="10px"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_email_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ok"
+                android:text=""
                 android:textColor="@color/black_grey" />
             <TextView
                 android:id="@+id/tv_bankname"
@@ -165,6 +172,8 @@
                 android:layout_height="0dp"
                 android:hint="bankname"
                 android:inputType="phone"
+                android:textSize="17sp"
+                android:drawableRight="@mipmap/drop"
                 android:maxLines="1"
                 android:text=""
                 android:drawableBottom="@drawable/line_white"
@@ -172,12 +181,12 @@
 
             <TextView
                 android:visibility="invisible"
-                android:layout_marginTop="10px"
-                android:layout_marginBottom="10px"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_bankname_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ok"
+                android:text=""
                 android:textColor="@color/black_grey" />
             <EditText
                 android:background="@null"
@@ -186,6 +195,7 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0dp"
+                android:textSize="17sp"
                 android:hint="Account Name"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
@@ -195,12 +205,12 @@
 
             <TextView
                 android:visibility="invisible"
-                android:layout_marginTop="10px"
-                android:layout_marginBottom="10px"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_accountname_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ok"
+                android:text=""
                 android:textColor="@color/black_grey" />
             <EditText
                 android:id="@+id/edt_accountnumber"
@@ -208,7 +218,8 @@
                 android:layout_weight="1"
                 android:layout_height="0dp"
                 android:hint="Account Number"
-                android:inputType="textEmailAddress"
+                android:inputType="phone"
+                android:textSize="17sp"
                 android:background="@null"
                 android:drawableBottom="@drawable/line_white"
                 android:maxLines="1"
@@ -218,12 +229,12 @@
 
             <TextView
                 android:visibility="invisible"
-                android:layout_marginTop="10px"
-                android:layout_marginBottom="10px"
+                android:layout_marginTop="20px"
+                android:layout_marginBottom="20px"
                 android:id="@+id/tv_accountnumber_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ok"
+                android:text=""
                 android:textColor="@color/black_grey" />
 
             <Button

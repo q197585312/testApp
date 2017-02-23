@@ -23,6 +23,18 @@ public class RegisterInfo {
     String txtAccNumber;
     String txtCode;
 
+    public RegisterInfo(String txtUserName, String txtPassword, String txtVerifyPwd, String lstCurrency, String txtContactNum, String txtEmail, String lstBank, String txtAccName, String txtAccNumber) {
+        this.txtUserName = txtUserName;
+        this.txtPassword = txtPassword;
+        this.txtVerifyPwd = txtVerifyPwd;
+        this.lstCurrency = lstCurrency;
+        this.txtContactNum = txtContactNum;
+        this.txtEmail = txtEmail;
+        this.lstBank = lstBank;
+        this.txtAccName = txtAccName;
+        this.txtAccNumber = txtAccNumber;
+    }
+
     public RegisterInfo(String txtUserName) {
         this.txtUserName = txtUserName;
     }
@@ -33,6 +45,21 @@ public class RegisterInfo {
         map.put("btnCheckAvailability", "Check Availability");
         map.put("lstCurrency", "15");
         map.put("lstBank", "KASIKORN BANK");
+        return map;
+    }
+    public Map<String,String> getRegisterMap(){
+        Map<String,String> map = new HashMap<>();
+        map.put("txtUserName", txtUserName);
+        map.put("txtPassword",txtPassword);
+        map.put("txtVerifyPwd", txtVerifyPwd);
+        map.put("lstCurrency", lstCurrency);
+        map.put("txtContactNum", txtContactNum);
+        map.put("txtEmail", txtEmail);
+        map.put("lstBank", lstBank);
+        map.put("txtAccName", txtAccName);
+        map.put("txtAccNumber", txtAccNumber);
+        map.put("chkTNC", "on");
+        map.put("btnSubmit", "Save");
         return map;
     }
 

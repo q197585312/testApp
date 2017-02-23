@@ -2,7 +2,6 @@ package com.nanyang.app.load.register;
 
 
 import com.nanyang.app.ApiService;
-import com.nanyang.app.load.UserInfo;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
@@ -51,13 +50,13 @@ public class RegisterPresenter extends BaseRetrofitPresenter<String, RegisterCon
              }
          });
      }*/
-    private Map<String, String> currencyMap;
-    private List<String> currencyList;
-    private List<String> bankList;
+    public Map<String, String> currencyMap;
+    public List<String> currencyList;
+    public List<String> bankList;
 
     @Override
-    public void register(UserInfo info) {
-        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).getPersonalInfo(info.getMap()))
+    public void register(RegisterInfo info) {
+        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).Register(info.getRegisterMap()))
 //                mApiWrapper.getPersonalInfo(info)
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
@@ -93,21 +92,24 @@ public class RegisterPresenter extends BaseRetrofitPresenter<String, RegisterCon
                     @Override
                     public void accept(String s) throws Exception {
                         baseView.onGetData(s);
+                        baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         baseView.onFailed(throwable.toString());
+                        baseView.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
                     public void run() throws Exception {
-
+                        baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Long.MAX_VALUE);
+                        baseView.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(disposable);

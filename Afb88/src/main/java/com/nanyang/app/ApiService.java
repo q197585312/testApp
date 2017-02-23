@@ -100,4 +100,8 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("http://www.afbasia88.com/_view/Register1.aspx")
     Flowable<String> checkUserName(@FieldMap Map<String,String> info);
+    //注册
+    @FormUrlEncoded
+    @POST("http://www.afbasia88.com/_view/Register1.aspx")
+    Flowable<String> Register(@FieldMap Map<String,String> info);
 }
