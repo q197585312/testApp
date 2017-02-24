@@ -33,6 +33,7 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.BindString;
+import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -83,9 +84,11 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private void initListData() {
         rvContent.setLayoutManager(new LinearLayoutManager(mContext));
         listAdapter = new BaseRecyclerAdapter<BettingInfoBean>(mContext, new ArrayList<BettingInfoBean>(), R.layout.mix_parlay_order_item) {
+            private SlidingButtonView mMenu = null;
             @Override
             public void convert(MyRecyclerViewHolder helper, final int position, final BettingInfoBean item) {
-                final SlidingButtonView mMenu = helper.getView(R.id.sbv);
+                SlidingButtonView slid = helper.getView(R.id.sbv);
+
                 helper.setText(R.id.clearance_type_tv, getString(R.string.football));
                 if (item.getIsFH() == 1) {
                     helper.setText(R.id.clearance_type_tv, getString(R.string.football) + "(" + getString(R.string.half_time) + ")");
@@ -94,13 +97,31 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                 helper.setText(R.id.clearance_away_tv, item.getAway());
                 setOddsText(helper, item);
                 LinearLayout ll = helper.getView(R.id.ll_content_parent);
+                ll.getLayoutParams().width = DeviceUtils.getScreenPix(mContext).widthPixels;
                 TextView tvDelete = helper.getView(R.id.tv_delete);
+                slid.setSlidingButtonListener(new SlidingButtonView.IonSlidingButtonListener() {
+                    @Override
+                    public void onMenuIsOpen(View view) {
+                        mMenu = (SlidingButtonView) view;
+                    }
+
+                    @Override
+                    public void onDownOrMove(SlidingButtonView slidingButtonView) {
+                        if(menuIsOpen()){
+                            if(mMenu != slidingButtonView){
+                                closeMenu();
+                            }
+                        }
+                    }
+                });
                 ll.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         //判断是否有删除菜单打开
-                        if (menuIsOpen(mMenu)) {
-                            closeMenu(mMenu);//关闭菜单
+                        if (menuIsOpen()) {
+                            closeMenu();//关闭菜单
+                        }else{
+
                         }
                     }
                 });
@@ -115,16 +136,16 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             /**
              * 关闭菜单
              */
-            public void closeMenu(SlidingButtonView mMenu) {
+            public void closeMenu() {
                 mMenu.closeMenu();
-
+                mMenu = null;
             }
 
             /**
              * 判断是否有菜单打开
              */
-            public Boolean menuIsOpen(SlidingButtonView mMenu) {
-                if (mMenu != null) {
+            public Boolean menuIsOpen() {
+                if(mMenu != null){
                     return true;
                 }
                 return false;
