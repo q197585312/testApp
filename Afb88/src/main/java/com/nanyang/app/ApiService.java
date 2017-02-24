@@ -84,18 +84,13 @@ public interface ApiService {
     Flowable<String> getData(@Url String url);
     @GET
     Flowable<BettingPromptBean> getBetData(@Url String url);
-
-    @GET("http://a8197c.a36588.com/_view/RMOdds2.aspx")
-    Flowable<String> goRefresh();
     @GET
     Flowable<String> timerRun2(@Url  String url);
-    @GET
-    Flowable<String> goFootball(@Url  String url);
 
     @GET
     Flowable<BettingParPromptBean> addMixParlayBet(@Url String s);
     @GET
-    BettingParPromptBean removeMixOrder(@Url String url);
+    Call<BettingParPromptBean> removeMixOrder(@Url String url);
     //注册时检测用户帐号
     @FormUrlEncoded
     @POST("http://www.afbasia88.com/_view/Register1.aspx")

@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.mixparlayList;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -20,10 +19,11 @@ import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
-import com.nanyang.app.myView.SlidingButtonView;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.view.listview.ItemRemoveRecyclerView;
+import com.unkonw.testapp.libs.view.listview.OnItemClickListener;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupwindow;
 
 import java.util.ArrayList;
@@ -33,7 +33,6 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.BindString;
-import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -49,7 +48,7 @@ import io.reactivex.schedulers.Schedulers;
 public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresenter> implements MixOrderListContract.View<String> {
 
     @Bind(R.id.rv_content)
-    RecyclerView rvContent;
+    ItemRemoveRecyclerView rvContent;
 
     @BindString(R.string.loading)
     String loading;
@@ -84,10 +83,9 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private void initListData() {
         rvContent.setLayoutManager(new LinearLayoutManager(mContext));
         listAdapter = new BaseRecyclerAdapter<BettingInfoBean>(mContext, new ArrayList<BettingInfoBean>(), R.layout.mix_parlay_order_item) {
-            private SlidingButtonView mMenu = null;
+
             @Override
             public void convert(MyRecyclerViewHolder helper, final int position, final BettingInfoBean item) {
-                SlidingButtonView slid = helper.getView(R.id.sbv);
 
                 helper.setText(R.id.clearance_type_tv, getString(R.string.football));
                 if (item.getIsFH() == 1) {
@@ -96,63 +94,24 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                 helper.setText(R.id.clearance_home_tv, item.getHome());
                 helper.setText(R.id.clearance_away_tv, item.getAway());
                 setOddsText(helper, item);
-                LinearLayout ll = helper.getView(R.id.ll_content_parent);
-                ll.getLayoutParams().width = DeviceUtils.getScreenPix(mContext).widthPixels;
-                TextView tvDelete = helper.getView(R.id.tv_delete);
-                slid.setSlidingButtonListener(new SlidingButtonView.IonSlidingButtonListener() {
-                    @Override
-                    public void onMenuIsOpen(View view) {
-                        mMenu = (SlidingButtonView) view;
-                    }
-
-                    @Override
-                    public void onDownOrMove(SlidingButtonView slidingButtonView) {
-                        if(menuIsOpen()){
-                            if(mMenu != slidingButtonView){
-                                closeMenu();
-                            }
-                        }
-                    }
-                });
-                ll.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        //判断是否有删除菜单打开
-                        if (menuIsOpen()) {
-                            closeMenu();//关闭菜单
-                        }else{
-
-                        }
-                    }
-                });
-                tvDelete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        removeBetItem(v, position, item, true);
-                    }
-                });
             }
 
-            /**
-             * 关闭菜单
-             */
-            public void closeMenu() {
-                mMenu.closeMenu();
-                mMenu = null;
-            }
 
-            /**
-             * 判断是否有菜单打开
-             */
-            public Boolean menuIsOpen() {
-                if(mMenu != null){
-                    return true;
-                }
-                return false;
-            }
 
         };
         rvContent.setAdapter(listAdapter);
+
+        rvContent.setOnItemClickListener(new OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+
+            }
+
+            @Override
+            public void onDeleteClick(int position) {
+                removeBetItem( listAdapter.getItem(position));
+            }
+        });
         presenter.obtainListData();
 
     }
@@ -231,7 +190,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         if (betInfos != null && betInfos.size() > 0) {
             int i = 0;
             for (BettingInfoBean item : betInfos) {
-                removeBetItem(v, i, item, false);
+                removeBetItem(item);
                 i++;
             }
         }
@@ -308,7 +267,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     }
 
 
-    protected void removeBetItem(View v, final int position, final BettingInfoBean item, final boolean shouldRemove) {
+    protected void removeBetItem(final BettingInfoBean item) {
 
         Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
             @Override

@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <include layout="@layout/toolbar_layout" />
-    <android.support.v7.widget.RecyclerView
+    <com.unkonw.testapp.libs.view.listview.ItemRemoveRecyclerView
         android:id="@+id/rv_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"

@@ -184,22 +184,7 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
                 break;
         }
         setType(type);
-        final String finalType = type;
         Disposable subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-               /* .flatMap(new Function<String, Flowable<String>>() {
-                    @Override
-                    public Flowable<String> apply(String s) throws Exception {
-//                        String regex = ".*timerRun2\\('(.*?)'.*?";
-                        String regex = ".*timerToday2\\('(.*?)'.*?";
-                        Pattern p = Pattern.compile(regex);
-                        Matcher m = p.matcher(s);
-                        if (m.find()) {
-                            String url = "http://a8197c.a36588.com/_view/" + m.group(1) + "&LID=&_=1486612091203";
-                            return Api.getService(ApiService.class).goFootball(url);
-                        }
-                        return null;
-                    }
-                })*/
                 .map(new Function<String, List<TableModuleBean>>() {
 
                     @Override
