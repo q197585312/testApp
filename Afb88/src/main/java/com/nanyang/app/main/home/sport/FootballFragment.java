@@ -20,7 +20,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.dialog.BetBasePop;
-//import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
+import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
@@ -46,10 +46,11 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import cn.finalteam.toolsfinal.DeviceUtils;
 
 import static cn.finalteam.toolsfinal.DeviceUtils.dip2px;
+
+//import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 
 
 public class FootballFragment extends BaseSportFragment<FootballPresenter> implements SportContract.View<List<MatchBean>> {
@@ -753,7 +754,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                 llMixParlayOrder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                        skipAct(MixOrderListActivity.class);
+                        skipAct(MixOrderListActivity.class);
                     }
                 });
             }
@@ -780,7 +781,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     }
 
     @Override
-    public void onAddMixSucceed(BettingParPromptBean result, Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
+    public void onUpdateMixSucceed(BettingParPromptBean result, Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
         if (result != null)
             getApp().setBetParList(result);
         saveBetMap(keyMap, item);
@@ -861,8 +862,4 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         ButterKnife.unbind(this);
     }
 
-    @OnClick(R.id.ll_mix_parlay_order)
-    public void onClick(View v) {
-
-    }
 }

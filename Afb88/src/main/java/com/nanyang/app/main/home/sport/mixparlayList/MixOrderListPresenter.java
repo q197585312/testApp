@@ -6,7 +6,6 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.main.ApiMain;
 import com.nanyang.app.main.home.sport.SportPresenter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 
 import org.reactivestreams.Subscription;
@@ -23,15 +22,12 @@ import io.reactivex.functions.Consumer;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 class MixOrderListPresenter extends SportPresenter<String,MixOrderListContract.View<String>> implements MixOrderListContract.Presenter {
-    private Map<String, Map<String, Map<Integer, BettingInfoBean>>> datasMap;
-    private BettingParPromptBean dataBean;
+
     private ClearanceBetAmountBean selectedBean;
 
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     MixOrderListPresenter(MixOrderListContract.View view) {
         super(view);
-        dataBean = ((BaseToolbarActivity) (baseView)).getApp().getBetParList();
-        datasMap = ((BaseToolbarActivity) (baseView)).getApp().getBetDetail();
     }
 
     @Override
@@ -73,7 +69,7 @@ class MixOrderListPresenter extends SportPresenter<String,MixOrderListContract.V
     }
 
     public void obtainListData() {
-        Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = datasMap.entrySet().iterator();
+        Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it =  ((BaseToolbarActivity) (baseView)).getApp().getBetDetail().entrySet().iterator();
         ArrayList<BettingInfoBean> betInfo = new ArrayList<>();
         while (it.hasNext()) {
             Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>> keyItem = it.next();
@@ -91,18 +87,18 @@ class MixOrderListPresenter extends SportPresenter<String,MixOrderListContract.V
         baseView.obtainListData(betInfo);
     }
 
-    public void showSelectedList() {
-        if (dataBean == null)
+    public void showBottomSelectedList() {
+        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() == null)
             return;
 
-        if (dataBean != null && dataBean.getBetPar() != null && dataBean.getBetPar().size() < 8 && dataBean.getBetPar().size() > 2) {
+        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() != null && ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar() != null && ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar().size() < 8 && ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar().size() > 2) {
             if (selectedBean == null || selectedBean.getTitle().equals(""))
-                selectedBean = new ClearanceBetAmountBean(1, dataBean.getBetPar().size() + "  X  1");
+                selectedBean = new ClearanceBetAmountBean(1, ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar().size() + "  X  1");
         } else {
             selectedBean = new ClearanceBetAmountBean(1, "");
         }
 
-        int size = dataBean.getBetPar().size();
+        int size = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar().size();
         if (size == 3) {
             baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "3  X  1"), new ClearanceBetAmountBean(3, "3  X  3"), new ClearanceBetAmountBean(4, "3  X  4")));
         } else if (size == 4) {
@@ -139,4 +135,5 @@ class MixOrderListPresenter extends SportPresenter<String,MixOrderListContract.V
     public void mixParlay() {
 
     }
+
 }

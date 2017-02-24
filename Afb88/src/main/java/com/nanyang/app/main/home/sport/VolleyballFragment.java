@@ -27,7 +27,7 @@ public class VolleyballFragment extends BaseSportFragment<FootballPresenter> imp
     }
 
     @Override
-    public void onAddMixSucceed(BettingParPromptBean allData, Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
+    public void onUpdateMixSucceed(BettingParPromptBean allData, Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {
 
     }
 

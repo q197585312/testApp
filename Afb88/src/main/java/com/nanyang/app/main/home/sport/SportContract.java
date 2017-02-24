@@ -13,7 +13,7 @@ public interface SportContract {
     interface View<T> extends IBaseView<T> {
        void onFailed(String error);
         void onPageData(int page, T pageData,String type);
-        void onAddMixSucceed(BettingParPromptBean allData, Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item);
+        void onUpdateMixSucceed(BettingParPromptBean allData, Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item);
         void onAddMixFailed(String message);
         void onGetBetSucceed(BettingPromptBean allData);
         void onBetSucceed(String allData);

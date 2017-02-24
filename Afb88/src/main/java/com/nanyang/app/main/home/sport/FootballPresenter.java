@@ -150,7 +150,7 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
             }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Consumer<BettingParPromptBean>() {
                 @Override
                 public void accept(BettingParPromptBean o) throws Exception {
-                    baseView.onAddMixSucceed(o,null,null);
+                    baseView.onUpdateMixSucceed(o,null,null);
                 }
             }
             );

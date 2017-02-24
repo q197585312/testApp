@@ -45,7 +45,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * Created by Administrator on 2017/2/21.
  */
-public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresenter> implements MixOrderListContract.View {
+public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresenter> implements MixOrderListContract.View<String> {
 
     @Bind(R.id.rv_content)
     RecyclerView rvContent;
@@ -54,7 +54,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     String loading;
 
     private HashMap<LeagueBean, Boolean> selecteds = new HashMap<>();
-    private BettingParPromptBean dataBean;
+    //    private BettingParPromptBean  getApp().getBetParList();
     private Map<Boolean, Integer> selectedMap = new HashMap<>();
 
 
@@ -62,7 +62,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private ImageView moreIv;
     private TextView headAmountTv;
     private String betUrl;
-    private Map<String, Map<String, Map<Integer, BettingInfoBean>>> datasMap;
+
     List<BettingInfoBean> betInfos;
     BaseRecyclerAdapter<BettingInfoBean> listAdapter;
     private LinearLayout llBottom;
@@ -76,65 +76,64 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mix_parlay_list);
         createPresenter(new MixOrderListPresenter(this));
-
         initBottomListData();
         initListData();
     }
 
     private void initListData() {
-        if (dataBean != null) {
-            rvContent.setLayoutManager(new LinearLayoutManager(mContext));
-            listAdapter = new BaseRecyclerAdapter<BettingInfoBean>(mContext, new ArrayList<BettingInfoBean>(), R.layout.mix_parlay_order_item) {
-                @Override
-                public void convert(MyRecyclerViewHolder helper, final int position, final BettingInfoBean item) {
-                    final SlidingButtonView mMenu = helper.getView(R.id.sbv);
-                    helper.setText(R.id.clearance_type_tv, getString(R.string.football));
-                    if (item.getIsFH() == 1) {
-                        helper.setText(R.id.clearance_type_tv, getString(R.string.football) + "(" + getString(R.string.half_time) + ")");
-                    }
-                    helper.setText(R.id.clearance_home_tv, item.getHome());
-                    helper.setText(R.id.clearance_away_tv, item.getAway());
-                    setOddsText(helper, item);
-                    LinearLayout ll = helper.getView(R.id.ll_content_parent);
-                    TextView tvDelete = helper.getView(R.id.tv_delete);
-                    ll.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            //判断是否有删除菜单打开
-                            if (menuIsOpen(mMenu)) {
-                                closeMenu(mMenu);//关闭菜单
-                            }
+        rvContent.setLayoutManager(new LinearLayoutManager(mContext));
+        listAdapter = new BaseRecyclerAdapter<BettingInfoBean>(mContext, new ArrayList<BettingInfoBean>(), R.layout.mix_parlay_order_item) {
+            @Override
+            public void convert(MyRecyclerViewHolder helper, final int position, final BettingInfoBean item) {
+                final SlidingButtonView mMenu = helper.getView(R.id.sbv);
+                helper.setText(R.id.clearance_type_tv, getString(R.string.football));
+                if (item.getIsFH() == 1) {
+                    helper.setText(R.id.clearance_type_tv, getString(R.string.football) + "(" + getString(R.string.half_time) + ")");
+                }
+                helper.setText(R.id.clearance_home_tv, item.getHome());
+                helper.setText(R.id.clearance_away_tv, item.getAway());
+                setOddsText(helper, item);
+                LinearLayout ll = helper.getView(R.id.ll_content_parent);
+                TextView tvDelete = helper.getView(R.id.tv_delete);
+                ll.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        //判断是否有删除菜单打开
+                        if (menuIsOpen(mMenu)) {
+                            closeMenu(mMenu);//关闭菜单
                         }
-                    });
-                    tvDelete.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            removeBetItem(v, position, item, true);
-                        }
-                    });
-                }
-
-                /**
-                 * 关闭菜单
-                 */
-                public void closeMenu(SlidingButtonView mMenu) {
-                    mMenu.closeMenu();
-
-                }
-
-                /**
-                 * 判断是否有菜单打开
-                 */
-                public Boolean menuIsOpen(SlidingButtonView mMenu) {
-                    if (mMenu != null) {
-                        return true;
                     }
-                    return false;
-                }
+                });
+                tvDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        removeBetItem(v, position, item, true);
+                    }
+                });
+            }
 
-            };
-            presenter.obtainListData();
-        }
+            /**
+             * 关闭菜单
+             */
+            public void closeMenu(SlidingButtonView mMenu) {
+                mMenu.closeMenu();
+
+            }
+
+            /**
+             * 判断是否有菜单打开
+             */
+            public Boolean menuIsOpen(SlidingButtonView mMenu) {
+                if (mMenu != null) {
+                    return true;
+                }
+                return false;
+            }
+
+        };
+        rvContent.setAdapter(listAdapter);
+        presenter.obtainListData();
+
     }
 
 
@@ -168,21 +167,22 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             }
         });
 
-        footerCountTv.setText(getString(R.string.odds) + dataBean.getPayoutOdds() + "");
-        footerContentTv.setText(getString(R.string.max_bet) + dataBean.getMaxLimit() + "    " + getString(R.string.min_bet) + dataBean.getMinLimit());
+        footerCountTv.setText(getString(R.string.odds) + getApp().getBetParList().getPayoutOdds() + "");
+        footerContentTv.setText(getString(R.string.max_bet) + getApp().getBetParList().getMaxLimit() + "    " + getString(R.string.min_bet) + getApp().getBetParList().getMinLimit());
         selectedMap.put(true, 0);
         llBottom = (LinearLayout) findViewById(R.id.ll_bottom_content);
-        presenter.showSelectedList();
+        presenter.showBottomSelectedList();
     }
 
     private void addBottomDate(List<ClearanceBetAmountBean> data) {
-
-        selectedBean = data.get(0);
+        selectedBean = new ClearanceBetAmountBean(1, "");
         if (data.size() > 0) {
+            selectedBean = data.get(0);
+            llBottom.removeAllViews();
             for (int position = 0; position < data.size(); position++) {
                 final ClearanceBetAmountBean clearanceBetAmountBean = data.get(position);
                 View inflate = LayoutInflater.from(mContext).inflate(R.layout.selected_text_item, null, false);
-                TextView viewById = (TextView) llBottom.findViewById(R.id.selectable_text_content_tv);
+                TextView viewById = (TextView) inflate.findViewById(R.id.selectable_text_content_tv);
                 viewById.setText(clearanceBetAmountBean.getTitle());
                 if (position == selectedMap.get(true)) {
                     footerCountTv.setText(clearanceBetAmountBean.getTitle());
@@ -199,6 +199,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                         selectedBean = clearanceBetAmountBean;
                     }
                 });
+
                 llBottom.addView(inflate);
             }
         }
@@ -218,27 +219,26 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private void submitParBet(View v) {
 
         String amt = headOddsEdt.getText().toString().trim();
-        if(StringUtils.isEmpty(amt)){
+        if (StringUtils.isEmpty(amt)) {
             ToastUtils.showShort(R.string.input_bet_amount_please);
             return;
-        }else if(dataBean == null || dataBean.getBetPar().size() < 3){
+        } else if (getApp().getBetParList() == null || getApp().getBetParList().getBetPar().size() < 3) {
 
             ToastUtils.showShort(R.string.clearance_should_be_more_than_three);
-                return;
+            return;
 
         }
-        if (!dataBean.getMaxLimit().equals("") && !dataBean.getMaxLimit().equals("0") && !dataBean.getMinLimit().equals("")) {
-            int max = Integer.valueOf(dataBean.getMaxLimit());
-            int min = Integer.valueOf(dataBean.getMinLimit());
+        if (!getApp().getBetParList().getMaxLimit().equals("") && !getApp().getBetParList().getMaxLimit().equals("0") && !getApp().getBetParList().getMinLimit().equals("")) {
+            int max = Integer.valueOf(getApp().getBetParList().getMaxLimit());
+            int min = Integer.valueOf(getApp().getBetParList().getMinLimit());
             int amount = Integer.valueOf(amt);
             if (amount < min || amount > max) {
                 Toast.makeText(mContext, getString(R.string.invalid_amount_bet), Toast.LENGTH_SHORT).show();
                 headOddsEdt.setText("");
                 return;
             }
-        }
-        else {
-            betUrl= AppConstant.HOST + "_bet/" + dataBean.getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + dataBean.getExRate();
+        } else {
+            betUrl = AppConstant.HOST + "_bet/" + getApp().getBetParList().getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + getApp().getBetParList().getExRate();
             presenter.bet(betUrl);
 
         }
@@ -295,13 +295,18 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                 BettingParPromptBean bettingParPromptBean = presenter.removeBetItem(item);
                 e.onNext(bettingParPromptBean);
             }
-        }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingParPromptBean>() {
-                                                                                                                             @Override
-                                                                                                                             public void accept(BettingParPromptBean o) throws Exception {
-                                                                                                                                 onAddMixSucceed(o, null, null);
-                                                                                                                             }
-                                                                                                                         }
-        );
+        }, BackpressureStrategy.BUFFER)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<BettingParPromptBean>() {
+                               @Override
+                               public void accept(BettingParPromptBean o) throws Exception {
+                                   getApp().getBetDetail().remove(item.getHome() + "+" + item.getAway());
+                                   getApp().setBetParList(o);
+                                   onUpdateMixSucceed(o, null, null);
+                               }
+                           }
+                );
 
     }
 
@@ -423,7 +428,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     }
 
     @Override
-    public void onPageData(int page, Object pageData, String type) {
+    public void onPageData(int page, String pageData, String type) {
 
     }
 
@@ -443,16 +448,11 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     }
 
     @Override
-    public void onAddMixSucceed(BettingParPromptBean result, Map keyMap, MatchBean item) {
-        dataBean = result;
-        datasMap.remove(item.getHome() + "+" + item.getAway());
-        getApp().setBetParList(result);
+    public void onUpdateMixSucceed(BettingParPromptBean result, Map keyMap, MatchBean item) {
         presenter.obtainListData();
         if (result == null || result.getBetPar() == null || result.getBetPar().size() < 1) {
             getApp().setBetDetail(null);
-            getApp().setBetParList(result);
             finish();
-
         }
     }
 
@@ -465,14 +465,10 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     public void obtainBottomData(List<ClearanceBetAmountBean> data) {
         addBottomDate(data);
     }
-/*
+
+
     @Override
     public void onGetData(String data) {
-
-    }*/
-
-    @Override
-    public void onGetData(Object data) {
 
     }
 }

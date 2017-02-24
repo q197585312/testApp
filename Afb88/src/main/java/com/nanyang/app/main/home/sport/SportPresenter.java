@@ -42,7 +42,7 @@ public abstract class SportPresenter<T,V extends SportContract.View<T>> extends 
                 .subscribe(new Consumer<BettingParPromptBean>() {//onNext
                     @Override
                     public void accept(BettingParPromptBean allData) throws Exception {
-                        baseView.onAddMixSucceed(allData,keyMap,item);
+                        baseView.onUpdateMixSucceed(allData,keyMap,item);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
