@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.Games.GamesActivity;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.poker.PokerCasinoActivity;
 import com.nanyang.app.main.home.sport.SportActivity;
@@ -77,6 +78,8 @@ public class HomeFragment extends BaseFragment {
                     skipAct(PokerCasinoActivity.class, b);
                 } else if (item.getText().equals(getString(R.string.Discount))) {
                     skipAct(DiscountActivity.class);
+                } else if (item.getText().equals(getString(R.string.Games))) {
+                    skipAct(GamesActivity.class);
                 }
             }
         });

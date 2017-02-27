@@ -106,4 +106,7 @@
     <string name="do_you_bet_again">Bet again?</string>
     <string name="sure">Sure</string>
     <string name="Thai_word">Thai word</string>
+    <string name="Thai_game1">1D Game</string>
+    <string name="Thai_game2">2D Game</string>
+    <string name="Thai_game3">3D Game</string>
 </resources>

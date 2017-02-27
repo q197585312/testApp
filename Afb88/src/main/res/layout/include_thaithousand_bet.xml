@@ -5,20 +5,47 @@
     android:layout_marginBottom="30px"
     android:orientation="horizontal">
 
-    <TextView
+    <EditText
+        android:id="@+id/item_bet1"
         android:layout_width="0dp"
+        android:layout_gravity="center"
         android:layout_height="wrap_content"
-        android:layout_weight="1.5"
-        android:background="@drawable/rectangle_black_shape" />
+        android:layout_weight="1"
+        android:background="@drawable/rectangle_edt_white"
+        android:inputType="number"
+        android:textColor="@color/green_thai_thousand_wrol"
+        android:textSize="12sp" />
 
     <TextView
+        android:id="@+id/item_atm"
+        android:layout_width="0dp"
+        android:layout_gravity="center"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.8"
+        android:gravity="center"
+        android:text="AMT:"
+        android:textColor="@color/green_thai_thousand_wrol"
+        android:textSize="12sp"
+        android:visibility="invisible" />
+
+    <EditText
+        android:id="@+id/item_bet2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1" />
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/rectangle_edt_white"
+        android:inputType="number"
+        android:textColor="@color/green_thai_thousand_wrol"
+        android:textSize="12sp" />
 
     <TextView
+        android:text=" 投注成功.请到投注狀況对球."
+        android:gravity="center"
+        android:textSize="10sp"
+        android:textColor="@color/black"
+        android:layout_gravity="center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_weight="1.5"
-        android:background="@drawable/rectangle_black_shape" />
+        android:layout_weight="3" />
 </LinearLayout>

@@ -19,7 +19,13 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
     private TextView tv;
     private TextView tv1;
 
-    public BaseListPopupWindow(Context context, View v, int width, int height, TextView tv,TextView tv1) {
+    public BaseListPopupWindow(Context context, View v, int width, int height, TextView tv) {
+        super(context, v, width, height);
+        this.tv = tv;
+
+    }
+
+    public BaseListPopupWindow(Context context, View v, int width, int height, TextView tv, TextView tv1) {
         super(context, v, width, height);
         this.tv = tv;
         this.tv1 = tv1;
@@ -41,7 +47,7 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
         recyclerView = (RecyclerView) view.findViewById(getRecyclerViewId());
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        adapter = new BaseRecyclerAdapter<T>(context, getData(),R.layout.register_base_test) {
+        adapter = new BaseRecyclerAdapter<T>(context, getData(), R.layout.register_base_test) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, T item) {
                 TextView tv = holder.getView(R.id.item_regist_text_tv);
@@ -51,9 +57,13 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, Object item, int position) {
-                tv.setText((String) item);
-                tv1.setText("OK");
-                tv1.setVisibility(View.VISIBLE);
+                if (tv != null) {
+                    tv.setText((String) item);
+                }
+                if (tv1 != null) {
+                    tv1.setText("OK");
+                    tv1.setVisibility(View.VISIBLE);
+                }
                 closePopupWindow();
 
             }
