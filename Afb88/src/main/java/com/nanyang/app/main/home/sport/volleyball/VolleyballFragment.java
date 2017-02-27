@@ -1,9 +1,13 @@
-package com.nanyang.app.main.home.sport;
+package com.nanyang.app.main.home.sport.volleyball;
 
 
+import android.os.Bundle;
 import android.view.View;
 
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.BaseSportFragment;
+import com.nanyang.app.main.home.sport.SportContract;
+import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.football.FootballPresenter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
@@ -16,7 +20,7 @@ import java.util.Map;
  * Created by Administrator on 2017/2/12 0012.
  */
 
-public class VolleyballFragment extends BaseSportFragment<FootballPresenter> implements SportContract.View<String>  {
+public class VolleyballFragment extends BaseSportFragment<FootballPresenter> implements SportContract.View<String> {
     @Override
     public void onFailed(String error) {
 
@@ -44,6 +48,21 @@ public class VolleyballFragment extends BaseSportFragment<FootballPresenter> imp
 
     @Override
     public void onBetSucceed(String allData) {
+
+    }
+
+    @Override
+    public void onRightMarkClick(Bundle b) {
+
+    }
+
+    @Override
+    public void onCountBet() {
+
+    }
+
+    @Override
+    public void onCreatePopupWindow(BetBasePop betPop) {
 
     }
 

@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.football;
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -44,30 +45,23 @@ import io.reactivex.schedulers.Schedulers;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 
-class
-FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List<MatchBean>>> {
+public class
+FootballPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
     private List<TableModuleBean> allData;
     private int page;
-    final int pageSize = 15;
+    private final int pageSize = 15;
     private List<TableModuleBean> filterData;
     private List<TableModuleBean> pageData;
 
-    public boolean isMixParlay() {
-        return isMixParlay;
-    }
-
-    public void setMixParlay(boolean mixParlay) {
-        isMixParlay = mixParlay;
-    }
 
     public boolean isCollection() {
         return isCollection;
     }
 
     private boolean isCollection = false;
-    private boolean isMixParlay = false;
+
     private Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
-    private String type;
+
 
     FootballPresenter(SportContract.View<List<MatchBean>> view) {
         super(view);
@@ -84,12 +78,11 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
     }
 
 
-
-    boolean isItemCollection(MatchBean item) {
+    public boolean isItemCollection(MatchBean item) {
         return !(localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()) == null || localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
     }
 
-    void collectionItem(MatchBean item) {
+    public void collectionItem(MatchBean item) {
         String moduleKey = getType() + "+" + item.getLeagueBean().getModuleTitle();
         Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
         if (moduleMap == null)
@@ -107,9 +100,10 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
     @Override
     public void menu() {
     }
+
     @Override
     public void collection() {
-        if(isMixParlay){
+        if (isMixParlay) {
             ToastUtils.showShort("MixParlay Has No Collection");
             return;
         }
@@ -117,9 +111,10 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
         filterData(allData);
         showCurrentData();
     }
+
     @Override
     public void mixParlay() {
-        if(type.equals("Running")){
+        if (type.equals("Running")) {
             ToastUtils.showShort("Running Has No MixParlay");
             return;
         }
@@ -127,13 +122,14 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
         clearMixOrder();
         refresh("");
     }
+
     private void clearMixOrder() {
 
-        if(  ((FootballFragment)baseView).getApp().getBetDetail()!=null&&  ((FootballFragment)baseView).getApp().getBetDetail().size()>0) {
+        if (((FootballFragment) baseView).getApp().getBetDetail() != null && ((FootballFragment) baseView).getApp().getBetDetail().size() > 0) {
             Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
                 @Override
                 public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
-                    Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it =   ((FootballFragment)baseView).getApp().getBetDetail().entrySet().iterator();
+                    Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = ((FootballFragment) baseView).getApp().getBetDetail().entrySet().iterator();
                     BettingParPromptBean data = null;
                     while (it.hasNext()) {
                         Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>> keyItem = it.next();
@@ -143,7 +139,7 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
                             while (ittt.hasNext()) {
                                 BettingInfoBean item = ittt.next().getValue();
                                 if (item != null) {
-                                    data=removeBetItem(item);
+                                    data = removeBetItem(item);
                                 }
                             }
                         }
@@ -151,11 +147,11 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
                     e.onNext(data);
                 }
             }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Consumer<BettingParPromptBean>() {
-                @Override
-                public void accept(BettingParPromptBean o) throws Exception {
-                    baseView.onUpdateMixSucceed(o,null,null);
-                }
-            }
+                                                                                                                  @Override
+                                                                                                                  public void accept(BettingParPromptBean o) throws Exception {
+                                                                                                                      baseView.onUpdateMixSucceed(o, null, null);
+                                                                                                                  }
+                                                                                                              }
             );
 
 
@@ -171,18 +167,18 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
         String url;
         switch (type) {
             case "Running":
-                url = AppConstant.URL_RUNING;
+                url = AppConstant.URL_FOOTBALL_RUNNING;
                 break;
             case "Today":
-                url = AppConstant.URL_TODAY;
+                url = AppConstant.URL_FOOTBALL_TODAY;
                 if (isMixParlay) {
-                    url = AppConstant.URL_TODAY_Mix;
+                    url = AppConstant.URL_FOOTBALL_TODAY_Mix;
                 }
                 break;
             default:
-                url = AppConstant.URL_EARLY;
+                url = AppConstant.URL_FOOTBALL_EARLY;
                 if (isMixParlay) {
-                    url = AppConstant.URL_EARLY_Mix;
+                    url = AppConstant.URL_FOOTBALL_EARLY_Mix;
                 }
                 break;
         }
@@ -356,7 +352,7 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
                                                                 matchArray.get(22).toString(),
                                                                 matchArray.get(14).toString(),
                                                                 matchArray.get(19).toString()
-                                                                ),
+                                                        ),
                                                         new HandicapBean(
                                                                 matchArray.get(38).toString(),
                                                                 matchArray.get(39).toString(),
@@ -493,13 +489,8 @@ FootballPresenter extends SportPresenter<List<MatchBean>,SportContract.View<List
         swipeToLoadLayout.setLoadingMore(false);
     }
 
-    public String getType() {
-        return type;
+    @Override
+    public void onRightMarkClick(Bundle b) {
+        baseView.onRightMarkClick(b);
     }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-
 }

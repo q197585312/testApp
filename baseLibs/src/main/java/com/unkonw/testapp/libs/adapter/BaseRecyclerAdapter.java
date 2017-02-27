@@ -16,9 +16,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     protected List<T> mDatas = new ArrayList<T>();
     private int mLayoutId;
     private LayoutInflater mLayoutInflater;
+    protected Context mContext;
 
     public BaseRecyclerAdapter(Context context, List<T> mDatas, int layoutId) {
         mLayoutInflater = LayoutInflater.from(context);
+        this.mContext=context;
         this.mLayoutId = layoutId;
         this.mDatas = mDatas;
     }

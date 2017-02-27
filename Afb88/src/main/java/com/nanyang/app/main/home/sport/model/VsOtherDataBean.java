@@ -7,6 +7,26 @@ import java.io.Serializable;
  */
 public class VsOtherDataBean implements Serializable {
     private String EvenOdds;
+
+    public String getEvenOddsFH() {
+        return EvenOddsFH;
+    }
+
+    public void setEvenOddsFH(String evenOddsFH) {
+        EvenOddsFH = evenOddsFH;
+    }
+
+    public String getOddOddsFH() {
+        return OddOddsFH;
+    }
+
+    public void setOddOddsFH(String oddOddsFH) {
+        OddOddsFH = oddOddsFH;
+    }
+
+    private String EvenOddsFH;
+    private String OddOdds;
+    private String OddOddsFH;
     private String HasOE;
     private String IsOENew;
 
@@ -50,7 +70,7 @@ public class VsOtherDataBean implements Serializable {
         this.OEOdds = OEOdds;
     }
 
-    private String OddOdds;
+
     private String OEOdds;
 
 
@@ -149,7 +169,16 @@ public class VsOtherDataBean implements Serializable {
         X12XOddsFH = x12XOddsFH;
     }
 
-    public VsOtherDataBean(String hasX12, String hasX12FH, String isX12New, String isX12NewFH, String x121Odds, String x121OddsFH, String x122Odds, String x122OddsFH, String x12XOdds, String x12XOddsFH) {
+    public VsOtherDataBean(String hasX12,
+                           String hasX12FH,
+                           String isX12New,
+                           String isX12NewFH,
+                           String x121Odds,
+                           String x121OddsFH,
+                           String x122Odds,
+                           String x122OddsFH,
+                           String x12XOdds,
+                           String x12XOddsFH) {
 
         HasX12 = hasX12;
         HasX12FH = hasX12FH;
@@ -163,7 +192,22 @@ public class VsOtherDataBean implements Serializable {
         X12XOdds = x12XOdds;
         X12XOddsFH = x12XOddsFH;
     }
-    public VsOtherDataBean( String hasX12, String hasX12FH, String isX12New, String isX12NewFH,  String x121Odds, String x121OddsFH, String x122Odds, String x122OddsFH, String x12XOdds, String x12XOddsFH,String evenOdds, String hasOE,String isOENew,String oddOdds, String oEOdds ) {
+
+    public VsOtherDataBean(String hasX12,
+                           String hasX12FH,
+                           String isX12New,
+                           String isX12NewFH,
+                           String x121Odds,
+                           String x121OddsFH,
+                           String x122Odds,
+                           String x122OddsFH,
+                           String x12XOdds,
+                           String x12XOddsFH,
+                           String evenOdds,
+                           String hasOE,
+                           String isOENew,
+                           String oddOdds,
+                           String oEOdds) {
         HasX12 = hasX12;
         HasX12FH = hasX12FH;
         IsX12New = isX12New;
@@ -180,6 +224,45 @@ public class VsOtherDataBean implements Serializable {
         OddOdds = oddOdds;
         OEOdds = oEOdds;
     }
+
+    public VsOtherDataBean(String hasX12,
+                           String hasX12FH,
+                           String isX12New,
+                           String isX12NewFH,
+                           String x121Odds,
+                           String x121OddsFH,
+                           String x122Odds,
+                           String x122OddsFH,
+                           String x12XOdds,
+                           String x12XOddsFH,
+                           String evenOdds,
+                           String hasOE,
+                           String isOENew,
+                           String oddOdds,
+                           String oEOdds,
+                           String oddOddsFH,
+                           String evenOddsFH
+
+    ) {
+        HasX12 = hasX12;
+        HasX12FH = hasX12FH;
+        IsX12New = isX12New;
+        IsX12NewFH = isX12NewFH;
+        X121Odds = x121Odds;
+        X121OddsFH = x121OddsFH;
+        X122Odds = x122Odds;
+        X122OddsFH = x122OddsFH;
+        X12XOdds = x12XOdds;
+        X12XOddsFH = x12XOddsFH;
+        EvenOdds = evenOdds;
+        HasOE = hasOE;
+        IsOENew = isOENew;
+        OddOdds = oddOdds;
+        OEOdds = oEOdds;
+        this.OddOddsFH = oddOddsFH;
+        this.EvenOddsFH = evenOddsFH;
+    }
+
     public VsOtherDataBean() {
     }
 }

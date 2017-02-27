@@ -1,5 +1,8 @@
 package com.nanyang.app.main.home.sport;
 
+import android.os.Bundle;
+
+import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
@@ -17,6 +20,11 @@ public interface SportContract {
         void onAddMixFailed(String message);
         void onGetBetSucceed(BettingPromptBean allData);
         void onBetSucceed(String allData);
+        void onRightMarkClick(Bundle b);
+        void onCountBet();
+
+
+        void onCreatePopupWindow(BetBasePop betPop);
     }
 
     interface Presenter extends IBasePresenter {

@@ -21,7 +21,19 @@ public class HandicapBean implements Serializable {
     String isInetBet;
     String IsHdpNew;String IsOUNew;
 
-    public HandicapBean(String isHomeGive, String hdp, String homeHdpOdds, String awayHdpOdds, String OU, String overOdds, String underOdds, String socOddsId, String IsInetBet, String IsHdpNew, String IsOUNew, String hasHdp, String hasOU) {
+    public HandicapBean(String isHomeGive,
+                        String hdp,
+                        String homeHdpOdds,
+                        String awayHdpOdds,
+                        String OU,
+                        String overOdds,
+                        String underOdds,
+                        String socOddsId,
+                        String IsInetBet,
+                        String IsHdpNew,
+                        String IsOUNew,
+                        String hasHdp,
+                        String hasOU) {
         this.isHomeGive = isHomeGive;
         Hdp = hdp;
         HomeHdpOdds = homeHdpOdds;

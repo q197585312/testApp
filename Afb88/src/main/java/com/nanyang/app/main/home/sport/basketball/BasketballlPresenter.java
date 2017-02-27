@@ -45,7 +45,7 @@ import io.reactivex.schedulers.Schedulers;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 
-class BasketballlPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
+public class BasketballlPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
     private List<TableModuleBean> allData;
     private int page;
     final int pageSize = 15;
@@ -173,18 +173,18 @@ class BasketballlPresenter extends SportPresenter<List<MatchBean>, SportContract
         String url;
         switch (type) {
             case "Running":
-                url = AppConstant.URL_RUNING;
+                url = AppConstant.URL_BASKETBALL_RUNNING;
                 break;
             case "Today":
-                url = AppConstant.URL_TODAY;
+                url = AppConstant.URL_BASKETBALL_TODAY;
                 if (isMixParlay) {
-                    url = AppConstant.URL_TODAY_Mix;
+                    url = AppConstant.URL_BASKETBALL_TODAY_Mix;
                 }
                 break;
             default:
-                url = AppConstant.URL_EARLY;
+                url = AppConstant.URL_BASKETBALL_EARLY;
                 if (isMixParlay) {
-                    url = AppConstant.URL_EARLY_Mix;
+                    url = AppConstant.URL_BASKETBALL_EARLY_Mix;
                 }
                 break;
         }
@@ -334,7 +334,7 @@ class BasketballlPresenter extends SportPresenter<List<MatchBean>, SportContract
                             for (int j = 0; j < LeagueMatchArray.length(); j++) {
                                 JSONArray matchArray = LeagueMatchArray.getJSONArray(j);
                                 if (isMixParlay()) {
-                                    if (matchArray.length() > 50) {
+                                    if (matchArray.length() > 31) {
                                         MatchBean aTrue = new MatchBean("",
                                                 "",
                                                 matchArray.get(6).toString(),
@@ -344,53 +344,71 @@ class BasketballlPresenter extends SportPresenter<List<MatchBean>, SportContract
                                                 "",
                                                 matchArray.get(7).toString()
                                                 , matchArray.get(6).toString(),
+                                                /**
+                                                 * * String isHomeGive,
+                                                 String hdp,
+                                                 String homeHdpOdds,
+                                                 String awayHdpOdds,
+                                                 String OU,
+                                                 String overOdds,
+                                                 String underOdds,
+                                                 String socOddsId,
+                                                 String IsInetBet,
+                                                 String IsHdpNew,
+                                                 String IsOUNew,
+                                                 String hasHdp,
+                                                 String hasOU) {
+                                                 */
                                                 new ArrayList<>(Arrays.asList(new HandicapBean(
                                                                 matchArray.get(5).toString(),
-                                                                matchArray.get(15).toString(),
-                                                                matchArray.get(17).toString(),
-                                                                matchArray.get(18).toString(),
-                                                                matchArray.get(20).toString(),
-                                                                matchArray.get(24).toString(),
-                                                                matchArray.get(25).toString(),
-                                                                matchArray.get(0).toString(),
                                                                 matchArray.get(10).toString(),
-                                                                matchArray.get(21).toString(),
-                                                                matchArray.get(22).toString(),
-                                                                matchArray.get(14).toString(),
-                                                                matchArray.get(19).toString()
-                                                        ),
-                                                        new HandicapBean(
-                                                                matchArray.get(38).toString(),
-                                                                matchArray.get(39).toString(),
-                                                                matchArray.get(42).toString(),
-                                                                matchArray.get(43).toString(),
-                                                                matchArray.get(45).toString(),
-                                                                matchArray.get(48).toString(),
-                                                                matchArray.get(49).toString(),
-                                                                matchArray.get(1).toString(),
-                                                                matchArray.get(33).toString(),
-                                                                matchArray.get(40).toString(),
-                                                                matchArray.get(46).toString(),
-                                                                matchArray.get(37).toString(),
-                                                                matchArray.get(44).toString()))),
+                                                                matchArray.get(12).toString(),
+                                                                matchArray.get(13).toString(),
+                                                                matchArray.get(15).toString(),
+                                                                matchArray.get(19).toString(),
+                                                                matchArray.get(20).toString(),
+                                                                matchArray.get(0).toString(),
+                                                                matchArray.get(5).toString(),
+                                                                matchArray.get(16).toString(),
+                                                                matchArray.get(17).toString(),
+                                                                matchArray.get(9).toString(),
+                                                                matchArray.get(14).toString()
+                                                        ))),
                                                 "",
                                                 "",
+                                                /**
+                                                 *  * String hasX12,
+                                                 String hasX12FH,
+                                                 String isX12New,
+                                                 String isX12NewFH,
+                                                 String x121Odds,
+                                                 String x121OddsFH,
+                                                 String x122Odds,
+                                                 String x122OddsFH,
+                                                 String x12XOdds,
+                                                 String x12XOddsFH,
+                                                 String evenOdds,
+                                                 String hasOE,
+                                                 String isOENew,
+                                                 String oddOdds,
+                                                 String oEOdds
+                                                 */
                                                 new VsOtherDataBean(
-                                                        matchArray.get(9).toString(),
-                                                        matchArray.get(32).toString(),
-                                                        matchArray.get(8).toString(),
-                                                        matchArray.get(31).toString(),
-                                                        matchArray.get(11).toString(),
-                                                        matchArray.get(34).toString(),
-                                                        matchArray.get(13).toString(),
-                                                        matchArray.get(36).toString(),
-                                                        matchArray.get(12).toString(),
-                                                        matchArray.get(35).toString(),
-                                                        matchArray.get(30).toString(),
                                                         matchArray.get(27).toString(),
+                                                       "",
                                                         matchArray.get(26).toString(),
+                                                      "",
+                                                        matchArray.get(28).toString(),
+                                                       "",
+                                                        matchArray.get(30).toString(),
+                                                       "",
                                                         matchArray.get(29).toString(),
-                                                        matchArray.get(28).toString()
+                                                       "",
+                                                        matchArray.get(25).toString(),
+                                                        matchArray.get(22).toString(),
+                                                        matchArray.get(21).toString(),
+                                                        matchArray.get(24).toString(),
+                                                        matchArray.get(23).toString()
                                                 ),
                                                 "",
                                                 "",
@@ -401,54 +419,124 @@ class BasketballlPresenter extends SportPresenter<List<MatchBean>, SportContract
                                     }
 
                                 } else {
-                                    if (matchArray.length() > 63) {
-                                        MatchBean aTrue = new MatchBean(matchArray.get(15).toString(), matchArray.get(19).toString(), matchArray.get(3).toString(), matchArray.get(4).toString(), matchArray.get(0).toString(), matchArray.get(8).toString(), matchArray.get(47).toString(), matchArray.get(20).toString()
-                                                , matchArray.get(16).toString(),
+                                    if (matchArray.length() > 55) {
+                                        /**
+                                         *     public MatchBean(
+                                         String homeRank,
+                                         String awayRank,
+                                         String homeId,
+                                         String awayId,
+                                         String key,
+                                         String matchDate,
+                                         String workingDate,
+                                         String away,
+                                         String home,
+                                         List<HandicapBean> handicapBeans,
+                                         String rcHome,
+                                         String rcAway,
+                                         VsOtherDataBean otherDataBean,
+                                         String CurMinute,
+                                         String RunHomeScore,
+                                         String RunAwayScore ,
+                                         String Live,
+                                         String Status)
+                                         */
+
+                                        MatchBean aTrue = new MatchBean("", "", matchArray.get(6).toString(), matchArray.get(7).toString(),
+                                                matchArray.get(0).toString(), matchArray.get(4).toString(), "",
+                                                matchArray.get(7).toString()
+                                                , matchArray.get(6).toString(),
+                                                /**HandicapBean
+                                                 * String isHomeGive,
+                                                 String hdp,
+                                                 String homeHdpOdds,
+                                                 String awayHdpOdds,
+                                                 String OU,
+                                                 String overOdds,
+                                                 String underOdds,
+                                                 String socOddsId,
+                                                 String IsInetBet,
+                                                 String IsHdpNew,
+                                                 String IsOUNew,
+                                                 String hasHdp,
+                                                 String hasOU) {
+                                                 */
                                                 new ArrayList<>(Arrays.asList(new HandicapBean(
-                                                                matchArray.get(14).toString(),
-                                                                matchArray.get(22).toString(),
-                                                                matchArray.get(23).toString(),
-                                                                matchArray.get(24).toString(),
-                                                                matchArray.get(26).toString(),
-                                                                matchArray.get(29).toString(),
-                                                                matchArray.get(30).toString(),
-                                                                matchArray.get(0).toString(),
-                                                                matchArray.get(11).toString(),
-                                                                matchArray.get(59).toString(),
-                                                                matchArray.get(60).toString(),
+                                                                matchArray.get(5).toString(),
+                                                                matchArray.get(10).toString(),
                                                                 matchArray.get(12).toString(),
-                                                                matchArray.get(25).toString()),
+                                                                matchArray.get(13).toString(),
+                                                                matchArray.get(15).toString(),
+                                                                matchArray.get(19).toString(),
+                                                                matchArray.get(20).toString(),
+                                                                matchArray.get(0).toString(),
+                                                                matchArray.get(8).toString(),
+                                                                matchArray.get(16).toString(),
+                                                                matchArray.get(17).toString(),
+                                                                matchArray.get(9).toString(),
+                                                                matchArray.get(14).toString()),
                                                         new HandicapBean(
-                                                                matchArray.get(34).toString(),
+                                                                matchArray.get(28).toString(),
+                                                                matchArray.get(29).toString(),
+                                                                matchArray.get(32).toString(),
                                                                 matchArray.get(33).toString(),
                                                                 matchArray.get(35).toString(),
-                                                                matchArray.get(36).toString(),
-                                                                matchArray.get(40).toString(),
                                                                 matchArray.get(43).toString(),
-                                                                matchArray.get(44).toString(),
-                                                                matchArray.get(1).toString(),
                                                                 matchArray.get(38).toString(),
-                                                                matchArray.get(61).toString(),
-                                                                matchArray.get(62).toString(),
-                                                                matchArray.get(32).toString(),
-                                                                matchArray.get(39).toString()))),
-                                                matchArray.get(17).toString(), matchArray.get(21).toString()
+                                                                matchArray.get(39).toString(),
+                                                                matchArray.get(1).toString(),
+                                                                matchArray.get(30).toString(),
+                                                                matchArray.get(36).toString(),
+                                                                matchArray.get(27).toString(),
+                                                                matchArray.get(34).toString()))),
+                                                "",""
+                                                /**
+                                                 *String hasX12,
+                                                 String hasX12FH,
+                                                 String isX12New,
+                                                 String isX12NewFH,
+                                                 String x121Odds,
+                                                 String x121OddsFH,
+                                                 String x122Odds,
+                                                 String x122OddsFH,
+                                                 String x12XOdds,
+                                                 String x12XOddsFH,
+                                                 String evenOdds,
+                                                 String hasOE,
+                                                 String isOENew,
+                                                 String oddOdds,
+                                                 String oEOdds,
+                                                 String oddOddsFH,
+                                                 String evenOddsFH) {
+                                                 */
                                                 , new VsOtherDataBean(
-                                                matchArray.get(49).toString(),
-                                                matchArray.get(53).toString(),
-                                                matchArray.get(57).toString(),
-                                                matchArray.get(58).toString(),
-                                                matchArray.get(50).toString(),
-                                                matchArray.get(54).toString(),
-                                                matchArray.get(51).toString(),
-                                                matchArray.get(55).toString(),
+                                                matchArray.get(46).toString(),
                                                 matchArray.get(52).toString(),
-                                                matchArray.get(56).toString()),
-                                                matchArray.get(10).toString(),
-                                                matchArray.get(27).toString(),
-                                                matchArray.get(28).toString(),
+                                                matchArray.get(45).toString(),
+                                                matchArray.get(51).toString(),
+                                                matchArray.get(47).toString(),
+                                                matchArray.get(53).toString(),
+                                                matchArray.get(49).toString(),
+                                                matchArray.get(55).toString(),
+                                                matchArray.get(48).toString(),
+                                                matchArray.get(54).toString(),
+                                                matchArray.get(25).toString(),
+                                                matchArray.get(22).toString(),
+                                                matchArray.get(21).toString(),
+                                                matchArray.get(24).toString(),
+                                                matchArray.get(23).toString(),
+                                                matchArray.get(43).toString(),
+                                                matchArray.get(44).toString()
+
+                                        ),
+                                                "",
+                                                "",
+                                                "",
                                                 matchArray.get(2).toString(),
-                                                matchArray.get(9).toString());
+                                                ""
+
+
+                                        );
                                         matchList.add(aTrue);
                                     }
                                 }

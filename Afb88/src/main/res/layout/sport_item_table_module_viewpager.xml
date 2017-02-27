@@ -58,6 +58,31 @@
                 android:layout_weight="1"
                 android:layout_height="25dp"
                 android:maxLines="1" />
+            <TextView
+                android:id="@+id/viewpager_odd_label_tv"
+                android:paddingRight="2dp"
+                android:textColor="@color/grey_dark_word"
+                android:textSize="12sp"
+                android:layout_width="0dp"
+                android:text="@string/odd"
+                android:gravity="bottom|right"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:layout_height="25dp"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/viewpager_match_odd_tv"
+                android:textColor="@color/black_grey"
+                android:textSize="12sp"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:paddingRight="2dp"
+                android:gravity="bottom|right"
+                android:layout_weight="1"
+                android:visibility="gone"
+                android:layout_height="25dp"
+                android:maxLines="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -112,6 +137,32 @@
                 android:layout_weight="1"
                 android:gravity="top|right"
                 android:layout_height="25dp"
+                android:maxLines="1" />
+            <TextView
+
+                android:id="@+id/viewpager_even_label_tv"
+                android:textColor="@color/grey_dark_word"
+                android:textSize="12sp"
+                android:layout_width="0dp"
+                android:paddingRight="2dp"
+                android:layout_weight="1"
+                android:text="@string/even"
+                android:gravity="top|right"
+                android:layout_height="25dp"
+                android:visibility="gone"
+                android:maxLines="1" />
+
+            <TextView
+                android:id="@+id/viewpager_match_even_tv"
+                android:textColor="@color/black_grey"
+                android:textSize="12sp"
+                android:layout_width="0dp"
+                android:textStyle="bold"
+                android:paddingRight="2dp"
+                android:layout_weight="1"
+                android:gravity="top|right"
+                android:layout_height="25dp"
+                android:visibility="gone"
                 android:maxLines="1" />
         </LinearLayout>
 

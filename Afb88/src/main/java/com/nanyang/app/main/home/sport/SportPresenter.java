@@ -1,11 +1,13 @@
 package com.nanyang.app.main.home.sport;
 
 
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
@@ -178,5 +180,33 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         }
         return null;
 
+    }
+    protected String type;
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    protected boolean isMixParlay = false;
+    public boolean isMixParlay() {
+        return isMixParlay;
+    }
+
+    public void setMixParlay(boolean mixParlay) {
+        isMixParlay = mixParlay;
+    }
+
+    public void onRightMarkClick(Bundle b) {
+    }
+
+    public void countBet() {
+        baseView.onCountBet();
+    }
+
+    public void createPopupWindow(BetBasePop betPop) {
+        baseView.onCreatePopupWindow(betPop);
     }
 }

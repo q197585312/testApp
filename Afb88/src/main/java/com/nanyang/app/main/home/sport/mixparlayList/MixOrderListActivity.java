@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
@@ -425,6 +426,21 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     @Override
     public void onBetSucceed(String result) {
         CheckEnd(result.toString());
+    }
+
+    @Override
+    public void onRightMarkClick(Bundle b) {
+
+    }
+
+    @Override
+    public void onCountBet() {
+
+    }
+
+    @Override
+    public void onCreatePopupWindow(BetBasePop betPop) {
+
     }
 
     @Override

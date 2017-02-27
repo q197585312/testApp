@@ -1,10 +1,12 @@
 package com.nanyang.app.main.home.sport.thaiThousand;
 
+import android.os.Bundle;
 import android.view.View;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.BaseSportFragment;
 import com.nanyang.app.main.home.sport.SportContract;
+import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
@@ -57,6 +59,21 @@ public class ThaiThousandFragment extends BaseSportFragment<ThaiThousandPresente
 
     @Override
     public void onBetSucceed(String allData) {
+
+    }
+
+    @Override
+    public void onRightMarkClick(Bundle b) {
+
+    }
+
+    @Override
+    public void onCountBet() {
+
+    }
+
+    @Override
+    public void onCreatePopupWindow(BetBasePop betPop) {
 
     }
 
