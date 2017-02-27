@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport;
+package com.nanyang.app.main.home.sport.football;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
@@ -18,6 +18,9 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.BaseSportFragment;
+import com.nanyang.app.main.home.sport.SportActivity;
+import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
