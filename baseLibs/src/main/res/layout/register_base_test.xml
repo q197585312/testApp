@@ -7,5 +7,5 @@
     android:paddingTop="20px"
     android:paddingBottom="20px"
     android:text="Cancel"
-    android:background="#85ffffff"
+    android:background="#ffffff"
     android:textColor="@color/black" />
