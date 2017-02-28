@@ -45,13 +45,12 @@ public interface ApiService {
     /*Load模块*/
     /*welcome*/
     @GET("http://www.appgd88.com/afb88version.php?app=android")
-    Flowable<String> checkVersion() ;
+    Flowable<String> checkVersion();
 
     @GET("http://appgd88.com/afb88/download/android/afb88.apk")
-    Flowable<ResponseBody> updateVersion() ;
+    Flowable<ResponseBody> updateVersion();
 
     /*login*/
-
 
 
     //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1537757816&LID=a01c99aa6487a0b5&_=1486482785410
@@ -65,35 +64,47 @@ public interface ApiService {
     btnSignIn	Login*/
     @FormUrlEncoded
     @POST("http://www.afbasia88.com/Default1.aspx")
-    Flowable<String> doLogin(@FieldMap Map<String,String> info) ;
+    Flowable<String> doLogin(@FieldMap Map<String, String> info);
 
     //
     @GET("http://a8197c.a36588.com/_view/BettingRules1.aspx?lang=eng")
-    Flowable<String> bettingRules1() ;
+    Flowable<String> bettingRules1();
 
+    //http://a8197c.a36588.com/Alert.aspx
+    @GET("http://a8197c.a36588.com/Alert.aspx")
+    Flowable<String> alert();
 
     //http://a8197c.a36588.com/main.aspx
     @GET("http://a8197c.a36588.com/main.aspx")
-    Flowable<String> main() ;
+    Flowable<String> main();
 
 
     @GET
     Flowable<String> getData(@Url String url);
+
     @GET
     Flowable<BettingPromptBean> getBetData(@Url String url);
+
     @GET
-    Flowable<String> timerRun2(@Url  String url);
+    Flowable<String> timerRun2(@Url String url);
 
     @GET
     Flowable<BettingParPromptBean> addMixParlayBet(@Url String s);
+
     @GET
     Call<BettingParPromptBean> removeMixOrder(@Url String url);
+
     //注册时检测用户帐号
     @FormUrlEncoded
     @POST("http://www.afbasia88.com/_view/Register1.aspx")
-    Flowable<String> checkUserName(@FieldMap Map<String,String> info);
+    Flowable<String> checkUserName(@FieldMap Map<String, String> info);
+
     //注册
     @FormUrlEncoded
     @POST("http://www.afbasia88.com/_view/Register1.aspx")
-    Flowable<String> Register(@FieldMap Map<String,String> info);
+    Flowable<String> Register(@FieldMap Map<String, String> info);
+
+    @FormUrlEncoded
+    @POST("_view/nodds1TH.aspx")
+    Flowable<String> ThaiThsandBetSubmit(@FieldMap Map<String, String> info);
 }

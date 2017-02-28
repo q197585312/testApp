@@ -9,4 +9,5 @@
     <color name="green_light_bg">#1ba248</color>
     <color name="green_thai_thousand_bg">#E9FBDB</color>
     <color name="green_thai_thousand_wrol">#248C26</color>
+    <color name="red_thai_thousand_wrol">#FF0000</color>
 </resources>

@@ -53,7 +53,7 @@ public class GamesActivity extends BaseToolbarActivity {
     @Override
     public void initData() {
         super.initData();
-        tvToolbarTitle.setText(getString(R.string.Thai_game1));
+        setTitle(getString(R.string.Thai_game1));
         currentTag = "Thai";
         BaseGamesFragment thaiThousandFragment = new ThaiThousandFragment();
         showFragmentToActivity(thaiThousandFragment, R.id.fl_content, getString(R.string.Football));
@@ -114,5 +114,9 @@ public class GamesActivity extends BaseToolbarActivity {
                 popWindow.showPopupDownWindow();
                 break;
         }
+    }
+
+    public void setTitle(String title) {
+        tvToolbarTitle.setText(title);
     }
 }
