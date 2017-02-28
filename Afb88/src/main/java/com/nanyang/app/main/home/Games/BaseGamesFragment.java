@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
  * Created by Administrator on 2017/2/27.
  */
 
-public abstract class BaseGamesFragment<T extends IBasePresenter> extends BaseFragment {
+public abstract class BaseGamesFragment<T extends IBasePresenter> extends BaseFragment<T> {
     @Override
     public void initData() {
         super.initData();

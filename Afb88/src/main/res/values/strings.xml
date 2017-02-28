@@ -109,4 +109,5 @@
     <string name="Thai_game1">1D Game</string>
     <string name="Thai_game2">2D Game</string>
     <string name="Thai_game3">3D Game</string>
+    <string name="Thai_bet_hint">投注成功.请到投注狀況对球.</string>
 </resources>
