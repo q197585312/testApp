@@ -71,9 +71,6 @@ public interface ApiService {
     @GET("http://a8197c.a36588.com/_view/BettingRules1.aspx?lang=eng")
     Flowable<String> bettingRules1() ;
 
-    //http://a8197c.a36588.com/Alert.aspx
-    @GET("http://a8197c.a36588.com/Alert.aspx")
-    Flowable<String> alert() ;
 
     //http://a8197c.a36588.com/main.aspx
     @GET("http://a8197c.a36588.com/main.aspx")

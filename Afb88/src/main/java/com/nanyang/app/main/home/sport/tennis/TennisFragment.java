@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.volleyball;
+package com.nanyang.app.main.home.sport.tennis;
 
 
 import android.os.Bundle;
@@ -20,7 +20,7 @@ import java.util.Map;
  * Created by Administrator on 2017/2/12 0012.
  */
 
-public class VolleyballFragment extends BaseSportFragment<FootballPresenter> implements SportContract.View<String> {
+public class TennisFragment extends BaseSportFragment<FootballPresenter> implements SportContract.View<String> {
     @Override
     public void onFailed(String error) {
 
@@ -81,7 +81,7 @@ public class VolleyballFragment extends BaseSportFragment<FootballPresenter> imp
 
     @Override
     public String getTitle() {
-        return getString(R.string.Volleyball);
+        return getString(R.string.Tennis);
     }
 
     @Override

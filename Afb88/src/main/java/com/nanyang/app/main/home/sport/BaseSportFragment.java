@@ -25,4 +25,16 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
     public boolean collectionClick(TextView tvCollection) {
         return false;
     }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.startUpdate();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.stopUpdate();
+    }
 }

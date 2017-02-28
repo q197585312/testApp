@@ -14,7 +14,6 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.basketball.BasketballlPresenter;
 import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.football.FootballPresenter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
@@ -287,7 +286,7 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
         ViewPager vp = helper.getView(R.id.module_center_vp);
         if (presenter instanceof FootballPresenter)
             vp.getLayoutParams().width = DeviceUtils.dip2px(mContext, 140);
-        else if (presenter instanceof BasketballlPresenter) {
+        else {
             vp.getLayoutParams().width = DeviceUtils.dip2px(mContext, 210);
         }
         handleViewPager(vp, item, position);
@@ -317,7 +316,7 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                     notifyDataSetChanged();
                 }
             });
-        } else if (presenter instanceof BasketballlPresenter) {
+        } else {
             tvCollection.setVisibility(View.GONE);
             tvRightMark.setVisibility(View.GONE);
         }
@@ -424,19 +423,19 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                 TextView tvEvenLabel = helper.getView(R.id.viewpager_even_label_tv);
                 TextView tvOdd = helper.getView(R.id.viewpager_match_odd_tv);
                 TextView tvEven = helper.getView(R.id.viewpager_match_even_tv);
-                if (presenter instanceof BasketballlPresenter) {
+                if (presenter instanceof FootballPresenter) {
+                    tvOddLabel.setVisibility(View.GONE);
+                    tvEvenLabel.setVisibility(View.GONE);
+                    tvOdd.setVisibility(View.GONE);
+                    tvEven.setVisibility(View.GONE);
+
+                } else {
                     tvOddLabel.setVisibility(View.VISIBLE);
                     tvEvenLabel.setVisibility(View.VISIBLE);
                     tvOdd.setVisibility(View.VISIBLE);
                     tvEven.setVisibility(View.VISIBLE);
                     tvOdd.setText(bean.getOtherDataBean().getOddOdds());
                     tvEven.setText(bean.getOtherDataBean().getEvenOdds());
-
-                } else {
-                    tvOddLabel.setVisibility(View.GONE);
-                    tvEvenLabel.setVisibility(View.GONE);
-                    tvOdd.setVisibility(View.GONE);
-                    tvEven.setVisibility(View.GONE);
                 }
 
                 VpBallAdapter.this.getItem(getParentPosition()).getHandicapBeans().get(position).setIsOUNew("1");

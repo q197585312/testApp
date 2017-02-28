@@ -38,7 +38,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/2/12 0012.
  */
 
-public class BasketballFragment extends BaseSportFragment<BasketballlPresenter> implements SportContract.View<List<MatchBean>> {
+public class BasketballFragment extends BaseSportFragment<BasketballPresenter> implements SportContract.View<List<MatchBean>> {
     @Bind(R.id.tv_total_match)
     TextView tvTotalMatch;
     @Bind(R.id.tv_odds_type)
@@ -60,7 +60,7 @@ public class BasketballFragment extends BaseSportFragment<BasketballlPresenter> 
     public void initData() {
         super.initData();
 
-        createPresenter(new BasketballlPresenter(this));
+        createPresenter(new BasketballPresenter(this));
         presenter.setType(((SportActivity) getActivity()).getType());
         presenter.refresh(((SportActivity) getActivity()).getType());
         initAdapter();

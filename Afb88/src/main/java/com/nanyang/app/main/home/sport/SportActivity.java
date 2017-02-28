@@ -15,8 +15,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
 import com.nanyang.app.main.home.sport.football.FootballFragment;
-import com.nanyang.app.main.home.sport.thaiThousand.ThaiThousandFragment;
-import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
+import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -33,7 +32,7 @@ import butterknife.OnClick;
 public class SportActivity extends BaseToolbarActivity<Presenter> {
     BaseSportFragment footballFragment = new FootballFragment();
     BaseSportFragment basketballFragment = new BasketballFragment();
-    BaseSportFragment volleyballFragment = new VolleyballFragment();
+    BaseSportFragment volleyballFragment = new TennisFragment();
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
@@ -142,7 +141,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                         List<MenuItemInfo> list = new ArrayList<>();
                         list.add(new MenuItemInfo(0, getString(R.string.Football)));
                         list.add(new MenuItemInfo(0, getString(R.string.Basketball)));
-                        list.add(new MenuItemInfo(0, getString(R.string.Volleyball)));
+                        list.add(new MenuItemInfo(0, getString(R.string.Tennis)));
                         list.add(new MenuItemInfo(0, getString(R.string.Thai_word)));
                         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base) {
                             @Override

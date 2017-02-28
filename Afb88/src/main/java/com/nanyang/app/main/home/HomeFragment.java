@@ -119,8 +119,8 @@ public class HomeFragment extends BaseFragment {
                             tv.setTextColor(getResources().getColor(R.color.black_grey));
 
                         } else {
-                            tv.setBackgroundResource(R.color.white);
-                            tv.setTextColor(getResources().getColor(R.color.green900));
+                            tv.setBackgroundResource(R.color.green900);
+                            tv.setTextColor(getResources().getColor(R.color.white));
                         }
                         tv.setText(item.getText());
                     }

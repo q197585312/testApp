@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sport;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
@@ -11,22 +12,36 @@ import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
+import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.TableModuleBean;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscription;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Flowable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 public abstract class SportPresenter<T, V extends SportContract.View<T>> extends BaseRetrofitPresenter<T, V> implements SportContract.Presenter {
+    private Disposable updateSubscription;
+    private String LID;
+    private JSONArray dataListArray;
+
     public SportPresenter(V view) {
         super(view);
     }
@@ -209,4 +224,326 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     public void createPopupWindow(BetBasePop betPop) {
         baseView.onCreatePopupWindow(betPop);
     }
+
+    protected String getUpdateUrl() {
+        return getUrl(type)+"&LID="+LID;
+
+    }
+
+    protected abstract String getUrl(String type);
+
+    public void startUpdate() {
+        Flowable<String> updateFlowable = Flowable.interval(20,20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
+            @Override
+            public Publisher<String> apply(Long aLong) throws Exception {
+                return getService(ApiService.class).getData(getUpdateUrl());
+            }
+        });
+        updateSubscription =updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io())
+                .map(new Function<String, List<TableModuleBean>>() {
+
+                    @Override
+                    public List<TableModuleBean> apply(String s) throws Exception {
+
+
+                        return updateJsonArray(dataListArray,s);
+                    }
+                })
+
+                .subscribe(new Consumer<String>() {//onNext
+                    @Override
+                    public void accept(String allData) throws Exception {
+
+
+                    }
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseView.onFailed(throwable.getMessage());
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        baseView.showLoadingDialog();
+                        subscription.request(Long.MAX_VALUE);
+                    }
+                });
+        mCompositeSubscription.add(updateSubscription);
+    }
+    /*
+    * -(void)updateRunningData:(NSArray *)arrdata
+{
+    NSArray * arr0=arrdata[0];//数据信息  [1, '7fe88ca994a22f12', 't', 0, 0, 1, 0, 1, -1, 'eng'],
+    _RequestKey=arr0[1];
+
+
+    for (int i=0;i<[arrdata[2] count];i++) {//删除
+        NSString * SocOddsId=arrdata[2][i];
+        NSLog(@"删除的id~~~~~%@",SocOddsId);
+        for (NSArray *  arrForone in _arrAllfootballdata) {
+            BOOL isbreak=NO;
+            for (FootballOneRowInfo * footballOneRowInfo in arrForone[1]) {
+                if ([footballOneRowInfo.SocOddsId integerValue]== [SocOddsId integerValue]) {
+                    if ([arrForone[1] count]==1) {//section只有一个cell
+                        [_arrAllfootballdata removeObject:arrForone];
+                        isbreak=YES;
+                        break;
+                    }else{
+                        [arrForone[1] removeObject:footballOneRowInfo];
+                        isbreak=YES;
+                        break;
+                    }
+                }
+            }
+            if (isbreak) {
+                break;
+            }
+        }
+    }
+
+    //增加
+    for (NSArray * one in arrdata[3]) {
+        //[31568, '英格兰超级联赛 - 上半场结束前受伤延长补时', 23, 0],  23代表索引？
+        NSArray * arrLiansaiInfo=one[0];//联赛信息
+        NSArray * arrDataInfo=one[1];
+        BOOL isInLiansai=NO;
+        for (NSArray *  arrForone in _arrAllfootballdata) {
+            NSArray * arrLiansaiInfoExsit=arrForone[0];//联赛信息
+            if ([arrLiansaiInfo[0] integerValue]==[arrLiansaiInfoExsit[0] integerValue]) {//存在的联赛
+                NSLog(@"存在的联赛中插入");
+                isInLiansai=YES;
+                for (NSArray * OneInone in arrDataInfo) {//准备插入
+                    BOOL isAdd=NO;
+                    FootballOneRowInfo * footballOneRowInfoNew=[[FootballOneRowInfo alloc]init];
+                    [footballOneRowInfoNew setupWithArray:OneInone];
+
+                    for (int i=0;i<[arrForone[1] count];i++) {
+                        FootballOneRowInfo * footballOneRowInfo=arrForone[1][i];
+                        NSLog(@"2~~~~~~~");
+                        if ([footballOneRowInfo.SocOddsId integerValue]==[footballOneRowInfoNew.PreSocOddsId integerValue]) {
+                            NSLog(@"3~~~~~~~");
+                            if (i+1==[arrForone[1] count]) {
+                                [arrForone[1] addObject:footballOneRowInfoNew];
+                            }else{
+                                [arrForone[1] insertObject:footballOneRowInfoNew atIndex:i+1];
+                            }
+
+                            isAdd=YES;
+                            break;
+                        }
+                    }
+                    if (!isAdd) {
+                        NSLog(@"4~~~~~~~");
+                        isAdd=YES;
+                        [arrForone[1] insertObject:footballOneRowInfoNew atIndex:0];
+                    }
+
+                }
+
+            }
+        }
+
+        //新增联赛
+        if (!isInLiansai) {//新增联赛
+            NSLog(@"新增联赛。。。。。。。%@",arrLiansaiInfo);
+
+            //保存联赛和小组赛信息
+            NSMutableArray * arrOneSection=[NSMutableArray array];
+            for (NSArray * OneInone in arrDataInfo) {//联赛中的 小组赛信息
+
+                FootballOneRowInfo * footballOneRowInfo=[[FootballOneRowInfo alloc]init];
+                [footballOneRowInfo setupWithArray:OneInone];
+                [arrOneSection addObject:footballOneRowInfo];
+            }
+            //联赛和小组赛信息
+            NSArray * arrForone=[NSArray arrayWithObjects:arrLiansaiInfo, arrOneSection,nil];
+
+            //插入
+            BOOL hasAdd=NO;
+            for (int i=0;i<[_arrAllfootballdata count];i++) {
+                FootballOneRowInfo * footballOneRowInfoExist=[_arrAllfootballdata[i][1] lastObject];//联赛中的最后一场
+                FootballOneRowInfo * footballOneRowInfoNew=arrOneSection[0];//新增联赛的第一场
+                NSLog(@"1~~~~~~~");
+                if ([footballOneRowInfoExist.SocOddsId integerValue]==[footballOneRowInfoNew.PreSocOddsId integerValue]) {//
+
+                    if (i+1==[_arrAllfootballdata count]) {
+                        [_arrAllfootballdata addObject:arrForone];
+                    }else{
+                        [_arrAllfootballdata insertObject:arrForone atIndex:i+1];
+                    }
+                    NSLog(@"2~~~~~~~");
+                    hasAdd=YES;
+                    break;
+                }
+            }
+            if (!hasAdd) {
+                NSLog(@"3~~~~~~~");
+                hasAdd=YES;
+                [_arrAllfootballdata insertObject:arrForone atIndex:0];
+            }
+        }
+    }
+
+    //计算count
+    _matchCount=0;
+    for (NSArray *  arrForone in _arrAllfootballdata) {
+
+        for (int i=0;i<[arrForone[1] count];i++) {
+            _matchCount++;
+
+            FootballOneRowInfo * footballOneRowInfo=[arrForone[1] objectAtIndex:i];
+            footballOneRowInfo.isShowLeftview=YES;
+            if (i==0) {
+                continue;
+            }
+            //判断 isShowLeftview
+            FootballOneRowInfo * footballOneRowInfolast=[arrForone[1] objectAtIndex:i-1];
+            if ([footballOneRowInfo.Home isEqualToString:footballOneRowInfolast.Home]&&[footballOneRowInfo.Away isEqualToString:footballOneRowInfolast.Away]&&[footballOneRowInfo.IsHomeGive integerValue]== [footballOneRowInfolast.IsHomeGive integerValue]) {
+                footballOneRowInfo.isShowLeftview=NO;
+            }
+        }
+    }
+}*/
+    //[[0,'d80a9f11133a3092','r',0,0,1,0,1,-1,'eng'],[],[],[],[],[[12093702,[13,23,24,29,30,31,52],[-9.9,10.1,8.7,8.2,10.4,9.6,4.5]]]]
+    private List<TableModuleBean> updateJsonArray( String s) throws JSONException {
+        JSONArray jsonArray = new JSONArray(s);
+        boolean modified=false;
+        boolean deleted=false;
+        boolean added=false;
+        if (jsonArray.length() > 5) {
+            JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
+            if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
+                LID = jsonArrayLID.getString(1);
+            }
+            JSONArray modifyArray = jsonArray.getJSONArray(0);
+            modified= modify(modifyArray);
+
+            if (dataListArray.length() > 0) {
+                for (int i = 0; i < dataListArray.length(); i++) {
+                    LeagueBean leagueBean;
+                    List<MatchBean> matchList = new ArrayList<>();
+                    JSONArray jsonArray3 = dataListArray.getJSONArray(i);
+                    if (jsonArray3.length() > 1) {
+                        JSONArray LeagueArray = jsonArray3.getJSONArray(0);
+                        if (LeagueArray.length() > 1) {
+                            leagueBean = new LeagueBean(LeagueArray.get(0).toString(), LeagueArray.getString(1));
+                        } else {
+                            continue;
+                        }
+                        JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                        if (LeagueMatchArray.length() > 0) {
+                            for (int j = 0; j < LeagueMatchArray.length(); j++) {
+                                JSONArray matchArray = LeagueMatchArray.getJSONArray(j);
+                                parseMatchList(matchList, matchArray);
+                            }
+                        } else {
+                            continue;
+                        }
+                        tableModules.add(new TableModuleBean(leagueBean, matchList));
+                    }
+
+                }
+            }
+
+        }
+        return null;
+    }
+/* for (NSArray * arr in arrdata[5]) {//更新数据
+        NSString * SocOddsId=arr[0];
+        NSArray  * arrIndex =arr[1];
+        NSArray  * arrData  =arr[2];
+        for (NSArray *  arrForone in _arrAllfootballdata) {
+            for (FootballOneRowInfo * footballOneRowInfo in arrForone[1]) {
+                if ([footballOneRowInfo.SocOddsId integerValue]== [SocOddsId integerValue]) {
+                    for (int i=0; i<arrIndex.count; i++) {
+                        [footballOneRowInfo.arrSelfDataFrom replaceObjectAtIndex:[arrIndex[i] integerValue] withObject:arrData[i]];
+                    }
+                    [footballOneRowInfo setupWithArray:footballOneRowInfo.arrSelfDataFrom];
+                }
+            }
+        }
+    }
+* */
+    private boolean modify(JSONArray modifyArray) throws JSONException {
+        for (int i = 0; i < modifyArray.length(); i++) {
+            JSONArray array = modifyArray.getJSONArray(i);
+            if(array.length()>2) {
+                String sId = array.getString(0);
+                JSONArray indexArray = modifyArray.getJSONArray(1);
+                JSONArray dataArray = modifyArray.getJSONArray(2);
+                for (int j = 0; j < dataListArray.length(); j++) {
+                    JSONArray jsonArray3 = dataListArray.getJSONArray(j);
+                    if (jsonArray3.length() > 1) {
+                        JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                        if (LeagueMatchArray.length() > 0) {
+                            for (int k = 0; k < LeagueMatchArray.length(); k++) {
+                                JSONArray matchArray = LeagueMatchArray.getJSONArray(k);
+                                parseMatchList(matchList, matchArray);
+                            }
+                        } else {
+                            continue;
+                        }
+                        tableModules.add(new TableModuleBean(leagueBean, matchList));
+                    }
+
+                }
+            }
+
+        }
+
+    }
+
+    public void stopUpdate() {
+        updateSubscription.dispose();
+    }
+
+    @Nullable
+    protected List<TableModuleBean> parseTableModuleBeen(String s) throws JSONException {
+
+        JSONArray jsonArray = new JSONArray(s);
+        ArrayList<TableModuleBean> tableModules = new ArrayList<>();
+        if (jsonArray.length() > 4) {
+            JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
+            if(jsonArrayLID.length()>0){//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
+                LID=jsonArrayLID.getString(1);
+            }
+            dataListArray = jsonArray.getJSONArray(3);
+            if (dataListArray.length() > 0) {
+
+                for (int i = 0; i < dataListArray.length(); i++) {
+                    LeagueBean leagueBean;
+                    List<MatchBean> matchList = new ArrayList<>();
+                    JSONArray jsonArray3 = dataListArray.getJSONArray(i);
+                    if (jsonArray3.length() > 1) {
+                        JSONArray LeagueArray = jsonArray3.getJSONArray(0);
+                        if (LeagueArray.length() > 1) {
+                            leagueBean = new LeagueBean(LeagueArray.get(0).toString(), LeagueArray.getString(1));
+                        } else {
+                            continue;
+                        }
+                        JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                        if (LeagueMatchArray.length() > 0) {
+                            for (int j = 0; j < LeagueMatchArray.length(); j++) {
+                                JSONArray matchArray = LeagueMatchArray.getJSONArray(j);
+                                parseMatchList(matchList, matchArray);
+                            }
+                        } else {
+                            continue;
+                        }
+                        tableModules.add(new TableModuleBean(leagueBean, matchList));
+                    }
+
+                }
+            }
+        }
+        return tableModules;
+    }
+
+    protected abstract void parseMatchList(List<MatchBean> matchList, JSONArray matchArray) throws JSONException;
 }
