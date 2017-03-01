@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.football;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
@@ -13,6 +12,7 @@ import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.ResultIndexBean;
 import com.nanyang.app.main.home.sport.model.TableModuleBean;
 import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -44,12 +44,8 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 
 public class FootballPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
-    private List<TableModuleBean> allData;
-    private int page;
-    private final int pageSize = 15;
-    private List<TableModuleBean> filterData;
-    private List<TableModuleBean> pageData;
 
+    private int page;
 
     public boolean isCollection() {
         return isCollection;
@@ -223,44 +219,13 @@ public class FootballPresenter extends SportPresenter<List<MatchBean>, SportCont
     }
 
     private void initAllData(List<TableModuleBean> allData) {
-        this.allData = allData;
-        this.page = 0;
-        this.filterData = filterData(allData);
-        showCurrentData();
+        page = 0;
+        updateAllDate(allData);
 
     }
 
-    @NonNull
-    private List<MatchBean> toMatchList(List<TableModuleBean> pageList) {
-        List<MatchBean> pageMatch = new ArrayList<>();
 
-        for (int i = 0; i < pageList.size(); i++) {
-            TableModuleBean item = pageList.get(i);
-            List<MatchBean> items = item.getRows();
-            for (int j = 0; j < items.size(); j++) {
-                MatchBean cell = item.getRows().get(j);
-                if (j == 0) {
-                    cell.setType(MatchBean.Type.TITLE);
-                } else {
-                    cell.setType(MatchBean.Type.ITME);
-                }
-                cell.setLeagueBean(item.getLeagueBean());
-                pageMatch.add(cell);
-            }
-        }
-        return pageMatch;
-    }
 
-    private List<TableModuleBean> pageData(List<TableModuleBean> filterData) {
-        List<TableModuleBean> pageList;
-        if (((page + 1) * pageSize) < filterData.size()) {
-            pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
-        } else {
-            pageList = filterData.subList(page * pageSize, filterData.size());
-        }
-        return pageList;
-
-    }
 
     /**
      * 选择收藏
@@ -295,9 +260,9 @@ public class FootballPresenter extends SportPresenter<List<MatchBean>, SportCont
         }
         return data;
     }
-
-    private List<TableModuleBean> filterData(List<TableModuleBean> allData) {//按照条件 筛选data
-        filterData = allData;
+    @Override
+    protected List<TableModuleBean> filterData(List<TableModuleBean> allData) {//按照条件 筛选data
+        List<TableModuleBean> filterData = allData;
         if (isMixParlay)
             isCollection = false;
         if (isCollection)
@@ -305,13 +270,17 @@ public class FootballPresenter extends SportPresenter<List<MatchBean>, SportCont
         return filterData;
     }
 
-
-
-
-    private void showCurrentData() {
-        pageData = pageData(filterData);
-        baseView.onPageData(page, toMatchList(pageData), getType());
+    @Override
+    protected ResultIndexBean getResultIndexMap(String type) {
+        ResultIndexBean resultIndexBean = new ResultIndexBean();
+        if(isMixParlay()){
+            resultIndexBean.setPreSocOddsId(50);
+        }else{
+            resultIndexBean.setPreSocOddsId(48);
+        }
+        return resultIndexBean;
     }
+
 
     void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
         if (page == 0) {

@@ -7,12 +7,18 @@ import com.nanyang.app.main.ApiMain;
 import com.nanyang.app.main.home.sport.SportPresenter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
+import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.ResultIndexBean;
+import com.nanyang.app.main.home.sport.model.TableModuleBean;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.disposables.Disposable;
@@ -136,4 +142,23 @@ class MixOrderListPresenter extends SportPresenter<String,MixOrderListContract.V
 
     }
 
+    @Override
+    protected String getUrl(String type) {
+        return null;
+    }
+
+    @Override
+    protected List<TableModuleBean> filterData(List<TableModuleBean> allData) {
+        return null;
+    }
+
+    @Override
+    protected ResultIndexBean getResultIndexMap(String type) {
+        return null;
+    }
+
+    @Override
+    protected void parseMatchList(List<MatchBean> matchList, JSONArray matchArray) throws JSONException {
+
+    }
 }

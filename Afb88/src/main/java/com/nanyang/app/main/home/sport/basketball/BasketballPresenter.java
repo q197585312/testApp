@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home.sport.basketball;
 
-import android.support.annotation.NonNull;
-
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
@@ -13,6 +11,7 @@ import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.ResultIndexBean;
 import com.nanyang.app.main.home.sport.model.TableModuleBean;
 import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -238,26 +237,7 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
         return url;
     }
 
-    @NonNull
-    private List<MatchBean> toMatchList(List<TableModuleBean> pageList) {
-        List<MatchBean> pageMatch = new ArrayList<>();
 
-        for (int i = 0; i < pageList.size(); i++) {
-            TableModuleBean item = pageList.get(i);
-            List<MatchBean> items = item.getRows();
-            for (int j = 0; j < items.size(); j++) {
-                MatchBean cell = item.getRows().get(j);
-                if (j == 0) {
-                    cell.setType(MatchBean.Type.TITLE);
-                } else {
-                    cell.setType(MatchBean.Type.ITME);
-                }
-                cell.setLeagueBean(item.getLeagueBean());
-                pageMatch.add(cell);
-            }
-        }
-        return pageMatch;
-    }
 
     private List<TableModuleBean> pageData(List<TableModuleBean> filterData) {
         List<TableModuleBean> pageList;
@@ -304,13 +284,25 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
         return data;
     }
 
-    private List<TableModuleBean> filterData(List<TableModuleBean> allData) {//按照条件 筛选data
+    protected List<TableModuleBean> filterData(List<TableModuleBean> allData) {//按照条件 筛选data
         filterData = allData;
         if (isMixParlay)
             isCollection = false;
         if (isCollection)
             filterData = filterCollection(allData);
         return filterData;
+    }
+
+    @Override
+    protected ResultIndexBean getResultIndexMap(String type) {
+        ResultIndexBean resultIndexBean = new ResultIndexBean();
+        if(isMixParlay()){
+            resultIndexBean.setPreSocOddsId(50);
+        }else{
+            resultIndexBean.setPreSocOddsId(31);
+        }
+
+        return resultIndexBean;
     }
 
     @Override
@@ -527,10 +519,7 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
     }
 
 
-    private void showCurrentData() {
-        pageData = pageData(filterData);
-        baseView.onPageData(page, toMatchList(pageData), getType());
-    }
+
 
     void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
         if (page == 0) {

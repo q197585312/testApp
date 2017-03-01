@@ -14,6 +14,7 @@ import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.ResultIndexBean;
 import com.nanyang.app.main.home.sport.model.TableModuleBean;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -24,6 +25,8 @@ import org.reactivestreams.Subscription;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -40,7 +43,13 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 public abstract class SportPresenter<T, V extends SportContract.View<T>> extends BaseRetrofitPresenter<T, V> implements SportContract.Presenter {
     private Disposable updateSubscription;
     private String LID;
-    private JSONArray dataListArray;
+    protected List<TableModuleBean> allData;
+    protected int page;
+    protected final int pageSize = 15;
+    protected List<TableModuleBean> filterData;
+    protected List<TableModuleBean> pageData;
+    private Map<String, JSONArray> matchArrayMap = new HashMap<>();
+
 
     public SportPresenter(V view) {
         super(view);
@@ -196,7 +205,9 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         return null;
 
     }
+
     protected String type;
+
     public String getType() {
         return type;
     }
@@ -206,6 +217,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     }
 
     protected boolean isMixParlay = false;
+
     public boolean isMixParlay() {
         return isMixParlay;
     }
@@ -226,33 +238,74 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     }
 
     protected String getUpdateUrl() {
-        return getUrl(type)+"&LID="+LID;
+        return getUrl(type) + "&LID=" + LID;
 
     }
 
     protected abstract String getUrl(String type);
+    private List<TableModuleBean> pageData(List<TableModuleBean> filterData) {
+        List<TableModuleBean> pageList;
+        if (((page + 1) * pageSize) < filterData.size()) {
+            pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
+        } else {
+            pageList = filterData.subList(page * pageSize, filterData.size());
+        }
+        return pageList;
+
+    }
+    protected void updateAllDate(List<TableModuleBean> allData) {
+        this.allData = allData;
+        this.filterData = filterData(allData);
+        showCurrentData();
+    }
+    protected void showCurrentData() {
+        pageData = pageData(filterData);
+        baseView.onPageData(page, (T) toMatchList(pageData), getType());
+    }
+    @NonNull
+    protected List<MatchBean> toMatchList(List<TableModuleBean> pageList) {
+        List<MatchBean> pageMatch = new ArrayList<>();
+
+        for (int i = 0; i < pageList.size(); i++) {
+            TableModuleBean item = pageList.get(i);
+            List<MatchBean> items = item.getRows();
+            for (int j = 0; j < items.size(); j++) {
+                MatchBean cell = item.getRows().get(j);
+                if (j == 0) {
+                    cell.setType(MatchBean.Type.TITLE);
+                } else {
+                    cell.setType(MatchBean.Type.ITME);
+                }
+                cell.setLeagueBean(item.getLeagueBean());
+                pageMatch.add(cell);
+            }
+        }
+        return pageMatch;
+    }
+    protected abstract List<TableModuleBean> filterData(List<TableModuleBean> allData);
 
     public void startUpdate() {
-        Flowable<String> updateFlowable = Flowable.interval(20,20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
+        Flowable<String> updateFlowable = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
             @Override
             public Publisher<String> apply(Long aLong) throws Exception {
                 return getService(ApiService.class).getData(getUpdateUrl());
             }
         });
-        updateSubscription =updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io())
+        updateSubscription = updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io())
                 .map(new Function<String, List<TableModuleBean>>() {
 
                     @Override
                     public List<TableModuleBean> apply(String s) throws Exception {
-
-
-                        return updateJsonArray(dataListArray,s);
+                        return updateJsonArray(s);
                     }
                 })
 
-                .subscribe(new Consumer<String>() {//onNext
+                .subscribe(new Consumer< List<TableModuleBean>>() {//onNext
                     @Override
-                    public void accept(String allData) throws Exception {
+                    public void accept( List<TableModuleBean> allData) throws Exception {
+                        if(allData!=null){
+                            updateAllDate(allData);
+                        }
 
 
                     }
@@ -410,51 +463,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         }
     }
 }*/
-    //[[0,'d80a9f11133a3092','r',0,0,1,0,1,-1,'eng'],[],[],[],[],[[12093702,[13,23,24,29,30,31,52],[-9.9,10.1,8.7,8.2,10.4,9.6,4.5]]]]
-    private List<TableModuleBean> updateJsonArray( String s) throws JSONException {
-        JSONArray jsonArray = new JSONArray(s);
-        boolean modified=false;
-        boolean deleted=false;
-        boolean added=false;
-        if (jsonArray.length() > 5) {
-            JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
-            if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
-                LID = jsonArrayLID.getString(1);
-            }
-            JSONArray modifyArray = jsonArray.getJSONArray(0);
-            modified= modify(modifyArray);
-
-            if (dataListArray.length() > 0) {
-                for (int i = 0; i < dataListArray.length(); i++) {
-                    LeagueBean leagueBean;
-                    List<MatchBean> matchList = new ArrayList<>();
-                    JSONArray jsonArray3 = dataListArray.getJSONArray(i);
-                    if (jsonArray3.length() > 1) {
-                        JSONArray LeagueArray = jsonArray3.getJSONArray(0);
-                        if (LeagueArray.length() > 1) {
-                            leagueBean = new LeagueBean(LeagueArray.get(0).toString(), LeagueArray.getString(1));
-                        } else {
-                            continue;
-                        }
-                        JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
-                        if (LeagueMatchArray.length() > 0) {
-                            for (int j = 0; j < LeagueMatchArray.length(); j++) {
-                                JSONArray matchArray = LeagueMatchArray.getJSONArray(j);
-                                parseMatchList(matchList, matchArray);
-                            }
-                        } else {
-                            continue;
-                        }
-                        tableModules.add(new TableModuleBean(leagueBean, matchList));
-                    }
-
-                }
-            }
-
-        }
-        return null;
-    }
-/* for (NSArray * arr in arrdata[5]) {//更新数据
+    /* for (NSArray * arr in arrdata[5]) {//更新数据
         NSString * SocOddsId=arr[0];
         NSArray  * arrIndex =arr[1];
         NSArray  * arrData  =arr[2];
@@ -470,34 +479,160 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         }
     }
 * */
-    private boolean modify(JSONArray modifyArray) throws JSONException {
-        for (int i = 0; i < modifyArray.length(); i++) {
-            JSONArray array = modifyArray.getJSONArray(i);
-            if(array.length()>2) {
-                String sId = array.getString(0);
-                JSONArray indexArray = modifyArray.getJSONArray(1);
-                JSONArray dataArray = modifyArray.getJSONArray(2);
-                for (int j = 0; j < dataListArray.length(); j++) {
-                    JSONArray jsonArray3 = dataListArray.getJSONArray(j);
-                    if (jsonArray3.length() > 1) {
-                        JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
-                        if (LeagueMatchArray.length() > 0) {
-                            for (int k = 0; k < LeagueMatchArray.length(); k++) {
-                                JSONArray matchArray = LeagueMatchArray.getJSONArray(k);
-                                parseMatchList(matchList, matchArray);
-                            }
-                        } else {
-                            continue;
-                        }
-                        tableModules.add(new TableModuleBean(leagueBean, matchList));
-                    }
 
+    /**
+     * [[0,'d7d815f8db95cb7a','r',0,0,1,0,1,-1,'eng'],
+     * [],
+     * [],删除
+     * [
+     * [
+     * [445614,'南美洲球会杯 - 角球',13,0],
+     * [[12099517,0,'0 - 0' ,173010,114739,0,0,0,'08:45AM' ,2,3,1,1,5.7,1,'','卡利体育会 第十四角球' ,0,0,'','盧捷諾體育會\t第十四角球' ,0,0,3.5,18.1,0,-1,0,0,52.6,0.2,0,0,0,0,0.2,1000,0,0,0,0,0,0,1000,0.2,0,0,"02/28/2017" ,12099253,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1]]
+     * ]
+     * ],
+     * [],
+     * [[12095508,[60],[0]],[12095475,[13,23,24],[3.3,2.5,32.2]],[12098443,[59],[0]],[12098151,[13,23,24,29,30,31,59,60],[-2.5,27,2.7,24.3,2.9,-2.9,1,1]],[12098550,[29,30,31],[12.8,6.6,-6.6]],[12098552,[60],[0]],[12099109,[29,30,31],[10.6,7.6,-7.6]],[12099253,[6,29,30,31],[0,8,10.2,9.8]],[12098270,[29,30,31,48,50,57],[8.4,10,10,12099517,32,1]],[12099101,[29,30,31,51,52],[10.2,8.2,-8.2,2.94,1.82]],[12099341,[29,30,31],[7.5,10.9,9.1]],[12098671,[29,30,31,60],[7.5,10.9,9.1,1]],[12099340,[13,23,24,60],[-6.7,12,6.9,0]],[12099136,[13,23,24,29,30,31,51,52],[9.6,8,10.6,7.9,10.5,9.5,1.68,2.82]],[12099342,[13,23,24,60],[-6.8,11.9,7,0]],[12098182,[29,30,31],[10,8,-8]],[12098185,[29,30,31],[11.4,6.7,-6.7]],[12098189,[6,29,30,31],[0,10.5,7.5,-7.5]]]]
+     *
+     * @param updateString  更新数据
+     * @return  修改后的json 数据  没修改返回null
+     * @throws JSONException
+     */
+    private List<TableModuleBean> updateJsonArray(String updateString) throws JSONException {
+
+        JSONArray jsonArray = new JSONArray(updateString);
+        boolean modified = false;
+        boolean deleted = false;
+        boolean added = false;
+        if (jsonArray.length() > 5) {
+            JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
+            if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
+                LID = jsonArrayLID.getString(1);
+            }
+            JSONArray modifyArray = jsonArray.getJSONArray(5);
+
+            if (modifyArray.length() > 0) {
+                modified = true;
+            }
+            JSONArray deleteArray = jsonArray.getJSONArray(2);
+            List<String> deleteData = new ArrayList<>();
+            for (int i = 0; i < deleteArray.length(); i++) {
+                deleteData.add(deleteArray.getString(i));
+                deleted = true;
+            }
+
+            JSONArray addArray = jsonArray.getJSONArray(3);
+            if (addArray.length() > 0) {
+                added = true;
+            }
+            Map<String, JSONArray> addMap = new HashMap<>();
+            Map<JSONArray, JSONArray> addMapLeague = new HashMap<>();
+
+            for (int i = 0; i < addArray.length(); i++) {
+                JSONArray array = addArray.getJSONArray(i);
+                JSONArray league = array.getJSONArray(0);
+                String leagueKey = league.getString(0);
+                JSONArray matchArry = array.getJSONArray(1);
+                addMap.put(leagueKey, matchArry);
+                addMapLeague.put(matchArry, league);
+            }
+
+            JSONArray dataListArray = matchArrayMap.get(getType());
+            ResultIndexBean indexBean = getResultIndexMap(getType());
+            if (added) {//可以添加数据
+                for (int i = 0; i < dataListArray.length(); i++) {
+                    JSONArray jsonArray3 = dataListArray.getJSONArray(i);
+                    if (jsonArray3.length() > 1) {
+                        JSONArray LeagueArray = jsonArray3.getJSONArray(0);
+                        JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                        JSONArray matchAdd = addMap.get(LeagueArray.getString(0));
+
+                        if (matchAdd != null) {//插入到已有联赛内
+                            JSONArray Array = new JSONArray();//修改后的联赛
+                            for (int j = 0; j < matchAdd.length(); j++) {//遍历要添加的比赛
+                                JSONArray jsonArray1 = matchAdd.getJSONArray(j);
+                                String preId = jsonArray1.getString(indexBean.getPreSocOddsId());
+
+                                if (preId == null || preId.equals("")) {//没有PreId加到最前面
+                                    Array.put(jsonArray1);//先加
+                                    for (int k = 0; k < LeagueMatchArray.length(); k++) {
+                                        Array.put(LeagueMatchArray.getJSONArray(k));
+                                    }
+                                } else {
+                                    boolean addIn = false;
+                                    for (int k = 0; k < LeagueMatchArray.length(); k++) {
+                                        String id = LeagueMatchArray.getJSONArray(k).getString(indexBean.getSocOddsId());
+                                        Array.put(LeagueMatchArray.getJSONArray(k));
+                                        if (preId.equals(id)) {
+                                            Array.put(jsonArray1);
+                                            addIn = true;
+                                        }
+                                    }
+                                    if (!addIn) {
+                                        Array = new JSONArray();
+                                        Array.put(jsonArray1);
+                                        for (int k = 0; k < LeagueMatchArray.length(); k++) {
+                                            Array.put(LeagueMatchArray.getJSONArray(k));
+                                        }
+                                    }
+                                }
+                            }
+                            jsonArray3.put(1, Array);//替换联赛数据
+                            addMap.remove(LeagueArray.getString(0));
+                        }
+                    }
                 }
+                Iterator<Map.Entry<String, JSONArray>> iterator = addMap.entrySet().iterator();
+                if (iterator.hasNext()) {
+                    Map.Entry<String, JSONArray> next = iterator.next();
+                    for (int i = 0; i < addArray.length(); i++) {
+                        JSONArray array = addArray.getJSONArray(i);
+                        JSONArray league = array.getJSONArray(0);
+                        String leagueKey = league.getString(0);
+                        if (leagueKey.equals(next.getKey())) {
+                            dataListArray.put(array);
+                        }
+                    }
+                }
+            }
+            for (int i = 0; i < dataListArray.length(); i++) {
+                JSONArray jsonArray3 = dataListArray.getJSONArray(i);
+                if (jsonArray3.length() > 1) {
+                    JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                    for (int j = 0; j < LeagueMatchArray.length(); j++) {
+                        String sid = LeagueMatchArray.getJSONArray(j).getString(indexBean.getSocOddsId());
+
+
+                        for (int k = 0; k < modifyArray.length(); k++) {
+                            JSONArray jsonArray1 = modifyArray.getJSONArray(k);
+                            String modifyId = jsonArray1.getString(0);
+                            JSONArray modifyIndex = jsonArray1.getJSONArray(1);
+                            JSONArray modifyData = jsonArray1.getJSONArray(2);
+                            if (modifyId.equals(sid)) {
+                                for (int l = 0; l < modifyIndex.length(); l++) {
+                                    LeagueMatchArray.getJSONArray(j).put(modifyIndex.getInt(l), modifyData.getString(l));
+                                }
+                            }
+                        }
+                        if (deleteData.contains(sid)) {
+                            LeagueMatchArray.remove(j);
+                        }
+                    }
+                    if (LeagueMatchArray.length() < 1) {
+                        dataListArray.remove(i);
+                    }
+                }
+            }
+            if (added || deleted || modified) {
+                return updateJsonData(dataListArray);
             }
 
         }
 
+        return null;
     }
+
+    protected abstract ResultIndexBean getResultIndexMap(String type);
+
 
     public void stopUpdate() {
         updateSubscription.dispose();
@@ -507,39 +642,45 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     protected List<TableModuleBean> parseTableModuleBeen(String s) throws JSONException {
 
         JSONArray jsonArray = new JSONArray(s);
-        ArrayList<TableModuleBean> tableModules = new ArrayList<>();
+
         if (jsonArray.length() > 4) {
             JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
-            if(jsonArrayLID.length()>0){//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
-                LID=jsonArrayLID.getString(1);
+            if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
+                LID = jsonArrayLID.getString(1);
             }
-            dataListArray = jsonArray.getJSONArray(3);
-            if (dataListArray.length() > 0) {
+            JSONArray dataListArray = jsonArray.getJSONArray(3);
+            return updateJsonData(dataListArray);
+        }
+        return new ArrayList<>();
+    }
 
-                for (int i = 0; i < dataListArray.length(); i++) {
-                    LeagueBean leagueBean;
-                    List<MatchBean> matchList = new ArrayList<>();
-                    JSONArray jsonArray3 = dataListArray.getJSONArray(i);
-                    if (jsonArray3.length() > 1) {
-                        JSONArray LeagueArray = jsonArray3.getJSONArray(0);
-                        if (LeagueArray.length() > 1) {
-                            leagueBean = new LeagueBean(LeagueArray.get(0).toString(), LeagueArray.getString(1));
-                        } else {
-                            continue;
-                        }
-                        JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
-                        if (LeagueMatchArray.length() > 0) {
-                            for (int j = 0; j < LeagueMatchArray.length(); j++) {
-                                JSONArray matchArray = LeagueMatchArray.getJSONArray(j);
-                                parseMatchList(matchList, matchArray);
-                            }
-                        } else {
-                            continue;
-                        }
-                        tableModules.add(new TableModuleBean(leagueBean, matchList));
+    private ArrayList<TableModuleBean> updateJsonData(JSONArray dataListArray) throws JSONException {
+        ArrayList<TableModuleBean> tableModules = new ArrayList<>();
+        matchArrayMap.put(getType(), dataListArray);
+        if (dataListArray.length() > 0) {
+            for (int i = 0; i < dataListArray.length(); i++) {
+                LeagueBean leagueBean;
+                List<MatchBean> matchList = new ArrayList<>();
+                JSONArray jsonArray3 = dataListArray.getJSONArray(i);
+                if (jsonArray3.length() > 1) {
+                    JSONArray LeagueArray = jsonArray3.getJSONArray(0);
+                    if (LeagueArray.length() > 1) {
+                        leagueBean = new LeagueBean(LeagueArray.get(0).toString(), LeagueArray.getString(1));
+                    } else {
+                        continue;
                     }
-
+                    JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                    if (LeagueMatchArray.length() > 0) {
+                        for (int j = 0; j < LeagueMatchArray.length(); j++) {
+                            JSONArray matchArray = LeagueMatchArray.getJSONArray(j);
+                            parseMatchList(matchList, matchArray);
+                        }
+                    } else {
+                        continue;
+                    }
+                    tableModules.add(new TableModuleBean(leagueBean, matchList));
                 }
+
             }
         }
         return tableModules;

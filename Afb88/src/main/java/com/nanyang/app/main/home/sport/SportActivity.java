@@ -15,7 +15,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
 import com.nanyang.app.main.home.sport.football.FootballFragment;
-import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
+import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -32,7 +32,7 @@ import butterknife.OnClick;
 public class SportActivity extends BaseToolbarActivity<Presenter> {
     BaseSportFragment footballFragment = new FootballFragment();
     BaseSportFragment basketballFragment = new BasketballFragment();
-    BaseSportFragment volleyballFragment = new TennisFragment();
+    BaseSportFragment tennisFragment = new TennisFragment();
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
@@ -95,7 +95,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         mapFragment = new HashMap<>();
         mapFragment.put(getString(R.string.Football), footballFragment);
         mapFragment.put(getString(R.string.Basketball), basketballFragment);
-        mapFragment.put(getString(R.string.Volleyball), volleyballFragment);
+        mapFragment.put(getString(R.string.Tennis), tennisFragment);
 
 
     }
