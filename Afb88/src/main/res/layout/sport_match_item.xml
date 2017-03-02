@@ -167,7 +167,7 @@
         </LinearLayout>
 
       <View
-          android:background="@color/grey_thick_line"
+          android:background="@color/green_white_thick_line"
           android:layout_width="0.6dp"
           android:layout_height="match_parent"/>
 
@@ -179,7 +179,7 @@
         </com.nanyang.app.myView.LinkedViewPager.ViewPager>
 
         <View
-            android:background="@color/grey_thick_line"
+            android:background="@color/green_white_thick_line"
             android:layout_width="0.6dp"
             android:layout_height="match_parent"/>
 
@@ -189,8 +189,9 @@
             android:layout_height="wrap_content"
             android:drawableRight="@mipmap/sport_add_oval_yellow" />
     </LinearLayout>
+
     <View
-        android:background="@color/grey_thick_line"
+        android:background="@color/green_white_thick_line"
         android:layout_width="match_parent"
         android:layout_height="0.6dp"/>
 </LinearLayout>

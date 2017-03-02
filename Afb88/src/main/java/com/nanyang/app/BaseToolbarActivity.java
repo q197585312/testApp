@@ -8,6 +8,8 @@ import android.widget.TextView;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
+import cn.finalteam.toolsfinal.DeviceUtils;
+
 public abstract class BaseToolbarActivity<T extends IBasePresenter> extends BaseActivity<T> {
     @Nullable
     protected
@@ -33,6 +35,10 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 finish();
             }
         });
+        assert tvToolbarTitle != null;
+        tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
+        tvToolbarTitle.getLayoutParams().width= DeviceUtils.dip2px(mContext,80);
+        tvToolbarTitle.getLayoutParams().height= DeviceUtils.dip2px(mContext,40);
     }
 
     @Nullable

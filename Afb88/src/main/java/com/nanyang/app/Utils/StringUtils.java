@@ -1,4 +1,4 @@
-package com.nanyang.app.myView.LinkedViewPager.Utils;
+package com.nanyang.app.Utils;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

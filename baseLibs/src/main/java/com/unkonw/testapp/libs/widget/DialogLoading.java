@@ -4,12 +4,15 @@ import android.app.Dialog;
 import android.content.Context;
 import android.widget.TextView;
 
+import com.unkonw.testapp.R;
+
 public class DialogLoading extends Dialog {
 
     private TextView loadingLabel;
 
     public DialogLoading(Context context) {
         super(context);
+        setContentView(R.layout.loading_process_dialog_color);
 
     }
 

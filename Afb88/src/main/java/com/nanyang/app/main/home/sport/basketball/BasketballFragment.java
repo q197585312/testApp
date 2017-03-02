@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -32,13 +30,14 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2017/2/12 0012.
  */
 
 public class BasketballFragment extends BaseSportFragment<BasketballPresenter> implements SportContract.View<List<MatchBean>> {
+    @Bind(R.id.swipe_target)
+    RecyclerView rvContent;
     @Bind(R.id.tv_total_match)
     TextView tvTotalMatch;
     @Bind(R.id.tv_odds_type)
@@ -47,22 +46,21 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
     ViewPager vpHeader;
     @Bind(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
+
     @Bind(R.id.tv_mix_parlay_order)
     TextView tvMixParlayOrder;
     @Bind(R.id.ll_mix_parlay_order)
     LinearLayout llMixParlayOrder;
-    @Bind(R.id.swipe_target)
-    RecyclerView swipeTarget;
     private VpBallAdapter baseRecyclerAdapter;
 
 
     @Override
     public void initData() {
         super.initData();
-
         createPresenter(new BasketballPresenter(this));
         presenter.setType(((SportActivity) getActivity()).getType());
         presenter.refresh(((SportActivity) getActivity()).getType());
+        presenter.startUpdate();
         initAdapter();
 
     }
@@ -71,11 +69,11 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
 
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext);
 
-        swipeTarget.setLayoutManager(mLayoutManager);
+        rvContent.setLayoutManager(mLayoutManager);
         baseRecyclerAdapter = new VpBallAdapter(mContext, new ArrayList<MatchBean>(), R.layout.sport_match_item);
         baseRecyclerAdapter.setVpHeader(vpHeader);
         baseRecyclerAdapter.setPresenter(presenter);
-        swipeTarget.setAdapter(baseRecyclerAdapter);
+        rvContent.setAdapter(baseRecyclerAdapter);
 
         swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -90,7 +88,7 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
             }
         });
 
-        swipeTarget.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        rvContent.setOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
                 if (newState == RecyclerView.SCROLL_STATE_IDLE) {
@@ -176,19 +174,5 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
     @Override
     public void onGetData(List<MatchBean> data) {
 
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
     }
 }

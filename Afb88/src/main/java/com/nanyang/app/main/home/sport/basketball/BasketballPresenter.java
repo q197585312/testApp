@@ -6,7 +6,6 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.ApiSport;
 import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.SportPresenter;
-import com.nanyang.app.main.home.sport.football.FootballFragment;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
@@ -15,11 +14,9 @@ import com.nanyang.app.main.home.sport.model.ResultIndexBean;
 import com.nanyang.app.main.home.sport.model.TableModuleBean;
 import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -32,39 +29,11 @@ import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-
-import static com.unkonw.testapp.libs.api.Api.getService;
 
 
 public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
-    private List<TableModuleBean> allData;
-    private int page;
-    final int pageSize = 15;
-    private List<TableModuleBean> filterData;
-    private List<TableModuleBean> pageData;
-
-    public boolean isMixParlay() {
-        return isMixParlay;
-    }
-
-    public void setMixParlay(boolean mixParlay) {
-        isMixParlay = mixParlay;
-    }
-
-    public boolean isCollection() {
-        return isCollection;
-    }
-
-    private boolean isCollection = false;
-    private boolean isMixParlay = false;
-    private Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
-    private String type;
 
     BasketballPresenter(SportContract.View<List<MatchBean>> view) {
         super(view);
@@ -128,11 +97,11 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
 
     private void clearMixOrder() {
 
-        if (((FootballFragment) baseView).getApp().getBetDetail() != null && ((FootballFragment) baseView).getApp().getBetDetail().size() > 0) {
+        if (((BasketballFragment) baseView).getApp().getBetDetail() != null && ((BasketballFragment) baseView).getApp().getBetDetail().size() > 0) {
             Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
                 @Override
                 public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
-                    Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = ((FootballFragment) baseView).getApp().getBetDetail().entrySet().iterator();
+                    Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = ((BasketballFragment) baseView).getApp().getBetDetail().entrySet().iterator();
                     BettingParPromptBean data = null;
                     while (it.hasNext()) {
                         Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>> keyItem = it.next();
@@ -162,53 +131,6 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
     }
 
 
-    @Override
-    public void refresh(String type) {
-
-        Disposable subscription = getService(ApiService.class).getData(getUrl(type)).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-                .map(new Function<String, List<TableModuleBean>>() {
-
-                    @Override
-                    public List<TableModuleBean> apply(String s) throws Exception {
-                        return parseTableModuleBeen(s);
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<TableModuleBean>>() {//onNext
-                    @Override
-                    public void accept(List<TableModuleBean> allData) throws Exception {
-                        initAllData(allData);
-                    }
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        baseView.onFailed(throwable.getMessage());
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Action() {//完成
-                    @Override
-                    public void run() throws Exception {
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Consumer<Subscription>() {//开始绑定
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
-                        subscription.request(Long.MAX_VALUE);
-                    }
-                });
-        mCompositeSubscription.add(subscription);
-
-    }
-
-    private void initAllData(List<TableModuleBean> allData) {
-        this.allData = allData;
-        this.page = 0;
-        this.filterData = filterData(allData);
-        showCurrentData();
-
-    }
 
     @Override
     protected String getUrl(String type) {
@@ -235,19 +157,6 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
         }
         setType(type);
         return url;
-    }
-
-
-
-    private List<TableModuleBean> pageData(List<TableModuleBean> filterData) {
-        List<TableModuleBean> pageList;
-        if (((page + 1) * pageSize) < filterData.size()) {
-            pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
-        } else {
-            pageList = filterData.subList(page * pageSize, filterData.size());
-        }
-        return pageList;
-
     }
 
     /**
@@ -283,9 +192,9 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
         }
         return data;
     }
-
+    @Override
     protected List<TableModuleBean> filterData(List<TableModuleBean> allData) {//按照条件 筛选data
-        filterData = allData;
+        List<TableModuleBean> filterData = allData;
         if (isMixParlay)
             isCollection = false;
         if (isCollection)
@@ -301,7 +210,6 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
         }else{
             resultIndexBean.setPreSocOddsId(31);
         }
-
         return resultIndexBean;
     }
 
@@ -517,41 +425,5 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
         }
 
     }
-
-
-
-
-    void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
-        if (page == 0) {
-            refresh("");
-        } else {
-            page--;
-            showCurrentData();
-            if (page == 0) {
-                swipeToLoadLayout.setLoadMoreEnabled(true);
-            }
-        }
-        swipeToLoadLayout.setRefreshing(false);
-    }
-
-
-    void onNext(SwipeToLoadLayout swipeToLoadLayout) {
-        if (filterData != null && (page + 1) * pageSize < filterData.size()) {
-            page++;
-            showCurrentData();
-        } else {
-            swipeToLoadLayout.setLoadMoreEnabled(false);
-        }
-        swipeToLoadLayout.setLoadingMore(false);
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
 
 }

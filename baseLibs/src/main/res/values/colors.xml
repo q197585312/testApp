@@ -19,6 +19,8 @@
     <color name="grey_background">#e5e5e5</color>
     <color name="grey_background_trans">#aae5e5e5</color>
     <color name="grey_thick_line">#ededed</color>
+    <color name="green_thick_line">#179441</color>
+    <color name="green_white_thick_line">#aad6b8</color>
     <color name="grey_button">#bebebe</color>
     <color name="grey_line_button">#9f9f9f</color>
     <color name="grey_dark_word">#4c4c4c</color>

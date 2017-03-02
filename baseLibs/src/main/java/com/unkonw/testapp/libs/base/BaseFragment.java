@@ -45,6 +45,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
         ButterKnife.bind(this, mContentView);
         initView();
         initData();
+
         return mContentView;
     }
 

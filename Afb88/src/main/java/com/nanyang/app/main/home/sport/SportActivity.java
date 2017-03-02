@@ -68,7 +68,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                 currentFragment.toolbarRightClick(v);
             }
         });
-
+        tvToolbarTitle.setBackgroundResource(0);
     }
 
 
@@ -88,10 +88,12 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         type = getIntent().getStringExtra(AppConstant.KEY_STRING);
         showFragmentToActivity(footballFragment, R.id.fl_content, getString(R.string.Football));
         currentFragment = footballFragment;
+
         String ballType = getIntent().getStringExtra(AppConstant.KEY_STRING);
         assert tvToolbarTitle != null;
         tvToolbarTitle.setText(ballType);
         currentTag = getString(R.string.Football);
+        tvTitle.setText(currentTag);
         mapFragment = new HashMap<>();
         mapFragment.put(getString(R.string.Football), footballFragment);
         mapFragment.put(getString(R.string.Basketball), basketballFragment);
@@ -127,7 +129,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                     tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
                 break;
             case R.id.iv_add:
-                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 400) {
+                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 350) {
                     @Override
                     protected int onSetLayoutRes() {
                         return R.layout.popupwindow_choice;
@@ -147,9 +149,9 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                             @Override
                             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                                 TextView tv = holder.getView(R.id.item_text_tv);
+                                tv.setBackgroundResource(R.color.google_green);
                                 tv.setText(item.getText());
-                                tv.setBackgroundResource(R.color.white);
-                                tv.setTextColor(getResources().getColor(R.color.black_grey));
+                                tv.setTextColor(getResources().getColor(R.color.white));
                             }
 
 

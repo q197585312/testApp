@@ -77,7 +77,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
 
         View view = LayoutInflater.from(this).inflate(layoutResID, null);
         setContentView(view);
-        ButterKnife.bind(this);
+
 
     }
 
@@ -114,6 +114,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
      * 初始化view
      */
     public void initView() {
+        ButterKnife.bind(this);
     }
 
     /**

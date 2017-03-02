@@ -26,15 +26,19 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
         return false;
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        presenter.startUpdate();
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+
+        if (hidden) {// 不在最前端界面显示
+            presenter.stopUpdate();
+        } else {// 重新显示到最前端中
+            presenter.startUpdate();
+        }
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
         presenter.stopUpdate();
     }
 }

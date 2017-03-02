@@ -4,9 +4,7 @@ import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -38,7 +36,6 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 //import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 
@@ -68,10 +65,10 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     @Override
     public void initData() {
         super.initData();
-
         createPresenter(new FootballPresenter(this));
         presenter.setType(((SportActivity) getActivity()).getType());
         presenter.refresh(((SportActivity) getActivity()).getType());
+        presenter.startUpdate();
         initAdapter();
     }
 
@@ -274,19 +271,5 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         return R.layout.fragment_football;
     }
 
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
-    }
 
 }

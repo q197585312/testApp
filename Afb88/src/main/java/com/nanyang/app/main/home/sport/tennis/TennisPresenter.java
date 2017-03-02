@@ -321,7 +321,7 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
 
 
 
-    void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
+    public void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
         if (page == 0) {
             refresh("");
         } else {
@@ -335,7 +335,7 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
     }
 
 
-    void onNext(SwipeToLoadLayout swipeToLoadLayout) {
+    public void onNext(SwipeToLoadLayout swipeToLoadLayout) {
         if (filterData != null && (page + 1) * pageSize < filterData.size()) {
             page++;
             showCurrentData();

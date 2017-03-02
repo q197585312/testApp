@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.RecycleViewDivider;
 import com.nanyang.app.main.home.Games.GamesActivity;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.poker.PokerCasinoActivity;
@@ -84,7 +85,7 @@ public class HomeFragment extends BaseFragment {
             }
         });
         rvContent.setAdapter(adapter);
-
+        rvContent.addItemDecoration(new RecycleViewDivider(mContext,GridLayoutManager.HORIZONTAL,2,getResources().getColor(R.color.green_thick_line)));
         createPopupWindow(new BasePopupWindow(mContext, rvContent, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {//创建
             @Override
             protected int onSetLayoutRes() {

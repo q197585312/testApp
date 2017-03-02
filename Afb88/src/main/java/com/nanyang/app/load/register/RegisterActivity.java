@@ -11,7 +11,7 @@ import android.widget.Toast;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.myView.LinkedViewPager.Utils.StringUtils;
+import com.nanyang.app.Utils.StringUtils;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
 import java.util.List;
