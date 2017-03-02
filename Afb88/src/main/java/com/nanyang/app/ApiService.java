@@ -63,7 +63,7 @@ public interface ApiService {
     password_password	123123aa
     btnSignIn	Login*/
     @FormUrlEncoded
-    @POST("http://www.afbasia88.com/Default1.aspx")
+    @POST("http://www.doo88.net/Default1.aspx")
     Flowable<String> doLogin(@FieldMap Map<String, String> info);
 
     //

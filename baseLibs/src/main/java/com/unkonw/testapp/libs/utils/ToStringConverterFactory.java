@@ -20,7 +20,11 @@ public class ToStringConverterFactory extends Converter.Factory {
             return new Converter<ResponseBody, String>() {
                 @Override
                 public String convert(ResponseBody value) throws IOException {
-                    return value.string();
+                    try {
+                        return value.string();
+                    }catch (Exception e){
+                            throw  e;
+                    }
                 }
             };
         }

@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2017/2/12 0012.
@@ -174,5 +175,10 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
     @Override
     public void onGetData(List<MatchBean> data) {
 
+    }
+
+    @OnClick(R.id.tv_odds_type)
+    public void onClick(View v) {
+        clickOddsType(v);
     }
 }

@@ -20,10 +20,18 @@ public class AppConstant {
      http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=246503518&wd=2017-02-16&ia=0
      Early
      */
+//    http://a0096f.panda88.org/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=431367264&LID=&_=1488465754049
+            //盘口
+//    http://a0096f.panda88.org/Main.aspx?accType=HK
+//            http://a0096f.panda88.org/Main.aspx?accType=MY
+            //http://a8197c.a36588.com/Main.aspx?accType=ID
+            //http://a8197c.a36588.com/Main.aspx?accType=EU
+
     public static String HOST="http://a8197c.a36588.com/";
+    public static String URL_ODDS_TYPE=HOST+"Main.aspx?accType=";
     public static String URL_FOOTBALL_RUNNING ="http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462";
     public static String URL_FOOTBALL_TODAY ="http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462&wd=&ia=0";
-    public static String URL_FOOTBALL_EARLY ="http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=246503518&ia=0";
+    public static String URL_FOOTBALL_EARLY ="http://a8197c.a36588.com/_iew/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=246503518&ia=0";
     public static String URL_FOOTBALL_EARLY_Mix ="http://a8197c.a36588.com/_view/ParGenWFH.ashx?g=4&ot=e&update=true&r=866546094";
     public static String URL_FOOTBALL_TODAY_Mix ="http://a8197c.a36588.com/_view/ParGenWFH.ashx?g=4&ot=t&update=true&r=1027945624";
 /*

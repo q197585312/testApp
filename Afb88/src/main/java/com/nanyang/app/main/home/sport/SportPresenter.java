@@ -1,6 +1,8 @@
 package com.nanyang.app.main.home.sport;
 
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -100,11 +102,13 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         mCompositeSubscription.add(subscription);
 
     }
+
     private void initAllData(List<TableModuleBean> allData) {
         page = 0;
         updateAllDate(allData);
 
     }
+
     public void addMixParlayBet(BettingInfoBean info, final Map<String, Map<Integer, BettingInfoBean>> keyMap, final MatchBean item) {
         StringBuilder builder = getBetUrl(info);
 
@@ -285,7 +289,9 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     }
 
     protected String getUpdateUrl() {
+
         return getUrl(type) + "&LID=" + LID;
+
 
     }
 
@@ -339,27 +345,34 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     void stopUpdate() {
         if (updateSubscription != null) {
             updateSubscription.dispose();
-            Logger.getDefaultLogger().d(getClass().getSimpleName(),"stopUpdate---->");
-            updateSubscription=null;
+            Logger.getDefaultLogger().d(getClass().getSimpleName(), "stopUpdate---->");
+            updateSubscription = null;
         }
     }
+
     public void startUpdate() {
         Flowable<String> updateFlowable = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
             @Override
             public Publisher<String> apply(Long aLong) throws Exception {
-                return getService(ApiService.class).getData(getUpdateUrl());
+                if (LID != null && LID.length() > 0)
+                    return getService(ApiService.class).getData(getUpdateUrl());
+                else
+                    return getService(ApiService.class).getData(getUrl(getType()));
             }
         });
-        if(updateSubscription!=null){
+        if (updateSubscription != null) {
             updateSubscription.dispose();
-            updateSubscription=null;
+            updateSubscription = null;
         }
         updateSubscription = updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                 .map(new Function<String, List<TableModuleBean>>() {
 
                     @Override
                     public List<TableModuleBean> apply(String s) throws Exception {
-                        return updateJsonArray(s);
+                        if (LID != null && LID.length() > 0)
+                            return updateJsonArray(s);
+                        else
+                            return parseTableModuleBeen(s);
                     }
                 }).observeOn(AndroidSchedulers.mainThread())
 
@@ -373,7 +386,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
                     }
                 });
-        Logger.getDefaultLogger().d(getClass().getSimpleName(),"startUpdate---->");
+        Logger.getDefaultLogger().d(getClass().getSimpleName(), "startUpdate---->");
         mCompositeSubscription.add(updateSubscription);
     }
     /*
@@ -544,6 +557,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
      * @return 修改后的json 数据  没修改返回null
      * @throws JSONException
      */
+    @TargetApi(Build.VERSION_CODES.KITKAT)
     private List<TableModuleBean> updateJsonArray(String updateString) throws JSONException {
         LogUtil.d("UpdateData", updateString);
         JSONArray jsonArray = new JSONArray(updateString);
@@ -759,5 +773,36 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     public void onRightMarkClick(Bundle b) {
         baseView.onRightMarkClick(b);
     }
+
     protected abstract void parseMatchList(List<MatchBean> matchList, JSONArray matchArray) throws JSONException;
+
+
+    public void switchedOddsType(String oddsType) {
+        Flowable<String> flowable = getService(ApiService.class).getData(AppConstant.URL_ODDS_TYPE+oddsType);
+        Disposable subscription = flowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<String>() {//onNext
+                    @Override
+                    public void accept(String allData) throws Exception {
+                        refresh(getType());
+                    }
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseView.onFailed(throwable.getMessage());
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        baseView.showLoadingDialog();
+                        subscription.request(Long.MAX_VALUE);
+                    }
+                });
+        mCompositeSubscription.add(subscription);
+    }
 }

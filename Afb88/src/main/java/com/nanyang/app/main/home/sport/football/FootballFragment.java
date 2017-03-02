@@ -9,7 +9,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.BaseSportFragment;
 import com.nanyang.app.main.home.sport.SportActivity;
@@ -23,19 +22,17 @@ import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
-import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 //import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 
@@ -72,52 +69,6 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         initAdapter();
     }
 
-    @Override
-    public void toolbarRightClick(View v) {
-
-        createPopupWindow(
-                new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, 300) {
-                    @Override
-                    protected int onSetLayoutRes() {
-                        return R.layout.popupwindow_choice_ball_type;
-                    }
-
-                    @Override
-                    protected void initView(View view) {
-                        super.initView(view);
-                        RecyclerView rv_list = (RecyclerView) view.findViewById(R.id.rv_list);
-                        setChooseTypeAdapter(rv_list);
-                    }
-                });
-        popWindow.showPopupDownWindow();
-    }
-
-    private void setChooseTypeAdapter(RecyclerView rv_list) {
-        rv_list.setLayoutManager(new LinearLayoutManager(mContext));
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getString(R.string.Today), "Today"));
-        if (!presenter.isMixParlay()) {
-            types.add(new MenuItemInfo(0, getString(R.string.Running), "Running"));
-        }
-        types.add(new MenuItemInfo(0, getString(R.string.Early), "Early"));
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, types, R.layout.text_base) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                TextView tv = holder.getView(R.id.item_text_tv);
-                tv.setPadding(0, 0, 0, 0);
-                tv.setText(item.getText());
-            }
-
-        };
-        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-            @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                presenter.refresh(item.getType());
-                popWindow.closePopupWindow();
-            }
-        });
-        rv_list.setAdapter(baseRecyclerAdapter);
-    }
 
     private void initAdapter() {
 
@@ -272,4 +223,10 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     }
 
 
+
+
+    @OnClick(R.id.tv_odds_type)
+    public void onClick(View v) {
+        clickOddsType(v);
+    }
 }

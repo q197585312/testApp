@@ -111,4 +111,8 @@
     <string name="Thai_game3">3D Game</string>
     <string name="Thai_bet_hint">投注成功.请到投注狀況对球.</string>
     <string name="Tennis">Tennis</string>
+    <string name="HK_ODDS">HK ODDS</string>
+    <string name="MY_ODDS">MY ODDS</string>
+    <string name="ID_ODDS">ID ODDS</string>
+    <string name="EU_ODDS">EU ODDS</string>
 </resources>

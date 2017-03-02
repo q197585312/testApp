@@ -170,6 +170,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                 });
                 popWindow.showPopupDownWindow();
                 break;
+
         }
     }
 
