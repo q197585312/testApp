@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.basketball;
+package com.nanyang.app.main.home.sport.thaiboxing;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
@@ -20,7 +20,6 @@ import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
@@ -30,13 +29,12 @@ import java.util.List;
 import java.util.Map;
 
 import butterknife.Bind;
-import butterknife.OnClick;
 
 /**
- * Created by Administrator on 2017/2/12 0012.
+ * Created by Administrator on 2017/3/3.
  */
 
-public class BasketballFragment extends BaseSportFragment<BasketballPresenter> implements SportContract.View<List<MatchBean>> {
+public class ThaiBoxingFragment extends BaseSportFragment<ThaiBoxingPresenter> implements SportContract.View<List<MatchBean>>{
     @Bind(R.id.swipe_target)
     RecyclerView rvContent;
     @Bind(R.id.tv_total_match)
@@ -53,20 +51,16 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
     @Bind(R.id.ll_mix_parlay_order)
     LinearLayout llMixParlayOrder;
     private VpBallAdapter baseRecyclerAdapter;
-
-
     @Override
     public void initData() {
         super.initData();
-        createPresenter(new BasketballPresenter(this));
+        createPresenter(new ThaiBoxingPresenter(this));
         presenter.setType(((SportActivity) getActivity()).getType());
         presenter.refresh(((SportActivity) getActivity()).getType());
         initAdapter();
-
     }
 
     private void initAdapter() {
-
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext);
 
         rvContent.setLayoutManager(mLayoutManager);
@@ -102,7 +96,7 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
 
     @Override
     public void onFailed(String error) {
-        ToastUtils.showShort(error);
+        
     }
 
     @Override
@@ -111,11 +105,11 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
         String size = pageData.size() + "";
         tvTotalMatch.setText(size);
         ((BaseToolbarActivity) getActivity()).getTvToolbarTitle().setText(type);
-//        if (presenter.isMixParlay()) {
-//            llMixParlayOrder.setVisibility(View.VISIBLE);
-//        } else {
-//            llMixParlayOrder.setVisibility(View.GONE);
-//        }
+        if (presenter.isMixParlay()) {
+            llMixParlayOrder.setVisibility(View.VISIBLE);
+        } else {
+            llMixParlayOrder.setVisibility(View.GONE);
+        }
     }
 
     @Override
@@ -153,28 +147,18 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
 
     }
 
-
     @Override
     public int onSetLayoutId() {
         return R.layout.fragment_football;
     }
 
-
     @Override
     public String getTitle() {
-        return getString(R.string.Basketball);
+        return getString(R.string.Muay_Thai);
     }
-
-
-
 
     @Override
     public void onGetData(List<MatchBean> data) {
 
-    }
-
-    @OnClick(R.id.tv_odds_type)
-    public void onClick(View v) {
-        clickOddsType(v);
     }
 }

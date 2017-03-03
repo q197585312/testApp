@@ -59,5 +59,9 @@ public class AppConstant {
 public static String URL_SHARES_RUNNING ="http://a8197c.a36588.com/_view/All_Gen6.ashx?g=7&ot=r&update=true&r=442357900";
     public static String URL_SHARES_TODAY ="http://a8197c.a36588.com/_view/All_Gen6.ashx?g=7&ot=t&update=true&r=442357900";
     public static String URL_SHARES_EARLY ="http://a8197c.a36588.com/_view/All_Gen6.ashx?g=7&ot=e&update=true&r=1634139687";
+    //泰拳http://a8197c.a36588.com/_view/All_Gen6.ashx?g=108&ot=t&update=true&r=1661815184&LID=&_=1488527593418
+    public static String URL_THAI_BOXING_TODAY = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=108&ot=t&update=true&r=1233177815";
+    public static String URL_THAI_BOXING_RUNNING = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=108&ot=t&update=true&r=1770989484";
+    public static String URL_THAI_BOXING_EARLY = "";
 
 }
