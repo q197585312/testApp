@@ -23,7 +23,6 @@ public interface SportContract {
         void onRightMarkClick(Bundle b);
         void onCountBet();
 
-
         void onCreatePopupWindow(BetBasePop betPop);
     }
 

@@ -65,7 +65,6 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         createPresenter(new FootballPresenter(this));
         presenter.setType(((SportActivity) getActivity()).getType());
         presenter.refresh(((SportActivity) getActivity()).getType());
-        presenter.startUpdate();
         initAdapter();
     }
 

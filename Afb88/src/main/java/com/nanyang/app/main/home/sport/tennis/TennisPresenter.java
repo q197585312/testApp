@@ -2,68 +2,30 @@ package com.nanyang.app.main.home.sport.tennis;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.ApiSport;
 import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.SportPresenter;
-import com.nanyang.app.main.home.sport.football.FootballFragment;
-import com.nanyang.app.main.home.sport.model.BettingInfoBean;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.model.ResultIndexBean;
 import com.nanyang.app.main.home.sport.model.TableModuleBean;
 import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.FlowableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
-import static com.unkonw.testapp.libs.api.Api.getService;
 
 
 public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
-    private List<TableModuleBean> allData;
-    private int page;
-    final int pageSize = 15;
-    private List<TableModuleBean> filterData;
-    private List<TableModuleBean> pageData;
-
-    public boolean isMixParlay() {
-        return isMixParlay;
-    }
-
-
-
-
-    public boolean isCollection() {
-        return isCollection;
-    }
-
-    private boolean isCollection = false;
-    private boolean isMixParlay = false;
-    private Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
-    private String type;
 
     TennisPresenter(SportContract.View<List<MatchBean>> view) {
         super(view);
@@ -105,9 +67,7 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
 
     @Override
     public void collection() {
-        isCollection = !isCollection;
-        filterData(allData);
-        showCurrentData();
+        ToastUtils.showShort(" Has No Collection");
     }
 
     @Override
@@ -117,51 +77,18 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
 
     }
 
-    private void clearMixOrder() {
 
-        if (((FootballFragment) baseView).getApp().getBetDetail() != null && ((FootballFragment) baseView).getApp().getBetDetail().size() > 0) {
-            Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
-                @Override
-                public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
-                    Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = ((FootballFragment) baseView).getApp().getBetDetail().entrySet().iterator();
-                    BettingParPromptBean data = null;
-                    while (it.hasNext()) {
-                        Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>> keyItem = it.next();
-                        Iterator<Map.Entry<String, Map<Integer, BettingInfoBean>>> itt = keyItem.getValue().entrySet().iterator();
-                        while (itt.hasNext()) {
-                            Iterator<Map.Entry<Integer, BettingInfoBean>> ittt = itt.next().getValue().entrySet().iterator();
-                            while (ittt.hasNext()) {
-                                BettingInfoBean item = ittt.next().getValue();
-                                if (item != null) {
-                                    data = removeBetItem(item);
-                                }
-                            }
-                        }
-                    }
-                    e.onNext(data);
-                }
-            }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Consumer<BettingParPromptBean>() {
-                                                                                                                  @Override
-                                                                                                                  public void accept(BettingParPromptBean o) throws Exception {
-                                                                                                                      baseView.onUpdateMixSucceed(o, null, null);
-                                                                                                                  }
-                                                                                                              }
-            );
-
-
-        }
-    }
 
 
     @Override
-    public void refresh(String type) {
+    protected String getUrl(String type) {
         if (type.equals("")) {
             type = getType();
         }
         String url;
         switch (type) {
             case "Running":
-                url = AppConstant.URL_VOLLEYBALL_RUNNING;
+                url = AppConstant.URL_TENNIS_RUNNING;
                 break;
             case "Today":
                 url = AppConstant.URL_VOLLEYBALL_TODAY;
@@ -171,103 +98,14 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
                 break;
         }
         setType(type);
-        Disposable subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-                .map(new Function<String, List<TableModuleBean>>() {
-
-                    @Override
-                    public List<TableModuleBean> apply(String s) throws Exception {
-                        return parseTableModuleBeen(s);
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<TableModuleBean>>() {//onNext
-                    @Override
-                    public void accept(List<TableModuleBean> allData) throws Exception {
-                        initAllData(allData);
-                    }
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        baseView.onFailed(throwable.getMessage());
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Action() {//完成
-                    @Override
-                    public void run() throws Exception {
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Consumer<Subscription>() {//开始绑定
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
-                        subscription.request(Long.MAX_VALUE);
-                    }
-                });
-        mCompositeSubscription.add(subscription);
-
-    }
-
-    private void initAllData(List<TableModuleBean> allData) {
-        this.allData = allData;
-        this.page = 0;
-        this.filterData = filterData(allData);
-        showCurrentData();
-
+        return url;
     }
 
 
-
-    private List<TableModuleBean> pageData(List<TableModuleBean> filterData) {
-        List<TableModuleBean> pageList;
-        if (((page + 1) * pageSize) < filterData.size()) {
-            pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
-        } else {
-            pageList = filterData.subList(page * pageSize, filterData.size());
-        }
-        return pageList;
-
-    }
-
-    /**
-     * 选择收藏
-     *
-     * @param data 挑选前的数据
-     * @return 收藏的数据
-     */
-    private List<TableModuleBean> filterCollection(List<TableModuleBean> data) {
-        if (isCollection) {
-            ArrayList<TableModuleBean> moduleDate = new ArrayList<>();
-            for (TableModuleBean tableModuleBean : data) {
-                if (null != localCollectionMap.get(getType() + "+" + tableModuleBean.getLeagueBean().getModuleTitle())) {
-                    List<MatchBean> moduleCollectionRows = new ArrayList<>();
-                    TableModuleBean moduleCollection = new TableModuleBean(tableModuleBean.getLeagueBean(), moduleCollectionRows);
-                    Map<String, Boolean> moduleMap = localCollectionMap.get(getType() + "+" + tableModuleBean.getLeagueBean().getModuleTitle());
-
-                    for (MatchBean matchBean : tableModuleBean.getRows()) {
-                        if (moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway()) != null && moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway())) {
-                            moduleCollectionRows.add(matchBean);
-                        }
-                    }
-                    moduleCollection.setRows(moduleCollectionRows);
-                    moduleDate.add(moduleCollection);
-                }
-            }
-            if (moduleDate.size() > 0)
-                return moduleDate;
-            else {
-                isCollection = false;
-                ToastUtils.showShort(R.string.no_records);
-            }
-        }
-        return data;
-    }
     @Override
     protected List<TableModuleBean> filterData(List<TableModuleBean> allData) {//按照条件 筛选data
-        filterData = allData;
-        if (isCollection)
-            filterData = filterCollection(allData);
-        return filterData;
+
+        return allData;
     }
 
     @Override
@@ -320,34 +158,4 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
     }
 
 
-
-    public void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
-        if (page == 0) {
-            refresh("");
-        } else {
-            page--;
-            showCurrentData();
-            if (page == 0) {
-                swipeToLoadLayout.setLoadMoreEnabled(true);
-            }
-        }
-        swipeToLoadLayout.setRefreshing(false);
-    }
-
-
-    public void onNext(SwipeToLoadLayout swipeToLoadLayout) {
-        if (filterData != null && (page + 1) * pageSize < filterData.size()) {
-            page++;
-            showCurrentData();
-        } else {
-            swipeToLoadLayout.setLoadMoreEnabled(false);
-        }
-        swipeToLoadLayout.setLoadingMore(false);
-    }
-
-
-    @Override
-    protected String getUrl(String type) {
-        return null;
-    }
 }

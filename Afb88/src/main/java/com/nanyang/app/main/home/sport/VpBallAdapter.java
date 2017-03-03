@@ -197,6 +197,7 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
             oldAwayName = getItem(position - 1).getAway();
             oldHomeGive = getItem(position - 1).getHandicapBeans().get(0).getIsHomeGive();
             oldModuleTitle = getItem(position - 1).getLeagueBean().getModuleTitle();
+
         }
 
 
@@ -206,6 +207,7 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
             tvRightMark.setVisibility(View.INVISIBLE);
             llLeft1.setVisibility(View.INVISIBLE);
             llLeft2.setVisibility(View.INVISIBLE);
+            item.getOtherDataBean().setHasOE("0");
 
         } else {
 
@@ -430,12 +432,21 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                     tvEven.setVisibility(View.GONE);
 
                 } else {
+
                     tvOddLabel.setVisibility(View.VISIBLE);
                     tvEvenLabel.setVisibility(View.VISIBLE);
                     tvOdd.setVisibility(View.VISIBLE);
                     tvEven.setVisibility(View.VISIBLE);
-                    tvOdd.setText(bean.getOtherDataBean().getOddOdds());
-                    tvEven.setText(bean.getOtherDataBean().getEvenOdds());
+                    if(bean.getOtherDataBean().getHasOE().equals("1")) {
+
+                        tvOdd.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getOddOdds()));
+                        tvEven.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getEvenOdds()));
+                    }else{
+                        tvOdd.setText("");
+                        tvEven.setText("");
+                        tvOddLabel.setText("");
+                        tvEvenLabel.setText("");
+                    }
                 }
 
                 VpBallAdapter.this.getItem(getParentPosition()).getHandicapBeans().get(position).setIsOUNew("1");
