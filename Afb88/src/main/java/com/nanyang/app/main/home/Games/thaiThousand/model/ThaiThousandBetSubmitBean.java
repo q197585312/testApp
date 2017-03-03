@@ -232,6 +232,7 @@ public class ThaiThousandBetSubmitBean {
         if (map == null) {
             map = new HashMap<>();
         }
+        map.put("lstDraw", lstDraw);
         map.put("txtNumber", txtNumber);
         map.put("txtAmt", txtAmt);
         map.put("txtNumber2", txtNumber2);

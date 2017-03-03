@@ -350,7 +350,7 @@ public class ThaiThousandFragment extends BaseGamesFragment<ThaiThousandPresente
         bet10Itembet2 = (EditText) layoutBet10.findViewById(R.id.item_bet2);
         bean.setTxtNumber10(bet10Itembet1.getText().toString());
         bean.setTxtAmt10(bet10Itembet2.getText().toString());
-        bean.setLstDraw("11997925");
+        bean.setLstDraw("12101468");
         return bean;
     }
 
