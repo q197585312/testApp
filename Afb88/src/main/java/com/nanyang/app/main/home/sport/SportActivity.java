@@ -17,6 +17,7 @@ import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
 import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.FootballFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
+import com.nanyang.app.main.home.sport.thaiboxing.ThaiBoxingFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -35,6 +36,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
     BaseSportFragment basketballFragment = new BasketballFragment();
     BaseSportFragment tennisFragment = new TennisFragment();
     BaseSportFragment financialFragment = new FinancialFragment();
+    BaseSportFragment thaiboxingFragment = new ThaiBoxingFragment();
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
@@ -100,6 +102,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         mapFragment.put(getString(R.string.Football), footballFragment);
         mapFragment.put(getString(R.string.Basketball), basketballFragment);
         mapFragment.put(getString(R.string.Tennis), tennisFragment);
+        mapFragment.put(getString(R.string.Muay_Thai), thaiboxingFragment);
         mapFragment.put(getString(R.string.Financial), financialFragment);
 
 
@@ -148,6 +151,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                         list.add(new MenuItemInfo(0, getString(R.string.Basketball)));
                         list.add(new MenuItemInfo(0, getString(R.string.Tennis)));
                         list.add(new MenuItemInfo(0, getString(R.string.Financial)));
+                        list.add(new MenuItemInfo(0, getString(R.string.Muay_Thai)));
                         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base) {
                             @Override
                             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {

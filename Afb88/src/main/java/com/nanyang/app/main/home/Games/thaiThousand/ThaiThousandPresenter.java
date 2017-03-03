@@ -46,7 +46,7 @@ public class ThaiThousandPresenter extends BaseRetrofitPresenter<String, ThaiTho
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.d("Throwable", "accept: "+throwable.toString());
+                        Log.d("Throwable", "accept: " + throwable.toString());
                     }
                 }, new Action() {
                     @Override
