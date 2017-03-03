@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.shares;
 
 
 import android.os.Bundle;
-import android.view.View;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.BaseSportFragment;
@@ -84,8 +83,4 @@ public class SharesFragment extends BaseSportFragment<FootballPresenter> impleme
         return getString(R.string.Volleyball);
     }
 
-    @Override
-    public void toolbarRightClick(View v) {
-
-    }
 }

@@ -61,7 +61,6 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
         createPresenter(new BasketballPresenter(this));
         presenter.setType(((SportActivity) getActivity()).getType());
         presenter.refresh(((SportActivity) getActivity()).getType());
-        presenter.startUpdate();
         initAdapter();
 
     }
@@ -167,10 +166,7 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
     }
 
 
-    @Override
-    public void toolbarRightClick(View v) {
 
-    }
 
     @Override
     public void onGetData(List<MatchBean> data) {

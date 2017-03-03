@@ -85,8 +85,20 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
         if (hidden) {// 不在最前端界面显示
             presenter.stopUpdate();
         } else {// 重新显示到最前端中
-            presenter.startUpdate();
+            presenter.refresh("");
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        presenter.refresh("");
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.stopUpdate();
     }
 
     @Override
@@ -107,18 +119,20 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
             protected void initView(View view) {
                 super.initView(view);
                 RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
+                rv.setPadding(0,0,0,0);
                 rv.setLayoutManager(new LinearLayoutManager(mContext));
                 List<MenuItemInfo> list = new ArrayList<>();
                 list.add(new MenuItemInfo(0, getString(R.string.HK_ODDS),"HK"));//accType=
                 list.add(new MenuItemInfo(0, getString(R.string.MY_ODDS),"MY"));
                 list.add(new MenuItemInfo(0, getString(R.string.ID_ODDS),"ID"));
                 list.add(new MenuItemInfo(0, getString(R.string.EU_ODDS),"EU"));
-                BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base) {
+                BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base_item) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                         TextView tv = holder.getView(R.id.item_text_tv);
                         tv.setPadding(0, 0, 0, 0);
                         tv.setText(item.getText());
+                        tv.setBackgroundResource(R.color.black_grey);
                     }
 
                 };
