@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.tennis;
+package com.nanyang.app.main.home.sport.financial;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
@@ -36,7 +36,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/2/12 0012.
  */
 
-public class TennisFragment extends BaseSportFragment<TennisPresenter> implements SportContract.View<List<MatchBean>> {
+public class FinancialFragment extends BaseSportFragment<FinancialPresenter> implements SportContract.View<List<MatchBean>> {
     @Bind(R.id.swipe_target)
     RecyclerView rvContent;
     @Bind(R.id.tv_total_match)
@@ -57,7 +57,7 @@ public class TennisFragment extends BaseSportFragment<TennisPresenter> implement
     @Override
     public void initData() {
         super.initData();
-        createPresenter(new TennisPresenter(this));
+        createPresenter(new FinancialPresenter(this));
         presenter.setType(((SportActivity) getActivity()).getType());
         presenter.refresh(((SportActivity) getActivity()).getType());
         initAdapter();
@@ -161,7 +161,7 @@ public class TennisFragment extends BaseSportFragment<TennisPresenter> implement
 
     @Override
     public String getTitle() {
-        return getString(R.string.Tennis);
+        return getString(R.string.Financial);
     }
 
 

@@ -207,6 +207,7 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
             tvRightMark.setVisibility(View.INVISIBLE);
             llLeft1.setVisibility(View.INVISIBLE);
             llLeft2.setVisibility(View.INVISIBLE);
+            tvCollection.setVisibility(View.INVISIBLE);
             item.getOtherDataBean().setHasOE("0");
 
         } else {

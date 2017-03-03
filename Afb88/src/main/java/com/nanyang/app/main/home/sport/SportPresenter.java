@@ -788,7 +788,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
     public void switchedOddsType(String oddsType) {
         Flowable<String> flowable = getService(ApiService.class).getData(AppConstant.URL_ODDS_TYPE + oddsType);
-        Disposable subscription = flowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io())
+        Disposable subscription = mApiWrapper.applySchedulers(flowable)
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String allData) throws Exception {
