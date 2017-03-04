@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/vs_row_foot_ll"
+android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+>
+<View
+    android:layout_width="match_parent"
+    android:layout_height="8dp"
+    android:layout_marginBottom="10dp"
+    android:background="@drawable/rectangle_gradient_line_grey_white5"
+    />
+
+</LinearLayout>

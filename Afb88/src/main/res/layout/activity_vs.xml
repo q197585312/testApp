@@ -1,82 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-    <include layout="@layout/toolbar_layout"/>
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_layout" />
 
     <FrameLayout
 
-        android:background="@color/green900"
-       android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green900">
+
         <TextView
-            android:layout_gravity="center"
             android:id="@+id/vs_time_tv"
-            android:text="11/12  |  23:20"
-            android:paddingBottom="5dp"
-            android:maxLines="1"
-           android:layout_width="wrap_content"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"/>
+            android:layout_gravity="center"
+            android:maxLines="1"
+            android:paddingBottom="5dp"
+            android:text="11/12  |  23:20"
+            android:textColor="@color/white" />
     </FrameLayout>
-    <xs.com.mylibrary.myview.indicator.PagerSlidingTabStrip
+
+    <com.unkonw.testapp.libs.view.indicator.PagerSlidingTabStrip
         android:id="@+id/ballgame_tabs_pstabs"
         android:layout_width="match_parent"
         android:layout_height="25dip"
+        android:background="@color/green900"
         app:indicatorColor="@color/white"
-        app:indicatorHeight="0dp"
-        android:background="@color/blue_table" />
+        app:indicatorHeight="0dp" />
 
     <android.support.v4.view.ViewPager
+        android:background="@color/green_light_white"
         android:id="@+id/ballgame_pager_vp"
         android:layout_width="match_parent"
-        android:layout_weight="1"
         android:layout_height="0dp"
-       />
+        android:layout_weight="1" />
+
     <View
-        style="@style/line_horizontal_grey1"
-        android:background="@color/black_grey"/>
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/green_thick_line" />
+
     <LinearLayout
         android:id="@+id/ballgame_bottom_ll"
-        android:background="@color/grey_dialog_background"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:background="@color/grey_dialog_background"
         android:orientation="horizontal">
 
         <TextView
-            android:onClick="clickBack"
-            style="@style/rb_main_style"
+            android:id="@+id/tv_back"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@null"
             android:clickable="true"
-            android:textColor="@color/grey_dark"
             android:drawablePadding="2dp"
-            android:textSize="10sp"
-            android:drawableTop="@drawable/arrow_back_yellow"
-            android:text="@string/back" />
+            android:drawableTop="@mipmap/vs_oval_back"
+            android:text="@string/Back"
+            android:textColor="@color/grey_dark"
+            android:textSize="10sp" />
 
         <TextView
-            android:onClick="clickNoSettled"
-            style="@style/rb_main_style"
-            android:clickable="true"
+            android:id="@+id/tv_not_settled"
+            android:layout_gravity="center"
+            android:gravity="center"
+
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@null"
-            android:textSize="10sp"
+            android:clickable="true"
             android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/vs_oval_error"
+            android:text="@string/not_settled"
             android:textColor="@color/grey_dark"
-            android:drawableTop="@mipmap/oval_black_p_black"
-            android:text="@string/not_settled" />
+            android:textSize="10sp" />
 
         <TextView
-            android:onClick="clickSettled"
-            style="@style/rb_main_style"
+            android:id="@+id/tv_settled"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:background="@null"
-            android:drawablePadding="2dp"
             android:clickable="true"
-            android:textSize="10sp"
+            android:drawablePadding="2dp"
+            android:drawableTop="@mipmap/menu_right_black"
+            android:text="@string/settled"
             android:textColor="@color/grey_dark"
-            android:drawableTop="@mipmap/oval_black_hook_balck"
-            android:text="@string/settled" />
+            android:textSize="10sp" />
     </LinearLayout>
 </LinearLayout>

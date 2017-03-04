@@ -114,7 +114,7 @@ public class RegisterActivity extends BaseToolbarActivity<RegisterPresenter> imp
                 BaseListPopupWindow<String> popu = new BaseListPopupWindow<String>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, tvCurrency, tvCurrencyPorompt) {
                     @Override
                     public int getRecyclerViewId() {
-                        return R.id.base_rc;
+                        return R.id.base_rv;
                     }
 
                     @Override
@@ -129,7 +129,7 @@ public class RegisterActivity extends BaseToolbarActivity<RegisterPresenter> imp
                 BaseListPopupWindow<String> popupWindow = new BaseListPopupWindow<String>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, tvBankName, tvBankNamePrompt) {
                     @Override
                     public int getRecyclerViewId() {
-                        return R.id.base_rc;
+                        return R.id.base_rv;
                     }
 
                     @Override

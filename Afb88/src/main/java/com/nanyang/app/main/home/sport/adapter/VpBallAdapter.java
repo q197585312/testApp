@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport;
+package com.nanyang.app.main.home.sport.adapter;
 
 import android.app.Activity;
 import android.content.Context;
@@ -14,6 +14,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.SportPresenter;
 import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.football.FootballPresenter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
