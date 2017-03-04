@@ -8,6 +8,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
+import com.nanyang.app.load.forgetPassword.ForgetActivity;
 import com.nanyang.app.load.register.RegisterActivity;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
@@ -74,15 +75,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         switch (view.getId()) {
             case R.id.btn_login_login:
 
-                String us=edtLoginUsername.getText().toString();
-                String k=edtLoginPassword.getText().toString();//"a7c7366ecd6041489d08ecb9ac1f39c9"
-                presenter.login(new LoginInfo(us,k));
+                String us = edtLoginUsername.getText().toString();
+                String k = edtLoginPassword.getText().toString();//"a7c7366ecd6041489d08ecb9ac1f39c9"
+                presenter.login(new LoginInfo(us, k));
                 break;
             case R.id.tv_login_register:
                 skipAct(RegisterActivity.class);
                 break;
             case R.id.tv_login_forget:
-                skipAct(RegisterActivity.class);
+                skipAct(ForgetActivity.class);
                 break;
         }
     }

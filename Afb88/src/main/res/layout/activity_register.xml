@@ -26,7 +26,7 @@
                 android:layout_marginTop="10dp"
                 android:hint="@string/Account"
                 android:background="@null"
-                android:drawableBottom="@drawable/line_white"
+                android:drawableBottom="@drawable/line_black"
                 android:maxLines="1"
                 android:text=""
                 android:textColor="@color/black"
@@ -47,7 +47,7 @@
             <EditText
                 android:textSize="17sp"
                 android:background="@null"
-                android:drawableBottom="@drawable/line_white"
+                android:drawableBottom="@drawable/line_black"
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
@@ -71,7 +71,7 @@
 
             <EditText
                 android:background="@null"
-                android:drawableBottom="@drawable/line_white"
+                android:drawableBottom="@drawable/line_black"
                 android:id="@+id/edt_password_repeat"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
@@ -105,7 +105,7 @@
                 android:drawableRight="@mipmap/drop"
                 android:maxLines="1"
                 android:text=""
-                android:drawableBottom="@drawable/line_white"
+                android:drawableBottom="@drawable/line_black"
                 android:textColor="@color/black" />
 
             <TextView
@@ -119,7 +119,7 @@
                 android:textColor="@color/black_grey" />
             <EditText
                 android:background="@null"
-                android:drawableBottom="@drawable/line_white"
+                android:drawableBottom="@drawable/line_black"
                 android:id="@+id/edt_contactnum"
                 android:layout_width="match_parent"
                 android:textSize="17sp"
@@ -143,7 +143,7 @@
                 android:textColor="@color/black_grey" />
             <EditText
                 android:background="@null"
-                android:drawableBottom="@drawable/line_white"
+                android:drawableBottom="@drawable/line_black"
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:textSize="17sp"
@@ -176,7 +176,7 @@
                 android:drawableRight="@mipmap/drop"
                 android:maxLines="1"
                 android:text=""
-                android:drawableBottom="@drawable/line_white"
+                android:drawableBottom="@drawable/line_black"
                 android:textColor="@color/black" />
 
             <TextView
@@ -190,7 +190,7 @@
                 android:textColor="@color/black_grey" />
             <EditText
                 android:background="@null"
-                android:drawableBottom="@drawable/line_white"
+                android:drawableBottom="@drawable/line_black"
                 android:id="@+id/edt_accountname"
                 android:layout_width="match_parent"
                 android:layout_weight="1"
@@ -221,7 +221,7 @@
                 android:inputType="phone"
                 android:textSize="17sp"
                 android:background="@null"
-                android:drawableBottom="@drawable/line_white"
+                android:drawableBottom="@drawable/line_black"
                 android:maxLines="1"
                 android:text=""
                 android:textColor="@color/black"

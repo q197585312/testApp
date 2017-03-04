@@ -21,14 +21,16 @@ public class AfbApplication extends BaseApplication {
         super.onCreate();
         Logger.setDebug(true);
     }
-    private Map<String,Map<String,Map<Integer,BettingInfoBean>>> betDetail;
-    public  Map<String,Map<String,Map<Integer,BettingInfoBean>>> getBetDetail() {
-        if(betDetail==null)
-            betDetail=new HashMap<>();
+
+    private Map<String, Map<String, Map<Integer, BettingInfoBean>>> betDetail;
+
+    public Map<String, Map<String, Map<Integer, BettingInfoBean>>> getBetDetail() {
+        if (betDetail == null)
+            betDetail = new HashMap<>();
         return betDetail;
     }
 
-    public void setBetDetail( Map<String,Map<String,Map<Integer,BettingInfoBean>>> betDetail) {
+    public void setBetDetail(Map<String, Map<String, Map<Integer, BettingInfoBean>>> betDetail) {
         this.betDetail = betDetail;
     }
 
