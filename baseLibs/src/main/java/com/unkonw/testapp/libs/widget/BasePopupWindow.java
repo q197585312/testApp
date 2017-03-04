@@ -141,6 +141,7 @@ public abstract class BasePopupWindow {
         if (popWindow != null && popWindow.isShowing()) {
             ButterKnife.unbind(view);
             popWindow.dismiss();
+            popWindow=null;
         }
     }
     public void showPopupAtLocation(int x,int y) {

@@ -3,6 +3,7 @@ package com.nanyang.app;
 
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
+import com.nanyang.app.main.home.sport.model.ScaleBean;
 import com.unkonw.testapp.login.DataBean;
 import com.unkonw.testapp.login.ResBaseBean;
 
@@ -107,4 +108,6 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("_view/nodds1TH.aspx")
     Flowable<String> ThaiThsandBetSubmit(@FieldMap Map<String, String> info);
+    @GET
+    Flowable<ScaleBean> scale(@Url String url);
 }

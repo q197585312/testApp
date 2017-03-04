@@ -287,7 +287,7 @@ public class ThaiThousandFragment extends BaseGamesFragment<ThaiThousandPresente
                 BaseListPopupWindow<String> popupWindow = new BaseListPopupWindow<String>(mContext, v, v.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, tvGradeDate) {
                     @Override
                     public int getRecyclerViewId() {
-                        return R.id.base_rc;
+                        return R.id.base_rv;
                     }
 
                     @Override

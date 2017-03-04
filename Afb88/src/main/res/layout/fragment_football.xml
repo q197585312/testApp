@@ -66,10 +66,9 @@
 
 
         <TextView
-            android:textSize="12sp"
+            android:textSize="9sp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:drawablePadding="5dp"
             android:gravity="right|center_vertical"
             android:text="@string/AOS"
             android:textColor="@color/white" />

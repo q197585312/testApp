@@ -86,7 +86,7 @@
     <string name="full_time">Full Time</string>
     <string name="half_time">First Half</string>
     <string name="odd_even">Odd/Even</string>
-    <string name="correct_score">Correct Score</string>
+
     <string name="bet_amount">amount</string>
     <string name="betting_amount">Bet Amount</string>
     <string name="max_bet">Max Bet:</string>
@@ -116,5 +116,29 @@
     <string name="MY_ODDS">MY ODDS</string>
     <string name="ID_ODDS">ID ODDS</string>
     <string name="EU_ODDS">EU ODDS</string>
+    <string name="Financial">Financial</string>
+    <string name="Back">Back</string>
+    <string name="not_settled">Not Settled</string>
+    <string name="settled">Settled</string>
+
+    <!--VsActivity-->
+    <string name="scaleplate_asianplate">  Scaleplate/Asianplate  </string>
+    <string name="half_full_court_single_double">  Half_Full_Court/Single_Double  </string>
+    <string name="correct_score">Correct Score</string>
+
+
+    <string name="h1">1</string>
+    <string name="dx">x</string>
+    <string name="a2">2</string>
+    <string name="against">Against</string>
+    <string name="hh">HH</string>
+    <string name="hd">HD</string>
+    <string name="ha">HA</string>
+    <string name="dh">DH</string>
+    <string name="dd">DD</string>
+    <string name="da">DA</string>
+    <string name="ah">AH</string>
+    <string name="ad">AD</string>
+    <string name="aa">AA</string>
     <string name="Modify_Avatar">Modify Avatar</string>
 </resources>

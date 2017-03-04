@@ -107,9 +107,9 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
         presenter.stopUpdate();
     }
     //盘口选择
-    protected  void  clickOddsType(View view){
+    protected  void  clickOddsType(final View textView){
 
-        createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 350) {
+        createPopupWindow(new BasePopupWindow(mContext, textView, LinearLayout.LayoutParams.MATCH_PARENT, 350) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -136,19 +136,13 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
                     }
 
                 };
-                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-                    @Override
-                    public void onItemClick(View view, MenuItemInfo item, int position) {
-                        presenter.refresh(item.getType());
-                        popWindow.closePopupWindow();
-                    }
-                });
                 rv.setAdapter(baseRecyclerAdapter);
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         switchedOddsType(item.getType());
                         closePopupWindow();
+                        ((TextView)textView).setText(item.getText());
                     }
                 });
             }

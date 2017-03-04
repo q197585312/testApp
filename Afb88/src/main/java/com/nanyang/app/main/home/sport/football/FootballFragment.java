@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.football;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,11 +10,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.BaseSportFragment;
 import com.nanyang.app.main.home.sport.SportActivity;
 import com.nanyang.app.main.home.sport.SportContract;
-import com.nanyang.app.main.home.sport.VpBallAdapter;
+import com.nanyang.app.main.home.sport.adapter.VpBallAdapter;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
@@ -21,13 +23,16 @@ import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.utils.ViewHolder;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -75,6 +80,9 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
 
         rvContent.setLayoutManager(mLayoutManager);
         baseRecyclerAdapter = new VpBallAdapter(mContext, new ArrayList<MatchBean>(), R.layout.sport_match_item);
+        MyPagerAdapter<MenuItemInfo> headerAdapter = headerAdapter();
+        headerAdapter.setDatas(new ArrayList<>(Arrays.asList(new MenuItemInfo(0,"FULL   H/A","FULL    O/U"),new MenuItemInfo(0,"HALF   H/A","HALF    O/U"))));
+        vpHeader.setAdapter(headerAdapter);
         baseRecyclerAdapter.setVpHeader(vpHeader);
         baseRecyclerAdapter.setPresenter(presenter);
         rvContent.setAdapter(baseRecyclerAdapter);
@@ -102,6 +110,24 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                 }
             }
         });
+    }
+
+    @NonNull
+    private MyPagerAdapter<MenuItemInfo> headerAdapter() {
+        return new MyPagerAdapter<MenuItemInfo>(mContext) {
+            @Override
+            protected void convert(ViewHolder helper, MenuItemInfo o, int position) {
+                TextView left = helper.getView(R.id.tv_head_left);
+                TextView right = helper.getView(R.id.tv_head_right);
+                left.setText(o.getText());
+                right.setText(o.getType());
+            }
+
+            @Override
+            protected int getPageLayoutRes() {
+                return R.layout.sport_head_vp_item;
+            }
+        };
     }
 
 

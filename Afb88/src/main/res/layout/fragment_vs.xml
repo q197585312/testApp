@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <include layout="@layout/layout_base_recycler_view"/>
+    <TextView
+        android:id="@+id/tv_mix_bet_count"
+        android:layout_gravity="bottom"
+        android:layout_margin="10dp"
+        android:layout_width="50dp"
+        android:gravity="center"
+        android:textColor="@color/white"
+        android:text="0注"
+        android:visibility="visible"
+        android:maxLines="1"
+        android:padding="5dp"
+        android:textStyle="bold"
+        android:layout_height="50dp"
+        android:background="@mipmap/mix_parlay_float_bg"
+        />
+</FrameLayout>

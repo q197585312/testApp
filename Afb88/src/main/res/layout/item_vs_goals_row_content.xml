@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/include_vs_table_header" />
+
+    <View style="@style/line_horizontal_grey1" />
+
+    <LinearLayout
+        style="@style/style_match_wrap"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:gravity="center"
+            style="@style/style_weight_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/vs_row_content_tv11"
+                style="@style/text_wrap_grey12"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="主"
+                android:textColor="@color/grey_dark_word" />
+
+            <TextView
+                android:id="@+id/vs_row_content_tv12"
+                style="@style/text_wrap_black12"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:text="" />
+        </LinearLayout>
+
+        <View style="@style/line_vertical_grey1" />
+
+        <LinearLayout
+            android:gravity="center"
+            style="@style/style_weight_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/vs_row_content_tv21"
+                style="@style/text_wrap_grey12"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="主"
+                android:textColor="@color/grey_dark_word" />
+
+            <TextView
+                android:id="@+id/vs_row_content_tv22"
+                style="@style/text_wrap_black12"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:padding="5dp"
+                android:text="" />
+        </LinearLayout>
+
+        <View style="@style/line_vertical_grey1" />
+
+        <LinearLayout
+            android:gravity="center"
+            style="@style/style_weight_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/vs_row_content_tv31"
+                style="@style/text_wrap_grey12"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="主"
+                android:textColor="@color/grey_dark_word" />
+
+            <TextView
+                android:id="@+id/vs_row_content_tv32"
+                style="@style/text_wrap_black12"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:text="" />
+        </LinearLayout>
+        <View style="@style/line_vertical_grey1"
+            android:id="@+id/vs_row_line4"/>
+
+        <LinearLayout
+            android:id="@+id/vs_row_content_ll4"
+            android:gravity="center"
+            style="@style/style_weight_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/vs_row_content_tv41"
+                style="@style/text_wrap_grey12"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="主"
+                android:textColor="@color/grey_dark_word" />
+
+            <TextView
+                android:id="@+id/vs_row_content_tv42"
+                style="@style/text_wrap_black12"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:text="" />
+        </LinearLayout>
+        <View style="@style/line_vertical_grey1"
+            android:id="@+id/vs_row_line5"/>
+
+        <LinearLayout
+            android:id="@+id/vs_row_content_ll5"
+            android:gravity="center"
+            style="@style/style_weight_horizontal"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/vs_row_content_tv51"
+                style="@style/text_wrap_grey12"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:text="主"
+                android:textColor="@color/grey_dark_word" />
+
+            <TextView
+                android:id="@+id/vs_row_content_tv52"
+                style="@style/text_wrap_black12"
+                android:layout_weight="1"
+                android:padding="5dp"
+                android:textStyle="bold"
+                android:text="" />
+        </LinearLayout>
+    </LinearLayout>
+<include layout="@layout/include_vs_table_footer"/>
+</LinearLayout>

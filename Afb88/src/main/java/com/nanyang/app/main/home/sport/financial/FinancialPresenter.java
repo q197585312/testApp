@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.tennis;
+package com.nanyang.app.main.home.sport.financial;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
@@ -24,10 +24,9 @@ import java.util.Map;
 import io.reactivex.Flowable;
 
 
+public class FinancialPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
 
-public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
-
-    TennisPresenter(SportContract.View<List<MatchBean>> view) {
+    FinancialPresenter(SportContract.View<List<MatchBean>> view) {
         super(view);
     }
 
@@ -88,13 +87,13 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
         String url;
         switch (type) {
             case "Running":
-                url = AppConstant.URL_TENNIS_RUNNING;
+                url = AppConstant.URL_FINANCIAL_RUNNING;
                 break;
             case "Today":
-                url = AppConstant.URL_TENNIS_TODAY;
+                url = AppConstant.URL_FINANCIAL_TODAY;
                 break;
             default:
-                url = AppConstant.URL_TENNIS_EARLY;
+                url = AppConstant.URL_FINANCIAL_EARLY;
                 break;
         }
         setType(type);
