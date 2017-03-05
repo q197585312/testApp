@@ -190,8 +190,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
         new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:0", result.getFHCS().getC4_0(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:0", result.getFHCS().getC0_4(), result.getFHCS().getOid()))),
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:1", result.getFHCS().getC4_1(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:1", result.getFHCS().getC1_4(), result.getFHCS().getOid()))),
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:2", result.getFHCS().getC4_2(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:2", result.getFHCS().getC2_4(), result.getFHCS().getOid()))),
-                new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:3", result.getFHCS().getC4_3(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:3", result.getFHCS().getC3_4(), result.getFHCS().getOid())), true))
-        ;
+                new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:3", result.getFHCS().getC4_3(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:3", result.getFHCS().getC3_4(), result.getFHCS().getOid())), true));
         cf.setData(rows);
     }
 
