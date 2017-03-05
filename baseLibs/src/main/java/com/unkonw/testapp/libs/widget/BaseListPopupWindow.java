@@ -73,6 +73,6 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
 
     @Override
     protected int onSetLayoutRes() {
-        return R.layout.layout_base_recyclerview;
+        return R.layout.layout_base_recycler_view;
     }
 }
