@@ -111,6 +111,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     }
 
     public void addMixParlayBet(BettingInfoBean info, final Map<String, Map<Integer, BettingInfoBean>> keyMap, final MatchBean item) {
+
         StringBuilder builder = getBetUrl(info);
 
         //http://a8197c.a36588.com/_bet/JRecPanel.aspx?g=2&b=home_par&oId=12036347&odds=17.6
@@ -141,6 +142,8 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
                 });
         mCompositeSubscription.add(subscription);
     }
+
+
 
     @NonNull
     private StringBuilder getBetUrl(BettingInfoBean info) {

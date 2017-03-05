@@ -1,27 +1,13 @@
 package com.nanyang.app.main.home.sport.additional;
 
-import android.os.Bundle;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.dialog.BetBasePop;
+import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseFragment;
-
-import java.util.List;
-
-import butterknife.Bind;
-import butterknife.BindColor;
-import nanyang.com.dig88.Entity.VsTableRowBean;
-import nanyang.com.dig88.Fragment.BaseFragment;
-import nanyang.com.dig88.R;
-import nanyang.com.dig88.Table.entity.BettingInfoBean;
-import nanyang.com.dig88.Table.popupwindow.BetBasePop;
-import xs.com.mylibrary.base.AdapterViewContent;
-import xs.com.mylibrary.base.QuickAdapterImp;
-import xs.com.mylibrary.base.ViewHolder;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshBase;
-import xs.com.mylibrary.pulltorefresh.library.PullToRefreshListView;
 
 /**
  * Created by Administrator on 2015/11/4.
@@ -32,7 +18,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
 
 
     @Override
-    protected void convertItem(MyRecyclerViewHolder holder, int position, VsTableRowBean item) {
+    protected void convertItem(MyRecyclerViewHolder helper, int position, final VsTableRowBean item) {
 
         helper.setVisible(R.id.vs_row_head_ll,item.isHasHead());
         helper.setVisible(R.id.vs_row_foot_ll,item.isHasFoot());
@@ -57,7 +43,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
                         pop.showPopupCenterWindow();
                         BettingInfoBean info=new BettingInfoBean("s",item.getB(),item.getRows().get(3).getSc(),"",item.getRows().get(3).getValue(),
                                 "","",item.getModuleTitle(),item.getRows().get(3).getOid()+"","",0,false,false );
-                        pop.getData(info);
+                        pop.initData(info);
                     }
                 }
             });
@@ -69,7 +55,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
                         pop.showPopupCenterWindow();
                         BettingInfoBean info=new BettingInfoBean("s",item.getB(),item.getRows().get(4).getSc(),"",item.getRows().get(4).getValue(),
                                 "","",item.getModuleTitle(),item.getRows().get(4).getOid()+"","",0,false,false );
-                        pop.getData(info);
+                        pop.initData(info);
                     }
                 }
             });
@@ -94,7 +80,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
                     pop.showPopupCenterWindow();
                     BettingInfoBean info=new BettingInfoBean("s",item.getB(),item.getRows().get(0).getSc(),"",item.getRows().get(0).getValue(),
                             "","",item.getModuleTitle(),item.getRows().get(0).getOid()+"","",0,false,false );
-                    pop.getData(info);
+                    pop.initData(info);
                 }
             }
         });
@@ -106,7 +92,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
                     pop.showPopupCenterWindow();
                     BettingInfoBean info=new BettingInfoBean("s",item.getB(),item.getRows().get(1).getSc(),"",item.getRows().get(1).getValue(),
                             "","",item.getModuleTitle(),item.getRows().get(1).getOid()+"","",0,false,false );
-                    pop.getData(info);
+                    pop.initData(info);
                 }
             }
         });
@@ -118,7 +104,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
                     pop.showPopupCenterWindow();
                     BettingInfoBean info=new BettingInfoBean("s",item.getB(),item.getRows().get(2).getSc(),"",item.getRows().get(2).getValue(),
                             "","",item.getModuleTitle(),item.getRows().get(2).getOid()+"","",0,false,false );
-                    pop.getData(info);
+                    pop.initData(info);
                 }
             }
         });

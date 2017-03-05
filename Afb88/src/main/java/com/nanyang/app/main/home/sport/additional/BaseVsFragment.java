@@ -30,6 +30,7 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     List<T> list;
     @Bind(R.id.tv_mix_bet_count)
     TextView tvMixBetCount;
+    protected boolean isMix;
 
     @Override
     public int onSetLayoutId() {
@@ -39,6 +40,12 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
+        isMix=((VsActivity)getActivity()).getMixParlay();
+        if(isMix){
+            tvMixBetCount.setVisibility(View.VISIBLE);
+        }else{
+            tvMixBetCount.setVisibility(View.GONE);
+        }
         baseRc.setLayoutManager(new LinearLayoutManager(mContext));
         list = new ArrayList<>();
         adapter = new BaseRecyclerAdapter<T>(mContext, list, onSetItemLayoutId()) {

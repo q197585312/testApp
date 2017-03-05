@@ -26,11 +26,11 @@ public interface SportContract {
         void onCreatePopupWindow(BetBasePop betPop);
     }
 
-    interface Presenter extends IBasePresenter {
+    interface Presenter extends IBasePresenter ,BetPresenter {
         void refresh(String type);
         void collection();
         void menu();
         void mixParlay();
-        void bet(String s);
+
     }
 }

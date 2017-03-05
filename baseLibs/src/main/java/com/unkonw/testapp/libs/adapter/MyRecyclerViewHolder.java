@@ -23,19 +23,18 @@ import com.unkonw.testapp.R;
 /**
  * Created by zzho on 2015/12/30.
  */
-public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
+public class MyRecyclerViewHolder extends RecyclerView.ViewHolder {
 
-    public DisplayImageOptions options ;
-    private final SparseArray<View> mViews= new SparseArray<View>();
+    public DisplayImageOptions options;
+    private final SparseArray<View> mViews = new SparseArray<View>();
     private View mConvertView;
 
-    public MyRecyclerViewHolder(View itemView)
-    {
+    public MyRecyclerViewHolder(View itemView) {
         super(itemView);
-        mConvertView=itemView;
+        mConvertView = itemView;
     }
 
-    public View getHolderView(){
+    public View getHolderView() {
         return mConvertView;
     }
 
@@ -45,11 +44,9 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
      * @param viewId
      * @return
      */
-    public <T extends View> T getView(int viewId)
-    {
+    public <T extends View> T getView(int viewId) {
         View view = mViews.get(viewId);
-        if (view == null)
-        {
+        if (view == null) {
             view = mConvertView.findViewById(viewId);
             mViews.put(viewId, view);
         }
@@ -57,11 +54,11 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
     }
 
     public TextView getTextView(int viewId) {
-        return (TextView)getView(viewId);
+        return (TextView) getView(viewId);
     }
 
     public ProgressBar getProgressBar(int viewId) {
-        return (ProgressBar)getView(viewId);
+        return (ProgressBar) getView(viewId);
     }
 
     public Button getButton(int viewId) {
@@ -83,6 +80,7 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
     public RatingBar getRatingBar(int viewId) {
         return (RatingBar) getView(viewId);
     }
+
     public GridView getGridView(int viewId) {
         return (GridView) getView(viewId);
     }
@@ -94,14 +92,13 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
      * @param text
      * @return
      */
-    public MyRecyclerViewHolder setText(int viewId, String text)
-    {
+    public MyRecyclerViewHolder setText(int viewId, String text) {
         TextView view = getView(viewId);
         view.setText(text);
         return this;
     }
 
-    public MyRecyclerViewHolder setTextColor(int viewId, int colorId){
+    public MyRecyclerViewHolder setTextColor(int viewId, int colorId) {
         TextView view = getView(viewId);
         view.setTextColor(colorId);
         return this;
@@ -114,8 +111,7 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
      * @param drawableId
      * @return
      */
-    public MyRecyclerViewHolder setImageResource(int viewId, int drawableId)
-    {
+    public MyRecyclerViewHolder setImageResource(int viewId, int drawableId) {
         ImageView view = getView(viewId);
         view.setImageResource(drawableId);
 
@@ -128,8 +124,7 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
      * @param viewId
      * @return
      */
-    public MyRecyclerViewHolder setImageBitmap(int viewId, Bitmap bm)
-    {
+    public MyRecyclerViewHolder setImageBitmap(int viewId, Bitmap bm) {
         ImageView view = getView(viewId);
         view.setImageBitmap(bm);
         return this;
@@ -141,22 +136,21 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
      * @param viewId
      * @return
      */
-    public MyRecyclerViewHolder setImageByUrl(int viewId, String url)
-    {
-        if(!TextUtils.isEmpty(url)){
+    public MyRecyclerViewHolder setImageByUrl(int viewId, String url) {
+        if (!TextUtils.isEmpty(url)) {
             ImageView img = getView(viewId);
-            if(options==null)
-                options= new DisplayImageOptions.Builder()
-                    .showImageOnLoading(R.mipmap.ic_launcher)
-                    .showImageForEmptyUri(R.mipmap.ic_launcher)
-                    .showImageOnFail(R.mipmap.ic_launcher)
-                    .cacheInMemory(true)
-                    .cacheOnDisc(true)
-                    .displayer(new FadeInBitmapDisplayer(200))// 淡入
-                    .bitmapConfig(Bitmap.Config.RGB_565)
-                    .considerExifParams(true).build();
+            if (options == null)
+                options = new DisplayImageOptions.Builder()
+                        .showImageOnLoading(R.mipmap.ic_launcher)
+                        .showImageForEmptyUri(R.mipmap.ic_launcher)
+                        .showImageOnFail(R.mipmap.ic_launcher)
+                        .cacheInMemory(true)
+                        .cacheOnDisc(true)
+                        .displayer(new FadeInBitmapDisplayer(200))// 淡入
+                        .bitmapConfig(Bitmap.Config.RGB_565)
+                        .considerExifParams(true).build();
             ImageLoader.getInstance().displayImage(url, img, options);
-        }else{
+        } else {
             //TODO 默认图片
         }
 
@@ -169,17 +163,16 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
      * @param viewId
      * @return
      */
-    public MyRecyclerViewHolder setImageByUrlHasTag(int viewId, final String url, DisplayImageOptions option)
-    {
+    public MyRecyclerViewHolder setImageByUrlHasTag(int viewId, final String url, DisplayImageOptions option) {
         ImageView img = getView(viewId);
         img.setTag(url);
-        ImageLoader.getInstance().displayImage(url, img, option,new SimpleImageLoadingListener(){
+        ImageLoader.getInstance().displayImage(url, img, option, new SimpleImageLoadingListener() {
             @Override
             public void onLoadingComplete(String imageUri, View view,
                                           Bitmap loadedImage) {
                 super.onLoadingComplete(imageUri, view, loadedImage);
-                if(view.getTag().equals(url)){
-                    ((ImageView)view).setImageBitmap(loadedImage);
+                if (view.getTag().equals(url)) {
+                    ((ImageView) view).setImageBitmap(loadedImage);
                 }
             }
 
@@ -188,4 +181,20 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder{
     }
 
 
+    public void setVisible(int id, boolean visible) {
+        if (visible)
+            getView(id).setVisibility(View.VISIBLE);
+        else
+            getView(id).setVisibility(View.GONE);
+    }
+    public void  setVisibility(int id, int Visibility){
+        getView(id).setVisibility(Visibility);
+    }
+    public void setClickLisenter(int id, View.OnClickListener clickListener) {
+        getView(id).setOnClickListener(clickListener);
+    }
+
+    public void setBackgroundRes(int id, int res) {
+        getView(id).setBackgroundResource(res);
+    }
 }

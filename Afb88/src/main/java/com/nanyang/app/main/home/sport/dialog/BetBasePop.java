@@ -11,7 +11,7 @@ import android.widget.TextView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.SportContract;
+import com.nanyang.app.main.home.sport.BetPresenter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.unkonw.testapp.libs.base.BaseActivity;
@@ -60,7 +60,7 @@ public class BetBasePop extends BasePopupWindow {
     private String popTitle;
     private String state = "";
     private BettingInfoBean info;
-    private SportContract.Presenter presenter;
+    private BetPresenter presenter;
 
     public BetBasePop(Context context, View v) {
         super(context, v);
@@ -174,7 +174,7 @@ public class BetBasePop extends BasePopupWindow {
 
     }
 
-    public void setBetData(BettingPromptBean result, SportContract.Presenter mPresenter) {
+    public void setBetData(BettingPromptBean result, BetPresenter mPresenter) {
         this.presenter = mPresenter;
         ((BaseActivity) context).hideLoadingDialog();
         bean = result;

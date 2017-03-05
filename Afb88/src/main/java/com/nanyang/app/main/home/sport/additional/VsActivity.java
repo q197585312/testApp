@@ -75,8 +75,11 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
         if (isMixParlay) {
             fragmentsList = new ArrayList<>();
             fragmentsList.add(sf);
-        } else
-            fragmentsList = new ArrayList<>(Arrays.asList(sf, bf, cf));
+        } else {
+            fragmentsList.add(sf);
+            fragmentsList.add(bf);
+            fragmentsList.add(cf);
+        }
         ballgamePagerVp.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentsList));
         ballgameTabsPstabs.setViewPager(ballgamePagerVp);
         ballgameTabsPstabs.setTextColorResource(R.color.green900);
