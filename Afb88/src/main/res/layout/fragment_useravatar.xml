@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/rectangle_green_gradient"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar_layout" />
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/user_banner" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="2.3"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/img_header"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@mipmap/center_head" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.7" />
+
+        <TextView
+            android:id="@+id/avatar_native"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:background="@color/yellow_center_user"
+            android:gravity="center"
+            android:paddingLeft="50px"
+            android:paddingRight="50px"
+            android:text="Upload files"
+            android:textColor="@color/white" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1.5">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginBottom="5px"
+                android:layout_marginLeft="10px"
+                android:text="Or choose a avatar" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:layout_margin="5px"
+        android:background="@color/black" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/avatar_rc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="5px"
+            android:layout_marginRight="5px"
+            android:layout_marginTop="20px"></android.support.v7.widget.RecyclerView>
+
+        <TextView
+            android:id="@+id/avatar_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="70px"
+            android:layout_marginLeft="10px"
+            android:layout_marginRight="10px"
+            android:layout_marginTop="80px"
+            android:background="@color/yellow_center_user"
+            android:gravity="center"
+            android:paddingBottom="20px"
+            android:paddingTop="20px"
+            android:text="@string/Submit"
+            android:textColor="@color/white" />
+    </RelativeLayout>
+
+</LinearLayout>

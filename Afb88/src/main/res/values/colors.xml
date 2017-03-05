@@ -10,4 +10,5 @@
     <color name="green_thai_thousand_bg">#E9FBDB</color>
     <color name="green_thai_thousand_wrol">#248C26</color>
     <color name="red_thai_thousand_wrol">#FF0000</color>
+    <color name="yellow_center_user">#FFC935</color>
 </resources>

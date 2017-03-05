@@ -24,39 +24,44 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
-    <application android:allowBackup="true" android:icon="@mipmap/ic_launcher"
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+
+    <application
         android:name=".AfbApplication"
-        android:label="@string/app_name" android:supportsRtl="true"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="AllowBackup">
 
-        <activity android:name=".load.login.LoginActivity">
-        </activity>
-        <activity android:name=".load.welcome.WelcomeActivity"
-           >
+        <activity android:name=".load.login.LoginActivity"></activity>
+        <activity android:name=".load.welcome.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".main.MainActivity"/>
-        <activity android:name=".load.register.RegisterActivity"/>
-        <activity android:name=".main.home.sport.SportActivity"/>
+        <activity android:name=".main.MainActivity" />
+        <activity android:name=".load.register.RegisterActivity" />
+        <activity android:name=".main.home.sport.SportActivity" />
         <activity android:name="com.unkonw.testapp.training.TestActivity">
-        <!--    <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            <!--    <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>-->
         </activity>
-        <activity android:name=".main.home.poker.PokerCasinoActivity"/>
-        <activity android:name=".main.home.Games.GamesActivity"/>
-        <activity android:name=".main.home.discount.DiscountActivity"/>
+        <activity android:name=".main.home.poker.PokerCasinoActivity" />
+        <activity android:name=".main.home.Games.GamesActivity" />
+        <activity android:name=".main.home.discount.DiscountActivity" />
         <activity android:name=".main.home.sport.mixparlayList.MixOrderListActivity" />
-
+        <activity android:name=".main.center.PersonCenterActivity" />
+        <activity android:name=".main.center.model.NativePhotoActivity" />
+        <activity android:name=".load.forgetPassword.ForgetActivity" />
+        <activity android:name=".main.order.recharge.RechargeActivity" />
     </application>
 
 </manifest>

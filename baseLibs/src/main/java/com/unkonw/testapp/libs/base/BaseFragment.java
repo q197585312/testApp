@@ -26,7 +26,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
      */
 /*    public Api mApiWrapper;*/
 
-    public  T presenter;
+    public T presenter;
     protected BasePopupWindow popWindow;
     private String title;
 
@@ -78,6 +78,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
     public void initApi() {
         mCompositeSubscription  = mContext.getCompositeSubscription();
     }*/
+
     /**
      * 设置布局文件
      *
@@ -85,9 +86,11 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
      */
     public abstract int onSetLayoutId();
 
-    public void initView(){}
+    public void initView() {
+    }
 
-    public void initData(){}
+    public void initData() {
+    }
 
     public void showToast(String content) {
         mContext.showToast(content);
@@ -100,19 +103,21 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
     public void hideLoadingDialog() {
         mContext.hideLoadingDialog();
     }
+
     public void skipAct(Class clazz) {
         mContext.skipAct(clazz);
     }
 
     public void skipAct(Class clazz, Bundle bundle) {
-        mContext.skipAct(clazz,bundle);
+        mContext.skipAct(clazz, bundle);
     }
 
     public void skipAct(Class clazz, Bundle bundle, int flags) {
-        mContext.skipAct(clazz,bundle,flags);
+        mContext.skipAct(clazz, bundle, flags);
     }
-    public BasePopupWindow createPopupWindow(BasePopupWindow popupWindow){
-       return this.popWindow=mContext.createPopupWindow(popupWindow);
+
+    public BasePopupWindow createPopupWindow(BasePopupWindow popupWindow) {
+        return this.popWindow = mContext.createPopupWindow(popupWindow);
     }
 
     @Override
@@ -126,6 +131,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
         super.onDestroyView();
         ButterKnife.unbind(this);
     }
+
     public String getTitle() {
         return title;
     }
@@ -133,5 +139,9 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void initHead() {
+
     }
 }
