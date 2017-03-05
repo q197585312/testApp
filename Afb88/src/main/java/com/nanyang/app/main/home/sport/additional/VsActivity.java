@@ -3,14 +3,12 @@ package com.nanyang.app.main.home.sport.additional;
 
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
 import com.nanyang.app.main.home.sport.model.MatchBean;
@@ -18,11 +16,8 @@ import com.nanyang.app.main.home.sport.model.ScaleBean;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.indicator.PagerSlidingTabStrip;
-import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -186,7 +181,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("2:1", result.getFHCS().getC2_1(), "21", result.getFHCS().getOid()), new VsCellBean("2:2", result.getFHCS().getC2_2(), "22", result.getFHCS().getOid()), new VsCellBean("1:2", result.getFHCS().getC1_2(), "12", result.getFHCS().getOid()))),
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("3:0", result.getFHCS().getC3_0(), "30", result.getFHCS().getOid()), new VsCellBean("3:3", result.getFHCS().getC3_3(), "33", result.getFHCS().getOid()), new VsCellBean("0:3", result.getFHCS().getC0_3(), "3", result.getFHCS().getOid()))),
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("3:1", result.getFHCS().getC3_1(), "31", result.getFHCS().getOid()), new VsCellBean("", result.getFHCS().getC4_4(), result.getFHCS().getOid()), new VsCellBean("1:3", result.getFHCS().getC1_3(), "13", result.getFHCS().getOid()))),
-                new VsTableRowBean("csr", Arrays.asList(new VsCellBean("3:2", result.getFHCS().getC3_2(), "32", result.getFHCS().getOid()), new VsCellBean(getString(R.string.other), result.getFHCS().getAOS(), "80", result.getFHCS().getOid()), new VsCellBean("2:3", result.getFHCS().getC2_3(), "23", result.getFHCS().getOid())), true)
+                new VsTableRowBean("csr", Arrays.asList(new VsCellBean("3:2", result.getFHCS().getC3_2(), "32", result.getFHCS().getOid()), new VsCellBean(getString(R.string.other), result.getFHCS().getAOS(), "80", result.getFHCS().getOid()), new VsCellBean("2:3", result.getFHCS().getC2_3(), "23", result.getFHCS().getOid())), true),
         new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:0", result.getFHCS().getC4_0(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:0", result.getFHCS().getC0_4(), result.getFHCS().getOid()))),
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:1", result.getFHCS().getC4_1(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:1", result.getFHCS().getC1_4(), result.getFHCS().getOid()))),
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:2", result.getFHCS().getC4_2(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:2", result.getFHCS().getC2_4(), result.getFHCS().getOid()))),
@@ -252,10 +247,10 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
                 finish();
                 break;
             case R.id.tv_not_settled:
-                skipAct(BetOrderActivity.class);
+//                skipAct(BetOrderActivity.class);
                 break;
             case R.id.tv_settled:
-                skipAct(BetSettlementFirstActivity.class);
+//                skipAct(BetSettlementFirstActivity.class);
                 break;
         }
     }
