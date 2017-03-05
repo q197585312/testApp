@@ -2,12 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/vs_row_head_ll"
     android:orientation="vertical"
-    style="@style/style_match_wrap">
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
         <View
-            style="@style/line_horizontal_grey1"/>
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/grey_thick_line"
+            />
         <TextView
             android:id="@+id/vs_header_module_title_tv"
-            style="@style/text_match_black12"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
             android:padding="5dp"
             android:text="@string/home_and_away"
             android:gravity="center"/>
@@ -15,12 +21,15 @@
             android:id="@+id/vs_row_head_second_ll"
             android:orientation="horizontal"
             android:padding="5dp"
-            style="@style/style_match_wrap">
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
             <TextView
                 android:id="@+id/vs_header_left_title_tv"
                 android:gravity="center"
                 android:textSize="10sp"
-                style="@style/style_weight_horizontal"
+               android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:textColor="@color/black_grey"
                 android:text="@string/encounter"/>
             <TextView
@@ -28,14 +37,18 @@
                 android:textSize="10sp"
                 android:gravity="center"
                 android:textColor="@color/black_grey"
-                style="@style/style_weight_horizontal"
+               android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="@string/full_time"/>
             <TextView
                 android:id="@+id/vs_header_right_title_tv"
                 android:textSize="10sp"
                 android:textColor="@color/black_grey"
                 android:gravity="center"
-                style="@style/style_weight_horizontal"
+               android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:text="@string/half_time"/>
             </LinearLayout>
 </LinearLayout>

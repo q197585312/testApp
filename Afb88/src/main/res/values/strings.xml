@@ -141,4 +141,16 @@
     <string name="ad">AD</string>
     <string name="aa">AA</string>
     <string name="Modify_Avatar">Modify Avatar</string>
+
+    <!--ScaleFragment-->
+    <string name="encounter">Encounter</string>
+    <string name="home_and_away">Home And Away</string>
+
+    <string name="single_double">Single/Double</string>
+
+
+    <string name="statement">Statement</string>
+    <string name="event">Event</string>
+    <string name="detail">Detail</string>
+
 </resources>

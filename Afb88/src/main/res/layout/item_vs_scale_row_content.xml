@@ -6,78 +6,107 @@
 
     <include layout="@layout/include_vs_table_header" />
 
-    <View style="@style/line_horizontal_grey1" />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/grey_thick_line" />
 
     <LinearLayout
-        style="@style/style_match_wrap"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <LinearLayout
-            style="@style/style_weight_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/vs_row_content_tv11"
-                style="@style/text_wrap_grey12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:text="主"
-                android:textColor="@color/grey_dark_word" />
+                android:textColor="@color/grey_dark_word"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/vs_row_content_tv12"
-                style="@style/text_wrap_black12"
-                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text="" />
+                android:text=""
+                android:textColor="@color/black_grey"
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <View style="@style/line_vertical_grey1" />
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_thick_line" />
 
         <LinearLayout
-            style="@style/style_weight_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/vs_row_content_tv21"
-                style="@style/text_wrap_grey12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:text="主"
-                android:textColor="@color/grey_dark_word" />
+                android:textColor="@color/grey_dark_word"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/vs_row_content_tv22"
-                style="@style/text_wrap_black12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:textStyle="bold"
-                android:text="" />
+                android:text=""
+                android:textColor="@color/black_grey"
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <View style="@style/line_vertical_grey1" />
+        <View
+            android:layout_width="0.5dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_thick_line" />
 
         <LinearLayout
-            style="@style/style_weight_horizontal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/vs_row_content_tv31"
-                style="@style/text_wrap_grey12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
                 android:text="主"
-                android:textColor="@color/grey_dark_word" />
+                android:textColor="@color/grey_dark_word"
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/vs_row_content_tv32"
-                style="@style/text_wrap_black12"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:textStyle="bold"
-                android:text="" />
+                android:text=""
+                android:textColor="@color/black_grey"
+                android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
-<include layout="@layout/include_vs_table_footer"/>
+
+    <include layout="@layout/include_vs_table_footer" />
 </LinearLayout>
