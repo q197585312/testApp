@@ -50,6 +50,7 @@
     <!--green-->
     <color name="green500">#4CAF50</color>
     <color name="green900">#379e48</color>
+    <color name="green_trans">#dd4CAF50</color>
     <color name="green_light">#FF99D7A2</color>
     <color name="green_light_white">#FFC9EBD5</color>
 

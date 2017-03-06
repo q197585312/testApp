@@ -170,7 +170,10 @@
           android:background="@color/green_white_thick_line"
           android:layout_width="0.6dp"
           android:layout_height="match_parent"/>
-
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"/>
         <com.nanyang.app.myView.LinkedViewPager.ViewPager
             android:id="@+id/module_center_vp"
             android:layout_width="140dp"
@@ -182,7 +185,10 @@
             android:background="@color/green_white_thick_line"
             android:layout_width="0.6dp"
             android:layout_height="match_parent"/>
-
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"/>
         <TextView
             android:id="@+id/module_right_mark_tv"
             android:layout_width="wrap_content"
@@ -192,6 +198,10 @@
 
     <View
         android:background="@color/green_white_thick_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"/>
+    <View
+        android:background="@color/grey_dialog_background"
         android:layout_width="match_parent"
         android:layout_height="0.6dp"/>
 </LinearLayout>

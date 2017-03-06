@@ -18,7 +18,7 @@
         android:layout_height="match_parent" />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_content"
-        android:background="@drawable/rectangle_green_gradient_trans"
+        android:background="@color/green_trans"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="200dp"
