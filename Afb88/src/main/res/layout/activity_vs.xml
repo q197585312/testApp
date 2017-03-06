@@ -28,7 +28,7 @@
         android:id="@+id/ballgame_tabs_pstabs"
         android:layout_width="match_parent"
         android:layout_height="25dip"
-        android:background="@color/green900"
+        android:background="@color/green_light_white"
         app:indicatorColor="@color/white"
         app:indicatorHeight="0dp" />
 
@@ -45,6 +45,7 @@
         android:background="@color/green_thick_line" />
 
     <LinearLayout
+        android:paddingTop="5dp"
         android:id="@+id/ballgame_bottom_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

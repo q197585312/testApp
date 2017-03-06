@@ -75,10 +75,13 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        assert tvToolbarTitle != null;
         setContentView(R.layout.activity_mix_parlay_list);
         createPresenter(new MixOrderListPresenter(this));
         initBottomListData();
         initListData();
+        tvToolbarTitle.setBackgroundResource(0);
+        tvToolbarTitle.setText("Order");
     }
 
     private void initListData() {
@@ -267,6 +270,33 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         }
     }
 
+    /* protected void clearMixOrder() {
+
+         final BettingParPromptBean betParList = ((BasketballFragment) baseView).getApp().getBetParList();
+         if (betParList != null && betParList.getBetPar().size() > 0) {
+             Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
+                 @Override
+                 public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
+                     Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = ((BasketballFragment) baseView).getApp().getBetDetail().entrySet().iterator();
+                     BettingParPromptBean data = null;
+                     for (BettingParPromptBean.BetParBean betParBean : betParList.getBetPar()) {
+                         data = removeBetItem(betParBean);
+                     }
+
+                     e.onNext(data);
+                 }
+             }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Consumer<BettingParPromptBean>() {
+                                                                                                                   @Override
+                                                                                                                   public void accept(BettingParPromptBean o) throws Exception {
+                                                                                                                       baseView.onUpdateMixSucceed(o, null, null);
+                                                                                                                   }
+                                                                                                               }
+             );
+
+
+         }
+     }*/
+
 
     protected void removeBetItem(final BettingInfoBean item) {
 
@@ -274,6 +304,8 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             @Override
             public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
                 BettingParPromptBean bettingParPromptBean = presenter.removeBetItem(item);
+                if(bettingParPromptBean==null)
+                    bettingParPromptBean=new BettingParPromptBean();
                 e.onNext(bettingParPromptBean);
             }
         }, BackpressureStrategy.BUFFER)

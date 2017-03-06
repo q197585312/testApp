@@ -9,11 +9,15 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.model.VsCellBean;
+import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
+import com.nanyang.app.main.home.sport.model.VsTableRowBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;

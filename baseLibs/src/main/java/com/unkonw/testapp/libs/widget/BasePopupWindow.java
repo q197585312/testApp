@@ -129,7 +129,7 @@ public abstract class BasePopupWindow {
         closePopupWindow();
 
         setBackgroundAttr(0.7f);
-        if(context!=null&&!((Activity)context).isFinishing()) {
+        if(context!=null&&!((Activity)context).isFinishing()&&popWindow!=null) {
             popWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
         }
     }

@@ -6,8 +6,6 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.ApiSport;
 import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.SportPresenter;
-import com.nanyang.app.main.home.sport.model.BettingInfoBean;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.model.ResultIndexBean;
@@ -21,16 +19,10 @@ import org.json.JSONException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.FlowableOnSubscribe;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 
 public class FootballPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
@@ -94,43 +86,6 @@ public class FootballPresenter extends SportPresenter<List<MatchBean>, SportCont
         clearMixOrder();
         refresh("");
     }
-
-    private void clearMixOrder() {
-
-        if (((FootballFragment) baseView).getApp().getBetDetail() != null && ((FootballFragment) baseView).getApp().getBetDetail().size() > 0) {
-            Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
-                @Override
-                public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
-                    Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = ((FootballFragment) baseView).getApp().getBetDetail().entrySet().iterator();
-                    BettingParPromptBean data = null;
-                    while (it.hasNext()) {
-                        Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>> keyItem = it.next();
-                        Iterator<Map.Entry<String, Map<Integer, BettingInfoBean>>> itt = keyItem.getValue().entrySet().iterator();
-                        while (itt.hasNext()) {
-                            Iterator<Map.Entry<Integer, BettingInfoBean>> ittt = itt.next().getValue().entrySet().iterator();
-                            while (ittt.hasNext()) {
-                                BettingInfoBean item = ittt.next().getValue();
-                                if (item != null) {
-                                    data = removeBetItem(item);
-                                }
-                            }
-                        }
-                    }
-                    e.onNext(data);
-                }
-            }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Consumer<BettingParPromptBean>() {
-                                                                                                                  @Override
-                                                                                                                  public void accept(BettingParPromptBean o) throws Exception {
-                                                                                                                      baseView.onUpdateMixSucceed(o, null, null);
-                                                                                                                  }
-                                                                                                              }
-            );
-
-
-        }
-    }
-
-
 
     @Override
     protected String getUrl(String type) {

@@ -6,6 +6,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.main.ApiMain;
 import com.nanyang.app.main.home.sport.SportPresenter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.model.ResultIndexBean;
@@ -90,6 +91,8 @@ class MixOrderListPresenter extends SportPresenter<String,MixOrderListContract.V
                 }
             }
         }
+
+
         baseView.obtainListData(betInfo);
     }
 
@@ -97,14 +100,15 @@ class MixOrderListPresenter extends SportPresenter<String,MixOrderListContract.V
         if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() == null)
             return;
 
-        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() != null && ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar() != null && ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar().size() < 8 && ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar().size() > 2) {
+        List<BettingParPromptBean.BetParBean> betPar = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar();
+        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() != null && betPar != null && betPar.size() < 8 && betPar.size() > 2) {
             if (selectedBean == null || selectedBean.getTitle().equals(""))
-                selectedBean = new ClearanceBetAmountBean(1, ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar().size() + "  X  1");
+                selectedBean = new ClearanceBetAmountBean(1, betPar.size() + "  X  1");
         } else {
             selectedBean = new ClearanceBetAmountBean(1, "");
         }
 
-        int size = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar().size();
+        int size = betPar.size();
         if (size == 3) {
             baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "3  X  1"), new ClearanceBetAmountBean(3, "3  X  3"), new ClearanceBetAmountBean(4, "3  X  4")));
         } else if (size == 4) {

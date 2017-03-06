@@ -6,5 +6,5 @@
     android:gravity="center"
     android:maxLines="1"
     android:padding="10dp"
-    android:drawableBottom="@drawable/line_white"
+    android:drawableBottom="@drawable/line_black"
     android:textColor="@color/white" />

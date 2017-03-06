@@ -36,7 +36,10 @@ import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 import cn.finalteam.toolsfinal.logger.Logger;
+import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -144,7 +147,6 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     }
 
 
-
     @NonNull
     private StringBuilder getBetUrl(BettingInfoBean info) {
         //%@/_Bet/JRecPanel.aspx?g=2&b=%@&oId=%@&odds=%f
@@ -169,7 +171,32 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
             builder.append("&isFH=true&oId_fh=" + info.getSocOddsId_FH());
         return builder;
     }
+    protected void clearMixOrder() {
 
+        final BettingParPromptBean betParList = ((BaseSportFragment) baseView).getApp().getBetParList();
+        if (betParList != null && betParList.getBetPar().size() > 0) {
+            Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
+                @Override
+                public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
+                    Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = ((BaseSportFragment) baseView).getApp().getBetDetail().entrySet().iterator();
+                    BettingParPromptBean data = null;
+                    for (BettingParPromptBean.BetParBean betParBean : betParList.getBetPar()) {
+                        data = removeBetItem(betParBean);
+                    }
+
+                    e.onNext(data);
+                }
+            }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Consumer<BettingParPromptBean>() {
+                                                                                                                  @Override
+                                                                                                                  public void accept(BettingParPromptBean o) throws Exception {
+                                                                                                                      baseView.onUpdateMixSucceed(o, null, null);
+                                                                                                                  }
+                                                                                                              }
+            );
+
+
+        }
+    }
     public void getBetPopupData(BettingInfoBean info) {
         StringBuilder betUrl = getBetUrl(info);
         Flowable<BettingPromptBean> flowable = getService(ApiService.class).getBetData(betUrl.toString());
@@ -229,24 +256,32 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
                 });
         mCompositeSubscription.add(subscription);
     }
-
-    public BettingParPromptBean removeBetItem(final BettingInfoBean item) {
-
-        String ParUrl = "";
-
-        for (BettingParPromptBean.BetParBean aitem : ((BaseToolbarActivity) baseView).getApp().getBetParList().getBetPar()) {
-            if (item.getHome().equals(aitem.getHome()) && item.getAway().equals(aitem.getAway())) {
-                ParUrl = aitem.getParUrl();
-                break;
+    protected BettingParPromptBean.BetParBean getBetParBean(BettingInfoBean item) {
+        BettingParPromptBean betParList = ((BaseToolbarActivity) baseView).getApp().getBetParList();
+        if (betParList == null)
+            return null;
+        List<BettingParPromptBean.BetParBean> betPar = betParList.getBetPar();
+        if (betPar.size() > 0) {
+            for (BettingParPromptBean.BetParBean betParBean : betPar) {
+                if (betParBean.getAway().equals(item.getAway()) && betParBean.getHome().equals(item.getHome()))
+                    return betParBean;
             }
         }
+        return null;
+    }
+    public BettingParPromptBean removeBetItem(final BettingInfoBean bean) {
+        return removeBetItem(getBetParBean(bean));
+
+
+    }
+    public BettingParPromptBean removeBetItem(final BettingParPromptBean.BetParBean aitem) {
+        if(aitem==null)
+            return null;
+        String ParUrl = aitem.getParUrl();
+
         String url;
         if (!ParUrl.equals("")) {
-            if (item.getIsFH() == 0)
-                url = ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId();
-            else {
-                url = ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId_FH();
-            }
+            url = ParUrl + "&isBP=1&RemoveId=" + aitem.getSocOddsId();
             try {
                 return getService(ApiService.class).removeMixOrder(url).execute().body();
             } catch (IOException e) {

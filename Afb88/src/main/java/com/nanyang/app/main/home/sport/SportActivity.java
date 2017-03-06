@@ -104,7 +104,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         mapFragment.put(getString(R.string.Tennis), tennisFragment);
         mapFragment.put(getString(R.string.Muay_Thai), thaiboxingFragment);
         mapFragment.put(getString(R.string.Financial), financialFragment);
-
+        getApp().setBetParList(null);
 
     }
 

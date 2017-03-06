@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -192,7 +193,9 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                 llMixParlayOrder.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        skipAct(MixOrderListActivity.class);
+                        Bundle b=new Bundle();
+                        b.putString(AppConstant.KEY_STRING,"Soccer");
+                        skipAct(MixOrderListActivity.class,b);
                     }
                 });
             }
