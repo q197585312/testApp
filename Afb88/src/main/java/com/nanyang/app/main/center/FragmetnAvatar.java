@@ -1,5 +1,6 @@
 package com.nanyang.app.main.center;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Rect;
@@ -11,7 +12,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
-import com.nanyang.app.main.center.model.NativePhotoActivity;
 import com.nanyang.app.main.center.model.UserImgBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -55,16 +55,16 @@ public class FragmetnAvatar extends BaseFragment {
             public void convert(MyRecyclerViewHolder holder, int position, UserImgBean item) {
                 ImageView img = holder.getView(R.id.item_useimg);
                 img.setBackgroundResource(item.getImg());
-
             }
         };
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<UserImgBean>() {
             @Override
             public void onItemClick(View view, UserImgBean item, int position) {
                 if (item.getImg() == imgData.get(position).getImg()) {
-                    Bitmap b = AfbUtils.toRoundBitmap(BitmapFactory.decodeResource(getResources(), item.getImg()));
-                    imgHeader.setImageBitmap(AfbUtils.toRoundBitmap(b));
-                    AfbUtils.writeBitmapToFile(AfbUtils.nativePath, b, 0, AfbUtils.headImgName);
+                    headBitmap = AfbUtils.toRoundBitmap(BitmapFactory.decodeResource(getResources(), item.getImg()));
+                    if (headBitmap != null) {
+                        imgHeader.setImageBitmap(AfbUtils.toRoundBitmap(headBitmap));
+                    }
                 }
             }
         });
@@ -109,12 +109,34 @@ public class FragmetnAvatar extends BaseFragment {
         switch (v.getId()) {
             case R.id.avatar_submit:
                 PersonCenterActivity activity = (PersonCenterActivity) getActivity();
+                if (headBitmap != null) {
+                    AfbUtils.writeBitmapToFile(AfbUtils.nativePath, headBitmap, 0, AfbUtils.headImgName);
+                }
                 activity.setResult(1);
                 getActivity().finish();
                 break;
             case R.id.avatar_native:
-                skipAct(NativePhotoActivity.class);
+                spikPictures();
                 break;
         }
     }
+
+    //　　MediaStore.ACTION_IMAGE_CAPTURE 拍照；
+//  　　MediaStore.ACTION_VIDEO_CAPTURE录像。
+    private void spikPictures() {
+    /* 开启Pictures画面Type设定为image */
+        Intent intent = new Intent();
+        intent.setType("image/*");
+    /* 使用Intent.ACTION_GET_CONTENT这个Action */
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+   /* 取得相片后返回本画面 */
+        getActivity().startActivityForResult(intent, 0);
+        //(在onActivityResult方法里，返回的意图里获取图片uri，在通过uri，结合内容提供者在查出图片的路径)
+    }
+
+    @Override
+    public ImageView getHeadImg() {
+        return imgHeader;
+    }
+
 }

@@ -1,11 +1,13 @@
 package com.unkonw.testapp.libs.base;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -143,5 +145,15 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
 
     public void initHead() {
 
+    }
+
+    public Bitmap headBitmap;
+
+    public ImageView getHeadImg() {
+        return new ImageView(mContext);
+    }
+
+    public Bitmap getheadBitmap() {
+        return headBitmap;
     }
 }

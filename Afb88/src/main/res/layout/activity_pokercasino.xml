@@ -11,7 +11,7 @@
         android:id="@+id/banner_Img"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.5"
+        android:layout_weight="1"
         android:background="@mipmap/poker_banner" />
 
     <View
@@ -25,8 +25,4 @@
         android:layout_height="0dp"
         android:layout_weight="3"></android.support.v7.widget.RecyclerView>
 
-    <View
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
-        android:layout_weight="2" />
 </LinearLayout>
