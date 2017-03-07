@@ -116,7 +116,6 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
     }*/
 
 
-
     @Override
     protected String getUrl(String type) {
         if (type.equals("")) {
@@ -177,6 +176,7 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
         }
         return data;
     }
+
     @Override
     protected List<TableModuleBean> filterData(List<TableModuleBean> allData) {//按照条件 筛选data
         List<TableModuleBean> filterData = allData;
@@ -190,9 +190,9 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
     @Override
     protected ResultIndexBean getResultIndexMap(String type) {
         ResultIndexBean resultIndexBean = new ResultIndexBean();
-        if(isMixParlay()){
+        if (isMixParlay()) {
             resultIndexBean.setPreSocOddsId(50);
-        }else{
+        } else {
             resultIndexBean.setPreSocOddsId(31);
         }
         return resultIndexBean;
@@ -314,21 +314,7 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
                         matchArray.get(0).toString(), matchArray.get(4).toString(), "",
                         matchArray.get(7).toString()
                         , matchArray.get(6).toString(),
-                        /**HandicapBean
-                         * String isHomeGive,
-                         String hdp,
-                         String homeHdpOdds,
-                         String awayHdpOdds,
-                         String OU,
-                         String overOdds,
-                         String underOdds,
-                         String socOddsId,
-                         String IsInetBet,
-                         String IsHdpNew,
-                         String IsOUNew,
-                         String hasHdp,
-                         String hasOU) {
-                         */
+
                         new ArrayList<>(Arrays.asList(new HandicapBean(
                                         matchArray.get(5).toString(),
                                         matchArray.get(10).toString(),
@@ -343,16 +329,31 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
                                         matchArray.get(17).toString(),
                                         matchArray.get(9).toString(),
                                         matchArray.get(14).toString()),
+                                /**
+                                 * String isHomeGive,
+                                 String hdp,
+                                 String homeHdpOdds,
+                                 String awayHdpOdds,
+                                 String OU,
+                                 String overOdds,
+                                 String underOdds,
+                                 String socOddsId,
+                                 String IsInetBet,
+                                 String IsHdpNew,
+                                 String IsOUNew,
+                                 String hasHdp,
+                                 String hasOU) {
+                                 */
                                 new HandicapBean(
-                                        matchArray.get(28).toString(),
-                                        matchArray.get(29).toString(),
-                                        matchArray.get(32).toString(),
-                                        matchArray.get(33).toString(),
-                                        matchArray.get(35).toString(),
-                                        matchArray.get(43).toString(),
-                                        matchArray.get(38).toString(),
-                                        matchArray.get(39).toString(),
-                                        matchArray.get(1).toString(),
+                                        matchArray.get(28).toString(),//isHomeGive_FH
+                                        matchArray.get(29).toString(),//hdp
+                                        matchArray.get(32).toString(),//homeHdpOdds
+                                        matchArray.get(33).toString(),//awayHdpOdds
+                                        matchArray.get(35).toString(),//OU
+                                        matchArray.get(38).toString(),//overOdds
+                                        matchArray.get(39).toString(),//underOdds
+                                        matchArray.get(1).toString(),//socOddsId
+                                        matchArray.get(26).toString(),
                                         matchArray.get(30).toString(),
                                         matchArray.get(36).toString(),
                                         matchArray.get(27).toString(),
@@ -394,7 +395,10 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
                         matchArray.get(24).toString(),
                         matchArray.get(23).toString(),
                         matchArray.get(43).toString(),
-                        matchArray.get(44).toString()
+                        matchArray.get(44).toString(),
+                        matchArray.get(40).toString(),
+                        matchArray.get(41).toString(),
+                        matchArray.get(42).toString()
 
                 ),
                         "",

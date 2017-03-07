@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/black_grey"
+    android:layout_height="match_parent">
+<android.support.v7.widget.RecyclerView
+    android:layout_marginTop="10dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:id="@+id/rv_list"
+    android:gravity="bottom"
+    android:divider="@null"
+    android:layout_gravity="bottom"
+    >
+</android.support.v7.widget.RecyclerView>
+</FrameLayout>

@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.football;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -24,10 +23,10 @@ import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.MenuListInfo;
 import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.libs.utils.ViewHolder;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
@@ -63,6 +62,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     @Bind(R.id.ll_mix_parlay_order)
     LinearLayout llMixParlayOrder;
     private BetBasePop betPop;
+    private TextView tvCollection;
 
 
     @Override
@@ -81,8 +81,15 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
 
         rvContent.setLayoutManager(mLayoutManager);
         baseRecyclerAdapter = new VpBallAdapter(mContext, new ArrayList<MatchBean>(), R.layout.sport_match_item);
-        MyPagerAdapter<MenuItemInfo> headerAdapter = headerAdapter();
-        headerAdapter.setDatas(new ArrayList<>(Arrays.asList(new MenuItemInfo(0,"FULL    H/A","FULL     O/U"),new MenuItemInfo(0,"HALF   H/A","HALF    O/U"))));
+        MyPagerAdapter<MenuListInfo> headerAdapter = headerAdapter();
+        List<MenuListInfo> listInfos=new ArrayList<>();
+        MenuListInfo list1=new MenuListInfo();
+        MenuListInfo list2=new MenuListInfo();
+        list1.setList(Arrays.asList(new MenuItemInfo(1,"FULL   H/A"),new MenuItemInfo(1,"FULL    O/U")));
+        list2.setList(Arrays.asList(new MenuItemInfo(1,"HALF   H/A"),new MenuItemInfo(1,"HALF    O/U")));
+        listInfos.add(list1);
+        listInfos.add(list2);
+        headerAdapter.setDatas(listInfos);
         vpHeader.setAdapter(headerAdapter);
         baseRecyclerAdapter.setVpHeader(vpHeader);
         baseRecyclerAdapter.setPresenter(presenter);
@@ -113,23 +120,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         });
     }
 
-    @NonNull
-    private MyPagerAdapter<MenuItemInfo> headerAdapter() {
-        return new MyPagerAdapter<MenuItemInfo>(mContext) {
-            @Override
-            protected void convert(ViewHolder helper, MenuItemInfo o, int position) {
-                TextView left = helper.getView(R.id.tv_head_left);
-                TextView right = helper.getView(R.id.tv_head_right);
-                left.setText(o.getText());
-                right.setText(o.getType());
-            }
 
-            @Override
-            protected int getPageLayoutRes() {
-                return R.layout.sport_head_vp_item;
-            }
-        };
-    }
 
 
     @Override
@@ -148,6 +139,11 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         } else {
             llMixParlayOrder.setVisibility(View.GONE);
         }
+        if(tvCollection!=null)
+        if(presenter.isCollection){
+            tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_green, 0, 0);
+        }else
+            tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
     }
 
     @Override
@@ -232,7 +228,9 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
     @Override
     public boolean collectionClick(TextView tvCollection) {
         presenter.collection();
+        this.tvCollection=tvCollection;
         return presenter.isCollection();
+
     }
 
     @Override

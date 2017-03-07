@@ -34,6 +34,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:background="@color/grey_background"
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"

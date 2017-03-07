@@ -210,6 +210,7 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
             llLeft2.setVisibility(View.INVISIBLE);
             tvCollection.setVisibility(View.INVISIBLE);
             item.getOtherDataBean().setHasOE("0");
+            item.getOtherDataBean().setHasOEFH("0");
 
         } else {
 
@@ -439,15 +440,28 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                     tvEvenLabel.setVisibility(View.VISIBLE);
                     tvOdd.setVisibility(View.VISIBLE);
                     tvEven.setVisibility(View.VISIBLE);
-                    if(bean.getOtherDataBean().getHasOE().equals("1")) {
+                    if(position==0) {
+                        if (bean.getOtherDataBean().getHasOE().equals("1")) {
 
-                        tvOdd.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getOddOdds()));
-                        tvEven.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getEvenOdds()));
-                    }else{
-                        tvOdd.setText("");
-                        tvEven.setText("");
-                        tvOddLabel.setText("");
-                        tvEvenLabel.setText("");
+                            tvOdd.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getOddOdds()));
+                            tvEven.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getEvenOdds()));
+                        } else {
+                            tvOdd.setText("");
+                            tvEven.setText("");
+                            tvOddLabel.setText("");
+                            tvEvenLabel.setText("");
+                        }
+                    }
+                    else if(position==1) {
+                        if (bean.getOtherDataBean().getHasOEFH().equals("1")) {
+                            tvOdd.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getOddOddsFH()));
+                            tvEven.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getEvenOddsFH()));
+                        } else {
+                            tvOdd.setText("");
+                            tvEven.setText("");
+                            tvOddLabel.setText("");
+                            tvEvenLabel.setText("");
+                        }
                     }
                 }
 

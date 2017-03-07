@@ -87,7 +87,7 @@
     <string name="half_time">First Half</string>
     <string name="odd_even">Odd/Even</string>
 
-    <string name="bet_amount">amount</string>
+    <string name="bet_amount">Amount</string>
     <string name="betting_amount">Bet Amount</string>
     <string name="max_bet">Max Bet:</string>
     <string name="min_bet">Min Bet:</string>
@@ -153,5 +153,7 @@
     <string name="event">Event</string>
     <string name="detail">Detail</string>
     <string name="other">Other</string>
+    <string name="Choose">Choose</string>
+    <string name="Common_Game">Common Game</string>
 
 </resources>

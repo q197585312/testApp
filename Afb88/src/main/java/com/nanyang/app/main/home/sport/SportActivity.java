@@ -128,6 +128,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                 currentFragment.collectionClick(tvCollection);
                 break;
             case R.id.tv_menu:
+                currentFragment.menuClick(tvMenu);
                 break;
             case R.id.tv_mix:
 
@@ -135,10 +136,10 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                     tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
                 break;
             case R.id.iv_add:
-                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 350) {
+                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 260) {
                     @Override
                     protected int onSetLayoutRes() {
-                        return R.layout.popupwindow_choice;
+                        return R.layout.popupwindow_choice_game;
                     }
 
                     @Override
@@ -150,8 +151,8 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                         list.add(new MenuItemInfo(0, getString(R.string.Football)));
                         list.add(new MenuItemInfo(0, getString(R.string.Basketball)));
                         list.add(new MenuItemInfo(0, getString(R.string.Tennis)));
-                        list.add(new MenuItemInfo(0, getString(R.string.Financial)));
-                        list.add(new MenuItemInfo(0, getString(R.string.Muay_Thai)));
+                /*        list.add(new MenuItemInfo(0, getString(R.string.Financial)));
+                        list.add(new MenuItemInfo(0, getString(R.string.Muay_Thai)));*/
                         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base) {
                             @Override
                             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
@@ -175,6 +176,7 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                         });
                     }
                 });
+                popWindow.setTrans(1f);
                 popWindow.showPopupDownWindow();
                 break;
 

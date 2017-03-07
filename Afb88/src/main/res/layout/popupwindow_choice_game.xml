@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@color/grey_background"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <TextView
+        android:padding="5dp"
+        android:layout_width="match_parent"
+        android:textStyle="bold"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green900"
+        android:text="@string/Common_Game"
+        />
+    <View
+        android:background="@color/grey_button"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"/>
+    <View
+        android:background="@color/grey_dialog_background"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"/>
+<android.support.v7.widget.RecyclerView
+    android:layout_marginBottom="1dp"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:id="@+id/rv_list"
+    android:gravity="bottom"
+    android:divider="@null"
+    android:layout_gravity="bottom"
+    >
+</android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

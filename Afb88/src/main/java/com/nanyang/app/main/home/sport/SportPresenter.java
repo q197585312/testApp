@@ -55,7 +55,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     protected List<TableModuleBean> allData;
     protected int page;
     private final int pageSize = 15;
-    private List<TableModuleBean> filterData;
+    protected List<TableModuleBean> filterData;
     protected List<TableModuleBean> pageData;
     private Map<String, JSONArray> matchArrayMap = new HashMap<>();
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();

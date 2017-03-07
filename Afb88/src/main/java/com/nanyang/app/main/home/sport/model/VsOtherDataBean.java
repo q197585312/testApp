@@ -6,6 +6,33 @@ import java.io.Serializable;
  * Created by Administrator on 2015/12/18.
  */
 public class VsOtherDataBean implements Serializable {
+    public String getOEOddsFH() {
+        return OEOddsFH;
+    }
+
+    public void setOEOddsFH(String OEOddsFH) {
+        this.OEOddsFH = OEOddsFH;
+    }
+
+    public String getHasOEFH() {
+        return HasOEFH;
+    }
+
+    public void setHasOEFH(String hasOEFH) {
+        HasOEFH = hasOEFH;
+    }
+
+    public String getIsOENewFH() {
+        return IsOENewFH;
+    }
+
+    public void setIsOENewFH(String isOENewFH) {
+        IsOENewFH = isOENewFH;
+    }
+
+    private String OEOddsFH;
+    private String HasOEFH;
+    private String IsOENewFH;
     private String EvenOdds;
 
     public String getEvenOddsFH() {
@@ -241,7 +268,11 @@ public class VsOtherDataBean implements Serializable {
                            String oddOdds,
                            String oEOdds,
                            String oddOddsFH,
-                           String evenOddsFH
+                           String evenOddsFH,
+                           String isOENewFH,
+                           String hasOEFH,
+                           String oEOddsFh
+
 
     ) {
         HasX12 = hasX12;
@@ -261,6 +292,10 @@ public class VsOtherDataBean implements Serializable {
         OEOdds = oEOdds;
         this.OddOddsFH = oddOddsFH;
         this.EvenOddsFH = evenOddsFH;
+        this.IsOENewFH = isOENewFH;
+        this.HasOEFH = hasOEFH;
+        this.OEOddsFH = oEOddsFh;
+
     }
 
     public VsOtherDataBean() {

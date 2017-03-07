@@ -25,6 +25,11 @@ public abstract class BasePopupWindow {
 
     protected View v;
     protected View view;
+
+    public void setTrans(float trans) {
+        this.trans = trans;
+    }
+
     private float trans=0.3f;
 
 

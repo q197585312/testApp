@@ -149,11 +149,11 @@ public class FootballPresenter extends SportPresenter<List<MatchBean>, SportCont
     }
     @Override
     protected List<TableModuleBean> filterData(List<TableModuleBean> allData) {//按照条件 筛选data
-        List<TableModuleBean> filterData = allData;
+
         if (isMixParlay)
             isCollection = false;
-        if (isCollection)
-            filterData = filterCollection(allData);
+        filterData = filterCollection(allData);
+
         return filterData;
     }
 

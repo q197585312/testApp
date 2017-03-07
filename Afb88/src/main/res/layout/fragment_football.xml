@@ -82,7 +82,7 @@
             android:background="#2dc45c"
             android:layout_height="match_parent"/>
         <TextView
-
+            android:id="@+id/tv_aos"
             android:layout_width="22dp"
             android:layout_height="wrap_content"
             android:gravity="center"
