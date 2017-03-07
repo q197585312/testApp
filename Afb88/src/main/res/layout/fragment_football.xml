@@ -11,7 +11,7 @@
         android:background="@color/grey_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="5dp">
+        android:paddingLeft="2dp">
 
         <TextView
             android:id="@+id/tv_total_match"
@@ -49,31 +49,49 @@
         android:background="@color/green900"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:padding="5dp">
+       >
 
         <TextView
+            android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/Matchs"
-            android:textColor="@color/white" />
-
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+        <View
+            android:layout_width="0.5dp"
+            android:background="#179441"
+            android:layout_height="match_parent"/>
+        <View
+            android:layout_width="0.5dp"
+            android:background="#2dc45c"
+            android:layout_height="match_parent"/>
         <com.nanyang.app.myView.LinkedViewPager.ViewPager
             android:id="@+id/vp_header"
             android:layout_width="140dp"
-            android:layout_height="20dp"
-            android:orientation="horizontal"/>
+            android:layout_height="16dp"
+            android:orientation="horizontal" />
 
-
+        <View
+            android:layout_width="0.5dp"
+            android:background="#179441"
+            android:layout_height="match_parent"/>
+        <View
+            android:layout_width="0.5dp"
+            android:background="#2dc45c"
+            android:layout_height="match_parent"/>
         <TextView
-            android:textSize="9sp"
-            android:layout_width="wrap_content"
+
+            android:layout_width="22dp"
             android:layout_height="wrap_content"
-            android:gravity="right|center_vertical"
+            android:gravity="center"
             android:text="@string/AOS"
-            android:textColor="@color/white" />
+            android:textColor="@color/white"
+            android:textSize="9sp" />
 
     </LinearLayout>
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

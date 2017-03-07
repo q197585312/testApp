@@ -82,7 +82,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         rvContent.setLayoutManager(mLayoutManager);
         baseRecyclerAdapter = new VpBallAdapter(mContext, new ArrayList<MatchBean>(), R.layout.sport_match_item);
         MyPagerAdapter<MenuItemInfo> headerAdapter = headerAdapter();
-        headerAdapter.setDatas(new ArrayList<>(Arrays.asList(new MenuItemInfo(0,"FULL   H/A","FULL    O/U"),new MenuItemInfo(0,"HALF   H/A","HALF    O/U"))));
+        headerAdapter.setDatas(new ArrayList<>(Arrays.asList(new MenuItemInfo(0,"FULL    H/A","FULL     O/U"),new MenuItemInfo(0,"HALF   H/A","HALF    O/U"))));
         vpHeader.setAdapter(headerAdapter);
         baseRecyclerAdapter.setVpHeader(vpHeader);
         baseRecyclerAdapter.setPresenter(presenter);
