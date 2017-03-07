@@ -25,6 +25,7 @@ public abstract class BasePopupWindow {
 
     protected View v;
     protected View view;
+    private float trans=0.3f;
 
 
     public BasePopupWindow(Context context, View v) {
@@ -115,21 +116,21 @@ public abstract class BasePopupWindow {
     public void showPopupDownWindow(int x,int y) {
         closePopupWindow();
 
-        setBackgroundAttr(0.7f);
+        setBackgroundAttr(trans);
         popWindow.showAsDropDown(v,x,y);
     }
 
     public void showPopupGravityWindow(int gravity,int offsetX,int offsetY) {
         closePopupWindow();
 
-        setBackgroundAttr(0.7f);
+        setBackgroundAttr(trans);
         popWindow.showAtLocation(v,gravity, offsetX, offsetY);
     }
     public void showPopupCenterWindow() {
         closePopupWindow();
 
-        setBackgroundAttr(0.7f);
-        if(context!=null&&!((Activity)context).isFinishing()&&popWindow!=null) {
+        setBackgroundAttr(trans);
+        if(context!=null&&!((Activity)context).isFinishing()) {
             popWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
         }
     }
@@ -141,12 +142,11 @@ public abstract class BasePopupWindow {
         if (popWindow != null && popWindow.isShowing()) {
             ButterKnife.unbind(view);
             popWindow.dismiss();
-            popWindow=null;
         }
     }
     public void showPopupAtLocation(int x,int y) {
         closePopupWindow();
-        setBackgroundAttr(0.7f);
+        setBackgroundAttr(trans);
         popWindow.showAtLocation(v, Gravity.NO_GRAVITY, x, y);
 
     }

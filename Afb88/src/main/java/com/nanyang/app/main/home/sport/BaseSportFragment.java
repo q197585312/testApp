@@ -49,7 +49,7 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
             types.add(new MenuItemInfo(0, getString(R.string.Running), "Running"));
         }
         types.add(new MenuItemInfo(0, getString(R.string.Early), "Early"));
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, types, R.layout.text_base) {
+        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, types, R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
