@@ -12,6 +12,8 @@ import android.widget.TextView;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.AutoScrollViewPager;
+import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.main.home.Games.GamesActivity;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.poker.PokerCasinoActivity;
@@ -28,11 +30,12 @@ import butterknife.Bind;
 
 public class HomeFragment extends BaseFragment {
 
-
-    @Bind(R.id.iv_banner)
-    ImageView ivBanner;
+    @Bind(R.id.auto_viewpager)
+    AutoScrollViewPager viewPager;
     @Bind(R.id.rv_content)
     RecyclerView rvContent;
+    @Bind(R.id.in_layout)
+    LinearLayout inLayout;
 
     @Override
     public int onSetLayoutId() {
@@ -42,6 +45,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView() {
         super.initView();
+        initViewPager();
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(layoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
@@ -140,6 +144,32 @@ public class HomeFragment extends BaseFragment {
                 rv.setAdapter(baseRecyclerAdapter);
             }
         });
+    }
+
+    private List<Integer> lists;
+    private List<ImageView> views;
+
+    private void initViewPager() {
+        initBanner();
+        ViewPagerAdapter adapter = new ViewPagerAdapter(getResources(), views, lists, inLayout);
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(viewPager.listener);
+    }
+
+    private void initBanner() {
+        lists = new ArrayList<>();
+        lists.add(R.mipmap.banner_h1);
+        lists.add(R.mipmap.banner_h2);
+        lists.add(R.mipmap.banner_h3);
+        lists.add(R.mipmap.banner_h4);
+        lists.add(R.mipmap.banner_h5);
+        lists.add(R.mipmap.banner_h6);
+        views = new ArrayList<>();
+        for (int i = 0; i < lists.size(); i++) {
+            ImageView img = new ImageView(mContext);
+            img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            views.add(img);
+        }
     }
 
 }
