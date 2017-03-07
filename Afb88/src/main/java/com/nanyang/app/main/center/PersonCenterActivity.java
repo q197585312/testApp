@@ -1,7 +1,10 @@
 package com.nanyang.app.main.center;
 
+import android.content.Intent;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -37,4 +40,23 @@ public class PersonCenterActivity extends BaseToolbarActivity {
         return getIntent().getStringExtra("personCenter");
     }
 
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 0) {
+            String imgUri = data.getData().toString();
+            String trueImgUrl = null;
+            for (int i = 0; i < imgUri.length(); i++) {
+                String firstStr = imgUri.charAt(i) + "";
+                String nextStr = imgUri.charAt(i + 1) + "";
+                if (firstStr.endsWith("/") && nextStr.equals("s")) {
+                    trueImgUrl = imgUri.substring(i);
+                    break;
+                }
+            }
+            avatarFragment.headBitmap = AfbUtils.toRoundBitmap(BitmapFactory.decodeFile(trueImgUrl));
+            avatarFragment.getHeadImg().setImageBitmap(avatarFragment.headBitmap);
+        }
+    }
 }
