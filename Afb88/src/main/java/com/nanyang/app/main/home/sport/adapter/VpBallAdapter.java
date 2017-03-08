@@ -15,11 +15,16 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.SportPresenter;
+import com.nanyang.app.main.home.sport.basketball.BasketballPresenter;
 import com.nanyang.app.main.home.sport.dialog.BetBasePop;
+import com.nanyang.app.main.home.sport.financial.FinancialPresenter;
 import com.nanyang.app.main.home.sport.football.FootballPresenter;
+import com.nanyang.app.main.home.sport.game4d.Game4dPresenter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.tennis.TennisPresenter;
+import com.nanyang.app.main.home.sport.thaiboxing.ThaiBoxingPresenter;
 import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -67,11 +72,9 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
 
         String oldModuleTitle = null;
         String oldHomeGive = null;
-        ;
         String oldAwayName = null;
-        ;
         String oldHomeName = null;
-        ;
+
 
 
         TextView homeRedCardTv = helper.getView(R.id.module_match_home_red_card_tv);
@@ -289,7 +292,7 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
             }
         }
         ViewPager vp = helper.getView(R.id.module_center_vp);
-        if (presenter instanceof FootballPresenter)
+        if (presenter instanceof FootballPresenter||presenter instanceof FinancialPresenter)
             vp.getLayoutParams().width = DeviceUtils.dip2px(mContext, 140);
         else {
             vp.getLayoutParams().width = DeviceUtils.dip2px(mContext, 210);
@@ -321,7 +324,15 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                     notifyDataSetChanged();
                 }
             });
-        } else {
+        }else if(presenter instanceof ThaiBoxingPresenter){
+            tvRightMark.setVisibility(View.VISIBLE);
+            tvCollection.setVisibility(View.GONE);
+        }
+        else if(presenter instanceof FinancialPresenter||presenter instanceof Game4dPresenter){
+            tvRightMark.setVisibility(View.INVISIBLE);
+            tvCollection.setVisibility(View.GONE);
+        }
+        else {
             tvCollection.setVisibility(View.GONE);
             tvRightMark.setVisibility(View.GONE);
         }
@@ -428,7 +439,7 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                 TextView tvEvenLabel = helper.getView(R.id.viewpager_even_label_tv);
                 TextView tvOdd = helper.getView(R.id.viewpager_match_odd_tv);
                 TextView tvEven = helper.getView(R.id.viewpager_match_even_tv);
-                if (presenter instanceof FootballPresenter) {
+                if (presenter instanceof FootballPresenter||presenter instanceof FinancialPresenter) {
                     tvOddLabel.setVisibility(View.GONE);
                     tvEvenLabel.setVisibility(View.GONE);
                     tvOdd.setVisibility(View.GONE);
@@ -440,11 +451,14 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                     tvEvenLabel.setVisibility(View.VISIBLE);
                     tvOdd.setVisibility(View.VISIBLE);
                     tvEven.setVisibility(View.VISIBLE);
+
                     if(position==0) {
-                        if (bean.getOtherDataBean().getHasOE().equals("1")) {
+                        if (bean.getOtherDataBean().getHasOE().equals("1")&& !bean.getOtherDataBean().getOddOdds().equals("")&&!bean.getOtherDataBean().getOddOdds().equals("0")&& !bean.getOtherDataBean().getEvenOdds().equals("")&& !bean.getOtherDataBean().getEvenOdds().equals("0")) {
 
                             tvOdd.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getOddOdds()));
                             tvEven.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getEvenOdds()));
+                            clickBet(tvOdd, handicapBean, bean, position, bean.getOtherDataBean().getOddOdds(), "odd", bean.getOtherDataBean().getOEOdds());
+                            clickBet(tvEven, handicapBean, bean, position, bean.getOtherDataBean().getEvenOdds(), "even", bean.getOtherDataBean().getOEOdds());
                         } else {
                             tvOdd.setText("");
                             tvEven.setText("");
@@ -453,9 +467,11 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                         }
                     }
                     else if(position==1) {
-                        if (bean.getOtherDataBean().getHasOEFH().equals("1")) {
+                        if (bean.getOtherDataBean().getHasOEFH().equals("1")&& !bean.getOtherDataBean().getOddOddsFH().equals("")&& !bean.getOtherDataBean().getOddOddsFH().equals("0")&& !bean.getOtherDataBean().getEvenOddsFH().equals("")&& !bean.getOtherDataBean().getEvenOddsFH().equals("0")) {
                             tvOdd.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getOddOddsFH()));
                             tvEven.setText(AfbUtils.changeValueS(bean.getOtherDataBean().getEvenOddsFH()));
+                            clickBet(tvOdd, handicapBean, bean, position, bean.getOtherDataBean().getOddOddsFH(), "odd", bean.getOtherDataBean().getOEOddsFH());
+                            clickBet(tvEven, handicapBean, bean, position, bean.getOtherDataBean().getEvenOddsFH(), "even", bean.getOtherDataBean().getOEOddsFH());
                         } else {
                             tvOdd.setText("");
                             tvEven.setText("");
@@ -557,21 +573,32 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
 
                 if (item != null) {
                     final String recordModel = model;
+//                    g=10&b=even&oId=12153197&odds=9.4
+                    String g="";
+                    String socOddsId_fh ="";
+                    if(position==1)
+                        socOddsId_fh = item.getHandicapBeans().get(1).getSocOddsId();
+                    if(presenter instanceof  FootballPresenter){
+                        g="2";
+                        model=recordModel+ "_par";
+                    }
+                    else if(presenter instanceof BasketballPresenter){
+                        g="10";
+                    }
                     BettingInfoBean modlemap = new BettingInfoBean("s", recordModel, "", hdp, odds, item.getHome(), item.getAway(), item.getLeagueBean().getModuleTitle(),
-                            item.getHandicapBeans().get(0).getSocOddsId(), item.getHandicapBeans().get(1).getSocOddsId(), position, model.equals("Running"), isHomeGive.equals("1"));
+                            item.getHandicapBeans().get(0).getSocOddsId(),socOddsId_fh, position, false, isHomeGive.equals("1"));
                     Map<Integer, BettingInfoBean> positionMap = new HashMap<>();
                     positionMap.put(position, modlemap);
                     Map<String, Map<Integer, BettingInfoBean>> keyMap = new HashMap<>();
                     keyMap.put(item.getKey(), positionMap);
 
-                    model = model + "_par";
 
-                    final String SocOddsId = item.getHandicapBeans().get(0).getSocOddsId();
-                    String SocOddsId_FH = "";
-                    if (position == 1)
-                        SocOddsId_FH = item.getHandicapBeans().get(1).getSocOddsId();
+
+                    final String SocOddsId = item.getHandicapBeans().get(position).getSocOddsId();
+
                     BettingInfoBean m1 = new BettingInfoBean("", model, "", hdp, odds, item.getHome(), item.getAway(), item.getLeagueBean().getModuleTitle(),
-                            SocOddsId, SocOddsId_FH, position, model.equals("Running"), isHomeGive.equals("1"));
+                            SocOddsId, "", 0, false, isHomeGive.equals("1"));
+                    m1.setG(g);
                     presenter.addMixParlayBet(m1, keyMap, item);
 
                     v.setBackgroundResource(R.drawable.sport_mix_parlay_bet_green_bg);
@@ -620,18 +647,45 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
 
                 betPop = new BetBasePop(mContext, v, 700, LinearLayout.LayoutParams.WRAP_CONTENT);
                 //String b,String sc, String oId, String odds, boolean isRunning, String oId_fh
-                BettingInfoBean info;
+                BettingInfoBean info = null;
                 if (position == 0) {
-                    info = new BettingInfoBean("s", type, "", ou, odds,
-                            bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
+                    if(presenter instanceof FootballPresenter){
+                        info = new BettingInfoBean("s", type, "", ou, odds,
+                                bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
 
+                    }else if(presenter instanceof BasketballPresenter){
+                        info = new BettingInfoBean("", type, "", ou, odds,
+                                bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
+                        info.setG("9");
+                    }else if(presenter instanceof TennisPresenter){
+                        info = new BettingInfoBean("", type, "", ou, odds,
+                                bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
+                        info.setG("21");
+                    }else if(presenter instanceof FinancialPresenter){
+                        info = new BettingInfoBean("", type, "", ou, odds,
+                                bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
+                        info.setG("7");
+                    }
+                    else if(presenter instanceof ThaiBoxingPresenter){
+                        info = new BettingInfoBean("", type, "", ou, odds,
+                                bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
+                        info.setG("6");
+                    }
 
                 } else {
-                    info = new BettingInfoBean("s", type, "", ou, odds,
-                            bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", bean.getHandicapBeans().get(1).getSocOddsId(), 1, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
-
+                    if(presenter instanceof FootballPresenter) {
+                        info = new BettingInfoBean("s", type, "", ou, odds,
+                                bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", bean.getHandicapBeans().get(1).getSocOddsId(), 1, type.equals("Running"), bean.getHandicapBeans().get(1).getIsHomeGive().equals("1"));
+                    }
+                    else if(presenter instanceof BasketballPresenter){
+                        info = new BettingInfoBean("", type, "", ou, odds,
+                                bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", bean.getHandicapBeans().get(1).getSocOddsId(), 1, type.equals("Running"), bean.getHandicapBeans().get(1).getIsHomeGive().equals("1"));
+                        info.setG("9");
+                    }
                     betPop.setBetSelectionType(mContext.getString(R.string.half_time));
                 }
+
+
                 info = betPop.initData(info);
                 presenter.getBetPopupData(info);
                 createPopupWindow(betPop);

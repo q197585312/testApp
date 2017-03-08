@@ -108,6 +108,7 @@ public class HomeFragment extends BaseFragment {
                 menuItemInfo1.setType("Running");
                 MenuItemInfo menuItemInfo2 = new MenuItemInfo(0, getString(R.string.Early));
                 menuItemInfo2.setType("Early");
+
                 MenuItemInfo menuItemInfo3 = new MenuItemInfo(0, getString(R.string.Cancel));
                 menuItemInfo3.setType("");
                 data.add(menuItemInfo);

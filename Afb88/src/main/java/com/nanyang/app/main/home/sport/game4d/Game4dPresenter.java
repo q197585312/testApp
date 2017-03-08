@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.tennis;
+package com.nanyang.app.main.home.sport.game4d;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
@@ -17,17 +17,14 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Flowable;
 
 
+public class Game4dPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
 
-public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
-
-    TennisPresenter(SportContract.View<List<MatchBean>> view) {
+    Game4dPresenter(SportContract.View<List<MatchBean>> view) {
         super(view);
     }
 
@@ -39,26 +36,6 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
                 return applySchedulers(getService(ApiService.class).getData(url));
             }
         };
-    }
-
-
-    boolean isItemCollection(MatchBean item) {
-        return !(localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()) == null || localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
-    }
-
-    void collectionItem(MatchBean item) {
-        String moduleKey = getType() + "+" + item.getLeagueBean().getModuleTitle();
-        Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
-        if (moduleMap == null)
-            moduleMap = new HashMap<>();
-        String localKey = item.getHome() + "+" + item.getAway();
-        Boolean v = moduleMap.get(localKey);
-        if (v == null || !v) {
-            moduleMap.put(localKey, true);
-        } else {
-            moduleMap.put(localKey, false);
-        }
-        localCollectionMap.put(moduleKey, moduleMap);
     }
 
     @Override
@@ -88,13 +65,13 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
         String url;
         switch (type) {
             case "Running":
-                url = AppConstant.URL_TENNIS_RUNNING;
+                url = AppConstant.URL_4D_SPECIAL_RUNNING;
                 break;
             case "Today":
-                url = AppConstant.URL_TENNIS_TODAY;
+                url = AppConstant.URL_4D_SPECIAL_TODAY;
                 break;
             default:
-                url = AppConstant.URL_TENNIS_EARLY;
+                url = AppConstant.URL_4D_SPECIAL_EARLY;
                 break;
         }
         setType(type);
@@ -129,7 +106,7 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
             bean1.setIsHomeGive(matchArray.get(5).toString());
             aTrue.setHome( matchArray.get(6).toString());
             aTrue.setAway( matchArray.get(7).toString());
-            bean1.setSocOddsId( matchArray.get(0).toString());
+            bean1.setSocOddsId(matchArray.get(0).toString());
             bean1.setIsInetBet(matchArray.get(8).toString());
             bean1.setHasHdp(matchArray.get(9).toString());
             bean1.setHdp(matchArray.get(10).toString());

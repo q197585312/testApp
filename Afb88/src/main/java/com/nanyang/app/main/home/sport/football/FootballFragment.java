@@ -21,7 +21,6 @@ import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
-import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.model.MenuListInfo;
 import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
@@ -160,17 +159,8 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
         baseRecyclerAdapter.notifyDataSetChanged();
     }
 
-    @Override
-    public void onGetBetSucceed(BettingPromptBean allData) {
-        betPop.setBetData(allData, presenter);
-        betPop.showPopupCenterWindow();
-    }
 
-    @Override
-    public void onBetSucceed(String allData) {
-        ToastUtils.showShort(allData);
-        betPop.closePopupWindow();
-    }
+
 
     @Override
     public void onRightMarkClick(Bundle b) {
@@ -199,11 +189,6 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
             llMixParlayOrder.setVisibility(View.GONE);
     }
 
-    @Override
-    public void onCreatePopupWindow(BetBasePop betPop) {
-        this.betPop = betPop;
-        createPopupWindow(betPop);
-    }
 
 
     private void saveBetMap(Map<String, Map<Integer, BettingInfoBean>> keyMap, MatchBean item) {

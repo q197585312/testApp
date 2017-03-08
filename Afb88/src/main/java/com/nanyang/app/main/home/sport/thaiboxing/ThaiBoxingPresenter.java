@@ -123,7 +123,9 @@ public class ThaiBoxingPresenter extends SportPresenter<List<MatchBean>, SportCo
             bean1.setIsHomeGive(matchArray.get(5).toString());
             aTrue.setHome( matchArray.get(6).toString());
             aTrue.setAway( matchArray.get(7).toString());
+
             bean1.setIsInetBet(matchArray.get(8).toString());
+            bean1.setSocOddsId(matchArray.get(0).toString());
             bean1.setHasHdp(matchArray.get(9).toString());
             bean1.setHdp(matchArray.get(10).toString());
             bean1.setHomeHdpOdds(matchArray.get(12).toString());

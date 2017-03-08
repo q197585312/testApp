@@ -14,8 +14,10 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
+import com.nanyang.app.main.home.sport.e_sport.SportEFragment;
 import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.FootballFragment;
+import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.nanyang.app.main.home.sport.thaiboxing.ThaiBoxingFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -36,7 +38,9 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
     BaseSportFragment basketballFragment = new BasketballFragment();
     BaseSportFragment tennisFragment = new TennisFragment();
     BaseSportFragment financialFragment = new FinancialFragment();
+    BaseSportFragment special4dFragment = new Game4dFragment();
     BaseSportFragment thaiboxingFragment = new ThaiBoxingFragment();
+    BaseSportFragment sportEFragment = new SportEFragment();
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
@@ -104,6 +108,9 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
         mapFragment.put(getString(R.string.Tennis), tennisFragment);
         mapFragment.put(getString(R.string.Muay_Thai), thaiboxingFragment);
         mapFragment.put(getString(R.string.Financial), financialFragment);
+        mapFragment.put(getString(R.string.E_Sport), sportEFragment);
+        mapFragment.put(getString(R.string.Specials_4D), special4dFragment);
+
         getApp().setBetParList(null);
 
     }
@@ -131,12 +138,11 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                 currentFragment.menuClick(tvMenu);
                 break;
             case R.id.tv_mix:
-
                 if (currentFragment.mixParlayCLick(tvMix))
                     tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
                 break;
             case R.id.iv_add:
-                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 260) {
+                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 380) {
                     @Override
                     protected int onSetLayoutRes() {
                         return R.layout.popupwindow_choice_game;
@@ -151,8 +157,10 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                         list.add(new MenuItemInfo(0, getString(R.string.Football)));
                         list.add(new MenuItemInfo(0, getString(R.string.Basketball)));
                         list.add(new MenuItemInfo(0, getString(R.string.Tennis)));
-                /*        list.add(new MenuItemInfo(0, getString(R.string.Financial)));
-                        list.add(new MenuItemInfo(0, getString(R.string.Muay_Thai)));*/
+                        list.add(new MenuItemInfo(0, getString(R.string.Financial)));
+                        list.add(new MenuItemInfo(0, getString(R.string.Specials_4D)));
+                        list.add(new MenuItemInfo(0, getString(R.string.Muay_Thai)));
+                        list.add(new MenuItemInfo(0, getString(R.string.E_Sport)));
                         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base) {
                             @Override
                             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {

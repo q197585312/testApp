@@ -14,6 +14,16 @@ public class BettingInfoBean {
     String SocOddsId;
     String SocOddsId_FH;
     String Odds;
+
+    public String getG() {
+        return g;
+    }
+
+    public void setG(String g) {
+        this.g = g;
+    }
+
+    String g;
     int isFH;
     boolean isRunning=false;
     boolean isHomeGiven=false;

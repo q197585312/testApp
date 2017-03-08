@@ -11,11 +11,14 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.dialog.BetBasePop;
+import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.MenuListInfo;
 import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.utils.ViewHolder;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
@@ -24,6 +27,7 @@ import java.util.List;
 
 public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFragment<T> {
     protected TextView tvMenu;
+    private BetBasePop betPop;
 
     @Override
     public void initData() {
@@ -236,5 +240,22 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
                 return R.layout.sport_head_vp_item;
             }
         };
+    }
+
+
+    public void onGetBetSucceed(BettingPromptBean allData) {
+        betPop.setBetData(allData, presenter);
+        betPop.showPopupCenterWindow();
+    }
+
+
+
+    public void onCreatePopupWindow(BetBasePop betPop) {
+        this.betPop = betPop;
+        createPopupWindow(betPop);
+    }
+    public void onBetSucceed(String allData) {
+        ToastUtils.showShort(allData);
+        betPop.closePopupWindow();
     }
 }

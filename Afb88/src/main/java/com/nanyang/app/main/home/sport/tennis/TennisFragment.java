@@ -14,10 +14,8 @@ import com.nanyang.app.main.home.sport.BaseSportFragment;
 import com.nanyang.app.main.home.sport.SportActivity;
 import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.adapter.VpBallAdapter;
-import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
-import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -127,15 +125,6 @@ public class TennisFragment extends BaseSportFragment<TennisPresenter> implement
 
     }
 
-    @Override
-    public void onGetBetSucceed(BettingPromptBean allData) {
-
-    }
-
-    @Override
-    public void onBetSucceed(String allData) {
-
-    }
 
     @Override
     public void onRightMarkClick(Bundle b) {
@@ -144,11 +133,6 @@ public class TennisFragment extends BaseSportFragment<TennisPresenter> implement
 
     @Override
     public void onCountBet() {
-
-    }
-
-    @Override
-    public void onCreatePopupWindow(BetBasePop betPop) {
 
     }
 

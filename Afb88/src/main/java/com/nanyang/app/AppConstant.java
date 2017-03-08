@@ -62,7 +62,17 @@ public static String URL_FINANCIAL_RUNNING ="http://a8197c.a36588.com/_view/All_
 
     //泰拳http://a8197c.a36588.com/_view/All_Gen6.ashx?g=108&ot=t&update=true&r=1661815184&LID=&_=1488527593418
     public static String URL_THAI_BOXING_TODAY = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=108&ot=t&update=true&r=1233177815";
-    public static String URL_THAI_BOXING_RUNNING = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=108&ot=t&update=true&r=1770989484";
-    public static String URL_THAI_BOXING_EARLY = "";
+    public static String URL_THAI_BOXING_RUNNING = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=108&ot=r&update=true&r=1770989484";
+    public static String URL_THAI_BOXING_EARLY = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=108&ot=e&update=true&r=1770989484";
+
+    //http://a8197c.a36588.com/_view/All_Gen6.ashx?g=6&ot=t&update=true&r=740497289&LID=&_=1488958736003
+    public static String URL_4D_SPECIAL_TODAY = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=6&ot=t&update=true&r=1233177815";
+    public static String URL_4D_SPECIAL_RUNNING = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=6&ot=r&update=true&r=1770989484";
+    public static String URL_4D_SPECIAL_EARLY = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=6&ot=e&update=true&r=1770989484";
+
+    //http://a8197c.a36588.com/_view/All_Gen6.ashx?g=106&ot=t&update=true&r=1098285451&LID=&_=1488958947996
+    public static String URL_E_SPORT_TODAY = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=106&ot=t&update=true&r=1233177815";
+    public static String URL_E_SPORT_RUNNING = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=106&ot=r&update=true&r=1770989484";
+    public static String URL_E_SPORT_EARLY = "http://a8197c.a36588.com/_view/All_Gen6.ashx?g=106&ot=e&update=true&r=1770989484";
 
 }

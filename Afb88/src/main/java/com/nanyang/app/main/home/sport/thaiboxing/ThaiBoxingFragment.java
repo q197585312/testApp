@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -14,10 +13,8 @@ import com.nanyang.app.main.home.sport.BaseSportFragment;
 import com.nanyang.app.main.home.sport.SportActivity;
 import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.adapter.VpBallAdapter;
-import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
-import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
@@ -105,11 +102,6 @@ public class ThaiBoxingFragment extends BaseSportFragment<ThaiBoxingPresenter> i
         String size = pageData.size() + "";
         tvTotalMatch.setText(size);
         ((BaseToolbarActivity) getActivity()).getTvToolbarTitle().setText(type);
-        if (presenter.isMixParlay()) {
-            llMixParlayOrder.setVisibility(View.VISIBLE);
-        } else {
-            llMixParlayOrder.setVisibility(View.GONE);
-        }
     }
 
     @Override
@@ -122,15 +114,8 @@ public class ThaiBoxingFragment extends BaseSportFragment<ThaiBoxingPresenter> i
 
     }
 
-    @Override
-    public void onGetBetSucceed(BettingPromptBean allData) {
 
-    }
 
-    @Override
-    public void onBetSucceed(String allData) {
-
-    }
 
     @Override
     public void onRightMarkClick(Bundle b) {
@@ -142,10 +127,6 @@ public class ThaiBoxingFragment extends BaseSportFragment<ThaiBoxingPresenter> i
 
     }
 
-    @Override
-    public void onCreatePopupWindow(BetBasePop betPop) {
-
-    }
 
     @Override
     public int onSetLayoutId() {

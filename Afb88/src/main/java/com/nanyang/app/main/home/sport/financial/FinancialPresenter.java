@@ -17,9 +17,7 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Flowable;
 
@@ -38,26 +36,6 @@ public class FinancialPresenter extends SportPresenter<List<MatchBean>, SportCon
                 return applySchedulers(getService(ApiService.class).getData(url));
             }
         };
-    }
-
-
-    boolean isItemCollection(MatchBean item) {
-        return !(localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()) == null || localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
-    }
-
-    void collectionItem(MatchBean item) {
-        String moduleKey = getType() + "+" + item.getLeagueBean().getModuleTitle();
-        Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
-        if (moduleMap == null)
-            moduleMap = new HashMap<>();
-        String localKey = item.getHome() + "+" + item.getAway();
-        Boolean v = moduleMap.get(localKey);
-        if (v == null || !v) {
-            moduleMap.put(localKey, true);
-        } else {
-            moduleMap.put(localKey, false);
-        }
-        localCollectionMap.put(moduleKey, moduleMap);
     }
 
     @Override
@@ -128,6 +106,7 @@ public class FinancialPresenter extends SportPresenter<List<MatchBean>, SportCon
             bean1.setIsHomeGive(matchArray.get(5).toString());
             aTrue.setHome( matchArray.get(6).toString());
             aTrue.setAway( matchArray.get(7).toString());
+            bean1.setSocOddsId(matchArray.get(0).toString());
             bean1.setIsInetBet(matchArray.get(8).toString());
             bean1.setHasHdp(matchArray.get(9).toString());
             bean1.setHdp(matchArray.get(10).toString());

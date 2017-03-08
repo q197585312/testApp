@@ -1,7 +1,8 @@
-package com.nanyang.app.main.home.sport.tennis;
+package com.nanyang.app.main.home.sport.e_sport;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.ApiSport;
 import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.SportPresenter;
@@ -17,17 +18,18 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
 
+/**
+ * Created by Administrator on 2017/3/3.
+ */
 
+public class SportEPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
 
-public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
-
-    TennisPresenter(SportContract.View<List<MatchBean>> view) {
+    public SportEPresenter(SportContract.View<List<MatchBean>> view) {
         super(view);
     }
 
@@ -41,45 +43,6 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
         };
     }
 
-
-    boolean isItemCollection(MatchBean item) {
-        return !(localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()) == null || localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(getType() + "+" + item.getLeagueBean().getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
-    }
-
-    void collectionItem(MatchBean item) {
-        String moduleKey = getType() + "+" + item.getLeagueBean().getModuleTitle();
-        Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
-        if (moduleMap == null)
-            moduleMap = new HashMap<>();
-        String localKey = item.getHome() + "+" + item.getAway();
-        Boolean v = moduleMap.get(localKey);
-        if (v == null || !v) {
-            moduleMap.put(localKey, true);
-        } else {
-            moduleMap.put(localKey, false);
-        }
-        localCollectionMap.put(moduleKey, moduleMap);
-    }
-
-    @Override
-    public void menu() {
-    }
-
-    @Override
-    public void collection() {
-        ToastUtils.showShort(" Has No Collection");
-    }
-
-    @Override
-    public void mixParlay() {
-
-            ToastUtils.showShort(" Has No MixParlay");
-
-    }
-
-
-
-
     @Override
     protected String getUrl(String type) {
         if (type.equals("")) {
@@ -88,30 +51,61 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
         String url;
         switch (type) {
             case "Running":
-                url = AppConstant.URL_TENNIS_RUNNING;
+                url = AppConstant.URL_E_SPORT_RUNNING;
                 break;
             case "Today":
-                url = AppConstant.URL_TENNIS_TODAY;
+                url = AppConstant.URL_E_SPORT_TODAY;
                 break;
             default:
-                url = AppConstant.URL_TENNIS_EARLY;
+                url = AppConstant.URL_E_SPORT_EARLY;
                 break;
         }
         setType(type);
         return url;
     }
 
+    private List<TableModuleBean> filterCollection(List<TableModuleBean> data) {
+        if (isCollection) {
+            ArrayList<TableModuleBean> moduleDate = new ArrayList<>();
+            for (TableModuleBean tableModuleBean : data) {
+                if (null != localCollectionMap.get(getType() + "+" + tableModuleBean.getLeagueBean().getModuleTitle())) {
+                    List<MatchBean> moduleCollectionRows = new ArrayList<>();
+                    TableModuleBean moduleCollection = new TableModuleBean(tableModuleBean.getLeagueBean(), moduleCollectionRows);
+                    Map<String, Boolean> moduleMap = localCollectionMap.get(getType() + "+" + tableModuleBean.getLeagueBean().getModuleTitle());
+
+                    for (MatchBean matchBean : tableModuleBean.getRows()) {
+                        if (moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway()) != null && moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway())) {
+                            moduleCollectionRows.add(matchBean);
+                        }
+                    }
+                    moduleCollection.setRows(moduleCollectionRows);
+                    moduleDate.add(moduleCollection);
+                }
+            }
+            if (moduleDate.size() > 0)
+                return moduleDate;
+            else {
+                isCollection = false;
+                ToastUtils.showShort(R.string.no_records);
+            }
+        }
+        return data;
+    }
 
     @Override
-    protected List<TableModuleBean> filterData(List<TableModuleBean> allData) {//按照条件 筛选data
-
-        return allData;
+    protected List<TableModuleBean> filterData(List<TableModuleBean> allData) {
+        List<TableModuleBean> filterData = allData;
+        if (isMixParlay)
+            isCollection = false;
+        if (isCollection)
+            filterData = filterCollection(allData);
+        return filterData;
     }
 
     @Override
     protected ResultIndexBean getResultIndexMap(String type) {
         ResultIndexBean resultIndexBean = new ResultIndexBean();
-        resultIndexBean.setPreSocOddsId(31);
+            resultIndexBean.setPreSocOddsId(31);
         return resultIndexBean;
     }
 
@@ -129,8 +123,9 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
             bean1.setIsHomeGive(matchArray.get(5).toString());
             aTrue.setHome( matchArray.get(6).toString());
             aTrue.setAway( matchArray.get(7).toString());
-            bean1.setSocOddsId( matchArray.get(0).toString());
+
             bean1.setIsInetBet(matchArray.get(8).toString());
+            bean1.setSocOddsId(matchArray.get(0).toString());
             bean1.setHasHdp(matchArray.get(9).toString());
             bean1.setHdp(matchArray.get(10).toString());
             bean1.setHomeHdpOdds(matchArray.get(12).toString());
@@ -156,7 +151,34 @@ public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContra
             matchList.add(aTrue);
         }
 
+
     }
 
+    @Override
+    public void collection() {
+        if (isMixParlay) {
+            ToastUtils.showShort("MixParlay Has No Collection");
+            return;
+        }
+        isCollection = !isCollection;
+        filterData(allData);
+        showCurrentData();
+    }
+
+    @Override
+    public void menu() {
+
+    }
+
+    @Override
+    public void mixParlay() {
+        if (type.equals("Running")) {
+            ToastUtils.showShort("Running Has No MixParlay");
+            return;
+        }
+        isMixParlay = !isMixParlay;
+        clearMixOrder();
+        refresh("");
+    }
 
 }

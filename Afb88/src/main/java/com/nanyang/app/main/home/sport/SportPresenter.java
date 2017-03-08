@@ -155,11 +155,13 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         builder.append(AppConstant.HOST + "_bet/JRecPanel.aspx?");
         if (info.getGt() != null && !info.getGt().equals(""))
             builder.append("gt=" + info.getGt());
-        if (info.getB().equals("1") || info.getB().equals("X") || info.getB().equals("2") || info.getB().equals("odd") || info.getB().equals("even"))
+     /*   if (info.getB().equals("1") || info.getB().equals("X") || info.getB().equals("2") || info.getB().equals("odd") || info.getB().equals("even"))
             builder.append("&g=5");
         else if (info.getB().equals("X_par") || info.getB().equals("2_par") || info.getB().equals("1_par") || info.getB().equals("under_par") || info.getB().equals("over_par") || info.getB().equals("home_par") ||
                 info.getB().equals("away_par") || info.getB().equals("odd_par") || info.getB().equals("even_par"))
-            builder.append("&g=2");
+            builder.append("&g=2");*/
+        if (info.getG() != null && !info.getG().equals(""))
+            builder.append("&g=" + info.getG());
         builder.append("&b=" + info.getB());
         if (info.getSc() != null && !info.getSc().equals(""))
             builder.append("&sc=" + info.getSc());
@@ -171,6 +173,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
             builder.append("&isFH=true&oId_fh=" + info.getSocOddsId_FH());
         return builder;
     }
+
     protected void clearMixOrder() {
 
         final BettingParPromptBean betParList = ((BaseSportFragment) baseView).getApp().getBetParList();
@@ -197,6 +200,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
         }
     }
+
     public void getBetPopupData(BettingInfoBean info) {
         StringBuilder betUrl = getBetUrl(info);
         Flowable<BettingPromptBean> flowable = getService(ApiService.class).getBetData(betUrl.toString());
@@ -256,6 +260,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
                 });
         mCompositeSubscription.add(subscription);
     }
+
     protected BettingParPromptBean.BetParBean getBetParBean(BettingInfoBean item) {
         BettingParPromptBean betParList = ((BaseToolbarActivity) baseView).getApp().getBetParList();
         if (betParList == null)
@@ -269,13 +274,15 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         }
         return null;
     }
+
     public BettingParPromptBean removeBetItem(final BettingInfoBean bean) {
         return removeBetItem(getBetParBean(bean));
 
 
     }
+
     public BettingParPromptBean removeBetItem(final BettingParPromptBean.BetParBean aitem) {
-        if(aitem==null)
+        if (aitem == null)
             return null;
         String ParUrl = aitem.getParUrl();
 
