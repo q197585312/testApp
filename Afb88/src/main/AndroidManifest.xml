@@ -40,19 +40,19 @@
 
         <activity android:name=".load.login.LoginActivity"></activity>
         <activity android:name=".load.welcome.WelcomeActivity">
-            <intent-filter>
+           <!-- <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter>-->
         </activity>
         <activity android:name=".main.MainActivity" />
         <activity android:name=".load.register.RegisterActivity" />
         <activity android:name=".main.home.sport.SportActivity" />
         <activity android:name="com.unkonw.testapp.training.TestActivity">
-            <!--    <intent-filter>
+                <intent-filter>
                     <action android:name="android.intent.action.MAIN" />
                     <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>-->
+                </intent-filter>
         </activity>
         <activity android:name=".main.home.poker.PokerCasinoActivity" />
         <activity android:name=".main.home.Games.GamesActivity" />

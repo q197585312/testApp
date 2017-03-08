@@ -1,6 +1,8 @@
 package com.unkonw.testapp.training;
 
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
@@ -8,12 +10,15 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 
 import com.unkonw.testapp.R;
+import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.AutoUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.ButterKnife;
 
@@ -32,7 +37,7 @@ public class TestActivity extends BaseActivity {
     private GestureManager manager;
     private ScrollLayout s1;
     private ScrollLayout s2;
-
+    private List<ScrollLayout> sls=new ArrayList<>();
     @Override
     public void initView() {
 
@@ -49,9 +54,27 @@ public class TestActivity extends BaseActivity {
         setContentView(R.layout.text_btn);
         ButterKnife.bind(this);
         testGesture();
-        s1=(ScrollLayout)findViewById(R.id.sl_1);
-        s2=(ScrollLayout)findViewById(R.id.sl_2);
-        s1.setForllowScrolls(new ArrayList<ScrollLayout>(Arrays.asList(s2)));
+        RecyclerView rv = (RecyclerView) findViewById(R.id.base_rv);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        rv.setAdapter(new BaseRecyclerAdapter<String>(this,Arrays.asList("","",""),R.layout.text) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, String item) {
+                final ScrollLayout  sl = holder.getView(R.id.sl_2);
+
+                if(!sls.contains(sl))
+                    sls.add(sl);
+                sl.setOnTouchListener(new View.OnTouchListener() {
+                    @Override
+                    public boolean onTouch(View v, MotionEvent event) {
+                        if(sl.getFollowScrolls()==null){
+                            sl.setFollowScrolls(sls);
+                        }
+                        return false;
+                    }
+                });
+            }
+
+        });
     }
 
     private void testGesture() {

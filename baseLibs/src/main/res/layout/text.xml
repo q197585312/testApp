@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/ll_parent"
+    android:layout_height="100dp">
+
+    <com.unkonw.testapp.training.ScrollLayout
+        android:id="@+id/sl_2"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+        <Button
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="This is first child view"/>
+
+        <Button
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="This is second child view"/>
+
+        <Button
+            android:textColor="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:text="This is third child view"/>
+    </com.unkonw.testapp.training.ScrollLayout>
+
+</LinearLayout>

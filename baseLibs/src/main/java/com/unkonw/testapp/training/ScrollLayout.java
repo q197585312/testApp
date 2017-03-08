@@ -3,6 +3,7 @@ package com.unkonw.testapp.training;
 import android.content.Context;
 import android.support.v4.view.ViewConfigurationCompat;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
@@ -93,6 +94,7 @@ public class ScrollLayout extends ViewGroup {
             case MotionEvent.ACTION_DOWN:
                 mXDown = ev.getRawX();
                 mXLastMove = mXDown;
+                Log.d("MotionEvent", "Intercept---ACTION_DOWN:" + super.onInterceptTouchEvent(ev));
                 break;
             case MotionEvent.ACTION_MOVE:
                 mXMove = ev.getRawX();
@@ -103,12 +105,14 @@ public class ScrollLayout extends ViewGroup {
                     if (getParent() != null) {
                         getParent().requestDisallowInterceptTouchEvent(true);
                     }
+                    Log.d("MotionEvent", "Intercept---ACTION_MOVE:" + true + "拦截了滑动事件----");
                     return true;
                 }
-
+                Log.d("MotionEvent", "Intercept---ACTION_MOVE:" + super.onInterceptTouchEvent(ev) + "没拦截了滑动事件----");
                 break;
             case MotionEvent.ACTION_UP:
                 getParent().requestDisallowInterceptTouchEvent(false);
+                Log.d("MotionEvent", "Intercept---ACTION_UP:" + super.onInterceptTouchEvent(ev));
                 break;
         }
         return super.onInterceptTouchEvent(ev);
@@ -117,18 +121,24 @@ public class ScrollLayout extends ViewGroup {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                Log.d("MotionEvent", "onTouchEvent---ACTION_DOWN:" + super.onTouchEvent(event));
+                break;
             case MotionEvent.ACTION_MOVE:
                 mXMove = event.getRawX();
                 int scrolledX = (int) (mXLastMove - mXMove);
                 if (getScrollX() + scrolledX < leftBorder) {
                     scrollTo(leftBorder, 0);
+                    Log.d("MotionEvent", "onTouchEvent---ACTION_MOVE:" + true);
                     return true;
                 } else if (getScrollX() + getWidth() + scrolledX > rightBorder) {
                     scrollTo(rightBorder - getWidth(), 0);
+                    Log.d("MotionEvent", "onTouchEvent---ACTION_MOVE:" + true);
                     return true;
                 }
                 scrollBy(scrolledX, 0);
                 mXLastMove = mXMove;
+                Log.d("MotionEvent", "onTouchEvent---ACTION_MOVE:" + super.onTouchEvent(event));
                 break;
             case MotionEvent.ACTION_UP:
                 // 当手指抬起时，根据当前的滚动值来判定应该滚动到哪个子控件的界面
@@ -137,9 +147,10 @@ public class ScrollLayout extends ViewGroup {
                 // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
                 mScroller.startScroll(getScrollX(), 0, dx, 0);
                 invalidate();
+                Log.d("MotionEvent", "onTouchEvent---ACTION_UP:" + super.onTouchEvent(event));
                 break;
         }
-        return super.onTouchEvent(event);
+        return true;
     }
 
 
@@ -152,27 +163,23 @@ public class ScrollLayout extends ViewGroup {
         }
     }
 
-    @Override
-    public void scrollBy(int x, int y) {
-        super.scrollBy(x, y);
-        if(scrolls!=null){
-            for (ScrollLayout scroll : scrolls) {
-                scroll.scrollBy(x,y);
-            }
-        }
-    }
+
 
     @Override
     public void scrollTo(int x, int y) {
         super.scrollTo(x, y);
-        if(scrolls!=null){
+        if (scrolls != null) {
             for (ScrollLayout scroll : scrolls) {
-                if(!scroll.equals(this))
-                scroll.scrollTo(x,y);
+                if (!scroll.equals(this))
+                    scroll.scrollTo(x, y);
             }
         }
     }
-    public void setForllowScrolls(List<ScrollLayout> scrolls){
-        this.scrolls=scrolls;
+
+    public void setFollowScrolls(List<ScrollLayout> scrolls) {
+        this.scrolls = scrolls;
+    }
+    public List<ScrollLayout>  getFollowScrolls() {
+        return scrolls;
     }
 }
