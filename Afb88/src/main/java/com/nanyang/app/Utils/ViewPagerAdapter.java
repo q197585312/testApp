@@ -17,6 +17,8 @@ public class ViewPagerAdapter extends PagerAdapter {
     private List<ImageView> views;
     private Resources resources;
     public LinearLayout layout;
+    private int index;
+    public int itemTrueAmount;
 
     public ViewPagerAdapter(Resources resources, List<ImageView> views, List<Integer> lists, LinearLayout layout) {
         super();
@@ -24,11 +26,12 @@ public class ViewPagerAdapter extends PagerAdapter {
         this.lists = lists;
         this.resources = resources;
         this.layout = layout;
+        itemTrueAmount = lists.size();
     }
 
     @Override
     public int getCount() {
-        return views.size();
+        return Integer.MAX_VALUE;
     }
 
     @Override
@@ -38,9 +41,10 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        ImageView view = views.get(position);
+        index = position % lists.size();
+        ImageView view = views.get(index);
         container.addView(view);
-        Bitmap b = AfbUtils.decodeSampledBitmapFromResource(resources, lists.get(position), 250, 250);
+        Bitmap b = AfbUtils.decodeSampledBitmapFromResource(resources, lists.get(index), 250, 250);
         view.setImageBitmap(b);
         if (b != null && b.isRecycled()) {
             b.recycle();
@@ -52,7 +56,8 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        View view = views.get(position);
+        index = position % lists.size();
+        View view = views.get(index);
         container.removeView(view);
     }
 }

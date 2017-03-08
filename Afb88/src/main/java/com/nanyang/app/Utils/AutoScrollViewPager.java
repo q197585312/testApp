@@ -48,15 +48,16 @@ public class AutoScrollViewPager extends ViewPager {
 
     public void setAdapter(ViewPagerAdapter arg0) {
         super.setAdapter(arg0);
-        totalPageCount = arg0.getCount();
+        tureItemCount = arg0.itemTrueAmount;
         startTask();
         layout = arg0.layout;
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(25, 25);
         params.leftMargin = 7;
         viewList = new ArrayList<>();
-        for (int i = 0; i < totalPageCount; i++) {
+        setCurrentItem(index);
+        for (int i = 0; i < tureItemCount; i++) {
             View view = new View(getContext());
-            if (i == 0) {
+            if (i == index % tureItemCount) {
                 view.setBackgroundResource(R.drawable.indicator_selected);
             } else {
                 view.setBackgroundResource(R.drawable.indicator_selecte_no);
@@ -67,7 +68,7 @@ public class AutoScrollViewPager extends ViewPager {
         }
     }
 
-    private int totalPageCount;
+    private int tureItemCount;
     private Handler handler = new Handler(new Handler.Callback() {
 
         @Override
@@ -76,7 +77,7 @@ public class AutoScrollViewPager extends ViewPager {
             return false;
         }
     });
-    private int index = 0;
+    private int index = Integer.MAX_VALUE / 3;
     private Timer timer = new Timer();
     private TimerTask task;
 
@@ -88,24 +89,31 @@ public class AutoScrollViewPager extends ViewPager {
                 public void run() {
                     handler.sendMessage(handler.obtainMessage(0, index, 0));
                     index++;
-                    if (index >= totalPageCount) {
-                        index = 0;
-                    }
                 }
             };
             timer.schedule(task, 2000, 3000);
         }
     }
 
+    float firstX, lastX;
 
     @Override
     public boolean onTouchEvent(MotionEvent arg0) {
         switch (arg0.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 stopTask();
+                firstX = getScrollX();
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
+                lastX = getScrollX();
+                int currentIndex = getCurrentItem();
+                if (firstX - lastX <= 0) {
+                    index = currentIndex + 1;
+                } else {
+                    index = currentIndex - 1;
+                }
+                startTask();
                 break;
         }
         return super.onTouchEvent(arg0);
@@ -121,20 +129,13 @@ public class AutoScrollViewPager extends ViewPager {
     public OnPageChangeListener listener = new OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-            if (task == null) {
-                index = getCurrentItem() + 1;
-                startTask();
-            }
+
         }
 
         @Override
         public void onPageSelected(int position) {
-            if (task == null) {
-                index = getCurrentItem() + 1;
-                startTask();
-            }
-            for (int i = 0; i < viewList.size(); i++) {
-                if (i == position) {
+            for (int i = 0; i < tureItemCount; i++) {
+                if (i == position % tureItemCount) {
                     viewList.get(i).setBackgroundResource(R.drawable.indicator_selected);
                 } else {
                     viewList.get(i).setBackgroundResource(R.drawable.indicator_selecte_no);
