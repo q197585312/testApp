@@ -16,8 +16,10 @@ import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.OutRightMatchBean;
 import com.nanyang.app.main.home.sport.model.ResultIndexBean;
 import com.nanyang.app.main.home.sport.model.TableModuleBean;
+import com.nanyang.app.main.home.sport.model.TableOutRightBean;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
@@ -58,7 +60,10 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     protected List<TableModuleBean> filterData;
     protected List<TableModuleBean> pageData;
     private Map<String, JSONArray> matchArrayMap = new HashMap<>();
+
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
+    private JSONArray outRightJson;
+    private List<TableOutRightBean> outRightData;
 
     public SportPresenter(V view) {
         super(view);
@@ -69,42 +74,160 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     @Override
     public void refresh(String type) {
         String url = getUrl(type);
-        Disposable subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-                .map(new Function<String, List<TableModuleBean>>() {
+        Disposable subscription;
+        if (!isOutRight) {
+            subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+                    .map(new Function<String, List<TableModuleBean>>() {
 
-                    @Override
-                    public List<TableModuleBean> apply(String s) throws Exception {
-                        return parseTableModuleBeen(s);
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<TableModuleBean>>() {//onNext
-                    @Override
-                    public void accept(List<TableModuleBean> allData) throws Exception {
-                        initAllData(allData);
-                        startUpdate();
-                    }
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        baseView.onFailed(throwable.getMessage());
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Action() {//完成
-                    @Override
-                    public void run() throws Exception {
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Consumer<Subscription>() {//开始绑定
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
-                        subscription.request(Long.MAX_VALUE);
-                    }
-                });
+                        @Override
+                        public List<TableModuleBean> apply(String s) throws Exception {
+                            return parseTableModuleBeen(s);
+                        }
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<List<TableModuleBean>>() {//onNext
+                        @Override
+                        public void accept(List<TableModuleBean> allData) throws Exception {
+                            initAllData(allData);
+                            startUpdate();
+                        }
+                    }, new Consumer<Throwable>() {//错误
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            baseView.onFailed(throwable.getMessage());
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Action() {//完成
+                        @Override
+                        public void run() throws Exception {
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Consumer<Subscription>() {//开始绑定
+                        @Override
+                        public void accept(Subscription subscription) throws Exception {
+                            baseView.showLoadingDialog();
+                            subscription.request(Long.MAX_VALUE);
+                        }
+                    });
+        } else {
+            subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+                    .map(new Function<String, List<TableOutRightBean>>() {
+
+                        @Override
+                        public List<TableOutRightBean> apply(String s) throws Exception {
+                            return parseTableOutRightBeen(s);
+                        }
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<List<TableOutRightBean>>() {//onNext
+                        @Override
+                        public void accept(List<TableOutRightBean> allData) throws Exception {
+                            initOutRightData(allData);
+                            startUpdate();
+                        }
+                    }, new Consumer<Throwable>() {//错误
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            baseView.onFailed(throwable.getMessage());
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Action() {//完成
+                        @Override
+                        public void run() throws Exception {
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Consumer<Subscription>() {//开始绑定
+                        @Override
+                        public void accept(Subscription subscription) throws Exception {
+                            baseView.showLoadingDialog();
+                            subscription.request(Long.MAX_VALUE);
+                        }
+                    });
+        }
         mCompositeSubscription.add(subscription);
 
+    }
+
+
+    @Nullable
+    protected List<TableModuleBean> parseTableModuleBeen(String s) throws JSONException {
+
+        JSONArray jsonArray = new JSONArray(s);
+
+        if (jsonArray.length() > 4) {
+            parseLidValue(jsonArray);
+            JSONArray dataListArray = jsonArray.getJSONArray(3);
+            return updateJsonData(dataListArray);
+        }
+        return new ArrayList<>();
+    }
+
+    private List<TableOutRightBean> parseTableOutRightBeen(String s) throws JSONException {
+        JSONArray jsonArray = new JSONArray(s);
+
+        if (jsonArray.length() > 4) {
+            parseLidValue(jsonArray);
+            JSONArray dataListArray = jsonArray.getJSONArray(3);
+            return updateOutRightJsonData(dataListArray);
+        }
+        return new ArrayList<>();
+    }
+
+    private List<TableOutRightBean> updateOutRightJsonData(JSONArray dataListArray) throws JSONException {
+        List<TableOutRightBean> tableModules = new ArrayList<>();
+        outRightJson = dataListArray;
+        if (dataListArray.length() > 0) {
+            for (int i = 0; i < dataListArray.length(); i++) {
+                LeagueBean leagueBean;
+                List<OutRightMatchBean> matchList = new ArrayList<>();
+                JSONArray jsonArray3 = dataListArray.getJSONArray(i);
+                if (jsonArray3.length() > 1) {
+                    JSONArray LeagueArray = jsonArray3.getJSONArray(0);
+                    if (LeagueArray.length() > 1) {
+                        leagueBean = new LeagueBean(LeagueArray.get(0).toString(), LeagueArray.getString(1));
+                    } else {
+                        continue;
+                    }
+                    JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                    if (LeagueMatchArray.length() > 0) {
+                        for (int j = 0; j < LeagueMatchArray.length(); j++) {
+                            JSONArray matchArray = LeagueMatchArray.getJSONArray(j);
+                            if (matchArray.length() > 6) {
+                                matchList.add(parseOutRightList(leagueBean, matchArray));
+                            }
+
+                        }
+                    } else {
+                        continue;
+                    }
+                    tableModules.add(new TableOutRightBean(leagueBean, matchList));
+                }
+
+            }
+        }
+        return tableModules;
+    }
+
+    private OutRightMatchBean parseOutRightList(LeagueBean leagueBean, JSONArray matchArray) throws JSONException {
+
+
+        /**
+         SocOddsId,   Home,IsInetBet, isX12New, HasX12, X12_1Odds , PreSocOddsId
+         */
+
+        OutRightMatchBean aTrue = new OutRightMatchBean();
+        aTrue.setModuleId(leagueBean.getModuleId());
+        aTrue.setModuleTitle(leagueBean.getModuleTitle());
+        aTrue.setSocOddsId(matchArray.getString(0));
+        aTrue.setHome(matchArray.getString(1));
+        aTrue.setIsInetBet(matchArray.getString(2));
+        aTrue.setIsX12New(matchArray.getString(3));
+        aTrue.setHasX12(matchArray.getString(4));
+        aTrue.setX12_1Odds(matchArray.getString(5));
+        aTrue.setPreSocOddsId(matchArray.getString(6));
+        return aTrue;
     }
 
     private void initAllData(List<TableModuleBean> allData) {
@@ -112,6 +235,13 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         updateAllDate(allData);
 
     }
+    private void initOutRightData(List<TableOutRightBean> allData) {
+        page = 0;
+        updateOutRightDate(allData);
+    }
+
+
+
 
     public void addMixParlayBet(BettingInfoBean info, final Map<String, Map<Integer, BettingInfoBean>> keyMap, final MatchBean item) {
 
@@ -325,6 +455,15 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
     public boolean isCollection = false;
 
+    public boolean isOutRight() {
+        return isOutRight;
+    }
+
+    public void setOutRight(boolean outRight) {
+        isOutRight = outRight;
+    }
+
+    public boolean isOutRight = false;
 
     public void countBet() {
         baseView.onCountBet();
@@ -343,8 +482,8 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
     protected abstract String getUrl(String type);
 
-    private List<TableModuleBean> pageData(List<TableModuleBean> filterData) {
-        List<TableModuleBean> pageList;
+    private <T>List<T> pageData(List<T> filterData) {
+        List<T> pageList;
         if (((page + 1) * pageSize) < filterData.size()) {
             pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
         } else {
@@ -353,7 +492,10 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         return pageList;
 
     }
-
+    private void updateOutRightDate(List<TableOutRightBean> allData) {
+        this.outRightData = allData;
+        showCurrentData();
+    }
     protected void updateAllDate(List<TableModuleBean> allData) {
         this.allData = allData;
         this.filterData = filterData(allData);
@@ -361,8 +503,14 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     }
 
     protected void showCurrentData() {
-        pageData = pageData(filterData);
-        baseView.onPageData(page, (T) toMatchList(pageData), getType());
+        if(!isOutRight) {
+            pageData = pageData(filterData);
+            baseView.onPageData(page, (T) toMatchList(pageData), getType());
+        }else{
+            List<TableOutRightBean> pageOutRight = pageData(outRightData);
+            List<OutRightMatchBean> outRightMatchBeen = toOutRightBeanList(pageOutRight);
+            baseView.onOutRightData(page, outRightMatchBeen, getType());
+        }
     }
 
     @NonNull
@@ -380,6 +528,24 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
                     cell.setType(MatchBean.Type.ITME);
                 }
                 cell.setLeagueBean(item.getLeagueBean());
+                pageMatch.add(cell);
+            }
+        }
+        return pageMatch;
+    }
+    @NonNull
+    protected List<OutRightMatchBean> toOutRightBeanList(List<TableOutRightBean> pageList) {
+        List<OutRightMatchBean> pageMatch = new ArrayList<>();
+        for (int i = 0; i < pageList.size(); i++) {
+            TableOutRightBean item = pageList.get(i);
+            List<OutRightMatchBean> items = item.getRows();
+            for (int j = 0; j < items.size(); j++) {
+                OutRightMatchBean cell = item.getRows().get(j);
+                if (j == 0) {
+                    cell.setType(MatchBean.Type.TITLE);
+                } else {
+                    cell.setType(MatchBean.Type.ITME);
+                }
                 pageMatch.add(cell);
             }
         }
@@ -435,6 +601,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         Logger.getDefaultLogger().d(getClass().getSimpleName(), "startUpdate---->");
         mCompositeSubscription.add(updateSubscription);
     }
+
     /*
     * -(void)updateRunningData:(NSArray *)arrdata
 {
@@ -746,7 +913,9 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     private void parseLidValue(JSONArray jsonArray) throws JSONException {
         JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
         if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
-            LID = jsonArrayLID.getString(1);
+            synchronized (this) {
+                LID = jsonArrayLID.getString(1);
+            }
         }
     }
 
@@ -778,19 +947,6 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
     }
 
-
-    @Nullable
-    protected List<TableModuleBean> parseTableModuleBeen(String s) throws JSONException {
-
-        JSONArray jsonArray = new JSONArray(s);
-
-        if (jsonArray.length() > 4) {
-            parseLidValue(jsonArray);
-            JSONArray dataListArray = jsonArray.getJSONArray(3);
-            return updateJsonData(dataListArray);
-        }
-        return new ArrayList<>();
-    }
 
     private ArrayList<TableModuleBean> updateJsonData(JSONArray dataListArray) throws JSONException {
         ArrayList<TableModuleBean> tableModules = new ArrayList<>();
@@ -858,5 +1014,10 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
                     }
                 });
         mCompositeSubscription.add(subscription);
+    }
+
+    public void changeOutRight() {
+        isOutRight = !isOutRight;
+        refresh("");
     }
 }

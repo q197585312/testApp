@@ -35,6 +35,12 @@ public class AppConstant {
     public static String URL_FOOTBALL_EARLY_Mix ="http://a8197c.a36588.com/_view/ParGenWFH.ashx?g=4&ot=e&update=true&r=866546094";
     public static String URL_FOOTBALL_TODAY_Mix ="http://a8197c.a36588.com/_view/ParGenWFH.ashx?g=4&ot=t&update=true&r=1027945624";
 
+    public static String URL_FOOTBALL_OUT_RIGHT ="http://a8197c.a36588.com/_view/OddsGen50.ashx?update=true&r=2076712019";
+
+//    http://a8197c.a36588.com/_view/OddsGen50.ashx?ot=t&update=true&r=739526444&LID=&_=1489039551227
+    //http://a8197c.a36588.com/_view/OddsGen50.ashx?ot=e&update=true&r=1039934078&LID=&_=1489039799379
+
+
 //http://a8197c.a36588.com/_View/All_WFHGen.ashx?g=9&ot=e&update=true&r=2033192118&LID=6d93d66cfbe0867d&_=1488511791401
     //http://a8197c.a36588.com/_view/All_WFHGen.ashx?g=9&ot=r&update=true&r=757267892&LID=b54b5d6983173114&_=1488512949361
     //http://a8197c.a36588.com/_view/All_WFHGen.ashx?g=9&ot=t&update=true&r=757267892&LID=1e6eef048d1e3114&_=1488512949362
@@ -45,6 +51,7 @@ public class AppConstant {
     public static String URL_BASKETBALL_EARLY_Mix ="http://a8197c.a36588.com/_view/ParGen.ashx?g=10&ot=e&update=true&r=866546094";
     public static String URL_BASKETBALL_TODAY_Mix ="http://a8197c.a36588.com/_view/ParGen.ashx?g=10&ot=t&update=true&r=408754578";
     //http://a8197c.a36588.com/_view/ParGen.ashx?g=10&ot=t&update=true&r=408754578_=1488176690345
+    //
 
 
     //http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=448980496&wd=&ia=0&LID=&_=1488521216204

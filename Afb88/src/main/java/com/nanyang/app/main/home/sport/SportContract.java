@@ -7,9 +7,11 @@ import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.OutRightMatchBean;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.view.IBaseView;
 
+import java.util.List;
 import java.util.Map;
 
 public interface SportContract {
@@ -24,6 +26,8 @@ public interface SportContract {
         void onCountBet();
 
         void onCreatePopupWindow(BetBasePop betPop);
+
+        void onOutRightData(int page, List<OutRightMatchBean> outRightMatchBeen, String type);
     }
 
     interface Presenter extends IBasePresenter ,BetPresenter {
