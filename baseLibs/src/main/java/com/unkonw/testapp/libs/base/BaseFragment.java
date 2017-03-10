@@ -64,10 +64,11 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
     /**
      * 创建相应的 presenter
      */
-    public void createPresenter(T presenter) {
+    public T createPresenter(T presenter) {
         if (presenter != null) {
             this.presenter = presenter;
         }
+        return presenter;
 
     }
 

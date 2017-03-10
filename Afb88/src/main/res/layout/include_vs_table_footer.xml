@@ -5,11 +5,14 @@ android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
 >
-<View
-    android:layout_width="match_parent"
-    android:layout_height="8dp"
-    android:layout_marginBottom="10dp"
-    android:background="@drawable/rectangle_gradient_line_grey_white5"
-    />
 
+
+    <View
+        android:background="@color/green_white_thick_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+    <View
+        android:background="@color/grey_dialog_background"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
 </LinearLayout>

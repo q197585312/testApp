@@ -4,7 +4,6 @@ package com.nanyang.app.main.home.sport.additional;
 import android.support.annotation.NonNull;
 
 import com.nanyang.app.ApiService;
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
@@ -36,13 +35,11 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, VsContract.View> impl
     }
 
 
-
-
     public void scale(MatchBean item, String matchType) {
-        this.bean=item;
-        this.type=matchType;
+        this.bean = item;
+        this.type = matchType;
         String url = getUrl();
-        Disposable subscription =  mApiWrapper.applySchedulers(getService(ApiService.class).scale(url)).subscribe(new Consumer<ScaleBean>() {//onNext
+        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).scale(url)).subscribe(new Consumer<ScaleBean>() {//onNext
             @Override
             public void accept(ScaleBean Str) throws Exception {
                 baseView.onGetData(Str);
@@ -74,13 +71,15 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, VsContract.View> impl
         boolean isRunning = false;
         if (type.equals("Running"))
             isRunning = true;
-        String url = AppConstant.HOST + "_view/MoreBet_App.aspx?oId=" + bean.getHandicapBeans().get(0).getSocOddsId() + "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getLeagueBean().getModuleTitle()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning;
-        url=url + "&t=" + System.currentTimeMillis();
+
+        String url = "http://main55.afb88.com/_view/MoreBet_App.aspx?oId=" + bean.getHandicapBeans().get(0).getSocOddsId() + "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getLeagueBean().getModuleTitle()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning;
+        url = url + "&t=" + System.currentTimeMillis();
         return url;
     }
 
 
     private Disposable updateSubscription;
+
     void stopUpdate() {
         if (updateSubscription != null) {
             updateSubscription.dispose();
@@ -93,7 +92,7 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, VsContract.View> impl
         Flowable<ScaleBean> updateFlowable = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<ScaleBean>>() {
             @Override
             public Publisher<ScaleBean> apply(Long aLong) throws Exception {
-                    return getService(ApiService.class).scale(getUrl());
+                return getService(ApiService.class).scale(getUrl());
             }
         });
         if (updateSubscription != null) {
@@ -101,7 +100,7 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, VsContract.View> impl
             updateSubscription = null;
         }
         updateSubscription = updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-               .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
 
                 .subscribe(new Consumer<ScaleBean>() {//onNext
                     @Override

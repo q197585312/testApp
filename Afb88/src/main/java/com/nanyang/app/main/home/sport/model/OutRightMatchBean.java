@@ -11,6 +11,11 @@ public class OutRightMatchBean implements Serializable{
     String moduleId;
     String moduleTitle;
     String SocOddsId,   Home,IsInetBet, isX12New, HasX12, X12_1Odds , PreSocOddsId;
+
+    public MatchBean.Type getType() {
+        return type;
+    }
+
     private MatchBean.Type type;
 
     public String getModuleId() {

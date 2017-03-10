@@ -112,7 +112,7 @@ public class FootballPresenter extends SportPresenter<List<MatchBean>, SportCont
                 break;
             case "Early":
                 if (isOutRight)
-                    url = AppConstant.URL_FOOTBALL_RUNNING + "&ot=e";
+                    url = AppConstant.URL_FOOTBALL_OUT_RIGHT + "&ot=e";
                 else {
                     url = AppConstant.URL_FOOTBALL_EARLY;
                     if (isMixParlay) {

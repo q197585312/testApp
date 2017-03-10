@@ -1,8 +1,6 @@
 package com.nanyang.app.main.home.sport.basketball;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,6 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.BaseSportFragment;
-import com.nanyang.app.main.home.sport.SportActivity;
 import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.adapter.VpBallAdapter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
@@ -23,8 +20,6 @@ import com.nanyang.app.main.home.sport.model.MenuListInfo;
 import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
-import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 
 import java.util.ArrayList;
@@ -47,8 +42,6 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
     TextView tvTotalMatch;
     @Bind(R.id.tv_odds_type)
     TextView tvOddsType;
-    @Bind(R.id.vp_header)
-    ViewPager vpHeader;
 
     @Bind(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
@@ -66,19 +59,16 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
     @Override
     public void initData() {
         super.initData();
-        createPresenter(new BasketballPresenter(this));
-        presenter.setType(((SportActivity) getActivity()).getType());
-        presenter.refresh(((SportActivity) getActivity()).getType());
         initAdapter();
 
     }
 
+    @Override
+    protected BasketballPresenter getPresenter() {
+        return new BasketballPresenter(this);
+    }
+
     private void initAdapter() {
-
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext);
-
-        rvContent.setLayoutManager(mLayoutManager);
-        baseRecyclerAdapter = new VpBallAdapter(mContext, new ArrayList<MatchBean>(), R.layout.sport_match_item);
         ViewGroup.LayoutParams layoutParams = vpHeader.getLayoutParams();
         tvAos.setVisibility(View.GONE);
         layoutParams.width = DeviceUtils.dip2px(mContext, 210);
@@ -92,33 +82,8 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> i
         listInfos.add(list2);
         headerAdapter.setDatas(listInfos);
         vpHeader.setAdapter(headerAdapter);
-        baseRecyclerAdapter.setVpHeader(vpHeader);
-        baseRecyclerAdapter.setPresenter(presenter);
-        rvContent.setAdapter(baseRecyclerAdapter);
 
-        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                presenter.onPrevious(swipeToLoadLayout);
-            }
-        });
-        swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                presenter.onNext(swipeToLoadLayout);
-            }
-        });
 
-        rvContent.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    if (!ViewCompat.canScrollVertically(recyclerView, 1)) {
-                        swipeToLoadLayout.setLoadingMore(true);
-                    }
-                }
-            }
-        });
     }
 
     @Override

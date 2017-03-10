@@ -26,7 +26,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -45,21 +44,19 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
 
     private MatchBean item;
     private String matchType;
-    private ScaleFragment sf;
-    private BetSingleDoubleFragment bf;
-    private CorrectFragment cf;
+    private ScaleFragment sf= new ScaleFragment();
+    private BetSingleDoubleFragment bf = new BetSingleDoubleFragment();
+    private CorrectFragment cf= new CorrectFragment();
+
     private boolean isMixParlay = false;
     private String url = "";
     private ArrayList<BaseVsFragment> fragmentsList;
-
-
+    List< List<VsTableRowBean> > datas=new ArrayList();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vs);
-        ButterKnife.bind(this);
     }
-
     @Override
     public void initData() {
         super.initData();
@@ -74,31 +71,46 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
         layoutParams.width= Toolbar.LayoutParams.MATCH_PARENT;
         vsTimeTv.setText(item.getMatchDate());
 //        tvToolbarTitle.setText(item.getMatchDate());
-        sf = new ScaleFragment();
-        bf = new BetSingleDoubleFragment();
-        cf = new CorrectFragment();
+
         fragmentsList = new ArrayList<>();
 
         sf.setTitle(getString(R.string.scaleplate_asianplate));
         bf.setTitle(getString(R.string.single_double));
         cf.setTitle(getString(R.string.correct_score));
+        createPresenter(new VsPresenter(this));
         if (isMixParlay) {
             fragmentsList.add(sf);
+            initFirstData(item.getOtherDataBean());
         } else {
             fragmentsList.add(sf);
             fragmentsList.add(bf);
             fragmentsList.add(cf);
+            presenter.scale(item, matchType);
         }
         ballgamePagerVp.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentsList));
         ballgameTabsPstabs.setViewPager(ballgamePagerVp);
-        ballgameTabsPstabs.setTextColorResource(R.color.green900);
-        ballgameTabsPstabs.setBackGroundColorRes(R.color.green_light);
+        ballgameTabsPstabs.setTextColorResource(R.color.green_light);
+        ballgameTabsPstabs.setBackGroundColorRes(R.color.green_light_white);
         ballgameTabsPstabs.setSelectedBgColor(-1);
-        createPresenter(new VsPresenter(this));
-        if (!isMixParlay) {
-            presenter.scale(item, matchType);
-        }
 
+
+        ballgamePagerVp.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                BaseVsFragment baseVsFragment = fragmentsList.get(position);
+                baseVsFragment.setData(datas.get(position));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     public MatchBean getItem() {
@@ -174,6 +186,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
                 new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", otherDataBean.getX122Odds(), socOddsId), new VsCellBean("", otherDataBean.getX122OddsFH(), socOddsId_hf)), true),
                 new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", otherDataBean.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
                 new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", otherDataBean.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
+        datas.add(rows);
         sf.setData(rows);
 
     }
@@ -202,6 +215,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:1", result.getFHCS().getC4_1(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:1", result.getFHCS().getC1_4(), result.getFHCS().getOid()))),
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:2", result.getFHCS().getC4_2(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:2", result.getFHCS().getC2_4(), result.getFHCS().getOid()))),
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:3", result.getFHCS().getC4_3(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:3", result.getFHCS().getC3_4(), result.getFHCS().getOid())), true));
+        datas.add(rows);
         cf.setData(rows);
     }
 
@@ -214,6 +228,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
                         new VsCellBean("AL", result.getFGLG().getAL(), "2", result.getFGLG().getOid()), new VsCellBean("NO GOAL", result.getFGLG().getNO_GOAL(), "0", result.getFGLG().getOid())), true, true, getString(R.string.first_last_goal), "", "", ""),
                 new VsTableRowBean("tg", Arrays.asList(new VsCellBean("0~1", result.getTG().getT0_1(), "1", result.getTG().getOid()), new VsCellBean("2~3", result.getTG().getT2_3(), "23", result.getTG().getOid()), new VsCellBean("4~6", result.getTG().getT4_6(), "46", result.getTG().getOid()),
                         new VsCellBean("", "", 0), new VsCellBean("7 & OVER", result.getTG().getT7_OVER(), "70", result.getTG().getOid())), true, true, getString(R.string.total_goals), "", "", ""));
+        datas.add(rows);
         bf.setData(rows);
 
     }
@@ -228,6 +243,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
                 new VsTableRowBean("dc", "2", Arrays.asList(new VsCellBean("X2", "", 0), new VsCellBean("", result.getFTDC().getFx2(), result.getFTDC().getOid()), new VsCellBean("", result.getFHDC().getFx2(), result.getFHDC().getOid())), true),
                 new VsTableRowBean("odd", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", result.getFTOE().getODD(), result.getFTOE().getOid()), new VsCellBean("", result.getFHOE().getODD(), result.getFHOE().getOid())), true, false, getString(R.string.odd_even), getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
                 new VsTableRowBean("even", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", result.getFTOE().getEVEN(), result.getFTOE().getOid()), new VsCellBean("", result.getFHOE().getEVEN(), result.getFHOE().getOid())), true));
+        datas.add(rows);
         sf.setData(rows);
     }
 

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/v_out_right_header_space"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/green_light_white"
+        android:padding="5dp" />
+
+    <TextView
+        android:id="@+id/out_right_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/green_light"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp"
+        android:text="联赛名称"
+        android:textColor="@color/green900"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green_light_white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:id="@+id/out_right_home_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingLeft="1dp"
+            android:paddingRight="1dp"
+            android:text="@string/aa"
+            android:textColor="@color/google_red"
+            android:textSize="9sp"
+            android:textStyle="bold"
+
+            />
+
+
+        <View
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="@color/green_white_thick_line" />
+
+        <View
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_dialog_background" />
+
+
+        <TextView
+            android:id="@+id/out_right_mark_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="12"
+            android:textColor="@color/black_grey"
+            android:textSize="10sp" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="@color/green_white_thick_line" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="@color/grey_dialog_background" />
+</LinearLayout>

@@ -1,27 +1,19 @@
 package com.nanyang.app.main.home.sport.additional;
 
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.model.VsCellBean;
-import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
-import com.nanyang.app.main.home.sport.model.VsTableRowBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2017/3/4.
@@ -71,16 +63,8 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
-        View rootView = super.onCreateView(inflater, container, savedInstanceState);
-        ButterKnife.bind(this, rootView);
-        return rootView;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        ButterKnife.unbind(this);
+    public void onResume() {
+        super.onResume();
+        adapter.addAllAndClear(list);
     }
 }

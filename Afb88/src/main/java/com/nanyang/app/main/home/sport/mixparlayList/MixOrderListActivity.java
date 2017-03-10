@@ -20,6 +20,7 @@ import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.OutRightMatchBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -472,6 +473,11 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
     @Override
     public void onCreatePopupWindow(BetBasePop betPop) {
+
+    }
+
+    @Override
+    public void onOutRightData(int page, List<OutRightMatchBean> outRightMatchBeen, String type) {
 
     }
 

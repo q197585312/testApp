@@ -4,12 +4,14 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/grey_thick_line"
-            />
+    <View
+        android:background="@color/green_white_thick_line"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+
         <TextView
+            android:background="@color/green_light"
+            android:textColor="@color/green900"
             android:id="@+id/vs_header_module_title_tv"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

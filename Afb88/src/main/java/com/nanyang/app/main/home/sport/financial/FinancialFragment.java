@@ -1,8 +1,6 @@
 package com.nanyang.app.main.home.sport.financial;
 
 import android.os.Bundle;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -11,7 +9,6 @@ import android.widget.TextView;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.BaseSportFragment;
-import com.nanyang.app.main.home.sport.SportActivity;
 import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.adapter.VpBallAdapter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
@@ -19,11 +16,8 @@ import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
-import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -55,46 +49,18 @@ public class FinancialFragment extends BaseSportFragment<FinancialPresenter> imp
     @Override
     public void initData() {
         super.initData();
-        createPresenter(new FinancialPresenter(this));
-        presenter.setType(((SportActivity) getActivity()).getType());
-        presenter.refresh(((SportActivity) getActivity()).getType());
+
         initAdapter();
 
     }
 
+    @Override
+    protected FinancialPresenter getPresenter() {
+        return    new FinancialPresenter(this);
+    }
+
     private void initAdapter() {
 
-        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext);
-
-        rvContent.setLayoutManager(mLayoutManager);
-        baseRecyclerAdapter = new VpBallAdapter(mContext, new ArrayList<MatchBean>(), R.layout.sport_match_item);
-        baseRecyclerAdapter.setVpHeader(vpHeader);
-        baseRecyclerAdapter.setPresenter(presenter);
-        rvContent.setAdapter(baseRecyclerAdapter);
-
-        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                presenter.onPrevious(swipeToLoadLayout);
-            }
-        });
-        swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                presenter.onNext(swipeToLoadLayout);
-            }
-        });
-
-        rvContent.setOnScrollListener(new RecyclerView.OnScrollListener() {
-            @Override
-            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
-                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
-                    if (!ViewCompat.canScrollVertically(recyclerView, 1)) {
-                        swipeToLoadLayout.setLoadingMore(true);
-                    }
-                }
-            }
-        });
     }
 
     @Override

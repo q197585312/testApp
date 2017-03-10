@@ -576,28 +576,53 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
             updateSubscription.dispose();
             updateSubscription = null;
         }
-        updateSubscription = updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-                .map(new Function<String, List<TableModuleBean>>() {
+        if(!isOutRight) {
+            updateSubscription = updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+                    .map(new Function<String, List<TableModuleBean>>() {
 
-                    @Override
-                    public List<TableModuleBean> apply(String s) throws Exception {
-                        if (LID != null && LID.length() > 0)
-                            return updateJsonArray(s);
-                        else
-                            return parseTableModuleBeen(s);
-                    }
-                }).observeOn(AndroidSchedulers.mainThread())
-
-                .subscribe(new Consumer<List<TableModuleBean>>() {//onNext
-                    @Override
-                    public void accept(List<TableModuleBean> allData) throws Exception {
-                        if (allData != null && allData.size() > 0) {
-                            updateAllDate(allData);
+                        @Override
+                        public List<TableModuleBean> apply(String s) throws Exception {
+                            if (LID != null && LID.length() > 0)
+                                return updateJsonArray(s);
+                            else
+                                return parseTableModuleBeen(s);
                         }
+                    }).observeOn(AndroidSchedulers.mainThread())
+
+                    .subscribe(new Consumer<List<TableModuleBean>>() {//onNext
+                        @Override
+                        public void accept(List<TableModuleBean> allData) throws Exception {
+                            if (allData != null && allData.size() > 0) {
+                                updateAllDate(allData);
+                            }
 
 
-                    }
-                });
+                        }
+                    });
+        }else{
+            updateSubscription = updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+                    .map(new Function<String, List<TableOutRightBean>>() {
+
+                        @Override
+                        public List<TableOutRightBean> apply(String s) throws Exception {
+                            if (LID != null && LID.length() > 0)
+                                return new ArrayList<TableOutRightBean>();
+                            else
+                                return parseTableOutRightBeen(s);
+                        }
+                    }).observeOn(AndroidSchedulers.mainThread())
+
+                    .subscribe(new Consumer<List<TableOutRightBean>>() {//onNext
+                        @Override
+                        public void accept(List<TableOutRightBean> allData) throws Exception {
+                            if (allData != null && allData.size() > 0) {
+                                updateOutRightDate(allData);
+                            }
+
+
+                        }
+                    });
+        }
         Logger.getDefaultLogger().d(getClass().getSimpleName(), "startUpdate---->");
         mCompositeSubscription.add(updateSubscription);
     }
@@ -936,13 +961,24 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
 
     public void onNext(SwipeToLoadLayout swipeToLoadLayout) {
-        if (filterData != null && (page + 1) * pageSize < filterData.size()) {
-            page++;
-            showCurrentData();
-            swipeToLoadLayout.setLoadingMore(false);
-        } else {
-            swipeToLoadLayout.setLoadingMore(false);
-            swipeToLoadLayout.setLoadMoreEnabled(false);
+        if(!isOutRight) {
+            if (filterData != null && (page + 1) * pageSize < filterData.size()) {
+                page++;
+                showCurrentData();
+                swipeToLoadLayout.setLoadingMore(false);
+            } else {
+                swipeToLoadLayout.setLoadingMore(false);
+                swipeToLoadLayout.setLoadMoreEnabled(false);
+            }
+        }else{
+            if (outRightData != null && (page + 1) * pageSize < outRightData.size()) {
+                page++;
+                showCurrentData();
+                swipeToLoadLayout.setLoadingMore(false);
+            } else {
+                swipeToLoadLayout.setLoadingMore(false);
+                swipeToLoadLayout.setLoadMoreEnabled(false);
+            }
         }
 
     }

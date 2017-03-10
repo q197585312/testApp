@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -10,11 +10,15 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/grey_thick_line" />
 
+        <View
+            android:background="@color/green_white_thick_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,9 +68,13 @@
     </LinearLayout>
 
     <View
+        android:background="@color/green_white_thick_line"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/grey_thick_line" />
+        android:layout_height="0.5dp"/>
+    <View
+        android:background="@color/grey_dialog_background"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -101,9 +109,13 @@
 
         <View
             android:id="@+id/vs_row_line1"
-            android:layout_width="0.5dp"
+            android:background="@color/green_white_thick_line"
             android:layout_height="match_parent"
-            android:background="@color/grey_thick_line" />
+            android:layout_width="0.5dp"/>
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_height="match_parent"
+            android:layout_width="0.5dp"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -133,9 +145,13 @@
 
         <View
             android:id="@+id/vs_row_line2"
-            android:layout_width="0.5dp"
+            android:background="@color/green_white_thick_line"
             android:layout_height="match_parent"
-            android:background="@color/grey_thick_line" />
+            android:layout_width="0.5dp"/>
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_height="match_parent"
+            android:layout_width="0.5dp"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -165,9 +181,13 @@
 
         <View
             android:id="@+id/vs_row_line3"
-            android:layout_width="0.5dp"
+            android:background="@color/green_white_thick_line"
             android:layout_height="match_parent"
-            android:background="@color/grey_thick_line" />
+            android:layout_width="0.5dp"/>
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_height="match_parent"
+            android:layout_width="0.5dp"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -197,9 +217,13 @@
 
         <View
             android:id="@+id/vs_row_line4"
-            android:layout_width="0.5dp"
+            android:background="@color/green_white_thick_line"
             android:layout_height="match_parent"
-            android:background="@color/grey_thick_line" />
+            android:layout_width="0.5dp"/>
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_height="match_parent"
+            android:layout_width="0.5dp"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -229,9 +253,13 @@
 
         <View
             android:id="@+id/vs_row_line5"
-            android:layout_width="0.5dp"
+            android:background="@color/green_white_thick_line"
             android:layout_height="match_parent"
-            android:background="@color/grey_thick_line" />
+            android:layout_width="0.5dp"/>
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_height="match_parent"
+            android:layout_width="0.5dp"/>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -271,11 +299,15 @@
             android:layout_width="match_parent"
             android:layout_height="8dp"
             android:layout_marginBottom="10dp"
-            android:background="@drawable/rectangle_gradient_line_grey_white5" />
+            android:background="@color/green_light_white" />
 
         <View
+            android:background="@color/green_white_thick_line"
             android:layout_width="match_parent"
-            android:layout_height="0.5dp"
-            android:background="@color/grey_thick_line" />
+            android:layout_height="0.5dp"/>
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"/>
     </LinearLayout>
 </LinearLayout>

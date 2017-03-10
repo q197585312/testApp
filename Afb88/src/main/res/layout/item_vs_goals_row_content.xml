@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <include layout="@layout/include_vs_table_header" />
 
     <View
+        android:background="@color/green_white_thick_line"
         android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/grey_thick_line" />
+        android:layout_height="0.5dp"/>
+    <View
+        android:background="@color/grey_dialog_background"
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"/>
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -40,15 +45,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text=""
+                android:textColor="@color/black_grey"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <View
-            android:layout_width="0.5dp"
+            android:background="@color/green_white_thick_line"
             android:layout_height="match_parent"
-            android:background="@color/grey_thick_line" />
+            android:layout_width="0.5dp"/>
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_height="match_parent"
+            android:layout_width="0.5dp"/>
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -73,15 +83,20 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text=""
+                android:textColor="@color/black_grey"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <View
-            android:layout_width="0.5dp"
+            android:background="@color/green_white_thick_line"
             android:layout_height="match_parent"
-            android:background="@color/grey_thick_line" />
+            android:layout_width="0.5dp"/>
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_height="match_parent"
+            android:layout_width="0.5dp"/>
+
 
         <LinearLayout
             android:layout_width="0dp"
@@ -107,16 +122,27 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text=""
+                android:textColor="@color/black_grey"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
-
+    <LinearLayout
+        android:id="@+id/vs_row_line4"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
         <View
-            android:id="@+id/vs_row_line4"
-            android:layout_width="0.5dp"
+            android:background="@color/green_white_thick_line"
             android:layout_height="match_parent"
-            android:background="@color/grey_thick_line" />
+            android:layout_width="0.5dp"/>
+        <View
+            android:background="@color/grey_dialog_background"
+            android:layout_height="match_parent"
+            android:layout_width="0.5dp"/>
+
+    </LinearLayout>
+
+
 
         <LinearLayout
             android:id="@+id/vs_row_content_ll4"
@@ -143,16 +169,27 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text=""
+                android:textColor="@color/black_grey"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
-        <View
+
+        <LinearLayout
             android:id="@+id/vs_row_line5"
-            android:layout_width="0.5dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:background="@color/grey_thick_line" />
+            android:orientation="horizontal">
+            <View
+                android:background="@color/green_white_thick_line"
+                android:layout_height="match_parent"
+                android:layout_width="0.5dp"/>
+            <View
+                android:background="@color/grey_dialog_background"
+                android:layout_height="match_parent"
+                android:layout_width="0.5dp"/>
+
+        </LinearLayout>
 
         <LinearLayout
             android:id="@+id/vs_row_content_ll5"
@@ -179,7 +216,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:padding="5dp"
-                android:text=""
+                android:textColor="@color/black_grey"
                 android:textSize="12sp"
                 android:textStyle="bold" />
         </LinearLayout>

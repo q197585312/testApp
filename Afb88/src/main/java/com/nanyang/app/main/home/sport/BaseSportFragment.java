@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport;
 
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -11,28 +12,107 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.adapter.VpBallAdapter;
 import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
+import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.model.MenuListInfo;
+import com.nanyang.app.main.home.sport.model.OutRightMatchBean;
 import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
+import com.nanyang.app.myView.LinkedViewPager.ViewPager;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.utils.ViewHolder;
+import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
+import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
+import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import butterknife.Bind;
+
 public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFragment<T> {
     protected TextView tvMenu;
     private BetBasePop betPop;
+    @Bind(R.id.swipe_target)
+    protected RecyclerView rvContent;
+    @Bind(R.id.vp_header)
+    protected ViewPager vpHeader;
+
+    protected BaseRecyclerAdapter<OutRightMatchBean> outRightAdapter;
+    protected VpBallAdapter baseRecyclerAdapter;
+    @Bind(R.id.swipeToLoadLayout)
+    SwipeToLoadLayout swipeToLoadLayout;
 
     @Override
     public void initData() {
         super.initData();
+        outRightAdapter= new BaseRecyclerAdapter<OutRightMatchBean>(mContext, new ArrayList<OutRightMatchBean>(), R.layout.sport_out_right_item) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, OutRightMatchBean item) {
+                TextView matchTitleTv = holder.getView(R.id.out_right_title_tv);
+                View headV = holder.getView(R.id.v_out_right_header_space);
+                TextView homeTv = holder.getView(R.id.out_right_home_tv);
+
+                TextView markTv = holder.getView(R.id.out_right_mark_tv);
+                homeTv.setText(item.getHome());
+                markTv.setText(item.getX12_1Odds());
+
+                if (item.getType() == MatchBean.Type.ITME) {
+                    matchTitleTv.setVisibility(View.GONE);
+                    headV.setVisibility(View.GONE);
+
+                } else {
+                    matchTitleTv.setVisibility(View.VISIBLE);
+                    headV.setVisibility(View.VISIBLE);
+                    matchTitleTv.setText(item.getModuleTitle());
+                    if (position == 0) {
+                        headV.setVisibility(View.GONE);
+                    }
+
+                }
+            }
+        };
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        rvContent.setLayoutManager(mLayoutManager);
+        baseRecyclerAdapter = new VpBallAdapter(mContext, new ArrayList<MatchBean>(), R.layout.sport_match_item);
+        createPresenter(getPresenter());
+        presenter.setType(((SportActivity) getActivity()).getType());
+        presenter.refresh(((SportActivity) getActivity()).getType());
+        baseRecyclerAdapter.setPresenter(presenter);
+        baseRecyclerAdapter.setVpHeader(vpHeader);
+        rvContent.setAdapter(baseRecyclerAdapter);
+
+        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.onPrevious(swipeToLoadLayout);
+            }
+        });
+        swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                presenter.onNext(swipeToLoadLayout);
+            }
+        });
+
+        rvContent.setOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                if (newState == RecyclerView.SCROLL_STATE_IDLE) {
+                    if (!ViewCompat.canScrollVertically(recyclerView, 1)) {
+                        swipeToLoadLayout.setLoadingMore(true);
+                    }
+                }
+            }
+        });
     }
+
+    protected abstract T getPresenter();
 
     public void toolbarRightClick(View v) {
 
@@ -190,7 +270,7 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
     }
 
     private void setBottomMenuAdapter(RecyclerView rv_list) {
-        rv_list.setLayoutManager(new GridLayoutManager(mContext, 3));
+        rv_list.setLayoutManager(new GridLayoutManager(mContext, 4));
         List<MenuItemInfo> types = new ArrayList<>();
         types.add(new MenuItemInfo(R.mipmap.menu_group_oval_white, getString(R.string.Choose), "Choose"));
         types.add(new MenuItemInfo(R.mipmap.menu_error_white, getString(R.string.not_settled), "Not settled"));
@@ -261,4 +341,11 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
         ToastUtils.showShort(allData);
         betPop.closePopupWindow();
     }
+
+    public void onOutRightData(int page, List<OutRightMatchBean> outRightMatchBeen, String type) {
+            rvContent.setAdapter(outRightAdapter);
+            outRightAdapter.addAllAndClear(outRightMatchBeen);
+
+    }
+
 }
