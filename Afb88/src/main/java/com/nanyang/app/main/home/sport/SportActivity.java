@@ -93,13 +93,14 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
     @Override
     public void initData() {
         super.initData();
-        type = getIntent().getStringExtra(AppConstant.KEY_STRING);
+        MenuItemInfo item= (MenuItemInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
+        if(item!=null) {
+            type = item.getType();
+            assert tvToolbarTitle != null;
+            tvToolbarTitle.setText(item.getText());
+        }
         showFragmentToActivity(footballFragment, R.id.fl_content, getString(R.string.Football));
         currentFragment = footballFragment;
-
-        String ballType = getIntent().getStringExtra(AppConstant.KEY_STRING);
-        assert tvToolbarTitle != null;
-        tvToolbarTitle.setText(ballType);
         currentTag = getString(R.string.Football);
         tvTitle.setText(currentTag);
         mapFragment = new HashMap<>();

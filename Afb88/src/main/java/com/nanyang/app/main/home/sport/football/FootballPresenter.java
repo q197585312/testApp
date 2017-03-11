@@ -95,30 +95,26 @@ public class FootballPresenter extends SportPresenter<List<MatchBean>, SportCont
         String url;
         switch (type) {
             case "Running":
-                if (isOutRight)
-                    url = AppConstant.URL_FOOTBALL_OUT_RIGHT + "&ot=t";
-                else
-                    url = AppConstant.URL_FOOTBALL_RUNNING;
+
+                url = AppConstant.URL_FOOTBALL_RUNNING;
                 break;
             case "Today":
-                if (isOutRight)
-                    url = AppConstant.URL_FOOTBALL_OUT_RIGHT + "&ot=t";
-                else {
-                    url = AppConstant.URL_FOOTBALL_TODAY;
-                    if (isMixParlay) {
-                        url = AppConstant.URL_FOOTBALL_TODAY_Mix;
-                    }
+
+                url = AppConstant.URL_FOOTBALL_TODAY;
+                if (isMixParlay) {
+                    url = AppConstant.URL_FOOTBALL_TODAY_Mix;
                 }
                 break;
             case "Early":
-                if (isOutRight)
-                    url = AppConstant.URL_FOOTBALL_OUT_RIGHT + "&ot=e";
-                else {
-                    url = AppConstant.URL_FOOTBALL_EARLY;
-                    if (isMixParlay) {
-                        url = AppConstant.URL_FOOTBALL_EARLY_Mix;
-                    }
+
+                url = AppConstant.URL_FOOTBALL_EARLY;
+                if (isMixParlay) {
+                    url = AppConstant.URL_FOOTBALL_EARLY_Mix;
+
                 }
+                break;
+            case "OutRight":
+                url = AppConstant.URL_FOOTBALL_OUT_RIGHT + "&ot=e";
                 break;
             default:
                 url = AppConstant.URL_FOOTBALL_EARLY;

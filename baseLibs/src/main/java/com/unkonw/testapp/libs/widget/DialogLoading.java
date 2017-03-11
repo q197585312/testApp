@@ -11,9 +11,9 @@ public class DialogLoading extends Dialog {
     private TextView loadingLabel;
 
     public DialogLoading(Context context) {
-        super(context);
+        super(context,R.style.Theme_dialog);
         setContentView(R.layout.loading_process_dialog_color);
-
+        setCancelable(false);
     }
 
     public void setDialogLabel(String label) {

@@ -20,6 +20,7 @@ import com.nanyang.app.main.home.sport.model.OutRightMatchBean;
 import com.nanyang.app.main.home.sport.model.ResultIndexBean;
 import com.nanyang.app.main.home.sport.model.TableModuleBean;
 import com.nanyang.app.main.home.sport.model.TableOutRightBean;
+import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
@@ -51,7 +52,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-public abstract class SportPresenter<T, V extends SportContract.View<T>> extends BaseRetrofitPresenter<T, V> implements SportContract.Presenter {
+public abstract class SportPresenter<I extends IObtainDataState, T, V extends SportContract.View<T>> extends BaseRetrofitPresenter<T, V> implements SportContract.Presenter {
     private Disposable updateSubscription;
     private String LID;
     protected List<TableModuleBean> allData;
@@ -64,6 +65,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private JSONArray outRightJson;
     private List<TableOutRightBean> outRightData;
+    protected I obtainDataState;
 
     public SportPresenter(V view) {
         super(view);
@@ -73,9 +75,10 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
     @Override
     public void refresh(String type) {
+
         String url = getUrl(type);
         Disposable subscription;
-        if (!isOutRight) {
+        if (!type.equals("OutRight")) {
             subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                     .map(new Function<String, List<TableModuleBean>>() {
 
@@ -235,12 +238,11 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         updateAllDate(allData);
 
     }
+
     private void initOutRightData(List<TableOutRightBean> allData) {
         page = 0;
         updateOutRightDate(allData);
     }
-
-
 
 
     public void addMixParlayBet(BettingInfoBean info, final Map<String, Map<Integer, BettingInfoBean>> keyMap, final MatchBean item) {
@@ -455,15 +457,6 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
     public boolean isCollection = false;
 
-    public boolean isOutRight() {
-        return isOutRight;
-    }
-
-    public void setOutRight(boolean outRight) {
-        isOutRight = outRight;
-    }
-
-    public boolean isOutRight = false;
 
     public void countBet() {
         baseView.onCountBet();
@@ -482,7 +475,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
     protected abstract String getUrl(String type);
 
-    private <T>List<T> pageData(List<T> filterData) {
+    private <T> List<T> pageData(List<T> filterData) {
         List<T> pageList;
         if (((page + 1) * pageSize) < filterData.size()) {
             pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
@@ -492,10 +485,12 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         return pageList;
 
     }
+
     private void updateOutRightDate(List<TableOutRightBean> allData) {
         this.outRightData = allData;
         showCurrentData();
     }
+
     protected void updateAllDate(List<TableModuleBean> allData) {
         this.allData = allData;
         this.filterData = filterData(allData);
@@ -503,10 +498,10 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
     }
 
     protected void showCurrentData() {
-        if(!isOutRight) {
+        if (!type.equals("OutRight")) {
             pageData = pageData(filterData);
             baseView.onPageData(page, (T) toMatchList(pageData), getType());
-        }else{
+        } else {
             List<TableOutRightBean> pageOutRight = pageData(outRightData);
             List<OutRightMatchBean> outRightMatchBeen = toOutRightBeanList(pageOutRight);
             baseView.onOutRightData(page, outRightMatchBeen, getType());
@@ -533,6 +528,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         }
         return pageMatch;
     }
+
     @NonNull
     protected List<OutRightMatchBean> toOutRightBeanList(List<TableOutRightBean> pageList) {
         List<OutRightMatchBean> pageMatch = new ArrayList<>();
@@ -576,7 +572,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
             updateSubscription.dispose();
             updateSubscription = null;
         }
-        if(!isOutRight) {
+        if (!type.equals("OutRight")) {
             updateSubscription = updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                     .map(new Function<String, List<TableModuleBean>>() {
 
@@ -599,7 +595,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
                         }
                     });
-        }else{
+        } else {
             updateSubscription = updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                     .map(new Function<String, List<TableOutRightBean>>() {
 
@@ -961,7 +957,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
 
 
     public void onNext(SwipeToLoadLayout swipeToLoadLayout) {
-        if(!isOutRight) {
+        if (!type.equals("OutRight")) {
             if (filterData != null && (page + 1) * pageSize < filterData.size()) {
                 page++;
                 showCurrentData();
@@ -970,7 +966,7 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
                 swipeToLoadLayout.setLoadingMore(false);
                 swipeToLoadLayout.setLoadMoreEnabled(false);
             }
-        }else{
+        } else {
             if (outRightData != null && (page + 1) * pageSize < outRightData.size()) {
                 page++;
                 showCurrentData();
@@ -1052,8 +1048,4 @@ public abstract class SportPresenter<T, V extends SportContract.View<T>> extends
         mCompositeSubscription.add(subscription);
     }
 
-    public void changeOutRight() {
-        isOutRight = !isOutRight;
-        refresh("");
-    }
 }
