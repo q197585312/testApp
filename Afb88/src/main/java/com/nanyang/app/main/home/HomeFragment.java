@@ -138,7 +138,7 @@ public class HomeFragment extends BaseFragment {
                             closePopupWindow();
                         } else {
                             Bundle b = new Bundle();
-                            b.putString(AppConstant.KEY_STRING, item.getType());
+                            b.putSerializable(AppConstant.KEY_DATA, item);
                             skipAct(SportActivity.class, b);
                         }
                     }

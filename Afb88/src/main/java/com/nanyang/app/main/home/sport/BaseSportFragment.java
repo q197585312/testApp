@@ -275,7 +275,7 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
         types.add(new MenuItemInfo(R.mipmap.menu_group_oval_white, getString(R.string.Choose), "Choose"));
         types.add(new MenuItemInfo(R.mipmap.menu_error_white, getString(R.string.not_settled), "Not settled"));
         types.add(new MenuItemInfo(R.mipmap.menu_right_oval_white, getString(R.string.settled), "Settled"));
-        types.add(new MenuItemInfo(R.mipmap.menu_trophy_white, getString(R.string.OutRight), "OutRight"));
+
         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, types, R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
@@ -290,11 +290,7 @@ public abstract class BaseSportFragment<T extends SportPresenter> extends BaseFr
         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
-
                 popWindow.closePopupWindow();
-                if(item.getType().equals("OutRight")){
-                    presenter.changeOutRight();
-                }
             }
         });
         rv_list.setAdapter(baseRecyclerAdapter);

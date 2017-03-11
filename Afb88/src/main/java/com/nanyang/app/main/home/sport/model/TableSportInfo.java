@@ -6,10 +6,10 @@ import java.util.List;
 /**
  * Created by Administrator on 2015/11/14.
  */
-public class TableModuleBean<T> implements Serializable {
+public class TableSportInfo<T extends SportInfo> implements Serializable {
     LeagueBean leagueBean;
 
-    List<MatchBean> rows;
+    List<T> rows;
 
     public LeagueBean getLeagueBean() {
         return leagueBean;
@@ -19,15 +19,15 @@ public class TableModuleBean<T> implements Serializable {
         this.leagueBean = leagueBean;
     }
 
-    public List<MatchBean> getRows() {
+    public List<T> getRows() {
         return rows;
     }
 
-    public void setRows(List<MatchBean> rows) {
+    public void setRows(List<T> rows) {
         this.rows = rows;
     }
 
-    public TableModuleBean(LeagueBean leagueBean, List<MatchBean> rows) {
+    public TableSportInfo(LeagueBean leagueBean, List<T> rows) {
         this.leagueBean = leagueBean;
         this.rows = rows;
     }
