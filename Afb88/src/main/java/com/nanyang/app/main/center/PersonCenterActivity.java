@@ -18,6 +18,7 @@ import java.util.Map;
 
 public class PersonCenterActivity extends BaseToolbarActivity {
     private BaseFragment avatarFragment = new FragmetnAvatar();
+    private BaseFragment statementFragment = new StatementFragment();
     private Map<String, BaseFragment> fragments;
     private String currentTag;
 
@@ -32,6 +33,7 @@ public class PersonCenterActivity extends BaseToolbarActivity {
         super.initData();
         fragments = new HashMap<>();
         fragments.put(getString(R.string.Modify_Avatar), avatarFragment);
+        fragments.put(getString(R.string.statement), statementFragment);
         currentTag = getCurrentTag();
         showFragmentToActivity(fragments.get(currentTag), R.id.framelayout_person, currentTag);
     }

@@ -61,7 +61,11 @@ public class PersonalCenterFragment extends BaseFragment {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
-
+                if (item.getText().equals(getString(R.string.Edit_information))) {
+                    Intent i = getStartIntent(getString(R.string.statement));
+                    i.setClass(mContext, PersonCenterActivity.class);
+                    startActivity(i);
+                }
             }
         });
         rvContent.setAdapter(adapter);
@@ -71,8 +75,7 @@ public class PersonalCenterFragment extends BaseFragment {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_head:
-                Intent i = new Intent();
-                i.putExtra("personCenter", getString(R.string.Modify_Avatar));
+                Intent i = getStartIntent(getString(R.string.Modify_Avatar));
                 MainActivity a = (MainActivity) getActivity();
                 i.setClass(a, PersonCenterActivity.class);
                 a.startActivityForResult(i, 0);
@@ -88,5 +91,11 @@ public class PersonalCenterFragment extends BaseFragment {
         if (b != null) {
             headImg.setImageBitmap(b);
         }
+    }
+
+    private Intent getStartIntent(String type) {
+        Intent i = new Intent();
+        i.putExtra("personCenter", type);
+        return i;
     }
 }

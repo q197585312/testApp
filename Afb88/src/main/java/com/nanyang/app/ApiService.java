@@ -17,6 +17,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.Url;
 
 
@@ -35,6 +36,7 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("login.jsp")
     Flowable<String> getUserInfo(@Field("txtLang") String txtLang, @Field("txtAcctid") String txtAcctid, @Field("txtPwd") String txtPwd, @Field("osType") String osType, @Field("osVersion") String osVersion);
+
     @GET
     Call<ResBaseBean<DataBean>> checkVersion(@Url String url);
 
@@ -108,6 +110,13 @@ public interface ApiService {
     @FormUrlEncoded
     @POST("_view/nodds1TH.aspx")
     Flowable<String> ThaiThsandBetSubmit(@FieldMap Map<String, String> info);
+
     @GET
     Flowable<ScaleBean> scale(@Url String url);
+
+    //statement清单
+    @GET("_norm/AccHistory.aspx?")
+    Flowable<String> statementData(@Query("role") String role, @Query("userName") String userName);
+    @GET("_norm/AccHistory.aspx?")
+    Flowable<String> init();
 }

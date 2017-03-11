@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/statement_first_key_ll"
+        style="@style/style_match_wrap"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_statement_date"
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingLeft="2dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:text="日期"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <View style="@style/line_vertical_grey1" />
+
+        <TextView
+            android:id="@+id/tv_statement_stake"
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="2dp"
+            android:singleLine="true"
+            android:text="投注状况"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <View style="@style/line_vertical_grey1" />
+
+        <TextView
+            android:id="@+id/tv_statement_amount"
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="2dp"
+            android:singleLine="true"
+            android:text="有效数额"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <View
+
+            style="@style/line_vertical_grey1" />
+
+        <TextView
+            android:id="@+id/tv_statement_win_or_lose"
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="输/赢"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <View style="@style/line_vertical_grey1" />
+
+        <TextView
+            android:id="@+id/tv_statement_commission"
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="2dp"
+            android:singleLine="true"
+            android:text="佣金"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <View style="@style/line_vertical_grey1" />
+
+        <TextView
+            android:id="@+id/tv_statement_settled"
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="2dp"
+            android:singleLine="true"
+            android:text="清帐"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <View style="@style/line_vertical_grey1" />
+
+        <TextView
+            android:id="@+id/tv_statement_balance"
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="2dp"
+            android:singleLine="true"
+            android:text="结余"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/statement_first_line1"
+        style="@style/line_horizontal_grey1" />
+    style="@style/line_horizontal_grey1"/>
+</LinearLayout>
