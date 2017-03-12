@@ -516,7 +516,7 @@ public abstract class SportPresenter<I extends IObtainDataState, T, V extends Sp
             TableModuleBean item = pageList.get(i);
             List<MatchBean> items = item.getRows();
             for (int j = 0; j < items.size(); j++) {
-                MatchBean cell = item.getRows().get(j);
+                MatchBean cell =items.get(j);
                 if (j == 0) {
                     cell.setType(MatchBean.Type.TITLE);
                 } else {

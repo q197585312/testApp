@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <View
+        android:id="@+id/module_match_head_v"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:background="@color/green_light_white"
+        android:padding="5dp" />
+
+    <TextView
+        android:id="@+id/module_match_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/green_light"
+        android:gravity="center"
+        android:maxLines="1"
+        android:paddingBottom="2dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="2dp"
+        android:text="联赛名称"
+        android:textColor="@color/green900"
+        android:textSize="11sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green_light_white"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/module_match_collection_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/collection_star_yellow_not_soild"
+                android:gravity="center"
+                android:textColor="@color/grey_dark_word"
+                android:textSize="10sp" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/module_match_left1_ll"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="10dp"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <TextView
+                android:id="@+id/module_match_live_iv"
+                android:layout_width="28dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textSize="7sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/module_match_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:text="03/11"
+                android:textColor="@color/grey_thick_line"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/module_match_time_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLength="5"
+                android:maxLines="1"
+                android:text="03/11"
+                android:textColor="@color/grey_thick_line"
+                android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/module_match_left2_ll"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:orientation="vertical"
+            android:padding="3dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/module_match_home_red_card_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:background="@color/red"
+                    android:gravity="center"
+                    android:paddingLeft="1dp"
+                    android:paddingRight="1dp"
+                    android:textColor="@color/white"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/module_match_home_team_tv"
+                    android:layout_width="wrap_content"
+
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="zheshiyigeceshi mingz "
+                    android:textColor="@color/black_grey"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/module_match_away_red_card_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginTop="1dp"
+                    android:gravity="center"
+                    android:paddingLeft="1dp"
+                    android:paddingRight="1dp"
+                    android:textColor="@color/white"
+                    android:textSize="9sp"
+                    android:textStyle="bold"
+                    android:visibility="visible"
+
+                    />
+
+                <TextView
+                    android:id="@+id/module_match_away_team_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginTop="1dp"
+                    android:drawablePadding="5dp"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="zheshiyigeceshi mingz "
+                    android:textColor="@color/black_grey"
+                    android:textSize="11sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <View
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="@color/green_white_thick_line" />
+
+        <View
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_dialog_background" />
+
+        <com.unkonw.testapp.training.ScrollLayout
+            android:id="@+id/module_center_sl"
+            android:layout_width="140dp"
+            android:layout_height="match_parent">
+
+        </com.unkonw.testapp.training.ScrollLayout>
+
+        <View
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="@color/green_white_thick_line" />
+
+        <View
+            android:layout_width="0.6dp"
+            android:layout_height="match_parent"
+            android:background="@color/grey_dialog_background" />
+
+        <TextView
+            android:id="@+id/module_right_mark_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:drawableRight="@mipmap/sport_add_oval_yellow" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="@color/green_white_thick_line" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="@color/grey_dialog_background" />
+</LinearLayout>

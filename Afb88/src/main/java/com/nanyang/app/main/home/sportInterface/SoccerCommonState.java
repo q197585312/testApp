@@ -1,15 +1,12 @@
 package com.nanyang.app.main.home.sportInterface;
 
-import android.support.annotation.NonNull;
-
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
-import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
-import com.nanyang.app.main.home.sport.model.TableModuleBean;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
@@ -24,46 +21,36 @@ import java.util.Map;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class SoccerCommonState extends SoccerState<SportContract.View, TableSportInfo<SoccerCommonInfo>> {
+public abstract class SoccerCommonState extends SoccerState<SportContract.View,SoccerCommonInfo> {
 
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
 
-    @Override
-    public void showData() {
-           listData=toMatchList(pageData);
+
+    public SoccerCommonState(SportContract.View baseView) {
+        super(baseView);
     }
 
-
-
-
-    protected List<SoccerCommonInfo> toMatchList(List<TableSportInfo<SoccerCommonInfo>> pageList) {
-        List<MatchBean> pageMatch = new ArrayList<>();
-
-        for (int i = 0; i < pageList.size(); i++) {
-            TableModuleBean item = pageList.get(i);
-            List<MatchBean> items = item.getRows();
-            for (int j = 0; j < items.size(); j++) {
-                MatchBean cell = item.getRows().get(j);
-                if (j == 0) {
-                    cell.setType(MatchBean.Type.TITLE);
-                } else {
-                    cell.setType(MatchBean.Type.ITME);
-                }
-                cell.setLeagueBean(item.getLeagueBean());
-                pageMatch.add(cell);
-            }
-        }
-        return pageMatch;
-    }
-    @Override
     public boolean isCollection() {
         return isCollection;
     }
-    public void clickCollection(){
+    public boolean collection(){
         isCollection=!isCollection;
         initAllData(allData);
+        return isCollection;
     }
+
+    @Override
+    protected IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
+        return new BallAdapterHelper<SoccerCommonInfo>(getBaseView().getContext()){
+            @Override
+            public void onConvert(MyRecyclerViewHolder helper, int position, SoccerCommonInfo item) {
+                super.onConvert(helper, position, item);
+
+            }
+        };
+    }
+
     @Override
     protected List<TableSportInfo<SoccerCommonInfo>> updateJsonData(JSONArray dataListArray) throws JSONException {
         ArrayList<TableSportInfo<SoccerCommonInfo>> tableModules = new ArrayList<>();
@@ -90,7 +77,6 @@ public abstract class SoccerCommonState extends SoccerState<SportContract.View, 
                     }
                     tableModules.add(new TableSportInfo<>(leagueBean, matchList));
                 }
-
             }
         }
         return tableModules;
@@ -205,6 +191,4 @@ public abstract class SoccerCommonState extends SoccerState<SportContract.View, 
 
         return moduleDate;
     }
-
-
 }

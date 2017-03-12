@@ -1,10 +1,16 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.support.annotation.Nullable;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.SportContract;
+import com.nanyang.app.main.home.sport.model.SportInfo;
+import com.nanyang.app.main.home.sport.model.TableSportInfo;
+import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 
 import org.json.JSONArray;
@@ -30,50 +36,76 @@ import io.reactivex.schedulers.Schedulers;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
- * Created by Administrator on 2017/3/10.
+ * sport页面球加载、分页、更新、显示的adapter的逻辑实现
  */
 
-public abstract class SoccerState<V extends SportContract.View, T> implements IObtainDataState {
+public abstract class SoccerState<V extends SportContract.View, I extends SportInfo > implements IObtainDataState {
     private String LID;
     private int page;
-    private List<T> filterData;
+    private List<TableSportInfo<I>> filterData;
+    /**
+     * 当前显示数据的JsonArray，用来更新
+     */
     protected JSONArray dataJsonArray;
-    protected List<T> allData;
-    protected List<T> pageData;
+    /**
+     * 显示的所有数据
+     */
+    protected List<TableSportInfo<I>> allData;
+    /**
+     * 所有数据分页后的当前页面数据
+     */
+    protected List<TableSportInfo<I>> pageData;
 
     public int getPageSize() {
         return pageSize;
     }
 
     private int pageSize = 5;
+    /**
+     * 更新
+     */
     private Disposable updateDisposable;
-
+    IAdapterHelper<I> adapterHelper;
     public V getBaseView() {
         return baseView;
     }
 
     public void setBaseView(V mBaseView) {
         this.baseView = mBaseView;
+        adapterHelper=onSetAdapterHelper();
+        baseRecyclerAdapter=new BaseRecyclerAdapter<I>(baseView.getContext(),new ArrayList<I>(),adapterHelper.onSetAdapterItemLayout()) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, I item) {
+                adapterHelper.onConvert(holder,position,item);
+            }
+        };
+    }
+
+    protected abstract IAdapterHelper<I> onSetAdapterHelper();
+
+    public SoccerState(V baseView) {
+        setBaseView(baseView);
     }
 
     private V baseView;
+    protected BaseRecyclerAdapter<I> baseRecyclerAdapter;
 
     @Override
     public Disposable refresh() {
-        Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_FOOTBALL_RUNNING).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-                .map(new Function<String, List<T>>() {
+        return getService(ApiService.class).getData(AppConstant.URL_FOOTBALL_RUNNING).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+                .map(new Function<String, List<TableSportInfo<I>>>() {
 
                     @Override
-                    public List<T> apply(String s) throws Exception {
+                    public List<TableSportInfo<I>> apply(String s) throws Exception {
                         return parseTableModuleBeen(s);
                     }
                 })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<T>>() {//onNext
+                .subscribe(new Consumer<List<TableSportInfo<I>>>() {//onNext
                     @Override
-                    public void accept(List<T> allData) throws Exception {
-                        initAllData(allData);
+                    public void accept(List<TableSportInfo<I>> allData1) throws Exception {
+                        initAllData(allData1);
                         startUpdateData();
                     }
                 }, new Consumer<Throwable>() {//错误
@@ -89,16 +121,44 @@ public abstract class SoccerState<V extends SportContract.View, T> implements IO
                     }
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
-                    public void accept(Subscription subscription) throws Exception {
+                    public void accept(Subscription subscription1) throws Exception {
                         baseView.showLoadingDialog();
-                        subscription.request(Long.MAX_VALUE);
+                        subscription1.request(Long.MAX_VALUE);
                     }
                 });
-        return subscription;
     }
 
+    /***
+     * 显示数据最终调用的方法
+     */
+    public void showData() {
+        List<I> listData = toMatchList(pageData);
+        baseRecyclerAdapter.addAllAndClear(listData);
+        baseView.setAdapter(baseRecyclerAdapter);
+    }
+
+    private List<I> toMatchList(List<TableSportInfo<I>> pageList) {
+        List<I> pageMatch = new ArrayList<>();
+
+        for (int i = 0; i < pageList.size(); i++) {
+            TableSportInfo<I> item = pageList.get(i);
+            List<I> rows = item.getRows();
+            for (int j = 0; j < rows.size(); j++) {
+                I cell = rows.get(j);
+                if (j == 0) {
+                    cell.setType(SportInfo.Type.TITLE);
+                } else {
+                    cell.setType(SportInfo.Type.ITME);
+                }
+                cell.setModuleId(item.getLeagueBean().getModuleId());
+                cell.setModuleTitle(item.getLeagueBean().getModuleTitle());
+                pageMatch.add(cell);
+            }
+        }
+        return pageMatch;
+    }
     @Nullable
-    protected List<T> parseTableModuleBeen(String s) throws JSONException {
+    private List<TableSportInfo<I>> parseTableModuleBeen(String s) throws JSONException {
         JSONArray jsonArray = new JSONArray(s);
         if (jsonArray.length() > 4) {
             parseLidValue(jsonArray);
@@ -109,10 +169,12 @@ public abstract class SoccerState<V extends SportContract.View, T> implements IO
         return new ArrayList<>();
     }
 
-    protected abstract List<T> updateJsonData(JSONArray dataListArray) throws JSONException;
+    protected abstract List<TableSportInfo<I>> updateJsonData(JSONArray dataListArray) throws JSONException;
 
-    //解析出下次gen
-    protected void parseLidValue(JSONArray jsonArray) throws JSONException {
+    /**
+     *  解析出下次更新需要的LID对象
+     */
+    private void parseLidValue(JSONArray jsonArray) throws JSONException {
         JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
         if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
             synchronized (this) {
@@ -123,14 +185,14 @@ public abstract class SoccerState<V extends SportContract.View, T> implements IO
 
     protected abstract String getRefreshUrl();
 
-    protected void initAllData(List<T> allData) {
+    void initAllData(List<TableSportInfo<I>> allData) {
         this.allData=allData;
         page = 0;
         updateAllDate(allData);
 
     }
 
-    protected void updateAllDate(List<T> allData) {
+    private void updateAllDate(List<TableSportInfo<I>> allData) {
         this.filterData = filterData(allData);
         showCurrentData();
     }
@@ -140,8 +202,8 @@ public abstract class SoccerState<V extends SportContract.View, T> implements IO
         showData();
     }
 
-    private List<T> pageData(List<T> filterData) {
-        List<T> pageList;
+    private List<TableSportInfo<I>> pageData(List<TableSportInfo<I>> filterData) {
+        List<TableSportInfo<I>> pageList;
         if (((page + 1) * pageSize) < filterData.size()) {
             pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
         } else {
@@ -151,7 +213,7 @@ public abstract class SoccerState<V extends SportContract.View, T> implements IO
 
     }
 
-    protected abstract List<T> filterData(List<T> allData);
+    protected abstract List<TableSportInfo<I>> filterData(List<TableSportInfo<I>> allData);
 
 
     @Override
@@ -165,10 +227,10 @@ public abstract class SoccerState<V extends SportContract.View, T> implements IO
                     return getService(ApiService.class).getData(getRefreshUrl());
             }
         }).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-                .map(new Function<String, List<T>>() {
+                .map(new Function<String, List<TableSportInfo<I>>>() {
 
                     @Override
-                    public List<T> apply(String s) throws Exception {
+                    public List<TableSportInfo<I>> apply(String s) throws Exception {
                         if (LID != null && LID.length() > 0)
                             return updateJsonArray(s);
                         else
@@ -176,9 +238,9 @@ public abstract class SoccerState<V extends SportContract.View, T> implements IO
                     }
                 }).observeOn(AndroidSchedulers.mainThread())
 
-                .subscribe(new Consumer<List<T>>() {//onNext
+                .subscribe(new Consumer<List<TableSportInfo<I>>>() {//onNext
                     @Override
-                    public void accept(List<T> allData) throws Exception {
+                    public void accept(List<TableSportInfo<I>> allData) throws Exception {
                         if (allData != null && allData.size() > 0) {
                             updateAllDate(allData);
                         }
@@ -199,12 +261,8 @@ public abstract class SoccerState<V extends SportContract.View, T> implements IO
         }
     }
 
-    @Override
-    public boolean isCollection() {
-        return false;
-    }
-
-    protected List<T> updateJsonArray(String updateString) {
+    @TargetApi(Build.VERSION_CODES.KITKAT)
+    protected List<TableSportInfo<I>> updateJsonArray(String updateString) {
         try {
 
             LogUtil.d("UpdateData", updateString);

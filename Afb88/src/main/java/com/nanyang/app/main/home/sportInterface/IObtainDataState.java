@@ -10,8 +10,7 @@ public interface IObtainDataState {
     Disposable refresh();
     Disposable startUpdateData();
     void stopUpdateData();
-    void showData();
-    boolean isCollection();
-
-
+    boolean collection();
+    boolean menu();
+    boolean mix();
 }
