@@ -15,6 +15,7 @@ import cn.finalteam.toolsfinal.logger.Logger;
 
 public class AfbApplication extends BaseApplication {
     private BettingParPromptBean betParList;
+    private String userName;
 
     @Override
     public void onCreate() {
@@ -40,6 +41,14 @@ public class AfbApplication extends BaseApplication {
 
     public void setBetParList(BettingParPromptBean betParList) {
         this.betParList = betParList;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 }
 
