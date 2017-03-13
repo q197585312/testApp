@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.view.View;
+
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
@@ -7,6 +9,7 @@ import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +23,7 @@ import java.util.Map;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class SoccerCommonState extends SoccerState<SoccerCommonInfo,SportContract2.View<SoccerCommonInfo>> {
+public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, SportContract2.View<SoccerCommonInfo>> {
 
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
@@ -33,21 +36,52 @@ public abstract class SoccerCommonState extends SoccerState<SoccerCommonInfo,Spo
     public boolean isCollection() {
         return isCollection;
     }
-    public boolean collection(){
-        isCollection=!isCollection;
+
+    public boolean collection() {
+        isCollection = !isCollection;
         initAllData(allData);
         return isCollection;
     }
 
     @Override
     protected IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
-        return new BallAdapterHelper<SoccerCommonInfo>(getBaseView().getActivityContext()){
+        return new BallAdapterHelper<SoccerCommonInfo>(getBaseView().getContext()) {
             @Override
-            public void onConvert(MyRecyclerViewHolder helper, int position, SoccerCommonInfo item) {
+            public void onConvert(MyRecyclerViewHolder helper, final int position, final SoccerCommonInfo item) {
                 super.onConvert(helper, position, item);
-
+                View tvCollection = helper.getView(R.id.tv_collection);
+                if (isItemCollection(item))
+                    tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_soild);
+                else
+                    tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_not_soild);
+                tvCollection.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        collectionItem(item);
+                        baseRecyclerAdapter.notifyDataSetChanged();
+                    }
+                });
+                ScrollLayout sl = helper.getView(R.id.module_center_sl);
+                sl.addView(scrollChild(item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH()));
             }
         };
+    }
+    public void collectionItem(SoccerCommonInfo item) {
+        String moduleKey = item.getModuleTitle();
+        Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
+        if (moduleMap == null)
+            moduleMap = new HashMap<>();
+        String localKey = item.getHome() + "+" + item.getAway();
+        Boolean v = moduleMap.get(localKey);
+        if (v == null || !v) {
+            moduleMap.put(localKey, true);
+        } else {
+            moduleMap.put(localKey, false);
+        }
+        localCollectionMap.put(moduleKey, moduleMap);
+    }
+    public boolean isItemCollection(SoccerCommonInfo item) {
+        return !(localCollectionMap.get(item.getModuleTitle()) == null || localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
     }
 
     @Override
@@ -152,38 +186,38 @@ public abstract class SoccerCommonState extends SoccerState<SoccerCommonInfo,Spo
     }
 
 
-
     @Override
     protected List<TableSportInfo<SoccerCommonInfo>> filterData(List<TableSportInfo<SoccerCommonInfo>> allData) {
-        if(isCollection())
+        if (isCollection())
             return filterCollection(allData);
         else
-        return allData;
+            return allData;
     }
+
     private List<TableSportInfo<SoccerCommonInfo>> filterCollection(List<TableSportInfo<SoccerCommonInfo>> data) {
 
-            List<TableSportInfo<SoccerCommonInfo>> moduleDate = new ArrayList<>();
-            for (TableSportInfo<SoccerCommonInfo> tableModuleBean : data) {
-                if (null != localCollectionMap.get( tableModuleBean.getLeagueBean().getModuleTitle())) {
-                    List<SoccerCommonInfo> moduleCollectionRows = new ArrayList<>();
-                    TableSportInfo<SoccerCommonInfo> moduleCollection = new TableSportInfo<SoccerCommonInfo>(tableModuleBean.getLeagueBean(), moduleCollectionRows);
-                    Map<String, Boolean> moduleMap = localCollectionMap.get( tableModuleBean.getLeagueBean().getModuleTitle());
+        List<TableSportInfo<SoccerCommonInfo>> moduleDate = new ArrayList<>();
+        for (TableSportInfo<SoccerCommonInfo> tableModuleBean : data) {
+            if (null != localCollectionMap.get(tableModuleBean.getLeagueBean().getModuleTitle())) {
+                List<SoccerCommonInfo> moduleCollectionRows = new ArrayList<>();
+                TableSportInfo<SoccerCommonInfo> moduleCollection = new TableSportInfo<SoccerCommonInfo>(tableModuleBean.getLeagueBean(), moduleCollectionRows);
+                Map<String, Boolean> moduleMap = localCollectionMap.get(tableModuleBean.getLeagueBean().getModuleTitle());
 
-                    for (SoccerCommonInfo matchBean : tableModuleBean.getRows()) {
-                        if (moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway()) != null && moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway())) {
-                            moduleCollectionRows.add(matchBean);
-                        }
+                for (SoccerCommonInfo matchBean : tableModuleBean.getRows()) {
+                    if (moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway()) != null && moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway())) {
+                        moduleCollectionRows.add(matchBean);
                     }
-                    moduleCollection.setRows(moduleCollectionRows);
-                    moduleDate.add(moduleCollection);
                 }
+                moduleCollection.setRows(moduleCollectionRows);
+                moduleDate.add(moduleCollection);
             }
-            if (moduleDate.size() > 0)
-                return moduleDate;
-            else {
-                isCollection = false;
-                ToastUtils.showShort(R.string.no_records);
-            }
+        }
+        if (moduleDate.size() > 0)
+            return moduleDate;
+        else {
+            isCollection = false;
+            ToastUtils.showShort(R.string.no_records);
+        }
 
         return moduleDate;
     }
@@ -201,10 +235,15 @@ public abstract class SoccerCommonState extends SoccerState<SoccerCommonInfo,Spo
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getActivityContext().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0,  getBaseView().getActivityContext().getString(R.string.Running), "Running"));
-        types.add(new MenuItemInfo(0,  getBaseView().getActivityContext().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getContext().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getContext().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getContext().getString(R.string.Early), "Early"));
         return types;
+    }
+
+    @Override
+    public void setHeaderContent(ScrollLayout slHeader) {
+        new SoccerHeaderContent().setHeaderContent(getBaseView().getContext(), slHeader);
     }
 
 }

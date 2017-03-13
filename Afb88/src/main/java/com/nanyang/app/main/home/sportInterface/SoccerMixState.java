@@ -7,6 +7,7 @@ import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,7 +21,7 @@ import java.util.Map;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class SoccerMixState extends SoccerState<SoccerMixInfo,SportContract2.View<SoccerMixInfo>> {
+public abstract class SoccerMixState extends SportState<SoccerMixInfo,SportContract2.View<SoccerMixInfo>> {
 
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
@@ -41,7 +42,7 @@ public abstract class SoccerMixState extends SoccerState<SoccerMixInfo,SportCont
 
     @Override
     protected IAdapterHelper<SoccerMixInfo> onSetAdapterHelper() {
-        return new BallAdapterHelper<SoccerMixInfo>(getBaseView().getActivityContext()){
+        return new BallAdapterHelper<SoccerMixInfo>(getBaseView().getContext()){
             @Override
             public void onConvert(MyRecyclerViewHolder helper, int position, SoccerMixInfo item) {
                 super.onConvert(helper, position, item);
@@ -187,9 +188,12 @@ public abstract class SoccerMixState extends SoccerState<SoccerMixInfo,SportCont
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getActivityContext().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0,  getBaseView().getActivityContext().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getContext().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0,  getBaseView().getContext().getString(R.string.Early), "Early"));
         return types;
     }
-
+    @Override
+    public void setHeaderContent(ScrollLayout slHeader) {
+        new SoccerHeaderContent().setHeaderContent(getBaseView().getContext(),slHeader);
+    }
 }

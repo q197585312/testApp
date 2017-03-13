@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sportInterface;
 
-import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -13,6 +12,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
+import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.List;
 
@@ -35,6 +35,8 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     TextView tvMixParlayOrder;
     @Bind(R.id.ll_mix_parlay_order)
     LinearLayout llMixParlayOrder;
+    @Bind(R.id.sl_header)
+    ScrollLayout slHeader;
 
     @Override
     public void initData() {
@@ -102,11 +104,12 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     }
     @Override
     public int onSetLayoutId() {
-        return R.layout.fragment_football;
+        return R.layout.fragment_ball;
     }
 
     @Override
-    public Activity getActivityContext() {
-        return getActivity();
+    public void onSetFollowers(List<ScrollLayout> followers) {
+        presenter.setHeaderContent(slHeader);
+        followers.add(slHeader);
     }
 }

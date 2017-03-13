@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sportInterface;
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,6 +15,8 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.Bind;
@@ -28,6 +31,7 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
     final int green_light = 0XFFFBBC05;
     final int black_grey = 0XFF333333;
     Context context;
+    List<ScrollLayout> slFollowers=new ArrayList<>();
 
     public BallAdapterHelper(Context context) {
         this.context = context;
@@ -86,7 +90,8 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
             }
         }
         tvCollection.setVisibility(View.GONE);
-        if (item.getIsHomeGive().equals("1")) {
+        String isHomeGive = item.getIsHomeGive();
+        if (isHomeGive.equals("1")) {
             homeTv.setTextColor(google_yellow);
             awayTv.setTextColor(black_grey);
         } else {
@@ -110,25 +115,45 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
                 headV.setVisibility(View.GONE);
             }
         }
-        ScrollLayout sl = helper.getView(R.id.module_center_sl);
+        final ScrollLayout sl = helper.getView(R.id.module_center_sl);
+        String hasHdp = item.getHasHdp();
+        String hdp = item.getHdp();
+        String hasOU=item.getHasOU();
+        String ou = item.getOU();
+        String isHdpNew = item.getIsHdpNew();
+        String isOUNew = item.getIsOUNew();
+        String underOdds = item.getUnderOdds();
+        String overOdds = item.getOverOdds();
+        String homeHdpOdds = item.getHomeHdpOdds();
+        String awayHdpOdds = item.getAwayHdpOdds();
+        View vp = scrollChild(isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
+        sl.addView(vp);
+        if(!slFollowers.contains(sl))
+            slFollowers.add(sl);
+        sl.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(sl.getFollowScrolls()==null){
+                    sl.setFollowScrolls(slFollowers);
+                }
+                return false;
+            }
+        });
+    }
+
+    public View scrollChild(String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
         LayoutInflater from = LayoutInflater.from(context);
         View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null);
-
         ViewHolder holder = new ViewHolder(vp);
-
-        String hdp = item.getHdp();
-
-        String ou = item.getOU();
-
-        if (hdp.equals("0")) {
+        if (!hasHdp.equals("1")) {
             holder.viewpagerMatchHomeHdpTv.setText("");
             holder.viewpagerMatchHomeHdpoddsTv.setText("");
             holder.viewpagerMatchVisitHdpTv.setText("");
             holder.viewpagerMatchVisitHdpoddsTv.setText("");
         } else {
-            String hdpS = item.getHdp();
-            hdpS = changeValueF(hdpS);
-            if (item.getIsHomeGive().equals("1")) {
+
+            String hdpS = changeValueF(hdp);
+            if (isHomeGive.equals("1")) {
                 holder.viewpagerMatchVisitHdpTv.setText("");
                 holder.viewpagerMatchHomeHdpTv.setText(hdpS);
             } else {
@@ -136,32 +161,31 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
                 holder.viewpagerMatchHomeHdpTv.setText("");
             }
             boolean isAnimation = false;
-            if (item.getIsHdpNew().equals("1"))
+            if (isHdpNew.equals("1"))
                 isAnimation = true;
-            setValue(holder.viewpagerMatchHomeHdpoddsTv, item.getHomeHdpOdds(), isAnimation);
-            setValue(holder.viewpagerMatchVisitHdpoddsTv, item.getAwayHdpOdds(), isAnimation);
+            setValue(holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation);
+            setValue(holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation);
 
         }
 
 
-
-        if (ou.equals("0")) {
+        if (!hasOU.equals("1")) {
             holder.viewpagerMatchOuTv.setText("");
             holder.viewpagerMatchOu2Tv.setText("");
             holder.viewpagerMatchOveroddsTv.setText("");
             holder.viewpagerMatchUnderoddsTv.setText("");
 
         } else {
-            ou = changeValueF(ou);
-            holder.viewpagerMatchOuTv.setText(ou);
+            String ouf = changeValueF(ou);
+            holder.viewpagerMatchOuTv.setText(ouf);
             holder.viewpagerMatchOu2Tv.setText("");
             boolean isAnimation = false;
-            if (item.getIsOUNew().equals("1"))
+            if (isOUNew.equals("1"))
                 isAnimation = true;
-            setValue(holder.viewpagerMatchUnderoddsTv, item.getUnderOdds(), isAnimation);
-            setValue(holder.viewpagerMatchOveroddsTv, item.getUnderOdds(), isAnimation);
+            setValue(holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation);
+            setValue(holder.viewpagerMatchOveroddsTv, overOdds, isAnimation);
         }
-        sl.addView(vp);
+        return vp;
     }
 
     private String changeValueF(String f) {
@@ -228,7 +252,12 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         return R.layout.sport_common_ball_item;
     }
 
-    static class ViewHolder {
+    @Override
+    public List<ScrollLayout> getFollowers() {
+        return slFollowers;
+    }
+
+    public static class ViewHolder {
         @Bind(R.id.viewpager_match_home_hdp_tv)
         TextView viewpagerMatchHomeHdpTv;
         @Bind(R.id.viewpager_match_home_hdpodds_tv)

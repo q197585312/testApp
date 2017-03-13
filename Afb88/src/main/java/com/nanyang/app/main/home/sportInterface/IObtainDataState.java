@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sportInterface;
 
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
+import com.unkonw.testapp.training.ScrollLayout;
 
 import io.reactivex.disposables.Disposable;
 
@@ -20,4 +21,5 @@ public interface IObtainDataState {
     void onNext(SwipeToLoadLayout swipeToLoadLayout);
 
     BaseRecyclerAdapter switchTypeAdapter();
+    void setHeaderContent(ScrollLayout slHeader);
 }

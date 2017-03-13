@@ -43,7 +43,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * sport页面球加载、分页、更新、显示的adapter的逻辑实现
  */
 
-public abstract class SoccerState<B extends SportInfo, V extends SportContract2.View<B>> implements IObtainDataState {
+public abstract class SportState<B extends SportInfo, V extends SportContract2.View<B>> implements IObtainDataState {
     private String LID;
     private int page;
     private List<TableSportInfo<B>> filterData;
@@ -78,18 +78,19 @@ public abstract class SoccerState<B extends SportInfo, V extends SportContract2.
     public void setBaseView(V mBaseView) {
         this.baseView = mBaseView;
         adapterHelper = onSetAdapterHelper();
-        baseRecyclerAdapter = new BaseRecyclerAdapter<B>(baseView.getActivityContext(), new ArrayList<B>(), adapterHelper.onSetAdapterItemLayout()) {
+        baseRecyclerAdapter = new BaseRecyclerAdapter<B>(baseView.getContext(), new ArrayList<B>(), adapterHelper.onSetAdapterItemLayout()) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, B item) {
                 adapterHelper.onConvert(holder, position, item);
             }
         };
         baseView.setAdapter(baseRecyclerAdapter);
+        baseView.onSetFollowers(adapterHelper.getFollowers());
     }
 
     protected abstract IAdapterHelper<B> onSetAdapterHelper();
 
-    public SoccerState(V baseView) {
+    public SportState(V baseView) {
         setBaseView(baseView);
     }
 
@@ -440,7 +441,7 @@ public abstract class SoccerState<B extends SportInfo, V extends SportContract2.
     @Override
     public BaseRecyclerAdapter switchTypeAdapter() {
 
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getActivityContext(), getTypes(), R.layout.text_base_item) {
+        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getContext(), getTypes(), R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
