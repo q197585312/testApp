@@ -51,7 +51,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-public abstract class SportPresenter< T, V extends SportContract.View<T>> extends BaseRetrofitPresenter<T, V> implements SportContract.Presenter {
+public abstract class SportPresenter2< T, V extends SportContract.View<T>> extends BaseRetrofitPresenter<T, V> implements SportContract.Presenter {
     private Disposable updateSubscription;
     private String LID;
     protected List<TableModuleBean> allData;
@@ -66,7 +66,7 @@ public abstract class SportPresenter< T, V extends SportContract.View<T>> extend
     private List<TableOutRightBean> outRightData;
 
 
-    public SportPresenter(V view) {
+    public SportPresenter2(V view) {
         super(view);
     }
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）

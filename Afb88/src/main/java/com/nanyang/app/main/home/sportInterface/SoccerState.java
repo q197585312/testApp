@@ -6,7 +6,7 @@ import android.support.annotation.Nullable;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.main.home.sport.SportContract;
+import com.nanyang.app.main.home.sport.SportContract2;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -39,7 +39,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * sport页面球加载、分页、更新、显示的adapter的逻辑实现
  */
 
-public abstract class SoccerState<V extends SportContract.View, I extends SportInfo > implements IObtainDataState {
+public abstract class SoccerState<V extends SportContract2.View, I extends SportInfo > implements IObtainDataState {
     private String LID;
     private int page;
     private List<TableSportInfo<I>> filterData;

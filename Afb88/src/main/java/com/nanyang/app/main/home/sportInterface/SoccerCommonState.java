@@ -2,7 +2,7 @@ package com.nanyang.app.main.home.sportInterface;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.SportContract;
+import com.nanyang.app.main.home.sport.SportContract2;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -21,13 +21,13 @@ import java.util.Map;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class SoccerCommonState extends SoccerState<SportContract.View,SoccerCommonInfo> {
+public abstract class SoccerCommonState extends SoccerState<SportContract2.View,SoccerCommonInfo> {
 
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
 
 
-    public SoccerCommonState(SportContract.View baseView) {
+    public SoccerCommonState(SportContract2.View baseView) {
         super(baseView);
     }
 

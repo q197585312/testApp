@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2015/11/14.
  */
-public class TableModuleBean<T> implements Serializable {
+public class TableModuleBean implements Serializable {
     LeagueBean leagueBean;
 
     List<MatchBean> rows;
