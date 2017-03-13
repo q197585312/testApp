@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical">
 
     <LinearLayout
@@ -24,7 +24,15 @@
             android:textColor="#000000"
             android:textStyle="bold" />
 
-        <View style="@style/line_vertical_grey1" />
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/default_fill_color" />
 
         <TextView
             android:id="@+id/tv_statement_stake"
@@ -38,7 +46,15 @@
             android:textColor="#000000"
             android:textStyle="bold" />
 
-        <View style="@style/line_vertical_grey1" />
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/default_fill_color" />
 
         <TextView
             android:id="@+id/tv_statement_amount"
@@ -53,8 +69,14 @@
             android:textStyle="bold" />
 
         <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
 
-            style="@style/line_vertical_grey1" />
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/default_fill_color" />
 
         <TextView
             android:id="@+id/tv_statement_win_or_lose"
@@ -67,7 +89,15 @@
             android:textColor="#000000"
             android:textStyle="bold" />
 
-        <View style="@style/line_vertical_grey1" />
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/default_fill_color" />
 
         <TextView
             android:id="@+id/tv_statement_commission"
@@ -81,7 +111,15 @@
             android:textColor="#000000"
             android:textStyle="bold" />
 
-        <View style="@style/line_vertical_grey1" />
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/default_fill_color" />
 
         <TextView
             android:id="@+id/tv_statement_settled"
@@ -95,7 +133,15 @@
             android:textColor="#000000"
             android:textStyle="bold" />
 
-        <View style="@style/line_vertical_grey1" />
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/default_fill_color" />
 
         <TextView
             android:id="@+id/tv_statement_balance"
@@ -111,7 +157,12 @@
     </LinearLayout>
 
     <View
-        android:id="@+id/statement_first_line1"
-        style="@style/line_horizontal_grey1" />
-    style="@style/line_horizontal_grey1"/>
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/green_light" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.7dp"
+        android:background="@color/default_fill_color" />
 </LinearLayout>

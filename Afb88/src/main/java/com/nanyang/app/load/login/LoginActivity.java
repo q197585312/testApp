@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.R;
 import com.nanyang.app.load.forgetPassword.ForgetActivity;
 import com.nanyang.app.load.register.RegisterActivity;
@@ -57,6 +58,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     public void onGetData(String data) {
         ToastUtils.showShort(data);
+        if (data.equals("Login Success")) {
+            AfbApplication app = (AfbApplication) getApplication();
+            app.setUserName(edtLoginUsername.getText().toString());
+        }
         skipAct(MainActivity.class);
     }
 
