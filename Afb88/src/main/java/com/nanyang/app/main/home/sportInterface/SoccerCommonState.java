@@ -1,8 +1,7 @@
 package com.nanyang.app.main.home.sportInterface;
 
-import com.nanyang.app.AppConstant;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.SportContract2;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -21,7 +20,7 @@ import java.util.Map;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class SoccerCommonState extends SoccerState<SportContract2.View,SoccerCommonInfo> {
+public abstract class SoccerCommonState extends SoccerState<SoccerCommonInfo,SportContract2.View<SoccerCommonInfo>> {
 
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
@@ -42,7 +41,7 @@ public abstract class SoccerCommonState extends SoccerState<SportContract2.View,
 
     @Override
     protected IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
-        return new BallAdapterHelper<SoccerCommonInfo>(getBaseView().getContext()){
+        return new BallAdapterHelper<SoccerCommonInfo>(getBaseView().getActivityContext()){
             @Override
             public void onConvert(MyRecyclerViewHolder helper, int position, SoccerCommonInfo item) {
                 super.onConvert(helper, position, item);
@@ -152,10 +151,7 @@ public abstract class SoccerCommonState extends SoccerState<SportContract2.View,
 
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_RUNNING;
-    }
+
 
     @Override
     protected List<TableSportInfo<SoccerCommonInfo>> filterData(List<TableSportInfo<SoccerCommonInfo>> allData) {
@@ -191,4 +187,24 @@ public abstract class SoccerCommonState extends SoccerState<SportContract2.View,
 
         return moduleDate;
     }
+
+    @Override
+    protected int getIndexSocOddsId() {
+        return 0;
+    }
+
+    @Override
+    protected int getIndexPreSocOddsId() {
+        return 48;
+    }
+
+    @Override
+    protected List<MenuItemInfo> getTypes() {
+        List<MenuItemInfo> types = new ArrayList<>();
+        types.add(new MenuItemInfo(0, getBaseView().getActivityContext().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0,  getBaseView().getActivityContext().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0,  getBaseView().getActivityContext().getString(R.string.Early), "Early"));
+        return types;
+    }
+
 }

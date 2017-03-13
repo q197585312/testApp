@@ -13,7 +13,7 @@ public abstract class BaseRetrofitPresenter<T, V extends IBaseView<T>> implement
 
 
     public V baseView;
-
+    protected CompositeDisposable mCompositeSubscription;
     @Override
     public void unSubscribe() {
         if (mCompositeSubscription != null) {
@@ -30,7 +30,7 @@ public abstract class BaseRetrofitPresenter<T, V extends IBaseView<T>> implement
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      */
-    protected CompositeDisposable mCompositeSubscription;
+
 
 
     public  BaseRetrofitPresenter(V view) {

@@ -1,5 +1,8 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
+import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
+
 import io.reactivex.disposables.Disposable;
 
 /**
@@ -13,4 +16,8 @@ public interface IObtainDataState {
     boolean collection();
     boolean menu();
     boolean mix();
+    void onPrevious(SwipeToLoadLayout swipeToLoadLayout);
+    void onNext(SwipeToLoadLayout swipeToLoadLayout);
+
+    BaseRecyclerAdapter switchTypeAdapter();
 }

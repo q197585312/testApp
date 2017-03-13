@@ -17,7 +17,7 @@ import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.main.home.Games.GamesActivity;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.poker.PokerCasinoActivity;
-import com.nanyang.app.main.home.sport.SportActivity;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
