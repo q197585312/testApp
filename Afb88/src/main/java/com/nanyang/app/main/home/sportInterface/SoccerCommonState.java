@@ -1,13 +1,10 @@
 package com.nanyang.app.main.home.sportInterface;
 
-import android.view.View;
-
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -44,29 +41,29 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
     }
 
     @Override
-    protected IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
-        return new BallAdapterHelper<SoccerCommonInfo>(getBaseView().getContext()) {
+    public IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
+        SoccerCommonAdapterHelper adapterHelper=new SoccerCommonAdapterHelper(getBaseView().getContextActivity());
+        adapterHelper.setBallItemCallBack(new BallAdapterHelper.BallItemCallBack<SoccerCommonInfo>() {
             @Override
-            public void onConvert(MyRecyclerViewHolder helper, final int position, final SoccerCommonInfo item) {
-                super.onConvert(helper, position, item);
-                View tvCollection = helper.getView(R.id.tv_collection);
-                if (isItemCollection(item))
-                    tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_soild);
-                else
-                    tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_not_soild);
-                tvCollection.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        collectionItem(item);
-                        baseRecyclerAdapter.notifyDataSetChanged();
-                    }
-                });
-                ScrollLayout sl = helper.getView(R.id.module_center_sl);
-                sl.addView(scrollChild(item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH()));
+            public boolean isItemCollection(SoccerCommonInfo item) {
+                return isItemCollectionCommon(item);
             }
-        };
+            @Override
+            public void collectionItem(SoccerCommonInfo item) {
+                collectionItemCommon(item);
+            }
+
+            @Override
+            public SoccerCommonInfo getItem(int position) {
+                return baseRecyclerAdapter.getItem(position);
+            }
+        });
+        return adapterHelper;
     }
-    public void collectionItem(SoccerCommonInfo item) {
+
+
+
+    public void collectionItemCommon(SoccerCommonInfo item) {
         String moduleKey = item.getModuleTitle();
         Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
         if (moduleMap == null)
@@ -79,8 +76,10 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
             moduleMap.put(localKey, false);
         }
         localCollectionMap.put(moduleKey, moduleMap);
+        baseRecyclerAdapter.notifyDataSetChanged();
     }
-    public boolean isItemCollection(SoccerCommonInfo item) {
+    public boolean isItemCollectionCommon(SoccerCommonInfo item) {
+
         return !(localCollectionMap.get(item.getModuleTitle()) == null || localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
     }
 
@@ -235,15 +234,16 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getContext().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getContext().getString(R.string.Running), "Running"));
-        types.add(new MenuItemInfo(0, getBaseView().getContext().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
 
     @Override
     public void setHeaderContent(ScrollLayout slHeader) {
-        new SoccerHeaderContent().setHeaderContent(getBaseView().getContext(), slHeader);
+        new SoccerHeaderContent().setHeaderContent(getBaseView().getContextActivity(), slHeader);
     }
 
 }

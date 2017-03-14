@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sportInterface;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -17,8 +18,10 @@ import butterknife.ButterKnife;
  */
 
 public class SoccerHeaderContent implements IHeaderContentHelper {
+    public static ScrollLayout.LayoutParams layoutParams=new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     @Override
     public void setHeaderContent(Context context, ScrollLayout slHeader) {
+        slHeader.removeAllViews();
         LayoutInflater from = LayoutInflater.from(context);
         View v1=from.inflate(R.layout.sport_head_vp_item, null);
         View v2=from.inflate(R.layout.sport_head_vp_item, null);
@@ -26,12 +29,13 @@ public class SoccerHeaderContent implements IHeaderContentHelper {
         ViewHolder viewHolder = new ViewHolder(v1);
         viewHolder.tvHeadLeft.setText("FULL   H/A");
         viewHolder.tvHeadRight.setText("FULL   O/U");
-        slHeader.addView(v1);
+
+        slHeader.addView(v1,layoutParams);
 
         ViewHolder viewHolder2 = new ViewHolder(v2);
         viewHolder2.tvHeadLeft.setText("HALF   H/A");
         viewHolder2.tvHeadRight.setText("HALF   O/U");
-        slHeader.addView(v2);
+        slHeader.addView(v2,layoutParams);
 
     }
     static class ViewHolder {

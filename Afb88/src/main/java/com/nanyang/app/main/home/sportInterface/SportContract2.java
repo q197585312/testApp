@@ -1,6 +1,6 @@
 package com.nanyang.app.main.home.sportInterface;
 
-import android.content.Context;
+import android.app.Activity;
 
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -13,11 +13,11 @@ import java.util.List;
 
 public interface SportContract2  {
     interface View<B extends SportInfo> extends IBaseView<List<B>>{
-        Context getContext();
+        Activity getContextActivity();
         void setAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter);
         void onFailed(String message);
         void switchState(IObtainDataState state);
-        void onSetFollowers(List<ScrollLayout> followers);
+        void onGetFollowers(List<ScrollLayout> followers);
     }
 
     interface Presenter extends IBasePresenter  {

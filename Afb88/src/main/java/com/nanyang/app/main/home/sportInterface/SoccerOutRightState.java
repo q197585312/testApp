@@ -8,8 +8,8 @@ import com.nanyang.app.R;
  * Created by Administrator on 2017/3/13.
  */
 
-public class SoccerEarlyMixState extends SoccerMixState {
-    public SoccerEarlyMixState(SportContract2.View baseView) {
+public class SoccerOutRightState extends OutRightState {
+    public SoccerOutRightState(SportContract2.View baseView) {
         super(baseView);
     }
 
@@ -20,25 +20,28 @@ public class SoccerEarlyMixState extends SoccerMixState {
 
     @Override
     public boolean mix() {
-        getBaseView().switchState(new SoccerEarlyState(getBaseView()));
         return false;
     }
 
     @Override
     public int getTypeNameRes() {
-        return R.string.Early;
+        return R.string.OutRight;
     }
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_EARLY_Mix;
+        return AppConstant.URL_FOOTBALL_OUT_RIGHT+"&ot=e";
     }
 
     @Override
     protected void onTypeClick(MenuItemInfo item) {
         if (item.getType().equals("Today")) {
-            getBaseView().switchState(new SoccerTodayMixState(getBaseView()));
+            getBaseView().switchState(new SoccerTodayState(getBaseView()));
         }else if(item.getType().equals("Early")) {
+            getBaseView().switchState(new SoccerEarlyState(getBaseView()));
+        }else if(item.getType().equals("Running")) {
+            getBaseView().switchState(new SoccerRunningState(getBaseView()));
+        }else if(item.getType().equals("OutRight")) {
             getBaseView().switchState(this);
         }
 

@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -69,6 +68,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
      * 更新
      */
     private Disposable updateDisposable;
+
+
+
     IAdapterHelper<B> adapterHelper;
 
     public V getBaseView() {
@@ -78,17 +80,16 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     public void setBaseView(V mBaseView) {
         this.baseView = mBaseView;
         adapterHelper = onSetAdapterHelper();
-        baseRecyclerAdapter = new BaseRecyclerAdapter<B>(baseView.getContext(), new ArrayList<B>(), adapterHelper.onSetAdapterItemLayout()) {
+        baseRecyclerAdapter = new BaseRecyclerAdapter<B>(baseView.getContextActivity(), new ArrayList<B>(), adapterHelper.onSetAdapterItemLayout()) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, B item) {
                 adapterHelper.onConvert(holder, position, item);
             }
         };
         baseView.setAdapter(baseRecyclerAdapter);
-        baseView.onSetFollowers(adapterHelper.getFollowers());
     }
 
-    protected abstract IAdapterHelper<B> onSetAdapterHelper();
+
 
     public SportState(V baseView) {
         setBaseView(baseView);
@@ -99,7 +100,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
     @Override
     public Disposable refresh() {
-        return getService(ApiService.class).getData(AppConstant.URL_FOOTBALL_RUNNING).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+        return getService(ApiService.class).getData(getRefreshUrl()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                 .map(new Function<String, List<TableSportInfo<B>>>() {
 
                     @Override
@@ -265,6 +266,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     public void stopUpdateData() {
         if (updateDisposable != null) {
             updateDisposable.dispose();
+           boolean isDisposed= updateDisposable.isDisposed();
             updateDisposable = null;
         }
     }
@@ -441,7 +443,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     @Override
     public BaseRecyclerAdapter switchTypeAdapter() {
 
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getContext(), getTypes(), R.layout.text_base_item) {
+        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getContextActivity(), getTypes(), R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
@@ -454,6 +456,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
                 onTypeClick(item);
+
             }
         });
         return baseRecyclerAdapter;

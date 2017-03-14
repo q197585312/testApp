@@ -77,12 +77,15 @@ public class ScrollLayout extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (changed) {
             int childCount = getChildCount();
+            if(childCount<1)
+                return;
             for (int i = 0; i < childCount; i++) {
                 View childView = getChildAt(i);
                 // 为ScrollerLayout中的每一个子控件在水平方向上进行布局
                 childView.layout(i * childView.getMeasuredWidth(), 0, (i + 1) * childView.getMeasuredWidth(), childView.getMeasuredHeight());
             }
             // 初始化左右边界值
+
             leftBorder = getChildAt(0).getLeft();
             rightBorder = getChildAt(getChildCount() - 1).getRight();
         }
@@ -170,8 +173,11 @@ public class ScrollLayout extends ViewGroup {
         super.scrollTo(x, y);
         if (scrolls != null) {
             for (ScrollLayout scroll : scrolls) {
-                if (!scroll.equals(this))
+                if (!scroll.equals(this)){
+                    scroll.setFollowScrolls(null);
                     scroll.scrollTo(x, y);
+                }
+
             }
         }
     }

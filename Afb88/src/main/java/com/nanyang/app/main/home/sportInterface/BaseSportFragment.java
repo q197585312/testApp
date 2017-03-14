@@ -1,28 +1,36 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
+import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
+import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 
 /**
  * Created by Administrator on 2017/3/13.
  */
 
-public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseFragment<P> implements SportContract2.View<SportInfo>{
+public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseFragment<P> implements SportContract2.View<SportInfo> {
 
     @Bind(R.id.tv_total_match)
     TextView tvTotalMatch;
@@ -37,24 +45,46 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     LinearLayout llMixParlayOrder;
     @Bind(R.id.sl_header)
     ScrollLayout slHeader;
+    @Bind(R.id.tv_aos)
+    TextView tvAos;
+    @Bind(R.id.swipeToLoadLayout)
+    SwipeToLoadLayout swipeToLoadLayout;
+    private boolean isFirstIn;
 
     @Override
     public void initData() {
         super.initData();
         createPresenter(onCreatePresenter());
+        isFirstIn = true;
+        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.onPrevious(swipeToLoadLayout);
+            }
+        });
+        swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore() {
+                presenter.onNext(swipeToLoadLayout);
+            }
+        });
     }
+
     protected abstract P onCreatePresenter();
 
-    public void refresh(){
+    public void refresh() {
         presenter.refresh();
     }
-    public  void collection(TextView tvCollection){
+
+    public void collection(TextView tvCollection) {
         presenter.collection();
     }
-    public void menu(TextView tvMenu){
+
+    public void menu(TextView tvMenu) {
         presenter.menu();
     }
-    public boolean mix(TextView tvMix){
+
+    public boolean mix(TextView tvMix) {
         return presenter.mixParlay();
     }
 
@@ -66,13 +96,21 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     }
 
     @Override
+    public void onGetFollowers(List<ScrollLayout> followers) {
+        presenter.setHeaderContent(slHeader);
+        if (followers != null)
+            followers.add(slHeader);
+    }
+
+    @Override
     public void onFailed(String message) {
         ToastUtils.showShort(message);
     }
 
     @Override
     public void onGetData(List<SportInfo> data) {
-        tvTotalMatch.setText(data.size()+"");
+        if (tvTotalMatch != null)
+            tvTotalMatch.setText(data.size() + "");
     }
 
 
@@ -93,23 +131,71 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
                 });
         popWindow.showPopupDownWindow();
     }
+
     private void setChooseTypeAdapter(RecyclerView rv_list) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
         rv_list.setAdapter(presenter.switchTypeAdapter());
     }
+
     @Override
     public void switchState(IObtainDataState state) {
         presenter.setStateHelper(state);
+        getContextActivity().getTvToolbarTitle().setText(state.getTypeNameRes());
         presenter.refresh();
+        if (popWindow != null)
+            popWindow.closePopupWindow();
+        onGetFollowers(presenter.getStateHelper().onSetAdapterHelper().getFollowers());
+
+
     }
+
     @Override
     public int onSetLayoutId() {
         return R.layout.fragment_ball;
     }
 
+
     @Override
-    public void onSetFollowers(List<ScrollLayout> followers) {
-        presenter.setHeaderContent(slHeader);
-        followers.add(slHeader);
+    public BaseToolbarActivity getContextActivity() {
+        return (BaseToolbarActivity) getBaseActivity();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.stopUpdate();
+    }
+
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {// 不在最前端界面显示
+            presenter.stopUpdate();
+        } else {// 重新显示到最前端中
+            presenter.refresh();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isFirstIn) {
+            presenter.refresh();
+        }
+        isFirstIn = false;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        presenter.stopUpdate();
+        ButterKnife.unbind(this);
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        // TODO: inflate a fragment view
+        View rootView = super.onCreateView(inflater, container, savedInstanceState);
+        ButterKnife.bind(this, rootView);
+        return rootView;
     }
 }

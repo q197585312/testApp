@@ -11,12 +11,24 @@ import io.reactivex.disposables.Disposable;
 public abstract class SportPresenter2 implements SportContract2.Presenter {
 
 
+    private SportContract2.View baseView;
+
+    public IObtainDataState getStateHelper() {
+        return stateHelper;
+    }
+
     private IObtainDataState stateHelper;
 
-    public void setStateHelper(IObtainDataState stateHelper) {
-        this.stateHelper = stateHelper;
+    public void setStateHelper(IObtainDataState stateHelperNew) {
+        if (stateHelper != null)
+            stateHelper.stopUpdateData();
+        this.stateHelper = stateHelperNew;
+
+
     }
+
     public SportPresenter2(SportContract2.View view) {
+        this.baseView=view;
         mCompositeSubscription = new CompositeDisposable();
     }
 
@@ -63,6 +75,7 @@ public abstract class SportPresenter2 implements SportContract2.Presenter {
     }
 
     protected CompositeDisposable mCompositeSubscription;
+
     @Override
     public void unSubscribe() {
         if (mCompositeSubscription != null) {
@@ -72,7 +85,7 @@ public abstract class SportPresenter2 implements SportContract2.Presenter {
 
 
     public BaseRecyclerAdapter switchTypeAdapter() {
-        return stateHelper.switchTypeAdapter() ;
+        return stateHelper.switchTypeAdapter();
     }
 
     public void setHeaderContent(ScrollLayout slHeader) {

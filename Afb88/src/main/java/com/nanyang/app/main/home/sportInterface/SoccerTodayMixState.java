@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sportInterface;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
+import com.nanyang.app.R;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -33,5 +34,15 @@ public class SoccerTodayMixState extends SoccerMixState {
         if(item.getType().equals("Early")){
             getBaseView().switchState(new SoccerEarlyMixState(getBaseView()));
         }
+        else if(item.getType().equals("Today")){
+            getBaseView().switchState(this);
+        }
     }
+
+    @Override
+    public int getTypeNameRes() {
+        return R.string.Today;
+    }
+
+
 }

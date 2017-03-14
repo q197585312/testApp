@@ -28,10 +28,12 @@ import butterknife.ButterKnife;
 
 public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> {
     final int google_yellow = 0XFFFBBC05;
-    final int green_light = 0XFFFBBC05;
+
     final int black_grey = 0XFF333333;
-    Context context;
-    List<ScrollLayout> slFollowers=new ArrayList<>();
+    protected Context context;
+    protected List<ScrollLayout> slFollowers = new ArrayList<>();
+    protected BallItemCallBack<I> back;
+
 
     public BallAdapterHelper(Context context) {
         this.context = context;
@@ -50,7 +52,7 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         final TextView tvCollection = helper.getView(R.id.module_match_collection_tv);
         liveTv.setTextColor(google_yellow);
         dateTv.setTextColor(google_yellow);
-        timeTv.setTextColor(green_light);
+        timeTv.setTextColor(context.getColor(R.color.green_light));
         dateTv.setTextSize(10);
         dateTv.setPadding(0, 0, 0, 0);
 
@@ -98,10 +100,7 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
             homeTv.setTextColor(black_grey);
             awayTv.setTextColor(google_yellow);
         }
-        String away = item.getAway();
-        String home = item.getHome();
-        homeTv.setText(home);
-        awayTv.setText(away);
+
         tvRightMark.setVisibility(View.GONE);
         if (item.getType() == SportInfo.Type.ITME) {
             matchTitleTv.setVisibility(View.GONE);
@@ -118,7 +117,7 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         final ScrollLayout sl = helper.getView(R.id.module_center_sl);
         String hasHdp = item.getHasHdp();
         String hdp = item.getHdp();
-        String hasOU=item.getHasOU();
+        String hasOU = item.getHasOU();
         String ou = item.getOU();
         String isHdpNew = item.getIsHdpNew();
         String isOUNew = item.getIsOUNew();
@@ -126,24 +125,30 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         String overOdds = item.getOverOdds();
         String homeHdpOdds = item.getHomeHdpOdds();
         String awayHdpOdds = item.getAwayHdpOdds();
+
         View vp = scrollChild(isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
-        sl.addView(vp);
-        if(!slFollowers.contains(sl))
+        sl.removeAllViews();
+        sl.addView(vp, SoccerHeaderContent.layoutParams);
+        if (!slFollowers.contains(sl))
             slFollowers.add(sl);
         sl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if(sl.getFollowScrolls()==null){
+                if (sl.getFollowScrolls() == null) {
                     sl.setFollowScrolls(slFollowers);
                 }
                 return false;
             }
         });
+        String away = item.getAway();
+        String home = item.getHome();
+        homeTv.setText(home);
+        awayTv.setText(away);
     }
 
     public View scrollChild(String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
         LayoutInflater from = LayoutInflater.from(context);
-        View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null);
+        View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null, false);
         ViewHolder holder = new ViewHolder(vp);
         if (!hasHdp.equals("1")) {
             holder.viewpagerMatchHomeHdpTv.setText("");
@@ -286,5 +291,14 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
+    }
+
+    interface  BallItemCallBack<I>{
+        boolean isItemCollection(I item);
+        void collectionItem(I item);
+        I getItem(int position);
+    }
+    public  void setBallItemCallBack(BallItemCallBack back){
+        this.back=back;
     }
 }

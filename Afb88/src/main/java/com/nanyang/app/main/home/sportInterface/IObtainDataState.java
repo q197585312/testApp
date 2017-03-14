@@ -21,5 +21,7 @@ public interface IObtainDataState {
     void onNext(SwipeToLoadLayout swipeToLoadLayout);
 
     BaseRecyclerAdapter switchTypeAdapter();
+    IAdapterHelper onSetAdapterHelper();
     void setHeaderContent(ScrollLayout slHeader);
+    int getTypeNameRes();
 }

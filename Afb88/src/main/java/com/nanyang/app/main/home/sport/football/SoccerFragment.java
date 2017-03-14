@@ -6,6 +6,7 @@ import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.MenuListInfo;
 import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 import com.nanyang.app.main.home.sportInterface.SoccerEarlyState;
+import com.nanyang.app.main.home.sportInterface.SoccerOutRightState;
 import com.nanyang.app.main.home.sportInterface.SoccerRunningState;
 import com.nanyang.app.main.home.sportInterface.SoccerTodayState;
 
@@ -30,6 +31,9 @@ public class SoccerFragment extends BaseSportFragment<SoccerPresenter> {
             case "Early":
                 switchState(new SoccerEarlyState(this));
                 break;
+            case "OutRight":
+                switchState(new SoccerOutRightState(this));
+                break;
         }
 
     }
@@ -53,8 +57,6 @@ public class SoccerFragment extends BaseSportFragment<SoccerPresenter> {
     public String getTitle() {
         return getString(R.string.Soccer);
     }
-
-
 
 
 }
