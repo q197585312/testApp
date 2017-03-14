@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sportInterface;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -56,24 +55,7 @@ public class SoccerTodayState extends SoccerCommonState {
     }
 
     @Override
-    public IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
-        SoccerTodayAdapterHelper soccerTodayAdapterHelper = new SoccerTodayAdapterHelper(getBaseView().getContextActivity());
-        soccerTodayAdapterHelper.setBallItemCallBack(new BallAdapterHelper.BallItemCallBack<SoccerCommonInfo>() {
-            @Override
-            public boolean isItemCollection(SoccerCommonInfo item) {
-                return isItemCollectionCommon(item);
-            }
-
-            @Override
-            public void collectionItem(SoccerCommonInfo item) {
-                collectionItemCommon(item);
-            }
-
-            @Override
-            public SoccerCommonInfo getItem(int position) {
-                return baseRecyclerAdapter.getItem(position);
-            }
-        });
-        return soccerTodayAdapterHelper;
+    protected SoccerCommonAdapterHelper onSetCommonAdapterHelper() {
+        return new SoccerTodayAdapterHelper(getBaseView().getContextActivity());
     }
 }

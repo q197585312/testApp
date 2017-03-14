@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sportInterface;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -52,25 +51,9 @@ public class SoccerEarlyState extends SoccerCommonState {
     public int getTypeNameRes() {
         return R.string.Early;
     }
+
     @Override
-    public IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
-        SoccerEarlyAdapterHelper soccerEarlyAdapterHelper = new SoccerEarlyAdapterHelper(getBaseView().getContextActivity());
-        soccerEarlyAdapterHelper.setBallItemCallBack(new BallAdapterHelper.BallItemCallBack<SoccerCommonInfo>() {
-            @Override
-            public boolean isItemCollection(SoccerCommonInfo item) {
-                return isItemCollectionCommon(item);
-            }
-
-            @Override
-            public void collectionItem(SoccerCommonInfo item) {
-                collectionItemCommon(item);
-            }
-
-            @Override
-            public SoccerCommonInfo getItem(int position) {
-                return baseRecyclerAdapter.getItem(position);
-            }
-        });
-        return soccerEarlyAdapterHelper;
+    protected SoccerCommonAdapterHelper onSetCommonAdapterHelper() {
+        return new SoccerEarlyAdapterHelper(getBaseView().getContextActivity());
     }
 }

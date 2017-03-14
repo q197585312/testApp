@@ -42,7 +42,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
 
     @Override
     public IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
-        SoccerCommonAdapterHelper adapterHelper=new SoccerCommonAdapterHelper(getBaseView().getContextActivity());
+        SoccerCommonAdapterHelper adapterHelper=onSetCommonAdapterHelper();
         adapterHelper.setBallItemCallBack(new BallAdapterHelper.BallItemCallBack<SoccerCommonInfo>() {
             @Override
             public boolean isItemCollection(SoccerCommonInfo item) {
@@ -61,6 +61,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
         return adapterHelper;
     }
 
+    protected abstract SoccerCommonAdapterHelper onSetCommonAdapterHelper();
 
 
     public void collectionItemCommon(SoccerCommonInfo item) {

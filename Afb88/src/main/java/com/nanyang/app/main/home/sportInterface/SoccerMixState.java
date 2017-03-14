@@ -41,9 +41,10 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo,SportContr
 
     @Override
     public IAdapterHelper<SoccerMixInfo> onSetAdapterHelper() {
-        return new SoccerMixAdapterHelper(getBaseView().getContextActivity());
+        return onSetMixAdapterHelper();
     }
 
+    protected abstract SoccerMixAdapterHelper onSetMixAdapterHelper();
 
 
     @Override
