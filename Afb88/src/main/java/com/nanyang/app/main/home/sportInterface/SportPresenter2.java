@@ -61,7 +61,7 @@ public abstract class SportPresenter2 implements SportContract2.Presenter {
 
     @Override
     public void stopUpdate() {
-        stateHelper.stopUpdateData();
+//        stateHelper.stopUpdateData();
     }
 
     @Override

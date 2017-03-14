@@ -33,6 +33,7 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
     protected Context context;
     protected List<ScrollLayout> slFollowers = new ArrayList<>();
     protected BallItemCallBack<I> back;
+    private int slIndex=0;
 
 
     public BallAdapterHelper(Context context) {
@@ -52,7 +53,7 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         final TextView tvCollection = helper.getView(R.id.module_match_collection_tv);
         liveTv.setTextColor(google_yellow);
         dateTv.setTextColor(google_yellow);
-        timeTv.setTextColor(context.getColor(R.color.green_light));
+        timeTv.setTextColor(context.getResources().getColor(R.color.green_light));
         dateTv.setTextSize(10);
         dateTv.setPadding(0, 0, 0, 0);
 
@@ -126,7 +127,7 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         String homeHdpOdds = item.getHomeHdpOdds();
         String awayHdpOdds = item.getAwayHdpOdds();
 
-        View vp = scrollChild(isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
+        View vp = scrollChild(item,isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
         sl.removeAllViews();
         sl.addView(vp, SoccerHeaderContent.layoutParams);
         if (!slFollowers.contains(sl))
@@ -140,23 +141,31 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
                 return false;
             }
         });
+        sl.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
+            @Override
+            public void changePosition(int index) {
+                if (slIndex != index) {
+                    slIndex = index;
+                }
+            }
+        });
+        sl.setCurrentIndex(slIndex);
         String away = item.getAway();
         String home = item.getHome();
         homeTv.setText(home);
         awayTv.setText(away);
     }
 
-    public View scrollChild(String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
+    public View scrollChild(I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
         LayoutInflater from = LayoutInflater.from(context);
         View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null, false);
         ViewHolder holder = new ViewHolder(vp);
-        if (!hasHdp.equals("1")) {
+        if (hasHdp.equals("0")) {
             holder.viewpagerMatchHomeHdpTv.setText("");
             holder.viewpagerMatchHomeHdpoddsTv.setText("");
             holder.viewpagerMatchVisitHdpTv.setText("");
             holder.viewpagerMatchVisitHdpoddsTv.setText("");
         } else {
-
             String hdpS = changeValueF(hdp);
             if (isHomeGive.equals("1")) {
                 holder.viewpagerMatchVisitHdpTv.setText("");
@@ -168,13 +177,15 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
             boolean isAnimation = false;
             if (isHdpNew.equals("1"))
                 isAnimation = true;
+            else
+                isAnimation = false;
             setValue(holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation);
             setValue(holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation);
 
         }
 
 
-        if (!hasOU.equals("1")) {
+        if (hasOU.equals("0")) {
             holder.viewpagerMatchOuTv.setText("");
             holder.viewpagerMatchOu2Tv.setText("");
             holder.viewpagerMatchOveroddsTv.setText("");
@@ -222,12 +233,13 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
     }
 
     private void setValue(TextView textView, String f, boolean isAnimation) {
-        textView.setText(f);
         if (f.equals("")) {
-            return;
+            textView.setText(f);
+        } else {
+            textView.setText(AfbUtils.changeValueS(f));
         }
-        textView.setText(AfbUtils.changeValueS(f));
-        textView.setTextColor(black_grey);
+
+
 
 
               /*  if (isAnimation && updateType != 1) {
@@ -293,12 +305,15 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         }
     }
 
-    interface  BallItemCallBack<I>{
+    interface BallItemCallBack<I> {
         boolean isItemCollection(I item);
+
         void collectionItem(I item);
+
         I getItem(int position);
     }
-    public  void setBallItemCallBack(BallItemCallBack back){
-        this.back=back;
+
+    public void setBallItemCallBack(BallItemCallBack back) {
+        this.back = back;
     }
 }

@@ -18,7 +18,6 @@ import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
@@ -26,9 +25,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
-import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -226,7 +223,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
 
     @Override
-    public Disposable startUpdateData() {
+    public Disposable startUpdateData() {/*
         updateDisposable = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
             @Override
             public Publisher<String> apply(Long aLong) throws Exception {
@@ -256,7 +253,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
 
                     }
-                });
+                });*/
         return updateDisposable;
 
     }

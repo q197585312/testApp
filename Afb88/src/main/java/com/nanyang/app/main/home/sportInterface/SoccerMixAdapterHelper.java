@@ -26,7 +26,7 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<SoccerMixInfo> {
         markAdd.setVisibility(View.VISIBLE);
         tvCollection.setVisibility(View.GONE);
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        View hfView = scrollChild(item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
+        View hfView = scrollChild(item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
         sl.addView(hfView,SoccerHeaderContent.layoutParams);
     }
 
