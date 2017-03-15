@@ -26,7 +26,7 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/3/12 0012.
  */
 
-public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> {
+public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I> {
     final int google_yellow = 0XFFFBBC05;
 
     final int black_grey = 0XFF333333;
@@ -127,7 +127,7 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         String homeHdpOdds = item.getHomeHdpOdds();
         String awayHdpOdds = item.getAwayHdpOdds();
 
-        View vp = scrollChild(item,isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
+        View vp = scrollChild(false,item,isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
         sl.removeAllViews();
         sl.addView(vp, SoccerHeaderContent.layoutParams);
         if (!slFollowers.contains(sl))
@@ -156,7 +156,7 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         awayTv.setText(away);
     }
 
-    public View scrollChild(I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
+    public View scrollChild(boolean isFh,I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
         LayoutInflater from = LayoutInflater.from(context);
         View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null, false);
         ViewHolder holder = new ViewHolder(vp);
@@ -179,8 +179,8 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
                 isAnimation = true;
             else
                 isAnimation = false;
-            setValue(holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation);
-            setValue(holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation);
+            setValue(item,holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation,"home",isFh);
+            setValue(item,holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation,"away",isFh);
 
         }
 
@@ -198,8 +198,8 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
             boolean isAnimation = false;
             if (isOUNew.equals("1"))
                 isAnimation = true;
-            setValue(holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation);
-            setValue(holder.viewpagerMatchOveroddsTv, overOdds, isAnimation);
+            setValue(item,holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation,"under",isFh);
+            setValue(item,holder.viewpagerMatchOveroddsTv, overOdds, isAnimation,"over",isFh);
         }
         return vp;
     }
@@ -232,11 +232,17 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         return ss;
     }
 
-    private void setValue(TextView textView, String f, boolean isAnimation) {
+    protected void setValue(final I item, TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf) {
         if (f.equals("")) {
             textView.setText(f);
         } else {
             textView.setText(AfbUtils.changeValueS(f));
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    back.clickOdds((TextView)v,item,type,isHf,f);
+                }
+            });
         }
 
 
@@ -305,15 +311,9 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         }
     }
 
-    interface BallItemCallBack<I> {
+    interface BallItemCallBack<I> extends SportAdapterHelper.ItemCallBack<I>{
         boolean isItemCollection(I item);
-
         void collectionItem(I item);
-
-        I getItem(int position);
     }
 
-    public void setBallItemCallBack(BallItemCallBack back) {
-        this.back = back;
-    }
 }

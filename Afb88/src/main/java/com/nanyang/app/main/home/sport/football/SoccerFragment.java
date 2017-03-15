@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sport.football;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportActivity;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.MenuListInfo;
 import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 import com.nanyang.app.main.home.sportInterface.SoccerEarlyState;
@@ -57,6 +58,7 @@ public class SoccerFragment extends BaseSportFragment<SoccerPresenter> {
     public String getTitle() {
         return getString(R.string.Soccer);
     }
+
 
 
 }

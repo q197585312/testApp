@@ -13,15 +13,28 @@ import io.reactivex.disposables.Disposable;
 public interface IObtainDataState {
     Disposable refresh();
     Disposable startUpdateData();
+
     void stopUpdateData();
+
     boolean collection();
+
     boolean menu();
+
     boolean mix();
+
     void onPrevious(SwipeToLoadLayout swipeToLoadLayout);
+
     void onNext(SwipeToLoadLayout swipeToLoadLayout);
 
     BaseRecyclerAdapter switchTypeAdapter();
-    IAdapterHelper onSetAdapterHelper();
+
+    <I extends IAdapterHelper> I onSetAdapterHelper();
+
     void setHeaderContent(ScrollLayout slHeader);
+
     int getTypeNameRes();
+
+    void unSubscribe();
+
+    void notifyDataChanged();
 }

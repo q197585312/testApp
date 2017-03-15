@@ -9,8 +9,10 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -59,13 +61,13 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
         swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.onPrevious(swipeToLoadLayout);
+                presenter.getStateHelper().onPrevious(swipeToLoadLayout);
             }
         });
         swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
             public void onLoadMore() {
-                presenter.onNext(swipeToLoadLayout);
+                presenter.getStateHelper().onNext(swipeToLoadLayout);
             }
         });
     }
@@ -73,19 +75,19 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     protected abstract P onCreatePresenter();
 
     public void refresh() {
-        presenter.refresh();
+        presenter.getStateHelper().refresh();
     }
 
     public void collection(TextView tvCollection) {
-        presenter.collection();
+        presenter.getStateHelper().collection();
     }
 
     public void menu(TextView tvMenu) {
-        presenter.menu();
+        presenter.getStateHelper().menu();
     }
 
     public boolean mix(TextView tvMix) {
-        return presenter.mixParlay();
+        return presenter.getStateHelper().mix();
     }
 
 
@@ -97,7 +99,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
 
     @Override
     public void onGetFollowers(List<ScrollLayout> followers) {
-        presenter.setHeaderContent(slHeader);
+        presenter.getStateHelper().setHeaderContent(slHeader);
         if (followers != null)
             followers.add(slHeader);
     }
@@ -112,8 +114,14 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
         if (tvTotalMatch != null)
             tvTotalMatch.setText(data.size() + "");
     }
-
-
+    public AfbApplication getApp() {
+        return (AfbApplication) getActivity().getApplication();
+    }
+    @Override
+    public void onUpdateMixSucceed(BettingParPromptBean bean) {
+       getApp().setBetParList(bean);
+        presenter.getStateHelper().notifyDataChanged();
+    }
     public void toolbarRightClick(View v) {
         createPopupWindow(
                 new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, 300) {
@@ -134,14 +142,14 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
 
     private void setChooseTypeAdapter(RecyclerView rv_list) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
-        rv_list.setAdapter(presenter.switchTypeAdapter());
+        rv_list.setAdapter(presenter.getStateHelper().switchTypeAdapter());
     }
 
     @Override
     public void switchState(IObtainDataState state) {
         presenter.setStateHelper(state);
         getContextActivity().getTvToolbarTitle().setText(state.getTypeNameRes());
-        presenter.refresh();
+        presenter.getStateHelper().refresh();
         if (popWindow != null)
             popWindow.closePopupWindow();
         onGetFollowers(presenter.getStateHelper().onSetAdapterHelper().getFollowers());
@@ -163,15 +171,15 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     @Override
     public void onPause() {
         super.onPause();
-        presenter.stopUpdate();
+        presenter.getStateHelper().stopUpdateData();
     }
 
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {// 不在最前端界面显示
-            presenter.stopUpdate();
+            presenter.getStateHelper().stopUpdateData();
         } else {// 重新显示到最前端中
-            presenter.refresh();
+            presenter.getStateHelper().refresh();
         }
     }
 
@@ -179,7 +187,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     public void onResume() {
         super.onResume();
         if (!isFirstIn) {
-            presenter.refresh();
+            presenter.getStateHelper().refresh();
         }
         isFirstIn = false;
     }
@@ -187,7 +195,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        presenter.stopUpdate();
+        presenter.getStateHelper().stopUpdateData();
         ButterKnife.unbind(this);
     }
 

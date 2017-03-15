@@ -152,4 +152,23 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract2
         new SoccerHeaderContent().setHeaderContent(getBaseView().getContextActivity(), slHeader);
     }
 
+    @Override
+    protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
+        return new SportAdapterHelper.ItemCallBack<SportInfo>() {
+            @Override
+            public SportInfo getItem(int position) {
+                return baseRecyclerAdapter.getItem(position);
+            }
+
+            @Override
+            public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds) {
+
+            }
+        };
+    }
+
+    @Override
+    protected IBetHelper onSetBetHelper() {
+        return new BallCommonBetHelper(getBaseView());
+    }
 }

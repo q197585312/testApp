@@ -13,10 +13,6 @@ public class SoccerEarlyMixState extends SoccerMixState {
         super(baseView);
     }
 
-    @Override
-    protected SoccerMixAdapterHelper onSetMixAdapterHelper() {
-        return new SoccerMixAdapterHelper(getBaseView().getContextActivity());
-    }
 
 
     @Override

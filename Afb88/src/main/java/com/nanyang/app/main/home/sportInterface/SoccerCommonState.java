@@ -1,5 +1,8 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.widget.TextView;
+
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
@@ -42,12 +45,18 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
 
     @Override
     public IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
-        SoccerCommonAdapterHelper adapterHelper=onSetCommonAdapterHelper();
-        adapterHelper.setBallItemCallBack(new BallAdapterHelper.BallItemCallBack<SoccerCommonInfo>() {
+        SoccerCommonAdapterHelper adapterHelper = onSetCommonAdapterHelper();
+        return adapterHelper;
+    }
+
+    @Override
+    protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
+        return new BallAdapterHelper.BallItemCallBack<SoccerCommonInfo>() {
             @Override
             public boolean isItemCollection(SoccerCommonInfo item) {
                 return isItemCollectionCommon(item);
             }
+
             @Override
             public void collectionItem(SoccerCommonInfo item) {
                 collectionItemCommon(item);
@@ -57,9 +66,34 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
             public SoccerCommonInfo getItem(int position) {
                 return baseRecyclerAdapter.getItem(position);
             }
-        });
-        return adapterHelper;
+
+            @Override
+            public void clickOdds(TextView v, SoccerCommonInfo item, String type, boolean isHf, String odds) {
+                String url = getOddsUrl(item, type, isHf, odds);
+                SoccerCommonState.this.clickOdds(v, url, isHf);
+            }
+        };
     }
+
+    @Override
+    protected IBetHelper onSetBetHelper() {
+        return new BallCommonBetHelper(getBaseView());
+    }
+
+    //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?gt=s&b=under&oId=12159615&oId_fh=12159616&isFH=true&isRun=true&odds=4.70
+    protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append("gt=s");
+        stringBuilder.append("&b=" + type);
+        stringBuilder.append("&oId=" + item.getSocOddsId());
+        if (isHf)
+            stringBuilder.append("&isFH=true&oId_fh=" + item.getSocOddsId_FH());
+        stringBuilder.append("&odds=" + odds);
+
+        return stringBuilder.toString();
+    }
+
 
     protected abstract SoccerCommonAdapterHelper onSetCommonAdapterHelper();
 
@@ -79,6 +113,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
         localCollectionMap.put(moduleKey, moduleMap);
         baseRecyclerAdapter.notifyDataSetChanged();
     }
+
     public boolean isItemCollectionCommon(SoccerCommonInfo item) {
 
         return !(localCollectionMap.get(item.getModuleTitle()) == null || localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()));

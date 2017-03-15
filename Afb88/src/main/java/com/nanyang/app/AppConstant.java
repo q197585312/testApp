@@ -37,8 +37,7 @@ public class AppConstant {
 
     public static String URL_FOOTBALL_OUT_RIGHT ="http://a8197c.a36588.com/_view/OddsGen50.ashx?update=true&r=2076712019";
 
-//    http://a8197c.a36588.com/_view/OddsGen50.ashx?ot=t&update=true&r=739526444&LID=&_=1489039551227
-    //http://a8197c.a36588.com/_view/OddsGen50.ashx?ot=e&update=true&r=1039934078&LID=&_=1489039799379
+    public static String URL_ODDS=HOST+"/_Bet/JRecPanel.aspx?";
 
 
 //http://a8197c.a36588.com/_View/All_WFHGen.ashx?g=9&ot=e&update=true&r=2033192118&LID=6d93d66cfbe0867d&_=1488511791401

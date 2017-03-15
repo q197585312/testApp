@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.football;
 
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sportInterface.SportContract2;
 import com.nanyang.app.main.home.sportInterface.SportPresenter2;
 

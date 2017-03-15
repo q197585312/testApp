@@ -18,6 +18,7 @@ import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
@@ -25,8 +26,11 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
+import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
@@ -56,6 +60,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
      */
     protected List<TableSportInfo<B>> pageData;
 
+    private CompositeDisposable mCompositeSubscription;
+
     public int getPageSize() {
         return pageSize;
     }
@@ -67,8 +73,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     private Disposable updateDisposable;
 
 
-
-    IAdapterHelper<B> adapterHelper;
+    SportAdapterHelper<B> adapterHelper;
 
     public V getBaseView() {
         return baseView;
@@ -77,6 +82,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     public void setBaseView(V mBaseView) {
         this.baseView = mBaseView;
         adapterHelper = onSetAdapterHelper();
+        adapterHelper.setItemCallBack(onSetItemCallBack());
         baseRecyclerAdapter = new BaseRecyclerAdapter<B>(baseView.getContextActivity(), new ArrayList<B>(), adapterHelper.onSetAdapterItemLayout()) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, B item) {
@@ -84,9 +90,18 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
             }
         };
         baseView.setAdapter(baseRecyclerAdapter);
+        mCompositeSubscription = new CompositeDisposable();
     }
 
+    protected abstract SportAdapterHelper.ItemCallBack onSetItemCallBack();
 
+
+    @Override
+    public void unSubscribe() {
+        if (mCompositeSubscription != null) {
+            mCompositeSubscription.clear();
+        }
+    }
 
     public SportState(V baseView) {
         setBaseView(baseView);
@@ -97,7 +112,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
     @Override
     public Disposable refresh() {
-        return getService(ApiService.class).getData(getRefreshUrl()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+        Disposable subscribe = getService(ApiService.class).getData(getRefreshUrl()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                 .map(new Function<String, List<TableSportInfo<B>>>() {
 
                     @Override
@@ -131,7 +146,19 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
                         subscription1.request(Long.MAX_VALUE);
                     }
                 });
+        mCompositeSubscription.add(subscribe);
+        return subscribe;
+
     }
+
+    public void clickOdds(TextView v, String url, boolean isHf) {
+        IBetHelper helper =onSetBetHelper();
+        helper.setCompositeSubscription(mCompositeSubscription);
+        helper.clickOdds(v,url,isHf);
+    }
+
+    protected abstract IBetHelper onSetBetHelper();
+
 
     /***
      * 显示数据最终调用的方法
@@ -223,7 +250,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
 
     @Override
-    public Disposable startUpdateData() {/*
+    public Disposable startUpdateData() {
         updateDisposable = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
             @Override
             public Publisher<String> apply(Long aLong) throws Exception {
@@ -253,7 +280,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
 
                     }
-                });*/
+                });
+        mCompositeSubscription.add(updateDisposable);
         return updateDisposable;
 
     }
@@ -263,7 +291,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     public void stopUpdateData() {
         if (updateDisposable != null) {
             updateDisposable.dispose();
-           boolean isDisposed= updateDisposable.isDisposed();
+            boolean isDisposed = updateDisposable.isDisposed();
             updateDisposable = null;
         }
     }
@@ -463,5 +491,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
     protected abstract List<MenuItemInfo> getTypes();
 
-
+    @Override
+    public void notifyDataChanged() {
+        baseRecyclerAdapter.notifyDataSetChanged();
+    }
 }

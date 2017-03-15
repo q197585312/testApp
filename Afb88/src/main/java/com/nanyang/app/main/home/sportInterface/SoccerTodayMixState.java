@@ -13,10 +13,7 @@ public class SoccerTodayMixState extends SoccerMixState {
         super(baseView);
     }
 
-    @Override
-    protected SoccerMixAdapterHelper onSetMixAdapterHelper() {
-        return new SoccerMixAdapterHelper(getBaseView().getContextActivity());
-    }
+
 
     @Override
     public boolean menu() {
