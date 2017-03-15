@@ -32,7 +32,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     final int black_grey = 0XFF333333;
     protected Context context;
     protected List<ScrollLayout> slFollowers = new ArrayList<>();
-    protected BallItemCallBack<I> back;
+
     private int slIndex=0;
 
 

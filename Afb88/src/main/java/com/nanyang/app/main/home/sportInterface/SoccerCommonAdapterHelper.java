@@ -33,14 +33,14 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         tvCollection.setVisibility(View.VISIBLE);
         tvRightMark.setVisibility(View.VISIBLE);
 
-        if (back.isItemCollection(item))
+        if ( ((BallItemCallBack)back).isItemCollection(item))
             tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_soild);
         else
             tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_not_soild);
         tvCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back.collectionItem(item);
+                ((BallItemCallBack)back).collectionItem(item);
             }
         });
         ScrollLayout sl = helper.getView(R.id.module_center_sl);

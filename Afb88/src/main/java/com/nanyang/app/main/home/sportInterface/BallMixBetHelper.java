@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sportInterface;
 import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
-import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.IBaseView;
@@ -77,9 +76,7 @@ public class BallMixBetHelper implements IBetHelper {
 
     @Override
     public Disposable clickOdds(final TextView v, String url, final boolean isHf) {
-
-        v.setBackgroundResource(R.drawable.sport_mix_parlay_bet_green_bg);
-        v.setTextColor(baseView.getContextActivity().getResources().getColor(R.color.white));
+        SoccerMixAdapterHelper.setMixBackground(v,baseView.getContextActivity());
         Disposable subscribe = getService(ApiService.class).addMixParlayBet(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingParPromptBean>() {//onNext
                     @Override
@@ -89,8 +86,7 @@ public class BallMixBetHelper implements IBetHelper {
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        v.setBackgroundResource(0);
-                        v.setTextColor(baseView.getContextActivity().getResources().getColor(R.color.black_grey));
+                        SoccerMixAdapterHelper.setCommonBackground(v,baseView.getContextActivity());
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().hideLoadingDialog();
                     }

@@ -11,7 +11,11 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapterHelper<B> {
 
-    private ItemCallBack<B> back;
+    public ItemCallBack<B> getBack() {
+        return back;
+    }
+
+    protected ItemCallBack<B> back;
 
     @Override
     public void onConvert(MyRecyclerViewHolder holder, int position, B item) {

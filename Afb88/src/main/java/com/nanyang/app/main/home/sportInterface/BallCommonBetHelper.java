@@ -1,14 +1,11 @@
 package com.nanyang.app.main.home.sportInterface;
 
-import android.content.Context;
-import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.libs.view.IBaseView;
 
 import org.reactivestreams.Subscription;
 
@@ -26,18 +23,18 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  */
 
 public class BallCommonBetHelper implements IBetHelper {
-    IBaseView baseView;
+    SportContract2.View baseView;
     private CompositeDisposable compositeSubscription;
 
-    public BallCommonBetHelper(IBaseView baseView) {
+    public BallCommonBetHelper(SportContract2.View baseView) {
         this.baseView = baseView;
     }
 
-    public IBaseView getBaseView() {
+    public SportContract2.View getBaseView() {
         return baseView;
     }
 
-    public void setBaseView(IBaseView baseView) {
+    public void setBaseView(SportContract2.View baseView) {
         this.baseView = baseView;
     }
 
@@ -78,13 +75,13 @@ public class BallCommonBetHelper implements IBetHelper {
     }
 
     @Override
-    public Disposable clickOdds(TextView v, String url, final boolean isHf) {
+    public Disposable clickOdds(final TextView v, String url, final boolean isHf) {
 
         Disposable subscribe = getService(ApiService.class).getBetData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingPromptBean>() {//onNext
                     @Override
                     public void accept(BettingPromptBean bean) throws Exception {
-                        createBetPop(bean, isHf);
+                        createBetPop(bean, isHf,v);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -109,11 +106,11 @@ public class BallCommonBetHelper implements IBetHelper {
         return subscribe;
     }
 
-    private void createBetPop(BettingPromptBean bean, boolean isHf) {
-        BetPop pop = new BetPop((Context) baseView, new View((Context) baseView));
+    private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
+        BetPop pop = new BetPop(baseView.getContextActivity(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
-        pop.showPopupDownWindow();
+        pop.showPopupCenterWindow();
     }
 
     public void setCompositeSubscription(CompositeDisposable compositeSubscription) {

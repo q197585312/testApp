@@ -120,7 +120,15 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     @Override
     public void onUpdateMixSucceed(BettingParPromptBean bean) {
        getApp().setBetParList(bean);
+        if(bean.getBetPar().size()>0){
+            tvMixParlayOrder.setText(""+bean.getBetPar().size());
+            llMixParlayOrder.setVisibility(View.VISIBLE);
+        }else{
+            tvMixParlayOrder.setText("0");
+            llMixParlayOrder.setVisibility(View.GONE);
+        }
         presenter.getStateHelper().notifyDataChanged();
+
     }
     public void toolbarRightClick(View v) {
         createPopupWindow(

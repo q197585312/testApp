@@ -49,6 +49,11 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
     }
 
     @Override
+    public void onFailed(String error) {
+
+    }
+
+    @Override
     public void initUi() {
         Intent intent= getIntent();
         if (intent.getStringExtra("activity").equals("Porker")){
