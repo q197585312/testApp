@@ -63,7 +63,7 @@ class ScalePresenter extends BaseRetrofitPresenter<BettingParPromptBean, ScaleCo
         StringBuilder builder = getBetUrl(info);
 
         //http://a8197c.a36588.com/_bet/JRecPanel.aspx?g=2&b=home_par&oId=12036347&odds=17.6
-        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).addMixParlayBet(builder.toString()))
+        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).updateMixParlayBet(builder.toString()))
 
                 .subscribe(new Consumer<BettingParPromptBean>() {//onNext
                     @Override

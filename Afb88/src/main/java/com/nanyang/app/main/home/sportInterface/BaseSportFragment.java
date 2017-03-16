@@ -10,8 +10,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -27,6 +29,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -114,22 +117,29 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
         if (tvTotalMatch != null)
             tvTotalMatch.setText(data.size() + "");
     }
+
     public AfbApplication getApp() {
         return (AfbApplication) getActivity().getApplication();
     }
+
     @Override
     public void onUpdateMixSucceed(BettingParPromptBean bean) {
-       getApp().setBetParList(bean);
-        if(bean.getBetPar().size()>0){
-            tvMixParlayOrder.setText(""+bean.getBetPar().size());
+        getApp().setBetParList(bean);
+        updateMixOrderCount();
+
+    }
+
+    private void updateMixOrderCount() {
+        if (getApp().getBetParList().getBetPar().size() > 0) {
+            tvMixParlayOrder.setText("" + getApp().getBetParList().getBetPar().size());
             llMixParlayOrder.setVisibility(View.VISIBLE);
-        }else{
+
+        } else {
             tvMixParlayOrder.setText("0");
             llMixParlayOrder.setVisibility(View.GONE);
         }
-        presenter.getStateHelper().notifyDataChanged();
-
     }
+
     public void toolbarRightClick(View v) {
         createPopupWindow(
                 new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, 300) {
@@ -152,6 +162,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
         rv_list.setAdapter(presenter.getStateHelper().switchTypeAdapter());
     }
+
 
     @Override
     public void switchState(IObtainDataState state) {
@@ -196,6 +207,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
         super.onResume();
         if (!isFirstIn) {
             presenter.getStateHelper().refresh();
+            updateMixOrderCount();
         }
         isFirstIn = false;
     }
@@ -213,5 +225,12 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
         return rootView;
+    }
+
+    @OnClick(R.id.ll_mix_parlay_order)
+    public void onClick(View v) {
+        Bundle bundle=new Bundle();
+        bundle.putSerializable(AppConstant.KEY_STRING,presenter.getBallType());
+        skipAct(MixOrderListActivity.class,bundle);
     }
 }

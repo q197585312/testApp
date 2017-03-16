@@ -89,6 +89,11 @@ public class BettingParPromptBean {
 
     @SerializedName("BetPar")
     private List<BetParBean> BetPar;
+    /**
+     * BetCoupon : 1
+     */
+
+    private int BetCoupon;
 
     public void setBetType(String BetType) {
         this.BetType = BetType;
@@ -248,6 +253,14 @@ public class BettingParPromptBean {
 
     public List<BetParBean> getBetPar() {
         return BetPar;
+    }
+
+    public int getBetCoupon() {
+        return BetCoupon;
+    }
+
+    public void setBetCoupon(int BetCoupon) {
+        this.BetCoupon = BetCoupon;
     }
 
     public static class BetParBean {

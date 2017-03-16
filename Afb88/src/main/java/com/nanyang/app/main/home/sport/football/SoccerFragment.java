@@ -1,10 +1,15 @@
 package com.nanyang.app.main.home.sport.football;
 
+import android.os.Bundle;
+import android.view.View;
+
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.MenuListInfo;
+import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 import com.nanyang.app.main.home.sportInterface.SoccerEarlyState;
 import com.nanyang.app.main.home.sportInterface.SoccerOutRightState;
@@ -60,5 +65,12 @@ public class SoccerFragment extends BaseSportFragment<SoccerPresenter> {
     }
 
 
+    @Override
+    public void clickAdd(View v, SportInfo item, String type) {
+        Bundle b=new Bundle();
+        b.putString(AppConstant.KEY_STRING,type);
+        b.putSerializable(AppConstant.KEY_DATA,item);
+        skipAct(VsActivity.class,b);
+    }
 
 }

@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
@@ -50,19 +51,10 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
 
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
-        return new BallAdapterHelper.BallItemCallBack<SoccerMixInfo>() {
+        return new BallItemCallBack<SoccerMixInfo>(baseRecyclerAdapter) {
             @Override
             public boolean isItemCollection(SoccerMixInfo item) {
                 return false;
-            }
-
-            @Override
-            public void collectionItem(SoccerMixInfo item) {
-            }
-
-            @Override
-            public SoccerMixInfo getItem(int position) {
-                return baseRecyclerAdapter.getItem(position);
             }
 
             @Override
@@ -70,7 +62,20 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
                 String url = getOddsUrl(item, type, isHf, odds);
                 SoccerMixState.this.clickOdds(v,url, isHf);
             }
+
+            @Override
+            public void clickView(View v, SoccerMixInfo item) {
+                switch (v.getId()){
+                    case R.id.module_right_mark_tv:
+                        clickAdd(v,item);
+                }
+            }
+
         };
+    }
+
+    private void clickAdd(View v, SoccerMixInfo item) {
+        getBaseView().clickAdd(v,item,"mix");
     }
 
     @Override

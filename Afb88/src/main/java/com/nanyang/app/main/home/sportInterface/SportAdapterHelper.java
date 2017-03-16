@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -27,6 +28,8 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
         B getItem(int position);
 
         void clickOdds(TextView v, B item, String type, boolean isHf, String odds);
+
+        void clickView(View v,B item);
     }
 
     public <I extends ItemCallBack<B>> void setItemCallBack(I back) {

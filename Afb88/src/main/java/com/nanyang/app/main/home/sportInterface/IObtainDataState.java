@@ -37,4 +37,5 @@ public interface IObtainDataState {
     void unSubscribe();
 
     void notifyDataChanged();
+
 }

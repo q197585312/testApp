@@ -41,7 +41,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     @Override
-    public void onConvert(MyRecyclerViewHolder helper, int position, I item) {
+    public void onConvert(MyRecyclerViewHolder helper, int position, final I item) {
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         View headV = helper.getView(R.id.module_match_head_v);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
@@ -103,6 +103,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
 
         tvRightMark.setVisibility(View.GONE);
+        tvRightMark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back.clickView(v,item);
+            }
+        });
         if (item.getType() == SportInfo.Type.ITME) {
             matchTitleTv.setVisibility(View.GONE);
             headV.setVisibility(View.GONE);
@@ -154,6 +160,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String home = item.getHome();
         homeTv.setText(home);
         awayTv.setText(away);
+    }
+
+    protected void clickAdd(I item) {
+
     }
 
     public View scrollChild(boolean isFh,I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
@@ -311,9 +321,5 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
     }
 
-    interface BallItemCallBack<I> extends SportAdapterHelper.ItemCallBack<I>{
-        boolean isItemCollection(I item);
-        void collectionItem(I item);
-    }
 
 }

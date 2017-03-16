@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
@@ -51,20 +52,10 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
 
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
-        return new BallAdapterHelper.BallItemCallBack<SoccerCommonInfo>() {
+        return new BallItemCallBack<SoccerCommonInfo>(baseRecyclerAdapter) {
             @Override
             public boolean isItemCollection(SoccerCommonInfo item) {
                 return isItemCollectionCommon(item);
-            }
-
-            @Override
-            public void collectionItem(SoccerCommonInfo item) {
-                collectionItemCommon(item);
-            }
-
-            @Override
-            public SoccerCommonInfo getItem(int position) {
-                return baseRecyclerAdapter.getItem(position);
             }
 
             @Override
@@ -72,7 +63,24 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
                 String url = getOddsUrl(item, type, isHf, odds);
                 SoccerCommonState.this.clickOdds(v, url, isHf);
             }
+
+            @Override
+            public void clickView(View v, SoccerCommonInfo item) {
+                switch (v.getId()){
+                    case R.id.module_match_collection_tv:
+                        collectionItemCommon(item);
+                        break;
+                    case R.id.module_right_mark_tv:
+                        clickAdd(v,item);
+                        break;
+                }
+
+            }
         };
+    }
+
+    private void clickAdd(View v,SoccerCommonInfo item) {
+       getBaseView().clickAdd(v,item,"common");
     }
 
     @Override

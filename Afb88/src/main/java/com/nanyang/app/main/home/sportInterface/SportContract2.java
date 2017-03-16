@@ -19,6 +19,7 @@ public interface SportContract2  {
         void switchState(IObtainDataState state);
         void onGetFollowers(List<ScrollLayout> followers);
         void onUpdateMixSucceed(BettingParPromptBean bean);
+        void clickAdd(android.view.View v, B item, String type);
     }
 
     interface Presenter extends IBasePresenter  {
