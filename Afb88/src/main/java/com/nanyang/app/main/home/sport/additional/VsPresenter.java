@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.Utils.StringUtils;
-import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -27,7 +27,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 class VsPresenter extends BaseRetrofitPresenter<ScaleBean, VsContract.View> implements VsContract.Presenter {
     private String type;
-    private MatchBean bean;
+    private BallInfo bean;
 
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     VsPresenter(VsContract.View view) {
@@ -35,7 +35,7 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, VsContract.View> impl
     }
 
 
-    public void scale(MatchBean item, String matchType) {
+    public void scale(BallInfo item, String matchType) {
         this.bean = item;
         this.type = matchType;
         String url = getUrl();
@@ -72,7 +72,7 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, VsContract.View> impl
         if (type.equals("Running"))
             isRunning = true;
 
-        String url = "http://main55.afb88.com/_view/MoreBet_App.aspx?oId=" + bean.getHandicapBeans().get(0).getSocOddsId() + "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getLeagueBean().getModuleTitle()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning;
+        String url = "http://main55.afb88.com/_view/MoreBet_App.aspx?oId=" + bean.getSocOddsId() + "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getModuleTitle()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning;
         url = url + "&t=" + System.currentTimeMillis();
         return url;
     }

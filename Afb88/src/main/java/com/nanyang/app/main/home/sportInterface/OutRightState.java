@@ -164,6 +164,11 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract2
             public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds) {
 
             }
+
+            @Override
+            public void clickView(View v, SportInfo item) {
+
+            }
         };
     }
 

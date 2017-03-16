@@ -42,8 +42,9 @@ public class SoccerTodayMixState extends SoccerMixState {
     }
 
     @Override
-    public int getTypeNameRes() {
-        return R.string.Today;
+    public MenuItemInfo getStateType() {
+
+        return new MenuItemInfo(1,getBaseView().getContextActivity().getString(R.string.Today),"Today");
     }
 
 

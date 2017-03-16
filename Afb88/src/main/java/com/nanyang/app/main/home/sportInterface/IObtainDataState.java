@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import com.nanyang.app.MenuItemInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.training.ScrollLayout;
@@ -32,7 +33,7 @@ public interface IObtainDataState {
 
     void setHeaderContent(ScrollLayout slHeader);
 
-    int getTypeNameRes();
+    MenuItemInfo getStateType();
 
     void unSubscribe();
 

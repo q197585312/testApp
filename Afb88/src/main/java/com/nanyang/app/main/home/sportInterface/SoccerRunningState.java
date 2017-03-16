@@ -48,8 +48,8 @@ public class SoccerRunningState extends SoccerCommonState {
     }
 
     @Override
-    public int getTypeNameRes() {
-        return R.string.Running;
+    public MenuItemInfo getStateType() {
+        return new MenuItemInfo(0,getBaseView().getContextActivity().getString(R.string.Running),"Running");
     }
 
 

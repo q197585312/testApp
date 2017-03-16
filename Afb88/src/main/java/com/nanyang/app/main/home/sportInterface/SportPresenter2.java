@@ -29,5 +29,5 @@ public abstract class SportPresenter2 implements SportContract2.Presenter {
     }
 
 
-    public abstract String getBallType();
+
 }

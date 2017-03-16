@@ -27,8 +27,8 @@ public class SoccerEarlyMixState extends SoccerMixState {
     }
 
     @Override
-    public int getTypeNameRes() {
-        return R.string.Early;
+    public MenuItemInfo getStateType() {
+        return new MenuItemInfo(1,getBaseView().getContextActivity().getString(R.string.Early),"Early");
     }
 
     @Override

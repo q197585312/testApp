@@ -167,7 +167,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     @Override
     public void switchState(IObtainDataState state) {
         presenter.setStateHelper(state);
-        getContextActivity().getTvToolbarTitle().setText(state.getTypeNameRes());
+        getContextActivity().getTvToolbarTitle().setText(state.getStateType().getText());
         presenter.getStateHelper().refresh();
         if (popWindow != null)
             popWindow.closePopupWindow();
@@ -230,7 +230,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     @OnClick(R.id.ll_mix_parlay_order)
     public void onClick(View v) {
         Bundle bundle=new Bundle();
-        bundle.putSerializable(AppConstant.KEY_STRING,presenter.getBallType());
+        bundle.putSerializable(AppConstant.KEY_STRING,getTitle());
         skipAct(MixOrderListActivity.class,bundle);
     }
 }

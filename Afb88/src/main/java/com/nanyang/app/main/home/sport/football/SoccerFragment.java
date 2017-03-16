@@ -41,7 +41,7 @@ public class SoccerFragment extends BaseSportFragment<SoccerPresenter> {
                 switchState(new SoccerOutRightState(this));
                 break;
         }
-
+        setTitle(getString(R.string.football));
     }
 
     private void initAdapter() {
@@ -67,10 +67,12 @@ public class SoccerFragment extends BaseSportFragment<SoccerPresenter> {
 
     @Override
     public void clickAdd(View v, SportInfo item, String type) {
-        Bundle b=new Bundle();
-        b.putString(AppConstant.KEY_STRING,type);
-        b.putSerializable(AppConstant.KEY_DATA,item);
-        skipAct(VsActivity.class,b);
+        Bundle b = new Bundle();
+        b.putBoolean(AppConstant.KEY_BOOLEAN, type.equals("mix"));
+        b.putString(AppConstant.KEY_STRING, presenter.getStateHelper().getStateType().getType());
+        b.putSerializable(AppConstant.KEY_DATA, item);
+        skipAct(VsActivity.class, b);
     }
+
 
 }

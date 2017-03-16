@@ -50,8 +50,8 @@ public class SoccerTodayState extends SoccerCommonState {
     }
 
     @Override
-    public int getTypeNameRes() {
-        return R.string.Today;
+    public MenuItemInfo getStateType() {
+        return new MenuItemInfo(0,getBaseView().getContextActivity().getString(R.string.Today),"Today");
     }
 
     @Override
