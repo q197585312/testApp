@@ -2,6 +2,7 @@ package com.nanyang.app.main.center;
 
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.main.center.model.StatementListBean;
@@ -33,7 +34,7 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
 
     @Override
     public void getStatementData(String mb, String userName) {
-        Disposable disposable = mApiWrapper.applySchedulers(Api.getService(ApiService.class).init())
+        Disposable disposable = mApiWrapper.applySchedulers(Api.getService(ApiService.class).statementData())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
@@ -60,22 +61,34 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
     }
 
     @Override
-    public void init(final String mb, final String userName) {
-        Disposable disposable = mApiWrapper.applySchedulers(Api.getService(ApiService.class).init())
-                /*.flatMap(new Function<String, Flowable<String>>() {
-                    @Override
-                    public Flowable<String> apply(String s) throws Exception {
-                        return Api.getService(ApiService.class).statementData(mb, userName);
-                    }
-                })*/.subscribe(new Consumer<String>() {
+    public void getThisBetHistory(String mb, String userName) {
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).thisWeekBetList(mb, userName))
+                .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetData(s);
+                        Log.d("Consumer", "accept: "+s);
+                        String result = Html.fromHtml(s).toString();
+                        StringBuilder sb = new StringBuilder();
+                        int size = result.length();
+                        for (int i = 0; i < size; i++) {
+                            String index = result.charAt(i) + "";
+                            if (!index.equals("\t") && !TextUtils.isEmpty(index) && index != " ") {
+                                sb.append(index);
+                            }
+                        }
+                        String data1[] = sb.toString().split(" ");
+                        List<String> list = new ArrayList<>();
+                        for (int i = 0; i < data1.length; i++) {
+                            if (!TextUtils.isEmpty(data1[i])) {
+                                list.add(data1[i]);
+                            }
+                        }
+                        Log.d("Consumer", "accept: "+list.toString());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-
+                        Log.d("Consumer", "accept: "+throwable.toString());
                     }
                 }, new Action() {
                     @Override
@@ -88,7 +101,7 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
                         subscription.request(Integer.MAX_VALUE);
                     }
                 });
-        mCompositeSubscription.add(disposable);
+        mCompositeSubscription.add(d);
     }
 
     @Override
