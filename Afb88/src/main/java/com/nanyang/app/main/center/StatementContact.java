@@ -18,7 +18,7 @@ public class StatementContact {
     interface Presenter extends IBasePresenter {
         void getStatementData(String mb, String userName);
 
-        void init(String mb, String userName);
+        void getThisBetHistory(String mb, String userName);
 
         List<StatementListBean> parseData(String data);
     }

@@ -25,6 +25,7 @@ import butterknife.Bind;
 public class StatementFragment extends BaseFragment<StatementContact.Presenter> implements StatementContact.View {
     @Bind(R.id.statement_rc)
     RecyclerView rc;
+    String userName;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,10 +42,11 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     public void initData() {
         super.initData();
         AfbApplication app = (AfbApplication) getActivity().getApplication();
-        presenter.getStatementData("mb", app.getUserName());
+        userName = app.getUserName();
+        presenter.getStatementData("mb", userName);
     }
 
-    private void initRc(List<StatementListBean> data) {
+    private void initRc(final List<StatementListBean> data) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         rc.setLayoutManager(mLayoutManager);
         BaseRecyclerAdapter<StatementListBean> baseRecyclerAdapter = new BaseRecyclerAdapter<StatementListBean>(mContext, data, R.layout.item_statement_list) {
@@ -64,6 +66,14 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
                 commission.setText(item.getCom());
                 settled.setText(item.getSettled());
                 balance.setText(item.getBalance());
+                if (position == 0) {
+                    date.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            presenter.getThisBetHistory("mb", userName);
+                        }
+                    });
+                }
             }
 
         };

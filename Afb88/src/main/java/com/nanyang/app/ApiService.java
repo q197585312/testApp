@@ -116,7 +116,11 @@ public interface ApiService {
 
     //statement清单
     @GET("_norm/AccHistory.aspx?")
-    Flowable<String> statementData(@Query("role") String role, @Query("userName") String userName);
-    @GET("_norm/AccHistory.aspx?")
-    Flowable<String> init();
+    Flowable<String> statementData();
+
+    @GET("_norm/AccMatchWL.aspx?")
+    Flowable<String> betState(@Query("userName") String userName, @Query("to") String to, @Query("from") String from);
+
+    @GET("_norm/AccHistory2.aspx?")
+    Flowable<String> thisWeekBetList(@Query("role") String role, @Query("userName") String userName);
 }
