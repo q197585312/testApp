@@ -5,6 +5,8 @@ package com.nanyang.app;
  */
 
 public class AppConstant {
+
+
     static {
         HOST="http://a8197c.a36588.com/";
     }
@@ -37,9 +39,8 @@ public class AppConstant {
 
     public static String URL_FOOTBALL_OUT_RIGHT ="http://a8197c.a36588.com/_view/OddsGen50.ashx?update=true&r=2076712019";
 
-//    http://a8197c.a36588.com/_view/OddsGen50.ashx?ot=t&update=true&r=739526444&LID=&_=1489039551227
-    //http://a8197c.a36588.com/_view/OddsGen50.ashx?ot=e&update=true&r=1039934078&LID=&_=1489039799379
-
+    public static String URL_ODDS=HOST+"/_Bet/JRecPanel.aspx?";
+    public static final String URL_SOCCER_REMOVE_MIX = "http://a0096f.panda88.org/_bet/ParRemove.aspx";
 
 //http://a8197c.a36588.com/_View/All_WFHGen.ashx?g=9&ot=e&update=true&r=2033192118&LID=6d93d66cfbe0867d&_=1488511791401
     //http://a8197c.a36588.com/_view/All_WFHGen.ashx?g=9&ot=r&update=true&r=757267892&LID=b54b5d6983173114&_=1488512949361
@@ -50,6 +51,8 @@ public class AppConstant {
 
     public static String URL_BASKETBALL_EARLY_Mix ="http://a8197c.a36588.com/_view/ParGen.ashx?g=10&ot=e&update=true&r=866546094";
     public static String URL_BASKETBALL_TODAY_Mix ="http://a8197c.a36588.com/_view/ParGen.ashx?g=10&ot=t&update=true&r=408754578";
+
+
     //http://a8197c.a36588.com/_view/ParGen.ashx?g=10&ot=t&update=true&r=408754578_=1488176690345
     //
 

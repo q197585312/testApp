@@ -1,13 +1,16 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.view.View;
+import android.widget.TextView;
+
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.SportContract2;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -21,7 +24,7 @@ import java.util.Map;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class SoccerCommonState extends SoccerState<SportContract2.View,SoccerCommonInfo> {
+public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, SportContract2.View<SoccerCommonInfo>> {
 
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
@@ -34,21 +37,94 @@ public abstract class SoccerCommonState extends SoccerState<SportContract2.View,
     public boolean isCollection() {
         return isCollection;
     }
-    public boolean collection(){
-        isCollection=!isCollection;
+
+    public boolean collection() {
+        isCollection = !isCollection;
         initAllData(allData);
         return isCollection;
     }
 
     @Override
-    protected IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
-        return new BallAdapterHelper<SoccerCommonInfo>(getBaseView().getContext()){
+    public IAdapterHelper<SoccerCommonInfo> onSetAdapterHelper() {
+        SoccerCommonAdapterHelper adapterHelper = onSetCommonAdapterHelper();
+        return adapterHelper;
+    }
+
+    @Override
+    protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
+        return new BallItemCallBack<SoccerCommonInfo>(baseRecyclerAdapter) {
             @Override
-            public void onConvert(MyRecyclerViewHolder helper, int position, SoccerCommonInfo item) {
-                super.onConvert(helper, position, item);
+            public boolean isItemCollection(SoccerCommonInfo item) {
+                return isItemCollectionCommon(item);
+            }
+
+            @Override
+            public void clickOdds(TextView v, SoccerCommonInfo item, String type, boolean isHf, String odds) {
+                String url = getOddsUrl(item, type, isHf, odds);
+                SoccerCommonState.this.clickOdds(v, url, isHf);
+            }
+
+            @Override
+            public void clickView(View v, SoccerCommonInfo item) {
+                switch (v.getId()){
+                    case R.id.module_match_collection_tv:
+                        collectionItemCommon(item);
+                        break;
+                    case R.id.module_right_mark_tv:
+                        clickAdd(v,item);
+                        break;
+                }
 
             }
         };
+    }
+
+    private void clickAdd(View v,SoccerCommonInfo item) {
+       getBaseView().clickAdd(v,item,"common");
+    }
+
+    @Override
+    protected IBetHelper onSetBetHelper() {
+        return new BallCommonBetHelper(getBaseView());
+    }
+
+    //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?gt=s&b=under&oId=12159615&oId_fh=12159616&isFH=true&isRun=true&odds=4.70
+    protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append("gt=s");
+        stringBuilder.append("&b=" + type);
+        stringBuilder.append("&oId=" + item.getSocOddsId());
+        if (isHf)
+            stringBuilder.append("&isFH=true&oId_fh=" + item.getSocOddsId_FH());
+        stringBuilder.append("&odds=" + odds);
+
+        return stringBuilder.toString();
+    }
+
+
+    protected abstract SoccerCommonAdapterHelper onSetCommonAdapterHelper();
+
+
+    public void collectionItemCommon(SoccerCommonInfo item) {
+        String moduleKey = item.getModuleTitle();
+        Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
+        if (moduleMap == null)
+            moduleMap = new HashMap<>();
+        String localKey = item.getHome() + "+" + item.getAway();
+        Boolean v = moduleMap.get(localKey);
+        if (v == null || !v) {
+            moduleMap.put(localKey, true);
+        } else {
+            moduleMap.put(localKey, false);
+        }
+        localCollectionMap.put(moduleKey, moduleMap);
+        baseRecyclerAdapter.notifyDataSetChanged();
+    }
+
+    public boolean isItemCollectionCommon(SoccerCommonInfo item) {
+
+        return !(localCollectionMap.get(item.getModuleTitle()) == null || localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
     }
 
     @Override
@@ -152,43 +228,66 @@ public abstract class SoccerCommonState extends SoccerState<SportContract2.View,
 
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_RUNNING;
-    }
 
     @Override
     protected List<TableSportInfo<SoccerCommonInfo>> filterData(List<TableSportInfo<SoccerCommonInfo>> allData) {
-        if(isCollection())
+        if (isCollection())
             return filterCollection(allData);
         else
-        return allData;
+            return allData;
     }
+
     private List<TableSportInfo<SoccerCommonInfo>> filterCollection(List<TableSportInfo<SoccerCommonInfo>> data) {
 
-            List<TableSportInfo<SoccerCommonInfo>> moduleDate = new ArrayList<>();
-            for (TableSportInfo<SoccerCommonInfo> tableModuleBean : data) {
-                if (null != localCollectionMap.get( tableModuleBean.getLeagueBean().getModuleTitle())) {
-                    List<SoccerCommonInfo> moduleCollectionRows = new ArrayList<>();
-                    TableSportInfo<SoccerCommonInfo> moduleCollection = new TableSportInfo<SoccerCommonInfo>(tableModuleBean.getLeagueBean(), moduleCollectionRows);
-                    Map<String, Boolean> moduleMap = localCollectionMap.get( tableModuleBean.getLeagueBean().getModuleTitle());
+        List<TableSportInfo<SoccerCommonInfo>> moduleDate = new ArrayList<>();
+        for (TableSportInfo<SoccerCommonInfo> tableModuleBean : data) {
+            if (null != localCollectionMap.get(tableModuleBean.getLeagueBean().getModuleTitle())) {
+                List<SoccerCommonInfo> moduleCollectionRows = new ArrayList<>();
+                TableSportInfo<SoccerCommonInfo> moduleCollection = new TableSportInfo<SoccerCommonInfo>(tableModuleBean.getLeagueBean(), moduleCollectionRows);
+                Map<String, Boolean> moduleMap = localCollectionMap.get(tableModuleBean.getLeagueBean().getModuleTitle());
 
-                    for (SoccerCommonInfo matchBean : tableModuleBean.getRows()) {
-                        if (moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway()) != null && moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway())) {
-                            moduleCollectionRows.add(matchBean);
-                        }
+                for (SoccerCommonInfo matchBean : tableModuleBean.getRows()) {
+                    if (moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway()) != null && moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway())) {
+                        moduleCollectionRows.add(matchBean);
                     }
-                    moduleCollection.setRows(moduleCollectionRows);
-                    moduleDate.add(moduleCollection);
                 }
+                moduleCollection.setRows(moduleCollectionRows);
+                moduleDate.add(moduleCollection);
             }
-            if (moduleDate.size() > 0)
-                return moduleDate;
-            else {
-                isCollection = false;
-                ToastUtils.showShort(R.string.no_records);
-            }
+        }
+        if (moduleDate.size() > 0)
+            return moduleDate;
+        else {
+            isCollection = false;
+            ToastUtils.showShort(R.string.no_records);
+        }
 
         return moduleDate;
     }
+
+    @Override
+    protected int getIndexSocOddsId() {
+        return 0;
+    }
+
+    @Override
+    protected int getIndexPreSocOddsId() {
+        return 48;
+    }
+
+    @Override
+    protected List<MenuItemInfo> getTypes() {
+        List<MenuItemInfo> types = new ArrayList<>();
+        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.OutRight), "OutRight"));
+        return types;
+    }
+
+    @Override
+    public void setHeaderContent(ScrollLayout slHeader) {
+        new SoccerHeaderContent().setHeaderContent(getBaseView().getContextActivity(), slHeader);
+    }
+
 }

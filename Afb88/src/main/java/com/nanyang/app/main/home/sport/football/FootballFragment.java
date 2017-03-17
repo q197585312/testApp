@@ -186,7 +186,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
 
     @Override
     public String getTitle() {
-        return getString(R.string.Football);
+        return getString(R.string.Soccer);
     }
 
     @Override

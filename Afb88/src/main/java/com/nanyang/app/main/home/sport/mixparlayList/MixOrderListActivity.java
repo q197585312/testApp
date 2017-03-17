@@ -13,14 +13,10 @@ import android.widget.Toast;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.dialog.BetBasePop;
-import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
-import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
-import com.nanyang.app.main.home.sport.model.MatchBean;
-import com.nanyang.app.main.home.sport.model.OutRightMatchBean;
+import com.nanyang.app.main.home.sportInterface.BallBetHelper;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -36,13 +32,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.BindString;
 import cn.finalteam.toolsfinal.StringUtils;
-import io.reactivex.BackpressureStrategy;
-import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
-import io.reactivex.FlowableOnSubscribe;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
+import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Administrator on 2017/2/21.
@@ -65,13 +55,15 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private TextView headAmountTv;
     private String betUrl;
 
-    List<BettingInfoBean> betInfos;
-    BaseRecyclerAdapter<BettingInfoBean> listAdapter;
+
+    BaseRecyclerAdapter<BettingParPromptBean.BetParBean> listAdapter;
     private LinearLayout llBottom;
     private TextView footerCountTv;
     private TextView footerContentTv;
     private Button footerCancelBtn;
     private ClearanceBetAmountBean selectedBean;
+    private String ballType = "";
+    private BallBetHelper<MixOrderListContract.View> helper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,27 +74,31 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         initBottomListData();
         initListData();
         tvToolbarTitle.setBackgroundResource(0);
-        tvToolbarTitle.setText("Order");
+        tvToolbarTitle.setText(R.string.MixParlay);
+        ballType = getIntent().getStringExtra(AppConstant.KEY_STRING);
+        helper = new BallBetHelper<MixOrderListContract.View>(this) {
+            @Override
+            public Disposable clickOdds(TextView v, String url, boolean isHf) {
+                return null;
+            }
+        };
     }
 
     private void initListData() {
         rvContent.setLayoutManager(new LinearLayoutManager(mContext));
-        listAdapter = new BaseRecyclerAdapter<BettingInfoBean>(mContext, new ArrayList<BettingInfoBean>(), R.layout.mix_parlay_order_item) {
-
+        listAdapter = new BaseRecyclerAdapter<BettingParPromptBean.BetParBean>(mContext, new ArrayList<BettingParPromptBean.BetParBean>(), R.layout.mix_parlay_order_item) {
             @Override
-            public void convert(MyRecyclerViewHolder helper, final int position, final BettingInfoBean item) {
+            public void convert(MyRecyclerViewHolder helper, final int position, final BettingParPromptBean.BetParBean item) {
 
-                helper.setText(R.id.clearance_type_tv, getString(R.string.football));
-                if (item.getIsFH() == 1) {
+                helper.setText(R.id.clearance_type_tv, ballType);
+                if (item.getParFullTimeId().equals("0") || item.getParFullTimeId().equals("")) {
                     helper.setText(R.id.clearance_type_tv, getString(R.string.football) + "(" + getString(R.string.half_time) + ")");
                 }
+
                 helper.setText(R.id.clearance_home_tv, item.getHome());
                 helper.setText(R.id.clearance_away_tv, item.getAway());
                 setOddsText(helper, item);
             }
-
-
-
         };
         rvContent.setAdapter(listAdapter);
 
@@ -114,7 +110,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
             @Override
             public void onDeleteClick(int position) {
-                removeBetItem( listAdapter.getItem(position));
+                presenter.removeBetItem(listAdapter.getItem(position));
             }
         });
         presenter.obtainListData();
@@ -192,13 +188,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     }
 
     private void cancelBet(View v) {
-        if (betInfos != null && betInfos.size() > 0) {
-            int i = 0;
-            for (BettingInfoBean item : betInfos) {
-                removeBetItem(item);
-                i++;
-            }
-        }
+        presenter.removeAll();
     }
 
     private void submitParBet(View v) {
@@ -223,15 +213,18 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                 return;
             }
         } else {
+            http:
+//a8197c.a36588.com/_Bet/PanelBet.aspx?betType=X_par&odds=160.670744228768&amt=10&coupon=1&exRate=1
+            //"PanelBet.aspx?betType=X_par&odds=160.670744228768",
             betUrl = AppConstant.HOST + "_bet/" + getApp().getBetParList().getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + getApp().getBetParList().getExRate();
-            presenter.bet(betUrl);
+            helper.bet(betUrl);
 
         }
 
 
     }
 
-    private void CheckEnd(String result) {
+    private void checkEnd(String result) {
         if (result == null) {
             Toast.makeText(mContext, getString(R.string.bet_failed), Toast.LENGTH_SHORT).show();
             return;
@@ -250,7 +243,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             BaseYseNoChoosePopupwindow pop = new BaseYseNoChoosePopupwindow(mContext, rvContent) {
                 @Override
                 protected void clickSure(View v) {
-                    presenter.bet(betUrl);
+                    helper.bet(betUrl);
                 }
             };
             pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
@@ -271,64 +264,12 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         }
     }
 
-    /* protected void clearMixOrder() {
 
-         final BettingParPromptBean betParList = ((BasketballFragment) baseView).getApp().getBetParList();
-         if (betParList != null && betParList.getBetPar().size() > 0) {
-             Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
-                 @Override
-                 public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
-                     Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = ((BasketballFragment) baseView).getApp().getBetDetail().entrySet().iterator();
-                     BettingParPromptBean data = null;
-                     for (BettingParPromptBean.BetParBean betParBean : betParList.getBetPar()) {
-                         data = removeBetItem(betParBean);
-                     }
-
-                     e.onNext(data);
-                 }
-             }, BackpressureStrategy.BUFFER).subscribeOn(Schedulers.io()).observeOn(Schedulers.io()).subscribe(new Consumer<BettingParPromptBean>() {
-                                                                                                                   @Override
-                                                                                                                   public void accept(BettingParPromptBean o) throws Exception {
-                                                                                                                       baseView.onUpdateMixSucceed(o, null, null);
-                                                                                                                   }
-                                                                                                               }
-             );
-
-
-         }
-     }*/
-
-
-    protected void removeBetItem(final BettingInfoBean item) {
-
-        Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
-            @Override
-            public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
-                BettingParPromptBean bettingParPromptBean = presenter.removeBetItem(item);
-                if(bettingParPromptBean==null)
-                    bettingParPromptBean=new BettingParPromptBean();
-                e.onNext(bettingParPromptBean);
-            }
-        }, BackpressureStrategy.BUFFER)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<BettingParPromptBean>() {
-                               @Override
-                               public void accept(BettingParPromptBean o) throws Exception {
-                                   getApp().getBetDetail().remove(item.getHome() + "+" + item.getAway());
-                                   getApp().setBetParList(o);
-                                   onUpdateMixSucceed(o, null, null);
-                               }
-                           }
-                );
-
-    }
-
-    public void setOddsText(MyRecyclerViewHolder helper, BettingInfoBean item) {
-        String hdp = "";
-        String b = item.getB();
-        String sc = item.getSc();
-        String state = "";
+    public void setOddsText(MyRecyclerViewHolder helper, BettingParPromptBean.BetParBean item) {
+        String b = item.getTransType();
+        boolean isHome = item.isIsBetHome();
+        String hdp = item.getBetHdp();
+        String state = b;
         if (b.equals("1"))
             state = item.getHome() + "(" + mContext.getString(R.string.win) + ")";
         else if (b.equals("1_par"))
@@ -337,161 +278,58 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             state = item.getAway() + "(" + mContext.getString(R.string.win) + ")";
         else if (b.equals("2_par")) {
             state = "1X2:" + item.getAway() + "(" + mContext.getString(R.string.win) + ")";
-        } else if (b.equals("x") || b.equals("X"))
+        } else if (b.equalsIgnoreCase("x"))
             state = item.getHome() + "(" + mContext.getString(R.string.draw) + ")";
-        else if (b.equals("X_par")) {
+        else if (b.equalsIgnoreCase("X_par")) {
             state = "1X2:" + item.getHome() + "(" + mContext.getString(R.string.draw) + ")";
-        } else if (b.contains("odd")) {
-            state = "OE:" + mContext.getString(R.string.odd);
-        } else if (b.contains("even")) {
-            state = "OE:" + mContext.getString(R.string.even);
-
-        } else if (b.equals("csr")) {
-            if (sc != null) {
-                if (sc.length() == 1) {
-                    sc = "0" + sc;
-                }
-                char s1 = sc.charAt(0);
-                char s2 = sc.charAt(1);
-                hdp = s1 + "-" + s2;
+        } else if (b.equalsIgnoreCase("OE")) {
+            if (isHome) {
+                state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.odd) + ")";
+            } else {
+                state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.even) + ")";
             }
         } else if (b.equals("dc")) {
             state = getString(R.string.double_chance);
-            if (sc != null) {
-                if (sc.equals("10"))
-                    hdp = mContext.getString(R.string.x1);
-                else if (sc.equals("12"))
-                    hdp = mContext.getString(R.string.x12);
-                else if (sc.equals("2"))
-                    hdp = mContext.getString(R.string.x2);
-            }
         } else if (b.equals("htft")) {
             state = getString(R.string.half_full_time);
-            if (sc != null) {
-                if (sc.equals("10"))
-                    hdp = "HD";
-                else if (sc.equals("12"))
-                    hdp = "HA";
-                else if (sc.equals("2"))
-                    hdp = "DA";
-                else if (sc.equals("0"))
-                    hdp = "DD";
-                else if (sc.equals("1"))
-                    hdp = "DH";
-                else if (sc.equals("11"))
-                    hdp = "HH";
-                else if (sc.equals("20"))
-                    hdp = "AD";
-                else if (sc.equals("21"))
-                    hdp = "AH";
-                else if (sc.equals("22"))
-                    hdp = "AA";
-            }
         } else if (b.equals("fglg")) {
             state = getString(R.string.first_last_goal);
-            if (sc != null) {
-                if (sc.equals("10"))
-                    hdp = item.getHome() + "(" + getString(R.string.first_goal) + ")";
-                else if (sc.equals("1"))
-                    hdp = item.getHome() + "(" + getString(R.string.last_goal) + ")";
-                else if (sc.equals("20"))
-                    hdp = item.getAway() + "(" + getString(R.string.first_goal) + ")";
-                else if (sc.equals("2"))
-                    hdp = item.getAway() + "(" + getString(R.string.last_goal) + ")";
-                else if (sc.equals("0"))
-                    hdp = getString(R.string.no_goal);
-            }
+
         } else if (b.equals("tg")) {
             state = getString(R.string.total_goals);
-            if (sc != null) {
-                if (sc.equals("1"))
-                    hdp = "0-1";
-                else if (sc.equals("23"))
-                    hdp = "2-3";
-                else if (sc.equals("46"))
-                    hdp = "4-6";
-                else if (sc.equals("70"))
-                    hdp = "7&Over";
+
+        } else if (b.equalsIgnoreCase("HDP")) {
+            if (isHome) {
+                state = "HDP:" + item.getHome();
+            } else {
+                state = "HDP:" + item.getAway();
             }
-        } else if (b.equals("away")) {
-            state = "HDP:" + item.getAway();
-        } else if (b.equals("home")) {
-            state = "HDP:" + item.getHome();
-        } else if (b.equals("under")) {
-            state = "OU:" + getString(R.string.under);
-        } else if (b.equals("over")) {
-            state = "OU:" + getString(R.string.over);
-        } else {
-            state = item.getB();
+        } else if (b.equalsIgnoreCase("OU")) {
+            hdp = item.getBetOu();
+            if (isHome) {
+                state = "OU:" + item.getHome() + "(" + getString(R.string.over) + ")";
+
+            } else {
+                state = "OU:" + item.getAway() + "(" + getString(R.string.under) + ")";
+            }
         }
-        if (item.getHdp() != null) {
-            if ((item.isHomeGiven() && b.equals("home")) || (!item.isHomeGiven() && b.equals("away")))
-                hdp = "-" + item.getHdp();
-            else
-                hdp = item.getHdp();
-        }
-        if (item.getIsFH() == 1) {
+
+        if (!item.getParFullTimeId().equals("0") && !item.getParFullTimeId().equals("")) {
             state = state + "(" + getString(R.string.half_time) + ")";
         }
-        helper.setText(R.id.clearance_odds_content_tv, state + "  " + hdp + "@" + item.getOdds());
+        if (hdp.equals("0"))
+            hdp = "";
+        helper.setText(R.id.clearance_odds_content_tv, state + "  " + hdp + "@" + item.getBetOdds());
     }
 
     @Override
     public void onFailed(String error) {
-
+        checkEnd(error);
     }
 
-    @Override
-    public void onPageData(int page, String pageData, String type) {
-
-    }
 
     @Override
-    public void onAddMixFailed(String message) {
-
-    }
-
-    @Override
-    public void onGetBetSucceed(BettingPromptBean allData) {
-
-    }
-
-    @Override
-    public void onBetSucceed(String result) {
-        CheckEnd(result.toString());
-    }
-
-    @Override
-    public void onRightMarkClick(Bundle b) {
-
-    }
-
-    @Override
-    public void onCountBet() {
-
-    }
-
-    @Override
-    public void onCreatePopupWindow(BetBasePop betPop) {
-
-    }
-
-    @Override
-    public void onOutRightData(int page, List<OutRightMatchBean> outRightMatchBeen, String type) {
-
-    }
-
-    @Override
-    public void onUpdateMixSucceed(BettingParPromptBean result, Map keyMap, MatchBean item) {
-        presenter.obtainListData();
-        if (result == null || result.getBetPar() == null || result.getBetPar().size() < 1) {
-            getApp().setBetDetail(null);
-            finish();
-        }
-    }
-
-    @Override
-    public void obtainListData(ArrayList<BettingInfoBean> betInfo) {
+    public void obtainListData(List<BettingParPromptBean.BetParBean> betInfo) {
         listAdapter.addAllAndClear(betInfo);
     }
 

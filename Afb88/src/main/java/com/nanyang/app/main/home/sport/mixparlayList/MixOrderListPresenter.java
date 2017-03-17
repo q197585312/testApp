@@ -2,25 +2,17 @@ package com.nanyang.app.main.home.sport.mixparlayList;
 
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.main.ApiMain;
-import com.nanyang.app.main.home.sport.SportPresenter;
-import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
-import com.nanyang.app.main.home.sport.model.MatchBean;
-import com.nanyang.app.main.home.sport.model.ResultIndexBean;
-import com.nanyang.app.main.home.sport.model.TableModuleBean;
+import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -28,7 +20,7 @@ import io.reactivex.functions.Consumer;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-class MixOrderListPresenter extends SportPresenter<String,MixOrderListContract.View<String>> implements MixOrderListContract.Presenter {
+class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListContract.View<String>> implements MixOrderListContract.Presenter {
 
     private ClearanceBetAmountBean selectedBean;
 
@@ -37,21 +29,58 @@ class MixOrderListPresenter extends SportPresenter<String,MixOrderListContract.V
         super(view);
     }
 
-    @Override
-    public ApiMain createRetrofitApi() {
-        return new ApiMain();
+
+    public void obtainListData() {
+
+        List<BettingParPromptBean.BetParBean> betPar = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar();
+        baseView.obtainListData(betPar);
     }
 
+    public void showBottomSelectedList() {
+        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() == null)
+            return;
 
-    @Override
-    public void main(String str) {
+        List<BettingParPromptBean.BetParBean> betPar = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar();
+        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() != null && betPar != null && betPar.size() > 2) {
+            if (selectedBean == null || selectedBean.getTitle().equals(""))
+                selectedBean = new ClearanceBetAmountBean(1, betPar.size() + "  X  1");
+            int size = betPar.size();
+            if (size == 3) {
+                baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "3  X  1"), new ClearanceBetAmountBean(3, "3  X  3"), new ClearanceBetAmountBean(4, "3  X  4")));
+            } else if (size == 4) {
+                baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "4  X  1"), new ClearanceBetAmountBean(4, "4  X  4"), new ClearanceBetAmountBean(5, "4  X  5"), new ClearanceBetAmountBean(6, "4  X  6")));
+            } else if (size == 5) {
+                baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "5  X  1"), new ClearanceBetAmountBean(5, "5  X  5"), new ClearanceBetAmountBean(6, "5  X  6"), new ClearanceBetAmountBean(10, "5  X  10")
+                        , new ClearanceBetAmountBean(16, "5  X  16"), new ClearanceBetAmountBean(20, "5  X  20"), new ClearanceBetAmountBean(26, "5  X  26")));
+            } else if (size == 6) {
+                baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "6  X  1"), new ClearanceBetAmountBean(6, "6  X  6"), new ClearanceBetAmountBean(7, "6  X  7"), new ClearanceBetAmountBean(15, "6  X  15"),
+                        new ClearanceBetAmountBean(20, "6  X  20"), new ClearanceBetAmountBean(35, "6  X  35"), new ClearanceBetAmountBean(42, "6  X  42"), new ClearanceBetAmountBean(50, "6  X  50"), new ClearanceBetAmountBean(57, "6  X  57")));
+            } else if (size == 7) {
+                baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "7  X  1"), new ClearanceBetAmountBean(7, "7  X  7"), new ClearanceBetAmountBean(8, "7  X  8"), new ClearanceBetAmountBean(21, "7  X  21"), new ClearanceBetAmountBean(28, "7  X  28"),
+                        new ClearanceBetAmountBean(29, "7  X  29"), new ClearanceBetAmountBean(35, "7  X  35"), new ClearanceBetAmountBean(56, "7  X  56"), new ClearanceBetAmountBean(70, "7  X  70"), new ClearanceBetAmountBean(91, "7  X  91"),
+                        new ClearanceBetAmountBean(98, "7  X  98"), new ClearanceBetAmountBean(99, "7  X  99"), new ClearanceBetAmountBean(112, "7  X  112"), new ClearanceBetAmountBean(119, "7  X  119"), new ClearanceBetAmountBean(120, "7  X  120")));
+            } else {
+                baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, betPar.size() + "  X  1")));
+            }
+        } else {
+            selectedBean = new ClearanceBetAmountBean(1, "");
+        }
 
-        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).main())
+    }
+
+    //http://a0096f.panda88.org/_Bet/ParRemove.aspx
+//    http://a0096f.panda88.org/_bet/JRecPanel.aspx?g=2&b=even_par&oId=12225781&odds=18.2&isBP=1&RemoveId=12225358
+    public void removeBetItem(BettingParPromptBean.BetParBean item) {
+
+        String ParUrl = item.getParUrl();
+        String url = ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId();
+
+        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).updateMixParlayBet(url))
 //                    mApiWrapper.goMain()
-                .subscribe(new Consumer<String>() {//onNext
+                .subscribe(new Consumer<BettingParPromptBean>() {//onNext
                     @Override
-                    public void accept(String Str) throws Exception {
-                        baseView.onGetData(Str);
+                    public void accept(BettingParPromptBean Str) throws Exception {
+                        baseView.obtainListData(Str.getBetPar());
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -72,97 +101,34 @@ class MixOrderListPresenter extends SportPresenter<String,MixOrderListContract.V
                     }
                 });
         mCompositeSubscription.add(subscription);
-
     }
 
-    public void obtainListData() {
-        Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it =  ((BaseToolbarActivity) (baseView)).getApp().getBetDetail().entrySet().iterator();
-        ArrayList<BettingInfoBean> betInfo = new ArrayList<>();
-        while (it.hasNext()) {
-            Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>> keyItem = it.next();
-            Iterator<Map.Entry<String, Map<Integer, BettingInfoBean>>> itt = keyItem.getValue().entrySet().iterator();
-            while (itt.hasNext()) {
-                Iterator<Map.Entry<Integer, BettingInfoBean>> ittt = itt.next().getValue().entrySet().iterator();
-                while (ittt.hasNext()) {
-                    BettingInfoBean item = ittt.next().getValue();
-                    if (item != null) {
-                        betInfo.add(item);
+    public void removeAll() {
+        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).getData(AppConstant.URL_SOCCER_REMOVE_MIX))
+//                    mApiWrapper.goMain()
+                .subscribe(new Consumer<String>() {//onNext
+                    @Override
+                    public void accept(String Str) throws Exception {
+                        baseView.obtainListData(new ArrayList<BettingParPromptBean.BetParBean>());
                     }
-                }
-            }
-        }
-
-
-        baseView.obtainListData(betInfo);
-    }
-
-    public void showBottomSelectedList() {
-        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() == null)
-            return;
-
-        List<BettingParPromptBean.BetParBean> betPar = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar();
-        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() != null && betPar != null && betPar.size() < 8 && betPar.size() > 2) {
-            if (selectedBean == null || selectedBean.getTitle().equals(""))
-                selectedBean = new ClearanceBetAmountBean(1, betPar.size() + "  X  1");
-        } else {
-            selectedBean = new ClearanceBetAmountBean(1, "");
-        }
-
-        int size = betPar.size();
-        if (size == 3) {
-            baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "3  X  1"), new ClearanceBetAmountBean(3, "3  X  3"), new ClearanceBetAmountBean(4, "3  X  4")));
-        } else if (size == 4) {
-            baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "4  X  1"), new ClearanceBetAmountBean(4, "4  X  4"), new ClearanceBetAmountBean(5, "4  X  5"), new ClearanceBetAmountBean(6, "4  X  6")));
-        } else if (size == 5) {
-            baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "5  X  1"), new ClearanceBetAmountBean(5, "5  X  5"), new ClearanceBetAmountBean(6, "5  X  6"), new ClearanceBetAmountBean(10, "5  X  10")
-                    , new ClearanceBetAmountBean(16, "5  X  16"), new ClearanceBetAmountBean(20, "5  X  20"), new ClearanceBetAmountBean(26, "5  X  26")));
-        } else if (size == 6) {
-            baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "6  X  1"), new ClearanceBetAmountBean(6, "6  X  6"), new ClearanceBetAmountBean(7, "6  X  7"), new ClearanceBetAmountBean(15, "6  X  15"),
-                    new ClearanceBetAmountBean(20, "6  X  20"), new ClearanceBetAmountBean(35, "6  X  35"), new ClearanceBetAmountBean(42, "6  X  42"), new ClearanceBetAmountBean(50, "6  X  50"), new ClearanceBetAmountBean(57, "6  X  57")));
-        } else if (size == 7) {
-            baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "7  X  1"), new ClearanceBetAmountBean(7, "7  X  7"), new ClearanceBetAmountBean(8, "7  X  8"), new ClearanceBetAmountBean(21, "7  X  21"), new ClearanceBetAmountBean(28, "7  X  28"),
-                    new ClearanceBetAmountBean(29, "7  X  29"), new ClearanceBetAmountBean(35, "7  X  35"), new ClearanceBetAmountBean(56, "7  X  56"), new ClearanceBetAmountBean(70, "7  X  70"), new ClearanceBetAmountBean(91, "7  X  91"),
-                    new ClearanceBetAmountBean(98, "7  X  98"), new ClearanceBetAmountBean(99, "7  X  99"), new ClearanceBetAmountBean(112, "7  X  112"), new ClearanceBetAmountBean(119, "7  X  119"), new ClearanceBetAmountBean(120, "7  X  120")));
-        } else {
-            baseView.obtainBottomData(new ArrayList<ClearanceBetAmountBean>());
-            selectedBean = new ClearanceBetAmountBean(1, "");
-
-        }
-
-    }
-
-    @Override
-    public void collection() {
-
-    }
-
-    @Override
-    public void menu() {
-
-    }
-
-    @Override
-    public void mixParlay() {
-
-    }
-
-    @Override
-    protected String getUrl(String type) {
-        return null;
-    }
-
-    @Override
-    protected List<TableModuleBean> filterData(List<TableModuleBean> allData) {
-        return null;
-    }
-
-    @Override
-    protected ResultIndexBean getResultIndexMap(String type) {
-        return null;
-    }
-
-    @Override
-    protected void parseMatchList(List<MatchBean> matchList, JSONArray matchArray) throws JSONException {
-
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseView.onFailed(throwable.getMessage());
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        baseView.showLoadingDialog();
+                        subscription.request(Long.MAX_VALUE);
+                    }
+                });
+        mCompositeSubscription.add(subscription);
     }
 }

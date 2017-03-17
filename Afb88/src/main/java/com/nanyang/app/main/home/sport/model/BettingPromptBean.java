@@ -5,32 +5,49 @@ package com.nanyang.app.main.home.sport.model;
  */
 public class BettingPromptBean {
 
+
+    /**{"BetType": "away",
+     * "GTitle": "亚州盤",
+     * "ModuleTitle": "欧洲冠军联赛",
+     * "FullTimeId": "0",
+     * "IsHomeGive": true,
+     * "Home": "AS摩纳哥",
+     * "Away": "曼城",
+     * "IsRun": false,
+     * "IsOddsChange": false,
+     * "RunHomeScore": "0",
+     * "RunAwayScore": "0",
+     * "GameType3": "N",
+     * "BetHdp": "0",
+     * "BetOdds": "1.08",
+     * "BetUrl":
+     * "PanelBet.aspx?betGrp=1&betType=away&oId=12219287&isHomeGive=True&isBetHome=False&isFH=False&hdp=0&accType=HK&odds=10.8&reducePercent=1",
+     * "MinLimit": "10",
+     * "MaxLimit": "30000",
+     * "HidOdds": "1.08",
+     * "AmtS": "0", "ExRate": "1", "BetterOdds": 1, "MoreBetUrl": "../_View/MoreBet.aspx?oId=12219287&home=AS%e6%91%a9%e7%ba%b3%e5%93%a5&away=%e6%9b%bc%e5%9f%8e&moduleTitle=%e6%ac%a7%e6%b4%b2%e5%86%a0%e5%86%9b%e8%81%94%e8%b5%9b&date=03%3a45AM&lang=eng", "Test": "testing" }*/
     /**
-     * BetType : away
-     * GTitle : HANDICAP
-     * ModuleTitle : UEFA CHAMPIONS LEAGUE
-     * FullTimeId : 0
-     * IsHomeGive : false
-     * Home : BATE Borisov
-     * Away : Bayer Leverkusen
-     * IsRun : false
-     * IsOddsChange : true
-     * RunHomeScore : 0
-     * RunAwayScore : 0
-     * GameType3 : N
-     * BetHdp : 0.75
-     * BetOdds : 0.94
-     * BetUrl : PanelBet.aspx?betGrp=1&betType=away&oId=9070924&isHomeGive=False&isBetHome=False&isFH=False&hdp=0.75&accType=MY&odds=9.4&reducePercent=1
-     * MinLimit : 1
-     * MaxLimit : 2500
-     * HidOdds : 0.94
+     * BetType : 1_par
+     * GTitle : PARLAY
+     * ParIsHomeGive : false
+     * ParHome : Newcastle Jets
+     * ParAway : Adelaide United
+     * ParIsRun : false
+     * ParGameType3 : N
+     * MaxParTicket : 16233
+     * MaxPar : -10020844
+     * BetPar : [{"SocOddsId":9220030,"Home":"Schalke 04","Away":"TSG Hoffenheim","IsHomeGive":true,"IsBetHome":true,"ParFullTimeId":"0","TransType":"1","IsOddsChange":false,"ParUrl":"http://mobilesport.dig88api.com/_bet/JRecPanel.aspx?&g=2&b=1_par&oId=9220027&odds=0.24","BetHdp":"0","BetOu":"0","BetOdds":"1.62","Test2":"testing2"},{"SocOddsId":9220027,"Home":"Newcastle Jets","Away":"Adelaide United","IsHomeGive":true,"IsBetHome":true,"ParFullTimeId":"0","TransType":"1","IsOddsChange":false,"ParUrl":"http://mobilesport.dig88api.com/_bet/JRecPanel.aspx?&g=2&b=1_par&oId=9220027&odds=0.24","BetHdp":"0","BetOu":"0","BetOdds":"-0.02","Test2":"testing2"}]
+     * PayoutOdds : -0.032
+     * BetUrl : PanelBet.aspx?betType=1_par&odds=-0.0323999992847443
+     * MinLimit : -10020844
+     * MaxLimit : -10020844
+     * HidOdds : -1.032
      * AmtS : 0
-     * ExRate : 3.02
+     * ExRate : 0.308
      * BetterOdds : 1
-     * MoreBetUrl : ../_View/MoreBet.aspx?oId=9070924&home=BATE+Borisov&away=Bayer+Leverkusen&moduleTitle=UEFA+CHAMPIONS+LEAGUE&date=01%3a00AM
+     * MoreBetUrl :
      * Test : testing
      */
-
     private String BetType;
     private String GTitle;
     private String ModuleTitle;

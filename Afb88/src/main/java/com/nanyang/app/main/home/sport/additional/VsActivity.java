@@ -13,8 +13,11 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
+import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
+import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
@@ -42,7 +45,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
     @Bind(R.id.ballgame_bottom_ll)
     LinearLayout ballgameBottomLl;
 
-    private MatchBean item;
+    private BallInfo item;
     private String matchType;
     private ScaleFragment sf= new ScaleFragment();
     private BetSingleDoubleFragment bf = new BetSingleDoubleFragment();
@@ -61,7 +64,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
     public void initData() {
         super.initData();
         toolbar.setNavigationIcon(null);
-        item = (MatchBean) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
+        item = (BallInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         matchType = getIntent().getStringExtra(AppConstant.KEY_STRING);
         isMixParlay = getIntent().getBooleanExtra(AppConstant.KEY_BOOLEAN, false);
         tvToolbarTitle.setBackgroundResource(0);
@@ -80,7 +83,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
         createPresenter(new VsPresenter(this));
         if (isMixParlay) {
             fragmentsList.add(sf);
-            initFirstData(item.getOtherDataBean());
+            initFirstData((SoccerMixInfo)item);
         } else {
             fragmentsList.add(sf);
             fragmentsList.add(bf);
@@ -173,19 +176,19 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
         }
     }*/
 
-    private void initFirstData(VsOtherDataBean otherDataBean) {
+    private void initFirstData(SoccerMixInfo item) {
         List<VsTableRowBean> rows = new ArrayList<VsTableRowBean>();
         int socOddsId_hf = 0;
         int socOddsId = 0;
-        if (item.getHandicapBeans().get(1).getSocOddsId() != null && !item.getHandicapBeans().get(1).getSocOddsId().equals(""))
-            socOddsId_hf = Integer.valueOf(item.getHandicapBeans().get(1).getSocOddsId());
-        if (item.getHandicapBeans().get(0).getSocOddsId() != null && !item.getHandicapBeans().get(0).getSocOddsId().equals(""))
-            socOddsId = Integer.valueOf(item.getHandicapBeans().get(0).getSocOddsId());
-        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(getString(R.string.h1), "", 0), new VsCellBean("", otherDataBean.getX121Odds(), socOddsId), new VsCellBean("", otherDataBean.getX121OddsFH(), socOddsId_hf)), true, false, "1  x  2", getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
-                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(getString(R.string.dx), "", 0), new VsCellBean("", otherDataBean.getX12XOdds(), socOddsId), new VsCellBean("", otherDataBean.getX12XOddsFH(), socOddsId_hf))),
-                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", otherDataBean.getX122Odds(), socOddsId), new VsCellBean("", otherDataBean.getX122OddsFH(), socOddsId_hf)), true),
-                new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", otherDataBean.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
-                new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", otherDataBean.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
+        if (item.getSocOddsId_FH() != null && !item.getSocOddsId_FH().equals(""))
+            socOddsId_hf = Integer.valueOf(item.getSocOddsId_FH());
+        if (item.getSocOddsId() != null && !item.getSocOddsId().equals(""))
+            socOddsId = Integer.valueOf(item.getSocOddsId());
+        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(getString(R.string.h1), "", 0), new VsCellBean("", item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getX12_1OddsFH(), socOddsId_hf)), true, false, "1  x  2", getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
+                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(getString(R.string.dx), "", 0), new VsCellBean("", item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getX12_XOddsFH(), socOddsId_hf))),
+                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getX12_2Odds(), socOddsId), new VsCellBean("", item.getX12_2OddsFH(), socOddsId_hf)), true),
+                new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", item.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
+                new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
         datas.add(rows);
         sf.setData(rows);
 

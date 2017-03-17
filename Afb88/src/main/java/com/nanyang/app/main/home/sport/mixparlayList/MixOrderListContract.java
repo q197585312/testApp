@@ -1,22 +1,19 @@
 package com.nanyang.app.main.home.sport.mixparlayList;
 
-import com.nanyang.app.main.home.sport.SportContract;
-import com.nanyang.app.main.home.sport.model.BettingInfoBean;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.view.IBaseView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public interface MixOrderListContract {
-    interface View<T> extends SportContract.View<T> {
-        void obtainListData(ArrayList<BettingInfoBean> betInfo);
-
+    interface View<T> extends IBaseView<T> {
+        void obtainListData(List<BettingParPromptBean.BetParBean> betInfo);
         void obtainBottomData(List<ClearanceBetAmountBean> clearanceBetAmountBeen);
     }
 
     interface Presenter extends IBasePresenter {
-        void main(String msg);
 
     }
 }

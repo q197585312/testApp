@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sportInterface;
 import android.content.Context;
 import android.text.Html;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,6 +15,8 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
 import butterknife.Bind;
@@ -23,18 +26,22 @@ import butterknife.ButterKnife;
  * Created by Administrator on 2017/3/12 0012.
  */
 
-public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> {
+public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I> {
     final int google_yellow = 0XFFFBBC05;
-    final int green_light = 0XFFFBBC05;
+
     final int black_grey = 0XFF333333;
-    Context context;
+    protected Context context;
+    protected List<ScrollLayout> slFollowers = new ArrayList<>();
+
+    private int slIndex=0;
+
 
     public BallAdapterHelper(Context context) {
         this.context = context;
     }
 
     @Override
-    public void onConvert(MyRecyclerViewHolder helper, int position, I item) {
+    public void onConvert(MyRecyclerViewHolder helper, int position, final I item) {
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         View headV = helper.getView(R.id.module_match_head_v);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
@@ -46,7 +53,7 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         final TextView tvCollection = helper.getView(R.id.module_match_collection_tv);
         liveTv.setTextColor(google_yellow);
         dateTv.setTextColor(google_yellow);
-        timeTv.setTextColor(green_light);
+        timeTv.setTextColor(context.getResources().getColor(R.color.green_light));
         dateTv.setTextSize(10);
         dateTv.setPadding(0, 0, 0, 0);
 
@@ -86,18 +93,22 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
             }
         }
         tvCollection.setVisibility(View.GONE);
-        if (item.getIsHomeGive().equals("1")) {
+        String isHomeGive = item.getIsHomeGive();
+        if (isHomeGive.equals("1")) {
             homeTv.setTextColor(google_yellow);
             awayTv.setTextColor(black_grey);
         } else {
             homeTv.setTextColor(black_grey);
             awayTv.setTextColor(google_yellow);
         }
-        String away = item.getAway();
-        String home = item.getHome();
-        homeTv.setText(home);
-        awayTv.setText(away);
+
         tvRightMark.setVisibility(View.GONE);
+        tvRightMark.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back.clickView(v,item);
+            }
+        });
         if (item.getType() == SportInfo.Type.ITME) {
             matchTitleTv.setVisibility(View.GONE);
             headV.setVisibility(View.GONE);
@@ -110,25 +121,63 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
                 headV.setVisibility(View.GONE);
             }
         }
-        ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        LayoutInflater from = LayoutInflater.from(context);
-        View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null);
-
-        ViewHolder holder = new ViewHolder(vp);
-
+        final ScrollLayout sl = helper.getView(R.id.module_center_sl);
+        String hasHdp = item.getHasHdp();
         String hdp = item.getHdp();
-
+        String hasOU = item.getHasOU();
         String ou = item.getOU();
+        String isHdpNew = item.getIsHdpNew();
+        String isOUNew = item.getIsOUNew();
+        String underOdds = item.getUnderOdds();
+        String overOdds = item.getOverOdds();
+        String homeHdpOdds = item.getHomeHdpOdds();
+        String awayHdpOdds = item.getAwayHdpOdds();
 
-        if (hdp.equals("0")) {
+        View vp = scrollChild(false,item,isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
+        sl.removeAllViews();
+        sl.addView(vp, SoccerHeaderContent.layoutParams);
+        if (!slFollowers.contains(sl))
+            slFollowers.add(sl);
+        sl.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (sl.getFollowScrolls() == null) {
+                    sl.setFollowScrolls(slFollowers);
+                }
+                return false;
+            }
+        });
+        sl.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
+            @Override
+            public void changePosition(int index) {
+                if (slIndex != index) {
+                    slIndex = index;
+                }
+            }
+        });
+        sl.setCurrentIndex(slIndex);
+        String away = item.getAway();
+        String home = item.getHome();
+        homeTv.setText(home);
+        awayTv.setText(away);
+    }
+
+    protected void clickAdd(I item) {
+
+    }
+
+    public View scrollChild(boolean isFh,I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
+        LayoutInflater from = LayoutInflater.from(context);
+        View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null, false);
+        ViewHolder holder = new ViewHolder(vp);
+        if (hasHdp.equals("0")) {
             holder.viewpagerMatchHomeHdpTv.setText("");
             holder.viewpagerMatchHomeHdpoddsTv.setText("");
             holder.viewpagerMatchVisitHdpTv.setText("");
             holder.viewpagerMatchVisitHdpoddsTv.setText("");
         } else {
-            String hdpS = item.getHdp();
-            hdpS = changeValueF(hdpS);
-            if (item.getIsHomeGive().equals("1")) {
+            String hdpS = changeValueF(hdp);
+            if (isHomeGive.equals("1")) {
                 holder.viewpagerMatchVisitHdpTv.setText("");
                 holder.viewpagerMatchHomeHdpTv.setText(hdpS);
             } else {
@@ -136,32 +185,33 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
                 holder.viewpagerMatchHomeHdpTv.setText("");
             }
             boolean isAnimation = false;
-            if (item.getIsHdpNew().equals("1"))
+            if (isHdpNew.equals("1"))
                 isAnimation = true;
-            setValue(holder.viewpagerMatchHomeHdpoddsTv, item.getHomeHdpOdds(), isAnimation);
-            setValue(holder.viewpagerMatchVisitHdpoddsTv, item.getAwayHdpOdds(), isAnimation);
+            else
+                isAnimation = false;
+            setValue(item,holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation,"home",isFh);
+            setValue(item,holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation,"away",isFh);
 
         }
 
 
-
-        if (ou.equals("0")) {
+        if (hasOU.equals("0")) {
             holder.viewpagerMatchOuTv.setText("");
             holder.viewpagerMatchOu2Tv.setText("");
             holder.viewpagerMatchOveroddsTv.setText("");
             holder.viewpagerMatchUnderoddsTv.setText("");
 
         } else {
-            ou = changeValueF(ou);
-            holder.viewpagerMatchOuTv.setText(ou);
+            String ouf = changeValueF(ou);
+            holder.viewpagerMatchOuTv.setText(ouf);
             holder.viewpagerMatchOu2Tv.setText("");
             boolean isAnimation = false;
-            if (item.getIsOUNew().equals("1"))
+            if (isOUNew.equals("1"))
                 isAnimation = true;
-            setValue(holder.viewpagerMatchUnderoddsTv, item.getUnderOdds(), isAnimation);
-            setValue(holder.viewpagerMatchOveroddsTv, item.getUnderOdds(), isAnimation);
+            setValue(item,holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation,"under",isFh);
+            setValue(item,holder.viewpagerMatchOveroddsTv, overOdds, isAnimation,"over",isFh);
         }
-        sl.addView(vp);
+        return vp;
     }
 
     private String changeValueF(String f) {
@@ -192,13 +242,20 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         return ss;
     }
 
-    private void setValue(TextView textView, String f, boolean isAnimation) {
-        textView.setText(f);
+    protected void setValue(final I item, TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf) {
         if (f.equals("")) {
-            return;
+            textView.setText(f);
+        } else {
+            textView.setText(AfbUtils.changeValueS(f));
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    back.clickOdds((TextView)v,item,type,isHf,f);
+                }
+            });
         }
-        textView.setText(AfbUtils.changeValueS(f));
-        textView.setTextColor(black_grey);
+
+
 
 
               /*  if (isAnimation && updateType != 1) {
@@ -228,7 +285,12 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
         return R.layout.sport_common_ball_item;
     }
 
-    static class ViewHolder {
+    @Override
+    public List<ScrollLayout> getFollowers() {
+        return slFollowers;
+    }
+
+    public static class ViewHolder {
         @Bind(R.id.viewpager_match_home_hdp_tv)
         TextView viewpagerMatchHomeHdpTv;
         @Bind(R.id.viewpager_match_home_hdpodds_tv)
@@ -258,4 +320,6 @@ public class BallAdapterHelper<I extends BallInfo> implements IAdapterHelper<I> 
             ButterKnife.bind(this, view);
         }
     }
+
+
 }

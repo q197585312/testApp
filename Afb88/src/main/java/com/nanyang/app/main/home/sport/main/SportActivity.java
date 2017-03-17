@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport;
+package com.nanyang.app.main.home.sport.main;
 
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
@@ -13,13 +13,8 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
-import com.nanyang.app.main.home.sport.e_sport.SportEFragment;
-import com.nanyang.app.main.home.sport.financial.FinancialFragment;
-import com.nanyang.app.main.home.sport.football.FootballFragment;
-import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
-import com.nanyang.app.main.home.sport.tennis.TennisFragment;
-import com.nanyang.app.main.home.sport.thaiboxing.ThaiBoxingFragment;
+import com.nanyang.app.main.home.sport.football.SoccerFragment;
+import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -33,14 +28,14 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class SportActivity extends BaseToolbarActivity<Presenter> {
-    BaseSportFragment footballFragment = new FootballFragment();
-    BaseSportFragment basketballFragment = new BasketballFragment();
+public class SportActivity extends BaseToolbarActivity {
+    BaseSportFragment soccerFragment = new SoccerFragment();
+  /*  BaseSportFragment basketballFragment = new BasketballFragment();
     BaseSportFragment tennisFragment = new TennisFragment();
     BaseSportFragment financialFragment = new FinancialFragment();
     BaseSportFragment special4dFragment = new Game4dFragment();
     BaseSportFragment thaiboxingFragment = new ThaiBoxingFragment();
-    BaseSportFragment sportEFragment = new SportEFragment();
+    BaseSportFragment sportEFragment = new SportEFragment();*/
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
@@ -99,18 +94,18 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
             assert tvToolbarTitle != null;
             tvToolbarTitle.setText(item.getText());
         }
-        showFragmentToActivity(footballFragment, R.id.fl_content, getString(R.string.Soccer));
-        currentFragment = footballFragment;
+        showFragmentToActivity(soccerFragment, R.id.fl_content, getString(R.string.Soccer));
+        currentFragment = soccerFragment;
         currentTag = getString(R.string.Soccer);
         tvTitle.setText(currentTag);
         mapFragment = new HashMap<>();
-        mapFragment.put(getString(R.string.Soccer), footballFragment);
-        mapFragment.put(getString(R.string.Basketball), basketballFragment);
+        mapFragment.put(getString(R.string.Soccer), soccerFragment);
+     /*   mapFragment.put(getString(R.string.Basketball), basketballFragment);
         mapFragment.put(getString(R.string.Tennis), tennisFragment);
         mapFragment.put(getString(R.string.Muay_Thai), thaiboxingFragment);
         mapFragment.put(getString(R.string.Financial), financialFragment);
         mapFragment.put(getString(R.string.E_Sport), sportEFragment);
-        mapFragment.put(getString(R.string.Specials_4D), special4dFragment);
+        mapFragment.put(getString(R.string.Specials_4D), special4dFragment);*/
 
         getApp().setBetParList(null);
 
@@ -130,16 +125,16 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_refresh:
-                ((SportPresenter) (currentFragment.presenter)).refresh("");
+                currentFragment.refresh();
                 break;
             case R.id.tv_collection:
-                currentFragment.collectionClick(tvCollection);
+                currentFragment.collection(tvCollection);
                 break;
             case R.id.tv_menu:
-                currentFragment.menuClick(tvMenu);
+                currentFragment.menu(tvMenu);
                 break;
             case R.id.tv_mix:
-                if (currentFragment.mixParlayCLick(tvMix))
+                if (currentFragment.mix(tvMix))
                     tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
                 break;
             case R.id.iv_add:
@@ -179,7 +174,6 @@ public class SportActivity extends BaseToolbarActivity<Presenter> {
                             @Override
                             public void onItemClick(View view, MenuItemInfo item, int position) {
                                 selectFragmentTag(item.getText());
-
                                 closePopupWindow();
                             }
                         });

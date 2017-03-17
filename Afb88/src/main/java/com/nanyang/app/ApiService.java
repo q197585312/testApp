@@ -92,7 +92,7 @@ public interface ApiService {
     Flowable<String> timerRun2(@Url String url);
 
     @GET
-    Flowable<BettingParPromptBean> addMixParlayBet(@Url String s);
+    Flowable<BettingParPromptBean> updateMixParlayBet(@Url String s);
 
     @GET
     Call<BettingParPromptBean> removeMixOrder(@Url String url);

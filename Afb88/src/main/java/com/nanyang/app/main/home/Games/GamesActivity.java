@@ -56,7 +56,7 @@ public class GamesActivity extends BaseToolbarActivity {
         setTitle(getString(R.string.Thai_game1));
         currentTag = "Thai";
         BaseGamesFragment thaiThousandFragment = new ThaiThousandFragment();
-        showFragmentToActivity(thaiThousandFragment, R.id.fl_content, getString(R.string.Football));
+        showFragmentToActivity(thaiThousandFragment, R.id.fl_content, getString(R.string.Soccer));
         currentFragment = thaiThousandFragment;
         mapFragment = new HashMap<>();
         mapFragment.put("Thai", thaiThousandFragment);

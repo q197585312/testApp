@@ -43,6 +43,8 @@ public class ViewPagerAdapter extends PagerAdapter {
     public Object instantiateItem(ViewGroup container, int position) {
         index = position % lists.size();
         ImageView view = views.get(index);
+        if(view.getParent()!=null)
+            ((ViewGroup)view.getParent()).removeView(view);
         container.addView(view);
         Bitmap b = AfbUtils.decodeSampledBitmapFromResource(resources, lists.get(index), 250, 250);
         view.setImageBitmap(b);
