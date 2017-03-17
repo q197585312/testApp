@@ -13,10 +13,7 @@ public class SoccerTodayState extends SoccerCommonState {
         super(baseView);
     }
 
-    @Override
-    public boolean menu() {
-        return false;
-    }
+
 
     @Override
     public boolean mix() {

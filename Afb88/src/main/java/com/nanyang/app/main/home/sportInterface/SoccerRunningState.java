@@ -14,10 +14,7 @@ public class SoccerRunningState extends SoccerCommonState {
         super(baseView);
     }
 
-    @Override
-    public boolean menu() {
-        return false;
-    }
+
 
     @Override
     public boolean mix() {

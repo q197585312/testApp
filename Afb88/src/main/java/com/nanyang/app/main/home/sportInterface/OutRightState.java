@@ -38,8 +38,8 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract2
     }
 
     @Override
-    public IAdapterHelper<SportInfo> onSetAdapterHelper() {
-        return new IAdapterHelper<SportInfo>() {
+    public SportAdapterHelper<SportInfo> onSetAdapterHelper() {
+        return new SportAdapterHelper<SportInfo>() {
             @Override
             public void onConvert(MyRecyclerViewHolder holder, final int position, final SportInfo item) {
                 TextView matchTitleTv = holder.getView(R.id.out_right_title_tv);
@@ -123,7 +123,7 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract2
 
 
     @Override
-    protected List<TableSportInfo<SportInfo>> filterData(List<TableSportInfo<SportInfo>> allData) {
+    protected List<TableSportInfo<SportInfo>> filterChildData(List<TableSportInfo<SportInfo>> allData) {
             return allData;
     }
 

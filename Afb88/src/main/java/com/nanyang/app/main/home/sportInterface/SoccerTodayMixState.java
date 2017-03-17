@@ -15,10 +15,7 @@ public class SoccerTodayMixState extends SoccerMixState {
 
 
 
-    @Override
-    public boolean menu() {
-        return false;
-    }
+
 
     @Override
     public boolean mix() {

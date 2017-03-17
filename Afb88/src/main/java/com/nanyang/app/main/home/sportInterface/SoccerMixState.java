@@ -189,7 +189,7 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
 
 
     @Override
-    protected List<TableSportInfo<SoccerMixInfo>> filterData(List<TableSportInfo<SoccerMixInfo>> allData) {
+    protected List<TableSportInfo<SoccerMixInfo>> filterChildData(List<TableSportInfo<SoccerMixInfo>> allData) {
         if (isCollection())
             return filterCollection(allData);
         else

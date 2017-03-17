@@ -3,18 +3,25 @@ package com.nanyang.app.main.home.sportInterface;
 import android.annotation.TargetApi;
 import android.os.Build;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
+import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -47,6 +54,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     private String LID;
     private int page;
     private List<TableSportInfo<B>> filterData;
+    private Map<String, Boolean> leagueSelectedMap = new HashMap<>();
     /**
      * 当前显示数据的JsonArray，用来更新
      */
@@ -61,12 +69,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     protected List<TableSportInfo<B>> pageData;
 
     private CompositeDisposable mCompositeSubscription;
+    protected BasePopupWindow popMenu;
+    private SwipeToLoadLayout swipeToLoadLayout;
 
     public int getPageSize() {
         return pageSize;
     }
 
-    private int pageSize = 5;
+    private int pageSize = 15;
     /**
      * 更新
      */
@@ -82,13 +92,16 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     public void setBaseView(V mBaseView) {
         this.baseView = mBaseView;
         adapterHelper = onSetAdapterHelper();
-        adapterHelper.setItemCallBack(onSetItemCallBack());
         baseRecyclerAdapter = new BaseRecyclerAdapter<B>(baseView.getContextActivity(), new ArrayList<B>(), adapterHelper.onSetAdapterItemLayout()) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, B item) {
                 adapterHelper.onConvert(holder, position, item);
             }
         };
+
+
+        adapterHelper.setItemCallBack(onSetItemCallBack());
+
         baseView.setAdapter(baseRecyclerAdapter);
         mCompositeSubscription = new CompositeDisposable();
     }
@@ -151,10 +164,77 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
     }
 
+    @Override
+    public boolean menu(TextView tvMenu) {
+
+        popMenu = new BasePopupWindow(baseView.getContextActivity(), tvMenu, LinearLayout.LayoutParams.MATCH_PARENT, 150) {
+            @Override
+            protected int onSetLayoutRes() {
+                return R.layout.popupwindow_choice_bottom;
+            }
+
+            @Override
+            protected void initView(View view) {
+                super.initView(view);
+                RecyclerView rv_list = (RecyclerView) view.findViewById(R.id.rv_list);
+                setBottomMenuAdapter(rv_list);
+            }
+        };
+        popMenu.setTrans(1f);
+        baseView.onPopupWindowCreated(popMenu, Gravity.BOTTOM);
+        return true;
+    }
+
+    private void setBottomMenuAdapter(RecyclerView rv_list) {
+        rv_list.setLayoutManager(new GridLayoutManager(baseView.getContextActivity(), 4));
+        List<MenuItemInfo> types = new ArrayList<>();
+        types.add(new MenuItemInfo(R.mipmap.menu_group_oval_white, baseView.getContextActivity().getString(R.string.Choose), "Choose"));
+        types.add(new MenuItemInfo(R.mipmap.menu_error_white, baseView.getContextActivity().getString(R.string.not_settled), "Not settled"));
+        types.add(new MenuItemInfo(R.mipmap.menu_right_oval_white, baseView.getContextActivity().getString(R.string.settled), "Settled"));
+
+        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(baseView.getContextActivity(), types, R.layout.text_base_item) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
+                TextView tv = holder.getView(R.id.item_text_tv);
+                tv.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
+                tv.setTextSize(10);
+                tv.setPadding(0, 0, 0, 0);
+                tv.setText(item.getText());
+            }
+
+        };
+        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+            @Override
+            public void onItemClick(View view, MenuItemInfo item, int position) {
+                popMenu.closePopupWindow();
+                switch (item.getType()) {
+                    case "Choose":
+                        createChoosePop(view);
+                        break;
+                }
+            }
+        });
+        rv_list.setAdapter(baseRecyclerAdapter);
+    }
+
+    private void createChoosePop(View view) {
+        ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getContextActivity(), view);
+        pop.setList(allData, leagueSelectedMap);
+        pop.setBack(new ChooseMatchPop.CallBack() {
+            @Override
+            public void chooseMap(Map<String, Boolean> map) {
+                leagueSelectedMap = map;
+                filterData(allData);
+                showCurrentData();
+            }
+        });
+        baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+    }
+
     public void clickOdds(TextView v, String url, boolean isHf) {
-        IBetHelper helper =onSetBetHelper();
+        IBetHelper helper = onSetBetHelper();
         helper.setCompositeSubscription(mCompositeSubscription);
-        helper.clickOdds(v,url,isHf);
+        helper.clickOdds(v, url, isHf);
     }
 
     protected abstract IBetHelper onSetBetHelper();
@@ -226,12 +306,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     }
 
     private void updateAllDate(List<TableSportInfo<B>> allData) {
-        this.filterData = filterData(allData);
+
+        filterData(allData);
         showCurrentData();
     }
 
     private void showCurrentData() {
-        this.pageData = pageData(filterData);
+        pageData(filterData);
         showData();
     }
 
@@ -242,15 +323,31 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
         } else {
             pageList = filterData.subList(page * pageSize, filterData.size());
         }
+        this.pageData = pageList;
         return pageList;
 
     }
 
-    protected abstract List<TableSportInfo<B>> filterData(List<TableSportInfo<B>> allData);
+    protected final List<TableSportInfo<B>> filterData(List<TableSportInfo<B>> allData) {
+        List<TableSportInfo<B>> dateTemp = new ArrayList<>();
+        for (TableSportInfo<B> bTableSportInfo : allData) {
+            if (leagueSelectedMap.get(bTableSportInfo.getLeagueBean().getModuleId()) == null || leagueSelectedMap.get(bTableSportInfo.getLeagueBean().getModuleId())) {
+                dateTemp.add(bTableSportInfo);
+            }
+        }
+        this.filterData = filterChildData(dateTemp);
+        if (swipeToLoadLayout != null)
+            swipeToLoadLayout.setLoadMoreEnabled(true);
+        return filterData;
+
+    }
+
+    protected abstract List<TableSportInfo<B>> filterChildData(List<TableSportInfo<B>> dateTemp);
 
 
     @Override
     public Disposable startUpdateData() {
+        stopUpdateData();
         updateDisposable = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
             @Override
             public Publisher<String> apply(Long aLong) throws Exception {
@@ -440,6 +537,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
     @Override
     public void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
+        this.swipeToLoadLayout = swipeToLoadLayout;
         if (page == 0) {
             refresh();
         } else {
@@ -454,6 +552,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
     @Override
     public void onNext(SwipeToLoadLayout swipeToLoadLayout) {
+        this.swipeToLoadLayout = swipeToLoadLayout;
         if (filterData != null && (page + 1) * pageSize < filterData.size()) {
             page++;
             showCurrentData();
@@ -494,5 +593,34 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
     @Override
     public void notifyDataChanged() {
         baseRecyclerAdapter.notifyDataSetChanged();
+    }
+    @Override
+    public void switchOddsType(String oddsType) {
+        Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_ODDS_TYPE + oddsType).subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer<String>() {//onNext
+                    @Override
+                    public void accept(String allData) throws Exception {
+                        refresh();
+                    }
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseView.onFailed(throwable.getMessage());
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        baseView.showLoadingDialog();
+                        subscription.request(Long.MAX_VALUE);
+                    }
+                });
+        mCompositeSubscription.add(subscription);
     }
 }

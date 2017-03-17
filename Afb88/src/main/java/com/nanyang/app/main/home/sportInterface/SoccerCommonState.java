@@ -228,9 +228,8 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
 
     }
 
-
-    @Override
-    protected List<TableSportInfo<SoccerCommonInfo>> filterData(List<TableSportInfo<SoccerCommonInfo>> allData) {
+ @Override
+    protected List<TableSportInfo<SoccerCommonInfo>> filterChildData (List<TableSportInfo<SoccerCommonInfo>> allData) {
         if (isCollection())
             return filterCollection(allData);
         else

@@ -136,6 +136,9 @@ public class SportActivity extends BaseToolbarActivity {
             case R.id.tv_mix:
                 if (currentFragment.mix(tvMix))
                     tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
+                else{
+                    getApp().setBetParList(null);
+                }
                 break;
             case R.id.iv_add:
                 createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 380) {

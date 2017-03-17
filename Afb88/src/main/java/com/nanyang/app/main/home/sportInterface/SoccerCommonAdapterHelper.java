@@ -33,19 +33,20 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         tvCollection.setVisibility(View.VISIBLE);
         tvRightMark.setVisibility(View.VISIBLE);
 
-        if ( ((BallItemCallBack)back).isItemCollection(item))
+        if (((BallItemCallBack) back).isItemCollection(item))
             tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_soild);
         else
             tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_not_soild);
+
         tvCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((BallItemCallBack)back).collectionItem(item);
+                back.clickView(v, item);
             }
         });
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        View hfView = scrollChild(true,item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
-        sl.addView(hfView,SoccerHeaderContent.layoutParams);
+        View hfView = scrollChild(true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
+        sl.addView(hfView, SoccerHeaderContent.layoutParams);
 
         String oldHomeName = "";
         String oldAwayName = "";
@@ -68,8 +69,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
             llLeft2.setVisibility(View.INVISIBLE);
             tvCollection.setVisibility(View.INVISIBLE);
             item.setHasOE("0");
-        }
-        else{
+        } else {
 
             String homeRank = item.getHomeRank();
             String awayRank = item.getAwayRank();
@@ -96,7 +96,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
     }
 
     private void checkRedCards(TextView awayRedCardTv, String rcAway) {
-        if ( rcAway== null || rcAway.equals("0") || rcAway.equals("")) {
+        if (rcAway == null || rcAway.equals("0") || rcAway.equals("")) {
             awayRedCardTv.setVisibility(View.GONE);
         } else {
             awayRedCardTv.setVisibility(View.VISIBLE);

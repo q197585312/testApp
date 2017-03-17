@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_background"
+    android:orientation="vertical">
+
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <include layout="@layout/layout_base_recycler_view" />
+    </FrameLayout>
+
+    <View style="@style/line_horizontal_grey1" />
+
+    <LinearLayout
+        style="@style/style_match_wrap"
+        android:background="@color/grey_dialog_background"
+        android:orientation="vertical"
+        android:visibility="visible">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_detail_top"
+            android:layout_width="match_parent"
+            android:layout_height="60dp" />
+
+        <View
+            style="@style/line_horizontal_grey1"
+            android:background="@color/black_grey" />
+
+        <TextView
+            android:id="@+id/tv_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/Submit"
+            android:textColor="@color/black_grey"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</LinearLayout>

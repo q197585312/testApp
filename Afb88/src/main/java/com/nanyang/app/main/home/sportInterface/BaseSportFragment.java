@@ -12,11 +12,13 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
@@ -25,6 +27,7 @@ import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.training.ScrollLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -82,15 +85,26 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     }
 
     public void collection(TextView tvCollection) {
-        presenter.getStateHelper().collection();
+       if( presenter.getStateHelper().collection()){
+           tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_green, 0, 0);
+       }else{
+           tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
+       }
+
     }
 
     public void menu(TextView tvMenu) {
-        presenter.getStateHelper().menu();
+        presenter.getStateHelper().menu(tvMenu);
     }
 
     public boolean mix(TextView tvMix) {
-        return presenter.getStateHelper().mix();
+        boolean isMix= presenter.getStateHelper().mix();
+        if(isMix){
+            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_oval_u_green, 0, 0);
+        }else{
+            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_oval_u_black, 0, 0);
+        }
+        return isMix;
     }
 
 
@@ -130,7 +144,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     }
 
     private void updateMixOrderCount() {
-        if (getApp().getBetParList().getBetPar().size() > 0) {
+        if (getApp().getBetParList() != null && getApp().getBetParList().getBetPar() != null && getApp().getBetParList().getBetPar().size() > 0) {
             tvMixParlayOrder.setText("" + getApp().getBetParList().getBetPar().size());
             llMixParlayOrder.setVisibility(View.VISIBLE);
 
@@ -142,7 +156,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
 
     public void toolbarRightClick(View v) {
         createPopupWindow(
-                new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, 300) {
+                new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, 500) {
                     @Override
                     protected int onSetLayoutRes() {
                         return R.layout.popupwindow_choice_ball_type;
@@ -227,10 +241,66 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
         return rootView;
     }
 
-    @OnClick(R.id.ll_mix_parlay_order)
-    public void onClick(View v) {
-        Bundle bundle=new Bundle();
-        bundle.putSerializable(AppConstant.KEY_STRING,getTitle());
-        skipAct(MixOrderListActivity.class,bundle);
+
+    @Override
+    public void onPopupWindowCreated(BasePopupWindow pop, int center) {
+        createPopupWindow(pop);
+        popWindow.showPopupGravityWindow(center, 0, 0);
+    }
+
+    @OnClick({R.id.tv_odds_type, R.id.ll_mix_parlay_order})
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_odds_type:
+                clickOddsType(view);
+                break;
+            case R.id.ll_mix_parlay_order:
+                Bundle bundle = new Bundle();
+                bundle.putSerializable(AppConstant.KEY_STRING, getTitle());
+                skipAct(MixOrderListActivity.class, bundle);
+                break;
+        }
+    }
+
+    private void clickOddsType(View view) {
+        createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 350) {
+            @Override
+            protected int onSetLayoutRes() {
+                return R.layout.popupwindow_choice;
+            }
+
+            @Override
+            protected void initView(View view) {
+                super.initView(view);
+                RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
+                rv.setPadding(0, 0, 0, 0);
+                rv.setLayoutManager(new LinearLayoutManager(mContext));
+                List<MenuItemInfo> list = new ArrayList<>();
+                list.add(new MenuItemInfo(0, getString(R.string.HK_ODDS), "HK"));//accType=
+                list.add(new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY"));
+                list.add(new MenuItemInfo(0, getString(R.string.ID_ODDS), "ID"));
+                list.add(new MenuItemInfo(0, getString(R.string.EU_ODDS), "EU"));
+                BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base_item) {
+                    @Override
+                    public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
+                        TextView tv = holder.getView(R.id.item_text_tv);
+                        tv.setPadding(0, 0, 0, 0);
+                        tv.setText(item.getText());
+                        tv.setBackgroundResource(R.color.black_grey);
+                    }
+
+                };
+                rv.setAdapter(baseRecyclerAdapter);
+                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+                    @Override
+                    public void onItemClick(View view, MenuItemInfo item, int position) {
+                        presenter.getStateHelper().switchOddsType(item.getType());
+                        closePopupWindow();
+                        ((TextView) view).setText(item.getText());
+                    }
+                });
+            }
+        });
+        popWindow.showPopupDownWindow();
     }
 }

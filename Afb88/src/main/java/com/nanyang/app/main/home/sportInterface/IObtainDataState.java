@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.widget.TextView;
+
 import com.nanyang.app.MenuItemInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
@@ -19,7 +21,7 @@ public interface IObtainDataState {
 
     boolean collection();
 
-    boolean menu();
+    boolean menu(TextView tvMenu);
 
     boolean mix();
 
@@ -38,5 +40,6 @@ public interface IObtainDataState {
     void unSubscribe();
 
     void notifyDataChanged();
+    void switchOddsType(String oddsType);
 
 }

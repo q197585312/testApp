@@ -158,5 +158,7 @@
     <string name="Specials_4D">4D Specials</string>
     <string name="OutRight">OutRight</string>
     <string name="MixParlay">MixParlay</string>
+    <string name="selected_all">Selected All</string>
+    <string name="reverse_selection">Reverse Selection</string>
 
 </resources>

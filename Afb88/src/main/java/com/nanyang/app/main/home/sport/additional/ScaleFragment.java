@@ -9,11 +9,12 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.BetPresenter;
 import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
-import com.nanyang.app.main.home.sport.model.MatchBean;
+import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
+import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
-import com.nanyang.app.main.home.sport.model.VsOtherDataBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -29,19 +30,19 @@ import java.util.Map;
  */
 public class ScaleFragment extends BaseVsFragment<VsTableRowBean> implements ScaleContract.View {
     private Map<String, Map<String, Map<Integer, BettingInfoBean>>> betDetail;
-    private MatchBean itemData;
+    private BallInfo itemData;
     private boolean isMix;
 
 
     @Override
     public void initData() {
         super.initData();
-        itemData = ((VsActivity) getActivity()).getItem();
+        itemData = (BallInfo)((VsActivity) getActivity()).getItem();
         betDetail = ((VsActivity) getActivity()).getApp().getBetDetail();
         createPresenter(new ScalePresenter(this));
         isMix=((VsActivity) getActivity()).getMixParlay();
         if(isMix){
-            initFirstData(itemData);
+            initFirstData((SoccerMixInfo)itemData);
         }
     }
 
@@ -64,13 +65,13 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> implements Sca
             positionMap.put(i, info);
             Map<String, Map<Integer, BettingInfoBean>> keyMap = new HashMap<>();
             keyMap.put(rowPosition, positionMap);
-            betDetail.put(((VsActivity)getActivity()).getItem().getHome() + "+" + ((VsActivity)getActivity()).getItem().getAway(), keyMap);
+            betDetail.put(itemData.getHome() + "+" + itemData.getAway(), keyMap);
             adapter.notifyDataSetChanged();
 
 
     }
     private void notifyClearanceBet(String position, MyRecyclerViewHolder helper) {
-        Map<String, Map<Integer, BettingInfoBean>> keyMap = betDetail.get(((VsActivity)getActivity()).getItem().getHome() + "+" + ((VsActivity)getActivity()).getItem().getAway());
+        Map<String, Map<Integer, BettingInfoBean>> keyMap = betDetail.get(itemData.getHome() + "+" + itemData.getAway());
         if (keyMap == null)
             return;
         Map<Integer, BettingInfoBean> positionMap = keyMap.get(position+"");
@@ -168,7 +169,7 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> implements Sca
                         BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
                         pop.setBetSelectionType(getString(R.string.half_time));
                         pop.showPopupCenterWindow();
-                        BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getSc(), itemData.getHandicapBeans().get(1).getHdp(), item.getRows().get(2).getValue(),
+                        BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getSc(), ((SoccerCommonInfo)itemData).getHdp_FH(), item.getRows().get(2).getValue(),
                                 itemData.getHome(),   itemData.getAway(), item.getModuleTitle(), item.getRows().get(2).getOid() + "",item.getRows().get(2).getOid() +"", 1, false, false);
                         pop.initData(info);
                     }
@@ -190,23 +191,23 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> implements Sca
     @Override
     public void onFailed(String error) {
         if(betDetail!=null)
-            betDetail.put(((VsActivity)getActivity()).getItem().getHome() + "+" + ((VsActivity)getActivity()).getItem().getAway(), new HashMap<String, Map<Integer, BettingInfoBean>>());
+            betDetail.put(itemData.getHome() + "+" + itemData.getAway(), new HashMap<String, Map<Integer, BettingInfoBean>>());
     }
 
-    private void initFirstData(MatchBean item) {
-        VsOtherDataBean otherDataBean=item.getOtherDataBean();
+    private void initFirstData(SoccerMixInfo item) {
+
         List<VsTableRowBean> rows = new ArrayList<VsTableRowBean>();
         int socOddsId_hf = 0;
         int socOddsId = 0;
-        if (item.getHandicapBeans().get(1).getSocOddsId() != null && !item.getHandicapBeans().get(1).getSocOddsId().equals(""))
-            socOddsId_hf = Integer.valueOf(item.getHandicapBeans().get(1).getSocOddsId());
-        if (item.getHandicapBeans().get(0).getSocOddsId() != null && !item.getHandicapBeans().get(0).getSocOddsId().equals(""))
-            socOddsId = Integer.valueOf(item.getHandicapBeans().get(0).getSocOddsId());
-        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(getString(R.string.h1), "", 0), new VsCellBean("", otherDataBean.getX121Odds(), socOddsId), new VsCellBean("", otherDataBean.getX121OddsFH(), socOddsId_hf)), true, false, "1  x  2", getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
-                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(getString(R.string.dx), "", 0), new VsCellBean("", otherDataBean.getX12XOdds(), socOddsId), new VsCellBean("", otherDataBean.getX12XOddsFH(), socOddsId_hf))),
-                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", otherDataBean.getX122Odds(), socOddsId), new VsCellBean("", otherDataBean.getX122OddsFH(), socOddsId_hf)), true),
-                new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", otherDataBean.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
-                new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", otherDataBean.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
+        if (item.getSocOddsId_FH() != null && !item.getSocOddsId_FH().equals(""))
+            socOddsId_hf = Integer.valueOf(item.getSocOddsId_FH());
+        if (item.getSocOddsId() != null && !item.getSocOddsId().equals(""))
+            socOddsId = Integer.valueOf(item.getSocOddsId());
+        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(getString(R.string.h1), "", 0), new VsCellBean("", item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getX12_1Odds_FH(), socOddsId_hf)), true, false, "1  x  2", getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
+                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(getString(R.string.dx), "", 0), new VsCellBean("", item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getX12_XOdds_FH(), socOddsId_hf))),
+                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getX12_2Odds(), socOddsId), new VsCellBean("", item.getX12_2Odds_FH(), socOddsId_hf)), true),
+                new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", item.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
+                new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
         setData(rows);
 
     }

@@ -13,10 +13,7 @@ public class SoccerOutRightState extends OutRightState {
         super(baseView);
     }
 
-    @Override
-    public boolean menu() {
-        return false;
-    }
+
 
     @Override
     public boolean mix() {
