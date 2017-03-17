@@ -7,8 +7,6 @@ import com.unkonw.testapp.libs.base.BaseApplication;
 import java.util.HashMap;
 import java.util.Map;
 
-import cn.finalteam.toolsfinal.logger.Logger;
-
 /**
  * Created by Administrator on 2017/2/20.
  */
@@ -20,7 +18,8 @@ public class AfbApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        Logger.setDebug(true);
+//        KLog.init(BuildConfig.LOG_DEBUG, "AFB");
+//        Logger.setDebug(true);
     }
 
     private Map<String, Map<String, Map<Integer, BettingInfoBean>>> betDetail;

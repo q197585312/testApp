@@ -57,7 +57,6 @@ public class BaseApplication extends Application {
 
 //        LogUtil.setDebug(!isCompleteProject);
 //        LogUtil.e(tag, "isDebug: " + !isCompleteProject);
-
         initImageLoader();
 
 //        CrashHandler.create(this);

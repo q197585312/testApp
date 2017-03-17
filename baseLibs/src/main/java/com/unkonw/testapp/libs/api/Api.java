@@ -22,7 +22,6 @@ import okhttp3.Cache;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
-import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -91,7 +90,7 @@ public class Api {
                     .writeTimeout(10, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
                     .addNetworkInterceptor(
-                            new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                            interceptor)
                     .cookieJar(new CookieManger(BaseApplication.getInstance()))
                     .cache(cache)
 //                    .addInterceptor( mInterceptor)
