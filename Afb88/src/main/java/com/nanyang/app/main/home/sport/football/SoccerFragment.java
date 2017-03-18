@@ -54,8 +54,9 @@ public class SoccerFragment extends BaseSportFragment<SoccerPresenter> {
     public void clickAdd(View v, SportInfo item, String type) {
         Bundle b = new Bundle();
         b.putBoolean(AppConstant.KEY_BOOLEAN, type.equals("mix"));
-        b.putString(AppConstant.KEY_STRING, presenter.getStateHelper().getStateType().getType());
+
         b.putSerializable(AppConstant.KEY_DATA, item);
+        b.putSerializable(AppConstant.KEY_DATA2, presenter.getStateHelper().getStateType());
         skipAct(VsActivity.class, b);
     }
 

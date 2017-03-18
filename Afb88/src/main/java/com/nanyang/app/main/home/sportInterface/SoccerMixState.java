@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sportInterface;
 import android.view.View;
 import android.widget.TextView;
 
+import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -14,11 +15,20 @@ import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -245,5 +255,37 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
     @Override
     public void setHeaderContent(ScrollLayout slHeader) {
         new SoccerHeaderContent().setHeaderContent(getBaseView().getContextActivity(), slHeader);
+    }
+
+    @Override
+    public boolean mix() {
+        Disposable subscription =getService(ApiService.class).getData(AppConstant.URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+//                    mApiWrapper.goMain()
+                .subscribe(new Consumer<String>() {//onNext
+                    @Override
+                    public void accept(String Str) throws Exception {
+                        getBaseView().onUpdateMixSucceed(null);
+                    }
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        getBaseView().onFailed(throwable.getMessage());
+                        getBaseView().hideLoadingDialog();
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+                        getBaseView().hideLoadingDialog();
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        getBaseView().showLoadingDialog();
+                        subscription.request(Long.MAX_VALUE);
+                    }
+                });
+        mCompositeSubscription.add(subscription);
+        return false;
     }
 }

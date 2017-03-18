@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
@@ -62,8 +63,9 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private TextView footerContentTv;
     private Button footerCancelBtn;
     private ClearanceBetAmountBean selectedBean;
-    private String ballType = "";
+
     private BallBetHelper<MixOrderListContract.View> helper;
+    private MenuItemInfo<String> type;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,11 +73,13 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         assert tvToolbarTitle != null;
         setContentView(R.layout.activity_mix_parlay_list);
         createPresenter(new MixOrderListPresenter(this));
+        if(getApp().getBetParList()==null||getApp().getBetParList().getBetPar().size()<1)
+            return;
         initBottomListData();
         initListData();
         tvToolbarTitle.setBackgroundResource(0);
         tvToolbarTitle.setText(R.string.MixParlay);
-        ballType = getIntent().getStringExtra(AppConstant.KEY_STRING);
+        type = (MenuItemInfo<String>)getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         helper = new BallBetHelper<MixOrderListContract.View>(this) {
             @Override
             public Disposable clickOdds(TextView v, String url, boolean isHf) {
@@ -90,8 +94,8 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             @Override
             public void convert(MyRecyclerViewHolder helper, final int position, final BettingParPromptBean.BetParBean item) {
 
-                helper.setText(R.id.clearance_type_tv, ballType);
-                if (item.getParFullTimeId().equals("0") || item.getParFullTimeId().equals("")) {
+                helper.setText(R.id.clearance_type_tv, type.getParent());
+                if (!item.getParFullTimeId().equals("0") &&! item.getParFullTimeId().equals("")) {
                     helper.setText(R.id.clearance_type_tv, getString(R.string.football) + "(" + getString(R.string.half_time) + ")");
                 }
 
@@ -329,8 +333,10 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
 
     @Override
-    public void obtainListData(List<BettingParPromptBean.BetParBean> betInfo) {
-        listAdapter.addAllAndClear(betInfo);
+    public void obtainListData(BettingParPromptBean betInfo) {
+        getApp().setBetParList(betInfo);
+        listAdapter.addAllAndClear(betInfo.getBetPar());
+
     }
 
     @Override

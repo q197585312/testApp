@@ -2,9 +2,19 @@ package com.nanyang.app;
 
 import java.io.Serializable;
 
-public class MenuItemInfo implements Serializable {
+public class MenuItemInfo<P> implements Serializable {
     int res;
     String text;
+
+    public P getParent() {
+        return parent;
+    }
+
+    public void setParent(P parent) {
+        this.parent = parent;
+    }
+
+    P parent;
 
     public String getType() {
         return type;
@@ -25,7 +35,11 @@ public class MenuItemInfo implements Serializable {
         this(res, text);
         this.type = type;
     }
-
+    public MenuItemInfo(int res,String text, String type, P parent) {
+        this(res, text);
+        this.type = type;
+        this.parent=parent;
+    }
     public String getText() {
         return text;
     }
@@ -41,4 +55,5 @@ public class MenuItemInfo implements Serializable {
     public void setRes(int res) {
         this.res = res;
     }
+
 }

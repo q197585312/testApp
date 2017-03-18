@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
 import com.nanyang.app.main.home.sport.model.BallInfo;
@@ -53,6 +54,13 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
     private String url = "";
     private ArrayList<BaseVsFragment> fragmentsList;
     List< List<VsTableRowBean> > datas=new ArrayList();
+
+    public MenuItemInfo<String> getType() {
+        return type;
+    }
+
+    private MenuItemInfo<String> type;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,8 +71,10 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
         super.initData();
         toolbar.setNavigationIcon(null);
         item = (BallInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
-        matchType = getIntent().getStringExtra(AppConstant.KEY_STRING);
-        isMixParlay = getIntent().getBooleanExtra(AppConstant.KEY_BOOLEAN, false);
+        type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA2);
+        matchType = type.getType();
+        isMixParlay = type.getRes() == 1;
+        assert tvToolbarTitle != null;
         tvToolbarTitle.setBackgroundResource(0);
         tvToolbarTitle.setText(item.getHome() + "  VS  " + item.getAway());
         tvToolbarTitle.setTextSize(12);

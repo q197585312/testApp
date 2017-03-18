@@ -8,7 +8,19 @@ import android.widget.TextView;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
+import org.reactivestreams.Publisher;
+
+import java.util.concurrent.TimeUnit;
+
 import cn.finalteam.toolsfinal.DeviceUtils;
+import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.unkonw.testapp.libs.api.Api.getService;
 
 public abstract class BaseToolbarActivity<T extends IBasePresenter> extends BaseActivity<T> {
     @Nullable
@@ -20,13 +32,14 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     @Nullable
     protected
     Toolbar toolbar;
+    private Disposable updateDisposable;
 
     @Override
     public void initData() {
         super.initData();
-        toolbar= (Toolbar) findViewById(R.id.toolbar);
-        tvToolbarRight= (TextView) findViewById(R.id.tv_toolbar_right);
-        tvToolbarTitle= (TextView) findViewById(R.id.tv_toolbar_title);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        tvToolbarRight = (TextView) findViewById(R.id.tv_toolbar_right);
+        tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
         toolbar.setBackgroundResource(R.drawable.rectangle_green_gradient_line);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -37,8 +50,43 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         });
         assert tvToolbarTitle != null;
         tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
-        tvToolbarTitle.getLayoutParams().width= DeviceUtils.dip2px(mContext,80);
-        tvToolbarTitle.getLayoutParams().height= DeviceUtils.dip2px(mContext,40);
+        tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 80);
+        tvToolbarTitle.getLayoutParams().height = DeviceUtils.dip2px(mContext, 40);
+        startUpdateState();
+    }
+
+    void stopUpdateState() {
+        if (updateDisposable != null) {
+            updateDisposable.dispose();
+            updateDisposable = null;
+        }
+    }
+
+    public void startUpdateState() {
+        stopUpdateState();
+        updateDisposable = Flowable.interval(2, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
+            @Override
+            public Publisher<String> apply(Long aLong) throws Exception {
+
+                return getService(ApiService.class).getData(AppConstant.URL_UPDATE_STATE);
+
+            }
+        }).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+
+                .subscribe(new Consumer<String>() {//onNext
+                    @Override
+                    public void accept(String allData) throws Exception {
+
+                    }
+                });
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopUpdateState();
     }
 
     @Nullable
@@ -55,7 +103,8 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public Toolbar getToolbar() {
         return toolbar;
     }
-    public  AfbApplication getApp(){
+
+    public AfbApplication getApp() {
         return (AfbApplication) getApplication();
     }
 }

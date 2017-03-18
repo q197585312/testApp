@@ -11,6 +11,7 @@ import com.nanyang.app.R;
 public class SoccerEarlyState extends SoccerCommonState {
     public SoccerEarlyState(SportContract2.View baseView) {
         super(baseView);
+
     }
 
 
@@ -45,7 +46,7 @@ public class SoccerEarlyState extends SoccerCommonState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo(0,getBaseView().getContextActivity().getString(R.string.Early),"Early");
+        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Early),"Early",getBaseView().getContextActivity().getString(R.string.football));
     }
 
     @Override

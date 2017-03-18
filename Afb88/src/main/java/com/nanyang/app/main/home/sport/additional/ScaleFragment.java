@@ -41,9 +41,7 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> implements Sca
         betDetail = ((VsActivity) getActivity()).getApp().getBetDetail();
         createPresenter(new ScalePresenter(this));
         isMix=((VsActivity) getActivity()).getMixParlay();
-        if(isMix){
-            initFirstData((SoccerMixInfo)itemData);
-        }
+
     }
 
 
@@ -108,7 +106,7 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> implements Sca
                 @Override
                 public void onClick(View v) {
                     Bundle b=new Bundle();
-                    b.putString(AppConstant.KEY_STRING,"Soccer");
+                    b.putSerializable(AppConstant.KEY_DATA,  ((VsActivity) getActivity()).getType());
                     skipAct( MixOrderListActivity.class,b);
                     getActivity().finish();
                 }

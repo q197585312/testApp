@@ -14,17 +14,15 @@ public class SoccerEarlyMixState extends SoccerMixState {
     }
 
 
-
-
     @Override
     public boolean mix() {
         getBaseView().switchState(new SoccerEarlyState(getBaseView()));
-        return false;
+        return super.mix();
     }
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo(1,getBaseView().getContextActivity().getString(R.string.Early),"Early");
+        return new MenuItemInfo<String>(1, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.football));
     }
 
     @Override
@@ -36,7 +34,7 @@ public class SoccerEarlyMixState extends SoccerMixState {
     protected void onTypeClick(MenuItemInfo item) {
         if (item.getType().equals("Today")) {
             getBaseView().switchState(new SoccerTodayMixState(getBaseView()));
-        }else if(item.getType().equals("Early")) {
+        } else if (item.getType().equals("Early")) {
             getBaseView().switchState(this);
         }
 

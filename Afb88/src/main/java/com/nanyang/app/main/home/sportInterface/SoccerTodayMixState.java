@@ -20,7 +20,7 @@ public class SoccerTodayMixState extends SoccerMixState {
     @Override
     public boolean mix() {
         getBaseView().switchState(new SoccerTodayState(getBaseView()));
-        return false;
+        return super.mix();
     }
 
     @Override
@@ -40,8 +40,7 @@ public class SoccerTodayMixState extends SoccerMixState {
 
     @Override
     public MenuItemInfo getStateType() {
-
-        return new MenuItemInfo(1,getBaseView().getContextActivity().getString(R.string.Today),"Today");
+        return new MenuItemInfo<String>(1,getBaseView().getContextActivity().getString(R.string.Today),"Today",getBaseView().getContextActivity().getString(R.string.football));
     }
 
 

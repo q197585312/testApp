@@ -68,7 +68,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
      */
     protected List<TableSportInfo<B>> pageData;
 
-    private CompositeDisposable mCompositeSubscription;
+    protected CompositeDisposable mCompositeSubscription;
     protected BasePopupWindow popMenu;
     private SwipeToLoadLayout swipeToLoadLayout;
 

@@ -10,7 +10,6 @@ import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,9 +30,7 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
 
 
     public void obtainListData() {
-
-        List<BettingParPromptBean.BetParBean> betPar = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar();
-        baseView.obtainListData(betPar);
+        baseView.obtainListData( ((BaseToolbarActivity) (baseView)).getApp().getBetParList());
     }
 
     public void showBottomSelectedList() {
@@ -80,7 +77,8 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
                 .subscribe(new Consumer<BettingParPromptBean>() {//onNext
                     @Override
                     public void accept(BettingParPromptBean Str) throws Exception {
-                        baseView.obtainListData(Str.getBetPar());
+
+                        baseView.obtainListData(Str);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -109,7 +107,7 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String Str) throws Exception {
-                        baseView.obtainListData(new ArrayList<BettingParPromptBean.BetParBean>());
+                        baseView.obtainListData(null);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override

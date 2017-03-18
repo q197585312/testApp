@@ -140,7 +140,7 @@ public class FootballFragment extends BaseSportFragment<FootballPresenter> imple
                     @Override
                     public void onClick(View v) {
                         Bundle b=new Bundle();
-                        b.putString(AppConstant.KEY_STRING,"Soccer");
+                        b.putSerializable(AppConstant.KEY_STRING,"Soccer");
                         skipAct(MixOrderListActivity.class,b);
                     }
                 });

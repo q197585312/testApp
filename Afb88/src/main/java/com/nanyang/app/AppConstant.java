@@ -7,6 +7,8 @@ package com.nanyang.app;
 public class AppConstant {
 
 
+
+
     static {
         HOST="http://a8197c.a36588.com/";
     }
@@ -14,6 +16,7 @@ public class AppConstant {
     public static String KEY_DATA="KEY_DATA";
     public static String KEY_INT="KEY_INT";
     public static String KEY_BOOLEAN="KEY_BOOLEAN";
+    public static final String KEY_DATA2 = "KEY_DATA";
     /**
      * http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462
      RUNING
@@ -30,7 +33,9 @@ public class AppConstant {
             //http://a8197c.a36588.com/Main.aspx?accType=EU
 
     public static String HOST="http://a8197c.a36588.com/";
+    public static String URL_UPDATE_STATE=HOST+"pgajaxS.axd?T=CHKST&P=100";
     public static String URL_ODDS_TYPE=HOST+"Main.aspx?accType=";
+
     public static String URL_FOOTBALL_RUNNING ="http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462";
     public static String URL_FOOTBALL_TODAY ="http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462&wd=&ia=0";
     public static String URL_FOOTBALL_EARLY ="http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=246503518&ia=0";
@@ -39,8 +44,9 @@ public class AppConstant {
 
     public static String URL_FOOTBALL_OUT_RIGHT ="http://a8197c.a36588.com/_view/OddsGen50.ashx?update=true&r=2076712019";
 
-    public static String URL_ODDS=HOST+"/_Bet/JRecPanel.aspx?";
-    public static final String URL_SOCCER_REMOVE_MIX = "http://a0096f.panda88.org/_bet/ParRemove.aspx";
+    public static String URL_ODDS=HOST+"_Bet/JRecPanel.aspx?";
+
+    public static final String URL_SOCCER_REMOVE_MIX =HOST+"_bet/ParRemove.aspx";
 
 //http://a8197c.a36588.com/_View/All_WFHGen.ashx?g=9&ot=e&update=true&r=2033192118&LID=6d93d66cfbe0867d&_=1488511791401
     //http://a8197c.a36588.com/_view/All_WFHGen.ashx?g=9&ot=r&update=true&r=757267892&LID=b54b5d6983173114&_=1488512949361

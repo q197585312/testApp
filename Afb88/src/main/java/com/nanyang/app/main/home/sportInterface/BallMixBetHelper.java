@@ -25,7 +25,7 @@ public class BallMixBetHelper extends BallBetHelper<SportContract2.View> {
     public BallMixBetHelper(SportContract2.View baseView) {
         super(baseView);
     }
-
+//http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12147539&odds=18
     @Override
     public Disposable clickOdds(final TextView v, String url, final boolean isHf) {
         SoccerMixAdapterHelper.setMixBackground(v,baseView.getContextActivity());

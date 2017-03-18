@@ -22,7 +22,7 @@ public class SoccerOutRightState extends OutRightState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo(0,getBaseView().getContextActivity().getString(R.string.OutRight),"OutRight");
+        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.OutRight),"OutRight",getBaseView().getContextActivity().getString(R.string.football));
     }
 
     @Override

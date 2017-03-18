@@ -256,7 +256,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
                 break;
             case R.id.ll_mix_parlay_order:
                 Bundle bundle = new Bundle();
-                bundle.putSerializable(AppConstant.KEY_STRING, getTitle());
+                bundle.putSerializable(AppConstant.KEY_DATA, presenter.getStateHelper().getStateType());
                 skipAct(MixOrderListActivity.class, bundle);
                 break;
         }

@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface MixOrderListContract {
     interface View<T> extends IBaseView<T> {
-        void obtainListData(List<BettingParPromptBean.BetParBean> betInfo);
+        void obtainListData(BettingParPromptBean betInfo);
         void obtainBottomData(List<ClearanceBetAmountBean> clearanceBetAmountBeen);
     }
 
