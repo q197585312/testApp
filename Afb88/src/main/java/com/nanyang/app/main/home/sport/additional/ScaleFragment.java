@@ -16,6 +16,7 @@ import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
+import com.nanyang.app.main.home.sportInterface.BallCommonBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 import java.util.ArrayList;
@@ -150,6 +151,8 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> implements Sca
                         BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getSc(), "", item.getRows().get(1).getValue(),
                                 itemData.getHome(),   itemData.getAway(), item.getModuleTitle(), item.getRows().get(1).getOid() + "", "", 0, false, false);
                         pop.initData(info);
+
+                        BallCommonBetHelper helper1=new BallCommonBetHelper(this);
                     }
 
                 }

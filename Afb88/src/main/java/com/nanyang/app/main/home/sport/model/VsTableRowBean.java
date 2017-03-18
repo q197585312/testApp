@@ -1,12 +1,11 @@
 package com.nanyang.app.main.home.sport.model;
 
-import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2015/11/30.
  */
-public class VsTableRowBean implements Serializable {
+public class VsTableRowBean extends SportInfo {
     private String Sc;
     private String b;
     String ModuleTitle;
