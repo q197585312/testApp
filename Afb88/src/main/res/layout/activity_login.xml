@@ -71,7 +71,7 @@
                 android:drawableRight="@drawable/ic_perm_identity"
                 android:gravity="center_vertical"
                 android:hint="@string/Account"
-                android:text="demoafbAi1"
+                android:text="demoafbAi4"
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:textColorHint="@color/trans_white"
