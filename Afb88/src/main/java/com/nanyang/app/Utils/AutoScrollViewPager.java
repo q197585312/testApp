@@ -77,7 +77,7 @@ public class AutoScrollViewPager extends ViewPager {
             return false;
         }
     });
-    private int index = Integer.MAX_VALUE / 3;
+    private int index = 201;
     private Timer timer = new Timer();
     private TimerTask task;
 

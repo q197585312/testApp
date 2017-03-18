@@ -7,6 +7,7 @@ import com.nanyang.app.main.home.sport.model.ScaleBean;
 import com.unkonw.testapp.login.DataBean;
 import com.unkonw.testapp.login.ResBaseBean;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
@@ -123,4 +124,6 @@ public interface ApiService {
 
     @GET("_norm/AccHistory2.aspx?")
     Flowable<String> thisWeekBetList(@Query("role") String role, @Query("userName") String userName);
+    @GET("http://appgd88.com/images/afb88.php?app=afb88")
+    Flowable<List<String>> getBannerUrl();
 }

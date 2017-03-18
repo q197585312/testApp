@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -20,13 +21,22 @@ import com.nanyang.app.main.home.poker.PokerCasinoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
+
+import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 public class HomeFragment extends BaseFragment {
 
@@ -45,7 +55,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView() {
         super.initView();
-        initViewPager();
+        initBanner();
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(layoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
@@ -148,30 +158,42 @@ public class HomeFragment extends BaseFragment {
         });
     }
 
-    private List<Integer> lists;
-    private List<ImageView> views;
+    private List<String> lists;
 
     private void initViewPager() {
-        initBanner();
-        ViewPagerAdapter adapter = new ViewPagerAdapter(getResources(), views, lists, inLayout);
+        ViewPagerAdapter adapter = new ViewPagerAdapter(lists, inLayout, getActivity());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(viewPager.listener);
     }
 
     private void initBanner() {
-        lists = new ArrayList<>();
-        lists.add(R.mipmap.banner_h1);
-        lists.add(R.mipmap.banner_h2);
-        lists.add(R.mipmap.banner_h3);
-        lists.add(R.mipmap.banner_h4);
-        lists.add(R.mipmap.banner_h5);
-        lists.add(R.mipmap.banner_h6);
-        views = new ArrayList<>();
-        for (int i = 0; i < lists.size(); i++) {
-            ImageView img = new ImageView(mContext);
-            img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            views.add(img);
-        }
+        Disposable d = Api.getService(ApiService.class).getBannerUrl()
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Consumer<List<String>>() {
+                    @Override
+                    public void accept(List<String> strings) throws Exception {
+                        lists = strings;
+                        initViewPager();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+
+                    }
+                }, new Consumer<Subscription>() {
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        subscription.request(Integer.MAX_VALUE);
+                    }
+                });
+        CompositeDisposable compositeDisposable = new CompositeDisposable();
+        compositeDisposable.add(d);
     }
 
 }

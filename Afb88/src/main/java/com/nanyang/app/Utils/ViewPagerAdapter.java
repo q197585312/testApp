@@ -1,6 +1,6 @@
 package com.nanyang.app.Utils;
 
-import android.content.res.Resources;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
@@ -8,25 +8,25 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.nanyang.app.AfbUtils;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
-    private List<Integer> lists;
-    private List<ImageView> views;
-    private Resources resources;
+    private ArrayList<ImageView> reusableImgViews = new ArrayList<>();
+    private List<String> lists;
     public LinearLayout layout;
-    private int index;
     public int itemTrueAmount;
+    private Context context;
 
-    public ViewPagerAdapter(Resources resources, List<ImageView> views, List<Integer> lists, LinearLayout layout) {
+    public ViewPagerAdapter(List<String> lists, LinearLayout layout, Context context) {
         super();
-        this.views = views;
         this.lists = lists;
-        this.resources = resources;
         this.layout = layout;
         itemTrueAmount = lists.size();
+        this.context = context;
     }
 
     @Override
@@ -41,25 +41,34 @@ public class ViewPagerAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
-        index = position % lists.size();
-        ImageView view = views.get(index);
-        if(view.getParent()!=null)
-            ((ViewGroup)view.getParent()).removeView(view);
-        container.addView(view);
-        Bitmap b = AfbUtils.decodeSampledBitmapFromResource(resources, lists.get(index), 250, 250);
-        view.setImageBitmap(b);
-        if (b != null && b.isRecycled()) {
-            b.recycle();
-            b = null;
-            System.gc();
+        ImageView imgView;
+        if (reusableImgViews.size() == 0) {
+            imgView = new ImageView(context);
+            imgView.setScaleType(ImageView.ScaleType.CENTER_CROP);
+        } else {
+            imgView = reusableImgViews.remove(reusableImgViews.size() - 1);
         }
-        return view;
+
+        String url = lists.get(getBannerIndexOfPosition(position));
+        ImageLoader.getInstance().displayImage(url, imgView, displayImageOptions);
+        container.addView(imgView);
+        return imgView;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        index = position % lists.size();
-        View view = views.get(index);
-        container.removeView(view);
+        container.removeView((View) object);
+        reusableImgViews.add((ImageView) object);
     }
+
+    private int getBannerIndexOfPosition(int position) {
+        return position % lists.size();
+    }
+
+    private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
+            .cacheInMemory(true).cacheOnDisk(true)
+            .bitmapConfig(Bitmap.Config.RGB_565)
+            .resetViewBeforeLoading(true)
+            .considerExifParams(true)
+            .build();
 }
