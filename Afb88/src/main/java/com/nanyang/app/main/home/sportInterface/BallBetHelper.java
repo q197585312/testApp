@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sportInterface;
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.IBaseView;
 
@@ -19,8 +20,10 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/3/15.
  */
 
-public abstract class BallBetHelper<V extends IBaseView> implements IBetHelper {
+public abstract class BallBetHelper<B extends BallInfo,V extends IBaseView> implements IBetHelper<B> {
     protected V baseView;
+
+
 
     public CompositeDisposable getCompositeSubscription() {
         return compositeSubscription;

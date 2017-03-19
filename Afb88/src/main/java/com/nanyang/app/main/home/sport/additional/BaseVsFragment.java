@@ -2,10 +2,10 @@ package com.nanyang.app.main.home.sport.additional;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
-import android.widget.TextView;
 
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -24,9 +24,10 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     RecyclerView baseRc;
     BaseRecyclerAdapter<T> adapter;
     List<T> list;
-    @Bind(R.id.tv_mix_bet_count)
-    TextView tvMixBetCount;
-    protected boolean isMix;
+
+
+    protected IBetHelper betHelper;
+    protected BallInfo itemData;
 
     @Override
     public int onSetLayoutId() {
@@ -36,12 +37,6 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
-        isMix=((VsActivity)getActivity()).getMixParlay();
-        if(isMix){
-            tvMixBetCount.setVisibility(View.VISIBLE);
-        }else{
-            tvMixBetCount.setVisibility(View.GONE);
-        }
         baseRc.setLayoutManager(new LinearLayoutManager(mContext));
         list = new ArrayList<>();
         adapter = new BaseRecyclerAdapter<T>(mContext, list, onSetItemLayoutId()) {
@@ -51,17 +46,19 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
             }
         };
         baseRc.setAdapter(adapter);
+        itemData = (BallInfo)((VsActivity) getActivity()).getItem();
+        betHelper=((VsActivity)getActivity()).getHelper();
+        if(list!=null&&adapter!=null)
+            adapter.addAllAndClear(list);
+
     }
-
     protected abstract void convertItem(MyRecyclerViewHolder holder, int position, T item);
-
     protected abstract int onSetItemLayoutId();
-
     protected void setData(List<T> list) {
         this.list = list;
-        adapter.addAllAndClear(list);
+        if(adapter!=null)
+            adapter.addAllAndClear(list);
     }
-
     @Override
     public void onResume() {
         super.onResume();

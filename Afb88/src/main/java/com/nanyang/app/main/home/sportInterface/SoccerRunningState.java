@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sportInterface;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -54,9 +53,8 @@ public class SoccerRunningState extends SoccerCommonState {
     protected SoccerCommonAdapterHelper onSetCommonAdapterHelper() {
         return  new SoccerRunningAdapterHelper(getBaseView().getContextActivity());
     }
-
     @Override
-    protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds) {
-        return super.getOddsUrl(item, type, isHf, odds)+"&isRun=true";
+    protected IBetHelper onSetBetHelper() {
+        return new SoccerRunningBetHelper(getBaseView());
     }
 }

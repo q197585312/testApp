@@ -64,7 +64,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private Button footerCancelBtn;
     private ClearanceBetAmountBean selectedBean;
 
-    private BallBetHelper<MixOrderListContract.View> helper;
+    private BallBetHelper  helper;
     private MenuItemInfo<String> type;
 
     @Override
@@ -80,9 +80,9 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         tvToolbarTitle.setBackgroundResource(0);
         tvToolbarTitle.setText(R.string.MixParlay);
         type = (MenuItemInfo<String>)getIntent().getSerializableExtra(AppConstant.KEY_DATA);
-        helper = new BallBetHelper<MixOrderListContract.View>(this) {
+        helper =new BallBetHelper(this) {
             @Override
-            public Disposable clickOdds(TextView v, String url, boolean isHf) {
+            public Disposable clickOdds(Object item, String type, String odds, TextView v, boolean isHf) {
                 return null;
             }
         };
@@ -217,7 +217,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                 return;
             }
         } else {
-            http:
+
 //a8197c.a36588.com/_Bet/PanelBet.aspx?betType=X_par&odds=160.670744228768&amt=10&coupon=1&exRate=1
             //"PanelBet.aspx?betType=X_par&odds=160.670744228768",
             betUrl = AppConstant.HOST + "_bet/" + getApp().getBetParList().getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + getApp().getBetParList().getExRate();

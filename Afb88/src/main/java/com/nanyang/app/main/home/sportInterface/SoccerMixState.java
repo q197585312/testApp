@@ -69,8 +69,9 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
 
             @Override
             public void clickOdds(TextView v, SoccerMixInfo item, String type, boolean isHf, String odds) {
-                String url = getOddsUrl(item, type, isHf, odds);
-                SoccerMixState.this.clickOdds(v,url, isHf);
+                IBetHelper<SoccerMixInfo> helper = onSetBetHelper();
+                helper.setCompositeSubscription(mCompositeSubscription);
+                helper.clickOdds(item, type,odds,v,  isHf);
             }
 
             @Override
@@ -89,25 +90,11 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
     }
 
     @Override
-    protected IBetHelper onSetBetHelper() {
-        return new BallMixBetHelper(getBaseView());
+    protected IBetHelper<SoccerMixInfo> onSetBetHelper() {
+        return new SoccerMixBetHelper(getBaseView());
     }
 
-    //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12152396&odds=19.9
-    protected String getOddsUrl(SoccerMixInfo item, String type, boolean isHf, String odds) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.URL_ODDS);
-        stringBuilder.append("g=2");
-        stringBuilder.append("&b=" + type + "_par");
-        stringBuilder.append("&oId=");
-        if (isHf)
-            stringBuilder.append(item.getSocOddsId_FH());
-        else
-            stringBuilder.append(item.getSocOddsId());
-        stringBuilder.append("&odds=" + odds);
 
-        return stringBuilder.toString();
-    }
 
     @Override
     protected List<TableSportInfo<SoccerMixInfo>> updateJsonData(JSONArray dataListArray) throws JSONException {

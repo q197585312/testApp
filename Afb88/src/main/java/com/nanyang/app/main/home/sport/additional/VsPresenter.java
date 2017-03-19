@@ -7,7 +7,9 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
+import com.nanyang.app.main.home.sportInterface.BetView;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
+import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
 import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscription;
@@ -25,12 +27,12 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-class VsPresenter extends BaseRetrofitPresenter<ScaleBean, VsContract.View> implements VsContract.Presenter {
+class VsPresenter extends BaseRetrofitPresenter<ScaleBean, BetView<ScaleBean>> implements IBasePresenter {
     private String type;
     private BallInfo bean;
 
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
-    VsPresenter(VsContract.View view) {
+    VsPresenter(BetView view) {
         super(view);
     }
 
@@ -108,6 +110,11 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, VsContract.View> impl
                         if (allData != null) {
                             baseView.onGetData(allData);
                         }
+                    }
+                },new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseView.onFailed(throwable.getMessage());
                     }
                 });
         Logger.getDefaultLogger().d(getClass().getSimpleName(), "startUpdate---->");

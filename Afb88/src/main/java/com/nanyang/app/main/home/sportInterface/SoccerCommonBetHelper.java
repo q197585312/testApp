@@ -3,8 +3,10 @@ package com.nanyang.app.main.home.sportInterface;
 import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
+import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 
 import org.reactivestreams.Subscription;
 
@@ -20,16 +22,37 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/3/15.
  */
 
-public class BallCommonBetHelper extends BallBetHelper<SportContract2.View> {
+public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo,BetView> {
 
 
-    public BallCommonBetHelper(SportContract2.View baseView) {
+    public SoccerCommonBetHelper(BetView baseView) {
         super(baseView);
     }
 
-    @Override
-    public Disposable clickOdds(final TextView v, String url, final boolean isHf) {
 
+
+    private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
+        BetPop pop = new BetPop(baseView.getContextActivity(), v);
+        pop.setBetData(bean, this);
+        pop.setIsHf(isHf);
+        pop.showPopupCenterWindow();
+    }
+    protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append("gt=s");
+        stringBuilder.append("&b=" + type);
+        stringBuilder.append("&oId=" + item.getSocOddsId());
+        if (isHf)
+            stringBuilder.append("&isFH=true&oId_fh=" + item.getSocOddsId_FH());
+        stringBuilder.append("&odds=" + odds);
+
+        return stringBuilder.toString();
+    }
+
+    @Override
+    public Disposable clickOdds(SoccerCommonInfo item, String type, String odds, final TextView v, final boolean isHf) {
+        String url = getOddsUrl(item, type, isHf, odds);
         Disposable subscribe = getService(ApiService.class).getBetData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingPromptBean>() {//onNext
                     @Override
@@ -58,12 +81,4 @@ public class BallCommonBetHelper extends BallBetHelper<SportContract2.View> {
             compositeSubscription.add(subscribe);
         return subscribe;
     }
-
-    private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
-        BetPop pop = new BetPop(baseView.getContextActivity(), v);
-        pop.setBetData(bean, this);
-        pop.setIsHf(isHf);
-        pop.showPopupCenterWindow();
-    }
-
 }

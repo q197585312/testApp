@@ -1,9 +1,7 @@
 package com.nanyang.app.main.home.sport.basketball;
 
-import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.ApiSport;
 import com.nanyang.app.main.home.sport.SportContract;
 import com.nanyang.app.main.home.sport.SportPresenter;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
@@ -22,8 +20,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.Flowable;
-
 
 public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
 
@@ -31,16 +27,6 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
         super(view);
     }
 
-
-    @Override
-    public ApiSport createRetrofitApi() {
-        return new ApiSport() {
-            @Override
-            public Flowable<String> getData(String url) {
-                return applySchedulers(getService(ApiService.class).getData(url));
-            }
-        };
-    }
 
 
     boolean isItemCollection(MatchBean item) {

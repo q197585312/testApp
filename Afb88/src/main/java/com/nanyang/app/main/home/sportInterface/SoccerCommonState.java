@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sportInterface;
 import android.view.View;
 import android.widget.TextView;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
@@ -60,8 +59,9 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
 
             @Override
             public void clickOdds(TextView v, SoccerCommonInfo item, String type, boolean isHf, String odds) {
-                String url = getOddsUrl(item, type, isHf, odds);
-                SoccerCommonState.this.clickOdds(v, url, isHf);
+                IBetHelper helper = onSetBetHelper();
+                helper.setCompositeSubscription(mCompositeSubscription);
+                helper.clickOdds(item, type,odds,v,  isHf);
             }
 
             @Override
@@ -85,22 +85,11 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
 
     @Override
     protected IBetHelper onSetBetHelper() {
-        return new BallCommonBetHelper(getBaseView());
+        return new SoccerCommonBetHelper(getBaseView());
     }
 
     //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?gt=s&b=under&oId=12159615&oId_fh=12159616&isFH=true&isRun=true&odds=4.70
-    protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.URL_ODDS);
-        stringBuilder.append("gt=s");
-        stringBuilder.append("&b=" + type);
-        stringBuilder.append("&oId=" + item.getSocOddsId());
-        if (isHf)
-            stringBuilder.append("&isFH=true&oId_fh=" + item.getSocOddsId_FH());
-        stringBuilder.append("&odds=" + odds);
 
-        return stringBuilder.toString();
-    }
 
 
     protected abstract SoccerCommonAdapterHelper onSetCommonAdapterHelper();

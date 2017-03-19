@@ -1,11 +1,9 @@
 package com.nanyang.app.main.home.sport.additional;
 
 import android.view.View;
-import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.dialog.BetBasePop;
-import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -52,8 +50,10 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
         helper.setClickLisenter(R.id.vs_row_content_tv12, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (item.getRows().get(0).getValue() != null && (!item.getRows().get(0).getValue().equals(""))) {
-                    BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(0).getValue(),(TextView) v,false);
+                   /* BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
                     pop.showPopupCenterWindow();
                     BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getRows().get(0).getSc(), "", item.getRows().get(0).getValue(),
                             "", "", item.getModuleTitle(), item.getRows().get(0).getOid() + "", "", 0, false, false);
@@ -62,7 +62,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
                         info = new BettingInfoBean("s", item.getB(), item.getRows().get(0).getSc(), "", item.getRows().get(0).getValue(),
                                 "", "", item.getModuleTitle(), item.getRows().get(0).getOid() + "", item.getRows().get(0).getOid() + "", 1, false, false);
                     }
-                    pop.initData(info);
+                    pop.initData(info);*/
                 }
             }
         });
@@ -70,7 +70,8 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(1).getValue() != null && (!item.getRows().get(1).getValue().equals(""))) {
-                    BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(1).getValue(),(TextView) v,false);
+                    /*BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
                     pop.showPopupCenterWindow();
                     BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getRows().get(1).getSc(), "", item.getRows().get(1).getValue(),
                             "", "", item.getModuleTitle(), item.getRows().get(1).getOid() + "", "", 0, false, false);
@@ -79,7 +80,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
                         info = new BettingInfoBean("s", item.getB(), item.getRows().get(1).getSc(), "", item.getRows().get(1).getValue(),
                                 "", "", item.getModuleTitle(), item.getRows().get(1).getOid() + "", item.getRows().get(1).getOid() + "", 1, false, false);
                     }
-                    pop.initData(info);
+                    pop.initData(info);*/
                 }
             }
         });
@@ -87,7 +88,8 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(2).getValue() != null && (!item.getRows().get(2).getValue().equals(""))) {
-                    BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
+                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(2).getValue(),(TextView) v,true);
+                    /*BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
                     pop.showPopupCenterWindow();
                     BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getRows().get(2).getSc(), "", item.getRows().get(2).getValue(),
                             "", "", item.getModuleTitle(), item.getRows().get(2).getOid() + "", "", 0, false, false);
@@ -96,7 +98,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
                         info = new BettingInfoBean("s", item.getB(), item.getRows().get(2).getSc(), "", item.getRows().get(2).getValue(),
                                 "", "", item.getModuleTitle(), item.getRows().get(2).getOid() + "", item.getRows().get(2).getOid() + "", 1, false, false);
                     }
-                    pop.initData(info);
+                    pop.initData(info);*/
                 }
             }
         });

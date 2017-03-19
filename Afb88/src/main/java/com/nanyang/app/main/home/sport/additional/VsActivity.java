@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.additional;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -14,27 +15,36 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
+import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
 import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
+import com.nanyang.app.main.home.sportInterface.BetView;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.nanyang.app.main.home.sportInterface.SoccerCommonBetHelper;
+import com.nanyang.app.main.home.sportInterface.SoccerMixBetHelper;
+import com.nanyang.app.main.home.sportInterface.SoccerRunningBetHelper;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.indicator.PagerSlidingTabStrip;
+import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
 /**
  * Created by Administrator on 2015/10/22.
  */
-public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsContract.View {
+public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetView<ScaleBean> {
     @Bind(R.id.vs_time_tv)
     TextView vsTimeTv;
     @Bind(R.id.ballgame_tabs_pstabs)
@@ -43,17 +53,26 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
     ViewPager ballgamePagerVp;
     @Bind(R.id.ballgame_bottom_ll)
     LinearLayout ballgameBottomLl;
+    @Bind(R.id.tv_mix_parlay_order)
+    TextView tvMixParlayOrder;
+    @Bind(R.id.ll_mix_parlay_order)
+    LinearLayout llMixParlayOrder;
+
 
     private BallInfo item;
     private String matchType;
-    private ScaleFragment sf= new ScaleFragment();
+    private ScaleFragment sf = new ScaleFragment();
     private BetSingleDoubleFragment bf = new BetSingleDoubleFragment();
-    private CorrectFragment cf= new CorrectFragment();
+    private CorrectFragment cf = new CorrectFragment();
+
+    public boolean isMixParlay() {
+        return isMixParlay;
+    }
 
     private boolean isMixParlay = false;
     private String url = "";
     private ArrayList<BaseVsFragment> fragmentsList;
-    List< List<VsTableRowBean> > datas=new ArrayList();
+    List<List<VsTableRowBean>> datas = new ArrayList();
 
     public MenuItemInfo<String> getType() {
         return type;
@@ -61,27 +80,47 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
 
     private MenuItemInfo<String> type;
 
+    public IBetHelper getHelper() {
+        return helper;
+    }
+
+    IBetHelper helper;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vs);
+        ButterKnife.bind(this);
     }
+
     @Override
     public void initData() {
         super.initData();
         toolbar.setNavigationIcon(null);
         item = (BallInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA2);
+
         matchType = type.getType();
         isMixParlay = type.getRes() == 1;
+        String parent = type.getParent();
+        String football = getString(R.string.football);
+        if (parent.equals(football)) {
+            if (isMixParlay) {
+                helper = new SoccerMixBetHelper(this);
+            } else {
+                helper = new SoccerCommonBetHelper(this);
+                if (matchType.equals("Running"))
+                    helper = new SoccerRunningBetHelper(this);
+            }
+        }
+
         assert tvToolbarTitle != null;
         tvToolbarTitle.setBackgroundResource(0);
         tvToolbarTitle.setText(item.getHome() + "  VS  " + item.getAway());
         tvToolbarTitle.setTextSize(12);
         ViewGroup.LayoutParams layoutParams = tvToolbarTitle.getLayoutParams();
-        layoutParams.width= Toolbar.LayoutParams.MATCH_PARENT;
+        layoutParams.width = Toolbar.LayoutParams.MATCH_PARENT;
         vsTimeTv.setText(item.getMatchDate());
-//        tvToolbarTitle.setText(item.getMatchDate());
 
         fragmentsList = new ArrayList<>();
 
@@ -91,7 +130,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
         createPresenter(new VsPresenter(this));
         if (isMixParlay) {
             fragmentsList.add(sf);
-            initFirstData((SoccerMixInfo)item);
+            initFirstData((SoccerMixInfo) item);
         } else {
             fragmentsList.add(sf);
             fragmentsList.add(bf);
@@ -136,54 +175,6 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
         this.isMixParlay = mixParlay;
     }
 
-/*    http://mobilesport.dig88api.com/_view/MoreBet_App.aspx?oId=9070882&home=Arsenal&away=DinamoZagreb&moduleTitle=UEFACHAMPIONSLEAGUE&date=03:45AM&isRun=false&t=1448371159386
-    Oid 全场id
-    Home 主队名
-    Away 客队名
-    ModuleTitle 联赛名
-
-    Date MatchDate(比赛时间)
-
-    IsRun 是否为Running
-    isRun!=true时,
-
-    有HalfTimeFullTime(HTFT)数据出现*/
-
-  /*  private void getData() {
-        if (isMixParlay) {
-            initFirstData(item.getOtherDataBean());
-        } else {
-            presenter.scale(item,matchType);
-            helper = new TableHttpHelper<ScaleBean>(mContext, new View(mContext), new ThreadEndT<ScaleBean>(new TypeToken<ScaleBean>() {
-            }.getType()) {
-                @Override
-                public void endT(ScaleBean result, int model) {
-
-                }
-
-                @Override
-                public void endString(String result, int model) {
-                    if (result != null && !result.equals("")) {
-                        ScaleBean end = new Gson().fromJson(result, new TypeToken<ScaleBean>() {
-                        }.getType());
-                        if (end != null)
-                            endT(end, model);
-                    }
-                }
-
-                @Override
-                public void endError(String error) {
-                    Toast.makeText(mContext, error, Toast.LENGTH_SHORT).show();
-                }
-            });
-            boolean isRunning = false;
-            if (matchType.equals("Running"))
-                isRunning = true;
-            url = WebSiteUrl.SportUrl + "_view/MoreBet_App.aspx?oId=" + item.getHandicapBeans().get(0).getSocOddsId() + "&home=" + StringUtils.URLEncode(item.getHome()) + "&away=" + StringUtils.URLEncode(item.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(item.getLeagueBean().getModuleTitle()) + "&date=" + StringUtils.URLEncode(item.getMatchDate()) + "&isRun=" + isRunning;
-            helper.getData(url + "&t=" + System.currentTimeMillis(), "", TableDataHelper.ModelType.Running);
-        }
-    }*/
-
     private void initFirstData(SoccerMixInfo item) {
         List<VsTableRowBean> rows = new ArrayList<VsTableRowBean>();
         int socOddsId_hf = 0;
@@ -192,13 +183,14 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
             socOddsId_hf = Integer.valueOf(item.getSocOddsId_FH());
         if (item.getSocOddsId() != null && !item.getSocOddsId().equals(""))
             socOddsId = Integer.valueOf(item.getSocOddsId());
-        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(getString(R.string.h1), "", 0), new VsCellBean("", item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getX12_1Odds_FH(), socOddsId_hf)), true, false, "1  x  2", getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
-                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(getString(R.string.dx), "", 0), new VsCellBean("", item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getX12_XOdds_FH(), socOddsId_hf))),
-                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getX12_2Odds(), socOddsId), new VsCellBean("", item.getX12_2Odds_FH(), socOddsId_hf)), true),
-                new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", item.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
-                new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
+        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(getString(R.string.h1), "", 0), new VsCellBean("", item.getHasX12().equals("0")?"":item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0")?"":item.getX12_1Odds_FH(), socOddsId_hf)), true, false, "1  x  2", getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
+                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(getString(R.string.dx), "", 0), new VsCellBean("", item.getHasX12().equals("0")?"":item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0")?"":item.getX12_XOdds_FH(), socOddsId_hf))),
+                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getHasX12().equals("0")?"":item.getX12_2Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0")?"":item.getX12_2Odds_FH(), socOddsId_hf)), true),
+                new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", item.getHasOE().equals("0")?"":item.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), getString(R.string.against), getString(R.string.full_time), getString(R.string.half_time)),
+                new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getHasOE().equals("0")?"":item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
         datas.add(rows);
         sf.setData(rows);
+
 
     }
 
@@ -228,6 +220,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
                 new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:3", result.getFHCS().getC4_3(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:3", result.getFHCS().getC3_4(), result.getFHCS().getOid())), true));
         datas.add(rows);
         cf.setData(rows);
+
     }
 
     private void secondFragmentData(ScaleBean result) {
@@ -241,6 +234,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
                         new VsCellBean("", "", 0), new VsCellBean("7 & OVER", result.getTG().getT7_OVER(), "70", result.getTG().getOid())), true, true, getString(R.string.total_goals), "", "", ""));
         datas.add(rows);
         bf.setData(rows);
+
 
     }
 
@@ -283,10 +277,16 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
         thirdFragmentData(data);
     }
 
-    @OnClick({R.id.tv_back, R.id.tv_not_settled, R.id.tv_settled})
+    @OnClick({R.id.tv_back, R.id.tv_not_settled, R.id.tv_settled,R.id.ll_mix_parlay_order})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_back:
+                finish();
+                break;
+            case R.id.ll_mix_parlay_order:
+                Bundle b = new Bundle();
+                b.putSerializable(AppConstant.KEY_DATA, type);
+                skipAct(MixOrderListActivity.class, b);
                 finish();
                 break;
             case R.id.tv_not_settled:
@@ -297,4 +297,31 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements VsCo
                 break;
         }
     }
+
+    @Override
+    public Activity getContextActivity() {
+        return this;
+    }
+
+    @Override
+    public void onUpdateMixSucceed(BettingParPromptBean bean) {
+        getApp().setBetParList(bean);
+        if (getApp().getBetParList() != null && getApp().getBetParList().getBetPar() != null && getApp().getBetParList().getBetPar().size() > 0) {
+            tvMixParlayOrder.setText("" + getApp().getBetParList().getBetPar().size());
+            llMixParlayOrder.setVisibility(View.VISIBLE);
+
+        } else {
+            tvMixParlayOrder.setText("0");
+            llMixParlayOrder.setVisibility(View.GONE);
+        }
+
+    }
+
+    @Override
+    public void onPopupWindowCreated(BasePopupWindow pop, int center) {
+        createPopupWindow(pop);
+        popWindow.showPopupGravityWindow(center, 0, 0);
+    }
+
+
 }

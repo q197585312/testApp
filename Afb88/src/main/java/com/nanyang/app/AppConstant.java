@@ -16,7 +16,8 @@ public class AppConstant {
     public static String KEY_DATA="KEY_DATA";
     public static String KEY_INT="KEY_INT";
     public static String KEY_BOOLEAN="KEY_BOOLEAN";
-    public static final String KEY_DATA2 = "KEY_DATA";
+    public static final String KEY_DATA2 = "KEY_DATA2";
+    public static final String KEY_DATA3 = "KEY_DATA3";
     /**
      * http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462
      RUNING

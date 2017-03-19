@@ -52,7 +52,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
         tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 80);
         tvToolbarTitle.getLayoutParams().height = DeviceUtils.dip2px(mContext, 40);
-        startUpdateState();
+//        startUpdateState();
     }
 
     void stopUpdateState() {
@@ -64,7 +64,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     public void startUpdateState() {
         stopUpdateState();
-        updateDisposable = Flowable.interval(2, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
+        updateDisposable = Flowable.interval(2, 30, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
             @Override
             public Publisher<String> apply(Long aLong) throws Exception {
 
@@ -79,7 +79,12 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                     public void accept(String allData) throws Exception {
 
                     }
-                });
+                },new Consumer<Throwable>() {//错误
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+                               }
+                           }
+                );
     }
 
 

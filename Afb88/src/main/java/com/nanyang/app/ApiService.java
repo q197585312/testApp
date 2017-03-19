@@ -80,7 +80,7 @@ public interface ApiService {
 
     //http://a8197c.a36588.com/main.aspx
     @GET("http://a8197c.a36588.com/main.aspx")
-    Flowable<String> main();
+    Flowable<String> main() ;
 
 
     @GET

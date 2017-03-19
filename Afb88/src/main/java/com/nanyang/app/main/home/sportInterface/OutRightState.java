@@ -174,6 +174,6 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract2
 
     @Override
     protected IBetHelper onSetBetHelper() {
-        return new BallCommonBetHelper(getBaseView());
+        return new SoccerCommonBetHelper(getBaseView());
     }
 }

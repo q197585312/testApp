@@ -231,12 +231,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);
     }
 
-    public void clickOdds(TextView v, String url, boolean isHf) {
-        IBetHelper helper = onSetBetHelper();
-        helper.setCompositeSubscription(mCompositeSubscription);
-        helper.clickOdds(v, url, isHf);
-    }
-
     protected abstract IBetHelper onSetBetHelper();
 
 
@@ -374,8 +368,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
                         if (allData != null && allData.size() > 0) {
                             updateAllDate(allData);
                         }
-
-
+                    }
+                },new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseView.onFailed(throwable.getMessage());
                     }
                 });
         mCompositeSubscription.add(updateDisposable);

@@ -17,6 +17,7 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
 import okhttp3.Interceptor;
@@ -119,12 +120,12 @@ public class Api {
     public  <T > Flowable<T> applySchedulers(Flowable<T> responseObservable) {
         return responseObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-             /*   .flatMap(new Function<T, Flowable<T>>() {
+                .flatMap(new Function<T, Flowable<T>>() {
                     @Override
                     public Flowable<T> apply(T tResponse) throws Exception {
                         return flatResponse(tResponse);
                     }
-                })*/
+                })
                 ;
     }
 

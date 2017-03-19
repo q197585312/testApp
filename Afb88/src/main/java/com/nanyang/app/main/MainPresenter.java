@@ -18,10 +18,7 @@ class MainPresenter extends BaseRetrofitPresenter<String, MainContract.View> imp
         super(view);
     }
 
-    @Override
-    public ApiMain createRetrofitApi() {
-        return new ApiMain();
-    }
+
 
 
 
