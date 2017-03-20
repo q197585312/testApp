@@ -17,9 +17,5 @@
         android:textColor="@color/white"
         android:maxLines="1"
         android:textSize="14sp" />
-    <View
-        android:layout_marginTop="5dp"
-        android:layout_width="match_parent"
-        android:layout_height="0.6dp"
-        android:background="@color/black_grey"/>
+    <include layout="@layout/item_line_with_no_margin"/>
 </LinearLayout>
