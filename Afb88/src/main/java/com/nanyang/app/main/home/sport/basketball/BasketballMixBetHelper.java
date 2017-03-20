@@ -4,10 +4,10 @@ import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.dialog.BetPop;
+import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sportInterface.BallBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
-import com.nanyang.app.main.home.sportInterface.SoccerMixAdapterHelper;
 
 import org.reactivestreams.Subscription;
 
@@ -29,21 +29,21 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
     public BasketballMixBetHelper(BetView baseView) {
         super(baseView);
     }
-//http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12147539&odds=18
-
+//http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=10&b=odd&oId=12264769&odds=9.4
+//    http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=10&b=away&oId=12264970&odds=9
     @Override
-    public Disposable clickOdds(BasketballMixInfo item, String type, String odds, final TextView v, boolean isHf) {
-        SoccerMixAdapterHelper.setMixBackground(v, baseView.getContextActivity());
-        Disposable subscribe = getService(ApiService.class).updateMixParlayBet(getOddsUrl(item, type, isHf, odds)).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingParPromptBean>() {//onNext
+    public Disposable clickOdds(BasketballMixInfo item, String type, String odds, final TextView v, final boolean isHf) {
+
+        String url = getOddsUrl(item, type, isHf, odds);
+        Disposable subscribe = getService(ApiService.class).getBetData(url).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingPromptBean>() {//onNext
                     @Override
-                    public void accept(BettingParPromptBean bean) throws Exception {
-                        baseView.onUpdateMixSucceed(bean);
+                    public void accept(BettingPromptBean bean) throws Exception {
+                        createBetPop(bean, isHf, v);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        SoccerMixAdapterHelper.setCommonBackground(v, baseView.getContextActivity());
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().hideLoadingDialog();
                     }
@@ -63,8 +63,13 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
             compositeSubscription.add(subscribe);
         return subscribe;
     }
-
-    //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12152396&odds=19.9
+    private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
+        BetPop pop = new BetPop(baseView.getContextActivity(), v);
+        pop.setBetData(bean, this);
+        pop.setIsHf(isHf);
+        pop.showPopupCenterWindow();
+    }
+    //http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=10&b=odd&oId=12264769&odds=9.4
     protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);

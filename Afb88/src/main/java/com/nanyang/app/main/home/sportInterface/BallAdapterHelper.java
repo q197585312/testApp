@@ -173,66 +173,84 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     public View scrollChild(boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
-        return scrollChild(isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "", false, "", "", "", "", "", "");
+        return scrollChild(isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "",true,true, false, "", "", "", "", "", "");
     }
 
-    public View scrollChild(boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds,
-                            String homeOddsType, String awayOddsType, String overOddsType, String underOddsType) {
-        return scrollChild(isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, homeOddsType, awayOddsType, overOddsType, underOddsType, false, "", "", "", "", "", "");
-    }
 
     public View scrollChild(boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds, String homeOddsType, String awayOddstype, String overOddsType, String underOddsType
-            , boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
+            ,boolean hapVisiable,boolean ouVisiable, boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
         LayoutInflater from = LayoutInflater.from(context);
         View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null, false);
         ViewHolder holder = new ViewHolder(vp);
-        if (hasHdp.equals("0")) {
-            holder.viewpagerMatchHomeHdpTv.setText("");
-            holder.viewpagerMatchHomeHdpoddsTv.setText("");
-            holder.viewpagerMatchVisitHdpTv.setText("");
-            holder.viewpagerMatchVisitHdpoddsTv.setText("");
-        } else {
-            String hdpS = changeValueF(hdp);
-            if (isHomeGive.equals("1")) {
-                holder.viewpagerMatchVisitHdpTv.setText("");
-                holder.viewpagerMatchHomeHdpTv.setText(hdpS);
-            } else {
-                holder.viewpagerMatchVisitHdpTv.setText(hdpS);
+        if(hapVisiable) {
+            holder.viewpagerMatchHomeHdpTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchHomeHdpoddsTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchVisitHdpTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchVisitHdpoddsTv.setVisibility(View.VISIBLE);
+            if (hasHdp.equals("0")) {
                 holder.viewpagerMatchHomeHdpTv.setText("");
+                holder.viewpagerMatchHomeHdpoddsTv.setText("");
+                holder.viewpagerMatchVisitHdpTv.setText("");
+                holder.viewpagerMatchVisitHdpoddsTv.setText("");
+            } else {
+                String hdpS = changeValueF(hdp);
+                if (isHomeGive.equals("1")) {
+                    holder.viewpagerMatchVisitHdpTv.setText("");
+                    holder.viewpagerMatchHomeHdpTv.setText(hdpS);
+                } else {
+                    holder.viewpagerMatchVisitHdpTv.setText(hdpS);
+                    holder.viewpagerMatchHomeHdpTv.setText("");
+                }
+                boolean isAnimation = false;
+                if (isHdpNew.equals("1"))
+                    isAnimation = true;
+                else
+                    isAnimation = false;
+                if (homeHdpOdds.equals(""))
+                    homeHdpOdds = "home";
+                if (awayOddstype.equals(""))
+                    awayOddstype = "away";
+                setValue(item, holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation, homeHdpOdds, isFh);
+                setValue(item, holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation, awayOddstype, isFh);
             }
-            boolean isAnimation = false;
-            if (isHdpNew.equals("1"))
-                isAnimation = true;
-            else
-                isAnimation = false;
-            if (homeHdpOdds.equals(""))
-                homeHdpOdds = "home";
-            if (awayOddstype.equals(""))
-                awayOddstype = "away";
-            setValue(item, holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation, homeHdpOdds, isFh);
-            setValue(item, holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation, awayOddstype, isFh);
+        }else{
+            holder.viewpagerMatchHomeHdpTv.setVisibility(View.GONE);
+            holder.viewpagerMatchHomeHdpoddsTv.setVisibility(View.GONE);
+            holder.viewpagerMatchVisitHdpTv.setVisibility(View.GONE);
+            holder.viewpagerMatchVisitHdpoddsTv.setVisibility(View.GONE);
         }
-        if (hasOU.equals("0") || hasOU.equals("")) {
-            holder.viewpagerMatchOuTv.setText("");
-            holder.viewpagerMatchOu2Tv.setText("");
-            holder.viewpagerMatchOveroddsTv.setText("");
-            holder.viewpagerMatchUnderoddsTv.setText("");
+        if(ouVisiable) {
+            holder.viewpagerMatchOuTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchOu2Tv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchOveroddsTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchUnderoddsTv.setVisibility(View.VISIBLE);
+            if (hasOU.equals("0") || hasOU.equals("")) {
+                holder.viewpagerMatchOuTv.setText("");
+                holder.viewpagerMatchOu2Tv.setText("");
+                holder.viewpagerMatchOveroddsTv.setText("");
+                holder.viewpagerMatchUnderoddsTv.setText("");
 
-        } else {
-            String ouf = changeValueF(ou);
-            holder.viewpagerMatchOuTv.setText(ouf);
-            holder.viewpagerMatchOu2Tv.setText("");
-            boolean isAnimation = false;
-            if (isOUNew.equals("1"))
-                isAnimation = true;
-            if (overOddsType.equals(""))
-                overOddsType = "over";
-            if (underOddsType.equals(""))
-                underOddsType = "under";
-            setValue(item, holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation, underOddsType, isFh);
-            setValue(item, holder.viewpagerMatchOveroddsTv, overOdds, isAnimation, overOddsType, isFh);
+            } else {
+                String ouf = changeValueF(ou);
+                holder.viewpagerMatchOuTv.setText(ouf);
+                holder.viewpagerMatchOu2Tv.setText("");
+                boolean isAnimation = false;
+                if (isOUNew.equals("1"))
+                    isAnimation = true;
+                if (overOddsType.equals(""))
+                    overOddsType = "over";
+                if (underOddsType.equals(""))
+                    underOddsType = "under";
+                setValue(item, holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation, underOddsType, isFh);
+                setValue(item, holder.viewpagerMatchOveroddsTv, overOdds, isAnimation, overOddsType, isFh);
+            }
         }
-
+        else{
+            holder.viewpagerMatchOuTv.setVisibility(View.GONE);
+            holder.viewpagerMatchOu2Tv.setVisibility(View.GONE);
+            holder.viewpagerMatchOveroddsTv.setVisibility(View.GONE);
+            holder.viewpagerMatchUnderoddsTv.setVisibility(View.GONE);
+        }
         if (oeVisiable) {
             holder.viewpagerOddLabelTv.setVisibility(View.VISIBLE);
             holder.viewpagerEvenLabelTv.setVisibility(View.VISIBLE);

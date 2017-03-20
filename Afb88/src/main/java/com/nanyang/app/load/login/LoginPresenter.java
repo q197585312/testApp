@@ -2,6 +2,7 @@ package com.nanyang.app.load.login;
 
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -65,6 +66,9 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                             Matcher m=p.matcher(s);
                             if(m.find()){
                                 String url=m.group(1);
+//                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
+                                String host=url.substring(0,url.indexOf("/",9));
+                                AppConstant.HOST=host+"/";
                                 return getService(ApiService.class).timerRun2(url);
                             }
                             return null;
@@ -86,7 +90,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                     }, new Consumer<Throwable>() {//错误
                         @Override
                         public void accept(Throwable throwable) throws Exception {
-                            baseView.onFailed(throwable.getMessage());
+                            baseView.onFailed(throwable.getLocalizedMessage());
                             baseView.hideLoadingDialog();
                         }
                     }, new Action() {//完成

@@ -8,6 +8,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sportInterface.BallAdapterHelper;
+import com.nanyang.app.main.home.sportInterface.SoccerHeaderContent;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -32,7 +33,7 @@ import com.unkonw.testapp.training.ScrollLayout;
  * "Test2": "testing2"
  * }
  */
-IP地址 47.90.73.65 端口15611 密码ff6a3p
+
 public class BasketballMixAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
 
 
@@ -57,7 +58,9 @@ public class BasketballMixAdapterHelper extends BallAdapterHelper<BasketballMixI
                 }
 
             }
-        scrollChild()
+        View ov12=scrollChild(false, item,item.getIsHomeGive() , item.getHasX12(),"", item.getHasOE(), "", item.getIsX12New() , "","", "", item.getX12_1Odds(), item.getX12_2Odds(), "1",  "2", "", ""
+            ,true,false , true,  item.getHasOE(),  item.getIsOENew(),  item.getOddOdds(),  item.getEvenOdds(),  "odd",  "even");
+        sl.addView(ov12, SoccerHeaderContent.layoutParams);
 
     }
 

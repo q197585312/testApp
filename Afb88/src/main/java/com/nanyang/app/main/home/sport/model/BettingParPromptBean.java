@@ -31,6 +31,7 @@ public class BettingParPromptBean {
      * MoreBetUrl :
      * Test : testing
      */
+
 /*
 * */
     @SerializedName("BetType")

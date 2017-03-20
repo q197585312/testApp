@@ -51,7 +51,8 @@ public class BasketballCommonBetHelper extends BallBetHelper<BasketballCommonInf
 
         return stringBuilder.toString();
     }
-
+//    http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=9&b=home&oId=12264737&odds=9.6
+    //http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=9&b=even&oId=12264963&oId_fh=12264964&odds=9.4&isFH=true
     @Override
     public Disposable clickOdds(BasketballCommonInfo item, String type, String odds, final TextView v, final boolean isHf) {
         String url = getOddsUrl(item, type, isHf, odds);

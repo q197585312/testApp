@@ -29,7 +29,7 @@ public class BasketballEarlyMixState extends BasketballMixState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_EARLY_Mix;
+        return AppConstant.URL_BASKETBALL_EARLY_Mix;
     }
 
     @Override
