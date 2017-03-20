@@ -26,24 +26,28 @@
                 android:background="@null"
                 android:hint="@string/Account"
                 android:maxLines="1"
+                android:paddingBottom="2dp"
+                android:paddingRight="8dp"
+                android:paddingTop="10dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
 
-            <include layout="@layout/item_line_with" />
+            <include layout="@layout/item_line_with_no_margin" />
 
             <TextView
                 android:id="@+id/tv_account_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginTop="20px"
                 android:text=""
                 android:textColor="@color/black_grey"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <EditText
+                android:paddingTop="15dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="8dp"
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -57,19 +61,20 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
 
-            <include layout="@layout/item_line_with" />
+            <include layout="@layout/item_line_with_no_margin" />
 
             <TextView
                 android:id="@+id/tv_password_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginTop="20px"
                 android:text=""
                 android:textColor="@color/black_grey"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <EditText
+                android:paddingTop="15dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="8dp"
                 android:id="@+id/edt_password_repeat"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -83,20 +88,21 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
 
-            <include layout="@layout/item_line_with" />
+            <include layout="@layout/item_line_with_no_margin" />
 
             <TextView
                 android:id="@+id/tv_password_repeat_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginTop="20px"
                 android:text=""
                 android:textColor="@color/black_grey"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
 
             <TextView
+                android:paddingTop="15dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="8dp"
                 android:id="@+id/tv_currency"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -108,19 +114,20 @@
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
-            <include layout="@layout/item_line_with" />
+            <include layout="@layout/item_line_with_no_margin" />
 
             <TextView
                 android:id="@+id/tv_currency_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginTop="20px"
                 android:text=""
                 android:textColor="@color/black_grey"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <EditText
+                android:paddingTop="15dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="8dp"
                 android:id="@+id/edt_contactnum"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -134,19 +141,20 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
 
-            <include layout="@layout/item_line_with" />
+            <include layout="@layout/item_line_with_no_margin" />
 
             <TextView
                 android:id="@+id/tv_contactnum_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginTop="20px"
                 android:text=""
                 android:textColor="@color/black_grey"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <EditText
+                android:paddingTop="15dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="8dp"
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -160,19 +168,20 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
 
-            <include layout="@layout/item_line_with" />
+            <include layout="@layout/item_line_with_no_margin" />
 
             <TextView
                 android:id="@+id/tv_email_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginTop="20px"
                 android:text=""
                 android:textColor="@color/black_grey"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <TextView
+                android:paddingTop="15dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="8dp"
                 android:id="@+id/tv_bankname"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -185,17 +194,15 @@
                 android:textColor="@color/black"
                 android:textSize="17sp" />
 
-            <include layout="@layout/item_line_with" />
+            <include layout="@layout/item_line_with_no_margin" />
 
             <TextView
                 android:id="@+id/tv_bankname_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginTop="20px"
                 android:text=""
                 android:textColor="@color/black_grey"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <EditText
                 android:id="@+id/edt_accountname"
@@ -206,24 +213,28 @@
                 android:hint="Account Name"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:paddingBottom="2dp"
+                android:paddingRight="8dp"
+                android:paddingTop="15dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
 
-            <include layout="@layout/item_line_with" />
+            <include layout="@layout/item_line_with_no_margin" />
 
             <TextView
                 android:id="@+id/tv_accountname_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginTop="20px"
                 android:text=""
                 android:textColor="@color/black_grey"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <EditText
+                android:paddingTop="15dp"
+                android:paddingBottom="2dp"
+                android:paddingRight="8dp"
                 android:id="@+id/edt_accountnumber"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -237,17 +248,15 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
 
-            <include layout="@layout/item_line_with" />
+            <include layout="@layout/item_line_with_no_margin" />
 
             <TextView
                 android:id="@+id/tv_accountnumber_prompt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="20px"
-                android:layout_marginTop="20px"
                 android:text=""
                 android:textColor="@color/black_grey"
-                android:visibility="invisible" />
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btn_submit"
