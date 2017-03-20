@@ -15,7 +15,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.SportPresenter;
-import com.nanyang.app.main.home.sport.basketball.BasketballPresenter;
+import com.nanyang.app.main.home.sport.basketball.BasketballPresenterOld;
 import com.nanyang.app.main.home.sport.dialog.BetBasePop;
 import com.nanyang.app.main.home.sport.financial.FinancialPresenter;
 import com.nanyang.app.main.home.sport.football.FootballPresenter;
@@ -23,7 +23,7 @@ import com.nanyang.app.main.home.sport.game4d.Game4dPresenter;
 import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
-import com.nanyang.app.main.home.sport.tennis.TennisPresenter;
+import com.nanyang.app.main.home.sport.tennis.TennisPresenterOld;
 import com.nanyang.app.main.home.sport.thaiboxing.ThaiBoxingPresenter;
 import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
@@ -582,7 +582,7 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                         g="2";
                         model=recordModel+ "_par";
                     }
-                    else if(presenter instanceof BasketballPresenter){
+                    else if(presenter instanceof BasketballPresenterOld){
                         g="10";
                     }
                     BettingInfoBean modlemap = new BettingInfoBean("s", recordModel, "", hdp, odds, item.getHome(), item.getAway(), item.getLeagueBean().getModuleTitle(),
@@ -653,11 +653,11 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                         info = new BettingInfoBean("s", type, "", ou, odds,
                                 bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
 
-                    }else if(presenter instanceof BasketballPresenter){
+                    }else if(presenter instanceof BasketballPresenterOld){
                         info = new BettingInfoBean("", type, "", ou, odds,
                                 bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
                         info.setG("9");
-                    }else if(presenter instanceof TennisPresenter){
+                    }else if(presenter instanceof TennisPresenterOld){
                         info = new BettingInfoBean("", type, "", ou, odds,
                                 bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
                         info.setG("21");
@@ -677,7 +677,7 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                         info = new BettingInfoBean("s", type, "", ou, odds,
                                 bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", bean.getHandicapBeans().get(1).getSocOddsId(), 1, type.equals("Running"), bean.getHandicapBeans().get(1).getIsHomeGive().equals("1"));
                     }
-                    else if(presenter instanceof BasketballPresenter){
+                    else if(presenter instanceof BasketballPresenterOld){
                         info = new BettingInfoBean("", type, "", ou, odds,
                                 bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", bean.getHandicapBeans().get(1).getSocOddsId(), 1, type.equals("Running"), bean.getHandicapBeans().get(1).getIsHomeGive().equals("1"));
                         info.setG("9");

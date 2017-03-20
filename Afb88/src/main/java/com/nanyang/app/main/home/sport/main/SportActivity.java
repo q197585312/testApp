@@ -13,7 +13,9 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
+import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -30,8 +32,10 @@ import butterknife.OnClick;
 
 public class SportActivity extends BaseToolbarActivity {
     BaseSportFragment soccerFragment = new SoccerFragment();
-  /*  BaseSportFragment basketballFragment = new BasketballFragment();
+    BaseSportFragment basketballFragment = new BasketballFragment();
     BaseSportFragment tennisFragment = new TennisFragment();
+  /*  BaseSportFragment basketballFragment = new BasketballFragment();
+    BaseSportFragment tennisFragment = new TennisFragmentOld();
     BaseSportFragment financialFragment = new FinancialFragment();
     BaseSportFragment special4dFragment = new Game4dFragment();
     BaseSportFragment thaiboxingFragment = new ThaiBoxingFragment();
@@ -100,6 +104,8 @@ public class SportActivity extends BaseToolbarActivity {
         tvTitle.setText(currentTag);
         mapFragment = new HashMap<>();
         mapFragment.put(getString(R.string.Soccer), soccerFragment);
+        mapFragment.put(getString(R.string.Basketball), basketballFragment);
+        mapFragment.put(getString(R.string.Tennis), tennisFragment);
      /*   mapFragment.put(getString(R.string.Basketball), basketballFragment);
         mapFragment.put(getString(R.string.Tennis), tennisFragment);
         mapFragment.put(getString(R.string.Muay_Thai), thaiboxingFragment);

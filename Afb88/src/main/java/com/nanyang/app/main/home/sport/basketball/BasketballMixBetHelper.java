@@ -1,11 +1,13 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.basketball;
 
 import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
-import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
+import com.nanyang.app.main.home.sportInterface.BallBetHelper;
+import com.nanyang.app.main.home.sportInterface.BetView;
+import com.nanyang.app.main.home.sportInterface.SoccerMixAdapterHelper;
 
 import org.reactivestreams.Subscription;
 
@@ -21,16 +23,16 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/3/15.
  */
 
-public class SoccerMixBetHelper extends BallBetHelper<SoccerMixInfo, BetView> {
+public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, BetView> {
 
 
-    public SoccerMixBetHelper(BetView baseView) {
+    public BasketballMixBetHelper(BetView baseView) {
         super(baseView);
     }
 //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12147539&odds=18
 
     @Override
-    public Disposable clickOdds(SoccerMixInfo item, String type, String odds, final TextView v, boolean isHf) {
+    public Disposable clickOdds(BasketballMixInfo item, String type, String odds, final TextView v, boolean isHf) {
         SoccerMixAdapterHelper.setMixBackground(v, baseView.getContextActivity());
         Disposable subscribe = getService(ApiService.class).updateMixParlayBet(getOddsUrl(item, type, isHf, odds)).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingParPromptBean>() {//onNext
@@ -61,22 +63,15 @@ public class SoccerMixBetHelper extends BallBetHelper<SoccerMixInfo, BetView> {
             compositeSubscription.add(subscribe);
         return subscribe;
     }
-//    http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=1_par&oId=12265358&odds=1.66
+
     //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12152396&odds=19.9
-    protected String getOddsUrl(SoccerMixInfo item, String type, boolean isHf, String odds) {
+    protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);
-        stringBuilder.append("g=2");
-        if (!type.endsWith("_par"))
-            stringBuilder.append("&b=" + type + "_par");
-        else{
-            stringBuilder.append("&b=" + type);
-        }
+        stringBuilder.append("g=10");
+        stringBuilder.append("&b=" + type);
         stringBuilder.append("&oId=");
-        if (isHf)
-            stringBuilder.append(item.getSocOddsId_FH());
-        else
-            stringBuilder.append(item.getSocOddsId());
+        stringBuilder.append(item.getSocOddsId());
         stringBuilder.append("&odds=" + odds);
 
         return stringBuilder.toString();

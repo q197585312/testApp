@@ -13,12 +13,12 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
+import com.nanyang.app.main.home.sport.basketball.BasketballFragmentOld;
 import com.nanyang.app.main.home.sport.e_sport.SportEFragment;
 import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.FootballFragment;
 import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
-import com.nanyang.app.main.home.sport.tennis.TennisFragment;
+import com.nanyang.app.main.home.sport.tennis.TennisFragmentOld;
 import com.nanyang.app.main.home.sport.thaiboxing.ThaiBoxingFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -35,8 +35,8 @@ import butterknife.OnClick;
 
 public class SportActivity extends BaseToolbarActivity<Presenter> {
     BaseSportFragment footballFragment = new FootballFragment();
-    BaseSportFragment basketballFragment = new BasketballFragment();
-    BaseSportFragment tennisFragment = new TennisFragment();
+    BaseSportFragment basketballFragment = new BasketballFragmentOld();
+    BaseSportFragment tennisFragment = new TennisFragmentOld();
     BaseSportFragment financialFragment = new FinancialFragment();
     BaseSportFragment special4dFragment = new Game4dFragment();
     BaseSportFragment thaiboxingFragment = new ThaiBoxingFragment();

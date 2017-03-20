@@ -292,7 +292,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
 
     protected abstract String getRefreshUrl();
 
-    void initAllData(List<TableSportInfo<B>> allData) {
+    public void initAllData(List<TableSportInfo<B>> allData) {
         this.allData = allData;
         page = 0;
         updateAllDate(allData);

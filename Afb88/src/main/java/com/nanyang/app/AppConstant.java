@@ -42,7 +42,6 @@ public class AppConstant {
     public static String URL_FOOTBALL_EARLY ="http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=246503518&ia=0";
     public static String URL_FOOTBALL_EARLY_Mix ="http://a8197c.a36588.com/_view/ParGenWFH.ashx?g=4&ot=e&update=true&r=866546094";
     public static String URL_FOOTBALL_TODAY_Mix ="http://a8197c.a36588.com/_view/ParGenWFH.ashx?g=4&ot=t&update=true&r=1027945624";
-
     public static String URL_FOOTBALL_OUT_RIGHT ="http://a8197c.a36588.com/_view/OddsGen50.ashx?update=true&r=2076712019";
 
     public static String URL_ODDS=HOST+"_Bet/JRecPanel.aspx?";
@@ -59,6 +58,8 @@ public class AppConstant {
     public static String URL_BASKETBALL_EARLY_Mix ="http://a8197c.a36588.com/_view/ParGen.ashx?g=10&ot=e&update=true&r=866546094";
     public static String URL_BASKETBALL_TODAY_Mix ="http://a8197c.a36588.com/_view/ParGen.ashx?g=10&ot=t&update=true&r=408754578";
 
+    public static String URL_BASKETBALL_OUT_RIGHT="http://a8197c.a36588.com/_view/OddsOutGen.ashx?g=31&update=true&r=1267181584";
+
 
     //http://a8197c.a36588.com/_view/ParGen.ashx?g=10&ot=t&update=true&r=408754578_=1488176690345
     //
@@ -69,7 +70,7 @@ public class AppConstant {
     public static String URL_TENNIS_RUNNING ="http://a8197c.a36588.com/_view/All_Gen6.ashx?g=21&ot=r&update=true&r=442357900";
     public static String URL_TENNIS_TODAY ="http://a8197c.a36588.com/_view/All_Gen6.ashx?g=21&ot=t&update=true&r=1323982190";
     public static String URL_TENNIS_EARLY =" http://a8197c.a36588.com/_view/All_Gen6.ashx?g=21&ot=e&update=true&r=876540788";
-    public static String URL_TENNIS_CHAMPION_EARLY="http://a8197c.a36588.com/_view/OddsOutGen.ashx?g=36&ot=e&update=true&r=446070790";
+    public static String URL_TENNIS_CHAMPION_EARLY="http://a8197c.a36588.com/_view/OddsOutGen.ashx?g=36&update=true&r=446070790";
 
 
 //
