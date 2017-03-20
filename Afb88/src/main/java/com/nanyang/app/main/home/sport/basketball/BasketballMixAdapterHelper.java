@@ -32,6 +32,7 @@ import com.unkonw.testapp.training.ScrollLayout;
  * "Test2": "testing2"
  * }
  */
+IP地址 47.90.73.65 端口15611 密码ff6a3p
 public class BasketballMixAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
 
 
