@@ -1,18 +1,14 @@
 package com.nanyang.app.main.home.sport.tennis;
 
-import android.os.Bundle;
 import android.view.View;
 
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 
 
-
-public class TennisFragment extends BaseSportFragment<TennisPresenter> {
+public class TennisFragment extends BaseSportFragment {
 
     @Override
     public void initData() {
@@ -31,15 +27,13 @@ public class TennisFragment extends BaseSportFragment<TennisPresenter> {
             case "OutRight":
                 switchState(new TennisOutRightState(this));
                 break;
+            default:
+                switchState(new TennisTodayState(this));
+                break;
         }
-        setTitle(getString(R.string.football));
+        setTitle(getString(R.string.Tennis));
     }
 
-
-    @Override
-    protected TennisPresenter onCreatePresenter() {
-        return new TennisPresenter(this);
-    }
 
     @Override
     public String getTitle() {
@@ -48,11 +42,7 @@ public class TennisFragment extends BaseSportFragment<TennisPresenter> {
 
 
     @Override
-    public void clickAdd(View v, SportInfo item, String type) {
-        Bundle b = new Bundle();
-        b.putSerializable(AppConstant.KEY_DATA, item);
-        b.putSerializable(AppConstant.KEY_DATA2, presenter.getStateHelper().getStateType());
-        skipAct(VsActivity.class, b);
+    public void clickItemAdd(View v, SportInfo item, String type) {
     }
 
 

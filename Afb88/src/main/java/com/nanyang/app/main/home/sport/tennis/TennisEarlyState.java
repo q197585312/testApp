@@ -16,7 +16,7 @@ public class TennisEarlyState extends TennisState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.Tennis));
+        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.Tennis));
     }
 
     @Override

@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.basketball;
+package com.nanyang.app.main.home.sport.e_sport;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -10,8 +10,8 @@ import com.nanyang.app.main.home.sportInterface.SportContract2;
  * Created by Administrator on 2017/3/13.
  */
 
-public class BasketballOutRightState extends OutRightState {
-    public BasketballOutRightState(SportContract2.View baseView) {
+public class ESportOutRightState extends OutRightState {
+    public ESportOutRightState(SportContract2.View baseView) {
         super(baseView);
     }
 
@@ -24,25 +24,25 @@ public class BasketballOutRightState extends OutRightState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.OutRight),"OutRight",getBaseView().getContextActivity().getString(R.string.Basketball));
+        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.OutRight),"OutRight",getBaseView().getContextActivity().getString(R.string.E_Sport));
     }
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_BASKETBALL_OUT_RIGHT+"&ot=e";
+        return AppConstant.URL_E_SPORT_OUTRIGHT+"&ot=e";
     }
 
     @Override
     protected void onTypeClick(MenuItemInfo item) {
         switch (item.getType()) {
             case "Today":
-                getBaseView().switchState(new BasketballTodayState(getBaseView()));
+                getBaseView().switchState(new ESportTodayState(getBaseView()));
                 break;
             case "Early":
-                getBaseView().switchState(new BasketballEarlyState(getBaseView()));
+                getBaseView().switchState(new ESportEarlyState(getBaseView()));
                 break;
             case "Running":
-                getBaseView().switchState(new BasketballRunningState(getBaseView()));
+                getBaseView().switchState(new ESportRunningState(getBaseView()));
                 break;
             case "OutRight":
                 getBaseView().switchState(this);

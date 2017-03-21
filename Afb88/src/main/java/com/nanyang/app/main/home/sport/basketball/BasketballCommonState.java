@@ -87,7 +87,7 @@ public abstract class BasketballCommonState extends SportState<BasketballCommonI
     }
 
     private void clickAdd(View v,BasketballCommonInfo item) {
-       getBaseView().clickAdd(v,item,"common");
+       getBaseView().clickItemAdd(v,item,"common");
     }
 
     @Override

@@ -173,16 +173,16 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     public View scrollChild(boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
-        return scrollChild(isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "",true,true, false, "", "", "", "", "", "");
+        return scrollChild(isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "", true, true, false, "", "", "", "", "", "");
     }
 
 
-    public View scrollChild(boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds, String homeOddsType, String awayOddstype, String overOddsType, String underOddsType
-            ,boolean hapVisiable,boolean ouVisiable, boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
+    public View scrollChild(boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds, String homeOddsType, String awayOddsType, String overOddsType, String underOddsType
+            , boolean hapVisiable, boolean ouVisiable, boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
         LayoutInflater from = LayoutInflater.from(context);
         View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null, false);
         ViewHolder holder = new ViewHolder(vp);
-        if(hapVisiable) {
+        if (hapVisiable) {
             holder.viewpagerMatchHomeHdpTv.setVisibility(View.VISIBLE);
             holder.viewpagerMatchHomeHdpoddsTv.setVisibility(View.VISIBLE);
             holder.viewpagerMatchVisitHdpTv.setVisibility(View.VISIBLE);
@@ -206,20 +206,20 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     isAnimation = true;
                 else
                     isAnimation = false;
-                if (homeHdpOdds.equals(""))
-                    homeHdpOdds = "home";
-                if (awayOddstype.equals(""))
-                    awayOddstype = "away";
-                setValue(item, holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation, homeHdpOdds, isFh);
-                setValue(item, holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation, awayOddstype, isFh);
+                if (homeOddsType.equals(""))
+                    homeOddsType = "home";
+                if (awayOddsType.equals(""))
+                    awayOddsType = "away";
+                setValue(item, holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation, homeOddsType, isFh);
+                setValue(item, holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation, awayOddsType, isFh);
             }
-        }else{
+        } else {
             holder.viewpagerMatchHomeHdpTv.setVisibility(View.GONE);
             holder.viewpagerMatchHomeHdpoddsTv.setVisibility(View.GONE);
             holder.viewpagerMatchVisitHdpTv.setVisibility(View.GONE);
             holder.viewpagerMatchVisitHdpoddsTv.setVisibility(View.GONE);
         }
-        if(ouVisiable) {
+        if (ouVisiable) {
             holder.viewpagerMatchOuTv.setVisibility(View.VISIBLE);
             holder.viewpagerMatchOu2Tv.setVisibility(View.VISIBLE);
             holder.viewpagerMatchOveroddsTv.setVisibility(View.VISIBLE);
@@ -244,8 +244,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 setValue(item, holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation, underOddsType, isFh);
                 setValue(item, holder.viewpagerMatchOveroddsTv, overOdds, isAnimation, overOddsType, isFh);
             }
-        }
-        else{
+        } else {
             holder.viewpagerMatchOuTv.setVisibility(View.GONE);
             holder.viewpagerMatchOu2Tv.setVisibility(View.GONE);
             holder.viewpagerMatchOveroddsTv.setVisibility(View.GONE);
@@ -256,7 +255,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             holder.viewpagerEvenLabelTv.setVisibility(View.VISIBLE);
             holder.viewpagerMatchOddTv.setVisibility(View.VISIBLE);
             holder.viewpagerMatchEvenTv.setVisibility(View.VISIBLE);
-            if (hasOE.equals("1")) {
+            if (hasOE.equals("1") && !OddOdds.equals("0") && !EvenOdds.equals("0") && !OddOdds.equals("") && !EvenOdds.equals("")) {
                 holder.viewpagerMatchOddTv.setText(AfbUtils.changeValueS(OddOdds));
                 holder.viewpagerMatchEvenTv.setText(AfbUtils.changeValueS(EvenOdds));
                 holder.viewpagerEvenLabelTv.setText(R.string.even);
@@ -314,10 +313,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     protected void setValue(final I item, TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf) {
-        if (f.equals("")) {
-            textView.setText(f);
-        } else {
-            textView.setText(AfbUtils.changeValueS(f));
+        textView.setText(f);
+        if (!f.equals("") && !f.equals("0")) {
+            if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
+                textView.setText(AfbUtils.changeValueS(f));
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -325,6 +324,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
             });
         }
+
 
 
 

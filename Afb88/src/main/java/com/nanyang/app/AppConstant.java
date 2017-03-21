@@ -57,7 +57,6 @@ public class AppConstant {
 
     public static String URL_BASKETBALL_EARLY_Mix =HOST+"_view/ParGen.ashx?g=10&ot=e&update=true&r=866546094";
     public static String URL_BASKETBALL_TODAY_Mix =HOST+"_view/ParGen.ashx?g=10&ot=t&update=true&r=408754578";
-
     public static String URL_BASKETBALL_OUT_RIGHT=HOST+"_view/OddsOutGen.ashx?g=31&update=true&r=1267181584";
 
 
@@ -70,8 +69,7 @@ public class AppConstant {
     public static String URL_TENNIS_RUNNING =HOST+"_view/All_Gen6.ashx?g=21&ot=r&update=true&r=442357900";
     public static String URL_TENNIS_TODAY =HOST+"_view/All_Gen6.ashx?g=21&ot=t&update=true&r=1323982190";
     public static String URL_TENNIS_EARLY =HOST+"_view/All_Gen6.ashx?g=21&ot=e&update=true&r=876540788";
-    public static String URL_TENNIS_CHAMPION_EARLY=HOST+"_view/OddsOutGen.ashx?g=36&update=true&r=446070790";
-
+    public static String URL_TENNIS_OUTRIGHT=HOST+"_view/OddsOutGen.ashx?g=36&update=true&r=446070790";
 
 //
 public static String URL_FINANCIAL_RUNNING =HOST+"_view/All_Gen6.ashx?g=7&ot=r&update=true&r=442357900";
@@ -92,5 +90,6 @@ public static String URL_FINANCIAL_RUNNING =HOST+"_view/All_Gen6.ashx?g=7&ot=r&u
     public static String URL_E_SPORT_TODAY = HOST+"_view/All_Gen6.ashx?g=106&ot=t&update=true&r=1233177815";
     public static String URL_E_SPORT_RUNNING = HOST+"_view/All_Gen6.ashx?g=106&ot=r&update=true&r=1770989484";
     public static String URL_E_SPORT_EARLY = HOST+"_view/All_Gen6.ashx?g=106&ot=e&update=true&r=1770989484";
+    public static String URL_E_SPORT_OUTRIGHT= HOST+"_view/OddsOutGen.ashx?g=107&update=true&r=1770989484";
 
 }

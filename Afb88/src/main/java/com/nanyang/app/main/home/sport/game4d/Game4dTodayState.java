@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.tennis;
+package com.nanyang.app.main.home.sport.game4d;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -9,15 +9,15 @@ import com.nanyang.app.main.home.sportInterface.SportContract2;
  * Created by Administrator on 2017/3/13.
  */
 
-public class TennisTodayState extends TennisState {
-    public TennisTodayState(SportContract2.View baseView) {
+public class Game4dTodayState extends Game4dState {
+    public Game4dTodayState(SportContract2.View baseView) {
         super(baseView);
     }
 
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_TENNIS_TODAY;
+        return AppConstant.URL_4D_SPECIAL_TODAY;
     }
 
     @Override
@@ -25,23 +25,20 @@ public class TennisTodayState extends TennisState {
 
         switch (item.getType()) {
             case "Early":
-                getBaseView().switchState(new TennisEarlyState(getBaseView()));
+                getBaseView().switchState(new Game4dEarlyState(getBaseView()));
                 break;
             case "Today":
                 getBaseView().switchState(this);
                 break;
             case "Running":
-                getBaseView().switchState(new TennisRunningState(getBaseView()));
-                break;
-            case "OutRight":
-                getBaseView().switchState(new TennisOutRightState(getBaseView()));
+                getBaseView().switchState(new Game4dRunningState(getBaseView()));
                 break;
         }
     }
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1,getBaseView().getContextActivity().getString(R.string.Today),"Today",getBaseView().getContextActivity().getString(R.string.Tennis));
+        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Today),"Today",getBaseView().getContextActivity().getString(R.string.Specials_4D));
     }
 
 

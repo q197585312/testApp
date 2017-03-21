@@ -11,7 +11,7 @@ import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 
 
-public class BasketballFragment extends BaseSportFragment<BasketballPresenter> {
+public class BasketballFragment extends BaseSportFragment {
 
     @Override
     public void initData() {
@@ -30,15 +30,15 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> {
             case "OutRight":
                 switchState(new BasketballOutRightState(this));
                 break;
+            default:
+                switchState(new BasketballTodayState(this));
+                break;
         }
-        setTitle(getString(R.string.football));
+        setTitle(getString(R.string.Basketball));
     }
 
 
-    @Override
-    protected BasketballPresenter onCreatePresenter() {
-        return new BasketballPresenter(this);
-    }
+
 
     @Override
     public String getTitle() {
@@ -47,7 +47,7 @@ public class BasketballFragment extends BaseSportFragment<BasketballPresenter> {
 
 
     @Override
-    public void clickAdd(View v, SportInfo item, String type) {
+    public void clickItemAdd(View v, SportInfo item, String type) {
         Bundle b = new Bundle();
         b.putSerializable(AppConstant.KEY_DATA, item);
         b.putSerializable(AppConstant.KEY_DATA2, presenter.getStateHelper().getStateType());

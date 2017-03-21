@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.game4d;
+package com.nanyang.app.main.home.sport.e_sport;
 
 import android.view.View;
 
@@ -8,7 +8,7 @@ import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 
 
-public class Game4dFragment extends BaseSportFragment {
+public class ESportFragment extends BaseSportFragment {
 
     @Override
     public void initData() {
@@ -16,26 +16,28 @@ public class Game4dFragment extends BaseSportFragment {
         String type = ((SportActivity) getActivity()).getType();
         switch (type) {
             case "Running":
-                switchState(new Game4dRunningState(this));
+                switchState(new ESportRunningState(this));
                 break;
             case "Today":
-                switchState(new Game4dTodayState(this));
+                switchState(new ESportTodayState(this));
                 break;
             case "Early":
-                switchState(new Game4dEarlyState(this));
+                switchState(new ESportEarlyState(this));
                 break;
-
+            case "OutRight":
+                switchState(new ESportOutRightState(this));
+                break;
             default:
-                switchState(new Game4dTodayState(this));
+                switchState(new ESportTodayState(this));
                 break;
         }
-        setTitle(getString(R.string.Specials_4D));
+        setTitle(getString(R.string.E_Sport));
     }
 
 
     @Override
     public String getTitle() {
-        return getString(R.string.Specials_4D);
+        return getString(R.string.E_Sport);
     }
 
 

@@ -38,7 +38,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/3/13.
  */
 
-public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseFragment<P> implements SportContract2.View<SportInfo> {
+public abstract class BaseSportFragment extends BaseFragment<SportPresenter2> implements SportContract2.View<SportInfo> {
 
     @Bind(R.id.tv_total_match)
     TextView tvTotalMatch;
@@ -62,7 +62,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
     @Override
     public void initData() {
         super.initData();
-        createPresenter(onCreatePresenter());
+        createPresenter(new SportPresenter2(this));
         isFirstIn = true;
         swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -78,7 +78,7 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
         });
     }
 
-    protected abstract P onCreatePresenter();
+
 
     public void refresh() {
         presenter.getStateHelper().refresh();
@@ -303,4 +303,5 @@ public abstract class BaseSportFragment<P extends SportPresenter2> extends BaseF
         });
         popWindow.showPopupDownWindow();
     }
+
 }

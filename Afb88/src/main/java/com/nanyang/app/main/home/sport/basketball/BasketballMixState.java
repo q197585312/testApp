@@ -82,18 +82,12 @@ public abstract class BasketballMixState extends SportState<BasketballMixInfo, S
 
             @Override
             public void clickView(View v, BasketballMixInfo item) {
-                switch (v.getId()) {
-                    case R.id.module_right_mark_tv:
-                        clickAdd(v, item);
-                }
+
             }
 
         };
     }
 
-    private void clickAdd(View v, BasketballMixInfo item) {
-        getBaseView().clickAdd(v, item, "mix");
-    }
 
     @Override
     protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
@@ -220,8 +214,8 @@ public abstract class BasketballMixState extends SportState<BasketballMixInfo, S
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
         return types;
     }
 

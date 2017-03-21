@@ -15,7 +15,7 @@ import com.nanyang.app.main.home.sportInterface.SoccerRunningState;
 import com.nanyang.app.main.home.sportInterface.SoccerTodayState;
 
 
-public class SoccerFragment extends BaseSportFragment<SoccerPresenter> {
+public class SoccerFragment extends BaseSportFragment {
 
     @Override
     public void initData() {
@@ -40,18 +40,13 @@ public class SoccerFragment extends BaseSportFragment<SoccerPresenter> {
 
 
     @Override
-    protected SoccerPresenter onCreatePresenter() {
-        return new SoccerPresenter(this);
-    }
-
-    @Override
     public String getTitle() {
         return getString(R.string.Soccer);
     }
 
 
     @Override
-    public void clickAdd(View v, SportInfo item, String type) {
+    public void clickItemAdd(View v, SportInfo item, String type) {
         Bundle b = new Bundle();
         b.putBoolean(AppConstant.KEY_BOOLEAN, type.equals("mix"));
 
