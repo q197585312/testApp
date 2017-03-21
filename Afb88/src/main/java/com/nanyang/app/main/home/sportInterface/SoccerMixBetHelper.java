@@ -61,7 +61,7 @@ public class SoccerMixBetHelper extends BallBetHelper<SoccerMixInfo, BetView> {
             compositeSubscription.add(subscribe);
         return subscribe;
     }
-
+//    http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=1_par&oId=12265358&odds=1.66
     //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12152396&odds=19.9
     protected String getOddsUrl(SoccerMixInfo item, String type, boolean isHf, String odds) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -69,6 +69,9 @@ public class SoccerMixBetHelper extends BallBetHelper<SoccerMixInfo, BetView> {
         stringBuilder.append("g=2");
         if (!type.endsWith("_par"))
             stringBuilder.append("&b=" + type + "_par");
+        else{
+            stringBuilder.append("&b=" + type);
+        }
         stringBuilder.append("&oId=");
         if (isHf)
             stringBuilder.append(item.getSocOddsId_FH());

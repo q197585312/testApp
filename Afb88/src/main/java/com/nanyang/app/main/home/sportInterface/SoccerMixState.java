@@ -86,7 +86,7 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
     }
 
     private void clickAdd(View v, SoccerMixInfo item) {
-        getBaseView().clickAdd(v,item,"mix");
+        getBaseView().clickItemAdd(v,item,"mix");
     }
 
     @Override
@@ -234,8 +234,8 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
         return types;
     }
 

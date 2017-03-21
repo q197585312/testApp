@@ -12,7 +12,7 @@ public interface SportContract2  {
         void setAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter);
         void switchState(IObtainDataState state);
         void onGetFollowers(List<ScrollLayout> followers);
-        void clickAdd(android.view.View v, B item, String type);
+        void clickItemAdd(android.view.View v, B item, String type);
 
     }
 

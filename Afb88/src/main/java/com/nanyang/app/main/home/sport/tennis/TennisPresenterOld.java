@@ -25,9 +25,9 @@ import io.reactivex.Flowable;
 
 
 
-public class TennisPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
+public class TennisPresenterOld extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
 
-    TennisPresenter(SportContract.View<List<MatchBean>> view) {
+    TennisPresenterOld(SportContract.View<List<MatchBean>> view) {
         super(view);
     }
 

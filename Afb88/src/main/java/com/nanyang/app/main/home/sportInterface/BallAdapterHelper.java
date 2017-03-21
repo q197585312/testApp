@@ -33,7 +33,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     protected Context context;
     protected List<ScrollLayout> slFollowers = new ArrayList<>();
 
-    private int slIndex=0;
+    private int slIndex = 0;
 
 
     public BallAdapterHelper(Context context) {
@@ -57,8 +57,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         dateTv.setTextSize(10);
         dateTv.setPadding(0, 0, 0, 0);
 
-        String date = item.getMatchDate().substring(0, 5);
-        dateTv.setText(date);
+
         String time = item.getMatchDate();
         if (time.length() > 6) {
             time = time.substring(time.length() - 7, time.length());
@@ -91,6 +90,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     dateTv.setText(channels[1].trim());
                 }
             }
+        } else {
+            if (item.getMatchDate().length() > 6) {
+                String date = item.getMatchDate().substring(0, 5);
+                dateTv.setText(date);
+            } else {
+                dateTv.setText(item.getMatchDate());
+            }
         }
         tvCollection.setVisibility(View.GONE);
         String isHomeGive = item.getIsHomeGive();
@@ -106,7 +112,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         tvRightMark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back.clickView(v,item);
+                back.clickView(v, item);
             }
         });
         if (item.getType() == SportInfo.Type.ITME) {
@@ -133,7 +139,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String homeHdpOdds = item.getHomeHdpOdds();
         String awayHdpOdds = item.getAwayHdpOdds();
 
-        View vp = scrollChild(false,item,isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
+        View vp = scrollChild(false, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
         sl.removeAllViews();
         sl.addView(vp, SoccerHeaderContent.layoutParams);
         if (!slFollowers.contains(sl))
@@ -166,50 +172,114 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     }
 
-    public View scrollChild(boolean isFh,I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
+    public View scrollChild(boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
+        return scrollChild(isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "", true, true, false, "", "", "", "", "", "");
+    }
+
+
+    public View scrollChild(boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds, String homeOddsType, String awayOddsType, String overOddsType, String underOddsType
+            , boolean hapVisiable, boolean ouVisiable, boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
         LayoutInflater from = LayoutInflater.from(context);
         View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null, false);
         ViewHolder holder = new ViewHolder(vp);
-        if (hasHdp.equals("0")) {
-            holder.viewpagerMatchHomeHdpTv.setText("");
-            holder.viewpagerMatchHomeHdpoddsTv.setText("");
-            holder.viewpagerMatchVisitHdpTv.setText("");
-            holder.viewpagerMatchVisitHdpoddsTv.setText("");
-        } else {
-            String hdpS = changeValueF(hdp);
-            if (isHomeGive.equals("1")) {
-                holder.viewpagerMatchVisitHdpTv.setText("");
-                holder.viewpagerMatchHomeHdpTv.setText(hdpS);
-            } else {
-                holder.viewpagerMatchVisitHdpTv.setText(hdpS);
+        if (hapVisiable) {
+            holder.viewpagerMatchHomeHdpTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchHomeHdpoddsTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchVisitHdpTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchVisitHdpoddsTv.setVisibility(View.VISIBLE);
+            if (hasHdp.equals("0")) {
                 holder.viewpagerMatchHomeHdpTv.setText("");
+                holder.viewpagerMatchHomeHdpoddsTv.setText("");
+                holder.viewpagerMatchVisitHdpTv.setText("");
+                holder.viewpagerMatchVisitHdpoddsTv.setText("");
+            } else {
+                String hdpS = changeValueF(hdp);
+                if (isHomeGive.equals("1")) {
+                    holder.viewpagerMatchVisitHdpTv.setText("");
+                    holder.viewpagerMatchHomeHdpTv.setText(hdpS);
+                } else {
+                    holder.viewpagerMatchVisitHdpTv.setText(hdpS);
+                    holder.viewpagerMatchHomeHdpTv.setText("");
+                }
+                boolean isAnimation = false;
+                if (isHdpNew.equals("1"))
+                    isAnimation = true;
+                else
+                    isAnimation = false;
+                if (homeOddsType.equals(""))
+                    homeOddsType = "home";
+                if (awayOddsType.equals(""))
+                    awayOddsType = "away";
+                setValue(item, holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation, homeOddsType, isFh);
+                setValue(item, holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation, awayOddsType, isFh);
             }
-            boolean isAnimation = false;
-            if (isHdpNew.equals("1"))
-                isAnimation = true;
-            else
-                isAnimation = false;
-            setValue(item,holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation,"home",isFh);
-            setValue(item,holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation,"away",isFh);
-
-        }
-
-
-        if (hasOU.equals("0")) {
-            holder.viewpagerMatchOuTv.setText("");
-            holder.viewpagerMatchOu2Tv.setText("");
-            holder.viewpagerMatchOveroddsTv.setText("");
-            holder.viewpagerMatchUnderoddsTv.setText("");
-
         } else {
-            String ouf = changeValueF(ou);
-            holder.viewpagerMatchOuTv.setText(ouf);
-            holder.viewpagerMatchOu2Tv.setText("");
-            boolean isAnimation = false;
-            if (isOUNew.equals("1"))
-                isAnimation = true;
-            setValue(item,holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation,"under",isFh);
-            setValue(item,holder.viewpagerMatchOveroddsTv, overOdds, isAnimation,"over",isFh);
+            holder.viewpagerMatchHomeHdpTv.setVisibility(View.GONE);
+            holder.viewpagerMatchHomeHdpoddsTv.setVisibility(View.GONE);
+            holder.viewpagerMatchVisitHdpTv.setVisibility(View.GONE);
+            holder.viewpagerMatchVisitHdpoddsTv.setVisibility(View.GONE);
+        }
+        if (ouVisiable) {
+            holder.viewpagerMatchOuTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchOu2Tv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchOveroddsTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchUnderoddsTv.setVisibility(View.VISIBLE);
+            if (hasOU.equals("0") || hasOU.equals("")) {
+                holder.viewpagerMatchOuTv.setText("");
+                holder.viewpagerMatchOu2Tv.setText("");
+                holder.viewpagerMatchOveroddsTv.setText("");
+                holder.viewpagerMatchUnderoddsTv.setText("");
+
+            } else {
+                String ouf = changeValueF(ou);
+                holder.viewpagerMatchOuTv.setText(ouf);
+                holder.viewpagerMatchOu2Tv.setText("");
+                boolean isAnimation = false;
+                if (isOUNew.equals("1"))
+                    isAnimation = true;
+                if (overOddsType.equals(""))
+                    overOddsType = "over";
+                if (underOddsType.equals(""))
+                    underOddsType = "under";
+                setValue(item, holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation, underOddsType, isFh);
+                setValue(item, holder.viewpagerMatchOveroddsTv, overOdds, isAnimation, overOddsType, isFh);
+            }
+        } else {
+            holder.viewpagerMatchOuTv.setVisibility(View.GONE);
+            holder.viewpagerMatchOu2Tv.setVisibility(View.GONE);
+            holder.viewpagerMatchOveroddsTv.setVisibility(View.GONE);
+            holder.viewpagerMatchUnderoddsTv.setVisibility(View.GONE);
+        }
+        if (oeVisiable) {
+            holder.viewpagerOddLabelTv.setVisibility(View.VISIBLE);
+            holder.viewpagerEvenLabelTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchOddTv.setVisibility(View.VISIBLE);
+            holder.viewpagerMatchEvenTv.setVisibility(View.VISIBLE);
+            if (hasOE.equals("1") && !OddOdds.equals("0") && !EvenOdds.equals("0") && !OddOdds.equals("") && !EvenOdds.equals("")) {
+                holder.viewpagerMatchOddTv.setText(AfbUtils.changeValueS(OddOdds));
+                holder.viewpagerMatchEvenTv.setText(AfbUtils.changeValueS(EvenOdds));
+                holder.viewpagerEvenLabelTv.setText(R.string.even);
+                holder.viewpagerOddLabelTv.setText(R.string.odd);
+                boolean isAnimation = false;
+                if (isOENew.equals("1"))
+                    isAnimation = true;
+                if (OddOddsType.equals(""))
+                    OddOddsType = "odd";
+                if (EvenOddsType.equals(""))
+                    EvenOddsType = "even";
+                setValue(item, holder.viewpagerMatchOddTv, OddOdds, isAnimation, OddOddsType, isFh);
+                setValue(item, holder.viewpagerMatchEvenTv, EvenOdds, isAnimation, EvenOddsType, isFh);
+            } else {
+                holder.viewpagerMatchOddTv.setText("");
+                holder.viewpagerMatchEvenTv.setText("");
+                holder.viewpagerEvenLabelTv.setText("");
+                holder.viewpagerOddLabelTv.setText("");
+            }
+        } else {
+            holder.viewpagerEvenLabelTv.setVisibility(View.GONE);
+            holder.viewpagerOddLabelTv.setVisibility(View.GONE);
+            holder.viewpagerMatchEvenTv.setVisibility(View.GONE);
+            holder.viewpagerMatchOddTv.setVisibility(View.GONE);
         }
         return vp;
     }
@@ -243,17 +313,18 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     protected void setValue(final I item, TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf) {
-        if (f.equals("")) {
-            textView.setText(f);
-        } else {
-            textView.setText(AfbUtils.changeValueS(f));
+        textView.setText(f);
+        if (!f.equals("") && !f.equals("0")) {
+            if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
+                textView.setText(AfbUtils.changeValueS(f));
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    back.clickOdds((TextView)v,item,type,isHf,f);
+                    back.clickOdds((TextView) v, item, type, isHf, f);
                 }
             });
         }
+
 
 
 

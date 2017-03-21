@@ -13,7 +13,12 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
+import com.nanyang.app.main.home.sport.e_sport.ESportFragment;
+import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
+import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
+import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -21,6 +26,7 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import butterknife.Bind;
@@ -30,10 +36,16 @@ import butterknife.OnClick;
 
 public class SportActivity extends BaseToolbarActivity {
     BaseSportFragment soccerFragment = new SoccerFragment();
-  /*  BaseSportFragment basketballFragment = new BasketballFragment();
+    BaseSportFragment basketballFragment = new BasketballFragment();
     BaseSportFragment tennisFragment = new TennisFragment();
     BaseSportFragment financialFragment = new FinancialFragment();
-    BaseSportFragment special4dFragment = new Game4dFragment();
+    BaseSportFragment game4dFragment = new Game4dFragment();
+    BaseSportFragment eSportFragment = new ESportFragment();
+
+  /*  BaseSportFragment basketballFragment = new BasketballFragment();
+    BaseSportFragment tennisFragment = new TennisFragmentOld();
+    BaseSportFragment financialFragment = new FinancialFragmentOld();
+    BaseSportFragment special4dFragment = new Game4dFragmentOld();
     BaseSportFragment thaiboxingFragment = new ThaiBoxingFragment();
     BaseSportFragment sportEFragment = new SportEFragment();*/
 
@@ -88,24 +100,43 @@ public class SportActivity extends BaseToolbarActivity {
     @Override
     public void initData() {
         super.initData();
-        MenuItemInfo item= (MenuItemInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
-        if(item!=null) {
+        MenuItemInfo<String> item = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
+        if (item != null) {
             type = item.getType();
             assert tvToolbarTitle != null;
             tvToolbarTitle.setText(item.getText());
         }
-        showFragmentToActivity(soccerFragment, R.id.fl_content, getString(R.string.Soccer));
-        currentFragment = soccerFragment;
-        currentTag = getString(R.string.Soccer);
-        tvTitle.setText(currentTag);
         mapFragment = new HashMap<>();
-        mapFragment.put(getString(R.string.Soccer), soccerFragment);
-     /*   mapFragment.put(getString(R.string.Basketball), basketballFragment);
-        mapFragment.put(getString(R.string.Tennis), tennisFragment);
-        mapFragment.put(getString(R.string.Muay_Thai), thaiboxingFragment);
-        mapFragment.put(getString(R.string.Financial), financialFragment);
-        mapFragment.put(getString(R.string.E_Sport), sportEFragment);
-        mapFragment.put(getString(R.string.Specials_4D), special4dFragment);*/
+        switch (item.getParent()) {
+
+            case "Financial":
+                mapFragment.put(getString(R.string.Financial), financialFragment);
+                currentFragment = financialFragment;
+                currentTag = getString(R.string.Financial);
+                break;
+            case "Specials_4D":
+                mapFragment.put(getString(R.string.Specials_4D), game4dFragment);
+                currentFragment = game4dFragment;
+                currentTag = getString(R.string.Specials_4D);
+                break;
+            case "Muay_Thai":
+            case "E_Sport":
+                mapFragment.put(getString(R.string.E_Sport), eSportFragment);
+                currentFragment = eSportFragment;
+                currentTag = getString(R.string.E_Sport);
+                break;
+            default:
+                mapFragment.put(getString(R.string.Soccer), soccerFragment);
+                mapFragment.put(getString(R.string.Basketball), basketballFragment);
+                mapFragment.put(getString(R.string.Tennis), tennisFragment);
+                currentFragment = soccerFragment;
+                currentTag = getString(R.string.Soccer);
+                break;
+        }
+
+
+        tvTitle.setText(currentTag);
+        showFragmentToActivity(currentFragment, R.id.fl_content, currentTag);
 
         getApp().setBetParList(null);
 
@@ -136,12 +167,12 @@ public class SportActivity extends BaseToolbarActivity {
             case R.id.tv_mix:
                 if (currentFragment.mix(tvMix))
                     tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
-                else{
+                else {
                     getApp().setBetParList(null);
                 }
                 break;
             case R.id.iv_add:
-                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 380) {
+                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 200) {
                     @Override
                     protected int onSetLayoutRes() {
                         return R.layout.popupwindow_choice_game;
@@ -153,13 +184,11 @@ public class SportActivity extends BaseToolbarActivity {
                         RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
                         rv.setLayoutManager(new GridLayoutManager(mContext, 3));
                         List<MenuItemInfo> list = new ArrayList<>();
-                        list.add(new MenuItemInfo(0, getString(R.string.Soccer)));
-                        list.add(new MenuItemInfo(0, getString(R.string.Basketball)));
-                        list.add(new MenuItemInfo(0, getString(R.string.Tennis)));
-                        list.add(new MenuItemInfo(0, getString(R.string.Financial)));
-                        list.add(new MenuItemInfo(0, getString(R.string.Specials_4D)));
-                        list.add(new MenuItemInfo(0, getString(R.string.Muay_Thai)));
-                        list.add(new MenuItemInfo(0, getString(R.string.E_Sport)));
+                        Iterator<String> iterator = mapFragment.keySet().iterator();
+                        while (iterator.hasNext()) {
+                            list.add(new MenuItemInfo(0, iterator.next()));
+                        }
+
                         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base) {
                             @Override
                             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {

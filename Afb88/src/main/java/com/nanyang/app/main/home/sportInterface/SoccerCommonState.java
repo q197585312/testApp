@@ -80,7 +80,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
     }
 
     private void clickAdd(View v,SoccerCommonInfo item) {
-       getBaseView().clickAdd(v,item,"common");
+       getBaseView().clickItemAdd(v,item,"common");
     }
 
     @Override

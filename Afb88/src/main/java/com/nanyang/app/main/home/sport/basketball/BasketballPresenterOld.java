@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 
-public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
+public class BasketballPresenterOld extends SportPresenter<List<MatchBean>, SportContract.View<List<MatchBean>>> {
 
-    BasketballPresenter(SportContract.View<List<MatchBean>> view) {
+    BasketballPresenterOld(SportContract.View<List<MatchBean>> view) {
         super(view);
     }
 
@@ -76,12 +76,12 @@ public class BasketballPresenter extends SportPresenter<List<MatchBean>, SportCo
 
    /* protected void clearMixOrder() {
 
-        final BettingParPromptBean betParList = ((BasketballFragment) baseView).getApp().getBetParList();
+        final BettingParPromptBean betParList = ((BasketballFragmentOld) baseView).getApp().getBetParList();
         if (betParList != null && betParList.getBetPar().size() > 0) {
             Flowable.create(new FlowableOnSubscribe<BettingParPromptBean>() {
                 @Override
                 public void subscribe(FlowableEmitter<BettingParPromptBean> e) throws Exception {
-                    Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = ((BasketballFragment) baseView).getApp().getBetDetail().entrySet().iterator();
+                    Iterator<Map.Entry<String, Map<String, Map<Integer, BettingInfoBean>>>> it = ((BasketballFragmentOld) baseView).getApp().getBetDetail().entrySet().iterator();
                     BettingParPromptBean data = null;
                     for (BettingParPromptBean.BetParBean betParBean : betParList.getBetPar()) {
                         data = removeBetItem(betParBean);

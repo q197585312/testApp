@@ -1,7 +1,7 @@
 package com.nanyang.app.main.home.sportInterface;
 
 
-public abstract class SportPresenter2 implements SportContract2.Presenter {
+public class SportPresenter2 implements SportContract2.Presenter {
 
 
 

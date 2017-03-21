@@ -24,12 +24,12 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
     }
 
 
-    interface ItemCallBack<B> {
+    public interface ItemCallBack<B> {
         B getItem(int position);
 
         void clickOdds(TextView v, B item, String type, boolean isHf, String odds);
 
-        void clickView(View v,B item);
+        void clickView(View v, B item);
     }
 
     public <I extends ItemCallBack<B>> void setItemCallBack(I back) {

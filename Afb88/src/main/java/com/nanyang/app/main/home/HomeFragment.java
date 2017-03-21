@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -59,15 +60,19 @@ public class HomeFragment extends BaseFragment {
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(layoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
-        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.SportBook)));
-        dataList.add(new MenuItemInfo(R.mipmap.home_live, getString(R.string.Live_Casino)));
-        dataList.add(new MenuItemInfo(R.mipmap.home_games, getString(R.string.Games)));
-        dataList.add(new MenuItemInfo(R.mipmap.home_keno, getString(R.string.Keno)));
-        dataList.add(new MenuItemInfo(R.mipmap.home_poker, getString(R.string.Poker)));
-        dataList.add(new MenuItemInfo(R.mipmap.home_lottery, getString(R.string.Lottery)));
-        dataList.add(new MenuItemInfo(R.mipmap.home_roulette, getString(R.string.Roulette)));
-        dataList.add(new MenuItemInfo(R.mipmap.home_casino, getString(R.string.Casino)));
-        dataList.add(new MenuItemInfo(R.mipmap.home_discount, getString(R.string.Discount)));
+        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.SportBook), "SportBook"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_live, getString(R.string.Live_Casino), "Live_Casino"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_financials, getString(R.string.Financial), "Financial"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_specals4d, getString(R.string.Specials_4D), "Specials_4D"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_huay_thai, getString(R.string.Huay_Thai), "Huay_Thai"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_muay_thai, getString(R.string.Muay_Thai), "Muay_Thai"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_games, getString(R.string.E_Sport), "E_Sport"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_keno, getString(R.string.Keno), "Keno"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_poker, getString(R.string.Poker), "Poker"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_lottery, getString(R.string.Lottery), "Lottery"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_roulette, getString(R.string.Roulette), "Roulette"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_casino, getString(R.string.Casino), "Casino"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_discount, getString(R.string.Discount), "Discount"));
         BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, dataList, R.layout.home_item_image_text) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
@@ -80,26 +85,53 @@ public class HomeFragment extends BaseFragment {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
-                if (item.getText().equals(getString(R.string.SportBook))) {
-                    popWindow.showPopupCenterWindow();
-                } else if (item.getText().equals(getString(R.string.Poker))) {
-                    Bundle b = new Bundle();
-                    b.putString("activity", "Porker");
-                    skipAct(PokerCasinoActivity.class, b);
-                } else if (item.getText().equals(getString(R.string.Live_Casino))) {
-                    Bundle b = new Bundle();
-                    b.putString("activity", "Live");
-                    skipAct(PokerCasinoActivity.class, b);
-                } else if (item.getText().equals(getString(R.string.Discount))) {
-                    skipAct(DiscountActivity.class);
-                } else if (item.getText().equals(getString(R.string.Games))) {
-                    skipAct(GamesActivity.class);
+                switch (item.getType()) {
+                    case "SportBook":
+                    case "Financial":
+                    case "Specials_4D":
+                    case "Muay_Thai":
+                    case "E_Sport":
+                        createPopupWindow(getPopupWindow(item.getType()));
+                        popWindow.showPopupCenterWindow();
+                        break;
+
+                    case "Huay_Thai":
+                        skipAct(GamesActivity.class);
+                        break;
+                    case "Live_Casino":
+                        Bundle b = new Bundle();
+                        b.putString("activity", "Live");
+                        skipAct(PokerCasinoActivity.class, b);
+                        break;
+                    case "Keno":
+                        break;
+                    case "Poker":
+                        Bundle b2 = new Bundle();
+                        b2.putString("activity", "Porker");
+                        skipAct(PokerCasinoActivity.class, b2);
+                        break;
+                    case "Lottery":
+                        break;
+                    case "Roulette":
+                        break;
+                    case "Casino":
+                        break;
+                    case "Discount":
+                        skipAct(DiscountActivity.class);
+                        break;
                 }
+
+
             }
         });
         rvContent.setAdapter(adapter);
 //        rvContent.addItemDecoration(new RecycleViewDivider(mContext,GridLayoutManager.HORIZONTAL,2,getResources().getColor(R.color.green_thick_line)));
-        createPopupWindow(new BasePopupWindow(mContext, rvContent, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {//创建
+
+    }
+
+    @NonNull
+    private BasePopupWindow getPopupWindow(final String type) {
+        return new BasePopupWindow(mContext, rvContent, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {//创建
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -111,22 +143,26 @@ public class HomeFragment extends BaseFragment {
                 RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
                 LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
                 rv.setLayoutManager(mLayoutManager);
-                List<MenuItemInfo> data = new ArrayList<>();
-                MenuItemInfo menuItemInfo = new MenuItemInfo(0, getString(R.string.Today));
+                List<MenuItemInfo<String>> data = new ArrayList<>();
+                MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
                 menuItemInfo.setType("Today");
-                MenuItemInfo menuItemInfo1 = new MenuItemInfo(0, getString(R.string.Running));
+                menuItemInfo.setParent(type);
+                MenuItemInfo<String> menuItemInfo1 = new MenuItemInfo<String>(0, getString(R.string.Running));
                 menuItemInfo1.setType("Running");
-                MenuItemInfo menuItemInfo2 = new MenuItemInfo(0, getString(R.string.Early));
+                menuItemInfo1.setParent(type);
+                MenuItemInfo<String> menuItemInfo2 = new MenuItemInfo<String>(0, getString(R.string.Early));
                 menuItemInfo2.setType("Early");
-                MenuItemInfo menuItemInfo3 = new MenuItemInfo(0, getString(R.string.OutRight));
+                menuItemInfo2.setParent(type);
+                MenuItemInfo<String> menuItemInfo3 = new MenuItemInfo<String>(0, getString(R.string.OutRight));
                 menuItemInfo3.setType("OutRight");
-                MenuItemInfo menuItemInfo4 = new MenuItemInfo(0, getString(R.string.Cancel));
+                menuItemInfo3.setParent(type);
+                MenuItemInfo<String> menuItemInfo4 = new MenuItemInfo<String>(0, getString(R.string.Cancel));
                 menuItemInfo4.setType("");
                 data.add(menuItemInfo);
                 data.add(menuItemInfo1);
                 data.add(menuItemInfo2);
                 data.add(menuItemInfo3);
-                BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, data, R.layout.text_base) {
+                BaseRecyclerAdapter<MenuItemInfo<String>> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, data, R.layout.text_base) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                         TextView tv = holder.getView(R.id.item_text_tv);
@@ -155,7 +191,7 @@ public class HomeFragment extends BaseFragment {
                 });
                 rv.setAdapter(baseRecyclerAdapter);
             }
-        });
+        };
     }
 
     private List<String> lists;

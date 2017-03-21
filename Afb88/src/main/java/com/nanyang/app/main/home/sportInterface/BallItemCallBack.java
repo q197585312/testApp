@@ -9,7 +9,7 @@ public abstract class BallItemCallBack<I> implements SportAdapterHelper.ItemCall
         this.adapter = adapter;
     }
 
-    abstract boolean isItemCollection(I item);
+    public abstract boolean isItemCollection(I item);
 
     @Override
     public I getItem(int position) {
