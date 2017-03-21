@@ -149,6 +149,7 @@
 
 
     <string name="statement">Statement</string>
+    <string name="change_password">change password</string>
     <string name="event">Event</string>
     <string name="detail">Detail</string>
     <string name="other">Other</string>

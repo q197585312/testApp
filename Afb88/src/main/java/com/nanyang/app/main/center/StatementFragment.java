@@ -17,14 +17,21 @@ import com.unkonw.testapp.libs.base.BaseFragment;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.OnClick;
 
 /**
  * Created by Administrator on 2017/3/11.
  */
 
 public class StatementFragment extends BaseFragment<StatementContact.Presenter> implements StatementContact.View {
-    @Bind(R.id.statement_rc)
+    @Bind(R.id.statement_list_rc)
     RecyclerView rc;
+    @Bind(R.id.tv_blance_sure)
+    TextView tv_blanceSure;
+    @Bind(R.id.title_view)
+    View titleView;
+    @Bind(R.id.item_transfer_view)
+    View transferView;
     String userName;
 
     @Override
@@ -90,15 +97,48 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     @Override
     public void initView() {
         super.initView();
+        titleView.setBackgroundColor(0xff1F5E1F);
+        transferView.setBackgroundColor(0xff1F5E1F);
     }
 
     @Override
     public void onGetData(final String data) {
         initRc(presenter.parseData(data));
+        initTransferRc();
+    }
+
+    private void initTransferRc() {
+//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+//        rc.setLayoutManager(mLayoutManager);
+//        BaseRecyclerAdapter<StatementListBean> baseRecyclerAdapter = new BaseRecyclerAdapter<StatementListBean>(mContext, data, R.layout.item_statement_list) {
+//            @Override
+//            public void convert(MyRecyclerViewHolder holder, int position, StatementListBean item) {
+//
+//            }
+//
+//        };
+//        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<StatementListBean>() {
+//            @Override
+//            public void onItemClick(View view, StatementListBean item, int position) {
+//
+//            }
+//
+//        });
+//        rc.setAdapter(baseRecyclerAdapter);
     }
 
     @Override
     public void onFailed(String error) {
+
+    }
+
+    @OnClick({R.id.tv_blance_sure})
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.tv_blance_sure:
+                //TODO
+                break;
+        }
 
     }
 }
