@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.main.center.model.StatementListBean;
+import com.nanyang.app.main.center.model.StatementTransferBean;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -39,6 +40,7 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
                     @Override
                     public void accept(String s) throws Exception {
                         baseView.onGetData(s);
+                        baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -66,7 +68,7 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        Log.d("Consumer", "accept: "+s);
+                        Log.d("Consumer", "accept: " + s);
                         String result = Html.fromHtml(s).toString();
                         StringBuilder sb = new StringBuilder();
                         int size = result.length();
@@ -83,12 +85,12 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
                                 list.add(data1[i]);
                             }
                         }
-                        Log.d("Consumer", "accept: "+list.toString());
+                        Log.d("Consumer", "accept: " + list.toString());
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.d("Consumer", "accept: "+throwable.toString());
+                        Log.d("Consumer", "accept: " + throwable.toString());
                     }
                 }, new Action() {
                     @Override
@@ -205,6 +207,20 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
         dataList.add(listBean8);
         dataList.add(listBean9);
         baseView.hideLoadingDialog();
+        parseTransferData(list);
         return dataList;
+    }
+
+    private List<StatementTransferBean> parseTransferData(List<String> list) {
+        List<String> needList = new ArrayList<>();
+        List<StatementTransferBean> dataList = new ArrayList<>();
+        if (list.size() > 82) {
+            if (list.get(82).contains("/") && list.get(83).contains(":")) {
+                for (int i = 82; i < list.size(); i++) {
+                    needList.add(list.get(i));
+                }
+            }
+        }
+        return null;
     }
 }

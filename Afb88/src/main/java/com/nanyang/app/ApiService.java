@@ -80,7 +80,7 @@ public interface ApiService {
 
     //http://a8197c.a36588.com/main.aspx
     @GET("http://a8197c.a36588.com/main.aspx")
-    Flowable<String> main() ;
+    Flowable<String> main();
 
 
     @GET
@@ -124,6 +124,11 @@ public interface ApiService {
 
     @GET("_norm/AccHistory2.aspx?")
     Flowable<String> thisWeekBetList(@Query("role") String role, @Query("userName") String userName);
+
     @GET("http://appgd88.com/images/afb88.php?app=afb88")
     Flowable<List<String>> getBannerUrl();
+
+    @FormUrlEncoded
+    @POST("_view/ChgPwd.aspx")
+    Flowable<String> changePasswrod(@Field("txtOldPassword") String txtOldPassword, @Field("txtNewPassword") String txtNewPassword, @Field("txtConfirmPassword") String txtConfirmPassword);
 }
