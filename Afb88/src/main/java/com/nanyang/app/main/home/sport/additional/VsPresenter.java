@@ -4,6 +4,7 @@ package com.nanyang.app.main.home.sport.additional;
 import android.support.annotation.NonNull;
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
@@ -30,6 +31,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 class VsPresenter extends BaseRetrofitPresenter<ScaleBean, BetView<ScaleBean>> implements IBasePresenter {
     private String type;
     private BallInfo bean;
+    private String paramT;
 
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     VsPresenter(BetView view) {
@@ -37,9 +39,10 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, BetView<ScaleBean>> i
     }
 
 
-    public void scale(BallInfo item, String matchType) {
+    public void scale(String paramT, BallInfo item, String matchType) {
         this.bean = item;
         this.type = matchType;
+        this.paramT=paramT;
         String url = getUrl();
         Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).scale(url)).subscribe(new Consumer<ScaleBean>() {//onNext
             @Override
@@ -67,14 +70,14 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, BetView<ScaleBean>> i
         });
         mCompositeSubscription.add(subscription);
     }
-
+//http://a8206d.a36588.com/_view/pgajaxS.axd?T=MB2&oId=12270813&home=Rochdale&away=Millwall&moduleTitle=ENGLISH%20LEAGUE%20ONE&date=03:45AM&lang=EN-US&isRun=false&_=1490092254432
     @NonNull
     private String getUrl() {
         boolean isRunning = false;
         if (type.equals("Running"))
             isRunning = true;
 
-        String url = "http://main55.afb88.com/_view/MoreBet_App.aspx?oId=" + bean.getSocOddsId() + "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getModuleTitle()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning;
+        String url = AppConstant.APP_HOST+"_view/MoreBet_App.aspx?oId=" +paramT+ bean.getSocOddsId() + "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getModuleTitle()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning;
         url = url + "&t=" + System.currentTimeMillis();
         return url;
     }

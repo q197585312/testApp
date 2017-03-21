@@ -11,7 +11,9 @@ public class AppConstant {
 
     static {
         HOST= "http://a8197c.a36588.com/";
+        APP_HOST = "http://main55.afb88.com/";
     }
+    public static String APP_HOST = "http://main55.afb88.com/";
     public static String KEY_STRING="KEY_STRING";
     public static String KEY_DATA="KEY_DATA";
     public static String KEY_INT="KEY_INT";
@@ -77,9 +79,9 @@ public static String URL_FINANCIAL_RUNNING =HOST+"_view/All_Gen6.ashx?g=7&ot=r&u
     public static String URL_FINANCIAL_EARLY =HOST+"_view/All_Gen6.ashx?g=7&ot=e&update=true&r=1634139687";
 
     //泰拳http://a8197c.a36588.com/_view/All_Gen6.ashx?g=108&ot=t&update=true&r=1661815184&LID=&_=1488527593418
-    public static String URL_THAI_BOXING_TODAY = HOST+"_view/All_Gen6.ashx?g=108&ot=t&update=true&r=1233177815";
-    public static String URL_THAI_BOXING_RUNNING = HOST+"_view/All_Gen6.ashx?g=108&ot=r&update=true&r=1770989484";
-    public static String URL_THAI_BOXING_EARLY = HOST+"_view/All_Gen6.ashx?g=108&ot=e&update=true&r=1770989484";
+    public static String URL_MUAY_THAI_TODAY = HOST+"_view/All_Gen6.ashx?g=108&ot=t&update=true&r=1233177815";
+    public static String URL_MUAY_THAI_RUNNING = HOST+"_view/All_Gen6.ashx?g=108&ot=r&update=true&r=1770989484";
+    public static String URL_MUAY_THAI_EARLY = HOST+"_view/All_Gen6.ashx?g=108&ot=e&update=true&r=1770989484";
 
     //http://a8197c.a36588.com/_view/All_Gen6.ashx?g=6&ot=t&update=true&r=740497289&LID=&_=1488958736003
     public static String URL_4D_SPECIAL_TODAY = HOST+"_view/All_Gen6.ashx?g=6&ot=t&update=true&r=1233177815";
@@ -92,4 +94,11 @@ public static String URL_FINANCIAL_RUNNING =HOST+"_view/All_Gen6.ashx?g=7&ot=r&u
     public static String URL_E_SPORT_EARLY = HOST+"_view/All_Gen6.ashx?g=106&ot=e&update=true&r=1770989484";
     public static String URL_E_SPORT_OUTRIGHT= HOST+"_view/OddsOutGen.ashx?g=107&update=true&r=1770989484";
 
+//    http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=e&update=true&r=1056207418&wd=2017-03-22&ia=0&oview=1&LID=&_=1490092121779
+    //http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=r&update=true&r=1278052286&LID=84733db3885dd967&_=1490092254366
+    //http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=t&update=true&r=1278052286&LID=d784f703f22a941c&_=1490092254367
+
+    public static final String URL_SOCCER_MYANMAR_RUNNING =HOST+"_view/MOddsGen2.ashx?g=106&ot=r&update=true&r=1233177815"; ;
+    public static final String URL_SOCCER_MYANMAR_TODAY = HOST+"_view/MOddsGen2.ashx?g=106&ot=t&update=true&r=1233177815";;
+    public static final String URL_SOCCER_MYANMAR_EARLY = HOST+"_view/MOddsGen2.ashx?g=106&ot=e&update=true&r=1233177815";;
 }

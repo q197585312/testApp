@@ -23,6 +23,7 @@ import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
+import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.SoccerCommonBetHelper;
@@ -85,7 +86,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     }
 
     IBetHelper helper;
-
+    String paramT="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -104,7 +105,9 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         isMixParlay = type.getRes() == 1;
         String parent = type.getParent();
         String football = getString(R.string.football);
+
         if (parent.equals(football)) {
+            paramT="";
             if (isMixParlay) {
                 helper = new SoccerMixBetHelper(this);
             } else {
@@ -112,6 +115,11 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
                 if (matchType.equals("Running"))
                     helper = new SoccerRunningBetHelper(this);
             }
+        }else if(parent.equals( getString(R.string.Myanmar_Odds))){
+            paramT="T=MB2";
+            helper = new MyanmarBetHelper(this);
+
+            //http://a8206d.a36588.com/_view/pgajaxS.axd?T=MB2&oId=12270813&home=Rochdale&away=Millwall&moduleTitle=ENGLISH%20LEAGUE%20ONE&date=03:45AM&lang=EN-US&isRun=false&_=1490092254432
         }
 
         assert tvToolbarTitle != null;
@@ -135,7 +143,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             fragmentsList.add(sf);
             fragmentsList.add(bf);
             fragmentsList.add(cf);
-            presenter.scale(item, matchType);
+
         }
         ballgamePagerVp.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentsList));
         ballgameTabsPstabs.setViewPager(ballgamePagerVp);
@@ -256,7 +264,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     protected void onResume() {
         super.onResume();
         if (!isMixParlay)
-            presenter.scale(item, matchType);
+            presenter.scale(paramT,item, matchType);
     }
 
     @Override

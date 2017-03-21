@@ -18,6 +18,8 @@ import com.nanyang.app.main.home.sport.e_sport.ESportFragment;
 import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
 import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
+import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
+import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -41,13 +43,10 @@ public class SportActivity extends BaseToolbarActivity {
     BaseSportFragment financialFragment = new FinancialFragment();
     BaseSportFragment game4dFragment = new Game4dFragment();
     BaseSportFragment eSportFragment = new ESportFragment();
+    BaseSportFragment muayThaiFragment = new MuayThaiFragment();
+    BaseSportFragment myanmarFragment = new MyanmarFragment();
 
-  /*  BaseSportFragment basketballFragment = new BasketballFragment();
-    BaseSportFragment tennisFragment = new TennisFragmentOld();
-    BaseSportFragment financialFragment = new FinancialFragmentOld();
-    BaseSportFragment special4dFragment = new Game4dFragmentOld();
-    BaseSportFragment thaiboxingFragment = new ThaiBoxingFragment();
-    BaseSportFragment sportEFragment = new SportEFragment();*/
+
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
@@ -120,10 +119,19 @@ public class SportActivity extends BaseToolbarActivity {
                 currentTag = getString(R.string.Specials_4D);
                 break;
             case "Muay_Thai":
+                mapFragment.put(getString(R.string.Muay_Thai), muayThaiFragment);
+                currentFragment = muayThaiFragment;
+                currentTag = getString(R.string.Muay_Thai);
+                break;
             case "E_Sport":
                 mapFragment.put(getString(R.string.E_Sport), eSportFragment);
                 currentFragment = eSportFragment;
                 currentTag = getString(R.string.E_Sport);
+                break;
+            case "Myanmar_Odds":
+                mapFragment.put(getString(R.string.Myanmar_Odds), myanmarFragment);
+                currentFragment = myanmarFragment;
+                currentTag = getString(R.string.Myanmar_Odds);
                 break;
             default:
                 mapFragment.put(getString(R.string.Soccer), soccerFragment);
