@@ -24,10 +24,10 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25px"
-                    android:layout_weight="1.2"
+                    android:layout_weight="1"
                     android:text="成绩日期 :"
                     android:textColor="@color/green_thai_thousand_wrol"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/tv_grade_date"
@@ -68,9 +68,9 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="25px"
-                    android:layout_weight="0.5"
+                    android:layout_weight="0.4"
                     android:textColor="@color/green_thai_thousand_wrol"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -126,8 +126,8 @@
                         <TextView
                             android:id="@+id/tv_submit"
                             android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:layout_height="25dp"
+                            android:layout_weight="5"
                             android:background="@drawable/rectangle_btn_bg"
                             android:gravity="center"
                             android:padding="3dp"
@@ -135,20 +135,12 @@
                             android:textColor="@color/black"
                             android:textSize="12sp" />
 
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="1px"
-                            android:layout_weight="0.8" />
 
                         <View
                             android:layout_width="0dp"
+                            android:layout_marginRight="25px"
                             android:layout_height="1px"
-                            android:layout_weight="1" />
-
-                        <View
-                            android:layout_width="0dp"
-                            android:layout_height="1px"
-                            android:layout_weight="3" />
+                            android:layout_weight="1.2" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

@@ -40,6 +40,7 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
                     @Override
                     public void accept(String s) throws Exception {
                         baseView.onGetData(s);
+                        baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override

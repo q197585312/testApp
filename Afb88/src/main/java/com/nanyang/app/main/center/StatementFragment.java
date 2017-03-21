@@ -103,8 +103,8 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
 
     @Override
     public void onGetData(final String data) {
-        initRc(presenter.parseData(data));
-        initTransferRc();
+//        initRc(presenter.parseData(data));
+//        initTransferRc();
     }
 
     private void initTransferRc() {
