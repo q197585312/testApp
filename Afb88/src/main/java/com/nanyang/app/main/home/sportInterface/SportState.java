@@ -12,8 +12,10 @@ import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -210,6 +212,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract2.V
                 switch (item.getType()) {
                     case "Choose":
                         createChoosePop(view);
+                        break;
+                    case "Not settled":
+                        ((BaseToolbarActivity)baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
+                        break;
+                    case "Settled":
+                        ((BaseToolbarActivity)baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
                         break;
                 }
             }
