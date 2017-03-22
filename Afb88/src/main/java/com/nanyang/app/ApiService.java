@@ -67,7 +67,7 @@ public interface ApiService {
     password_password	123123aa
     btnSignIn	Login*/
     @FormUrlEncoded
-    @POST("http://www.doo88.net/Default1.aspx")
+    @POST("http://main55.afb88.com/Default1.aspx")
     Flowable<String> doLogin(@FieldMap Map<String, String> info);
 
     //
@@ -116,8 +116,8 @@ public interface ApiService {
     Flowable<ScaleBean> scale(@Url String url);
 
     //statement清单
-    @GET("_norm/AccHistory.aspx?")
-    Flowable<String> statementData();
+    @GET
+    Flowable<String> statementData(@Url String url);
 
     @GET("_norm/AccMatchWL.aspx?")
     Flowable<String> betState(@Query("userName") String userName, @Query("to") String to, @Query("from") String from);

@@ -37,7 +37,7 @@ public class Api {
      * 服务器地址
      */
     // 请求公共部分
-    private static final String BASE_URL = "http://a8197c.a36588.com/";
+    private static final String BASE_URL = "http://main55.afb88.com/";
 
     // 消息头
     private static final String HEADER_X_HB_Client_Type = "X-HB-Client-Type";

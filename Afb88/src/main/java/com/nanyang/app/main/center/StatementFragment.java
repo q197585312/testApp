@@ -50,7 +50,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         super.initData();
         AfbApplication app = (AfbApplication) getActivity().getApplication();
         userName = app.getUserName();
-        presenter.getStatementData("mb", userName);
+        presenter.getStatementData(userName);
     }
 
     private void initRc(final List<StatementListBean> data) {

@@ -10,7 +10,7 @@ public class AppConstant {
 
 
     static {
-        HOST= "http://a8197c.a36588.com/";
+        HOST= "http://main55.afb88.com/";
     }
     public static String KEY_STRING="KEY_STRING";
     public static String KEY_DATA="KEY_DATA";
@@ -33,7 +33,7 @@ public class AppConstant {
             //http://a8197c.a36588.com/Main.aspx?accType=ID
             //http://a8197c.a36588.com/Main.aspx?accType=EU
 
-    public static String HOST="http://a8197c.a36588.com/";
+    public static String HOST="http://main55.afb88.com/";
     public static String URL_UPDATE_STATE=HOST+"pgajaxS.axd?T=CHKST&P=100";
     public static String URL_ODDS_TYPE=HOST+"Main.aspx?accType=";
 
@@ -91,5 +91,6 @@ public static String URL_FINANCIAL_RUNNING =HOST+"_view/All_Gen6.ashx?g=7&ot=r&u
     public static String URL_E_SPORT_RUNNING = HOST+"_view/All_Gen6.ashx?g=106&ot=r&update=true&r=1770989484";
     public static String URL_E_SPORT_EARLY = HOST+"_view/All_Gen6.ashx?g=106&ot=e&update=true&r=1770989484";
     public static String URL_E_SPORT_OUTRIGHT= HOST+"_view/OddsOutGen.ashx?g=107&update=true&r=1770989484";
+    public static String URL_STAEMENT = HOST+"_norm/AccHistory_App.aspx?";
 
 }

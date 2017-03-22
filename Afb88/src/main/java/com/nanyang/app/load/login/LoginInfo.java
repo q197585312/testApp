@@ -15,8 +15,8 @@ import java.util.Map;
     password_clear	PASSWORD
     password_password	123123aa
     btnSignIn	Login*/
-    private String __VIEWSTATE="/wEPDwUKLTE5MDg0OTk2OA9kFgJmD2QWBAIBDxYCHgVzdHlsZQUxYmFja2dyb3VuZDp1cmwoaW1hZ2VzL2xvZ2luX0VOLVVTLnBuZykgbm8tcmVwZWF0OxYCZg9kFgICBw8PFgIeBFRleHQFBUxvZ2luZGQCAg8WAh8ABTliYWNrZ3JvdW5kOnVybChpbWFnZXMvbGlzdF9FTi1VUy5wbmcpIG5vLXJlcGVhdCBjZW50ZXIgMDtkZILSIuTLgS/8hJa3J23I5k+x06BDeZByAtaTINV609ga";
-    private String __EVENTVALIDATION="/wEdAAZJEHwPoiWZZuqEe34w850kiHrx0gRh57qNYHb+gYJUfmN6ZYJNGAQHn0c9zMgZU3A/F856zktixbVekFwCZlBeynuqL3cQJfeeYQ4/gSeOva+f28GNV31+z65DbDqxMS6LpyUyt/tbENTU5voMwX/lJJ3P7TiZYvPQJfOZvT/XIA==";
+    private String __VIEWSTATE="/wEPDwULLTE1NzgzODQwNTIPZBYCZg9kFgRmDxYCHgVzdHlsZQUxYmFja2dyb3VuZDp1cmwoaW1hZ2VzL2xvZ2luX0VOLVVTLnBuZykgbm8tcmVwZWF0OxYCZg9kFgICCQ8PFgIeBFRleHQFBUxvZ2luZGQCAQ8WAh8ABTliYWNrZ3JvdW5kOnVybChpbWFnZXMvbGlzdF9FTi1VUy5wbmcpIG5vLXJlcGVhdCBjZW50ZXIgMDtkZFQZd7i8stdYFQuPOPwiVWF56AvyxMUH0QGpyPjYhlg5";
+    private String __EVENTVALIDATION="/wEdAAYpPXKEnSgwS5OM83/1znbNY3plgk0YBAefRz3MyBlTcD8XznrOS2LFtV6QXAJmUF7Ke6ovdxAl955hDj+BJ469iHrx0gRh57qNYHb+gYJUfq+f28GNV31+z65DbDqxMS7eqPw3s2V7Bn4zHu2v1nVEy/P4mxqMWRPvxWg3VzRGSA==";
 
     private String lstLang ="Default.aspx?lang=EN-US";
     private String txtUserName;
