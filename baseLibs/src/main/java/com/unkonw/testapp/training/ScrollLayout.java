@@ -15,6 +15,7 @@ import android.widget.Scroller;
 import java.util.List;
 
 import cn.finalteam.toolsfinal.DeviceUtils;
+import cn.finalteam.toolsfinal.logger.Logger;
 
 /**
  * Created by guolin on 16/1/12.
@@ -65,7 +66,7 @@ public class ScrollLayout extends ViewGroup {
         return targetIndex;
     }
 
-    private int targetIndex=0;
+    private int targetIndex = 0;
 
 
     public ScrollLayout(Context context, AttributeSet attrs) {
@@ -74,7 +75,7 @@ public class ScrollLayout extends ViewGroup {
         mScroller = new Scroller(context);
         ViewConfiguration configuration = ViewConfiguration.get(context);
         // 获取TouchSlop值
-        mTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(configuration)+ DeviceUtils.dip2px(context,5);
+        mTouchSlop = ViewConfigurationCompat.getScaledPagingTouchSlop(configuration) + DeviceUtils.dip2px(context, 5);
     }
 
     @Override
@@ -92,7 +93,7 @@ public class ScrollLayout extends ViewGroup {
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         if (changed) {
             int childCount = getChildCount();
-            if(childCount<1)
+            if (childCount < 1)
                 return;
             for (int i = 0; i < childCount; i++) {
                 View childView = getChildAt(i);
@@ -102,8 +103,16 @@ public class ScrollLayout extends ViewGroup {
             // 初始化左右边界值
 
             leftBorder = getChildAt(0).getLeft();
-            rightBorder = getChildAt(getChildCount() - 1).getRight();
+            rightBorder = getRightBorder(getChildCount() - 1);
         }
+    }
+
+    private int getRightBorder(int i) {
+        if (getChildAt(i).getVisibility() != GONE)
+            return getChildAt(i).getRight();
+        else
+            return getRightBorder(i - 1);
+
     }
 
     @Override
@@ -121,7 +130,7 @@ public class ScrollLayout extends ViewGroup {
                 mYMove = ev.getRawY();
                 float diff = Math.abs(mXMove - mXDown);
                 mXLastMove = mXMove;
-                mYLastMove=mYMove;
+                mYLastMove = mYMove;
                 // 当手指拖动值大于TouchSlop值时，认为应该进行滚动，拦截子控件的事件
                 if (diff > mTouchSlop) {
 
@@ -158,14 +167,14 @@ public class ScrollLayout extends ViewGroup {
                     Log.d("MotionEvent", "onTouchEvent---ACTION_MOVE:" + true);
                     return true;
                 }
-                if(Math.abs(scrolledY)<Math.abs(scrolledX)) {
+                if (Math.abs(scrolledY) < Math.abs(scrolledX)) {
                     scrollBy(scrolledX, 0);
                     if (getParent() != null) {
                         getParent().requestDisallowInterceptTouchEvent(true);
                     }
                 }
                 mXLastMove = mXMove;
-                mYLastMove=mYMove;
+                mYLastMove = mYMove;
                 Log.d("MotionEvent", "onTouchEvent---ACTION_MOVE:" + super.onTouchEvent(event));
                 break;
             case MotionEvent.ACTION_UP:
@@ -174,7 +183,7 @@ public class ScrollLayout extends ViewGroup {
                 int dx = targetIndex * getWidth() - getScrollX();
                 // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
                 mScroller.startScroll(getScrollX(), 0, dx, 0);
-                if(back!=null){
+                if (back != null) {
                     back.changePosition(targetIndex);
                 }
                 invalidate();
@@ -196,13 +205,12 @@ public class ScrollLayout extends ViewGroup {
     }
 
 
-
     @Override
     public void scrollTo(int x, int y) {
         super.scrollTo(x, y);
         if (scrolls != null) {
             for (ScrollLayout scroll : scrolls) {
-                if (!scroll.equals(this)){
+                if (!scroll.equals(this)) {
                     scroll.setFollowScrolls(null);
                     scroll.scrollTo(x, y);
                 }
@@ -214,19 +222,31 @@ public class ScrollLayout extends ViewGroup {
     public void setFollowScrolls(List<ScrollLayout> scrolls) {
         this.scrolls = scrolls;
     }
-    public List<ScrollLayout>  getFollowScrolls() {
+
+    public List<ScrollLayout> getFollowScrolls() {
         return scrolls;
     }
+
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
-    public void setCurrentIndex(int index){
-        int dx = index * getWidth() - getScrollX();
-        // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
-        mScroller.startScroll(getScrollX(), 0, dx, 0);
-        targetIndex = index;
+    public void setCurrentIndex(final int index) {
+        this.post(new Runnable() {
+            @Override
+            public void run() {
+                int dx = index * getMeasuredWidth();
+                // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
+                scrollTo(dx, 0);
+                Logger.getDefaultLogger().d(index + "滑动距离：" + dx);
+//                Logger.getDefaultLogger().d("getScrollX:" + getScrollX());
+//                mScroller.startScroll(getScrollX(), 0, dx, 0);
+                targetIndex = index;
+            }
+
+        });
 
     }
-    public void setIndexChangeListener(IndexChangeCallBack back){
-        this.back=back;
+
+    public void setIndexChangeListener(IndexChangeCallBack back) {
+        this.back = back;
     }
 
 

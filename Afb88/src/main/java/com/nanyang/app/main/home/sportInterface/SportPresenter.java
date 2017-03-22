@@ -1,7 +1,7 @@
 package com.nanyang.app.main.home.sportInterface;
 
 
-public class SportPresenter2 implements SportContract2.Presenter {
+public class SportPresenter implements SportContract.Presenter {
 
 
 
@@ -19,7 +19,7 @@ public class SportPresenter2 implements SportContract2.Presenter {
 
     }
 
-    public SportPresenter2(SportContract2.View view) {
+    public SportPresenter(SportContract.View view) {
     }
 
 

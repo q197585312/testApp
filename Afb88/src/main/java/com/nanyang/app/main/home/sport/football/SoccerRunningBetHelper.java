@@ -1,6 +1,7 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.football;
 
 import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
+import com.nanyang.app.main.home.sportInterface.BetView;
 
 /**
  * Created by Administrator on 2017/3/19 0019.

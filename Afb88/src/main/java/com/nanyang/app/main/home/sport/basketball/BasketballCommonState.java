@@ -13,7 +13,7 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 
 import com.nanyang.app.main.home.sportInterface.SportAdapterHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract2;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 import com.nanyang.app.main.home.sportInterface.SportState;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.training.ScrollLayout;
@@ -30,13 +30,13 @@ import java.util.Map;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class BasketballCommonState extends SportState<BasketballCommonInfo, SportContract2.View<BasketballCommonInfo>> {
+public abstract class BasketballCommonState extends SportState<BasketballCommonInfo, SportContract.View<BasketballCommonInfo>> {
 
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
 
 
-    public BasketballCommonState(SportContract2.View baseView) {
+    public BasketballCommonState(SportContract.View baseView) {
         super(baseView);
     }
 

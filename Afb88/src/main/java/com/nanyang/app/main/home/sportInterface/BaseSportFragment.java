@@ -38,7 +38,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/3/13.
  */
 
-public abstract class BaseSportFragment extends BaseFragment<SportPresenter2> implements SportContract2.View<SportInfo> {
+public abstract class BaseSportFragment extends BaseFragment<SportPresenter> implements SportContract.View<SportInfo> {
 
     @Bind(R.id.tv_total_match)
     TextView tvTotalMatch;
@@ -62,7 +62,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter2> im
     @Override
     public void initData() {
         super.initData();
-        createPresenter(new SportPresenter2(this));
+        createPresenter(new SportPresenter(this));
         isFirstIn = true;
         swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override

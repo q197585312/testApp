@@ -5,7 +5,6 @@ import android.view.View;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sportInterface.BallAdapterHelper;
-import com.nanyang.app.main.home.sportInterface.SoccerHeaderContent;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -46,12 +45,9 @@ public class BasketballMixAdapterHelper extends BallAdapterHelper<BasketballMixI
         View markAdd = helper.getView(R.id.module_right_mark_tv);
         markAdd.setVisibility(View.INVISIBLE);
         tvCollection.setVisibility(View.GONE);
-
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        View ov12=scrollChild(false, item,item.getIsHomeGive() , item.getHasX12(),"", item.getHasOE(), "", item.getIsX12New() , "","", "", item.getX12_1Odds(), item.getX12_2Odds(), "1",  "2", "", ""
+        scrollChild(sl.getChildAt(1),false, item,item.getIsHomeGive() , item.getHasX12(),"", item.getHasOE(), "", item.getIsX12New() , "","", "", item.getX12_1Odds(), item.getX12_2Odds(), "1",  "2", "", ""
             ,true,false , true,  item.getHasOE(),  item.getIsOENew(),  item.getOddOdds(),  item.getEvenOdds(),  "odd",  "even");
-        sl.addView(ov12, SoccerHeaderContent.layoutParams);
-
     }
 
 

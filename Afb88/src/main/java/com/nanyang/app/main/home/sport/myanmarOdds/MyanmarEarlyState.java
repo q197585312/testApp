@@ -4,7 +4,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract2;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 
 import java.util.Date;
@@ -14,7 +14,7 @@ import java.util.Date;
  */
 
 public class MyanmarEarlyState extends MyanmarState {
-    public MyanmarEarlyState(SportContract2.View baseView) {
+    public MyanmarEarlyState(SportContract.View baseView) {
         super(baseView);
     }
 

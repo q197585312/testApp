@@ -7,7 +7,7 @@ import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.financial.FinancialState;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract2;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 
 public abstract class MuayThaiState extends FinancialState{
 
-    public MuayThaiState(SportContract2.View baseView) {
+    public MuayThaiState(SportContract.View baseView) {
         super(baseView);
     }
     @Override

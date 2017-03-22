@@ -7,7 +7,6 @@ import android.widget.TextView;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sportInterface.BallAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
-import com.nanyang.app.main.home.sportInterface.SoccerHeaderContent;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -47,19 +46,17 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
             }
         });
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        sl.removeAllViews();
-        View view = scrollChild(false, item, item.getIsHomeGive(), item.getHasHdp(), item.getHdp(), item.getHasOU(), item.getOU(), item.getIsHdpNew(), item.getIsOUNew(), item.getUnderOdds(), item.getOverOdds(), item.getHomeHdpOdds(), item.getAwayHdpOdds(), "home", "away", "over", "under",
+
+        scrollChild(sl.getChildAt(0), false, item, item.getIsHomeGive(), item.getHasHdp(), item.getHdp(), item.getHasOU(), item.getOU(), item.getIsHdpNew(), item.getIsOUNew(), item.getUnderOdds(), item.getOverOdds(), item.getHomeHdpOdds(), item.getAwayHdpOdds(), "home", "away", "over", "under",
                 true, true, true, item.getHasOE(), item.getIsOENew(), item.getOddOdds(), item.getEvenOdds(), "odd", "even"
         );
-        View hfView = scrollChild(true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH()
+        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH()
                 , "home", "away", "over", "under",
                 true, true, true,
                 item.getHasOE_FH(), item.getIsOENew_FH(), item.getOddOdds_FH(), item.getEvenOdds_FH()
                 , "odd", "even"
         );
 
-        sl.addView(view, SoccerHeaderContent.layoutParams);
-        sl.addView(hfView, SoccerHeaderContent.layoutParams);
 
         String oldHomeName = "";
         String oldAwayName = "";

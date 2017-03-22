@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.football;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sportInterface.IHeaderContentHelper;
 import com.unkonw.testapp.training.ScrollLayout;
 
 import butterknife.Bind;

@@ -3,7 +3,7 @@ package com.nanyang.app.main.home.sport.game4d;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.financial.FinancialState;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract2;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -11,7 +11,7 @@ import com.nanyang.app.main.home.sportInterface.SportContract2;
 
 public abstract class Game4dState extends FinancialState{
 
-    public Game4dState(SportContract2.View baseView) {
+    public Game4dState(SportContract.View baseView) {
         super(baseView);
     }
     @Override

@@ -53,16 +53,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
 
                 if (item.getRows().get(0).getValue() != null && (!item.getRows().get(0).getValue().equals(""))) {
                     betHelper.clickOdds(itemData,item.getB(),item.getRows().get(0).getValue(),(TextView) v,false);
-                   /* BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    pop.showPopupCenterWindow();
-                    BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getRows().get(0).getSc(), "", item.getRows().get(0).getValue(),
-                            "", "", item.getModuleTitle(), item.getRows().get(0).getOid() + "", "", 0, false, false);
-                    if (position > 9) {
-                        pop.setBetSelectionType(getString(R.string.half_time));
-                        info = new BettingInfoBean("s", item.getB(), item.getRows().get(0).getSc(), "", item.getRows().get(0).getValue(),
-                                "", "", item.getModuleTitle(), item.getRows().get(0).getOid() + "", item.getRows().get(0).getOid() + "", 1, false, false);
-                    }
-                    pop.initData(info);*/
+
                 }
             }
         });
@@ -71,16 +62,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             public void onClick(View v) {
                 if (item.getRows().get(1).getValue() != null && (!item.getRows().get(1).getValue().equals(""))) {
                     betHelper.clickOdds(itemData,item.getB(),item.getRows().get(1).getValue(),(TextView) v,false);
-                    /*BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    pop.showPopupCenterWindow();
-                    BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getRows().get(1).getSc(), "", item.getRows().get(1).getValue(),
-                            "", "", item.getModuleTitle(), item.getRows().get(1).getOid() + "", "", 0, false, false);
-                    if (position > 9) {
-                        pop.setBetSelectionType(getString(R.string.half_time));
-                        info = new BettingInfoBean("s", item.getB(), item.getRows().get(1).getSc(), "", item.getRows().get(1).getValue(),
-                                "", "", item.getModuleTitle(), item.getRows().get(1).getOid() + "", item.getRows().get(1).getOid() + "", 1, false, false);
-                    }
-                    pop.initData(info);*/
+
                 }
             }
         });
@@ -89,16 +71,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             public void onClick(View v) {
                 if (item.getRows().get(2).getValue() != null && (!item.getRows().get(2).getValue().equals(""))) {
                     betHelper.clickOdds(itemData,item.getB(),item.getRows().get(2).getValue(),(TextView) v,true);
-                    /*BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
-                    pop.showPopupCenterWindow();
-                    BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getRows().get(2).getSc(), "", item.getRows().get(2).getValue(),
-                            "", "", item.getModuleTitle(), item.getRows().get(2).getOid() + "", "", 0, false, false);
-                    if (position > 9) {
-                        pop.setBetSelectionType(getString(R.string.half_time));
-                        info = new BettingInfoBean("s", item.getB(), item.getRows().get(2).getSc(), "", item.getRows().get(2).getValue(),
-                                "", "", item.getModuleTitle(), item.getRows().get(2).getOid() + "", item.getRows().get(2).getOid() + "", 1, false, false);
-                    }
-                    pop.initData(info);*/
+
                 }
             }
         });

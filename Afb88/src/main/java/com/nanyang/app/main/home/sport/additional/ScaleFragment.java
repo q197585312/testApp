@@ -63,18 +63,7 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
 
                 if (item.getRows().get(1).getValue() != null && (!item.getRows().get(1).getValue().equals(""))) {
                     betHelper.clickOdds(itemData,item.getB(),item.getRows().get(1).getValue(),(TextView) v,false);
-                    /*if(isMix){
-                        BettingInfoBean info = new BettingInfoBean("", item.getB(), item.getSc(), "", item.getRows().get(1).getValue(),
-                                itemData.getHome(),   itemData.getAway(), item.getModuleTitle(), item.getRows().get(1).getOid() + "", "", 0, false, false);
 
-                        handleClearanceBet(v,position+item.getB(),1,info);
-                    }else {
-                        BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        pop.showPopupCenterWindow();
-                        BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getSc(), "", item.getRows().get(1).getValue(),
-                                itemData.getHome(),   itemData.getAway(), item.getModuleTitle(), item.getRows().get(1).getOid() + "", "", 0, false, false);
-                        pop.initData(info);
-                    }*/
 
                 }
             }
@@ -84,25 +73,10 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
             public void onClick(View v) {
                 if (item.getRows().get(2).getValue() != null && (!item.getRows().get(2).getValue().equals(""))){
                     betHelper.clickOdds(itemData,item.getB(),item.getRows().get(2).getValue(),(TextView) v,true);
-                   /* if(isMix){
-                        BettingInfoBean info = new BettingInfoBean("", item.getB(), item.getSc(), "", item.getRows().get(2).getValue(),
-                                itemData.getHome(),   itemData.getAway(), item.getModuleTitle(), item.getRows().get(2).getOid() + "", item.getRows().get(2).getOid() + "", 1, false, false);
-                        handleClearanceBet(v, position+item.getB(),2,info);
-                    }else {
-                        BetBasePop pop = new BetBasePop(mContext, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
-                        pop.setBetSelectionType(getString(R.string.half_time));
-                        pop.showPopupCenterWindow();
-                        BettingInfoBean info = new BettingInfoBean("s", item.getB(), item.getSc(), ((SoccerCommonInfo)itemData).getHdp_FH(), item.getRows().get(2).getValue(),
-                                itemData.getHome(),   itemData.getAway(), item.getModuleTitle(), item.getRows().get(2).getOid() + "",item.getRows().get(2).getOid() +"", 1, false, false);
-                        pop.initData(info);
-                    }*/
+
                 }
             }
         });
-/*
-        if(isMix)
-            notifyClearanceBet(position+item.getB(), helper);
-*/
 
     }
 

@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.football;
 
 import android.widget.TextView;
 
@@ -6,6 +6,8 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
+import com.nanyang.app.main.home.sportInterface.BallBetHelper;
+import com.nanyang.app.main.home.sportInterface.BetView;
 
 import org.reactivestreams.Subscription;
 

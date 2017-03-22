@@ -52,7 +52,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * sport页面球加载、分页、更新、显示的adapter的逻辑实现
  */
 
-public abstract class SportState<B extends SportInfo, V extends SportContract2.View<B>> implements IObtainDataState {
+public abstract class SportState<B extends SportInfo, V extends SportContract.View<B>> implements IObtainDataState {
     private String LID;
     private int page;
     private List<TableSportInfo<B>> filterData;

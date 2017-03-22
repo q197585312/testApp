@@ -7,7 +7,7 @@ import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.List;
 
-public interface SportContract2  {
+public interface SportContract {
     interface View<B extends SportInfo> extends BetView<List<B>>{
         void setAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter);
         void switchState(IObtainDataState state);

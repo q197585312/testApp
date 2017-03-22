@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.football;
 
 import android.view.View;
 import android.widget.TextView;
@@ -10,6 +10,12 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
+import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
+import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.nanyang.app.main.home.sportInterface.SportAdapterHelper;
+import com.nanyang.app.main.home.sportInterface.SportContract;
+import com.nanyang.app.main.home.sportInterface.SportState;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -34,13 +40,13 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportContract2.View<SoccerMixInfo>> {
+public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportContract.View<SoccerMixInfo>> {
 
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
 
 
-    public SoccerMixState(SportContract2.View baseView) {
+    public SoccerMixState(SportContract.View baseView) {
         super(baseView);
     }
 
