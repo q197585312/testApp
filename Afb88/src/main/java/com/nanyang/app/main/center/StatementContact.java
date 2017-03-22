@@ -16,7 +16,7 @@ public class StatementContact {
     }
 
     interface Presenter extends IBasePresenter {
-        void getStatementData(String mb, String userName);
+        void getStatementData(String userName);
 
         void getThisBetHistory(String mb, String userName);
 

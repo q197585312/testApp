@@ -5,67 +5,68 @@ package com.nanyang.app.main.center.model;
  */
 
 public class StatementListBean {
-    String date;
-    String stake;
-    String valid_amount;
-    String wl;
-    String com;
-    String settled;
-    String balance;
+
+    /**
+     * Date : 本周旧帐
+     * Stake : 0
+     * ParamsUrl :
+     * ValidAmount : 0
+     * WL : 0.00
+     * Com : 0.00
+     */
+
+    private String Date;
+    private String Stake;
+    private String ParamsUrl;
+    private String ValidAmount;
+    private String WL;
+    private String Com;
 
     public String getDate() {
-        return date;
+        return Date;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(String Date) {
+        this.Date = Date;
     }
 
     public String getStake() {
-        return stake;
+        return Stake;
     }
 
-    public void setStake(String stake) {
-        this.stake = stake;
+    public void setStake(String Stake) {
+        this.Stake = Stake;
     }
 
-    public String getValid_amount() {
-        return valid_amount;
+    public String getParamsUrl() {
+        return ParamsUrl;
     }
 
-    public void setValid_amount(String valid_amount) {
-        this.valid_amount = valid_amount;
+    public void setParamsUrl(String ParamsUrl) {
+        this.ParamsUrl = ParamsUrl;
     }
 
-    public String getWl() {
-        return wl;
+    public String getValidAmount() {
+        return ValidAmount;
     }
 
-    public void setWl(String wl) {
-        this.wl = wl;
+    public void setValidAmount(String ValidAmount) {
+        this.ValidAmount = ValidAmount;
+    }
+
+    public String getWL() {
+        return WL;
+    }
+
+    public void setWL(String WL) {
+        this.WL = WL;
     }
 
     public String getCom() {
-        return com;
+        return Com;
     }
 
-    public void setCom(String com) {
-        this.com = com;
-    }
-
-    public String getSettled() {
-        return settled;
-    }
-
-    public void setSettled(String settled) {
-        this.settled = settled;
-    }
-
-    public String getBalance() {
-        return balance;
-    }
-
-    public void setBalance(String balance) {
-        this.balance = balance;
+    public void setCom(String Com) {
+        this.Com = Com;
     }
 }

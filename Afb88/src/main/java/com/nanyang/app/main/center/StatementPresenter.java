@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.util.Log;
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.center.model.StatementListBean;
 import com.nanyang.app.main.center.model.StatementTransferBean;
 import com.unkonw.testapp.libs.api.Api;
@@ -18,6 +19,8 @@ import java.util.List;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+
+import static android.content.ContentValues.TAG;
 
 /**
  * Created by Administrator on 2017/3/11.
@@ -34,18 +37,19 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
     }
 
     @Override
-    public void getStatementData(String mb, String userName) {
-        Disposable disposable = mApiWrapper.applySchedulers(Api.getService(ApiService.class).statementData())
+    public void getStatementData(String userName) {
+        Disposable disposable = mApiWrapper.applySchedulers(Api.getService(ApiService.class).statementData(AppConstant.URL_STAEMENT))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
+                        Log.d(TAG, "accept: "+AppConstant.URL_STAEMENT);
                         baseView.onGetData(s);
                         baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-
+                        Log.d(TAG, "accept: "+throwable.toString());
                     }
                 }, new Action() {
                     @Override
