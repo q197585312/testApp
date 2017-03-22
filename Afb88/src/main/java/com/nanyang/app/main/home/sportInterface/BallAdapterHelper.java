@@ -21,6 +21,7 @@ import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.finalteam.toolsfinal.logger.Logger;
 
 /**
  * Created by Administrator on 2017/3/12 0012.
@@ -144,7 +145,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         sl.addView(vp, SoccerHeaderContent.layoutParams);
         if (!slFollowers.contains(sl))
             slFollowers.add(sl);
-        sl.setOnTouchListener(new View.OnTouchListener() {
+      sl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (sl.getFollowScrolls() == null) {
@@ -162,6 +163,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
         });
         sl.setCurrentIndex(slIndex);
+        Logger.getDefaultLogger().d("POSITION",position+":"+slIndex+"");
         String away = item.getAway();
         String home = item.getHome();
         homeTv.setText(home);
@@ -200,6 +202,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 } else {
                     holder.viewpagerMatchVisitHdpTv.setText(hdpS);
                     holder.viewpagerMatchHomeHdpTv.setText("");
+                }
+                if(homeOddsType.startsWith("mm")||awayOddsType.startsWith("mm")){
+                    holder.viewpagerMatchVisitHdpTv.setTextSize(8);
+                    holder.viewpagerMatchHomeHdpTv.setTextSize(8);
                 }
                 boolean isAnimation = false;
                 if (isHdpNew.equals("1"))
@@ -241,6 +247,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     overOddsType = "over";
                 if (underOddsType.equals(""))
                     underOddsType = "under";
+                if(overOddsType.startsWith("mm")||underOddsType.startsWith("mm")){
+                    holder.viewpagerMatchOuTv.setTextSize(8);
+                    holder.viewpagerMatchOu2Tv.setTextSize(8);
+                }
                 setValue(item, holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation, underOddsType, isFh);
                 setValue(item, holder.viewpagerMatchOveroddsTv, overOdds, isAnimation, overOddsType, isFh);
             }

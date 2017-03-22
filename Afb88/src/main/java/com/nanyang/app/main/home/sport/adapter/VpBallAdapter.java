@@ -23,7 +23,6 @@ import com.nanyang.app.main.home.sport.model.BettingInfoBean;
 import com.nanyang.app.main.home.sport.model.HandicapBean;
 import com.nanyang.app.main.home.sport.model.MatchBean;
 import com.nanyang.app.main.home.sport.tennis.TennisPresenterOld;
-import com.nanyang.app.main.home.sport.thaiboxing.ThaiBoxingPresenter;
 import com.nanyang.app.myView.LinkedViewPager.MyPagerAdapter;
 import com.nanyang.app.myView.LinkedViewPager.ViewPager;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -323,10 +322,10 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                     notifyDataSetChanged();
                 }
             });
-        }else if(presenter instanceof ThaiBoxingPresenter){
+        }/*else if(presenter instanceof ThaiBoxingPresenter){
             tvRightMark.setVisibility(View.VISIBLE);
             tvCollection.setVisibility(View.GONE);
-        }
+        }*/
         else if(presenter instanceof FinancialPresenterOld /*||presenter instanceof Game4dPresenterOld*/){
             tvRightMark.setVisibility(View.INVISIBLE);
             tvCollection.setVisibility(View.GONE);
@@ -665,11 +664,11 @@ public class VpBallAdapter extends BaseRecyclerAdapter<MatchBean> {
                                 bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
                         info.setG("7");
                     }
-                    else if(presenter instanceof ThaiBoxingPresenter){
+                   /* else if(presenter instanceof ThaiBoxingPresenter){
                         info = new BettingInfoBean("", type, "", ou, odds,
                                 bean.getHome(), bean.getAway(), bean.getLeagueBean().getModuleTitle(), bean.getHandicapBeans().get(0).getSocOddsId() + "", "", 0, type.equals("Running"), bean.getHandicapBeans().get(0).getIsHomeGive().equals("1"));
                         info.setG("6");
-                    }
+                    }*/
 
                 } else {
                     if(presenter instanceof FootballPresenter) {

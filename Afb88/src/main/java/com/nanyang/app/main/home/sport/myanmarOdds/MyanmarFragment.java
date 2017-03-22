@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.football;
+package com.nanyang.app.main.home.sport.myanmarOdds;
 
 import android.os.Bundle;
 import android.view.View;
@@ -9,13 +9,9 @@ import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
-import com.nanyang.app.main.home.sportInterface.SoccerEarlyState;
-import com.nanyang.app.main.home.sportInterface.SoccerOutRightState;
-import com.nanyang.app.main.home.sportInterface.SoccerRunningState;
-import com.nanyang.app.main.home.sportInterface.SoccerTodayState;
 
 
-public class SoccerFragment extends BaseSportFragment {
+public class MyanmarFragment extends BaseSportFragment {
 
     @Override
     public void initData() {
@@ -23,25 +19,26 @@ public class SoccerFragment extends BaseSportFragment {
         String type = ((SportActivity) getActivity()).getType();
         switch (type) {
             case "Running":
-                switchState(new SoccerRunningState(this));
+                switchState(new MyanmarRunningState(this));
                 break;
             case "Today":
-                switchState(new SoccerTodayState(this));
+                switchState(new MyanmarTodayState(this));
                 break;
             case "Early":
-                switchState(new SoccerEarlyState(this));
+                switchState(new MyanmarEarlyState(this));
                 break;
-            case "OutRight":
-                switchState(new SoccerOutRightState(this));
+
+            default:
+                switchState(new MyanmarTodayState(this));
                 break;
         }
-        setTitle(getString(R.string.football));
+        setTitle(getString(R.string.Specials_4D));
     }
 
 
     @Override
     public String getTitle() {
-        return getString(R.string.Soccer);
+        return getString(R.string.Myanmar_Odds);
     }
 
 

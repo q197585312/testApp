@@ -67,6 +67,7 @@ public class HomeFragment extends BaseFragment {
         dataList.add(new MenuItemInfo(R.mipmap.home_huay_thai, getString(R.string.Huay_Thai), "Huay_Thai"));
         dataList.add(new MenuItemInfo(R.mipmap.home_muay_thai, getString(R.string.Muay_Thai), "Muay_Thai"));
         dataList.add(new MenuItemInfo(R.mipmap.home_games, getString(R.string.E_Sport), "E_Sport"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_keno2, getString(R.string.Myanmar_Odds), "Myanmar_Odds"));
         dataList.add(new MenuItemInfo(R.mipmap.home_keno, getString(R.string.Keno), "Keno"));
         dataList.add(new MenuItemInfo(R.mipmap.home_poker, getString(R.string.Poker), "Poker"));
         dataList.add(new MenuItemInfo(R.mipmap.home_lottery, getString(R.string.Lottery), "Lottery"));
@@ -91,6 +92,7 @@ public class HomeFragment extends BaseFragment {
                     case "Specials_4D":
                     case "Muay_Thai":
                     case "E_Sport":
+                    case "Myanmar_Odds":
                         createPopupWindow(getPopupWindow(item.getType()));
                         popWindow.showPopupCenterWindow();
                         break;
@@ -161,7 +163,8 @@ public class HomeFragment extends BaseFragment {
                 data.add(menuItemInfo);
                 data.add(menuItemInfo1);
                 data.add(menuItemInfo2);
-                data.add(menuItemInfo3);
+                if (!type.equals("Myanmar_Odds"))
+                    data.add(menuItemInfo3);
                 BaseRecyclerAdapter<MenuItemInfo<String>> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, data, R.layout.text_base) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {

@@ -111,7 +111,7 @@
     <string name="Thai_game3">3D Game</string>
     <string name="Thai_bet_hint">投注成功.请到投注狀況对球.</string>
     <string name="Tennis">Tennis</string>
-    <string name="Muay_Thai">NUAY THAI</string>
+    <string name="Muay_Thai">MUAY THAI</string>
     <string name="HK_ODDS">HK ODDS</string>
     <string name="MY_ODDS">MY ODDS</string>
     <string name="ID_ODDS">ID ODDS</string>
@@ -162,5 +162,6 @@
     <string name="selected_all">Selected All</string>
     <string name="reverse_selection">Reverse Selection</string>
     <string name="Huay_Thai">HUAY THAI</string>
+    <string name="Myanmar_Odds">Myanmar Odds</string>
 
 </resources>
