@@ -169,6 +169,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                         setChooseTypeAdapter(rv_list);
                     }
                 });
+        popWindow.setTrans(1f);
         popWindow.showPopupDownWindow();
     }
 
@@ -185,8 +186,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         presenter.getStateHelper().refresh();
         if (popWindow != null)
             popWindow.closePopupWindow();
-        onGetFollowers(presenter.getStateHelper().onSetAdapterHelper().getFollowers());
-
 
     }
 
@@ -301,6 +300,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 });
             }
         });
+        popWindow.setTrans(1f);
         popWindow.showPopupDownWindow();
     }
 

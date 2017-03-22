@@ -2,6 +2,7 @@ package com.nanyang.app.main;
 
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
@@ -25,7 +26,7 @@ class MainPresenter extends BaseRetrofitPresenter<String, MainContract.View> imp
     @Override
     public void main(String str) {
 
-            Disposable subscription =  mApiWrapper.applySchedulers(getService(ApiService.class).main())
+            Disposable subscription =  mApiWrapper.applySchedulers(getService(ApiService.class).getData(AppConstant.URL_MAIN))
 //                    mApiWrapper.goMain()
                     .subscribe(new Consumer<String>() {//onNext
                         @Override

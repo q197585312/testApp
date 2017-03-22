@@ -67,20 +67,9 @@ public interface ApiService {
     password_password	123123aa
     btnSignIn	Login*/
     @FormUrlEncoded
-    @POST("http://main55.afb88.com/Default1.aspx")
-    Flowable<String> doLogin(@FieldMap Map<String, String> info);
+    @POST
+    Flowable<String> doLogin(@Url String url,@FieldMap Map<String, String> info);
 
-    //
-    @GET("http://a8197c.a36588.com/_view/BettingRules1.aspx?lang=eng")
-    Flowable<String> bettingRules1();
-
-    //http://a8197c.a36588.com/Alert.aspx
-    @GET("http://a8197c.a36588.com/Alert.aspx")
-    Flowable<String> alert();
-
-    //http://a8197c.a36588.com/main.aspx
-    @GET("http://a8197c.a36588.com/main.aspx")
-    Flowable<String> main();
 
 
     @GET

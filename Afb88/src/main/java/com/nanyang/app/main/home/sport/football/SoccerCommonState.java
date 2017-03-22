@@ -59,6 +59,10 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<SoccerCommonInfo>(baseRecyclerAdapter) {
             @Override
+            public ScrollLayout onSetHeaderFollower() {
+                return headScrollLayout;
+            }
+            @Override
             public boolean isItemCollection(SoccerCommonInfo item) {
                 return isItemCollectionCommon(item);
             }

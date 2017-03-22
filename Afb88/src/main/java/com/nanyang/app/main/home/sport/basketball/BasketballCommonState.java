@@ -83,6 +83,11 @@ public abstract class BasketballCommonState extends SportState<BasketballCommonI
                 }
 
             }
+
+            @Override
+            public ScrollLayout onSetHeaderFollower() {
+                return headScrollLayout;
+            }
         };
     }
 

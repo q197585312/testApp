@@ -180,7 +180,7 @@ public class SportActivity extends BaseToolbarActivity {
                 }
                 break;
             case R.id.iv_add:
-                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 200) {
+                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 250) {
                     @Override
                     protected int onSetLayoutRes() {
                         return R.layout.popupwindow_choice_game;
@@ -205,7 +205,6 @@ public class SportActivity extends BaseToolbarActivity {
                                 tv.setText(item.getText());
                                 tv.setTextColor(getResources().getColor(R.color.white));
                             }
-
 
                         };
 

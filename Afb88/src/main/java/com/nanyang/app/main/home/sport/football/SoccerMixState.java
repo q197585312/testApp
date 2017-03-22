@@ -69,6 +69,10 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<SoccerMixInfo>(baseRecyclerAdapter) {
             @Override
+            public ScrollLayout onSetHeaderFollower() {
+                return headScrollLayout;
+            }
+            @Override
             public boolean isItemCollection(SoccerMixInfo item) {
                 return false;
             }

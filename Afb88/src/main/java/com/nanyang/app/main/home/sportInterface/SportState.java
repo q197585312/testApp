@@ -24,6 +24,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
+import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -73,6 +74,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected CompositeDisposable mCompositeSubscription;
     protected BasePopupWindow popMenu;
     private SwipeToLoadLayout swipeToLoadLayout;
+    protected ScrollLayout headScrollLayout;
 
     public int getPageSize() {
         return pageSize;
@@ -627,5 +629,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     }
                 });
         mCompositeSubscription.add(subscription);
+    }
+
+    public void setHeaderContent(ScrollLayout slHeader){
+        this.headScrollLayout=slHeader;
     }
 }

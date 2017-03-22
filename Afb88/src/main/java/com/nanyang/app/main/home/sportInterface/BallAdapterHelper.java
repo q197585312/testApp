@@ -14,9 +14,9 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,7 +30,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     final int black_grey = 0XFF333333;
     protected Context context;
-    protected List<ScrollLayout> slFollowers = new ArrayList<>();
+    protected Set<ScrollLayout> slFollowers = new HashSet<>();
 
     private int slIndex = 0;
 
@@ -144,6 +144,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (sl.getFollowScrolls() == null) {
+                    slFollowers.add( back.onSetHeaderFollower());
                     sl.setFollowScrolls(slFollowers);
                 }
                 return false;
@@ -165,9 +166,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         awayTv.setText(away);
     }
 
-    protected void clickAdd(I item) {
-
-    }
 
     public View scrollChild(View vp,boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
         return scrollChild(vp,isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "", true, true, false, "", "", "", "", "", "");
@@ -360,10 +358,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         return R.layout.sport_common_ball_item;
     }
 
-    @Override
-    public List<ScrollLayout> getFollowers() {
-        return slFollowers;
-    }
 
     public static class ViewHolder {
         @Bind(R.id.viewpager_match_home_hdp_tv)

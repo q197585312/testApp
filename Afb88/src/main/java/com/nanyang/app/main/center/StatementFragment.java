@@ -68,11 +68,11 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
                 TextView balance = holder.getView(R.id.tv_statement_balance);
                 date.setText(item.getDate());
                 stake.setText(item.getStake());
-                amount.setText(item.getValid_amount());
-                wl.setText(item.getWl());
+//                amount.setText(item.getValid_amount());
+//                wl.setText(item.getWl());
                 commission.setText(item.getCom());
-                settled.setText(item.getSettled());
-                balance.setText(item.getBalance());
+//                settled.setText(item.getSettled());
+//                balance.setText(item.getBalance());
                 if (position == 0) {
                     date.setOnClickListener(new View.OnClickListener() {
                         @Override

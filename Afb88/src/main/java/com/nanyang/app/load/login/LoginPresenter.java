@@ -55,7 +55,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
     @Override
     public void login(LoginInfo info) {
         if(checkUserAvailable(info)) {
-            Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).doLogin(info.getMap()))
+            Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).doLogin(AppConstant.URL_LOGIN,info.getMap()))
                     .subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
                     .flatMap(new Function<String, Flowable<String>>() {

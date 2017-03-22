@@ -85,6 +85,11 @@ public abstract class BasketballMixState extends SportState<BasketballMixInfo, S
 
             }
 
+            @Override
+            public ScrollLayout onSetHeaderFollower() {
+                return headScrollLayout;
+            }
+
         };
     }
 

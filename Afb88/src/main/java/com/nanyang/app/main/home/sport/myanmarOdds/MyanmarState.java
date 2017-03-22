@@ -57,6 +57,10 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<MyanmarInfo>(baseRecyclerAdapter) {
             @Override
+            public ScrollLayout onSetHeaderFollower() {
+                return headScrollLayout;
+            }
+            @Override
             public boolean isItemCollection(MyanmarInfo item) {
                 return false;
             }

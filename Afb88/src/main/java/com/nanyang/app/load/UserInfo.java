@@ -8,7 +8,7 @@ import java.util.Map;
  */
 public class UserInfo {
     /*String loginParams = "txtLang=0&txtAcctid="+afbApp.getUser().getName()+"&txtPwd="+afbApp.getUser().getPassword()+"&OsType=Android"+"&OsVersion="+version;
-    strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LOGIN_URL, loginParams);*/
+    strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.URL_LOGIN, loginParams);*/
     String txtLang;
     String txtAcctid;
     String txtPwd;

@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.training.ScrollLayout;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -30,6 +31,7 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
         void clickOdds(TextView v, B item, String type, boolean isHf, String odds);
 
         void clickView(View v, B item);
+        ScrollLayout onSetHeaderFollower();
     }
 
     public <I extends ItemCallBack<B>> void setItemCallBack(I back) {

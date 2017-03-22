@@ -10,10 +10,14 @@ public class AppConstant {
 
 
     static {
-        HOST= "http://a8197c.a36588.com/";
-        APP_HOST = "http://main55.afb88.com/";
+//        HOST="http://www.doo88.net/";
+
+
+
     }
-    public static String APP_HOST = "http://main55.afb88.com/";
+    public static final String APP_HOST = "http://main55.afb88.com/";
+
+
     public static String KEY_STRING="KEY_STRING";
     public static String KEY_DATA="KEY_DATA";
     public static String KEY_INT="KEY_INT";
@@ -35,7 +39,12 @@ public class AppConstant {
             //http://a8197c.a36588.com/Main.aspx?accType=ID
             //http://a8197c.a36588.com/Main.aspx?accType=EU
 
-    public static String HOST="http://a8197c.a36588.com/";
+//    public static String HOST="http://www.doo88.net/";
+    public static String HOST=APP_HOST;
+
+    public static String URL_LOGIN =HOST+"Default1.aspx";
+    public static String URL_MAIN=HOST+"main.aspx";
+
     public static String URL_UPDATE_STATE=HOST+"pgajaxS.axd?T=CHKST&P=100";
     public static String URL_ODDS_TYPE=HOST+"Main.aspx?accType=";
 

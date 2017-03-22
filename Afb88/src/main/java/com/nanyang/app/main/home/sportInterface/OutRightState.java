@@ -71,10 +71,6 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
                 return R.layout.sport_out_right_item;
             }
 
-            @Override
-            public List<ScrollLayout> getFollowers() {
-                return null;
-            }
         };
     }
 
@@ -170,6 +166,11 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
             @Override
             public void clickView(View v, SportInfo item) {
 
+            }
+
+            @Override
+            public ScrollLayout onSetHeaderFollower() {
+                return headScrollLayout;
             }
         };
     }
