@@ -12,7 +12,7 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
-import java.util.Set;
+import java.util.List;
 
 import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.logger.Logger;
@@ -59,7 +59,7 @@ public class ScrollLayout extends ViewGroup {
      * 界面可滚动的右边界
      */
     private int rightBorder;
-    private Set<ScrollLayout> scrolls;
+    private List<ScrollLayout> scrolls;
     private IndexChangeCallBack back;
 
     public int getTargetIndex() {
@@ -210,7 +210,7 @@ public class ScrollLayout extends ViewGroup {
         super.scrollTo(x, y);
         if (scrolls != null) {
             for (ScrollLayout scroll : scrolls) {
-                if (!scroll.equals(this)) {
+                if (scroll!=null&&!scroll.equals(this)) {
                     scroll.setFollowScrolls(null);
                     scroll.scrollTo(x, y);
                 }
@@ -219,11 +219,11 @@ public class ScrollLayout extends ViewGroup {
         }
     }
 
-    public void setFollowScrolls(Set<ScrollLayout> scrolls) {
+    public void setFollowScrolls(List<ScrollLayout> scrolls) {
         this.scrolls = scrolls;
     }
 
-    public Set<ScrollLayout> getFollowScrolls() {
+    public List<ScrollLayout> getFollowScrolls() {
         return scrolls;
     }
 

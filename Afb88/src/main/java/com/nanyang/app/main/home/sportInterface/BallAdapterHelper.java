@@ -14,9 +14,9 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,7 +30,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     final int black_grey = 0XFF333333;
     protected Context context;
-    protected Set<ScrollLayout> slFollowers = new HashSet<>();
+    protected List<ScrollLayout> slFollowers = new ArrayList<>();
 
     private int slIndex = 0;
 
@@ -143,10 +143,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         sl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                if (sl.getFollowScrolls() == null) {
-                    slFollowers.add( back.onSetHeaderFollower());
+                ScrollLayout scrollLayout = back.onSetHeaderFollower();
+                if(!slFollowers.contains(scrollLayout))
+                        slFollowers.add(scrollLayout);
                     sl.setFollowScrolls(slFollowers);
-                }
+
                 return false;
             }
         });

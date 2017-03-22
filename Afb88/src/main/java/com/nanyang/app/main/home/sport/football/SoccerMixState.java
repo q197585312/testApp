@@ -249,10 +249,6 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
         return types;
     }
 
-    @Override
-    public void setHeaderContent(ScrollLayout slHeader) {
-        new SoccerHeaderContent().setHeaderContent(getBaseView().getContextActivity(), slHeader);
-    }
 
     @Override
     public boolean mix() {

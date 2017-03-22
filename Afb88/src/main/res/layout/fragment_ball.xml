@@ -71,7 +71,10 @@
             android:id="@+id/sl_header"
             android:layout_width="140dp"
             android:layout_height="16dp"
-            android:orientation="horizontal" />
+            android:orientation="horizontal" >
+            <include layout="@layout/sport_head_vp_item"/>
+            <include layout="@layout/sport_head_vp_item"/>
+        </com.unkonw.testapp.training.ScrollLayout>
 
         <View
             android:layout_width="0.5dp"

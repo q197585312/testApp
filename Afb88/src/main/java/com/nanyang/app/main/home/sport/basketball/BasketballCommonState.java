@@ -277,9 +277,4 @@ public abstract class BasketballCommonState extends SportState<BasketballCommonI
         return types;
     }
 
-    @Override
-    public void setHeaderContent(ScrollLayout slHeader) {
-        new BasketballHeaderContent().setHeaderContent(getBaseView().getContextActivity(), slHeader);
-    }
-
 }

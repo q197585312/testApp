@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.basketball.BasketballHeaderContent;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
@@ -212,11 +211,6 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
         types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
         types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
         return types;
-    }
-
-    @Override
-    public void setHeaderContent(ScrollLayout slHeader) {
-        new BasketballHeaderContent().setHeaderContent(getBaseView().getContextActivity(), slHeader);
     }
 
     @Override

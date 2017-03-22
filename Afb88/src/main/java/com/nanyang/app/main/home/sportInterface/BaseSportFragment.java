@@ -114,12 +114,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         rvContent.setAdapter(baseRecyclerAdapter);
     }
 
-    @Override
-    public void onGetFollowers(List<ScrollLayout> followers) {
-        presenter.getStateHelper().setHeaderContent(slHeader);
-        if (followers != null)
-            followers.add(slHeader);
-    }
 
     @Override
     public void onFailed(String message) {

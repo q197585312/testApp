@@ -630,8 +630,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 });
         mCompositeSubscription.add(subscription);
     }
-
-    public void setHeaderContent(ScrollLayout slHeader){
+    @Override
+    public final void setHeaderContent(ScrollLayout slHeader){
         this.headScrollLayout=slHeader;
     }
 }

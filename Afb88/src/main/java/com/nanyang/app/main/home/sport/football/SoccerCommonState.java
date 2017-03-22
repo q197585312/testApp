@@ -283,9 +283,5 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
         return types;
     }
 
-    @Override
-    public void setHeaderContent(ScrollLayout slHeader) {
-        new SoccerHeaderContent().setHeaderContent(getBaseView().getContextActivity(), slHeader);
-    }
 
 }

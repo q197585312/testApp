@@ -6,7 +6,6 @@ import android.widget.TextView;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.football.SoccerCommonBetHelper;
-import com.nanyang.app.main.home.sport.football.SoccerHeaderContent;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -143,11 +142,6 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
         types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
         types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.OutRight), "OutRight"));
         return types;
-    }
-
-    @Override
-    public void setHeaderContent(ScrollLayout slHeader) {
-        new SoccerHeaderContent().setHeaderContent(getBaseView().getContextActivity(), slHeader);
     }
 
     @Override

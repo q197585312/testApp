@@ -225,11 +225,6 @@ public abstract class BasketballMixState extends SportState<BasketballMixInfo, S
     }
 
     @Override
-    public void setHeaderContent(ScrollLayout slHeader) {
-        new BasketballHeaderContent().setHeaderContent(getBaseView().getContextActivity(), slHeader);
-    }
-
-    @Override
     public boolean mix() {
         Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
