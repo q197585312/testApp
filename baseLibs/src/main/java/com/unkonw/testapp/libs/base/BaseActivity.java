@@ -132,20 +132,23 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
             this.presenter = presenter;
         }
     }
-    public BasePopupWindow createPopupWindow(BasePopupWindow basePopupWindow){
-        if(popWindow!=null){
+
+    public BasePopupWindow createPopupWindow(BasePopupWindow basePopupWindow) {
+        if (popWindow != null) {
             popWindow.closePopupWindow();
-            popWindow=null;
+            popWindow = null;
         }
-        this.popWindow =basePopupWindow;
+        this.popWindow = basePopupWindow;
         return popWindow;
     }
-    public void stopPopupWindow(){
-        if(popWindow!=null) {
+
+    public void stopPopupWindow() {
+        if (popWindow != null) {
             popWindow.closePopupWindow();
-            popWindow=null;
+            popWindow = null;
         }
     }
+
     @Override
     protected void onStop() {
         super.onStop();
@@ -178,18 +181,19 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
      * @param frameId
      */
     protected void showFragmentToActivity(@NonNull Fragment fragment, int frameId) {
-        showFragmentToActivity(fragment,frameId,null);
+        showFragmentToActivity(fragment, frameId, null);
     }
 
-    protected void showFragmentToActivity(@NonNull Fragment fragment, int frameId,String tag) {
+    protected void showFragmentToActivity(@NonNull Fragment fragment, int frameId, String tag) {
         checkNotNull(fragment);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (!fragment.isAdded()) {
-            transaction.add(frameId, fragment,tag);
+            transaction.add(frameId, fragment, tag);
         }
         transaction.show(fragment);
         transaction.commit();
     }
+
     protected void hideFragmentToActivity(@NonNull Fragment fragment) {
         checkNotNull(fragment);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -246,5 +250,9 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         intent.putExtra("fromWhere", getClass().getSimpleName());
         intent.setFlags(flags);
         startActivity(intent);
+    }
+
+    public String getMsgIntent(String type) {
+        return getIntent().getStringExtra(type);
     }
 }

@@ -102,7 +102,7 @@ public static String URL_FINANCIAL_RUNNING =HOST+"_view/All_Gen6.ashx?g=7&ot=r&u
     public static String URL_E_SPORT_RUNNING = HOST+"_view/All_Gen6.ashx?g=106&ot=r&update=true&r=1770989484";
     public static String URL_E_SPORT_EARLY = HOST+"_view/All_Gen6.ashx?g=106&ot=e&update=true&r=1770989484";
     public static String URL_E_SPORT_OUTRIGHT= HOST+"_view/OddsOutGen.ashx?g=107&update=true&r=1770989484";
-    public static String URL_STAEMENT = HOST+"_norm/AccHistory_App.aspx?";
+    public static String URL_STAEMENT = APP_HOST+"_norm/AccHistory_App.aspx?";
 
 //    http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=e&update=true&r=1056207418&wd=2017-03-22&ia=0&oview=1&LID=&_=1490092121779
     //http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=r&update=true&r=1278052286&LID=84733db3885dd967&_=1490092254366

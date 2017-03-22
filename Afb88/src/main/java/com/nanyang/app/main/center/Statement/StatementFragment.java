@@ -1,5 +1,6 @@
-package com.nanyang.app.main.center;
+package com.nanyang.app.main.center.Statement;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.R;
+import com.nanyang.app.main.center.StatemenStake.StatementStakeActivity;
 import com.nanyang.app.main.center.model.StatementListBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -58,7 +60,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         rc.setLayoutManager(mLayoutManager);
         BaseRecyclerAdapter<StatementListBean> baseRecyclerAdapter = new BaseRecyclerAdapter<StatementListBean>(mContext, data, R.layout.item_statement_list) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, StatementListBean item) {
+            public void convert(MyRecyclerViewHolder holder, int position, final StatementListBean item) {
                 TextView date = holder.getView(R.id.tv_statement_date);
                 TextView stake = holder.getView(R.id.tv_statement_stake);
                 TextView amount = holder.getView(R.id.tv_statement_amount);
@@ -68,16 +70,19 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
                 TextView balance = holder.getView(R.id.tv_statement_balance);
                 date.setText(item.getDate());
                 stake.setText(item.getStake());
-//                amount.setText(item.getValid_amount());
-//                wl.setText(item.getWl());
+                amount.setText(item.getValidAmount());
+                wl.setText(item.getWL());
                 commission.setText(item.getCom());
-//                settled.setText(item.getSettled());
-//                balance.setText(item.getBalance());
-                if (position == 0) {
-                    date.setOnClickListener(new View.OnClickListener() {
+                settled.setText("0.00");
+                balance.setText("0.00");
+                if (!item.getStake().equals("0")&&position!=data.size()-1) {
+                    stake.setTextColor(Color.BLUE);
+                    stake.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            presenter.getThisBetHistory("mb", userName);
+                            Bundle b = new Bundle();
+                            b.putString("stake", item.getParamsUrl());
+                            skipAct(StatementStakeActivity.class, b);
                         }
                     });
                 }
@@ -102,9 +107,8 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     }
 
     @Override
-    public void onGetData(final String data) {
-//        initRc(presenter.parseData(data));
-//        initTransferRc();
+    public void onGetData(String data) {
+
     }
 
     private void initTransferRc() {
@@ -130,6 +134,11 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     @Override
     public void onFailed(String error) {
 
+    }
+
+    @Override
+    public void onGetStatementListData(List<StatementListBean> list) {
+        initRc(list);
     }
 
     @OnClick({R.id.tv_blance_sure})

@@ -62,6 +62,7 @@
         <activity android:name=".main.order.recharge.RechargeActivity" />
         <activity android:name=".main.home.sport.additional.VsActivity" />
         <activity android:name=".main.home.sport.main.SportActivity" />
+        <activity android:name=".main.center.StatemenStake.StatementStakeActivity" />
     </application>
 
 </manifest>
