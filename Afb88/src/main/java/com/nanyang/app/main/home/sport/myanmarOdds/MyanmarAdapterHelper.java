@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sportInterface.BallAdapterHelper;
-import com.nanyang.app.main.home.sportInterface.SoccerHeaderContent;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -33,9 +32,7 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
         tvRightMark.setVisibility(View.VISIBLE);
 
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        View hfView = scrollChild(true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), "0", "0", item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
-        sl.addView(hfView, SoccerHeaderContent.layoutParams);
-
+        scrollChild(sl.getChildAt(1),true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), "0", "0", item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
 
         String homeRank = item.getHomeRank();
         String awayRank = item.getAwayRank();

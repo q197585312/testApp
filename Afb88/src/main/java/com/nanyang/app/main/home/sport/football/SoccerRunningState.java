@@ -1,15 +1,17 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.football;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 
 /**
  * Created by Administrator on 2017/3/13.
  */
 
-public class SoccerTodayState extends SoccerCommonState {
-    public SoccerTodayState(SportContract2.View baseView) {
+public class SoccerRunningState extends SoccerCommonState {
+    public SoccerRunningState(SportContract.View baseView) {
         super(baseView);
     }
 
@@ -17,42 +19,44 @@ public class SoccerTodayState extends SoccerCommonState {
 
     @Override
     public boolean mix() {
-        getBaseView().switchState(new SoccerTodayMixState(getBaseView()));
-        return true;
+        return false;
     }
-
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_TODAY;
+        return AppConstant.URL_FOOTBALL_RUNNING;
     }
 
     @Override
     protected void onTypeClick(MenuItemInfo item) {
         switch (item.getType()) {
-            case "Running":
-                getBaseView().switchState(new SoccerRunningState(getBaseView()));
-                break;
             case "Early":
                 getBaseView().switchState(new SoccerEarlyState(getBaseView()));
                 break;
             case "Today":
+                getBaseView().switchState(new SoccerTodayState(getBaseView()));
+                break;
+            case "Running":
                 getBaseView().switchState(this);
                 break;
             case "OutRight":
                 getBaseView().switchState(new SoccerOutRightState(getBaseView()));
                 break;
         }
-
     }
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Today),"Today",getBaseView().getContextActivity().getString(R.string.football));
+        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getBaseView().getContextActivity().getString(R.string.football));
     }
+
 
     @Override
     protected SoccerCommonAdapterHelper onSetCommonAdapterHelper() {
-        return new SoccerTodayAdapterHelper(getBaseView().getContextActivity());
+        return  new SoccerRunningAdapterHelper(getBaseView().getContextActivity());
+    }
+    @Override
+    protected IBetHelper onSetBetHelper() {
+        return new SoccerRunningBetHelper(getBaseView());
     }
 }

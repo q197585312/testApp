@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sportInterface;
 
 import android.content.Context;
 import android.text.Html;
-import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
@@ -21,7 +20,6 @@ import java.util.Locale;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cn.finalteam.toolsfinal.logger.Logger;
 
 /**
  * Created by Administrator on 2017/3/12 0012.
@@ -139,13 +137,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String overOdds = item.getOverOdds();
         String homeHdpOdds = item.getHomeHdpOdds();
         String awayHdpOdds = item.getAwayHdpOdds();
-
-        View vp = scrollChild(false, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
-        sl.removeAllViews();
-        sl.addView(vp, SoccerHeaderContent.layoutParams);
+        scrollChild( sl.getChildAt(0),false, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
         if (!slFollowers.contains(sl))
             slFollowers.add(sl);
-      sl.setOnTouchListener(new View.OnTouchListener() {
+        sl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (sl.getFollowScrolls() == null) {
@@ -162,8 +157,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
             }
         });
-        sl.setCurrentIndex(slIndex);
-        Logger.getDefaultLogger().d("POSITION",position+":"+slIndex+"");
+        if (sl.getTargetIndex() != slIndex)
+            sl.setCurrentIndex(slIndex);
         String away = item.getAway();
         String home = item.getHome();
         homeTv.setText(home);
@@ -174,15 +169,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     }
 
-    public View scrollChild(boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
-        return scrollChild(isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "", true, true, false, "", "", "", "", "", "");
+    public View scrollChild(View vp,boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
+        return scrollChild(vp,isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "", true, true, false, "", "", "", "", "", "");
     }
 
 
-    public View scrollChild(boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds, String homeOddsType, String awayOddsType, String overOddsType, String underOddsType
+    public View scrollChild(View vp,boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds, String homeOddsType, String awayOddsType, String overOddsType, String underOddsType
             , boolean hapVisiable, boolean ouVisiable, boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
-        LayoutInflater from = LayoutInflater.from(context);
-        View vp = from.inflate(R.layout.sport_item_table_module_viewpager, null, false);
+        vp.setVisibility(View.VISIBLE);
         ViewHolder holder = new ViewHolder(vp);
         if (hapVisiable) {
             holder.viewpagerMatchHomeHdpTv.setVisibility(View.VISIBLE);
@@ -203,7 +197,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     holder.viewpagerMatchVisitHdpTv.setText(hdpS);
                     holder.viewpagerMatchHomeHdpTv.setText("");
                 }
-                if(homeOddsType.startsWith("mm")||awayOddsType.startsWith("mm")){
+                if (homeOddsType.startsWith("mm") || awayOddsType.startsWith("mm")) {
                     holder.viewpagerMatchVisitHdpTv.setTextSize(8);
                     holder.viewpagerMatchHomeHdpTv.setTextSize(8);
                 }
@@ -247,7 +241,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     overOddsType = "over";
                 if (underOddsType.equals(""))
                     underOddsType = "under";
-                if(overOddsType.startsWith("mm")||underOddsType.startsWith("mm")){
+                if (overOddsType.startsWith("mm") || underOddsType.startsWith("mm")) {
                     holder.viewpagerMatchOuTv.setTextSize(8);
                     holder.viewpagerMatchOu2Tv.setTextSize(8);
                 }

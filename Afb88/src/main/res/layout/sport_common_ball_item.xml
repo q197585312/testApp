@@ -182,10 +182,23 @@
             android:layout_width="0.6dp"
             android:layout_height="match_parent"
             android:background="@color/grey_dialog_background" />
+
         <com.unkonw.testapp.training.ScrollLayout
             android:id="@+id/module_center_sl"
             android:layout_width="140dp"
             android:layout_height="match_parent">
+
+            <include
+                layout="@layout/sport_item_table_module_viewpager"
+                android:visibility="gone" />
+
+            <include
+                layout="@layout/sport_item_table_module_viewpager"
+                android:visibility="gone" />
+
+            <include
+                layout="@layout/sport_item_table_module_viewpager"
+                android:visibility="gone" />
 
         </com.unkonw.testapp.training.ScrollLayout>
 

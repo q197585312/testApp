@@ -4,14 +4,14 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 
-import com.nanyang.app.main.home.sportInterface.SportContract2;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 
 /**
  * Created by Administrator on 2017/3/13.
  */
 
 public class BasketballEarlyState extends BasketballCommonState {
-    public BasketballEarlyState(SportContract2.View baseView) {
+    public BasketballEarlyState(SportContract.View baseView) {
         super(baseView);
 
     }

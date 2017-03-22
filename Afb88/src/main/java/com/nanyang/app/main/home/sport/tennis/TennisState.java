@@ -5,7 +5,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixState;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract2;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +17,7 @@ import java.util.List;
 public abstract class TennisState extends BasketballMixState{
 
 
-    public TennisState(SportContract2.View baseView) {
+    public TennisState(SportContract.View baseView) {
         super(baseView);
     }
 

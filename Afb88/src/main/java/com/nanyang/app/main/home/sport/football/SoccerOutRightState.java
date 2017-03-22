@@ -1,15 +1,17 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.football;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sportInterface.OutRightState;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 
 /**
  * Created by Administrator on 2017/3/13.
  */
 
 public class SoccerOutRightState extends OutRightState {
-    public SoccerOutRightState(SportContract2.View baseView) {
+    public SoccerOutRightState(SportContract.View baseView) {
         super(baseView);
     }
 

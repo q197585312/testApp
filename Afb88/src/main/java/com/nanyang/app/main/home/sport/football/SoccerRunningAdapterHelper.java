@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.football;
 
 import android.content.Context;
 import android.view.View;

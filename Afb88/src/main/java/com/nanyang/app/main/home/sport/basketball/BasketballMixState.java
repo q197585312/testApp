@@ -14,7 +14,7 @@ import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 import com.nanyang.app.main.home.sportInterface.SportAdapterHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract2;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 import com.nanyang.app.main.home.sportInterface.SportState;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.training.ScrollLayout;
@@ -40,13 +40,13 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class BasketballMixState extends SportState<BasketballMixInfo, SportContract2.View<BasketballMixInfo>> {
+public abstract class BasketballMixState extends SportState<BasketballMixInfo, SportContract.View<BasketballMixInfo>> {
 
     protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
 
 
-    public BasketballMixState(SportContract2.View baseView) {
+    public BasketballMixState(SportContract.View baseView) {
         super(baseView);
     }
 

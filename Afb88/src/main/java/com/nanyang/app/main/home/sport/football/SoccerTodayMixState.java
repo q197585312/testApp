@@ -1,15 +1,16 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.football;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 
 /**
  * Created by Administrator on 2017/3/13.
  */
 
 public class SoccerTodayMixState extends SoccerMixState {
-    public SoccerTodayMixState(SportContract2.View baseView) {
+    public SoccerTodayMixState(SportContract.View baseView) {
         super(baseView);
     }
 

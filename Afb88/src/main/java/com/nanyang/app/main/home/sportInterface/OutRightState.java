@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.football.SoccerCommonBetHelper;
+import com.nanyang.app.main.home.sport.football.SoccerHeaderContent;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -21,10 +23,10 @@ import java.util.List;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class OutRightState extends SportState<SportInfo, SportContract2.View<SportInfo>> {
+public abstract class OutRightState extends SportState<SportInfo, SportContract.View<SportInfo>> {
 
 
-    public OutRightState(SportContract2.View baseView) {
+    public OutRightState(SportContract.View baseView) {
         super(baseView);
     }
 

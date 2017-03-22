@@ -3,15 +3,15 @@ package com.nanyang.app.main.home.sport.basketball;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sportInterface.SoccerEarlyMixState;
-import com.nanyang.app.main.home.sportInterface.SportContract2;
+import com.nanyang.app.main.home.sport.football.SoccerEarlyMixState;
+import com.nanyang.app.main.home.sportInterface.SportContract;
 
 /**
  * Created by Administrator on 2017/3/13.
  */
 
 public class BasketballTodayMixState extends BasketballMixState {
-    public BasketballTodayMixState(SportContract2.View baseView) {
+    public BasketballTodayMixState(SportContract.View baseView) {
         super(baseView);
     }
 
