@@ -13,6 +13,9 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 
 import java.io.BufferedOutputStream;
 import java.io.File;
@@ -159,8 +162,9 @@ public class AfbUtils {
         }
         return list;
     }
+
     private static int calculateInSampleSize(BitmapFactory.Options options,
-                                            int reqWidth, int reqHeight) {
+                                             int reqWidth, int reqHeight) {
         // 源图片的高度和宽度
         final int height = options.outHeight;
         final int width = options.outWidth;
@@ -175,6 +179,7 @@ public class AfbUtils {
         }
         return inSampleSize;
     }
+
     public static Bitmap decodeSampledBitmapFromResource(Resources res, int resId,
                                                          int reqWidth, int reqHeight) {
         // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
@@ -186,5 +191,14 @@ public class AfbUtils {
         // 使用获取到的inSampleSize值再次解析图片
         options.inJustDecodeBounds = false;
         return BitmapFactory.decodeResource(res, resId, options);
+    }
+
+    public static SpannableStringBuilder handleStringColor(String str, int color) {
+        int bstart = str.indexOf("VS");
+        int bend = bstart + "VS".length();
+        SpannableStringBuilder style = new SpannableStringBuilder(str);
+        style.setSpan(new ForegroundColorSpan(color), 0, bstart, Spannable.SPAN_EXCLUSIVE_INCLUSIVE );
+        style.setSpan(new ForegroundColorSpan(color), bend, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE );
+        return style;
     }
 }
