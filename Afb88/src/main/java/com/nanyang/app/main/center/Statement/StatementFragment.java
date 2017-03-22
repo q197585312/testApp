@@ -75,7 +75,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
                 commission.setText(item.getCom());
                 settled.setText("0.00");
                 balance.setText("0.00");
-                if (!item.getStake().equals("0")&&position!=data.size()-1) {
+                if (!item.getStake().equals("0") && position != data.size() - 1) {
                     stake.setTextColor(Color.BLUE);
                     stake.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -85,6 +85,9 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
                             skipAct(StatementStakeActivity.class, b);
                         }
                     });
+                }
+                if (item.getWL().startsWith("-")) {
+                    wl.setTextColor(Color.RED);
                 }
             }
 

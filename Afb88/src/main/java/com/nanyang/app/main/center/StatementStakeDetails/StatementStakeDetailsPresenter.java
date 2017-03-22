@@ -1,9 +1,9 @@
-package com.nanyang.app.main.center.StatemenStake;
+package com.nanyang.app.main.center.StatementStakeDetails;
 
 import android.util.Log;
 
 import com.nanyang.app.ApiService;
-import com.nanyang.app.main.center.model.StatementStakeListBean;
+import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -19,26 +19,26 @@ import io.reactivex.functions.Consumer;
  * Created by Administrator on 2017/3/22.
  */
 
-public class StatementStakePresenter extends BaseRetrofitPresenter<List<StatementStakeListBean>, StatementStakeContact.View> implements StatementStakeContact.Presenter {
-
+public class StatementStakeDetailsPresenter extends BaseRetrofitPresenter<List<StatementStakeDetailsListBean>, StatementStakeDetailsContact.View> implements StatementStakeDetailsContact.Presenter {
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      *
      * @param view
      */
-    public StatementStakePresenter(StatementStakeContact.View view) {
+    public StatementStakeDetailsPresenter(StatementStakeDetailsContact.View view) {
         super(view);
     }
 
     @Override
-    public void getThisBet(String url) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).statementStake(url))
-                .subscribe(new Consumer<List<StatementStakeListBean>>() {
+    public void getStatementStakeDetailsData(String url) {
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).statementStakeDetails(url))
+                .subscribe(new Consumer<List<StatementStakeDetailsListBean>>() {
                     @Override
-                    public void accept(List<StatementStakeListBean> statementStakeListBeen) throws Exception {
-                        baseView.onGetData(statementStakeListBeen);
+                    public void accept(List<StatementStakeDetailsListBean> statementStakeDetailsListBeen) throws Exception {
+                        baseView.onGetData(statementStakeDetailsListBeen);
                         baseView.hideLoadingDialog();
                     }
+
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
