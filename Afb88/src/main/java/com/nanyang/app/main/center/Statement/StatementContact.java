@@ -1,4 +1,4 @@
-package com.nanyang.app.main.center;
+package com.nanyang.app.main.center.Statement;
 
 import com.nanyang.app.main.center.model.StatementListBean;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
@@ -13,13 +13,12 @@ import java.util.List;
 public class StatementContact {
     interface View extends IBaseView<String> {
         void onFailed(String error);
+
+        void onGetStatementListData(List<StatementListBean> list);
     }
 
     interface Presenter extends IBasePresenter {
         void getStatementData(String userName);
 
-        void getThisBetHistory(String mb, String userName);
-
-        List<StatementListBean> parseData(String data);
     }
 }

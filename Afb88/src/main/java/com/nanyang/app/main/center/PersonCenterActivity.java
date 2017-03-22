@@ -7,6 +7,7 @@ import android.os.Bundle;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.center.Statement.StatementFragment;
 import com.unkonw.testapp.libs.base.BaseFragment;
 
 import java.util.HashMap;

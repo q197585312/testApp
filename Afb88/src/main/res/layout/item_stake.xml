@@ -14,9 +14,9 @@
             android:id="@+id/tv_stake_data"
             style="@style/text_match_black10"
             android:layout_width="0dp"
+            android:layout_marginLeft="7dp"
             android:layout_weight="1"
             android:gravity="center|left"
-            android:layout_marginLeft="7dp"
             android:paddingBottom="5dp"
             android:paddingLeft="2dp"
             android:paddingTop="5dp"
@@ -78,6 +78,7 @@
             android:layout_width="0.7dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
+
         <TextView
             android:id="@+id/tv_stake_money"
             style="@style/text_match_black10"
@@ -87,6 +88,27 @@
             android:padding="2dp"
             android:singleLine="true"
             android:text="数额"
+            android:textColor="#000000"
+            android:textStyle="bold" />
+
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <View
+            android:layout_width="0.7dp"
+            android:layout_height="30dp"
+            android:background="@color/default_fill_color" />
+        <TextView
+            android:id="@+id/tv_stake_com"
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:padding="2dp"
+            android:singleLine="true"
+            android:text="佣金"
             android:textColor="#000000"
             android:textStyle="bold" />
 

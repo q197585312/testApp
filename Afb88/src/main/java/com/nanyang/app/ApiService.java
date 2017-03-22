@@ -1,6 +1,8 @@
 package com.nanyang.app;
 
 
+import com.nanyang.app.main.center.model.StatementListBean;
+import com.nanyang.app.main.center.model.StatementStakeListBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
@@ -117,10 +119,10 @@ public interface ApiService {
 
     //statement清单
     @GET
-    Flowable<String> statementData(@Url String url);
+    Flowable<List<StatementListBean>> statementData(@Url String url);
 
-    @GET("_norm/AccMatchWL.aspx?")
-    Flowable<String> betState(@Query("userName") String userName, @Query("to") String to, @Query("from") String from);
+    @GET
+    Flowable<List<StatementStakeListBean>> statementStake(@Url String url);
 
     @GET("_norm/AccHistory2.aspx?")
     Flowable<String> thisWeekBetList(@Query("role") String role, @Query("userName") String userName);
