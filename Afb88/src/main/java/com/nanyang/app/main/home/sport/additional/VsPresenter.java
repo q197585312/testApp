@@ -89,7 +89,7 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, BetView<ScaleBean>> i
     void stopUpdate() {
         if (updateSubscription != null) {
             updateSubscription.dispose();
-            Logger.getDefaultLogger().d(getClass().getSimpleName(), "stopUpdate---->");
+            updateSubscription.isDisposed();
             updateSubscription = null;
         }
     }

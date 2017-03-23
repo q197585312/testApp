@@ -3,7 +3,6 @@ package com.nanyang.app.main.center.Stake;
 import android.util.Log;
 
 import com.nanyang.app.ApiService;
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.center.model.StakeListBean;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -32,7 +31,7 @@ public class StakePresenter extends BaseRetrofitPresenter<StakeListBean, StakeCo
 
     @Override
     public void getStakeListData() {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getStakeData(AppConstant.URL_STAKE))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getStakeData(""/*AppConstant.URL_STAKE*/))
                 .subscribe(new Consumer<StakeListBean>() {
                     @Override
                     public void accept(StakeListBean stakeListBeen) throws Exception {
