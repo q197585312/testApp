@@ -27,7 +27,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/3/4.
  */
 
-public class FragmetnAvatar extends BaseFragment {
+public class FragmentAvatar extends BaseFragment {
     @Bind(R.id.avatar_rc)
     RecyclerView avatarRc;
     @Bind(R.id.img_header)

@@ -5,37 +5,38 @@ package com.nanyang.app.main.center.model;
  */
 
 public class StatementTransferBean {
-    String data;
-    String state;
-    String money;
 
-    public StatementTransferBean(String data, String state, String money) {
-        this.data = data;
-        this.state = state;
-        this.money = money;
+    /**
+     * Date : 22/03/2017 16:05:29
+     * Descript : 电子游戏余额转移
+     * Amount : 22
+     */
+
+    private String Date;
+    private String Descript;
+    private String Amount;
+
+    public String getDate() {
+        return Date;
     }
 
-    public String getData() {
-        return data;
+    public void setDate(String Date) {
+        this.Date = Date;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public String getDescript() {
+        return Descript;
     }
 
-    public String getState() {
-        return state;
+    public void setDescript(String Descript) {
+        this.Descript = Descript;
     }
 
-    public void setState(String state) {
-        this.state = state;
+    public String getAmount() {
+        return Amount;
     }
 
-    public String getMoney() {
-        return money;
-    }
-
-    public void setMoney(String money) {
-        this.money = money;
+    public void setAmount(String Amount) {
+        this.Amount = Amount;
     }
 }
