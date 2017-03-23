@@ -1,9 +1,10 @@
-package com.nanyang.app.main.center.Statement;
+package com.nanyang.app.main.center.Stake;
 
 import android.util.Log;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.main.center.model.StakeListBean;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -16,33 +17,32 @@ import io.reactivex.functions.Consumer;
 import static android.content.ContentValues.TAG;
 
 /**
- * Created by Administrator on 2017/3/11.
+ * Created by Administrator on 2017/3/23.
  */
 
-public class StatementPresenter extends BaseRetrofitPresenter<String, StatementContact.View> implements StatementContact.Presenter {
-    public StatementPresenter(StatementContact.View view) {
+public class StakePresenter extends BaseRetrofitPresenter<StakeListBean, StakeContact.View> implements StakeContact.Presenter {
+    /**
+     * 使用CompositeSubscription来持有所有的Subscriptions
+     *
+     * @param view
+     */
+    public StakePresenter(StakeContact.View view) {
         super(view);
     }
 
     @Override
-    public void unSubscribe() {
-
-    }
-//
-    @Override
-    public void getStatementData(String userName) {
-        Disposable disposable = mApiWrapper.applySchedulers(Api.getService(ApiService.class).statementData(AppConstant.URL_STAEMENT))
-                .subscribe(new Consumer<String>() {
+    public void getStakeListData() {
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getStakeData(AppConstant.URL_STAKE))
+                .subscribe(new Consumer<StakeListBean>() {
                     @Override
-                    public void accept(String s) throws Exception {
-                        baseView.onGetData(s);
+                    public void accept(StakeListBean stakeListBeen) throws Exception {
+                        Log.d(TAG, "accept: " + stakeListBeen);
+                        baseView.onGetData(stakeListBeen);
                         baseView.hideLoadingDialog();
                     }
-
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.d(TAG, "accept: " + throwable.toString());
                         baseView.hideLoadingDialog();
                     }
                 }, new Action() {
@@ -57,7 +57,6 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
                         subscription.request(Integer.MAX_VALUE);
                     }
                 });
-        mCompositeSubscription.add(disposable);
+        mCompositeSubscription.add(d);
     }
-
 }

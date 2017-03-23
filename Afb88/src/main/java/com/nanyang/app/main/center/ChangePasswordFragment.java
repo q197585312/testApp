@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.R;
+import com.nanyang.app.main.center.model.ChangePasswordBean;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -71,20 +72,27 @@ public class ChangePasswordFragment extends BaseFragment {
         String oldPasswrod = et_oldPassword.getText().toString();
         String newPasswrod = et_newPassword.getText().toString();
         String surePasswrod = et_surePasswrod.getText().toString();
-        Disposable d = Api.getService(ApiService.class).changePasswrod(oldPasswrod, newPasswrod, surePasswrod)
+        ChangePasswordBean bean = new ChangePasswordBean(oldPasswrod, newPasswrod, surePasswrod);
+        Disposable d = Api.getService(ApiService.class).changePasswrod(bean.getMap())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        if (s.equals("密码更换成功")) {
-                            ToastUtils.showShort("密码更换成功");
-                        }
+                        hideLoadingDialog();
+                        ToastUtils.showShort(isPasswordChangeSucceed(s));
+                        et_newPassword.setText("");
+                        et_oldPassword.setText("");
+                        et_surePasswrod.setText("");
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-
+                        hideLoadingDialog();
+                        ToastUtils.showShort(throwable.toString());
+                        et_newPassword.setText("");
+                        et_oldPassword.setText("");
+                        et_surePasswrod.setText("");
                     }
                 }, new Action() {
                     @Override
@@ -94,10 +102,37 @@ public class ChangePasswordFragment extends BaseFragment {
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
+                        showLoadingDialog();
                         subscription.request(Integer.MAX_VALUE);
                     }
                 });
         CompositeDisposable compositeDisposable = new CompositeDisposable();
         compositeDisposable.add(d);
+    }
+
+    private String isPasswordChangeSucceed(String password) {
+        String sign = "<span id=\"lblStatus\" class=\"";
+        int firstIndex = password.indexOf(sign) + sign.length();
+        int lastIndex = -1;
+        for (int i = firstIndex; i < password.length(); i++) {
+            String first = password.charAt(i) + "";
+            String next = password.charAt(i + 1) + "";
+            if (first.equals("<") && next.equals("/")) {
+                lastIndex = i;
+                break;
+            }
+        }
+        String msg = password.substring(firstIndex, lastIndex);
+        int trueIndex = -1;
+        for (int i = 0; i < msg.length(); i++) {
+            String first = msg.charAt(i) + "";
+            String next = msg.charAt(i + 1) + "";
+            if (first.equals("\"") && next.equals(">")) {
+                trueIndex = i + 2;
+                break;
+            }
+        }
+        String trueMsg = msg.substring(trueIndex);
+        return trueMsg;
     }
 }

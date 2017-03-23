@@ -50,6 +50,7 @@ public class PersonalCenterFragment extends BaseFragment {
         dataList.add(new MenuItemInfo(R.mipmap.center_info_history, getString(R.string.History_record)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_modify, getString(R.string.Modify_password)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_modify, getString(R.string.change_password)));
+        dataList.add(new MenuItemInfo(R.mipmap.center_info_modify, getString(R.string.stake)));
 
         BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, dataList, R.layout.center_item_text) {
             @Override
@@ -62,12 +63,16 @@ public class PersonalCenterFragment extends BaseFragment {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
-                if (item.getText().equals(getString(R.string.Edit_information))) {
+                if (item.getText().equals(getString(R.string.History_record))) {
                     Intent i = getStartIntent(getString(R.string.statement));
                     i.setClass(mContext, PersonCenterActivity.class);
                     startActivity(i);
                 } else if (item.getText().equals(getString(R.string.change_password))) {
                     Intent i = getStartIntent(getString(R.string.change_password));
+                    i.setClass(mContext, PersonCenterActivity.class);
+                    startActivity(i);
+                } else if (item.getText().equals(getString(R.string.stake))) {
+                    Intent i = getStartIntent(getString(R.string.stake));
                     i.setClass(mContext, PersonCenterActivity.class);
                     startActivity(i);
                 }

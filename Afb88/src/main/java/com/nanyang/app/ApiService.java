@@ -1,7 +1,7 @@
 package com.nanyang.app;
 
 
-import com.nanyang.app.main.center.model.StatementListBean;
+import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.nanyang.app.main.center.model.StatementStakeListBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
@@ -71,8 +71,7 @@ public interface ApiService {
     btnSignIn	Login*/
     @FormUrlEncoded
     @POST
-    Flowable<String> doLogin(@Url String url,@FieldMap Map<String, String> info);
-
+    Flowable<String> doLogin(@Url String url, @FieldMap Map<String, String> info);
 
 
     @GET
@@ -109,10 +108,11 @@ public interface ApiService {
 
     //statement清单
     @GET
-    Flowable<List<StatementListBean>> statementData(@Url String url);
+    Flowable<String> statementData(@Url String url);
 
     @GET
     Flowable<List<StatementStakeListBean>> statementStake(@Url String url);
+
     @GET
     Flowable<List<StatementStakeDetailsListBean>> statementStakeDetails(@Url String url);
 
@@ -123,6 +123,10 @@ public interface ApiService {
     Flowable<List<String>> getBannerUrl();
 
     @FormUrlEncoded
-    @POST("_view/ChgPwd.aspx")
-    Flowable<String> changePasswrod(@Field("txtOldPassword") String txtOldPassword, @Field("txtNewPassword") String txtNewPassword, @Field("txtConfirmPassword") String txtConfirmPassword);
+    @POST("http://main55.afb88.com/_view/ChgPwd.aspx")
+    Flowable<String> changePasswrod(@FieldMap Map<String, String> map);
+
+    //投注状况
+    @GET
+    Flowable<StakeListBean> getStakeData(@Url String url);
 }

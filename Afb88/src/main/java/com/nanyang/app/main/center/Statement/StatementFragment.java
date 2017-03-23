@@ -8,14 +8,19 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.StatemenStake.StatementStakeActivity;
 import com.nanyang.app.main.center.model.StatementListBean;
+import com.nanyang.app.main.center.model.StatementTransferBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
 
+import java.lang.reflect.Type;
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -28,6 +33,8 @@ import butterknife.OnClick;
 public class StatementFragment extends BaseFragment<StatementContact.Presenter> implements StatementContact.View {
     @Bind(R.id.statement_list_rc)
     RecyclerView rc;
+    @Bind(R.id.statement_transfer_rc)
+    RecyclerView rc_Transfer;
     @Bind(R.id.tv_blance_sure)
     TextView tv_blanceSure;
     @Bind(R.id.title_view)
@@ -73,8 +80,11 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
                 amount.setText(item.getValidAmount());
                 wl.setText(item.getWL());
                 commission.setText(item.getCom());
-                settled.setText("0.00");
-                balance.setText("0.00");
+                settled.setText(item.getSettled());
+                balance.setText(item.getCurrBalance());
+                if (item.getCurrBalance().startsWith("-")) {
+                    balance.setTextColor(Color.RED);
+                }
                 if (!item.getStake().equals("0") && position != data.size() - 1) {
                     stake.setTextColor(Color.BLUE);
                     stake.setOnClickListener(new View.OnClickListener() {
@@ -111,27 +121,41 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
 
     @Override
     public void onGetData(String data) {
-
+        Gson gson = new Gson();
+        String[] data1 = data.split("nyhxkj");
+        Type type = new TypeToken<ArrayList<StatementListBean>>() {
+        }.getType();
+        List<StatementListBean> list1 = gson.fromJson(data1[0], type);
+        initRc(list1);
+        Type type1 = new TypeToken<ArrayList<StatementTransferBean>>() {
+        }.getType();
+        List<StatementTransferBean> list2 = gson.fromJson(data1[1], type1);
+        initTransferRc(list2);
     }
 
-    private void initTransferRc() {
-//        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
-//        rc.setLayoutManager(mLayoutManager);
-//        BaseRecyclerAdapter<StatementListBean> baseRecyclerAdapter = new BaseRecyclerAdapter<StatementListBean>(mContext, data, R.layout.item_statement_list) {
-//            @Override
-//            public void convert(MyRecyclerViewHolder holder, int position, StatementListBean item) {
-//
-//            }
-//
-//        };
-//        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<StatementListBean>() {
-//            @Override
-//            public void onItemClick(View view, StatementListBean item, int position) {
-//
-//            }
-//
-//        });
-//        rc.setAdapter(baseRecyclerAdapter);
+    private void initTransferRc(List<StatementTransferBean> list) {
+        LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
+        rc_Transfer.setLayoutManager(mLayoutManager);
+        BaseRecyclerAdapter<StatementTransferBean> baseRecyclerAdapter = new BaseRecyclerAdapter<StatementTransferBean>(mContext, list, R.layout.item_statement_transfer) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, StatementTransferBean item) {
+                TextView data = holder.getView(R.id.tv_statement_transfer_data);
+                TextView stake = holder.getView(R.id.tv_statement_transfer_state);
+                TextView money = holder.getView(R.id.tv_statement_transfer_money);
+                data.setText(item.getDate());
+                stake.setText(item.getDescript());
+                money.setText(item.getAmount());
+            }
+
+        };
+        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<StatementTransferBean>() {
+            @Override
+            public void onItemClick(View view, StatementTransferBean item, int position) {
+
+            }
+
+        });
+        rc_Transfer.setAdapter(baseRecyclerAdapter);
     }
 
     @Override
@@ -141,7 +165,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
 
     @Override
     public void onGetStatementListData(List<StatementListBean> list) {
-        initRc(list);
+
     }
 
     @OnClick({R.id.tv_blance_sure})

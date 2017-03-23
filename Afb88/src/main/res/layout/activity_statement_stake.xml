@@ -7,7 +7,7 @@
 
     <include layout="@layout/toolbar_layout" />
 
-    <include layout="@layout/item_stake"
+    <include layout="@layout/item_statement_stake"
         android:id="@+id/title_view"/>
 
     <android.support.v7.widget.RecyclerView

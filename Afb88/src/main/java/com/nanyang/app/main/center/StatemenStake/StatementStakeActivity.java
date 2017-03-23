@@ -10,12 +10,12 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.center.model.StatementListBean;
+import com.nanyang.app.main.center.StatementStakeDetails.StatementDetailsActivity;
 import com.nanyang.app.main.center.model.StatementStakeListBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseActivity;
 
 import java.util.List;
 
@@ -25,7 +25,7 @@ import butterknife.Bind;
  * Created by Administrator on 2017/3/22.
  */
 
-public class StatementStakeActivity extends BaseActivity<StatementStakePresenter> implements StatementStakeContact.View {
+public class StatementStakeActivity extends BaseToolbarActivity<StatementStakePresenter> implements StatementStakeContact.View {
     @Bind(R.id.title_view)
     View titleView;
     @Bind(R.id.statement_stake_rc)
@@ -56,7 +56,7 @@ public class StatementStakeActivity extends BaseActivity<StatementStakePresenter
     public void onGetData(final List<StatementStakeListBean> data) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         rc.setLayoutManager(mLayoutManager);
-        BaseRecyclerAdapter<StatementStakeListBean> baseRecyclerAdapter = new BaseRecyclerAdapter<StatementStakeListBean>(mContext, data, R.layout.item_stake) {
+        BaseRecyclerAdapter<StatementStakeListBean> baseRecyclerAdapter = new BaseRecyclerAdapter<StatementStakeListBean>(mContext, data, R.layout.item_statement_stake) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, final StatementStakeListBean item) {
                 TextView date = holder.getView(R.id.tv_stake_data);
@@ -73,7 +73,9 @@ public class StatementStakeActivity extends BaseActivity<StatementStakePresenter
                     math.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
+                            Bundle b = new Bundle();
+                            b.putString("stake_details", item.getParamsUrl());
+                            skipAct(StatementDetailsActivity.class, b);
                         }
                     });
                 } else {
@@ -86,9 +88,9 @@ public class StatementStakeActivity extends BaseActivity<StatementStakePresenter
             }
 
         };
-        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<StatementListBean>() {
+        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<StatementStakeListBean>() {
             @Override
-            public void onItemClick(View view, StatementListBean item, int position) {
+            public void onItemClick(View view, StatementStakeListBean item, int position) {
 
             }
 

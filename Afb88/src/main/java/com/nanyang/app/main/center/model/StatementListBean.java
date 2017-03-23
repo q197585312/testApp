@@ -13,6 +13,8 @@ public class StatementListBean {
      * ValidAmount : 0
      * WL : 0.00
      * Com : 0.00
+     * Settled : 0.00
+     * CurrBalance : 0.00
      */
 
     private String Date;
@@ -21,6 +23,8 @@ public class StatementListBean {
     private String ValidAmount;
     private String WL;
     private String Com;
+    private String Settled;
+    private String CurrBalance;
 
     public String getDate() {
         return Date;
@@ -68,5 +72,21 @@ public class StatementListBean {
 
     public void setCom(String Com) {
         this.Com = Com;
+    }
+
+    public String getSettled() {
+        return Settled;
+    }
+
+    public void setSettled(String Settled) {
+        this.Settled = Settled;
+    }
+
+    public String getCurrBalance() {
+        return CurrBalance;
+    }
+
+    public void setCurrBalance(String CurrBalance) {
+        this.CurrBalance = CurrBalance;
     }
 }
