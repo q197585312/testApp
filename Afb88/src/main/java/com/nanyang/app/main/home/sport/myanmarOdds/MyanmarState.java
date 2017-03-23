@@ -10,15 +10,16 @@ import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.nanyang.app.main.home.sportInterface.SportAdapterHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract;
-import com.nanyang.app.main.home.sportInterface.SportState;
+import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
+import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.main.SportState;
 import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,7 +58,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
         return new BallItemCallBack<MyanmarInfo>(baseRecyclerAdapter) {
             @Override
             public ScrollLayout onSetHeaderFollower() {
-                return headScrollLayout;
+                return getBaseView().onSetScrollHeader();
             }
             @Override
             public boolean isItemCollection(MyanmarInfo item) {
@@ -216,5 +217,12 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
     @Override
     public boolean mix() {
         return false;
+    }
+
+    @Override
+    protected List<List<String>> initHeaderList() {
+        List<List<String>> lists = super.initHeaderList();
+        lists.add(new ArrayList<>(Arrays.asList("AFB FT. HDP","AFB FT. O/U")));
+        return lists;
     }
 }

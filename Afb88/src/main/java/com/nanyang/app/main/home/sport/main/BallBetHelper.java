@@ -1,7 +1,8 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.main;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.IBaseView;
 

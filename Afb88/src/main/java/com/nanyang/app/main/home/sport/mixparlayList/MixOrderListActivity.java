@@ -17,7 +17,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
-import com.nanyang.app.main.home.sportInterface.BallBetHelper;
+import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;

@@ -5,7 +5,7 @@ import android.view.View;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
-import com.nanyang.app.main.home.sportInterface.BallAdapterHelper;
+import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
@@ -27,7 +27,7 @@ public class FinancialAdapterHelper extends BallAdapterHelper<BasketballMixInfo>
         super.onConvert(helper, position, item);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         View markAdd = helper.getView(R.id.module_right_mark_tv);
-        markAdd.setVisibility(View.INVISIBLE);
+        markAdd.setVisibility(View.GONE);
         tvCollection.setVisibility(View.GONE);
     }
 

@@ -1,9 +1,10 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.main;
 
 import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.main.home.sport.model.SportInfo;
+import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 

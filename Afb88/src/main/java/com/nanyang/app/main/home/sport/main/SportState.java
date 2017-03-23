@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.main;
 
 import android.annotation.TargetApi;
 import android.os.Build;
@@ -7,6 +7,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -19,6 +20,8 @@ import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -32,12 +35,16 @@ import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import cn.finalteam.toolsfinal.DeviceUtils;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -74,7 +81,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected CompositeDisposable mCompositeSubscription;
     protected BasePopupWindow popMenu;
     private SwipeToLoadLayout swipeToLoadLayout;
-    protected ScrollLayout headScrollLayout;
+
 
     public int getPageSize() {
         return pageSize;
@@ -142,6 +149,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 .subscribe(new Consumer<List<TableSportInfo<B>>>() {//onNext
                     @Override
                     public void accept(List<TableSportInfo<B>> allData1) throws Exception {
+                        baseView.checkMix(isMix());
                         initAllData(allData1);
                         startUpdateData();
                     }
@@ -216,10 +224,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         createChoosePop(view);
                         break;
                     case "Not settled":
-                        ((BaseToolbarActivity)baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
+                        ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
                         break;
                     case "Settled":
-                        ((BaseToolbarActivity)baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
+                        ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
                         break;
                 }
             }
@@ -303,10 +311,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected abstract String getRefreshUrl();
 
     public void initAllData(List<TableSportInfo<B>> allData) {
+
         this.allData = allData;
         page = 0;
         updateAllDate(allData);
-
     }
 
     private void updateAllDate(List<TableSportInfo<B>> allData) {
@@ -379,7 +387,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                             updateAllDate(allData);
                         }
                     }
-                },new Consumer<Throwable>() {//错误
+                }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         baseView.onFailed(throwable.getMessage());
@@ -601,6 +609,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void notifyDataChanged() {
         baseRecyclerAdapter.notifyDataSetChanged();
     }
+
     @Override
     public void switchOddsType(String oddsType) {
         Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_ODDS_TYPE + oddsType).subscribeOn(Schedulers.io())
@@ -630,8 +639,93 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 });
         mCompositeSubscription.add(subscription);
     }
+
     @Override
-    public final void setHeaderContent(ScrollLayout slHeader){
-        this.headScrollLayout=slHeader;
+    public boolean isMix() {
+        return false;
+    }
+    @Override
+    public void clearMix() {
+        if(isMix()) {
+            Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+//                    mApiWrapper.goMain()
+                    .subscribe(new Consumer<String>() {//onNext
+                        @Override
+                        public void accept(String Str) throws Exception {
+                            getBaseView().onUpdateMixSucceed(null);
+                        }
+                    }, new Consumer<Throwable>() {//错误
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            getBaseView().onFailed(throwable.getMessage());
+                            getBaseView().hideLoadingDialog();
+                        }
+                    }, new Action() {//完成
+                        @Override
+                        public void run() throws Exception {
+                            getBaseView().hideLoadingDialog();
+                        }
+                    }, new Consumer<Subscription>() {//开始绑定
+                        @Override
+                        public void accept(Subscription subscription) throws Exception {
+                            getBaseView().showLoadingDialog();
+                            subscription.request(Long.MAX_VALUE);
+                        }
+                    });
+            mCompositeSubscription.add(subscription);
+        }
+    }
+    @Override
+    public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
+        tvAos.setText(R.string.AOS);
+        ViewGroup.LayoutParams layoutParams = tvAos.getLayoutParams();
+        layoutParams.width = DeviceUtils.dip2px(getBaseView().getContextActivity(), 22);
+        List<List<String>> lists = initHeaderList();
+        for (int i = 0; i < lists.size(); i++) {
+            View childAt = slHeader.getChildAt(i);
+            childAt.setVisibility(View.VISIBLE);
+            ViewHolder viewHolder = new ViewHolder(childAt);
+            List<String> strings = lists.get(i);
+            if (strings.size() > 0) {
+                viewHolder.tvHeadLeft.setVisibility(View.VISIBLE);
+                viewHolder.tvHeadLeft.setText(strings.get(0));
+            } else
+                viewHolder.tvHeadLeft.setVisibility(View.GONE);
+            if (strings.size() > 1) {
+                viewHolder.tvHeadRight.setVisibility(View.VISIBLE);
+                viewHolder.tvHeadRight.setText(strings.get(1));
+            } else
+                viewHolder.tvHeadRight.setVisibility(View.GONE);
+            if (strings.size() > 2) {
+                viewHolder.tvHead3.setVisibility(View.VISIBLE);
+                viewHolder.tvHead3.setText(strings.get(2));
+            } else
+                viewHolder.tvHead3.setVisibility(View.GONE);
+        }
+    }
+
+    protected List<List<String>> initHeaderList() {
+        List<List<String>> texts = new ArrayList<>();
+        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getContextActivity().getString(R.string.FULL_H_A), getBaseView().getContextActivity().getString(R.string.FULL_O_U)));
+        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getContextActivity().getString(R.string.HALF_H_A), getBaseView().getContextActivity().getString(R.string.HALF_O_U)));
+        texts.add(items0);
+        texts.add(items1);
+        return texts;
+    }
+
+    static class ViewHolder {
+        @Bind(R.id.tv_head_left)
+        TextView tvHeadLeft;
+        @Bind(R.id.tv_head_right)
+        TextView tvHeadRight;
+        @Bind(R.id.tv_head_3)
+        TextView tvHead3;
+        @Bind(R.id.ll_head_parent)
+        LinearLayout llHeadParent;
+
+        ViewHolder(View view) {
+            ButterKnife.bind(this, view);
+        }
     }
 }

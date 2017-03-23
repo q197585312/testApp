@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.main;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,6 +17,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
+import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -85,12 +86,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     public void collection(TextView tvCollection) {
-       if( presenter.getStateHelper().collection()){
-           tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_green, 0, 0);
-       }else{
-           tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
-       }
-
+        checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.sport_star_green, R.mipmap.sport_star_black);
     }
 
     public void menu(TextView tvMenu) {
@@ -99,14 +95,21 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     public boolean mix(TextView tvMix) {
         boolean isMix= presenter.getStateHelper().mix();
-        if(isMix){
-            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_oval_u_green, 0, 0);
-        }else{
-            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_oval_u_black, 0, 0);
-        }
+        checkBg(tvMix, isMix, R.mipmap.sport_oval_u_green, R.mipmap.sport_oval_u_black);
         return isMix;
     }
 
+    private void checkBg(TextView tvMix, boolean isMix, int sport_oval_u_green, int sport_oval_u_black) {
+        if (isMix) {
+            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, sport_oval_u_green, 0, 0);
+        } else {
+            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, sport_oval_u_black, 0, 0);
+        }
+    }
+    @Override
+    public void checkMix(boolean isMix) {
+        checkBg(((SportActivity)getActivity()).tvMix, isMix, R.mipmap.sport_oval_u_green, R.mipmap.sport_oval_u_black);
+    }
 
     @Override
     public void setAdapter(BaseRecyclerAdapter baseRecyclerAdapter) {
@@ -176,6 +179,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     @Override
     public void switchState(IObtainDataState state) {
         presenter.setStateHelper(state);
+        presenter.getStateHelper().setScrollHeaderContent(slHeader,tvAos);
         getContextActivity().getTvToolbarTitle().setText(state.getStateType().getText());
         presenter.getStateHelper().refresh();
         if (popWindow != null)
@@ -206,6 +210,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             presenter.getStateHelper().stopUpdateData();
         } else {// 重新显示到最前端中
             presenter.getStateHelper().refresh();
+
         }
     }
 
@@ -298,4 +303,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         popWindow.showPopupDownWindow();
     }
 
+    @Override
+    public ScrollLayout onSetScrollHeader() {
+        return slHeader;
+    }
 }

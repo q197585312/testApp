@@ -23,8 +23,6 @@ public interface IObtainDataState {
 
     boolean menu(TextView tvMenu);
 
-    boolean mix();
-
     void onPrevious(SwipeToLoadLayout swipeToLoadLayout);
 
     void onNext(SwipeToLoadLayout swipeToLoadLayout);
@@ -33,13 +31,15 @@ public interface IObtainDataState {
 
     <I extends IAdapterHelper> I onSetAdapterHelper();
 
-    void setHeaderContent(ScrollLayout slHeader);
-
     MenuItemInfo getStateType();
 
     void unSubscribe();
 
     void notifyDataChanged();
     void switchOddsType(String oddsType);
+    void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos);
 
+    boolean isMix();
+    boolean mix();
+    void clearMix();
 }

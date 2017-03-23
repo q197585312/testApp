@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sportInterface.BallAdapterHelper;
+import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -29,11 +29,26 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
         TextView awayRedCardTv = helper.getView(R.id.module_match_away_red_card_tv);
         TextView homeRedCardTv = helper.getView(R.id.module_match_home_red_card_tv);
         tvCollection.setVisibility(View.GONE);
-        tvRightMark.setVisibility(View.VISIBLE);
 
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
         scrollChild(sl.getChildAt(1),true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), "0", "0", item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
 
+        String hasMMHdp = "0";
+        if (!item.MMHdpOdds.equals("0") && Integer.valueOf(item.MMHdpPct) != -1) {
+            hasMMHdp = "1";
+        }
+        String hasMMOu = "0";
+        if (!item.MMOUOdds.equals("0")) {
+            hasMMOu = "1";
+        }
+        String hdpMM = item.getMMHdp() + "(" + Integer.valueOf(item.getMMHdpPct()) / 100 + ")";
+
+
+        String ouMM = item.getMMOU() + "(" + Integer.valueOf(item.getMMOUPct()) / 100 + ")";
+        scrollChild(sl.getChildAt(2), true, item, item.getMMIsHomeGive(), hasMMHdp, hdpMM, hasMMOu, ouMM, "0", "0", item.getMMOUOdds(), item.getMMOUOdds(), item.getMMHdpOdds(), item.getMMHdpOdds(),
+                "mmhome", "mmaway", "mmover", "mmunder",
+                true, true, false, "", "", "", "", "", ""
+        );
         String homeRank = item.getHomeRank();
         String awayRank = item.getAwayRank();
         String away = item.getAway();

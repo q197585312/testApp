@@ -3,38 +3,28 @@ package com.nanyang.app.main.home.sport.basketball;
 import android.view.View;
 import android.widget.TextView;
 
-import com.nanyang.app.ApiService;
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
+import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.main.SportState;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-
-import com.nanyang.app.main.home.sportInterface.SportAdapterHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract;
-import com.nanyang.app.main.home.sportInterface.SportState;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-
-import static com.unkonw.testapp.libs.api.Api.getService;
+import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -87,7 +77,7 @@ public abstract class BasketballMixState extends SportState<BasketballMixInfo, S
 
             @Override
             public ScrollLayout onSetHeaderFollower() {
-                return headScrollLayout;
+                  return getBaseView().onSetScrollHeader();
             }
 
         };
@@ -226,33 +216,26 @@ public abstract class BasketballMixState extends SportState<BasketballMixInfo, S
 
     @Override
     public boolean mix() {
-        Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-//                    mApiWrapper.goMain()
-                .subscribe(new Consumer<String>() {//onNext
-                    @Override
-                    public void accept(String Str) throws Exception {
-                        getBaseView().onUpdateMixSucceed(null);
-                    }
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        getBaseView().onFailed(throwable.getMessage());
-                        getBaseView().hideLoadingDialog();
-                    }
-                }, new Action() {//完成
-                    @Override
-                    public void run() throws Exception {
-                        getBaseView().hideLoadingDialog();
-                    }
-                }, new Consumer<Subscription>() {//开始绑定
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        getBaseView().showLoadingDialog();
-                        subscription.request(Long.MAX_VALUE);
-                    }
-                });
-        mCompositeSubscription.add(subscription);
+        clearMix();
         return false;
+    }
+
+    @Override
+    public boolean isMix() {
+        return true;
+    }
+    @Override
+    protected List<List<String>> initHeaderList() {
+        List<List<String>> lists = super.initHeaderList();
+        lists.get(0).set(1,getBaseView().getContextActivity().getString(R.string.FULL_O_E));
+        lists.get(1).set(1,getBaseView().getContextActivity().getString(R.string.HALF_O_E));
+        return lists;
+    }
+
+    @Override
+    public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
+        super.setScrollHeaderContent(slHeader, tvAos);
+        tvAos.setVisibility(View.GONE);
+        slHeader.getLayoutParams().width= DeviceUtils.dip2px(getBaseView().getContextActivity(),140);
     }
 }

@@ -4,10 +4,10 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixAdapterHelper;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
-import com.nanyang.app.main.home.sport.financial.FinancialState;
+import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.tennis.TennisState;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +16,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class ESportState extends FinancialState{
+public abstract class ESportState extends TennisState{
 
     public ESportState(SportContract.View baseView) {
         super(baseView);

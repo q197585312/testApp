@@ -1,8 +1,9 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.main;
 
+
+import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 
 public class SportPresenter implements SportContract.Presenter {
-
 
 
     public IObtainDataState getStateHelper() {
@@ -12,8 +13,11 @@ public class SportPresenter implements SportContract.Presenter {
     private IObtainDataState stateHelper;
 
     public void setStateHelper(IObtainDataState stateHelperNew) {
-        if (stateHelper != null)
+        if (stateHelper != null) {
             stateHelper.stopUpdateData();
+            if(stateHelper.isMix())
+                stateHelper.clearMix();
+        }
         this.stateHelper = stateHelperNew;
 
 
@@ -27,7 +31,6 @@ public class SportPresenter implements SportContract.Presenter {
     public void unSubscribe() {
         stateHelper.unSubscribe();
     }
-
 
 
 }

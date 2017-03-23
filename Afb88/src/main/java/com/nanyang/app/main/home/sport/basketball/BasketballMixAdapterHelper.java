@@ -4,7 +4,7 @@ import android.content.Context;
 import android.view.View;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sportInterface.BallAdapterHelper;
+import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -43,7 +43,7 @@ public class BasketballMixAdapterHelper extends BallAdapterHelper<BasketballMixI
         super.onConvert(helper, position, item);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         View markAdd = helper.getView(R.id.module_right_mark_tv);
-        markAdd.setVisibility(View.INVISIBLE);
+        markAdd.setVisibility(View.GONE);
         tvCollection.setVisibility(View.GONE);
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
         scrollChild(sl.getChildAt(1),false, item,item.getIsHomeGive() , item.getHasX12(),"", item.getHasOE(), "", item.getIsX12New() , "","", "", item.getX12_1Odds(), item.getX12_2Odds(), "1",  "2", "", ""

@@ -98,6 +98,8 @@ public static String URL_FINANCIAL_RUNNING =HOST+"_view/All_Gen6.ashx?g=7&ot=r&u
     public static String URL_4D_SPECIAL_EARLY = HOST+"_view/All_Gen6.ashx?g=6&ot=e&update=true&r=1770989484";
 
     //http://a8197c.a36588.com/_view/All_Gen6.ashx?g=106&ot=t&update=true&r=1098285451&LID=&_=1488958947996
+    //http://main55.afb88.com/_view/All_Gen6.ashx?g=106&ot=t&update=true&r=1233177815
+    //http://main55.afb88.com/_view/All_Gen6.ashx?g=106&ot=r&update=true&r=596496978&LID=&_=1490255406588
     public static String URL_E_SPORT_TODAY = HOST+"_view/All_Gen6.ashx?g=106&ot=t&update=true&r=1233177815";
     public static String URL_E_SPORT_RUNNING = HOST+"_view/All_Gen6.ashx?g=106&ot=r&update=true&r=1770989484";
     public static String URL_E_SPORT_EARLY = HOST+"_view/All_Gen6.ashx?g=106&ot=e&update=true&r=1770989484";

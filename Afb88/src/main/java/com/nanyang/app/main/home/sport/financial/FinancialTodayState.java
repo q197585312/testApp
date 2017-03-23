@@ -3,7 +3,7 @@ package com.nanyang.app.main.home.sport.financial;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sportInterface.SportContract;
+import com.nanyang.app.main.home.sport.main.SportContract;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -17,7 +17,7 @@ public class FinancialTodayState extends FinancialState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_TENNIS_TODAY;
+        return AppConstant.URL_FINANCIAL_TODAY;
     }
 
     @Override
