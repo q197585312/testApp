@@ -15,7 +15,7 @@
         android:id="@+id/iv_pic"
         android:src="@mipmap/home_casino"
         android:layout_width="match_parent"
-        android:layout_height="45dp"
+        android:layout_height="40dp"
         android:contentDescription="@null"
          />
 
@@ -24,10 +24,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:padding="5dp"
+        android:padding="3dp"
         android:textColor="@color/white"
         android:maxLines="1"
-        android:textSize="14sp" />
+        android:textSize="11sp" />
     <include layout="@layout/item_line_with"/>
 </LinearLayout>
     <View

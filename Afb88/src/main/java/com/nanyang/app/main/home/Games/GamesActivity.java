@@ -6,6 +6,7 @@ import android.view.View;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.Games.thaiThousand.ThaiThousandFragment;
+import com.unkonw.testapp.libs.base.BaseFragment;
 
 import java.util.HashMap;
 
@@ -16,20 +17,15 @@ import java.util.HashMap;
 public class GamesActivity extends BaseToolbarActivity {
 
     private String currentTag;
-    private HashMap<String, BaseGamesFragment> mapFragment;
-    private BaseGamesFragment currentFragment;
+    private HashMap<String, BaseFragment> mapFragment;
+    private BaseFragment currentFragment;
+    public String thaiType;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
-        tvToolbarRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_list_layer, 0);
-        tvToolbarRight.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                currentFragment.toolbarRightClick(v);
-            }
-        });
+        tvToolbarRight.setVisibility(View.GONE);
     }
 
     @Override
@@ -41,14 +37,16 @@ public class GamesActivity extends BaseToolbarActivity {
     @Override
     public void initData() {
         super.initData();
-        setTitle(getString(R.string.Thai_game1));
+        thaiType = getMsgIntent("thai_thousand");
+        setTitle(thaiType);
         currentTag = "Thai";
-        BaseGamesFragment thaiThousandFragment = new ThaiThousandFragment();
-        showFragmentToActivity(thaiThousandFragment, R.id.fl_content, getString(R.string.Soccer));
+        BaseFragment thaiThousandFragment = new ThaiThousandFragment();
         currentFragment = thaiThousandFragment;
         mapFragment = new HashMap<>();
         mapFragment.put("Thai", thaiThousandFragment);
+        showFragmentToActivity(thaiThousandFragment, R.id.game_fl, "Thai");
     }
+
     public void setTitle(String title) {
         tvToolbarTitle.setText(title);
     }

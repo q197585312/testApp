@@ -10,10 +10,10 @@
         android:orientation="horizontal">
 
         <ImageView
-            android:layout_gravity="center"
             android:id="@+id/porkercasino_img"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginBottom="20px"
             android:layout_marginLeft="30px"
             android:layout_marginRight="30px"
@@ -21,28 +21,28 @@
             android:background="@mipmap/home_games" />
 
         <RelativeLayout
-            android:layout_gravity="center"
             android:layout_width="0dp"
             android:layout_height="80dp"
+            android:layout_gravity="center"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <TextView
-                android:layout_marginTop="20dp"
-                android:layout_alignParentTop="true"
                 android:id="@+id/porkercasino_nameTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="20dp"
                 android:text="fdsafasf"
                 android:textColor="#ffffff"
                 android:textSize="16sp" />
 
             <TextView
-                android:layout_marginBottom="20dp"
-                android:layout_alignParentBottom="true"
                 android:id="@+id/porkercasino_introduceTv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="20dp"
                 android:text="fdsafasdfadsfasdfasdfadsf"
                 android:textColor="#70ffffff"
                 android:textSize="12sp" />
@@ -57,10 +57,5 @@
             android:background="@mipmap/nav_right_white" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:layout_marginLeft="30px"
-        android:layout_marginRight="30px"
-        android:background="#70000000" />
+    <include layout="@layout/item_line_with_no_margin" />
 </LinearLayout>

@@ -1,6 +1,8 @@
 package com.nanyang.app.main.center;
 
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -36,8 +38,12 @@ public class ChangePasswordFragment extends BaseFragment {
     EditText et_newPassword;
     @Bind(R.id.et_sure_password)
     EditText et_surePasswrod;
-    @Bind(R.id.tv_submit)
-    TextView tv_submit;
+    @Bind(R.id.btn_submit)
+    Button btn_submit;
+    private String oldPasswrod;
+    private String newPasswrod;
+    private String surePasswrod;
+    private AfbApplication app;
 
     @Override
     public int onSetLayoutId() {
@@ -47,10 +53,8 @@ public class ChangePasswordFragment extends BaseFragment {
     @Override
     public void initView() {
         super.initView();
-        AfbApplication app = (AfbApplication) getActivity().getApplication();
+        app = (AfbApplication) getActivity().getApplication();
         tv_accName.setText(app.getUserName());
-
-
     }
 
     @Override
@@ -58,20 +62,46 @@ public class ChangePasswordFragment extends BaseFragment {
         super.initData();
     }
 
-    @OnClick({R.id.tv_submit})
+    @OnClick({R.id.btn_submit})
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.tv_submit:
-                changePassword();
+            case R.id.btn_submit:
+                check();
                 break;
         }
     }
 
+    private void check() {
+        oldPasswrod = et_oldPassword.getText().toString();
+        newPasswrod = et_newPassword.getText().toString();
+        surePasswrod = et_surePasswrod.getText().toString();
+        if (TextUtils.isEmpty(oldPasswrod) || TextUtils.isEmpty(newPasswrod) || TextUtils.isEmpty(surePasswrod)) {
+            ToastUtils.showShort(getString(R.string.check_empty_password));
+            return;
+        }
+        if (oldPasswrod.length() < 8 || newPasswrod.length() < 8 || surePasswrod.length() < 8) {
+            ToastUtils.showShort(getString(R.string.check_length_password));
+            return;
+        } else {
+            String regex = ".*[a-zA-Z].*[0-9]|.*[0-9].*[a-zA-Z]"; //匹配字母和数字组合
+            if (oldPasswrod.matches(regex) == false || newPasswrod.matches(regex) == false || surePasswrod.matches(regex) == false) {
+                ToastUtils.showShort(getString(R.string.check_length_password));
+                return;
+            }
+        }
+        if (!oldPasswrod.equals(app.getPasswrod())) {
+            ToastUtils.showShort(getString(R.string.check_old_password));
+            return;
+        }
+        if (newPasswrod.equals(surePasswrod)) {
+            changePassword();
+        } else {
+            ToastUtils.showShort(getString(R.string.check_same_password));
+        }
+    }
+
     private void changePassword() {
-        String oldPasswrod = et_oldPassword.getText().toString();
-        String newPasswrod = et_newPassword.getText().toString();
-        String surePasswrod = et_surePasswrod.getText().toString();
         ChangePasswordBean bean = new ChangePasswordBean(oldPasswrod, newPasswrod, surePasswrod);
         Disposable d = Api.getService(ApiService.class).changePasswrod(bean.getMap())
                 .subscribeOn(Schedulers.io())

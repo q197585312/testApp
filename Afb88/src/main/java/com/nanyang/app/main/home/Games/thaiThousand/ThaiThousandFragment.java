@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home.Games.thaiThousand;
 
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.InputFilter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,17 +8,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.Games.BaseGamesFragment;
 import com.nanyang.app.main.home.Games.GamesActivity;
 import com.nanyang.app.main.home.Games.model.ThaiThousandIntroduceBean;
 import com.nanyang.app.main.home.Games.thaiThousand.model.ThaiThousandBetSubmitBean;
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
-import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,7 +26,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/2/24.
  */
 
-public class ThaiThousandFragment extends BaseGamesFragment<ThaiThousandPresenter> implements ThaiThousandContract.View {
+public class ThaiThousandFragment extends BaseFragment<ThaiThousandPresenter> implements ThaiThousandContract.View {
     @Bind(R.id.tv_grade_date)
     TextView tvGradeDate;
     @Bind(R.id.layout_bet1)
@@ -105,18 +99,19 @@ public class ThaiThousandFragment extends BaseGamesFragment<ThaiThousandPresente
     GamesActivity gamesActivity;
     String date;
 
-    String type = "Game1";
+    String type;
 
     @Override
     public void initData() {
         super.initData();
         gamesActivity = (GamesActivity) getActivity();
+        type = gamesActivity.thaiType;
         createPresenter(new ThaiThousandPresenter(this));
         inflater = LayoutInflater.from(mContext);
-//        date = getDate(mContext);
         date = "01/03/2017";
         initGradeData(type);
         initIntroduceData(type);
+        initBetListener(type);
     }
 
     private void loadIntroduceData() {
@@ -207,50 +202,6 @@ public class ThaiThousandFragment extends BaseGamesFragment<ThaiThousandPresente
     @Override
     public void initView() {
         super.initView();
-        initBetListener(type);
-    }
-
-    private void setChooseTypeAdapter(RecyclerView rv_list) {
-        rv_list.setLayoutManager(new LinearLayoutManager(mContext));
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getString(R.string.Thai_game1), "Game1"));
-        types.add(new MenuItemInfo(0, getString(R.string.Thai_game2), "Game2"));
-        types.add(new MenuItemInfo(0, getString(R.string.Thai_game3), "Game3"));
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, types, R.layout.text_base) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                TextView tv = holder.getView(R.id.item_text_tv);
-                tv.setPadding(0, 0, 0, 0);
-                tv.setText(item.getText());
-            }
-
-        };
-        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-            @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                reset(item.getType());
-                popWindow.closePopupWindow();
-            }
-        });
-        rv_list.setAdapter(baseRecyclerAdapter);
-    }
-
-    public void toolbarRightClick(View v) {
-        createPopupWindow(
-                new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, 300) {
-                    @Override
-                    protected int onSetLayoutRes() {
-                        return R.layout.popupwindow_choice_ball_type;
-                    }
-
-                    @Override
-                    protected void initView(View view) {
-                        super.initView(view);
-                        RecyclerView rv_list = (RecyclerView) view.findViewById(R.id.rv_list);
-                        setChooseTypeAdapter(rv_list);
-                    }
-                });
-        popWindow.showPopupDownWindow();
     }
 
     @Override

@@ -73,7 +73,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         dataList.add(new PorkerCasinoBean(R.mipmap.home_games,ytPorker , "fdasfadsfads"));
         dataList.add(new PorkerCasinoBean(R.mipmap.home_games,p885Porker , "fdasfadsf"));
         dataList.add(new PorkerCasinoBean(R.mipmap.home_games,digPorker , "fadsfadsfads"));
-        BaseRecyclerAdapter<PorkerCasinoBean> porkerAdapter = new BaseRecyclerAdapter<PorkerCasinoBean>(mContext, dataList, R.layout.porkercasino_item) {
+        BaseRecyclerAdapter<PorkerCasinoBean> porkerAdapter = new BaseRecyclerAdapter<PorkerCasinoBean>(mContext, dataList, R.layout.item_porkercasino) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, PorkerCasinoBean item) {
                 ImageView iv = holder.getView(R.id.porkercasino_img);

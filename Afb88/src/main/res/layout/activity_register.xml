@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle_green_gradient"
+    android:background="@color/green500"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar_layout" />
@@ -20,19 +20,18 @@
             <EditText
                 android:id="@+id/edt_account"
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:layout_weight="1"
                 android:background="@null"
                 android:hint="@string/Account"
                 android:maxLines="1"
-                android:paddingBottom="2dp"
+                android:paddingBottom="4dp"
                 android:paddingRight="8dp"
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
 
             <include layout="@layout/item_line_with_no_margin" />
 
@@ -45,8 +44,8 @@
                 android:visibility="gone" />
 
             <EditText
-                android:paddingTop="15dp"
-                android:paddingBottom="2dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
                 android:paddingRight="8dp"
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
@@ -59,7 +58,7 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
 
             <include layout="@layout/item_line_with_no_margin" />
 
@@ -72,8 +71,8 @@
                 android:visibility="gone" />
 
             <EditText
-                android:paddingTop="15dp"
-                android:paddingBottom="2dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
                 android:paddingRight="8dp"
                 android:id="@+id/edt_password_repeat"
                 android:layout_width="match_parent"
@@ -86,7 +85,7 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
 
             <include layout="@layout/item_line_with_no_margin" />
 
@@ -100,8 +99,8 @@
 
 
             <TextView
-                android:paddingTop="15dp"
-                android:paddingBottom="2dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
                 android:paddingRight="8dp"
                 android:id="@+id/tv_currency"
                 android:layout_width="match_parent"
@@ -112,7 +111,7 @@
                 android:maxLines="1"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
 
             <include layout="@layout/item_line_with_no_margin" />
 
@@ -125,8 +124,8 @@
                 android:visibility="gone" />
 
             <EditText
-                android:paddingTop="15dp"
-                android:paddingBottom="2dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
                 android:paddingRight="8dp"
                 android:id="@+id/edt_contactnum"
                 android:layout_width="match_parent"
@@ -139,7 +138,7 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
 
             <include layout="@layout/item_line_with_no_margin" />
 
@@ -152,8 +151,8 @@
                 android:visibility="gone" />
 
             <EditText
-                android:paddingTop="15dp"
-                android:paddingBottom="2dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
                 android:paddingRight="8dp"
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
@@ -166,7 +165,7 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
 
             <include layout="@layout/item_line_with_no_margin" />
 
@@ -179,8 +178,8 @@
                 android:visibility="gone" />
 
             <TextView
-                android:paddingTop="15dp"
-                android:paddingBottom="2dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
                 android:paddingRight="8dp"
                 android:id="@+id/tv_bankname"
                 android:layout_width="match_parent"
@@ -192,7 +191,7 @@
                 android:maxLines="1"
                 android:text=""
                 android:textColor="@color/black"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
 
             <include layout="@layout/item_line_with_no_margin" />
 
@@ -213,13 +212,13 @@
                 android:hint="Account Name"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:paddingBottom="2dp"
+                android:paddingBottom="4dp"
                 android:paddingRight="8dp"
-                android:paddingTop="15dp"
+                android:paddingTop="8dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
 
             <include layout="@layout/item_line_with_no_margin" />
 
@@ -232,8 +231,8 @@
                 android:visibility="gone" />
 
             <EditText
-                android:paddingTop="15dp"
-                android:paddingBottom="2dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="4dp"
                 android:paddingRight="8dp"
                 android:id="@+id/edt_accountnumber"
                 android:layout_width="match_parent"
@@ -246,7 +245,7 @@
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
-                android:textSize="17sp" />
+                android:textSize="15sp" />
 
             <include layout="@layout/item_line_with_no_margin" />
 
