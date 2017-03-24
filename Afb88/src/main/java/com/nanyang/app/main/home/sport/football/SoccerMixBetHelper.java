@@ -32,9 +32,9 @@ public class SoccerMixBetHelper extends BallBetHelper<SoccerMixInfo, BetView> {
 //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12147539&odds=18
 
     @Override
-    public Disposable clickOdds(SoccerMixInfo item, String type, String odds, final TextView v, boolean isHf) {
+    public Disposable clickOdds(SoccerMixInfo item, String type, String odds, final TextView v, boolean isHf,String params) {
         SoccerMixAdapterHelper.setMixBackground(v, baseView.getContextActivity());
-        Disposable subscribe = getService(ApiService.class).updateMixParlayBet(getOddsUrl(item, type, isHf, odds)).subscribeOn(Schedulers.io())
+        Disposable subscribe = getService(ApiService.class).updateMixParlayBet(getOddsUrl(item, type, isHf, odds, params)).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingParPromptBean>() {//onNext
                     @Override
                     public void accept(BettingParPromptBean bean) throws Exception {
@@ -65,7 +65,7 @@ public class SoccerMixBetHelper extends BallBetHelper<SoccerMixInfo, BetView> {
     }
 //    http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=1_par&oId=12265358&odds=1.66
     //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12152396&odds=19.9
-    protected String getOddsUrl(SoccerMixInfo item, String type, boolean isHf, String odds) {
+    protected String getOddsUrl(SoccerMixInfo item, String type, boolean isHf, String odds,String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);
         stringBuilder.append("g=2");

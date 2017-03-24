@@ -31,7 +31,7 @@ public class MyanmarBetHelper extends BallBetHelper<MyanmarInfo, BetView> {
     }
     //http://a8206d.a36588.com/_Bet/JRecPanel.aspx?b=mmaway&oId=12264226&odds=9.4
     @Override
-    public Disposable clickOdds(MyanmarInfo item, String type, String odds, final TextView v, final boolean isHf) {
+    public Disposable clickOdds(MyanmarInfo item, String type, String odds, final TextView v, final boolean isHf,String params) {
 
         String url = getOddsUrl(item, type, isHf, odds);
         Disposable subscribe = getService(ApiService.class).getBetData(url).subscribeOn(Schedulers.io())

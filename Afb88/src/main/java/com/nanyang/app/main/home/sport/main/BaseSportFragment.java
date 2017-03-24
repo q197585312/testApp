@@ -59,6 +59,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     @Bind(R.id.swipeToLoadLayout)
     SwipeToLoadLayout swipeToLoadLayout;
     private boolean isFirstIn;
+    private BaseRecyclerAdapter baseRecyclerAdapter;
 
     @Override
     public void initData() {
@@ -115,6 +116,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     public void setAdapter(BaseRecyclerAdapter baseRecyclerAdapter) {
         rvContent.setLayoutManager(new LinearLayoutManager(mContext));
         rvContent.setAdapter(baseRecyclerAdapter);
+        this.baseRecyclerAdapter=baseRecyclerAdapter;
     }
 
 
@@ -137,6 +139,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     public void onUpdateMixSucceed(BettingParPromptBean bean) {
         getApp().setBetParList(bean);
         updateMixOrderCount();
+        if(presenter.getStateHelper().isMix())
+            baseRecyclerAdapter.notifyDataSetChanged();
 
     }
 

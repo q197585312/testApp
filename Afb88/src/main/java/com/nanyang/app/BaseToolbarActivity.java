@@ -5,8 +5,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.TextView;
 
+import com.nanyang.app.load.login.LoginActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import org.reactivestreams.Publisher;
 
@@ -52,7 +54,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
         tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 80);
         tvToolbarTitle.getLayoutParams().height = DeviceUtils.dip2px(mContext, 40);
-//        startUpdateState();
+        startUpdateState();
     }
 
     void stopUpdateState() {
@@ -77,6 +79,19 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String allData) throws Exception {
+                        if(!allData.trim().equals("100")){
+                            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
+                                @Override
+                                protected void clickSure(View v) {
+                                    skipAct(LoginActivity.class);
+                                }
+                            };
+                            pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+                            pop.getChooseMessage().setText(R.string.another_login);
+                            pop.getChooseSureTv().setText(getString(R.string.sure));
+                            pop.getChooseCancelTv().setText(getString(R.string.cancel));
+                            pop.showPopupCenterWindow();
+                        }
 
                     }
                 },new Consumer<Throwable>() {//错误

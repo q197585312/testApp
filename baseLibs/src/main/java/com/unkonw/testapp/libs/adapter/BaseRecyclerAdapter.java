@@ -74,12 +74,14 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
         addAllItem(items, true);
     }
 
-    public void clearItems() {
+    public void clearItems(boolean isNotify) {
         mDatas.clear();
+        if (isNotify)
+            notifyDataSetChanged();
     }
 
     public void addAllAndClear(List<T> items) {
-        clearItems();
+        clearItems(false);
         addAllItem(items);
     }
 

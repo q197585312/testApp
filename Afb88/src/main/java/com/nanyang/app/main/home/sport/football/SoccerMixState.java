@@ -81,7 +81,7 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
             public void clickOdds(TextView v, SoccerMixInfo item, String type, boolean isHf, String odds) {
                 IBetHelper<SoccerMixInfo> helper = onSetBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type,odds,v,  isHf);
+                helper.clickOdds(item, type,odds,v,  isHf,"");
             }
 
             @Override

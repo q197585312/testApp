@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.mixparlayList;
 
 
+import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
@@ -30,13 +31,15 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
 
 
     public void obtainListData() {
-        baseView.obtainListData( ((BaseToolbarActivity) (baseView)).getApp().getBetParList());
+        baseView.obtainListData(((BaseToolbarActivity) (baseView)).getApp().getBetParList());
     }
 
     public void showBottomSelectedList() {
-        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() == null)
+        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() == null) {
+            baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "  X  1")));
+            selectedBean = new ClearanceBetAmountBean(1, "");
             return;
-
+        }
         List<BettingParPromptBean.BetParBean> betPar = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar();
         if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() != null && betPar != null && betPar.size() > 2) {
             if (selectedBean == null || selectedBean.getTitle().equals(""))
@@ -60,6 +63,7 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
                 baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, betPar.size() + "  X  1")));
             }
         } else {
+            baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "  X  1")));
             selectedBean = new ClearanceBetAmountBean(1, "");
         }
 
@@ -72,13 +76,18 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
         String ParUrl = item.getParUrl();
         String url = ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId();
 
-        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).updateMixParlayBet(url))
+        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).getData(url))
 //                    mApiWrapper.goMain()
-                .subscribe(new Consumer<BettingParPromptBean>() {//onNext
+                .subscribe(new Consumer<String>() {//onNext
                     @Override
-                    public void accept(BettingParPromptBean Str) throws Exception {
+                    public void accept(String str) throws Exception {
+                        if (str.length() > 0) {
+                            BettingParPromptBean bean = new Gson().fromJson(str, BettingParPromptBean.class);
+                            baseView.obtainListData(bean);
+                        } else {
+                            baseView.obtainListData(null);
+                        }
 
-                        baseView.obtainListData(Str);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override

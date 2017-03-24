@@ -7,17 +7,17 @@ import android.widget.TextView;
 import com.unkonw.testapp.R;
 
 
-public abstract class BaseYseNoChoosePopupwindow extends BasePopupWindow {
+public abstract class BaseYseNoChoosePopupWindow extends BasePopupWindow {
     TextView chooseTitleTv;
     TextView chooseMessage;
     TextView chooseSureTv;
     TextView chooseCancelTv;
 
-    public BaseYseNoChoosePopupwindow(Context context, View v) {
+    public BaseYseNoChoosePopupWindow(Context context, View v) {
         super(context, v);
     }
 
-    public BaseYseNoChoosePopupwindow(Context context, View v, int width, int height) {
+    public BaseYseNoChoosePopupWindow(Context context, View v, int width, int height) {
         super(context, v, width, height);
     }
 

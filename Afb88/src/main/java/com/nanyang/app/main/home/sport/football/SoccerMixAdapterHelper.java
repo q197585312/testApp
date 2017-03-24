@@ -51,49 +51,66 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<SoccerMixInfo> {
         markAdd.setVisibility(View.VISIBLE);
         tvCollection.setVisibility(View.GONE);
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        scrollChild(sl.getChildAt(1),true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
+        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
+        String itemFullSocOddsId = item.getSocOddsId();
+        String itemHfSocOddsId = item.getSocOddsId_FH();
+        if(!checkBackground(sl, itemFullSocOddsId, itemHfSocOddsId)){
+            parseCommonBackground(0,sl);
+            parseCommonBackground(1,sl);
+        }
 
+    }
+
+    private boolean checkBackground(ScrollLayout sl, String itemFullSocOddsId, String itemHfSocOddsId) {
         if (((BaseToolbarActivity) context).getApp().getBetParList() != null && ((BaseToolbarActivity) context).getApp().getBetParList().getBetPar().size() > 0)
             for (BettingParPromptBean.BetParBean betParBean : ((BaseToolbarActivity) context).getApp().getBetParList().getBetPar()) {
                 String parFullTimeId = betParBean.getParFullTimeId();
-                String socOddsId = betParBean.getSocOddsId() + "";
-                if (parFullTimeId.equals("0") || parFullTimeId.equals("")) {
-                    if (socOddsId.equals(item.getSocOddsId())) {
-                        parseMixBackground(betParBean, 0, sl);
-                    }
-
-                } else {
-                    if (socOddsId.equals(item.getSocOddsId_FH()) && parFullTimeId.equals(item.getSocOddsId())) {
-                        parseMixBackground(betParBean, 1, sl);
-                    }
+                String parSocOddsId = betParBean.getSocOddsId() + "";
+                if (itemFullSocOddsId.equals(parSocOddsId)) {
+                    parseMixBackground(betParBean, 0, sl);
+                    return true;
+                } else if (parSocOddsId.equals(itemHfSocOddsId) && parFullTimeId.equals(itemFullSocOddsId)) {
+                    parseMixBackground(betParBean, 1, sl);
+                    return true;
                 }
             }
+        return false;
+    }
 
+    private void parseCommonBackground(int i, ScrollLayout sl) {
+        TextView overTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_overodds_tv);
+        setCommonBackground(overTv, context);
+        TextView underTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_underodds_tv);
+        setCommonBackground(underTv, context);
+        TextView awayTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_visit_hdpodds_tv);
+        setCommonBackground(awayTv, context);
+        TextView homeTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_home_hdpodds_tv);
+        setCommonBackground(homeTv, context);
     }
 
     // http://a8197c.a36588.com/_bet/JRecPanel.aspx?g=2&b=away_par&oId=12219288&odds=19",
     public void parseMixBackground(BettingParPromptBean.BetParBean par, int i, ScrollLayout sl) {
-
-
         String transType = par.getTransType();
         boolean isHome = par.isIsBetHome();
+        TextView overTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_overodds_tv);
+        setCommonBackground(overTv, context);
+        TextView underTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_underodds_tv);
+        setCommonBackground(underTv, context);
+        TextView awayTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_visit_hdpodds_tv);
+        setCommonBackground(awayTv, context);
+        TextView homeTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_home_hdpodds_tv);
+        setCommonBackground(homeTv, context);
         if (transType.equalsIgnoreCase("HDP")) {
             if (isHome) {
-                TextView tv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_home_hdpodds_tv);
-                setMixBackground(tv, context);
+                setMixBackground(homeTv, context);
             } else {
-                TextView tv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_visit_hdpodds_tv);
-                setMixBackground(tv, context);
-
+                setMixBackground(awayTv, context);
             }
         } else if (transType.equalsIgnoreCase("OU")) {
-
             if (isHome) {
-                TextView tv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_overodds_tv);
-                setMixBackground(tv, context);
+                setMixBackground(overTv, context);
             } else {
-                TextView tv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_underodds_tv);
-                setMixBackground(tv, context);
+                setMixBackground(underTv, context);
             }
         }
 

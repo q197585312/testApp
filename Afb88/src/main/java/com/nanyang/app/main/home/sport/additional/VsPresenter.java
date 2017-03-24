@@ -95,17 +95,16 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, BetView<ScaleBean>> i
     }
 
     public void startUpdate() {
-        Flowable<ScaleBean> updateFlowable = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<ScaleBean>>() {
-            @Override
-            public Publisher<ScaleBean> apply(Long aLong) throws Exception {
-                return getService(ApiService.class).scale(getUrl());
-            }
-        });
         if (updateSubscription != null) {
             updateSubscription.dispose();
             updateSubscription = null;
         }
-        updateSubscription = updateFlowable.observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+        updateSubscription = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<ScaleBean>>() {
+            @Override
+            public Publisher<ScaleBean> apply(Long aLong) throws Exception {
+                return getService(ApiService.class).scale(getUrl());
+            }
+        }).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
                 .subscribe(new Consumer<ScaleBean>() {//onNext

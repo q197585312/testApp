@@ -32,9 +32,9 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
 //http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=10&b=odd&oId=12264769&odds=9.4
 //    http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=10&b=away&oId=12264970&odds=9
     @Override
-    public Disposable clickOdds(BasketballMixInfo item, String type, String odds, final TextView v, final boolean isHf) {
+    public Disposable clickOdds(BasketballMixInfo item, String type, String odds, final TextView v, final boolean isHf,String params) {
 
-        String url = getOddsUrl(item, type, isHf, odds);
+        String url = getOddsUrl(item, type, isHf, odds, params);
         Disposable subscribe = getService(ApiService.class).getBetData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingPromptBean>() {//onNext
                     @Override
@@ -70,7 +70,7 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
         pop.showPopupCenterWindow();
     }
     //http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=10&b=odd&oId=12264769&odds=9.4
-    protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds) {
+    protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds,String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);
         stringBuilder.append("g=10");

@@ -174,5 +174,6 @@
     <string name="OVER_UNDER">OVER/UNDER</string>
     <string name="TO_WIN">TO WIN</string>
     <string name="ODD_EVEN">ODD/EVEN</string>
+    <string name="another_login">You are already logged in another place!</string>
 
 </resources>
