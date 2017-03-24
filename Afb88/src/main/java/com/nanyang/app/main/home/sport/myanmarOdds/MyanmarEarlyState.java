@@ -3,8 +3,7 @@ package com.nanyang.app.main.home.sport.myanmarOdds;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract;
+import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 
 import java.util.Date;
@@ -41,9 +40,5 @@ public class MyanmarEarlyState extends MyanmarState {
                 getBaseView().switchState(new MyanmarRunningState(getBaseView()));
                 break;
         }
-    }
-    @Override
-    public IAdapterHelper<MyanmarInfo> onSetAdapterHelper() {
-        return new MyanmarEarlyAdapterHelper(getBaseView().getContextActivity());
     }
 }

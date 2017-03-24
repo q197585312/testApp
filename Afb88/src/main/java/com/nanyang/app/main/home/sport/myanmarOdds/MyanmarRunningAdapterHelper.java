@@ -26,7 +26,7 @@ public class MyanmarRunningAdapterHelper extends MyanmarAdapterHelper {
         TextView timeTv=helper.getView(R.id.module_match_time_tv);
         dateTv.setTextAppearance(context, R.style.text_bold);
         View viewRight = helper.getView(R.id.module_right_mark_tv);
-        viewRight.setVisibility(View.INVISIBLE);
+        viewRight.setVisibility(View.GONE);
         dateTv.setPadding(0, 0, 10, 0);
         liveTv.setVisibility(View.GONE);
         if (item.getRunHomeScore() != null && item.getRunAwayScore() != null && !item.getRunAwayScore().equals("") && !item.getRunHomeScore().equals("")) {

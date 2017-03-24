@@ -11,9 +11,9 @@ import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.nanyang.app.main.home.sportInterface.SportAdapterHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract;
-import com.nanyang.app.main.home.sportInterface.SportState;
+import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
+import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.main.SportState;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -60,7 +60,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
         return new BallItemCallBack<SoccerCommonInfo>(baseRecyclerAdapter) {
             @Override
             public ScrollLayout onSetHeaderFollower() {
-                return headScrollLayout;
+                return getBaseView().onSetScrollHeader();
             }
             @Override
             public boolean isItemCollection(SoccerCommonInfo item) {

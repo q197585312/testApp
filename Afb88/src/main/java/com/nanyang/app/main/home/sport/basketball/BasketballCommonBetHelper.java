@@ -6,7 +6,7 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
-import com.nanyang.app.main.home.sportInterface.BallBetHelper;
+import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
 import org.reactivestreams.Subscription;

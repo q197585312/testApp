@@ -3,8 +3,8 @@ package com.nanyang.app.main.home.sport.basketball;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sportInterface.OutRightState;
-import com.nanyang.app.main.home.sportInterface.SportContract;
+import com.nanyang.app.main.home.sport.main.OutRightState;
+import com.nanyang.app.main.home.sport.main.SportContract;
 
 /**
  * Created by Administrator on 2017/3/13.

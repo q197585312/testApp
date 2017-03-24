@@ -8,7 +8,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.SportInfo;
-import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
+import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 
 
 public class BasketballFragment extends BaseSportFragment {

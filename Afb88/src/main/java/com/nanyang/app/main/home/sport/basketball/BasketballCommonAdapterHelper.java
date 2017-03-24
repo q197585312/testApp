@@ -5,7 +5,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sportInterface.BallAdapterHelper;
+import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;

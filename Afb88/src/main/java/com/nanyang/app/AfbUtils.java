@@ -39,18 +39,22 @@ public class AfbUtils {
     public static String changeValueS(String v) {
         if (v == null || v.equals(""))
             return "";
-        DecimalFormat decimalFormat = new DecimalFormat("0.00");//构造方法的字符格式这里如果小数不足2位,会以0补足.
         String p = "";
         try {
             if (Float.valueOf(v) == 0) {
                 return "";
             }
-            p = decimalFormat.format(Float.valueOf(v) / 10);//format 返回的是字符串
+            p = decimalValue(Float.valueOf(v) / 10, "0.00");
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
         }
         return p;
+    }
+
+    public static String decimalValue(float v, String format) {
+        DecimalFormat decimalFormat = new DecimalFormat(format);//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        return decimalFormat.format(v);//format 返回的是字符串
     }
 
     public static Bitmap toRoundBitmap(Bitmap bitmap) {
@@ -197,8 +201,8 @@ public class AfbUtils {
         int bstart = str.indexOf("VS");
         int bend = bstart + "VS".length();
         SpannableStringBuilder style = new SpannableStringBuilder(str);
-        style.setSpan(new ForegroundColorSpan(color), 0, bstart, Spannable.SPAN_EXCLUSIVE_INCLUSIVE );
-        style.setSpan(new ForegroundColorSpan(color), bend, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE );
+        style.setSpan(new ForegroundColorSpan(color), 0, bstart, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        style.setSpan(new ForegroundColorSpan(color), bend, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return style;
     }
 }

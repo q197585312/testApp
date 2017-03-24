@@ -21,7 +21,6 @@ import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
 import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
 import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
-import com.nanyang.app.main.home.sportInterface.BaseSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;

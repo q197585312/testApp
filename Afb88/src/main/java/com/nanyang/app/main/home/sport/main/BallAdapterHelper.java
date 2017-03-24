@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sportInterface;
+package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
 import android.text.Html;
@@ -14,9 +14,9 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Locale;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -30,7 +30,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     final int black_grey = 0XFF333333;
     protected Context context;
-    protected List<ScrollLayout> slFollowers = new ArrayList<>();
+    protected Set<ScrollLayout> slFollowers = new HashSet<>();
 
     private int slIndex = 0;
 
@@ -137,16 +137,20 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String overOdds = item.getOverOdds();
         String homeHdpOdds = item.getHomeHdpOdds();
         String awayHdpOdds = item.getAwayHdpOdds();
-        scrollChild( sl.getChildAt(0),false, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
+        scrollChild(sl.getChildAt(0), false, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
         if (!slFollowers.contains(sl))
             slFollowers.add(sl);
         sl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 ScrollLayout scrollLayout = back.onSetHeaderFollower();
-                if(!slFollowers.contains(scrollLayout))
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
                         slFollowers.add(scrollLayout);
-                    sl.setFollowScrolls(slFollowers);
+                        break;
+                }
+
+                sl.setFollowScrolls(slFollowers);
 
                 return false;
             }
@@ -168,12 +172,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
 
-    public View scrollChild(View vp,boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
-        return scrollChild(vp,isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "", true, true, false, "", "", "", "", "", "");
+    public View scrollChild(View vp, boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
+        return scrollChild(vp, isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "", true, true, false, "", "", "", "", "", "");
     }
 
 
-    public View scrollChild(View vp,boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds, String homeOddsType, String awayOddsType, String overOddsType, String underOddsType
+    public View scrollChild(View vp, boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds, String homeOddsType, String awayOddsType, String overOddsType, String underOddsType
             , boolean hapVisiable, boolean ouVisiable, boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
         vp.setVisibility(View.VISIBLE);
         ViewHolder holder = new ViewHolder(vp);
@@ -320,6 +324,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         if (!f.equals("") && !f.equals("0")) {
             if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
                 textView.setText(AfbUtils.changeValueS(f));
+            else {
+                textView.setText(AfbUtils.decimalValue(Float.valueOf(f), "0.00"));
+            }
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

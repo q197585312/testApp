@@ -166,5 +166,15 @@
     <string name="reverse_selection">Reverse Selection</string>
     <string name="Huay_Thai">HUAY THAI</string>
     <string name="Myanmar_Odds">Myanmar Odds</string>
+    <string name="FULL_H_A">FULL   H/A</string>
+    <string name="FULL_O_U">FULL   O/U</string>
+    <string name="HALF_H_A">HALF   H/A</string>
+    <string name="HALF_O_U">HALF   O/U</string>
+    <string name="FULL_O_E">FULL O/E</string>
+    <string name="HALF_O_E">HALF O/E</string>
+    <string name="HANDICAP">HANDICAP</string>
+    <string name="OVER_UNDER">OVER/UNDER</string>
+    <string name="TO_WIN">TO WIN</string>
+    <string name="ODD_EVEN">ODD/EVEN</string>
 
 </resources>

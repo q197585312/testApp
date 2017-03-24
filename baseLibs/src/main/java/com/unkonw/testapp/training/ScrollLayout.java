@@ -12,10 +12,9 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;
 
-import java.util.List;
+import java.util.Set;
 
 import cn.finalteam.toolsfinal.DeviceUtils;
-import cn.finalteam.toolsfinal.logger.Logger;
 
 /**
  * Created by guolin on 16/1/12.
@@ -59,7 +58,7 @@ public class ScrollLayout extends ViewGroup {
      * 界面可滚动的右边界
      */
     private int rightBorder;
-    private List<ScrollLayout> scrolls;
+    private Set<ScrollLayout> scrolls;
     private IndexChangeCallBack back;
 
     public int getTargetIndex() {
@@ -108,6 +107,8 @@ public class ScrollLayout extends ViewGroup {
     }
 
     private int getRightBorder(int i) {
+        if(getChildAt(i)==null)
+            return 0;
         if (getChildAt(i).getVisibility() != GONE)
             return getChildAt(i).getRight();
         else
@@ -219,11 +220,11 @@ public class ScrollLayout extends ViewGroup {
         }
     }
 
-    public void setFollowScrolls(List<ScrollLayout> scrolls) {
+    public void setFollowScrolls(Set<ScrollLayout> scrolls) {
         this.scrolls = scrolls;
     }
 
-    public List<ScrollLayout> getFollowScrolls() {
+    public Set<ScrollLayout> getFollowScrolls() {
         return scrolls;
     }
 
@@ -235,7 +236,6 @@ public class ScrollLayout extends ViewGroup {
                 int dx = index * getMeasuredWidth();
                 // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
                 scrollTo(dx, 0);
-                Logger.getDefaultLogger().d(index + "滑动距离：" + dx);
 //                Logger.getDefaultLogger().d("getScrollX:" + getScrollX());
 //                mScroller.startScroll(getScrollX(), 0, dx, 0);
                 targetIndex = index;

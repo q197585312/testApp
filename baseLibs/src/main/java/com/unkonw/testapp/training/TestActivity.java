@@ -16,9 +16,9 @@ import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.AutoUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import butterknife.ButterKnife;
 
@@ -37,7 +37,7 @@ public class TestActivity extends BaseActivity {
     private GestureManager manager;
     private ScrollLayout s1;
     private ScrollLayout s2;
-    private List<ScrollLayout> sls=new ArrayList<>();
+    private Set<ScrollLayout> sls=new HashSet<>();
     @Override
     public void initView() {
 

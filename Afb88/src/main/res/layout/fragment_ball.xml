@@ -48,45 +48,57 @@
         android:layout_height="wrap_content"
         android:background="@color/green900"
         android:gravity="center_vertical"
-        android:orientation="horizontal"
-       >
+        android:orientation="horizontal">
 
         <TextView
-            android:gravity="center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:gravity="center"
             android:text="@string/Matchs"
             android:textColor="@color/white"
             android:textSize="12sp" />
+
         <View
             android:layout_width="0.5dp"
-            android:background="#179441"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="#179441" />
+
         <View
             android:layout_width="0.5dp"
-            android:background="#2dc45c"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="#2dc45c" />
+
         <com.unkonw.testapp.training.ScrollLayout
             android:id="@+id/sl_header"
             android:layout_width="140dp"
             android:layout_height="16dp"
-            android:orientation="horizontal" >
-            <include layout="@layout/sport_head_vp_item"/>
-            <include layout="@layout/sport_head_vp_item"/>
+            android:orientation="horizontal">
+
+            <include layout="@layout/sport_head_vp_item"
+                android:visibility="gone"/>
+
+            <include layout="@layout/sport_head_vp_item"
+                android:visibility="gone"/>
+
+            <include
+                layout="@layout/sport_head_vp_item"
+                android:visibility="gone" />
         </com.unkonw.testapp.training.ScrollLayout>
 
         <View
             android:layout_width="0.5dp"
-            android:background="#179441"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="#179441" />
+
         <View
             android:layout_width="0.5dp"
-            android:background="#2dc45c"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent"
+            android:background="#2dc45c" />
+
         <TextView
             android:id="@+id/tv_aos"
-            android:layout_width="22dp"
+            android:layout_width="50dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="@string/AOS"
@@ -98,57 +110,61 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout
-        android:id="@+id/swipeToLoadLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:swipe_style="classic">
 
-        <include
-            android:id="@id/swipe_refresh_header"
-            layout="@layout/layout_google_header" />
-        <android.support.v7.widget.RecyclerView
-            android:id="@id/swipe_target"
+        <com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout
+            android:id="@+id/swipeToLoadLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            />
+            app:swipe_style="classic">
 
-        <include
-            android:id="@id/swipe_load_more_footer"
-            layout="@layout/layout_classic_footer" />
+            <include
+                android:id="@id/swipe_refresh_header"
+                layout="@layout/layout_google_header" />
 
-    </com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout>
+            <android.support.v7.widget.RecyclerView
+                android:id="@id/swipe_target"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <include
+                android:id="@id/swipe_load_more_footer"
+                layout="@layout/layout_classic_footer" />
+
+        </com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout>
+
         <LinearLayout
             android:id="@+id/ll_mix_parlay_order"
-            android:gravity="center"
-            android:layout_gravity="bottom"
-            android:layout_margin="10dp"
-            android:visibility="gone"
-            android:background="@mipmap/mix_parlay_float_bg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:layout_gravity="bottom"
+            android:layout_margin="10dp"
+            android:background="@mipmap/mix_parlay_float_bg"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:visibility="gone">
+
             <TextView
                 android:id="@+id/tv_mix_parlay_order"
                 android:layout_width="match_parent"
-                android:gravity="center"
-                android:textColor="@color/white"
-                android:text="0"
-                android:visibility="visible"
-                android:maxLines="1"
-                android:textStyle="bold"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="0"
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:visibility="visible"
 
                 />
+
             <TextView
                 android:layout_width="match_parent"
-                android:gravity="center"
-                android:textColor="@color/trans_white"
-                android:text="@string/ORDER"
-                android:visibility="visible"
-                android:textSize="11sp"
-                android:maxLines="1"
                 android:layout_height="wrap_content"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="@string/ORDER"
+                android:textColor="@color/trans_white"
+                android:textSize="11sp"
+                android:visibility="visible"
 
                 />
         </LinearLayout>

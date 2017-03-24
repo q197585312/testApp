@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 
 public abstract class BallItemCallBack<I> implements SportAdapterHelper.ItemCallBack<I>{

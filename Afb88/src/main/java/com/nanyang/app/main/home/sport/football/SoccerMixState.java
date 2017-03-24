@@ -13,9 +13,9 @@ import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.nanyang.app.main.home.sportInterface.SportAdapterHelper;
-import com.nanyang.app.main.home.sportInterface.SportContract;
-import com.nanyang.app.main.home.sportInterface.SportState;
+import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
+import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.main.SportState;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -70,7 +70,7 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
         return new BallItemCallBack<SoccerMixInfo>(baseRecyclerAdapter) {
             @Override
             public ScrollLayout onSetHeaderFollower() {
-                return headScrollLayout;
+                return getBaseView().onSetScrollHeader();
             }
             @Override
             public boolean isItemCollection(SoccerMixInfo item) {
@@ -250,6 +250,10 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
     }
 
 
+    @Override
+    public boolean isMix() {
+        return true;
+    }
     @Override
     public boolean mix() {
         Disposable subscription =getService(ApiService.class).getData(AppConstant.URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
