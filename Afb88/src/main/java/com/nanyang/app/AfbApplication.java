@@ -16,6 +16,7 @@ import cn.finalteam.toolsfinal.logger.Logger;
 public class AfbApplication extends BaseApplication {
     private BettingParPromptBean betParList;
     private String userName;
+    private String passwrod;
 
     @Override
     public void onCreate() {
@@ -50,6 +51,14 @@ public class AfbApplication extends BaseApplication {
 
     public void setUserName(String userName) {
         this.userName = userName;
+    }
+
+    public String getPasswrod() {
+        return passwrod;
+    }
+
+    public void setPasswrod(String passwrod) {
+        this.passwrod = passwrod;
     }
 }
 

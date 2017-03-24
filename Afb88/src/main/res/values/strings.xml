@@ -146,8 +146,10 @@
     <string name="home_and_away">Home And Away</string>
 
     <string name="single_double">Single/Double</string>
-
-
+    <string name="check_empty_password">Please enter a password</string>
+    <string name="check_length_password">Password must be eight alphanumeric characters</string>
+    <string name="check_same_password">Please enter the same password</string>
+    <string name="check_old_password">The old password mistake</string>
     <string name="statement">Statement</string>
     <string name="change_password">change password</string>
     <string name="stake">stake</string>

@@ -64,6 +64,7 @@
         <activity android:name=".main.home.sport.main.SportActivity" />
         <activity android:name=".main.center.StatemenStake.StatementStakeActivity" />
         <activity android:name=".main.center.StatementStakeDetails.StatementDetailsActivity" />
+        <activity android:name=".main.home.TaiThousand.ThaiThousanAcivity" />
     </application>
 
 </manifest>

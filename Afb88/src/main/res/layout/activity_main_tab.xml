@@ -33,6 +33,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textSize="10sp"
                 android:drawableTop="@mipmap/main_menu_a_hover"
                 android:text="Home"
                 android:textColor="@color/green900" />
@@ -46,6 +47,7 @@
 
             <TextView
                 android:id="@+id/tv_tab_center"
+                android:textSize="10sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -64,6 +66,7 @@
             <TextView
                 android:id="@+id/tv_tab_order"
                 android:layout_width="wrap_content"
+                android:textSize="10sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableTop="@mipmap/main_menu_order"
@@ -78,7 +81,7 @@
             android:layout_weight="1">
 
             <TextView
-
+                android:textSize="10sp"
                 android:id="@+id/tv_tab_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

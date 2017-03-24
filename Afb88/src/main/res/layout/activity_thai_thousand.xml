@@ -8,21 +8,13 @@
     <include layout="@layout/toolbar_layout" />
 
     <ImageView
-        android:id="@+id/banner_Img"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@mipmap/poker_banner" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.15" />
+        android:layout_height="wrap_content"
+        android:background="@mipmap/page_banner" />
 
     <android.support.v7.widget.RecyclerView
-        android:id="@+id/porkercasino_rc"
+        android:id="@+id/thai_thousand_rc"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3"></android.support.v7.widget.RecyclerView>
+        android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

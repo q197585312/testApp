@@ -61,6 +61,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         if (data.equals("Login Success")) {
             AfbApplication app = (AfbApplication) getApplication();
             app.setUserName(edtLoginUsername.getText().toString());
+            app.setPasswrod(edtLoginPassword.getText().toString());
         }
         skipAct(MainActivity.class);
     }
