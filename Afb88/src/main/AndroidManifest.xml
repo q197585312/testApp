@@ -48,13 +48,15 @@
         <activity android:name=".main.MainActivity" />
         <activity android:name=".load.register.RegisterActivity" />
         <activity android:name="com.unkonw.testapp.training.TestActivity">
-                <!--<intent-filter>
-                    <action android:name="android.intent.action.MAIN" />
-                    <category android:name="android.intent.category.LAUNCHER" />
-                </intent-filter>-->
+            <!--<intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>-->
         </activity>
         <activity android:name=".main.home.poker.PokerCasinoActivity" />
-        <activity android:name=".main.home.Games.GamesActivity" />
+        <activity
+            android:name=".main.home.Games.GamesActivity"
+            android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity android:name=".main.home.discount.DiscountActivity" />
         <activity android:name=".main.home.sport.mixparlayList.MixOrderListActivity" />
         <activity android:name=".main.center.PersonCenterActivity" />
