@@ -199,12 +199,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private void setBottomMenuAdapter(RecyclerView rv_list) {
         rv_list.setLayoutManager(new GridLayoutManager(baseView.getContextActivity(), 4));
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(R.mipmap.menu_group_oval_white, baseView.getContextActivity().getString(R.string.Choose), "Choose"));
-        types.add(new MenuItemInfo(R.mipmap.menu_error_white, baseView.getContextActivity().getString(R.string.not_settled), "Not settled"));
-        types.add(new MenuItemInfo(R.mipmap.menu_right_oval_white, baseView.getContextActivity().getString(R.string.settled), "Settled"));
 
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(baseView.getContextActivity(), types, R.layout.text_base_item) {
+        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(baseView.getContextActivity(), new ArrayList<MenuItemInfo>(), R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
@@ -213,26 +209,42 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 tv.setPadding(0, 0, 0, 0);
                 tv.setText(item.getText());
             }
-
         };
+        List<MenuItemInfo> types = new ArrayList<>();
+        types.add(new MenuItemInfo(R.mipmap.menu_group_oval_white, baseView.getContextActivity().getString(R.string.Choose), "Choose"));
+        types.add(new MenuItemInfo(R.mipmap.menu_error_white, baseView.getContextActivity().getString(R.string.not_settled), "Not settled"));
+        types.add(new MenuItemInfo(R.mipmap.menu_right_oval_white, baseView.getContextActivity().getString(R.string.settled), "Settled"));
         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
                 popMenu.closePopupWindow();
-                switch (item.getType()) {
-                    case "Choose":
-                        createChoosePop(view);
-                        break;
-                    case "Not settled":
-                        ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
-                        break;
-                    case "Settled":
-                        ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
-                        break;
-                }
+                popMenuItemClick(view, item);
+
             }
         });
+        bindMenuAdapter(baseRecyclerAdapter, types);
+
+
         rv_list.setAdapter(baseRecyclerAdapter);
+    }
+
+    protected void popMenuItemClick(View view, MenuItemInfo item) {
+        switch (item.getType()) {
+            case "Choose":
+                createChoosePop(view);
+                return;
+            case "Not settled":
+                ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
+                break;
+            case "Settled":
+                ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
+                break;
+        }
+    }
+
+    protected void bindMenuAdapter(BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter, List<MenuItemInfo> types) {
+        baseRecyclerAdapter.addAllAndClear(types);
+
     }
 
     private void createChoosePop(View view) {
@@ -644,9 +656,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public boolean isMix() {
         return false;
     }
+
     @Override
     public void clearMix() {
-        if(isMix()) {
+        if (isMix()) {
             Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
 //                    mApiWrapper.goMain()
@@ -676,6 +689,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             mCompositeSubscription.add(subscription);
         }
     }
+
     @Override
     public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
         tvAos.setText(R.string.AOS);

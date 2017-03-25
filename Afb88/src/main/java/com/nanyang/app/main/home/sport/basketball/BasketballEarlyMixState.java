@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.basketball;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-
 import com.nanyang.app.main.home.sport.main.SportContract;
 
 /**
@@ -39,6 +38,6 @@ public class BasketballEarlyMixState extends BasketballMixState {
         } else if (item.getType().equals("Early")) {
             getBaseView().switchState(this);
         }
-
     }
+
 }

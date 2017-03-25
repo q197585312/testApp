@@ -177,5 +177,6 @@
     <string name="TO_WIN">TO WIN</string>
     <string name="ODD_EVEN">ODD/EVEN</string>
     <string name="another_login">You are already logged in another place!</string>
+    <string name="date">Date</string>
 
 </resources>
