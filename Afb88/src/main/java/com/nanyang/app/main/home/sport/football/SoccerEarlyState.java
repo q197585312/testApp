@@ -12,6 +12,8 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
+import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
@@ -27,6 +29,8 @@ import java.util.List;
  */
 
 public class SoccerEarlyState extends SoccerCommonState {
+    private MenuItemInfo selectedDateInfo;
+
     public SoccerEarlyState(SportContract.View baseView) {
         super(baseView);
 
@@ -82,23 +86,52 @@ public class SoccerEarlyState extends SoccerCommonState {
     protected void popMenuItemClick(View view, MenuItemInfo item) {
         super.popMenuItemClick(view, item);
         if (item.getType().equals("Date")) {
-
+            showDateChoicePop();
         }
     }
 
-    private void showDateChoicePrompt() {
-        BasePopupWindow popChoice = new BasePopupWindow(getBaseView().getContextActivity(), new View(getBaseView().getContextActivity()), 800, LinearLayout.LayoutParams.WRAP_CONTENT) {
+    @Override
+    protected List<TableSportInfo<SoccerCommonInfo>> filterChildData(List<TableSportInfo<SoccerCommonInfo>> allData) {
+        List<TableSportInfo<SoccerCommonInfo>> tableSportInfos = super.filterChildData(allData);
+        List<TableSportInfo<SoccerCommonInfo>> tableDateInfos =new ArrayList<>();
+        if (selectedDateInfo != null) {//挑选日期
+            if(selectedDateInfo.getRes()==2){//all
+                return tableSportInfos;
+            }
+            Date date = TimeUtils.format2Date(selectedDateInfo.getText(), "yyyy-MM-dd");
+            for (TableSportInfo<SoccerCommonInfo> item : tableSportInfos) {
+                List<SoccerCommonInfo> mb=new ArrayList<>();
+                for (SoccerCommonInfo bean : item.getRows()) {
+                    Date dateMy = TimeUtils.format2Date(bean.getWorkingDate(), "MM/dd/yyyy");
+                    if(dateMy==null)
+                        continue;
+                    if (selectedDateInfo.getRes() == 1) {
+                        if( dateMy.getTime()-date.getTime()>0){
+                            mb.add(bean);
+                        }
+                    }else if(selectedDateInfo.getRes() == 0){
+                        if( dateMy.getTime()==date.getTime()){
+                            mb.add(bean);
+                        }
+                    }
+                }
+                if(mb.size()>0){
+                    tableDateInfos.add(new TableSportInfo<SoccerCommonInfo>(item.getLeagueBean(),mb));
+                }
+            }
+        }
+        return tableDateInfos;
+    }
 
+    private void showDateChoicePop() {
+        BasePopupWindow popChoice = new BasePopupWindow(getBaseView().getContextActivity(), new View(getBaseView().getContextActivity()), 800, LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice_date;
             }
-
             @Override
             protected void initView(View view) {
                 super.initView(view);
-
-
                 RecyclerView lv = (RecyclerView) view.findViewById(R.id.base_rv);
                 lv.setLayoutManager(new LinearLayoutManager(getBaseView().getContextActivity()));
                 BaseRecyclerAdapter<MenuItemInfo> adapter = getAdapter();
@@ -106,13 +139,11 @@ public class SoccerEarlyState extends SoccerCommonState {
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         closePopupWindow();
-//                        getEarlyDayData(item);
+                        filterDateData(item);
                     }
                 });
                 lv.setAdapter(adapter);
-
             }
-
             @NonNull
             private BaseRecyclerAdapter<MenuItemInfo> getAdapter() {
                 String h12 = TimeUtils.dateFormat(new Date(), "yyyy-MM-dd") + " 12:00:00";
@@ -128,7 +159,7 @@ public class SoccerEarlyState extends SoccerCommonState {
                 String d5 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 5), "yyyy-MM-dd");
                 String dv = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
                 String d6 = getBaseView().getContextActivity().getString(R.string.six_day);
-                MenuItemInfo item0 = new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.all), "");
+                MenuItemInfo item0 = new MenuItemInfo(2, getBaseView().getContextActivity().getString(R.string.all), "");
                 MenuItemInfo item1 = new MenuItemInfo(0, d1, d1);
                 MenuItemInfo item2 = new MenuItemInfo(0, d2, d2);
                 MenuItemInfo item3 = new MenuItemInfo(0, d3, d3);
@@ -150,5 +181,9 @@ public class SoccerEarlyState extends SoccerCommonState {
 
         getBaseView().onPopupWindowCreated(popChoice, Gravity.CENTER);
 
+    }
+
+    private void filterDateData(MenuItemInfo item) {
+        this.selectedDateInfo=item;
     }
 }
