@@ -48,6 +48,8 @@ public class BasketballMixAdapterHelper extends BallAdapterHelper<BasketballMixI
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
         scrollChild(sl.getChildAt(1),false, item,item.getIsHomeGive() , item.getHasX12(),"", item.getHasOE(), "", item.getIsX12New() , "","", "", item.getX12_1Odds(), item.getX12_2Odds(), "1",  "2", "", ""
             ,true,false , true,  item.getHasOE(),  item.getIsOENew(),  item.getOddOdds(),  item.getEvenOdds(),  "odd",  "even");
+        getBaseRecyclerAdapter().getItem(position).setIsX12New("0");
+        getBaseRecyclerAdapter().getItem(position).setIsOENew("0");
     }
 
 

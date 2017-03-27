@@ -109,7 +109,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 adapterHelper.onConvert(holder, position, item);
             }
         };
-
+        adapterHelper.bindAdapter(baseRecyclerAdapter);
 
         adapterHelper.setItemCallBack(onSetItemCallBack());
 

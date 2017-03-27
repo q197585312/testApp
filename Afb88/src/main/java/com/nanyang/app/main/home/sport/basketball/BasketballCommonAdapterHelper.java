@@ -56,8 +56,12 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
                 item.getHasOE_FH(), item.getIsOENew_FH(), item.getOddOdds_FH(), item.getEvenOdds_FH()
                 , "odd", "even"
         );
-
-
+        getBaseRecyclerAdapter().getItem(position).setIsHdpNew("0");
+        getBaseRecyclerAdapter().getItem(position).setIsOUNew("0");
+        getBaseRecyclerAdapter().getItem(position).setIsOENew("0");
+        getBaseRecyclerAdapter().getItem(position).setIsHdpNew_FH("0");
+        getBaseRecyclerAdapter().getItem(position).setIsOUNew_FH("0");
+        getBaseRecyclerAdapter().getItem(position).setIsOENew_FH("0");
         String oldHomeName = "";
         String oldAwayName = "";
         String oldHomeGive = "";

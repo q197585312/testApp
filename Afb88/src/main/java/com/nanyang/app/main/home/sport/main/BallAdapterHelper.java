@@ -4,6 +4,8 @@ import android.content.Context;
 import android.text.Html;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
@@ -41,6 +43,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final I item) {
+
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         View headV = helper.getView(R.id.module_match_head_v);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
@@ -138,6 +141,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String homeHdpOdds = item.getHomeHdpOdds();
         String awayHdpOdds = item.getAwayHdpOdds();
         scrollChild(sl.getChildAt(0), false, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
+        getBaseRecyclerAdapter().getItem(position).setIsHdpNew("0");
+        getBaseRecyclerAdapter().getItem(position).setIsOUNew("0");
         if (!slFollowers.contains(sl))
             slFollowers.add(sl);
         sl.setOnTouchListener(new View.OnTouchListener() {
@@ -319,7 +324,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         return ss;
     }
 
-    protected void setValue(final I item, TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf) {
+    protected void setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf) {
         textView.setText(f);
         if (!f.equals("") && !f.equals("0")) {
             if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
@@ -333,6 +338,33 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     back.clickOdds((TextView) v, item, type, isHf, f);
                 }
             });
+            if (isAnimation ) {
+                Animation animation = new AlphaAnimation(0.0f, 1.0f);
+                //设置动画时间
+                animation.setDuration(1000);
+                animation.setRepeatCount(3);
+                animation.setAnimationListener(new Animation.AnimationListener() {
+                    @Override
+                    public void onAnimationStart(Animation animation) {
+                        textView.setBackgroundResource(R.color.yellow_light_bg);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(Animation animation) {
+                        textView.setBackgroundResource( 0);
+                    }
+
+                    @Override
+                    public void onAnimationRepeat(Animation animation) {
+                        textView.setBackgroundResource( R.color.yellow_light_bg);
+                    }
+                });
+                textView.startAnimation(animation);
+            }
+            else{
+                textView.setBackgroundResource( 0);
+            }
+
         }
 
 
@@ -341,10 +373,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
               /*  if (isAnimation && updateType != 1) {
 
-                    helper.setAnimation(id, getAnimation(new Animation.AnimationListener() {
+                    textView.setAnimation(id, getAnimation(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
-                            helper.setBackgroundColorRes(id, R.color.dig_game_bg);
+                            helper.setBackgroundResource(id, R.color.dig_game_bg);
                         }
 
                         @Override

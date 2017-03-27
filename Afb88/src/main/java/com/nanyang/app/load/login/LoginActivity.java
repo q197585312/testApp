@@ -60,8 +60,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         ToastUtils.showShort(data);
         if (data.equals("Login Success")) {
             AfbApplication app = (AfbApplication) getApplication();
-            app.setUserName(edtLoginUsername.getText().toString());
-            app.setPasswrod(edtLoginPassword.getText().toString());
+            app.getUser().setUserName(edtLoginUsername.getText().toString());
+            app.getUser().setPassword(edtLoginPassword.getText().toString());
         }
         skipAct(MainActivity.class);
     }

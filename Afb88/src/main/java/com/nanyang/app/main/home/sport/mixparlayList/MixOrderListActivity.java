@@ -237,11 +237,9 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         if (result.startsWith("Parlay") || result.contains("r=")) {
             Toast.makeText(mContext, getString(R.string.bet_succeed), Toast.LENGTH_SHORT).show();
             getApp().setBetParList(null);
-            getApp().setBetDetail(null);
             finish();
         } else if (result.startsWith("MULTIBET")) {
             getApp().setBetParList(null);
-            getApp().setBetDetail(null);
             finish();
         } else if (result.startsWith("PARCHG")) {
             BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, rvContent) {
