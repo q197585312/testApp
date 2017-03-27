@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.football;
 
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
@@ -39,11 +40,23 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo,BetVie
         pop.setIsHf(isHf);
         pop.showPopupCenterWindow();
     }
-    protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds) {
+  //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=dc&sc=10&oId=12286344&odds=1.29
+    //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&g=5&b=2&oId=12286343&odds=2.94
+//    http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&g=5&b=odd&oId=12286343&odds=9.8
+    //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=csr&sc=2&oId=12286343&odds=18.4
+    //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=csr&sc=33&oId=12286343&odds=27.3
+    //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=csr&sc=80&oId=12286344&odds=34
+    //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=htft&sc=10&oId=12286343&odds=15.5
+    //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=htft&sc=22&oId=12286343&odds=4.7
+    //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=fglg&sc=0&oId=12286343&odds=13
+//    /http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=tg&sc=1&oId=12286343&odds=4.6
+    //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=tg&sc=70&oId=12286343&odds=11
+    protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds,String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);
         stringBuilder.append("gt=s");
         stringBuilder.append("&b=" + type);
+        stringBuilder.append(params);
         stringBuilder.append("&oId=" + item.getSocOddsId());
         if (isHf)
             stringBuilder.append("&isFH=true&oId_fh=" + item.getSocOddsId_FH());
@@ -53,12 +66,13 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo,BetVie
     }
 
     @Override
-    public Disposable clickOdds(SoccerCommonInfo item, String type, String odds, final TextView v, final boolean isHf) {
-        String url = getOddsUrl(item, type, isHf, odds);
-        Disposable subscribe = getService(ApiService.class).getBetData(url).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingPromptBean>() {//onNext
+    public Disposable clickOdds(SoccerCommonInfo item, String type, String odds, final TextView v, final boolean isHf,String params) {
+        String url = getOddsUrl(item, type, isHf, odds,params);
+        Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {//onNext
                     @Override
-                    public void accept(BettingPromptBean bean) throws Exception {
+                    public void accept( String str) throws Exception {
+                        BettingPromptBean bean= new Gson().fromJson(str,BettingPromptBean.class);
                         createBetPop(bean, isHf, v);
                     }
                 }, new Consumer<Throwable>() {//错误

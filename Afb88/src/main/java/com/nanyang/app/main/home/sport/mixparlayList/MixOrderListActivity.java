@@ -23,7 +23,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.listview.ItemRemoveRecyclerView;
 import com.unkonw.testapp.libs.view.listview.OnItemClickListener;
-import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupwindow;
+import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -64,7 +64,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private Button footerCancelBtn;
     private ClearanceBetAmountBean selectedBean;
 
-    private BallBetHelper  helper;
+    private BallBetHelper helper;
     private MenuItemInfo<String> type;
 
     @Override
@@ -73,16 +73,16 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         assert tvToolbarTitle != null;
         setContentView(R.layout.activity_mix_parlay_list);
         createPresenter(new MixOrderListPresenter(this));
-        if(getApp().getBetParList()==null||getApp().getBetParList().getBetPar().size()<1)
+        if (getApp().getBetParList() == null || getApp().getBetParList().getBetPar().size() < 1)
             return;
         initBottomListData();
         initListData();
         tvToolbarTitle.setBackgroundResource(0);
         tvToolbarTitle.setText(R.string.MixParlay);
-        type = (MenuItemInfo<String>)getIntent().getSerializableExtra(AppConstant.KEY_DATA);
-        helper =new BallBetHelper(this) {
+        type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
+        helper = new BallBetHelper(this) {
             @Override
-            public Disposable clickOdds(Object item, String type, String odds, TextView v, boolean isHf) {
+            public Disposable clickOdds(Object item, String type, String odds, TextView v, boolean isHf,String params) {
                 return null;
             }
         };
@@ -95,7 +95,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             public void convert(MyRecyclerViewHolder helper, final int position, final BettingParPromptBean.BetParBean item) {
 
                 helper.setText(R.id.clearance_type_tv, type.getParent());
-                if (!item.getParFullTimeId().equals("0") &&! item.getParFullTimeId().equals("")) {
+                if (!item.getParFullTimeId().equals("0") && !item.getParFullTimeId().equals("")) {
                     helper.setText(R.id.clearance_type_tv, getString(R.string.football) + "(" + getString(R.string.half_time) + ")");
                 }
 
@@ -244,7 +244,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             getApp().setBetDetail(null);
             finish();
         } else if (result.startsWith("PARCHG")) {
-            BaseYseNoChoosePopupwindow pop = new BaseYseNoChoosePopupwindow(mContext, rvContent) {
+            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, rvContent) {
                 @Override
                 protected void clickSure(View v) {
                     helper.bet(betUrl);
@@ -335,8 +335,12 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     @Override
     public void obtainListData(BettingParPromptBean betInfo) {
         getApp().setBetParList(betInfo);
-        listAdapter.addAllAndClear(betInfo.getBetPar());
-
+        if (betInfo != null && betInfo.getBetPar() != null)
+            listAdapter.addAllAndClear(betInfo.getBetPar());
+        else {
+            listAdapter.clearItems(true);
+        }
+        presenter.showBottomSelectedList();
     }
 
     @Override

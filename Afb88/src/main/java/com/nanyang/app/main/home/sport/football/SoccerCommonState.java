@@ -71,7 +71,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
             public void clickOdds(TextView v, SoccerCommonInfo item, String type, boolean isHf, String odds) {
                 IBetHelper helper = onSetBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type,odds,v,  isHf);
+                helper.clickOdds(item, type,odds,v,  isHf,"");
             }
 
             @Override

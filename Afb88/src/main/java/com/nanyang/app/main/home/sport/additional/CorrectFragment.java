@@ -13,12 +13,17 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
  */
 public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
 
-
+    @Override
+    public void initData() {
+        super.initData();
+        tvVsHeader.setVisibility(View.GONE);
+    }
     @Override
     protected void convertItem(MyRecyclerViewHolder helper, final int position, final VsTableRowBean item) {
         helper.setVisible(R.id.vs_row_head_ll, item.isHasHead());
         helper.setVisible(R.id.vs_row_foot_ll, item.isHasFoot());
         if (item.isHasHead()) {
+            helper.setVisible(R.id.vs_row_head_second_ll,false);
             helper.setText(R.id.vs_header_module_title_tv, item.getModuleTitle());
             helper.setText(R.id.vs_header_left_title_tv, "");
             helper.setText(R.id.vs_header_center_title_tv, "");
@@ -52,7 +57,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             public void onClick(View v) {
 
                 if (item.getRows().get(0).getValue() != null && (!item.getRows().get(0).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(0).getValue(),(TextView) v,false);
+                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(0).getValue(),(TextView) v,false,"&sc="+item.getRows().get(0).getSc());
 
                 }
             }
@@ -61,7 +66,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(1).getValue() != null && (!item.getRows().get(1).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(1).getValue(),(TextView) v,false);
+                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(1).getValue(),(TextView) v,false,"&sc="+item.getRows().get(1).getSc());
 
                 }
             }
@@ -70,7 +75,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(2).getValue() != null && (!item.getRows().get(2).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(2).getValue(),(TextView) v,true);
+                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(2).getValue(),(TextView) v,true,"&sc="+item.getRows().get(2).getSc());
 
                 }
             }

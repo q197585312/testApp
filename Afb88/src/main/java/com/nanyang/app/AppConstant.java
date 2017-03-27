@@ -45,7 +45,7 @@ public class AppConstant {
     public static String URL_LOGIN =HOST+"Default1.aspx";
     public static String URL_MAIN=HOST+"main.aspx";
 
-    public static String URL_UPDATE_STATE=HOST+"pgajaxS.axd?T=CHKST&P=100";
+    public static String URL_UPDATE_STATE=HOST+"pgajaxS.axd?T=CHKST&P=001";
     public static String URL_ODDS_TYPE=HOST+"Main.aspx?accType=";
 
     public static String URL_FOOTBALL_RUNNING =HOST+"_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462";

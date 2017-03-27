@@ -17,7 +17,7 @@ public class MuayThaiBetHelper extends BasketballMixBetHelper{
 
 //  http://a8206d.a36588.com/_Bet/JRecPanel.aspx?g=108&b=away&oId=12271261&odds=8
     @Override
-    protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds) {
+    protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds,String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);
         stringBuilder.append("g=108");

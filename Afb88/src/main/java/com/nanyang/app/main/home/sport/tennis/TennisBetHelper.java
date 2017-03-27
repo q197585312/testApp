@@ -19,7 +19,7 @@ public class TennisBetHelper extends BasketballMixBetHelper{
     //http://a8206d.a36588.com/_Bet/JRecPanel.aspx?g=21&b=home&oId=12269880&odds=8.8
 //    http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=21&b=8.8&oId=12269880&odds=8.8 (263ms)
     @Override
-    protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds) {
+    protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds,String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);
         stringBuilder.append("g=21");

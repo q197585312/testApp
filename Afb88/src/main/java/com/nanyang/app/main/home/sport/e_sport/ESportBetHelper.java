@@ -17,7 +17,7 @@ public class ESportBetHelper extends BasketballMixBetHelper{
 
 //   http://a8206d.a36588.com/_Bet/JRecPanel.aspx?g=106&b=1&oId=12269721&odds=1.53
     @Override
-    protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds) {
+    protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds,String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);
         stringBuilder.append("g=106");
