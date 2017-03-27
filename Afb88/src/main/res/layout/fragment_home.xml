@@ -6,12 +6,12 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp">
+        android:layout_height="240dp">
 
         <com.nanyang.app.Utils.AutoScrollViewPager
             android:id="@+id/auto_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="200dp"/>
+            android:layout_height="240dp"/>
         <FrameLayout
             android:background="@drawable/rectangle_green_gradient_line_trans"
             android:layout_width="match_parent"
