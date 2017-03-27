@@ -58,7 +58,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     public void initData() {
         super.initData();
         AfbApplication app = (AfbApplication) getActivity().getApplication();
-        userName = app.getUserName();
+        userName = app.getUser().getUserName();
         presenter.getStatementData(userName);
     }
 

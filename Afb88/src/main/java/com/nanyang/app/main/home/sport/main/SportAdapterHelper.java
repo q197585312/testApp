@@ -5,6 +5,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
+import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -13,6 +14,12 @@ import com.unkonw.testapp.training.ScrollLayout;
  */
 
 public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapterHelper<B> {
+
+    public BaseRecyclerAdapter<B> getBaseRecyclerAdapter() {
+        return baseRecyclerAdapter;
+    }
+
+    private BaseRecyclerAdapter<B> baseRecyclerAdapter;
 
     public ItemCallBack<B> getBack() {
         return back;
@@ -23,6 +30,10 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
     @Override
     public void onConvert(MyRecyclerViewHolder holder, int position, B item) {
 
+    }
+
+    public void bindAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter) {
+        this.baseRecyclerAdapter=baseRecyclerAdapter;
     }
 
 

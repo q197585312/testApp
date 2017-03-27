@@ -54,7 +54,7 @@ public class ChangePasswordFragment extends BaseFragment {
     public void initView() {
         super.initView();
         app = (AfbApplication) getActivity().getApplication();
-        tv_accName.setText(app.getUserName());
+        tv_accName.setText(app.getUser().getUserName());
     }
 
     @Override
@@ -90,7 +90,7 @@ public class ChangePasswordFragment extends BaseFragment {
                 return;
             }
         }
-        if (!oldPasswrod.equals(app.getPasswrod())) {
+        if (!oldPasswrod.equals(app.getUser().getPassword())) {
             ToastUtils.showShort(getString(R.string.check_old_password));
             return;
         }

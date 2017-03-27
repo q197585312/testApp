@@ -100,6 +100,12 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                }
                            }
                 );
+        updateBalance();
+
+    }
+
+    private void updateBalance() {
+
     }
 
 
