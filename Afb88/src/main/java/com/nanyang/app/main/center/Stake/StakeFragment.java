@@ -1,5 +1,6 @@
 package com.nanyang.app.main.center.Stake;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -7,11 +8,15 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.model.StakeListBean;
+import com.nanyang.app.main.center.model.StakeListBean2;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
+
+import java.util.List;
 
 import butterknife.Bind;
 
@@ -42,36 +47,140 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
 
 
     @Override
-    public void onGetData(StakeListBean data) {
-        initRc(data);
+    public void onGetData(String data) {
+        Gson gson = new Gson();
+        String[] data1 = data.split("nyhxkj");
+        StakeListBean stakeListBean = gson.fromJson(data1[0], StakeListBean.class);
+        StakeListBean2 stakeListBean2 = gson.fromJson(data1[1], StakeListBean2.class);
+        List<StakeListBean.DicAllBean> list1 = stakeListBean.getDicAll();
+        list2 = stakeListBean2.getResources();
+        initRc(list1);
     }
 
-    private void initRc(StakeListBean data) {
+    List<StakeListBean2.ResourcesBean> list2;
+
+    private void initRc(final List<StakeListBean.DicAllBean> data) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
         rc.setLayoutManager(mLayoutManager);
-        BaseRecyclerAdapter<StakeListBean.DicAllBean> baseRecyclerAdapter = new BaseRecyclerAdapter<StakeListBean.DicAllBean>(mContext, data.getDicAll(), R.layout.item_stake) {
+        BaseRecyclerAdapter<StakeListBean.DicAllBean> baseRecyclerAdapter = new BaseRecyclerAdapter<StakeListBean.DicAllBean>(mContext, data, R.layout.item_stake) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, StakeListBean.DicAllBean bean) {
-                TextView num = holder.getView(R.id.tv_num);
-                num.setText(position + 1 + "");
-                TextView RefNo = holder.getView(R.id.tv_RefNo);
-                RefNo.setText(bean.getRefNo());
-                TextView Date = holder.getView(R.id.tv_Date);
-                Date.setText(bean.getTransDate());
-                TextView ModuleTitle = holder.getView(R.id.tv_ModuleTitle);
-                ModuleTitle.setText(bean.getModuleTitle());
-                TextView Home_and_Away = holder.getView(R.id.tv_Home_and_Away);
-                Home_and_Away.setText(bean.getHome() + " VS " + bean.getAway());
-                TextView WorkingDate = holder.getView(R.id.tv_WorkingDate);
-                WorkingDate.setText(bean.getR_DateTime());
-//                TextView BetType = holder.getView(R.id.tv_BetType);
-//                BetType.setText(bean.getBetType());
-//                TextView HdpOdds = holder.getView(R.id.tv_HdpOdds);
-//                HdpOdds.setText(bean.getHdpOdds() + "@");
-//                TextView Odds = holder.getView(R.id.tv_Odds);
-//                Odds.setText(bean.getOdds());
-                TextView Amount = holder.getView(R.id.tv_Amount);
-                Amount.setText(bean.getAmt());
+            public void convert(MyRecyclerViewHolder holder, int position, StakeListBean.DicAllBean item) {
+                String transType = item.getTransType();
+                TextView refno = holder.getView(R.id.order_item_tv1);
+                TextView homeAway = holder.getView(R.id.order_item_tv2);
+                TextView moduleTitle = holder.getView(R.id.order_item_tv4);
+                TextView Odds = holder.getView(R.id.order_item_tv3);
+                TextView Half = holder.getView(R.id.order_item_tv5);
+                TextView dangerStatus = holder.getView(R.id.order_item_tv51);
+                TextView amt = holder.getView(R.id.order_item_tv52);
+                if (position == data.size() - 1) {
+                    refno.setVisibility(View.GONE);
+                    homeAway.setVisibility(View.GONE);
+                    Odds.setVisibility(View.GONE);
+                    moduleTitle.setVisibility(View.GONE);
+                    Half.setVisibility(View.GONE);
+                } else {
+                    refno.setVisibility(View.VISIBLE);
+                    homeAway.setVisibility(View.VISIBLE);
+                    Odds.setVisibility(View.VISIBLE);
+                    moduleTitle.setVisibility(View.VISIBLE);
+                    Half.setVisibility(View.VISIBLE);
+                }
+                refno.setText(item.getRefNo() + "(" + item.getTransDate() + ")");
+                homeAway.setText(item.getHome() + "  vs  " + item.getAway());
+                moduleTitle.setTextColor(0xff333333);
+                Odds.setTextColor(0xff333333);
+                moduleTitle.setText(item.getModuleTitle());
+                String odds = item.getOdds();
+                if (item.getBetType() != null) {
+                    if (transType.equals("OU") || transType.equals("OE")) {
+                        if (transType.equals("OU")) {
+                            odds = item.getHdp() + "@" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
+                            if (item.isIsBetHome()) {
+                                moduleTitle.setText(getString(R.string.over));
+                            } else {
+                                moduleTitle.setText(getString(R.string.under));
+                            }
+                            moduleTitle.setTextColor(Color.RED);
+                        } else if (transType.equals("OE")) {
+                            odds = item.getHdp() + "@" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
+                            if (item.isIsBetHome()) {
+                                moduleTitle.setText("单");
+                                moduleTitle.setTextColor(Color.RED);
+                            } else {
+                                moduleTitle.setText("双");
+                                moduleTitle.setTextColor(Color.BLUE);
+                            }
+                        }
+
+                    } else if (transType.equals("1") || transType.equals("2") || transType.equals("HDP") || transType.equals("X") || transType.equals("PAR")) {
+                        odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
+                        if (transType.equals("1") || transType.equals("X")) {
+                            if (transType.equals("X")) {
+                                moduleTitle.setText(item.getHome() + " (" + "和局" + ")");
+                            } else {
+                                moduleTitle.setText(item.getHome() + " (" + getString(R.string.win) + ")");
+                            }
+                            moduleTitle.setTextColor(Color.BLUE);
+                        } else if (transType.equals("2")) {
+                            odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
+                            moduleTitle.setText(item.getAway() + " (" + getString(R.string.win) + ")");
+                            moduleTitle.setTextColor(Color.BLUE);
+                        } else if (transType.equals("PAR")) {
+                            moduleTitle.setText("过关");
+                            moduleTitle.setTextColor(0xff008000);
+                        } else if (transType.equals("HDP")) {
+                            odds = "@" + " " + item.getOdds() + " (inet)";
+                            if (item.isIsHomeGive()) {
+                                moduleTitle.setText(item.getHome());
+                                moduleTitle.setTextColor(Color.RED);
+                            } else {
+                                moduleTitle.setText(item.getHome());
+                                moduleTitle.setTextColor(Color.BLUE);
+                            }
+                        }
+                    } else if (transType.equals("3D") || transType.equals("2DT") || transType.equals("1DT")) {
+                        moduleTitle.setVisibility(View.GONE);
+                        String thaiDate = item.getWorkingDate().substring(0, 5);
+                        odds = "@" + " " + item.getHdp() + "(" + transType + "-" + thaiDate + ")" + " (inet)";
+                        Odds.setTextColor(Color.BLUE);
+                    } else if (transType.equals("FLG") || transType.equals("HFT")) {
+                        odds = item.getFGLGScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
+                        if (transType.equals("FLG")) {
+                            moduleTitle.setText("最先得分/最后得分");
+                        } else if (transType.equals("HFT")) {
+                            moduleTitle.setText("半场/全场");
+                        }
+                        moduleTitle.setTextColor(Color.RED);
+                    } else if (transType.equals("TG") || transType.equals("CSR")) {
+                        odds = item.getCSScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
+                        if (transType.equals("TG")) {
+                            moduleTitle.setText("总入球");
+                            moduleTitle.setTextColor(Color.RED);
+                        } else if (transType.equals("CSR")) {
+                            moduleTitle.setVisibility(View.GONE);
+                        }
+                    } else if (transType.equals("DC")) {
+                        odds = item.getDCScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
+                        moduleTitle.setText("双重机会");
+                        moduleTitle.setTextColor(Color.RED);
+                    }
+                }
+                Odds.setText(odds);
+                String half = "";
+                if (item.getFullTimeId() > 0) {
+                    half = "(First Half)";
+                }
+                if (list2.size() != 0) {
+                    Half.setText(list2.get(0).getGameType() + half);
+                }
+                String n = "AMOUNT";
+                if (data.size() - 1 == position) {
+                    n = "Total AMOUNT";
+                }
+                dangerStatus.setText(n);
+
+                amt.setText(item.getAmt());
             }
 
         };
@@ -93,4 +202,5 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     public int onSetLayoutId() {
         return R.layout.fragment_stake;
     }
+
 }

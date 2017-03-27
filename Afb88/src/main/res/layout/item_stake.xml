@@ -2,229 +2,67 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="3dp"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <TextView
+        android:id="@+id/order_item_tv1"
+        style="@style/text_wrap_black10"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/order_item_tv2"
+        style="@style/text_wrap_black10"
+        android:padding="1dp" />
+
+
+    <TextView
+        android:id="@+id/order_item_tv3"
+        style="@style/text_wrap_black10"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/order_item_tv4"
+        style="@style/text_wrap_black10"
+        android:padding="1dp" />
+
+    <TextView
+        android:id="@+id/order_item_tv5"
+        style="@style/text_wrap_black10"
+        android:padding="1dp" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
+        style="@style/style_match_wrap"
+        android:orientation="horizontal"
+        android:padding="1dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="序号:"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:gravity="center|left"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_num"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="0"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
+            android:id="@+id/order_item_tv51"
+            style="@style/text_wrap_black10"
+            android:background="@drawable/rectangle_green_allradius2"
+            android:padding="2dp"
+            android:textColor="@color/white" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="日期:"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:gravity="center|left"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_RefNo"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="OU1370254597"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_Date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2017/03/20 4:50:18 pm"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="赛事:"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:gravity="center|left"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_ModuleTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="MUAY THAI - RAJADAMNERN BOXING STADIUM"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_Home_and_Away"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Chonlasit Kiatpoonphon VS Phichitchai Pisanurachan"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <TextView
-                android:id="@+id/tv_WorkingDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="2017/03/20"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="状况:"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_BetType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="小"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/tv_HdpOdds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="4.5@"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:id="@+id/tv_Odds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="2.00"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=" (HK) (Inet)"
-                    android:textColor="@color/black"
-                    android:textSize="12sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="horizontal">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="数额:"
-            android:textColor="@color/black"
-            android:textSize="12sp" />
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/tv_Amount"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="10.0"
-                android:textColor="@color/black"
-                android:textSize="12sp" />
-
-        </LinearLayout>
-
+            android:id="@+id/order_item_tv52"
+            style="@style/style_wrap_wrap"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="2"
+            android:textColor="@color/red_pink_word" />
+        />
     </LinearLayout>
 
     <View
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
         android:layout_height="0.7dp"
-        android:layout_marginTop="5dp"
         android:background="@color/green_light" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="0.7dp"
         android:background="@color/default_fill_color" />
+
+
 </LinearLayout>

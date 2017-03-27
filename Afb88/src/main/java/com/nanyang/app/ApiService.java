@@ -1,7 +1,6 @@
 package com.nanyang.app;
 
 
-import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.nanyang.app.main.center.model.StatementStakeListBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
@@ -128,5 +127,5 @@ public interface ApiService {
 
     //投注状况
     @GET
-    Flowable<StakeListBean> getStakeData(@Url String url);
+    Flowable<String> getStakeData(@Url String url);
 }
