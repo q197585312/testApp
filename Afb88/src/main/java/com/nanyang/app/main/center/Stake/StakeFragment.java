@@ -42,6 +42,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     @Override
     public void initData() {
         super.initData();
+        isNeedRefresh = false;
         presenter.getStakeListData();
     }
 
@@ -55,6 +56,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
         List<StakeListBean.DicAllBean> list1 = stakeListBean.getDicAll();
         list2 = stakeListBean2.getResources();
         initRc(list1);
+        isNeedRefresh = true;
     }
 
     List<StakeListBean2.ResourcesBean> list2;
@@ -106,10 +108,10 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         } else if (transType.equals("OE")) {
                             odds = item.getHdp() + "@" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
                             if (item.isIsBetHome()) {
-                                moduleTitle.setText("单");
+                                moduleTitle.setText(getString(R.string.odd));
                                 moduleTitle.setTextColor(Color.RED);
                             } else {
-                                moduleTitle.setText("双");
+                                moduleTitle.setText(getString(R.string.even));
                                 moduleTitle.setTextColor(Color.BLUE);
                             }
                         }
@@ -118,7 +120,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                         if (transType.equals("1") || transType.equals("X")) {
                             if (transType.equals("X")) {
-                                moduleTitle.setText(item.getHome() + " (" + "和局" + ")");
+                                moduleTitle.setText(item.getHome() + " (" + getString(R.string.draw) + ")");
                             } else {
                                 moduleTitle.setText(item.getHome() + " (" + getString(R.string.win) + ")");
                             }
@@ -128,7 +130,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             moduleTitle.setText(item.getAway() + " (" + getString(R.string.win) + ")");
                             moduleTitle.setTextColor(Color.BLUE);
                         } else if (transType.equals("PAR")) {
-                            moduleTitle.setText("过关");
+                            moduleTitle.setText(getString(R.string.MixParlay));
                             moduleTitle.setTextColor(0xff008000);
                         } else if (transType.equals("HDP")) {
                             odds = item.getDisplayHdp()+ " @" + " " + item.getOdds() +" "+item.getOddsType()+ " (inet)";
@@ -148,22 +150,22 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     } else if (transType.equals("FLG") || transType.equals("HFT")) {
                         odds = item.getFGLGScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
                         if (transType.equals("FLG")) {
-                            moduleTitle.setText("最先得分/最后得分");
+                            moduleTitle.setText(getString(R.string.first_last_goal));
                         } else if (transType.equals("HFT")) {
-                            moduleTitle.setText("半场/全场");
+                            moduleTitle.setText(getString(R.string.half_full_time));
                         }
                         moduleTitle.setTextColor(Color.RED);
                     } else if (transType.equals("TG") || transType.equals("CSR")) {
                         odds = item.getCSScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
                         if (transType.equals("TG")) {
-                            moduleTitle.setText("总入球");
+                            moduleTitle.setText(getString(R.string.total_goals));
                             moduleTitle.setTextColor(Color.RED);
                         } else if (transType.equals("CSR")) {
                             moduleTitle.setVisibility(View.GONE);
                         }
                     } else if (transType.equals("DC")) {
                         odds = item.getDCScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
-                        moduleTitle.setText("双重机会");
+                        moduleTitle.setText(getString(R.string.double_chance));
                         moduleTitle.setTextColor(Color.RED);
                     }
                 }
@@ -175,9 +177,9 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 if (list2.size() != 0) {
                     Half.setText(list2.get(0).getGameType() + half);
                 }
-                String n = "AMOUNT";
+                String n = getString(R.string.amount);
                 if (data.size() - 1 == position) {
-                    n = "Total AMOUNT";
+                    n = getString(R.string.total_amount);
                 }
                 dangerStatus.setText(n);
 
@@ -203,5 +205,13 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     public int onSetLayoutId() {
         return R.layout.fragment_stake;
     }
+    private boolean isNeedRefresh;
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden && isNeedRefresh) {
+            presenter.getStakeListData();
+        }
+    }
 }

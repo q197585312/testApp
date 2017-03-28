@@ -20,7 +20,7 @@
             android:paddingLeft="2dp"
             android:paddingTop="5dp"
             android:singleLine="true"
-            android:text="日期"
+            android:text="@string/date"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -42,7 +42,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="投注状况"
+            android:text="@string/statement_stake"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -64,7 +64,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="有效数额"
+            android:text="@string/valid_amount"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -85,7 +85,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:singleLine="true"
-            android:text="输/赢"
+            android:text="@string/w_l"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -107,7 +107,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="佣金"
+            android:text="@string/commission"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -129,7 +129,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="清帐"
+            android:text="@string/settled_statement"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -151,7 +151,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="结余"
+            android:text="@string/balance"
             android:textColor="#000000"
             android:textStyle="bold" />
     </LinearLayout>

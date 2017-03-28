@@ -21,7 +21,7 @@
             android:paddingLeft="2dp"
             android:paddingTop="5dp"
             android:singleLine="true"
-            android:text="日期"
+            android:text="@string/date"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -43,7 +43,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="记述"
+            android:text="@string/description"
             android:textColor="#000000"
             android:textStyle="bold" />
 
@@ -65,7 +65,7 @@
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="数额"
+            android:text="@string/amount"
             android:textColor="#000000"
             android:textStyle="bold" />
 

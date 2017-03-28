@@ -10,6 +10,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.Stake.StakeFragment;
 import com.nanyang.app.main.center.Statement.StatementFragment;
+import com.nanyang.app.main.center.changeLanguage.ChangeLanguageFragment;
 import com.unkonw.testapp.libs.base.BaseFragment;
 
 import java.util.HashMap;
@@ -24,6 +25,7 @@ public class PersonCenterActivity extends BaseToolbarActivity {
     private BaseFragment statementFragment = new StatementFragment();
     private BaseFragment changePasswordFragment = new ChangePasswordFragment();
     private BaseFragment stakeFragment = new StakeFragment();
+    private BaseFragment changeLanguageFragment = new ChangeLanguageFragment();
     private Map<String, BaseFragment> fragments;
     private String currentTag;
 
@@ -41,6 +43,7 @@ public class PersonCenterActivity extends BaseToolbarActivity {
         fragments.put(getString(R.string.statement), statementFragment);
         fragments.put(getString(R.string.change_password), changePasswordFragment);
         fragments.put(getString(R.string.stake), stakeFragment);
+        fragments.put(getString(R.string.choice_language), changeLanguageFragment);
         currentTag = getCurrentTag();
         showFragmentToActivity(fragments.get(currentTag), R.id.framelayout_person, currentTag);
     }

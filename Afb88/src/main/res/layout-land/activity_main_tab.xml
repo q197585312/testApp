@@ -56,13 +56,13 @@
 
 
         <FrameLayout
-            android:id="@+id/fl_menu_order"
+            android:id="@+id/fl_menu_statemente"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/tv_tab_order"
+                android:id="@+id/tv_tab_statement"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -72,14 +72,14 @@
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/fl_menu_more"
+            android:id="@+id/fl_menu_stake"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <TextView
 
-                android:id="@+id/tv_tab_more"
+                android:id="@+id/tv_tab_stake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

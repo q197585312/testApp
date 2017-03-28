@@ -180,5 +180,30 @@
     <string name="date">Date</string>
     <string name="six_day">6 days</string>
     <string name="all">All</string>
-
+    <!--statement-->
+    <string name="statement_stake">Stake</string>
+    <string name="valid_amount">Valid Amount</string>
+    <string name="w_l">W/L</string>
+    <string name="commission">Com</string>
+    <string name="settled_statement">Settled</string>
+    <string name="balance">Balance</string>
+    <string name="confirm_balance">Please confirm your balance</string>
+    <string name="transfer_log">Transfer Log</string>
+    <string name="description">Description</string>
+    <string name="amount">Amount</string>
+    <string name="total_amount">Total_Amount</string>
+    <string name="event_statement">Event</string>
+    <string name="stake_statement">Stake</string>
+    <string name="number">Number:</string>
+    <string name="date_m">Date:</string>
+    <string name="event_statement_m">Event:</string>
+    <string name="stake_m">Stake:</string>
+    <string name="amount_m">Amount:</string>
+    <string name="valid_amount_m">Valid Amount:</string>
+    <string name="w_l_m">W/L:</string>
+    <string name="commission_m">Com:</string>
+    <!--语言选择-->
+    <string name="choice_language">choose language</string>
+    <string name="chinese">Chinese</string>
+    <string name="english">English</string>
 </resources>
