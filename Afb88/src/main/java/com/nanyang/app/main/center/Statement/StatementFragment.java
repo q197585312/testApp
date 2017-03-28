@@ -3,6 +3,7 @@ package com.nanyang.app.main.center.Statement;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -42,6 +43,8 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     @Bind(R.id.item_transfer_view)
     View transferView;
     String userName;
+    @Bind(R.id.SwipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
 
 
     @Override
@@ -60,8 +63,15 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         super.initData();
         AfbApplication app = (AfbApplication) getActivity().getApplication();
         userName = app.getUser().getUserName();
-        isNeedRefresh = false;
         presenter.getStatementData(userName);
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.getStatementData(userName);
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     private void initRc(final List<StatementListBean> data) {
@@ -133,7 +143,6 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         }.getType();
         List<StatementTransferBean> list2 = gson.fromJson(data1[1], type1);
         initTransferRc(list2);
-        isNeedRefresh = true;
     }
 
     private void initTransferRc(List<StatementTransferBean> list) {
@@ -179,15 +188,5 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
                 break;
         }
 
-    }
-
-    private boolean isNeedRefresh;
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden && isNeedRefresh) {
-            presenter.getStatementData(userName);
-        }
     }
 }

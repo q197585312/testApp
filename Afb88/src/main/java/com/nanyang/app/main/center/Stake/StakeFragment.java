@@ -3,6 +3,7 @@ package com.nanyang.app.main.center.Stake;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -27,6 +28,8 @@ import butterknife.Bind;
 public class StakeFragment extends BaseFragment<StakePresenter> implements StakeContact.View {
     @Bind(R.id.stake_rc)
     RecyclerView rc;
+    @Bind(R.id.swiprefreshlayout)
+    SwipeRefreshLayout swipeToLoadLayout;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -42,8 +45,15 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     @Override
     public void initData() {
         super.initData();
-        isNeedRefresh = false;
         presenter.getStakeListData();
+        swipeToLoadLayout.setColorSchemeResources(android.R.color.holo_green_dark);
+        swipeToLoadLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                presenter.getStakeListData();
+                swipeToLoadLayout.setRefreshing(false);
+            }
+        });
     }
 
 
@@ -56,7 +66,6 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
         List<StakeListBean.DicAllBean> list1 = stakeListBean.getDicAll();
         list2 = stakeListBean2.getResources();
         initRc(list1);
-        isNeedRefresh = true;
     }
 
     List<StakeListBean2.ResourcesBean> list2;
@@ -133,7 +142,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             moduleTitle.setText(getString(R.string.MixParlay));
                             moduleTitle.setTextColor(0xff008000);
                         } else if (transType.equals("HDP")) {
-                            odds = item.getDisplayHdp()+ " @" + " " + item.getOdds() +" "+item.getOddsType()+ " (inet)";
+                            odds = item.getDisplayHdp() + " @" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
                             if (item.isIsHomeGive()) {
                                 moduleTitle.setText(item.getHome());
                                 moduleTitle.setTextColor(Color.RED);
@@ -204,14 +213,5 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     @Override
     public int onSetLayoutId() {
         return R.layout.fragment_stake;
-    }
-    private boolean isNeedRefresh;
-
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (!hidden && isNeedRefresh) {
-            presenter.getStakeListData();
-        }
     }
 }
