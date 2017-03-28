@@ -98,10 +98,11 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             odds = item.getHdp() + "@" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
                             if (item.isIsBetHome()) {
                                 moduleTitle.setText(getString(R.string.over));
+                                moduleTitle.setTextColor(Color.RED);
                             } else {
                                 moduleTitle.setText(getString(R.string.under));
+                                moduleTitle.setTextColor(Color.BLUE);
                             }
-                            moduleTitle.setTextColor(Color.RED);
                         } else if (transType.equals("OE")) {
                             odds = item.getHdp() + "@" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
                             if (item.isIsBetHome()) {
@@ -130,7 +131,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             moduleTitle.setText("过关");
                             moduleTitle.setTextColor(0xff008000);
                         } else if (transType.equals("HDP")) {
-                            odds = "@" + " " + item.getOdds() + " (inet)";
+                            odds = item.getDisplayHdp()+ " @" + " " + item.getOdds() +" "+item.getOddsType()+ " (inet)";
                             if (item.isIsHomeGive()) {
                                 moduleTitle.setText(item.getHome());
                                 moduleTitle.setTextColor(Color.RED);

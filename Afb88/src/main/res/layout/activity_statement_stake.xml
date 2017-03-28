@@ -7,8 +7,136 @@
 
     <include layout="@layout/toolbar_layout" />
 
-    <include layout="@layout/item_statement_stake"
-        android:id="@+id/title_view"/>
+    <LinearLayout
+        android:background="#1F5E1F"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            style="@style/style_match_wrap"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/text_match_black10"
+                android:layout_width="0dp"
+                android:layout_marginLeft="7dp"
+                android:layout_weight="1"
+                android:gravity="center|left"
+                android:paddingBottom="5dp"
+                android:paddingLeft="2dp"
+                android:paddingTop="5dp"
+                android:singleLine="true"
+                android:text="日期"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="30dp"
+                android:background="@color/green_light" />
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="30dp"
+                android:background="@color/default_fill_color" />
+
+            <TextView
+                style="@style/text_match_black10"
+                android:layout_width="0dp"
+                android:layout_weight="6"
+                android:gravity="center"
+                android:padding="2dp"
+                android:singleLine="true"
+                android:text="赛事"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="30dp"
+                android:background="@color/green_light" />
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="30dp"
+                android:background="@color/default_fill_color" />
+
+            <TextView
+                style="@style/text_match_black10"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="2dp"
+                android:singleLine="true"
+                android:text="状况"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="30dp"
+                android:background="@color/green_light" />
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="30dp"
+                android:background="@color/default_fill_color" />
+
+            <TextView
+                style="@style/text_match_black10"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="2dp"
+                android:singleLine="true"
+                android:text="数额"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="30dp"
+                android:background="@color/green_light" />
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="30dp"
+                android:background="@color/default_fill_color" />
+
+            <TextView
+                style="@style/text_match_black10"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="2dp"
+                android:singleLine="true"
+                android:text="佣金"
+                android:textColor="#000000"
+                android:textStyle="bold" />
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="30dp"
+                android:background="@color/green_light" />
+
+            <View
+                android:layout_width="0.4dp"
+                android:layout_height="30dp"
+                android:background="@color/default_fill_color" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.4dp"
+            android:background="@color/green_light" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.4dp"
+            android:background="@color/default_fill_color" />
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/statement_stake_rc"

@@ -26,12 +26,12 @@
             android:textStyle="bold" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
 
@@ -48,12 +48,12 @@
             android:textStyle="bold" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
 
@@ -70,12 +70,12 @@
             android:textStyle="bold" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
 
@@ -92,12 +92,12 @@
             android:textStyle="bold" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
         <TextView
@@ -113,23 +113,23 @@
             android:textStyle="bold" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.7dp"
+        android:layout_height="0.4dp"
         android:background="@color/green_light" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.7dp"
+        android:layout_height="0.4dp"
         android:background="@color/default_fill_color" />
 </LinearLayout>

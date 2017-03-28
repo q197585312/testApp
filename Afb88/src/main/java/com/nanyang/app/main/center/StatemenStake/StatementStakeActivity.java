@@ -26,8 +26,6 @@ import butterknife.Bind;
  */
 
 public class StatementStakeActivity extends BaseToolbarActivity<StatementStakePresenter> implements StatementStakeContact.View {
-    @Bind(R.id.title_view)
-    View titleView;
     @Bind(R.id.statement_stake_rc)
     RecyclerView rc;
     private String dataUrl;
@@ -41,7 +39,6 @@ public class StatementStakeActivity extends BaseToolbarActivity<StatementStakePr
     }
 
     private void getData() {
-        titleView.setBackgroundColor(0xff1F5E1F);
         dataUrl = AppConstant.APP_HOST + "_norm/";
         String urlEnd = getMsgIntent("stake");
         presenter.getThisBet(dataUrl + urlEnd);
