@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.poker;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +10,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nanyang.app.AfbUtils;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.poker.model.PorkerCasinoBean;
@@ -24,7 +27,7 @@ import butterknife.Bind;
  * Created by Administrator on 2017/2/15.
  */
 
-public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> implements PorkerContract.View {
+public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> implements PorkerContract.View<String> {
     @Bind(R.id.porkercasino_rc)
     RecyclerView casinoRc;
     @Bind(R.id.banner_Img)
@@ -44,8 +47,23 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
     }
 
     @Override
-    public void onGetData(Object data) {
+    public void onGetData(String data) {
+        if(data.length()>0) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("gameType", 3);
+            bundle.putString("k", data);
+            bundle.putString("us", getApp().getUser().getUserName());
 
+            try {
+                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
+            } catch (Exception e) {
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
+                intent.setData(content_url);
+                startActivity(intent);
+            }
+        }
     }
 
     @Override
@@ -88,7 +106,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
             @Override
             public void onItemClick(View view, PorkerCasinoBean item, int position) {
                 if (item.getCasinoName().equals(gdPorker)) {
-                    Toast.makeText(mContext, item.getCasinoName(), Toast.LENGTH_SHORT).show();
+                 loginGD();
                 } else if (item.getCasinoName().equals(abf88Porker)) {
                     Toast.makeText(mContext, item.getCasinoName(), Toast.LENGTH_SHORT).show();
                 } else if (item.getCasinoName().equals(ytPorker)) {
@@ -101,5 +119,9 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
             }
         });
         casinoRc.setAdapter(porkerAdapter);
+    }
+
+    private void loginGD() {
+        presenter.skipGd88();
     }
 }

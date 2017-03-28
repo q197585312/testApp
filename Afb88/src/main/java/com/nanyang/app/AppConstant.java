@@ -7,7 +7,7 @@ package com.nanyang.app;
 public class AppConstant {
 
 
-
+    public static String DownLoadDig88AppUrl="http://appgd88.com/gd88/download/android/gd88.apk";;
 
     static {
 //        HOST="http://www.doo88.net/";
@@ -110,7 +110,18 @@ public static String URL_FINANCIAL_RUNNING =HOST+"_view/All_Gen6.ashx?g=7&ot=r&u
     //http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=r&update=true&r=1278052286&LID=84733db3885dd967&_=1490092254366
     //http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=t&update=true&r=1278052286&LID=d784f703f22a941c&_=1490092254367
 
-    public static final String URL_SOCCER_MYANMAR_RUNNING =HOST+"_view/MOddsGen2.ashx?g=106&ot=r&update=true&r=1233177815"; ;
-    public static final String URL_SOCCER_MYANMAR_TODAY = HOST+"_view/MOddsGen2.ashx?g=106&ot=t&update=true&r=1233177815";;
-    public static final String URL_SOCCER_MYANMAR_EARLY = HOST+"_view/MOddsGen2.ashx?g=106&ot=e&update=true&r=1233177815";;
+    public static final String URL_SOCCER_MYANMAR_RUNNING =HOST+"_view/MOddsGen2.ashx?g=106&ot=r&update=true&r=1233177815";
+    public static final String URL_SOCCER_MYANMAR_TODAY = HOST+"_view/MOddsGen2.ashx?g=106&ot=t&update=true&r=1233177815";
+    public static final String URL_SOCCER_MYANMAR_EARLY = HOST+"_view/MOddsGen2.ashx?g=106&ot=e&update=true&r=1233177815";
+
+
+    public static final String URL_GD88_1=HOST+"_View/LiveDealerGDC.aspx";
+    public static final String URL_GD88_2="http://lapigd.afb333.com/TransferBalance.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325";
+    public static final String URL_GD88_3="http://lapigd.afb333.com/TransferBalance.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325";
+    public static final String URL_GD88_4="http://lapigd.afb333.com/Validate.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325";
+    public static final String URL_GD88_5="http://23api.gd88.org/OLTGames/checklogin.jsp?txtAcctid=demoafbai5&txtPwd=123456&txtLang=0&txtSessID=ck3dk2lwjvpmzz3pblosvhjx|9dbc7b1506964a9f97fc9dfe705a3948";
+
+
+
+
 }

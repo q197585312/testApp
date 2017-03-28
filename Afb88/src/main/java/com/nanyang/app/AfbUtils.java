@@ -1,6 +1,8 @@
 package com.nanyang.app;
 
+import android.content.ComponentName;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -11,6 +13,7 @@ import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.Rect;
 import android.graphics.RectF;
+import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Spannable;
@@ -55,6 +58,15 @@ public class AfbUtils {
     public static String decimalValue(float v, String format) {
         DecimalFormat decimalFormat = new DecimalFormat(format);//构造方法的字符格式这里如果小数不足2位,会以0补足.
         return decimalFormat.format(v);//format 返回的是字符串
+    }
+    public static void appJump(Context context,String packageName,String cls,Bundle bundle){
+        Intent intent = new Intent(Intent.ACTION_MAIN);
+        ComponentName comp = new ComponentName(packageName,
+                cls);
+        intent.setComponent(comp);
+        if(bundle!=null)
+            intent.putExtras(bundle);
+        context.startActivity(intent);
     }
 
     public static Bitmap toRoundBitmap(Bitmap bitmap) {
