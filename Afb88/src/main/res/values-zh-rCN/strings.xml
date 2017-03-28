@@ -180,5 +180,30 @@
     <string name="date">日期</string>
     <string name="six_day">6 天</string>
     <string name="all">所有</string>
-
+    <!--statement-->
+    <string name="statement_stake">投注状况</string>
+    <string name="valid_amount">有效数额</string>
+    <string name="w_l">赢/输</string>
+    <string name="commission">佣金</string>
+    <string name="settled_statement">清帐</string>
+    <string name="balance">结余</string>
+    <string name="confirm_balance">请确认你的余额</string>
+    <string name="transfer_log">转账记录</string>
+    <string name="description">记述</string>
+    <string name="amount">数额</string>
+    <string name="total_amount">总数额</string>
+    <string name="event_statement">赛事</string>
+    <string name="stake_statement">状况</string>
+    <string name="number">序号:</string>
+    <string name="date_m">日期:</string>
+    <string name="event_statement_m">赛事:</string>
+    <string name="stake_m">状况:</string>
+    <string name="amount_m">数额:</string>
+    <string name="valid_amount_m">有效金额:</string>
+    <string name="w_l_m">赢/输:</string>
+    <string name="commission_m">Com:</string>
+    <!--语言选择-->
+    <string name="choice_language">选择语言</string>
+    <string name="chinese">中文</string>
+    <string name="english">英语</string>
 </resources>

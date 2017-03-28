@@ -92,6 +92,10 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
                     dateLayout.setVisibility(View.GONE);
                     mathLayout.setVisibility(View.GONE);
                     stakeLayout.setVisibility(View.GONE);
+                }else {
+                    dateLayout.setVisibility(View.VISIBLE);
+                    mathLayout.setVisibility(View.VISIBLE);
+                    stakeLayout.setVisibility(View.VISIBLE);
                 }
             }
 

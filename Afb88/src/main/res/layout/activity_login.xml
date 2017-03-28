@@ -71,16 +71,15 @@
                 android:drawableRight="@drawable/ic_perm_identity"
                 android:gravity="center_vertical"
                 android:hint="@string/Account"
-                android:text="demoafbAi10"
+                android:text="demoafbAi12"
                 android:maxLines="1"
                 android:textColor="@color/white"
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
-
             <EditText
                 android:id="@+id/edt_login_password"
                 android:layout_width="match_parent"
-                android:text="123123aa"
+
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
                 android:background="@null"
@@ -91,10 +90,10 @@
                 android:hint="@string/Password"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:text="123123aa"
                 android:textColor="@color/white"
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
-
             <Button
                 android:id="@+id/btn_login_login"
                 android:layout_width="match_parent"

@@ -9,9 +9,9 @@ import android.widget.TextView;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.PersonalCenterFragment;
+import com.nanyang.app.main.center.Stake.StakeFragment;
+import com.nanyang.app.main.center.Statement.StatementFragment;
 import com.nanyang.app.main.home.HomeFragment;
-import com.nanyang.app.main.more.DiscountFragment;
-import com.nanyang.app.main.order.OrderFragment;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -29,8 +29,8 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     BaseFragment homeFragment = new HomeFragment();
     BaseFragment centerFragment = new PersonalCenterFragment();
-    BaseFragment orderFragment = new OrderFragment();
-    BaseFragment discountFragment = new DiscountFragment();
+    BaseFragment statementFragment = new StatementFragment();
+    BaseFragment stakeFragment = new StakeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         createPresenter(new MainPresenter(this));
     }
 
-    @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_order, R.id.fl_menu_more})
+    @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_statemente, R.id.fl_menu_stake})
     public void onClick(View view) {
         clickTabMenu((FrameLayout) view);
     }
@@ -60,13 +60,13 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                     tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_user, 0, 0);
                     hideFragmentToActivity(centerFragment);
                     break;
-                case R.id.tv_tab_order:
+                case R.id.tv_tab_statement:
                     tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_order, 0, 0);
-                    hideFragmentToActivity(orderFragment);
+                    hideFragmentToActivity(statementFragment);
                     break;
-                case R.id.tv_tab_more:
+                case R.id.tv_tab_stake:
                     tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_more, 0, 0);
-                    hideFragmentToActivity(discountFragment);
+                    hideFragmentToActivity(stakeFragment);
                     break;
             }
             TextView tvMenu = (TextView) fl.getChildAt(0);
@@ -80,13 +80,13 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                     tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_user_hover, 0, 0);
                     showFragmentToActivity(centerFragment, R.id.fl_main_content);
                     break;
-                case R.id.tv_tab_order:
+                case R.id.tv_tab_statement:
                     tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_order_hover, 0, 0);
-                    showFragmentToActivity(orderFragment, R.id.fl_main_content);
+                    showFragmentToActivity(statementFragment, R.id.fl_main_content);
                     break;
-                case R.id.tv_tab_more:
+                case R.id.tv_tab_stake:
                     tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_more_hover, 0, 0);
-                    showFragmentToActivity(discountFragment, R.id.fl_main_content);
+                    showFragmentToActivity(stakeFragment, R.id.fl_main_content);
                     break;
             }
             flCurrentMenu = fl;

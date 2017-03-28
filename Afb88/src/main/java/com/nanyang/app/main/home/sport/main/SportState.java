@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.annotation.TargetApi;
 import android.os.Build;
+import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -229,15 +230,18 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected void popMenuItemClick(View view, MenuItemInfo item) {
+        Bundle b = new Bundle();
         switch (item.getType()) {
             case "Choose":
                 createChoosePop(view);
                 return;
             case "Not settled":
-                ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
+                b.putString("personCenter", getBaseView().getContextActivity().getString(R.string.stake));
+                ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class, b);
                 break;
             case "Settled":
-                ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class);
+                b.putString("personCenter", getBaseView().getContextActivity().getString(R.string.statement));
+                ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class,b);
                 break;
         }
     }

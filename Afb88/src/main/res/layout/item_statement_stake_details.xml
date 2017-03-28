@@ -15,9 +15,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="序号:"
+            android:text="@string/number"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="0"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -48,9 +48,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="日期:"
+            android:text="@string/date_m"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:text="OU1370254597"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/tv_Date"
@@ -73,7 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="2017/03/20 4:50:18 pm"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
         </LinearLayout>
 
     </LinearLayout>
@@ -89,9 +89,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="赛事:"
+            android:text="@string/event_statement_m"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -106,7 +106,7 @@
                 android:layout_height="wrap_content"
                 android:text="MUAY THAI - RAJADAMNERN BOXING STADIUM"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
             <TextView
                 android:id="@+id/tv_Home_and_Away"
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:text="Chonlasit Kiatpoonphon VS Phichitchai Pisanurachan"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -128,7 +128,7 @@
                     android:layout_height="wrap_content"
                     android:text="2017/03/20"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -136,7 +136,7 @@
                     android:layout_marginLeft="5dp"
                     android:text="成绩:"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/tv_Result"
@@ -144,7 +144,7 @@
                     android:layout_height="wrap_content"
                     android:text="5-0"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
@@ -160,9 +160,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="状况:"
+            android:text="@string/stake_m"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -176,7 +176,7 @@
                 android:layout_height="wrap_content"
                 android:text="小"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -189,7 +189,7 @@
                     android:layout_height="wrap_content"
                     android:text="4.5@"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:id="@+id/tv_Odds"
@@ -197,14 +197,14 @@
                     android:layout_height="wrap_content"
                     android:text="2.00"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" (HK) (Inet)"
+                    android:text=" (Inet)"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
             </LinearLayout>
         </LinearLayout>
 
@@ -220,9 +220,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="金额:"
+            android:text="@string/amount_m"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -236,7 +236,7 @@
                 android:layout_height="wrap_content"
                 android:text="10.0"
                 android:textColor="@color/blue"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -253,9 +253,9 @@
             android:id="@+id/textView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="有效金额:"
+            android:text="@string/valid_amount_m"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -269,7 +269,7 @@
                 android:layout_height="wrap_content"
                 android:text="10.0"
                 android:textColor="@color/blue"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -285,9 +285,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="输/赢:"
+            android:text="@string/w_l_m"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -301,7 +301,7 @@
                 android:layout_marginLeft="5dp"
                 android:text="-10.0"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 
@@ -317,9 +317,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="佣金:"
+            android:text="@string/commission_m"
             android:textColor="@color/black"
-            android:textSize="12sp" />
+            android:textSize="10sp" />
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -333,7 +333,7 @@
                 android:layout_marginLeft="5dp"
                 android:text="0.00"
                 android:textColor="@color/black"
-                android:textSize="12sp" />
+                android:textSize="10sp" />
 
         </LinearLayout>
 

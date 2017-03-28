@@ -43,6 +43,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     View transferView;
     String userName;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         super.initData();
         AfbApplication app = (AfbApplication) getActivity().getApplication();
         userName = app.getUser().getUserName();
+        isNeedRefresh = false;
         presenter.getStatementData(userName);
     }
 
@@ -131,6 +133,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         }.getType();
         List<StatementTransferBean> list2 = gson.fromJson(data1[1], type1);
         initTransferRc(list2);
+        isNeedRefresh = true;
     }
 
     private void initTransferRc(List<StatementTransferBean> list) {
@@ -176,5 +179,15 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
                 break;
         }
 
+    }
+
+    private boolean isNeedRefresh;
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden && isNeedRefresh) {
+            presenter.getStatementData(userName);
+        }
     }
 }

@@ -3,7 +3,7 @@ package com.nanyang.app.main.center.Stake;
 import android.util.Log;
 
 import com.nanyang.app.ApiService;
-import com.nanyang.app.main.center.model.StakeListBean;
+import com.nanyang.app.AppConstant;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -19,7 +19,7 @@ import static android.content.ContentValues.TAG;
  * Created by Administrator on 2017/3/23.
  */
 
-public class StakePresenter extends BaseRetrofitPresenter<StakeListBean, StakeContact.View> implements StakeContact.Presenter {
+public class StakePresenter extends BaseRetrofitPresenter<String, StakeContact.View> implements StakeContact.Presenter {
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      *
@@ -31,10 +31,10 @@ public class StakePresenter extends BaseRetrofitPresenter<StakeListBean, StakeCo
 
     @Override
     public void getStakeListData() {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getStakeData(""/*AppConstant.URL_STAKE*/))
-                .subscribe(new Consumer<StakeListBean>() {
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getStakeData(AppConstant.URL_STAKE))
+                .subscribe(new Consumer<String>() {
                     @Override
-                    public void accept(StakeListBean stakeListBeen) throws Exception {
+                    public void accept(String stakeListBeen) throws Exception {
                         Log.d(TAG, "accept: " + stakeListBeen);
                         baseView.onGetData(stakeListBeen);
                         baseView.hideLoadingDialog();

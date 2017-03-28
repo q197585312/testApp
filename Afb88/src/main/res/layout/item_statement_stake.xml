@@ -21,17 +21,17 @@
             android:paddingLeft="2dp"
             android:paddingTop="5dp"
             android:singleLine="true"
-            android:text="日期"
+            android:text="@string/date"
             android:textColor="#000000"
             android:textStyle="bold" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
 
@@ -39,21 +39,21 @@
             android:id="@+id/tv_stake_math"
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="6"
+            android:layout_weight="5"
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="赛事"
+            android:text="@string/event_statement"
             android:textColor="#000000"
             android:textStyle="bold" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
 
@@ -65,17 +65,17 @@
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="状况"
+            android:text="@string/stake_statement"
             android:textColor="#000000"
             android:textStyle="bold" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
 
@@ -87,17 +87,17 @@
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="数额"
+            android:text="@string/amount"
             android:textColor="#000000"
             android:textStyle="bold" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
         <TextView
@@ -108,28 +108,28 @@
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
-            android:text="佣金"
+            android:text="@string/commission"
             android:textColor="#000000"
             android:textStyle="bold" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
         <View
-            android:layout_width="0.7dp"
+            android:layout_width="0.4dp"
             android:layout_height="30dp"
             android:background="@color/default_fill_color" />
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.7dp"
+        android:layout_height="0.4dp"
         android:background="@color/green_light" />
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.7dp"
+        android:layout_height="0.4dp"
         android:background="@color/default_fill_color" />
 </LinearLayout>
