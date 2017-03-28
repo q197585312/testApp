@@ -203,6 +203,7 @@
     <string name="w_l_m">赢/输:</string>
     <string name="commission_m">Com:</string>
     <!--语言选择-->
+    <string name="double_click_exit_application">双击退出应用</string>
     <string name="choice_language">选择语言</string>
     <string name="chinese">中文</string>
     <string name="english">英语</string>

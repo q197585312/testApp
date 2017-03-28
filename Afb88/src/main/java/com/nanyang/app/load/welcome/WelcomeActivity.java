@@ -56,7 +56,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
     @Override
     public void onLoadEnd(File file) {
-        SystemTool.installApk(mContext,file);
+        SystemTool.installApk(mContext, file);
     }
 
 
@@ -71,6 +71,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
             e.printStackTrace();
         }
         skipAct(LoginActivity.class);
+        finish();
 
     }
 

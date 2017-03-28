@@ -1,5 +1,6 @@
 package com.nanyang.app.main.center.changeLanguage;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -7,6 +8,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
+import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -33,7 +35,9 @@ public class ChangeLanguageFragment extends BaseFragment {
     public void initView() {
         super.initView();
     }
+
     String language;
+
     @Override
     public void initData() {
         super.initData();
@@ -76,7 +80,16 @@ public class ChangeLanguageFragment extends BaseFragment {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
             @Override
             public void onItemClick(View view, String item, int position) {
+                if (item.equals(getString(R.string.chinese))) {
+                    AfbUtils.switchLanguage("zh", getActivity());
+                    Intent intent = new Intent(getActivity(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
 
+                } else if (item.equals(getString(R.string.english))) {
+                    AfbUtils.switchLanguage("en", getActivity());
+                    Intent intent = new Intent(getActivity(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
             }
         });
         rc.setAdapter(adapter);

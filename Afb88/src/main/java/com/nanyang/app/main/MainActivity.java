@@ -15,6 +15,9 @@ import com.nanyang.app.main.home.HomeFragment;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -109,6 +112,33 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0 && resultCode == 1) {
             centerFragment.initHead();
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (isTwoFinish()) {
+            finish();
+        } else {
+            ToastUtils.showShort(getString(R.string.double_click_exit_application));
+        }
+    }
+
+    private boolean isFinish = true;
+
+    private boolean isTwoFinish() {
+        Timer timer = new Timer();
+        if (isFinish) {
+            isFinish = false;
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isFinish = true;
+                }
+            }, 2000);
+            return false;
+        } else {
+            return true;
         }
     }
 }

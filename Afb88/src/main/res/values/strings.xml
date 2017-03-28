@@ -203,6 +203,7 @@
     <string name="w_l_m">W/L:</string>
     <string name="commission_m">Com:</string>
     <!--语言选择-->
+    <string name="double_click_exit_application">Double click exit application</string>
     <string name="choice_language">choose language</string>
     <string name="chinese">Chinese</string>
     <string name="english">English</string>

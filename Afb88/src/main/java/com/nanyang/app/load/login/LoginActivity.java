@@ -1,6 +1,7 @@
 package com.nanyang.app.load.login;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -57,7 +58,23 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
     private void initLanguage() {
-        AfbUtils.switchLanguage("", this);
+        String language = AfbUtils.getLanguage(this);
+        if (!TextUtils.isEmpty(language)) {
+            if (language.equals("zh")) {
+                loginChinaRb.setChecked(true);
+                loginEnglishRb.setChecked(false);
+                AfbUtils.switchLanguage("zh", this);
+                restart();
+            } else if (language.equals("en")) {
+                loginChinaRb.setChecked(false);
+                loginEnglishRb.setChecked(true);
+                AfbUtils.switchLanguage("en", this);
+                restart();
+            }
+        } else {
+            AfbUtils.switchLanguage("en", this);
+            restart();
+        }
     }
 
 
@@ -76,6 +93,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             app.getUser().setPassword(edtLoginPassword.getText().toString());
         }
         skipAct(MainActivity.class);
+        finish();
     }
 
     @Override

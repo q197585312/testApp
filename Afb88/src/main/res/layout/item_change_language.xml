@@ -4,13 +4,18 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingLeft="5dp">
+    android:paddingRight="8dp"
+    android:paddingLeft="8dp">
 
     <TextView
         android:id="@+id/selectable_text_content_tv"
-        style="@style/text_match_black10"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:textColor="@color/black_grey"
+        android:textSize="14sp"
+        android:drawablePadding="10dp"
         android:gravity="center_vertical"
-        android:padding="5dp" />
+        android:padding="10dp" />
 
     <View
         android:layout_width="match_parent"
