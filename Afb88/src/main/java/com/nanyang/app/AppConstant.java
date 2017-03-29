@@ -48,6 +48,9 @@ public class AppConstant {
 
     public static String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
     public static String URL_ODDS_TYPE = HOST + "Main.aspx?accType=";
+    public static String URL_UPDATE_BALANCE=HOST+"_bet/PanelStakeBalance_App.aspx";
+    public static String URL_UPDATE_STATE=HOST+"pgajaxS.axd?T=CHKST&P=001";
+    public static String URL_ODDS_TYPE=HOST+"Main.aspx?accType=";
 
     public static String URL_FOOTBALL_RUNNING = HOST + "_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462";
     public static String URL_FOOTBALL_TODAY = HOST + "_view/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462&wd=&ia=0";

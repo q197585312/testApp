@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.myanmarOdds;
 
+import android.view.Gravity;
 import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
@@ -66,7 +67,7 @@ public class MyanmarBetHelper extends BallBetHelper<MyanmarInfo, BetView> {
         BetPop pop = new BetPop(baseView.getContextActivity(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
-        pop.showPopupCenterWindow();
+        baseView.onPopupWindowCreated(pop, Gravity.CENTER);
     }
     //http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=10&b=odd&oId=12264769&odds=9.4
     protected String getOddsUrl(MyanmarInfo item, String type, boolean isHf, String odds) {

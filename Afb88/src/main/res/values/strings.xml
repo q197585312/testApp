@@ -91,7 +91,7 @@
     <string name="max_bet">Max Bet:</string>
     <string name="min_bet">Min Bet:</string>
     <string name="bet">Bet</string>
-    <string name="betting_terms">betting terms:</string>
+    <string name="betting_terms">Betting terms:</string>
     <string name="delete">Delete</string>
     <string name="cancel">Cancel</string>
     <string name="football">Football</string>
@@ -150,6 +150,8 @@
     <string name="check_same_password">Please enter the same password</string>
     <string name="check_old_password">The old password mistake</string>
     <string name="statement">Statement</string>
+    <string name="change_password">change password</string>
+    <string name="stake">Stake</string>
     <string name="change_password">Modify password</string>
     <string name="transfer">Transfer</string>
     <string name="stake">stake</string>
@@ -208,6 +210,11 @@
     <string name="choice_language">Choose Language</string>
     <string name="chinese">Chinese</string>
     <string name="english">English</string>
+    <string name="gd88">GD88</string>
+    <string name="gdc">GDC</string>
+    <string name="Login_Success">Login Success</string>
+    <string name="home">Home</string>
+    <string name="center">Center</string>
     <!--修改密码-->
     <string name="username_m">User Name:</string>
     <string name="old_password">Old Password</string>

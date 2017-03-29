@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.basketball;
 
+import android.view.Gravity;
 import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
@@ -33,10 +34,12 @@ public class BasketballCommonBetHelper extends BallBetHelper<BasketballCommonInf
 
 
     private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
+
         BetPop pop = new BetPop(baseView.getContextActivity(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
-        pop.showPopupCenterWindow();
+        baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+
     }
     //g=9&b=home&oId=12159020&odds=9.2
     protected String getOddsUrl(BasketballCommonInfo item, String type, boolean isHf, String odds) {

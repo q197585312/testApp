@@ -7,7 +7,7 @@ package com.nanyang.app.load;
 public class PersonalInfo {
     String userName;
     String password;
-    String balance;
+    String balance="";
 
     public String getUserName() {
         return userName;

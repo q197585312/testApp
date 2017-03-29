@@ -14,10 +14,10 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
-import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -79,10 +79,11 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         initListData();
         tvToolbarTitle.setBackgroundResource(0);
         tvToolbarTitle.setText(R.string.MixParlay);
+        tvToolbarRight.setVisibility(View.GONE);
         type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         helper = new BallBetHelper(this) {
             @Override
-            public Disposable clickOdds(Object item, String type, String odds, TextView v, boolean isHf,String params) {
+            public Disposable clickOdds(Object item, String type, String odds, TextView v, boolean isHf, String params) {
                 return null;
             }
         };
@@ -261,8 +262,10 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private void changeSelectedList() {
         if (llBottom.getVisibility() == View.GONE) {
             llBottom.setVisibility(View.VISIBLE);
+            moreIv.setImageResource(R.mipmap.arrow_down_green);
         } else {
             llBottom.setVisibility(View.GONE);
+            moreIv.setImageResource(R.mipmap.arrow_up_green);
         }
     }
 
@@ -351,4 +354,11 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     public void onGetData(String data) {
 
     }
+
+
+    @Override
+    public void onUpdateMixSucceed(BettingParPromptBean bean) {
+
+    }
+
 }

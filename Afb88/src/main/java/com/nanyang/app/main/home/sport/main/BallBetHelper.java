@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.main;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.IBaseView;
@@ -21,7 +22,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/3/15.
  */
 
-public abstract class BallBetHelper<B extends BallInfo,V extends IBaseView> implements IBetHelper<B> {
+public abstract class BallBetHelper<B extends BallInfo,V extends BetView> implements IBetHelper<B> {
     protected V baseView;
 
 
@@ -60,7 +61,7 @@ public abstract class BallBetHelper<B extends BallInfo,V extends IBaseView> impl
                     @Override
                     public void accept(String allData) throws Exception {
                         ToastUtils.showShort(allData);
-                        baseView.onFailed(allData);
+                        baseView.onBetSuccess(allData);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override

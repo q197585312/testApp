@@ -244,11 +244,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
 
-    @Override
-    public void onPopupWindowCreated(BasePopupWindow pop, int center) {
-        createPopupWindow(pop);
-        popWindow.showPopupGravityWindow(center, 0, 0);
-    }
+
 
     @OnClick({R.id.tv_odds_type, R.id.ll_mix_parlay_order})
     public void onClick(View view) {
@@ -310,5 +306,14 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     @Override
     public ScrollLayout onSetScrollHeader() {
         return slHeader;
+    }
+
+    @Override
+    public void onBetSuccess(String betResult) {
+        getContextActivity().onBetSuccess(betResult);
+    }
+    @Override
+    public void onPopupWindowCreated(BasePopupWindow pop, int center) {
+        getContextActivity().onPopupWindowCreated(pop,center);
     }
 }

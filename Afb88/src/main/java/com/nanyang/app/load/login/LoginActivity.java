@@ -86,11 +86,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void onGetData(String data) {
-        ToastUtils.showShort(data);
+
         if (data.equals("Login Success")) {
+            ToastUtils.showShort(getString(R.string.Login_Success));
             AfbApplication app = (AfbApplication) getApplication();
             app.getUser().setUserName(edtLoginUsername.getText().toString());
             app.getUser().setPassword(edtLoginPassword.getText().toString());
+        }
+        else{
+            ToastUtils.showShort(data);
         }
         skipAct(MainActivity.class);
         finish();

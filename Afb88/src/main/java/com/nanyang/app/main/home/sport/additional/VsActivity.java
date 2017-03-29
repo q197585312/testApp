@@ -30,7 +30,6 @@ import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -103,7 +102,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         toolbar.setNavigationIcon(null);
         item = (BallInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA2);
-
+        tvToolbarRight.setVisibility(View.GONE);
         matchType = type.getType();
         isMixParlay = type.getRes() == 1;
         String parent = type.getParent();
@@ -338,12 +337,5 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         }
 
     }
-
-    @Override
-    public void onPopupWindowCreated(BasePopupWindow pop, int center) {
-        createPopupWindow(pop);
-        popWindow.showPopupGravityWindow(center, 0, 0);
-    }
-
 
 }

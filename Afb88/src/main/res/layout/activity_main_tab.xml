@@ -35,7 +35,7 @@
                 android:layout_gravity="center"
                 android:textSize="10sp"
                 android:drawableTop="@mipmap/main_menu_a_hover"
-                android:text="Home"
+                android:text="@string/home"
                 android:textColor="@color/green900" />
         </FrameLayout>
 
@@ -52,7 +52,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableTop="@mipmap/main_menu_user"
-                android:text="Center"
+                android:text="@string/center"
                 android:textColor="@color/black_grey" />
         </FrameLayout>
 
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableTop="@mipmap/main_menu_order"
-                android:text="Statement"
+                android:text="@string/statement"
                 android:textColor="@color/black_grey" />
         </FrameLayout>
 
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableTop="@mipmap/main_menu_more"
-                android:text="Stake"
+                android:text="@string/stake"
                 android:textColor="@color/black_grey" />
         </FrameLayout>
     </LinearLayout>
