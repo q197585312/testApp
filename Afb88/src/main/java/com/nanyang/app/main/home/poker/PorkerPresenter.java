@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.poker;
 
 import com.nanyang.app.ApiService;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.reactivestreams.Subscription;
 
@@ -47,8 +48,14 @@ class PorkerPresenter extends BaseRetrofitPresenter<String, PorkerContract.View<
 //                          http://lapigd.afb333.com/Validate.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325
                             String url = Str.substring(start, end);
                             k = url.substring(url.indexOf("k="));
+                            baseView.onGetData(k);
                         }
-                        baseView.onGetData(k);
+                        else if(Str.contains("Transaction not tally")){
+                            ToastUtils.showShort("Transaction not tally");
+                        }else if(Str.contains("sadasdasdas")){
+                            ToastUtils.showShort("Transaction not tally");
+                        }
+
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override

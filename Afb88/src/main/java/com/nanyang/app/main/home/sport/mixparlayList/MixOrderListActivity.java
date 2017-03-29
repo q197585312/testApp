@@ -217,16 +217,19 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                 headOddsEdt.setText("");
                 return;
             }
-        } else {
-
+        }
 //a8197c.a36588.com/_Bet/PanelBet.aspx?betType=X_par&odds=160.670744228768&amt=10&coupon=1&exRate=1
             //"PanelBet.aspx?betType=X_par&odds=160.670744228768",
             betUrl = AppConstant.HOST + "_bet/" + getApp().getBetParList().getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + getApp().getBetParList().getExRate();
             helper.bet(betUrl);
 
-        }
+    }
 
-
+    @Override
+    public void onBetSuccess(String betResult) {
+        super.onBetSuccess(betResult);
+        getApp().setBetParList(null);
+        finish();
     }
 
     private void checkEnd(String result) {

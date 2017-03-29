@@ -60,8 +60,12 @@ public abstract class BallBetHelper<B extends BallInfo,V extends BetView> implem
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String allData) throws Exception {
-                        ToastUtils.showShort(allData);
-                        baseView.onBetSuccess(allData);
+                       if(allData.contains("@")) {
+                           ToastUtils.showShort(allData);
+                           baseView.onBetSuccess(allData);
+                       }else{
+                           baseView.onFailed(allData);
+                       }
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
