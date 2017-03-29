@@ -1,9 +1,8 @@
 package com.nanyang.app.main.center;
 
 import android.content.Intent;
-import android.graphics.BitmapFactory;
+import android.graphics.Bitmap;
 import android.os.Bundle;
-import android.text.TextUtils;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
@@ -56,19 +55,21 @@ public class PersonCenterActivity extends BaseToolbarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0) {
+        if (requestCode == 0 && data != null) {
             String imgUri = data.getData().toString();
             String trueImgUrl = null;
-            if (!TextUtils.isEmpty(imgUri)) {
-                for (int i = 0; i < imgUri.length(); i++) {
-                    String firstStr = imgUri.charAt(i) + "";
-                    String nextStr = imgUri.charAt(i + 1) + "";
-                    if (firstStr.endsWith("/") && nextStr.equals("s")) {
-                        trueImgUrl = imgUri.substring(i);
-                        break;
-                    }
+            for (int i = 0; i < imgUri.length(); i++) {
+                String firstStr = imgUri.charAt(i) + "";
+                String nextStr = imgUri.charAt(i + 1) + "";
+                if (firstStr.equals("/") && nextStr.equals("s")) {
+                    trueImgUrl = imgUri.substring(i);
+                    break;
                 }
-                avatarFragment.headBitmap = AfbUtils.toRoundBitmap(BitmapFactory.decodeFile(trueImgUrl));
+            }
+            Bitmap b = AfbUtils.compressBitmapFromFile(trueImgUrl, 150, 150);
+            if (b != null) {
+                Bitmap circleBitmap = AfbUtils.toRoundBitmap(b);
+                avatarFragment.headBitmap = circleBitmap;
                 avatarFragment.getHeadImg().setImageBitmap(avatarFragment.headBitmap);
             }
         }

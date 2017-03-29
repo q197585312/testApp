@@ -12,13 +12,16 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.StatemenStake.StatementStakeActivity;
 import com.nanyang.app.main.center.model.StatementListBean;
+import com.nanyang.app.main.center.model.StatementSureBlanceBean;
 import com.nanyang.app.main.center.model.StatementTransferBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -45,6 +48,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     String userName;
     @Bind(R.id.SwipeRefreshLayout)
     SwipeRefreshLayout swipeRefreshLayout;
+    StatementSureBlanceBean blanceBean;
 
 
     @Override
@@ -63,6 +67,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         super.initData();
         AfbApplication app = (AfbApplication) getActivity().getApplication();
         userName = app.getUser().getUserName();
+        blanceBean = new StatementSureBlanceBean();
         presenter.getStatementData(userName);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
@@ -176,17 +181,37 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     }
 
     @Override
-    public void onGetStatementListData(List<StatementListBean> list) {
-
+    public void onGetConfirmBlanceData(String data) {
+        tv_blanceSure.setText(isSureSucceed(data));
     }
 
     @OnClick({R.id.tv_blance_sure})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_blance_sure:
-                //TODO
+                if (tv_blanceSure.getText().toString().equals(getString(R.string.confirm_balance))) {
+                    presenter.confirmBlance(blanceBean.getMap(), AppConstant.URL_STATEMENT_CONFIRM_BLANCE + userName);
+                } else {
+                    ToastUtils.showShort(getString(R.string.already_determine_the_balance));
+                }
                 break;
         }
 
+    }
+
+    private String isSureSucceed(String password) {
+        String sign = "<SPAN class='Normal'>";
+        int firstIndex = password.indexOf(sign) + sign.length();
+        int lastIndex = -1;
+        for (int i = firstIndex; i < password.length(); i++) {
+            String first = password.charAt(i) + "";
+            String next = password.charAt(i + 1) + "";
+            if (first.equals("<") && next.equals("/")) {
+                lastIndex = i;
+                break;
+            }
+        }
+        String msg = password.substring(firstIndex, lastIndex);
+        return msg;
     }
 }

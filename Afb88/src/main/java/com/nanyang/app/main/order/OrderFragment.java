@@ -5,9 +5,8 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.TextView;
 
-import com.nanyang.app.R;
 import com.nanyang.app.MenuItemInfo;
-import com.nanyang.app.load.forgetPassword.ForgetActivity;
+import com.nanyang.app.R;
 import com.nanyang.app.main.order.recharge.RechargeActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -40,7 +39,6 @@ public class OrderFragment extends BaseFragment {
         dataList.add(new MenuItemInfo(R.mipmap.center_info_withdrawals, getString(R.string.Withdrawals)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_order, getString(R.string.My_order)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_history, getString(R.string.History_record)));
-        dataList.add(new MenuItemInfo(R.mipmap.center_info_modify, getString(R.string.Modify_password)));
 
         BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, dataList, R.layout.center_item_text) {
             @Override
@@ -55,8 +53,6 @@ public class OrderFragment extends BaseFragment {
             public void onItemClick(View view, MenuItemInfo item, int position) {
                 if (item.getText().equals(getString(R.string.Recharge))) {
                     skipAct(RechargeActivity.class);
-                } else if (item.getText().equals(getString(R.string.Modify_password))) {
-                    skipAct(ForgetActivity.class);
                 }
             }
 

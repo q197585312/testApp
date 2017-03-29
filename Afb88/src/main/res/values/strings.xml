@@ -30,7 +30,6 @@
     <string name="Withdrawals">Withdrawals</string>
     <string name="My_order">My order</string>
     <string name="History_record">History record</string>
-    <string name="Modify_password">Modify password</string>
     <string name="Game_type">Game type</string>
     <string name="Start_time">Start time</string>
     <string name="End_time">End time</string>
@@ -151,7 +150,8 @@
     <string name="check_same_password">Please enter the same password</string>
     <string name="check_old_password">The old password mistake</string>
     <string name="statement">Statement</string>
-    <string name="change_password">change password</string>
+    <string name="change_password">Modify password</string>
+    <string name="transfer">Transfer</string>
     <string name="stake">stake</string>
     <string name="event">Event</string>
     <string name="detail">Detail</string>
@@ -202,9 +202,16 @@
     <string name="valid_amount_m">Valid Amount:</string>
     <string name="w_l_m">W/L:</string>
     <string name="commission_m">Com:</string>
+    <string name="already_determine_the_balance">Already Determine the balance</string>
     <!--语言选择-->
     <string name="double_click_exit_application">Double click exit application</string>
-    <string name="choice_language">choose language</string>
+    <string name="choice_language">Choose Language</string>
     <string name="chinese">Chinese</string>
     <string name="english">English</string>
+    <!--修改密码-->
+    <string name="username_m">User Name:</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="save">Save</string>
 </resources>

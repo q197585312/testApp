@@ -109,6 +109,10 @@ public interface ApiService {
     @GET
     Flowable<String> statementData(@Url String url);
 
+    @FormUrlEncoded
+    @POST()
+    Flowable<String> comfirmBlance(@Url String url, @FieldMap Map<String, String> map);
+
     @GET
     Flowable<List<StatementStakeListBean>> statementStake(@Url String url);
 

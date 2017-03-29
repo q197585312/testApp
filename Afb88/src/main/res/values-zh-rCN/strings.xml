@@ -30,7 +30,6 @@
     <string name="Withdrawals">Withdrawals</string>
     <string name="My_order">My order</string>
     <string name="History_record">History record</string>
-    <string name="Modify_password">Modify password</string>
     <string name="Game_type">Game type</string>
     <string name="Start_time">Start time</string>
     <string name="End_time">End time</string>
@@ -152,6 +151,7 @@
     <string name="check_old_password">旧密码输入错误</string>
     <string name="statement">Statement</string>
     <string name="change_password">修改密码</string>
+    <string name="transfer">转移</string>
     <string name="stake">stake</string>
     <string name="event">Event</string>
     <string name="detail">详情</string>
@@ -202,9 +202,16 @@
     <string name="valid_amount_m">有效金额:</string>
     <string name="w_l_m">赢/输:</string>
     <string name="commission_m">Com:</string>
+    <string name="already_determine_the_balance">已确定余额</string>
     <!--语言选择-->
     <string name="double_click_exit_application">双击退出应用</string>
     <string name="choice_language">选择语言</string>
     <string name="chinese">中文</string>
     <string name="english">英语</string>
+    <!--修改密码-->
+    <string name="username_m">用户名:</string>
+    <string name="old_password">旧密码</string>
+    <string name="new_password">新密码</string>
+    <string name="confirm_password">确定密码</string>
+    <string name="save">储存</string>
 </resources>

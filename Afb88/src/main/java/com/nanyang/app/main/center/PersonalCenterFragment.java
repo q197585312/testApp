@@ -30,6 +30,8 @@ public class PersonalCenterFragment extends BaseFragment {
     RecyclerView rvContent;
     @Bind(R.id.iv_head)
     ImageView headImg;
+    @Bind(R.id.tv_logout)
+    TextView tv_logout;
 
     @Override
     public int onSetLayoutId() {
@@ -48,9 +50,9 @@ public class PersonalCenterFragment extends BaseFragment {
         dataList.add(new MenuItemInfo(R.mipmap.center_info_withdrawals, getString(R.string.Withdrawals)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_order, getString(R.string.My_order)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_history, getString(R.string.History_record)));
-        dataList.add(new MenuItemInfo(R.mipmap.center_info_modify, getString(R.string.Modify_password)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_modify, getString(R.string.change_password)));
-        dataList.add(new MenuItemInfo(R.mipmap.center_info_modify, getString(R.string.choice_language)));
+        dataList.add(new MenuItemInfo(R.mipmap.center_info_language, getString(R.string.choice_language)));
+        dataList.add(new MenuItemInfo(R.mipmap.center_info_transfer, getString(R.string.transfer)));
         BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, dataList, R.layout.center_item_text) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
@@ -76,7 +78,7 @@ public class PersonalCenterFragment extends BaseFragment {
         rvContent.setAdapter(adapter);
     }
 
-    @OnClick({R.id.iv_head})
+    @OnClick({R.id.iv_head, R.id.tv_logout})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.iv_head:
@@ -84,6 +86,9 @@ public class PersonalCenterFragment extends BaseFragment {
                 MainActivity a = (MainActivity) getActivity();
                 i.setClass(a, PersonCenterActivity.class);
                 a.startActivityForResult(i, 0);
+                break;
+            case R.id.tv_logout:
+
                 break;
         }
 
