@@ -1,13 +1,16 @@
 package com.nanyang.app;
 
+import android.app.Activity;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.load.login.LoginActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import org.reactivestreams.Publisher;
@@ -35,6 +38,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     protected
     Toolbar toolbar;
     private Disposable updateDisposable;
+    private Disposable updateBalanceSubscribe;
 
     @Override
     public void initData() {
@@ -54,13 +58,21 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
         tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 80);
         tvToolbarTitle.getLayoutParams().height = DeviceUtils.dip2px(mContext, 40);
-//        startUpdateState();
+        tvToolbarRight.setText(getApp().getUser().getBalance());
+        startUpdateState();
+
     }
 
     void stopUpdateState() {
         if (updateDisposable != null) {
             updateDisposable.dispose();
+            updateDisposable.isDisposed();
             updateDisposable = null;
+        }
+        if (updateBalanceSubscribe != null) {
+            updateBalanceSubscribe.dispose();
+            updateBalanceSubscribe.isDisposed();
+            updateBalanceSubscribe = null;
         }
     }
 
@@ -73,28 +85,29 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 return getService(ApiService.class).getData(AppConstant.URL_UPDATE_STATE);
 
             }
-        }).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+        }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
                 .subscribe(new Consumer<String>() {//onNext
-                    @Override
-                    public void accept(String allData) throws Exception {
-                        if(!allData.trim().equals("100")){
-                            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
-                                @Override
-                                protected void clickSure(View v) {
-                                    skipAct(LoginActivity.class);
-                                }
-                            };
-                            pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-                            pop.getChooseMessage().setText(R.string.another_login);
-                            pop.getChooseSureTv().setText(getString(R.string.sure));
-                            pop.getChooseCancelTv().setText(getString(R.string.cancel));
-                            pop.showPopupCenterWindow();
-                        }
+                               @Override
+                               public void accept(String allData) throws Exception {
+                                   if (!allData.trim().equals("100")) {
+                                       BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
+                                           @Override
+                                           protected void clickSure(View v) {
+                                               skipAct(LoginActivity.class);
+                                           }
+                                       };
+                                       pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+                                       pop.getChooseMessage().setText(R.string.another_login);
+                                       pop.getChooseSureTv().setText(getString(R.string.sure));
+                                       pop.getChooseCancelTv().setText(getString(R.string.cancel));
+                                       onPopupWindowCreated(pop, Gravity.CENTER);
 
-                    }
-                },new Consumer<Throwable>() {//错误
+                                   }
+
+                               }
+                           }, new Consumer<Throwable>() {//错误
                                @Override
                                public void accept(Throwable throwable) throws Exception {
                                }
@@ -104,7 +117,21 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     }
 
-    private void updateBalance() {
+    public void updateBalance() {
+
+        updateBalanceSubscribe = getService(ApiService.class).getData(AppConstant.URL_UPDATE_BALANCE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {//onNext
+                               @Override
+                               public void accept(String allData) throws Exception {
+                                   tvToolbarRight.setText(allData);
+                                   getApp().getUser().setBalance(allData);
+                               }
+                           }, new Consumer<Throwable>() {//错误
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+                               }
+                           }
+                );
 
     }
 
@@ -132,5 +159,19 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     public AfbApplication getApp() {
         return (AfbApplication) getApplication();
+    }
+
+    public void onPopupWindowCreated(BasePopupWindow pop, int center) {
+        createPopupWindow(pop);
+        popWindow.showPopupGravityWindow(center, 0, 0);
+    }
+
+    public void onBetSuccess(String betResult) {
+        popWindow.closePopupWindow();
+        updateBalance();
+    }
+
+    public Activity getContextActivity() {
+        return this;
     }
 }

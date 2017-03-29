@@ -1,71 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-    <!--    <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-            <TextView
-                android:id="@+id/tv_delete"
-                android:layout_height="match_parent"
-                android:layout_width="80dp"
-                android:gravity="center"
-                android:layout_toRightOf="@+id/layout_content"
-                android:text="删 除"
-                android:background="@drawable/btn_click_red_havebackground"
-                android:textColor="#DDFFFFFF"
-                />
-            <RelativeLayout
-                android:id="@+id/layout_content"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-                <TextView
-                    android:id="@+id/text"
-                    android:layout_height="match_parent"
-                    android:layout_width="match_parent"
-                    android:textSize="50dp"
-                    android:textColor="#DD000000"
-                    android:background="@drawable/btn_click_black_havebackground"
-                    />
-            </RelativeLayout>
-
-        </RelativeLayout>-->
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/item_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@color/green_light_white"
         android:orientation="horizontal">
-
-
         <LinearLayout
-
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
             android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:background="@color/grey_dark" />
 
             <TextView
                 android:id="@+id/clearance_type_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:paddingLeft="10dp"
                 android:text="足球"
+                android:background="@color/green_light"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
                 android:textColor="@color/green900"
                 android:textSize="10sp"
                 android:textStyle="bold" />
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.6dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:background="@color/grey_line_button" />
-
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,13 +37,14 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="足球"
-                    android:textColor="@color/blue_word"
+                    android:textColor="@color/black_grey"
                     android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:padding="10dp"
+                    android:textColor="@color/black"
                     android:text="VS"
                     android:textSize="12sp" />
 
@@ -106,14 +63,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp"
+                android:paddingLeft="10dp"
+                android:paddingBottom="10dp"
                 >
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/betting_terms"
-                    android:textColor="@color/green500"
+                    android:textColor="@color/black_grey"
                     android:textSize="10sp" />
 
                 <TextView
@@ -121,11 +79,19 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
-                    android:textColor="@color/grey_dark"
+                    android:textColor="@color/green900"
                     android:textSize="10sp"
                     android:textStyle="bold" />
             </LinearLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="@color/green_white_thick_line" />
 
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="@color/grey_dialog_background" />
 
         </LinearLayout>
         <TextView

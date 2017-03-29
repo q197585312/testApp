@@ -45,6 +45,7 @@ public class AppConstant {
     public static String URL_LOGIN =HOST+"Default1.aspx";
     public static String URL_MAIN=HOST+"main.aspx";
 
+    public static String URL_UPDATE_BALANCE=HOST+"_bet/PanelStakeBalance_App.aspx";
     public static String URL_UPDATE_STATE=HOST+"pgajaxS.axd?T=CHKST&P=001";
     public static String URL_ODDS_TYPE=HOST+"Main.aspx?accType=";
 

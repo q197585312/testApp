@@ -8,7 +8,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
@@ -32,11 +31,6 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
     RecyclerView casinoRc;
     @Bind(R.id.banner_Img)
     ImageView bannerImg;
-    String gdPorker;
-    String abf88Porker;
-    String ytPorker;
-    String p885Porker;
-    String digPorker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,18 +73,12 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         }else {
             bannerImg.setBackgroundResource(R.mipmap.live_banner);
         }
-        gdPorker = getString(R.string.gd_porker);
-        abf88Porker = getString(R.string.abf88_Porker);
-        ytPorker = getString(R.string.yt_porker);
-        p885Porker = getString(R.string.p885_porker);
-        digPorker = getString(R.string.dig_porker);
+
         casinoRc.setLayoutManager(new LinearLayoutManager(mContext));
         List<PorkerCasinoBean> dataList = new ArrayList<>();
-        dataList.add(new PorkerCasinoBean(R.mipmap.home_games,gdPorker , "fdasfdasfadfa"));
-        dataList.add(new PorkerCasinoBean(R.mipmap.home_games,abf88Porker , "fasdfdasfdasf"));
-        dataList.add(new PorkerCasinoBean(R.mipmap.home_games,ytPorker , "fdasfadsfads"));
-        dataList.add(new PorkerCasinoBean(R.mipmap.home_games,p885Porker , "fdasfadsf"));
-        dataList.add(new PorkerCasinoBean(R.mipmap.home_games,digPorker , "fadsfadsfads"));
+        dataList.add(new PorkerCasinoBean(R.mipmap.casino_gd88, getString(R.string.gd88) , "GD88"));
+        dataList.add(new PorkerCasinoBean(R.mipmap.casino_gdc,getString(R.string.gdc) , "GDC"));
+
         BaseRecyclerAdapter<PorkerCasinoBean> porkerAdapter = new BaseRecyclerAdapter<PorkerCasinoBean>(mContext, dataList, R.layout.item_porkercasino) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, PorkerCasinoBean item) {
@@ -105,16 +93,8 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         porkerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<PorkerCasinoBean>() {
             @Override
             public void onItemClick(View view, PorkerCasinoBean item, int position) {
-                if (item.getCasinoName().equals(gdPorker)) {
+                if (item.getCasinoIntroduce().equals("GD88")||item.getCasinoIntroduce().equals("GDC")) {
                  loginGD();
-                } else if (item.getCasinoName().equals(abf88Porker)) {
-                    Toast.makeText(mContext, item.getCasinoName(), Toast.LENGTH_SHORT).show();
-                } else if (item.getCasinoName().equals(ytPorker)) {
-                    Toast.makeText(mContext, item.getCasinoName(), Toast.LENGTH_SHORT).show();
-                } else if (item.getCasinoName().equals(p885Porker)) {
-                    Toast.makeText(mContext, item.getCasinoName(), Toast.LENGTH_SHORT).show();
-                } else if (item.getCasinoName().equals(digPorker)) {
-                    Toast.makeText(mContext, item.getCasinoName(), Toast.LENGTH_SHORT).show();
                 }
             }
         });
