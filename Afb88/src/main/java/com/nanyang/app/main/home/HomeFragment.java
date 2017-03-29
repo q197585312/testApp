@@ -163,7 +163,7 @@ public class HomeFragment extends BaseFragment {
                 data.add(menuItemInfo);
                 data.add(menuItemInfo1);
                 data.add(menuItemInfo2);
-                if (!type.equals("Myanmar_Odds"))
+                if (type.equals("SportBook")||type.equals("E_Sport"))
                     data.add(menuItemInfo3);
                 BaseRecyclerAdapter<MenuItemInfo<String>> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, data, R.layout.text_base) {
                     @Override

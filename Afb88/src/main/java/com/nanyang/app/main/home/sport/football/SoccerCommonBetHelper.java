@@ -4,12 +4,13 @@ import android.view.Gravity;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
+import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
-import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
 import org.reactivestreams.Subscription;
@@ -73,8 +74,13 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String str) throws Exception {
-                        BettingPromptBean bean = new Gson().fromJson(str, BettingPromptBean.class);
-                        createBetPop(bean, isHf, v);
+                        try {
+                            BettingPromptBean bean = new Gson().fromJson(str, BettingPromptBean.class);
+                            createBetPop(bean, isHf, v);
+                        }catch (JsonSyntaxException e){
+                            throw new Exception(str,e);
+                        }
+
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override

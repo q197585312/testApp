@@ -29,7 +29,7 @@ import java.util.List;
  */
 
 public class SoccerEarlyState extends SoccerCommonState {
-    private MenuItemInfo selectedDateInfo;
+    private MenuItemInfo selectedDateInfo= new MenuItemInfo(2, getBaseView().getContextActivity().getString(R.string.all), "");;
 
     public SoccerEarlyState(SportContract.View baseView) {
         super(baseView);
@@ -170,6 +170,9 @@ public class SoccerEarlyState extends SoccerCommonState {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                         TextView view1 = holder.getView(R.id.item_text_tv);
+                        RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) view1.getLayoutParams();
+                        layoutParams.height=LinearLayout.LayoutParams.WRAP_CONTENT;
+                        layoutParams.bottomMargin=10;
                         view1.setBackgroundResource(R.drawable.rectangle_button_green);
                         view1.setText(item.getText());
                         view1.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
@@ -185,5 +188,6 @@ public class SoccerEarlyState extends SoccerCommonState {
 
     private void filterDateData(MenuItemInfo item) {
         this.selectedDateInfo=item;
+        updateAllDate(allData);
     }
 }

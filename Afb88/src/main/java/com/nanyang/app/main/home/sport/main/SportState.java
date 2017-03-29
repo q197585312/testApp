@@ -258,8 +258,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             @Override
             public void chooseMap(Map<String, Boolean> map) {
                 leagueSelectedMap = map;
-                filterData(allData);
-                showCurrentData();
+                updateAllDate(allData);
             }
         });
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);
@@ -333,7 +332,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         updateAllDate(allData);
     }
 
-    private void updateAllDate(List<TableSportInfo<B>> allData) {
+    protected void updateAllDate(List<TableSportInfo<B>> allData) {
 
         filterData(allData);
         showCurrentData();
