@@ -179,7 +179,7 @@ public class SportActivity extends BaseToolbarActivity {
                 }
                 break;
             case R.id.iv_add:
-                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 250) {
+                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 350) {
                     @Override
                     protected int onSetLayoutRes() {
                         return R.layout.popupwindow_choice_game;
@@ -224,5 +224,8 @@ public class SportActivity extends BaseToolbarActivity {
         }
     }
 
+    @Override
+    protected void updateBalanceTv(String allData) {
 
+    }
 }

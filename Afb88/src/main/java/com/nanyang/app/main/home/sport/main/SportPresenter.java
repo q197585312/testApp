@@ -15,10 +15,10 @@ public class SportPresenter implements SportContract.Presenter {
     public void setStateHelper(IObtainDataState stateHelperNew) {
         if (stateHelper != null) {
             stateHelper.stopUpdateData();
-            if(stateHelper.isMix())
-                stateHelper.clearMix();
         }
         this.stateHelper = stateHelperNew;
+        if (stateHelper.isMix())
+            stateHelper.clearMix();
 
 
     }

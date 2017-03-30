@@ -25,7 +25,7 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
-        TextView tvRightMark = helper.getView(R.id.module_right_mark_tv);
+        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
         TextView awayRedCardTv = helper.getView(R.id.module_match_away_red_card_tv);
         TextView homeRedCardTv = helper.getView(R.id.module_match_home_red_card_tv);
         tvCollection.setVisibility(View.GONE);

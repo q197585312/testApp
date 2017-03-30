@@ -30,11 +30,12 @@ public class MyanmarBetHelper extends BallBetHelper<MyanmarInfo, BetView> {
     public MyanmarBetHelper(BetView baseView) {
         super(baseView);
     }
+
     //http://a8206d.a36588.com/_Bet/JRecPanel.aspx?b=mmaway&oId=12264226&odds=9.4
     @Override
-    public Disposable clickOdds(MyanmarInfo item, String type, String odds, final TextView v, final boolean isHf,String params) {
+    public Disposable clickOdds(MyanmarInfo item, String type, String odds, final TextView v, final boolean isHf, String params) {
 
-        String url = getOddsUrl(item, type, isHf, odds);
+        String url = getOddsUrl(item, type, isHf, odds, params);
         Disposable subscribe = getService(ApiService.class).getBetData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingPromptBean>() {//onNext
                     @Override
@@ -63,17 +64,23 @@ public class MyanmarBetHelper extends BallBetHelper<MyanmarInfo, BetView> {
             compositeSubscription.add(subscribe);
         return subscribe;
     }
+
     private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
         BetPop pop = new BetPop(baseView.getContextActivity(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);
     }
+
     //http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=10&b=odd&oId=12264769&odds=9.4
-    protected String getOddsUrl(MyanmarInfo item, String type, boolean isHf, String odds) {
+//    http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=dc&sc=10&oId=12327799&odds=1.13
+//    http://main55.afb88.com/_Bet/JRecPanel.aspx?&b=dc&oId=12327799&odds=1.13
+    protected String getOddsUrl(MyanmarInfo item, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append("gt=s");
         stringBuilder.append("&b=" + type);
+        stringBuilder.append(params);
         stringBuilder.append("&oId=");
         stringBuilder.append(item.getSocOddsId());
         stringBuilder.append("&odds=" + odds);

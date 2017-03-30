@@ -52,8 +52,11 @@ class PorkerPresenter extends BaseRetrofitPresenter<String, PorkerContract.View<
                         }
                         else if(Str.contains("Transaction not tally")){
                             ToastUtils.showShort("Transaction not tally");
-                        }else if(Str.contains("sadasdasdas")){
-                            ToastUtils.showShort("Transaction not tally");
+                        }else if(Str.contains("Session Expired")){
+                            ToastUtils.showShort("Session Expired");
+                        }
+                        else{
+                            ToastUtils.showShort("Failed");
                         }
 
                     }

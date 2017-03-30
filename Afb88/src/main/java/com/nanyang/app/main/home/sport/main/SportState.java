@@ -38,7 +38,6 @@ import org.reactivestreams.Subscription;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -241,7 +240,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 break;
             case "Settled":
                 b.putString("personCenter", getBaseView().getContextActivity().getString(R.string.statement));
-                ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class,b);
+                ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class, b);
                 break;
         }
     }
@@ -320,6 +319,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             synchronized (this) {
                 LID = jsonArrayLID.getString(1);
             }
+        } else {
+            LID = "";
         }
     }
 
@@ -423,6 +424,462 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
+    /**
+     * [
+     * [0,'3e1358ea90115b1','r',0,0,1,0,1,-1,'eng'],
+     * [],
+     * [12325904,12327827],
+     * [//增加
+     * [
+     * [636,'巴西圣保罗州锦标赛',0,0],
+     * [
+     * [
+     * 12325912,
+     * 0,
+     * '1-2',
+     * 223320,
+     * 11510,
+     * 0,
+     * 1,
+     * 0,
+     * '08: 45AM',
+     * 2,
+     * 45,
+     * 1,
+     * 1,
+     * -1,
+     * 0,
+     * '',
+     * '奥萨斯库奥达斯',
+     * 0,
+     * 797179,
+     * '',
+     * '聖安德雷',
+     * 0,
+     * 0,
+     * 1.2,
+     * 55.5,
+     * 1,
+     * 3.5,
+     * 1,
+     * 2,
+     * 50,
+     * 1.2,
+     * -1.2,
+     * 0,
+     * 0,
+     * 0,
+     * 0.2,
+     * 1000,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 1000,
+     * 0.2,
+     * 0,
+     * 594528922,
+     * "03/29/2017",
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 1,
+     * 1,
+     * 0,
+     * 0,
+     * 1
+     * ],
+     * [
+     * 12325979,
+     * 0,
+     * '3-1',
+     * 1925,
+     * 257515,
+     * 0,
+     * 0,
+     * 0,
+     * '08: 45AM',
+     * 2,
+     * 43,
+     * 1,
+     * 1,
+     * 4.2,
+     * 1,
+     * '',
+     * '山度士',
+     * 0,
+     * 797177,
+     * '',
+     * '甘美奥诺瓦里桑蒂诺',
+     * 0,
+     * 0,
+     * 3.4,
+     * 25,
+     * 1,
+     * 4.5,
+     * 3,
+     * 1,
+     * 41.6,
+     * 1.6,
+     * -1.6,
+     * 0,
+     * 0,
+     * 0,
+     * 0.2,
+     * 1000,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 1000,
+     * 0.2,
+     * 0,
+     * 395371622,
+     * "03/29/2017",
+     * 12325893,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 0,
+     * 1,
+     * 1,
+     * 0,
+     * 0,
+     * 1
+     * ]
+     * ]
+     * ]
+     * ],
+     * [],//4
+     * [ // 修改
+     * [
+     * 12325976,
+     * [
+     * 13,
+     * 23,
+     * 24,
+     * 29,
+     * 30,
+     * 31,
+     * 48
+     * ],
+     * [
+     * -2.1,
+     * 2.3,
+     * 34.4,
+     * 32.2,
+     * 2.3,
+     * -2.3,
+     * 12325912
+     * ]
+     * ],
+     * [
+     * 12325908,
+     * [
+     * 13,
+     * 23,
+     * 24,
+     * 29,
+     * 30,
+     * 31
+     * ],
+     * [
+     * 4.5,
+     * 3.7,
+     * 23.2,
+     * 41.6,
+     * 1.6,
+     * -1.6
+     * ]
+     * ],
+     * [
+     * 12325968,
+     * [
+     * 13,
+     * 23,
+     * 24,
+     * 48
+     * ],
+     * [
+     * 9.1,
+     * 8.1,
+     * 11.2,
+     * 12325979
+     * ]
+     * ],
+     * [
+     * 12325938,
+     * [
+     * 29,
+     * 30,
+     * 31
+     * ],
+     * [
+     * 40,
+     * 1.7,
+     * -1.7
+     * ]
+     * ],
+     * [
+     * 12325949,
+     * [
+     * 25,
+     * 26,
+     * 29,
+     * 30,
+     * 31
+     * ],
+     * [
+     * 0,
+     * 0,
+     * 1000,
+     * 0.2,
+     * 0
+     * ]
+     * ],
+     * [
+     * 12327811,
+     * [
+     * 60
+     * ],
+     * [
+     * 0
+     * ]
+     * ],
+     * [
+     * 12328393,
+     * [
+     * 13,
+     * 22,
+     * 23,
+     * 24,
+     * 26,
+     * 29,
+     * 30,
+     * 31
+     * ],
+     * [
+     * 9.5,
+     * 0,
+     * 10.7,
+     * 7.3,
+     * 1.75,
+     * 41.6,
+     * 0.4,
+     * -0.4
+     * ]
+     * ],
+     * [
+     * 12328156,
+     * [
+     * 13,
+     * 22,
+     * 23,
+     * 24,
+     * 26,
+     * 29,
+     * 30,
+     * 31,
+     * 35,
+     * 36,
+     * 37,
+     * 43,
+     * 44,
+     * 45
+     * ],
+     * [
+     * 8,
+     * 0.25,
+     * 5.8,
+     * 12.8,
+     * 4.25,
+     * 6.2,
+     * 12.1,
+     * 8.2,
+     * 23.2,
+     * 2.3,
+     * -2.3,
+     * 14,
+     * 5.1,
+     * -5.1
+     * ]
+     * ],
+     * [
+     * 12328661,
+     * [
+     * 13,
+     * 22,
+     * 23,
+     * 24,
+     * 26,
+     * 29,
+     * 30,
+     * 31,
+     * 35,
+     * 36,
+     * 37,
+     * 43,
+     * 44,
+     * 45
+     * ],
+     * [
+     * -8.2,
+     * 0.5,
+     * 9.6,
+     * 8.4,
+     * 4.5,
+     * 8.9,
+     * 9.1,
+     * -9.1,
+     * 15.8,
+     * 4.3,
+     * -4.3,
+     * 21.2,
+     * 2.7,
+     * -2.7
+     * ]
+     * ],
+     * [
+     * 12328178,
+     * [
+     * 50,
+     * 51,
+     * 52,
+     * 57,
+     * 60
+     * ],
+     * [
+     * 3.37,
+     * 5.08,
+     * 1.61,
+     * 1,
+     * 1
+     * ]
+     * ],
+     * [
+     * 12328475,
+     * [
+     * 59
+     * ],
+     * [
+     * 0
+     * ]
+     * ],
+     * [
+     * 12328230,
+     * [
+     * 29,
+     * 30,
+     * 31
+     * ],
+     * [
+     * 8.5,
+     * 9.7,
+     * -9.7
+     * ]
+     * ],
+     * [
+     * 12328233,
+     * [
+     * 29,
+     * 30,
+     * 31
+     * ],
+     * [
+     * 13.6,
+     * 5.5,
+     * -5.5
+     * ]
+     * ],
+     * [
+     * 12327656,
+     * [
+     * 29,
+     * 30,
+     * 31
+     * ],
+     * [
+     * 16.9,
+     * 4.1,
+     * -4.1
+     * ]
+     * ],
+     * [
+     * 12328455,
+     * [
+     * 29,
+     * 30,
+     * 31
+     * ],
+     * [
+     * 31.2,
+     * 1.4,
+     * -1.4
+     * ]
+     * ],
+     * [
+     * 12328180,
+     * [
+     * 13,
+     * 23,
+     * 24,
+     * 29,
+     * 30,
+     * 31,
+     * 59
+     * ],
+     * [
+     * -8.7,
+     * 9.5,
+     * 8.9,
+     * 12,
+     * 6.5,
+     * -6.5,
+     * 1
+     * ]
+     * ],
+     * [
+     * 12328182,
+     * [
+     * 13,
+     * 23,
+     * 24,
+     * 29,
+     * 30,
+     * 31,
+     * 59
+     * ],
+     * [
+     * -4.8,
+     * 15.1,
+     * 5,
+     * 7.3,
+     * 10.9,
+     * 9.1,
+     * 1
+     * ]
+     * ]
+     * ]
+     * ]
+     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     protected List<TableSportInfo<B>> updateJsonArray(String updateString) {
         try {
@@ -433,7 +890,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             boolean deleted = false;
             boolean added = false;
             if (jsonArray.length() > 5) {
-                parseLidValue(jsonArray);
+                parseLidValue(jsonArray);//解析 下一个pid
                 JSONArray modifyArray = jsonArray.getJSONArray(5);
 
                 if (modifyArray.length() > 0) {
@@ -450,75 +907,17 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 if (addArray.length() > 0) {
                     added = true;
                 }
-                Map<String, JSONArray> addMap = new HashMap<>();
-                Map<JSONArray, JSONArray> addMapLeague = new HashMap<>();
+//                Map<String, JSONArray> addMap = new HashMap<>();
+//                Map<JSONArray, JSONArray> addMapLeague = new HashMap<>();
 
                 for (int i = 0; i < addArray.length(); i++) {
                     JSONArray array = addArray.getJSONArray(i);
-                    JSONArray league = array.getJSONArray(0);
-                    String leagueKey = league.getString(0);
-                    JSONArray matchArry = array.getJSONArray(1);
-                    addMap.put(leagueKey, matchArry);
-                    addMapLeague.put(matchArry, league);
+                    if (array.length() > 1)
+                        addJson(array);
                 }
 
+            if(deleted) {
 
-                if (added) {//可以添加数据
-                    for (int i = 0; i < dataJsonArray.length(); i++) {
-                        JSONArray jsonArray3 = dataJsonArray.getJSONArray(i);
-                        if (jsonArray3.length() > 1) {
-                            JSONArray LeagueArray = jsonArray3.getJSONArray(0);
-                            JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
-                            JSONArray matchAdd = addMap.get(LeagueArray.getString(0));
-
-                            if (matchAdd != null) {//插入到已有联赛内
-                                JSONArray Array = new JSONArray();//修改后的联赛
-                                for (int j = 0; j < matchAdd.length(); j++) {//遍历要添加的比赛
-                                    JSONArray jsonArray1 = matchAdd.getJSONArray(j);
-                                    String preId = jsonArray1.getString(getIndexPreSocOddsId());
-
-                                    if (preId == null || preId.equals("")) {//没有PreId加到最前面
-                                        Array.put(jsonArray1);//先加
-                                        for (int k = 0; k < LeagueMatchArray.length(); k++) {
-                                            Array.put(LeagueMatchArray.getJSONArray(k));
-                                        }
-                                    } else {
-                                        boolean addIn = false;
-                                        for (int k = 0; k < LeagueMatchArray.length(); k++) {
-                                            String id = LeagueMatchArray.getJSONArray(k).getString(getIndexSocOddsId());
-                                            Array.put(LeagueMatchArray.getJSONArray(k));
-                                            if (preId.equals(id)) {
-                                                Array.put(jsonArray1);
-                                                addIn = true;
-                                            }
-                                        }
-                                        if (!addIn) {
-                                            Array = new JSONArray();
-                                            Array.put(jsonArray1);
-                                            for (int k = 0; k < LeagueMatchArray.length(); k++) {
-                                                Array.put(LeagueMatchArray.getJSONArray(k));
-                                            }
-                                        }
-                                    }
-                                }
-                                jsonArray3.put(1, Array);//替换联赛数据
-                                addMap.remove(LeagueArray.getString(0));
-                            }
-                        }
-                    }
-                    Iterator<Map.Entry<String, JSONArray>> iterator = addMap.entrySet().iterator();
-                    if (iterator.hasNext()) {
-                        Map.Entry<String, JSONArray> next = iterator.next();
-                        for (int i = 0; i < addArray.length(); i++) {
-                            JSONArray array = addArray.getJSONArray(i);
-                            JSONArray league = array.getJSONArray(0);
-                            String leagueKey = league.getString(0);
-                            if (leagueKey.equals(next.getKey())) {
-                                dataJsonArray.put(array);
-                            }
-                        }
-                    }
-                }
                 for (int i = 0; i < dataJsonArray.length(); i++) {
                     JSONArray jsonArray3 = dataJsonArray.getJSONArray(i);
                     if (jsonArray3.length() > 1) {
@@ -547,6 +946,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         }
                     }
                 }
+            }
                 if (added || deleted || modified) {
                     return updateJsonData(dataJsonArray);
                 }
@@ -558,8 +958,90 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             je.printStackTrace();
             return new ArrayList<>();
         }
-
     }
+
+    /*[//增加
+     [[636,'巴西圣保罗州锦标赛',0,0],[
+     [12325912,0,'1-2', 223320,11510,0,1, 0, '08: 45AM', 2, 45, 1, 1,-1, 0, '', '奥萨斯库奥达斯', 0, 797179, '', '聖安德雷', 0, 0, 1.2, 55.5, 1, 3.5, 1, 2, 50, 1.2, -1.2, 0, 0, 0, 0.2, 1000, 0, 0, 0, 0, 0, 0, 1000, 0.2, 0, 59458922, "03/29/2017", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1],
+     [ ]
+     ]
+
+     ]
+     ],*/
+    private void addJson(JSONArray array) throws JSONException {
+        JSONArray leagueNew = array.getJSONArray(0);
+        JSONArray arrayNew = array.getJSONArray(1);
+        for (int i = 0; i < dataJsonArray.length(); i++) { //先找联赛
+            /**具体单个的联赛*/
+            JSONArray dataTableOld = dataJsonArray.getJSONArray(i);
+            if (dataTableOld.length() > 1) {
+                JSONArray LeagueOld = dataTableOld.getJSONArray(0);
+                /**旧数据比赛详情*/
+                JSONArray matchArrayOld = dataTableOld.getJSONArray(1);
+                if (LeagueOld.getString(1).equals(leagueNew.get(1))) {//找到了联赛
+                    /**修改后的所有联赛*/
+                    JSONArray matchArrayNew = new JSONArray();
+                    JSONArray matchArrayTemp = matchArrayOld;
+                    for (int j = 0; j < arrayNew.length(); j++) {//遍历要添加的比赛
+                        /**比赛详情*/
+                        boolean addMatch = false;
+                        JSONArray matchNew = arrayNew.getJSONArray(j);
+                        String preId = matchNew.getString(getIndexPreSocOddsId());
+                        if (preId == null || preId.equals("") || preId.equals("0")) {//没有PreId加到最前面
+                            matchArrayNew.put(matchNew);//先加
+                            addMatch = true;
+                            for (int k = 0; k < matchArrayTemp.length(); k++) {
+                                matchArrayNew.put(matchArrayTemp.getJSONArray(k));
+                            }
+                        } else {
+                            for (int k = 0; k < matchArrayTemp.length(); k++) {
+                                String id = matchArrayTemp.getJSONArray(k).getString(getIndexSocOddsId());
+                                matchArrayNew.put(matchArrayTemp.getJSONArray(k));
+                                if (preId.equals(id)) {
+                                    matchArrayNew.put(matchNew);
+                                    addMatch = true;
+                                }
+                            }
+                        }
+                        if (!addMatch) {
+                            matchArrayNew = new JSONArray();
+                            matchArrayNew.put(matchNew);
+                            for (int k = 0; k < matchArrayTemp.length(); k++) {
+                                matchArrayNew.put(matchArrayTemp.getJSONArray(k));
+                            }
+                        }
+                        matchArrayTemp = matchArrayNew;
+
+                    }
+                    dataTableOld.put(1, matchArrayNew);//替换联赛数据
+                    return;
+                }
+            }
+        }
+        boolean addMatch = false;//没有找到联赛
+        String preId = arrayNew.getJSONArray(0).getString(getIndexPreSocOddsId());//第一个联赛是否有比赛id
+        JSONArray dataArray = new JSONArray();
+        JSONArray temp = dataJsonArray;
+        for (int i = 0; i < temp.length(); i++) {
+            JSONArray jsonArray = temp.getJSONArray(i).getJSONArray(1);
+            String id = jsonArray.getJSONArray(jsonArray.length() - 1).getString(getIndexSocOddsId());
+            dataArray.put(temp.getJSONArray(i));
+            if (preId.equals(id)) {
+                dataArray.put(array);
+                addMatch = true;
+            }
+        }
+        if (!addMatch) {
+            dataArray = new JSONArray();
+            dataArray.put(array);
+            for (int i = 0; i < temp.length(); i++) {
+                dataArray.put(temp.get(i));
+            }
+        }
+        dataJsonArray = dataArray;
+    }
+
+
 
     protected abstract int getIndexSocOddsId();
 

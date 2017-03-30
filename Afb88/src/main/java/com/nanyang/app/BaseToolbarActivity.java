@@ -47,7 +47,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarRight = (TextView) findViewById(R.id.tv_toolbar_right);
         tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
-        toolbar.setBackgroundResource(R.drawable.rectangle_green_gradient_line);
+        toolbar.setBackgroundResource(R.mipmap.toolbar_bg);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,7 +58,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
         tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 80);
         tvToolbarTitle.getLayoutParams().height = DeviceUtils.dip2px(mContext, 40);
-        tvToolbarRight.setText(getApp().getUser().getBalance());
+        updateBalanceTv(getApp().getUser().getBalance());
         startUpdateState();
 
     }
@@ -123,7 +123,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 .subscribe(new Consumer<String>() {//onNext
                                @Override
                                public void accept(String allData) throws Exception {
-                                   tvToolbarRight.setText(allData);
+                                   updateBalanceTv(allData);
                                    getApp().getUser().setBalance(allData);
                                }
                            }, new Consumer<Throwable>() {//错误
@@ -133,6 +133,10 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                            }
                 );
 
+    }
+
+    protected void updateBalanceTv(String allData) {
+        tvToolbarRight.setText(allData);
     }
 
 

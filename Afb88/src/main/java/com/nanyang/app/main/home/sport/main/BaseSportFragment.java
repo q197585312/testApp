@@ -246,10 +246,10 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
 
 
-    @OnClick({R.id.tv_odds_type, R.id.ll_mix_parlay_order})
+    @OnClick({R.id.ll_odds_type, R.id.ll_mix_parlay_order})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_odds_type:
+            case R.id.ll_odds_type:
                 clickOddsType(view);
                 break;
             case R.id.ll_mix_parlay_order:

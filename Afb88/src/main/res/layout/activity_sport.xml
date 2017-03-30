@@ -9,11 +9,11 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green_light"
+        android:background="@color/green_light_title"
         android:orientation="horizontal">
 
         <TextView
-            android:paddingLeft="28dp"
+            android:paddingLeft="25dp"
             android:gravity="center"
             android:layout_gravity="center"
             android:id="@+id/tv_title"
@@ -25,8 +25,8 @@
 
         <ImageView
             android:id="@+id/iv_add"
-            android:layout_width="28dp"
-            android:layout_height="28dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:padding="5dp"
             android:background="@color/green_light_white"
             android:contentDescription="@null"
