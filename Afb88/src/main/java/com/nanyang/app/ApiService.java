@@ -3,6 +3,7 @@ package com.nanyang.app;
 
 import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.nanyang.app.main.center.model.StatementStakeListBean;
+import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
@@ -132,4 +133,40 @@ public interface ApiService {
     //投注状况
     @GET
     Flowable<String> getStakeData(@Url String url);
+
+    //转账
+    @GET
+    Flowable<TransferMoneyBean> getTransferMoneyData(@Url String url);
+
+    @POST
+    @FormUrlEncoded
+    Flowable<String> gamesECashOutMoney(@Url String url, @Field("EGBalance") String eGBalance);
+
+    @POST
+    @FormUrlEncoded
+    Flowable<String> gamesETransferMoney(@Url String url, @Field("EgLimit") String EgLimit);
+
+    @POST
+    @FormUrlEncoded
+    Flowable<String> gamesGDCashOutMoney(@Url String url, @Field("LDBalance") String lDBalance);
+
+    @POST
+    @FormUrlEncoded
+    Flowable<String> gamesGDTransferMoney(@Url String url, @Field("LDLimit") String EgLimit);
+
+    @POST
+    @FormUrlEncoded
+    Flowable<String> games855CashOutMoney(@Url String url, @Field("LDCBalance") String lDCBalance);
+
+    @POST
+    @FormUrlEncoded
+    Flowable<String> games855TransferMoney(@Url String url, @Field("LDCLimit") String EgLimit);
+
+    @POST
+    @FormUrlEncoded
+    Flowable<String> gamesW88CashOutMoney(@Url String url, @Field("LDDBalance") String lDDBalance);
+
+    @POST
+    @FormUrlEncoded
+    Flowable<String> gamesW88TransferMoney(@Url String url, @Field("LDDLimit") String EgLimit);
 }

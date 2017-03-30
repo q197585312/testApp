@@ -138,8 +138,8 @@
 
                         <View
                             android:layout_width="0dp"
-                            android:layout_marginRight="25px"
                             android:layout_height="1px"
+                            android:layout_marginRight="25px"
                             android:layout_weight="1.2" />
                     </LinearLayout>
                 </LinearLayout>

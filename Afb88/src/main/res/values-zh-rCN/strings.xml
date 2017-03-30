@@ -152,6 +152,7 @@
     <string name="statement">账目</string>
     <string name="change_password">修改密码</string>
     <string name="transfer">转移</string>
+    <string name="cash_out">提出</string>
     <string name="stake">投注状况</string>
     <string name="event">Event</string>
     <string name="detail">详情</string>
@@ -219,4 +220,24 @@
     <string name="new_password">新密码</string>
     <string name="confirm_password">确定密码</string>
     <string name="save">储存</string>
+    <!--转移钱-->
+    <string name="login_name">登入名称</string>
+    <string name="currency">货币</string>
+    <string name="cash_balance">现金余额</string>
+    <string name="outstanding_txn">未结束投注</string>
+    <string name="given_credit">信用额度</string>
+    <string name="bet_credit">投注额度</string>
+    <string name="min_bet_m">最小注碼</string>
+    <string name="total_balance">总户口余额</string>
+    <string name="sportbook_balance">体育博彩余额</string>
+    <string name="transfer_E_Games">电子游戏余额转移</string>
+    <string name="blance_E_Games">电子游戏余额</string>
+    <string name="transfer_GD_Casino">GD 赌场余额转移</string>
+    <string name="blance_GD_Casino">GD 赌场余额</string>
+    <string name="transfer_855_Casino">855 赌场余额转移</string>
+    <string name="blance_855_Casino">855 赌场余额</string>
+    <string name="transfer_W88_Casino">W88 赌场余额转移</string>
+    <string name="blance_W88_Casino">W88 赌场余额转移</string>
+    <string name="Input_the_amount_please">请输入金额</string>
+    <string name="money_not_enough">余额不足</string>
 </resources>

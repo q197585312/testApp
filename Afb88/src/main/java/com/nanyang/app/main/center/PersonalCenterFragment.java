@@ -51,8 +51,8 @@ public class PersonalCenterFragment extends BaseFragment {
     public void initView() {
         super.initView();
         initHead();
-        tvBalance.setText(((AfbApplication)mContext.getApplication()).getUser().getBalance());
-        tvUserName.setText(((AfbApplication)mContext.getApplication()).getUser().getUserName());
+        tvBalance.setText(((AfbApplication) mContext.getApplication()).getUser().getBalance());
+        tvUserName.setText(((AfbApplication) mContext.getApplication()).getUser().getUserName());
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(mLayoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
@@ -84,12 +84,15 @@ public class PersonalCenterFragment extends BaseFragment {
                     Intent i = getStartIntent(getString(R.string.choice_language));
                     i.setClass(mContext, PersonCenterActivity.class);
                     startActivity(i);
-                }
-                else if(item.getText().equals(getString(R.string.Edit_information))){
+                } else if (item.getText().equals(getString(R.string.Edit_information))) {
                     Intent i = getStartIntent(getString(R.string.Modify_Avatar));
                     MainActivity a = (MainActivity) getActivity();
                     i.setClass(a, PersonCenterActivity.class);
                     a.startActivityForResult(i, 0);
+                } else if (item.getText().equals(getString(R.string.transfer))) {
+                    Intent i = getStartIntent(getString(R.string.transfer));
+                    i.setClass(mContext, PersonCenterActivity.class);
+                    startActivity(i);
                 }
             }
         });

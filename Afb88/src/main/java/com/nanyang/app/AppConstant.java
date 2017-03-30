@@ -46,9 +46,9 @@ public class AppConstant {
     public static String URL_LOGIN = HOST + "Default1.aspx";
     public static String URL_MAIN = HOST + "main.aspx";
 
-    public static String URL_UPDATE_BALANCE=HOST+"_bet/PanelStakeBalance_App.aspx";
-    public static String URL_UPDATE_STATE=HOST+"pgajaxS.axd?T=CHKST&P=001";
-    public static String URL_ODDS_TYPE=HOST+"Main.aspx?accType=";
+    public static String URL_UPDATE_BALANCE = HOST + "_bet/PanelStakeBalance_App.aspx";
+    public static String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
+    public static String URL_ODDS_TYPE = HOST + "Main.aspx?accType=";
 
     public static String URL_FOOTBALL_RUNNING = HOST + "_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462";
     public static String URL_FOOTBALL_TODAY = HOST + "_view/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462&wd=&ia=0";
@@ -123,6 +123,13 @@ public class AppConstant {
     public static final String URL_GD88_3 = "http://lapigd.afb333.com/TransferBalance.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325";
     public static final String URL_GD88_4 = "http://lapigd.afb333.com/Validate.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325";
     public static final String URL_GD88_5 = "http://23api.gd88.org/OLTGames/checklogin.jsp?txtAcctid=demoafbai5&txtPwd=123456&txtLang=0&txtSessID=ck3dk2lwjvpmzz3pblosvhjx|9dbc7b1506964a9f97fc9dfe705a3948";
-
-
+    public static final String URL_TRANSFER_MONEY_DATA = HOST + "_Bet/PanelBalance_App.aspx?";
+    public static String URL_CASHOUT_MONEY_E_GAMES = HOST + "_bet/FundEGCashOut.aspx";
+    public static String URL_TRANSFER_MONEY_E_GAMES = HOST + "_bet/FundEGTransfer.aspx";
+    public static String URL_CASHOUT_MONEY_GD_GAMES = HOST + "_bet/FundLDCashOut.aspx";
+    public static String URL_TRANSFER_MONEY_GD_GAMES = HOST + "_bet/FundLDTransfer.aspx";
+    public static String URL_CASHOUT_MONEY_855_GAMES = HOST + "_bet/FundLDCCashOut.aspx";
+    public static String URL_TRANSFER_MONEY_855_GAMES = HOST + "_bet/FundLDCTransfer.aspx";
+    public static String URL_CASHOUT_MONEY_W88_GAMES = HOST + "_bet/FundLDDCashOut.aspx";
+    public static String URL_TRANSFER_MONEY_W88_GAMES = HOST + "_bet/FundLDDTransfer.aspx";
 }

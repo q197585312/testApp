@@ -234,6 +234,12 @@ public class AfbUtils {
         return style;
     }
 
+    public static SpannableStringBuilder handleStringTextColor(String str, int color) {
+        SpannableStringBuilder style = new SpannableStringBuilder(str);
+        style.setSpan(new ForegroundColorSpan(color), 0, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        return style;
+    }
+
     public static void switchLanguage(String lag, Context context) {
         Resources resources = context.getResources();// 获得res资源对象
         Configuration config = resources.getConfiguration();// 获得设置对象
