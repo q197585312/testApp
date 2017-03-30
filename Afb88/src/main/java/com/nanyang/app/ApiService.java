@@ -169,4 +169,8 @@ public interface ApiService {
     @POST
     @FormUrlEncoded
     Flowable<String> gamesW88TransferMoney(@Url String url, @Field("LDDLimit") String EgLimit);
+
+    //选择语言
+    @GET
+    Flowable<String> switchLanguage(@Url String url, @Query("lang") String lang);
 }

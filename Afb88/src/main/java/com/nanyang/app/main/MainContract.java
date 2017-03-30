@@ -5,12 +5,14 @@ import com.unkonw.testapp.libs.view.IBaseView;
 
 public interface MainContract {
     interface View extends IBaseView<String> {
-       void onFailed(String error);
+        void onFailed(String error);
     }
 
     interface Presenter extends IBasePresenter {
-//        void login(Map<String, String> info);
+        //        void login(Map<String, String> info);
         void main(String msg);
+
+        void switchLanguage(String lang);
 
     }
 }
