@@ -1179,7 +1179,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
         tvAos.setText(R.string.AOS);
         ViewGroup.LayoutParams layoutParams = tvAos.getLayoutParams();
-        layoutParams.width = DeviceUtils.dip2px(getBaseView().getContextActivity(), 22);
+        layoutParams.width = DeviceUtils.dip2px(getBaseView().getContextActivity(), 24);
         List<List<String>> lists = initHeaderList();
         for (int i = 0; i < lists.size(); i++) {
             View childAt = slHeader.getChildAt(i);

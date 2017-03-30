@@ -53,7 +53,6 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
                 TextView markTv = holder.getView(R.id.out_right_mark_tv);
                 homeTv.setText(item.getHome());
                 markTv.setText(item.getX12_1Odds());
-
                 if (item.getType() == SportInfo.Type.ITME) {
                     matchTitleTv.setVisibility(View.GONE);
                     headV.setVisibility(View.GONE);

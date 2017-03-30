@@ -213,7 +213,7 @@
             android:background="@color/grey_dialog_background" />
         <FrameLayout
             android:id="@+id/module_right_mark_tv"
-            android:layout_width="22dp"
+            android:layout_width="24dp"
             android:layout_height="wrap_content">
             <TextView
                 android:layout_gravity="center"

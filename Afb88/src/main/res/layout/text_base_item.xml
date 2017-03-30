@@ -7,5 +7,5 @@
     android:maxLines="1"
     android:padding="10dp"
     android:background="@color/black_grey"
-    android:drawableBottom="@drawable/line_black"
+    android:drawableBottom="@drawable/line_white"
     android:textColor="@color/white" />

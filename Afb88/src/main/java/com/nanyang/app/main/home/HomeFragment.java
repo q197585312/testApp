@@ -71,9 +71,9 @@ public class HomeFragment extends BaseFragment {
         dataList.add(new MenuItemInfo(R.mipmap.home_keno, getString(R.string.Keno), "Keno"));
         dataList.add(new MenuItemInfo(R.mipmap.home_poker, getString(R.string.Poker), "Poker"));
         dataList.add(new MenuItemInfo(R.mipmap.home_lottery, getString(R.string.Lottery), "Lottery"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_roulette, getString(R.string.Roulette), "Roulette"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_casino, getString(R.string.Casino), "Casino"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_discount, getString(R.string.Discount), "Discount"));
+//        dataList.add(new MenuItemInfo(R.mipmap.home_roulette, getString(R.string.Roulette), "Roulette"));
+//        dataList.add(new MenuItemInfo(R.mipmap.home_casino, getString(R.string.Casino), "Casino"));
+//        dataList.add(new MenuItemInfo(R.mipmap.home_discount, getString(R.string.Discount), "Discount"));
         BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, dataList, R.layout.home_item_image_text) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
@@ -160,11 +160,14 @@ public class HomeFragment extends BaseFragment {
                 menuItemInfo3.setParent(type);
                 MenuItemInfo<String> menuItemInfo4 = new MenuItemInfo<String>(0, getString(R.string.Cancel));
                 menuItemInfo4.setType("");
+                if (type.equals("SportBook")||type.equals("E_Sport"))
+                    data.add(menuItemInfo3);
                 data.add(menuItemInfo);
                 data.add(menuItemInfo1);
                 data.add(menuItemInfo2);
-                if (type.equals("SportBook")||type.equals("E_Sport"))
-                    data.add(menuItemInfo3);
+                data.add(menuItemInfo4);
+
+
                 BaseRecyclerAdapter<MenuItemInfo<String>> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, data, R.layout.text_base) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {

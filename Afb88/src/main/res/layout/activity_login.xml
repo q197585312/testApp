@@ -73,8 +73,7 @@
                 android:hint="@string/Account"
                 android:maxLines="1"
                 android:minLines="1"
-                android:singleLine="true"
-                android:text="demoafbai9"
+                android:text="demoafbai"
                 android:textColor="@color/white"
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
@@ -93,7 +92,6 @@
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:minLines="1"
-                android:singleLine="true"
                 android:text="123123aa"
                 android:textColor="@color/white"
                 android:textColorHint="@color/trans_white"
