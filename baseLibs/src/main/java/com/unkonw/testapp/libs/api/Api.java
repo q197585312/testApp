@@ -89,8 +89,9 @@ public class Api {
                     .build();*/
             OkHttpClient client=new OkHttpClient.Builder()
                     .connectTimeout(10, TimeUnit.SECONDS)
-                    .writeTimeout(10, TimeUnit.SECONDS)
-                    .readTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(15, TimeUnit.SECONDS)
+                    .readTimeout(15, TimeUnit.SECONDS)
+                    .retryOnConnectionFailure(true)
                     .addNetworkInterceptor(
                             interceptor)
                     .cookieJar(new CookieManger(BaseApplication.getInstance()))

@@ -11,10 +11,12 @@ import android.widget.TextView;
 import com.nanyang.app.load.login.LoginActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import org.reactivestreams.Publisher;
+import org.reactivestreams.Subscription;
 
 import java.util.concurrent.TimeUnit;
 
@@ -22,6 +24,7 @@ import cn.finalteam.toolsfinal.DeviceUtils;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
@@ -82,9 +85,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         updateDisposable = Flowable.interval(2, 60, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
             @Override
             public Publisher<String> apply(Long aLong) throws Exception {
-
                 return getService(ApiService.class).getData(AppConstant.URL_UPDATE_STATE);
-
             }
         }).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -112,8 +113,20 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                            }, new Consumer<Throwable>() {//错误
                                @Override
                                public void accept(Throwable throwable) throws Exception {
+                                   ToastUtils.showShort(throwable.getMessage());
+                               }
+                           }, new Action() {//完成
+                               @Override
+                               public void run() throws Exception {
+                               }
+                           }, new Consumer<Subscription>() {//开始绑定
+                               @Override
+                               public void accept(Subscription subscription1) throws Exception {
+
+                                   subscription1.request(Long.MAX_VALUE);
                                }
                            }
+
                 );
         updateBalance();
 

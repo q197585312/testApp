@@ -384,9 +384,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 else
                     return getService(ApiService.class).getData(getRefreshUrl());
             }
-        }).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+        }).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                 .map(new Function<String, List<TableSportInfo<B>>>() {
-
                     @Override
                     public List<TableSportInfo<B>> apply(String s) throws Exception {
                         if (LID != null && LID.length() > 0)
@@ -394,21 +393,35 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         else
                             return parseTableModuleBeen(s);
                     }
-                }).observeOn(AndroidSchedulers.mainThread())
-
+                })
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .retry(2)
                 .subscribe(new Consumer<List<TableSportInfo<B>>>() {//onNext
-                    @Override
-                    public void accept(List<TableSportInfo<B>> allData) throws Exception {
-                        if (allData != null && allData.size() > 0) {
-                            updateAllDate(allData);
-                        }
-                    }
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        baseView.onFailed(throwable.getMessage());
-                    }
-                });
+                               @Override
+                               public void accept(List<TableSportInfo<B>> allData) throws Exception {
+                                   if (allData != null && allData.size() > 0) {
+                                       updateAllDate(allData);
+                                   }
+                               }
+                           }, new Consumer<Throwable>() {//错误
+                               @Override
+                               public void accept(Throwable throwable) throws Exception {
+                                   baseView.onFailed(throwable.getMessage());
+                               }
+                           }, new Action() {//完成
+                               @Override
+                               public void run() throws Exception {
+
+                               }
+                           }, new Consumer<Subscription>() {//开始绑定
+                               @Override
+                               public void accept(Subscription subscription1) throws Exception {
+
+                                   subscription1.request(Long.MAX_VALUE);
+                               }
+                           }
+                );
         mCompositeSubscription.add(updateDisposable);
         return updateDisposable;
 
@@ -902,7 +915,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     deleteData.add(deleteArray.getString(i));
                     deleted = true;
                 }
-
                 JSONArray addArray = jsonArray.getJSONArray(3);
                 if (addArray.length() > 0) {
                     added = true;
@@ -910,43 +922,42 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 //                Map<String, JSONArray> addMap = new HashMap<>();
 //                Map<JSONArray, JSONArray> addMapLeague = new HashMap<>();
 
-                for (int i = 0; i < addArray.length(); i++) {
-                    JSONArray array = addArray.getJSONArray(i);
-                    if (array.length() > 1)
-                        addJson(array);
-                }
-
-            if(deleted) {
-
-                for (int i = 0; i < dataJsonArray.length(); i++) {
-                    JSONArray jsonArray3 = dataJsonArray.getJSONArray(i);
-                    if (jsonArray3.length() > 1) {
-                        JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
-                        for (int j = 0; j < LeagueMatchArray.length(); j++) {
-                            String sid = LeagueMatchArray.getJSONArray(j).getString(getIndexSocOddsId());
 
 
-                            for (int k = 0; k < modifyArray.length(); k++) {
-                                JSONArray jsonArray1 = modifyArray.getJSONArray(k);
-                                String modifyId = jsonArray1.getString(0);
-                                JSONArray modifyIndex = jsonArray1.getJSONArray(1);
-                                JSONArray modifyData = jsonArray1.getJSONArray(2);
-                                if (modifyId.equals(sid)) {
-                                    for (int l = 0; l < modifyIndex.length(); l++) {
-                                        LeagueMatchArray.getJSONArray(j).put(modifyIndex.getInt(l), modifyData.getString(l));
+                    for (int i = 0; i < dataJsonArray.length(); i++) {
+                        JSONArray jsonArray3 = dataJsonArray.getJSONArray(i);
+                        if (jsonArray3.length() > 1) {
+                            JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                            for (int j = 0; j < LeagueMatchArray.length(); j++) {
+                                String sid = LeagueMatchArray.getJSONArray(j).getString(getIndexSocOddsId());
+                                for (int k = 0; k < modifyArray.length(); k++) {
+                                    JSONArray jsonArray1 = modifyArray.getJSONArray(k);
+                                    String modifyId = jsonArray1.getString(0);
+                                    JSONArray modifyIndex = jsonArray1.getJSONArray(1);
+                                    JSONArray modifyData = jsonArray1.getJSONArray(2);
+                                    if (modifyId.equals(sid)) {
+                                        for (int l = 0; l < modifyIndex.length(); l++) {
+                                            LeagueMatchArray.getJSONArray(j).put(modifyIndex.getInt(l), modifyData.getString(l));
+                                        }
                                     }
                                 }
+                                if (deleteData.contains(sid)) {
+                                    LeagueMatchArray.remove(j);
+                                }
                             }
-                            if (deleteData.contains(sid)) {
-                                LeagueMatchArray.remove(j);
+                            if (LeagueMatchArray.length() < 1) {
+                                dataJsonArray.remove(i);
                             }
-                        }
-                        if (LeagueMatchArray.length() < 1) {
-                            dataJsonArray.remove(i);
                         }
                     }
+
+                if(added) {
+                    for (int i = 0; i < addArray.length(); i++) {
+                        JSONArray array = addArray.getJSONArray(i);
+                        if (array.length() > 1)
+                            addJson(array);
+                    }
                 }
-            }
                 if (added || deleted || modified) {
                     return updateJsonData(dataJsonArray);
                 }
@@ -980,40 +991,36 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 JSONArray matchArrayOld = dataTableOld.getJSONArray(1);
                 if (LeagueOld.getString(1).equals(leagueNew.get(1))) {//找到了联赛
                     /**修改后的所有联赛*/
-                    JSONArray matchArrayNew = new JSONArray();
-                    JSONArray matchArrayTemp = matchArrayOld;
+
+                    JSONArray matchArrayTemp = new JSONArray();
                     for (int j = 0; j < arrayNew.length(); j++) {//遍历要添加的比赛
                         /**比赛详情*/
+                        JSONArray matchArrayNew = new JSONArray();
                         boolean addMatch = false;
                         JSONArray matchNew = arrayNew.getJSONArray(j);
                         String preId = matchNew.getString(getIndexPreSocOddsId());
-                        if (preId == null || preId.equals("") || preId.equals("0")) {//没有PreId加到最前面
-                            matchArrayNew.put(matchNew);//先加
-                            addMatch = true;
-                            for (int k = 0; k < matchArrayTemp.length(); k++) {
-                                matchArrayNew.put(matchArrayTemp.getJSONArray(k));
-                            }
-                        } else {
-                            for (int k = 0; k < matchArrayTemp.length(); k++) {
-                                String id = matchArrayTemp.getJSONArray(k).getString(getIndexSocOddsId());
-                                matchArrayNew.put(matchArrayTemp.getJSONArray(k));
-                                if (preId.equals(id)) {
-                                    matchArrayNew.put(matchNew);
-                                    addMatch = true;
-                                }
+
+                        for (int k = 0; k < matchArrayOld.length(); k++) {
+                            String id = matchArrayOld.getJSONArray(k).getString(getIndexSocOddsId());
+                            matchArrayNew.put(matchArrayOld.getJSONArray(k));
+                            if (preId.equals(id)) {
+                                matchArrayNew.put(matchNew);
+                                addMatch = true;
                             }
                         }
+
                         if (!addMatch) {
                             matchArrayNew = new JSONArray();
                             matchArrayNew.put(matchNew);
-                            for (int k = 0; k < matchArrayTemp.length(); k++) {
-                                matchArrayNew.put(matchArrayTemp.getJSONArray(k));
+                            for (int k = 0; k < matchArrayOld.length(); k++) {
+                                matchArrayNew.put(matchArrayOld.getJSONArray(k));
                             }
                         }
-                        matchArrayTemp = matchArrayNew;
-
+                        matchArrayOld = matchArrayNew;
+                        matchArrayTemp=matchArrayNew;
                     }
-                    dataTableOld.put(1, matchArrayNew);//替换联赛数据
+                    dataTableOld.put(1, matchArrayTemp);//替换联赛数据
+                    dataJsonArray.put(i,dataTableOld);
                     return;
                 }
             }
@@ -1021,11 +1028,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         boolean addMatch = false;//没有找到联赛
         String preId = arrayNew.getJSONArray(0).getString(getIndexPreSocOddsId());//第一个联赛是否有比赛id
         JSONArray dataArray = new JSONArray();
-        JSONArray temp = dataJsonArray;
-        for (int i = 0; i < temp.length(); i++) {
-            JSONArray jsonArray = temp.getJSONArray(i).getJSONArray(1);
+        for (int i = 0; i < dataJsonArray.length(); i++) {
+            JSONArray jsonArray = dataJsonArray.getJSONArray(i).getJSONArray(1);
             String id = jsonArray.getJSONArray(jsonArray.length() - 1).getString(getIndexSocOddsId());
-            dataArray.put(temp.getJSONArray(i));
+            dataArray.put(dataJsonArray.getJSONArray(i));
             if (preId.equals(id)) {
                 dataArray.put(array);
                 addMatch = true;
@@ -1034,13 +1040,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         if (!addMatch) {
             dataArray = new JSONArray();
             dataArray.put(array);
-            for (int i = 0; i < temp.length(); i++) {
-                dataArray.put(temp.get(i));
+            for (int i = 0; i < dataJsonArray.length(); i++) {
+                dataArray.put(dataJsonArray.get(i));
             }
         }
         dataJsonArray = dataArray;
     }
-
 
 
     protected abstract int getIndexSocOddsId();
