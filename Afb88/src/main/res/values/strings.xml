@@ -240,4 +240,5 @@
     <string name="blance_W88_Casino">W88 Casino Balance</string>
     <string name="Input_the_amount_please">Input the amount please</string>
     <string name="money_not_enough">balance not enough</string>
+    <string name="login_out">Are You Sure Logout</string>
 </resources>

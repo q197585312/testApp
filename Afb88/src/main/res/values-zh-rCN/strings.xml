@@ -240,4 +240,5 @@
     <string name="blance_W88_Casino">W88 赌场余额转移</string>
     <string name="Input_the_amount_please">请输入金额</string>
     <string name="money_not_enough">余额不足</string>
+    <string name="login_out">您确定要退出</string>
 </resources>

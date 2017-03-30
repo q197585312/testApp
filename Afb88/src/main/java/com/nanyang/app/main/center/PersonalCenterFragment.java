@@ -6,6 +6,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +17,12 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
+import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +44,7 @@ public class PersonalCenterFragment extends BaseFragment {
     TextView tvUserName;
     @Bind(R.id.tv_balance)
     TextView tvBalance;
+    MainActivity aty;
 
     @Override
     public int onSetLayoutId() {
@@ -50,6 +54,7 @@ public class PersonalCenterFragment extends BaseFragment {
     @Override
     public void initView() {
         super.initView();
+        aty = (MainActivity) getActivity();
         initHead();
         tvBalance.setText(((AfbApplication) mContext.getApplication()).getUser().getBalance());
         tvUserName.setText(((AfbApplication) mContext.getApplication()).getUser().getUserName());
@@ -109,7 +114,18 @@ public class PersonalCenterFragment extends BaseFragment {
                 a.startActivityForResult(i, 0);
                 break;
             case R.id.tv_logout:
-
+                BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
+                    @Override
+                    protected void clickSure(View v) {
+                        Intent intent = new Intent(getActivity(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
+                    }
+                };
+                pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+                pop.getChooseMessage().setText(getString(R.string.login_out));
+                pop.getChooseSureTv().setText(getString(R.string.sure));
+                pop.getChooseCancelTv().setText(getString(R.string.cancel));
+                aty.onPopupWindowCreated(pop, Gravity.CENTER);
                 break;
         }
 
