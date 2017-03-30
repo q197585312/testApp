@@ -132,4 +132,5 @@ public class AppConstant {
     public static String URL_TRANSFER_MONEY_855_GAMES = HOST + "_bet/FundLDCTransfer.aspx";
     public static String URL_CASHOUT_MONEY_W88_GAMES = HOST + "_bet/FundLDDCashOut.aspx";
     public static String URL_TRANSFER_MONEY_W88_GAMES = HOST + "_bet/FundLDDTransfer.aspx";
+    public static String URL_CHANGE_LANGUAGE = HOST + "Main.aspx?";
 }

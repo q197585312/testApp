@@ -33,29 +33,28 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:textSize="10sp"
                 android:drawableTop="@mipmap/main_menu_a_hover"
                 android:text="@string/home"
-                android:textColor="@color/green900" />
+                android:textColor="@color/green900"
+                android:textSize="10sp" />
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/fl_menu_center"
+            android:id="@+id/fl_menu_stake"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <TextView
-                android:id="@+id/tv_tab_center"
-                android:textSize="10sp"
+                android:id="@+id/tv_tab_stake"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawableTop="@mipmap/main_menu_user"
-                android:text="@string/center"
-                android:textColor="@color/black_grey" />
+                android:drawableTop="@mipmap/main_menu_more"
+                android:text="@string/stake"
+                android:textColor="@color/black_grey"
+                android:textSize="10sp" />
         </FrameLayout>
-
 
         <FrameLayout
             android:id="@+id/fl_menu_statemente"
@@ -66,29 +65,29 @@
             <TextView
                 android:id="@+id/tv_tab_statement"
                 android:layout_width="wrap_content"
-                android:textSize="10sp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableTop="@mipmap/main_menu_order"
                 android:text="@string/statement"
-                android:textColor="@color/black_grey" />
+                android:textColor="@color/black_grey"
+                android:textSize="10sp" />
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/fl_menu_stake"
+            android:id="@+id/fl_menu_center"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1">
 
             <TextView
-                android:textSize="10sp"
-                android:id="@+id/tv_tab_stake"
+                android:id="@+id/tv_tab_center"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawableTop="@mipmap/main_menu_more"
-                android:text="@string/stake"
-                android:textColor="@color/black_grey" />
+                android:drawableTop="@mipmap/main_menu_user"
+                android:text="@string/center"
+                android:textColor="@color/black_grey"
+                android:textSize="10sp" />
         </FrameLayout>
     </LinearLayout>
 

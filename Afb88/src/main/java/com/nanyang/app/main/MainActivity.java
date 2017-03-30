@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.PersonalCenterFragment;
@@ -43,6 +44,13 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         flCurrentMenu = flMenuHome;
         showFragmentToActivity(homeFragment, R.id.fl_main_content);
         createPresenter(new MainPresenter(this));
+        String lag = AfbUtils.getLanguage(mContext);
+        if (lag.equals("zh")) {
+            switchLanguage("ZH-CN");
+        } else if (lag.equals("en")) {
+            switchLanguage("EN-US");
+        }
+
     }
 
     @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_statemente, R.id.fl_menu_stake})
@@ -140,5 +148,9 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         } else {
             return true;
         }
+    }
+
+    private void switchLanguage(String lang) {
+        presenter.switchLanguage(lang);
     }
 }

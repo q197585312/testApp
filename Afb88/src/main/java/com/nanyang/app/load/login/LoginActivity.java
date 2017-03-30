@@ -2,6 +2,7 @@ package com.nanyang.app.load.login;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -54,6 +55,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         createPresenter(new LoginPresenter(this));
+        edtLoginPassword.setOnKeyListener(onKeyListener);
         initLanguage();
     }
 
@@ -92,8 +94,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             AfbApplication app = (AfbApplication) getApplication();
             app.getUser().setUserName(edtLoginUsername.getText().toString());
             app.getUser().setPassword(edtLoginPassword.getText().toString());
-        }
-        else{
+        } else {
             ToastUtils.showShort(data);
         }
         skipAct(MainActivity.class);
@@ -114,10 +115,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
-
-                String us = edtLoginUsername.getText().toString();
-                String k = edtLoginPassword.getText().toString();//"a7c7366ecd6041489d08ecb9ac1f39c9"
-                presenter.login(new LoginInfo(us, k));
+                login();
                 break;
             case R.id.tv_login_register:
                 skipAct(RegisterActivity.class);
@@ -142,5 +140,26 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         btnLoginLogin.setText(getString(R.string.Login));
         tvLoginRegister.setText(getString(R.string.No_Account));
         tvLoginForget.setText(getString(R.string.Forget_password));
+    }
+
+    private View.OnKeyListener onKeyListener = new View.OnKeyListener() {
+        @Override
+        public boolean onKey(View view, int keyCode, KeyEvent event) {
+            if (keyCode == KeyEvent.KEYCODE_ENTER && event.getAction() == KeyEvent.ACTION_DOWN) {
+                login();
+                return true;
+            }
+            return false;
+        }
+    };
+
+    private void login() {
+        String us = edtLoginUsername.getText().toString();
+        String k = edtLoginPassword.getText().toString();//"a7c7366ecd6041489d08ecb9ac1f39c9"
+        if (!TextUtils.isEmpty(us) && !TextUtils.isEmpty(k)) {
+            presenter.login(new LoginInfo(us, k));
+        } else {
+            ToastUtils.showShort(getString(R.string.enter_username_or_password));
+        }
     }
 }

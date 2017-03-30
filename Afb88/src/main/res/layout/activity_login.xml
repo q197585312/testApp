@@ -71,15 +71,17 @@
                 android:drawableRight="@drawable/ic_perm_identity"
                 android:gravity="center_vertical"
                 android:hint="@string/Account"
-                android:text="demoafbai1"
                 android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
+                android:text="demoafbai9"
                 android:textColor="@color/white"
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
+
             <EditText
                 android:id="@+id/edt_login_password"
                 android:layout_width="match_parent"
-
                 android:layout_height="match_parent"
                 android:layout_marginTop="15dp"
                 android:background="@null"
@@ -90,10 +92,13 @@
                 android:hint="@string/Password"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:minLines="1"
+                android:singleLine="true"
                 android:text="123123aa"
                 android:textColor="@color/white"
                 android:textColorHint="@color/trans_white"
                 android:textSize="17sp" />
+
             <Button
                 android:id="@+id/btn_login_login"
                 android:layout_width="match_parent"
@@ -106,10 +111,10 @@
                 android:textSize="15sp" />
 
             <TextView
-                android:layout_marginTop="25dp"
                 android:id="@+id/tv_login_register"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="25dp"
                 android:background="@color/transparent"
                 android:gravity="center"
                 android:text="@string/No_Account"
@@ -133,9 +138,10 @@
             android:layout_marginTop="10dp"
             android:clickable="true"
             android:gravity="center"
-            android:textColor="@color/green900"
             android:text="@string/Forget_password"
+            android:textColor="@color/green900"
             android:textSize="14sp" />
+
         <TextView
             android:id="@+id/tv_login_version"
             android:layout_width="wrap_content"

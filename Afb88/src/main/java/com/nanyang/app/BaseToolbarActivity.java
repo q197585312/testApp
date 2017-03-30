@@ -1,6 +1,7 @@
 package com.nanyang.app;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -95,7 +96,8 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                        BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
                                            @Override
                                            protected void clickSure(View v) {
-                                               skipAct(LoginActivity.class);
+                                               Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                               startActivity(intent);
                                            }
                                        };
                                        pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
