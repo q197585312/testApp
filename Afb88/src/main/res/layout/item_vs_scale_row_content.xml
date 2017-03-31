@@ -86,7 +86,6 @@
         </LinearLayout>
 
         <View
-            android:id="@+id/vs_row_line1"
             android:background="@color/green_white_thick_line"
             android:layout_height="match_parent"
             android:layout_width="0.5dp"/>
