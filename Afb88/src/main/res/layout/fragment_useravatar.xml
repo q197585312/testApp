@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle_green_gradient"
+    android:background="@color/green500"
     android:orientation="vertical">
 
 
@@ -65,16 +65,19 @@
                 android:layout_gravity="bottom"
                 android:layout_marginBottom="5px"
                 android:layout_marginLeft="10px"
-                android:text="Or choose a avatar" />
+                android:text="@string/choose_avatar" />
         </LinearLayout>
 
     </LinearLayout>
 
     <View
         android:layout_width="match_parent"
-        android:layout_height="0.6dp"
-        android:layout_margin="5px"
-        android:background="@color/black" />
+        android:background="#179441"
+        android:layout_height="0.7dp"/>
+    <View
+        android:layout_width="match_parent"
+        android:background="#2dc45c"
+        android:layout_height="0.7dp"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

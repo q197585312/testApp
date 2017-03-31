@@ -1,5 +1,6 @@
 package com.nanyang.app.main.center;
 
+import android.content.Intent;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.R;
+import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.center.model.ChangePasswordBean;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -114,6 +116,8 @@ public class ChangePasswordFragment extends BaseFragment {
                         et_newPassword.setText("");
                         et_oldPassword.setText("");
                         et_surePasswrod.setText("");
+                        Intent intent = new Intent(getActivity(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
                     }
                 }, new Consumer<Throwable>() {
                     @Override

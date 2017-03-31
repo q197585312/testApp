@@ -22,7 +22,7 @@
                 style="@style/text_match_black10"
                 android:layout_width="0dp"
                 android:layout_marginLeft="7dp"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:gravity="center|left"
                 android:paddingBottom="5dp"
                 android:paddingLeft="2dp"
@@ -30,7 +30,7 @@
                 android:singleLine="true"
                 android:text="@string/date"
                 android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textSize="9sp" />
 
             <View
                 android:layout_width="0.4dp"
@@ -51,7 +51,7 @@
                 android:singleLine="true"
                 android:text="@string/event_statement"
                 android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textSize="9sp" />
 
             <View
                 android:layout_width="0.4dp"
@@ -66,13 +66,13 @@
             <TextView
                 style="@style/text_match_black10"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:gravity="center"
                 android:padding="2dp"
                 android:singleLine="true"
                 android:text="@string/stake_statement"
                 android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textSize="9sp" />
 
             <View
                 android:layout_width="0.4dp"
@@ -87,13 +87,13 @@
             <TextView
                 style="@style/text_match_black10"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.9"
                 android:gravity="center"
                 android:padding="2dp"
                 android:singleLine="true"
                 android:text="@string/amount"
                 android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textSize="9sp" />
 
             <View
                 android:layout_width="0.4dp"
@@ -108,13 +108,13 @@
             <TextView
                 style="@style/text_match_black10"
                 android:layout_width="0dp"
-                android:layout_weight="1"
+                android:layout_weight="0.8"
                 android:gravity="center"
                 android:padding="2dp"
                 android:singleLine="true"
                 android:text="@string/commission"
                 android:textColor="#000000"
-                android:textStyle="bold" />
+                android:textSize="9sp" />
 
             <View
                 android:layout_width="0.4dp"

@@ -246,4 +246,5 @@
     <string name="coming_soon">Coming soon...</string>
     <string name="Login_Failed">Login failed</string>
     <string name="upload_files">Upload files</string>
+    <string name="choose_avatar">Or choose a avatar</string>
 </resources>

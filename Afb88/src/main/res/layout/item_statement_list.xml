@@ -15,14 +15,14 @@
             style="@style/text_match_black10"
             android:layout_width="0dp"
             android:layout_weight="1.5"
+            android:textSize="9sp"
             android:gravity="center"
             android:paddingBottom="5dp"
             android:paddingLeft="2dp"
             android:paddingTop="5dp"
             android:singleLine="true"
             android:text="@string/date"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textColor="#000000" />
 
         <View
             android:layout_width="0.4dp"
@@ -38,13 +38,13 @@
             android:id="@+id/tv_statement_stake"
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:gravity="center"
             android:padding="2dp"
+            android:textSize="9sp"
             android:singleLine="true"
             android:text="@string/statement_stake"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textColor="#000000" />
 
         <View
             android:layout_width="0.4dp"
@@ -60,13 +60,13 @@
             android:id="@+id/tv_statement_amount"
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="1.1"
             android:gravity="center"
+            android:textSize="9sp"
             android:padding="2dp"
             android:singleLine="true"
             android:text="@string/valid_amount"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textColor="#000000" />
 
         <View
             android:layout_width="0.4dp"
@@ -82,12 +82,12 @@
             android:id="@+id/tv_statement_win_or_lose"
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:gravity="center"
+            android:textSize="9sp"
             android:singleLine="true"
             android:text="@string/w_l"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textColor="#000000" />
 
         <View
             android:layout_width="0.4dp"
@@ -103,13 +103,13 @@
             android:id="@+id/tv_statement_commission"
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:gravity="center"
+            android:textSize="9sp"
             android:padding="2dp"
             android:singleLine="true"
             android:text="@string/commission"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textColor="#000000" />
 
         <View
             android:layout_width="0.4dp"
@@ -125,13 +125,13 @@
             android:id="@+id/tv_statement_settled"
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"
+            android:textSize="9sp"
             android:text="@string/settled_statement"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textColor="#000000" />
 
         <View
             android:layout_width="0.4dp"
@@ -147,13 +147,13 @@
             android:id="@+id/tv_statement_balance"
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="1"
+            android:layout_weight="0.8"
             android:gravity="center"
+            android:textSize="9sp"
             android:padding="2dp"
             android:singleLine="true"
             android:text="@string/balance"
-            android:textColor="#000000"
-            android:textStyle="bold" />
+            android:textColor="#000000" />
     </LinearLayout>
 
     <View
