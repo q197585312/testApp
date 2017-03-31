@@ -2,6 +2,7 @@ package com.nanyang.app.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -9,12 +10,13 @@ import android.widget.TextView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.center.PersonalCenterFragment;
-import com.nanyang.app.main.center.Stake.StakeFragment;
 import com.nanyang.app.main.center.Statement.StatementFragment;
 import com.nanyang.app.main.home.HomeFragment;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -28,13 +30,14 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     @Bind(R.id.fl_menu_home)
     FrameLayout flMenuHome;
+    @Bind(R.id.fl_menu_login_out)
+    FrameLayout flLoginOut;
 
     FrameLayout flCurrentMenu;
 
     BaseFragment homeFragment = new HomeFragment();
     BaseFragment centerFragment = new PersonalCenterFragment();
     BaseFragment statementFragment = new StatementFragment();
-    BaseFragment stakeFragment = new StakeFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +56,24 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     }
 
-    @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_statemente, R.id.fl_menu_stake})
+    @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_statemente, R.id.fl_menu_login_out})
     public void onClick(View view) {
-        clickTabMenu((FrameLayout) view);
+        if (view.getId() == R.id.fl_menu_login_out) {
+            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
+                @Override
+                protected void clickSure(View v) {
+                    Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
+            };
+            pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+            pop.getChooseMessage().setText(getString(R.string.login_out));
+            pop.getChooseSureTv().setText(getString(R.string.sure));
+            pop.getChooseCancelTv().setText(getString(R.string.cancel));
+            onPopupWindowCreated(pop, Gravity.CENTER);
+        } else {
+            clickTabMenu((FrameLayout) view);
+        }
     }
 
     private void clickTabMenu(FrameLayout fl) {
@@ -75,10 +93,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                     tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_order, 0, 0);
                     hideFragmentToActivity(statementFragment);
                     break;
-                case R.id.tv_tab_stake:
-                    tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_more, 0, 0);
-                    hideFragmentToActivity(stakeFragment);
-                    break;
             }
             TextView tvMenu = (TextView) fl.getChildAt(0);
             tvMenu.setTextColor(getResources().getColor(R.color.green900));
@@ -94,10 +108,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 case R.id.tv_tab_statement:
                     tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_order_hover, 0, 0);
                     showFragmentToActivity(statementFragment, R.id.fl_main_content);
-                    break;
-                case R.id.tv_tab_stake:
-                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_more_hover, 0, 0);
-                    showFragmentToActivity(stakeFragment, R.id.fl_main_content);
                     break;
             }
             flCurrentMenu = fl;
