@@ -102,9 +102,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@color/yellow_button"
+                android:background="@drawable/rectangle_yellow_button_all_corner5"
                 android:gravity="center"
                 android:text="@string/Login"
+                android:textAllCaps="false"
                 android:textColor="@android:color/white"
                 android:textSize="15sp" />
 
@@ -129,6 +130,7 @@
         android:padding="10dp">
 
         <TextView
+            android:visibility="gone"
             android:id="@+id/tv_login_forget"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

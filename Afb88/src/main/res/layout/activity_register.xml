@@ -262,7 +262,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@color/yellow_button"
+                android:textAllCaps="false"
+                android:background="@drawable/rectangle_yellow_button_all_corner5"
                 android:text="@string/Submit"
                 android:textColor="@color/white" />
         </LinearLayout>

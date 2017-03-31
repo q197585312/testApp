@@ -47,11 +47,11 @@
             android:layout_height="0dp"
             android:layout_gravity="center"
             android:layout_weight="1"
-            android:background="@color/yellow_center_user"
+            android:background="@drawable/rectangle_yellow_button_all_corner5"
             android:gravity="center"
             android:paddingLeft="50px"
             android:paddingRight="50px"
-            android:text="Upload files"
+            android:text="@string/upload_files"
             android:textColor="@color/white" />
 
         <LinearLayout
@@ -96,10 +96,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="70px"
-            android:layout_marginLeft="10px"
-            android:layout_marginRight="10px"
+            android:layout_marginLeft="30px"
+            android:layout_marginRight="30px"
             android:layout_marginTop="80px"
-            android:background="@color/yellow_center_user"
+            android:background="@drawable/rectangle_yellow_button_all_corner5"
             android:gravity="center"
             android:paddingBottom="20px"
             android:paddingTop="20px"
