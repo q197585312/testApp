@@ -1,9 +1,13 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.util.Log;
+
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.IBaseView;
 
@@ -16,6 +20,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+import static android.content.ContentValues.TAG;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
@@ -60,7 +65,9 @@ public abstract class BallBetHelper<B extends BallInfo,V extends BetView> implem
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String allData) throws Exception {
-                       if(allData.contains("@")) {
+                        String[] split = allData.split("|");
+                        if(split.length==5) {
+                            updateFirstStake();
                            ToastUtils.showShort(allData);
                            baseView.onBetSuccess(allData);
                        }else{
@@ -89,6 +96,37 @@ public abstract class BallBetHelper<B extends BallInfo,V extends BetView> implem
             compositeSubscription.add(subscription);
         return subscription;
 
+    }
+
+    private void updateFirstStake() {
+        Disposable d = Api.getService(ApiService.class).getStakeData(AppConstant.URL_STAKE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String stakeListBeen) throws Exception {
+                        Log.d(TAG, "accept: " + stakeListBeen);
+                        baseView.onGetData(stakeListBeen);
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Consumer<Subscription>() {
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        baseView.showLoadingDialog();
+                        subscription.request(Integer.MAX_VALUE);
+                    }
+                });
+        if (compositeSubscription != null)
+            compositeSubscription.add(d);
     }
 
 

@@ -104,11 +104,15 @@
 
     <View
         android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/grey_light" />
+    <View
+        android:layout_width="match_parent"
         android:layout_height="0.5dp"
-        android:background="@color/green_thick_line" />
+        android:background="@color/white" />
 
     <LinearLayout
-        android:paddingTop="5dp"
+        android:paddingTop="6dp"
         android:id="@+id/ballgame_bottom_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

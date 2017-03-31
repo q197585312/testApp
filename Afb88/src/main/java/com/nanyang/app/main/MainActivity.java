@@ -50,6 +50,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         } else if (lag.equals("en")) {
             switchLanguage("EN-US");
         }
+        toolbar.setNavigationIcon(null);
 
     }
 
