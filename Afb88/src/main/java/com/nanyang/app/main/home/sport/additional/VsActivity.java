@@ -99,7 +99,6 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     @Override
     public void initData() {
         super.initData();
-        toolbar.setNavigationIcon(null);
         item = (BallInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA2);
         tvToolbarRight.setVisibility(View.GONE);

@@ -47,7 +47,7 @@ public class StakePresenter extends BaseRetrofitPresenter<String, StakeContact.V
                 }, new Action() {
                     @Override
                     public void run() throws Exception {
-
+                        baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {
                     @Override
