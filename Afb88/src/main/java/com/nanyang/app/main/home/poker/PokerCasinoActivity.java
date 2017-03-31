@@ -93,7 +93,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         porkerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<PorkerCasinoBean>() {
             @Override
             public void onItemClick(View view, PorkerCasinoBean item, int position) {
-                if (item.getCasinoIntroduce().equals("GD88") || item.getCasinoIntroduce().equals("GDC")) {
+                if (item.getCasinoName().equals(getString(R.string.gd88)) || item.getCasinoName().equals(getString(R.string.gdc))) {
                     loginGD();
                 }
             }
