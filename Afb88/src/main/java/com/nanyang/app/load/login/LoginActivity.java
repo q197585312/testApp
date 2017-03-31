@@ -95,7 +95,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             app.getUser().setUserName(edtLoginUsername.getText().toString());
             app.getUser().setPassword(edtLoginPassword.getText().toString());
         } else {
-            ToastUtils.showShort(data);
+            ToastUtils.showShort(R.string.Login_Failed);
         }
         skipAct(MainActivity.class);
         finish();

@@ -24,6 +24,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseFragment;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import org.reactivestreams.Subscription;
@@ -105,22 +106,16 @@ public class HomeFragment extends BaseFragment {
                         b.putString("activity", "Live");
                         skipAct(PokerCasinoActivity.class, b);
                         break;
-                    case "Keno":
-                        break;
                     case "Poker":
                         Bundle b2 = new Bundle();
                         b2.putString("activity", "Porker");
                         skipAct(PokerCasinoActivity.class, b2);
                         break;
-                    case "Lottery":
-                        break;
-                    case "Roulette":
-                        break;
-                    case "Casino":
-                        break;
                     case "Discount":
                         skipAct(DiscountActivity.class);
                         break;
+                    default:
+                        ToastUtils.showShort(R.string.coming_soon);
                 }
 
 
