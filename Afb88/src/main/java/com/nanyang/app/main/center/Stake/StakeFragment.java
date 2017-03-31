@@ -186,9 +186,28 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 if (list2.size() != 0) {
                     Half.setText(list2.get(0).getGameType() + half);
                 }
-                String n = getString(R.string.amount);
-                if (data.size() - 1 == position) {
-                    n = getString(R.string.total_amount);
+                String n = "Accepted";
+                if (item.getDangerStatus().equals("D")) {
+                    n = "Waiting";
+                    dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
+                } else if (item.getDangerStatus().equals("R")) {
+                    n = "Rejected " + item.getR_DateTime();
+                    dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
+                } else if (item.getDangerStatus().equals("RR")) {
+                    n = "Rejected (Red Card " + item.getR_DateTime() + ")";
+                    dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
+                } else if (item.getDangerStatus().equals("RP")) {
+                    n = "Rejected (Goal Disallowed " + item.getR_DateTime() + ")";
+                    dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
+                } else if (item.getDangerStatus().equals("RA")) {
+                    n = "Rejected (Abnormal Bet " + item.getR_DateTime() + ")";
+                    dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
+                } else if (item.getDangerStatus().equals("RG")) {
+                    n = "Rejected (Goal " + item.getR_DateTime() + ")";
+                    dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
+                } else if (item.getDangerStatus().equals("0")) {
+                    n = "Oddschange";
+                    dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
                 }
                 dangerStatus.setText(n);
 
