@@ -46,7 +46,6 @@ public class SportActivity extends BaseToolbarActivity {
     BaseSportFragment myanmarFragment = new MyanmarFragment();
 
 
-
     @Bind(R.id.iv_add)
     ImageView ivAdd;
     @Bind(R.id.fl_content)
@@ -153,9 +152,12 @@ public class SportActivity extends BaseToolbarActivity {
         if (!currentTag.equals(tag)) {
             tvTitle.setText(tag);
             hideFragmentToActivity(mapFragment.get(currentTag));
+            MenuItemInfo stateType = mapFragment.get(currentTag).presenter.getStateHelper().getStateType();
             showFragmentToActivity(mapFragment.get(tag), R.id.fl_content, tag);
             currentTag = tag;
             currentFragment = mapFragment.get(currentTag);
+            currentFragment.switchParentType(stateType);
+            setType(stateType.getType());
         }
     }
 

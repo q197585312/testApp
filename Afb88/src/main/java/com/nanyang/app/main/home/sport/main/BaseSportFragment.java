@@ -60,11 +60,13 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     SwipeToLoadLayout swipeToLoadLayout;
     private boolean isFirstIn;
     private BaseRecyclerAdapter baseRecyclerAdapter;
+    private boolean isInit = false;
 
     @Override
     public void initData() {
         super.initData();
         createPresenter(new SportPresenter(this));
+        isInit = true;
         isFirstIn = true;
         swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
@@ -81,7 +83,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
 
-
     public void refresh() {
         presenter.getStateHelper().refresh();
     }
@@ -95,7 +96,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     public boolean mix(TextView tvMix) {
-        boolean isMix= presenter.getStateHelper().mix();
+        boolean isMix = presenter.getStateHelper().mix();
         checkBg(tvMix, isMix, R.mipmap.sport_oval_u_green, R.mipmap.sport_oval_u_black);
         return isMix;
     }
@@ -107,16 +108,17 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, sport_oval_u_black, 0, 0);
         }
     }
+
     @Override
     public void checkMix(boolean isMix) {
-        checkBg(((SportActivity)getActivity()).tvMix, isMix, R.mipmap.sport_oval_u_green, R.mipmap.sport_oval_u_black);
+        checkBg(((SportActivity) getActivity()).tvMix, isMix, R.mipmap.sport_oval_u_green, R.mipmap.sport_oval_u_black);
     }
 
     @Override
     public void setAdapter(BaseRecyclerAdapter baseRecyclerAdapter) {
         rvContent.setLayoutManager(new LinearLayoutManager(mContext));
         rvContent.setAdapter(baseRecyclerAdapter);
-        this.baseRecyclerAdapter=baseRecyclerAdapter;
+        this.baseRecyclerAdapter = baseRecyclerAdapter;
     }
 
 
@@ -139,7 +141,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     public void onUpdateMixSucceed(BettingParPromptBean bean) {
         getApp().setBetParList(bean);
         updateMixOrderCount();
-        if(presenter.getStateHelper().isMix())
+        if (presenter.getStateHelper().isMix())
             baseRecyclerAdapter.notifyDataSetChanged();
 
     }
@@ -183,7 +185,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     @Override
     public void switchState(IObtainDataState state) {
         presenter.setStateHelper(state);
-        presenter.getStateHelper().setScrollHeaderContent(slHeader,tvAos);
+        presenter.getStateHelper().setScrollHeaderContent(slHeader, tvAos);
         getContextActivity().getTvToolbarTitle().setText(state.getStateType().getText());
         presenter.getStateHelper().refresh();
         if (popWindow != null)
@@ -213,7 +215,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         if (hidden) {// 不在最前端界面显示
             presenter.getStateHelper().stopUpdateData();
         } else {// 重新显示到最前端中
-            presenter.getStateHelper().refresh();
 
         }
     }
@@ -233,6 +234,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         super.onDestroyView();
         presenter.getStateHelper().stopUpdateData();
         ButterKnife.unbind(this);
+        isInit = false;
     }
 
     @Override
@@ -242,8 +244,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         ButterKnife.bind(this, rootView);
         return rootView;
     }
-
-
 
 
     @OnClick({R.id.ll_odds_type, R.id.ll_mix_parlay_order})
@@ -312,8 +312,18 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     public void onBetSuccess(String betResult) {
         getContextActivity().onBetSuccess(betResult);
     }
+
     @Override
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
-        getContextActivity().onPopupWindowCreated(pop,center);
+        getContextActivity().onPopupWindowCreated(pop, center);
     }
+
+    public void switchParentType(MenuItemInfo stateType) {
+        if (isInit)
+            switchType(stateType.getType());
+
+
+    }
+
+    public abstract void switchType(String type);
 }

@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/green_light_white"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -9,7 +10,6 @@
         android:id="@+id/module_match_head_v"
         android:layout_width="match_parent"
         android:layout_height="20dp"
-        android:background="@color/green_light_white"
         android:padding="5dp" />
 
     <TextView
@@ -27,15 +27,10 @@
         android:textColor="@color/green900"
         android:textSize="11sp" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.6dp"
-        android:background="@color/green_white_thick_line" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green_light_white"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -130,11 +125,10 @@
                 <TextView
                     android:id="@+id/module_match_home_team_tv"
                     android:layout_width="wrap_content"
-
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:drawablePadding="5dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:maxLines="1"
                     android:text="zheshiyigeceshi mingz "
                     android:textColor="@color/black_grey"
@@ -170,7 +164,7 @@
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="1dp"
                     android:drawablePadding="5dp"
-                    android:gravity="center"
+                    android:gravity="left"
                     android:maxLines="1"
                     android:text="zheshiyigeceshi mingz "
                     android:textColor="@color/black_grey"
@@ -230,6 +224,11 @@
         </FrameLayout>
 
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="@color/green_white_thick_line" />
 
     <View
         android:layout_width="match_parent"

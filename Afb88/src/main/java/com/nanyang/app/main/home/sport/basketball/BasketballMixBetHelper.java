@@ -6,8 +6,8 @@ import android.widget.TextView;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
-import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
+import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
 import org.reactivestreams.Subscription;
@@ -64,6 +64,9 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
             compositeSubscription.add(subscribe);
         return subscribe;
     }
+
+
+
     private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
         BetPop pop = new BetPop(baseView.getContextActivity(), v);
         pop.setBetData(bean, this);

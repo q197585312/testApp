@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -298,6 +299,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     @Nullable
     private List<TableSportInfo<B>> parseTableModuleBeen(String s) throws JSONException {
+        s= Html.fromHtml(s).toString();
         JSONArray jsonArray = new JSONArray(s);
         if (jsonArray.length() > 4) {
             parseLidValue(jsonArray);
@@ -896,7 +898,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     @TargetApi(Build.VERSION_CODES.KITKAT)
     protected List<TableSportInfo<B>> updateJsonArray(String updateString) {
         try {
-
+            updateString= Html.fromHtml(updateString).toString();
             LogUtil.d("UpdateData", updateString);
             JSONArray jsonArray = new JSONArray(updateString);
             boolean modified = false;

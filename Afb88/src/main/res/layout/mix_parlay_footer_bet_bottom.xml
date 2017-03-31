@@ -42,7 +42,7 @@
         <Button
             android:id="@+id/footer_clearance_bet_cancel_btn"
             android:layout_gravity="center_vertical"
-            android:background="@color/yellow_button"
+            android:background="@drawable/rectangle_yellow_button_all_corner5"
             android:layout_width="60dp"
             android:layout_margin="5dp"
             android:text="@string/cancel"
@@ -51,7 +51,7 @@
         <Button
             android:id="@+id/footer_clearance_bet_submit_btn"
             android:layout_gravity="center_vertical"
-            android:background="@color/yellow_button"
+            android:background="@drawable/rectangle_yellow_button_all_corner5"
             android:layout_width="60dp"
             android:layout_margin="5dp"
             android:text="@string/bet"

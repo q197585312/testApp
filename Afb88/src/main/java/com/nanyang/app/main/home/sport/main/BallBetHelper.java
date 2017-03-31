@@ -1,9 +1,9 @@
 package com.nanyang.app.main.home.sport.main;
 
-import android.util.Log;
-
+import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -13,23 +13,25 @@ import com.unkonw.testapp.libs.view.IBaseView;
 
 import org.reactivestreams.Subscription;
 
+import java.util.List;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-import static android.content.ContentValues.TAG;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
  * Created by Administrator on 2017/3/15.
  */
 
-public abstract class BallBetHelper<B extends BallInfo,V extends BetView> implements IBetHelper<B> {
+public abstract class BallBetHelper<B extends BallInfo, V extends BetView> implements IBetHelper<B> {
     protected V baseView;
-
+    private ResultCallBack back;
 
 
     public CompositeDisposable getCompositeSubscription() {
@@ -55,7 +57,10 @@ public abstract class BallBetHelper<B extends BallInfo,V extends BetView> implem
         this.baseView = baseView;
     }
 
-
+    @Override
+    public void setResultCallBack(ResultCallBack back) {
+        this.back=back;
+    }
     @Override
     public Disposable bet(String url) {
 
@@ -65,14 +70,17 @@ public abstract class BallBetHelper<B extends BallInfo,V extends BetView> implem
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String allData) throws Exception {
-                        String[] split = allData.split("|");
-                        if(split.length==5) {
+                        String[] split = allData.split("\\|");
+                        if (split.length == 5) {
+                            baseView.onBetSuccess(allData);
                             updateFirstStake();
-                           ToastUtils.showShort(allData);
-                           baseView.onBetSuccess(allData);
-                       }else{
-                           baseView.onFailed(allData);
-                       }
+                        }
+                        else {
+                            baseView.onFailed(allData);
+                            if(back!=null&&allData.startsWith("CHG")){
+                                handleOddsUpdate(allData);
+                            }
+                        }
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -97,15 +105,35 @@ public abstract class BallBetHelper<B extends BallInfo,V extends BetView> implem
         return subscription;
 
     }
+//CHG|Odds has changed to 1.69!|1.69|1
+    private void handleOddsUpdate(String allData) {
+        String substring = allData.substring(allData.indexOf("!|")+2);
+        String odds = substring.substring(0, substring.indexOf("|"));
+        back.callBack(odds);
+
+
+    }
 
     private void updateFirstStake() {
-        Disposable d = Api.getService(ApiService.class).getStakeData(AppConstant.URL_STAKE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        Disposable d = Api.getService(ApiService.class).getStakeData(AppConstant.URL_STAKE).subscribeOn(Schedulers.io()).observeOn(Schedulers.computation())
+                .map(new Function<String, StakeListBean.DicAllBean>() {
 
-                .subscribe(new Consumer<String>() {
                     @Override
-                    public void accept(String stakeListBeen) throws Exception {
-                        Log.d(TAG, "accept: " + stakeListBeen);
-                        baseView.onGetData(stakeListBeen);
+                    public StakeListBean.DicAllBean apply(String data) throws Exception {
+                        Gson gson = new Gson();
+                        String[] data1 = data.split("nyhxkj");
+                        StakeListBean stakeListBean = gson.fromJson(data1[0], StakeListBean.class);
+                        List<StakeListBean.DicAllBean> list1 = stakeListBean.getDicAll();
+                        if (list1 != null)
+                            return list1.get(0);
+                        return new StakeListBean.DicAllBean();
+                    }
+                }).observeOn(AndroidSchedulers.mainThread())
+
+                .subscribe(new Consumer<StakeListBean.DicAllBean>() {
+                    @Override
+                    public void accept(StakeListBean.DicAllBean dicAllBean) throws Exception {
+                        handleDicAllBean(dicAllBean);
                         baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
@@ -127,6 +155,44 @@ public abstract class BallBetHelper<B extends BallInfo,V extends BetView> implem
                 });
         if (compositeSubscription != null)
             compositeSubscription.add(d);
+    }
+
+    private void handleDicAllBean(StakeListBean.DicAllBean item) {
+
+        StringBuilder builder = new StringBuilder();
+        builder.append(item.getRefNo() + "(" + item.getTransDate() + ")");
+        builder.append("\n");
+        builder.append(item.getHome() + "  vs  " + item.getAway());
+        builder.append("\n");
+        builder.append(item.getOdds());
+        builder.append("\n");
+        builder.append(item.getModuleTitle());
+        if (item.getFullTimeId() > 0) {
+            builder.append("\n");
+            builder.append("(First Half)");
+            builder.append(item.getBetType());
+        }
+
+        String n = "Accepted";
+        if (item.getDangerStatus().equals("D")) {
+            n = "Waiting";
+        } else if (item.getDangerStatus().equals("R")) {
+            n = "Rejected " + item.getR_DateTime();
+        } else if (item.getDangerStatus().equals("RR")) {
+            n = "Rejected (Red Card " + item.getR_DateTime() + ")";
+        } else if (item.getDangerStatus().equals("RP")) {
+            n = "Rejected (Goal Disallowed " + item.getR_DateTime() + ")";
+        } else if (item.getDangerStatus().equals("RA")) {
+            n = "Rejected (Abnormal Bet " + item.getR_DateTime() + ")";
+        } else if (item.getDangerStatus().equals("RG")) {
+            n = "Rejected (Goal " + item.getR_DateTime() + ")";
+        } else if (item.getDangerStatus().equals("0")) {
+            n = "Oddschange";
+        }
+        builder.append("\n");
+        builder.append(n + "     " + item.getAmt());
+        ToastUtils.showShort(builder.toString());
+
     }
 
 

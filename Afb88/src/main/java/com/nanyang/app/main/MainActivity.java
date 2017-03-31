@@ -53,7 +53,13 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         } else if (lag.equals("en")) {
             switchLanguage("EN-US");
         }
-        toolbar.setNavigationIcon(null);
+        toolbar.setNavigationIcon(R.mipmap.home_menu_nav);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
     }
 

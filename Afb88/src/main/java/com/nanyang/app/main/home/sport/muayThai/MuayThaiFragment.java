@@ -14,6 +14,12 @@ public class MuayThaiFragment extends BaseSportFragment {
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
+        switchType(type);
+        setTitle(getString(R.string.Muay_Thai));
+    }
+
+    @Override
+    public void switchType(String type) {
         switch (type) {
             case "Running":
                 switchState(new MuayThaiRunningState(this));

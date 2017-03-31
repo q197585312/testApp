@@ -4,7 +4,28 @@ package com.nanyang.app.main.home.sport.model;
  * Created by Administrator on 2015/11/24.
  */
 public class BettingPromptBean {
-
+/**
+ *     "BetType": "x",
+ "GTitle": "soccer",
+ "ModuleTitle": "AUSTRALIA HYUNDAI A LEAGUE",
+ "FullTimeId": "0",
+ "IsHomeGive": true,
+ "Home": "Adelaide United",
+ "Away": "Perth Glory",
+ "IsRun": false,
+ "IsOddsChange": false,
+ "RunHomeScore": "0",
+ "RunAwayScore": "0",
+ "GameType3": "N",
+ "BetUrl": "",
+ "MinLimit": "10",
+ "MaxLimit": "150000",
+ "HidOdds": "0",
+ "AmtS": "0",
+ "ExRate": "1",
+ "BetterOdds": 1,
+ "MoreBetUrl": "../_View/MoreBet.aspx?oId=12333468&home=Adelaide+United&away=Perth+Glory&moduleTitle=AUSTRALIA+HYUNDAI+A+LEAGUE&date=04%3a50PM&lang=EN-US",
+ "Test": "testing"*/
 
     /**{"BetType": "away",
      * "GTitle": "亚州盤",

@@ -1,5 +1,6 @@
 package com.unkonw.testapp.libs.base;
 
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -157,4 +158,10 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
     public Bitmap getheadBitmap() {
         return headBitmap;
     }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+    }
+
 }

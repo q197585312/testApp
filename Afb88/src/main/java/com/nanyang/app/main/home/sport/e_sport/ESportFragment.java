@@ -14,6 +14,12 @@ public class ESportFragment extends BaseSportFragment {
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
+        switchType( type);
+        setTitle(getString(R.string.E_Sport));
+    }
+
+    @Override
+    public void switchType(String type) {
         switch (type) {
             case "Running":
                 switchState(new ESportRunningState(this));
@@ -31,7 +37,6 @@ public class ESportFragment extends BaseSportFragment {
                 switchState(new ESportTodayState(this));
                 break;
         }
-        setTitle(getString(R.string.E_Sport));
     }
 
 

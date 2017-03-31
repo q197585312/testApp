@@ -66,6 +66,7 @@ public class SoccerEarlyState extends SoccerCommonState {
         }
     }
 
+
     @Override
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early", getBaseView().getContextActivity().getString(R.string.football));

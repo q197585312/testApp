@@ -6,9 +6,9 @@ import android.view.View;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
+import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.SportInfo;
-import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 
 
 public class SoccerFragment extends BaseSportFragment {
@@ -17,6 +17,12 @@ public class SoccerFragment extends BaseSportFragment {
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
+        switchType(type);
+        setTitle(getString(R.string.football));
+    }
+
+    @Override
+    public void switchType(String type) {
         switch (type) {
             case "Running":
                 switchState(new SoccerRunningState(this));
@@ -30,8 +36,11 @@ public class SoccerFragment extends BaseSportFragment {
             case "OutRight":
                 switchState(new SoccerOutRightState(this));
                 break;
+            default:
+                switchState(new SoccerTodayState(this));
+                break;
+
         }
-        setTitle(getString(R.string.football));
     }
 
 

@@ -186,6 +186,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             , boolean hapVisiable, boolean ouVisiable, boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
         vp.setVisibility(View.VISIBLE);
         ViewHolder holder = new ViewHolder(vp);
+
         if (hapVisiable) {
             holder.viewpagerMatchHomeHdpTv.setVisibility(View.VISIBLE);
             holder.viewpagerMatchHomeHdpoddsTv.setVisibility(View.VISIBLE);
@@ -325,20 +326,20 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     protected void setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf) {
-        textView.setText(f);
+
+        if (f.equals("0"))
+            textView.setText("");
+        else {
+            textView.setText(f);
+        }
+        textView.setBackgroundResource(0);
         if (!f.equals("") && !f.equals("0")) {
             if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
                 textView.setText(AfbUtils.changeValueS(f));
             else {
                 textView.setText(AfbUtils.decimalValue(Float.valueOf(f), "0.00"));
             }
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    back.clickOdds((TextView) v, item, type, isHf, f);
-                }
-            });
-            if (isAnimation ) {
+            if (isAnimation) {
                 Animation animation = new AlphaAnimation(0.0f, 1.0f);
                 //设置动画时间
                 animation.setDuration(1000);
@@ -346,25 +347,30 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 animation.setAnimationListener(new Animation.AnimationListener() {
                     @Override
                     public void onAnimationStart(Animation animation) {
-                        textView.setBackgroundResource( 0);
+                        textView.setBackgroundResource(R.color.yellow_light_bg);
                     }
 
                     @Override
                     public void onAnimationEnd(Animation animation) {
-                        textView.setBackgroundResource( 0);
+                        textView.setBackgroundResource(0);
                     }
 
                     @Override
                     public void onAnimationRepeat(Animation animation) {
-                        textView.setBackgroundResource( R.color.yellow_light_bg);
+                        textView.setBackgroundResource(R.color.yellow_light_bg);
                     }
                 });
                 textView.startAnimation(animation);
-            }
-            else{
-                textView.setBackgroundResource( 0);
+            } else {
+                textView.setBackgroundResource(0);
             }
 
+            textView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    back.clickOdds((TextView) v, item, type, isHf, f);
+                }
+            });
         }
 
 

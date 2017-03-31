@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.dialog;
 
 import android.content.Context;
+import android.text.Html;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -60,9 +61,10 @@ public class BetPop extends BasePopupWindow {
     private String state = "";
 
     private IBetHelper presenter;
+    private String hdp;
 
     public BetPop(Context context, View v) {
-        this(context, v,800, LinearLayout.LayoutParams.WRAP_CONTENT);
+        this(context, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
     public BetPop(Context mContext, View v, int width, int height) {
@@ -100,6 +102,20 @@ public class BetPop extends BasePopupWindow {
                 }
                 //http://a8197c.a36588.com/_bet/PanelBet.aspx?betGrp=1&betType=under&oId=12042173&ou=3&isBetHome=False&isFH=False&accType=HK&odds=6.9&reducePercent=1&amt=11&isBetterOdds=true
                 presenter.bet(AppConstant.HOST + "_bet/" + bean.getBetUrl() + "&amt=" + s);
+                presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
+                    @Override
+                    public void callBack(String odds) {
+                        String betUrl = bean.getBetUrl();
+                        String substring1 = betUrl.substring(0, betUrl.indexOf("odds=") + 5);
+                        String sb = betUrl.substring(betUrl.indexOf("odds="));
+                        String substring2 = "";
+                        if (sb.indexOf("&") > 0) {
+                            substring2 = sb.substring(sb.indexOf("&"));
+                        }
+                        bean.setBetUrl(substring1 + odds + substring2);
+                        betHdpTv.setText(hdp + "@" + odds);
+                    }
+                });
             }
 
         } else {
@@ -174,7 +190,7 @@ public class BetPop extends BasePopupWindow {
         betHomeTv.setText(result.getHome());
         betAwayTv.setText(result.getAway());
         popTitle = result.getGTitle();
-        String hdp = "";
+        hdp = "";
         switch (result.getBetType()) {
             case "1":
                 state = result.getHome() + "(" + context.getString(R.string.win) + ")";
@@ -225,7 +241,7 @@ public class BetPop extends BasePopupWindow {
             }
         }
         betNameTv.setText(state);
-        betHdpTv.setText(hdp + "@" + result.getBetOdds());
+        betHdpTv.setText(hdp + "@" + Html.fromHtml(result.getBetOdds()).toString());
 
         betSureBtn.setOnClickListener(new View.OnClickListener() {
             @Override

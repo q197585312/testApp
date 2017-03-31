@@ -42,7 +42,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right|center_vertical"
-                android:text="@string/Odds_Type"
+                android:text="@string/HK_ODDS"
                 android:textColor="@color/green900" />
             <ImageView
                 android:id="@+id/iv_odds_type"

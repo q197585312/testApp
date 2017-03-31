@@ -14,6 +14,12 @@ public class Game4dFragment extends BaseSportFragment {
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
+      switchType(type);
+        setTitle(getString(R.string.Specials_4D));
+    }
+
+    @Override
+    public void switchType(String type) {
         switch (type) {
             case "Running":
                 switchState(new Game4dRunningState(this));
@@ -29,7 +35,6 @@ public class Game4dFragment extends BaseSportFragment {
                 switchState(new Game4dTodayState(this));
                 break;
         }
-        setTitle(getString(R.string.Specials_4D));
     }
 
 

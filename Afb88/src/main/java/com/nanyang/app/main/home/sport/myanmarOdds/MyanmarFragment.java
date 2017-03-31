@@ -17,6 +17,12 @@ public class MyanmarFragment extends BaseSportFragment {
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
+        switchType(type);
+        setTitle(getString(R.string.Myanmar_Odds));
+    }
+
+    @Override
+    public void switchType(String type) {
         switch (type) {
             case "Running":
                 switchState(new MyanmarRunningState(this));
@@ -27,12 +33,10 @@ public class MyanmarFragment extends BaseSportFragment {
             case "Early":
                 switchState(new MyanmarEarlyState(this));
                 break;
-
             default:
                 switchState(new MyanmarTodayState(this));
                 break;
         }
-        setTitle(getString(R.string.Specials_4D));
     }
 
 

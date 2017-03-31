@@ -111,21 +111,21 @@
             <TextView
                 android:text="@string/bet_amount"
                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:textColor="@color/black_grey"
                 android:textSize="12sp"/>
             <EditText
                 android:id="@+id/bet_amount_edt"
                 android:hint="@string/betting_amount"
-                android:padding="3dp"
-                android:textSize="12sp"
+
                 android:inputType="number"
                 android:gravity="center"
+                android:textSize="14sp"
                 android:background="@null"
                 android:textColor="@color/green900"
                 android:layout_marginLeft="5dp"
               android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"/>
         </LinearLayout>
             <View

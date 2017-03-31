@@ -17,6 +17,12 @@ public class BasketballFragment extends BaseSportFragment {
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
+        switchType(type);
+        setTitle(getString(R.string.Basketball));
+    }
+
+    @Override
+    public void switchType(String type) {
         switch (type) {
             case "Running":
                 switchState(new BasketballRunningState(this));
@@ -34,10 +40,7 @@ public class BasketballFragment extends BaseSportFragment {
                 switchState(new BasketballTodayState(this));
                 break;
         }
-        setTitle(getString(R.string.Basketball));
     }
-
-
 
 
     @Override

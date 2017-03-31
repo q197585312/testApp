@@ -14,6 +14,13 @@ public class FinancialFragment extends BaseSportFragment {
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
+        switchType(type);
+
+        setTitle(getString(R.string.Financial));
+    }
+
+    @Override
+    public void switchType(String type) {
         switch (type) {
             case "Running":
                 switchState(new FinancialRunningState(this));
@@ -29,7 +36,6 @@ public class FinancialFragment extends BaseSportFragment {
                 switchState(new FinancialTodayState(this));
                 break;
         }
-        setTitle(getString(R.string.Financial));
     }
 
 
