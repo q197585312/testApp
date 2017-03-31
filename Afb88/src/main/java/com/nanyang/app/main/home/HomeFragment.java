@@ -107,9 +107,7 @@ public class HomeFragment extends BaseFragment {
                         skipAct(PokerCasinoActivity.class, b);
                         break;
                     case "Poker":
-                        Bundle b2 = new Bundle();
-                        b2.putString("activity", "Porker");
-                        skipAct(PokerCasinoActivity.class, b2);
+                        ToastUtils.showShort(R.string.coming_soon);
                         break;
                     case "Discount":
                         skipAct(DiscountActivity.class);
