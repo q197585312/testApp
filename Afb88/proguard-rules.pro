@@ -17,21 +17,35 @@
 #}
 -keep class butterknife.** { *; }
 -dontwarn butterknife.internal.**
--dontwarn javax.annotation.**
--dontwarn javax.inject.**
--dontwarn okhttp3.logging.**
--keep class okhttp3.internal.**{*;}
--dontwarn okio.**
+-keep class **$$ViewBinder{ *; }
+-keepclasseswithmembernames class * { @butterknife.* <fields>;}
+-keepclasseswithmembernames class * { @butterknife.* <methods>;}
 -dontwarn retrofit2.**
 -keep class retrofit2.** { *; }
+-dontwarn okio.**
 -dontwarn sun.misc.**
--keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
-    long producerIndex;
-    long consumerIndex;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueProducerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode producerNode;
-}
--keepclassmembers class rx.internal.util.unsafe.BaseLinkedQueueConsumerNodeRef {
-    rx.internal.util.atomic.LinkedQueueNode consumerNode;
-}
+-keep class **.R$* {*;}
+-keepattributes Signature
+-keepattributes *Annotation*
+-dontobfuscate
+-dontoptimize
+-dontskipnonpubliclibraryclasses
+-dontskipnonpubliclibraryclassmembers
+-verbose
+-ignorewarnings
+-dontwarn android.support.v4.**
+-keep class android.support.v4.**{*;}
+-keep public class * extends android.app.Activity
+-keep public class * extends android.app.Application
+-keep public class * extends android.app.Service
+-keep public class * extends android.content.BroadcastReceiver
+-keep public class * extends android.content.ContentProvider
+-keep public class * extends android.app.backup.BackupAgentHelper
+-keep public class * extends android.preference.Preference
+-keep public class com.google.vending.licensing.ILicensingService
+-keep public class com.android.vending.licensing.ILicensingService
+-keep public class * extends android.support.v4.app.Fragment
+-keep public class * extends android.app.Fragment
+-keep class sun.misc.Unsafe { *; }
+-keep class com.google.gson.examples.android.model.** { *; }
+
