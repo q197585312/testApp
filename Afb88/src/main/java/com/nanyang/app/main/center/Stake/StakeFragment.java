@@ -209,6 +209,9 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     n = "Oddschange";
                     dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
                 }
+                if (position == data.size() - 1) {
+                    n = "Total " + n;
+                }
                 dangerStatus.setText(n);
 
                 amt.setText(item.getAmt());
