@@ -42,7 +42,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
 
     @Override
     public void onGetData(String data) {
-        if(data.length()>0) {
+        if (data.length() > 0) {
             Bundle bundle = new Bundle();
             bundle.putInt("gameType", 3);
             bundle.putString("k", data);
@@ -67,17 +67,17 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
 
     @Override
     public void initUi() {
-        Intent intent= getIntent();
-        if (intent.getStringExtra("activity").equals("Porker")){
+        Intent intent = getIntent();
+        if (intent.getStringExtra("activity").equals("Porker")) {
             bannerImg.setBackgroundResource(R.mipmap.poker_banner);
-        }else {
+        } else {
             bannerImg.setBackgroundResource(R.mipmap.live_banner);
         }
 
         casinoRc.setLayoutManager(new LinearLayoutManager(mContext));
         List<PorkerCasinoBean> dataList = new ArrayList<>();
-        dataList.add(new PorkerCasinoBean(R.mipmap.casino_gd88, getString(R.string.gd88) , "GD88"));
-        dataList.add(new PorkerCasinoBean(R.mipmap.casino_gdc,getString(R.string.gdc) , "GDC"));
+        dataList.add(new PorkerCasinoBean(R.mipmap.casino_gd88, getString(R.string.gd88), getString(R.string.gd_content)));
+        dataList.add(new PorkerCasinoBean(R.mipmap.casino_gdc, getString(R.string.gdc), getString(R.string.gr_content)));
 
         BaseRecyclerAdapter<PorkerCasinoBean> porkerAdapter = new BaseRecyclerAdapter<PorkerCasinoBean>(mContext, dataList, R.layout.item_porkercasino) {
             @Override
@@ -93,8 +93,8 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         porkerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<PorkerCasinoBean>() {
             @Override
             public void onItemClick(View view, PorkerCasinoBean item, int position) {
-                if (item.getCasinoIntroduce().equals("GD88")||item.getCasinoIntroduce().equals("GDC")) {
-                 loginGD();
+                if (item.getCasinoIntroduce().equals("GD88") || item.getCasinoIntroduce().equals("GDC")) {
+                    loginGD();
                 }
             }
         });
