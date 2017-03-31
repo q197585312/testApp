@@ -110,7 +110,7 @@ public class FragmentAvatar extends BaseFragment {
             case R.id.avatar_submit:
                 PersonCenterActivity activity = (PersonCenterActivity) getActivity();
                 if (headBitmap != null) {
-                    AfbUtils.writeBitmapToFile(AfbUtils.nativePath, headBitmap, 0, AfbUtils.headImgName);
+                    AfbUtils.writeBitmapToFile(AfbUtils.nativePath, headBitmap, 0);
                 }
                 activity.setResult(1);
                 getActivity().finish();

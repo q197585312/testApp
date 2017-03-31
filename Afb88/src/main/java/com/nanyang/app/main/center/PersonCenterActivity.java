@@ -11,6 +11,7 @@ import com.nanyang.app.main.center.Stake.StakeFragment;
 import com.nanyang.app.main.center.Statement.StatementFragment;
 import com.nanyang.app.main.center.changeLanguage.ChangeLanguageFragment;
 import com.nanyang.app.main.center.transferMoney.TransferMoneyFragment;
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.unkonw.testapp.libs.base.BaseFragment;
 
 import java.util.HashMap;
@@ -60,18 +61,9 @@ public class PersonCenterActivity extends BaseToolbarActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 0 && data != null) {
             String imgUri = data.getData().toString();
-            String trueImgUrl = null;
-            for (int i = 0; i < imgUri.length(); i++) {
-                String firstStr = imgUri.charAt(i) + "";
-                String nextStr = imgUri.charAt(i + 1) + "";
-                if (firstStr.equals("/") && nextStr.equals("s")) {
-                    trueImgUrl = imgUri.substring(i);
-                    break;
-                }
-            }
-            Bitmap b = AfbUtils.compressBitmapFromFile(trueImgUrl, 150, 150);
+            Bitmap b = ImageLoader.getInstance().loadImageSync(imgUri);
             if (b != null) {
-                Bitmap circleBitmap = AfbUtils.toRoundBitmap(b);
+                Bitmap circleBitmap = AfbUtils.toRoundBitmap(AfbUtils.compressImage(b));
                 avatarFragment.headBitmap = circleBitmap;
                 avatarFragment.getHeadImg().setImageBitmap(avatarFragment.headBitmap);
             }

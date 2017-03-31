@@ -53,6 +53,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         } else if (lag.equals("en")) {
             switchLanguage("EN-US");
         }
+        AfbUtils.switchLanguage(lag, mContext);
         toolbar.setNavigationIcon(R.mipmap.home_menu_nav);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
