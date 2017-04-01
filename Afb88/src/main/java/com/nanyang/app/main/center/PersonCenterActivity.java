@@ -3,6 +3,7 @@ package com.nanyang.app.main.center;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
@@ -59,8 +60,8 @@ public class PersonCenterActivity extends BaseToolbarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0 && data != null) {
-            String imgUri = data.getData().toString();
+        String imgUri = data.getData().toString();
+        if (requestCode == 0 && data != null && !TextUtils.isEmpty(imgUri)) {
             Bitmap b = ImageLoader.getInstance().loadImageSync(imgUri);
             if (b != null) {
                 Bitmap circleBitmap = AfbUtils.toRoundBitmap(AfbUtils.compressImage(b));
