@@ -16,6 +16,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.poker.model.PorkerCasinoBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -93,9 +94,10 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         porkerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<PorkerCasinoBean>() {
             @Override
             public void onItemClick(View view, PorkerCasinoBean item, int position) {
-                if (item.getCasinoName().equals(getString(R.string.gd88)) || item.getCasinoName().equals(getString(R.string.gdc))) {
-                    loginGD();
-                }
+//                if (item.getCasinoName().equals(getString(R.string.gd88)) || item.getCasinoName().equals(getString(R.string.gdc))) {
+//                    loginGD();
+//                }
+                ToastUtils.showShort(R.string.coming_soon);
             }
         });
         casinoRc.setAdapter(porkerAdapter);
