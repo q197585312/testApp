@@ -60,8 +60,8 @@ public class PersonCenterActivity extends BaseToolbarActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        String imgUri = data.getData().toString();
-        if (requestCode == 0 && data != null && !TextUtils.isEmpty(imgUri)) {
+        if (requestCode == 0 && data != null && !TextUtils.isEmpty(data.getData().toString())) {
+            String imgUri = data.getData().toString();
             Bitmap b = ImageLoader.getInstance().loadImageSync(imgUri);
             if (b != null) {
                 Bitmap circleBitmap = AfbUtils.toRoundBitmap(AfbUtils.compressImage(b));
