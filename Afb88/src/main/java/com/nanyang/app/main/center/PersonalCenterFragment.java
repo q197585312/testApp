@@ -85,10 +85,10 @@ public class PersonalCenterFragment extends BaseFragment {
                     i.setClass(mContext, PersonCenterActivity.class);
                     startActivity(i);
                 } else if (item.getText().equals(getString(R.string.Edit_information))) {
-                    Intent i = getStartIntent(getString(R.string.Modify_Avatar));
-                    MainActivity a = (MainActivity) getActivity();
-                    i.setClass(a, PersonCenterActivity.class);
-                    a.startActivityForResult(i, 0);
+//                    Intent i = getStartIntent(getString(R.string.Modify_Avatar));
+//                    MainActivity a = (MainActivity) getActivity();
+//                    i.setClass(a, PersonCenterActivity.class);
+//                    a.startActivityForResult(i, 0);
                 } else if (item.getText().equals(getString(R.string.transfer))) {
                     Intent i = getStartIntent(getString(R.string.transfer));
                     i.setClass(mContext, PersonCenterActivity.class);

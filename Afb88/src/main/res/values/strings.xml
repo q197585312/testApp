@@ -215,7 +215,7 @@
     <string name="home">Home</string>
     <string name="center">Center</string>
     <!--修改密码-->
-    <string name="username_m">User Name:</string>
+    <string name="username_m">Name:</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="confirm_password">Confirm Password</string>
