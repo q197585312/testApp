@@ -288,15 +288,15 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                     }
 
                 };
-                rv.setAdapter(baseRecyclerAdapter);
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         presenter.getStateHelper().switchOddsType(item.getType());
                         closePopupWindow();
-                        ((TextView) view).setText(item.getText());
+                        tvOddsType.setText(item.getText());
                     }
                 });
+                rv.setAdapter(baseRecyclerAdapter);
             }
         });
         popWindow.setTrans(1f);
