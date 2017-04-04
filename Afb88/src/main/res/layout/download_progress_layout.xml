@@ -9,6 +9,7 @@
     android:paddingTop="30dp" >
 
     <ProgressBar
+        android:background="@color/green_light"
         android:id="@+id/updateProgress"
         style="@style/ProgressBar_Mini"
         android:layout_width="match_parent"

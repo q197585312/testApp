@@ -16,6 +16,6 @@ public interface WelcomeContract {
 
     interface Presenter extends IBasePresenter {
         void checkVersion(String versionName);
-        void updateVersion();
+        void updateVersion(String version);
     }
 }

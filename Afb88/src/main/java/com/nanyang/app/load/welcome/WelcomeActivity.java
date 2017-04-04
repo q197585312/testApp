@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -24,6 +25,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     private Dialog noticeDialog;
     private ProgressBar mProgressBar;
     private AlertDialog downloadDialog;
+    private long totleLength;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,17 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     }
 
     @Override
-    public void onLoadingApk(int len, long contentLength) {
-        mProgressBar.setProgress((int) (len * 100 / contentLength));
+    public void onLoadingApk(final int len, final long contentLength) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                totleLength+=len;
+                Log.d("LOAD", "contentLength:" + contentLength + "\n" +
+                        "length:" + totleLength);
+                mProgressBar.setProgress((int) (totleLength * 100 / contentLength));
+            }
+        });
+
     }
 
     @Override
@@ -56,6 +67,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
     @Override
     public void onLoadEnd(File file) {
+        downloadDialog.dismiss();
         SystemTool.installApk(mContext, file);
     }
 
@@ -64,7 +76,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     public void onGetData(String data) {
         try {
             if (Float.valueOf(data) > Float.valueOf(SystemTool.getPackageInfo(mContext).versionName)) {
-                showUpdateDialog();
+                showUpdateDialog(data);
                 return;
             }
         } catch (PackageManager.NameNotFoundException e) {
@@ -75,34 +87,34 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
     }
 
-    private void showUpdateDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.Base_Theme_AppCompat_Dialog);
+    private void showUpdateDialog(final String version) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.Base_AlertDialog);
         builder.setTitle(R.string.Update);
         builder.setMessage(R.string.download_now);
         builder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 noticeDialog.dismiss();
-                showDownloadDialog();
+                showDownloadDialog(version);
             }
         });
 
         noticeDialog = builder.create();
-        noticeDialog.setCanceledOnTouchOutside(false);
+        noticeDialog.setCancelable(false);
         noticeDialog.show();
     }
 
-    private void showDownloadDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.Base_Theme_AppCompat_Dialog);
+    private void showDownloadDialog(String version) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.Base_AlertDialog);
         builder.setTitle(R.string.Loading);
         final LayoutInflater inflater = LayoutInflater.from(mContext);
         View v = inflater.inflate(R.layout.download_progress_layout, null);
         mProgressBar = (ProgressBar) v.findViewById(R.id.updateProgress);
         builder.setView(v);
-
         downloadDialog = builder.create();
-        downloadDialog.setCanceledOnTouchOutside(false);
+        downloadDialog.setCancelable(false);
         downloadDialog.show();
-        presenter.updateVersion();
+        presenter.updateVersion(version);
+        totleLength=0;
     }
 
 }
