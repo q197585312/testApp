@@ -7,14 +7,10 @@ package com.nanyang.app;
 public class AppConstant {
 
 
-    public static String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
-    ;
+    public static final String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
+    public static final String CHECK_VERSION = "http://www.appgd88.com/afb88version.php?app=android";
+    public static final String DOWNLOAD_APP = "http://appgd88.com/afb88/download/android/afb88.apk";
 
-    static {
-//        HOST="http://www.doo88.net/";
-
-
-    }
 
     public static final String APP_HOST = "http://main55.afb88.com/";
 
@@ -25,6 +21,8 @@ public class AppConstant {
     public static String KEY_BOOLEAN = "KEY_BOOLEAN";
     public static final String KEY_DATA2 = "KEY_DATA2";
     public static final String KEY_DATA3 = "KEY_DATA3";
+
+
     /**
      * http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462
      * RUNING

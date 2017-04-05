@@ -51,10 +51,10 @@ public interface ApiService {
 
     /*Load模块*/
     /*welcome*/
-    @GET("http://www.appgd88.com/afb88version.php?app=android")
+    @GET(AppConstant.CHECK_VERSION)
     Flowable<String> checkVersion();
 
-    @GET("http://appgd88.com/afb88/download/android/afb88.apk")
+    @GET(AppConstant.DOWNLOAD_APP)
     Flowable<ResponseBody> updateVersion();
 
     /*login*/

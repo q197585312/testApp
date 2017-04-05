@@ -65,7 +65,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<String, WelcomeContract.Vie
     public void updateVersion(final String version) {
         String path = Environment.getExternalStorageDirectory().getPath();
 
-        file = new File(path, "afb88_test.apk");
+        file = new File(path, "afb88.apk");
         file.deleteOnExit();
         Disposable subscription = getService(ApiService.class).updateVersion().observeOn(Schedulers.io()).subscribeOn(Schedulers.io())
 //                mApiWrapper.updateVersion()
