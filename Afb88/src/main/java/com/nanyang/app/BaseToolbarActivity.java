@@ -23,6 +23,7 @@ import java.util.concurrent.TimeUnit;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
@@ -41,12 +42,14 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     @Nullable
     protected
     Toolbar toolbar;
-    private Disposable updateDisposable;
-    private Disposable updateBalanceSubscribe;
+
+    private CompositeDisposable mCompositeSubscription;
 
     @Override
     public void initData() {
         super.initData();
+        mCompositeSubscription= new CompositeDisposable();
+
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvToolbarRight = (TextView) findViewById(R.id.tv_toolbar_right);
         tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
@@ -68,21 +71,13 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     void stopUpdateState() {
-        if (updateDisposable != null) {
-            updateDisposable.dispose();
-            updateDisposable.isDisposed();
-            updateDisposable = null;
-        }
-        if (updateBalanceSubscribe != null) {
-            updateBalanceSubscribe.dispose();
-            updateBalanceSubscribe.isDisposed();
-            updateBalanceSubscribe = null;
-        }
+        if(mCompositeSubscription!=null)
+            mCompositeSubscription.clear();
     }
 
     public void startUpdateState() {
         stopUpdateState();
-        updateDisposable = Flowable.interval(2, 60, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
+        Disposable updateDisposable = Flowable.interval(2, 60, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
             @Override
             public Publisher<String> apply(Long aLong) throws Exception {
                 return getService(ApiService.class).getData(AppConstant.URL_UPDATE_STATE);
@@ -94,18 +89,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                @Override
                                public void accept(String allData) throws Exception {
                                    if (!allData.trim().equals("100")) {
-                                       BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
-                                           @Override
-                                           protected void clickSure(View v) {
-                                               Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                                               startActivity(intent);
-                                           }
-                                       };
-                                       pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-                                       pop.getChooseMessage().setText(R.string.another_login);
-                                       pop.getChooseSureTv().setText(getString(R.string.sure));
-                                       pop.getChooseCancelTv().setText(getString(R.string.cancel));
-                                       onPopupWindowCreated(pop, Gravity.CENTER);
+                                       showReLoginPopupWindow();
 
                                    }
 
@@ -128,13 +112,29 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                            }
 
                 );
+        mCompositeSubscription.add(updateDisposable);
         updateBalance();
 
     }
 
+    protected void showReLoginPopupWindow() {
+        BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
+            @Override
+            protected void clickSure(View v) {
+                Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+        };
+        pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+        pop.getChooseMessage().setText(R.string.another_login);
+        pop.getChooseSureTv().setText(getString(R.string.sure));
+        pop.getChooseCancelTv().setText(getString(R.string.cancel));
+        onPopupWindowCreated(pop, Gravity.CENTER);
+    }
+
     public void updateBalance() {
 
-        updateBalanceSubscribe = getService(ApiService.class).getData(AppConstant.URL_UPDATE_BALANCE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        Disposable updateBalanceSubscribe = getService(ApiService.class).getData(AppConstant.URL_UPDATE_BALANCE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {//onNext
                                @Override
                                public void accept(String allData) throws Exception {
@@ -147,7 +147,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                }
                            }
                 );
-
+        mCompositeSubscription.add(updateBalanceSubscribe);
     }
 
     protected void updateBalanceTv(String allData) {
@@ -194,4 +194,5 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public Activity getContextActivity() {
         return this;
     }
+
 }

@@ -7,7 +7,7 @@ import java.util.Map;
  *
  */
 
- class LoginInfo {
+public class LoginInfo {
    /* __VIEWSTATE	/wEPDwUKLTE5MDg0OTk2OA9kFgJmD2QWBAIBDxYCHgVzdHlsZQUxYmFja2dyb3VuZDp1cmwoaW1hZ2VzL2xvZ2luX0VOLVVTLnBuZykgbm8tcmVwZWF0OxYCZg9kFgICBw8PFgIeBFRleHQFBUxvZ2luZGQCAg8WAh8ABTliYWNrZ3JvdW5kOnVybChpbWFnZXMvbGlzdF9FTi1VUy5wbmcpIG5vLXJlcGVhdCBjZW50ZXIgMDtkZNRh3MZ0akiK/k7BU0DrdOa2KqSQAkPJBUPNRKepAPLW
     __EVENTVALIDATION	/wEdAAYfMKBnGzoFoip6aJJE6fpaiHrx0gRh57qNYHb+gYJUfmN6ZYJNGAQHn0c9zMgZU3A/F856zktixbVekFwCZlBeynuqL3cQJfeeYQ4/gSeOva+f28GNV31+z65DbDqxMS5lXRgroCj8wpuoKkde4QtUV2EKHgwjnQ91GIjhKi6heQ==
     lstLang	Default.aspx?lang=EN-US

@@ -9,9 +9,9 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
+import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
 import java.util.List;
@@ -22,7 +22,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2017/2/5 0005.
  */
-public class RegisterActivity extends BaseToolbarActivity<RegisterPresenter> implements RegisterContract.View, View.OnFocusChangeListener {
+public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterContract.View, View.OnFocusChangeListener {
 
 
     @Bind(R.id.edt_account)
@@ -264,4 +264,7 @@ public class RegisterActivity extends BaseToolbarActivity<RegisterPresenter> imp
     }
 
 
+    public void clickBack(View view) {
+        finish();
+    }
 }

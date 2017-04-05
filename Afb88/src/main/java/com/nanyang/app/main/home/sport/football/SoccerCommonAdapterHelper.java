@@ -36,9 +36,9 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         tvRightMark.setVisibility(View.VISIBLE);
 
         if (((BallItemCallBack) back).isItemCollection(item))
-            tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_soild);
+            tvCollection.setBackgroundResource(R.mipmap.star_red_solid);
         else
-            tvCollection.setBackgroundResource(R.mipmap.collection_star_yellow_not_soild);
+            tvCollection.setBackgroundResource(R.mipmap.star_red_not_solid);
 
         tvCollection.setOnClickListener(new View.OnClickListener() {
             @Override

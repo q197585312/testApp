@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
@@ -23,7 +24,10 @@ import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
+
+import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +37,12 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.unkonw.testapp.libs.api.Api.getService;
 
 
 public class SportActivity extends BaseToolbarActivity {
@@ -66,6 +76,7 @@ public class SportActivity extends BaseToolbarActivity {
     private String currentTag;
     private HashMap<String, BaseSportFragment> mapFragment;
     private BaseSportFragment currentFragment;
+    private Disposable subscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +156,35 @@ public class SportActivity extends BaseToolbarActivity {
         showFragmentToActivity(currentFragment, R.id.fl_content, currentTag);
 
         getApp().setBetParList(null);
+        oddsType();
+    }
+
+    private void oddsType() {
+        subscription = getService(ApiService.class).getData(AppConstant.URL_ODDS_TYPE + "HK").subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer<String>() {//onNext
+                    @Override
+                    public void accept(String allData) throws Exception {
+
+                    }
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        ToastUtils.showShort(throwable.getMessage());
+
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+
+                        subscription.request(Long.MAX_VALUE);
+                    }
+                });
 
     }
 
@@ -229,5 +269,12 @@ public class SportActivity extends BaseToolbarActivity {
     @Override
     protected void updateBalanceTv(String allData) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if(subscription!=null)
+        subscription.isDisposed();
     }
 }

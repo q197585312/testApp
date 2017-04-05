@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,6 +19,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -29,6 +31,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
+import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
@@ -299,13 +302,28 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     @Nullable
     private List<TableSportInfo<B>> parseTableModuleBeen(String s) throws JSONException {
-        s= Html.fromHtml(s).toString();
-        JSONArray jsonArray = new JSONArray(s);
-        if (jsonArray.length() > 4) {
-            parseLidValue(jsonArray);
-            JSONArray dataListArray = jsonArray.getJSONArray(3);
-            this.dataJsonArray = dataListArray;
-            return updateJsonData(dataListArray);
+        s = Html.fromHtml(s).toString();
+        if (s.contains("Session Expired")) {
+            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(baseView.getContextActivity(), new View(baseView.getContextActivity())) {
+                @Override
+                protected void clickSure(View v) {
+                    Intent intent = new Intent(baseView.getContextActivity(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    baseView.getContextActivity().startActivity(intent);
+                }
+            };
+            pop.getChooseTitleTv().setText(R.string.confirm_or_not);
+            pop.getChooseMessage().setText(R.string.another_login);
+            pop.getChooseSureTv().setText(R.string.sure);
+            pop.getChooseCancelTv().setText(R.string.cancel);
+            baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+        } else {
+            JSONArray jsonArray = new JSONArray(s);
+            if (jsonArray.length() > 4) {
+                parseLidValue(jsonArray);
+                JSONArray dataListArray = jsonArray.getJSONArray(3);
+                this.dataJsonArray = dataListArray;
+                return updateJsonData(dataListArray);
+            }
         }
         return new ArrayList<>();
     }
@@ -898,7 +916,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     @TargetApi(Build.VERSION_CODES.KITKAT)
     protected List<TableSportInfo<B>> updateJsonArray(String updateString) {
         try {
-            updateString= Html.fromHtml(updateString).toString();
+            updateString = Html.fromHtml(updateString).toString();
             LogUtil.d("UpdateData", updateString);
             JSONArray jsonArray = new JSONArray(updateString);
             boolean modified = false;
@@ -925,35 +943,34 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 //                Map<JSONArray, JSONArray> addMapLeague = new HashMap<>();
 
 
-
-                    for (int i = 0; i < dataJsonArray.length(); i++) {
-                        JSONArray jsonArray3 = dataJsonArray.getJSONArray(i);
-                        if (jsonArray3.length() > 1) {
-                            JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
-                            for (int j = 0; j < LeagueMatchArray.length(); j++) {
-                                String sid = LeagueMatchArray.getJSONArray(j).getString(getIndexSocOddsId());
-                                for (int k = 0; k < modifyArray.length(); k++) {
-                                    JSONArray jsonArray1 = modifyArray.getJSONArray(k);
-                                    String modifyId = jsonArray1.getString(0);
-                                    JSONArray modifyIndex = jsonArray1.getJSONArray(1);
-                                    JSONArray modifyData = jsonArray1.getJSONArray(2);
-                                    if (modifyId.equals(sid)) {
-                                        for (int l = 0; l < modifyIndex.length(); l++) {
-                                            LeagueMatchArray.getJSONArray(j).put(modifyIndex.getInt(l), modifyData.getString(l));
-                                        }
+                for (int i = 0; i < dataJsonArray.length(); i++) {
+                    JSONArray jsonArray3 = dataJsonArray.getJSONArray(i);
+                    if (jsonArray3.length() > 1) {
+                        JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                        for (int j = 0; j < LeagueMatchArray.length(); j++) {
+                            String sid = LeagueMatchArray.getJSONArray(j).getString(getIndexSocOddsId());
+                            for (int k = 0; k < modifyArray.length(); k++) {
+                                JSONArray jsonArray1 = modifyArray.getJSONArray(k);
+                                String modifyId = jsonArray1.getString(0);
+                                JSONArray modifyIndex = jsonArray1.getJSONArray(1);
+                                JSONArray modifyData = jsonArray1.getJSONArray(2);
+                                if (modifyId.equals(sid)) {
+                                    for (int l = 0; l < modifyIndex.length(); l++) {
+                                        LeagueMatchArray.getJSONArray(j).put(modifyIndex.getInt(l), modifyData.getString(l));
                                     }
                                 }
-                                if (deleteData.contains(sid)) {
-                                    LeagueMatchArray.remove(j);
-                                }
                             }
-                            if (LeagueMatchArray.length() < 1) {
-                                dataJsonArray.remove(i);
+                            if (deleteData.contains(sid)) {
+                                LeagueMatchArray.remove(j);
                             }
                         }
+                        if (LeagueMatchArray.length() < 1) {
+                            dataJsonArray.remove(i);
+                        }
                     }
+                }
 
-                if(added) {
+                if (added) {
                     for (int i = 0; i < addArray.length(); i++) {
                         JSONArray array = addArray.getJSONArray(i);
                         if (array.length() > 1)
@@ -1019,10 +1036,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                             }
                         }
                         matchArrayOld = matchArrayNew;
-                        matchArrayTemp=matchArrayNew;
+                        matchArrayTemp = matchArrayNew;
                     }
                     dataTableOld.put(1, matchArrayTemp);//替换联赛数据
-                    dataJsonArray.put(i,dataTableOld);
+                    dataJsonArray.put(i, dataTableOld);
                     return;
                 }
             }

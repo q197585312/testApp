@@ -5,7 +5,41 @@
     android:background="@color/green500"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_layout" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:background="@mipmap/toolbar_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginRight="35dp"
+            android:onClick="clickBack"
+            android:paddingLeft="15dp">
+
+            <ImageView
+                android:layout_width="20dp"
+
+                android:layout_height="20dp"
+                android:layout_gravity="center"
+                android:src="@mipmap/arrow_white_back" />
+        </FrameLayout>
+
+        <FrameLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="35dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:src="@mipmap/logo" />
+        </FrameLayout>
+    </LinearLayout>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -44,9 +78,6 @@
                 android:visibility="gone" />
 
             <EditText
-                android:paddingTop="8dp"
-                android:paddingBottom="4dp"
-                android:paddingRight="8dp"
                 android:id="@+id/edt_password"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -55,6 +86,9 @@
                 android:hint="@string/Password"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
@@ -71,9 +105,6 @@
                 android:visibility="gone" />
 
             <EditText
-                android:paddingTop="8dp"
-                android:paddingBottom="4dp"
-                android:paddingRight="8dp"
                 android:id="@+id/edt_password_repeat"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -82,6 +113,9 @@
                 android:hint="@string/Repeat_password"
                 android:inputType="textPassword"
                 android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
@@ -99,9 +133,6 @@
 
 
             <TextView
-                android:paddingTop="8dp"
-                android:paddingBottom="4dp"
-                android:paddingRight="8dp"
                 android:id="@+id/tv_currency"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -109,6 +140,9 @@
                 android:drawableRight="@mipmap/drop"
                 android:hint="Currency"
                 android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -124,9 +158,6 @@
                 android:visibility="gone" />
 
             <EditText
-                android:paddingTop="8dp"
-                android:paddingBottom="4dp"
-                android:paddingRight="8dp"
                 android:id="@+id/edt_contactnum"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -135,6 +166,9 @@
                 android:hint="Contact Number"
                 android:inputType="phone"
                 android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
@@ -151,9 +185,6 @@
                 android:visibility="gone" />
 
             <EditText
-                android:paddingTop="8dp"
-                android:paddingBottom="4dp"
-                android:paddingRight="8dp"
                 android:id="@+id/edt_email"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -162,6 +193,9 @@
                 android:hint="@string/Email"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
@@ -178,9 +212,6 @@
                 android:visibility="gone" />
 
             <TextView
-                android:paddingTop="8dp"
-                android:paddingBottom="4dp"
-                android:paddingRight="8dp"
                 android:id="@+id/tv_bankname"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -189,6 +220,9 @@
                 android:hint="bankname"
                 android:inputType="phone"
                 android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="15sp" />
@@ -231,9 +265,6 @@
                 android:visibility="gone" />
 
             <EditText
-                android:paddingTop="8dp"
-                android:paddingBottom="4dp"
-                android:paddingRight="8dp"
                 android:id="@+id/edt_accountnumber"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -242,6 +273,9 @@
                 android:hint="Account Number"
                 android:inputType="phone"
                 android:maxLines="1"
+                android:paddingBottom="4dp"
+                android:paddingRight="8dp"
+                android:paddingTop="8dp"
                 android:text=""
                 android:textColor="@color/black"
                 android:textColorHint="@color/trans_white"
@@ -262,9 +296,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:textAllCaps="false"
                 android:background="@drawable/rectangle_yellow_button_all_corner5"
                 android:text="@string/Submit"
+                android:textAllCaps="false"
                 android:textColor="@color/white" />
         </LinearLayout>
 

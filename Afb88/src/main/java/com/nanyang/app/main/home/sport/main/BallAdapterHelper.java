@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
  */
 
 public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I> {
-    final int google_yellow = 0XFFFBBC05;
+    final int google_yellow = 0XFFad0c11;
 
     final int black_grey = 0XFF333333;
     protected Context context;
@@ -55,7 +55,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         final TextView tvCollection = helper.getView(R.id.module_match_collection_tv);
         liveTv.setTextColor(google_yellow);
         dateTv.setTextColor(google_yellow);
-        timeTv.setTextColor(context.getResources().getColor(R.color.green_light));
+        timeTv.setTextColor(black_grey);
         dateTv.setTextSize(10);
         dateTv.setPadding(0, 0, 0, 0);
 
@@ -330,14 +330,16 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         if (f.equals("0"))
             textView.setText("");
         else {
-            textView.setText(f);
-        }
+            String value=f;
+
+
         textView.setBackgroundResource(0);
         if (!f.equals("") && !f.equals("0")) {
             if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
-                textView.setText(AfbUtils.changeValueS(f));
+                value=AfbUtils.changeValueS(f);
+
             else {
-                textView.setText(AfbUtils.decimalValue(Float.valueOf(f), "0.00"));
+                value=AfbUtils.decimalValue(Float.valueOf(f), "0.00");
             }
             if (isAnimation) {
                 Animation animation = new AlphaAnimation(0.0f, 1.0f);
@@ -372,31 +374,15 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
             });
         }
+        if(Float.valueOf(value)<0){
+            textView.setTextColor(google_yellow);
+        }else{
+            textView.setTextColor(black_grey);
+        }
+            textView.setText(value);
+    }
 
 
-
-
-
-              /*  if (isAnimation && updateType != 1) {
-
-                    textView.setAnimation(id, getAnimation(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-                            helper.setBackgroundResource(id, R.color.dig_game_bg);
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            helper.setBackgroundColorRes(id, R.color.white);
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-                            helper.setBackgroundColorRes(id, R.color.dig_game_bg);
-                        }
-                    }));
-
-                }*/
     }
 
     @Override
