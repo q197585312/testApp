@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+import cn.finalteam.toolsfinal.ApkUtils;
 
 /**
  * Created by Administrator on 2017/2/15.
@@ -103,6 +104,14 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
     }
 
     private void loginGD() {
-        presenter.skipGd88();
+        if(ApkUtils.isAvilible(this,"gaming178.com.baccaratgame")){
+            presenter.skipGd88();
+        }else{
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
+            intent.setData(content_url);
+            startActivity(intent);
+        }
     }
 }

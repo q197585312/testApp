@@ -28,7 +28,7 @@ import butterknife.ButterKnife;
  */
 
 public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I> {
-    final int google_yellow = 0XFFad0c11;
+    final int red_black = 0XFFad0c11;
 
     final int black_grey = 0XFF333333;
     protected Context context;
@@ -53,8 +53,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView awayTv = helper.getTextView(R.id.module_match_away_team_tv);
         View tvRightMark = helper.getView(R.id.module_right_mark_tv);
         final TextView tvCollection = helper.getView(R.id.module_match_collection_tv);
-        liveTv.setTextColor(google_yellow);
-        dateTv.setTextColor(google_yellow);
+        liveTv.setTextColor(red_black);
+        dateTv.setTextColor(red_black);
         timeTv.setTextColor(black_grey);
         dateTv.setTextSize(10);
         dateTv.setPadding(0, 0, 0, 0);
@@ -103,11 +103,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         tvCollection.setVisibility(View.GONE);
         String isHomeGive = item.getIsHomeGive();
         if (isHomeGive.equals("1")) {
-            homeTv.setTextColor(google_yellow);
+            homeTv.setTextColor(red_black);
             awayTv.setTextColor(black_grey);
         } else {
             homeTv.setTextColor(black_grey);
-            awayTv.setTextColor(google_yellow);
+            awayTv.setTextColor(red_black);
         }
 
         tvRightMark.setVisibility(View.GONE);
@@ -174,6 +174,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String home = item.getHome();
         homeTv.setText(home);
         awayTv.setText(away);
+        if(liveTv.getText().toString().trim().isEmpty()){
+            liveTv.setVisibility(View.GONE);
+        }else{
+            liveTv.setVisibility(View.VISIBLE);
+        }
     }
 
 
@@ -375,7 +380,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             });
         }
         if(Float.valueOf(value)<0){
-            textView.setTextColor(google_yellow);
+            textView.setTextColor(red_black);
         }else{
             textView.setTextColor(black_grey);
         }

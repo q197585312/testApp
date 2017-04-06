@@ -20,6 +20,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -77,6 +78,9 @@ public interface ApiService {
     @GET
     Flowable<String> getData(@Url String url);
 
+    @Headers("Referer: http://main55.afb88.com/_Bet/Panel.aspx?chg=true")
+    @GET
+    Flowable<String> postData(@Url String url);
     @GET
     Flowable<BettingPromptBean> getBetData(@Url String url);
 

@@ -108,7 +108,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         String football = getString(R.string.football);
 
         if (parent.equals(football)) {
-            paramT = "";
+            paramT = "&T=MB2";
             if (isMixParlay) {
                 helper = new SoccerMixBetHelper(this);
             } else {

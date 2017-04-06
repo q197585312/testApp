@@ -12,8 +12,6 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
-import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
@@ -29,7 +27,7 @@ import java.util.List;
  */
 
 public class SoccerEarlyState extends SoccerCommonState {
-    private MenuItemInfo selectedDateInfo= new MenuItemInfo(2, getBaseView().getContextActivity().getString(R.string.all), "");;
+    private MenuItemInfo selectedDateInfo= new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.all), "");;
 
     public SoccerEarlyState(SportContract.View baseView) {
         super(baseView);
@@ -45,7 +43,7 @@ public class SoccerEarlyState extends SoccerCommonState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_EARLY;
+        return AppConstant.URL_FOOTBALL_EARLY+"&"+selectedDateInfo.getRes()+"&wd="+selectedDateInfo.getType();
     }
 
     @Override
@@ -91,7 +89,7 @@ public class SoccerEarlyState extends SoccerCommonState {
         }
     }
 
-    @Override
+    /*@Override
     protected List<TableSportInfo<SoccerCommonInfo>> filterChildData(List<TableSportInfo<SoccerCommonInfo>> allData) {
         List<TableSportInfo<SoccerCommonInfo>> tableSportInfos = super.filterChildData(allData);
         List<TableSportInfo<SoccerCommonInfo>> tableDateInfos =new ArrayList<>();
@@ -122,7 +120,7 @@ public class SoccerEarlyState extends SoccerCommonState {
             }
         }
         return tableDateInfos;
-    }
+    }*/
 
     private void showDateChoicePop() {
         BasePopupWindow popChoice = new BasePopupWindow(getBaseView().getContextActivity(), new View(getBaseView().getContextActivity()), 800, LinearLayout.LayoutParams.WRAP_CONTENT) {
@@ -188,7 +186,10 @@ public class SoccerEarlyState extends SoccerCommonState {
     }
 
     private void filterDateData(MenuItemInfo item) {
+        //http://main55.afb88.com/_View/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=995449827&wd=2017-04-06&ia=0&LID=&_=1491446332397
+        //http://main55.afb88.com/_View/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=1524118851&wd=2017-04-11&ia=1&LID=&_=1491446733213
         this.selectedDateInfo=item;
-        updateAllDate(allData);
+        refresh();
+
     }
 }

@@ -50,12 +50,12 @@ public class AppConstant {
 
     public static String URL_FOOTBALL_RUNNING = HOST + "_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462";
     public static String URL_FOOTBALL_TODAY = HOST + "_view/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=153004462&wd=&ia=0";
-    public static String URL_FOOTBALL_EARLY = HOST + "_view/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=246503518&ia=0";
+    public static String URL_FOOTBALL_EARLY = HOST + "_view/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=246503518";
     public static String URL_FOOTBALL_EARLY_Mix = HOST + "_view/ParGenWFH.ashx?g=4&ot=e&update=true&r=866546094";
     public static String URL_FOOTBALL_TODAY_Mix = HOST + "_view/ParGenWFH.ashx?g=4&ot=t&update=true&r=1027945624";
     public static String URL_FOOTBALL_OUT_RIGHT = HOST + "_view/OddsGen50.ashx?update=true&r=2076712019";
 
-    public static String URL_ODDS = HOST + "_Bet/JRecPanel.aspx?";
+    public static String URL_ODDS = HOST + "_bet/JRecPanel.aspx?";
 
     public static final String URL_SOCCER_REMOVE_MIX = HOST + "_bet/ParRemove.aspx";
 

@@ -7,15 +7,14 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.training.ScrollLayout;
 
-import io.reactivex.disposables.Disposable;
-
 /**
  * Created by Administrator on 2017/3/10.
  */
 
 public interface IObtainDataState {
-    Disposable refresh();
-    Disposable startUpdateData();
+    void refresh();
+
+    void startUpdateData();
 
     void stopUpdateData();
 
@@ -36,10 +35,14 @@ public interface IObtainDataState {
     void unSubscribe();
 
     void notifyDataChanged();
+
     void switchOddsType(String oddsType);
+
     void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos);
 
     boolean isMix();
+
     boolean mix();
+
     void clearMix();
 }

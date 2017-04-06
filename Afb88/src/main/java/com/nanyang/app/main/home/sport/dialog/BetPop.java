@@ -241,7 +241,7 @@ public class BetPop extends BasePopupWindow {
             }
         }
         betNameTv.setText(state);
-        betHdpTv.setText(hdp + "@" + Html.fromHtml(result.getBetOdds()).toString());
+        betHdpTv.setText(Html.fromHtml(hdp).toString() + "@" + Html.fromHtml(result.getBetOdds()).toString());
 
         betSureBtn.setOnClickListener(new View.OnClickListener() {
             @Override

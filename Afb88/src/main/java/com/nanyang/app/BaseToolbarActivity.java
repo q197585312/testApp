@@ -2,6 +2,7 @@ package com.nanyang.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
@@ -11,23 +12,20 @@ import android.widget.TextView;
 import com.nanyang.app.load.login.LoginActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.utils.NetWorkUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
-import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscription;
 
-import java.util.concurrent.TimeUnit;
-
 import cn.finalteam.toolsfinal.DeviceUtils;
-import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
@@ -43,12 +41,12 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     protected
     Toolbar toolbar;
 
-    private CompositeDisposable mCompositeSubscription;
+    private volatile CompositeDisposable mCompositeSubscription;
 
     @Override
     public void initData() {
         super.initData();
-        mCompositeSubscription= new CompositeDisposable();
+        mCompositeSubscription = new CompositeDisposable();
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvToolbarRight = (TextView) findViewById(R.id.tv_toolbar_right);
@@ -71,48 +69,62 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     void stopUpdateState() {
-        if(mCompositeSubscription!=null)
+        if (mCompositeSubscription != null)
             mCompositeSubscription.clear();
+        updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
     }
+
+
+    Runnable dataUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            Disposable subscribe = getService(ApiService.class).getData(AppConstant.URL_UPDATE_STATE)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .takeWhile(new Predicate<String>() {
+                        @Override
+                        public boolean test(String s) throws Exception {
+                            return NetWorkUtil.isNetConnected(mContext);
+                        }
+                    })
+                    .subscribe(new Consumer<String>() {//onNext
+                                   @Override
+                                   public void accept(String allData) throws Exception {
+                                       if (!allData.trim().equals("100")) {
+                                           showReLoginPopupWindow();
+
+                                       }
+
+                                   }
+                               }, new Consumer<Throwable>() {
+                                   @Override
+                                   public void accept(Throwable throwable) {
+                                       ToastUtils.showShort(throwable.getMessage());
+                                   }
+                               }, new Action() {//完成
+                                   @Override
+                                   public void run() throws Exception {
+                                   }
+                               }, new Consumer<Subscription>() {//开始绑定
+                                   @Override
+                                   public void accept(Subscription subscription1) throws Exception {
+                                       if (!NetWorkUtil.isNetConnected(mContext)) {
+                                           subscription1.cancel();
+                                       }
+                                       subscription1.request(Long.MAX_VALUE);
+                                   }
+                               }
+
+                    );
+            mCompositeSubscription.add(subscribe);
+            updateHandler.postDelayed(this, 20000);// 50是延时时长
+        }
+    };
+    Handler updateHandler = new Handler();
 
     public void startUpdateState() {
         stopUpdateState();
-        Disposable updateDisposable = Flowable.interval(2, 60, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
-            @Override
-            public Publisher<String> apply(Long aLong) throws Exception {
-                return getService(ApiService.class).getData(AppConstant.URL_UPDATE_STATE);
-            }
-        }).subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-
-                .subscribe(new Consumer<String>() {//onNext
-                               @Override
-                               public void accept(String allData) throws Exception {
-                                   if (!allData.trim().equals("100")) {
-                                       showReLoginPopupWindow();
-
-                                   }
-
-                               }
-                           }, new Consumer<Throwable>() {//错误
-                               @Override
-                               public void accept(Throwable throwable) throws Exception {
-                                   ToastUtils.showShort(throwable.getMessage());
-                               }
-                           }, new Action() {//完成
-                               @Override
-                               public void run() throws Exception {
-                               }
-                           }, new Consumer<Subscription>() {//开始绑定
-                               @Override
-                               public void accept(Subscription subscription1) throws Exception {
-
-                                   subscription1.request(Long.MAX_VALUE);
-                               }
-                           }
-
-                );
-        mCompositeSubscription.add(updateDisposable);
+        updateHandler.postDelayed(dataUpdateRunnable, 2000);// 打开定时器，执行操作
         updateBalance();
 
     }

@@ -4,6 +4,7 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -29,6 +30,7 @@ import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
+import com.unkonw.testapp.libs.utils.NetWorkUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
@@ -36,7 +38,6 @@ import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.reactivestreams.Publisher;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
@@ -44,7 +45,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -56,6 +56,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
+import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
@@ -65,7 +66,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  */
 
 public abstract class SportState<B extends SportInfo, V extends SportContract.View<B>> implements IObtainDataState {
-    private String LID;
+    private volatile String LID;
     private int page;
     private List<TableSportInfo<B>> filterData;
     private Map<String, Boolean> leagueSelectedMap = new HashMap<>();
@@ -139,13 +140,15 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected BaseRecyclerAdapter<B> baseRecyclerAdapter;
 
     @Override
-    public Disposable refresh() {
+    public void refresh() {
         Disposable subscribe = getService(ApiService.class).getData(getRefreshUrl()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                 .map(new Function<String, List<TableSportInfo<B>>>() {
 
                     @Override
                     public List<TableSportInfo<B>> apply(String s) throws Exception {
+
                         return parseTableModuleBeen(s);
+
                     }
                 })
                 .subscribeOn(Schedulers.io())
@@ -156,6 +159,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         baseView.checkMix(isMix());
                         initAllData(allData1);
                         startUpdateData();
+                        baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -172,11 +176,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     @Override
                     public void accept(Subscription subscription1) throws Exception {
                         baseView.showLoadingDialog();
+                        if (!NetWorkUtil.isNetConnected(getBaseView().getContextActivity())) {
+                            subscription1.cancel();
+                        }
                         subscription1.request(Long.MAX_VALUE);
                     }
                 });
         mCompositeSubscription.add(subscribe);
-        return subscribe;
 
     }
 
@@ -392,69 +398,77 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected abstract List<TableSportInfo<B>> filterChildData(List<TableSportInfo<B>> dateTemp);
 
+    Runnable dataUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            Flowable<String> flowable = null;
+            if (LID != null && LID.length() > 0) {
+                flowable = getService(ApiService.class).getData(getRefreshUrl() + "&LID=" + LID);
+            } else
+                flowable = getService(ApiService.class).getData(getRefreshUrl());
+            Disposable subscribe = flowable
+                    .subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+                    .takeWhile(new Predicate<String>() {
+                        @Override
+                        public boolean test(String s) throws Exception {
+                            return NetWorkUtil.isNetConnected(baseView.getContextActivity());
+                        }
+                    })
+                    .map(new Function<String, List<TableSportInfo<B>>>() {
+                        @Override
+                        public List<TableSportInfo<B>> apply(String s) throws Exception {
+                            if (LID != null && LID.length() > 0)
+                                return updateJsonArray(s);
+                            else
+                                return parseTableModuleBeen(s);
+                        }
+                    })
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<List<TableSportInfo<B>>>() {//onNext
+                                   @Override
+                                   public void accept(List<TableSportInfo<B>> allData) throws Exception {
+                                       if (allData != null && allData.size() > 0) {
+                                           updateAllDate(allData);
+                                       }
+                                   }
+                               }, new Consumer<Throwable>() {//错误
+                                   @Override
+                                   public void accept(Throwable throwable) throws Exception {
+                                       baseView.onFailed(throwable.getMessage());
+                                   }
+                               }, new Action() {//完成
+                                   @Override
+                                   public void run() throws Exception {
 
-    @Override
-    public Disposable startUpdateData() {
-        stopUpdateData();
-        updateDisposable = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
-            @Override
-            public Publisher<String> apply(Long aLong) throws Exception {
-                if (LID != null && LID.length() > 0)
-                    return getService(ApiService.class).getData(getRefreshUrl() + "&LID=" + LID);
-                else
-                    return getService(ApiService.class).getData(getRefreshUrl());
-            }
-        }).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-                .map(new Function<String, List<TableSportInfo<B>>>() {
-                    @Override
-                    public List<TableSportInfo<B>> apply(String s) throws Exception {
-                        if (LID != null && LID.length() > 0)
-                            return updateJsonArray(s);
-                        else
-                            return parseTableModuleBeen(s);
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .retry(2)
-                .subscribe(new Consumer<List<TableSportInfo<B>>>() {//onNext
-                               @Override
-                               public void accept(List<TableSportInfo<B>> allData) throws Exception {
-                                   if (allData != null && allData.size() > 0) {
-                                       updateAllDate(allData);
+                                   }
+                               }, new Consumer<Subscription>() {//开始绑定
+                                   @Override
+                                   public void accept(Subscription subscription1) throws Exception {
+
+                                       subscription1.request(Long.MAX_VALUE);
                                    }
                                }
-                           }, new Consumer<Throwable>() {//错误
-                               @Override
-                               public void accept(Throwable throwable) throws Exception {
-                                   baseView.onFailed(throwable.getMessage());
-                               }
-                           }, new Action() {//完成
-                               @Override
-                               public void run() throws Exception {
+                    );
+            mCompositeSubscription.add(subscribe);
 
-                               }
-                           }, new Consumer<Subscription>() {//开始绑定
-                               @Override
-                               public void accept(Subscription subscription1) throws Exception {
+            updateHandler.postDelayed(this, 20000);// 50是延时时长
+        }
+    };
+    Handler updateHandler = new Handler();
 
-                                   subscription1.request(Long.MAX_VALUE);
-                               }
-                           }
-                );
-        mCompositeSubscription.add(updateDisposable);
-        return updateDisposable;
-
+    @Override
+    public void startUpdateData() {
+        stopUpdateData();
+        updateHandler.postDelayed(dataUpdateRunnable, 20000);// 打开定时器，执行操作
     }
 
 
     @Override
     public void stopUpdateData() {
-        if (updateDisposable != null) {
-            updateDisposable.dispose();
-            boolean isDisposed = updateDisposable.isDisposed();
-            updateDisposable = null;
-        }
+        if (mCompositeSubscription != null)
+            mCompositeSubscription.clear();
+        updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
     }
 
     /**
@@ -1018,6 +1032,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         boolean addMatch = false;
                         JSONArray matchNew = arrayNew.getJSONArray(j);
                         String preId = matchNew.getString(getIndexPreSocOddsId());
+                        String idNew = matchNew.getString(getIndexSocOddsId());
+                        List<String> oldIds = new ArrayList<>();
+                        for (int k = 0; k < matchArrayOld.length(); k++) {
+                            oldIds.add(matchArrayOld.getJSONArray(k).getString(getIndexSocOddsId()));
+                        }
+                        if (oldIds.contains(idNew)) {
+                            continue;
+                        }
 
                         for (int k = 0; k < matchArrayOld.length(); k++) {
                             String id = matchArrayOld.getJSONArray(k).getString(getIndexSocOddsId());

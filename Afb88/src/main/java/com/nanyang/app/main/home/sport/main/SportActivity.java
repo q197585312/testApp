@@ -24,7 +24,6 @@ import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import org.reactivestreams.Subscription;
@@ -170,8 +169,6 @@ public class SportActivity extends BaseToolbarActivity {
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        ToastUtils.showShort(throwable.getMessage());
-
                     }
                 }, new Action() {//完成
                     @Override

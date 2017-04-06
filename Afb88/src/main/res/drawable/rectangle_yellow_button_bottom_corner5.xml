@@ -3,7 +3,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android"
     android:shape="rectangle" >
 
-    <solid android:color="#d6c37d" />
+    <solid android:color="#f3d563" />
     <!-- 描边采用那样的方式将外形轮廓线画出来，width表示笔的粗细，dashWidth表示小横线的宽度，dashGap表示小横线之间的距离 -->
     <padding
         android:bottom="3dp"
