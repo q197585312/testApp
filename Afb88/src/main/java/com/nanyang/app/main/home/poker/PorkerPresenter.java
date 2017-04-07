@@ -49,13 +49,13 @@ class PorkerPresenter extends BaseRetrofitPresenter<String, PorkerContract.View<
                             String url = Str.substring(start, end);
                             k = url.substring(url.indexOf("k="));
                             baseView.onGetData(k);
-                        }
-                        else if(Str.contains("Transaction not tally")){
+                        } else if (Str.contains("Transaction not tally")) {
                             ToastUtils.showShort("Transaction not tally");
-                        }else if(Str.contains("Session Expired")){
+                        } else if (Str.contains("Session Expired")) {
                             ToastUtils.showShort("Session Expired");
-                        }
-                        else{
+                        } else if (Str.contains("Account is LOCKED")) {
+                            ToastUtils.showShort("Account is LOCKED! Please contact your agent!");
+                        } else {
                             ToastUtils.showShort("Failed");
                         }
 

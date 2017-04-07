@@ -67,6 +67,12 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     private CorrectFragment cf = new CorrectFragment();
     private int currentIndex=0;
 
+    public String getChildParam() {
+        return childParam;
+    }
+
+    private String childParam="";
+
     public boolean isMixParlay() {
         return isMixParlay;
     }
@@ -103,12 +109,21 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA2);
         tvToolbarRight.setVisibility(View.GONE);
         matchType = type.getType();
+        switch (matchType){
+            case "Early":
+                childParam="&today=e";
+                break;
+            case "Today":
+            case "Running":
+                childParam="&today=t";
+                break;
+        }
         isMixParlay = type.getRes() == 1;
         String parent = type.getParent();
         String football = getString(R.string.football);
 
         if (parent.equals(football)) {
-            paramT = "&T=MB2";
+
             if (isMixParlay) {
                 helper = new SoccerMixBetHelper(this);
             } else {
@@ -119,9 +134,9 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         } else if (parent.equals(getString(R.string.Myanmar_Odds))) {
             paramT = "&T=MB2";
             helper = new MyanmarBetHelper(this);
-
             //http://a8206d.a36588.com/_view/pgajaxS.axd?T=MB2&oId=12270813&home=Rochdale&away=Millwall&moduleTitle=ENGLISH%20LEAGUE%20ONE&date=03:45AM&lang=EN-US&isRun=false&_=1490092254432
         }
+
 
         assert tvToolbarTitle != null;
         tvToolbarTitle.setBackgroundResource(0);

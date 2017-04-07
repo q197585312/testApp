@@ -55,7 +55,7 @@ public class AppConstant {
     public static String URL_FOOTBALL_TODAY_Mix = HOST + "_view/ParGenWFH.ashx?g=4&ot=t&update=true&r=1027945624";
     public static String URL_FOOTBALL_OUT_RIGHT = HOST + "_view/OddsGen50.ashx?update=true&r=2076712019";
 
-    public static String URL_ODDS = HOST + "_bet/JRecPanel.aspx?";
+    public static String URL_ODDS = HOST + "_bet/JRecPanel_App.aspx?";
 
     public static final String URL_SOCCER_REMOVE_MIX = HOST + "_bet/ParRemove.aspx";
 

@@ -39,7 +39,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
                 @Override
                 public void onClick(View v) {
                     if (item.getRows().get(3).getValue() != null && (!item.getRows().get(3).getValue().equals(""))) {
-                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(3).getValue(), (TextView) v, false,"&sc="+item.getRows().get(3).getSc());
+                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(3).getValue(), (TextView) v, false,"&sc="+item.getRows().get(3).getSc()+childParam);
 
                     }
                 }
@@ -48,7 +48,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
                 @Override
                 public void onClick(View v) {
                     if (item.getRows().get(4).getValue() != null && (!item.getRows().get(4).getValue().equals(""))) {
-                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(4).getValue(), (TextView) v, false,"&sc="+item.getRows().get(4).getSc());
+                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(4).getValue(), (TextView) v, false,"&sc="+item.getRows().get(4).getSc()+childParam);
 
                     }
                 }
@@ -70,7 +70,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(0).getValue() != null && (!item.getRows().get(0).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData, item.getB(), item.getRows().get(0).getValue(), (TextView) v, false,"&sc="+item.getRows().get(0).getSc());
+                    betHelper.clickOdds(itemData, item.getB(), item.getRows().get(0).getValue(), (TextView) v, false,"&sc="+item.getRows().get(0).getSc()+childParam);
 
                 }
             }
@@ -79,7 +79,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(1).getValue() != null && (!item.getRows().get(1).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData, item.getB(), item.getRows().get(1).getValue(), (TextView) v, false,"&sc="+item.getRows().get(1).getSc());
+                    betHelper.clickOdds(itemData, item.getB(), item.getRows().get(1).getValue(), (TextView) v, false,"&sc="+item.getRows().get(1).getSc()+childParam);
 
                 }
             }
@@ -88,7 +88,7 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(2).getValue() != null && (!item.getRows().get(2).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData, item.getB(), item.getRows().get(2).getValue(), (TextView) v, false,"&sc="+item.getRows().get(2).getSc());
+                    betHelper.clickOdds(itemData, item.getB(), item.getRows().get(2).getValue(), (TextView) v, false,"&sc="+item.getRows().get(2).getSc()+childParam);
 
                 }
             }

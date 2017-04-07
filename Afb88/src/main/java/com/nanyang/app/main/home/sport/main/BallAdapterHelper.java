@@ -174,9 +174,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String home = item.getHome();
         homeTv.setText(home);
         awayTv.setText(away);
-        if(liveTv.getText().toString().trim().isEmpty()){
+        if (liveTv.getText().toString().trim().isEmpty()) {
             liveTv.setVisibility(View.GONE);
-        }else{
+        } else {
             liveTv.setVisibility(View.VISIBLE);
         }
     }
@@ -335,57 +335,59 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         if (f.equals("0"))
             textView.setText("");
         else {
-            String value=f;
+            String value = f;
 
 
-        textView.setBackgroundResource(0);
-        if (!f.equals("") && !f.equals("0")) {
-            if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
-                value=AfbUtils.changeValueS(f);
+            textView.setBackgroundResource(0);
+            if (!f.equals("") && !f.equals("0")) {
+                if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
+                    value = AfbUtils.changeValueS(f);
 
-            else {
-                value=AfbUtils.decimalValue(Float.valueOf(f), "0.00");
-            }
-            if (isAnimation) {
-                Animation animation = new AlphaAnimation(0.0f, 1.0f);
-                //设置动画时间
-                animation.setDuration(1000);
-                animation.setRepeatCount(3);
-                animation.setAnimationListener(new Animation.AnimationListener() {
+                else {
+                    value = AfbUtils.decimalValue(Float.valueOf(f), "0.00");
+                }
+                if (isAnimation) {
+                    Animation animation = new AlphaAnimation(0.0f, 1.0f);
+                    //设置动画时间
+                    animation.setDuration(1000);
+                    animation.setRepeatCount(3);
+                    animation.setAnimationListener(new Animation.AnimationListener() {
+                        @Override
+                        public void onAnimationStart(Animation animation) {
+                            textView.setBackgroundResource(R.color.yellow_light_bg);
+                        }
+
+                        @Override
+                        public void onAnimationEnd(Animation animation) {
+                            textView.setBackgroundResource(0);
+                        }
+
+                        @Override
+                        public void onAnimationRepeat(Animation animation) {
+                            textView.setBackgroundResource(R.color.yellow_light_bg);
+                        }
+                    });
+                    textView.startAnimation(animation);
+                } else {
+                    textView.setBackgroundResource(0);
+                }
+
+                textView.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onAnimationStart(Animation animation) {
-                        textView.setBackgroundResource(R.color.yellow_light_bg);
-                    }
-
-                    @Override
-                    public void onAnimationEnd(Animation animation) {
-                        textView.setBackgroundResource(0);
-                    }
-
-                    @Override
-                    public void onAnimationRepeat(Animation animation) {
-                        textView.setBackgroundResource(R.color.yellow_light_bg);
+                    public void onClick(View v) {
+                        back.clickOdds((TextView) v, item, type, isHf, f);
                     }
                 });
-                textView.startAnimation(animation);
             } else {
-                textView.setBackgroundResource(0);
+                textView.setOnClickListener(null);
             }
-
-            textView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    back.clickOdds((TextView) v, item, type, isHf, f);
-                }
-            });
-        }
-        if(Float.valueOf(value)<0){
-            textView.setTextColor(red_black);
-        }else{
-            textView.setTextColor(black_grey);
-        }
+            if (Float.valueOf(value) < 0) {
+                textView.setTextColor(red_black);
+            } else {
+                textView.setTextColor(black_grey);
+            }
             textView.setText(value);
-    }
+        }
 
 
     }

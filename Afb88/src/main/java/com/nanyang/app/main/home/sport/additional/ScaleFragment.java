@@ -65,9 +65,9 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
 
                 if (item.getRows().get(1).getValue() != null && (!item.getRows().get(1).getValue().equals(""))) {
                     if (position > 2 && position < 6) {
-                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(1).getValue(), (TextView) v, false, "&sc=" + item.getSc());
+                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(1).getValue(), (TextView) v, false, "&sc=" + item.getSc()+childParam);
                     } else {
-                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(1).getValue(), (TextView) v, false, "&g=5");
+                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(1).getValue(), (TextView) v, false, "&g=5"+childParam);
                     }
 
 
@@ -79,9 +79,9 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
             public void onClick(View v) {
                 if (item.getRows().get(2).getValue() != null && (!item.getRows().get(2).getValue().equals(""))) {
                     if (position > 2 && position < 6) {
-                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(2).getValue(), (TextView) v, true, "&sc=" + item.getSc());
+                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(2).getValue(), (TextView) v, true, "&sc=" + item.getSc()+childParam);
                     } else {
-                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(2).getValue(), (TextView) v, true, "&g=5");
+                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(2).getValue(), (TextView) v, true, "&g=5"+childParam);
                     }
 
                 }

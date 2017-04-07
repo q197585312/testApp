@@ -163,7 +163,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     public void accept(Throwable throwable) throws Exception {
                         baseView.onFailed(throwable.getMessage());
                         baseView.hideLoadingDialog();
-
+                        baseView.reLoginPrompt(getBaseView().getContextActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
+                            @Override
+                            public void clickCancel(View v) {
+                                refresh();
+                            }
+                        });
                     }
                 }, new Action() {//完成
                     @Override
@@ -176,7 +181,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
                         if (!NetWorkUtil.isNetConnected(getBaseView().getContextActivity())) {
                             subscription1.cancel();
-
+                            baseView.reLoginPrompt(getBaseView().getContextActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
+                                @Override
+                                public void clickCancel(View v) {
+                                    refresh();
+                                }
+                            });
                         }
                         else{
                             baseView.showLoadingDialog();

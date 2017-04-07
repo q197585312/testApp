@@ -36,6 +36,7 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     protected BallInfo itemData;
     @Bind(R.id.tv_vs_header)
     LinearLayout tvVsHeader;
+    protected String childParam="";
 
     @Override
     public int onSetLayoutId() {
@@ -58,6 +59,7 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
         betHelper = ((VsActivity) getActivity()).getHelper();
         if (list != null && adapter != null)
             adapter.addAllAndClear(list);
+        childParam = ((VsActivity) getActivity()).getChildParam();
 
     }
 

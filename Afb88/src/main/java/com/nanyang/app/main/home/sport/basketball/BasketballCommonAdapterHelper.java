@@ -24,6 +24,12 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final BasketballCommonInfo item) {
+        if(item.getOU().equals("0")||item.getOU().equals("")){
+            item.setHasOU("0");
+        }
+        if(item.getOU_FH().equals("0")||item.getOU_FH().equals("")){
+            item.setHasOU_FH("0");
+        }
         super.onConvert(helper, position, item);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
