@@ -37,7 +37,8 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
         }
         if (item.getLive().contains("HT")) {
             timeTv.setText("HT");
-        } else {
+        }
+        else {
             int min;
             int start;
             try {

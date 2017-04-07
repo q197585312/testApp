@@ -16,6 +16,7 @@ public interface SportContract {
         void clickItemAdd(android.view.View v, B item, String type);
         ScrollLayout onSetScrollHeader();
         void checkMix(boolean mix);
+        void reLoginPrompt(String str,CallBack back);
     }
 
     interface Presenter extends IBasePresenter  {
@@ -27,5 +28,9 @@ public interface SportContract {
 //        void stopUpdate();
 //        void onPrevious(SwipeToLoadLayout swipeToLoadLayout);
 //        void onNext(SwipeToLoadLayout swipeToLoadLayout);
+    }
+
+    public interface CallBack {
+        void clickCancel(android.view.View v);
     }
 }

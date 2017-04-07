@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.annotation.TargetApi;
-import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -20,7 +19,6 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -33,7 +31,6 @@ import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
-import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
@@ -166,6 +163,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     public void accept(Throwable throwable) throws Exception {
                         baseView.onFailed(throwable.getMessage());
                         baseView.hideLoadingDialog();
+
                     }
                 }, new Action() {//完成
                     @Override
@@ -175,11 +173,16 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
                     public void accept(Subscription subscription1) throws Exception {
-                        baseView.showLoadingDialog();
+
                         if (!NetWorkUtil.isNetConnected(getBaseView().getContextActivity())) {
                             subscription1.cancel();
+
                         }
-                        subscription1.request(Long.MAX_VALUE);
+                        else{
+                            baseView.showLoadingDialog();
+                            subscription1.request(Long.MAX_VALUE);
+                        }
+
                     }
                 });
         mCompositeSubscription.add(subscribe);
@@ -310,18 +313,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     private List<TableSportInfo<B>> parseTableModuleBeen(String s) throws JSONException {
         s = Html.fromHtml(s).toString();
         if (s.contains("Session Expired")) {
-            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(baseView.getContextActivity(), new View(baseView.getContextActivity())) {
+            baseView.reLoginPrompt("", new SportContract.CallBack() {
                 @Override
-                protected void clickSure(View v) {
-                    Intent intent = new Intent(baseView.getContextActivity(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    baseView.getContextActivity().startActivity(intent);
+                public void clickCancel(View v) {
+                    refresh();
                 }
-            };
-            pop.getChooseTitleTv().setText(R.string.confirm_or_not);
-            pop.getChooseMessage().setText(R.string.another_login);
-            pop.getChooseSureTv().setText(R.string.sure);
-            pop.getChooseCancelTv().setText(R.string.cancel);
-            baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+            });
         } else {
             JSONArray jsonArray = new JSONArray(s);
             if (jsonArray.length() > 4) {

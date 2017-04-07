@@ -159,7 +159,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     public void toolbarRightClick(View v) {
         createPopupWindow(
-                new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, 500) {
+                new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
                     @Override
                     protected int onSetLayoutRes() {
                         return R.layout.popupwindow_choice_ball_type;
@@ -261,7 +261,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     private void clickOddsType(View view) {
-        createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 350) {
+        createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -326,4 +326,11 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     public abstract void switchType(String type);
+
+    @Override
+    public void reLoginPrompt(String str, SportContract.CallBack back) {
+        if(mContext instanceof  BaseToolbarActivity){
+            ((BaseToolbarActivity)mContext).reLoginPrompt(str,back);
+        }
+    }
 }

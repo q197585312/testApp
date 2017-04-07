@@ -24,7 +24,7 @@
         android:paddingLeft="10dp"
         android:paddingTop="2dp"
         android:text="联赛名称"
-        android:textColor="@color/green900"
+        android:textColor="@color/green_dark_bg"
         android:textSize="11sp" />
 
 

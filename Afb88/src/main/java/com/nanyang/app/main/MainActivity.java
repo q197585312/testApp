@@ -61,6 +61,12 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.oddsType();
 
     }
 

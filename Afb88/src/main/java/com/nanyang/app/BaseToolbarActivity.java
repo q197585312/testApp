@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.load.login.LoginActivity;
+import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
@@ -42,6 +43,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     Toolbar toolbar;
 
     private volatile CompositeDisposable mCompositeSubscription;
+    int errorCount = 0;
 
     @Override
     public void initData() {
@@ -91,8 +93,8 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                    @Override
                                    public void accept(String allData) throws Exception {
                                        if (!allData.trim().equals("100")) {
-                                           showReLoginPopupWindow();
-
+                                           reLoginPrompt("", null);
+                                           errorCount = 0;
                                        }
 
                                    }
@@ -100,6 +102,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                    @Override
                                    public void accept(Throwable throwable) {
                                        ToastUtils.showShort(throwable.getMessage());
+                                       checkError();
                                    }
                                }, new Action() {//完成
                                    @Override
@@ -110,6 +113,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                    public void accept(Subscription subscription1) throws Exception {
                                        if (!NetWorkUtil.isNetConnected(mContext)) {
                                            subscription1.cancel();
+                                           checkError();
                                        }
                                        subscription1.request(Long.MAX_VALUE);
                                    }
@@ -120,6 +124,20 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             updateHandler.postDelayed(this, 20000);// 50是延时时长
         }
     };
+
+    private void checkError() {
+        errorCount++;
+        if (errorCount > 4) {
+            reLoginPrompt(getString(R.string.failed_to_connect), new SportContract.CallBack() {
+                @Override
+                public void clickCancel(View v) {
+                    errorCount = 0;
+                }
+            });
+        }
+    }
+
+
     Handler updateHandler = new Handler();
 
     public void startUpdateState() {
@@ -127,21 +145,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         updateHandler.postDelayed(dataUpdateRunnable, 2000);// 打开定时器，执行操作
         updateBalance();
 
-    }
-
-    protected void showReLoginPopupWindow() {
-        BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
-            @Override
-            protected void clickSure(View v) {
-                Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
-            }
-        };
-        pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-        pop.getChooseMessage().setText(R.string.another_login);
-        pop.getChooseSureTv().setText(getString(R.string.sure));
-        pop.getChooseCancelTv().setText(getString(R.string.cancel));
-        onPopupWindowCreated(pop, Gravity.CENTER);
     }
 
     public void updateBalance() {
@@ -206,5 +209,31 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public Activity getContextActivity() {
         return this;
     }
+
+    public void reLoginPrompt(String msg, final SportContract.CallBack callBack) {
+        BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
+            @Override
+            protected void clickSure(View v) {
+                Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+            }
+
+            @Override
+            protected void clickCancel(View v) {
+                super.clickCancel(v);
+                if (callBack != null) {
+                    callBack.clickCancel(v);
+                }
+            }
+        };
+        pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+        if (msg.isEmpty())
+            msg = getString(R.string.another_login);
+        pop.getChooseMessage().setText(msg);
+        pop.getChooseSureTv().setText(getString(R.string.sure));
+        pop.getChooseCancelTv().setText(getString(R.string.cancel));
+        onPopupWindowCreated(pop, Gravity.CENTER);
+    }
+
 
 }
