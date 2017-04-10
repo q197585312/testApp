@@ -19,11 +19,6 @@
         android:layout_height="0.8dp"
         android:background="@color/grey_light" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/white" />
-
     <LinearLayout
         android:id="@+id/ll_tab_menu_bottom"
         android:layout_width="match_parent"
@@ -31,8 +26,7 @@
         android:background="@color/grey_default_bg"
         android:baselineAligned="false"
         android:orientation="horizontal"
-        android:paddingBottom="3dp"
-        android:paddingTop="6dp">
+        android:paddingTop="4dp">
 
         <FrameLayout
             android:id="@+id/fl_menu_home"
@@ -45,11 +39,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawablePadding="2dp"
+
                 android:drawableTop="@mipmap/main_menu_a_hover"
                 android:text="@string/home"
-                android:textColor="@color/green900"
-                android:textSize="10sp" />
+                android:textColor="@color/green_black_word"
+                android:textSize="12sp"
+                android:textStyle="bold" />
         </FrameLayout>
 
         <FrameLayout
@@ -63,11 +58,12 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawablePadding="2dp"
+
                 android:drawableTop="@mipmap/main_menu_order"
                 android:text="@string/statement"
                 android:textColor="@color/black_grey"
-                android:textSize="10sp" />
+                android:textSize="12sp"
+                android:textStyle="bold" />
         </FrameLayout>
 
         <FrameLayout
@@ -81,11 +77,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawablePadding="2dp"
+
                 android:drawableTop="@mipmap/main_menu_user"
                 android:text="@string/center"
                 android:textColor="@color/black_grey"
-                android:textSize="10sp" />
+
+                android:textSize="12sp"
+                android:textStyle="bold" />
         </FrameLayout>
 
         <FrameLayout
@@ -99,12 +97,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawablePadding="2dp"
+
                 android:drawableTop="@mipmap/main_menu_logout"
                 android:text="@string/Logout"
                 android:textColor="@color/black_grey"
-                android:textSize="10sp" />
+                android:textSize="12sp"
+                android:textStyle="bold" />
         </FrameLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/white" />
 
 </LinearLayout>

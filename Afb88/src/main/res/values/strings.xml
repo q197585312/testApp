@@ -167,12 +167,12 @@
     <string name="reverse_selection">Reverse Selection</string>
     <string name="Huay_Thai">HUAY THAI</string>
     <string name="Myanmar_Odds">Myanmar Odds</string>
-    <string name="FULL_H_A">FULL   H/A</string>
-    <string name="FULL_O_U">FULL   O/U</string>
-    <string name="HALF_H_A">HALF   H/A</string>
-    <string name="HALF_O_U">HALF   O/U</string>
-    <string name="FULL_O_E">FULL O/E</string>
-    <string name="HALF_O_E">HALF O/E</string>
+    <string name="FULL_H_A">FT.HDP</string>
+    <string name="FULL_O_U">FT.O/U</string>
+    <string name="HALF_H_A">HT.HDP</string>
+    <string name="HALF_O_U">HT.O/U</string>
+    <string name="FULL_O_E">FT.O/E</string>
+    <string name="HALF_O_E">HT.O/E</string>
     <string name="HANDICAP">HANDICAP</string>
     <string name="OVER_UNDER">OVER/UNDER</string>
     <string name="TO_WIN">TO WIN</string>
@@ -251,4 +251,7 @@
     <string name="gr_content">Live Casino and beautyful Dealers Online Entertainment, Live Baccarat , VIP Hall, International Hall , wish you happy playing!!!GD CASINO</string>
     <string name="Version">Version</string>
     <string name="failed_to_connect">Failed to connect to server , log in again?</string>
+    <string name="All_Markets">All Markets</string>
+    <string name="Main_Markets">Main Markets</string>
+    <string name="Other_Bet_Markets">Other Bet Markets</string>
 </resources>

@@ -27,18 +27,19 @@
         </FrameLayout>
     </RelativeLayout>
     <View
-        android:layout_width="match_parent"
-        android:background="#179441"
-        android:layout_height="0.7dp"/>
+        android:layout_height="0.9dp"
+        android:background="@color/green500_trans"
+        android:layout_width="match_parent"/>
     <View
-        android:layout_width="match_parent"
-        android:background="#2dc45c"
-        android:layout_height="0.7dp"/>
+        android:layout_height="0.7dp"
+        android:background="@color/green900_trans"
+        android:layout_width="match_parent"/>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/green500" />
+        android:background="#093918" />
 
 
 

@@ -2,12 +2,14 @@ package com.nanyang.app.main.home.sport.football;
 
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
+import com.nanyang.app.main.home.sport.main.SportState;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 
 
@@ -19,6 +21,8 @@ public class SoccerFragment extends BaseSportFragment {
         String type = ((SportActivity) getActivity()).getType();
         switchType(type);
         setTitle(getString(R.string.football));
+        TextView ivAllAdd = ((SportActivity) getActivity()).getIvAllAdd();
+        ((SportState) presenter.getStateHelper()).initAllOdds(ivAllAdd);
     }
 
     @Override

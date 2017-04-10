@@ -27,11 +27,11 @@
     <string name="Logout">登出</string>
     <string name="Edit_information">编辑个人信息</string>
     <string name="Recharge">Recharge</string>
-    <string name="Withdrawals">Withdrawals</string>
-    <string name="My_order">My order</string>
-    <string name="History_record">History record</string>
+    <string name="Withdrawals">取款</string>
+    <string name="My_order">注单</string>
+    <string name="History_record">下注记录</string>
     <string name="Game_type">Game type</string>
-    <string name="Start_time">Start time</string>
+    <string name="Start_time">开始时间</string>
     <string name="End_time">End time</string>
     <string name="Today">今日</string>
     <string name="Ball">球</string>
@@ -251,4 +251,7 @@
     <string name="gr_content">在线美女荷官真人游戏，百家乐，骰宝，龙虎，番摊，轮盘，色碟游戏，让你玩的尽兴</string>
     <string name="Version">版本</string>
     <string name="failed_to_connect">连接服务器失败是否重新登录?</string>
+    <string name="All_Markets">所有盘口</string>
+    <string name="Main_Markets">主要盘口</string>
+    <string name="Other_Bet_Markets">其他玩法盘口</string>
 </resources>

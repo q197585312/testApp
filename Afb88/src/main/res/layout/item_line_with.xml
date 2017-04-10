@@ -3,12 +3,13 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="wrap_content">
     <View
-        android:layout_marginTop="15dp"
-        android:layout_width="match_parent"
-        android:background="#179441"
-        android:layout_height="0.7dp"/>
+        android:layout_height="0.9dp"
+        android:background="@color/green500_trans"
+        android:layout_width="match_parent"/>
     <View
-        android:layout_width="match_parent"
-        android:background="#2dc45c"
-        android:layout_height="0.7dp"/>
+        android:layout_height="0.7dp"
+        android:background="@color/green900_trans"
+        android:layout_width="match_parent"/>
+
+
 </LinearLayout>

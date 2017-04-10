@@ -12,6 +12,7 @@ import com.nanyang.app.main.home.sport.main.SportContract;
 public class SoccerTodayState extends SoccerCommonState {
     public SoccerTodayState(SportContract.View baseView) {
         super(baseView);
+
     }
 
 
@@ -22,10 +23,13 @@ public class SoccerTodayState extends SoccerCommonState {
         return true;
     }
 
-
+    @Override
+    protected String getAllOddsUrl() {
+        return AppConstant.HOST+"_view/OddsPageSetting.aspx?ot=t&ov=0&wd=&tf=-1&isPageSingDouble=RMOdds1&m=save";
+    }
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_TODAY;
+        return AppConstant.URL_FOOTBALL_TODAY+param;
     }
 
     @Override

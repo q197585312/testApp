@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.view.Gravity;
@@ -83,6 +84,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected CompositeDisposable mCompositeSubscription;
     protected BasePopupWindow popMenu;
     private SwipeToLoadLayout swipeToLoadLayout;
+    protected String param = "";
 
 
     public int getPageSize() {
@@ -117,6 +119,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
         baseView.setAdapter(baseRecyclerAdapter);
         mCompositeSubscription = new CompositeDisposable();
+
     }
 
     protected abstract SportAdapterHelper.ItemCallBack onSetItemCallBack();
@@ -187,8 +190,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                                     refresh();
                                 }
                             });
-                        }
-                        else{
+                        } else {
                             baseView.showLoadingDialog();
                             subscription1.request(Long.MAX_VALUE);
                         }
@@ -1279,5 +1281,100 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
+    }
+
+    public void setParam(String mt) {
+        this.param = mt;
+        switchAllOdds(mt);
+    }
+
+    public void switchAllOdds(String oddsType) {
+        Disposable subscription = getService(ApiService.class).getData(getAllOddsUrl() + oddsType).subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer<String>() {//onNext
+                    @Override
+                    public void accept(String allData) throws Exception {
+                        refresh();
+                    }
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        baseView.showLoadingDialog();
+                        subscription.request(Long.MAX_VALUE);
+                    }
+                });
+        mCompositeSubscription.add(subscription);
+    }
+
+    protected String getAllOddsUrl() {
+        return AppConstant.HOST+"_view/OddsPageSetting.aspx?ot=t&ov=0&wd=&tf=-1&isPageSingDouble=RMOdds2&m=save";
+    }
+
+    public void initAllOdds(View ivAllAdd) {
+        if (getStateType().getRes() == 0) {
+            ivAllAdd.setVisibility(View.VISIBLE);
+            ivAllAdd.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    showAllOdds(v);
+                }
+            });
+        } else {
+            ivAllAdd.setVisibility(View.GONE);
+        }
+    }
+
+    private void showAllOdds(View v) {
+
+        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getContextActivity(), v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+            @Override
+            protected int onSetLayoutRes() {
+                return R.layout.popupwindow_choice;
+            }
+
+            @Override
+            protected void initView(View view) {
+                super.initView(view);
+                RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
+                rv.setPadding(0, 0, 0, 0);
+                rv.setLayoutManager(new LinearLayoutManager(getBaseView().getContextActivity()));
+                List<MenuItemInfo> list = new ArrayList<>();
+                list.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.All_Markets), "&mt=0"));//accType=
+                list.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Main_Markets), "&mt=1"));
+                list.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Other_Bet_Markets), "&mt=2"));
+
+                BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getContextActivity(), list, R.layout.text_base_item) {
+                    @Override
+                    public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
+                        TextView tv = holder.getView(R.id.item_text_tv);
+                        tv.setPadding(0, 0, 0, 0);
+                        tv.setText(item.getText());
+                        tv.setBackgroundResource(R.color.black_grey);
+                    }
+                };
+                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+                    @Override
+                    public void onItemClick(View view, MenuItemInfo item, int position) {
+                        closePopupWindow();
+                        setParam(item.getType());
+                    }
+                });
+                rv.setAdapter(baseRecyclerAdapter);
+            }
+        };
+        basePopupWindow.setTrans(1f);
+        baseView.onPopupWindowCreated(basePopupWindow, -2);
+
     }
 }

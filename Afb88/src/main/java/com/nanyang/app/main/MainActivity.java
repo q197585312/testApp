@@ -109,7 +109,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                     break;
             }
             TextView tvMenu = (TextView) fl.getChildAt(0);
-            tvMenu.setTextColor(getResources().getColor(R.color.green900));
+            tvMenu.setTextColor(getResources().getColor(R.color.green_black_word));
             switch (tvMenu.getId()) {
                 case R.id.tv_tab_home:
                     tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_a_hover, 0, 0);

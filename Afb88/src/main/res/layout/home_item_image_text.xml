@@ -31,11 +31,12 @@
     <include layout="@layout/item_line_with"/>
 </LinearLayout>
     <View
-        android:layout_width="0.7dp"
-        android:background="#179441"
+        android:layout_width="0.9dp"
+        android:background="@color/green500_trans"
         android:layout_height="match_parent"/>
     <View
         android:layout_width="0.7dp"
-        android:background="#2dc45c"
+        android:background="@color/green900_trans"
         android:layout_height="match_parent"/>
+
     </LinearLayout>

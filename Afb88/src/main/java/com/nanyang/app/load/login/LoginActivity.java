@@ -66,6 +66,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
 
     private void initLanguage() {
         String language = AfbUtils.getLanguage(this);

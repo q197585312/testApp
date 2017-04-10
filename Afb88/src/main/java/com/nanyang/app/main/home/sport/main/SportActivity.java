@@ -49,6 +49,13 @@ public class SportActivity extends BaseToolbarActivity {
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
+
+    public TextView getIvAllAdd() {
+        return ivAllAdd;
+    }
+
+    @Bind(R.id.iv_all_add)
+    TextView ivAllAdd;
     @Bind(R.id.fl_content)
     FrameLayout flContent;
     @Bind(R.id.tv_refresh)

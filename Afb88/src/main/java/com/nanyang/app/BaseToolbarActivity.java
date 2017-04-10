@@ -197,7 +197,10 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
         createPopupWindow(pop);
-        popWindow.showPopupGravityWindow(center, 0, 0);
+        if (center == -2) {
+            popWindow.showPopupDownWindow();
+        } else
+            popWindow.showPopupGravityWindow(center, 0, 0);
     }
 
     public void onBetSuccess(String betResult) {

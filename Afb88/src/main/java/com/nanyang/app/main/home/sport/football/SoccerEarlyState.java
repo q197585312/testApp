@@ -40,10 +40,14 @@ public class SoccerEarlyState extends SoccerCommonState {
         getBaseView().switchState(new SoccerEarlyMixState(getBaseView()));
         return true;
     }
+    @Override
+    protected String getAllOddsUrl() {
+        return AppConstant.HOST+"_view/OddsPageSetting.aspx?ot=e&ov=0&wd="+selectedDateInfo.getType()+"&tf=-1&isPageSingDouble=RMOdds1&m=save";
+    }
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_EARLY+"&"+selectedDateInfo.getRes()+"&wd="+selectedDateInfo.getType();
+        return AppConstant.URL_FOOTBALL_EARLY+"&"+selectedDateInfo.getRes()+"&wd="+selectedDateInfo.getType()+param;
     }
 
     @Override

@@ -47,7 +47,7 @@ public class MenuItemInfo<P> implements Serializable {
     public void setText(String text) {
         this.text = text;
     }
-
+    /**0是正常 1是mix*/
     public int getRes() {
         return res;
     }

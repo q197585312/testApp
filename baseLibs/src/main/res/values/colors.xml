@@ -51,7 +51,14 @@
 
     <!--green-->
     <color name="green500">#4CAF50</color>
+
     <color name="green900">#17ae48</color>
+    <color name="green900_trans">#6617ae48</color>
+    <color name="green500_trans">#66000000</color>
+
+    <color name="green_dark">#138137</color>
+    <color name="green_black">#0d5924</color>
+    <color name="green_black_word">#006230</color>
     <color name="green_trans">#dd4CAF50</color>
     <color name="green_light">#a3e8ac</color>
     <color name="green_light_title">#8eeaac</color>
