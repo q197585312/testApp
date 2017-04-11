@@ -24,7 +24,7 @@ public class SoccerRunningState extends SoccerCommonState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_RUNNING+param;
+        return AppConstant.URL_FOOTBALL_RUNNING+param.getType();
     }
     @Override
     protected String getAllOddsUrl() {

@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green500"
+    android:background="@color/green_black"
     android:orientation="vertical">
 
     <LinearLayout
@@ -67,7 +67,7 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="15sp" />
 
-            <include layout="@layout/item_line_with_no_margin" />
+            <include layout="@layout/item_line_black_no_margin" />
 
             <TextView
                 android:id="@+id/tv_account_prompt"
@@ -94,7 +94,7 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="15sp" />
 
-            <include layout="@layout/item_line_with_no_margin" />
+            <include layout="@layout/item_line_black_no_margin" />
 
             <TextView
                 android:id="@+id/tv_password_prompt"
@@ -121,7 +121,7 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="15sp" />
 
-            <include layout="@layout/item_line_with_no_margin" />
+            <include layout="@layout/item_line_black_no_margin" />
 
             <TextView
                 android:id="@+id/tv_password_repeat_prompt"
@@ -147,7 +147,7 @@
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
-            <include layout="@layout/item_line_with_no_margin" />
+            <include layout="@layout/item_line_black_no_margin" />
 
             <TextView
                 android:id="@+id/tv_currency_prompt"
@@ -174,7 +174,7 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="15sp" />
 
-            <include layout="@layout/item_line_with_no_margin" />
+            <include layout="@layout/item_line_black_no_margin" />
 
             <TextView
                 android:id="@+id/tv_contactnum_prompt"
@@ -201,7 +201,7 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="15sp" />
 
-            <include layout="@layout/item_line_with_no_margin" />
+            <include layout="@layout/item_line_black_no_margin" />
 
             <TextView
                 android:id="@+id/tv_email_prompt"
@@ -227,7 +227,7 @@
                 android:textColor="@color/black"
                 android:textSize="15sp" />
 
-            <include layout="@layout/item_line_with_no_margin" />
+            <include layout="@layout/item_line_black_no_margin" />
 
             <TextView
                 android:id="@+id/tv_bankname_prompt"
@@ -254,7 +254,7 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="15sp" />
 
-            <include layout="@layout/item_line_with_no_margin" />
+            <include layout="@layout/item_line_black_no_margin" />
 
             <TextView
                 android:id="@+id/tv_accountname_prompt"
@@ -281,7 +281,7 @@
                 android:textColorHint="@color/trans_white"
                 android:textSize="15sp" />
 
-            <include layout="@layout/item_line_with_no_margin" />
+            <include layout="@layout/item_line_black_no_margin" />
 
             <TextView
                 android:id="@+id/tv_accountnumber_prompt"
@@ -296,10 +296,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="@drawable/rectangle_yellow_button_all_corner5"
+                android:background="@mipmap/login_yellow_btn"
                 android:text="@string/Submit"
                 android:textAllCaps="false"
-                android:textColor="@color/white" />
+                android:textColor="@color/green_black" />
         </LinearLayout>
 
 

@@ -61,10 +61,12 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     private boolean isFirstIn;
     private BaseRecyclerAdapter baseRecyclerAdapter;
     private boolean isInit = false;
+    private TextView ivAllAdd;
 
     @Override
     public void initData() {
         super.initData();
+        ivAllAdd = ((SportActivity) getActivity()).getIvAllAdd();
         createPresenter(new SportPresenter(this));
         isInit = true;
         isFirstIn = true;
@@ -187,6 +189,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         presenter.setStateHelper(state);
         presenter.getStateHelper().setScrollHeaderContent(slHeader, tvAos);
         getContextActivity().getTvToolbarTitle().setText(state.getStateType().getText());
+        ((SportState) presenter.getStateHelper()).initAllOdds(ivAllAdd);
         presenter.getStateHelper().refresh();
         if (popWindow != null)
             popWindow.closePopupWindow();

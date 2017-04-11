@@ -218,10 +218,10 @@
             android:id="@+id/bet_sure_btn"
             android:text="@string/bet"
             android:layout_marginTop="10dp"
-            android:textColor="@color/white"
+            android:textColor="@color/green_black"
             android:gravity="center"
             android:padding="10dp"
-            android:background="@drawable/rectangle_yellow_button_bottom_corner5"
+            android:background="@mipmap/yellow_btn_bet_top"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
            />

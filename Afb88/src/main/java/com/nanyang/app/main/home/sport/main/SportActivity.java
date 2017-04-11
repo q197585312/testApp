@@ -90,6 +90,7 @@ public class SportActivity extends BaseToolbarActivity {
             }
         });
         tvToolbarTitle.setBackgroundResource(0);
+
     }
 
 

@@ -47,7 +47,7 @@ public class SoccerEarlyState extends SoccerCommonState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_EARLY+"&"+selectedDateInfo.getRes()+"&wd="+selectedDateInfo.getType()+param;
+        return AppConstant.URL_FOOTBALL_EARLY+"&"+selectedDateInfo.getRes()+"&wd="+selectedDateInfo.getType()+param.getType();
     }
 
     @Override

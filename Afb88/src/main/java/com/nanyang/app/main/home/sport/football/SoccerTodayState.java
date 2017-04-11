@@ -29,7 +29,7 @@ public class SoccerTodayState extends SoccerCommonState {
     }
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_TODAY+param;
+        return AppConstant.URL_FOOTBALL_TODAY+param.getType();
     }
 
     @Override

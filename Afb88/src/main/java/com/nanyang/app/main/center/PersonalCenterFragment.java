@@ -64,7 +64,7 @@ public class PersonalCenterFragment extends BaseFragment {
         dataList.add(new MenuItemInfo(R.mipmap.center_info_modify, getString(R.string.change_password)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_language, getString(R.string.choice_language)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_transfer, getString(R.string.transfer)));
-        BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, dataList, R.layout.center_item_text) {
+        BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, dataList, R.layout.info_item_text) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                 TextView tv = holder.getView(R.id.tv_text);

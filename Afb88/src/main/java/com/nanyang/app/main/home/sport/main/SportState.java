@@ -84,7 +84,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected CompositeDisposable mCompositeSubscription;
     protected BasePopupWindow popMenu;
     private SwipeToLoadLayout swipeToLoadLayout;
-    protected String param = "";
+    protected MenuItemInfo param = null;
 
 
     public int getPageSize() {
@@ -92,11 +92,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     private int pageSize = 15;
-    /**
-     * 更新
-     */
-    private Disposable updateDisposable;
-
 
     SportAdapterHelper<B> adapterHelper;
 
@@ -141,6 +136,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     @Override
     public void refresh() {
+        if (param == null) {
+            param = new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.All_Markets), "&mt=0");
+            setParam(param);
+        }
+
         Disposable subscribe = getService(ApiService.class).getData(getRefreshUrl()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                 .map(new Function<String, List<TableSportInfo<B>>>() {
 
@@ -1283,61 +1283,65 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
-    public void setParam(String mt) {
+    public void setParam(MenuItemInfo mt) {
         this.param = mt;
-        switchAllOdds(mt);
+        switchAllOdds(mt.getType());
+
     }
 
     public void switchAllOdds(String oddsType) {
-        Disposable subscription = getService(ApiService.class).getData(getAllOddsUrl() + oddsType).subscribeOn(Schedulers.io())
-                .observeOn(Schedulers.io())
-                .subscribe(new Consumer<String>() {//onNext
-                    @Override
-                    public void accept(String allData) throws Exception {
-                        refresh();
-                    }
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
+        if (!getAllOddsUrl().isEmpty()) {
+            Disposable subscription = getService(ApiService.class).getData(getAllOddsUrl() + oddsType).subscribeOn(Schedulers.io())
+                    .observeOn(Schedulers.io())
+                    .subscribe(new Consumer<String>() {//onNext
+                        @Override
+                        public void accept(String allData) throws Exception {
+                        }
+                    }, new Consumer<Throwable>() {//错误
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
 
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Action() {//完成
-                    @Override
-                    public void run() throws Exception {
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Action() {//完成
+                        @Override
+                        public void run() throws Exception {
 
-                    }
-                }, new Consumer<Subscription>() {//开始绑定
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
-                        subscription.request(Long.MAX_VALUE);
-                    }
-                });
-        mCompositeSubscription.add(subscription);
+                        }
+                    }, new Consumer<Subscription>() {//开始绑定
+                        @Override
+                        public void accept(Subscription subscription) throws Exception {
+                            baseView.showLoadingDialog();
+                            subscription.request(Long.MAX_VALUE);
+                        }
+                    });
+            mCompositeSubscription.add(subscription);
+
+        }
     }
 
     protected String getAllOddsUrl() {
-        return AppConstant.HOST+"_view/OddsPageSetting.aspx?ot=t&ov=0&wd=&tf=-1&isPageSingDouble=RMOdds2&m=save";
+        return "";
     }
 
-    public void initAllOdds(View ivAllAdd) {
-        if (getStateType().getRes() == 0) {
+    public void initAllOdds(TextView ivAllAdd) {
+        if (!getAllOddsUrl().isEmpty()) {
             ivAllAdd.setVisibility(View.VISIBLE);
             ivAllAdd.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    showAllOdds(v);
+                    showAllOdds((TextView) v);
                 }
             });
+
         } else {
             ivAllAdd.setVisibility(View.GONE);
         }
     }
 
-    private void showAllOdds(View v) {
+    private void showAllOdds(final TextView textView) {
 
-        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getContextActivity(), v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getContextActivity(), textView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -1367,7 +1371,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         closePopupWindow();
-                        setParam(item.getType());
+                        textView.setText(item.getText());
+                        setParam(item);
+                        if (!getAllOddsUrl().isEmpty()) {
+                            refresh();
+                        }
+
                     }
                 });
                 rv.setAdapter(baseRecyclerAdapter);
