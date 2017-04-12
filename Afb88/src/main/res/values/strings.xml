@@ -254,4 +254,6 @@
     <string name="All_Markets">All Markets</string>
     <string name="Main_Markets">Main Markets</string>
     <string name="Other_Bet_Markets">Other Bet Markets</string>
+    <string name="choose_language">Choose Language</string>
+    <string name="Bet_Credit">Bet Credit</string>
 </resources>

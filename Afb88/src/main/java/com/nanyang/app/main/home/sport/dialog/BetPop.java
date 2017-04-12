@@ -21,13 +21,11 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import butterknife.Bind;
 import butterknife.BindString;
 import cn.finalteam.toolsfinal.StringUtils;
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Administrator on 2015/10/27.
  */
 public class BetPop extends BasePopupWindow {
-    private Disposable subscribe;
     Context context;
     @Bind(R.id.bet_module_title_tv)
     TextView betModuleTitleTv;
@@ -133,13 +131,6 @@ public class BetPop extends BasePopupWindow {
     protected void initView(View view) {
         super.initView(view);
 
-    }
-
-    @Override
-    protected void onClose() {
-        super.onClose();
-        if (subscribe != null)
-            subscribe.isDisposed();
     }
 
     public void setIsHf(boolean betSelection) {

@@ -1,8 +1,10 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -13,7 +15,9 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
+import com.nanyang.app.main.home.sport.dialog.ChooseLanguagePop;
 import com.nanyang.app.main.home.sport.e_sport.ESportFragment;
 import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
@@ -83,6 +87,15 @@ public class SportActivity extends BaseToolbarActivity {
         ButterKnife.bind(this);
         assert tvToolbarRight != null;
         tvToolbarRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_list_layer, 0);
+        tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_white_language, 0);
+        tvToolbarRight1.setVisibility(View.VISIBLE);
+        tvToolbarRight1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ChooseLanguagePop pop=new ChooseLanguagePop(SportActivity.this,v);
+                onPopupWindowCreated(pop, Gravity.CENTER);
+            }
+        });
         tvToolbarRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -241,6 +254,11 @@ public class SportActivity extends BaseToolbarActivity {
     @Override
     protected void updateBalanceTv(String allData) {
 
+    }
+    @Override
+    protected void onBackCLick(View v) {
+        Intent intent = new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
 }

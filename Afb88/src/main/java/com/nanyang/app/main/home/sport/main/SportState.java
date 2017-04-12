@@ -64,7 +64,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  */
 
 public abstract class SportState<B extends SportInfo, V extends SportContract.View<B>> implements IObtainDataState {
-    private volatile String LID;
+    private String LID;
     private int page;
     private List<TableSportInfo<B>> filterData;
     private Map<String, Boolean> leagueSelectedMap = new HashMap<>();

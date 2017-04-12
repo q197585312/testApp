@@ -46,6 +46,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         if (data.length() > 0) {
             Bundle bundle = new Bundle();
             bundle.putInt("gameType", 3);
+            bundle.putString("web_id", "-1");
             bundle.putString("k", data);
             bundle.putString("us", getApp().getUser().getUserName());
 
@@ -104,9 +105,9 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
     }
 
     private void loginGD() {
-        if(ApkUtils.isAvilible(this,"gaming178.com.baccaratgame")){
+        if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
             presenter.skipGd88();
-        }else{
+        } else {
             Intent intent = new Intent();
             intent.setAction("android.intent.action.VIEW");
             Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);

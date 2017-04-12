@@ -42,8 +42,9 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     protected
     Toolbar toolbar;
 
-    private volatile CompositeDisposable mCompositeSubscription;
+    private CompositeDisposable mCompositeSubscription;
     int errorCount = 0;
+    protected TextView tvToolbarRight1;
 
     @Override
     public void initData() {
@@ -52,13 +53,14 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvToolbarRight = (TextView) findViewById(R.id.tv_toolbar_right);
+        tvToolbarRight1 = (TextView) findViewById(R.id.tv_toolbar_right1);
         tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
         toolbar.setBackgroundResource(R.mipmap.toolbar_bg);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
+                onBackCLick(v);
             }
         });
         assert tvToolbarTitle != null;
@@ -68,6 +70,10 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         updateBalanceTv(getApp().getUser().getBalance());
         startUpdateState();
 
+    }
+
+    protected void onBackCLick(View v) {
+        finish();
     }
 
     void stopUpdateState() {
@@ -166,7 +172,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     protected void updateBalanceTv(String allData) {
-        tvToolbarRight.setText(allData);
+        tvToolbarRight.setText(getString(R.string.Bet_Credit) + "\n"+allData);
     }
 
 
