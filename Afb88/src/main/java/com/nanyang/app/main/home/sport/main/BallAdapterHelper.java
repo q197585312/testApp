@@ -354,7 +354,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     animation.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
-                            textView.setBackgroundResource(R.color.yellow_light_bg);
+                            textView.setBackgroundResource(R.color.green_trans);
                         }
 
                         @Override
@@ -364,7 +364,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
                         @Override
                         public void onAnimationRepeat(Animation animation) {
-                            textView.setBackgroundResource(R.color.yellow_light_bg);
+                            textView.setBackgroundResource(R.color.green_trans);
                         }
                     });
                     textView.startAnimation(animation);
