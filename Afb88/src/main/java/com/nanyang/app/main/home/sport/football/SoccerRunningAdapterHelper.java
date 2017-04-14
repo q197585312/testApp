@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.football;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
@@ -20,10 +21,20 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final SoccerCommonInfo item) {
+        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
+        ivHall.setVisibility(View.VISIBLE);
         super.onConvert(helper, position, item);
-        TextView dateTv=helper.getView(R.id.module_match_date_tv);
-        TextView liveTv=helper.getView(R.id.module_match_live_iv);
-        TextView timeTv=helper.getView(R.id.module_match_time_tv);
+
+        ivHall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+              back.clickView(v,item);
+            }
+        });
+
+        TextView dateTv = helper.getView(R.id.module_match_date_tv);
+        TextView liveTv = helper.getView(R.id.module_match_live_iv);
+        TextView timeTv = helper.getView(R.id.module_match_time_tv);
         dateTv.setTextAppearance(context, R.style.text_bold);
         dateTv.setPadding(0, 0, 10, 0);
         liveTv.setVisibility(View.GONE);
@@ -37,8 +48,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
         }
         if (item.getLive().contains("HT")) {
             timeTv.setText("HT");
-        }
-        else {
+        } else {
             int min;
             int start;
             try {
@@ -78,6 +88,5 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
 
     }
-
 
 }

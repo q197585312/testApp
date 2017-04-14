@@ -15,6 +15,7 @@ public class AppConstant {
     public static final String APP_HOST = "http://main55.afb88.com/";
 
 
+
     public static String KEY_STRING = "KEY_STRING";
     public static String KEY_DATA = "KEY_DATA";
     public static String KEY_INT = "KEY_INT";
@@ -131,4 +132,7 @@ public class AppConstant {
     public static String URL_CASHOUT_MONEY_W88_GAMES = HOST + "_bet/FundLDDCashOut.aspx";
     public static String URL_TRANSFER_MONEY_W88_GAMES = HOST + "_bet/FundLDDTransfer.aspx";
     public static String URL_CHANGE_LANGUAGE = HOST + "Main.aspx?";
+
+
+    public static final String URL_RUNNING_MATCH_WEB = HOST+"_view/LiveCast.aspx";
 }

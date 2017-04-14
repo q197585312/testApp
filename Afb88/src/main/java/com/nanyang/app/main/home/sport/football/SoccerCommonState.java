@@ -83,10 +83,17 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
                     case R.id.module_right_mark_tv:
                         clickAdd(v,item);
                         break;
+                    case R.id.iv_hall_btn:
+//                        clickHallBtn(v,item);
+                        break;
                 }
 
             }
         };
+    }
+
+    protected void clickHallBtn(View v, SoccerCommonInfo item) {
+
     }
 
     private void clickAdd(View v,SoccerCommonInfo item) {

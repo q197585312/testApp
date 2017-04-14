@@ -60,6 +60,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
             public ScrollLayout onSetHeaderFollower() {
                 return getBaseView().onSetScrollHeader();
             }
+
             @Override
             public boolean isItemCollection(MyanmarInfo item) {
                 return false;
@@ -69,7 +70,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
             public void clickOdds(TextView v, MyanmarInfo item, String type, boolean isHf, String odds) {
                 IBetHelper<MyanmarInfo> helper = onSetBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf,"");
+                helper.clickOdds(item, type, odds, v, isHf, "");
             }
 
             @Override
@@ -191,7 +192,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
 
     @Override
     protected List<TableSportInfo<MyanmarInfo>> filterChildData(List<TableSportInfo<MyanmarInfo>> allData) {
-            return allData;
+        return allData;
     }
 
 
@@ -222,7 +223,20 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> lists = super.initHeaderList();
-        lists.add(new ArrayList<>(Arrays.asList("AFB FT. HDP","AFB FT. O/U")));
+        lists.add(new ArrayList<>(Arrays.asList("AFB FT. HDP", "AFB FT. O/U")));
         return lists;
+    }
+
+    @Override
+    protected List<TableSportInfo<MyanmarInfo>> updateJsonArray(String updateString) throws JSONException {
+
+        JSONArray jsonArray = new JSONArray(updateString);
+        if (jsonArray.length() > 4) {
+            parseLidValue(jsonArray);
+            JSONArray dataListArray = jsonArray.getJSONArray(4);
+            this.dataJsonArray = dataListArray;
+            return updateJsonData(dataListArray);
+        }
+        return new ArrayList<>();
     }
 }

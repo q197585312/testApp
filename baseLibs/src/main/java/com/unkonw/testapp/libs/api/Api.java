@@ -70,7 +70,7 @@ public class Api {
         }
     };
 
-    private static Retrofit getRetrofit() {
+    public static Retrofit getRetrofit() {
         if (retrofit == null) {
             // log拦截器  打印所有的log
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();

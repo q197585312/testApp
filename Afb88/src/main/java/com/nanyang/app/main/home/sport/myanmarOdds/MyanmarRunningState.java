@@ -36,10 +36,10 @@ public class MyanmarRunningState extends MyanmarState {
                 getBaseView().switchState(new MyanmarEarlyState(getBaseView()));
                 break;
             case "Today":
-                getBaseView().switchState(this);
+                getBaseView().switchState(new MyanmarTodayState(getBaseView()));
                 break;
             case "Running":
-                getBaseView().switchState(new MyanmarRunningState(getBaseView()));
+                getBaseView().switchState(this);
                 break;
         }
     }

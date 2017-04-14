@@ -65,6 +65,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 public abstract class SportState<B extends SportInfo, V extends SportContract.View<B>> implements IObtainDataState {
     private String LID;
+    private String LLD="";
     private int page;
     private List<TableSportInfo<B>> filterData;
     private Map<String, Boolean> leagueSelectedMap = new HashMap<>();
@@ -322,7 +323,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     @Nullable
-    private List<TableSportInfo<B>> parseTableModuleBeen(String s) throws JSONException {
+    protected List<TableSportInfo<B>> parseTableModuleBeen(String s) throws JSONException {
         s = Html.fromHtml(s).toString();
         if (s.contains("Session Expired")) {
             baseView.reLoginPrompt("", new SportContract.CallBack() {
@@ -348,7 +349,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     /**
      * 解析出下次更新需要的LID对象
      */
-    private void parseLidValue(JSONArray jsonArray) throws JSONException {
+    protected void parseLidValue(JSONArray jsonArray) throws JSONException {
         JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
         if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
             synchronized (this) {
@@ -412,7 +413,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         public void run() {
             Flowable<String> flowable = null;
             if (LID != null && LID.length() > 0) {
-                flowable = getService(ApiService.class).getData(getRefreshUrl() + "&LID=" + LID);
+                flowable = getService(ApiService.class).getData(getRefreshUrl() + "&LID=" + LLD);
             } else
                 flowable = getService(ApiService.class).getData(getRefreshUrl());
             Disposable subscribe = flowable
@@ -426,7 +427,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     .map(new Function<String, List<TableSportInfo<B>>>() {
                         @Override
                         public List<TableSportInfo<B>> apply(String s) throws Exception {
-                            if (LID != null && LID.length() > 0)
+                            if (LLD != null && LLD.length() > 0)
                                 return updateJsonArray(s);
                             else
                                 return parseTableModuleBeen(s);
@@ -461,7 +462,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     );
             mCompositeSubscription.add(subscribe);
 
-            updateHandler.postDelayed(this, 20000);// 50是延时时长
+            updateHandler.postDelayed(this, 30000);// 50是延时时长
         }
     };
     Handler updateHandler = new Handler();
@@ -937,8 +938,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
      * ]
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    protected List<TableSportInfo<B>> updateJsonArray(String updateString) {
-        try {
+    protected List<TableSportInfo<B>> updateJsonArray(String updateString)throws JSONException {
+
             updateString = Html.fromHtml(updateString).toString();
             LogUtil.d("UpdateData", updateString);
             JSONArray jsonArray = new JSONArray(updateString);
@@ -1007,10 +1008,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             }
 
             return new ArrayList<>();
-        } catch (JSONException je) {
-            je.printStackTrace();
-            return new ArrayList<>();
-        }
+
     }
 
     /*[//增加

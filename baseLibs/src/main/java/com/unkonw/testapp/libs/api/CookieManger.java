@@ -16,6 +16,10 @@ public class CookieManger implements CookieJar {
 
     private static Context mContext;
 
+    public static PersistentCookieStore getCookieStore() {
+        return cookieStore;
+    }
+
     private static PersistentCookieStore cookieStore;
 
     public CookieManger(Context context) {

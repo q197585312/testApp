@@ -2,11 +2,12 @@ package com.nanyang.app.main.home.sport.football;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
+import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
@@ -24,6 +25,8 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final SoccerCommonInfo item) {
         super.onConvert(helper, position, item);
+        ImageView ivHall=helper.getView(R.id.iv_hall_btn);
+        ivHall.setVisibility(View.VISIBLE);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
@@ -66,6 +69,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getIsHomeGive())) {
             awayTv.setText("");
             homeTv.setText("");
+            ivHall.setVisibility(View.GONE);
             tvRightMark.setVisibility(View.INVISIBLE);
             llLeft1.setVisibility(View.INVISIBLE);
             llLeft2.setVisibility(View.INVISIBLE);

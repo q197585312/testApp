@@ -31,10 +31,10 @@ public class MyanmarEarlyState extends MyanmarState {
     protected void onTypeClick(MenuItemInfo item) {
         switch (item.getType()) {
             case "Early":
-                getBaseView().switchState(new MyanmarEarlyState(getBaseView()));
+                getBaseView().switchState(this);
                 break;
             case "Today":
-                getBaseView().switchState(this);
+                getBaseView().switchState(new MyanmarTodayState(getBaseView()));
                 break;
             case "Running":
                 getBaseView().switchState(new MyanmarRunningState(getBaseView()));
