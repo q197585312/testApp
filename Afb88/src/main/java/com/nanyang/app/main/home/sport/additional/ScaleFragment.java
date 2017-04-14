@@ -52,22 +52,35 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
             helper.setText(R.id.vs_header_center_title_tv, item.getCenterTitle());
             helper.setText(R.id.vs_header_right_title_tv, item.getRightTitle());
         }
+
         helper.setText(R.id.vs_row_content_tv11, item.getRows().get(0).getKey());
-        helper.setText(R.id.vs_row_content_tv12, Float.valueOf(item.getRows().get(0).getValue()) == 0.0f ? "" : item.getRows().get(0).getValue());
+        String value0 = getValue0(item);
+        if (value0==null||value0.equals("") || Float.valueOf(getValue0(item)) == 0.0f) {
+            value0 = "";
+        }
+        String value1 = getValue1(item);
+        if (value1==null||value1.equals("") || Float.valueOf(getValue1(item)) == 0.0f) {
+            value1 = "";
+        }
+        String value2 = getValue2(item);
+        if (value2==null||value2.equals("") || Float.valueOf(getValue2(item)) == 0.0f) {
+            value2 = "";
+        }
+        helper.setText(R.id.vs_row_content_tv12, value0);
         helper.setText(R.id.vs_row_content_tv21, item.getRows().get(1).getKey());
-        helper.setText(R.id.vs_row_content_tv22, Float.valueOf(item.getRows().get(1).getValue()) == 0.0f ? "" : item.getRows().get(1).getValue());
+        helper.setText(R.id.vs_row_content_tv22, value1);
         helper.setText(R.id.vs_row_content_tv31, item.getRows().get(2).getKey());
-        helper.setText(R.id.vs_row_content_tv32, Float.valueOf(item.getRows().get(2).getValue()) == 0.0f ? "" : item.getRows().get(2).getValue());
+        helper.setText(R.id.vs_row_content_tv32, value2);
 
         helper.setClickLisenter(R.id.vs_row_content_tv22, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                if (item.getRows().get(1).getValue() != null && (!item.getRows().get(1).getValue().equals(""))) {
+                if (getValue1(item) != null && (!getValue1(item).equals(""))) {
                     if (position > 2 && position < 6) {
-                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(1).getValue(), (TextView) v, false, "&sc=" + item.getSc() + childParam);
+                        betHelper.clickOdds(itemData, item.getB(), getValue1(item), (TextView) v, false, "&sc=" + item.getSc() + childParam);
                     } else {
-                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(1).getValue(), (TextView) v, false, "&g=5" + childParam);
+                        betHelper.clickOdds(itemData, item.getB(), getValue1(item), (TextView) v, false, "&g=5" + childParam);
                     }
 
 
@@ -77,11 +90,11 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
         helper.setClickLisenter(R.id.vs_row_content_tv32, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (item.getRows().get(2).getValue() != null && (!item.getRows().get(2).getValue().equals(""))) {
+                if (getValue2(item) != null && (!getValue2(item).equals(""))) {
                     if (position > 2 && position < 6) {
-                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(2).getValue(), (TextView) v, true, "&sc=" + item.getSc() + childParam);
+                        betHelper.clickOdds(itemData, item.getB(), getValue2(item), (TextView) v, true, "&sc=" + item.getSc() + childParam);
                     } else {
-                        betHelper.clickOdds(itemData, item.getB(), item.getRows().get(2).getValue(), (TextView) v, true, "&g=5" + childParam);
+                        betHelper.clickOdds(itemData, item.getB(), getValue2(item), (TextView) v, true, "&g=5" + childParam);
                     }
 
                 }
@@ -89,6 +102,18 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
         });
 
 
+    }
+
+    private String getValue2(VsTableRowBean item) {
+        return item.getRows().get(2).getValue();
+    }
+
+    private String getValue1(VsTableRowBean item) {
+        return item.getRows().get(1).getValue();
+    }
+
+    private String getValue0(VsTableRowBean item) {
+        return item.getRows().get(0).getValue();
     }
 
 
