@@ -1,8 +1,12 @@
 package com.nanyang.app.main.home.sport.football;
 
+import android.net.http.SslError;
+import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -89,9 +93,19 @@ public class SoccerRunningState extends SoccerCommonState {
                 super.initView(view);
                 WebView webView = (WebView) view.findViewById(R.id.web_wv);
 
-                webView.getSettings().setJavaScriptEnabled(true);
-                webView.getSettings().setSupportZoom(true);          //支持缩放
-                webView.getSettings().setBuiltInZoomControls(true);  //启用内置缩放装置
+//                webView.getSettings().setJavaScriptEnabled(true);
+//                webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        /*        webView.getSettings().setAllowFileAccess(true);// 设置允许访问文件数据
+                webView.getSettings().setSupportZoom(true);
+                webView.getSettings().setBuiltInZoomControls(true);
+                webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+                webView.getSettings().setDomStorageEnabled(true);
+                webView.getSettings().setDatabaseEnabled(true);
+
+//自适应屏幕
+                webView.getSettings().setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NORMAL);
+                webView.getSettings().setLoadWithOverviewMode(true);*/
+
 
                 //加载需要显示的网页
                 //http://main55.afb88.com/_view/LiveCast.aspx?Id=807186&Home=Heidelberg%20United&Away=Hume%20City&L=EN-US
@@ -106,8 +120,27 @@ public class SoccerRunningState extends SoccerCommonState {
                 String gameUrl = AppConstant.URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
                 synCookies(gameUrl);
                 webView.loadUrl(gameUrl);
-                Log.d("OkHttp", gameUrl);
-                webView.setWebViewClient(new WebViewClient());
+                webView.setWebViewClient(new WebViewClient() {
+                    @Override
+                    public void onPageFinished(WebView view, String url) {
+                        super.onPageFinished(view, url);
+                    }
+
+                    @Override
+                    public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+                        super.onReceivedError(view, errorCode, description, failingUrl);
+
+                    }
+
+                    @Override
+                    public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                        handler.proceed();//接受证书
+
+                    }
+                });
+
+
+//                webView.setWebViewClient(new WebViewClient());
             }
         };
         getBaseView().onPopupWindowCreated(pop, Gravity.CENTER);

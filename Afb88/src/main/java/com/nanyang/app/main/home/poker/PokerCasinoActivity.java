@@ -43,8 +43,8 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         setContentView(R.layout.activity_pokercasino);
         createPresenter(new PorkerPresenter(this));
         initUi();
-        readExternalStorage();
-        writeExternalStorage();
+       /* readExternalStorage();
+        writeExternalStorage();*/
     }
 
     public void readExternalStorage() {
