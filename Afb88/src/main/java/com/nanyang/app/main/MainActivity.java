@@ -42,18 +42,20 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        String lag = AfbUtils.getLanguage(mContext);
+        AfbUtils.switchLanguage(lag, mContext);
         setContentView(R.layout.activity_main_tab);
         ButterKnife.bind(this);
         flCurrentMenu = flMenuHome;
         showFragmentToActivity(homeFragment, R.id.fl_main_content);
         createPresenter(new MainPresenter(this));
-        String lag = AfbUtils.getLanguage(mContext);
+
         if (lag.equals("zh")) {
             switchLanguage("ZH-CN");
         } else if (lag.equals("en")) {
             switchLanguage("EN-US");
         }
-        AfbUtils.switchLanguage(lag, mContext);
+
         toolbar.setNavigationIcon(R.mipmap.home_menu_nav);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

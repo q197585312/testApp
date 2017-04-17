@@ -84,7 +84,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
                         clickAdd(v,item);
                         break;
                     case R.id.iv_hall_btn:
-//                        clickHallBtn(v,item);
+                        clickHallBtn(v,item);
                         break;
                 }
 

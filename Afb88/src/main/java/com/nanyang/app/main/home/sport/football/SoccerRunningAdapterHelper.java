@@ -21,16 +21,9 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final SoccerCommonInfo item) {
-        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
-        ivHall.setVisibility(View.VISIBLE);
-        super.onConvert(helper, position, item);
 
-        ivHall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-              back.clickView(v,item);
-            }
-        });
+
+        super.onConvert(helper, position, item);
 
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         TextView liveTv = helper.getView(R.id.module_match_live_iv);
@@ -89,4 +82,25 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
     }
 
+    @Override
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final SoccerCommonInfo item) {
+        super.onMatchNotRepeat(helper, item);
+        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
+        ivHall.setVisibility(View.VISIBLE);
+        ivHall.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back.clickView(v, item);
+            }
+        });
+
+    }
+
+    @Override
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item) {
+        super.onMatchRepeat(helper, item);
+        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
+        ivHall.setVisibility(View.GONE);
+
+    }
 }

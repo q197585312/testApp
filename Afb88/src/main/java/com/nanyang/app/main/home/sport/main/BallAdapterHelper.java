@@ -44,6 +44,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final I item) {
 
+        helper.getView(R.id.iv_hall_btn).setVisibility(View.GONE);
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         View headV = helper.getView(R.id.module_match_head_v);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);

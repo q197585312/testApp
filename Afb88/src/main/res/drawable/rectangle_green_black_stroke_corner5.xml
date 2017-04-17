@@ -8,6 +8,8 @@
 
     <!-- corners表示是有半径为3像素的圆角 -->
     <corners android:radius="5dip" />
+    <solid
+        android:color="@color/black_grey"/>
 
     <stroke
         android:width="2dp"

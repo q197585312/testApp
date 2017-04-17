@@ -10,6 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -21,8 +22,8 @@ import okhttp3.Cookie;
 import okhttp3.HttpUrl;
 
 /**
-  * Created by LIUYONGKUI on 2016-06-09.
-  */
+ * Created by LIUYONGKUI on 2016-06-09.
+ */
 public class PersistentCookieStore {
     private static final String LOG_TAG = "PersistentCookieStore";
     private static final String COOKIE_PREFS = "Cookies_Prefs";
@@ -85,6 +86,31 @@ public class PersistentCookieStore {
         if (cookies.containsKey(url.host()))
             ret.addAll(cookies.get(url.host()).values());
         return ret;
+    }
+
+    public List<Cookie> get(String url) {
+        ArrayList<Cookie> ret = new ArrayList<>();
+        if (cookies.containsKey(getHost(url)))
+            ret.addAll(cookies.get(getHost(url)).values());
+        return ret;
+    }
+
+    private static String getHost(String url) {
+        if (!(url.startsWith("http://") || url
+                .startsWith("https://"))) {
+            url = "http://" + url;
+        }
+        String returnVal = "";
+        try {
+            URI uri = new URI(url);
+            returnVal = uri.getHost();
+        } catch (Exception e) {
+        }
+        if ((url.endsWith(".html") || url
+                .endsWith(".htm"))) {
+            returnVal = "";
+        }
+        return returnVal;
     }
 
     public boolean removeAll() {

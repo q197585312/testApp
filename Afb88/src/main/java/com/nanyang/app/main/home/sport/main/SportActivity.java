@@ -92,7 +92,7 @@ public class SportActivity extends BaseToolbarActivity {
         tvToolbarRight1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChooseLanguagePop pop=new ChooseLanguagePop(SportActivity.this,v);
+                ChooseLanguagePop pop = new ChooseLanguagePop(SportActivity.this, v);
                 onPopupWindowCreated(pop, Gravity.CENTER);
             }
         });
@@ -170,7 +170,6 @@ public class SportActivity extends BaseToolbarActivity {
         getApp().setBetParList(null);
 
     }
-
 
 
     private void selectFragmentTag(String tag) {
@@ -255,10 +254,15 @@ public class SportActivity extends BaseToolbarActivity {
     protected void updateBalanceTv(String allData) {
 
     }
+
     @Override
     protected void onBackCLick(View v) {
-        Intent intent = new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
 
+    @Override
+    public void onBackPressed() {
+        onBackCLick(flContent);
+    }
 }

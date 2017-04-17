@@ -22,6 +22,8 @@ import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.webkit.CookieManager;
+import android.webkit.CookieSyncManager;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -283,5 +285,12 @@ public class AfbUtils {
     public static String getLanguage(Context context) {
         return SharePreferenceUtil.getString(context, "language");
     }
-
+    public static void synCookies(Context context, String url,String cookies) {
+        CookieSyncManager.createInstance(context);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        cookieManager.removeSessionCookie();//移除
+        cookieManager.setCookie(url, cookies);//cookies是在HttpClient中获得的cookie
+        CookieSyncManager.getInstance().sync();
+    }
 }

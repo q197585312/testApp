@@ -21,7 +21,7 @@ public class SharePreferenceUtil {
      * @return 是否保存成功
      */
     public static boolean setValue(Context context, String key, Object value) {
-        if (sp == null) {
+                if (sp == null) {
             sp = context.getSharedPreferences(SharePreferncesName, Context.MODE_PRIVATE);
         }
         Editor edit = sp.edit();

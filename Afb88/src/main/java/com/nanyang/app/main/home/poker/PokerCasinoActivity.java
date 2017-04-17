@@ -3,11 +3,14 @@ package com.nanyang.app.main.home.poker;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
@@ -16,6 +19,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.poker.model.PorkerCasinoBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.PermissionUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +31,7 @@ import cn.finalteam.toolsfinal.ApkUtils;
  * Created by Administrator on 2017/2/15.
  */
 
-public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> implements PorkerContract.View<String> {
+public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> implements PorkerContract.View<String>, ActivityCompat.OnRequestPermissionsResultCallback {
     @Bind(R.id.porkercasino_rc)
     RecyclerView casinoRc;
     @Bind(R.id.banner_Img)
@@ -39,8 +43,62 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         setContentView(R.layout.activity_pokercasino);
         createPresenter(new PorkerPresenter(this));
         initUi();
+        readExternalStorage();
+        writeExternalStorage();
     }
 
+    public void readExternalStorage() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_READ_EXTERNAL_STORAGE, mPermissionGrant);
+    }
+
+    public void writeExternalStorage() {
+        PermissionUtils.requestPermission(this, PermissionUtils.CODE_WRITE_EXTERNAL_STORAGE, mPermissionGrant);
+    }
+
+    private PermissionUtils.PermissionGrant mPermissionGrant = new PermissionUtils.PermissionGrant() {
+        @Override
+        public void onPermissionGranted(int requestCode) {
+            switch (requestCode) {
+                case PermissionUtils.CODE_RECORD_AUDIO:
+                    Toast.makeText(mContext, "Result Permission Grant CODE_RECORD_AUDIO", Toast.LENGTH_SHORT).show();
+                    break;
+                case PermissionUtils.CODE_GET_ACCOUNTS:
+                    Toast.makeText(mContext, "Result Permission Grant CODE_GET_ACCOUNTS", Toast.LENGTH_SHORT).show();
+                    break;
+                case PermissionUtils.CODE_READ_PHONE_STATE:
+                    Toast.makeText(mContext, "Result Permission Grant CODE_READ_PHONE_STATE", Toast.LENGTH_SHORT).show();
+                    break;
+                case PermissionUtils.CODE_CALL_PHONE:
+                    Toast.makeText(mContext, "Result Permission Grant CODE_CALL_PHONE", Toast.LENGTH_SHORT).show();
+                    break;
+                case PermissionUtils.CODE_CAMERA:
+                    Toast.makeText(mContext, "Result Permission Grant CODE_CAMERA", Toast.LENGTH_SHORT).show();
+                    break;
+                case PermissionUtils.CODE_ACCESS_FINE_LOCATION:
+                    Toast.makeText(mContext, "Result Permission Grant CODE_ACCESS_FINE_LOCATION", Toast.LENGTH_SHORT).show();
+                    break;
+                case PermissionUtils.CODE_ACCESS_COARSE_LOCATION:
+                    Toast.makeText(mContext, "Result Permission Grant CODE_ACCESS_COARSE_LOCATION", Toast.LENGTH_SHORT).show();
+                    break;
+                case PermissionUtils.CODE_READ_EXTERNAL_STORAGE:
+                    Toast.makeText(mContext, "Result Permission Grant CODE_READ_EXTERNAL_STORAGE", Toast.LENGTH_SHORT).show();
+                    break;
+                case PermissionUtils.CODE_WRITE_EXTERNAL_STORAGE:
+                    Toast.makeText(mContext, "Result Permission Grant CODE_WRITE_EXTERNAL_STORAGE", Toast.LENGTH_SHORT).show();
+                    break;
+                default:
+                    break;
+            }
+        }
+    };
+    /**
+     * Callback received when a permissions request has been completed.
+     */
+    @Override
+    public void onRequestPermissionsResult(final int requestCode, @NonNull String[] permissions,
+                                           @NonNull int[] grantResults) {
+        PermissionUtils.requestPermissionsResult(this, requestCode, permissions, grantResults, mPermissionGrant);
+    }
     @Override
     public void onGetData(String data) {
         if (data.length() > 0) {

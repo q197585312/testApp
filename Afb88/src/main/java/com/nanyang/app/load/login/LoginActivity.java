@@ -5,6 +5,7 @@ import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -20,6 +21,7 @@ import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
 import cn.finalteam.toolsfinal.ManifestUtils;
@@ -52,16 +54,25 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Bind(R.id.login_english_rb)
     RadioButton loginEnglishRb;
     AfbApplication app;
+    @Bind(R.id.cb_login_remember)
+    CheckBox cbLoginRemember;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        ButterKnife.bind(this);
         createPresenter(new LoginPresenter(this));
         edtLoginPassword.setOnKeyListener(onKeyListener);
-        String password = AppCacheUtils.getInstance(this).getString("PASS_WORD")!=null? AppCacheUtils.getInstance(this).getString("PASS_WORD"):"";
-        String userName = AppCacheUtils.getInstance(this).getString("USER_NAME")!=null? AppCacheUtils.getInstance(this).getString("USER_NAME"):"";
+        String password = AppCacheUtils.getInstance(this).getString("PASS_WORD") != null ? AppCacheUtils.getInstance(this).getString("PASS_WORD") : "";
+        String userName = AppCacheUtils.getInstance(this).getString("USER_NAME") != null ? AppCacheUtils.getInstance(this).getString("USER_NAME") : "";
         edtLoginUsername.setText(userName);
         edtLoginPassword.setText(password);
+        if (userName == null || userName.isEmpty()) {
+            cbLoginRemember.setChecked(false);
+        } else {
+            cbLoginRemember.setChecked(true);
+        }
         initLanguage();
     }
 
@@ -108,8 +119,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             String password = edtLoginPassword.getText().toString();
             app.getUser().setUserName(username);
             app.getUser().setPassword(password);
-            AppCacheUtils.getInstance(this).put("PASS_WORD",password);
-            AppCacheUtils.getInstance(this).put("USER_NAME",username);
+            if (cbLoginRemember.isChecked()) {
+                AppCacheUtils.getInstance(this).put("PASS_WORD", password);
+                AppCacheUtils.getInstance(this).put("USER_NAME", username);
+            } else {
+                AppCacheUtils.getInstance(this).put("PASS_WORD", "");
+                AppCacheUtils.getInstance(this).put("USER_NAME", "");
+            }
         } else {
             ToastUtils.showShort(R.string.Login_Failed);
         }
@@ -156,7 +172,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         btnLoginLogin.setText(getString(R.string.Login));
         tvLoginRegister.setText(getString(R.string.No_Account));
         tvLoginForget.setText(getString(R.string.Forget_password));
-        tvLoginVersion.setText(getString(R.string.Version)+":"+ ManifestUtils.getVersionName(this));
+        tvLoginVersion.setText(getString(R.string.Version) + ":" + ManifestUtils.getVersionName(this));
+        cbLoginRemember.setText(R.string.remember_me);
 
     }
 

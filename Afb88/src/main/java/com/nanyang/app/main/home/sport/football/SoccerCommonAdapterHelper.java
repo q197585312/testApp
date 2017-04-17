@@ -26,7 +26,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
     public void onConvert(MyRecyclerViewHolder helper, int position, final SoccerCommonInfo item) {
         super.onConvert(helper, position, item);
         ImageView ivHall=helper.getView(R.id.iv_hall_btn);
-        ivHall.setVisibility(View.VISIBLE);
+        ivHall.setVisibility(View.GONE);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
@@ -69,14 +69,14 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getIsHomeGive())) {
             awayTv.setText("");
             homeTv.setText("");
-            ivHall.setVisibility(View.GONE);
             tvRightMark.setVisibility(View.INVISIBLE);
             llLeft1.setVisibility(View.INVISIBLE);
             llLeft2.setVisibility(View.INVISIBLE);
             tvCollection.setVisibility(View.INVISIBLE);
             item.setHasOE("0");
+            onMatchRepeat(helper,item);
         } else {
-
+            onMatchNotRepeat(helper,item);
             String homeRank = item.getHomeRank();
             String awayRank = item.getAwayRank();
             String away = item.getAway();
@@ -98,6 +98,14 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
             checkRedCards(awayRedCardTv, rcAway);
             checkRedCards(homeRedCardTv, rcHome);
         }
+
+    }
+
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item) {
+
+    }
+
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item) {
 
     }
 

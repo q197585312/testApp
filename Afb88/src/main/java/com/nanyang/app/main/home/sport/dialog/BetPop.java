@@ -37,6 +37,8 @@ public class BetPop extends BasePopupWindow {
     TextView betNameTv;
     @Bind(R.id.bet_hdp_tv)
     TextView betHdpTv;
+    @Bind(R.id.bet_odds_tv)
+    TextView betOddsTv;
     @Bind(R.id.bet_amount_edt)
     EditText betAmountEdt;
     @Bind(R.id.bet_sure_btn)
@@ -223,16 +225,24 @@ public class BetPop extends BasePopupWindow {
         if (result.getBetHdp() != null) {
             if ((result.isIsHomeGive() && result.getBetType().equals("home")) || (!result.isIsHomeGive() && result.getBetType().equals("away"))) {
 
-                hdp = "-" + result.getBetHdp();
+                hdp = "-" + Html.fromHtml(result.getBetHdp()).toString();
+
 
             } else {
 
-                hdp = result.getBetHdp();
+                hdp = Html.fromHtml(result.getBetHdp()).toString();
 
             }
         }
         betNameTv.setText(state);
-        betHdpTv.setText(Html.fromHtml(hdp).toString() + "@" + Html.fromHtml(result.getBetOdds()).toString());
+        betHdpTv.setText(hdp + "@");
+        String odds = Html.fromHtml(result.getBetOdds()).toString();
+        if (odds != null && !odds.isEmpty() && Float.valueOf(odds) < 0) {
+            betOddsTv.setTextColor(context.getColor(R.color.red_title));
+        } else {
+            betOddsTv.setTextColor(context.getColor(R.color.black_grey));
+        }
+        betOddsTv.setText(odds);
 
         betSureBtn.setOnClickListener(new View.OnClickListener() {
             @Override

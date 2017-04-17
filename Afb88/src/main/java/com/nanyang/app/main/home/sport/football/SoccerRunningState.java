@@ -3,8 +3,6 @@ package com.nanyang.app.main.home.sport.football;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.webkit.CookieManager;
-import android.webkit.CookieSyncManager;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
@@ -80,7 +78,7 @@ public class SoccerRunningState extends SoccerCommonState {
     }
 
     protected void clickHallBtn(View v, final SoccerCommonInfo item) {
-        BasePopupWindow pop = new BasePopupWindow(getBaseView().getContextActivity(), v, LinearLayout.LayoutParams.MATCH_PARENT,800) {
+        BasePopupWindow pop = new BasePopupWindow(getBaseView().getContextActivity(), v, LinearLayout.LayoutParams.MATCH_PARENT, 1300) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_web_layout;
@@ -94,15 +92,19 @@ public class SoccerRunningState extends SoccerCommonState {
                 webView.getSettings().setJavaScriptEnabled(true);
                 webView.getSettings().setSupportZoom(true);          //支持缩放
                 webView.getSettings().setBuiltInZoomControls(true);  //启用内置缩放装置
+
                 //加载需要显示的网页
+                //http://main55.afb88.com/_view/LiveCast.aspx?Id=807186&Home=Heidelberg%20United&Away=Hume%20City&L=EN-US
                 String lag = AfbUtils.getLanguage(context);
                 String l = "eng";
                 if (lag.equals("zh")) {
-                    l = "ZH-CN";
+                    l = "eng";
+                }else {
+                    l="EN-US";
                 }
 
                 String gameUrl = AppConstant.URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
-                synCookies(gameUrl,webView);
+                synCookies(gameUrl);
                 webView.loadUrl(gameUrl);
                 Log.d("OkHttp", gameUrl);
                 webView.setWebViewClient(new WebViewClient());
@@ -111,17 +113,9 @@ public class SoccerRunningState extends SoccerCommonState {
         getBaseView().onPopupWindowCreated(pop, Gravity.CENTER);
     }
 
-    public void synCookies(String url,WebView v) {
-        CookieSyncManager.createInstance(getBaseView().getContextActivity());
-        CookieManager mCookieManager = CookieManager.getInstance();
-        mCookieManager.setAcceptCookie(true);
-        // 每次移除会有Cookie不一致问题，注释该地方
-        //mCookieManager.removeSessionCookie();// 移除
-        // Cookie是通过我们Volley活着HttpClient获取的
-        //  Log.i(WebSiteUrl.Tag,"cookie="+afbApp.getHttpClient().getCookie());
-        String cookie = CookieManger.getCookieStore().getCookies().get(0).value();
-        mCookieManager.setCookie(url,cookie);
-        CookieSyncManager.getInstance().sync();
-        mCookieManager.acceptThirdPartyCookies(v);
+    public void synCookies(String url) {
+        String cookie = "";
+        cookie = CookieManger.getCookieStore().get(url).get(0).toString();
+        AfbUtils.synCookies(getBaseView().getContextActivity(), url, cookie);
     }
 }
