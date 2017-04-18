@@ -8,11 +8,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
+import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
 import android.telephony.TelephonyManager;
+import android.text.TextUtils;
+import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Toast;
 
@@ -22,6 +26,7 @@ import java.io.File;
 import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Locale;
 
 public final class SystemTool {
 	private static final String TAG = "SystemTool";
@@ -145,5 +150,29 @@ public final class SystemTool {
 			return manager.getPackageInfo(context.getPackageName(),0);
 
 
+	}
+	public static void switchLanguage(String lag, Context context) {
+		Resources resources = context.getResources();// 获得res资源对象
+		Configuration config = resources.getConfiguration();// 获得设置对象
+		DisplayMetrics dm = resources.getDisplayMetrics();// 获得屏幕参数：主要是分辨率，像素等。
+		if (!TextUtils.isEmpty(lag)) {
+			if (lag.equals("zh")) {
+				config.locale = Locale.SIMPLIFIED_CHINESE; // 简体中文
+			} else if (lag.equals("en")) {
+				config.locale = Locale.ENGLISH;
+			}
+		} else {
+			Locale.setDefault(Locale.ENGLISH);
+		}
+		resources.updateConfiguration(config, dm);
+		if (!TextUtils.isEmpty(lag)) {
+			SharePreferenceUtil.setValue(context, "language", lag);
+		} else {
+			SharePreferenceUtil.setValue(context, "language", "en");
+		}
+	}
+
+	public static String getLanguage(Context context) {
+		return SharePreferenceUtil.getString(context, "language");
 	}
 }
