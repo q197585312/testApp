@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import butterknife.ButterKnife;
@@ -42,13 +43,12 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
+        SystemTool.switchLanguage(SystemTool.getLanguage(mContext), mContext);
         View mContentView = inflater
                 .inflate(onSetLayoutId(), container, false);
         ButterKnife.bind(this, mContentView);
         initView();
         initData();
-
         return mContentView;
     }
 

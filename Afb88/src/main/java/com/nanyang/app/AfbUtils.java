@@ -3,7 +3,6 @@ package com.nanyang.app;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -19,11 +18,11 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
-import android.util.DisplayMetrics;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+
+import com.unkonw.testapp.libs.utils.SystemTool;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -37,7 +36,6 @@ import java.io.ObjectOutputStream;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 /**
  * Created by Administrator on 2017/2/22.
@@ -262,30 +260,15 @@ public class AfbUtils {
     }
 
     public static void switchLanguage(String lag, Context context) {
-        Resources resources = context.getResources();// 获得res资源对象
-        Configuration config = resources.getConfiguration();// 获得设置对象
-        DisplayMetrics dm = resources.getDisplayMetrics();// 获得屏幕参数：主要是分辨率，像素等。
-        if (!TextUtils.isEmpty(lag)) {
-            if (lag.equals("zh")) {
-                config.locale = Locale.SIMPLIFIED_CHINESE; // 简体中文
-            } else if (lag.equals("en")) {
-                config.locale = Locale.ENGLISH;
-            }
-        } else {
-            Locale.setDefault(Locale.ENGLISH);
-        }
-        resources.updateConfiguration(config, dm);
-        if (!TextUtils.isEmpty(lag)) {
-            SharePreferenceUtil.setValue(context, "language", lag);
-        } else {
-            SharePreferenceUtil.setValue(context, "language", "en");
-        }
+        SystemTool.switchLanguage(lag, context);
+
     }
 
     public static String getLanguage(Context context) {
-        return SharePreferenceUtil.getString(context, "language");
+        return SystemTool.getLanguage(context);
     }
-    public static void synCookies(Context context, String url,String cookies) {
+
+    public static void synCookies(Context context, String url, String cookies) {
         CookieSyncManager.createInstance(context);
         CookieManager cookieManager = CookieManager.getInstance();
         cookieManager.setAcceptCookie(true);
