@@ -6,13 +6,17 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.center.model.StakeListBean2;
+import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -60,6 +64,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     @Override
     public void onGetData(String data) {
         Gson gson = new Gson();
+        data = Html.fromHtml(data).toString();
         String[] data1 = data.split("nyhxkj");
         StakeListBean stakeListBean = gson.fromJson(data1[0], StakeListBean.class);
         StakeListBean2 stakeListBean2 = gson.fromJson(data1[1], StakeListBean2.class);
@@ -75,7 +80,14 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
         rc.setLayoutManager(mLayoutManager);
         BaseRecyclerAdapter<StakeListBean.DicAllBean> baseRecyclerAdapter = new BaseRecyclerAdapter<StakeListBean.DicAllBean>(mContext, data, R.layout.item_stake) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, StakeListBean.DicAllBean item) {
+            public void convert(MyRecyclerViewHolder holder, int position, final StakeListBean.DicAllBean item) {
+                View view = holder.getView(R.id.ll_state_parent);
+                view.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        clickItem(v, item);
+                    }
+                });
                 String transType = item.getTransType();
                 TextView refno = holder.getView(R.id.order_item_tv1);
                 TextView homeAway = holder.getView(R.id.order_item_tv2);
@@ -226,6 +238,17 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
         });
         rc.setAdapter(baseRecyclerAdapter);
     }
+
+    private void clickItem(View v, StakeListBean.DicAllBean item) {
+        if (item.getTransType().equalsIgnoreCase("PAR")) {
+//            http://main55.afb88.com/_norm/PamTrans.aspx?userName=demoafbAi1&id=138661496
+            WebPop pop = new WebPop(mContext, v);
+            String url = AppConstant.HOST + "_norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+            pop.setUrl(url);
+            pop.showPopupCenterWindow();
+        }
+    }
+
 
     @Override
     public void onFailed(String error) {
