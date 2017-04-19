@@ -7,27 +7,18 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.ApiService;
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
-
-import org.reactivestreams.Subscription;
 
 import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Administrator on 2015/10/27.
@@ -35,19 +26,21 @@ import io.reactivex.schedulers.Schedulers;
 public class ChooseLanguagePop extends BasePopupWindow {
 
 
+    private final LanguagePresenter presenter;
     @Bind(R.id.base_rv)
     RecyclerView baseRv;
 
     SportActivity context;
 
-    public ChooseLanguagePop(SportActivity context, View v) {
-        this(context, v, 400, LinearLayout.LayoutParams.WRAP_CONTENT);
+    public ChooseLanguagePop(SportActivity context, View v, LanguagePresenter presenter) {
+        this(context, v, 400, LinearLayout.LayoutParams.WRAP_CONTENT,presenter);
     }
 
-    public ChooseLanguagePop(SportActivity mContext, View v, int width, int height) {
+    public ChooseLanguagePop(SportActivity mContext, View v, int width, int height,LanguagePresenter presenter) {
         super(mContext, v, width, height);
         this.context = mContext;
         this.v = v;
+        this.presenter=presenter;
         initData();
 
     }
@@ -106,33 +99,7 @@ public class ChooseLanguagePop extends BasePopupWindow {
     }
 
     public void switchLanguage(String lang) {
-        Disposable d = Api.getService(ApiService.class).switchLanguage(AppConstant.URL_CHANGE_LANGUAGE, lang).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        context.hideLoadingDialog();
-                        context.recreate();
-                        closePopupWindow();
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        context.hideLoadingDialog();
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        context.hideLoadingDialog();
-                    }
-                }, new Consumer<Subscription>() {
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        context.showLoadingDialog();
-                        subscription.request(Integer.MAX_VALUE);
-
-                    }
-                });
-
+        presenter.switchLanguage(lang);
     }
 
 }

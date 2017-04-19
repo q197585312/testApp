@@ -10,9 +10,8 @@ public interface MainContract {
 
     interface Presenter extends IBasePresenter {
         //        void login(Map<String, String> info);
-        void main(String msg);
 
-        void switchLanguage(String lang);
+//        void switchLanguage(String lang);
 
     }
 }

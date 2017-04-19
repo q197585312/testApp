@@ -80,56 +80,5 @@ class PorkerPresenter extends BaseRetrofitPresenter<String, PorkerContract.View<
                 });
         mCompositeSubscription.add(subscription);
 
-         /*   Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).getData(AppConstant.URL_GD88_1))
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(Schedulers.io())
-                    .flatMap(new Function<String, Flowable<String>>() {
-                        @Override
-                        public Flowable<String> apply(String s) throws Exception {
-                            String regex=".*<script language='javascript'>window.open\\('(.*?)'.*?";
-                            Pattern p= Pattern.compile(regex);
-                            Matcher m=p.matcher(s);
-                            if(m.find()){
-                                String url=m.group(1);
-//                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
-                                String host=url.substring(0,url.indexOf("/",9));
-                                AppConstant.HOST=host+"/";
-                                return getService(ApiService.class).timerRun2(url);
-                            }
-                            return null;
-                        }
-                    })
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-
-                    .subscribe(new Consumer<String>() {//onNext
-                        @Override
-                        public void accept(String str) throws Exception {
-                            if(str.contains("window.open(")) {
-                                baseView.onGetData("Login Success");
-                            }
-                            else{
-                                baseView.onFailed("Login Failed");
-                            }
-                        }
-                    }, new Consumer<Throwable>() {//错误
-                        @Override
-                        public void accept(Throwable throwable) throws Exception {
-                            baseView.onFailed(throwable.getLocalizedMessage());
-                            baseView.hideLoadingDialog();
-                        }
-                    }, new Action() {//完成
-                        @Override
-                        public void run() throws Exception {
-                            baseView.hideLoadingDialog();
-                        }
-                    }, new Consumer<Subscription>() {//开始绑定
-                        @Override
-                        public void accept(Subscription subscription) throws Exception {
-                            baseView.showLoadingDialog();
-                            subscription.request(Long.MAX_VALUE);
-                        }
-                    });
-            mCompositeSubscription.add(subscription);*/
     }
 }

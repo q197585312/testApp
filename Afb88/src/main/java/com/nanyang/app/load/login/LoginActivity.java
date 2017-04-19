@@ -113,25 +113,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Override
     public void onGetData(String data) {
 
-        if (data.equals("Login Success")) {
-            ToastUtils.showShort(getString(R.string.Login_Success));
-            app = (AfbApplication) getApplication();
-            String username = edtLoginUsername.getText().toString();
-            String password = edtLoginPassword.getText().toString();
-            app.getUser().setUserName(username);
-            app.getUser().setPassword(password);
-            if (cbLoginRemember.isChecked()) {
-                AppCacheUtils.getInstance(this).put("PASS_WORD", password);
-                AppCacheUtils.getInstance(this).put("USER_NAME", username);
-            } else {
-                AppCacheUtils.getInstance(this).put("PASS_WORD", "");
-                AppCacheUtils.getInstance(this).put("USER_NAME", "");
-            }
-        } else {
-            ToastUtils.showShort(R.string.Login_Failed);
-        }
-        skipAct(MainActivity.class);
-        finish();
+
     }
 
     @Override
@@ -197,5 +179,26 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         } else {
             ToastUtils.showShort(getString(R.string.enter_username_or_password));
         }
+    }
+
+    @Override
+    public void onLanguageSwitchSucceed(String str) {
+        ToastUtils.showShort(R.string.Login_Success);
+        app = (AfbApplication) getApplication();
+        String username = edtLoginUsername.getText().toString();
+        String password = edtLoginPassword.getText().toString();
+        app.getUser().setUserName(username);
+        app.getUser().setPassword(password);
+        if (cbLoginRemember.isChecked()) {
+            AppCacheUtils.getInstance(this).put("PASS_WORD", password);
+            AppCacheUtils.getInstance(this).put("USER_NAME", username);
+        } else {
+            AppCacheUtils.getInstance(this).put("PASS_WORD", "");
+            AppCacheUtils.getInstance(this).put("USER_NAME", "");
+        }
+
+
+        skipAct(MainActivity.class);
+        finish();
     }
 }

@@ -15,6 +15,8 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.common.ILanguageView;
+import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
 import com.nanyang.app.main.home.sport.dialog.ChooseLanguagePop;
@@ -27,6 +29,7 @@ import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
@@ -40,7 +43,7 @@ import butterknife.OnClick;
 import io.reactivex.disposables.CompositeDisposable;
 
 
-public class SportActivity extends BaseToolbarActivity {
+public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
     BaseSportFragment soccerFragment = new SoccerFragment();
     BaseSportFragment basketballFragment = new BasketballFragment();
     BaseSportFragment tennisFragment = new TennisFragment();
@@ -85,6 +88,7 @@ public class SportActivity extends BaseToolbarActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
+        createPresenter(new LanguagePresenter(this));
         assert tvToolbarRight != null;
         tvToolbarRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_list_layer, 0);
         tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_white_language, 0);
@@ -92,7 +96,7 @@ public class SportActivity extends BaseToolbarActivity {
         tvToolbarRight1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ChooseLanguagePop pop = new ChooseLanguagePop(SportActivity.this, v);
+                ChooseLanguagePop pop = new ChooseLanguagePop(SportActivity.this, v, presenter);
                 onPopupWindowCreated(pop, Gravity.CENTER);
             }
         });
@@ -264,5 +268,21 @@ public class SportActivity extends BaseToolbarActivity {
     @Override
     public void onBackPressed() {
         onBackCLick(flContent);
+    }
+
+    @Override
+    public void onGetData(String data) {
+
+    }
+
+    @Override
+    public void onFailed(String error) {
+        ToastUtils.showShort(error);
+    }
+
+    @Override
+    public void onLanguageSwitchSucceed(String str) {
+        recreate();
+        popWindow.closePopupWindow();
     }
 }

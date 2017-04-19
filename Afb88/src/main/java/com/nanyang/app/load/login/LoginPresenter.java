@@ -1,9 +1,13 @@
 package com.nanyang.app.load.login;
 
 
+import android.app.Activity;
+
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
+import com.nanyang.app.common.SwitchLanguage;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
@@ -54,21 +58,21 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 
     @Override
     public void login(LoginInfo info) {
-        if(checkUserAvailable(info)) {
-            Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).doLogin(AppConstant.URL_LOGIN,info.getMap()))
+        if (checkUserAvailable(info)) {
+            Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).doLogin(AppConstant.URL_LOGIN, info.getMap()))
                     .subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
                     .flatMap(new Function<String, Flowable<String>>() {
                         @Override
                         public Flowable<String> apply(String s) throws Exception {
-                            String regex=".*<script language='javascript'>window.open\\('(.*?)'.*?";
-                            Pattern p= Pattern.compile(regex);
-                            Matcher m=p.matcher(s);
-                            if(m.find()){
-                                String url=m.group(1);
+                            String regex = ".*<script language='javascript'>window.open\\('(.*?)'.*?";
+                            Pattern p = Pattern.compile(regex);
+                            Matcher m = p.matcher(s);
+                            if (m.find()) {
+                                String url = m.group(1);
 //                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
-                                String host=url.substring(0,url.indexOf("/",9));
-                                AppConstant.HOST=host+"/";
+                                String host = url.substring(0, url.indexOf("/", 9));
+                                AppConstant.HOST = host + "/";
                                 return getService(ApiService.class).timerRun2(url);
                             }
                             return null;
@@ -80,12 +84,19 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                     .subscribe(new Consumer<String>() {//onNext
                         @Override
                         public void accept(String str) throws Exception {
-                                if(str.contains("window.open(")) {
-                                    baseView.onGetData("Login Success");
+                            if (str.contains("window.open(")) {
+                                String lag = AfbUtils.getLanguage((Activity) baseView);
+                                String lang = "eng";
+                                if (lag.equals("zh")) {
+                                    lang = "ZH-CN";
+                                } else if (lag.equals("en")) {
+                                    lang = "EN-US";
                                 }
-                            else{
-                                    baseView.onFailed("Login Failed");
-                                }
+                                SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
+                                switchLanguage.switchLanguage(lang);
+                            } else {
+                                baseView.onFailed("Login Failed");
+                            }
                         }
                     }, new Consumer<Throwable>() {//错误
                         @Override
@@ -110,11 +121,11 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
     }
 
     private boolean checkUserAvailable(LoginInfo info) {
-        if(info.getTxtUserName().isEmpty()){
+        if (info.getTxtUserName().isEmpty()) {
             baseView.promptMsg(R.string.Account_empty);
             return false;
         }
-        if(info.getPassword_password().isEmpty()){
+        if (info.getPassword_password().isEmpty()) {
             baseView.promptMsg(R.string.Password_empty);
             return false;
         }

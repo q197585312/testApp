@@ -198,7 +198,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             holder.viewpagerMatchHomeHdpoddsTv.setVisibility(View.VISIBLE);
             holder.viewpagerMatchVisitHdpTv.setVisibility(View.VISIBLE);
             holder.viewpagerMatchVisitHdpoddsTv.setVisibility(View.VISIBLE);
-            if (hasHdp.equals("0")) {
+            if (homeHdpOdds.isEmpty() || awayHdpOdds.isEmpty() || (Math.abs(Float.valueOf(awayHdpOdds)) < 0.1f && Math.abs(Float.valueOf(homeHdpOdds)) < 0.1f)) {
+                hasHdp = "0";
+            }
+            if (overOdds.isEmpty() || underOdds.isEmpty() || (Math.abs(Float.valueOf(underOdds)) < 0.1f && Math.abs(Float.valueOf(overOdds)) < 0.1f)) {
+                hasOU = "0";
+            }
+            if (hasHdp.equals("0") || hasHdp.equals("")) {
                 holder.viewpagerMatchHomeHdpTv.setText("");
                 holder.viewpagerMatchHomeHdpoddsTv.setText("");
                 holder.viewpagerMatchVisitHdpTv.setText("");

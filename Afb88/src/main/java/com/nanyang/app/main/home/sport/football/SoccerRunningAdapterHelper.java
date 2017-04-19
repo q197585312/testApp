@@ -86,13 +86,18 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final SoccerCommonInfo item) {
         super.onMatchNotRepeat(helper, item);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
-        ivHall.setVisibility(View.VISIBLE);
-        ivHall.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                back.clickView(v, item);
-            }
-        });
+        String rtsMatchId = item.getRTSMatchId();
+        if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
+            ivHall.setVisibility(View.VISIBLE);
+            ivHall.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    back.clickView(v, item);
+                }
+            });
+        } else {
+            ivHall.setVisibility(View.GONE);
+        }
 
     }
 
