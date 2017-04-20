@@ -44,6 +44,4 @@ public class BasketballTodayMixState extends BasketballMixState {
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(1,getBaseView().getContextActivity().getString(R.string.Today),"Today",getBaseView().getContextActivity().getString(R.string.Basketball));
     }
-
-
 }

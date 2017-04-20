@@ -57,7 +57,7 @@ public class SoccerEarlyState extends SoccerCommonState {
                 getBaseView().switchState(new SoccerRunningState(getBaseView()));
                 break;
             case "Today":
-                getBaseView().switchState(new SoccerRunningState(getBaseView()));
+                getBaseView().switchState(new SoccerTodayState(getBaseView()));
                 break;
             case "Early":
                 getBaseView().switchState(this);

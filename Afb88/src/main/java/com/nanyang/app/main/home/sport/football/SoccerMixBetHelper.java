@@ -4,9 +4,11 @@ import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
+import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
 import org.reactivestreams.Subscription;
@@ -32,8 +34,8 @@ public class SoccerMixBetHelper extends BallBetHelper<SoccerMixInfo, BetView> {
 //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12147539&odds=18
 
     @Override
-    public Disposable clickOdds(SoccerMixInfo item, String type, String odds, final TextView v, boolean isHf,String params) {
-        SoccerMixAdapterHelper.setMixBackground(v, baseView.getContextActivity());
+    public Disposable clickOdds(SoccerMixInfo item, String type, String odds, final TextView v, boolean isHf, String params) {
+        new BaseMixStyleHandler((BaseToolbarActivity) baseView.getContextActivity()).setMixBackground(v);
         Disposable subscribe = getService(ApiService.class).updateMixParlayBet(getOddsUrl(item, type, isHf, odds, params)).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingParPromptBean>() {//onNext
                     @Override
@@ -43,7 +45,7 @@ public class SoccerMixBetHelper extends BallBetHelper<SoccerMixInfo, BetView> {
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        SoccerMixAdapterHelper.setCommonBackground(v, baseView.getContextActivity());
+                        new BaseMixStyleHandler((BaseToolbarActivity) baseView.getContextActivity()).setCommonBackground(v);
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().hideLoadingDialog();
                     }
@@ -63,15 +65,16 @@ public class SoccerMixBetHelper extends BallBetHelper<SoccerMixInfo, BetView> {
             compositeSubscription.add(subscribe);
         return subscribe;
     }
-//    http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=1_par&oId=12265358&odds=1.66
+
+    //    http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=1_par&oId=12265358&odds=1.66
     //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12152396&odds=19.9
-    protected String getOddsUrl(SoccerMixInfo item, String type, boolean isHf, String odds,String params) {
+    protected String getOddsUrl(SoccerMixInfo item, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);
         stringBuilder.append("g=2");
         if (!type.endsWith("_par"))
             stringBuilder.append("&b=" + type + "_par");
-        else{
+        else {
             stringBuilder.append("&b=" + type);
         }
         stringBuilder.append("&oId=");

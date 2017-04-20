@@ -3,8 +3,11 @@ package com.nanyang.app.main.home.sport.basketball;
 import android.content.Context;
 import android.view.View;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -46,12 +49,24 @@ public class BasketballMixAdapterHelper extends BallAdapterHelper<BasketballMixI
         markAdd.setVisibility(View.GONE);
         tvCollection.setVisibility(View.GONE);
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        scrollChild(sl.getChildAt(1),false, item,item.getIsHomeGive() , item.getHasX12(),"", item.getHasOE(), "", item.getIsX12New() , "","", "", item.getX12_1Odds(), item.getX12_2Odds(), "1",  "2", "", ""
-            ,true,false , true,  item.getHasOE(),  item.getIsOENew(),  item.getOddOdds(),  item.getEvenOdds(),  "odd",  "even");
+        scrollChild(sl.getChildAt(1), false, item, item.getIsHomeGive(), item.getHasX12(), "", item.getHasOE(), "", item.getIsX12New(), "", "", "", item.getX12_1Odds(), item.getX12_2Odds(), "1", "2", "", ""
+                , true, false, true, item.getHasOE(), item.getIsOENew(), item.getOddOdds(), item.getEvenOdds(), "odd", "even");
         getBaseRecyclerAdapter().getItem(position).setIsX12New("0");
         getBaseRecyclerAdapter().getItem(position).setIsOENew("0");
+        BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
+        String itemFullSocOddsId = item.getSocOddsId();
+        BettingParPromptBean.BetParBean mixItem = handler.getMixItem(itemFullSocOddsId);
+        if (mixItem != null) {
+            if (mixItem.getTransType().equalsIgnoreCase("OE"))
+                handler.parseMixBackground(mixItem, 1, sl);
+            else {
+                handler.parseMixBackground(mixItem, 0, sl);
+            }
+        } else {
+            handler.parseCommonBackground(0, sl);
+            handler.parseCommonBackground(1, sl);
+        }
     }
-
 
 
 }

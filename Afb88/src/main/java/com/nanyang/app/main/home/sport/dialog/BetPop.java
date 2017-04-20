@@ -113,7 +113,7 @@ public class BetPop extends BasePopupWindow {
                             substring2 = sb.substring(sb.indexOf("&"));
                         }
                         bean.setBetUrl(substring1 + odds + substring2);
-                        betHdpTv.setText(hdp + "@" + odds);
+                        betOddsTv.setText(odds);
                     }
                 });
             }
@@ -187,13 +187,16 @@ public class BetPop extends BasePopupWindow {
         switch (result.getBetType()) {
             case "1":
                 state = result.getHome() + "(" + context.getString(R.string.win) + ")";
+                betNameTv.setTextColor(context.getColor(R.color.red_title));
                 break;
             case "2":
                 state = result.getAway() + "(" + context.getString(R.string.win) + ")";
+                betNameTv.setTextColor(context.getColor(R.color.red_title));
                 break;
             case "x":
             case "X":
                 state = result.getHome() + "(" + context.getString(R.string.draw) + ")";
+                betNameTv.setTextColor(context.getColor(R.color.red_title));
                 break;
             case "odd":
                 state = context.getString(R.string.odd);
@@ -211,9 +214,11 @@ public class BetPop extends BasePopupWindow {
                 break;
             case "away":
                 state = result.getAway();
+                betNameTv.setTextColor(context.getColor(R.color.red_title));
                 break;
             case "home":
                 state = result.getHome();
+                betNameTv.setTextColor(context.getColor(R.color.red_title));
                 break;
             case "under":
                 state = context.getString(R.string.under);
