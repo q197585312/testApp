@@ -35,7 +35,7 @@ public class BasketballEarlyState extends BasketballCommonState {
                 getBaseView().switchState(new BasketballRunningState(getBaseView()));
                 break;
             case "Today":
-                getBaseView().switchState(new BasketballRunningState(getBaseView()));
+                getBaseView().switchState(new BasketballTodayState(getBaseView()));
                 break;
             case "Early":
                 getBaseView().switchState(this);

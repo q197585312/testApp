@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.text.Html;
+
 import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
@@ -121,6 +123,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> imple
                     @Override
                     public StakeListBean.DicAllBean apply(String data) throws Exception {
                         Gson gson = new Gson();
+                        data= Html.fromHtml(data).toString();
                         String[] data1 = data.split("nyhxkj");
                         StakeListBean stakeListBean = gson.fromJson(data1[0], StakeListBean.class);
                         List<StakeListBean.DicAllBean> list1 = stakeListBean.getDicAll();

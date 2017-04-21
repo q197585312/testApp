@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
@@ -113,7 +114,7 @@ public class BetPop extends BasePopupWindow {
                             substring2 = sb.substring(sb.indexOf("&"));
                         }
                         bean.setBetUrl(substring1 + odds + substring2);
-                        betOddsTv.setText(odds);
+                        betOddsTv.setText(AfbUtils.decimalValue(Float.valueOf(odds) / 10, "0.00"));
                     }
                 });
             }
@@ -180,6 +181,12 @@ public class BetPop extends BasePopupWindow {
         betMaxWinTv.setText(result.getMinLimit());
         betMaxBetTv.setText(result.getMaxLimit());
         betModuleTitleTv.setText(result.getModuleTitle());
+        boolean isHome = result.isIsHomeGive();
+        if (isHome) {
+            betHomeTv.setTextColor(context.getColor(R.color.red_title));
+        } else {
+            betAwayTv.setTextColor(context.getColor(R.color.red_title));
+        }
         betHomeTv.setText(result.getHome());
         betAwayTv.setText(result.getAway());
         popTitle = result.getGTitle();
@@ -187,16 +194,16 @@ public class BetPop extends BasePopupWindow {
         switch (result.getBetType()) {
             case "1":
                 state = result.getHome() + "(" + context.getString(R.string.win) + ")";
-                betNameTv.setTextColor(context.getColor(R.color.red_title));
+
                 break;
             case "2":
                 state = result.getAway() + "(" + context.getString(R.string.win) + ")";
-                betNameTv.setTextColor(context.getColor(R.color.red_title));
+
                 break;
             case "x":
             case "X":
                 state = result.getHome() + "(" + context.getString(R.string.draw) + ")";
-                betNameTv.setTextColor(context.getColor(R.color.red_title));
+
                 break;
             case "odd":
                 state = context.getString(R.string.odd);
@@ -214,17 +221,20 @@ public class BetPop extends BasePopupWindow {
                 break;
             case "away":
                 state = result.getAway();
-                betNameTv.setTextColor(context.getColor(R.color.red_title));
+                if (!isHome)
+                    betNameTv.setTextColor(context.getColor(R.color.red_title));
                 break;
             case "home":
                 state = result.getHome();
-                betNameTv.setTextColor(context.getColor(R.color.red_title));
+                if (isHome)
+                    betNameTv.setTextColor(context.getColor(R.color.red_title));
                 break;
             case "under":
                 state = context.getString(R.string.under);
                 break;
             case "over":
                 state = context.getString(R.string.over);
+                betNameTv.setTextColor(context.getColor(R.color.red_title));
                 break;
         }
         if (result.getBetHdp() != null) {

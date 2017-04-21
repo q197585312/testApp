@@ -68,8 +68,13 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 80);
         tvToolbarTitle.getLayoutParams().height = DeviceUtils.dip2px(mContext, 40);
         updateBalanceTv(getApp().getUser().getBalance());
-        startUpdateState();
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        startUpdateState();
     }
 
     protected void onBackCLick(View v) {
@@ -99,7 +104,13 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                    @Override
                                    public void accept(String allData) throws Exception {
                                        if (!allData.trim().equals("100")) {
-                                           reLoginPrompt("", null);
+                                           reLoginPrompt("", new SportContract.CallBack() {
+                                               @Override
+                                               public void clickCancel(View v) {
+                                                   Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                                                   startActivity(intent);
+                                               }
+                                           });
                                            errorCount = 0;
                                        }
 
@@ -172,13 +183,13 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     protected void updateBalanceTv(String allData) {
-        tvToolbarRight.setText(getString(R.string.Bet_Credit) + "\n"+allData);
+        tvToolbarRight.setText(getString(R.string.Bet_Credit) + "\n" + allData);
     }
 
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         stopUpdateState();
     }
 

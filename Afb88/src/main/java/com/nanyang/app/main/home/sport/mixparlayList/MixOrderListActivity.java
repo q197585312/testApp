@@ -2,6 +2,9 @@ package com.nanyang.app.main.home.sport.mixparlayList;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -219,9 +222,9 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             }
         }
 //a8197c.a36588.com/_Bet/PanelBet.aspx?betType=X_par&odds=160.670744228768&amt=10&coupon=1&exRate=1
-            //"PanelBet.aspx?betType=X_par&odds=160.670744228768",
-            betUrl = AppConstant.HOST + "_bet/" + getApp().getBetParList().getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + getApp().getBetParList().getExRate();
-            helper.bet(betUrl);
+        //"PanelBet.aspx?betType=X_par&odds=160.670744228768",
+        betUrl = AppConstant.HOST + "_bet/" + getApp().getBetParList().getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + getApp().getBetParList().getExRate();
+        helper.bet(betUrl);
 
     }
 
@@ -272,12 +275,15 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         }
     }
 
+    SpannableStringBuilder style;
+
 
     public void setOddsText(MyRecyclerViewHolder helper, BettingParPromptBean.BetParBean item) {
         String b = item.getTransType();
         boolean isHome = item.isIsBetHome();
         String hdp = item.getBetHdp();
         String state = b;
+        SpannableStringBuilder style = null;
         if (b.equals("1"))
             state = item.getHome() + "(" + mContext.getString(R.string.win) + ")";
         else if (b.equals("1_par"))
@@ -293,9 +299,12 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         } else if (b.equalsIgnoreCase("OE")) {
             if (isHome) {
                 state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.odd) + ")";
+                style = new SpannableStringBuilder(state);
+                style.setSpan(new ForegroundColorSpan(getColor(R.color.red_title)), state.indexOf("("), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             } else {
                 state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.even) + ")";
             }
+
         } else if (b.equals("dc")) {
             state = getString(R.string.double_chance);
         } else if (b.equals("htft")) {
@@ -308,26 +317,44 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
         } else if (b.equalsIgnoreCase("HDP")) {
             if (isHome) {
+
                 state = "HDP:" + item.getHome();
+                if (item.isIsHomeGive()) {
+                    style = new SpannableStringBuilder(state);
+                    style.setSpan(new ForegroundColorSpan(getColor(R.color.red_title)), state.indexOf(":"), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
             } else {
                 state = "HDP:" + item.getAway();
+                if (!item.isIsHomeGive()) {
+                    style = new SpannableStringBuilder(state);
+                    style.setSpan(new ForegroundColorSpan(getColor(R.color.red_title)), state.indexOf(":"), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
             }
+
         } else if (b.equalsIgnoreCase("OU")) {
             hdp = item.getBetOu();
             if (isHome) {
                 state = "OU:" + item.getHome() + "(" + getString(R.string.over) + ")";
-
+                style = new SpannableStringBuilder(state);
+                style.setSpan(new ForegroundColorSpan(getColor(R.color.red_title)), state.indexOf("("), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             } else {
                 state = "OU:" + item.getAway() + "(" + getString(R.string.under) + ")";
             }
         }
+        if (style == null) {
+            style = new SpannableStringBuilder(state);
+        }
 
+        TextView tc = helper.getView(R.id.clearance_odds_content_tv);
+        tc.setText(style);
+        String state2 = "";
         if (!item.getParFullTimeId().equals("0") && !item.getParFullTimeId().equals("")) {
-            state = state + "(" + getString(R.string.half_time) + ")";
+            state2 = "(" + getString(R.string.half_time) + ")";
         }
         if (hdp.equals("0"))
             hdp = "";
-        helper.setText(R.id.clearance_odds_content_tv, state + "  " + hdp + "@" + item.getBetOdds());
+
+        helper.setText(R.id.clearance_odds_content_tv2, state2 + "  " + hdp + "@" + item.getBetOdds());
     }
 
     @Override

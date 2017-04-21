@@ -227,8 +227,9 @@ public abstract class BasketballMixState extends SportState<BasketballMixInfo, S
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> lists = super.initHeaderList();
-        lists.get(0).set(1,getBaseView().getContextActivity().getString(R.string.FULL_O_E));
-        lists.get(1).set(1,getBaseView().getContextActivity().getString(R.string.HALF_O_E));
+
+        lists.get(1).set(0,getBaseView().getContextActivity().getString(R.string.TO_WIN));
+        lists.get(1).set(1,getBaseView().getContextActivity().getString(R.string.FULL_O_E));
         return lists;
     }
 

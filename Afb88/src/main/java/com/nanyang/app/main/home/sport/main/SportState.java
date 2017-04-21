@@ -65,7 +65,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 public abstract class SportState<B extends SportInfo, V extends SportContract.View<B>> implements IObtainDataState {
     private String LID;
-    private String LLD="";
+
     private int page;
     private List<TableSportInfo<B>> filterData;
     private Map<String, Boolean> leagueSelectedMap = new HashMap<>();
@@ -407,7 +407,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected abstract List<TableSportInfo<B>> filterChildData(List<TableSportInfo<B>> dateTemp);
-
+    String LLD="";
     Runnable dataUpdateRunnable = new Runnable() {
         @Override
         public void run() {
@@ -438,7 +438,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     .subscribe(new Consumer<List<TableSportInfo<B>>>() {//onNext
                                    @Override
                                    public void accept(List<TableSportInfo<B>> allData) throws Exception {
-                                       if (allData != null && allData.size() > 0) {
+                                       if (allData != null) {
                                            updateAllDate(allData);
                                        }
                                    }

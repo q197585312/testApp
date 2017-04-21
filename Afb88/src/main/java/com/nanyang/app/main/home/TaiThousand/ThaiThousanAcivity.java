@@ -10,9 +10,9 @@ import android.widget.TextView;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.Games.GamesActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +56,8 @@ public class ThaiThousanAcivity extends BaseToolbarActivity {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
-                Bundle b = new Bundle();
+                ToastUtils.showShort(R.string.coming_soon);
+               /* Bundle b = new Bundle();
                 if (item.getText().equals(thai1D)) {
                     b.putString("thai_thousand", "Game1");
                     skipAct(GamesActivity.class, b);
@@ -66,7 +67,7 @@ public class ThaiThousanAcivity extends BaseToolbarActivity {
                 } else if (item.getText().equals(thai3D)) {
                     b.putString("thai_thousand", "Game3");
                     skipAct(GamesActivity.class, b);
-                }
+                }*/
             }
         });
         rc.setAdapter(adapter);
