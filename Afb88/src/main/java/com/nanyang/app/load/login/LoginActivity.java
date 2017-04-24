@@ -85,7 +85,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     private void initLanguage() {
         String language = AfbUtils.getLanguage(this);
-        if (!TextUtils.isEmpty(language)) {
+        if (language!=null&&!TextUtils.isEmpty(language)) {
             if (language.equals("zh")) {
                 loginChinaRb.setChecked(true);
                 loginEnglishRb.setChecked(false);

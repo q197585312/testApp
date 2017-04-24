@@ -16,7 +16,6 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
-import com.nanyang.app.main.home.TaiThousand.ThaiThousanAcivity;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.poker.PokerCasinoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
@@ -98,9 +97,9 @@ public class HomeFragment extends BaseFragment {
                         popWindow.showPopupCenterWindow();
                         break;
 
-                    case "Huay_Thai":
+              /*      case "Huay_Thai":
                         skipAct(ThaiThousanAcivity.class);
-                        break;
+                        break;*/
                     case "Live_Casino":
                         Bundle b = new Bundle();
                         b.putString("activity", "Live");

@@ -82,6 +82,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 presenter.getStateHelper().onNext(swipeToLoadLayout);
             }
         });
+        rememberLastOdds();
     }
 
 
@@ -189,6 +190,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         presenter.setStateHelper(state);
         presenter.getStateHelper().setScrollHeaderContent(slHeader, tvAos);
         getContextActivity().getTvToolbarTitle().setText(state.getStateType().getText());
+
         ((SportState) presenter.getStateHelper()).initAllOdds(ivAllAdd);
         presenter.getStateHelper().refresh();
         if (popWindow != null)
@@ -218,8 +220,17 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         if (hidden) {// 不在最前端界面显示
             presenter.getStateHelper().stopUpdateData();
         } else {// 重新显示到最前端中
-
+            rememberLastOdds();
         }
+    }
+
+    private void rememberLastOdds() {
+        MenuItemInfo oddsType = ((SportActivity) getContextActivity()).getOddsType();
+        if (oddsType != null)
+            tvOddsType.setText(oddsType.getText());
+        MenuItemInfo allOddsType = ((SportActivity) getContextActivity()).getAllOddsType();
+        if (allOddsType != null)
+            ivAllAdd.setText(allOddsType.getText());
     }
 
     @Override
@@ -231,6 +242,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         }
         isFirstIn = false;
     }
+
 
     @Override
     public void onDestroyView() {
@@ -264,7 +276,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     private void clickOddsType(View view) {
-        createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT,  LinearLayout.LayoutParams.WRAP_CONTENT) {
+        createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -294,6 +306,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
+                        ((SportActivity) getContextActivity()).setOddsType(item);
                         presenter.getStateHelper().switchOddsType(item.getType());
                         closePopupWindow();
                         tvOddsType.setText(item.getText());
@@ -332,8 +345,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     @Override
     public void reLoginPrompt(String str, SportContract.CallBack back) {
-        if(mContext instanceof  BaseToolbarActivity){
-            ((BaseToolbarActivity)mContext).reLoginPrompt(str,back);
+        if (mContext instanceof BaseToolbarActivity) {
+            ((BaseToolbarActivity) mContext).reLoginPrompt(str, back);
         }
     }
 }

@@ -2,6 +2,7 @@ package com.nanyang.app;
 
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.unkonw.testapp.libs.base.BaseApplication;
 
 import cn.finalteam.toolsfinal.logger.Logger;
@@ -24,6 +25,7 @@ public class AfbApplication extends BaseApplication {
         super.onCreate();
 //        KLog.init(BuildConfig.LOG_DEBUG, "AFB");
         Logger.setDebug(true);
+        CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", true);
     }
 
 

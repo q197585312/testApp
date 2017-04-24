@@ -1363,6 +1363,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         tv.setPadding(0, 0, 0, 0);
                         tv.setText(item.getText());
                         tv.setBackgroundResource(R.color.black_grey);
+                        ((SportActivity)baseView.getContextActivity()).setAllOdds(item);
                     }
                 };
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {

@@ -40,7 +40,6 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
-import io.reactivex.disposables.CompositeDisposable;
 
 
 public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
@@ -56,6 +55,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
+
+
+
+    private MenuItemInfo oddsType;
+    private MenuItemInfo allOdds;
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
@@ -81,7 +85,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private String currentTag;
     private HashMap<String, BaseSportFragment> mapFragment;
     private BaseSportFragment currentFragment;
-    private CompositeDisposable mCompositeSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -284,5 +287,19 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public void onLanguageSwitchSucceed(String str) {
         recreate();
         popWindow.closePopupWindow();
+    }
+
+    public void setOddsType(MenuItemInfo oddsType) {
+        this.oddsType = oddsType;
+    }
+    public MenuItemInfo getOddsType() {
+        return oddsType;
+    }
+
+    public void setAllOdds(MenuItemInfo allOdds) {
+        this.allOdds = allOdds;
+    }
+    public MenuItemInfo getAllOddsType() {
+        return allOdds;
     }
 }

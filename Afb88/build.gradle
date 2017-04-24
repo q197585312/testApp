@@ -8,7 +8,7 @@ android {
         minSdkVersion 11
         targetSdkVersion 19
         versionCode 1
-        versionName '1.16'
+        versionName '1.17'
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -45,4 +45,5 @@ dependencies {
     //    compile 'com.android.support:appcompat-v7:25.1.0'
     testCompile 'junit:junit:4.12'
     compile project(':baseLibs')
+    compile 'com.tencent.bugly:crashreport:latest.release'
 }
