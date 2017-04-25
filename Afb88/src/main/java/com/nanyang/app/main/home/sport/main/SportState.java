@@ -9,6 +9,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -413,7 +414,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         public void run() {
             Flowable<String> flowable = null;
             if (LID != null && LID.length() > 0) {
-                flowable = getService(ApiService.class).getData(getRefreshUrl() + "&LID=" + LLD);
+                flowable = getService(ApiService.class).getData(getRefreshUrl() + "&LID=" + LID);
             } else
                 flowable = getService(ApiService.class).getData(getRefreshUrl());
             Disposable subscribe = flowable
@@ -427,7 +428,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     .map(new Function<String, List<TableSportInfo<B>>>() {
                         @Override
                         public List<TableSportInfo<B>> apply(String s) throws Exception {
-                            if (LLD != null && LLD.length() > 0)
+                            if (LID != null && LID.length() > 0)
                                 return updateJsonArray(s);
                             else
                                 return parseTableModuleBeen(s);
@@ -462,7 +463,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     );
             mCompositeSubscription.add(subscribe);
 
-            updateHandler.postDelayed(this, 30000);// 50是延时时长
+            updateHandler.postDelayed(this, 20000);// 50是延时时长
         }
     };
     Handler updateHandler = new Handler();
@@ -978,13 +979,17 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                                 String modifyId = jsonArray1.getString(0);
                                 JSONArray modifyIndex = jsonArray1.getJSONArray(1);
                                 JSONArray modifyData = jsonArray1.getJSONArray(2);
+                                Log.d("UPDATE","modify--->modifyIndex:"+modifyIndex.toString());
+                                Log.d("UPDATE","modify--->modifyData:"+modifyData.toString());
                                 if (modifyId.equals(sid)) {
                                     for (int l = 0; l < modifyIndex.length(); l++) {
                                         LeagueMatchArray.getJSONArray(j).put(modifyIndex.getInt(l), modifyData.getString(l));
+                                        Log.d("UPDATE","modify--->"+modifyIndex.getInt(l)+":"+ modifyData.getString(l));
                                     }
                                 }
                             }
                             if (deleteData.contains(sid)) {
+                                Log.d("UPDATE","modify--->remove:"+sid);
                                 LeagueMatchArray.remove(j);
                             }
                         }
