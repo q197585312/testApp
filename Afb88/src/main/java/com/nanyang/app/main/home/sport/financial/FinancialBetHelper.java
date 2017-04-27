@@ -1,15 +1,15 @@
 package com.nanyang.app.main.home.sport.financial;
 
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.main.home.sport.basketball.BasketballMixBetHelper;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
+import com.nanyang.app.main.home.sport.tennis.TennisBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
 /**
  * Created by Administrator on 2017/3/15.
  */
 
-public class FinancialBetHelper extends BasketballMixBetHelper{
+public class FinancialBetHelper extends TennisBetHelper {
 
     public FinancialBetHelper(BetView baseView) {
         super(baseView);

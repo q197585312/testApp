@@ -7,7 +7,6 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sport.model.ScaleBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
@@ -28,7 +27,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-class VsPresenter extends BaseRetrofitPresenter<ScaleBean, BetView<ScaleBean>> implements IBasePresenter {
+class VsPresenter extends BaseRetrofitPresenter<String, BetView<String>> implements IBasePresenter {
     private String type;
     private BallInfo bean;
     private String paramT;
@@ -44,9 +43,9 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, BetView<ScaleBean>> i
         this.type = matchType;
         this.paramT=paramT;
         String url = getUrl();
-        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).scale(url)).subscribe(new Consumer<ScaleBean>() {//onNext
+        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).getData(url)).subscribe(new Consumer<String>() {//onNext
             @Override
-            public void accept(ScaleBean Str) throws Exception {
+            public void accept(String Str) throws Exception {
                 baseView.onGetData(Str);
                 startUpdate();
             }
@@ -99,17 +98,17 @@ class VsPresenter extends BaseRetrofitPresenter<ScaleBean, BetView<ScaleBean>> i
             updateSubscription.dispose();
             updateSubscription = null;
         }
-        updateSubscription = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<ScaleBean>>() {
+        updateSubscription = Flowable.interval(20, 20, TimeUnit.SECONDS).flatMap(new Function<Long, Publisher<String>>() {
             @Override
-            public Publisher<ScaleBean> apply(Long aLong) throws Exception {
-                return getService(ApiService.class).scale(getUrl());
+            public Publisher<String> apply(Long aLong) throws Exception {
+                return getService(ApiService.class).getData(getUrl());
             }
         }).observeOn(Schedulers.io()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 
-                .subscribe(new Consumer<ScaleBean>() {//onNext
+                .subscribe(new Consumer<String>() {//onNext
                     @Override
-                    public void accept(ScaleBean allData) throws Exception {
+                    public void accept(String allData) throws Exception {
                         if (allData != null) {
                             baseView.onGetData(allData);
                         }

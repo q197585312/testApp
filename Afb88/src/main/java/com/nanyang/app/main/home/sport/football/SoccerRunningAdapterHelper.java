@@ -48,7 +48,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
                 switch (item.getStatus()) {
                     case "0":
-                        timeTv.setText(context.getString(R.string.not_started));
+                        timeTv.setText("LIVE");
                         break;
                     case "2":
                         min = Integer.valueOf(item.getCurMinute());

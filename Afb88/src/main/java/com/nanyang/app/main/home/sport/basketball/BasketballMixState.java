@@ -52,7 +52,7 @@ public abstract class BasketballMixState extends SportState<BasketballMixInfo, S
 
     @Override
     public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
-        return new BasketballMixAdapterHelper(getBaseView().getContextActivity());
+        return new BasketballAdapterHelper(getBaseView().getContextActivity());
     }
 
     @Override

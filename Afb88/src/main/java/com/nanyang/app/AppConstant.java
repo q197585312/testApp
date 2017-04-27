@@ -15,7 +15,6 @@ public class AppConstant {
     public static final String APP_HOST = "http://main55.afb88.com/";
 
 
-
     public static String KEY_STRING = "KEY_STRING";
     public static String KEY_DATA = "KEY_DATA";
     public static String KEY_INT = "KEY_INT";
@@ -105,9 +104,13 @@ public class AppConstant {
     public static String URL_E_SPORT_RUNNING = HOST + "_view/All_Gen6.ashx?g=106&ot=r&update=true&r=1770989484";
     public static String URL_E_SPORT_EARLY = HOST + "_view/All_Gen6.ashx?g=106&ot=e&update=true&r=1770989484";
     public static String URL_E_SPORT_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=107&update=true&r=1770989484";
-    public static String URL_STAEMENT = APP_HOST + "_norm/AccHistory_App.aspx?";
-    public static String URL_STAKE = "_bet/PanelStake_App.aspx";
-    public static String URL_STATEMENT_CONFIRM_BLANCE = APP_HOST + "_norm/AccHistory.aspx?role=mb&userName=";
+
+    public static String URL_US_FOOTBALL_OUTRIGHT=HOST+"_view/OddsOutGen.ashx?g=30&update=true&r=1887771784";
+    //http://main55.afb88.com/_view/All_WFHGen.ashx?g=12&ot=e&update=true&r=927620479&LID=&_=1493187544318
+    public static String URL_US_FOOTBALL_EARLY=HOST+"_view/All_WFHGen.ashx?g=12&ot=e&update=true&r=927620479";
+    public static String URL_US_FOOTBALL_TODAY=HOST+"_view/All_WFHGen.ashx?g=12&ot=t&update=true&r=927620479";
+    public static String URL_US_FOOTBALL_RUNNING=HOST+"_view/All_WFHGen.ashx?g=12&ot=r&update=true&r=927620479";
+
 //    http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=e&update=true&r=1056207418&wd=2017-03-22&ia=0&oview=1&LID=&_=1490092121779
     //http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=r&update=true&r=1278052286&LID=84733db3885dd967&_=1490092254366
     //http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=t&update=true&r=1278052286&LID=d784f703f22a941c&_=1490092254367
@@ -135,4 +138,9 @@ public class AppConstant {
 
 
     public static final String URL_RUNNING_MATCH_WEB = HOST+"_view/LiveCast.aspx";
+    public static String URL_STAEMENT = APP_HOST + "_norm/AccHistory_App.aspx?";
+    public static String URL_STAKE = "_bet/PanelStake_App.aspx";
+    public static String URL_STATEMENT_CONFIRM_BLANCE = APP_HOST + "_norm/AccHistory.aspx?role=mb&userName=";
+
+
 }

@@ -57,11 +57,26 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 
 
     @Override
-    public void login(LoginInfo info) {
+    public void login(final LoginInfo info) {
         if (checkUserAvailable(info)) {
-            Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).doLogin(AppConstant.URL_LOGIN, info.getMap()))
+
+            Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_LOGIN)
+                    .flatMap(new Function<String, Flowable<String>>() {
+                        @Override
+                        public Flowable<String> apply(String s) throws Exception {
+                            String substring1 = s.substring(s.indexOf("id=\"__VIEWSTATE\" value=\"") + 24);
+                            String __VIEWSTATE = substring1.substring(0, substring1.indexOf("\""));
+                            String substring2 = s.substring(s.indexOf("id=\"__EVENTVALIDATION\" value=\"") + 30);
+                            String __EVENTVALIDATION = substring2.substring(0, substring2.indexOf("\""));
+                            info.set__VIEWSTATE(__VIEWSTATE);
+                            info.set__EVENTVALIDATION(__EVENTVALIDATION);
+                            return getService(ApiService.class).doLogin(AppConstant.URL_LOGIN, info.getMap());
+
+                        }
+                    })
                     .subscribeOn(Schedulers.io())
                     .observeOn(Schedulers.io())
+
                     .flatMap(new Function<String, Flowable<String>>() {
                         @Override
                         public Flowable<String> apply(String s) throws Exception {

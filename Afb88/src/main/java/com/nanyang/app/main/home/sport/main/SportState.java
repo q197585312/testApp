@@ -239,8 +239,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         };
         List<MenuItemInfo> types = new ArrayList<>();
         types.add(new MenuItemInfo(R.mipmap.menu_group_oval_white, baseView.getContextActivity().getString(R.string.Choose), "Choose"));
-        types.add(new MenuItemInfo(R.mipmap.menu_error_white, baseView.getContextActivity().getString(R.string.not_settled), "Not settled"));
-        types.add(new MenuItemInfo(R.mipmap.menu_right_oval_white, baseView.getContextActivity().getString(R.string.settled), "Settled"));
+        types.add(new MenuItemInfo(R.mipmap.menu_error_white, baseView.getContextActivity().getString(R.string.bet_list), "Not settled"));
+        types.add(new MenuItemInfo(R.mipmap.menu_right_oval_white, baseView.getContextActivity().getString(R.string.statement), "Settled"));
         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
@@ -413,8 +413,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         @Override
         public void run() {
             Flowable<String> flowable = null;
-            if (LID != null && LID.length() > 0) {
-                flowable = getService(ApiService.class).getData(getRefreshUrl() + "&LID=" + LID);
+            if (LLD != null && LLD.length() > 0) {
+                flowable = getService(ApiService.class).getData(getRefreshUrl() + "&LID=" + LLD);
             } else
                 flowable = getService(ApiService.class).getData(getRefreshUrl());
             Disposable subscribe = flowable
@@ -428,7 +428,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     .map(new Function<String, List<TableSportInfo<B>>>() {
                         @Override
                         public List<TableSportInfo<B>> apply(String s) throws Exception {
-                            if (LID != null && LID.length() > 0)
+                            if (LLD != null && LLD.length() > 0)
                                 return updateJsonArray(s);
                             else
                                 return parseTableModuleBeen(s);

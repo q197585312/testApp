@@ -6,6 +6,16 @@ import java.util.List;
  * Created by Administrator on 2015/11/30.
  */
 public class VsTableRowBean extends SportInfo {
+    public boolean isFh() {
+        return isFh;
+    }
+
+    public VsTableRowBean setFh(boolean fh) {
+        isFh = fh;
+        return this;
+    }
+
+    boolean isFh;
     private String Sc;
     private String b;
     String ModuleTitle;
@@ -89,50 +99,58 @@ public class VsTableRowBean extends SportInfo {
     public void setB(String b) {
         this.b = b;
     }
+
     public VsTableRowBean(List<VsCellBean> rows) {
         this.rows = rows;
     }
 
     public VsTableRowBean(String b, List<VsCellBean> rows) {
         this(rows);
-        this.b=b;
+        this.b = b;
 
     }
+
     public VsTableRowBean(String b, String sc, List<VsCellBean> rows) {
-       this(b,rows);
-        this.Sc=sc;
+        this(b, rows);
+        this.Sc = sc;
 
     }
-    public VsTableRowBean(List<VsCellBean> rows, boolean hasHead , boolean hasFoot, String moduleTitle, String leftTitle, String centerTitle, String rightTitle) {
-        this(rows,hasFoot);
+
+    public VsTableRowBean(List<VsCellBean> rows, boolean hasHead, boolean hasFoot, String moduleTitle, String leftTitle, String centerTitle, String rightTitle) {
+        this(rows, hasFoot);
         this.hasHead = hasHead;
         this.rightTitle = rightTitle;
         this.centerTitle = centerTitle;
         this.leftTitle = leftTitle;
         ModuleTitle = moduleTitle;
     }
-    public VsTableRowBean(String b, List<VsCellBean> rows, boolean hasHead , boolean hasFoot, String moduleTitle, String leftTitle, String centerTitle, String rightTitle) {
-        this(rows,hasHead,hasFoot,moduleTitle,leftTitle,centerTitle,rightTitle);
-        this. b =  b;
+
+    public VsTableRowBean(String b, List<VsCellBean> rows, boolean hasHead, boolean hasFoot, String moduleTitle, String leftTitle, String centerTitle, String rightTitle) {
+        this(rows, hasHead, hasFoot, moduleTitle, leftTitle, centerTitle, rightTitle);
+        this.b = b;
 
     }
-    public VsTableRowBean(String b, String sc, List<VsCellBean> rows, boolean hasHead , boolean hasFoot, String moduleTitle, String leftTitle, String centerTitle, String rightTitle) {
-        this(b,rows,hasHead,hasFoot,moduleTitle,leftTitle,centerTitle,rightTitle);
-        this.Sc=sc;
+
+    public VsTableRowBean(String b, String sc, List<VsCellBean> rows, boolean hasHead, boolean hasFoot, String moduleTitle, String leftTitle, String centerTitle, String rightTitle) {
+        this(b, rows, hasHead, hasFoot, moduleTitle, leftTitle, centerTitle, rightTitle);
+        this.Sc = sc;
     }
+
     public VsTableRowBean(List<VsCellBean> rows, boolean hasFoot) {
         this(rows);
         this.hasFoot = hasFoot;
 
     }
+
     public VsTableRowBean(String b, List<VsCellBean> rows, boolean hasFoot) {
-        this(rows,hasFoot);
-        this.b=b;
+        this(rows, hasFoot);
+        this.b = b;
 
     }
+
     public VsTableRowBean(String b, String sc, List<VsCellBean> rows, boolean hasFoot) {
-        this(b,sc,rows);
-        this.hasFoot=hasFoot;
-
+        this(b, sc, rows);
+        this.hasFoot = hasFoot;
     }
+
 }

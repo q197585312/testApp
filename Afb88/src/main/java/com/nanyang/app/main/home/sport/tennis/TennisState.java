@@ -7,6 +7,8 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixState;
+import com.nanyang.app.main.home.sport.main.OtherAdapterHelper;
+import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.training.ScrollLayout;
@@ -68,5 +70,9 @@ public abstract class TennisState extends BasketballMixState{
     public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
         super.setScrollHeaderContent(slHeader, tvAos);
         tvAos.setVisibility(View.GONE);
+    }
+    @Override
+    public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
+        return new OtherAdapterHelper(getBaseView().getContextActivity());
     }
 }

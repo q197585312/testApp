@@ -33,10 +33,10 @@ import com.unkonw.testapp.training.ScrollLayout;
  * }
  */
 
-public class BasketballMixAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
+public class BasketballAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
 
 
-    public BasketballMixAdapterHelper(Context context) {
+    public BasketballAdapterHelper(Context context) {
         super(context);
 
     }
