@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BallInfo;
@@ -36,7 +37,7 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     protected BallInfo itemData;
     @Bind(R.id.tv_vs_header)
     LinearLayout tvVsHeader;
-    protected String childParam="";
+    protected String childParam = "";
 
     @Override
     public int onSetLayoutId() {
@@ -91,5 +92,13 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);
+    }
+
+    protected void setOddsTextColor(String odds, TextView v) {
+        if (odds!=null&&!odds.trim().isEmpty() && Float.valueOf(odds) < 0) {
+            v.setTextColor(getResources().getColor(R.color.red_title));
+        } else {
+            v.setTextColor(getResources().getColor(R.color.black_grey));
+        }
     }
 }

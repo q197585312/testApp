@@ -16,6 +16,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
 import com.nanyang.app.main.home.sport.football.SoccerCommonBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerMixBetHelper;
@@ -279,7 +280,8 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         Double sid = (Double) dataMap.get("oid");
         int oid = sid.intValue();
         Iterator<Map.Entry<String, Object>> iterator = dataMap.entrySet().iterator();
-        Integer first = null;
+        Integer firstPre = null;
+        Integer firstSuffix = null;
         List<VsActivity.Csr> list = new ArrayList<>();
         while (iterator.hasNext()) {
             Map.Entry<String, Object> next = iterator.next();
@@ -300,18 +302,21 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             String[] split = score.split(":");
             if (split.length < 2)
                 continue;
-            if (first == null) {
-                first = Integer.valueOf(split[0]);
+            if (firstPre == null||firstSuffix==null) {
+                firstPre = Integer.valueOf(split[0]);
+                firstSuffix= Integer.valueOf(split[1]);
             }
             int pre = 0;
-            if (first != null) {
-                pre = Integer.valueOf(split[0]) - first;
+            int suffix=0;
+            if (firstPre != null||firstSuffix!=null) {
+                pre = Integer.valueOf(split[0]) - firstPre;
+                suffix= Integer.valueOf(split[1])-firstSuffix;
             }
             String oddsType = "";
             if (pre > 0) {
-                oddsType = pre + "" + split[1];
+                oddsType = pre + "" + suffix;
             } else {
-                oddsType = split[1];
+                oddsType =suffix+"";
             }
             VsActivity.Csr csr = new VsActivity.Csr(isHf, score, odds, oddsType);
             list.add(csr);
@@ -474,10 +479,14 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
                 finish();
                 break;
             case R.id.tv_not_settled:
-//                skipAct(BetOrderActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("personCenter", getString(R.string.stake));
+                skipAct(PersonCenterActivity.class, bundle);
                 break;
             case R.id.tv_settled:
-//                skipAct(BetSettlementFirstActivity.class);
+                Bundle bundle2 = new Bundle();
+                bundle2.putString("personCenter",getString(R.string.statement));
+                skipAct(PersonCenterActivity.class, bundle2);
                 break;
             case R.id.iv_lift_nav:
                 if (currentIndex > 0)

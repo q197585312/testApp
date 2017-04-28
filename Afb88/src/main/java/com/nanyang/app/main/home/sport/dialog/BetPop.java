@@ -36,6 +36,8 @@ public class BetPop extends BasePopupWindow {
     TextView betAwayTv;
     @Bind(R.id.bet_name_tv)
     TextView betNameTv;
+    @Bind(R.id.bet_score_tv)
+    TextView betScoreTv;
     @Bind(R.id.bet_hdp_tv)
     TextView betHdpTv;
     @Bind(R.id.bet_odds_tv)
@@ -181,11 +183,13 @@ public class BetPop extends BasePopupWindow {
         betMaxWinTv.setText(result.getMinLimit());
         betMaxBetTv.setText(result.getMaxLimit());
         betModuleTitleTv.setText(result.getModuleTitle());
+        if (result.isIsRun())
+            betScoreTv.setText(result.getRunHomeScore() + " V " + result.getRunAwayScore());
         boolean isHome = result.isIsHomeGive();
         if (isHome) {
-            betHomeTv.setTextColor(context.getColor(R.color.red_title));
+            betHomeTv.setTextColor(context.getResources().getColor(R.color.red_title));
         } else {
-            betAwayTv.setTextColor(context.getColor(R.color.red_title));
+            betAwayTv.setTextColor(context.getResources().getColor(R.color.red_title));
         }
         betHomeTv.setText(result.getHome());
         betAwayTv.setText(result.getAway());
@@ -222,19 +226,19 @@ public class BetPop extends BasePopupWindow {
             case "away":
                 state = result.getAway();
                 if (!isHome)
-                    betNameTv.setTextColor(context.getColor(R.color.red_title));
+                    betNameTv.setTextColor(context.getResources().getColor(R.color.red_title));
                 break;
             case "home":
                 state = result.getHome();
                 if (isHome)
-                    betNameTv.setTextColor(context.getColor(R.color.red_title));
+                    betNameTv.setTextColor(context.getResources().getColor(R.color.red_title));
                 break;
             case "under":
                 state = context.getString(R.string.under);
                 break;
             case "over":
                 state = context.getString(R.string.over);
-                betNameTv.setTextColor(context.getColor(R.color.red_title));
+                betNameTv.setTextColor(context.getResources().getColor(R.color.red_title));
                 break;
         }
         if (result.getBetHdp() != null) {
@@ -253,9 +257,9 @@ public class BetPop extends BasePopupWindow {
         betHdpTv.setText(hdp + "@");
         String odds = Html.fromHtml(result.getBetOdds()).toString();
         if (odds != null && !odds.isEmpty() && Float.valueOf(odds) < 0) {
-            betOddsTv.setTextColor(context.getColor(R.color.red_title));
+            betOddsTv.setTextColor(context.getResources().getColor(R.color.red_title));
         } else {
-            betOddsTv.setTextColor(context.getColor(R.color.black_grey));
+            betOddsTv.setTextColor(context.getResources().getColor(R.color.black_grey));
         }
         betOddsTv.setText(odds);
 

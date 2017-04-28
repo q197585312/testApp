@@ -75,16 +75,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-
-            android:padding="5dp"
+            android:paddingTop="5dp"
             android:textColor="@color/black_grey" />
 
+        <TextView
+            android:id="@+id/bet_score_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textColor="@color/black_grey" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:gravity="center"
-            android:padding="5dp">
+            android:paddingBottom="5dp">
 
             <TextView
                 android:id="@+id/bet_hdp_tv"

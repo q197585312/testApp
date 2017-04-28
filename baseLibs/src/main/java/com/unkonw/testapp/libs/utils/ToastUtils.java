@@ -90,4 +90,5 @@ public class ToastUtils {
             Toast.makeText(BaseApplication.getInstance(), message, duration).show();
     }
 
+
 }

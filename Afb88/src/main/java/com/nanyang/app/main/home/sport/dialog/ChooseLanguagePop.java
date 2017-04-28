@@ -55,7 +55,7 @@ public class ChooseLanguagePop extends BasePopupWindow {
                 View  line = holder.getView(R.id.v_row_line1);
                 line.setVisibility(View.GONE);
                 contentTv.setText(item.getText());
-                contentTv.setTextColor(context.getColor(R.color.white));
+                contentTv.setTextColor(context.getResources().getColor(R.color.white));
                 contentTv.setPadding(10, 40, 30, 40);
                 contentTv.setTextSize(12);
                 String language = AfbUtils.getLanguage(mContext);

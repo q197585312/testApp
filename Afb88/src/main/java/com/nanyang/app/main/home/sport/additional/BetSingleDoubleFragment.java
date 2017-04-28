@@ -33,8 +33,12 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
             helper.setVisible(R.id.vs_row_line5, true);
             helper.setText(R.id.vs_row_content_tv41, item.getRows().get(3).getKey());
             helper.setText(R.id.vs_row_content_tv42, item.getRows().get(3).getValue());
+            TextView textView42 = helper.getTextView(R.id.vs_row_content_tv42);
+            setOddsTextColor(item.getRows().get(3).getValue(),textView42);
+
             helper.setText(R.id.vs_row_content_tv51, item.getRows().get(4).getKey());
             helper.setText(R.id.vs_row_content_tv52, item.getRows().get(4).getValue());
+            setOddsTextColor(item.getRows().get(4).getValue(),helper.getTextView(R.id.vs_row_content_tv52));
             helper.setClickLisenter(R.id.vs_row_content_tv42, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -62,10 +66,13 @@ public class BetSingleDoubleFragment extends BaseVsFragment<VsTableRowBean> {
         }
         helper.setText(R.id.vs_row_content_tv11, item.getRows().get(0).getKey());
         helper.setText(R.id.vs_row_content_tv12, item.getRows().get(0).getValue());
+        setOddsTextColor(item.getRows().get(0).getValue(),helper.getTextView(R.id.vs_row_content_tv12));
         helper.setText(R.id.vs_row_content_tv21, item.getRows().get(1).getKey());
         helper.setText(R.id.vs_row_content_tv22, item.getRows().get(1).getValue());
+        setOddsTextColor(item.getRows().get(1).getValue(),helper.getTextView(R.id.vs_row_content_tv22));
         helper.setText(R.id.vs_row_content_tv31, item.getRows().get(2).getKey());
         helper.setText(R.id.vs_row_content_tv32, item.getRows().get(2).getValue());
+        setOddsTextColor(item.getRows().get(2).getValue(),helper.getTextView(R.id.vs_row_content_tv32));
         helper.setClickLisenter(R.id.vs_row_content_tv12, new View.OnClickListener() {
             @Override
             public void onClick(View v) {

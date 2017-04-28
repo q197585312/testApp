@@ -1,6 +1,10 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.graphics.Color;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.BackgroundColorSpan;
 
 import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
@@ -167,6 +171,10 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> imple
         builder.append("\n");
         builder.append(item.getHome() + "  vs  " + item.getAway());
         builder.append("\n");
+        if(item.isIsRun()){
+            builder.append("("+item.getRunHomeScore()+" - "+item.getRunAwayScore()+")");
+        }
+
         builder.append(item.getOdds());
         builder.append("\n");
         builder.append(item.getModuleTitle());
@@ -194,8 +202,29 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> imple
         }
         builder.append("\n");
         builder.append(n + "     " + item.getAmt());
-        ToastUtils.showShort(builder.toString());
-
+        String str=builder.toString();
+        int start=str.indexOf(n);
+        int end=start+n.length();
+        SpannableStringBuilder style=new SpannableStringBuilder(str);
+        if (item.getDangerStatus().equals("D")) {
+            style.setSpan(new BackgroundColorSpan(Color.YELLOW),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (item.getDangerStatus().equals("R")) {
+            style.setSpan(new BackgroundColorSpan(Color.RED),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (item.getDangerStatus().equals("RR")) {
+            style.setSpan(new BackgroundColorSpan(Color.RED),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (item.getDangerStatus().equals("RP")) {
+            style.setSpan(new BackgroundColorSpan(Color.RED),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (item.getDangerStatus().equals("RA")) {
+            style.setSpan(new BackgroundColorSpan(Color.RED),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (item.getDangerStatus().equals("RG")) {
+            style.setSpan(new BackgroundColorSpan(Color.RED),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else if (item.getDangerStatus().equals("0")) {
+            style.setSpan(new BackgroundColorSpan(Color.YELLOW),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        else{
+            style.setSpan(new BackgroundColorSpan(Color.GREEN),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        ToastUtils.showShort(style);
     }
 
 

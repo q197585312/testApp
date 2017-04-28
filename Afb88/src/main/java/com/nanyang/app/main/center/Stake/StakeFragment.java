@@ -190,6 +190,9 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         moduleTitle.setTextColor(Color.RED);
                     }
                 }
+                if(item.isIsRun()){
+                    odds="("+item.getRunHomeScore()+" - "+item.getRunAwayScore()+")"+odds;
+                }
                 Odds.setText(odds);
                 String half = "";
                 if (item.getFullTimeId() > 0) {
@@ -201,7 +204,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 String n = "Accepted";
                 if (item.getDangerStatus().equals("D")) {
                     n = "Waiting";
-                    dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
+                    dangerStatus.setBackgroundResource(R.color.yellow_button);
                 } else if (item.getDangerStatus().equals("R")) {
                     n = "Rejected " + item.getR_DateTime();
                     dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
@@ -219,7 +222,10 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
                 } else if (item.getDangerStatus().equals("0")) {
                     n = "Oddschange";
-                    dangerStatus.setBackgroundResource(R.drawable.rectangle_red);
+                    dangerStatus.setBackgroundResource(R.color.yellow_button);
+                }
+                else{
+                    dangerStatus.setBackgroundResource(R.color.green500);
                 }
                 if (position == data.size() - 1) {
                     n = "Total " + n;

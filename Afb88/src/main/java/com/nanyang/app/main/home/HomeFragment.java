@@ -119,7 +119,6 @@ public class HomeFragment extends BaseFragment {
             }
         });
         rvContent.setAdapter(adapter);
-//        rvContent.addItemDecoration(new RecycleViewDivider(mContext,GridLayoutManager.HORIZONTAL,2,getResources().getColor(R.color.green_thick_line)));
 
     }
 

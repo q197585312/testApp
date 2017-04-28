@@ -300,7 +300,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             if (isHome) {
                 state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.odd) + ")";
                 style = new SpannableStringBuilder(state);
-                style.setSpan(new ForegroundColorSpan(getColor(R.color.red_title)), state.indexOf("("), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.red_title)), state.indexOf("("), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             } else {
                 state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.even) + ")";
             }
@@ -321,13 +321,13 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                 state = "HDP:" + item.getHome();
                 if (item.isIsHomeGive()) {
                     style = new SpannableStringBuilder(state);
-                    style.setSpan(new ForegroundColorSpan(getColor(R.color.red_title)), state.indexOf(":"), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.red_title)), state.indexOf(":"), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             } else {
                 state = "HDP:" + item.getAway();
                 if (!item.isIsHomeGive()) {
                     style = new SpannableStringBuilder(state);
-                    style.setSpan(new ForegroundColorSpan(getColor(R.color.red_title)), state.indexOf(":"), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.red_title)), state.indexOf(":"), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
 
@@ -336,7 +336,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             if (isHome) {
                 state = "OU:" + item.getHome() + "(" + getString(R.string.over) + ")";
                 style = new SpannableStringBuilder(state);
-                style.setSpan(new ForegroundColorSpan(getColor(R.color.red_title)), state.indexOf("("), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.red_title)), state.indexOf("("), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             } else {
                 state = "OU:" + item.getAway() + "(" + getString(R.string.under) + ")";
             }
