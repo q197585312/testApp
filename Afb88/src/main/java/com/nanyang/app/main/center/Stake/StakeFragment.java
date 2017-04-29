@@ -7,6 +7,10 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableStringBuilder;
+import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 import android.view.View;
 import android.widget.TextView;
 
@@ -115,8 +119,10 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 Odds.setTextColor(0xff333333);
                 moduleTitle.setText(item.getModuleTitle());
                 String odds = item.getOdds();
+                String od = "";
                 if (item.getBetType() != null) {
                     if (transType.equals("OU") || transType.equals("OE")) {
+                        od = item.getOdds();
                         if (transType.equals("OU")) {
                             odds = item.getHdp() + "@" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
                             if (item.isIsBetHome()) {
@@ -138,6 +144,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         }
 
                     } else if (transType.equals("1") || transType.equals("2") || transType.equals("HDP") || transType.equals("X") || transType.equals("PAR")) {
+                        od = item.getDisplayOdds2();
                         odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                         if (transType.equals("1") || transType.equals("X")) {
                             if (transType.equals("X")) {
@@ -154,21 +161,33 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             moduleTitle.setText(getString(R.string.MixParlay));
                             moduleTitle.setTextColor(0xff008000);
                         } else if (transType.equals("HDP")) {
+                            od = item.getOdds();
                             odds = item.getDisplayHdp() + " @" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
-                            if (item.isIsHomeGive()) {
+                            if (item.isIsBetHome()) {
                                 moduleTitle.setText(item.getHome());
-                                moduleTitle.setTextColor(Color.RED);
+                                if (item.isIsHomeGive()) {
+                                    moduleTitle.setTextColor(Color.RED);
+                                } else {
+                                    moduleTitle.setTextColor(Color.BLUE);
+                                }
                             } else {
-                                moduleTitle.setText(item.getHome());
-                                moduleTitle.setTextColor(Color.BLUE);
+                                moduleTitle.setText(item.getAway());
+                                if (item.isIsHomeGive()) {
+                                    moduleTitle.setTextColor(Color.BLUE);
+                                } else {
+                                    moduleTitle.setTextColor(Color.RED);
+                                }
                             }
+
                         }
                     } else if (transType.equals("3D") || transType.equals("2DT") || transType.equals("1DT")) {
                         moduleTitle.setVisibility(View.GONE);
                         String thaiDate = item.getWorkingDate().substring(0, 5);
+                        od = item.getHdp();
                         odds = "@" + " " + item.getHdp() + "(" + transType + "-" + thaiDate + ")" + " (inet)";
                         Odds.setTextColor(Color.BLUE);
                     } else if (transType.equals("FLG") || transType.equals("HFT")) {
+                        od = item.getDisplayOdds2();
                         odds = item.getFGLGScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
                         if (transType.equals("FLG")) {
                             moduleTitle.setText(getString(R.string.first_last_goal));
@@ -177,6 +196,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         }
                         moduleTitle.setTextColor(Color.RED);
                     } else if (transType.equals("TG") || transType.equals("CSR")) {
+                        od = item.getDisplayOdds2();
                         odds = item.getCSScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
                         if (transType.equals("TG")) {
                             moduleTitle.setText(getString(R.string.total_goals));
@@ -185,15 +205,26 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             moduleTitle.setVisibility(View.GONE);
                         }
                     } else if (transType.equals("DC")) {
+                        od = item.getDisplayOdds2();
                         odds = item.getDCScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
                         moduleTitle.setText(getString(R.string.double_chance));
                         moduleTitle.setTextColor(Color.RED);
                     }
                 }
-                if(item.isIsRun()){
-                    odds="("+item.getRunHomeScore()+" - "+item.getRunAwayScore()+")"+odds;
+                if (item.isIsRun()) {
+                    odds = "(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")" + odds;
                 }
-                Odds.setText(odds);
+                int start = odds.indexOf(od);
+                int end = start + od.length();
+                SpannableStringBuilder style = new SpannableStringBuilder(odds);
+                if (!od.isEmpty() && Float.valueOf(od) < 0) {
+                    style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.red_title)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                } else {
+                    style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black_grey)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                }
+
+
+                Odds.setText(style);
                 String half = "";
                 if (item.getFullTimeId() > 0) {
                     half = "(First Half)";
@@ -223,8 +254,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 } else if (item.getDangerStatus().equals("0")) {
                     n = "Oddschange";
                     dangerStatus.setBackgroundResource(R.color.yellow_button);
-                }
-                else{
+                } else {
                     dangerStatus.setBackgroundResource(R.color.green500);
                 }
                 if (position == data.size() - 1) {

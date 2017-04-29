@@ -189,7 +189,6 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
                 tvTitle.setText(baseVsFragment.getTitle());
                 currentIndex = position;
             }
-
             @Override
             public void onPageScrollStateChanged(int state) {
 
@@ -224,8 +223,6 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
                 new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
         datas.add(rows);
         sf.setData(rows);
-
-
     }
 
     public static class Csr implements Serializable {
@@ -378,7 +375,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             LinkedTreeMap<String, Object> dataMapFT = (LinkedTreeMap) map.get("FT_CS");
             parseRows(rows, dataMapFT, false, getString(R.string.correct_full), getString(R.string.h1), getString(R.string.dx), getString(R.string.a2));
             LinkedTreeMap<String, Object> dataMapFH = (LinkedTreeMap) map.get("FH_CS");
-            parseRows(rows, dataMapFT, true,getString(R.string.correct_half), getString(R.string.h1), getString(R.string.dx), getString(R.string.a2));
+            parseRows(rows, dataMapFH, true,getString(R.string.correct_half), getString(R.string.h1), getString(R.string.dx), getString(R.string.a2));
         /*} else {
             ScaleBean result = gson.fromJson(str, ScaleBean.class);
             rows = Arrays.asList(new VsTableRowBean("csr", Arrays.asList(new VsCellBean("1:0", result.getFTCS().getC1_0(), "10", result.getFTCS().getOid()), new VsCellBean("0:0", result.getFTCS().getC0_0(), "0", result.getFTCS().getOid()), new VsCellBean("0:1", result.getFTCS().getC0_1(), "1", result.getFTCS().getOid())), true, false, getString(R.string.correct_full), getString(R.string.h1), getString(R.string.dx), getString(R.string.a2)),
