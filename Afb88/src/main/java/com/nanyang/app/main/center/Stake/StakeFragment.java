@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
@@ -74,6 +75,16 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
         StakeListBean2 stakeListBean2 = gson.fromJson(data1[1], StakeListBean2.class);
         List<StakeListBean.DicAllBean> list1 = stakeListBean.getDicAll();
         list2 = stakeListBean2.getResources();
+        float total = 0.0f;
+        for (int i = 0; i < list1.size(); i++) {
+            StakeListBean.DicAllBean dicAllBean = list1.get(i);
+            String amt = dicAllBean.getAmt();
+            if (amt != null && !amt.isEmpty())
+                total += Float.valueOf(amt);
+        }
+        StakeListBean.DicAllBean temp = new StakeListBean.DicAllBean();
+        temp.setAmt(AfbUtils.decimalValue(total, "0.0"));
+        list1.add(temp);
         initRc(list1);
     }
 
@@ -106,6 +117,10 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     Odds.setVisibility(View.GONE);
                     moduleTitle.setVisibility(View.GONE);
                     Half.setVisibility(View.GONE);
+                    amt.setText(item.getAmt());
+                    dangerStatus.setText("Total:");
+
+                    return;
                 } else {
                     refno.setVisibility(View.VISIBLE);
                     homeAway.setVisibility(View.VISIBLE);
@@ -229,9 +244,48 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 if (item.getFullTimeId() > 0) {
                     half = "(First Half)";
                 }
-                if (list2.size() != 0) {
-                    Half.setText(list2.get(0).getGameType() + half);
+
+
+                String tType = getString(R.string.HANDICAP);
+                switch (transType) {
+                    case "OU":
+                        tType = getString(R.string.OVER_UNDER);
+                        break;
+                    case "OE":
+                        tType = getString(R.string.ODD_EVEN);
+                        break;
+                    case "HDP":
+                        tType = getString(R.string.HANDICAP);
+                        break;
+                    case "1":
+                    case "2":
+                    case "x":
+                    case "X":
+                        tType = getString(R.string.X1X2);
+                        break;
+                    case "DC":
+                        tType = getString(R.string.double_chance);
+                        break;
+                    case "CSR":
+                        tType = getString(R.string.correct_score);
+                        break;
+                    case "HFT":
+                        tType = getString(R.string.half_full_time);
+                        break;
+                    case "FLG":
+                        tType = getString(R.string.first_last_goal);
+                        break;
+                    case "TG":
+                        tType = getString(R.string.total_goals);
+                        break;
+                    case "PAR":
+                        tType = getString(R.string.PARLAY);
+                        break;
+
                 }
+
+                Half.setText(tType + half);
+
                 String n = "Accepted";
                 if (item.getDangerStatus().equals("D")) {
                     n = "Waiting";

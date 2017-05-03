@@ -1,12 +1,13 @@
 package com.nanyang.app.main.center.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * Created by Administrator on 2017/3/23.
  */
 
-public class StakeListBean {
+public class StakeListBean implements Serializable{
 
 
     private List<DicAllBean> dicAll;
@@ -19,7 +20,12 @@ public class StakeListBean {
         this.dicAll = dicAll;
     }
 
-    public static class DicAllBean {
+    public static class DicAllBean implements Serializable,Cloneable {
+        @Override
+        protected Object clone() throws CloneNotSupportedException {
+            return super.clone();
+        }
+
         /**
          * SocTransId : 137090827
          * TransType : 1DT
@@ -464,4 +470,7 @@ public class StakeListBean {
             this.R_DateTime = R_DateTime;
         }
     }
+
+
+
 }

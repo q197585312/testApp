@@ -259,4 +259,6 @@
     <string name="remember_me">Remember me</string>
     <string name="US_Football">US Football</string>
     <string name="bet_list">Bet List</string>
+    <string name="PARLAY">PARLAY</string>
+    <string name="X1X2">1 X 2</string>
 </resources>

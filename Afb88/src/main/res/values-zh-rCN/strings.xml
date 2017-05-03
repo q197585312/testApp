@@ -69,6 +69,7 @@
     <string name="x1">X1</string>
     <string name="x2">2X</string>
     <string name="x12">12</string>
+    <string name="X1X2">1 X 2</string>
     <string name="half_full_time">半场/全场</string>
 
     <string name="first_last_goal">最先得分/最后得分</string>
@@ -259,4 +260,5 @@
     <string name="remember_me">记住我</string>
     <string name="US_Football">美式足球</string>
     <string name="bet_list">下注列表</string>
+    <string name="PARLAY">过关</string>
 </resources>
