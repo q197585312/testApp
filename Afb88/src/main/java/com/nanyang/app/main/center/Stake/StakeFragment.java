@@ -9,9 +9,9 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -106,27 +106,37 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 String transType = item.getTransType();
                 TextView refno = holder.getView(R.id.order_item_tv1);
                 TextView homeAway = holder.getView(R.id.order_item_tv2);
+                TextView combTv = holder.getView(R.id.order_item_tv21);
                 TextView moduleTitle = holder.getView(R.id.order_item_tv4);
                 TextView Odds = holder.getView(R.id.order_item_tv3);
                 TextView Half = holder.getView(R.id.order_item_tv5);
                 TextView dangerStatus = holder.getView(R.id.order_item_tv51);
                 TextView amt = holder.getView(R.id.order_item_tv52);
+
                 if (position == data.size() - 1) {
                     refno.setVisibility(View.GONE);
                     homeAway.setVisibility(View.GONE);
                     Odds.setVisibility(View.GONE);
                     moduleTitle.setVisibility(View.GONE);
                     Half.setVisibility(View.GONE);
+                    combTv.setVisibility(View.GONE);
                     amt.setText(item.getAmt());
                     dangerStatus.setText("Total:");
 
                     return;
                 } else {
+                    combTv.setVisibility(View.VISIBLE);
                     refno.setVisibility(View.VISIBLE);
                     homeAway.setVisibility(View.VISIBLE);
                     Odds.setVisibility(View.VISIBLE);
                     moduleTitle.setVisibility(View.VISIBLE);
                     Half.setVisibility(View.VISIBLE);
+                }
+                if(item.getCombInfo().trim().isEmpty()){
+                    combTv.setVisibility(View.GONE);
+                }else{
+                    combTv.setVisibility(View.VISIBLE);
+                    combTv.setText(item.getCombInfo());
                 }
                 refno.setText(item.getRefNo() + "(" + item.getTransDate() + ")");
                 homeAway.setText(item.getHome() + "  vs  " + item.getAway());
@@ -158,7 +168,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             }
                         }
 
-                    } else if (transType.equals("1") || transType.equals("2") || transType.equals("HDP") || transType.equals("X") || transType.equals("PAR")) {
+                    } else if (transType.equals("1") || transType.equals("2") || transType.equals("HDP") || transType.equals("X") || transType.startsWith("PA")) {
                         od = item.getDisplayOdds2();
                         odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                         if (transType.equals("1") || transType.equals("X")) {
@@ -172,7 +182,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                             moduleTitle.setText(item.getAway() + " (" + getString(R.string.win) + ")");
                             moduleTitle.setTextColor(Color.BLUE);
-                        } else if (transType.equals("PAR")) {
+                        } else if (transType.startsWith("PA")) {
                             moduleTitle.setText(getString(R.string.MixParlay));
                             moduleTitle.setTextColor(0xff008000);
                         } else if (transType.equals("HDP")) {
@@ -278,11 +288,10 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     case "TG":
                         tType = getString(R.string.total_goals);
                         break;
-                    case "PAR":
-                        tType = getString(R.string.PARLAY);
-                        break;
 
                 }
+                if (transType.startsWith("PA"))
+                    tType = getString(R.string.PARLAY);
 
                 Half.setText(tType + half);
 
@@ -330,9 +339,14 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     }
 
     private void clickItem(View v, StakeListBean.DicAllBean item) {
-        if (item.getTransType().equalsIgnoreCase("PAR")) {
+        if (item.getTransType().startsWith("PA")) {
 //            http://main55.afb88.com/_norm/PamTrans.aspx?userName=demoafbAi1&id=138661496
             WebPop pop = new WebPop(mContext, v);
+            WebSettings webSettings = pop.getWebView().getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setAllowContentAccess(true);
+            webSettings.setAppCacheEnabled(false);
+            webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
             String url = AppConstant.HOST + "_norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
             pop.setUrl(url);
             pop.showPopupCenterWindow();

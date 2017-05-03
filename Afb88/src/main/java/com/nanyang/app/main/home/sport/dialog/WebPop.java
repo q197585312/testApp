@@ -17,6 +17,10 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 public class WebPop extends BasePopupWindow  {
 
+    public WebView getWebView() {
+        return webView;
+    }
+
     private WebView webView;
 
     public WebPop(Context context, View v) {

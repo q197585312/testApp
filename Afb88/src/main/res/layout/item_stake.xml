@@ -16,7 +16,10 @@
         style="@style/text_wrap_black10"
         android:padding="1dp" />
 
-
+    <TextView
+        android:id="@+id/order_item_tv21"
+        style="@style/text_wrap_black10"
+        android:padding="1dp" />
     <TextView
         android:id="@+id/order_item_tv3"
         style="@style/text_wrap_black10"

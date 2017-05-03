@@ -185,6 +185,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                     public void onClick(View v) {
                         selectedMap.put(true, finalPosition);
                         headAmountTv.setText(clearanceBetAmountBean.getTitle());
+                        footerCountTv.setText(clearanceBetAmountBean.getTitle());
                         selectedBean = clearanceBetAmountBean;
                     }
                 });
