@@ -201,7 +201,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             if (homeHdpOdds.trim().isEmpty() || awayHdpOdds.trim().isEmpty() || hdp.trim().isEmpty()) {
                 hasHdp = "0";
             }
-            if (overOdds.trim().isEmpty() || underOdds.trim().isEmpty() || ou.trim().isEmpty()) {
+            if (overOdds.trim().isEmpty() || underOdds.trim().isEmpty() || ou.trim().isEmpty()||ou.trim().equals("0")) {
                 hasOU = "0";
             }
             if (hasHdp.equals("0") || hasHdp.equals("")) {
@@ -337,14 +337,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         return ss;
     }
 
-    protected void setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf) {
-
-        if (f.equals("0"))
+    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf) {
+        String value = f;
+        if (f.equals("0")) {
             textView.setText("");
+        }
         else {
-            String value = f;
-
-
             textView.setBackgroundResource(0);
             if (!f.equals("") && !f.equals("0")) {
                 if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
@@ -397,6 +395,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
 
 
+        return f;
     }
 
     @Override
