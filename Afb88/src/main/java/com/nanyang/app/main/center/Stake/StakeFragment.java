@@ -297,8 +297,13 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 }
                 if (transType.startsWith("PA"))
                     tType = getString(R.string.PARLAY);
-                if (transType.equals("1") && item.getGameType3().equals("O"))
+                if (transType.equals("1") && item.getGameType3().equals("O")) {
                     tType = getString(R.string.OutRight);
+                    homeAway.setVisibility(View.GONE);
+                }
+                else{
+                    homeAway.setVisibility(View.VISIBLE);
+                }
                 Half.setText(tType + half);
 
                 String n = "Accepted";

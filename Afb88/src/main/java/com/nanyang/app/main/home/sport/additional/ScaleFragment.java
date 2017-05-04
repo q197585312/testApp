@@ -69,15 +69,15 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
             value2 = "";
         }
         helper.setText(R.id.vs_row_content_tv12, value0);
-        setOddsTextColor(value0,helper.getTextView(R.id.vs_row_content_tv12));
+
 
 
         helper.setText(R.id.vs_row_content_tv21, item.getRows().get(1).getKey());
         helper.setText(R.id.vs_row_content_tv22, value1);
-        setOddsTextColor(value1,helper.getTextView(R.id.vs_row_content_tv22));
+
         helper.setText(R.id.vs_row_content_tv31, item.getRows().get(2).getKey());
         helper.setText(R.id.vs_row_content_tv32, value2);
-        setOddsTextColor(value2,helper.getTextView(R.id.vs_row_content_tv32));
+
 
         helper.setClickLisenter(R.id.vs_row_content_tv22, new View.OnClickListener() {
             @Override
@@ -116,8 +116,8 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
             helper.getTextView(R.id.vs_row_content_tv32).setTextColor(getResources().getColor(R.color.blue));
         }
         else{
-            helper.getTextView(R.id.vs_row_content_tv22).setTextColor(getResources().getColor(R.color.black_grey));
-            helper.getTextView(R.id.vs_row_content_tv32).setTextColor(getResources().getColor(R.color.black_grey));
+            setOddsTextColor(value1,helper.getTextView(R.id.vs_row_content_tv22));
+            setOddsTextColor(value2,helper.getTextView(R.id.vs_row_content_tv32));
         }
 
     }
