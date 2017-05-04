@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by Administrator on 2015/11/30.
  */
 public class VsCellBean implements Serializable {
-    String key;
+    CharSequence key;
     String value;
     /**
      * 下注类型
@@ -34,7 +34,7 @@ public class VsCellBean implements Serializable {
         Sc = sc;
     }
 
-    public String getKey() {
+    public CharSequence getKey() {
         return key;
     }
 
@@ -67,7 +67,7 @@ public class VsCellBean implements Serializable {
         this(key,value,oid);
         this.Sc=Sc;
     }
-    public VsCellBean(String key, String value, int oid) {
+    public VsCellBean(CharSequence key, String value, int oid) {
         this.key = key;
         this.value = value;
         this.oid=oid;

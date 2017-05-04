@@ -61,7 +61,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
             oldHomeName = back.getItem(position - 1).getHome();
             oldAwayName = back.getItem(position - 1).getAway();
             oldHomeGive = back.getItem(position - 1).getIsHomeGive();
-            oldModuleTitle = back.getItem(position - 1).getModuleTitle();
+            oldModuleTitle = back.getItem(position - 1).getModuleTitle().toString();
 
         }
 

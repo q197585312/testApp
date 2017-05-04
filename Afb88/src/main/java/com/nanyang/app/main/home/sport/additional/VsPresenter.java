@@ -76,7 +76,7 @@ class VsPresenter extends BaseRetrofitPresenter<String, BetView<String>> impleme
         if (type.equals("Running"))
             isRunning = true;
 
-        String url = AppConstant.HOST+"_view/MoreBet_App.aspx?oId=" + bean.getSocOddsId() + "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getModuleTitle()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning
+        String url = AppConstant.HOST+"_view/MoreBet_App.aspx?oId=" + bean.getSocOddsId() + "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getModuleTitle().toString()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning
                 +paramT;
         url = url + "&t=" + System.currentTimeMillis();
         return url;

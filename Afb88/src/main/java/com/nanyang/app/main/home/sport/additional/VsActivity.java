@@ -46,6 +46,8 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
+import static com.nanyang.app.AfbUtils.setColorStyle;
+
 
 /**
  * Created by Administrator on 2015/10/22.
@@ -216,8 +218,8 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             socOddsId_hf = Integer.valueOf(item.getSocOddsId_FH());
         if (item.getSocOddsId() != null && !item.getSocOddsId().equals(""))
             socOddsId = Integer.valueOf(item.getSocOddsId());
-        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(getString(R.string.h1), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_1Odds_FH(), socOddsId_hf)), true, false, "1  x  2", "", "", ""),
-                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(getString(R.string.dx), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_XOdds_FH(), socOddsId_hf))),
+        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1),new int[]{getResources().getColor(R.color.red_title)},new String[]{getString(R.string.h1)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_1Odds_FH(), socOddsId_hf)), true, false, setColorStyle("1  x  2",new int[]{getResources().getColor(R.color.red_title),getResources().getColor(R.color.blue)},new String[]{"1","x"}), "", "", ""),
+                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx),new int[]{getResources().getColor(R.color.blue)},new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_XOdds_FH(), socOddsId_hf))),
                 new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_2Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_2Odds_FH(), socOddsId_hf)), true),
                 new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), "", "", ""),
                 new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
@@ -271,7 +273,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         }
     }
 
-    private void parseRows(List<VsTableRowBean> rows, LinkedTreeMap<String, Object> dataMap, boolean isHf, String s1, String s2, String s3, String s4) {
+    private void parseRows(List<VsTableRowBean> rows, LinkedTreeMap<String, Object> dataMap, boolean isHf, CharSequence s1, CharSequence s2, CharSequence s3, CharSequence s4) {
         if (dataMap == null || dataMap.size() < 1)
             return;
         Double sid = (Double) dataMap.get("oid");
@@ -373,36 +375,9 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             Map<String, Object> map = new HashMap<String, Object>();
             map = gson.fromJson(str, map.getClass());
             LinkedTreeMap<String, Object> dataMapFT = (LinkedTreeMap) map.get("FT_CS");
-            parseRows(rows, dataMapFT, false, getString(R.string.correct_full), getString(R.string.h1), getString(R.string.dx), getString(R.string.a2));
+            parseRows(rows, dataMapFT, false, getString(R.string.correct_full), setColorStyle(getString(R.string.h1),new int[]{getResources().getColor(R.color.red_title)},new String[]{getString(R.string.h1)}), setColorStyle(getString(R.string.dx),new int[]{getResources().getColor(R.color.blue)},new String[]{getString(R.string.dx)}), getString(R.string.a2));
             LinkedTreeMap<String, Object> dataMapFH = (LinkedTreeMap) map.get("FH_CS");
-            parseRows(rows, dataMapFH, true,getString(R.string.correct_half), getString(R.string.h1), getString(R.string.dx), getString(R.string.a2));
-        /*} else {
-            ScaleBean result = gson.fromJson(str, ScaleBean.class);
-            rows = Arrays.asList(new VsTableRowBean("csr", Arrays.asList(new VsCellBean("1:0", result.getFTCS().getC1_0(), "10", result.getFTCS().getOid()), new VsCellBean("0:0", result.getFTCS().getC0_0(), "0", result.getFTCS().getOid()), new VsCellBean("0:1", result.getFTCS().getC0_1(), "1", result.getFTCS().getOid())), true, false, getString(R.string.correct_full), getString(R.string.h1), getString(R.string.dx), getString(R.string.a2)),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("2:0", result.getFTCS().getC2_0(), "20", result.getFTCS().getOid()), new VsCellBean("1:1", result.getFTCS().getC1_1(), "11", result.getFTCS().getOid()), new VsCellBean("0:2", result.getFTCS().getC0_2(), "2", result.getFTCS().getOid()))),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("2:1", result.getFTCS().getC2_1(), "21", result.getFTCS().getOid()), new VsCellBean("2:2", result.getFTCS().getC2_2(), "22", result.getFTCS().getOid()), new VsCellBean("1:2", result.getFTCS().getC1_2(), "12", result.getFTCS().getOid()))),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("3:0", result.getFTCS().getC3_0(), "30", result.getFTCS().getOid()), new VsCellBean("3:3", result.getFTCS().getC3_3(), "33", result.getFTCS().getOid()), new VsCellBean("0:3", result.getFTCS().getC0_3(), "3", result.getFTCS().getOid()))),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("3:1", result.getFTCS().getC3_1(), "31", result.getFTCS().getOid()), new VsCellBean("4:4", result.getFTCS().getC4_4(), "44", result.getFTCS().getOid()), new VsCellBean("1:3", result.getFTCS().getC1_3(), "13", result.getFTCS().getOid()))),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("3:2", result.getFTCS().getC3_2(), "32", result.getFTCS().getOid()), new VsCellBean(getString(R.string.other), result.getFTCS().getAOS(), "70", result.getFTCS().getOid()), new VsCellBean("2:3", result.getFTCS().getC2_3(), "23", result.getFTCS().getOid()))),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:0", result.getFTCS().getC4_0(), "40", result.getFTCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("0:4", result.getFTCS().getC0_4(), "4", result.getFTCS().getOid()))),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:1", result.getFTCS().getC4_1(), "41", result.getFTCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("1:4", result.getFTCS().getC1_4(), "14", result.getFTCS().getOid()))),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:2", result.getFTCS().getC4_2(), "42", result.getFTCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("2:4", result.getFTCS().getC2_4(), "24", result.getFTCS().getOid()))),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:3", result.getFTCS().getC4_3(), "43", result.getFTCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("3:4", result.getFTCS().getC3_4(), "34", result.getFTCS().getOid())), true),
-
-
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("1:0", result.getFHCS().getC1_0(), "10", result.getFHCS().getOid()), new VsCellBean("0:0", result.getFHCS().getC0_0(), "0", result.getFHCS().getOid()), new VsCellBean("0:1", result.getFHCS().getC0_1(), "1", result.getFHCS().getOid())), true, false, getString(R.string.correct_half), getString(R.string.h1), getString(R.string.dx), getString(R.string.a2)).setFh(true),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("2:0", result.getFHCS().getC2_0(), "20", result.getFHCS().getOid()), new VsCellBean("1:1", result.getFHCS().getC1_1(), "11", result.getFHCS().getOid()), new VsCellBean("0:2", result.getFHCS().getC0_2(), "2", result.getFHCS().getOid()))).setFh(true),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("2:1", result.getFHCS().getC2_1(), "21", result.getFHCS().getOid()), new VsCellBean("2:2", result.getFHCS().getC2_2(), "22", result.getFHCS().getOid()), new VsCellBean("1:2", result.getFHCS().getC1_2(), "12", result.getFHCS().getOid()))).setFh(true),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("3:0", result.getFHCS().getC3_0(), "30", result.getFHCS().getOid()), new VsCellBean("3:3", result.getFHCS().getC3_3(), "33", result.getFHCS().getOid()), new VsCellBean("0:3", result.getFHCS().getC0_3(), "3", result.getFHCS().getOid()))).setFh(true),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("3:1", result.getFHCS().getC3_1(), "31", result.getFHCS().getOid()), new VsCellBean("", result.getFHCS().getC4_4(), result.getFHCS().getOid()), new VsCellBean("1:3", result.getFHCS().getC1_3(), "13", result.getFHCS().getOid()))).setFh(true),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("3:2", result.getFHCS().getC3_2(), "32", result.getFHCS().getOid()), new VsCellBean(getString(R.string.other), result.getFHCS().getAOS(), "80", result.getFHCS().getOid()), new VsCellBean("2:3", result.getFHCS().getC2_3(), "23", result.getFHCS().getOid()))).setFh(true),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:0", result.getFHCS().getC4_0(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:0", result.getFHCS().getC0_4(), result.getFHCS().getOid()))).setFh(true),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:1", result.getFHCS().getC4_1(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:1", result.getFHCS().getC1_4(), result.getFHCS().getOid()))).setFh(true),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:2", result.getFHCS().getC4_2(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:2", result.getFHCS().getC2_4(), result.getFHCS().getOid()))).setFh(true),
-                    new VsTableRowBean("csr", Arrays.asList(new VsCellBean("4:3", result.getFHCS().getC4_3(), result.getFHCS().getOid()), new VsCellBean("", "", 0), new VsCellBean("4:3", result.getFHCS().getC3_4(), result.getFHCS().getOid())), true).setFh(true));
-
-        }
-*/
+            parseRows(rows, dataMapFH, true,getString(R.string.correct_half), setColorStyle(getString(R.string.h1),new int[]{getResources().getColor(R.color.red_title)},new String[]{getString(R.string.h1)}), setColorStyle(getString(R.string.dx),new int[]{getResources().getColor(R.color.blue)},new String[]{getString(R.string.dx)}), getString(R.string.a2));
         datas.add(rows);
         cf.setData(rows);
 
@@ -425,12 +400,12 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
     private void firstFragmentData(ScaleBean result) {
         List<VsTableRowBean> rows = new ArrayList<VsTableRowBean>();
-        rows = Arrays.asList(new VsTableRowBean("1", Arrays.asList(new VsCellBean(getString(R.string.h1), "", result.getFT1x2().getOid()), new VsCellBean("", result.getFT1x2().getF1(), result.getFT1x2().getOid()), new VsCellBean("", result.getFH1x2().getF1(), result.getFH1x2().getOid())), true, false, "1  x  2", "", "", ""),
-                new VsTableRowBean("X", Arrays.asList(new VsCellBean(getString(R.string.dx), "", 0), new VsCellBean("", result.getFT1x2().getX(), result.getFT1x2().getOid()), new VsCellBean("", result.getFH1x2().getX(), result.getFH1x2().getOid()))),
+        rows = Arrays.asList(new VsTableRowBean("1", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1),new int[]{getResources().getColor(R.color.red_title)},new String[]{getString(R.string.h1)}), "", result.getFT1x2().getOid()), new VsCellBean("", result.getFT1x2().getF1(), result.getFT1x2().getOid()), new VsCellBean("", result.getFH1x2().getF1(), result.getFH1x2().getOid())), true, false, setColorStyle("1  x  2",new int[]{getResources().getColor(R.color.red_title),getResources().getColor(R.color.blue)},new String[]{"1","x"}), "", "", ""),
+                new VsTableRowBean("X", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx),new int[]{getResources().getColor(R.color.blue)},new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", result.getFT1x2().getX(), result.getFT1x2().getOid()), new VsCellBean("", result.getFH1x2().getX(), result.getFH1x2().getOid()))),
                 new VsTableRowBean("2", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", result.getFT1x2().getF2(), result.getFT1x2().getOid()), new VsCellBean("", result.getFH1x2().getF2(), result.getFH1x2().getOid())), true),
-                new VsTableRowBean("dc", "10", Arrays.asList(new VsCellBean("1X", "", 0), new VsCellBean("", result.getFTDC().getF1x(), result.getFTDC().getOid()), new VsCellBean("", result.getFHDC().getF1x(), result.getFHDC().getOid())), true, false, getString(R.string.double_chance), "", "", ""),
-                new VsTableRowBean("dc", "12", Arrays.asList(new VsCellBean("12", "", 0), new VsCellBean("", result.getFTDC().getF12(), result.getFTDC().getOid()), new VsCellBean("", result.getFHDC().getF12(), result.getFHDC().getOid()))),
-                new VsTableRowBean("dc", "2", Arrays.asList(new VsCellBean("X2", "", 0), new VsCellBean("", result.getFTDC().getFx2(), result.getFTDC().getOid()), new VsCellBean("", result.getFHDC().getFx2(), result.getFHDC().getOid())), true),
+                new VsTableRowBean("dc", "10", Arrays.asList(new VsCellBean(setColorStyle("1X",new int[]{getResources().getColor(R.color.red_title),getResources().getColor(R.color.blue)},new String[]{"1","X"}), "", 0), new VsCellBean("", result.getFTDC().getF1x(), result.getFTDC().getOid()), new VsCellBean("", result.getFHDC().getF1x(), result.getFHDC().getOid())), true, false, getString(R.string.double_chance), "", "", ""),
+                new VsTableRowBean("dc", "12", Arrays.asList(new VsCellBean(setColorStyle("12",new int[]{getResources().getColor(R.color.red_title)},new String[]{"1"}), "", 0), new VsCellBean("", result.getFTDC().getF12(), result.getFTDC().getOid()), new VsCellBean("", result.getFHDC().getF12(), result.getFHDC().getOid()))),
+                new VsTableRowBean("dc", "2", Arrays.asList(new VsCellBean(setColorStyle("X2",new int[]{getResources().getColor(R.color.blue)},new String[]{"X"}), "", 0), new VsCellBean("", result.getFTDC().getFx2(), result.getFTDC().getOid()), new VsCellBean("", result.getFHDC().getFx2(), result.getFHDC().getOid())), true),
                 new VsTableRowBean("odd", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", result.getFTOE().getODD(), result.getFTOE().getOid()), new VsCellBean("", result.getFHOE().getODD(), result.getFHOE().getOid())), true, false, getString(R.string.odd_even), "", "", ""),
                 new VsTableRowBean("even", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", result.getFTOE().getEVEN(), result.getFTOE().getOid()), new VsCellBean("", result.getFHOE().getEVEN(), result.getFHOE().getOid())), true));
         datas.add(rows);

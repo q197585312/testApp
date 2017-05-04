@@ -13,6 +13,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static com.nanyang.app.AfbUtils.setColorStyle;
+
 
 /**
  * Created by Administrator on 2015/11/4.
@@ -69,6 +71,7 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
         helper.setText(R.id.vs_row_content_tv12, value0);
         setOddsTextColor(value0,helper.getTextView(R.id.vs_row_content_tv12));
 
+
         helper.setText(R.id.vs_row_content_tv21, item.getRows().get(1).getKey());
         helper.setText(R.id.vs_row_content_tv22, value1);
         setOddsTextColor(value1,helper.getTextView(R.id.vs_row_content_tv22));
@@ -82,9 +85,9 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
 
                 if (getValue1(item) != null && (!getValue1(item).equals(""))) {
                     if (position > 2 && position < 6) {
-                        betHelper.clickOdds(itemData, item.getB(), getValue1(item), (TextView) v, false, "&sc=" + item.getSc() + childParam);
+                        betHelper.clickOdds(itemData, item.getB().toString(), getValue1(item), (TextView) v, false, "&sc=" + item.getSc() + childParam);
                     } else {
-                        betHelper.clickOdds(itemData, item.getB(), getValue1(item), (TextView) v, false, "&g=5" + childParam);
+                        betHelper.clickOdds(itemData, item.getB().toString(), getValue1(item), (TextView) v, false, "&g=5" + childParam);
                     }
 
 
@@ -96,15 +99,26 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
             public void onClick(View v) {
                 if (getValue2(item) != null && (!getValue2(item).equals(""))) {
                     if (position > 2 && position < 6) {
-                        betHelper.clickOdds(itemData, item.getB(), getValue2(item), (TextView) v, true, "&sc=" + item.getSc() + childParam);
+                        betHelper.clickOdds(itemData, item.getB().toString(), getValue2(item), (TextView) v, true, "&sc=" + item.getSc() + childParam);
                     } else {
-                        betHelper.clickOdds(itemData, item.getB(), getValue2(item), (TextView) v, true, "&g=5" + childParam);
+                        betHelper.clickOdds(itemData, item.getB().toString(), getValue2(item), (TextView) v, true, "&g=5" + childParam);
                     }
 
                 }
             }
         });
-
+        if(position==0){
+            helper.getTextView(R.id.vs_row_content_tv22).setTextColor(getResources().getColor(R.color.red_title));
+            helper.getTextView(R.id.vs_row_content_tv32).setTextColor(getResources().getColor(R.color.red_title));
+        }
+        else if(position==1){
+            helper.getTextView(R.id.vs_row_content_tv22).setTextColor(getResources().getColor(R.color.blue));
+            helper.getTextView(R.id.vs_row_content_tv32).setTextColor(getResources().getColor(R.color.blue));
+        }
+        else{
+            helper.getTextView(R.id.vs_row_content_tv22).setTextColor(getResources().getColor(R.color.black_grey));
+            helper.getTextView(R.id.vs_row_content_tv32).setTextColor(getResources().getColor(R.color.black_grey));
+        }
 
     }
 
@@ -130,12 +144,15 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
             socOddsId_hf = Integer.valueOf(item.getSocOddsId_FH());
         if (item.getSocOddsId() != null && !item.getSocOddsId().equals(""))
             socOddsId = Integer.valueOf(item.getSocOddsId());
-        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(getString(R.string.h1), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_1Odds_FH(), socOddsId_hf)), true, false, "1  x  2", "", "", ""),
-                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(getString(R.string.dx), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_XOdds_FH(), socOddsId_hf))),
+
+
+        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1),new int[]{getResources().getColor(R.color.red_title)},new String[]{getString(R.string.h1)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_1Odds_FH(), socOddsId_hf)), true, false, setColorStyle("1  x  2",new int[]{getResources().getColor(R.color.red_title),getResources().getColor(R.color.blue)},new String[]{"1","x"}), "", "", ""),
+                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx),new int[]{getResources().getColor(R.color.blue)},new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_XOdds_FH(), socOddsId_hf))),
                 new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_2Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_2Odds_FH(), socOddsId_hf)), true),
                 new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), "", "", ""),
                 new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
         setData(rows);
 
     }
+
 }

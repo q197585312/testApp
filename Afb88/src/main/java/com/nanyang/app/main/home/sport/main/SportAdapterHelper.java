@@ -40,6 +40,14 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
     public interface ItemCallBack<B> {
         B getItem(int position);
 
+        /**
+         *
+         * @param v 点击的view
+         * @param item
+         * @param type 下注的类型 ou，hdp，over，under，_par
+         * @param isHf 是否是半场
+         * @param odds  下注赔率
+         */
         void clickOdds(TextView v, B item, String type, boolean isHf, String odds);
 
         void clickView(View v, B item);

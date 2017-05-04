@@ -10,7 +10,7 @@ import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.center.model.StakeListBean;
-import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.api.Api;
@@ -35,7 +35,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/3/15.
  */
 
-public abstract class BallBetHelper<B extends BallInfo, V extends BetView> implements IBetHelper<B> {
+public abstract class BallBetHelper<B extends SportInfo, V extends BetView> implements IBetHelper<B> {
     protected V baseView;
     private ResultCallBack back;
 

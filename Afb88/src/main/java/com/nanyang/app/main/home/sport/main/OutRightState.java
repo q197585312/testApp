@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.football.SoccerCommonBetHelper;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -50,9 +49,15 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
                 View headV = holder.getView(R.id.v_out_right_header_space);
                 TextView homeTv = holder.getView(R.id.out_right_home_tv);
 
-                TextView markTv = holder.getView(R.id.out_right_mark_tv);
+                final TextView markTv = holder.getView(R.id.out_right_mark_tv);
                 homeTv.setText(item.getHome());
                 markTv.setText(item.getX12_1Odds());
+              markTv.setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      back.clickOdds(markTv, item, "1", false, item.getX12_1Odds());
+                  }
+              });
                 if (item.getType() == SportInfo.Type.ITME) {
                     matchTitleTv.setVisibility(View.GONE);
                     headV.setVisibility(View.GONE);
@@ -146,6 +151,7 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
         return types;
     }
 
+
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new SportAdapterHelper.ItemCallBack<SportInfo>() {
@@ -156,7 +162,10 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
 
             @Override
             public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds) {
-
+                IBetHelper helper = onSetBetHelper();
+                helper.setCompositeSubscription(mCompositeSubscription);
+                //http://main55.afb88.com/_Bet/JRecPanel.aspx?g=50&b=1&oId=11188250&odds=2.5
+                helper.clickOdds(item,type,odds,v,  isHf,"");
             }
 
             @Override
@@ -173,7 +182,7 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
 
     @Override
     protected IBetHelper onSetBetHelper() {
-        return new SoccerCommonBetHelper(getBaseView());
+        return new OutRightBetHelper(getBaseView());
     }
 
     @Override

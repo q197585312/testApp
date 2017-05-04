@@ -61,7 +61,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             public void onClick(View v) {
 
                 if (item.getRows().get(0).getValue() != null && (!item.getRows().get(0).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(0).getValue(),(TextView) v,item.isFh(),"&sc="+item.getRows().get(0).getSc()+childParam);
+                    betHelper.clickOdds(itemData,item.getB().toString(),item.getRows().get(0).getValue(),(TextView) v,item.isFh(),"&sc="+item.getRows().get(0).getSc()+childParam);
 
                 }
             }
@@ -70,7 +70,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(1).getValue() != null && (!item.getRows().get(1).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(1).getValue(),(TextView) v,item.isFh(),"&sc="+item.getRows().get(1).getSc()+childParam);
+                    betHelper.clickOdds(itemData,item.getB().toString(),item.getRows().get(1).getValue(),(TextView) v,item.isFh(),"&sc="+item.getRows().get(1).getSc()+childParam);
 
                 }
             }
@@ -79,7 +79,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(2).getValue() != null && (!item.getRows().get(2).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData,item.getB(),item.getRows().get(2).getValue(),(TextView) v,item.isFh(),"&sc="+item.getRows().get(2).getSc()+childParam);
+                    betHelper.clickOdds(itemData,item.getB().toString(),item.getRows().get(2).getValue(),(TextView) v,item.isFh(),"&sc="+item.getRows().get(2).getSc()+childParam);
 
                 }
             }

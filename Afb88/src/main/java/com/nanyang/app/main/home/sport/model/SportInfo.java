@@ -11,7 +11,7 @@ public class SportInfo implements Serializable{
     }
     SportInfo.Type type;
     String moduleId;
-    String moduleTitle;
+    CharSequence moduleTitle;
     String SocOddsId,   Home,IsInetBet, isX12New, HasX12, X12_1Odds , PreSocOddsId;
 
     public Type getType() {
@@ -30,11 +30,11 @@ public class SportInfo implements Serializable{
         this.moduleId = moduleId;
     }
 
-    public String getModuleTitle() {
+    public CharSequence getModuleTitle() {
         return moduleTitle;
     }
 
-    public void setModuleTitle(String moduleTitle) {
+    public void setModuleTitle(CharSequence moduleTitle) {
         this.moduleTitle = moduleTitle;
     }
 

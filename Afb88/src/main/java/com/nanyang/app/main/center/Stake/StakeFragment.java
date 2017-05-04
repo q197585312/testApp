@@ -132,9 +132,9 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     moduleTitle.setVisibility(View.VISIBLE);
                     Half.setVisibility(View.VISIBLE);
                 }
-                if(item.getCombInfo().trim().isEmpty()){
+                if (item.getCombInfo().trim().isEmpty()) {
                     combTv.setVisibility(View.GONE);
-                }else{
+                } else {
                     combTv.setVisibility(View.VISIBLE);
                     combTv.setText(item.getCombInfo());
                 }
@@ -171,27 +171,32 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     } else if (transType.equals("1") || transType.equals("2") || transType.equals("HDP") || transType.equals("X") || transType.startsWith("PA")) {
                         od = item.getDisplayOdds2();
                         odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
-                        if (transType.equals("1") || transType.equals("X")) {
-                            if (transType.equals("X")) {
-                                moduleTitle.setText(item.getHome() + " (" + getString(R.string.draw) + ")");
-                            } else {
-                                moduleTitle.setText(item.getHome() + " (" + getString(R.string.win) + ")");
+                        moduleTitle.setTextColor(Color.BLUE);
+                        if (transType.equalsIgnoreCase("X")) {
+                            moduleTitle.setText(item.getHome() + " (" + getString(R.string.draw) + ")");
+                        } else if (transType.equals("1")) {
+                            moduleTitle.setText(item.getHome() + " (" + getString(R.string.win) + ")");
+                            if(item.isIsHomeGive()){
+                                moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                             }
-                            moduleTitle.setTextColor(Color.BLUE);
-                        } else if (transType.equals("2")) {
+                        }
+
+                         else if (transType.equals("2")) {
                             odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                             moduleTitle.setText(item.getAway() + " (" + getString(R.string.win) + ")");
-                            moduleTitle.setTextColor(Color.BLUE);
+                            if(!item.isIsHomeGive()){
+                                moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
+                            }
+
                         } else if (transType.startsWith("PA")) {
                             moduleTitle.setText(getString(R.string.MixParlay));
-                            moduleTitle.setTextColor(0xff008000);
                         } else if (transType.equals("HDP")) {
                             od = item.getOdds();
                             odds = item.getDisplayHdp() + " @" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
                             if (item.isIsBetHome()) {
                                 moduleTitle.setText(item.getHome());
                                 if (item.isIsHomeGive()) {
-                                    moduleTitle.setTextColor(Color.RED);
+                                    moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                                 } else {
                                     moduleTitle.setTextColor(Color.BLUE);
                                 }
@@ -200,7 +205,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                                 if (item.isIsHomeGive()) {
                                     moduleTitle.setTextColor(Color.BLUE);
                                 } else {
-                                    moduleTitle.setTextColor(Color.RED);
+                                    moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                                 }
                             }
 
@@ -292,7 +297,8 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 }
                 if (transType.startsWith("PA"))
                     tType = getString(R.string.PARLAY);
-
+                if (transType.equals("1") && item.getGameType3().equals("O"))
+                    tType = getString(R.string.OutRight);
                 Half.setText(tType + half);
 
                 String n = "Accepted";

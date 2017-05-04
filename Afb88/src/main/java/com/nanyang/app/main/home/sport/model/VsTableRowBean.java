@@ -16,54 +16,54 @@ public class VsTableRowBean extends SportInfo {
     }
 
     boolean isFh;
-    private String Sc;
-    private String b;
-    String ModuleTitle;
-    String leftTitle;
-    String centerTitle;
-    String rightTitle;
+    private CharSequence Sc;
+    private CharSequence b;
+    CharSequence ModuleTitle;
+    CharSequence leftTitle;
+    CharSequence centerTitle;
+    CharSequence rightTitle;
     boolean hasHead;
     List<VsCellBean> rows;
     boolean hasFoot;
 
 
-    public String getSc() {
+    public CharSequence getSc() {
         return Sc;
     }
 
-    public void setSc(String sc) {
+    public void setSc(CharSequence sc) {
         Sc = sc;
     }
 
-    public String getModuleTitle() {
+    public CharSequence getModuleTitle() {
         return ModuleTitle;
     }
 
-    public void setModuleTitle(String moduleTitle) {
+    public void setModuleTitle(CharSequence moduleTitle) {
         ModuleTitle = moduleTitle;
     }
 
-    public String getLeftTitle() {
+    public CharSequence getLeftTitle() {
         return leftTitle;
     }
 
-    public void setLeftTitle(String leftTitle) {
+    public void setLeftTitle(CharSequence leftTitle) {
         this.leftTitle = leftTitle;
     }
 
-    public String getCenterTitle() {
+    public CharSequence getCenterTitle() {
         return centerTitle;
     }
 
-    public void setCenterTitle(String centerTitle) {
+    public void setCenterTitle(CharSequence centerTitle) {
         this.centerTitle = centerTitle;
     }
 
-    public String getRightTitle() {
+    public CharSequence getRightTitle() {
         return rightTitle;
     }
 
-    public void setRightTitle(String rightTitle) {
+    public void setRightTitle(CharSequence rightTitle) {
         this.rightTitle = rightTitle;
     }
 
@@ -91,12 +91,12 @@ public class VsTableRowBean extends SportInfo {
         this.hasFoot = hasFoot;
     }
 
-    public String getB() {
+    public CharSequence getB() {
         return b;
     }
 
 
-    public void setB(String b) {
+    public void setB(CharSequence b) {
         this.b = b;
     }
 
@@ -104,19 +104,19 @@ public class VsTableRowBean extends SportInfo {
         this.rows = rows;
     }
 
-    public VsTableRowBean(String b, List<VsCellBean> rows) {
+    public VsTableRowBean(CharSequence b, List<VsCellBean> rows) {
         this(rows);
         this.b = b;
 
     }
 
-    public VsTableRowBean(String b, String sc, List<VsCellBean> rows) {
+    public VsTableRowBean(CharSequence b, CharSequence sc, List<VsCellBean> rows) {
         this(b, rows);
         this.Sc = sc;
 
     }
 
-    public VsTableRowBean(List<VsCellBean> rows, boolean hasHead, boolean hasFoot, String moduleTitle, String leftTitle, String centerTitle, String rightTitle) {
+    public VsTableRowBean(List<VsCellBean> rows, boolean hasHead, boolean hasFoot, CharSequence moduleTitle, CharSequence leftTitle, CharSequence centerTitle, CharSequence rightTitle) {
         this(rows, hasFoot);
         this.hasHead = hasHead;
         this.rightTitle = rightTitle;
@@ -125,13 +125,13 @@ public class VsTableRowBean extends SportInfo {
         ModuleTitle = moduleTitle;
     }
 
-    public VsTableRowBean(String b, List<VsCellBean> rows, boolean hasHead, boolean hasFoot, String moduleTitle, String leftTitle, String centerTitle, String rightTitle) {
+    public VsTableRowBean(CharSequence b, List<VsCellBean> rows, boolean hasHead, boolean hasFoot, CharSequence moduleTitle, CharSequence leftTitle, CharSequence centerTitle, CharSequence rightTitle) {
         this(rows, hasHead, hasFoot, moduleTitle, leftTitle, centerTitle, rightTitle);
         this.b = b;
 
     }
 
-    public VsTableRowBean(String b, String sc, List<VsCellBean> rows, boolean hasHead, boolean hasFoot, String moduleTitle, String leftTitle, String centerTitle, String rightTitle) {
+    public VsTableRowBean(CharSequence b, CharSequence sc, List<VsCellBean> rows, boolean hasHead, boolean hasFoot, CharSequence moduleTitle, CharSequence leftTitle, CharSequence centerTitle, CharSequence rightTitle) {
         this(b, rows, hasHead, hasFoot, moduleTitle, leftTitle, centerTitle, rightTitle);
         this.Sc = sc;
     }
@@ -142,13 +142,13 @@ public class VsTableRowBean extends SportInfo {
 
     }
 
-    public VsTableRowBean(String b, List<VsCellBean> rows, boolean hasFoot) {
+    public VsTableRowBean(CharSequence b, List<VsCellBean> rows, boolean hasFoot) {
         this(rows, hasFoot);
         this.b = b;
 
     }
 
-    public VsTableRowBean(String b, String sc, List<VsCellBean> rows, boolean hasFoot) {
+    public VsTableRowBean(CharSequence b, CharSequence sc, List<VsCellBean> rows, boolean hasFoot) {
         this(b, sc, rows);
         this.hasFoot = hasFoot;
     }

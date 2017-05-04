@@ -76,7 +76,7 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
             oldHomeName = back.getItem(position - 1).getHome();
             oldAwayName = back.getItem(position - 1).getAway();
             oldHomeGive = back.getItem(position - 1).getIsHomeGive();
-            oldModuleTitle = back.getItem(position - 1).getModuleTitle();
+            oldModuleTitle = back.getItem(position - 1).getModuleTitle().toString();
         }
 
         if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getIsHomeGive())) {

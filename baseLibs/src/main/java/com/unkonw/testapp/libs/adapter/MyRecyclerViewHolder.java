@@ -92,7 +92,7 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder {
      * @param text
      * @return
      */
-    public MyRecyclerViewHolder setText(int viewId, String text) {
+    public MyRecyclerViewHolder setText(int viewId, CharSequence text) {
         TextView view = getView(viewId);
         view.setText(text);
         return this;

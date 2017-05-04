@@ -118,7 +118,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         mCompositeSubscription = new CompositeDisposable();
 
     }
-
+    /**
+     *设置item中的子View 点击时间 响应     back.clickOdds(markTv, item, type, isHf, f);
+     * @return
+     */
     protected abstract SportAdapterHelper.ItemCallBack onSetItemCallBack();
 
 

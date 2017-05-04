@@ -113,7 +113,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
 
 
     public void collectionItemCommon(SoccerCommonInfo item) {
-        String moduleKey = item.getModuleTitle();
+        String moduleKey = item.getModuleTitle().toString();
         Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
         if (moduleMap == null)
             moduleMap = new HashMap<>();

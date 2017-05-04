@@ -276,4 +276,15 @@ public class AfbUtils {
         cookieManager.setCookie(url, cookies);//cookies是在HttpClient中获得的cookie
         CookieSyncManager.getInstance().sync();
     }
+
+    public static SpannableStringBuilder setColorStyle(String str, int[] color, String[] strColors ){
+
+        SpannableStringBuilder style=new SpannableStringBuilder(str);
+        for (int i = 0; i < color.length; i++) {
+            int start=str.indexOf(strColors[i]);
+            int end=start+strColors[i].length();
+            style.setSpan(new ForegroundColorSpan(color[i]),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return style;
+    }
 }
