@@ -82,7 +82,10 @@ public class MyanmarBetHelper extends BallBetHelper<MyanmarInfo, BetView> {
         stringBuilder.append("&b=" + type);
         stringBuilder.append(params);
         stringBuilder.append("&oId=");
-        stringBuilder.append(item.getSocOddsId());
+        String socOddsId = item.getSocOddsId();
+        if (isHf)
+            socOddsId = item.getSocOddsId_FH();
+        stringBuilder.append(socOddsId);
         stringBuilder.append("&odds=" + odds);
         return stringBuilder.toString();
     }

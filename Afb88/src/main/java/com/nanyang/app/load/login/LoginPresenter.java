@@ -84,13 +84,21 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                             Pattern p = Pattern.compile(regex);
                             Matcher m = p.matcher(s);
                             if (m.find()) {
+
                                 String url = m.group(1);
+                                if (url.contains("Maintenance")) {
+                                    Exception exception = new Exception("Afb88 Is Maintenance");
+                                    throw exception;
+                                } else {
 //                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
-                                String host = url.substring(0, url.indexOf("/", 9));
-                                AppConstant.HOST = host + "/";
-                                return getService(ApiService.class).timerRun2(url);
+                                    String host = url.substring(0, url.indexOf("/", 9));
+                                    AppConstant.HOST = host + "/";
+                                    return getService(ApiService.class).timerRun2(url);
+                                }
                             }
-                            return null;
+                            Exception exception1 = new Exception("Server Error");
+                            throw exception1;
+
                         }
                     })
                     .subscribeOn(Schedulers.io())
@@ -116,7 +124,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                     }, new Consumer<Throwable>() {//错误
                         @Override
                         public void accept(Throwable throwable) throws Exception {
-                            baseView.onFailed(throwable.getLocalizedMessage());
+                            baseView.onFailed(throwable.getMessage());
                             baseView.hideLoadingDialog();
                         }
                     }, new Action() {//完成

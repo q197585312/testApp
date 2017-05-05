@@ -93,8 +93,9 @@ public class HomeFragment extends BaseFragment {
                     case "Muay_Thai":
                     case "E_Sport":
                     case "Myanmar_Odds":
-                        createPopupWindow(getPopupWindow(item.getType()));
-                        popWindow.showPopupCenterWindow();
+                        defaultSkip(item.getType());
+           /*             createPopupWindow(getPopupWindow(item.getType()));
+                        popWindow.showPopupCenterWindow();*/
                         break;
 
               /*      case "Huay_Thai":
@@ -121,9 +122,18 @@ public class HomeFragment extends BaseFragment {
         rvContent.setAdapter(adapter);
 
     }
+    public  void defaultSkip(final String type){
+        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
+        menuItemInfo.setType("Today");
+        menuItemInfo.setParent(type);
+        Bundle b = new Bundle();
+        b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
+        skipAct(SportActivity.class, b);
 
+    }
     @NonNull
     private BasePopupWindow getPopupWindow(final String type) {
+
         return new BasePopupWindow(mContext, rvContent, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {//创建
             @Override
             protected int onSetLayoutRes() {

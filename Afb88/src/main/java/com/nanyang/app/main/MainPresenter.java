@@ -22,7 +22,7 @@ class MainPresenter extends BaseRetrofitPresenter<String, MainContract.View> imp
 
 
     public void oddsType() {
-        Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_ODDS_TYPE + "HK").subscribeOn(Schedulers.io())
+        Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_ODDS_TYPE + "MY").subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe(new Consumer<String>() {//onNext
                     @Override

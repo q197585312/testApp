@@ -110,6 +110,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
         });
         tvToolbarTitle.setBackgroundResource(0);
+        oddsType=new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
 
     }
 

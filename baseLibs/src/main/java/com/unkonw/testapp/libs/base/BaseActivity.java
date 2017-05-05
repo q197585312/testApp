@@ -218,6 +218,11 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         if (loading == null) {
             loading = new DialogLoading(this);
         }
+        if (isDestroyed() || isFinishing()) {
+            loading.dismiss();
+            return;
+        }
+
         loading.show();
     }
 
