@@ -2,6 +2,7 @@ package com.nanyang.app.load.login;
 
 
 import android.app.Activity;
+import android.util.Log;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
@@ -70,6 +71,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                             String __EVENTVALIDATION = substring2.substring(0, substring2.indexOf("\""));
                             info.set__VIEWSTATE(__VIEWSTATE);
                             info.set__EVENTVALIDATION(__EVENTVALIDATION);
+
                             return getService(ApiService.class).doLogin(AppConstant.URL_LOGIN, info.getMap());
 
                         }
@@ -93,7 +95,8 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 //                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
                                     String host = url.substring(0, url.indexOf("/", 9));
                                     AppConstant.HOST = host + "/";
-                                    return getService(ApiService.class).timerRun2(url);
+                                    Log.d("OKHttp",url);
+                                    return getService(ApiService.class).getData(url);
                                 }
                             }
                             Exception exception1 = new Exception("Server Error");
@@ -107,6 +110,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                     .subscribe(new Consumer<String>() {//onNext
                         @Override
                         public void accept(String str) throws Exception {
+                            Log.d("OKHttp",str);
                             if (str.contains("window.open(")) {
                                 String lag = AfbUtils.getLanguage((Activity) baseView);
                                 String lang = "eng";
@@ -115,6 +119,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                                 } else if (lag.equals("en")) {
                                     lang = "EN-US";
                                 }
+
                                 SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
                                 switchLanguage.switchLanguage(lang);
                             } else {

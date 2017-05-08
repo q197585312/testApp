@@ -84,14 +84,11 @@ public interface ApiService {
     @GET
     Flowable<BettingPromptBean> getBetData(@Url String url);
 
-    @GET
-    Flowable<String> timerRun2(@Url String url);
+
 
     @GET
     Flowable<BettingParPromptBean> updateMixParlayBet(@Url String s);
 
-    @GET
-    Call<BettingParPromptBean> removeMixOrder(@Url String url);
 
     //注册时检测用户帐号
     @FormUrlEncoded
@@ -124,8 +121,6 @@ public interface ApiService {
     @GET
     Flowable<List<StatementStakeDetailsListBean>> statementStakeDetails(@Url String url);
 
-    @GET("_norm/AccHistory2.aspx?")
-    Flowable<String> thisWeekBetList(@Query("role") String role, @Query("userName") String userName);
 
     @GET("http://appgd88.com/images/afb88.php?app=afb88")
     Flowable<List<String>> getBannerUrl();

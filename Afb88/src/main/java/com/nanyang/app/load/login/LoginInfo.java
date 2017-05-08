@@ -31,14 +31,14 @@ public class LoginInfo {
         password_clear	PASSWORD
         password_password	123123aa
         btnSignIn	Login*/
-    private String __VIEWSTATE="/wEPDwULLTE1NzgzODQwNTIPZBYCZg9kFgRmDxYCHgVzdHlsZQUxYmFja2dyb3VuZDp1cmwoaW1hZ2VzL2xvZ2luX0VOLVVTLnBuZykgbm8tcmVwZWF0OxYCZg9kFgICCQ8PFgIeBFRleHQFBUxvZ2luZGQCAQ8WAh8ABTliYWNrZ3JvdW5kOnVybChpbWFnZXMvbGlzdF9FTi1VUy5wbmcpIG5vLXJlcGVhdCBjZW50ZXIgMDtkZFQZd7i8stdYFQuPOPwiVWF56AvyxMUH0QGpyPjYhlg5";
-    private String __EVENTVALIDATION="/wEdAAYpPXKEnSgwS5OM83/1znbNY3plgk0YBAefRz3MyBlTcD8XznrOS2LFtV6QXAJmUF7Ke6ovdxAl955hDj+BJ469iHrx0gRh57qNYHb+gYJUfq+f28GNV31+z65DbDqxMS7eqPw3s2V7Bn4zHu2v1nVEy/P4mxqMWRPvxWg3VzRGSA==";
+    private String __VIEWSTATE = "/wEPDwULLTE1NzgzODQwNTIPZBYCZg9kFgRmDxYCHgVzdHlsZQUxYmFja2dyb3VuZDp1cmwoaW1hZ2VzL2xvZ2luX0VOLVVTLnBuZykgbm8tcmVwZWF0OxYCZg9kFgICCQ8PFgIeBFRleHQFBUxvZ2luZGQCAQ8WAh8ABTliYWNrZ3JvdW5kOnVybChpbWFnZXMvbGlzdF9FTi1VUy5wbmcpIG5vLXJlcGVhdCBjZW50ZXIgMDtkZFQZd7i8stdYFQuPOPwiVWF56AvyxMUH0QGpyPjYhlg5";
+    private String __EVENTVALIDATION = "/wEdAAYpPXKEnSgwS5OM83/1znbNY3plgk0YBAefRz3MyBlTcD8XznrOS2LFtV6QXAJmUF7Ke6ovdxAl955hDj+BJ469iHrx0gRh57qNYHb+gYJUfq+f28GNV31+z65DbDqxMS7eqPw3s2V7Bn4zHu2v1nVEy/P4mxqMWRPvxWg3VzRGSA==";
 
-    private String lstLang ="Default.aspx?lang=EN-US";
+    private String lstLang = "Default.aspx?lang=EN-US";
     private String txtUserName;
-    private String password_clear="PASSWORD";
+    private String password_clear = "PASSWORD";
     private String password_password;
-    private String btnSignIn="Login";
+    private String btnSignIn = "Login";
 
     public String getLstLang() {
         return lstLang;
@@ -84,16 +84,30 @@ public class LoginInfo {
         this.txtUserName = txtUserName;
         this.password_password = password_password;
     }
-    public Map<String ,String> getMap(){
-        Map<String ,String> map=new HashMap<>();
-        map.put("lstLang",lstLang);
-        map.put("txtUserName",txtUserName);
-        map.put("password_clear",password_clear);
-        map.put("password_password",password_password);
-        map.put("btnSignIn",btnSignIn);
-        map.put("__VIEWSTATE",__VIEWSTATE);
-        map.put("__EVENTVALIDATION",__EVENTVALIDATION);
+
+    public Map<String, String> getMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put("lstLang", lstLang);
+        map.put("txtUserName", txtUserName);
+        map.put("password_clear", password_clear);
+        map.put("password_password", password_password);
+        map.put("btnSignIn", btnSignIn);
+        map.put("__VIEWSTATE", __VIEWSTATE);
+        map.put("__EVENTVALIDATION", __EVENTVALIDATION);
 
         return map;
+    }
+
+    @Override
+    public String toString() {
+        return
+                "__VIEWSTATE=" + __VIEWSTATE +
+                        "&__EVENTVALIDATION=" + __EVENTVALIDATION +
+                        "&lstLang=" + lstLang +
+                        "&txtUserName=" + txtUserName +
+                        "&password_clear=" + password_clear +
+                        "&password_password=" + password_password +
+                        "&btnSignIn=" + btnSignIn
+                ;
     }
 }
