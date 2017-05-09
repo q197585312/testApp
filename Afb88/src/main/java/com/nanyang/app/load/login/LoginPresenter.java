@@ -76,9 +76,6 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 
                         }
                     })
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(Schedulers.io())
-
                     .flatMap(new Function<String, Flowable<String>>() {
                         @Override
                         public Flowable<String> apply(String s) throws Exception {
@@ -95,7 +92,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 //                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
                                     String host = url.substring(0, url.indexOf("/", 9));
                                     AppConstant.HOST = host + "/";
-                                    Log.d("OKHttp",url);
+                                    Log.d("OKHttp", url);
                                     return getService(ApiService.class).getData(url);
                                 }
                             }
@@ -104,27 +101,34 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 
                         }
                     })
+                    //http://main55.afb88.com/_bet/panel.aspx
+                    .flatMap(new Function<String, Flowable<String>>() {
+                        @Override
+                        public Flowable<String> apply(String str) throws Exception {
+                            if (str.contains("window.open(")) {
+                                return getService(ApiService.class).getData(AppConstant.URL_PANEL);
+                            }
+                            Exception exception1 = new Exception("Login Failed");
+                            throw exception1;
+
+
+                        }
+                    })
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-
                     .subscribe(new Consumer<String>() {//onNext
                         @Override
                         public void accept(String str) throws Exception {
-                            Log.d("OKHttp",str);
-                            if (str.contains("window.open(")) {
-                                String lag = AfbUtils.getLanguage((Activity) baseView);
-                                String lang = "eng";
-                                if (lag.equals("zh")) {
-                                    lang = "ZH-CN";
-                                } else if (lag.equals("en")) {
-                                    lang = "EN-US";
-                                }
-
-                                SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
-                                switchLanguage.switchLanguage(lang);
-                            } else {
-                                baseView.onFailed("Login Failed");
+                            String lag = AfbUtils.getLanguage((Activity) baseView);
+                            String lang = "eng";
+                            if (lag.equals("zh")) {
+                                lang = "ZH-CN";
+                            } else if (lag.equals("en")) {
+                                lang = "EN-US";
                             }
+                            SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
+                            switchLanguage.switchLanguage(lang);
+
                         }
                     }, new Consumer<Throwable>() {//错误
                         @Override

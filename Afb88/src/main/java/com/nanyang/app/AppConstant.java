@@ -14,7 +14,6 @@ public class AppConstant {
 
     public static final String APP_HOST = "http://main55.afb88.com/";
 
-
     public static String KEY_STRING = "KEY_STRING";
     public static String KEY_DATA = "KEY_DATA";
     public static String KEY_INT = "KEY_INT";
@@ -104,7 +103,7 @@ public class AppConstant {
     public static String URL_E_SPORT_RUNNING = HOST + "_view/All_Gen6.ashx?g=106&ot=r&update=true&r=1770989484";
     public static String URL_E_SPORT_EARLY = HOST + "_view/All_Gen6.ashx?g=106&ot=e&update=true&r=1770989484";
     public static String URL_E_SPORT_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=107&update=true&r=1770989484";
-
+//http://main55.afb88.com/_view/OddsOutGen.ashx?g=30&ot=e&update=true&r=741280160&LID=&_=1494315555262
     public static String URL_US_FOOTBALL_OUTRIGHT=HOST+"_view/OddsOutGen.ashx?g=30&update=true&r=1887771784";
     //http://main55.afb88.com/_view/All_WFHGen.ashx?g=12&ot=e&update=true&r=927620479&LID=&_=1493187544318
     public static String URL_US_FOOTBALL_EARLY=HOST+"_view/All_WFHGen.ashx?g=12&ot=e&update=true&r=927620479";
@@ -119,12 +118,21 @@ public class AppConstant {
     public static final String URL_SOCCER_MYANMAR_TODAY = HOST + "_view/MOddsGen2.ashx?g=106&ot=t&update=true&r=1233177815";
     public static final String URL_SOCCER_MYANMAR_EARLY = HOST + "_view/MOddsGen2.ashx?g=106&ot=e&update=true&r=1233177815";
 
+    public static final String URL_BASEBALL_EARLY =  HOST+"_view/All_WFHGen.ashx?g=29&ot=e&update=true&r=445360998";
+    public static final String URL_BASEBALL_TODAY = HOST+"_view/All_WFHGen.ashx?g=29&ot=r&update=true&r=445360998";
+    public static final String URL_BASEBALL_RUNNING = HOST+ "_view/All_WFHGen.ashx?g=29&ot=r&update=true&r=445360998";
+    //http://main55.afb88.com/_view/OddsOutGen.ashx?g=39&ot=e&update=true&r=1186326052&LID=&_=1494322497189
+    public static final String URL_BASEBALL_OUTRIGHT =  HOST+"_view/OddsOutGen.ashx?g=39&update=true&r=1186326052";
 
-    public static final String URL_GD88_1 = HOST + "_View/LiveDealerGDC.aspx";
-    public static final String URL_GD88_2 = "http://lapigd.afb333.com/TransferBalance.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325";
-    public static final String URL_GD88_3 = "http://lapigd.afb333.com/TransferBalance.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325";
-    public static final String URL_GD88_4 = "http://lapigd.afb333.com/Validate.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325";
-    public static final String URL_GD88_5 = "http://23api.gd88.org/OLTGames/checklogin.jsp?txtAcctid=demoafbai5&txtPwd=123456&txtLang=0&txtSessID=ck3dk2lwjvpmzz3pblosvhjx|9dbc7b1506964a9f97fc9dfe705a3948";
+    //http://main55.afb88.com/_view/OddsOutGen.ashx?g=39&ot=e&update=true&r=1078436031&LID=78a523670da52883&_=1494322797983
+    public static final String URL_ICE_HOCKEY_OUTRIGHT =  HOST+"_view/OddsOutGen.ashx?g=33&update=true&r=1186326052";
+    //http://main55.afb88.com/_view/All_Gen6.ashx?g=14&ot=e&update=true&r=922582020&LID=&_=1494322984276
+    public static final String URL_ICE_HOCKEY_TODAY =  HOST+"_view/All_Gen6.ashx?g=14&ot=t&update=true&r=1186326052";
+    public static final String URL_ICE_HOCKEY_RUNING =  HOST+"_view/All_Gen6.ashx?g=14&ot=r&update=true&r=1186326052";
+    public static final String URL_ICE_HOCKEY_EARLY =  HOST+"_view/All_Gen6.ashx?g=14&ot=e&update=true&r=1186326052";
+
+
+
     public static final String URL_TRANSFER_MONEY_DATA = HOST + "_Bet/PanelBalance_App.aspx?";
     public static String URL_CASHOUT_MONEY_E_GAMES = HOST + "_bet/FundEGCashOut.aspx";
     public static String URL_TRANSFER_MONEY_E_GAMES = HOST + "_bet/FundEGTransfer.aspx";
@@ -142,5 +150,7 @@ public class AppConstant {
     public static String URL_STAKE = "_bet/PanelStake_App.aspx";
     public static String URL_STATEMENT_CONFIRM_BLANCE = APP_HOST + "_norm/AccHistory.aspx?role=mb&userName=";
 
+
+    public static String URL_PANEL =HOST+"_bet/panel.aspx";
 
 }

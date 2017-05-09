@@ -18,6 +18,8 @@ import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.main.MainActivity;
+import com.nanyang.app.main.home.sport.USFootball.USFootballFragment;
+import com.nanyang.app.main.home.sport.baseball.USFootball.BaseballFragment;
 import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
 import com.nanyang.app.main.home.sport.dialog.ChooseLanguagePop;
 import com.nanyang.app.main.home.sport.e_sport.ESportFragment;
@@ -51,11 +53,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     BaseSportFragment eSportFragment = new ESportFragment();
     BaseSportFragment muayThaiFragment = new MuayThaiFragment();
     BaseSportFragment myanmarFragment = new MyanmarFragment();
+    BaseSportFragment usFootballFragment = new USFootballFragment();
+    BaseSportFragment baseballFragment = new BaseballFragment();
 
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
-
 
 
     private MenuItemInfo oddsType;
@@ -110,8 +113,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
         });
         tvToolbarTitle.setBackgroundResource(0);
-        oddsType=new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
-
+        oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
+        allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "&mt=0");
+        ;
     }
 
 
@@ -166,6 +170,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Soccer), soccerFragment);
                 mapFragment.put(getString(R.string.Basketball), basketballFragment);
                 mapFragment.put(getString(R.string.Tennis), tennisFragment);
+                mapFragment.put(getString(R.string.US_Football), usFootballFragment);
+                mapFragment.put(getString(R.string.Baseball), baseballFragment);
                 currentFragment = soccerFragment;
                 currentTag = getString(R.string.Soccer);
                 break;
@@ -293,6 +299,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public void setOddsType(MenuItemInfo oddsType) {
         this.oddsType = oddsType;
     }
+
     public MenuItemInfo getOddsType() {
         return oddsType;
     }
@@ -300,6 +307,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public void setAllOdds(MenuItemInfo allOdds) {
         this.allOdds = allOdds;
     }
+
     public MenuItemInfo getAllOddsType() {
         return allOdds;
     }

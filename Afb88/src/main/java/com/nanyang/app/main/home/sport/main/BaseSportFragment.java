@@ -229,8 +229,14 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         if (oddsType != null)
             tvOddsType.setText(oddsType.getText());
         MenuItemInfo allOddsType = ((SportActivity) getContextActivity()).getAllOddsType();
-        if (allOddsType != null)
+        if (allOddsType != null) {
             ivAllAdd.setText(allOddsType.getText());
+            if (allOddsType.getText().equals(getString(R.string.All_Markets))) {
+                ivAllAdd.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.add_green, 0, 0, 0);
+            } else {
+                ivAllAdd.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.sport_delete_green, 0, 0, 0);
+            }
+        }
     }
 
     @Override

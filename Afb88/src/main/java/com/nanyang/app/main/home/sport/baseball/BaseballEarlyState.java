@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.USFootball;
+package com.nanyang.app.main.home.sport.baseball.USFootball;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -9,19 +9,19 @@ import com.nanyang.app.main.home.sport.main.SportContract;
  * Created by Administrator on 2017/3/13.
  */
 
-public class USFootballEarlyState extends USFootballState {
-    public USFootballEarlyState(SportContract.View baseView) {
+public class BaseballEarlyState extends BaseballState {
+    public BaseballEarlyState(SportContract.View baseView) {
         super(baseView);
     }
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.US_Football));
+        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.Baseball));
     }
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_US_FOOTBALL_EARLY;
+        return AppConstant.URL_BASEBALL_EARLY;
     }
 
     @Override
@@ -32,13 +32,13 @@ public class USFootballEarlyState extends USFootballState {
                 getBaseView().switchState(this);
                 break;
             case "Today":
-                getBaseView().switchState(new USFootballTodayState(getBaseView()));
+                getBaseView().switchState(new BaseballTodayState(getBaseView()));
                 break;
             case "Running":
-                getBaseView().switchState(new USFootballRunningState(getBaseView()));
+                getBaseView().switchState(new BaseballRunningState(getBaseView()));
                 break;
             case "OutRight":
-                getBaseView().switchState(new USFootballOutRightState(getBaseView()));
+                getBaseView().switchState(new BaseballOutRightState(getBaseView()));
                 break;
 
         }

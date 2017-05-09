@@ -1,9 +1,9 @@
-package com.nanyang.app.main.home.sport.USFootball;
+package com.nanyang.app.main.home.sport.iceHockey.baseball;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.main.OtherAdapterHelper;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
+import com.nanyang.app.main.home.sport.main.OtherAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.tennis.TennisState;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
@@ -16,14 +16,14 @@ import java.util.List;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class USFootballState extends TennisState{
+public abstract class BaseballState extends TennisState{
 
-    public USFootballState(SportContract.View baseView) {
+    public BaseballState(SportContract.View baseView) {
         super(baseView);
     }
     @Override
     protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
-        return new USFootballBetHelper(getBaseView());
+        return new BaseballBetHelper(getBaseView());
     }
 
     @Override

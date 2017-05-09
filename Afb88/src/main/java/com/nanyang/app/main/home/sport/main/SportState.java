@@ -142,7 +142,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     @Override
     public void refresh() {
         if (param == null) {
-            param = new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.All_Markets), "&mt=0");
+
+            param=((SportActivity)getBaseView().getContextActivity()).getAllOddsType();
             setParam(param);
         }
 
@@ -1372,6 +1373,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         tv.setText(item.getText());
                         tv.setBackgroundResource(R.color.black_grey);
                         ((SportActivity)baseView.getContextActivity()).setAllOdds(item);
+
                     }
                 };
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
@@ -1379,6 +1381,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         closePopupWindow();
                         textView.setText(item.getText());
+                        if (item.getText().equals(getBaseView().getContextActivity().getString(R.string.All_Markets))) {
+                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.add_green, 0, 0, 0);
+                        } else {
+                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.sport_delete_green, 0, 0, 0);
+                        }
                         setParam(item);
                         if (!getAllOddsUrl().isEmpty()) {
                             refresh();
