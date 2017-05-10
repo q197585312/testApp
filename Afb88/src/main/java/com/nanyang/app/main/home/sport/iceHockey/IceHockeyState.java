@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.iceHockey.baseball;
+package com.nanyang.app.main.home.sport.iceHockey;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -16,14 +16,14 @@ import java.util.List;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class BaseballState extends TennisState{
+public abstract class IceHockeyState extends TennisState{
 
-    public BaseballState(SportContract.View baseView) {
+    public IceHockeyState(SportContract.View baseView) {
         super(baseView);
     }
     @Override
     protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
-        return new BaseballBetHelper(getBaseView());
+        return new IceHockeyBetHelper(getBaseView());
     }
 
     @Override

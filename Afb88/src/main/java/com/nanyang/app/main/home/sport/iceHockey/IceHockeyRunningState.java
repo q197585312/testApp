@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.iceHockey.baseball;
+package com.nanyang.app.main.home.sport.iceHockey;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -9,8 +9,8 @@ import com.nanyang.app.main.home.sport.main.SportContract;
  * Created by Administrator on 2017/3/13.
  */
 
-public class BaseballRunningState extends BaseballState {
-    public BaseballRunningState(SportContract.View baseView) {
+public class IceHockeyRunningState extends IceHockeyState {
+    public IceHockeyRunningState(SportContract.View baseView) {
         super(baseView);
     }
 
@@ -25,16 +25,16 @@ public class BaseballRunningState extends BaseballState {
     protected void onTypeClick(MenuItemInfo item) {
         switch (item.getType()) {
             case "Early":
-                getBaseView().switchState(new BaseballEarlyState(getBaseView()));
+                getBaseView().switchState(new IceHockeyEarlyState(getBaseView()));
                 break;
             case "Today":
-                getBaseView().switchState(new BaseballTodayState(getBaseView()));
+                getBaseView().switchState(new IceHockeyTodayState(getBaseView()));
                 break;
             case "Running":
                 getBaseView().switchState(this);
                 break;
             case "OutRight":
-                getBaseView().switchState(new BaseballOutRightState(getBaseView()));
+                getBaseView().switchState(new IceHockeyOutRightState(getBaseView()));
                 break;
 
         }

@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.iceHockey.baseball;
+package com.nanyang.app.main.home.sport.iceHockey;
 
 import android.view.View;
 
@@ -8,33 +8,33 @@ import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 
 
-public class BaseballFragment extends BaseSportFragment {
+public class IceHockeyFragment extends BaseSportFragment {
 
     @Override
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
         switchType(type);
-        setTitle(getString(R.string.Baseball));
+        setTitle(getString(R.string.IceHockey));
     }
 
     @Override
     public void switchType(String type) {
         switch (type) {
             case "Running":
-                switchState(new BaseballRunningState(this));
+                switchState(new IceHockeyRunningState(this));
                 break;
             case "Today":
-                switchState(new BaseballTodayState(this));
+                switchState(new IceHockeyTodayState(this));
                 break;
             case "Early":
-                switchState(new BaseballEarlyState(this));
+                switchState(new IceHockeyEarlyState(this));
                 break;
             case "OutRight":
-                switchState(new BaseballOutRightState(this));
+                switchState(new IceHockeyOutRightState(this));
                 break;
             default:
-                switchState(new BaseballTodayState(this));
+                switchState(new IceHockeyTodayState(this));
                 break;
         }
     }
@@ -42,7 +42,7 @@ public class BaseballFragment extends BaseSportFragment {
 
     @Override
     public String getTitle() {
-        return getString(R.string.Baseball);
+        return getString(R.string.IceHockey);
     }
 
 

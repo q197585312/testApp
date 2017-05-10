@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.iceHockey.baseball;
+package com.nanyang.app.main.home.sport.iceHockey;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
@@ -9,9 +9,9 @@ import com.nanyang.app.main.home.sportInterface.BetView;
  * Created by Administrator on 2017/3/15.
  */
 
-public class BaseballBetHelper extends TennisBetHelper {
+public class IceHockeyBetHelper extends TennisBetHelper {
 
-    public BaseballBetHelper(BetView baseView) {
+    public IceHockeyBetHelper(BetView baseView) {
         super(baseView);
     }
 

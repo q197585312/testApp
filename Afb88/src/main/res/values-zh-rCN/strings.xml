@@ -262,4 +262,5 @@
     <string name="bet_list">下注列表</string>
     <string name="PARLAY">过关</string>
     <string name="Baseball">棒球</string>
+    <string name="IceHockey">IceHockey</string>
 </resources>

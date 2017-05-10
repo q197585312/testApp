@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.iceHockey.baseball;
+package com.nanyang.app.main.home.sport.iceHockey;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -9,8 +9,8 @@ import com.nanyang.app.main.home.sport.main.SportContract;
  * Created by Administrator on 2017/3/13.
  */
 
-public class BaseballTodayState extends BaseballState {
-    public BaseballTodayState(SportContract.View baseView) {
+public class IceHockeyTodayState extends IceHockeyState {
+    public IceHockeyTodayState(SportContract.View baseView) {
         super(baseView);
     }
 
@@ -25,16 +25,16 @@ public class BaseballTodayState extends BaseballState {
 
         switch (item.getType()) {
             case "Early":
-                getBaseView().switchState(new BaseballEarlyState(getBaseView()));
+                getBaseView().switchState(new IceHockeyEarlyState(getBaseView()));
                 break;
             case "Today":
                 getBaseView().switchState(this);
                 break;
             case "Running":
-                getBaseView().switchState(new BaseballRunningState(getBaseView()));
+                getBaseView().switchState(new IceHockeyRunningState(getBaseView()));
                 break;
             case "OutRight":
-                getBaseView().switchState(new BaseballOutRightState(getBaseView()));
+                getBaseView().switchState(new IceHockeyOutRightState(getBaseView()));
                 break;
 
         }
@@ -42,7 +42,7 @@ public class BaseballTodayState extends BaseballState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Today), "Today", getBaseView().getContextActivity().getString(R.string.Baseball));
+        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Today), "Today", getBaseView().getContextActivity().getString(R.string.IceHockey));
     }
 
 
