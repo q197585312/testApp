@@ -3,7 +3,11 @@ package com.nanyang.app.main.home.sport.e_sport;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
+import com.nanyang.app.main.home.sport.main.OtherAdapterHelper;
+import com.nanyang.app.main.home.sport.main.OtherRunningAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -45,4 +49,8 @@ public class ESportRunningState extends ESportState {
         return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getBaseView().getContextActivity().getString(R.string.Specials_4D));
     }
 
+    @Override
+    public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
+        return new OtherRunningAdapterHelper(getBaseView().getContextActivity());
+    }
 }

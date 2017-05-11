@@ -108,6 +108,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 TextView homeAway = holder.getView(R.id.order_item_tv2);
                 TextView combTv = holder.getView(R.id.order_item_tv21);
                 TextView moduleTitle = holder.getView(R.id.order_item_tv4);
+                TextView leagueTitle = holder.getView(R.id.order_item_league);
                 TextView Odds = holder.getView(R.id.order_item_tv3);
                 TextView Half = holder.getView(R.id.order_item_tv5);
                 TextView dangerStatus = holder.getView(R.id.order_item_tv51);
@@ -305,7 +306,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     homeAway.setVisibility(View.VISIBLE);
                 }
                 Half.setText(tType + half);
-
+                leagueTitle.setText(item.getModuleTitle());
                 String n = "Accepted";
                 if (item.getDangerStatus().equals("D")) {
                     n = "Waiting";

@@ -53,7 +53,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView homeTv = helper.getTextView(R.id.module_match_home_team_tv);
         TextView awayTv = helper.getTextView(R.id.module_match_away_team_tv);
         View tvRightMark = helper.getView(R.id.module_right_mark_tv);
-        final TextView tvCollection = helper.getView(R.id.module_match_collection_tv);
+        final View tvCollection = helper.getView(R.id.module_match_collection_tv);
         liveTv.setTextColor(red_black);
         dateTv.setTextColor(red_black);
         timeTv.setTextColor(black_grey);

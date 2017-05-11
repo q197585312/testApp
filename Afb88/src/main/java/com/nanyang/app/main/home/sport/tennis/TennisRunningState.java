@@ -3,7 +3,10 @@ package com.nanyang.app.main.home.sport.tennis;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
+import com.nanyang.app.main.home.sport.main.OtherRunningAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -42,6 +45,10 @@ public class TennisRunningState extends TennisState {
     @Override
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getBaseView().getContextActivity().getString(R.string.Tennis));
+    }
+    @Override
+    public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
+        return new OtherRunningAdapterHelper(getBaseView().getContextActivity());
     }
 
 }

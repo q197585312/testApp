@@ -28,6 +28,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         ImageView ivHall=helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
+        View flCollection = helper.getView(R.id.module_match_collection_fl);
         TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
         View tvRightMark = helper.getView(R.id.module_right_mark_tv);
@@ -42,8 +43,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
             tvCollection.setBackgroundResource(R.mipmap.star_red_solid);
         else
             tvCollection.setBackgroundResource(R.mipmap.star_red_not_solid);
-
-        tvCollection.setOnClickListener(new View.OnClickListener() {
+        flCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 back.clickView(v, item);

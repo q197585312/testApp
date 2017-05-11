@@ -62,6 +62,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
             public ScrollLayout onSetHeaderFollower() {
                 return getBaseView().onSetScrollHeader();
             }
+
             @Override
             public boolean isItemCollection(SoccerCommonInfo item) {
                 return isItemCollectionCommon(item);
@@ -71,20 +72,21 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
             public void clickOdds(TextView v, SoccerCommonInfo item, String type, boolean isHf, String odds) {
                 IBetHelper helper = onSetBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type,odds,v,  isHf,"");
+                helper.clickOdds(item, type, odds, v, isHf, "");
             }
 
             @Override
             public void clickView(View v, SoccerCommonInfo item) {
-                switch (v.getId()){
+                switch (v.getId()) {
+                    case R.id.module_match_collection_fl:
                     case R.id.module_match_collection_tv:
                         collectionItemCommon(item);
                         break;
                     case R.id.module_right_mark_tv:
-                        clickAdd(v,item);
+                        clickAdd(v, item);
                         break;
                     case R.id.iv_hall_btn:
-                        clickHallBtn(v,item);
+                        clickHallBtn(v, item);
                         break;
                 }
 
@@ -96,8 +98,8 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
 
     }
 
-    private void clickAdd(View v,SoccerCommonInfo item) {
-       getBaseView().clickItemAdd(v,item,"common");
+    private void clickAdd(View v, SoccerCommonInfo item) {
+        getBaseView().clickItemAdd(v, item, "common");
     }
 
     @Override
@@ -106,7 +108,6 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
     }
 
     //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?gt=s&b=under&oId=12159615&oId_fh=12159616&isFH=true&isRun=true&odds=4.70
-
 
 
     protected abstract SoccerCommonAdapterHelper onSetCommonAdapterHelper();
@@ -234,8 +235,8 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
 
     }
 
- @Override
-    protected List<TableSportInfo<SoccerCommonInfo>> filterChildData (List<TableSportInfo<SoccerCommonInfo>> allData) {
+    @Override
+    protected List<TableSportInfo<SoccerCommonInfo>> filterChildData(List<TableSportInfo<SoccerCommonInfo>> allData) {
         if (isCollection())
             return filterCollection(allData);
         else

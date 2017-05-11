@@ -29,7 +29,10 @@
         android:id="@+id/order_item_tv4"
         style="@style/text_wrap_black10"
         android:padding="1dp" />
-
+    <TextView
+        android:id="@+id/order_item_league"
+        style="@style/text_wrap_black10"
+        android:padding="1dp" />
     <TextView
         android:id="@+id/order_item_tv5"
         style="@style/text_wrap_black10"
