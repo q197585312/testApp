@@ -45,7 +45,7 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
 
 
         String ouMM = item.getMMOU() + "(" + Integer.valueOf(item.getMMOUPct()) / 100 + ")";
-        scrollChild(sl.getChildAt(2), true, item, item.getMMIsHomeGive(), hasMMHdp, hdpMM, hasMMOu, ouMM, "0", "0", item.getMMOUOdds(), item.getMMOUOdds(), item.getMMHdpOdds(), item.getMMHdpOdds(),
+        scrollChild(sl.getChildAt(2), false, item, item.getMMIsHomeGive(), hasMMHdp, hdpMM, hasMMOu, ouMM, "0", "0", item.getMMOUOdds(), item.getMMOUOdds(), item.getMMHdpOdds(), item.getMMHdpOdds(),
                 "mmhome", "mmaway", "mmover", "mmunder",
                 true, true, false, "", "", "", "", "", ""
         );

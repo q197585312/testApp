@@ -21,6 +21,7 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import butterknife.Bind;
 import butterknife.BindString;
+import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
 
 /**
@@ -67,7 +68,7 @@ public class BetPop extends BasePopupWindow {
     private String hdp;
 
     public BetPop(Context context, View v) {
-        this(context, v, 800, LinearLayout.LayoutParams.WRAP_CONTENT);
+        this(context, v, DeviceUtils.dip2px(context,320), LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
     public BetPop(Context mContext, View v, int width, int height) {

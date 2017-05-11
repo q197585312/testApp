@@ -59,9 +59,14 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
         stringBuilder.append("gt=s");
         stringBuilder.append("&b=" + type);
         stringBuilder.append(params);
-        stringBuilder.append("&oId=" + item.getSocOddsId());
+        String oId = "&oId=" + item.getSocOddsId();
         if (isHf)
-            stringBuilder.append("&isFH=true&oId_fh=" + item.getSocOddsId_FH());
+            if (type.equalsIgnoreCase("over") || type.equalsIgnoreCase("under") || type.equalsIgnoreCase("home") || type.equalsIgnoreCase("away")) {
+                oId += "&isFH=true&oId_fh=" + item.getSocOddsId_FH();
+            } else {
+                oId ="&oId=" + item.getSocOddsId_FH();
+            }
+        stringBuilder.append(oId);
         stringBuilder.append("&odds=" + odds);
         return stringBuilder.toString();
     }
@@ -76,8 +81,8 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
                         try {
                             BettingPromptBean bean = new Gson().fromJson(str, BettingPromptBean.class);
                             createBetPop(bean, isHf, v);
-                        }catch (JsonSyntaxException e){
-                            throw new Exception(str,e);
+                        } catch (JsonSyntaxException e) {
+                            throw new Exception(str, e);
                         }
 
                     }

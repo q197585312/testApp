@@ -65,8 +65,9 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
 
     @Override
     public void setResultCallBack(ResultCallBack back) {
-        this.back=back;
+        this.back = back;
     }
+
     @Override
     public Disposable bet(String url) {
 
@@ -80,10 +81,9 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
                         if (split.length == 5) {
                             baseView.onBetSuccess(allData);
                             updateFirstStake();
-                        }
-                        else {
+                        } else {
                             baseView.onFailed(allData);
-                            if(back!=null&&allData.startsWith("CHG")){
+                            if (back != null && allData.startsWith("CHG")) {
                                 handleOddsUpdate(allData);
                             }
                         }
@@ -111,9 +111,10 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
         return subscription;
 
     }
-//CHG|Odds has changed to 1.69!|1.69|1
+
+    //CHG|Odds has changed to 1.69!|1.69|1
     private void handleOddsUpdate(String allData) {
-        String substring = allData.substring(allData.indexOf("!|")+2);
+        String substring = allData.substring(allData.indexOf("!|") + 2);
         String odds = substring.substring(0, substring.indexOf("|"));
         back.callBack(odds);
 
@@ -127,7 +128,7 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
                     @Override
                     public StakeListBean.DicAllBean apply(String data) throws Exception {
                         Gson gson = new Gson();
-                        data= Html.fromHtml(data).toString();
+                        data = Html.fromHtml(data).toString();
                         String[] data1 = data.split("nyhxkj");
                         StakeListBean stakeListBean = gson.fromJson(data1[0], StakeListBean.class);
                         List<StakeListBean.DicAllBean> list1 = stakeListBean.getDicAll();
@@ -171,11 +172,13 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
         builder.append("\n");
         builder.append(item.getHome() + "  vs  " + item.getAway());
         builder.append("\n");
-        if(item.isIsRun()){
-            builder.append("("+item.getRunHomeScore()+" - "+item.getRunAwayScore()+")");
+        if (item.isIsRun()) {
+            builder.append("(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")");
         }
-
-        builder.append(item.getOdds());
+        String odds = item.getDisplayOdds2();
+        if (item.getTransType().equals("HDP") || item.getTransType().equals("OU") || item.getTransType().equals("OE"))
+            odds = item.getOdds();
+        builder.append(odds);
         builder.append("\n");
         builder.append(item.getModuleTitle());
         if (item.getFullTimeId() > 0) {
@@ -202,27 +205,26 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
         }
         builder.append("\n");
         builder.append(n + "     " + item.getAmt());
-        String str=builder.toString();
-        int start=str.indexOf(n);
-        int end=start+n.length();
-        SpannableStringBuilder style=new SpannableStringBuilder(str);
+        String str = builder.toString();
+        int start = str.indexOf(n);
+        int end = start + n.length();
+        SpannableStringBuilder style = new SpannableStringBuilder(str);
         if (item.getDangerStatus().equals("D")) {
-            style.setSpan(new BackgroundColorSpan(Color.YELLOW),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            style.setSpan(new BackgroundColorSpan(Color.YELLOW), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else if (item.getDangerStatus().equals("R")) {
-            style.setSpan(new BackgroundColorSpan(Color.RED),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else if (item.getDangerStatus().equals("RR")) {
-            style.setSpan(new BackgroundColorSpan(Color.RED),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else if (item.getDangerStatus().equals("RP")) {
-            style.setSpan(new BackgroundColorSpan(Color.RED),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else if (item.getDangerStatus().equals("RA")) {
-            style.setSpan(new BackgroundColorSpan(Color.RED),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else if (item.getDangerStatus().equals("RG")) {
-            style.setSpan(new BackgroundColorSpan(Color.RED),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else if (item.getDangerStatus().equals("0")) {
-            style.setSpan(new BackgroundColorSpan(Color.YELLOW),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-        else{
-            style.setSpan(new BackgroundColorSpan(Color.GREEN),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            style.setSpan(new BackgroundColorSpan(Color.YELLOW), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        } else {
+            style.setSpan(new BackgroundColorSpan(Color.GREEN), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         ToastUtils.showShort(style);
     }

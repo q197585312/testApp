@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.baseball.USFootball;
+package com.nanyang.app.main.home.sport.baseball;
 
 import android.view.View;
 

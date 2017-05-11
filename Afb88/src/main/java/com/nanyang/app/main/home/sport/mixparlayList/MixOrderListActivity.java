@@ -352,8 +352,6 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         if (!item.getParFullTimeId().equals("0") && !item.getParFullTimeId().equals("")) {
             state2 = "(" + getString(R.string.half_time) + ")";
         }
-        if (hdp.equals("0"))
-            hdp = "";
 
         helper.setText(R.id.clearance_odds_content_tv2, state2 + "  " + hdp + "@" + item.getBetOdds());
     }
