@@ -219,26 +219,27 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         Odds.setTextColor(Color.BLUE);
                     } else if (transType.equals("FLG") || transType.equals("HFT")) {
                         od = item.getDisplayOdds2();
-                        odds = item.getFGLGScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
+                        odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                         if (transType.equals("FLG")) {
-                            moduleTitle.setText(getString(R.string.first_last_goal));
+                            moduleTitle.setText(item.getFGLGScore() );
                         } else if (transType.equals("HFT")) {
-                            moduleTitle.setText(getString(R.string.half_full_time));
+                            moduleTitle.setText(item.getHTFTScore() );
                         }
                         moduleTitle.setTextColor(Color.RED);
                     } else if (transType.equals("TG") || transType.equals("CSR")) {
                         od = item.getDisplayOdds2();
-                        odds = item.getCSScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
+                        odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                         if (transType.equals("TG")) {
-                            moduleTitle.setText(getString(R.string.total_goals));
+                            moduleTitle.setText(item.getTGScore() );
                             moduleTitle.setTextColor(Color.RED);
                         } else if (transType.equals("CSR")) {
+                            moduleTitle.setText(item.getCSRScore() );
                             moduleTitle.setVisibility(View.GONE);
                         }
                     } else if (transType.equals("DC")) {
                         od = item.getDisplayOdds2();
-                        odds = item.getDCScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
-                        moduleTitle.setText(getString(R.string.double_chance));
+                        odds ="@" + " " + item.getDisplayOdds2() + " (inet)";
+                        moduleTitle.setText(item.getDCScore() );
                         moduleTitle.setTextColor(Color.RED);
                     }
                 }

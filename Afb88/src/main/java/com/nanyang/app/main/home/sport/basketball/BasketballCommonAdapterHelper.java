@@ -24,6 +24,13 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final BasketballCommonInfo item) {
+       if(!item.getEvenOdds().equals(item.getOddOdds())||item.getOddOdds().isEmpty()||item.getEvenOdds().isEmpty()||Float.valueOf(item.getOddOdds())==0f||Float.valueOf(item.getEvenOdds())==0f){
+           item.setHasOE("0");
+       }
+        if(!item.getEvenOdds_FH().equals(item.getOddOdds_FH())||item.getOddOdds_FH().isEmpty()||item.getEvenOdds_FH().isEmpty()||Float.valueOf(item.getOddOdds_FH())==0f||Float.valueOf(item.getEvenOdds_FH())==0f){
+            item.setHasOE_FH("0");
+        }
+
         if(item.getOU().equals("0")||item.getOU().equals("")){
             item.setHasOU("0");
         }
@@ -80,7 +87,7 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
         }
 
         if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getIsHomeGive())) {
-            item.setHasOE("0");
+
         }
         String away = item.getAway();
         String home = item.getHome();
