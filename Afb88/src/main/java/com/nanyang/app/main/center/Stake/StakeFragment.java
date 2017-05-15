@@ -228,13 +228,15 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         moduleTitle.setTextColor(Color.RED);
                     } else if (transType.equals("TG") || transType.equals("CSR")) {
                         od = item.getDisplayOdds2();
-                        odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
+
                         if (transType.equals("TG")) {
                             moduleTitle.setText(item.getTGScore() );
                             moduleTitle.setTextColor(Color.RED);
+                            odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                         } else if (transType.equals("CSR")) {
                             moduleTitle.setText(item.getCSRScore() );
                             moduleTitle.setVisibility(View.GONE);
+                            odds = item.getCSScore()+"@" + " " + item.getDisplayOdds2() + " (inet)";
                         }
                     } else if (transType.equals("DC")) {
                         od = item.getDisplayOdds2();

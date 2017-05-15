@@ -455,7 +455,9 @@ public class StakeListBean implements Serializable{
         }
 
         public String getAmt() {
-            return Amt;
+            float   i=Float.valueOf(Amt);
+            int a= (int) i;
+            return a+"";
         }
 
         public void setAmt(String Amt) {
