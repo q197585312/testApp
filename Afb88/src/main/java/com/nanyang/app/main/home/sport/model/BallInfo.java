@@ -4,6 +4,9 @@ package com.nanyang.app.main.home.sport.model;
  * Created by Administrator on 2017/3/11.
  */
 
+/**
+ * ],[[12683157 ,12683159 ,'' ,0,'04/06 02:45AM' ,'Juventus [n]' ,'Real Madrid' ,0,1,1,-10,10,9,0,1,2.89,3.13,2.47,1,1,3.5,1.98,3.21,0,0,0,0,0,0,0,0]]],[[
+ */
 public class BallInfo extends SportInfo   {
 
     String SocOddsId;

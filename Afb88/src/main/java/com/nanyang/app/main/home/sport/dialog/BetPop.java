@@ -10,6 +10,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
@@ -29,6 +30,8 @@ import cn.finalteam.toolsfinal.StringUtils;
  */
 public class BetPop extends BasePopupWindow {
     Context context;
+    @Bind(R.id.bet_balance_tv)
+    TextView betBalanceTv;
     @Bind(R.id.bet_module_title_tv)
     TextView betModuleTitleTv;
     @Bind(R.id.bet_home_tv)
@@ -177,6 +180,7 @@ public class BetPop extends BasePopupWindow {
      * "Test": "testing" }
      */
     public void setBetData(BettingPromptBean result, IBetHelper mPresenter) {
+        betBalanceTv.setText(((AfbApplication)context.getApplicationContext()).getUser().getBalance());
         this.presenter = mPresenter;
         ((BaseActivity) context).hideLoadingDialog();
         bean = result;

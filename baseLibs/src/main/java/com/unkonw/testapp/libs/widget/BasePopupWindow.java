@@ -55,6 +55,7 @@ public abstract class BasePopupWindow {
         }
     }
 
+
     protected abstract int onSetLayoutRes();
 
     private void initPop() {
@@ -128,6 +129,11 @@ public abstract class BasePopupWindow {
     public void showPopupGravityWindow(int gravity,int offsetX,int offsetY) {
         closePopupWindow();
 
+        setBackgroundAttr(trans);
+        popWindow.showAtLocation(v,gravity, offsetX, offsetY);
+    }
+    public  void showAtLocation(int gravity,int offsetX,int offsetY){
+        closePopupWindow();
         setBackgroundAttr(trans);
         popWindow.showAtLocation(v,gravity, offsetX, offsetY);
     }

@@ -259,4 +259,131 @@ public class ScaleBean implements Serializable{
     public void setFHOE(FTOEBean FHOE) {
         this.FHOE = FHOE;
     }
+
+
+    /**
+     * oid : 12731785
+     * FT_OU : 0.5
+     * O : 2.27
+     * U : 0.24
+     */
+
+    private FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_0;
+    /**
+     * oid : 12731786
+     * FT_OU : 0.5
+     * O : 2.08
+     * U : 0.28
+     */
+
+    private FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_15;
+    /**
+     *  :
+     */
+
+    private FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_30_N;
+    /**
+     * oid : 12731788
+     * FT_OU : 0.5
+     * O : 1.92
+     * U : 0.32
+     */
+
+    private FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_45;
+    /**
+     * oid : 12731831
+     * FT_OU : 0.5
+     * O : 1.78
+     * U : 0.36
+     */
+
+    private FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_60;
+
+    public FT15MINSHANDICAPOVERUNDERBean getFT15MINSHANDICAP_OVER_UNDER_0() {
+        return FT15MINSHANDICAP_OVER_UNDER_0;
+    }
+
+    public void setFT15MINSHANDICAP_OVER_UNDER_0(FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_0) {
+        this.FT15MINSHANDICAP_OVER_UNDER_0 = FT15MINSHANDICAP_OVER_UNDER_0;
+    }
+
+    public FT15MINSHANDICAPOVERUNDERBean getFT15MINSHANDICAP_OVER_UNDER_15() {
+        return FT15MINSHANDICAP_OVER_UNDER_15;
+    }
+
+    public void setFT15MINSHANDICAP_OVER_UNDER_15(FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_15) {
+        this.FT15MINSHANDICAP_OVER_UNDER_15 = FT15MINSHANDICAP_OVER_UNDER_15;
+    }
+
+    public FT15MINSHANDICAPOVERUNDERBean getFT15MINSHANDICAP_OVER_UNDER_30_N() {
+        return FT15MINSHANDICAP_OVER_UNDER_30_N;
+    }
+
+    public void setFT15MINSHANDICAP_OVER_UNDER_30_N(FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_30_N) {
+        this.FT15MINSHANDICAP_OVER_UNDER_30_N = FT15MINSHANDICAP_OVER_UNDER_30_N;
+    }
+
+    public FT15MINSHANDICAPOVERUNDERBean getFT15MINSHANDICAP_OVER_UNDER_45() {
+        return FT15MINSHANDICAP_OVER_UNDER_45;
+    }
+
+    public void setFT15MINSHANDICAP_OVER_UNDER_45(FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_45) {
+        this.FT15MINSHANDICAP_OVER_UNDER_45 = FT15MINSHANDICAP_OVER_UNDER_45;
+    }
+
+    public FT15MINSHANDICAPOVERUNDERBean getFT15MINSHANDICAP_OVER_UNDER_60() {
+        return FT15MINSHANDICAP_OVER_UNDER_60;
+    }
+
+    public void setFT15MINSHANDICAP_OVER_UNDER_60(FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_60) {
+        this.FT15MINSHANDICAP_OVER_UNDER_60 = FT15MINSHANDICAP_OVER_UNDER_60;
+    }
+
+    public static class FT15MINSHANDICAPOVERUNDERBean {
+        private int oid;
+        private String FT_OU;
+        private String O;
+        private String U;
+
+        public int getOid() {
+            return oid;
+        }
+
+        public void setOid(int oid) {
+            this.oid = oid;
+        }
+
+        public String getFT_OU() {
+            return FT_OU;
+        }
+
+        public void setFT_OU(String FT_OU) {
+            this.FT_OU = FT_OU;
+        }
+
+        public String getO() {
+            return O;
+        }
+
+        public void setO(String O) {
+            this.O = O;
+        }
+
+        public String getU() {
+            return U;
+        }
+
+        public void setU(String U) {
+            this.U = U;
+        }
+    }
+
+
+
+
+
+
+
+
+
 }
