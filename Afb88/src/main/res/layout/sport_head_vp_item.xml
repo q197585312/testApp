@@ -2,21 +2,26 @@
     android:id="@+id/ll_head_parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingLeft="3dp"
     android:gravity="center"
     android:orientation="horizontal">
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/arrow_left_white_double"/>
 
     <TextView
         android:id="@+id/tv_head_left"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
+
         android:gravity="center"
         android:text="FT.HDP"
         android:textColor="@color/white"
         android:textSize="10sp" />
 
     <TextView
+        android:layout_marginLeft="10dp"
         android:id="@+id/tv_head_right"
         android:text="FT.O/U"
         android:layout_width="0dp"
@@ -34,4 +39,9 @@
         android:gravity="center"
         android:textColor="@color/white"
         android:textSize="10sp" />
+    <ImageView
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@mipmap/arrow_right_white_double"/>
 </LinearLayout>

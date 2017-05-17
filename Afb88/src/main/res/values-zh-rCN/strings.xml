@@ -263,4 +263,6 @@
     <string name="PARLAY">过关</string>
     <string name="Baseball">棒球</string>
     <string name="IceHockey">IceHockey</string>
+    <string name="Europe_View">欧洲</string>
+    <string name="FT15MINSHANDICAP_OVER_UNDER"><![CDATA[全场15分钟亚州盤 & 大/小]]></string>
 </resources>
