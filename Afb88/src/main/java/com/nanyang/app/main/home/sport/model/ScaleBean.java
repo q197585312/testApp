@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -32,13 +34,13 @@ public class ScaleBean implements Serializable{
      * FT15MINSHANDICAP_OVER_UNDER_60_N : {"":""}
      */
 
-    @com.google.gson.annotations.SerializedName("ModuleTitle")
+    @SerializedName("ModuleTitle")
     private String ModuleTitle;
-    @com.google.gson.annotations.SerializedName("Home")
+    @SerializedName("Home")
     private String Home;
-    @com.google.gson.annotations.SerializedName("Away")
+    @SerializedName("Away")
     private String Away;
-    @com.google.gson.annotations.SerializedName("Date")
+    @SerializedName("Date")
     private String Date;
     /**
      * 1 : 1.57
@@ -47,7 +49,7 @@ public class ScaleBean implements Serializable{
      * x : 3.72
      */
 
-    @com.google.gson.annotations.SerializedName("FT_1x2")
+    @SerializedName("FT_1x2")
     private FT1x2Bean FT1x2;
     /**
      * 12 : 1.23
@@ -56,7 +58,7 @@ public class ScaleBean implements Serializable{
      * x2 : 2.27
      */
 
-    @com.google.gson.annotations.SerializedName("FT_DC")
+    @SerializedName("FT_DC")
     private FTDCBean FTDC;
     /**
      * oid : 9112330
@@ -64,9 +66,9 @@ public class ScaleBean implements Serializable{
      * EVEN : 0.90
      */
 
-    @com.google.gson.annotations.SerializedName("FT_OE")
+    @SerializedName("FT_OE")
     private FTOEBean FTOE;
-    @com.google.gson.annotations.SerializedName("FH_OE")
+    @SerializedName("FH_OE")
     private FTOEBean FHOE;
     /**
      * 1 : 2.03
@@ -75,7 +77,7 @@ public class ScaleBean implements Serializable{
      * x : 2.28
      */
 
-    @com.google.gson.annotations.SerializedName("FH_1x2")
+    @SerializedName("FH_1x2")
     private FH1x2Bean FH1x2;
     /**
      * 12 : 1.47
@@ -84,7 +86,7 @@ public class ScaleBean implements Serializable{
      * x2 : 1.60
      */
 
-    @com.google.gson.annotations.SerializedName("FH_DC")
+    @SerializedName("FH_DC")
     private FHDCBean FHDC;
     /**
      * oid : 9112329
@@ -99,7 +101,7 @@ public class ScaleBean implements Serializable{
      * AA : 10
      */
 
-    @com.google.gson.annotations.SerializedName("HTFT")
+    @SerializedName("HTFT")
     private HTFTBean HTFT;
     /**
      * oid : 9112329
@@ -110,13 +112,37 @@ public class ScaleBean implements Serializable{
      * NO GOAL : 15
      */
 
-    @com.google.gson.annotations.SerializedName("FGLG")
+    @SerializedName("FGLG")
     private FGLGBean FGLG;
    private TGBean TG;
-    @com.google.gson.annotations.SerializedName("FT_CS")
+    @SerializedName("FT_CS")
     private CSBean FTCS;
-    @com.google.gson.annotations.SerializedName("FH_CS")
+    @SerializedName("FH_CS")
     private CSBean FHCS;
+    /**
+     * oid : 12732354
+     * oid_FH : 12733127
+     * FT_OU : 1.5-2
+     * FT_O : 1.00
+     * FT_U : 0.82
+     * FH_OU : 0.5-1
+     * FH_O : 1.07
+     * FH_U : 0.75
+     */
+
+    private TEAMTGBean HOMETEAMTG;
+    /**
+     * oid : 12732356
+     * oid_FH : 12733128
+     * FT_OU : 0.5-1
+     * FT_O : 0.72
+     * FT_U : 1.11
+     * FH_OU : 0.5
+     * FH_O : 1.56
+     * FH_U : 0.46
+     */
+
+    private TEAMTGBean AWAYTEAMTG;
 
     public CSBean getFTCS() {
         if(FTCS==null)
@@ -339,6 +365,22 @@ public class ScaleBean implements Serializable{
         this.FT15MINSHANDICAP_OVER_UNDER_60 = FT15MINSHANDICAP_OVER_UNDER_60;
     }
 
+    public TEAMTGBean getHOMETEAMTG() {
+        return HOMETEAMTG;
+    }
+
+    public void setHOMETEAMTG(TEAMTGBean HOMETEAMTG) {
+        this.HOMETEAMTG = HOMETEAMTG;
+    }
+
+    public TEAMTGBean getAWAYTEAMTG() {
+        return AWAYTEAMTG;
+    }
+
+    public void setAWAYTEAMTG(TEAMTGBean AWAYTEAMTG) {
+        this.AWAYTEAMTG = AWAYTEAMTG;
+    }
+
     public static class FT15MINSHANDICAPOVERUNDERBean {
         private int oid;
         private String FT_OU;
@@ -380,10 +422,78 @@ public class ScaleBean implements Serializable{
 
 
 
+    public static class TEAMTGBean {
+        private int oid;
+        private int oid_FH;
+        private String FT_OU;
+        private String FT_O;
+        private String FT_U;
+        private String FH_OU;
+        private String FH_O;
+        private String FH_U;
 
+        public int getOid() {
+            return oid;
+        }
 
+        public void setOid(int oid) {
+            this.oid = oid;
+        }
 
+        public int getOid_FH() {
+            return oid_FH;
+        }
 
+        public void setOid_FH(int oid_FH) {
+            this.oid_FH = oid_FH;
+        }
 
+        public String getFT_OU() {
+            return FT_OU;
+        }
 
+        public void setFT_OU(String FT_OU) {
+            this.FT_OU = FT_OU;
+        }
+
+        public String getFT_O() {
+            return FT_O;
+        }
+
+        public void setFT_O(String FT_O) {
+            this.FT_O = FT_O;
+        }
+
+        public String getFT_U() {
+            return FT_U;
+        }
+
+        public void setFT_U(String FT_U) {
+            this.FT_U = FT_U;
+        }
+
+        public String getFH_OU() {
+            return FH_OU;
+        }
+
+        public void setFH_OU(String FH_OU) {
+            this.FH_OU = FH_OU;
+        }
+
+        public String getFH_O() {
+            return FH_O;
+        }
+
+        public void setFH_O(String FH_O) {
+            this.FH_O = FH_O;
+        }
+
+        public String getFH_U() {
+            return FH_U;
+        }
+
+        public void setFH_U(String FH_U) {
+            this.FH_U = FH_U;
+        }
+    }
 }

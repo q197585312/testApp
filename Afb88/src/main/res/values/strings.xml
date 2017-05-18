@@ -265,4 +265,6 @@
     <string name="IceHockey">IceHockey</string>
     <string name="Europe_View">Europe View</string>
     <string name="FT15MINSHANDICAP_OVER_UNDER">FT 15 MINS HANDICAP &amp; OVER/UNDER</string>
+    <string name="HOME_TEAM_TOTAL_GOALS">HOME TEAM TOTAL GOALS</string>
+    <string name="AWAY_TEAM_TOTAL_GOALS">AWAY TEAM TOTAL GOALS</string>
 </resources>

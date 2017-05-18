@@ -392,7 +392,13 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
                 new VsTableRowBean("fglg", Arrays.asList(new VsCellBean("HF", result.getFGLG().getHF(), "10", result.getFGLG().getOid()), new VsCellBean("HL", result.getFGLG().getHL(), "1", result.getFGLG().getOid()), new VsCellBean("AF", result.getFGLG().getAF(), "20", result.getFGLG().getOid()),
                         new VsCellBean("AL", result.getFGLG().getAL(), "2", result.getFGLG().getOid()), new VsCellBean("NO GOAL", result.getFGLG().getNO_GOAL(), "0", result.getFGLG().getOid())), true, true, getString(R.string.first_last_goal), "", "", ""),
                 new VsTableRowBean("tg", Arrays.asList(new VsCellBean("0~1", result.getTG().getT0_1(), "1", result.getTG().getOid()), new VsCellBean("2~3", result.getTG().getT2_3(), "23", result.getTG().getOid()), new VsCellBean("4~6", result.getTG().getT4_6(), "46", result.getTG().getOid()),
-                        new VsCellBean("", "", 0), new VsCellBean("7 & OVER", result.getTG().getT7_OVER(), "70", result.getTG().getOid())), true, true, getString(R.string.total_goals), "", "", ""));
+                        new VsCellBean("", "", 0), new VsCellBean("7 & OVER", result.getTG().getT7_OVER(), "70", result.getTG().getOid())), true, true, getString(R.string.total_goals), "", "", ""),
+
+                new VsTableRowBean("", Arrays.asList(new VsCellBean("OU/"+getString(R.string.over)+"("+result.getHOMETEAMTG().getFT_OU()+")", result.getHOMETEAMTG().getFT_O(), "over", result.getHOMETEAMTG().getOid()), new VsCellBean("OU/"+getString(R.string.under), result.getHOMETEAMTG().getFT_U(), "under", result.getHOMETEAMTG().getOid()), new VsCellBean("FH.OU/"+getString(R.string.over)+"("+result.getHOMETEAMTG().getFH_OU()+")", result.getHOMETEAMTG().getFH_O(), "over", result.getHOMETEAMTG().getOid_FH()),
+                        new VsCellBean("FH.OU/"+getString(R.string.under), result.getHOMETEAMTG().getFH_U(), "under", result.getHOMETEAMTG().getOid_FH())), true, true, getString(R.string.HOME_TEAM_TOTAL_GOALS), "", "", ""),
+                new VsTableRowBean("", Arrays.asList(new VsCellBean("OU/"+getString(R.string.over)+"("+result.getAWAYTEAMTG().getFT_OU()+")", result.getAWAYTEAMTG().getFT_O(), "over", result.getAWAYTEAMTG().getOid()), new VsCellBean("OU/"+getString(R.string.under), result.getAWAYTEAMTG().getFT_U(), "under", result.getAWAYTEAMTG().getOid()), new VsCellBean("FH.OU/"+getString(R.string.over)+"("+result.getAWAYTEAMTG().getFH_OU()+")", result.getAWAYTEAMTG().getFH_O(), "over", result.getAWAYTEAMTG().getOid_FH()),
+                        new VsCellBean("FH.OU/"+getString(R.string.under), result.getAWAYTEAMTG().getFH_U(), "under", result.getAWAYTEAMTG().getOid_FH())), true, true, getString(R.string.AWAY_TEAM_TOTAL_GOALS), "", "", "")
+        );
         datas.add(rows);
         bf.setData(rows);
 

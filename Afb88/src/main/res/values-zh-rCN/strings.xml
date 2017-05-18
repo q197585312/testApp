@@ -265,4 +265,6 @@
     <string name="IceHockey">IceHockey</string>
     <string name="Europe_View">欧洲</string>
     <string name="FT15MINSHANDICAP_OVER_UNDER"><![CDATA[全场15分钟亚州盤 & 大/小]]></string>
+    <string name="HOME_TEAM_TOTAL_GOALS">HOME TEAM TOTAL GOALS</string>
+    <string name="AWAY_TEAM_TOTAL_GOALS">AWAY TEAM TOTAL GOALS</string>
 </resources>
