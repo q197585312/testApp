@@ -267,4 +267,8 @@
     <string name="FT15MINSHANDICAP_OVER_UNDER">FT 15 MINS HANDICAP &amp; OVER/UNDER</string>
     <string name="HOME_TEAM_TOTAL_GOALS">HOME TEAM TOTAL GOALS</string>
     <string name="AWAY_TEAM_TOTAL_GOALS">AWAY TEAM TOTAL GOALS</string>
+    <string name="balance_">Balance:</string>
+    <string name="amount_">Amount:</string>
+    <string name="U">U</string>
+    <string name="O">O</string>
 </resources>

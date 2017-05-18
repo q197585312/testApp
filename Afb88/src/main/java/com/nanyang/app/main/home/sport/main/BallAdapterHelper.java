@@ -42,7 +42,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     @Override
-    public void onConvert(MyRecyclerViewHolder helper, int position, final I item) {
+    public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
 
         helper.getView(R.id.iv_hall_btn).setVisibility(View.GONE);
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
@@ -115,7 +115,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         tvRightMark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back.clickView(v, item);
+                back.clickView(v, item,position);
             }
         });
         if (item.getType() == SportInfo.Type.ITME) {

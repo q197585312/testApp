@@ -71,7 +71,7 @@ public abstract class BasketballMixState extends SportState<BasketballMixInfo, S
             }
 
             @Override
-            public void clickView(View v, BasketballMixInfo item) {
+            public void clickView(View v, BasketballMixInfo item,int position) {
 
             }
 

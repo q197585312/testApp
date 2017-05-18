@@ -72,7 +72,7 @@ public abstract class BasketballCommonState extends SportState<BasketballCommonI
             }
 
             @Override
-            public void clickView(View v, BasketballCommonInfo item) {
+            public void clickView(View v, BasketballCommonInfo item,int position) {
                 switch (v.getId()){
                     case R.id.module_match_collection_tv:
                         collectionItemCommon(item);

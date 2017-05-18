@@ -13,7 +13,7 @@ public class SoccerRunningBetHelper extends SoccerCommonBetHelper {
     }
 
     @Override
-    protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds,String params) {
-        return super.getOddsUrl(item, type, isHf, odds, params)+"&isRun=true";
+    protected String getOddsUrl(SoccerCommonInfo item, String oid,String oidFh,String type, boolean isHf, String odds,String params) {
+        return super.getOddsUrl(item,item.getSocOddsId(),item.getSocOddsId_FH(), type, isHf, odds, params)+"&isRun=true";
     }
 }

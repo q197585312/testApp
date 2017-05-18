@@ -210,7 +210,7 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
             }
 
             @Override
-            public void clickView(View v, EuropeInfo item) {
+            public void clickView(View v, EuropeInfo item,int position) {
 
             }
 

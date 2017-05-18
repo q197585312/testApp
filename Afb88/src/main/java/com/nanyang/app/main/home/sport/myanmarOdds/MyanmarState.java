@@ -74,7 +74,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
             }
 
             @Override
-            public void clickView(View v, MyanmarInfo item) {
+            public void clickView(View v, MyanmarInfo item,int position) {
                 switch (v.getId()) {
                     case R.id.module_right_mark_tv:
                         getBaseView().clickItemAdd(v, item, "common");

@@ -60,6 +60,7 @@ public class ScrollLayout extends ViewGroup {
     private int rightBorder;
     private Set<ScrollLayout> scrolls;
     private IndexChangeCallBack back;
+    private boolean able=true;
 
     public int getTargetIndex() {
         return targetIndex;
@@ -118,6 +119,7 @@ public class ScrollLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
+
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 mXDown = ev.getRawX();
@@ -147,9 +149,13 @@ public class ScrollLayout extends ViewGroup {
         }
         return super.onInterceptTouchEvent(ev);
     }
-
+    public void setTouchAble(boolean able){
+        this.able=able;
+    }
     @Override
     public boolean onTouchEvent(MotionEvent event) {
+        if(!able)
+            return super.onInterceptTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 Log.d("MotionEvent", "onTouchEvent---ACTION_DOWN:" + super.onTouchEvent(event));

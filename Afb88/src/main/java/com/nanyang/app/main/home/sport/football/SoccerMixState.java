@@ -85,7 +85,7 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
             }
 
             @Override
-            public void clickView(View v, SoccerMixInfo item) {
+            public void clickView(View v, SoccerMixInfo item,int position) {
                 switch (v.getId()){
                     case R.id.module_right_mark_tv:
                         clickAdd(v,item);

@@ -10,6 +10,8 @@ import com.nanyang.app.R;
 import com.unkonw.testapp.libs.api.CookieManger;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
+import cn.finalteam.toolsfinal.DeviceUtils;
+
 /**
  * Created by Administrator on 2017/4/18.
  */
@@ -24,7 +26,7 @@ public class WebPop extends BasePopupWindow {
 
     public WebPop(Context context, View v) {
 
-        super(context, v, 1350, 1300);
+        super(context, v, DeviceUtils.dip2px(context,385), DeviceUtils.dip2px(context ,370));
 
     }
 
@@ -57,4 +59,5 @@ public class WebPop extends BasePopupWindow {
         cookie = CookieManger.getCookieStore().get(url).get(0).toString();
         AfbUtils.synCookies(context, url, cookie);
     }
+
 }

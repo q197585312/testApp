@@ -12,20 +12,29 @@ import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Administrator on 2017/3/14.
  */
 
 public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInfo> {
+    public Map<Integer, Boolean> getRepMap() {
+        return repMap;
+    }
+
+    Map<Integer, Boolean> repMap = new HashMap<>();
+
     public SoccerCommonAdapterHelper(Context context) {
         super(context);
     }
 
 
     @Override
-    public void onConvert(MyRecyclerViewHolder helper, int position, final SoccerCommonInfo item) {
+    public void onConvert(MyRecyclerViewHolder helper, final int position, final SoccerCommonInfo item) {
         super.onConvert(helper, position, item);
-        ImageView ivHall=helper.getView(R.id.iv_hall_btn);
+        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         View flCollection = helper.getView(R.id.module_match_collection_fl);
@@ -46,7 +55,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         flCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back.clickView(v, item);
+                back.clickView(v, item,position);
             }
         });
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
@@ -74,9 +83,10 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
             llLeft2.setVisibility(View.INVISIBLE);
             tvCollection.setVisibility(View.INVISIBLE);
             item.setHasOE("0");
-            onMatchRepeat(helper,item);
+            onMatchRepeat(helper, item, position);
         } else {
-            onMatchNotRepeat(helper,item);
+
+            onMatchNotRepeat(helper, item, position);
             String homeRank = item.getHomeRank();
             String awayRank = item.getAwayRank();
             String away = item.getAway();
@@ -101,12 +111,32 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
 
     }
 
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item) {
+    public int getNextNotRepeat(int position) {
+        if(position<getBaseRecyclerAdapter().getItemCount()) {
+            if (repMap.get(position + 1)==null||!repMap.get(position + 1)) {
+                return position;
+            } else {
+                return getNextNotRepeat(position + 1);
+            }
+        }
+        else
+            return 0;
 
     }
 
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item) {
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item, int postion) {//
+        repMap.put(postion, false);
+    }
 
+    /**
+     * //重复上一个
+     *
+     * @param helper
+     * @param item
+     * @param postion
+     */
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item, int postion) {
+        repMap.put(postion, true);
     }
 
     private void checkRedCards(TextView awayRedCardTv, String rcAway) {

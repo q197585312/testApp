@@ -5,6 +5,7 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
+import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
@@ -229,5 +230,8 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
         ToastUtils.showShort(style);
     }
 
-
+    @Override
+    public Disposable clickOdds(B itemData, int oid, String s, String value, TextView v, boolean isHf, String s1) {
+       return clickOdds( itemData,  s,  value,  v,  isHf,  s1);
+    }
 }

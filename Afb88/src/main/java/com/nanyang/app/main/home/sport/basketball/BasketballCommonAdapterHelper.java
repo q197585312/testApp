@@ -23,7 +23,7 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
 
 
     @Override
-    public void onConvert(MyRecyclerViewHolder helper, int position, final BasketballCommonInfo item) {
+    public void onConvert(MyRecyclerViewHolder helper, final int position, final BasketballCommonInfo item) {
        if(!item.getEvenOdds().equals(item.getOddOdds())||item.getOddOdds().isEmpty()||item.getEvenOdds().isEmpty()||Float.valueOf(item.getOddOdds())==0f||Float.valueOf(item.getEvenOdds())==0f){
            item.setHasOE("0");
        }
@@ -55,7 +55,7 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
         tvCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back.clickView(v, item);
+                back.clickView(v, item,position);
             }
         });
         ScrollLayout sl = helper.getView(R.id.module_center_sl);

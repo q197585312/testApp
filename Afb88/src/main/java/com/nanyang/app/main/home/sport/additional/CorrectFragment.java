@@ -18,6 +18,9 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
         super.initData();
         tvVsHeader.setVisibility(View.GONE);
     }
+
+
+
     @Override
     protected void convertItem(MyRecyclerViewHolder helper, final int position, final VsTableRowBean item) {
         helper.setVisible(R.id.vs_row_head_ll, item.isHasHead());

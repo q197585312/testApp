@@ -169,7 +169,7 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
             }
 
             @Override
-            public void clickView(View v, SportInfo item) {
+            public void clickView(View v, SportInfo item,int position) {
 
             }
 

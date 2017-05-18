@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
+import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
@@ -17,6 +18,7 @@ public interface SportContract {
         ScrollLayout onSetScrollHeader();
         void checkMix(boolean mix);
         void reLoginPrompt(String str,CallBack back);
+        void onWebShow(int nextNotRepeat, SoccerCommonInfo item);
     }
 
     interface Presenter extends IBasePresenter  {

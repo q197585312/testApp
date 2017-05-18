@@ -153,7 +153,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             odds = item.getHdp() + "@" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
                             if (item.isIsBetHome()) {
                                 moduleTitle.setText(getString(R.string.over));
-                                moduleTitle.setTextColor(Color.RED);
+                                moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                             } else {
                                 moduleTitle.setText(getString(R.string.under));
                                 moduleTitle.setTextColor(Color.BLUE);
@@ -162,7 +162,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             odds = item.getHdp() + "@" + " " + item.getOdds() + " " + item.getOddsType() + " (inet)";
                             if (item.isIsBetHome()) {
                                 moduleTitle.setText(getString(R.string.odd));
-                                moduleTitle.setTextColor(Color.RED);
+                                moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                             } else {
                                 moduleTitle.setText(getString(R.string.even));
                                 moduleTitle.setTextColor(Color.BLUE);
@@ -225,13 +225,13 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         } else if (transType.equals("HFT")) {
                             moduleTitle.setText(item.getHTFTScore() );
                         }
-                        moduleTitle.setTextColor(Color.RED);
+                        moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                     } else if (transType.equals("TG") || transType.equals("CSR")) {
                         od = item.getDisplayOdds2();
 
                         if (transType.equals("TG")) {
                             moduleTitle.setText(item.getTGScore() );
-                            moduleTitle.setTextColor(Color.RED);
+                            moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                             odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                         } else if (transType.equals("CSR")) {
                             moduleTitle.setText(item.getCSRScore() );
@@ -242,7 +242,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         od = item.getDisplayOdds2();
                         odds ="@" + " " + item.getDisplayOdds2() + " (inet)";
                         moduleTitle.setText(item.getDCScore() );
-                        moduleTitle.setTextColor(Color.RED);
+                        moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                     }
                 }
                 if (item.isIsRun()) {

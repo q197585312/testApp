@@ -3,19 +3,26 @@ package com.nanyang.app.main.home.sport.main;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -34,6 +41,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -63,6 +71,58 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     private boolean isInit = false;
     private TextView ivAllAdd;
 
+
+    @Override
+    public void onWebShow(int nextNotRepeat, SoccerCommonInfo item) {
+        View v = rvContent.getChildAt(nextNotRepeat);
+        WebPop pop = new WebPop(mContext, v);
+        pop.getWebView().setWebViewClient(new DigWebViewClient());
+        pop.setTrans(1);
+        String lag = AfbUtils.getLanguage(mContext);
+        String l = "eng";
+        if (lag.equals("zh")) {
+            l = "eng";
+        } else {
+            l = "EN-US";
+        }
+
+        String gameUrl = AppConstant.URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+        pop.setUrl(gameUrl);
+        showLoadingDialog();
+        int heightPixels = DeviceUtils.getScreenPix(mContext).heightPixels;
+        int widthPixels = DeviceUtils.getScreenPix(mContext).widthPixels;
+        int[] location = new int[2];
+        v.getLocationOnScreen(location);
+
+        if (location[1] < heightPixels / 2) {
+            onPopupWindowCreated(pop, -2);
+        } else {
+            showUp(v, pop, location, widthPixels, 1300);
+        }
+    }
+
+    private class DigWebViewClient extends WebViewClient {
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            hideLoadingDialog();
+        }
+
+        @Override
+        public void onReceivedError(WebView view, int errorCode, String description, String failingUrl) {
+            super.onReceivedError(view, errorCode, description, failingUrl);
+            hideLoadingDialog();
+        }
+
+    }
+
+    public void showUp(View v, WebPop pop, int[] location, int popupWidth, int popupHeight) {
+
+        //在控件上方显示
+        pop.showAtLocation(Gravity.NO_GRAVITY, (location[0] + v.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight);
+    }
+
     @Override
     public void initData() {
         super.initData();
@@ -83,6 +143,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             }
         });
         rememberLastOdds();
+        slHeader.setTouchAble(false);
+
     }
 
 
@@ -355,4 +417,5 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             ((BaseToolbarActivity) mContext).reLoginPrompt(str, back);
         }
     }
+
 }

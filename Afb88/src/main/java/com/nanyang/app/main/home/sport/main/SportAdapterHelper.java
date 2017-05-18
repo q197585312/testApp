@@ -50,7 +50,7 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
          */
         void clickOdds(TextView v, B item, String type, boolean isHf, String odds);
 
-        void clickView(View v, B item);
+        void clickView(View v, B item,int position);
         ScrollLayout onSetHeaderFollower();
     }
 

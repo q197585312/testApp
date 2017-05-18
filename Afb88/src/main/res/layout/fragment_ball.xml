@@ -87,6 +87,7 @@
             android:background="#2dc45c" />
 
         <com.unkonw.testapp.training.ScrollLayout
+            android:focusable="false"
             android:id="@+id/sl_header"
             android:layout_width="140dp"
             android:layout_height="16dp"

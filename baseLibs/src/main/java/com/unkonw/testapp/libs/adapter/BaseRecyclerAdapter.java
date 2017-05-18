@@ -60,6 +60,9 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
             notifyDataSetChanged();
     }
 
+
+
+
     public void addItem(T item) {
         addItem(item, true);
     }

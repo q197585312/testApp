@@ -45,6 +45,7 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
 
     @Override
     protected void convertItem(MyRecyclerViewHolder helper, final int position, final VsTableRowBean item) {
+
         helper.setVisible(R.id.vs_row_head_ll, item.isHasHead());
         helper.setVisible(R.id.vs_row_foot_ll, item.isHasFoot());
         if (item.isHasHead()) {
@@ -71,6 +72,16 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
         helper.setText(R.id.vs_row_content_tv12, value0);
 
 
+        if(  item.getRows().get(1).getKey()==null||item.getRows().get(1).getKey().equals("")){
+            helper.getView(R.id.vs_row_content_tv21).setVisibility(View.GONE);
+        }else{
+            helper.getView(R.id.vs_row_content_tv21).setVisibility(View.VISIBLE);
+        }
+        if(  item.getRows().get(2).getKey()==null||item.getRows().get(2).getKey().equals("")){
+            helper.getView(R.id.vs_row_content_tv31).setVisibility(View.GONE);
+        }else{
+            helper.getView(R.id.vs_row_content_tv31).setVisibility(View.VISIBLE);
+        }
 
         helper.setText(R.id.vs_row_content_tv21, item.getRows().get(1).getKey());
         helper.setText(R.id.vs_row_content_tv22, value1);
@@ -86,8 +97,11 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
                 if (getValue1(item) != null && (!getValue1(item).equals(""))) {
                     if (position > 2 && position < 6) {
                         betHelper.clickOdds(itemData, item.getB().toString(), getValue1(item), (TextView) v, false, "&sc=" + item.getSc() + childParam);
-                    } else {
+                    } else if(position<8) {
                         betHelper.clickOdds(itemData, item.getB().toString(), getValue1(item), (TextView) v, false, "&g=5" + childParam);
+                    }
+                    else{
+                        betHelper.clickOdds(itemData, item.getRows().get(1).getOid(), item.getB().toString(), getValue1(item), (TextView) v, false, childParam);
                     }
 
 
@@ -100,8 +114,11 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
                 if (getValue2(item) != null && (!getValue2(item).equals(""))) {
                     if (position > 2 && position < 6) {
                         betHelper.clickOdds(itemData, item.getB().toString(), getValue2(item), (TextView) v, true, "&sc=" + item.getSc() + childParam);
-                    } else {
+                    }  else if(position<8)  {
                         betHelper.clickOdds(itemData, item.getB().toString(), getValue2(item), (TextView) v, true, "&g=5" + childParam);
+                    }
+                    else{
+                        betHelper.clickOdds(itemData, item.getRows().get(2).getOid(), item.getB().toString(), getValue2(item), (TextView) v, false, childParam);
                     }
 
                 }
@@ -136,21 +153,18 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
 
 
     private void initFirstData(SoccerMixInfo item) {
-
-        List<VsTableRowBean> rows = new ArrayList<VsTableRowBean>();
+        List<VsTableRowBean> rows;
         int socOddsId_hf = 0;
         int socOddsId = 0;
         if (item.getSocOddsId_FH() != null && !item.getSocOddsId_FH().equals(""))
             socOddsId_hf = Integer.valueOf(item.getSocOddsId_FH());
         if (item.getSocOddsId() != null && !item.getSocOddsId().equals(""))
             socOddsId = Integer.valueOf(item.getSocOddsId());
-
-
-        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1),new int[]{getResources().getColor(R.color.red_title)},new String[]{getString(R.string.h1)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_1Odds_FH(), socOddsId_hf)), true, false, setColorStyle("1  x  2",new int[]{getResources().getColor(R.color.red_title),getResources().getColor(R.color.blue)},new String[]{"1","x"}), "", "", ""),
+        rows =   new ArrayList<>(Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1),new int[]{getResources().getColor(R.color.red_title)},new String[]{getString(R.string.h1)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_1Odds_FH(), socOddsId_hf)), true, false, setColorStyle("1  x  2",new int[]{getResources().getColor(R.color.red_title),getResources().getColor(R.color.blue)},new String[]{"1","x"}), "", "", ""),
                 new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx),new int[]{getResources().getColor(R.color.blue)},new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_XOdds_FH(), socOddsId_hf))),
                 new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_2Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_2Odds_FH(), socOddsId_hf)), true),
                 new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), "", "", ""),
-                new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
+                new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true)));
         setData(rows);
 
     }

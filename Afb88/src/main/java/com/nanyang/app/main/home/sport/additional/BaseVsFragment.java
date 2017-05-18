@@ -47,21 +47,26 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
-        baseRc.setLayoutManager(new LinearLayoutManager(mContext));
         list = new ArrayList<>();
-        adapter = new BaseRecyclerAdapter<T>(mContext, list, onSetItemLayoutId()) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, T item) {
-                convertItem(holder, position, item);
-            }
-        };
-        baseRc.setAdapter(adapter);
+
+        setAdapter(baseRc);
         itemData = (BallInfo) ((VsActivity) getActivity()).getItem();
         betHelper = ((VsActivity) getActivity()).getHelper();
         if (list != null && adapter != null)
             adapter.addAllAndClear(list);
         childParam = ((VsActivity) getActivity()).getChildParam();
 
+    }
+
+    protected void setAdapter(RecyclerView baseRc) {
+        adapter = new BaseRecyclerAdapter<T>(mContext, list, onSetItemLayoutId()) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, T item) {
+                convertItem(holder, position, item);
+            }
+        };
+        baseRc.setLayoutManager(new LinearLayoutManager(mContext));
+        baseRc.setAdapter(adapter);
     }
 
     protected abstract void convertItem(MyRecyclerViewHolder holder, int position, T item);

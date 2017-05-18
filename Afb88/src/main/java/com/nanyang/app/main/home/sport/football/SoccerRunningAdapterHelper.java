@@ -83,8 +83,8 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     }
 
     @Override
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final SoccerCommonInfo item) {
-        super.onMatchNotRepeat(helper, item);
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final SoccerCommonInfo item, final int position) {
+        super.onMatchNotRepeat(helper, item,position);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         String rtsMatchId = item.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
@@ -92,7 +92,8 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             ivHall.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    back.clickView(v, item);
+
+                    back.clickView(v, item,position);
                 }
             });
         } else {
@@ -102,8 +103,8 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     }
 
     @Override
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item) {
-        super.onMatchRepeat(helper, item);
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item,int position) {
+        super.onMatchRepeat(helper, item, position);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
 

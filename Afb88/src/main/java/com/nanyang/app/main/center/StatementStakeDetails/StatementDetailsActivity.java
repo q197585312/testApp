@@ -89,10 +89,12 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
                 LinearLayout mathLayout = holder.getView(R.id.layout_math);
                 LinearLayout stakeLayout = holder.getView(R.id.layout_stake);
                 if (position==data.size()-1){
+                    holder.getView(R.id.ll_num).setVisibility(View.GONE);
                     dateLayout.setVisibility(View.GONE);
                     mathLayout.setVisibility(View.GONE);
                     stakeLayout.setVisibility(View.GONE);
                 }else {
+                    holder.getView(R.id.ll_num).setVisibility(View.VISIBLE);
                     dateLayout.setVisibility(View.VISIBLE);
                     mathLayout.setVisibility(View.VISIBLE);
                     stakeLayout.setVisibility(View.VISIBLE);

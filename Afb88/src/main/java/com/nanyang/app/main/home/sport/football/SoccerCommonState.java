@@ -76,7 +76,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
             }
 
             @Override
-            public void clickView(View v, SoccerCommonInfo item) {
+            public void clickView(View v, SoccerCommonInfo item,int position) {
                 switch (v.getId()) {
                     case R.id.module_match_collection_fl:
                     case R.id.module_match_collection_tv:
@@ -86,7 +86,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
                         clickAdd(v, item);
                         break;
                     case R.id.iv_hall_btn:
-                        clickHallBtn(v, item);
+                        clickHallBtn(v, item,position);
                         break;
                 }
 
@@ -94,7 +94,7 @@ public abstract class SoccerCommonState extends SportState<SoccerCommonInfo, Spo
         };
     }
 
-    protected void clickHallBtn(View v, SoccerCommonInfo item) {
+    protected void clickHallBtn(View v, SoccerCommonInfo item, int position) {
 
     }
 

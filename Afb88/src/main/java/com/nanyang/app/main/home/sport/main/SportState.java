@@ -95,7 +95,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private int pageSize = 15;
 
-    SportAdapterHelper<B> adapterHelper;
+    public SportAdapterHelper<B> getAdapterHelper() {
+        return adapterHelper;
+    }
+
+    private SportAdapterHelper<B> adapterHelper;
 
     public V getBaseView() {
         return baseView;
@@ -137,6 +141,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     private V baseView;
+
+    public BaseRecyclerAdapter<B> getBaseRecyclerAdapter() {
+        return baseRecyclerAdapter;
+    }
+
     protected BaseRecyclerAdapter<B> baseRecyclerAdapter;
 
     @Override

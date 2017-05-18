@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.football;
 
+import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.widget.TextView;
 
@@ -53,18 +54,18 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
     //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=fglg&sc=0&oId=12286343&odds=13
 //    /http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=tg&sc=1&oId=12286343&odds=4.6
     //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=tg&sc=70&oId=12286343&odds=11
-    protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds, String params) {
+    protected String getOddsUrl(SoccerCommonInfo item, String oid, String oid_fh, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.URL_ODDS);
         stringBuilder.append("gt=s");
         stringBuilder.append("&b=" + type);
         stringBuilder.append(params);
-        String oId = "&oId=" + item.getSocOddsId();
+        String oId = "&oId=" + oid;
         if (isHf)
             if (type.equalsIgnoreCase("over") || type.equalsIgnoreCase("under") || type.equalsIgnoreCase("home") || type.equalsIgnoreCase("away")) {
-                oId += "&isFH=true&oId_fh=" + item.getSocOddsId_FH();
+                oId += "&isFH=true&oId_fh=" + oid_fh;
             } else {
-                oId ="&oId=" + item.getSocOddsId_FH();
+                oId = "&oId=" + oid_fh;
             }
         stringBuilder.append(oId);
         stringBuilder.append("&odds=" + odds);
@@ -73,7 +74,12 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
 
     @Override
     public Disposable clickOdds(SoccerCommonInfo item, String type, String odds, final TextView v, final boolean isHf, String params) {
-        String url = getOddsUrl(item, type, isHf, odds, params);
+        String url = getOddsUrl(item, item.getSocOddsId(), item.getSocOddsId_FH(), type, isHf, odds, params);
+        return getDisposable(v, isHf, url);
+    }
+
+    @NonNull
+    private Disposable getDisposable(final TextView v, final boolean isHf, String url) {
         Disposable subscribe = getService(ApiService.class).postData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {//onNext
                     @Override
@@ -107,5 +113,11 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
         if (compositeSubscription != null)
             compositeSubscription.add(subscribe);
         return subscribe;
+    }
+
+    @Override
+    public Disposable clickOdds(SoccerCommonInfo itemData, int oid, String type, String odds, TextView v, boolean isHf, String params) {
+        String url = getOddsUrl(itemData, oid + "", "", type, false, odds, params);
+        return getDisposable(v, isHf, url);
     }
 }
