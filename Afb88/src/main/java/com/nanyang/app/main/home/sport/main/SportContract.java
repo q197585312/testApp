@@ -18,7 +18,7 @@ public interface SportContract {
         ScrollLayout onSetScrollHeader();
         void checkMix(boolean mix);
         void reLoginPrompt(String str,CallBack back);
-        void onWebShow(int nextNotRepeat, SoccerCommonInfo item);
+        void onWebShow(int nextNotRepeat, SoccerCommonInfo item, android.view.View v);
     }
 
     interface Presenter extends IBasePresenter  {

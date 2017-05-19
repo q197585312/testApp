@@ -289,6 +289,6 @@ public abstract class BasketballCommonState extends SportState<BasketballCommonI
     public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
         super.setScrollHeaderContent(slHeader, tvAos);
         tvAos.setVisibility(View.GONE);
-        slHeader.getLayoutParams().width= DeviceUtils.dip2px(getBaseView().getContextActivity(),210);
+        slHeader.getLayoutParams().width= DeviceUtils.dip2px(getBaseView().getContextActivity(),180);
     }
 }

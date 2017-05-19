@@ -70,7 +70,7 @@ public class SoccerRunningState extends SoccerCommonState {
 
     protected void clickHallBtn(View v, final SoccerCommonInfo item, int position) {
         int nextNotRepeat = ((SoccerRunningAdapterHelper) getAdapterHelper()).getNextNotRepeat(position);
-        getBaseView().onWebShow(nextNotRepeat,item);
+        getBaseView().onWebShow(nextNotRepeat,item,v);
 
 
     }

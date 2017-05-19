@@ -26,7 +26,7 @@ public class WebPop extends BasePopupWindow {
 
     public WebPop(Context context, View v) {
 
-        super(context, v, DeviceUtils.dip2px(context,385), DeviceUtils.dip2px(context ,370));
+        super(context, v, DeviceUtils.dip2px(context,365), DeviceUtils.dip2px(context ,370));
 
     }
 
