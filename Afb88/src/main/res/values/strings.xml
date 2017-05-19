@@ -242,7 +242,7 @@
     <string name="money_not_enough">balance not enough</string>
     <string name="login_out">Are You Sure Logout</string>
     <string name="enter_username_or_password">Please enter the user name or password</string>
-    <string name="grade_m">Grade:</string>
+    <string name="grade_m">Result:</string>
     <string name="coming_soon">Coming soon...</string>
     <string name="Login_Failed">Login failed</string>
     <string name="upload_files">Upload files</string>
