@@ -85,15 +85,12 @@
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
             android:background="#2dc45c" />
-        <ImageView
-            android:layout_width="15dp"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/arrow_left_white_double"/>
+
 
         <com.unkonw.testapp.training.ScrollLayout
             android:focusable="false"
             android:id="@+id/sl_header"
-            android:layout_width="110dp"
+            android:layout_width="140dp"
             android:layout_height="16dp"
             android:orientation="horizontal">
 
@@ -107,11 +104,7 @@
                 layout="@layout/sport_head_vp_item"
                 android:visibility="gone" />
         </com.unkonw.testapp.training.ScrollLayout>
-        <ImageView
 
-            android:layout_width="15dp"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/arrow_right_white_double"/>
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
