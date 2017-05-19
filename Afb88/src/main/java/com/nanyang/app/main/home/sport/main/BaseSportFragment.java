@@ -5,7 +5,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -149,25 +148,52 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             }
         });
         rememberLastOdds();
-//        slHeader.setTouchAble(false);
+        slHeader.setTouchAble(false);
 
+        for (int i = 0; i < slHeader.getChildCount(); i++) {
+            View childAt = slHeader.getChildAt(i);
+            View nextView = childAt.findViewById(R.id.iv_next);
+            View previousView = childAt.findViewById(R.id.iv_previous);
+            nextView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int targetIndex = slHeader.getTargetIndex() + 1;
+                    moveToIndex(targetIndex);
+                }
+            });
+            previousView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int targetIndex = slHeader.getTargetIndex() - 1;
+                    moveToIndex(targetIndex);
+                }
+            });
+        }
+/*
         slHeader.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        Set slFollowers = ((BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper()).getSlFollowers();
+
                         if (slFollowers != null)
-                            slHeader.setFollowScrolls(slFollowers);
+
                         break;
                 }
 
 
                 return false;
             }
-        });
+        });*/
 
+    }
+
+    private void moveToIndex(int targetIndex) {
+        Set slFollowers = ((BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper()).getSlFollowers();
+        if(slFollowers!=null)
+            slHeader.setFollowScrolls(slFollowers);
+        slHeader.moveToIndex(targetIndex);
     }
 
 

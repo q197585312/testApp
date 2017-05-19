@@ -223,7 +223,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> lists = super.initHeaderList();
-        lists.add(new ArrayList<>(Arrays.asList("AFB FT. HDP", "AFB FT. O/U")));
+        lists.add(new ArrayList<>(Arrays.asList(getBaseView().getContextActivity().getString(R.string.AFB_FT_HDP), getBaseView().getContextActivity().getString(R.string.AFB_FT_OU))));
         return lists;
     }
 

@@ -271,4 +271,6 @@
     <string name="amount_">Amount:</string>
     <string name="U">U</string>
     <string name="O">O</string>
+    <string name="AFB_FT_HDP">AFB FT.HDP</string>
+    <string name="AFB_FT_OU">AFB FT.O/U</string>
 </resources>

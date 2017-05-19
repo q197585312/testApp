@@ -271,4 +271,6 @@
     <string name="amount_">数量:</string>
     <string name="U">小</string>
     <string name="O">大</string>
+    <string name="AFB_FT_OU">AFB全场大小</string>
+    <string name="AFB_FT_HDP">AFB全场亚洲</string>
 </resources>

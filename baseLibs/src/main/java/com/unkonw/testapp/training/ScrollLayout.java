@@ -60,7 +60,7 @@ public class ScrollLayout extends ViewGroup {
     private int rightBorder;
     private Set<ScrollLayout> scrolls;
     private IndexChangeCallBack back;
-    private boolean able=true;
+    private boolean able = true;
 
     public int getTargetIndex() {
         return targetIndex;
@@ -108,7 +108,7 @@ public class ScrollLayout extends ViewGroup {
     }
 
     private int getRightBorder(int i) {
-        if(getChildAt(i)==null)
+        if (getChildAt(i) == null)
             return 0;
         if (getChildAt(i).getVisibility() != GONE)
             return getChildAt(i).getRight();
@@ -149,12 +149,14 @@ public class ScrollLayout extends ViewGroup {
         }
         return super.onInterceptTouchEvent(ev);
     }
-    public void setTouchAble(boolean able){
-        this.able=able;
+
+    public void setTouchAble(boolean able) {
+        this.able = able;
     }
+
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        if(!able)
+        if (!able)
             return super.onInterceptTouchEvent(event);
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
@@ -187,18 +189,26 @@ public class ScrollLayout extends ViewGroup {
             case MotionEvent.ACTION_UP:
                 // 当手指抬起时，根据当前的滚动值来判定应该滚动到哪个子控件的界面
                 targetIndex = (getScrollX() + getWidth() / 2) / getWidth();
-                int dx = targetIndex * getWidth() - getScrollX();
-                // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
-                mScroller.startScroll(getScrollX(), 0, dx, 0);
-                if (back != null) {
-                    back.changePosition(targetIndex);
-                }
-                invalidate();
-                getParent().requestDisallowInterceptTouchEvent(false);
+                moveToIndex(targetIndex);
                 Log.d("MotionEvent", "onTouchEvent---ACTION_UP:" + super.onTouchEvent(event));
                 break;
         }
         return true;
+    }
+
+    public void moveToIndex(int targetIndex) {
+        if(targetIndex<0||targetIndex>getChildCount()-1||getChildAt(targetIndex).getVisibility()==GONE)
+            return;
+        this.targetIndex=targetIndex;
+        int dx = targetIndex * getWidth() - getScrollX();
+        // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
+        mScroller.startScroll(getScrollX(), 0, dx, 0);
+        if (back != null) {
+            back.changePosition(this.targetIndex);
+        }
+
+        invalidate();
+        getParent().requestDisallowInterceptTouchEvent(false);
     }
 
 
@@ -217,7 +227,7 @@ public class ScrollLayout extends ViewGroup {
         super.scrollTo(x, y);
         if (scrolls != null) {
             for (ScrollLayout scroll : scrolls) {
-                if (scroll!=null&&!scroll.equals(this)) {
+                if (scroll != null && !scroll.equals(this)) {
                     scroll.setFollowScrolls(null);
                     scroll.scrollTo(x, y);
                 }
@@ -250,6 +260,7 @@ public class ScrollLayout extends ViewGroup {
         });
 
     }
+
 
     public void setIndexChangeListener(IndexChangeCallBack back) {
         this.back = back;
