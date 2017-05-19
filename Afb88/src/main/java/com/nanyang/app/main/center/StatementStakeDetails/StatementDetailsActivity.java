@@ -70,6 +70,8 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
                 Result.setText(item.getResult());
                 TextView BetType = holder.getView(R.id.tv_BetType);
                 BetType.setText(item.getBetType());
+                TextView Status = holder.getView(R.id.tv_status);
+                Status.setText(" "+item.getStatus());
                 TextView HdpOdds = holder.getView(R.id.tv_HdpOdds);
                 HdpOdds.setText(item.getHdpOdds() + "@");
                 TextView Odds = holder.getView(R.id.tv_Odds);
