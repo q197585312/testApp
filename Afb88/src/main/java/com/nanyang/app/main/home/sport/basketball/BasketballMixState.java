@@ -237,6 +237,6 @@ public abstract class BasketballMixState extends SportState<BasketballMixInfo, S
     public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
         super.setScrollHeaderContent(slHeader, tvAos);
         tvAos.setVisibility(View.GONE);
-        slHeader.getLayoutParams().width= DeviceUtils.dip2px(getBaseView().getContextActivity(),110);
+        slHeader.getLayoutParams().width= DeviceUtils.dip2px(getBaseView().getContextActivity(),140);
     }
 }
