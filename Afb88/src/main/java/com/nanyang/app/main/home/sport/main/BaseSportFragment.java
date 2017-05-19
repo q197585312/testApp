@@ -73,8 +73,11 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
 
     @Override
-    public void onWebShow(int nextNotRepeat, SoccerCommonInfo item) {
+    public void onWebShow(int nextNotRepeat, SoccerCommonInfo item, View view) {
         View v = rvContent.getChildAt(nextNotRepeat);
+        if (v == null) {
+            v =  view;
+        }
         WebPop pop = new WebPop(mContext, v);
         pop.getWebView().setWebViewClient(new DigWebViewClient());
         pop.setTrans(1);
@@ -90,15 +93,14 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         pop.setUrl(gameUrl);
         showLoadingDialog();
         int heightPixels = DeviceUtils.getScreenPix(mContext).heightPixels;
-        int widthPixels = DeviceUtils.getScreenPix(mContext).widthPixels;
         int[] location = new int[2];
-        v.getLocationOnScreen(location);
 
-        if (location[1] < heightPixels / 2) {
-            onPopupWindowCreated(pop, -2);
+        v.getLocationOnScreen(location);
+        onPopupWindowCreated(pop, -2);
+       /* if (location[1] < heightPixels / 2) {
         } else {
-            showUp(v, pop, location, widthPixels, 1300);
-        }
+            showUp(v, pop, location,DeviceUtils.dip2px(mContext,355), DeviceUtils.dip2px(mContext ,370));
+        }*/
     }
 
     private class DigWebViewClient extends WebViewClient {
