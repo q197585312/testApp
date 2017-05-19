@@ -32,6 +32,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     final int black_grey = 0XFF333333;
     protected Context context;
+
+    public Set<ScrollLayout> getSlFollowers() {
+        return slFollowers;
+    }
+
     protected Set<ScrollLayout> slFollowers = new HashSet<>();
 
     private int slIndex = 0;

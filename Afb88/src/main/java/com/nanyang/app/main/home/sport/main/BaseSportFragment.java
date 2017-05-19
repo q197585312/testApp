@@ -5,6 +5,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -37,6 +38,7 @@ import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -62,6 +64,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     LinearLayout llMixParlayOrder;
     @Bind(R.id.sl_header)
     ScrollLayout slHeader;
+
+
     @Bind(R.id.tv_aos)
     TextView tvAos;
     @Bind(R.id.swipeToLoadLayout)
@@ -76,7 +80,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     public void onWebShow(int nextNotRepeat, SoccerCommonInfo item, View view) {
         View v = rvContent.getChildAt(nextNotRepeat);
         if (v == null) {
-            v =  view;
+            v = view;
         }
         WebPop pop = new WebPop(mContext, v);
         pop.getWebView().setWebViewClient(new DigWebViewClient());
@@ -145,7 +149,24 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             }
         });
         rememberLastOdds();
-        slHeader.setTouchAble(false);
+//        slHeader.setTouchAble(false);
+
+        slHeader.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        Set slFollowers = ((BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper()).getSlFollowers();
+                        if (slFollowers != null)
+                            slHeader.setFollowScrolls(slFollowers);
+                        break;
+                }
+
+
+                return false;
+            }
+        });
 
     }
 
@@ -342,6 +363,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 bundle.putSerializable(AppConstant.KEY_DATA, presenter.getStateHelper().getStateType());
                 skipAct(MixOrderListActivity.class, bundle);
                 break;
+
         }
     }
 
