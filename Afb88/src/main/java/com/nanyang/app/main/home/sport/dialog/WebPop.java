@@ -26,7 +26,7 @@ public class WebPop extends BasePopupWindow {
 
     public WebPop(Context context, View v) {
 
-        super(context, v, DeviceUtils.dip2px(context,365), DeviceUtils.dip2px(context ,370));
+        super(context, v, DeviceUtils.dip2px(context, 365), DeviceUtils.dip2px(context, 370));
 
     }
 
@@ -56,8 +56,11 @@ public class WebPop extends BasePopupWindow {
 
     public void synCookies(String url) {
         String cookie = "";
-        cookie = CookieManger.getCookieStore().get(url).get(0).toString();
-        AfbUtils.synCookies(context, url, cookie);
+        if (CookieManger.getCookieStore().get(url) != null && CookieManger.getCookieStore().get(url).size() > 0) {
+            cookie = CookieManger.getCookieStore().get(url).get(0).toString();
+            AfbUtils.synCookies(context, url, cookie);
+        }
+
     }
 
 }

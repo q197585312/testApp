@@ -38,13 +38,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         ivHall.setVisibility(View.GONE);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         View flCollection = helper.getView(R.id.module_match_collection_fl);
-        TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
-        TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
         View tvRightMark = helper.getView(R.id.module_right_mark_tv);
-        TextView awayRedCardTv = helper.getView(R.id.module_match_away_red_card_tv);
-        TextView homeRedCardTv = helper.getView(R.id.module_match_home_red_card_tv);
-        View llLeft1 = helper.getView(R.id.module_match_left1_ll);
-        View llLeft2 = helper.getView(R.id.module_match_left2_ll);
         tvCollection.setVisibility(View.VISIBLE);
         tvRightMark.setVisibility(View.VISIBLE);
 
@@ -62,52 +56,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
         getBaseRecyclerAdapter().getItem(position).setIsHdpNew_FH("0");
         getBaseRecyclerAdapter().getItem(position).setIsOUNew_FH("0");
-        String oldHomeName = "";
-        String oldAwayName = "";
-        String oldHomeGive = "";
-        String oldModuleTitle = "";
-        if (position > 0) {
-            oldHomeName = back.getItem(position - 1).getHome();
-            oldAwayName = back.getItem(position - 1).getAway();
-            oldHomeGive = back.getItem(position - 1).getIsHomeGive();
-            oldModuleTitle = back.getItem(position - 1).getModuleTitle().toString();
 
-        }
-
-
-        if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getIsHomeGive())) {
-            awayTv.setText("");
-            homeTv.setText("");
-            tvRightMark.setVisibility(View.INVISIBLE);
-            llLeft1.setVisibility(View.INVISIBLE);
-            llLeft2.setVisibility(View.INVISIBLE);
-            tvCollection.setVisibility(View.INVISIBLE);
-            item.setHasOE("0");
-            onMatchRepeat(helper, item, position);
-        } else {
-
-            onMatchNotRepeat(helper, item, position);
-            String homeRank = item.getHomeRank();
-            String awayRank = item.getAwayRank();
-            String away = item.getAway();
-            if (awayRank != null && !awayRank.equals("")) {
-                away = "[" + awayRank + "]" + away;
-            }
-            String home = item.getHome();
-            if (homeRank != null && !homeRank.equals("")) {
-                home = "[" + homeRank + "]" + home;
-            }
-            homeTv.setText(home);
-            awayTv.setText(away);
-            tvRightMark.setVisibility(View.VISIBLE);
-            tvCollection.setVisibility(View.VISIBLE);
-            llLeft1.setVisibility(View.VISIBLE);
-            llLeft2.setVisibility(View.VISIBLE);
-            String rcAway = item.getRCAway();
-            String rcHome = item.getRCHome();
-            checkRedCards(awayRedCardTv, rcAway);
-            checkRedCards(homeRedCardTv, rcHome);
-        }
 
     }
 
@@ -123,8 +72,36 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
             return 0;
 
     }
-
+    @Override
     protected void onMatchNotRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item, int postion) {//
+        View tvCollection = helper.getView(R.id.module_match_collection_tv);
+        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+        TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
+        TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
+        TextView awayRedCardTv = helper.getView(R.id.module_match_away_red_card_tv);
+        TextView homeRedCardTv = helper.getView(R.id.module_match_home_red_card_tv);
+        View llLeft1 = helper.getView(R.id.module_match_left1_ll);
+        View llLeft2 = helper.getView(R.id.module_match_left2_ll);
+        String homeRank = item.getHomeRank();
+        String awayRank = item.getAwayRank();
+        String away = item.getAway();
+        if (awayRank != null && !awayRank.equals("")) {
+            away = "[" + awayRank + "]" + away;
+        }
+        String home = item.getHome();
+        if (homeRank != null && !homeRank.equals("")) {
+            home = "[" + homeRank + "]" + home;
+        }
+        homeTv.setText(home);
+        awayTv.setText(away);
+        tvRightMark.setVisibility(View.VISIBLE);
+        tvCollection.setVisibility(View.VISIBLE);
+        llLeft1.setVisibility(View.VISIBLE);
+        llLeft2.setVisibility(View.VISIBLE);
+        String rcAway = item.getRCAway();
+        String rcHome = item.getRCHome();
+        checkRedCards(awayRedCardTv, rcAway);
+        checkRedCards(homeRedCardTv, rcHome);
         repMap.put(postion, false);
     }
 
@@ -135,7 +112,21 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
      * @param item
      * @param postion
      */
+    @Override
     protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item, int postion) {
+        TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
+        TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
+        View llLeft1 = helper.getView(R.id.module_match_left1_ll);
+        View llLeft2 = helper.getView(R.id.module_match_left2_ll);
+        View tvCollection = helper.getView(R.id.module_match_collection_tv);
+        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+        awayTv.setText("");
+        homeTv.setText("");
+        tvRightMark.setVisibility(View.INVISIBLE);
+        llLeft1.setVisibility(View.INVISIBLE);
+        llLeft2.setVisibility(View.INVISIBLE);
+        tvCollection.setVisibility(View.INVISIBLE);
+        item.setHasOE("0");
         repMap.put(postion, true);
     }
 

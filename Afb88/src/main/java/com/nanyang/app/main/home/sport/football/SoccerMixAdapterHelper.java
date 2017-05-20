@@ -46,9 +46,7 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<SoccerMixInfo> {
     public void onConvert(MyRecyclerViewHolder helper, int position, final SoccerMixInfo item) {
         super.onConvert(helper, position, item);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
-        View markAdd = helper.getView(R.id.module_right_mark_tv);
 
-        markAdd.setVisibility(View.VISIBLE);
         tvCollection.setVisibility(View.GONE);
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
         scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
@@ -61,7 +59,7 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<SoccerMixInfo> {
         BettingParPromptBean.BetParBean mixItem = handler.getMixItem(itemFullSocOddsId);
         int index = 0;
         if (mixItem == null) {
-            mixItem=handler.getMixItem(itemHfSocOddsId);
+            mixItem = handler.getMixItem(itemHfSocOddsId);
             index = 1;
         }
         if (mixItem != null) {
@@ -71,5 +69,19 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<SoccerMixInfo> {
             handler.parseCommonBackground(1, sl);
         }
 
+    }
+
+    @Override
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, SoccerMixInfo item, int position) {
+        super.onMatchNotRepeat(helper, item, position);
+        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+        tvRightMark.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerMixInfo item, int position) {
+        super.onMatchRepeat(helper, item, position);
+        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+        tvRightMark.setVisibility(View.INVISIBLE);
     }
 }

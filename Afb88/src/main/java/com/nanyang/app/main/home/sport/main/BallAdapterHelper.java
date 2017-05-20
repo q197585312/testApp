@@ -65,7 +65,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         dateTv.setTextSize(10);
         dateTv.setPadding(0, 0, 0, 0);
 
-
         String time = item.getMatchDate();
         if (time.length() > 6) {
             time = time.substring(time.length() - 7, time.length());
@@ -185,6 +184,29 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         } else {
             liveTv.setVisibility(View.VISIBLE);
         }
+        String oldHomeName = "";
+        String oldAwayName = "";
+        String oldHomeGive = "";
+        String oldModuleTitle = "";
+        if (position > 0) {
+            oldHomeName = back.getItem(position - 1).getHome();
+            oldAwayName = back.getItem(position - 1).getAway();
+            oldHomeGive = back.getItem(position - 1).getIsHomeGive();
+            oldModuleTitle = back.getItem(position - 1).getModuleTitle().toString();
+        }
+        if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getIsHomeGive())) {
+            onMatchRepeat(helper, item, position);
+        } else {
+            onMatchNotRepeat(helper, item, position);
+        }
+    }
+
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, I item, int position) {
+
+    }
+
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, I item, int position) {
+
     }
 
 

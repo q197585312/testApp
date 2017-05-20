@@ -5,13 +5,16 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.webkit.WebSettings;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
+import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -70,8 +73,12 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
                 Result.setText(item.getResult());
                 TextView BetType = holder.getView(R.id.tv_BetType);
                 BetType.setText(item.getBetType());
+                if (item.getRefNo().startsWith("PA")) {
+                    BetType.setText(R.string.MixParlay);
+                    BetType.setTextColor(getResources().getColor(R.color.blue));
+                }
                 TextView Status = holder.getView(R.id.tv_status);
-                Status.setText(" "+item.getStatus());
+                Status.setText(" " + item.getStatus());
                 TextView HdpOdds = holder.getView(R.id.tv_HdpOdds);
                 HdpOdds.setText(item.getHdpOdds() + "@");
                 TextView Odds = holder.getView(R.id.tv_Odds);
@@ -90,12 +97,12 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
                 LinearLayout dateLayout = holder.getView(R.id.layout_date);
                 LinearLayout mathLayout = holder.getView(R.id.layout_math);
                 LinearLayout stakeLayout = holder.getView(R.id.layout_stake);
-                if (position==data.size()-1){
+                if (position == data.size() - 1) {
                     holder.getView(R.id.ll_num).setVisibility(View.GONE);
                     dateLayout.setVisibility(View.GONE);
                     mathLayout.setVisibility(View.GONE);
                     stakeLayout.setVisibility(View.GONE);
-                }else {
+                } else {
                     holder.getView(R.id.ll_num).setVisibility(View.VISIBLE);
                     dateLayout.setVisibility(View.VISIBLE);
                     mathLayout.setVisibility(View.VISIBLE);
@@ -107,13 +114,28 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<StatementStakeDetailsListBean>() {
             @Override
             public void onItemClick(View view, StatementStakeDetailsListBean item, int position) {
-
+//                clickItem(view, item);
             }
 
         });
         rc.setAdapter(baseRecyclerAdapter);
     }
 
+    private void clickItem(View v, StatementStakeDetailsListBean item) {
+        if (item.getRefNo().startsWith("PA")) {
+//            http://main55.afb88.com/_norm/PamTrans.aspx?userName=demoafbAi1&id=138661496
+            WebPop pop = new WebPop(mContext, v);
+            WebSettings webSettings = pop.getWebView().getSettings();
+            webSettings.setJavaScriptEnabled(true);
+            webSettings.setAllowContentAccess(true);
+            webSettings.setAppCacheEnabled(false);
+            webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+            //http://main55.afb88.com/_norm/AParTrans_App.aspx?userName=demoafbpk&id=140565085
+//            String url = AppConstant.HOST + "_norm/PamTrans.aspx?userName=" + getApp().getUser().getUserName() + "&id=" + item.getBetType();//
+            pop.setUrl(AppConstant.HOST+item.getParUrl());
+            pop.showPopupCenterWindow();
+        }
+    }
 
     @Override
     public void onFailed(String error) {
