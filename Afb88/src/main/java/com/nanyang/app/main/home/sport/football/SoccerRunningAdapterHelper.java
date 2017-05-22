@@ -100,6 +100,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             ivHall.setVisibility(View.GONE);
         }
 
+
     }
 
     @Override
@@ -107,6 +108,5 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
         super.onMatchRepeat(helper, item, position);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
-
     }
 }

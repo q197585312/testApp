@@ -26,8 +26,11 @@ public class StatementStakeDetailsListBean {
      * ValidAmount : 0.00
      * WinLose : -2.00
      * Com : 0.00
+     *  TransType
+      SocTransId
      */
-
+    private String TransType;
+    private String SocTransId;
     private String ParUrl;
     private String RefNo;
     private String Date;
@@ -48,6 +51,22 @@ public class StatementStakeDetailsListBean {
     private String ValidAmount;
     private String WinLose;
     private String Com;
+
+    public String getTransType() {
+        return TransType;
+    }
+
+    public void setTransType(String transType) {
+        TransType = transType;
+    }
+
+    public String getSocTransId() {
+        return SocTransId;
+    }
+
+    public void setSocTransId(String socTransId) {
+        SocTransId = socTransId;
+    }
 
     public String getParUrl() {
         return ParUrl;

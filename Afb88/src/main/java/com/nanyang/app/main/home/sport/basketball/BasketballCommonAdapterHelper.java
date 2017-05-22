@@ -44,7 +44,7 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
         View tvRightMark = helper.getView(R.id.module_right_mark_tv);
         View vp = helper.getView(R.id.module_center_sl);
         vp.getLayoutParams().width = DeviceUtils.dip2px(context, 210);
-        tvCollection.setVisibility(View.VISIBLE);
+
         tvRightMark.setVisibility(View.GONE);
         helper.getView(R.id.module_match_time_tv).setVisibility(View.INVISIBLE);
         if (((BallItemCallBack) back).isItemCollection(item))

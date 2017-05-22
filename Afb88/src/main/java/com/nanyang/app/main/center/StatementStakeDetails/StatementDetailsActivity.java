@@ -12,7 +12,6 @@ import android.widget.TextView;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -114,7 +113,7 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<StatementStakeDetailsListBean>() {
             @Override
             public void onItemClick(View view, StatementStakeDetailsListBean item, int position) {
-//                clickItem(view, item);
+                clickItem(view, item);
             }
 
         });
@@ -130,9 +129,7 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
             webSettings.setAllowContentAccess(true);
             webSettings.setAppCacheEnabled(false);
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-            //http://main55.afb88.com/_norm/AParTrans_App.aspx?userName=demoafbpk&id=140565085
-//            String url = AppConstant.HOST + "_norm/PamTrans.aspx?userName=" + getApp().getUser().getUserName() + "&id=" + item.getBetType();//
-            pop.setUrl(AppConstant.HOST+item.getParUrl());
+            pop.setUrl(AppConstant.URL_APamTransDetail + "id=" + item.getSocTransId() + "&transType=" + item.getTransType());
             pop.showPopupCenterWindow();
         }
     }

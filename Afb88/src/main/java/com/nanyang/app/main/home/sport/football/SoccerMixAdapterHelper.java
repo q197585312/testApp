@@ -74,14 +74,12 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<SoccerMixInfo> {
     @Override
     protected void onMatchNotRepeat(MyRecyclerViewHolder helper, SoccerMixInfo item, int position) {
         super.onMatchNotRepeat(helper, item, position);
-        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
-        tvRightMark.setVisibility(View.VISIBLE);
+
     }
 
     @Override
     protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerMixInfo item, int position) {
         super.onMatchRepeat(helper, item, position);
-        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
-        tvRightMark.setVisibility(View.INVISIBLE);
+
     }
 }

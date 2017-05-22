@@ -38,9 +38,8 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         ivHall.setVisibility(View.GONE);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         View flCollection = helper.getView(R.id.module_match_collection_fl);
-        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
-        tvCollection.setVisibility(View.VISIBLE);
-        tvRightMark.setVisibility(View.VISIBLE);
+
+
 
         if (((BallItemCallBack) back).isItemCollection(item))
             tvCollection.setBackgroundResource(R.mipmap.star_red_solid);
@@ -73,9 +72,8 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
 
     }
     @Override
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item, int postion) {//
-        View tvCollection = helper.getView(R.id.module_match_collection_tv);
-        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item, int position) {//
+        super.onMatchNotRepeat(helper,item,position);
         TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
         TextView awayRedCardTv = helper.getView(R.id.module_match_away_red_card_tv);
@@ -94,40 +92,34 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
         }
         homeTv.setText(home);
         awayTv.setText(away);
-        tvRightMark.setVisibility(View.VISIBLE);
-        tvCollection.setVisibility(View.VISIBLE);
+
+
         llLeft1.setVisibility(View.VISIBLE);
         llLeft2.setVisibility(View.VISIBLE);
         String rcAway = item.getRCAway();
         String rcHome = item.getRCHome();
         checkRedCards(awayRedCardTv, rcAway);
         checkRedCards(homeRedCardTv, rcHome);
-        repMap.put(postion, false);
+        repMap.put(position, false);
     }
 
     /**
      * //重复上一个
-     *
-     * @param helper
-     * @param item
-     * @param postion
      */
     @Override
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item, int postion) {
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item, int position) {
+        super.onMatchRepeat(helper,item,position);
         TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
         View llLeft1 = helper.getView(R.id.module_match_left1_ll);
         View llLeft2 = helper.getView(R.id.module_match_left2_ll);
-        View tvCollection = helper.getView(R.id.module_match_collection_tv);
-        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
         awayTv.setText("");
         homeTv.setText("");
-        tvRightMark.setVisibility(View.INVISIBLE);
+
         llLeft1.setVisibility(View.INVISIBLE);
         llLeft2.setVisibility(View.INVISIBLE);
-        tvCollection.setVisibility(View.INVISIBLE);
         item.setHasOE("0");
-        repMap.put(postion, true);
+        repMap.put(position, true);
     }
 
     private void checkRedCards(TextView awayRedCardTv, String rcAway) {

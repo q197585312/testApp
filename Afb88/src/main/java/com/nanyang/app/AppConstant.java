@@ -144,6 +144,8 @@ public class AppConstant {
     public static String URL_TRANSFER_MONEY_W88_GAMES = HOST + "_bet/FundLDDTransfer.aspx";
     public static String URL_CHANGE_LANGUAGE = HOST + "Main.aspx?";
 
+    public static String URL_APamTransDetail = HOST + "_norm/APamTransDetail.aspx?";
+
 
     public static final String URL_RUNNING_MATCH_WEB = HOST+"_view/LiveCast.aspx";
     public static String URL_STAEMENT = APP_HOST + "_norm/AccHistory_App.aspx?";
