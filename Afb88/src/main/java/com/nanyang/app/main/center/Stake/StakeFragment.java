@@ -362,6 +362,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
             webSettings.setAllowContentAccess(true);
             webSettings.setAppCacheEnabled(false);
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
+            //http://main55.afb88.com/_norm/PamTrans.aspx?userName=demoafbpk&id=140565088
             String url = AppConstant.HOST + "_norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
             pop.setUrl(url);
             pop.showPopupCenterWindow();

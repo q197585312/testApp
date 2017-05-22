@@ -129,7 +129,9 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
             webSettings.setAllowContentAccess(true);
             webSettings.setAppCacheEnabled(false);
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-            pop.setUrl(AppConstant.URL_APamTransDetail + "id=" + item.getSocTransId() + "&transType=" + item.getTransType());
+            //http://main55.afb88.com/_norm/APamTrans.aspx?userName=demoafbpk&id=140565088
+            String url = AppConstant.HOST + "_norm/PamTrans.aspx?userName=" + getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+            pop.setUrl(url);
             pop.showPopupCenterWindow();
         }
     }

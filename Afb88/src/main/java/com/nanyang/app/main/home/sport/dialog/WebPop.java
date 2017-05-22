@@ -25,16 +25,12 @@ public class WebPop extends BasePopupWindow {
     private WebView webView;
 
     public WebPop(Context context, View v) {
-
-        super(context, v, DeviceUtils.dip2px(context, 360), DeviceUtils.dip2px(context, 370));
-
+        this(context, v, DeviceUtils.dip2px(context, 360), DeviceUtils.dip2px(context, 370));
     }
 
     public WebPop(Context context, View v, int width, int height) {
         super(context, v, width, height);
     }
-
-    private String url;
 
     @Override
     protected int onSetLayoutRes() {
@@ -53,7 +49,6 @@ public class WebPop extends BasePopupWindow {
 
 
     public void setUrl(String url) {
-        this.url = url;
         synCookies(url);
         webView.loadUrl(url);
     }
