@@ -273,4 +273,5 @@
     <string name="O">大</string>
     <string name="AFB_FT_OU">AFB全场大小</string>
     <string name="AFB_FT_HDP">AFB全场亚洲</string>
+    <string name="Status_">状态:</string>
 </resources>

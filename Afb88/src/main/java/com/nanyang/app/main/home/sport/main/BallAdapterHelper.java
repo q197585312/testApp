@@ -6,6 +6,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
@@ -48,7 +49,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
-
+        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
+        ivHall.setVisibility(View.GONE);
         helper.getView(R.id.iv_hall_btn).setVisibility(View.GONE);
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         View headV = helper.getView(R.id.module_match_head_v);

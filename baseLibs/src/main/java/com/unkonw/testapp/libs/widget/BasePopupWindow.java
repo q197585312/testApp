@@ -80,6 +80,7 @@ public abstract class BasePopupWindow {
         //在PopupWindow里面就加上下面代码，让键盘弹出时，不会挡住pop窗口。
         popWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
         popWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
+
         //点击空白处时，隐藏掉pop窗口
         popWindow.setFocusable(true);
         popWindow.setOutsideTouchable(true);

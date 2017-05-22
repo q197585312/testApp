@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.main;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -76,34 +75,65 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
 
     @Override
-    public void onWebShow(int nextNotRepeat, SoccerCommonInfo item, View view) {
+    public void onWebShow(int nextNotRepeat, int position, SoccerCommonInfo item, View view) {
         View v = rvContent.getChildAt(nextNotRepeat);
         if (v == null) {
             v = view;
         }
-        WebPop pop = new WebPop(mContext, v);
-        pop.getWebView().setWebViewClient(new DigWebViewClient());
-        pop.setTrans(1);
-        String lag = AfbUtils.getLanguage(mContext);
-        String l = "eng";
-        if (lag.equals("zh")) {
-            l = "eng";
-        } else {
-            l = "EN-US";
-        }
 
-        String gameUrl = AppConstant.URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
-        pop.setUrl(gameUrl);
         showLoadingDialog();
         int heightPixels = DeviceUtils.getScreenPix(mContext).heightPixels;
         int[] location = new int[2];
 
         v.getLocationOnScreen(location);
-        onPopupWindowCreated(pop, -2);
-       /* if (location[1] < heightPixels / 2) {
+        WebPop pop ;
+        if (location[1] < heightPixels / 2) {
+            int popWidth = DeviceUtils.dip2px(mContext, 350);
+            int popHeight = heightPixels-location[1]-v.getHeight();
+            pop = new WebPop(mContext, v,popWidth,popHeight);
+            pop.getWebView().setWebViewClient(new DigWebViewClient());
+            pop.setTrans(1);
+            String lag = AfbUtils.getLanguage(mContext);
+            String l = "eng";
+            if (lag.equals("zh")) {
+                l = "eng";
+            } else {
+                l = "EN-US";
+            }
+
+            String gameUrl = AppConstant.URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+            pop.setUrl(gameUrl);
+           int x= (location[0] + v.getWidth() / 2) - popWidth / 2;
+           int y= location[1] + v.getHeight();
+            pop.showPopupAtLocation(x,y);
+
         } else {
-            showUp(v, pop, location,DeviceUtils.dip2px(mContext,355), DeviceUtils.dip2px(mContext ,370));
-        }*/
+            v = rvContent.getChildAt(position);
+            if (v == null) {
+                v = view;
+            }
+            v.getLocationOnScreen(location);
+            int popWidth = DeviceUtils.dip2px(mContext, 350);
+            int popHeight =location[1];
+            pop = new WebPop(mContext, v,popWidth,popHeight);
+            pop.getWebView().setWebViewClient(new DigWebViewClient());
+            pop.setTrans(1);
+            String lag = AfbUtils.getLanguage(mContext);
+            String l = "eng";
+            if (lag.equals("zh")) {
+                l = "eng";
+            } else {
+                l = "EN-US";
+            }
+
+            String gameUrl = AppConstant.URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+            pop.setUrl(gameUrl);
+            int x= (location[0] + v.getWidth() / 2) - popWidth / 2;
+            int y= 0;
+            pop.showPopupAtLocation(x,y);
+        }
+
+
     }
 
     private class DigWebViewClient extends WebViewClient {
@@ -122,11 +152,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     }
 
-    public void showUp(View v, WebPop pop, int[] location, int popupWidth, int popupHeight) {
 
-        //在控件上方显示
-        pop.showAtLocation(Gravity.NO_GRAVITY, (location[0] + v.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight);
-    }
 
     @Override
     public void initData() {

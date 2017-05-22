@@ -73,7 +73,7 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
                 TextView BetType = holder.getView(R.id.tv_BetType);
                 BetType.setText(item.getBetType());
                 if (item.getRefNo().startsWith("PA")) {
-                    BetType.setText(R.string.MixParlay);
+                    BetType.setText(R.string.PARLAY);
                     BetType.setTextColor(getResources().getColor(R.color.blue));
                 }
                 TextView Status = holder.getView(R.id.tv_status);

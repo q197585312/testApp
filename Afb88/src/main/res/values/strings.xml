@@ -273,4 +273,5 @@
     <string name="O">O</string>
     <string name="AFB_FT_HDP">AFB FT.HDP</string>
     <string name="AFB_FT_OU">AFB FT.O/U</string>
+    <string name="Status_">Status:</string>
 </resources>

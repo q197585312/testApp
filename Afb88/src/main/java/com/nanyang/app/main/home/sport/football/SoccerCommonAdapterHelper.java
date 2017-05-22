@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.football;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
@@ -34,8 +33,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final SoccerCommonInfo item) {
         super.onConvert(helper, position, item);
-        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
-        ivHall.setVisibility(View.GONE);
+
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         View flCollection = helper.getView(R.id.module_match_collection_fl);
 
