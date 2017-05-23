@@ -20,11 +20,6 @@ import static android.content.ContentValues.TAG;
  */
 
 public class StakePresenter extends BaseRetrofitPresenter<String, StakeContact.View> implements StakeContact.Presenter {
-    /**
-     * 使用CompositeSubscription来持有所有的Subscriptions
-     *
-     * @param view
-     */
     public StakePresenter(StakeContact.View view) {
         super(view);
     }

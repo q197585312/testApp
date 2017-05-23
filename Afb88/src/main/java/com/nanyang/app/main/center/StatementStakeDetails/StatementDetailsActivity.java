@@ -40,7 +40,7 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
     }
 
     private void getData() {
-        dataUrl = AppConstant.APP_HOST + "_norm/";
+        dataUrl = AppConstant.HOST + "_norm/";
         String urlEnd = getMsgIntent("stake_details");
         presenter.getStatementStakeDetailsData(dataUrl + urlEnd);
     }

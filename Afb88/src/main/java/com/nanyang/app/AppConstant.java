@@ -13,6 +13,7 @@ public class AppConstant {
 
 
     public static final String APP_HOST = "http://main55.afb88.com/";
+    public static final String REAL_HOST = "http://www.afbasia88.com/";
 
     public static String KEY_STRING = "KEY_STRING";
     public static String KEY_DATA = "KEY_DATA";
@@ -38,10 +39,11 @@ public class AppConstant {
     //http://a8197c.a36588.com/Main.aspx?accType=EU
 
 //    public static String HOST="http://www.doo88.net/";
-    public static String HOST = APP_HOST;
+    public static String HOST = REAL_HOST;
 
     public static String URL_LOGIN = HOST + "Default1.aspx";
     public static String URL_MAIN = HOST + "main.aspx";
+
 
     public static String URL_UPDATE_BALANCE = HOST + "_bet/PanelStakeBalance_App.aspx";
     public static String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
@@ -148,9 +150,9 @@ public class AppConstant {
 
 
     public static final String URL_RUNNING_MATCH_WEB = HOST+"_view/LiveCast.aspx";
-    public static String URL_STAEMENT = APP_HOST + "_norm/AccHistory_App.aspx?";
-    public static String URL_STAKE = "_bet/PanelStake_App.aspx";
-    public static String URL_STATEMENT_CONFIRM_BLANCE = APP_HOST + "_norm/AccHistory.aspx?role=mb&userName=";
+    public static String URL_STAEMENT = HOST + "_norm/AccHistory_App.aspx?";
+    public static String URL_STAKE =HOST + "_bet/PanelStake_App.aspx";
+    public static String URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccHistory.aspx?role=mb&userName=";
 
 
     public static String URL_PANEL =HOST+"_bet/panel.aspx";
