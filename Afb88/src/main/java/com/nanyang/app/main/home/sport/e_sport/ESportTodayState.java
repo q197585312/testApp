@@ -17,7 +17,7 @@ public class ESportTodayState extends ESportState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_E_SPORT_TODAY;
+        return AppConstant.getInstance().URL_E_SPORT_TODAY;
     }
 
     @Override

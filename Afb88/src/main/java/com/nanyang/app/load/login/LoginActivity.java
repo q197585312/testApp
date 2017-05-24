@@ -85,7 +85,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     private void initLanguage() {
         String language = AfbUtils.getLanguage(this);
-        if (language!=null&&!TextUtils.isEmpty(language)) {
+        if (language != null && !TextUtils.isEmpty(language)) {
             if (language.equals("zh")) {
                 loginChinaRb.setChecked(true);
                 loginEnglishRb.setChecked(false);
@@ -118,7 +118,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     @Override
     public void onFailed(String error) {
-        ToastUtils.showShort(error);
+        if (error != null && error.equals(getString(R.string.System_maintenance))) {
+            ToastUtils.showMyToast(error);
+        } else {
+            ToastUtils.showShort(error);
+        }
     }
 
     @Override

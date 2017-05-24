@@ -21,7 +21,7 @@ public class TennisEarlyState extends TennisState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_TENNIS_EARLY;
+        return AppConstant.getInstance().URL_TENNIS_EARLY;
     }
 
     @Override

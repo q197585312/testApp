@@ -27,7 +27,7 @@ public class BasketballTodayMixState extends BasketballMixState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_BASKETBALL_TODAY_Mix;
+        return AppConstant.getInstance().URL_BASKETBALL_TODAY_Mix;
     }
 
     @Override

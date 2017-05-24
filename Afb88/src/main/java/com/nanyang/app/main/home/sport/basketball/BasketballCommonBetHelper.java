@@ -44,7 +44,7 @@ public class BasketballCommonBetHelper extends BallBetHelper<BasketballCommonInf
     //g=9&b=home&oId=12159020&odds=9.2
     protected String getOddsUrl(BasketballCommonInfo item, String type, boolean isHf, String odds) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("g=9");
         stringBuilder.append("&b=" + type);
         stringBuilder.append("&oId=" + item.getSocOddsId());

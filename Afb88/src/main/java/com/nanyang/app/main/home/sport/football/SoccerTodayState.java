@@ -25,11 +25,11 @@ public class SoccerTodayState extends SoccerCommonState {
 
     @Override
     protected String getAllOddsUrl() {
-        return AppConstant.HOST+"_view/OddsPageSetting.aspx?ot=t&ov=0&wd=&tf=-1&isPageSingDouble=RMOdds1&m=save";
+        return AppConstant.getInstance().HOST+"_view/OddsPageSetting.aspx?ot=t&ov=0&wd=&tf=-1&isPageSingDouble=RMOdds1&m=save";
     }
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_TODAY+param.getType();
+        return AppConstant.getInstance().URL_FOOTBALL_TODAY+param.getType();
     }
 
     @Override

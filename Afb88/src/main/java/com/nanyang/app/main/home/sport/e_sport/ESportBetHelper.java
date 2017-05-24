@@ -19,7 +19,7 @@ public class ESportBetHelper extends TennisBetHelper{
     @Override
     protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds,String params) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("g=106");
         stringBuilder.append("&b=" + type);
         stringBuilder.append("&oId=" + item.getSocOddsId());

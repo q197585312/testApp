@@ -256,7 +256,7 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
     }
     @Override
     public boolean mix() {
-        Disposable subscription =getService(ApiService.class).getData(AppConstant.URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
+        Disposable subscription =getService(ApiService.class).getData(AppConstant.getInstance().URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
 //                    mApiWrapper.goMain()
                 .subscribe(new Consumer<String>() {//onNext

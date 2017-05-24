@@ -18,7 +18,7 @@ public class FinancialRunningState extends FinancialState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FINANCIAL_RUNNING;
+        return AppConstant.getInstance().URL_FINANCIAL_RUNNING;
     }
 
     @Override

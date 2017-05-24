@@ -56,7 +56,7 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
     //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=tg&sc=70&oId=12286343&odds=11
     protected String getOddsUrl(SoccerCommonInfo item, String oid, String oid_fh, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("gt=s");
         stringBuilder.append("&b=" + type);
         stringBuilder.append(params);

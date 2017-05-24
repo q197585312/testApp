@@ -28,7 +28,7 @@ public class SoccerEarlyMixState extends SoccerMixState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_EARLY_Mix;
+        return AppConstant.getInstance().URL_FOOTBALL_EARLY_Mix;
     }
 
     @Override

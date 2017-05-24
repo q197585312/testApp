@@ -21,7 +21,7 @@ public class FinancialEarlyState extends FinancialState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FINANCIAL_EARLY;
+        return AppConstant.getInstance().URL_FINANCIAL_EARLY;
     }
 
     @Override

@@ -17,7 +17,7 @@ public class MuayThaiTodayState extends MuayThaiState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_MUAY_THAI_TODAY;
+        return AppConstant.getInstance().URL_MUAY_THAI_TODAY;
     }
 
     @Override

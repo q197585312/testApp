@@ -10,7 +10,6 @@ import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
-import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -96,7 +95,7 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
 
-                if (getValue1(item) != null && (!getValue1(item).equals(""))) {
+                if (getValue1(item) != null && (!getValue1(item).equals(""))&&Float.valueOf(getValue1(item))!=0f) {
                     if (position > 2 && position < 6) {
                         betHelper.clickOdds(itemData, item.getB().toString(), getValue1(item), (TextView) v, false, "&sc=" + item.getSc() + childParam);
                     } else if(position<8) {
@@ -113,7 +112,7 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
         helper.setClickLisenter(R.id.vs_row_content_tv32, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (getValue2(item) != null && (!getValue2(item).equals(""))) {
+                if (getValue2(item) != null && (!getValue2(item).equals(""))&&Float.valueOf(getValue2(item))!=0f) {
                     if (position > 2 && position < 6) {
                         betHelper.clickOdds(itemData, item.getB().toString(), getValue2(item), (TextView) v, true, "&sc=" + item.getSc() + childParam);
                     }  else if(position<8)  {

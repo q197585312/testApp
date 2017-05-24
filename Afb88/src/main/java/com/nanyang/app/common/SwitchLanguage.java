@@ -29,7 +29,7 @@ public class SwitchLanguage implements ILanguageSwitch {
     @Override
     public void switchLanguage(String lang) {
 //     http://main55.afb88.com/Main.aspx?lang=EN-US
-        Disposable d = Api.getService(ApiService.class).switchLanguage(AppConstant.URL_CHANGE_LANGUAGE, lang).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        Disposable d = Api.getService(ApiService.class).switchLanguage(AppConstant.getInstance().URL_CHANGE_LANGUAGE, lang).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {

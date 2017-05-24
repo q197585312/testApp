@@ -77,7 +77,7 @@ public class MyanmarBetHelper extends BallBetHelper<MyanmarInfo, BetView> {
 //    http://main55.afb88.com/_Bet/JRecPanel.aspx?&b=dc&oId=12327799&odds=1.13
     protected String getOddsUrl(MyanmarInfo item, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("gt=s");
         stringBuilder.append("&b=" + type);
         stringBuilder.append(params);

@@ -91,7 +91,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     Runnable dataUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            Disposable subscribe = getService(ApiService.class).getData(AppConstant.URL_UPDATE_STATE)
+            Disposable subscribe = getService(ApiService.class).getData(AppConstant.getInstance().URL_UPDATE_STATE)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .takeWhile(new Predicate<String>() {
@@ -166,7 +166,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     public void updateBalance() {
 
-        Disposable updateBalanceSubscribe = getService(ApiService.class).getData(AppConstant.URL_UPDATE_BALANCE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
+        Disposable updateBalanceSubscribe = getService(ApiService.class).getData(AppConstant.getInstance().URL_UPDATE_BALANCE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {//onNext
                                @Override
                                public void accept(String allData) throws Exception {

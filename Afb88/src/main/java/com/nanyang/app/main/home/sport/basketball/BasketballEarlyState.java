@@ -25,7 +25,7 @@ public class BasketballEarlyState extends BasketballCommonState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_BASKETBALL_EARLY;
+        return AppConstant.getInstance().URL_BASKETBALL_EARLY;
     }
 
     @Override

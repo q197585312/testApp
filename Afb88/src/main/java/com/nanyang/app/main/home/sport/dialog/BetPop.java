@@ -108,7 +108,7 @@ public class BetPop extends BasePopupWindow {
                     return;
                 }
                 //http://a8197c.a36588.com/_bet/PanelBet.aspx?betGrp=1&betType=under&oId=12042173&ou=3&isBetHome=False&isFH=False&accType=HK&odds=6.9&reducePercent=1&amt=11&isBetterOdds=true
-                presenter.bet(AppConstant.HOST + "_bet/" + bean.getBetUrl() + "&amt=" + s);
+                presenter.bet(AppConstant.getInstance().HOST+ "_bet/" + bean.getBetUrl() + "&amt=" + s);
                 presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
                     @Override
                     public void callBack(String odds) {

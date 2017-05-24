@@ -28,7 +28,7 @@ public class BasketballEarlyMixState extends BasketballMixState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_BASKETBALL_EARLY_Mix;
+        return AppConstant.getInstance().URL_BASKETBALL_EARLY_Mix;
     }
 
     @Override

@@ -33,7 +33,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
 
     @Override
     public void getTransferMoneyData() {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getTransferMoneyData(AppConstant.URL_TRANSFER_MONEY_DATA))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getTransferMoneyData(AppConstant.getInstance().URL_TRANSFER_MONEY_DATA))
                 .subscribe(new Consumer<TransferMoneyBean>() {
                     @Override
                     public void accept(TransferMoneyBean transferMoneyBean) throws Exception {
@@ -64,7 +64,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
 
     @Override
     public void gamesECashOutMonet(String money) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesECashOutMoney(AppConstant.URL_CASHOUT_MONEY_E_GAMES, money))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesECashOutMoney(AppConstant.getInstance().URL_CASHOUT_MONEY_E_GAMES, money))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
@@ -94,7 +94,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
 
     @Override
     public void gamesETransferMonet(String egLimit) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesETransferMoney(AppConstant.URL_TRANSFER_MONEY_E_GAMES, egLimit))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesETransferMoney(AppConstant.getInstance().URL_TRANSFER_MONEY_E_GAMES, egLimit))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
@@ -126,7 +126,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
 
     @Override
     public void gamesGDCashOutMonet(String money) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesGDCashOutMoney(AppConstant.URL_CASHOUT_MONEY_GD_GAMES, money))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesGDCashOutMoney(AppConstant.getInstance().URL_CASHOUT_MONEY_GD_GAMES, money))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
@@ -156,7 +156,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
 
     @Override
     public void gamesGDTransferMonet(String egLimit) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesGDTransferMoney(AppConstant.URL_TRANSFER_MONEY_GD_GAMES, egLimit))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesGDTransferMoney(AppConstant.getInstance().URL_TRANSFER_MONEY_GD_GAMES, egLimit))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
@@ -188,7 +188,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
 
     @Override
     public void games855CashOutMonet(String money) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).games855CashOutMoney(AppConstant.URL_CASHOUT_MONEY_855_GAMES, money))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).games855CashOutMoney(AppConstant.getInstance().URL_CASHOUT_MONEY_855_GAMES, money))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
@@ -218,7 +218,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
 
     @Override
     public void games855TransferMonet(String egLimit) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).games855TransferMoney(AppConstant.URL_TRANSFER_MONEY_855_GAMES, egLimit))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).games855TransferMoney(AppConstant.getInstance().URL_TRANSFER_MONEY_855_GAMES, egLimit))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
@@ -250,7 +250,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
 
     @Override
     public void gamesW88CashOutMonet(String money) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesW88CashOutMoney(AppConstant.URL_CASHOUT_MONEY_W88_GAMES, money))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesW88CashOutMoney(AppConstant.getInstance().URL_CASHOUT_MONEY_W88_GAMES, money))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
@@ -280,7 +280,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
 
     @Override
     public void gamesW88TransferMonet(String egLimit) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesW88TransferMoney(AppConstant.URL_TRANSFER_MONEY_W88_GAMES, egLimit))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesW88TransferMoney(AppConstant.getInstance().URL_TRANSFER_MONEY_W88_GAMES, egLimit))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {

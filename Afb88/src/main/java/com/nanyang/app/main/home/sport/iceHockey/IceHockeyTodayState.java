@@ -17,7 +17,7 @@ public class IceHockeyTodayState extends IceHockeyState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_BASEBALL_TODAY;
+        return AppConstant.getInstance().URL_BASEBALL_TODAY;
     }
 
     @Override

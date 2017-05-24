@@ -45,7 +45,7 @@ public class OutRightBetHelper extends BallBetHelper<SportInfo, BetView> {
 //http://main55.afb88.com/_bet/JRecPanel.aspx?g=50&b=1&oId=11955861&odds=5
     protected String getOddsUrl(SportInfo item, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("&g=50");
         stringBuilder.append("&b=" + type);
         stringBuilder.append(params);

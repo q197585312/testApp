@@ -42,12 +42,12 @@ public class SoccerEarlyState extends SoccerCommonState {
     }
     @Override
     protected String getAllOddsUrl() {
-        return AppConstant.HOST+"_view/OddsPageSetting.aspx?ot=e&ov=0&wd="+selectedDateInfo.getType()+"&tf=-1&isPageSingDouble=RMOdds1&m=save";
+        return AppConstant.getInstance().HOST+"_view/OddsPageSetting.aspx?ot=e&ov=0&wd="+selectedDateInfo.getType()+"&tf=-1&isPageSingDouble=RMOdds1&m=save";
     }
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_EARLY+"&"+selectedDateInfo.getRes()+"&wd="+selectedDateInfo.getType()+param.getType();
+        return AppConstant.getInstance().URL_FOOTBALL_EARLY+"&"+selectedDateInfo.getRes()+"&wd="+selectedDateInfo.getType()+param.getType();
     }
 
     @Override

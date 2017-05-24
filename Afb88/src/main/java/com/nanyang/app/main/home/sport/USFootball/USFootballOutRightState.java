@@ -30,7 +30,7 @@ public class USFootballOutRightState extends OutRightState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_US_FOOTBALL_OUTRIGHT+"&ot=e";
+        return AppConstant.getInstance().URL_US_FOOTBALL_OUTRIGHT+"&ot=e";
     }
 
     @Override

@@ -29,7 +29,7 @@ public class ESportOutRightState extends OutRightState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_E_SPORT_OUTRIGHT+"&ot=e";
+        return AppConstant.getInstance().URL_E_SPORT_OUTRIGHT+"&ot=e";
     }
 
     @Override

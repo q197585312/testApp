@@ -21,7 +21,7 @@ public class MuayThaiEarlyState extends MuayThaiState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_MUAY_THAI_EARLY;
+        return AppConstant.getInstance().URL_MUAY_THAI_EARLY;
     }
 
     @Override

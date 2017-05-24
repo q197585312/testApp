@@ -7,21 +7,17 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.webkit.WebSettings;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.StatemenStake.StatementStakeActivity;
-import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.center.model.StatementListBean;
 import com.nanyang.app.main.center.model.StatementSureBlanceBean;
 import com.nanyang.app.main.center.model.StatementTransferBean;
-import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -194,7 +190,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         switch (v.getId()) {
             case R.id.tv_blance_sure:
                 if (tv_blanceSure.getText().toString().equals(getString(R.string.confirm_balance))) {
-                    presenter.confirmBlance(blanceBean.getMap(), AppConstant.URL_STATEMENT_CONFIRM_BLANCE + userName);
+                    presenter.confirmBlance(blanceBean.getMap(), AppConstant.getInstance().URL_STATEMENT_CONFIRM_BLANCE + userName);
                 } else {
                     ToastUtils.showShort(getString(R.string.already_determine_the_balance));
                 }

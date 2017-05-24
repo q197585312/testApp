@@ -1180,7 +1180,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     @Override
     public void switchOddsType(String oddsType) {
-        Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_ODDS_TYPE + oddsType).subscribeOn(Schedulers.io())
+        Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType).subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
@@ -1216,7 +1216,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     @Override
     public void clearMix() {
         if (isMix()) {
-            Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
+            Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().URL_SOCCER_REMOVE_MIX).subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
 //                    mApiWrapper.goMain()
                     .subscribe(new Consumer<String>() {//onNext

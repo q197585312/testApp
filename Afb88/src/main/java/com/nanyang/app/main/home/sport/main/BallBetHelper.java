@@ -123,7 +123,7 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
     }
 
     private void updateFirstStake() {
-        Disposable d = Api.getService(ApiService.class).getStakeData(AppConstant.URL_STAKE).subscribeOn(Schedulers.io()).observeOn(Schedulers.computation())
+        Disposable d = Api.getService(ApiService.class).getStakeData(AppConstant.getInstance().URL_STAKE).subscribeOn(Schedulers.io()).observeOn(Schedulers.computation())
                 .map(new Function<String, StakeListBean.DicAllBean>() {
 
                     @Override

@@ -26,12 +26,12 @@ public class SoccerRunningState extends SoccerCommonState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_FOOTBALL_RUNNING + param.getType();
+        return AppConstant.getInstance().URL_FOOTBALL_RUNNING + param.getType();
     }
 
     @Override
     protected String getAllOddsUrl() {
-        return AppConstant.HOST + "_view/OddsPageSetting.aspx?ot=r&ov=0&wd=&tf=-1&isPageSingDouble=RMOdds1&m=save";
+        return AppConstant.getInstance().HOST+ "_view/OddsPageSetting.aspx?ot=r&ov=0&wd=&tf=-1&isPageSingDouble=RMOdds1&m=save";
     }
 
     @Override

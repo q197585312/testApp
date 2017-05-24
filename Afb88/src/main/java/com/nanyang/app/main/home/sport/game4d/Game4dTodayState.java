@@ -17,7 +17,7 @@ public class Game4dTodayState extends Game4dState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_4D_SPECIAL_TODAY;
+        return AppConstant.getInstance().URL_4D_SPECIAL_TODAY;
     }
 
     @Override

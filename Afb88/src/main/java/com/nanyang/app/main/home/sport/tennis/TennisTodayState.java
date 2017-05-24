@@ -17,7 +17,7 @@ public class TennisTodayState extends TennisState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_TENNIS_TODAY;
+        return AppConstant.getInstance().URL_TENNIS_TODAY;
     }
 
     @Override

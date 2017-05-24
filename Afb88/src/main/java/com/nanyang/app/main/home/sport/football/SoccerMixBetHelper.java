@@ -70,7 +70,7 @@ public class SoccerMixBetHelper extends BallBetHelper<SoccerMixInfo, BetView> {
     //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?g=2&b=home_par&oId=12152396&odds=19.9
     protected String getOddsUrl(SoccerMixInfo item, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("g=2");
         if (!type.endsWith("_par"))
             stringBuilder.append("&b=" + type + "_par");

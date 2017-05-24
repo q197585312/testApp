@@ -61,7 +61,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
     public void login(final LoginInfo info) {
         if (checkUserAvailable(info)) {
 
-            Disposable subscription = getService(ApiService.class).getData(AppConstant.URL_LOGIN)
+            Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN)
                     .flatMap(new Function<String, Flowable<String>>() {
                         @Override
                         public Flowable<String> apply(String s) throws Exception {
@@ -72,7 +72,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                             info.set__VIEWSTATE(__VIEWSTATE);
                             info.set__EVENTVALIDATION(__EVENTVALIDATION);
 
-                            return getService(ApiService.class).doLogin(AppConstant.URL_LOGIN, info.getMap());
+                            return getService(ApiService.class).doLogin(AppConstant.getInstance().URL_LOGIN, info.getMap());
 
                         }
                     })
@@ -86,12 +86,12 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 
                                 String url = m.group(1);
                                 if (url.contains("Maintenance")) {
-                                    Exception exception = new Exception("Afb88 Is Maintenance");
+                                    Exception exception = new Exception(((Activity)baseView).getString(R.string.System_maintenance));
                                     throw exception;
                                 } else {
 //                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
                                     String host = url.substring(0, url.indexOf("/", 9));
-                                    AppConstant.HOST = host + "/";
+                                    AppConstant.getInstance().setHost(host + "/");
                                     Log.d("OKHttp", url);
                                     return getService(ApiService.class).getData(url);
                                 }
@@ -106,7 +106,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                         @Override
                         public Flowable<String> apply(String str) throws Exception {
                             if (str.contains("window.open(")) {
-                                return getService(ApiService.class).getData(AppConstant.URL_PANEL);
+                                return getService(ApiService.class).getData(AppConstant.getInstance().URL_PANEL);
                             }
                             Exception exception1 = new Exception("Login Failed");
                             throw exception1;

@@ -17,7 +17,7 @@ public class BaseballTodayState extends BaseballState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_BASEBALL_TODAY;
+        return AppConstant.getInstance().URL_BASEBALL_TODAY;
     }
 
     @Override

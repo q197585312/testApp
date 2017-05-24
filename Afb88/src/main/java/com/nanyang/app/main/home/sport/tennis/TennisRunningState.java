@@ -21,7 +21,7 @@ public class TennisRunningState extends TennisState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_TENNIS_RUNNING;
+        return AppConstant.getInstance().URL_TENNIS_RUNNING;
     }
 
     @Override

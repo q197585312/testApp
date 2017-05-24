@@ -111,7 +111,7 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
     //http://a8206d.a36588.com/_bet/JRecPanel.aspx?g=10&b=odd_par&oId=12510520&odds=9.4
     protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("g=10");
         stringBuilder.append("&b=" + type + "_par");
         stringBuilder.append("&oId=");

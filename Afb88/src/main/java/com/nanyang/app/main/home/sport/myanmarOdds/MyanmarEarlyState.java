@@ -24,7 +24,7 @@ public class MyanmarEarlyState extends MyanmarState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_SOCCER_MYANMAR_EARLY+"&wd="+ TimeUtils.dateFormat(new Date(),"yyyy-MM-dd");
+        return AppConstant.getInstance().URL_SOCCER_MYANMAR_EARLY+"&wd="+ TimeUtils.dateFormat(new Date(),"yyyy-MM-dd");
     }
 
     @Override

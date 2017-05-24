@@ -39,7 +39,7 @@ public class StatementStakeActivity extends BaseToolbarActivity<StatementStakePr
     }
 
     private void getData() {
-        dataUrl = AppConstant.HOST + "_norm/";
+        dataUrl = AppConstant.getInstance().HOST+ "_norm/";
         String urlEnd = getMsgIntent("stake");
         presenter.getThisBet(dataUrl + urlEnd);
     }

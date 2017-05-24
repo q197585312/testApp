@@ -18,7 +18,7 @@ public class USFootballRunningState extends USFootballState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_US_FOOTBALL_RUNNING;
+        return AppConstant.getInstance().URL_US_FOOTBALL_RUNNING;
     }
 
     @Override

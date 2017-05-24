@@ -21,7 +21,7 @@ public class Game4dEarlyState extends Game4dState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_4D_SPECIAL_EARLY;
+        return AppConstant.getInstance().URL_4D_SPECIAL_EARLY;
     }
 
     @Override

@@ -22,7 +22,7 @@ public class ESportRunningState extends ESportState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_E_SPORT_RUNNING;
+        return AppConstant.getInstance().URL_E_SPORT_RUNNING;
     }
 
     @Override

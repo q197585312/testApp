@@ -449,6 +449,8 @@ public class ScaleBean implements Serializable{
         }
 
         public String getFT_OU() {
+            if(FT_OU.equals("0"))
+                FT_OU="";
             return FT_OU;
         }
 
@@ -457,6 +459,8 @@ public class ScaleBean implements Serializable{
         }
 
         public String getFT_O() {
+            if(FT_OU.equals("")||FT_OU.equals("0"))
+                FT_O="";
             return FT_O;
         }
 
@@ -465,6 +469,8 @@ public class ScaleBean implements Serializable{
         }
 
         public String getFT_U() {
+            if(FT_OU.equals("")||FT_OU.equals("0"))
+                FT_U="";
             return FT_U;
         }
 
@@ -473,6 +479,8 @@ public class ScaleBean implements Serializable{
         }
 
         public String getFH_OU() {
+            if(FH_OU.equals("0"))
+                FH_OU="";
             return FH_OU;
         }
 
@@ -481,6 +489,8 @@ public class ScaleBean implements Serializable{
         }
 
         public String getFH_O() {
+            if(FH_OU.equals("")||FH_OU.equals("0"))
+                FH_O="";
             return FH_O;
         }
 
@@ -489,6 +499,8 @@ public class ScaleBean implements Serializable{
         }
 
         public String getFH_U() {
+            if(FH_OU.equals("")||FH_OU.equals("0"))
+                FH_U="";
             return FH_U;
         }
 

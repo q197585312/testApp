@@ -33,7 +33,7 @@ public class EuropeBetHelper extends BallBetHelper<EuropeInfo, BetView> {
 
     protected String getOddsUrl(EuropeInfo item, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.URL_ODDS);
+        stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("g=21");
         stringBuilder.append("&b=" + type);
         stringBuilder.append("&oId=" + item.getSocOddsId());

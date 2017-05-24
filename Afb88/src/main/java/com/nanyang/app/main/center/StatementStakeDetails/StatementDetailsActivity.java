@@ -40,7 +40,7 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
     }
 
     private void getData() {
-        dataUrl = AppConstant.HOST + "_norm/";
+        dataUrl = AppConstant.getInstance().HOST+ "_norm/";
         String urlEnd = getMsgIntent("stake_details");
         presenter.getStatementStakeDetailsData(dataUrl + urlEnd);
     }
@@ -130,7 +130,7 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
             webSettings.setAppCacheEnabled(false);
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
             //http://main55.afb88.com/_norm/APamTrans.aspx?userName=demoafbpk&id=140565088
-            String url = AppConstant.HOST + "_norm/PamTrans.aspx?userName=" + getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+            String url = AppConstant.getInstance().HOST+ "_norm/PamTrans.aspx?userName=" + getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
             pop.setUrl(url);
             pop.showPopupCenterWindow();
         }

@@ -21,7 +21,7 @@ public class ESportEarlyState extends ESportState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_E_SPORT_EARLY;
+        return AppConstant.getInstance().URL_E_SPORT_EARLY;
     }
 
     @Override

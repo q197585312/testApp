@@ -101,7 +101,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 l = "EN-US";
             }
 
-            String gameUrl = AppConstant.URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+            String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
             pop.setUrl(gameUrl);
            int x= (location[0] + v.getWidth() / 2) - popWidth / 2;
            int y= location[1] + v.getHeight();
@@ -126,7 +126,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 l = "EN-US";
             }
 
-            String gameUrl = AppConstant.URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+            String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
             pop.setUrl(gameUrl);
             int x= (location[0] + v.getWidth() / 2) - popWidth / 2;
             int y= 0;

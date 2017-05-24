@@ -5,6 +5,8 @@ import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.e_sport.ESportRunningState;
+import com.nanyang.app.main.home.sport.e_sport.ESportTodayState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
@@ -40,7 +42,18 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
 
     @Override
     protected void onTypeClick(MenuItemInfo item) {
+        switch (item.getType()) {
+            case "Early":
+                getBaseView().switchState(this);
+                break;
+            case "Today":
+                getBaseView().switchState(new ESportTodayState(getBaseView()));
+                break;
+            case "Running":
+                getBaseView().switchState(new ESportRunningState(getBaseView()));
+                break;
 
+        }
     }
     @Override
     protected List<MenuItemInfo> getTypes() {
@@ -188,7 +201,7 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
 
     @Override
     protected int getIndexPreSocOddsId() {
-        return 6;
+        return 1;
     }
 
 
@@ -220,6 +233,8 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
             }
         };
     }
-
+    public String getParentText(){
+       return getBaseView().getContextActivity().getString(R.string.Europe_View);
+    }
 
 }

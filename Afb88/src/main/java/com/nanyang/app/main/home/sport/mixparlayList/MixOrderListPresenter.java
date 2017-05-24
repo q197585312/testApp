@@ -111,7 +111,7 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
     }
 
     public void removeAll() {
-        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).getData(AppConstant.URL_SOCCER_REMOVE_MIX))
+        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).getData(AppConstant.getInstance().URL_SOCCER_REMOVE_MIX))
 //                    mApiWrapper.goMain()
                 .subscribe(new Consumer<String>() {//onNext
                     @Override

@@ -26,7 +26,7 @@ public class StakePresenter extends BaseRetrofitPresenter<String, StakeContact.V
 
     @Override
     public void getStakeListData() {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getStakeData(AppConstant.URL_STAKE))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getStakeData(AppConstant.getInstance().URL_STAKE))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String stakeListBeen) throws Exception {

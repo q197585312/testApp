@@ -18,7 +18,7 @@ public class EuropeRunningState extends EuropeState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_TENNIS_RUNNING;
+        return AppConstant.getInstance().URL_EUROPE_RUNING;
     }
 
     @Override
@@ -39,7 +39,7 @@ public class EuropeRunningState extends EuropeState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getBaseView().getContextActivity().getString(R.string.Tennis));
+        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getParentText());
     }
 
 

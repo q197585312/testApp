@@ -18,7 +18,7 @@ public class Game4dRunningState extends Game4dState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_4D_SPECIAL_RUNNING;
+        return AppConstant.getInstance().URL_4D_SPECIAL_RUNNING;
     }
 
     @Override

@@ -29,7 +29,7 @@ public class IceHockeyOutRightState extends OutRightState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_BASEBALL_OUTRIGHT+"&ot=e";
+        return AppConstant.getInstance().URL_BASEBALL_OUTRIGHT+"&ot=e";
     }
 
     @Override

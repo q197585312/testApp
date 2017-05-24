@@ -17,7 +17,7 @@ public class EuropeTodayState extends EuropeState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.URL_TENNIS_TODAY;
+        return AppConstant.getInstance().URL_EUROPE_TODAY;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class EuropeTodayState extends EuropeState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1,getBaseView().getContextActivity().getString(R.string.Today),"Today",getBaseView().getContextActivity().getString(R.string.Tennis));
+        return new MenuItemInfo<String>(1,getBaseView().getContextActivity().getString(R.string.Today),"Today",getParentText());
     }
 
 
