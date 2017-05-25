@@ -4,6 +4,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -34,6 +35,11 @@ public class EuropeTodayState extends EuropeState {
                 getBaseView().switchState(new EuropeRunningState(getBaseView()));
                 break;
         }
+    }
+
+    @Override
+    protected void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeInfo item) {
+
     }
 
     @Override

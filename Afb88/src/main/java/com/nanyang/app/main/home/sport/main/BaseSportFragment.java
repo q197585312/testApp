@@ -86,11 +86,11 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         int[] location = new int[2];
 
         v.getLocationOnScreen(location);
-        WebPop pop ;
+        WebPop pop;
         if (location[1] < heightPixels / 2) {
             int popWidth = DeviceUtils.dip2px(mContext, 350);
-            int popHeight = heightPixels-location[1]-v.getHeight();
-            pop = new WebPop(mContext, v,popWidth,popHeight);
+            int popHeight = heightPixels - location[1] - v.getHeight();
+            pop = new WebPop(mContext, v, popWidth, popHeight);
             pop.getWebView().setWebViewClient(new DigWebViewClient());
             pop.setTrans(1);
             String lag = AfbUtils.getLanguage(mContext);
@@ -103,9 +103,9 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
             pop.setUrl(gameUrl);
-           int x= (location[0] + v.getWidth() / 2) - popWidth / 2;
-           int y= location[1] + v.getHeight();
-            pop.showPopupAtLocation(x,y);
+            int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
+            int y = location[1] + v.getHeight();
+            pop.showPopupAtLocation(x, y);
 
         } else {
             v = rvContent.getChildAt(position);
@@ -114,8 +114,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             }
             v.getLocationOnScreen(location);
             int popWidth = DeviceUtils.dip2px(mContext, 350);
-            int popHeight =location[1];
-            pop = new WebPop(mContext, v,popWidth,popHeight);
+            int popHeight = location[1];
+            pop = new WebPop(mContext, v, popWidth, popHeight);
             pop.getWebView().setWebViewClient(new DigWebViewClient());
             pop.setTrans(1);
             String lag = AfbUtils.getLanguage(mContext);
@@ -128,9 +128,9 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
             pop.setUrl(gameUrl);
-            int x= (location[0] + v.getWidth() / 2) - popWidth / 2;
-            int y= 0;
-            pop.showPopupAtLocation(x,y);
+            int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
+            int y = 0;
+            pop.showPopupAtLocation(x, y);
         }
 
 
@@ -151,7 +151,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         }
 
     }
-
 
 
     @Override
@@ -180,20 +179,22 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             View childAt = slHeader.getChildAt(i);
             View nextView = childAt.findViewById(R.id.iv_next);
             View previousView = childAt.findViewById(R.id.iv_previous);
-            nextView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int targetIndex = slHeader.getTargetIndex() + 1;
-                    moveToIndex(targetIndex);
-                }
-            });
-            previousView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    int targetIndex = slHeader.getTargetIndex() - 1;
-                    moveToIndex(targetIndex);
-                }
-            });
+            if (nextView != null && previousView != null) {
+                nextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int targetIndex = slHeader.getTargetIndex() + 1;
+                        moveToIndex(targetIndex);
+                    }
+                });
+                previousView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int targetIndex = slHeader.getTargetIndex() - 1;
+                        moveToIndex(targetIndex);
+                    }
+                });
+            }
         }
 /*
         slHeader.setOnTouchListener(new View.OnTouchListener() {
@@ -217,7 +218,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     private void moveToIndex(int targetIndex) {
         Set slFollowers = ((BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper()).getSlFollowers();
-        if(slFollowers!=null)
+        if (slFollowers != null)
             slHeader.setFollowScrolls(slFollowers);
         slHeader.moveToIndex(targetIndex);
     }

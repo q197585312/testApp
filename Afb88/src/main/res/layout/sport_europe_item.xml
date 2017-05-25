@@ -35,7 +35,6 @@
         android:orientation="horizontal">
 
 
-
         <LinearLayout
             android:id="@+id/module_match_left1_ll"
             android:layout_width="wrap_content"
@@ -53,8 +52,11 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:maxLines="1"
+                android:text="LIVE"
+
+                android:textColor="@color/red_title"
                 android:textSize="7sp"
-                android:visibility="visible" />
+                android:visibility="gone" />
 
             <TextView
                 android:id="@+id/module_match_date_tv"
@@ -62,9 +64,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:maxLength="10"
+                android:textStyle="bold"
                 android:maxLines="1"
-                android:text="03/11"
-                android:textColor="@color/grey_thick_line"
+                android:text=""
+                android:textColor="@color/red_title"
                 android:textSize="10sp" />
 
             <TextView
@@ -74,8 +77,8 @@
                 android:gravity="center"
                 android:maxLength="5"
                 android:maxLines="1"
-                android:text="03/11"
-                android:textColor="@color/grey_thick_line"
+                android:text=""
+                android:textColor="@color/black_grey"
                 android:textSize="10sp" />
         </LinearLayout>
 
@@ -84,7 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:gravity="center_vertical"
+            android:gravity="center"
             android:orientation="vertical"
             android:padding="2dp">
 
@@ -114,21 +117,23 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="2dp"
                     android:drawablePadding="5dp"
-                    android:gravity="left"
+                    android:gravity="center"
                     android:maxLines="1"
                     android:text="zheshiyigeceshi mingz "
                     android:textColor="@color/red_title"
                     android:textSize="11sp" />
             </LinearLayout>
+
             <TextView
-                android:layout_gravity="center"
-                android:textSize="10sp"
-                android:text="VS"
-                android:gravity="center"
-                android:padding="4dp"
-                android:textColor="@color/blue"
+                android:id="@+id/textView3"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:padding="4dp"
+                android:text="--VS--"
+                android:textColor="@color/blue"
+                android:textSize="9sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -148,7 +153,7 @@
                     android:textColor="@color/white"
                     android:textSize="9sp"
                     android:textStyle="bold"
-                    android:visibility="visible"
+                    android:visibility="gone"
 
                     />
 
@@ -159,9 +164,9 @@
                     android:layout_marginLeft="2dp"
                     android:layout_marginTop="1dp"
                     android:drawablePadding="5dp"
-                    android:gravity="left"
+                    android:gravity="center"
                     android:maxLines="1"
-                    android:text="zheshiyigeceshi mingz "
+                    android:text="zheshiyig "
                     android:textColor="@color/black_grey"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -178,10 +183,10 @@
             android:background="@color/grey_dialog_background" />
 
         <LinearLayout
-            android:orientation="vertical"
             android:id="@+id/module_center_sl"
             android:layout_width="140dp"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -192,52 +197,65 @@
 
                 <TextView
                     android:id="@+id/europe_1_full_time_tv"
-                    android:textColor="@color/red_title"
-                    android:textSize="12sp"
                     android:layout_width="0dp"
-                    android:gravity="center_vertical|right"
-                    android:text="1"
-                    android:layout_weight="1"
-                    android:paddingRight="2dp"
                     android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:text="1"
+                    android:textColor="@color/red_title"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/europe_1_full_time_odds_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:text="1.00"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
                     android:textColor="@color/red_title"
                     android:textSize="12sp"
-                    android:layout_width="0dp"
-                    android:gravity="center_vertical|right"
-                    android:textStyle="bold"
-                    android:paddingRight="2dp"
-                    android:layout_weight="1"
-                    android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:textStyle="bold" />
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/green_white_thick_line" />
+
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_dialog_background" />
+
                 <TextView
-                    android:paddingRight="2dp"
                     android:id="@+id/europe_1_half_time_tv"
-                    android:textColor="@color/red_title"
-                    android:textSize="12sp"
-                    android:text="1"
                     android:layout_width="0dp"
-                    android:gravity="center_vertical|right"
-                    android:layout_weight="1"
                     android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:text="1"
+                    android:textColor="@color/red_title"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/europe_1_half_time_odds_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="0.14"
+                    android:paddingRight="2dp"
                     android:textColor="@color/red_title"
                     android:textSize="12sp"
-                    android:layout_width="0dp"
-                    android:textStyle="bold"
-                    android:paddingRight="2dp"
-                    android:gravity="center_vertical|right"
-                    android:layout_weight="1"
-                    android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
@@ -248,50 +266,61 @@
                 <TextView
 
                     android:id="@+id/europe_x_full_time_tv"
-                    android:textColor="@color/blue"
-                    android:textSize="12sp"
                     android:layout_width="0dp"
-                    android:gravity="center_vertical|right"
-                    android:text="x"
-                    android:layout_weight="1"
-                    android:paddingRight="2dp"
                     android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:text="x"
+                    android:textColor="@color/blue"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/europe_x_full_time_odds_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="0.11"
+                    android:paddingRight="2dp"
                     android:textColor="@color/blue"
                     android:textSize="12sp"
-                    android:layout_width="0dp"
-                    android:gravity="center_vertical|right"
-                    android:textStyle="bold"
-                    android:paddingRight="2dp"
-                    android:layout_weight="1"
-                    android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:textStyle="bold" />
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/green_white_thick_line" />
+
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_dialog_background" />
                 <TextView
-                    android:paddingRight="2dp"
                     android:id="@+id/europe_x_half_time_tv"
-                    android:textColor="@color/blue"
-                    android:textSize="12sp"
                     android:layout_width="0dp"
-                    android:text="x"
-                    android:gravity="center_vertical|right"
-                    android:layout_weight="1"
                     android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:text="x"
+                    android:textColor="@color/blue"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/europe_x_half_time_odds_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:text="1.12"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
                     android:textColor="@color/blue"
                     android:textSize="12sp"
-                    android:layout_width="0dp"
-                    android:textStyle="bold"
-                    android:paddingRight="2dp"
-                    android:gravity="center_vertical|right"
-                    android:layout_weight="1"
-                    android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -305,50 +334,61 @@
                 <TextView
 
                     android:id="@+id/europe_2_full_time_tv"
-                    android:textColor="@color/green_dark"
-                    android:textSize="12sp"
                     android:layout_width="0dp"
-                    android:gravity="center_vertical|right"
-                    android:text="2"
-                    android:layout_weight="1"
-                    android:paddingRight="2dp"
                     android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:text="2"
+                    android:textColor="@color/green_dark"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/europe_2_full_time_odds_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:text="1.00"
+                    android:paddingRight="2dp"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
-                    android:layout_width="0dp"
-                    android:gravity="center_vertical|right"
-                    android:textStyle="bold"
-                    android:paddingRight="2dp"
-                    android:layout_weight="1"
-                    android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:textStyle="bold" />
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/green_white_thick_line" />
+
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_dialog_background" />
                 <TextView
-                    android:paddingRight="2dp"
                     android:id="@+id/europe_2_half_time_tv"
-                    android:textColor="@color/green_dark"
-                    android:textSize="12sp"
                     android:layout_width="0dp"
-                    android:text="2"
-                    android:gravity="center_vertical|right"
-                    android:layout_weight="1"
                     android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:text="2"
+                    android:textColor="@color/green_dark"
+                    android:textSize="12sp" />
 
                 <TextView
                     android:id="@+id/europe_2_half_time_odds_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="25dp"
+                    android:layout_weight="1"
+                    android:text="1.05"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
-                    android:layout_width="0dp"
-                    android:textStyle="bold"
-                    android:paddingRight="2dp"
-                    android:gravity="center_vertical|right"
-                    android:layout_weight="1"
-                    android:layout_height="25dp"
-                    android:maxLines="1" />
+                    android:textStyle="bold" />
 
             </LinearLayout>
 
@@ -373,8 +413,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:drawableRight="@mipmap/add_red_oval"
-                />
+                android:drawableRight="@mipmap/add_red_oval" />
         </FrameLayout>
 
     </LinearLayout>

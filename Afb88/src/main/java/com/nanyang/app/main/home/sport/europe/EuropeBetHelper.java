@@ -30,11 +30,12 @@ public class EuropeBetHelper extends BallBetHelper<EuropeInfo, BetView> {
         super(baseView);
     }
 
-
+//http://main55.afb88.com/_bet/JRecPanel.aspx?g=5&b=1&oId=12794616&odds=11.8
+    //http://main55.afb88.com/_Bet/JRecPanel.aspx?g=5&b=1&oId=12683157&odds=2.9
     protected String getOddsUrl(EuropeInfo item, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.getInstance().URL_ODDS);
-        stringBuilder.append("g=21");
+        stringBuilder.append("g=5");
         stringBuilder.append("&b=" + type);
         stringBuilder.append("&oId=" + item.getSocOddsId());
 

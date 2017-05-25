@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.europe;
 
+import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
@@ -11,6 +12,7 @@ import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
+import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -21,6 +23,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
@@ -37,7 +40,7 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
 
     @Override
     protected List<TableSportInfo<EuropeInfo>> filterChildData(List<TableSportInfo<EuropeInfo>> dateTemp) {
-        return null;
+        return dateTemp;
     }
 
     @Override
@@ -55,6 +58,7 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
 
         }
     }
+
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
@@ -63,6 +67,7 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
         types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
         return types;
     }
+
     @Override
     public boolean mix() {
         return false;
@@ -80,10 +85,10 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
 
     @Override
     protected List<List<String>> initHeaderList() {
-        List<List<String>> lists = super.initHeaderList();
-        lists.get(0).set(0,getBaseView().getContextActivity().getString(R.string.full_time));
-        lists.get(1).set(0,getBaseView().getContextActivity().getString(R.string.half_time));
-        return lists;
+        List<List<String>> texts = new ArrayList<>();
+        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getContextActivity().getString(R.string.full_time), getBaseView().getContextActivity().getString(R.string.half_time)));
+        texts.add(items0);
+        return texts;
     }
 
 
@@ -109,7 +114,7 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                 TextView liveTv = helper.getView(R.id.module_match_live_iv);
                 TextView homeTv = helper.getTextView(R.id.module_match_home_team_tv);
                 TextView awayTv = helper.getTextView(R.id.module_match_away_team_tv);
-                View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+
                 TextView full1 = helper.getTextView(R.id.europe_1_full_time_odds_tv);
                 TextView full2 = helper.getTextView(R.id.europe_2_full_time_odds_tv);
                 TextView fullx = helper.getTextView(R.id.europe_x_full_time_odds_tv);
@@ -117,28 +122,118 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                 TextView half2 = helper.getTextView(R.id.europe_2_half_time_odds_tv);
                 TextView halfx = helper.getTextView(R.id.europe_x_half_time_odds_tv);
 
-                String time = item.getMatchDate();
-                if (time.length() > 6) {
-                    time = time.substring(time.length() - 7, time.length());
+                String timeDate = item.getMatchDate();
+                if (timeDate.length() > 6) {
+                    String time = timeDate.substring(timeDate.length() - 7, timeDate.length());
                     time = TimeUtils.dateFormatChange(time, "KK:mmaa", "HH:mm", Locale.ENGLISH);
                     timeTv.setText(time);
-                    dateTv.setText(time.substring(0,time.length() - 7));
+                    dateTv.setText(timeDate.substring(0, timeDate.length() - 7));
+                } else {
+                    timeTv.setText(timeDate);
                 }
-                else{
-                    timeTv.setText(time);
+                if (!item.getLive().equals("")) {
+                    if (item.getLive().contains("LIVE")) {
+                        dateTv.setText("LIVE");
+                        liveTv.setVisibility(View.GONE);
+                    } else {
+                        String channel = item.getLive();
+                        channel = Html.fromHtml(channel).toString();
+                        int n = channel.indexOf(" ");
+
+
+                        if (channel.length() > 6 && n > 0 && n < channel.length() - 1) {
+                            String channel1 = channel.substring(0, n);
+                            String channel2 = channel.substring(n + 1, channel.length());
+
+                            liveTv.setTextSize(7);
+                            if (channel2.length() >= 6)
+                                dateTv.setTextSize(8);
+                            else {
+                                dateTv.setTextSize(9);
+                            }
+                            liveTv.setVisibility(View.VISIBLE);
+                            liveTv.setText(channel1.trim());
+                            dateTv.setText(channel2);
+                        } else {
+                            liveTv.setVisibility(View.GONE);
+                            if (channel.trim().length() > 6)
+                                dateTv.setTextSize(8);
+                            dateTv.setText(channel.trim());
+
+                        }
+                    }
+                } else {
+                    if (item.getMatchDate().length() > 6) {
+                        String date = item.getMatchDate().substring(0, 5);
+                        dateTv.setText(date);
+                    } else {
+                        dateTv.setText(item.getMatchDate());
+                    }
                 }
+
                 homeTv.setText(item.getHome());
                 awayTv.setText(item.getAway());
-                if(item.getHasX12().equals("1")){
+                if (item.getHasX12().equals("1")) {
+                    full1.setText(item.getX12_1Odds());
+                    fullx.setText(item.getX12_XOdds());
+                    full2.setText(item.getX12_2Odds());
+                    full1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds(), "1"));
+                    fullx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds(), "X"));
+                    full2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds(), "2"));
 
-                }else{
+
+                } else {
                     full1.setText("");
                     full2.setText("");
                     fullx.setText("");
                 }
+                if (item.getHasX12_FH().equals("1")) {
+                    half1.setText(item.getX12_1Odds_FH());
+                    halfx.setText(item.getX12_XOdds_FH());
+                    half2.setText(item.getX12_2Odds_FH());
+                    half1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds_FH(), "1"));
+                    halfx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds_FH(), "X"));
+                    half2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds_FH(), "2"));
 
+                } else {
+                    half1.setText("");
+                    half2.setText("");
+                    halfx.setText("");
+                }
 
+                if (item.getType() == SportInfo.Type.ITME) {
+                    matchTitleTv.setVisibility(View.GONE);
+                    headV.setVisibility(View.GONE);
 
+                } else {
+                    matchTitleTv.setVisibility(View.VISIBLE);
+                    headV.setVisibility(View.VISIBLE);
+                    matchTitleTv.setText(item.getModuleTitle());
+                    if (position == 0) {
+                        headV.setVisibility(View.GONE);
+                    }
+                }
+                String oldHomeName = "";
+                String oldAwayName = "";
+                String oldModuleTitle = "";
+                if (position > 0) {
+                    oldHomeName = back.getItem(position - 1).getHome();
+                    oldAwayName = back.getItem(position - 1).getAway();
+
+                    oldModuleTitle = back.getItem(position - 1).getModuleTitle().toString();
+                }
+                if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway())) {
+                    View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+                    tvRightMark.setVisibility(View.INVISIBLE);
+
+                    onMatchRepeat(helper, item, position);
+                } else {
+                    View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+                    tvRightMark.setVisibility(View.VISIBLE);
+
+                    onMatchNotRepeat(helper, item, position);
+                }
+                onChildConvert(helper, position, item);
             }
 
             @Override
@@ -149,6 +244,15 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
         };
     }
 
+    protected abstract void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeInfo item);
+
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, EuropeInfo item, int position) {
+
+    }
+
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, EuropeInfo item, int position) {
+
+    }
 
     @Override
     protected List<TableSportInfo<EuropeInfo>> updateJsonData(JSONArray dataListArray) throws JSONException {
@@ -184,12 +288,36 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
     private EuropeInfo parseMatch(JSONArray matchArray) throws JSONException {
         EuropeInfo info = new EuropeInfo();
         info.setSocOddsId(matchArray.getString(0));
-        info.setHome(matchArray.getString(1));
-        info.setIsInetBet(matchArray.getString(2));
-        info.setIsX12New(matchArray.getString(3));
-        info.setHasX12(matchArray.getString(4));
-        info.setX12_1Odds(matchArray.getString(5));
-        info.setPreSocOddsId(matchArray.getString(6));
+        info.setSocOddsId_FH(matchArray.getString(1));
+        info.setLive(matchArray.getString(2));
+        info.setIsLastCall(matchArray.getString(3));
+        info.setMatchDate(matchArray.getString(4));
+        info.setHome(matchArray.getString(5));
+        info.setAway(matchArray.getString(6));
+        info.setOENew(matchArray.getString(7));
+        info.setIsInetBet(matchArray.getString(8));
+        info.setHasOE(matchArray.getString(9));
+        info.setOEOdds(matchArray.getString(10));
+        info.setOddOdds(matchArray.getString(11));
+        info.setEvenOdds(matchArray.getString(12));
+        info.setX12New(matchArray.getString(13));
+        info.setHasX12(matchArray.getString(14));
+        info.setX12_1Odds(matchArray.getString(15));
+        info.setX12_XOdds(matchArray.getString(16));
+        info.setX12_2Odds(matchArray.getString(17));
+        info.setIsInetBet_FH(matchArray.getString(18));
+        info.setHasX12_FH(matchArray.getString(19));
+        info.setX12_1Odds_FH(matchArray.getString(20));
+        info.setX12_XOdds_FH(matchArray.getString(21));
+        info.setX12_2Odds_FH(matchArray.getString(22));
+        info.setX12New_FH(matchArray.getString(23));
+        info.setPreSocOddsId(matchArray.getString(24));
+        info.setCurMinute(matchArray.getString(25));
+        info.setStatus(matchArray.getString(26));
+        info.setRTSMatchId(matchArray.getString(27));
+        info.setStatsId(matchArray.getString(28));
+        info.setRCHome(matchArray.getString(29));
+        info.setRCAway(matchArray.getString(30));
         return info;
 
     }
@@ -205,7 +333,6 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
     }
 
 
-
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new SportAdapterHelper.ItemCallBack<EuropeInfo>() {
@@ -219,11 +346,11 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                 IBetHelper helper = onSetBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 //http://main55.afb88.com/_Bet/JRecPanel.aspx?g=50&b=1&oId=11188250&odds=2.5
-                helper.clickOdds(item,type,odds,v,  isHf,"");
+                helper.clickOdds(item, type, odds, v, isHf, "");
             }
 
             @Override
-            public void clickView(View v, EuropeInfo item,int position) {
+            public void clickView(View v, EuropeInfo item, int position) {
 
             }
 
@@ -233,8 +360,30 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
             }
         };
     }
-    public String getParentText(){
-       return getBaseView().getContextActivity().getString(R.string.Europe_View);
+
+    public String getParentText() {
+        return getBaseView().getContextActivity().getString(R.string.Europe_View);
     }
 
+    class itemClick implements View.OnClickListener {
+        SportAdapterHelper.ItemCallBack<EuropeInfo> back;
+        int position;
+        EuropeInfo item;
+        String odds;
+        String type;
+
+        public itemClick(SportAdapterHelper.ItemCallBack<EuropeInfo> back, int position, EuropeInfo item, String odds, String type) {
+            this.position = position;
+            this.item = item;
+            this.odds = odds;
+            this.back = back;
+            this.type = type;
+        }
+
+        @Override
+        public void onClick(View v) {
+            if (!odds.equals("") && Float.valueOf(odds) != 0)
+                back.clickOdds((TextView) v, item, type, false, odds);
+        }
+    }
 }

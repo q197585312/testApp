@@ -23,6 +23,7 @@ import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
 import com.nanyang.app.main.home.sport.baseball.BaseballFragment;
 import com.nanyang.app.main.home.sport.dialog.ChooseLanguagePop;
 import com.nanyang.app.main.home.sport.e_sport.ESportFragment;
+import com.nanyang.app.main.home.sport.europe.EuropeFragment;
 import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
 import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
@@ -53,6 +54,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     BaseSportFragment eSportFragment = new ESportFragment();
     BaseSportFragment muayThaiFragment = new MuayThaiFragment();
     BaseSportFragment myanmarFragment = new MyanmarFragment();
+    BaseSportFragment europeFragment = new EuropeFragment();
     BaseSportFragment usFootballFragment = new USFootballFragment();
     BaseSportFragment baseballFragment = new BaseballFragment();
 
@@ -165,6 +167,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Myanmar_Odds), myanmarFragment);
                 currentFragment = myanmarFragment;
                 currentTag = getString(R.string.Myanmar_Odds);
+                break;
+            case "Europe":
+                mapFragment.put(getString(R.string.Europe_View), europeFragment);
+                currentFragment = europeFragment;
+                currentTag = getString(R.string.Europe_View);
                 break;
             default:
                 mapFragment.put(getString(R.string.Soccer), soccerFragment);

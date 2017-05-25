@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.europe;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 
 /**
@@ -169,6 +170,12 @@ public class EuropeInfo extends SportInfo {
 
     @Override
     public String getX12_1Odds() {
+        if(X12_1Odds.equals("0")){
+            X12_1Odds="";
+        }
+        else if(!X12_1Odds.isEmpty()){
+            X12_1Odds=AfbUtils.decimalValue(Float.valueOf(X12_1Odds),"0.00");
+        }
         return X12_1Odds;
     }
 
@@ -178,6 +185,12 @@ public class EuropeInfo extends SportInfo {
     }
 
     public String getX12_XOdds() {
+        if(X12_XOdds.equals("0")){
+            X12_XOdds="";
+        }
+        else if(!X12_XOdds.isEmpty()){
+            X12_XOdds=AfbUtils.decimalValue(Float.valueOf(X12_XOdds),"0.00");
+        }
         return X12_XOdds;
     }
 
@@ -186,6 +199,12 @@ public class EuropeInfo extends SportInfo {
     }
 
     public String getX12_2Odds() {
+        if(X12_2Odds.equals("0")){
+            X12_2Odds="";
+        }
+        else if(!X12_2Odds.isEmpty()){
+            X12_2Odds=AfbUtils.decimalValue(Float.valueOf(X12_2Odds),"0.00");
+        }
         return X12_2Odds;
     }
 
@@ -210,6 +229,12 @@ public class EuropeInfo extends SportInfo {
     }
 
     public String getX12_1Odds_FH() {
+        if(X12_1Odds_FH.equals("0")){
+            X12_1Odds_FH="";
+        }
+        else if(!X12_1Odds_FH.isEmpty()){
+            X12_1Odds_FH=AfbUtils.decimalValue(Float.valueOf(X12_1Odds_FH),"0.00");
+        }
         return X12_1Odds_FH;
     }
 
@@ -218,6 +243,12 @@ public class EuropeInfo extends SportInfo {
     }
 
     public String getX12_XOdds_FH() {
+        if(X12_XOdds_FH.equals("0")){
+            X12_XOdds_FH="";
+        }
+        else if(!X12_XOdds_FH.isEmpty()){
+            X12_XOdds_FH=AfbUtils.decimalValue(Float.valueOf(X12_XOdds_FH),"0.00");
+        }
         return X12_XOdds_FH;
     }
 
@@ -226,10 +257,17 @@ public class EuropeInfo extends SportInfo {
     }
 
     public String getX12_2Odds_FH() {
+        if(X12_2Odds_FH.equals("0")){
+            X12_2Odds_FH="";
+        }
+        else if(!X12_2Odds_FH.isEmpty()){
+            X12_2Odds_FH=AfbUtils.decimalValue(Float.valueOf(X12_2Odds_FH),"0.00");
+        }
         return X12_2Odds_FH;
     }
 
     public void setX12_2Odds_FH(String x12_2Odds_FH) {
+
         X12_2Odds_FH = x12_2Odds_FH;
     }
 

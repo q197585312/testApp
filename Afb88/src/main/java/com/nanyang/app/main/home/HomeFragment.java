@@ -71,6 +71,7 @@ public class HomeFragment extends BaseFragment {
         dataList.add(new MenuItemInfo(R.mipmap.home_keno, getString(R.string.Keno), "Keno"));
         dataList.add(new MenuItemInfo(R.mipmap.home_poker, getString(R.string.Poker), "Poker"));
         dataList.add(new MenuItemInfo(R.mipmap.home_lottery, getString(R.string.Lottery), "Lottery"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.Europe_View), "Europe"));
 //        dataList.add(new MenuItemInfo(R.mipmap.home_roulette, getString(R.string.Roulette), "Roulette"));
 //        dataList.add(new MenuItemInfo(R.mipmap.home_casino, getString(R.string.Casino), "Casino"));
 //        dataList.add(new MenuItemInfo(R.mipmap.home_discount, getString(R.string.Discount), "Discount"));
@@ -93,6 +94,7 @@ public class HomeFragment extends BaseFragment {
                     case "Muay_Thai":
                     case "E_Sport":
                     case "Myanmar_Odds":
+                    case "Europe":
                         defaultSkip(item.getType());
            /*             createPopupWindow(getPopupWindow(item.getType()));
                         popWindow.showPopupCenterWindow();*/
@@ -122,7 +124,8 @@ public class HomeFragment extends BaseFragment {
         rvContent.setAdapter(adapter);
 
     }
-    public  void defaultSkip(final String type){
+
+    public void defaultSkip(final String type) {
         MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
         menuItemInfo.setType("Today");
         menuItemInfo.setParent(type);
@@ -131,6 +134,7 @@ public class HomeFragment extends BaseFragment {
         skipAct(SportActivity.class, b);
 
     }
+
     @NonNull
     private BasePopupWindow getPopupWindow(final String type) {
 
@@ -161,7 +165,7 @@ public class HomeFragment extends BaseFragment {
                 menuItemInfo3.setParent(type);
                 MenuItemInfo<String> menuItemInfo4 = new MenuItemInfo<String>(0, getString(R.string.Cancel));
                 menuItemInfo4.setType("");
-                if (type.equals("SportBook")||type.equals("E_Sport"))
+                if (type.equals("SportBook") || type.equals("E_Sport"))
                     data.add(menuItemInfo3);
                 data.add(menuItemInfo);
                 data.add(menuItemInfo1);
