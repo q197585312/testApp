@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.center.model.ChangePasswordBean;
@@ -105,7 +106,8 @@ public class ChangePasswordFragment extends BaseFragment {
 
     private void changePassword() {
         ChangePasswordBean bean = new ChangePasswordBean(oldPasswrod, newPasswrod, surePasswrod);
-        Disposable d = Api.getService(ApiService.class).changePasswrod(bean.getMap())
+        String url= AppConstant.getInstance().HOST+"_view/ChgPwd.aspx";
+        Disposable d = Api.getService(ApiService.class).changePasswrod(url,bean.getMap())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {

@@ -94,7 +94,7 @@ public class HomeFragment extends BaseFragment {
                     case "Muay_Thai":
                     case "E_Sport":
                     case "Myanmar_Odds":
-                    case "Europe":
+//                    case "Europe":
                         defaultSkip(item.getType());
            /*             createPopupWindow(getPopupWindow(item.getType()));
                         popWindow.showPopupCenterWindow();*/

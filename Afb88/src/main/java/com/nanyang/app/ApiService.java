@@ -78,7 +78,6 @@ public interface ApiService {
     @GET
     Flowable<String> getData(@Url String url);
 
-    @Headers("Referer: http://main55.afb88.com/_Bet/Panel.aspx?chg=true")
     @GET
     Flowable<String> postData(@Url String url);
     @GET
@@ -126,8 +125,8 @@ public interface ApiService {
     Flowable<List<String>> getBannerUrl();
 
     @FormUrlEncoded
-    @POST("http://main55.afb88.com/_view/ChgPwd.aspx")
-    Flowable<String> changePasswrod(@FieldMap Map<String, String> map);
+    @POST
+    Flowable<String> changePasswrod(@Url String url,@FieldMap Map<String, String> map);
 
     //投注状况
     @GET

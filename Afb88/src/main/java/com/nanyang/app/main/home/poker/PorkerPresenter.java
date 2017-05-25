@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.poker;
 
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -32,7 +33,7 @@ class PorkerPresenter extends BaseRetrofitPresenter<String, PorkerContract.View<
 
     // action="TransferBalance.aspx?us=demoafbai1&amp;k=a8f26ff623f44f5f8058b5bf45774df0" id="form1">
     public void skipGd88() {
-        Disposable subscription = getService(ApiService.class).getData("http://main55.afb88.com/_View/LiveDealerGDC.aspx")
+        Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().HOST+"_View/LiveDealerGDC.aspx")
 
 
                 .subscribeOn(Schedulers.io())

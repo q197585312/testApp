@@ -39,9 +39,9 @@ public class AppConstant {
     //http://a8197c.a36588.com/Main.aspx?accType=EU
 
 //    public static String HOST="http://www.doo88.net/";
-    public String HOST = APP_HOST;
+    public String HOST = REAL_HOST;
 
-    public String URL_LOGIN = APP_HOST + "Default1.aspx";
+    public String URL_LOGIN = REAL_HOST + "Default1.aspx";
     public String URL_MAIN = HOST + "main.aspx";
 
 
