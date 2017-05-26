@@ -18,6 +18,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
@@ -50,24 +51,26 @@ import cn.finalteam.toolsfinal.DeviceUtils;
 public abstract class BaseSportFragment extends BaseFragment<SportPresenter> implements SportContract.View<SportInfo> {
 
     @Bind(R.id.tv_total_match)
-    TextView tvTotalMatch;
+    protected TextView tvTotalMatch;
     @Bind(R.id.tv_odds_type)
-    TextView tvOddsType;
+    protected TextView tvOddsType;
+    @Bind(R.id.ll_odds_type)
+    protected View llOddsType;
     @Bind(R.id.swipe_target)
     protected RecyclerView rvContent;
 
     @Bind(R.id.tv_mix_parlay_order)
-    TextView tvMixParlayOrder;
+    protected TextView tvMixParlayOrder;
     @Bind(R.id.ll_mix_parlay_order)
-    LinearLayout llMixParlayOrder;
+    protected LinearLayout llMixParlayOrder;
     @Bind(R.id.sl_header)
-    ScrollLayout slHeader;
+    protected ScrollLayout slHeader;
 
 
     @Bind(R.id.tv_aos)
-    TextView tvAos;
+    protected TextView tvAos;
     @Bind(R.id.swipeToLoadLayout)
-    SwipeToLoadLayout swipeToLoadLayout;
+    protected SwipeToLoadLayout swipeToLoadLayout;
     private boolean isFirstIn;
     private BaseRecyclerAdapter baseRecyclerAdapter;
     private boolean isInit = false;
@@ -217,10 +220,12 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     private void moveToIndex(int targetIndex) {
-        Set slFollowers = ((BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper()).getSlFollowers();
-        if (slFollowers != null)
-            slHeader.setFollowScrolls(slFollowers);
-        slHeader.moveToIndex(targetIndex);
+        if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+            Set slFollowers = ((BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper()).getSlFollowers();
+            if (slFollowers != null)
+                slHeader.setFollowScrolls(slFollowers);
+            slHeader.moveToIndex(targetIndex);
+        }
     }
 
 
@@ -494,5 +499,11 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             ((BaseToolbarActivity) mContext).reLoginPrompt(str, back);
         }
     }
-
+    @Override
+    public void clickItemAdd(View v, SportInfo item, String type) {
+        Bundle b = new Bundle();
+        b.putSerializable(AppConstant.KEY_DATA, item);
+        b.putSerializable(AppConstant.KEY_DATA2, presenter.getStateHelper().getStateType());
+        skipAct(VsActivity.class, b);
+    }
 }

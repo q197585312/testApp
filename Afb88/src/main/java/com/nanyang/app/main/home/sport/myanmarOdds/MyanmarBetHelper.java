@@ -1,13 +1,14 @@
 package com.nanyang.app.main.home.sport.myanmarOdds;
 
+import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
-import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
+import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
 import org.reactivestreams.Subscription;
@@ -35,7 +36,12 @@ public class MyanmarBetHelper extends BallBetHelper<MyanmarInfo, BetView> {
     @Override
     public Disposable clickOdds(MyanmarInfo item, String type, String odds, final TextView v, final boolean isHf, String params) {
 
-        String url = getOddsUrl(item, type, isHf, odds, params);
+        String url = getOddsUrl(item.getSocOddsId(),item.getSocOddsId_FH(), type, isHf, odds, params);
+        return getDisposable(v, isHf, url);
+    }
+
+    @NonNull
+    private Disposable getDisposable(final TextView v, final boolean isHf, String url) {
         Disposable subscribe = getService(ApiService.class).getBetData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingPromptBean>() {//onNext
                     @Override
@@ -75,18 +81,24 @@ public class MyanmarBetHelper extends BallBetHelper<MyanmarInfo, BetView> {
     //http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=10&b=odd&oId=12264769&odds=9.4
 //    http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=dc&sc=10&oId=12327799&odds=1.13
 //    http://main55.afb88.com/_Bet/JRecPanel.aspx?&b=dc&oId=12327799&odds=1.13
-    protected String getOddsUrl(MyanmarInfo item, String type, boolean isHf, String odds, String params) {
+    protected String getOddsUrl(String SocOddsId,String SocOddsId_FH, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("gt=s");
         stringBuilder.append("&b=" + type);
         stringBuilder.append(params);
         stringBuilder.append("&oId=");
-        String socOddsId = item.getSocOddsId();
+        String socOddsId =SocOddsId;
         if (isHf)
-            socOddsId = item.getSocOddsId_FH();
+            socOddsId =SocOddsId_FH;
         stringBuilder.append(socOddsId);
         stringBuilder.append("&odds=" + odds);
         return stringBuilder.toString();
+    }
+
+    @Override
+    public Disposable clickOdds(MyanmarInfo itemData, int oid, String type, String odds, TextView v, boolean isHf, String params) {
+        String url = getOddsUrl(oid+"", oid + "", type, false, odds, params);
+        return getDisposable(v, isHf, url);
     }
 }

@@ -4,6 +4,7 @@ package com.nanyang.app;
 import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.nanyang.app.main.center.model.StatementStakeListBean;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
+import com.nanyang.app.main.home.huayThai.HuayDrawDateInfo;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
@@ -20,7 +21,6 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
-import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -171,4 +171,6 @@ public interface ApiService {
     //选择语言
     @GET
     Flowable<String> switchLanguage(@Url String url, @Query("lang") String lang);
+    @GET
+    Flowable<HuayDrawDateInfo> getHuyaDrawDate(@Url String url);
 }

@@ -14,8 +14,6 @@ import com.nanyang.app.Utils.StringUtils;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.OnClick;
 
@@ -118,10 +116,11 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
                     }
 
                     @Override
-                    public List<String> getData() {
-                        return presenter.currencyList;
+                    protected void convertTv(TextView tv, String item) {
+                        tv.setText(item);
                     }
                 };
+                popu.setData(presenter.currencyList);
                 popu.showPopupDownWindow();
                 break;
             case R.id.tv_bankname:
@@ -133,10 +132,12 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
                     }
 
                     @Override
-                    public List<String> getData() {
-                        return presenter.bankList;
+                    protected void convertTv(TextView tv, String item) {
+                        tv.setText(item);
                     }
+
                 };
+                popupWindow.setData( presenter.bankList);
                 popupWindow.showPopupDownWindow();
                 break;
         }

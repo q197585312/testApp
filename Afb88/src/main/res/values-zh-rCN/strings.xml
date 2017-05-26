@@ -275,4 +275,10 @@
     <string name="AFB_FT_HDP">AFB全场亚洲</string>
     <string name="Status_">状态:</string>
     <string name="System_maintenance">系统正在维护</string>
+    <string name="game1d">1D Game</string>
+    <string name="game2d">2D Game</string>
+    <string name="game3d">3D Game</string>
+    <string name="Number_1_digit_">数 (1 数字) :</string>
+    <string name="Number_2_digit_">数 (1 数字) :</string>
+    <string name="Number_3_digit_">数 (1 数字) :</string>
 </resources>

@@ -231,7 +231,7 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
     }
 
     @Override
-    public Disposable clickOdds(B itemData, int oid, String s, String value, TextView v, boolean isHf, String s1) {
-       return clickOdds( itemData,  s,  value,  v,  isHf,  s1);
+    public Disposable clickOdds(B itemData, int oid, String type, String value, TextView v, boolean isHf, String params) {
+       return clickOdds( itemData,  type,  value,  v,  isHf,  params);
     }
 }

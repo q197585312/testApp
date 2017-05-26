@@ -1,14 +1,8 @@
 package com.nanyang.app.main.home.sport.myanmarOdds;
 
-import android.os.Bundle;
-import android.view.View;
-
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.additional.VsActivity;
-import com.nanyang.app.main.home.sport.main.SportActivity;
-import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 
 
 public class MyanmarFragment extends BaseSportFragment {
@@ -45,14 +39,6 @@ public class MyanmarFragment extends BaseSportFragment {
         return getString(R.string.Myanmar_Odds);
     }
 
-
-    @Override
-    public void clickItemAdd(View v, SportInfo item, String type) {
-        Bundle b = new Bundle();
-        b.putSerializable(AppConstant.KEY_DATA, item);
-        b.putSerializable(AppConstant.KEY_DATA2, presenter.getStateHelper().getStateType());
-        skipAct(VsActivity.class, b);
-    }
 
 
 }

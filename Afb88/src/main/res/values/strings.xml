@@ -275,4 +275,10 @@
     <string name="AFB_FT_OU">AFB FT.O/U</string>
     <string name="Status_">Status:</string>
     <string name="System_maintenance">Maintenance now</string>
+    <string name="game1d">1D Game</string>
+    <string name="game2d">2D Game</string>
+    <string name="game3d">3D Game</string>
+    <string name="Number_1_digit_">Number (1 Digit) :</string>
+    <string name="Number_2_digit_">Number (2 Digit) :</string>
+    <string name="Number_3_digit_">Number (3 Digit) :</string>
 </resources>

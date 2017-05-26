@@ -1,17 +1,14 @@
-package com.nanyang.app.main.home.Games.thaiThousand;
+package com.nanyang.app.main.home.huayThai;
 
 import android.text.InputFilter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.Games.GamesActivity;
-import com.nanyang.app.main.home.Games.model.ThaiThousandIntroduceBean;
-import com.nanyang.app.main.home.Games.thaiThousand.model.ThaiThousandBetSubmitBean;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
@@ -26,7 +23,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/2/24.
  */
 
-public class ThaiThousandFragment extends BaseFragment<ThaiThousandPresenter> implements ThaiThousandContract.View {
+public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements HuayThaiContract.View {
     @Bind(R.id.tv_grade_date)
     TextView tvGradeDate;
     @Bind(R.id.layout_bet1)
@@ -93,32 +90,37 @@ public class ThaiThousandFragment extends BaseFragment<ThaiThousandPresenter> im
     TextView tvIntroduceWay;
 
 
-    public List<String> gradeData = new ArrayList<>();
-    public List<ThaiThousandIntroduceBean> introduceData = new ArrayList<>();
+
+    public List<HuayThaiIntroduceBean> introduceData = new ArrayList<>();
     public LayoutInflater inflater;
-    GamesActivity gamesActivity;
-    String date;
+    HuayThaiGamesActivity huayThaiGamesActivity;
 
     String type;
+    MenuItemInfo info;
+    private BaseListPopupWindow<HuayDrawDateInfo.DicAllBean> popDate;
 
     @Override
     public void initData() {
         super.initData();
-        gamesActivity = (GamesActivity) getActivity();
-        type = gamesActivity.thaiType;
-        createPresenter(new ThaiThousandPresenter(this));
+        huayThaiGamesActivity = (HuayThaiGamesActivity) getActivity();
+        info = huayThaiGamesActivity.info;
+        type = info.getText();
+        createPresenter(new HuayThaiPresenter(this));
         inflater = LayoutInflater.from(mContext);
-        date = "01/03/2017";
-        initGradeData(type);
+        refresh();
         initIntroduceData(type);
         initBetListener(type);
+    }
+
+    private void refresh() {
+        presenter.refresh(info.getType());
     }
 
     private void loadIntroduceData() {
         if (introduceData.size() != 0) {
             layoutIntroduce.removeAllViews();
             for (int i = 0; i < introduceData.size(); i++) {
-                ThaiThousandIntroduceBean introduceBean = introduceData.get(i);
+                HuayThaiIntroduceBean introduceBean = introduceData.get(i);
                 View layout = inflater.inflate(R.layout.layout_thaithousand_introduce, null);
                 tvIntroduceNmae = (TextView) layout.findViewById(R.id.tv_Introduce_name);
                 tvIntroduceNmae.setText(introduceBean.getName());
@@ -132,53 +134,32 @@ public class ThaiThousandFragment extends BaseFragment<ThaiThousandPresenter> im
     }
 
     private void initIntroduceData(String type) {
-        if (type.equals("Game1")) {
+        if (type.equals(getString(R.string.game1d))) {
+            tvLimitNun.setText(R.string.Number_1_digit_);
             introduceData.clear();
-            introduceData.add(new ThaiThousandIntroduceBean("1D最高奖", "赌上1号预测 其中3个号码能在3D内的抽奖。 假如 抽奖是312，那是顾客能赢的奖品.", "一付三块"));
-            introduceData.add(new ThaiThousandIntroduceBean("1D 底部奖", "赌上1号预测 其中2个号码能在2D内的最后抽奖品.", "一付四块"));
-            introduceData.add(new ThaiThousandIntroduceBean("1D 最高奖固定 一", "顾客可以赌上个单号预测上3D奖品的第一数字。比如，结果数字是 132，然后顾客将获得奖金.", "一付九块"));
-            introduceData.add(new ThaiThousandIntroduceBean("1D 最高奖固定 二", "顾客可以赌上个单号预测上3D奖品的第二数字。比如，结果数字是 132，然后顾客将获得奖金.", "一付九块"));
-            introduceData.add(new ThaiThousandIntroduceBean("1D 最高奖固定 三", "顾客可以赌上个单号预测上3D奖品的第二数字。比如，结果数字是 132，然后顾客将获得奖金.", "一付九块"));
-        } else if (type.equals("Game2")) {
+            introduceData.add(new HuayThaiIntroduceBean("1D最高奖", "赌上1号预测 其中3个号码能在3D内的抽奖。 假如 抽奖是312，那是顾客能赢的奖品.", "一付三块"));
+            introduceData.add(new HuayThaiIntroduceBean("1D 底部奖", "赌上1号预测 其中2个号码能在2D内的最后抽奖品.", "一付四块"));
+            introduceData.add(new HuayThaiIntroduceBean("1D 最高奖固定 一", "顾客可以赌上个单号预测上3D奖品的第一数字。比如，结果数字是 132，然后顾客将获得奖金.", "一付九块"));
+            introduceData.add(new HuayThaiIntroduceBean("1D 最高奖固定 二", "顾客可以赌上个单号预测上3D奖品的第二数字。比如，结果数字是 132，然后顾客将获得奖金.", "一付九块"));
+            introduceData.add(new HuayThaiIntroduceBean("1D 最高奖固定 三", "顾客可以赌上个单号预测上3D奖品的第二数字。比如，结果数字是 132，然后顾客将获得奖金.", "一付九块"));
+        } else if (type.equals(getString(R.string.game2d))) {
+            tvLimitNun.setText(R.string.Number_2_digit_);
             introduceData.clear();
-            introduceData.add(new ThaiThousandIntroduceBean("2D最高奖", "1 x 2D 高数字抽奖品 。顾客需要直顺序相同的秩序就会拿到奖金.", "一付八十块"));
-            introduceData.add(new ThaiThousandIntroduceBean("2D 底部奖", "1 x 2D 底数字抽奖品。顾客需要直顺序相同的秩序就会拿到奖金.", "一付八十块"));
-            introduceData.add(new ThaiThousandIntroduceBean("2D上辊", "顾客可以赌上3D抽奖的两个后面的号码 （` 00 ）。结果数字是132 那就是 12，13，21，23，31，32 的6 个总数结果。 任何一个落入2D最高奖金支付.", "一付十二块"));
-        } else if (type.equals("Game3")) {
+            introduceData.add(new HuayThaiIntroduceBean("2D最高奖", "1 x 2D 高数字抽奖品 。顾客需要直顺序相同的秩序就会拿到奖金.", "一付八十块"));
+            introduceData.add(new HuayThaiIntroduceBean("2D 底部奖", "1 x 2D 底数字抽奖品。顾客需要直顺序相同的秩序就会拿到奖金.", "一付八十块"));
+            introduceData.add(new HuayThaiIntroduceBean("2D上辊", "顾客可以赌上3D抽奖的两个后面的号码 （` 00 ）。结果数字是132 那就是 12，13，21，23，31，32 的6 个总数结果。 任何一个落入2D最高奖金支付.", "一付十二块"));
+        } else if (type.equals(getString(R.string.game3d))) {
+            tvLimitNun.setText(R.string.Number_3_digit_);
             introduceData.clear();
-            introduceData.add(new ThaiThousandIntroduceBean("3D最高奖", "直数预测", "一付五百五十块"));
-            introduceData.add(new ThaiThousandIntroduceBean("3D前面奖", "2x最后的抽奖总数。顾客可以能买中1个数字在2个数字之内.（3位数）", "一付两百五十块"));
-            introduceData.add(new ThaiThousandIntroduceBean("3D底部奖", "2x最后的抽奖总数。顾客可以能买中1个数字在2个数字之内.（3位数）", "一付两百五十块"));
-            introduceData.add(new ThaiThousandIntroduceBean("3D 上辊奖", "随机预测。可能的结果123,132,213,231,312,321共6条结果。掉进最高奖3D将被支付.", "一付一百二十五块"));
+            introduceData.add(new HuayThaiIntroduceBean("3D最高奖", "直数预测", "一付五百五十块"));
+            introduceData.add(new HuayThaiIntroduceBean("3D前面奖", "2x最后的抽奖总数。顾客可以能买中1个数字在2个数字之内.（3位数）", "一付两百五十块"));
+            introduceData.add(new HuayThaiIntroduceBean("3D底部奖", "2x最后的抽奖总数。顾客可以能买中1个数字在2个数字之内.（3位数）", "一付两百五十块"));
+            introduceData.add(new HuayThaiIntroduceBean("3D 上辊奖", "随机预测。可能的结果123,132,213,231,312,321共6条结果。掉进最高奖3D将被支付.", "一付一百二十五块"));
         }
         loadIntroduceData();
     }
 
-    private void initGradeData(String type) {
-        if (type.equals("Game1")) {
-            gradeData.clear();
-            gradeData.add(date + "-泰式千字最高奖 1D");
-            gradeData.add(date + "-泰式千字底部奖 1D");
-            gradeData.add(date + "-泰式千字最高奖固定1 1D");
-            gradeData.add(date + "-泰式千字最高奖固定2 1D");
-            gradeData.add(date + "-泰式千字最高奖固定3 1D");
-            tvLimitNun.setText("数 (1 数字) :");
-        } else if (type.equals("Game2")) {
-            tvLimitNun.setText("数 (2 数字) :");
-            gradeData.clear();
-            gradeData.add(date + "-泰式千字最高奖 2D");
-            gradeData.add(date + "-泰式千字底部奖 2D");
-            gradeData.add(date + "-泰式千字上辊 2D");
-        } else if (type.equals("Game3")) {
-            tvLimitNun.setText("数 (3 数字) :");
-            gradeData.clear();
-            gradeData.add(date + "-泰式千字最高奖 3D");
-            gradeData.add(date + "-泰式千字底部奖 3D");
-            gradeData.add(date + "-泰式千字上辊奖 3D");
-            gradeData.add(date + "-HUAY THAI INFRONT PRIZE 3D");
-        }
-        tvGradeDate.setText(gradeData.get(0));
-    }
+
 
     private void initBetListener(String type) {
         initBet(layoutBet1, bet1Itembet1, bet1Itembet2, bet1ItembetSucceed, type);
@@ -199,68 +180,32 @@ public class ThaiThousandFragment extends BaseFragment<ThaiThousandPresenter> im
         return R.layout.fragment_thai_thousand;
     }
 
-    @Override
-    public void initView() {
-        super.initView();
-    }
 
     @Override
     public void onFailed(String error) {
-
+        ToastUtils.showShort(error);
     }
 
-    @Override
-    public void reset(String type) {
-        if (type.equals("Game1")) {
-            gamesActivity.setTitle(getString(R.string.Thai_game1));
-            initGradeData(type);
-            initIntroduceData(type);
-            initBetListener(type);
-        } else if (type.equals("Game2")) {
-            gamesActivity.setTitle(getString(R.string.Thai_game2));
-            initGradeData(type);
-            initIntroduceData(type);
-            initBetListener(type);
-        } else if (type.equals("Game3")) {
-            gamesActivity.setTitle(getString(R.string.Thai_game3));
-            initGradeData(type);
-            initIntroduceData(type);
-            initBetListener(type);
-        }
-        this.type = type;
-    }
+
 
 
     @OnClick({R.id.tv_grade_date, R.id.tv_refresh, R.id.tv_submit})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_grade_date:
-                BaseListPopupWindow<String> popupWindow = new BaseListPopupWindow<String>(mContext, v, v.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, tvGradeDate) {
-                    @Override
-                    public int getRecyclerViewId() {
-                        return R.id.base_rv;
-                    }
-
-                    @Override
-                    public List<String> getData() {
-                        return gradeData;
-                    }
-                };
-                popupWindow.showPopupDownWindow();
+                popDate.showPopupDownWindow();
                 break;
             case R.id.tv_refresh:
-                ToastUtils.showShort("refresh");
-                //TODO
+                refresh();
                 break;
             case R.id.tv_submit:
-                ToastUtils.showShort("submit");
                 presenter.submitBet(getParam());
                 break;
         }
     }
 
-    private ThaiThousandBetSubmitBean getParam() {
-        ThaiThousandBetSubmitBean bean = new ThaiThousandBetSubmitBean();
+    private HuayThaiBetSubmitBean getParam() {
+        HuayThaiBetSubmitBean bean = new HuayThaiBetSubmitBean();
         bet1Itembet1 = (EditText) layoutBet1.findViewById(R.id.item_bet1);
         bet1Itembet2 = (EditText) layoutBet1.findViewById(R.id.item_bet2);
         bean.setTxtNumber(bet1Itembet1.getText().toString());
@@ -310,9 +255,9 @@ public class ThaiThousandFragment extends BaseFragment<ThaiThousandPresenter> im
         bet2 = (EditText) layout.findViewById(R.id.item_bet2);
         bet3 = (TextView) layout.findViewById(R.id.item_bet_succeed);
         final EditText finalBet = bet1;
-        if (type.equals("Game1")) {
+        if (type.equals(getString(R.string.game1d))) {
             bet1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1)});
-        } else if (type.equals("Game2")) {
+        } else if (type.equals(getString(R.string.game2d))) {
             bet1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
             bet1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
@@ -324,7 +269,7 @@ public class ThaiThousandFragment extends BaseFragment<ThaiThousandPresenter> im
                     }
                 }
             });
-        } else if (type.equals("Game3")) {
+        } else if (type.equals(getString(R.string.game3d))) {
             bet1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
             bet1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
                 @Override
@@ -342,7 +287,19 @@ public class ThaiThousandFragment extends BaseFragment<ThaiThousandPresenter> im
     }
 
     @Override
-    public void onGetData(String data) {
-        Log.d("onGetData", "onGetData: " + data);
+    public void onGetData(HuayDrawDateInfo data) {
+        popDate = new BaseListPopupWindow<HuayDrawDateInfo.DicAllBean>(mContext, tvGradeDate, tvGradeDate.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, tvGradeDate) {
+            @Override
+            public int getRecyclerViewId() {
+                return R.id.base_rv;
+            }
+
+            @Override
+            protected void convertTv(TextView tv, HuayDrawDateInfo.DicAllBean item) {
+                tv.setText(item.getDesc());
+            }
+        };
+        popDate.setData(data.getDicAll());
+        tvGradeDate.setText(data.getDicAll().get(0).getDesc());
     }
 }

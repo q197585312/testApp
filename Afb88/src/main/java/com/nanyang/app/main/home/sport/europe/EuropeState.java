@@ -230,6 +230,12 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                 } else {
                     View tvRightMark = helper.getView(R.id.module_right_mark_tv);
                     tvRightMark.setVisibility(View.VISIBLE);
+                    tvRightMark.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            back.clickView(v, item,position);
+                        }
+                    });
 
                     onMatchNotRepeat(helper, item, position);
                 }
@@ -345,13 +351,20 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
             public void clickOdds(TextView v, EuropeInfo item, String type, boolean isHf, String odds) {
                 IBetHelper helper = onSetBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                //http://main55.afb88.com/_Bet/JRecPanel.aspx?g=50&b=1&oId=11188250&odds=2.5
-                helper.clickOdds(item, type, odds, v, isHf, "");
+                helper.clickOdds(item, type, odds, v, isHf, "g=5");
             }
 
             @Override
             public void clickView(View v, EuropeInfo item, int position) {
+                switch (v.getId()) {
+                    case R.id.module_right_mark_tv:
+                        getBaseView().clickItemAdd(v,item,"common");
 
+                        break;
+                    case R.id.iv_hall_btn:
+//                        clickHallBtn(v, item, position);
+                        break;
+                }
             }
 
             @Override

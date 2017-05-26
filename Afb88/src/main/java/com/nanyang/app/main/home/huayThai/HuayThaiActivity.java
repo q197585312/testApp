@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.TaiThousand;
+package com.nanyang.app.main.home.huayThai;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
@@ -12,7 +12,6 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,13 +22,10 @@ import butterknife.Bind;
  * Created by Administrator on 2017/3/24.
  */
 
-public class ThaiThousanAcivity extends BaseToolbarActivity {
+public class HuayThaiActivity extends BaseToolbarActivity {
     @Bind(R.id.thai_thousand_rc)
     RecyclerView rc;
     private List<MenuItemInfo> data;
-    private String thai1D;
-    private String thai2D;
-    private String thai3D;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,18 +52,10 @@ public class ThaiThousanAcivity extends BaseToolbarActivity {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
-                ToastUtils.showShort(R.string.coming_soon);
-               /* Bundle b = new Bundle();
-                if (item.getText().equals(thai1D)) {
-                    b.putString("thai_thousand", "Game1");
-                    skipAct(GamesActivity.class, b);
-                } else if (item.getText().equals(thai2D)) {
-                    b.putString("thai_thousand", "Game2");
-                    skipAct(GamesActivity.class, b);
-                } else if (item.getText().equals(thai3D)) {
-                    b.putString("thai_thousand", "Game3");
-                    skipAct(GamesActivity.class, b);
-                }*/
+                Bundle b = new Bundle();
+                b.putSerializable("thai_thousand", item);
+                skipAct(HuayThaiGamesActivity.class, b);
+
             }
         });
         rc.setAdapter(adapter);
@@ -76,13 +64,10 @@ public class ThaiThousanAcivity extends BaseToolbarActivity {
     @Override
     public void initData() {
         super.initData();
-        thai1D = "泰式千字 1D游戏";
-        thai2D = "泰式千字 2D游戏";
-        thai3D = "泰式千字 3D游戏";
         data = new ArrayList<>();
-        data.add(new MenuItemInfo(R.mipmap.thai_thousand_1d, thai1D));
-        data.add(new MenuItemInfo(R.mipmap.thai_thousand_2d, thai2D));
-        data.add(new MenuItemInfo(R.mipmap.thai_thousand_3d, thai3D));
+        data.add(new MenuItemInfo(R.mipmap.thai_thousand_1d, getString(R.string.game1d), "_view/nodds1TH_App.aspx"));
+        data.add(new MenuItemInfo(R.mipmap.thai_thousand_2d, getString(R.string.game2d), "_view/nodds2TH_App.aspx"));
+        data.add(new MenuItemInfo(R.mipmap.thai_thousand_3d, getString(R.string.game3d), "_view/nodds3TH_App.aspx"));
         initRc();
     }
 }

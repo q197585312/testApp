@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.Games.thaiThousand.model;
+package com.nanyang.app.main.home.huayThai;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -7,7 +7,7 @@ import java.util.Map;
  * Created by Administrator on 2017/2/28.
  */
 
-public class ThaiThousandBetSubmitBean {
+public class HuayThaiBetSubmitBean {
     String lstDraw;
     String txtNumber;
     String txtAmt;
@@ -30,7 +30,7 @@ public class ThaiThousandBetSubmitBean {
     String txtNumber10;
     String txtAmt10;
 
-    public ThaiThousandBetSubmitBean(String txtNumber, String txtAmt, String txtNumber2, String txtAmt2, String lstDraw, String txtNumber3, String txtAmt3, String txtNumber4, String txtAmt4, String txtNumber5, String txtAmt5, String txtNumber6, String txtAmt6, String txtNumber7, String txtAmt7, String txtNumber8, String txtAmt8, String txtNumber9, String txtAmt9, String txtNumber10, String txtAmt10) {
+    public HuayThaiBetSubmitBean(String txtNumber, String txtAmt, String txtNumber2, String txtAmt2, String lstDraw, String txtNumber3, String txtAmt3, String txtNumber4, String txtAmt4, String txtNumber5, String txtAmt5, String txtNumber6, String txtAmt6, String txtNumber7, String txtAmt7, String txtNumber8, String txtAmt8, String txtNumber9, String txtAmt9, String txtNumber10, String txtAmt10) {
         this.txtNumber = txtNumber;
         this.txtAmt = txtAmt;
         this.txtNumber2 = txtNumber2;
@@ -54,7 +54,7 @@ public class ThaiThousandBetSubmitBean {
         this.txtAmt10 = txtAmt10;
     }
 
-    public ThaiThousandBetSubmitBean() {
+    public HuayThaiBetSubmitBean() {
     }
 
 

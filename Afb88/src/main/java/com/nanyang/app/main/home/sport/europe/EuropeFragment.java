@@ -1,11 +1,8 @@
 package com.nanyang.app.main.home.sport.europe;
 
-import android.view.View;
-
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
-import com.nanyang.app.main.home.sport.model.SportInfo;
 
 
 public class EuropeFragment extends BaseSportFragment {
@@ -40,11 +37,6 @@ public class EuropeFragment extends BaseSportFragment {
     @Override
     public String getTitle() {
         return getString(R.string.Europe_View);
-    }
-
-
-    @Override
-    public void clickItemAdd(View v, SportInfo item, String type) {
     }
 
 

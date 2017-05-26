@@ -1,15 +1,15 @@
-package com.nanyang.app.main.home.Games.model;
+package com.nanyang.app.main.home.huayThai;
 
 /**
  * Created by Administrator on 2017/2/27.
  */
 
-public class ThaiThousandIntroduceBean {
+public class HuayThaiIntroduceBean {
     String name;
     String introduce;
     String way;
 
-    public ThaiThousandIntroduceBean(String name, String introduce, String way) {
+    public HuayThaiIntroduceBean(String name, String introduce, String way) {
         this.name = name;
         this.introduce = introduce;
         this.way = way;

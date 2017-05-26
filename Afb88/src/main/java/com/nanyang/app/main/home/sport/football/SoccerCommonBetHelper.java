@@ -54,27 +54,37 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
     //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=fglg&sc=0&oId=12286343&odds=13
 //    /http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=tg&sc=1&oId=12286343&odds=4.6
     //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=tg&sc=70&oId=12286343&odds=11
-    protected String getOddsUrl(SoccerCommonInfo item, String oid, String oid_fh, String type, boolean isHf, String odds, String params) {
+    protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("gt=s");
         stringBuilder.append("&b=" + type);
         stringBuilder.append(params);
-        String oId = "&oId=" + oid;
+        String oId = "&oId=" + item.getSocOddsId();
         if (isHf)
             if (type.equalsIgnoreCase("over") || type.equalsIgnoreCase("under") || type.equalsIgnoreCase("home") || type.equalsIgnoreCase("away")) {
-                oId += "&isFH=true&oId_fh=" + oid_fh;
+                oId += "&isFH=true&oId_fh=" + item.getSocOddsId_FH();
             } else {
-                oId = "&oId=" + oid_fh;
+                oId = "&oId=" + item.getSocOddsId_FH();
             }
         stringBuilder.append(oId);
+        stringBuilder.append("&odds=" + odds);
+        return stringBuilder.toString();
+    }
+    protected String getOddsUrl(String old, String type,String odds, String params) {
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(AppConstant.getInstance().URL_ODDS);
+        stringBuilder.append("gt=s");
+        stringBuilder.append("&b=" + type);
+        stringBuilder.append(params);
+        stringBuilder.append( "&oId=" + old);
         stringBuilder.append("&odds=" + odds);
         return stringBuilder.toString();
     }
 
     @Override
     public Disposable clickOdds(SoccerCommonInfo item, String type, String odds, final TextView v, final boolean isHf, String params) {
-        String url = getOddsUrl(item, item.getSocOddsId(), item.getSocOddsId_FH(), type, isHf, odds, params);
+        String url = getOddsUrl(item,  type, isHf, odds, params);
         return getDisposable(v, isHf, url);
     }
 
@@ -117,7 +127,7 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
 
     @Override
     public Disposable clickOdds(SoccerCommonInfo itemData, int oid, String type, String odds, TextView v, boolean isHf, String params) {
-        String url = getOddsUrl(itemData, oid + "", "", type, false, odds, params);
+        String url = getOddsUrl(oid + "", type,  odds, params);
         return getDisposable(v, isHf, url);
     }
 }

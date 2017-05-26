@@ -18,6 +18,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
+import com.nanyang.app.main.home.sport.europe.EuropeBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerCommonBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerMixBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerRunningBetHelper;
@@ -129,9 +130,9 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         }
         isMixParlay = type.getRes() == 1;
         String parent = type.getParent();
-        String football = getString(R.string.football);
 
-        if (parent.equals(football)) {
+
+        if (parent.equals(getString(R.string.football))) {
 
             if (isMixParlay) {
                 helper = new SoccerMixBetHelper(this);
@@ -143,7 +144,11 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         } else if (parent.equals(getString(R.string.Myanmar_Odds))) {
             paramT = "&T=MB2";
             helper = new MyanmarBetHelper(this);
+            //http://main55.afb88.com/_view/pgajaxS.axd?T=MB2&oId=12795891&home=%E5%9F%83%E6%96%AF%E8%92%82%E7%89%B9%E6%96%AF&away=%E4%BF%9D%E5%9C%B0%E8%8A%B1%E9%AB%98&moduleTitle=%E5%8D%97%E7%BE%8E%E8%A7%A3%E6%94%BE%E8%80%85%E6%9D%AF&date=08:45AM&lang=eng&isRun=true&_=1495764426627
             //http://a8206d.a36588.com/_view/pgajaxS.axd?T=MB2&oId=12270813&home=Rochdale&away=Millwall&moduleTitle=ENGLISH%20LEAGUE%20ONE&date=03:45AM&lang=EN-US&isRun=false&_=1490092254432
+        } else if (parent.equals(getString(R.string.Europe_View))) {
+            paramT = "&T=MB2";
+            helper = new EuropeBetHelper(this);
         }
 
 
@@ -395,12 +400,12 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
                         new VsCellBean("", "", 0), new VsCellBean("7 & OVER", result.getTG().getT7_OVER(), "&sc=" + "70", result.getTG().getOid())), true, true, getString(R.string.total_goals), "", "", "")
         ));
         if (result.getHOMETEAMTG() != null) {
-            rows.add(new VsTableRowBean("", Arrays.asList(new VsCellBean( result.getHOMETEAMTG().getFT_OU() + "      " + getString(R.string.O), result.getHOMETEAMTG().getFT_O(), "over", "", result.getHOMETEAMTG().getOid()), new VsCellBean("" + getString(R.string.U), result.getHOMETEAMTG().getFT_U(), "under", "", result.getHOMETEAMTG().getOid()), new VsCellBean( result.getHOMETEAMTG().getFH_OU() + "      " + "FH." + getString(R.string.O), result.getHOMETEAMTG().getFH_O(), "over", "", result.getHOMETEAMTG().getOid_FH()),
+            rows.add(new VsTableRowBean("", Arrays.asList(new VsCellBean(result.getHOMETEAMTG().getFT_OU() + "      " + getString(R.string.O), result.getHOMETEAMTG().getFT_O(), "over", "", result.getHOMETEAMTG().getOid()), new VsCellBean("" + getString(R.string.U), result.getHOMETEAMTG().getFT_U(), "under", "", result.getHOMETEAMTG().getOid()), new VsCellBean(result.getHOMETEAMTG().getFH_OU() + "      " + "FH." + getString(R.string.O), result.getHOMETEAMTG().getFH_O(), "over", "", result.getHOMETEAMTG().getOid_FH()),
                     new VsCellBean("FH." + getString(R.string.U), result.getHOMETEAMTG().getFH_U(), "under", "", result.getHOMETEAMTG().getOid_FH())), true, true, getString(R.string.HOME_TEAM_TOTAL_GOALS), "", "", ""));
 
         }
         if (result.getAWAYTEAMTG() != null) {
-            rows.add(new VsTableRowBean("", Arrays.asList(new VsCellBean( result.getAWAYTEAMTG().getFT_OU() + "      " + getString(R.string.O), result.getAWAYTEAMTG().getFT_O(), "over", "", result.getAWAYTEAMTG().getOid()), new VsCellBean("" + getString(R.string.U), result.getAWAYTEAMTG().getFT_U(), "under", "", result.getAWAYTEAMTG().getOid()), new VsCellBean( result.getAWAYTEAMTG().getFH_OU() + "      " + "FH." + getString(R.string.O), result.getAWAYTEAMTG().getFH_O(), "over", "", result.getAWAYTEAMTG().getOid_FH()),
+            rows.add(new VsTableRowBean("", Arrays.asList(new VsCellBean(result.getAWAYTEAMTG().getFT_OU() + "      " + getString(R.string.O), result.getAWAYTEAMTG().getFT_O(), "over", "", result.getAWAYTEAMTG().getOid()), new VsCellBean("" + getString(R.string.U), result.getAWAYTEAMTG().getFT_U(), "under", "", result.getAWAYTEAMTG().getOid()), new VsCellBean(result.getAWAYTEAMTG().getFH_OU() + "      " + "FH." + getString(R.string.O), result.getAWAYTEAMTG().getFH_O(), "over", "", result.getAWAYTEAMTG().getOid_FH()),
                     new VsCellBean("FH." + getString(R.string.U), result.getAWAYTEAMTG().getFH_U(), "under", "", result.getAWAYTEAMTG().getOid_FH())), true, true, getString(R.string.AWAY_TEAM_TOTAL_GOALS), "", "", "")
             );
         }

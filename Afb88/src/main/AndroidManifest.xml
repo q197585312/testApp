@@ -55,7 +55,7 @@
         </activity>
         <activity android:name=".main.home.poker.PokerCasinoActivity" />
         <activity
-            android:name=".main.home.Games.GamesActivity"
+            android:name=".main.home.huayThai.HuayThaiGamesActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
         <activity android:name=".main.home.discount.DiscountActivity" />
         <activity android:name=".main.home.sport.mixparlayList.MixOrderListActivity" />
@@ -66,7 +66,7 @@
         <activity android:name=".main.home.sport.main.SportActivity" />
         <activity android:name=".main.center.StatemenStake.StatementStakeActivity" />
         <activity android:name=".main.center.StatementStakeDetails.StatementDetailsActivity" />
-        <activity android:name=".main.home.TaiThousand.ThaiThousanAcivity" />
+        <activity android:name=".main.home.huayThai.HuayThaiActivity" />
     </application>
 
 </manifest>

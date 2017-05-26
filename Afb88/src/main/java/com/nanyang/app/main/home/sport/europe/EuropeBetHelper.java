@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.europe;
 
+import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.widget.TextView;
 
@@ -30,15 +31,15 @@ public class EuropeBetHelper extends BallBetHelper<EuropeInfo, BetView> {
         super(baseView);
     }
 
-//http://main55.afb88.com/_bet/JRecPanel.aspx?g=5&b=1&oId=12794616&odds=11.8
+    //http://main55.afb88.com/_bet/JRecPanel.aspx?g=5&b=1&oId=12794616&odds=11.8
     //http://main55.afb88.com/_Bet/JRecPanel.aspx?g=5&b=1&oId=12683157&odds=2.9
-    protected String getOddsUrl(EuropeInfo item, String type, boolean isHf, String odds, String params) {
+    protected String getOddsUrl(String SocOddsId, String type, boolean isHf, String odds, @NonNull String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.getInstance().URL_ODDS);
-        stringBuilder.append("g=5");
+        stringBuilder.append(params);
+        stringBuilder.append("&gt=s");
         stringBuilder.append("&b=" + type);
-        stringBuilder.append("&oId=" + item.getSocOddsId());
-
+        stringBuilder.append("&oId=" + SocOddsId);
         stringBuilder.append("&odds=" + odds);
 
         return stringBuilder.toString();
@@ -48,8 +49,16 @@ public class EuropeBetHelper extends BallBetHelper<EuropeInfo, BetView> {
     //http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=9&b=even&oId=12264963&oId_fh=12264964&odds=9.4&isFH=true
     @Override
     public Disposable clickOdds(EuropeInfo item, String type, String odds, final TextView v, final boolean isHf, String params) {
+        String socOddsId = item.getSocOddsId();
+        if (isHf) {
+            socOddsId = item.getSocOddsId_FH();
+        }
+        String url = getOddsUrl(socOddsId, type, isHf, odds, params);
+        return getDisposable(v, isHf, url);
+    }
 
-        String url = getOddsUrl(item, type, isHf, odds, params);
+    @NonNull
+    private Disposable getDisposable(final TextView v, final boolean isHf, String url) {
         Disposable subscribe = getService(ApiService.class).getBetData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingPromptBean>() {//onNext
                     @Override
@@ -84,6 +93,12 @@ public class EuropeBetHelper extends BallBetHelper<EuropeInfo, BetView> {
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+    }
+
+    @Override
+    public Disposable clickOdds(EuropeInfo itemData, int oid, String type, String odds, TextView v, boolean isHf, String params) {
+        String url = getOddsUrl(oid + "", type, false, odds, params);
+        return getDisposable(v, isHf, url);
     }
 
 

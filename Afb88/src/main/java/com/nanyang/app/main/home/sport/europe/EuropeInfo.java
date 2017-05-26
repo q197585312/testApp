@@ -1,13 +1,13 @@
 package com.nanyang.app.main.home.sport.europe;
 
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.main.home.sport.model.SportInfo;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 
 /**
  * Created by Administrator on 2017/5/16.
  */
 
-public class EuropeInfo extends SportInfo {
+public class EuropeInfo extends BallInfo {
     String SocOddsId;
     String SocOddsId_FH;
     String Live;

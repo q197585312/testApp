@@ -17,6 +17,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.main.home.discount.DiscountActivity;
+import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.poker.PokerCasinoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -63,6 +64,7 @@ public class HomeFragment extends BaseFragment {
         dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.SportBook), "SportBook"));
         dataList.add(new MenuItemInfo(R.mipmap.home_live, getString(R.string.Live_Casino), "Live_Casino"));
         dataList.add(new MenuItemInfo(R.mipmap.home_financials, getString(R.string.Financial), "Financial"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.Europe_View), "Europe"));
         dataList.add(new MenuItemInfo(R.mipmap.home_specals4d, getString(R.string.Specials_4D), "Specials_4D"));
         dataList.add(new MenuItemInfo(R.mipmap.home_huay_thai, getString(R.string.Huay_Thai), "Huay_Thai"));
         dataList.add(new MenuItemInfo(R.mipmap.home_muay_thai, getString(R.string.Muay_Thai), "Muay_Thai"));
@@ -71,7 +73,7 @@ public class HomeFragment extends BaseFragment {
         dataList.add(new MenuItemInfo(R.mipmap.home_keno, getString(R.string.Keno), "Keno"));
         dataList.add(new MenuItemInfo(R.mipmap.home_poker, getString(R.string.Poker), "Poker"));
         dataList.add(new MenuItemInfo(R.mipmap.home_lottery, getString(R.string.Lottery), "Lottery"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.Europe_View), "Europe"));
+
 //        dataList.add(new MenuItemInfo(R.mipmap.home_roulette, getString(R.string.Roulette), "Roulette"));
 //        dataList.add(new MenuItemInfo(R.mipmap.home_casino, getString(R.string.Casino), "Casino"));
 //        dataList.add(new MenuItemInfo(R.mipmap.home_discount, getString(R.string.Discount), "Discount"));
@@ -94,15 +96,15 @@ public class HomeFragment extends BaseFragment {
                     case "Muay_Thai":
                     case "E_Sport":
                     case "Myanmar_Odds":
-//                    case "Europe":
+                    case "Europe":
                         defaultSkip(item.getType());
            /*             createPopupWindow(getPopupWindow(item.getType()));
                         popWindow.showPopupCenterWindow();*/
                         break;
 
-              /*      case "Huay_Thai":
-                        skipAct(ThaiThousanAcivity.class);
-                        break;*/
+                    case "Huay_Thai":
+                        skipAct(HuayThaiActivity.class);
+                        break;
                     case "Live_Casino":
                         Bundle b = new Bundle();
                         b.putString("activity", "Live");
