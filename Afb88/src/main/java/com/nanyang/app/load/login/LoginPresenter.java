@@ -86,7 +86,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 
                                 String url = m.group(1);
                                 if (url.contains("Maintenance")) {
-                                    Exception exception = new Exception(((Activity)baseView).getString(R.string.System_maintenance));
+                                    Exception exception = new Exception(((Activity) baseView).getString(R.string.System_maintenance));
                                     throw exception;
                                 } else {
 //                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
@@ -120,11 +120,20 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                         @Override
                         public void accept(String str) throws Exception {
                             String lag = AfbUtils.getLanguage((Activity) baseView);
-                            String lang = "eng";
-                            if (lag.equals("zh")) {
-                                lang = "ZH-CN";
-                            } else if (lag.equals("en")) {
-                                lang = "EN-US";
+                            String lang;
+                            switch (lag) {
+                                case "zh":
+                                    lang = "ZH-CN";
+                                    break;
+                                case "en":
+                                    lang = "EN-US";
+                                    break;
+                                case "th":
+                                    lang = "TH-TH";
+                                    break;
+                                default:
+                                    lang = "EN-US";
+                                    break;
                             }
                             SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
                             switchLanguage.switchLanguage(lang);

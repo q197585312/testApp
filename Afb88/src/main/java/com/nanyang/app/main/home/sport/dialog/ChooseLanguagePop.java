@@ -15,6 +15,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -46,11 +47,12 @@ public class ChooseLanguagePop extends BasePopupWindow {
     }
 
     private void initData() {
-        List<MenuItemInfo> menuItemInfos = Arrays.asList(new MenuItemInfo(R.mipmap.lang_zh_flag, "中文", "zh"), new MenuItemInfo(R.mipmap.lang_en_flag, "English", "en"));
+        List<MenuItemInfo<String>> menuItemInfos = new ArrayList<MenuItemInfo<String>>(Arrays.asList(new MenuItemInfo<String>(R.mipmap.lang_zh_flag, "中文", "zh","ZH-CN"), new MenuItemInfo<String>(R.mipmap.lang_en_flag, "English", "en","EN-US"),
+                new MenuItemInfo<String>(R.mipmap.lang_th_flag, "ไทย", "th","TH-TH")));
 
-        BaseRecyclerAdapter<MenuItemInfo> adapter = new BaseRecyclerAdapter<MenuItemInfo>(context, menuItemInfos, R.layout.selected_text_item) {
+        BaseRecyclerAdapter<MenuItemInfo<String>> adapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(context, menuItemInfos, R.layout.selected_text_item) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
+            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
                 TextView contentTv = holder.getView(R.id.selectable_text_content_tv);
                 View  line = holder.getView(R.id.v_row_line1);
                 line.setVisibility(View.GONE);
@@ -69,15 +71,14 @@ public class ChooseLanguagePop extends BasePopupWindow {
                 }
             }
         };
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {
             @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
+            public void onItemClick(View view, MenuItemInfo<String> item, int position) {
                 String lag = item.getType();
-                AfbUtils.switchLanguage(lag, context);
-                if (lag.equals("zh")) {
-                    switchLanguage("ZH-CN");
-                } else if (lag.equals("en")) {
-                    switchLanguage("EN-US");
+
+                if(!lag.equals(AfbUtils.getLanguage(context))){
+                    AfbUtils.switchLanguage(lag,context);
+                    switchLanguage(item.getParent());
                 }
             }
         });

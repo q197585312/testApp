@@ -161,6 +161,9 @@ public final class SystemTool {
 			} else if (lag.equals("en")) {
 				config.locale = Locale.ENGLISH;
 			}
+			else{
+				config.locale = new Locale(lag);
+			}
 		} else {
 			Locale.setDefault(Locale.ENGLISH);
 		}

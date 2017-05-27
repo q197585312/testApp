@@ -53,6 +53,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     RadioButton loginChinaRb;
     @Bind(R.id.login_english_rb)
     RadioButton loginEnglishRb;
+    @Bind(R.id.login_th_rb)
+    RadioButton loginthRb;
     AfbApplication app;
     @Bind(R.id.cb_login_remember)
     CheckBox cbLoginRemember;
@@ -86,29 +88,33 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     private void initLanguage() {
         String language = AfbUtils.getLanguage(this);
         if (language != null && !TextUtils.isEmpty(language)) {
-            if (language.equals("zh")) {
-                loginChinaRb.setChecked(true);
-                loginEnglishRb.setChecked(false);
-                AfbUtils.switchLanguage("zh", this);
-                restart();
-            } else if (language.equals("en")) {
-                loginChinaRb.setChecked(false);
-                loginEnglishRb.setChecked(true);
-                AfbUtils.switchLanguage("en", this);
-                restart();
+            loginChinaRb.setChecked(false);
+            loginEnglishRb.setChecked(false);
+            loginthRb.setChecked(false);
+            switch (language) {
+                case "zh":
+                    loginChinaRb.setChecked(true);
+                    AfbUtils.switchLanguage("zh", this);
+                    restart();
+                    break;
+                case "en":
+
+                    loginEnglishRb.setChecked(true);
+                    AfbUtils.switchLanguage("en", this);
+                    restart();
+                    break;
+                case "th":
+                    loginthRb.setChecked(true);
+                    AfbUtils.switchLanguage("th", this);
+                    restart();
+                    break;
             }
         } else {
+            loginEnglishRb.setChecked(true);
             AfbUtils.switchLanguage("en", this);
             restart();
         }
     }
-
-
-/*    public void onCLickLogin(View v) {
-//        presenter.login(new UserInfo("0", "DLDLDLYY15", "111111", "Android", "1.0").getMap());
-        presenter.login(new UserInfo("0", "DLDLDLYY15", "111111", "Android", "1.0"));
-    }*/
-
 
     @Override
     public void onGetData(String data) {
@@ -130,7 +136,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         ToastUtils.showShort(msgRes);
     }
 
-    @OnClick({R.id.btn_login_login, R.id.tv_login_register, R.id.tv_login_forget, R.id.login_china_rb, R.id.login_english_rb})
+    @OnClick({R.id.btn_login_login, R.id.tv_login_register, R.id.tv_login_forget, R.id.login_china_rb, R.id.login_english_rb, R.id.login_th_rb})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
@@ -144,6 +150,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 break;
             case R.id.login_china_rb:
                 AfbUtils.switchLanguage("zh", this);
+                restart();
+                break;
+            case R.id.login_th_rb:
+                AfbUtils.switchLanguage("th", this);
                 restart();
                 break;
             case R.id.login_english_rb:

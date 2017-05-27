@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
@@ -39,17 +40,10 @@ public class ChangeLanguageFragment extends BaseFragment<LanguagePresenter> impl
         super.initView();
     }
 
-    String language;
 
     @Override
     public void initData() {
         super.initData();
-        String lag = AfbUtils.getLanguage(getActivity());
-        if (lag.equals("zh")) {
-            language = getString(R.string.chinese);
-        } else if (lag.equals("en")) {
-            language = getString(R.string.english);
-        }
         initRc();
         createPresenter(new LanguagePresenter(this));
     }
@@ -57,44 +51,28 @@ public class ChangeLanguageFragment extends BaseFragment<LanguagePresenter> impl
     private void initRc() {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);//设置为一个3列的纵向网格布局
         rc.setLayoutManager(mLayoutManager);
-        List<String> dataList = new ArrayList<>();
-        dataList.add(getString(R.string.chinese));
-        dataList.add(getString(R.string.english));
-
-        BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<String>(mContext, dataList, R.layout.item_change_language) {
+        List<MenuItemInfo<String>> dataList = new ArrayList<>();
+        dataList.add(new MenuItemInfo<>(R.mipmap.lang_zh_flag,getString(R.string.chinese),"zh", "ZH-CN"));
+        dataList.add(new MenuItemInfo<>(R.mipmap.lang_en_flag,getString(R.string.english),"en", "EN-US"));
+        dataList.add(new MenuItemInfo<>(R.mipmap.lang_th_flag,getString(R.string.thai),"th","TH-TH"));
+        BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, dataList, R.layout.item_change_language) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, String item) {
+            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
+                String lag = AfbUtils.getLanguage(getActivity());
                 TextView tv = holder.getView(R.id.selectable_text_content_tv);
-                tv.setText(item);
-                if (item.equals(getString(R.string.chinese))) {
-                    if (language.equals(item)) {
-                        tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.lang_zh_flag, 0, R.mipmap.oval_red_hook_red_choice, 0);
-                    } else {
-                        tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.lang_zh_flag, 0, 0, 0);
-                    }
-                } else if (item.equals(getString(R.string.english))) {
-                    if (language.equals(item)) {
-                        tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.lang_en_flag, 0, R.mipmap.oval_red_hook_red_choice, 0);
-                    } else {
-                        tv.setCompoundDrawablesWithIntrinsicBounds(R.drawable.lang_en_flag, 0, 0, 0);
-                    }
+                tv.setText(item.getText());
+                if(lag.equals(item.getType())){
+                    tv.setCompoundDrawablesWithIntrinsicBounds(item.getRes(), 0, R.mipmap.oval_red_hook_red_choice, 0);
+                }else{
+                    tv.setCompoundDrawablesWithIntrinsicBounds(item.getRes(), 0, 0, 0);
                 }
             }
         };
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {
             @Override
-            public void onItemClick(View view, String item, int position) {
-                if (item.equals(getString(R.string.chinese))) {
-                    AfbUtils.switchLanguage("zh", getActivity());
-                    String lang = "ZH-CN";
-                    presenter.switchLanguage(lang);
-
-                } else if (item.equals(getString(R.string.english))) {
-                    AfbUtils.switchLanguage("en", getActivity());
-                    String lang = "EN-US";
-                    presenter.switchLanguage(lang);
-
-                }
+            public void onItemClick(View view, MenuItemInfo<String> item, int position) {
+                AfbUtils.switchLanguage(item.getType(), getActivity());
+                presenter.switchLanguage(item.getParent());
             }
         });
         rc.setAdapter(adapter);

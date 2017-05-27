@@ -210,6 +210,7 @@
     <string name="choice_language">选择语言</string>
     <string name="chinese">中文</string>
     <string name="english">英语</string>
+    <string name="thai">泰语</string>
     <string name="gdc">GDC</string>
     <string name="gd88">GD88</string>
     <string name="Login_Success">登录成功</string>
