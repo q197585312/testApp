@@ -58,7 +58,7 @@ public class OutRightBetHelper extends BallBetHelper<SportInfo, BetView> {
     @Override
     public Disposable clickOdds(SportInfo item, String type, String odds, final TextView v, final boolean isHf, String params) {
         String url = getOddsUrl(item, type, isHf, odds, params);
-        Disposable subscribe = getService(ApiService.class).postData(url).subscribeOn(Schedulers.io())
+        Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String str) throws Exception {

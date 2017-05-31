@@ -34,7 +34,7 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
     //
     @Override
     public void getStatementData(String userName) {
-        Disposable disposable = mApiWrapper.applySchedulers(Api.getService(ApiService.class).statementData(AppConstant.getInstance().URL_STAEMENT))
+        Disposable disposable = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getData(AppConstant.getInstance().URL_STAEMENT))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {

@@ -90,7 +90,7 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
 
     @NonNull
     private Disposable getDisposable(final TextView v, final boolean isHf, String url) {
-        Disposable subscribe = getService(ApiService.class).postData(url).subscribeOn(Schedulers.io())
+        Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String str) throws Exception {

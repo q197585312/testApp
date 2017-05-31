@@ -1,12 +1,12 @@
 package com.nanyang.app.main.home.huayThai;
 
-import android.text.InputFilter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -90,14 +90,14 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
     TextView tvIntroduceWay;
 
 
-
     public List<HuayThaiIntroduceBean> introduceData = new ArrayList<>();
     public LayoutInflater inflater;
     HuayThaiGamesActivity huayThaiGamesActivity;
 
     String type;
-    MenuItemInfo info;
+    MenuItemInfo<String> info;
     private BaseListPopupWindow<HuayDrawDateInfo.DicAllBean> popDate;
+    private HuayDrawDateInfo.DicAllBean selectDic;
 
     @Override
     public void initData() {
@@ -109,7 +109,7 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
         inflater = LayoutInflater.from(mContext);
         refresh();
         initIntroduceData(type);
-        initBetListener(type);
+
     }
 
     private void refresh() {
@@ -160,19 +160,18 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
     }
 
 
+    private boolean checkVisiable(String type) {
+        return checkBet(layoutBet1, type)
+                && checkBet(layoutBet2, type)
+                && checkBet(layoutBet3, type)
+                && checkBet(layoutBet4, type)
+                && checkBet(layoutBet5, type)
+                && checkBet(layoutBet6, type)
+                && checkBet(layoutBet7, type)
+                && checkBet(layoutBet8, type)
+                && checkBet(layoutBet9, type)
+                && checkBet(layoutBet10, type);
 
-    private void initBetListener(String type) {
-        initBet(layoutBet1, bet1Itembet1, bet1Itembet2, bet1ItembetSucceed, type);
-        initBet(layoutBet2, bet2Itembet1, bet2Itembet2, bet2ItembetSucceed, type);
-        initBet(layoutBet3, bet3Itembet1, bet3Itembet2, bet3ItembetSucceed, type);
-        initBet(layoutBet4, bet4Itembet1, bet4Itembet2, bet4ItembetSucceed, type);
-        initBet(layoutBet5, bet5Itembet1, bet5Itembet2, bet5ItembetSucceed, type);
-        initBet(layoutBet6, bet6Itembet1, bet6Itembet2, bet6ItembetSucceed, type);
-        initBet(layoutBet7, bet7Itembet1, bet7Itembet2, bet7ItembetSucceed, type);
-        initBet(layoutBet8, bet8Itembet1, bet8Itembet2, bet8ItembetSucceed, type);
-        initBet(layoutBet9, bet9Itembet1, bet9Itembet2, bet9ItembetSucceed, type);
-        initBet(layoutBet10, bet10Itembet1, bet10Itembet2, bet10tembetSucceed, type);
-        layoutBet1.findViewById(R.id.item_atm).setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -186,7 +185,47 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
         ToastUtils.showShort(error);
     }
 
+    @Override
+    public void onResultData(ResultBean s) {
+        if (s != null && s.getDicAll().size() > 0) {
+            for (int i = 0; i < s.getDicAll().size(); i++) {
+                switch (i) {
+                    case 0:
+                        ((TextView) layoutBet1.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(0).getNumber());
+                        break;
+                    case 1:
+                        ((TextView) layoutBet2.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(1).getNumber());
+                        break;
+                    case 2:
+                        ((TextView) layoutBet3.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(2).getNumber());
+                        break;
+                    case 3:
+                        ((TextView) layoutBet4.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(3).getNumber());
+                        break;
+                    case 4:
+                        ((TextView) layoutBet5.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(4).getNumber());
+                        break;
+                    case 5:
+                        ((TextView) layoutBet6.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(5).getNumber());
+                        break;
+                    case 6:
+                        ((TextView) layoutBet7.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(6).getNumber());
+                        break;
+                    case 7:
+                        ((TextView) layoutBet8.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(7).getNumber());
+                        break;
+                    case 8:
+                        ((TextView) layoutBet9.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(8).getNumber());
+                        break;
+                    case 9:
+                        ((TextView) layoutBet10.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(9).getNumber());
+                        break;
 
+
+                }
+            }
+        }
+    }
 
 
     @OnClick({R.id.tv_grade_date, R.id.tv_refresh, R.id.tv_submit})
@@ -199,12 +238,15 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
                 refresh();
                 break;
             case R.id.tv_submit:
-                presenter.submitBet(getParam());
+                if (checkVisiable(info.getText())) {
+                    presenter.submitBet(AppConstant.getInstance().HOST + info.getParent(), getParam());
+                }
                 break;
         }
     }
 
     private HuayThaiBetSubmitBean getParam() {
+
         HuayThaiBetSubmitBean bean = new HuayThaiBetSubmitBean();
         bet1Itembet1 = (EditText) layoutBet1.findViewById(R.id.item_bet1);
         bet1Itembet2 = (EditText) layoutBet1.findViewById(R.id.item_bet2);
@@ -246,48 +288,50 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
         bet10Itembet2 = (EditText) layoutBet10.findViewById(R.id.item_bet2);
         bean.setTxtNumber10(bet10Itembet1.getText().toString());
         bean.setTxtAmt10(bet10Itembet2.getText().toString());
-        bean.setLstDraw("12101468");
+        if (selectDic != null)
+            bean.setLstDraw(selectDic.getValue());
         return bean;
     }
 
-    public void initBet(LinearLayout layout, EditText bet1, EditText bet2, TextView bet3, String type) {
-        bet1 = (EditText) layout.findViewById(R.id.item_bet1);
-        bet2 = (EditText) layout.findViewById(R.id.item_bet2);
-        bet3 = (TextView) layout.findViewById(R.id.item_bet_succeed);
-        final EditText finalBet = bet1;
-        if (type.equals(getString(R.string.game1d))) {
-            bet1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(1)});
-        } else if (type.equals(getString(R.string.game2d))) {
-            bet1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(2)});
-            bet1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View view, boolean b) {
-                    if (!b) {
-                        if (finalBet.getText().toString().length() < 2) {
-                            ToastUtils.showShort("Not a valid 2 digit number!");
-                        }
-                    }
+    public boolean checkBet(LinearLayout layout, String type) {
+        EditText bet1 = (EditText) layout.findViewById(R.id.item_bet1);
+
+        TextView bet3 = (TextView) layout.findViewById(R.id.item_bet_succeed);
+        int le = bet1.getText().toString().trim().length();
+        if (le > 0) {
+            if (type.equals(getString(R.string.game1d))) {
+                if (le == 1) {
+                    bet3.setText("");
+                    return true;
+                } else {
+                    bet3.setText("Not a valid 1 digit number!");
+                    return false;
                 }
-            });
-        } else if (type.equals(getString(R.string.game3d))) {
-            bet1.setFilters(new InputFilter[]{new InputFilter.LengthFilter(3)});
-            bet1.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                @Override
-                public void onFocusChange(View view, boolean b) {
-                    if (!b) {
-                        if (finalBet.getText().toString().length() < 3) {
-                            ToastUtils.showShort("Not a valid 3 digit number!");
-                        }
-                    }
+            } else if (type.equals(getString(R.string.game2d))) {
+                if (le == 2) {
+                    bet3.setText("");
+                    return true;
+                } else {
+                    bet3.setText("Not a valid 2 digit number!");
+                    return false;
                 }
-            });
+            } else {
+                if (le == 3) {
+                    bet3.setText("");
+                    return true;
+                } else {
+                    bet3.setText("Not a valid 3 digit number!");
+                    return false;
+                }
+            }
         }
-        bet1.setText(null);
-        bet2.setText(null);
+        return true;
     }
+
 
     @Override
     public void onGetData(HuayDrawDateInfo data) {
+        selectDic = data.getDicAll().get(0);
         popDate = new BaseListPopupWindow<HuayDrawDateInfo.DicAllBean>(mContext, tvGradeDate, tvGradeDate.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, tvGradeDate) {
             @Override
             public int getRecyclerViewId() {
@@ -297,6 +341,7 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
             @Override
             protected void convertTv(TextView tv, HuayDrawDateInfo.DicAllBean item) {
                 tv.setText(item.getDesc());
+                selectDic = item;
             }
         };
         popDate.setData(data.getDicAll());

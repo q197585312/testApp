@@ -72,7 +72,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                             info.set__VIEWSTATE(__VIEWSTATE);
                             info.set__EVENTVALIDATION(__EVENTVALIDATION);
 
-                            return getService(ApiService.class).doLogin(AppConstant.getInstance().URL_LOGIN, info.getMap());
+                            return getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getMap());
 
                         }
                     })

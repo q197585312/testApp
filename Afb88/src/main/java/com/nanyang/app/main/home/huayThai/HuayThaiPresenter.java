@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home.huayThai;
 
-import android.util.Log;
-
 import com.nanyang.app.ApiService;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -53,27 +51,29 @@ public class HuayThaiPresenter extends BaseRetrofitPresenter<HuayDrawDateInfo , 
     }
 
     @Override
-    public void submitBet(HuayThaiBetSubmitBean info) {
-        Disposable disposable = mApiWrapper.applySchedulers(Api.getService(ApiService.class).ThaiThsandBetSubmit(info.getThaiThousandBetSubmitMap()))
-                .subscribe(new Consumer<String>() {
+    public void submitBet(String url,HuayThaiBetSubmitBean info) {
+        Disposable disposable = mApiWrapper.applySchedulers(Api.getService(ApiService.class).doHuayMap(url,info.getThaiThousandBetSubmitMap()))
+                .subscribe(new Consumer<ResultBean>() {
                     @Override
-                    public void accept(String s) throws Exception {
-
+                    public void accept(ResultBean s) throws Exception {
+                        baseView.onResultData(s);
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.d("Throwable", "accept: " + throwable.toString());
+                        baseView.onFailed(throwable.getMessage());
+                        baseView.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
                     public void run() throws Exception {
-
+                        baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Integer.MAX_VALUE);
+                        baseView.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(disposable);

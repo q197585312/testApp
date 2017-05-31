@@ -5,9 +5,9 @@ import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.nanyang.app.main.center.model.StatementStakeListBean;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.huayThai.HuayDrawDateInfo;
+import com.nanyang.app.main.home.huayThai.ResultBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
-import com.nanyang.app.main.home.sport.model.ScaleBean;
 import com.unkonw.testapp.login.DataBean;
 import com.unkonw.testapp.login.ResBaseBean;
 
@@ -72,9 +72,11 @@ public interface ApiService {
     btnSignIn	Login*/
     @FormUrlEncoded
     @POST
-    Flowable<String> doLogin(@Url String url, @FieldMap Map<String, String> info);
+    Flowable<String> doPostMap(@Url String url, @FieldMap Map<String, String> info);
 
-
+    @FormUrlEncoded
+    @POST
+    Flowable<ResultBean> doHuayMap(@Url String url, @FieldMap Map<String, String> info);
     @GET
     Flowable<String> getData(@Url String url);
 
@@ -99,16 +101,9 @@ public interface ApiService {
     @POST("http://www.afbasia88.com/_view/Register1.aspx")
     Flowable<String> Register(@FieldMap Map<String, String> info);
 
-    @FormUrlEncoded
-    @POST("_view/nodds1TH.aspx")
-    Flowable<String> ThaiThsandBetSubmit(@FieldMap Map<String, String> info);
 
-    @GET
-    Flowable<ScaleBean> scale(@Url String url);
 
-    //statement清单
-    @GET
-    Flowable<String> statementData(@Url String url);
+
 
     @FormUrlEncoded
     @POST()
@@ -127,10 +122,6 @@ public interface ApiService {
     @FormUrlEncoded
     @POST
     Flowable<String> changePasswrod(@Url String url,@FieldMap Map<String, String> map);
-
-    //投注状况
-    @GET
-    Flowable<String> getStakeData(@Url String url);
 
     //转账
     @GET

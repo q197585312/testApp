@@ -10,10 +10,11 @@ import com.unkonw.testapp.libs.view.IBaseView;
 public class HuayThaiContract {
     interface View extends IBaseView<HuayDrawDateInfo> {
         void onFailed(String error);
+        void onResultData(ResultBean s);
     }
 
     interface Presenter extends IBasePresenter {
         void refresh(String url);
-        void submitBet(HuayThaiBetSubmitBean info);
+        void submitBet(String url,HuayThaiBetSubmitBean info);
     }
 }

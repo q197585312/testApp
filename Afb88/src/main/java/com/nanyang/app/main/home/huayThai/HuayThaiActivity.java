@@ -25,7 +25,7 @@ import butterknife.Bind;
 public class HuayThaiActivity extends BaseToolbarActivity {
     @Bind(R.id.thai_thousand_rc)
     RecyclerView rc;
-    private List<MenuItemInfo> data;
+    private List<MenuItemInfo<String>> data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,18 +40,18 @@ public class HuayThaiActivity extends BaseToolbarActivity {
 
     private void initRc() {
         rc.setLayoutManager(new LinearLayoutManager(mContext));
-        BaseRecyclerAdapter<MenuItemInfo> adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, data, R.layout.item_thai_thousand) {
+        BaseRecyclerAdapter<MenuItemInfo<String>> adapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, data, R.layout.item_thai_thousand) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
+            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
                 ImageView iv = holder.getView(R.id.img_thai_thousand);
                 TextView nameTv = holder.getView(R.id.tv_thai_thousand_title);
                 iv.setImageResource(item.getRes());
                 nameTv.setText(item.getText());
             }
         };
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {
             @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
+            public void onItemClick(View view, MenuItemInfo<String> item, int position) {
                 Bundle b = new Bundle();
                 b.putSerializable("thai_thousand", item);
                 skipAct(HuayThaiGamesActivity.class, b);
@@ -65,9 +65,9 @@ public class HuayThaiActivity extends BaseToolbarActivity {
     public void initData() {
         super.initData();
         data = new ArrayList<>();
-        data.add(new MenuItemInfo(R.mipmap.thai_thousand_1d, getString(R.string.game1d), "_view/nodds1TH_App.aspx"));
-        data.add(new MenuItemInfo(R.mipmap.thai_thousand_2d, getString(R.string.game2d), "_view/nodds2TH_App.aspx"));
-        data.add(new MenuItemInfo(R.mipmap.thai_thousand_3d, getString(R.string.game3d), "_view/nodds3TH_App.aspx"));
+        data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_1d, getString(R.string.game1d), "_view/nodds1TH_App.aspx","_view/nodds1TH_Bet_App.aspx"));
+        data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, getString(R.string.game2d), "_view/nodds2TH_App.aspx","_view/nodds2TH_Bet_App.aspx"));
+        data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), "_view/nodds3TH_App.aspx","_view/nodds3TH_Bet_App.aspx"));
         initRc();
     }
 }

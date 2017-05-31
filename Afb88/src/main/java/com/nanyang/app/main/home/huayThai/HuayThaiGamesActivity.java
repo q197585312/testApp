@@ -17,9 +17,9 @@ import java.util.HashMap;
 public class HuayThaiGamesActivity extends BaseToolbarActivity {
 
 
-    private HashMap<String, BaseFragment> mapFragment;
+    private HashMap<String, BaseFragment<HuayThaiPresenter>> mapFragment;
 
-    protected MenuItemInfo info;
+    protected MenuItemInfo<String> info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,10 +37,10 @@ public class HuayThaiGamesActivity extends BaseToolbarActivity {
     @Override
     public void initData() {
         super.initData();
-        info = (MenuItemInfo) getIntent().getSerializableExtra("thai_thousand");
+        info = (MenuItemInfo<String>) getIntent().getSerializableExtra("thai_thousand");
         String thaiType = info.getText();
         setTitle(thaiType);
-        BaseFragment thaiThousandFragment = new HuayThaiFragment();
+        BaseFragment<HuayThaiPresenter> thaiThousandFragment = new HuayThaiFragment();
         mapFragment = new HashMap<>();
         mapFragment.put("Thai", thaiThousandFragment);
         showFragmentToActivity(thaiThousandFragment, R.id.game_fl, "Thai");
