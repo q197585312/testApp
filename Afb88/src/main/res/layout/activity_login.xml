@@ -50,7 +50,6 @@
                 android:layout_marginLeft="10dp"
                 android:background="@drawable/flag_british_selector"
                 android:button="@null"
-                android:checked="true"
                 android:gravity="center" />
 
         </RadioGroup>

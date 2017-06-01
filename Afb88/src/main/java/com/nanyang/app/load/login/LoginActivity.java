@@ -108,6 +108,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                     AfbUtils.switchLanguage("th", this);
                     restart();
                     break;
+                default:
+                    loginEnglishRb.setChecked(true);
+                    AfbUtils.switchLanguage("en", this);
+                    restart();
             }
         } else {
             loginEnglishRb.setChecked(true);

@@ -61,6 +61,7 @@ public class ScrollLayout extends ViewGroup {
     private Set<ScrollLayout> scrolls;
     private IndexChangeCallBack back;
     private boolean able = true;
+    private int count;
 
     public int getTargetIndex() {
         return targetIndex;
@@ -195,10 +196,19 @@ public class ScrollLayout extends ViewGroup {
         }
         return true;
     }
+    public int getMovableChildCount(){
+         count=0;
+        for(int i=0;i<getChildCount();i++){
+            if(getChildAt(i).getVisibility()!=GONE){
+                count++;
+            }
+        }
+        return  count;
+    }
 
-    public void moveToIndex(int targetIndex) {
+    public boolean moveToIndex(int targetIndex) {
         if(targetIndex<0||targetIndex>getChildCount()-1||getChildAt(targetIndex).getVisibility()==GONE)
-            return;
+            return false;
         this.targetIndex=targetIndex;
         int dx = targetIndex * getWidth() - getScrollX();
         // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
@@ -209,6 +219,7 @@ public class ScrollLayout extends ViewGroup {
 
         invalidate();
         getParent().requestDisallowInterceptTouchEvent(false);
+        return true;
     }
 
 

@@ -215,7 +215,7 @@ public class AppConstant {
         URL_ICE_HOCKEY_TODAY = HOST + "_view/All_Gen6.ashx?g=14&ot=t&update=true&r=1186326052";
         URL_ICE_HOCKEY_RUNING = HOST + "_view/All_Gen6.ashx?g=14&ot=r&update=true&r=1186326052";
         URL_ICE_HOCKEY_EARLY = HOST + "_view/All_Gen6.ashx?g=14&ot=e&update=true&r=1186326052";
-    //http://main55.afb88.com/_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994&LID=ba82fa925e9d154e&_=1495597268312
+        //http://main55.afb88.com/_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994&LID=ba82fa925e9d154e&_=1495597268312
         URL_EUROPE_TODAY = HOST + "_view/OddsGen5.ashx?g=182&ot=t&update=true&r=1833149994";
         URL_EUROPE_RUNING = HOST + "_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994";
         URL_EUROPE_EARLY = HOST + "_view/OddsGen5.ashx?g=182&ot=e&update=true&r=1833149994";

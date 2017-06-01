@@ -182,22 +182,24 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             View childAt = slHeader.getChildAt(i);
             View nextView = childAt.findViewById(R.id.iv_next);
             View previousView = childAt.findViewById(R.id.iv_previous);
-            if (nextView != null && previousView != null) {
-                nextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int targetIndex = slHeader.getTargetIndex() + 1;
-                        moveToIndex(targetIndex);
-                    }
-                });
-                previousView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int targetIndex = slHeader.getTargetIndex() - 1;
-                        moveToIndex(targetIndex);
-                    }
-                });
-            }
+                if (nextView != null && previousView != null) {
+                    nextView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            int targetIndex = slHeader.getTargetIndex() + 1;
+
+                            moveToIndex(targetIndex);
+                        }
+                    });
+                    previousView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            int targetIndex = slHeader.getTargetIndex() - 1;
+                            moveToIndex(targetIndex);
+                        }
+                    });
+                }
+
         }
 /*
         slHeader.setOnTouchListener(new View.OnTouchListener() {
@@ -332,6 +334,14 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     public void switchState(IObtainDataState state) {
         presenter.setStateHelper(state);
         presenter.getStateHelper().setScrollHeaderContent(slHeader, tvAos);
+        if (slHeader.getMovableChildCount() < 2) {
+            View childAt = slHeader.getChildAt(0);
+            View nextView = childAt.findViewById(R.id.iv_next);
+            View previousView = childAt.findViewById(R.id.iv_previous);
+            nextView.setVisibility(View.GONE);
+            previousView.setVisibility(View.GONE);
+        }
+
         getContextActivity().getTvToolbarTitle().setText(state.getStateType().getText());
 
         ((SportState) presenter.getStateHelper()).initAllOdds(ivAllAdd);

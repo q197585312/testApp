@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/green_thai_thousand_bg"
+    android:background="@color/green_light_white"
     android:orientation="vertical">
 
     <ScrollView
@@ -23,9 +23,9 @@
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25px"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
-                    android:text="成绩日期 :"
+                    android:text="@string/Draw_Date_"
                     android:textColor="@color/green_thai_thousand_wrol"
                     android:textSize="10sp" />
 
@@ -37,8 +37,8 @@
                     android:background="@drawable/rectangle_edt_white"
                     android:drawableRight="@mipmap/drop"
                     android:gravity="center|left"
-                    android:padding="10px"
-                    android:text="啊啊啊啊啊啊啊啊"
+                    android:padding="5dp"
+                    android:text=""
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -46,15 +46,15 @@
                     android:id="@+id/tv_refresh"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25px"
-                    android:layout_marginRight="25px"
-                    android:layout_weight="0.8"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
                     android:background="@drawable/rectangle_btn_bg"
                     android:gravity="center"
                     android:padding="5dp"
-                    android:text="更新"
+                    android:text="@string/Update"
                     android:textColor="@color/black"
-                    android:textSize="12sp" />
+                    android:textSize="10sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -67,7 +67,7 @@
                     android:id="@+id/tv_limit_num"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="25px"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="0.4"
                     android:textColor="@color/green_thai_thousand_wrol"
                     android:textSize="10sp" />
@@ -127,11 +127,11 @@
                             android:id="@+id/tv_submit"
                             android:layout_width="0dp"
                             android:layout_height="25dp"
-                            android:layout_weight="5"
+                            android:layout_weight="1.07"
                             android:background="@drawable/rectangle_btn_bg"
                             android:gravity="center"
                             android:padding="3dp"
-                            android:text="提交"
+                            android:text="@string/Submit"
                             android:textColor="@color/black"
                             android:textSize="12sp" />
 
@@ -140,7 +140,7 @@
                             android:layout_width="0dp"
                             android:layout_height="1px"
                             android:layout_marginRight="25px"
-                            android:layout_weight="1.2" />
+                            android:layout_weight="1" />
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>

@@ -113,7 +113,7 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
     }
 
     private void refresh() {
-        presenter.refresh(info.getType());
+        presenter.refresh(AppConstant.getInstance().HOST + info.getType());
     }
 
     private void loadIntroduceData() {
@@ -137,24 +137,24 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
         if (type.equals(getString(R.string.game1d))) {
             tvLimitNun.setText(R.string.Number_1_digit_);
             introduceData.clear();
-            introduceData.add(new HuayThaiIntroduceBean("1D最高奖", "赌上1号预测 其中3个号码能在3D内的抽奖。 假如 抽奖是312，那是顾客能赢的奖品.", "一付三块"));
-            introduceData.add(new HuayThaiIntroduceBean("1D 底部奖", "赌上1号预测 其中2个号码能在2D内的最后抽奖品.", "一付四块"));
-            introduceData.add(new HuayThaiIntroduceBean("1D 最高奖固定 一", "顾客可以赌上个单号预测上3D奖品的第一数字。比如，结果数字是 132，然后顾客将获得奖金.", "一付九块"));
-            introduceData.add(new HuayThaiIntroduceBean("1D 最高奖固定 二", "顾客可以赌上个单号预测上3D奖品的第二数字。比如，结果数字是 132，然后顾客将获得奖金.", "一付九块"));
-            introduceData.add(new HuayThaiIntroduceBean("1D 最高奖固定 三", "顾客可以赌上个单号预测上3D奖品的第二数字。比如，结果数字是 132，然后顾客将获得奖金.", "一付九块"));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Top_Prize1D), getString(R.string.description_top_1d), getString(R.string.pay3)));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Bottom_Prize_1d), getString(R.string.description_bottom_1d), getString(R.string.pay4)));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Top_Prize_Fix1), getString(R.string.description_fix1), getString(R.string.pay9)));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Top_Prize_Fix2), getString(R.string.description_fix2), getString(R.string.pay9)));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Top_Prize_Fix3), getString(R.string.description_fix3), getString(R.string.pay9)));
         } else if (type.equals(getString(R.string.game2d))) {
             tvLimitNun.setText(R.string.Number_2_digit_);
             introduceData.clear();
-            introduceData.add(new HuayThaiIntroduceBean("2D最高奖", "1 x 2D 高数字抽奖品 。顾客需要直顺序相同的秩序就会拿到奖金.", "一付八十块"));
-            introduceData.add(new HuayThaiIntroduceBean("2D 底部奖", "1 x 2D 底数字抽奖品。顾客需要直顺序相同的秩序就会拿到奖金.", "一付八十块"));
-            introduceData.add(new HuayThaiIntroduceBean("2D上辊", "顾客可以赌上3D抽奖的两个后面的号码 （` 00 ）。结果数字是132 那就是 12，13，21，23，31，32 的6 个总数结果。 任何一个落入2D最高奖金支付.", "一付十二块"));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Top_Prize2D), getString(R.string.description_top_2d), getString(R.string.pay80)));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Bottom_Prize2D), getString(R.string.description_bottom_2d), getString(R.string.pay80)));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Top_Roll_2D), getString(R.string.description_roll_2d), getString(R.string.pay20)));
         } else if (type.equals(getString(R.string.game3d))) {
             tvLimitNun.setText(R.string.Number_3_digit_);
             introduceData.clear();
-            introduceData.add(new HuayThaiIntroduceBean("3D最高奖", "直数预测", "一付五百五十块"));
-            introduceData.add(new HuayThaiIntroduceBean("3D前面奖", "2x最后的抽奖总数。顾客可以能买中1个数字在2个数字之内.（3位数）", "一付两百五十块"));
-            introduceData.add(new HuayThaiIntroduceBean("3D底部奖", "2x最后的抽奖总数。顾客可以能买中1个数字在2个数字之内.（3位数）", "一付两百五十块"));
-            introduceData.add(new HuayThaiIntroduceBean("3D 上辊奖", "随机预测。可能的结果123,132,213,231,312,321共6条结果。掉进最高奖3D将被支付.", "一付一百二十五块"));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Top_Prize_3d), getString(R.string.straight_prediction), getString(R.string.pay550)));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.In_front_3d), getString(R.string.description_in_front_3d), getString(R.string.pay250)));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Bottom_Prize_3d), getString(R.string.description_bottom_3d), getString(R.string.pay250)));
+            introduceData.add(new HuayThaiIntroduceBean(getString(R.string.Top_Roll_3d), getString(R.string.description_roll_3d), getString(R.string.pay250)));
         }
         loadIntroduceData();
     }
@@ -232,7 +232,8 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_grade_date:
-                popDate.showPopupDownWindow();
+                if (popDate != null)
+                    popDate.showPopupDownWindow();
                 break;
             case R.id.tv_refresh:
                 refresh();
@@ -304,6 +305,7 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
                     bet3.setText("");
                     return true;
                 } else {
+
                     bet3.setText("Not a valid 1 digit number!");
                     return false;
                 }
