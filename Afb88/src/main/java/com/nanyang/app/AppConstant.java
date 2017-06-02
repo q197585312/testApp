@@ -98,10 +98,14 @@ public class AppConstant {
     public String URL_E_SPORT_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=107&update=true&r=1770989484";
     //http://main55.afb88.com/_view/OddsOutGen.ashx?g=30&ot=e&update=true&r=741280160&LID=&_=1494315555262
     public String URL_US_FOOTBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=30&update=true&r=1887771784";
-    //http://main55.afb88.com/_view/All_WFHGen.ashx?g=12&ot=e&update=true&r=927620479&LID=&_=1493187544318
+
+    //http://main55.afb88.com/_view/All_WFHGen.ashx?g=12&ot=e&update=true&r=1259640348&LID=&_=1496371504834
     public String URL_US_FOOTBALL_EARLY = HOST + "_view/All_WFHGen.ashx?g=12&ot=e&update=true&r=927620479";
     public String URL_US_FOOTBALL_TODAY = HOST + "_view/All_WFHGen.ashx?g=12&ot=t&update=true&r=927620479";
     public String URL_US_FOOTBALL_RUNNING = HOST + "_view/All_WFHGen.ashx?g=12&ot=r&update=true&r=927620479";
+    //http://main55.afb88.com/_view/ParGen.ashx?g=13&ot=e&update=true&r=1990142665&LID=&_=1496373260537
+    public String URL_US_FOOTBALL_EARLY_MIX = HOST + "_view/ParGen.ashx?g=13&ot=e&update=true&r=927620479";
+    public String URL_US_FOOTBALL_TODAY_MIX = HOST + "_view/ParGen.ashx?g=13&ot=t&update=true&r=927620479";
 
 //    http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=e&update=true&r=1056207418&wd=2017-03-22&ia=0&oview=1&LID=&_=1490092121779
     //http://a8206d.a36588.com/_view/MOddsGen2.ashx?ot=r&update=true&r=1278052286&LID=84733db3885dd967&_=1490092254366

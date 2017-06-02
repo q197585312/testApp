@@ -177,7 +177,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Soccer), soccerFragment);
                 mapFragment.put(getString(R.string.Basketball), basketballFragment);
                 mapFragment.put(getString(R.string.Tennis), tennisFragment);
-//                mapFragment.put(getString(R.string.US_Football), usFootballFragment);
+                mapFragment.put(getString(R.string.US_Football), usFootballFragment);
 //                mapFragment.put(getString(R.string.Baseball), baseballFragment);
                 currentFragment = soccerFragment;
                 currentTag = getString(R.string.Soccer);
@@ -226,7 +226,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 }
                 break;
             case R.id.iv_add:
-                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, 350) {
+                createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
                     @Override
                     protected int onSetLayoutRes() {
                         return R.layout.popupwindow_choice_game;
