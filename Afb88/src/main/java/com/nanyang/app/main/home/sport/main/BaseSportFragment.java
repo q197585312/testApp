@@ -22,9 +22,9 @@ import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
-import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -78,7 +78,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
 
     @Override
-    public void onWebShow(int nextNotRepeat, int position, SoccerCommonInfo item, View view) {
+    public void onWebShow(int nextNotRepeat, int position, IRTMatchInfo item, View view) {
         View v = rvContent.getChildAt(nextNotRepeat);
         if (v == null) {
             v = view;

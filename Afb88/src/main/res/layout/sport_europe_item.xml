@@ -171,7 +171,13 @@
                     android:textSize="11sp" />
             </LinearLayout>
         </LinearLayout>
+        <ImageView
 
+            android:visibility="gone"
+            android:id="@+id/iv_hall_btn"
+            android:src="@mipmap/soccer_hall"
+            android:layout_width="14dp"
+            android:layout_height="14dp"/>
         <View
             android:layout_width="0.6dp"
             android:layout_height="match_parent"

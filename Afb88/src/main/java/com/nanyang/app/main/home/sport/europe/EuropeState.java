@@ -24,8 +24,10 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -122,6 +124,13 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                 TextView half2 = helper.getTextView(R.id.europe_2_half_time_odds_tv);
                 TextView halfx = helper.getTextView(R.id.europe_x_half_time_odds_tv);
 
+                TextView tvFull1 = helper.getTextView(R.id.europe_1_full_time_tv);
+                TextView tvFull2 = helper.getTextView(R.id.europe_2_full_time_tv);
+                TextView tvFullx = helper.getTextView(R.id.europe_x_full_time_tv);
+                TextView tvHalf1 = helper.getTextView(R.id.europe_1_half_time_tv);
+                TextView tvHalf2 = helper.getTextView(R.id.europe_2_half_time_tv);
+                TextView tvHalfx = helper.getTextView(R.id.europe_x_half_time_tv);
+
                 String timeDate = item.getMatchDate();
                 if (timeDate.length() > 6) {
                     String time = timeDate.substring(timeDate.length() - 7, timeDate.length());
@@ -174,6 +183,10 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                 homeTv.setText(item.getHome());
                 awayTv.setText(item.getAway());
                 if (item.getHasX12().equals("1")) {
+                    tvFull1.setText("1");
+                    tvFull2.setText("2");
+                    tvFullx.setText("X");
+
                     full1.setText(item.getX12_1Odds());
                     fullx.setText(item.getX12_XOdds());
                     full2.setText(item.getX12_2Odds());
@@ -183,11 +196,19 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
 
 
                 } else {
+                    tvFull1.setText("");
+                    tvFull2.setText("");
+                    tvFullx.setText("");
+
                     full1.setText("");
                     full2.setText("");
                     fullx.setText("");
                 }
                 if (item.getHasX12_FH().equals("1")) {
+                    tvHalf1.setText("1");
+                    tvHalf2.setText("2");
+                    tvHalfx.setText("X");
+
                     half1.setText(item.getX12_1Odds_FH());
                     halfx.setText(item.getX12_XOdds_FH());
                     half2.setText(item.getX12_2Odds_FH());
@@ -196,6 +217,9 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                     half2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds_FH(), "2"));
 
                 } else {
+                    tvHalf1.setText("");
+                    tvHalf2.setText("");
+                    tvHalfx.setText("");
                     half1.setText("");
                     half2.setText("");
                     halfx.setText("");
@@ -226,7 +250,7 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                     View tvRightMark = helper.getView(R.id.module_right_mark_tv);
                     tvRightMark.setVisibility(View.INVISIBLE);
 
-                    onMatchRepeat(helper, item, position);
+                    onMatchRepeat(helper, item, position,back);
                 } else {
                     View tvRightMark = helper.getView(R.id.module_right_mark_tv);
                     tvRightMark.setVisibility(View.VISIBLE);
@@ -237,7 +261,7 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                         }
                     });
 
-                    onMatchNotRepeat(helper, item, position);
+                    onMatchNotRepeat(helper, item, position,back);
                 }
                 onChildConvert(helper, position, item);
             }
@@ -252,11 +276,28 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
 
     protected abstract void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeInfo item);
 
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, EuropeInfo item, int position) {
-
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, EuropeInfo item, int position, SportAdapterHelper.ItemCallBack<EuropeInfo> back) {
+        repMap.put(position, false);
     }
 
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, EuropeInfo item, int position) {
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, EuropeInfo item, int position, SportAdapterHelper.ItemCallBack<EuropeInfo> back) {
+        repMap.put(position, true);
+    }
+    public Map<Integer, Boolean> getRepMap() {
+        return repMap;
+    }
+
+    Map<Integer, Boolean> repMap = new HashMap<>();
+    public int getNextNotRepeat(int position) {
+        if(position<getBaseRecyclerAdapter().getItemCount()) {
+            if (repMap.get(position + 1)==null||!repMap.get(position + 1)) {
+                return position;
+            } else {
+                return getNextNotRepeat(position + 1);
+            }
+        }
+        else
+            return 0;
 
     }
 
@@ -355,14 +396,14 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
             }
 
             @Override
-            public void clickView(View v, EuropeInfo item, int position) {
+            public void clickView(View v, final EuropeInfo item, int position) {
                 switch (v.getId()) {
                     case R.id.module_right_mark_tv:
                         getBaseView().clickItemAdd(v,item,"common");
 
                         break;
                     case R.id.iv_hall_btn:
-//                        clickHallBtn(v, item, position);
+                        clickHallBtn(v, item, position);
                         break;
                 }
             }
@@ -374,6 +415,9 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
         };
     }
 
+    protected void clickHallBtn(View v, final EuropeInfo item, int position) {
+
+    }
     public String getParentText() {
         return getBaseView().getContextActivity().getString(R.string.Europe_View);
     }

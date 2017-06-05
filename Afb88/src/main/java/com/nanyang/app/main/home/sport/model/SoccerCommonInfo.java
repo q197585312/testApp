@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.model;
 
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
+
 /**
  * Created by Administrator on 2017/3/11.
  */
@@ -56,7 +58,7 @@ package com.nanyang.app.main.home.sport.model;
         ,0
         ,0
         ,1*/
-public class SoccerCommonInfo extends BallInfo {
+public class SoccerCommonInfo extends BallInfo  implements IRTMatchInfo {
     String SocOddsId,
             SocOddsId_FH,
             Live,

@@ -2,12 +2,13 @@ package com.nanyang.app.main.home.sport.europe;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 
 /**
  * Created by Administrator on 2017/5/16.
  */
 
-public class EuropeInfo extends BallInfo {
+public class EuropeInfo extends BallInfo implements IRTMatchInfo {
     String SocOddsId;
     String SocOddsId_FH;
     String Live;
