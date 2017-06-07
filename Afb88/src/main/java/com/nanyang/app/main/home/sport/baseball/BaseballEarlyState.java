@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sport.baseball;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.basketball.BasketballCommonAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 
 /**
@@ -15,8 +16,18 @@ public class BaseballEarlyState extends BaseballState {
     }
 
     @Override
+    protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
+        return null;
+    }
+
+    @Override
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.Baseball));
+    }
+
+    @Override
+    public boolean mix() {
+        return false;
     }
 
     @Override

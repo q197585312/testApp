@@ -177,8 +177,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Soccer), soccerFragment);
                 mapFragment.put(getString(R.string.Basketball), basketballFragment);
                 mapFragment.put(getString(R.string.Tennis), tennisFragment);
-                mapFragment.put(getString(R.string.US_Football), usFootballFragment);
-                mapFragment.put(getString(R.string.Baseball), baseballFragment);
+          /*      mapFragment.put(getString(R.string.US_Football), usFootballFragment);
+                mapFragment.put(getString(R.string.Baseball), baseballFragment);*/
                 currentFragment = soccerFragment;
                 currentTag = getString(R.string.Soccer);
                 break;

@@ -207,18 +207,20 @@ public class ScrollLayout extends ViewGroup {
     }
 
     public boolean moveToIndex(int targetIndex) {
-        if(targetIndex<0||targetIndex>getChildCount()-1||getChildAt(targetIndex).getVisibility()==GONE)
-            return false;
+        if (!canMovable(targetIndex)) return false;
         this.targetIndex=targetIndex;
         int dx = targetIndex * getWidth() - getScrollX();
         // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
         mScroller.startScroll(getScrollX(), 0, dx, 0);
-        if (back != null) {
-            back.changePosition(this.targetIndex);
-        }
 
         invalidate();
         getParent().requestDisallowInterceptTouchEvent(false);
+        return true;
+    }
+
+    public boolean canMovable(int targetIndex) {
+        if(targetIndex<0||targetIndex>getChildCount()-1||getChildAt(targetIndex).getVisibility()==GONE)
+            return false;
         return true;
     }
 
@@ -236,6 +238,11 @@ public class ScrollLayout extends ViewGroup {
     @Override
     public void scrollTo(int x, int y) {
         super.scrollTo(x, y);
+        targetIndex=x/getWidth();
+        if (back != null) {
+            back.changePosition(this.targetIndex);
+        }
+
         if (scrolls != null) {
             for (ScrollLayout scroll : scrolls) {
                 if (scroll != null && !scroll.equals(this)) {

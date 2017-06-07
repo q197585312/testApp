@@ -312,7 +312,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void showData() {
         List<B> listData = toMatchList(pageData);
         baseRecyclerAdapter.addAllAndClear(listData);
-        baseView.onGetData(listData);
+        List<B> listDataAll= toMatchList(filterData);
+        baseView.onGetData(listDataAll);
     }
 
     private List<B> toMatchList(List<TableSportInfo<B>> pageList) {

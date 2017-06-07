@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -177,12 +178,42 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         });
         rememberLastOdds();
         slHeader.setTouchAble(false);
+        slHeader.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
+            @Override
+            public void changePosition(final int index) {
+                View childAt = slHeader.getChildAt(index);
+                ImageView nextView = (ImageView) childAt.findViewById(R.id.iv_next);
+                ImageView previousView = (ImageView) childAt.findViewById(R.id.iv_previous);
+                if(slHeader.canMovable(index+1)&&slHeader.canMovable(index-1)) {
+                    nextView.setVisibility(View.VISIBLE);
+                    previousInit(index, previousView);
+                }else if(slHeader.canMovable(index+1)){
+                    nextView.setVisibility(View.GONE);
+                    previousView.setVisibility(View.VISIBLE);
+                    previousView.setImageResource(R.mipmap.arrow_right_white_double);
+                    previousView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
 
+                            moveToIndex(index+1);
+                        }
+                    });
+                }
+                else if(slHeader.canMovable(index-1)){
+                    nextView.setVisibility(View.GONE);
+                    previousInit(index, previousView);
+                }else{
+                    nextView.setVisibility(View.GONE);
+                    previousView.setVisibility(View.GONE);
+                }
+            }
+        });
         for (int i = 0; i < slHeader.getChildCount(); i++) {
             View childAt = slHeader.getChildAt(i);
             View nextView = childAt.findViewById(R.id.iv_next);
             View previousView = childAt.findViewById(R.id.iv_previous);
                 if (nextView != null && previousView != null) {
+
                     nextView.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -219,6 +250,17 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             }
         });*/
 
+    }
+
+    private void previousInit(final int index, ImageView previousView) {
+        previousView.setVisibility(View.VISIBLE);
+        previousView.setImageResource(R.mipmap.arrow_left_white_double);
+        previousView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToIndex(index - 1);
+            }
+        });
     }
 
     private void moveToIndex(int targetIndex) {
@@ -279,6 +321,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     public void onGetData(List<SportInfo> data) {
         if (tvTotalMatch != null)
             tvTotalMatch.setText(data.size() + "");
+        else
+            tvTotalMatch.setText("0");
     }
 
     public AfbApplication getApp() {
@@ -334,12 +378,24 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     public void switchState(IObtainDataState state) {
         presenter.setStateHelper(state);
         presenter.getStateHelper().setScrollHeaderContent(slHeader, tvAos);
+        View childAt = slHeader.getChildAt(0);
+        ImageView nextView = (ImageView) childAt.findViewById(R.id.iv_next);
+        ImageView previousView = (ImageView) childAt.findViewById(R.id.iv_previous);
         if (slHeader.getMovableChildCount() < 2) {
-            View childAt = slHeader.getChildAt(0);
-            View nextView = childAt.findViewById(R.id.iv_next);
-            View previousView = childAt.findViewById(R.id.iv_previous);
+
             nextView.setVisibility(View.GONE);
             previousView.setVisibility(View.GONE);
+        }else{
+            nextView.setVisibility(View.GONE);
+            previousView.setVisibility(View.VISIBLE);
+            previousView.setImageResource(R.mipmap.arrow_right_white_double);
+            previousView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    moveToIndex(1);
+                }
+            });
         }
 
         getContextActivity().getTvToolbarTitle().setText(state.getStateType().getText());

@@ -54,7 +54,7 @@
         android:layout_gravity="center"
         android:gravity="center"
         android:minLines="2"
-        android:text="@string/Thai_bet_hint"
+        android:text=""
         android:textColor="@color/colorPrimaryDark"
         android:textSize="8sp"
         android:visibility="visible" />

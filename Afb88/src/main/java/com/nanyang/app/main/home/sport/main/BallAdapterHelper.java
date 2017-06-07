@@ -172,6 +172,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             public void changePosition(int index) {
                 if (slIndex != index) {
                     slIndex = index;
+
                 }
             }
         });
@@ -266,8 +267,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     homeOddsType = "home";
                 if (awayOddsType.equals(""))
                     awayOddsType = "away";
-                setValue(item, holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation, homeOddsType, isFh);
-                setValue(item, holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation, awayOddsType, isFh);
+                setValue(item, holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation, homeOddsType, isFh,R.drawable.green_trans_shadow_top);
+                setValue(item, holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation, awayOddsType, isFh,R.drawable.green_trans_shadow_bottom);
             }
         } else {
             holder.viewpagerMatchHomeHdpTv.setVisibility(View.GONE);
@@ -301,8 +302,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     holder.viewpagerMatchOuTv.setTextSize(8);
                     holder.viewpagerMatchOu2Tv.setTextSize(8);
                 }
-                setValue(item, holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation, underOddsType, isFh);
-                setValue(item, holder.viewpagerMatchOveroddsTv, overOdds, isAnimation, overOddsType, isFh);
+                setValue(item, holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation, underOddsType, isFh,R.drawable.green_trans_shadow_bottom);
+                setValue(item, holder.viewpagerMatchOveroddsTv, overOdds, isAnimation, overOddsType, isFh,R.drawable.green_trans_shadow_top);
             }
         } else {
             holder.viewpagerMatchOuTv.setVisibility(View.GONE);
@@ -327,8 +328,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     OddOddsType = "odd";
                 if (EvenOddsType.equals(""))
                     EvenOddsType = "even";
-                setValue(item, holder.viewpagerMatchOddTv, OddOdds, isAnimation, OddOddsType, isFh);
-                setValue(item, holder.viewpagerMatchEvenTv, EvenOdds, isAnimation, EvenOddsType, isFh);
+                setValue(item, holder.viewpagerMatchOddTv, OddOdds, isAnimation, OddOddsType, isFh,R.drawable.green_trans_shadow_top);
+                setValue(item, holder.viewpagerMatchEvenTv, EvenOdds, isAnimation, EvenOddsType, isFh,R.drawable.green_trans_shadow_bottom);
             } else {
                 holder.viewpagerMatchOddTv.setText("");
                 holder.viewpagerMatchEvenTv.setText("");
@@ -372,7 +373,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         return ss;
     }
 
-    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf) {
+    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg) {
         String value = f;
         if (f.equals("0")) {
             textView.setText("");
@@ -394,7 +395,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     animation.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
-                            textView.setBackgroundResource(R.color.green_trans);
+                            textView.setBackgroundResource(resBg);
                         }
 
                         @Override
@@ -404,7 +405,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
                         @Override
                         public void onAnimationRepeat(Animation animation) {
-                            textView.setBackgroundResource(R.color.green_trans);
+                            textView.setBackgroundResource(resBg);
                         }
                     });
                     textView.startAnimation(animation);

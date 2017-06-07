@@ -45,4 +45,5 @@ public class BaseballRunningState extends BaseballState {
         return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getBaseView().getContextActivity().getString(R.string.US_Football));
     }
 
+
 }

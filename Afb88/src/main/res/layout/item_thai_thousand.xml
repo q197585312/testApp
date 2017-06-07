@@ -37,5 +37,5 @@
             android:background="@mipmap/nav_right_white" />
     </LinearLayout>
 
-    <include layout="@layout/item_line_with_no_margin" />
+    <include  layout="@layout/item_line_with" />
 </LinearLayout>

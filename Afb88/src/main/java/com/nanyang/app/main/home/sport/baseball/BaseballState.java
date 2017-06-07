@@ -2,10 +2,12 @@ package com.nanyang.app.main.home.sport.baseball;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.basketball.BasketballCommonAdapterHelper;
+import com.nanyang.app.main.home.sport.basketball.BasketballCommonInfo;
+import com.nanyang.app.main.home.sport.basketball.BasketballCommonState;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
-import com.nanyang.app.main.home.sport.main.OtherAdapterHelper;
+import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.nanyang.app.main.home.sport.tennis.TennisState;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -18,7 +20,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class BaseballState extends TennisState{
+public abstract class BaseballState extends BasketballCommonState {
 
     public BaseballState(SportContract.View baseView) {
         super(baseView);
@@ -29,10 +31,10 @@ public abstract class BaseballState extends TennisState{
     }
 
     @Override
-    public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
-        return new OtherAdapterHelper(getBaseView().getContextActivity()){
+    public IAdapterHelper<BasketballCommonInfo> onSetAdapterHelper() {
+        return new BallAdapterHelper<BasketballCommonInfo>(getBaseView().getContextActivity()){
             @Override
-            public void onConvert(MyRecyclerViewHolder helper, int position, BasketballMixInfo item) {
+            public void onConvert(MyRecyclerViewHolder helper, int position, BasketballCommonInfo item) {
                 super.onConvert(helper, position, item);
                 ScrollLayout sl = helper.getView(R.id.module_center_sl);
                 scrollChild(sl.getChildAt(1),true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), "0", "0", item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
@@ -53,4 +55,13 @@ public abstract class BaseballState extends TennisState{
         types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
+    @Override
+    protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
+        return null;
+    }
+    @Override
+    public boolean mix() {
+        return false;
+    }
+
 }
