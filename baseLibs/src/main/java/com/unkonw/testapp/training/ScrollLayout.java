@@ -196,19 +196,20 @@ public class ScrollLayout extends ViewGroup {
         }
         return true;
     }
-    public int getMovableChildCount(){
-         count=0;
-        for(int i=0;i<getChildCount();i++){
-            if(getChildAt(i).getVisibility()!=GONE){
+
+    public int getMovableChildCount() {
+        count = 0;
+        for (int i = 0; i < getChildCount(); i++) {
+            if (getChildAt(i).getVisibility() != GONE) {
                 count++;
             }
         }
-        return  count;
+        return count;
     }
 
     public boolean moveToIndex(int targetIndex) {
         if (!canMovable(targetIndex)) return false;
-        this.targetIndex=targetIndex;
+        this.targetIndex = targetIndex;
         int dx = targetIndex * getWidth() - getScrollX();
         // 第二步，调用startScroll()方法来初始化滚动数据并刷新界面
         mScroller.startScroll(getScrollX(), 0, dx, 0);
@@ -219,7 +220,7 @@ public class ScrollLayout extends ViewGroup {
     }
 
     public boolean canMovable(int targetIndex) {
-        if(targetIndex<0||targetIndex>getChildCount()-1||getChildAt(targetIndex).getVisibility()==GONE)
+        if (targetIndex < 0 || targetIndex > getChildCount() - 1 || getChildAt(targetIndex).getVisibility() == GONE)
             return false;
         return true;
     }
@@ -238,7 +239,11 @@ public class ScrollLayout extends ViewGroup {
     @Override
     public void scrollTo(int x, int y) {
         super.scrollTo(x, y);
-        targetIndex=x/getWidth();
+        if (getWidth() > 0)
+            targetIndex = x / getWidth();
+        else{
+            targetIndex=0;
+        }
         if (back != null) {
             back.changePosition(this.targetIndex);
         }

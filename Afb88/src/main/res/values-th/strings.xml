@@ -303,4 +303,7 @@
     <string name="Draw_Date_">เลื่อนวัน :</string>
     <string name="Pool">Pool/Snooker</string>
     <string name="Rugby">Rugby</string>
+    <string name="Darts">Darts</string>
+    <string name="Boxing">Boxing</string>
+    <string name="Golf">Golf</string>
 </resources>

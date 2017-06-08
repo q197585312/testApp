@@ -7,7 +7,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixState;
-import com.nanyang.app.main.home.sport.main.OtherAdapterHelper;
+import com.nanyang.app.main.home.sport.main.OtherDoubleAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -73,6 +73,6 @@ public abstract class TennisState extends BasketballMixState{
     }
     @Override
     public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
-        return new OtherAdapterHelper(getBaseView().getContextActivity());
+        return new OtherDoubleAdapterHelper(getBaseView().getContextActivity());
     }
 }

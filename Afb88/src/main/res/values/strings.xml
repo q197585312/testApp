@@ -319,4 +319,7 @@ Bet successful. Please go to stake placed to check bet.
     <string name="Draw_Date_">Draw Date :</string>
     <string name="Pool">Pool/Snooker</string>
     <string name="Rugby">Rugby</string>
+    <string name="Darts">Darts</string>
+    <string name="Boxing">Boxing</string>
+    <string name="Golf">Golf</string>
 </resources>

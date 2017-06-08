@@ -249,7 +249,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 return false;
             }
         });*/
-
+        setTitle(getTitle());
     }
 
     private void previousInit(final int index, ImageView previousView) {

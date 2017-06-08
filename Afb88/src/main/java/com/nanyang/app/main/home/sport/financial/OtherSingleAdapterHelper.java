@@ -14,10 +14,10 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 
 
-public class FinancialAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
+public class OtherSingleAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
 
 
-    public FinancialAdapterHelper(Context context) {
+    public OtherSingleAdapterHelper(Context context) {
         super(context);
 
     }
