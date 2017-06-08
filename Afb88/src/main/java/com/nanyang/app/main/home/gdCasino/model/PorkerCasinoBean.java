@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.poker.model;
+package com.nanyang.app.main.home.gdCasino.model;
 
 /**
  * Created by Administrator on 2017/2/15.

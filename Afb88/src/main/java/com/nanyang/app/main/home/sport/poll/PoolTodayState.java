@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.iceHockey;
+package com.nanyang.app.main.home.sport.poll;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -9,15 +9,15 @@ import com.nanyang.app.main.home.sport.main.SportContract;
  * Created by Administrator on 2017/3/13.
  */
 
-public class IceHockeyTodayState extends IceHockeyState {
-    public IceHockeyTodayState(SportContract.View baseView) {
+public class PoolTodayState extends PoolState {
+    public PoolTodayState(SportContract.View baseView) {
         super(baseView);
     }
 
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_ICE_HOCKEY_TODAY;
+        return AppConstant.getInstance().URL_POOL_TODAY;
     }
 
     @Override
@@ -25,16 +25,16 @@ public class IceHockeyTodayState extends IceHockeyState {
 
         switch (item.getType()) {
             case "Early":
-                getBaseView().switchState(new IceHockeyEarlyState(getBaseView()));
+                getBaseView().switchState(new PoolEarlyState(getBaseView()));
                 break;
             case "Today":
                 getBaseView().switchState(this);
                 break;
             case "Running":
-                getBaseView().switchState(new IceHockeyRunningState(getBaseView()));
+                getBaseView().switchState(new PoolRunningState(getBaseView()));
                 break;
             case "OutRight":
-                getBaseView().switchState(new IceHockeyOutRightState(getBaseView()));
+                getBaseView().switchState(new PoolOutRightState(getBaseView()));
                 break;
 
         }
@@ -42,7 +42,7 @@ public class IceHockeyTodayState extends IceHockeyState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Today), "Today", getBaseView().getContextActivity().getString(R.string.IceHockey));
+        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Today), "Today", getBaseView().getContextActivity().getString(R.string.Pool));
     }
 
 

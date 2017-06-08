@@ -317,4 +317,6 @@ Bet successful. Please go to stake placed to check bet.
     <string name="description_bottom_3d">Total of 2 x Bottom prizes draw. Player buy one number possible to hit one of the 2 bottom numbers draw (3 digits).</string>
     <string name="description_roll_3d">Random number predictions. Outcome possible, 123,132,213,231,312,321 of total 6 outcomes. Any one fall into 3D top prize will be paid.</string>
     <string name="Draw_Date_">Draw Date :</string>
+    <string name="Pool">Pool/Snooker</string>
+    <string name="Rugby">Rugby</string>
 </resources>

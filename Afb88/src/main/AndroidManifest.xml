@@ -53,7 +53,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>-->
         </activity>
-        <activity android:name=".main.home.poker.PokerCasinoActivity" />
+        <activity android:name=".main.home.gdCasino.PokerCasinoActivity" />
         <activity
             android:name=".main.home.huayThai.HuayThaiGamesActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />

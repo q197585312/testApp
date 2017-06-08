@@ -314,4 +314,6 @@
     <string name="description_bottom_3d">2x最后的抽奖总数。顾客可以能买中1个数字在2个数字之内.（3位数）</string>
     <string name="description_roll_3d">随机预测。可能的结果123,132,213,231,312,321共6条结果。掉进最高奖3D将被支付.</string>
     <string name="Draw_Date_">成绩日期:</string>
+    <string name="Pool">Pool/Snooker</string>
+    <string name="Rugby">Rugby</string>
 </resources>

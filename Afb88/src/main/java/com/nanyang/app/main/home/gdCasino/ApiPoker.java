@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.poker;
+package com.nanyang.app.main.home.gdCasino;
 
 import com.unkonw.testapp.libs.api.Api;
 

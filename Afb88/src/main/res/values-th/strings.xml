@@ -301,4 +301,6 @@
     <string name="description_bottom_3d">ถ้าหากแทงหมายเลข "123" 3 ตัวล่างจะถูกรางวัลเมื่อรางวัลเลขท้าย 3 ตัว มีหมายเลข "123" </string>
     <string name="description_roll_3d">ถ้าหากแทงหมายเลข "123" 3 ตัวโต๊ดจะถูกรางวัลเมื่อรางวัลที่ 1 3 ตัวสุดท้ายออกหมายเลข "123,132,231,213,321,312" </string>
     <string name="Draw_Date_">เลื่อนวัน :</string>
+    <string name="Pool">Pool/Snooker</string>
+    <string name="Rugby">Rugby</string>
 </resources>

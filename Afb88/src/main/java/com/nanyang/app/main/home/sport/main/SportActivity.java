@@ -27,8 +27,11 @@ import com.nanyang.app.main.home.sport.europe.EuropeFragment;
 import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
 import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
+import com.nanyang.app.main.home.sport.iceHockey.IceHockeyFragment;
 import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
 import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
+import com.nanyang.app.main.home.sport.poll.PoolFragment;
+import com.nanyang.app.main.home.sport.rugby.RugbyFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -57,6 +60,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     BaseSportFragment europeFragment = new EuropeFragment();
     BaseSportFragment usFootballFragment = new USFootballFragment();
     BaseSportFragment baseballFragment = new BaseballFragment();
+    BaseSportFragment iceHockeyFragment = new IceHockeyFragment();
+    BaseSportFragment poolFragment = new PoolFragment();
+    BaseSportFragment rugbyFragment = new RugbyFragment();
 
 
     @Bind(R.id.iv_add)
@@ -177,8 +183,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Soccer), soccerFragment);
                 mapFragment.put(getString(R.string.Basketball), basketballFragment);
                 mapFragment.put(getString(R.string.Tennis), tennisFragment);
-          /*      mapFragment.put(getString(R.string.US_Football), usFootballFragment);
-                mapFragment.put(getString(R.string.Baseball), baseballFragment);*/
+                mapFragment.put(getString(R.string.US_Football), usFootballFragment);
+                mapFragment.put(getString(R.string.Baseball), baseballFragment);
+                mapFragment.put(getString(R.string.IceHockey), iceHockeyFragment);
+                mapFragment.put(getString(R.string.Pool), poolFragment);
+                mapFragment.put(getString(R.string.Rugby), rugbyFragment);
                 currentFragment = soccerFragment;
                 currentTag = getString(R.string.Soccer);
                 break;

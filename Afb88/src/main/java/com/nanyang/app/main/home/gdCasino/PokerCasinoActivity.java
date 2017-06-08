@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.poker;
+package com.nanyang.app.main.home.gdCasino;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -16,7 +16,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.poker.model.PorkerCasinoBean;
+import com.nanyang.app.main.home.gdCasino.model.PorkerCasinoBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.PermissionUtils;

@@ -161,62 +161,62 @@ public abstract class BasketballCommonState extends SportState<BasketballCommonI
 
     private BasketballCommonInfo parseMatch(JSONArray matchArray) throws JSONException {
         BasketballCommonInfo info = new BasketballCommonInfo();
-                info.setSocOddsId(matchArray.getString(0));
-                info.setSocOddsId_FH(matchArray.getString(1));
-                info.setLive(matchArray.getString(2));
-                info.setIsLastCall(matchArray.getString(3));
-                info.setMatchDate(matchArray.getString(4));
-                info.setIsHomeGive(matchArray.getString(5));
-                info.setHome(matchArray.getString(6));
-                info.setAway(matchArray.getString(7));
-                info.setIsInetBet(matchArray.getString(8));
-                info.setHasHdp(matchArray.getString(9));
-                info.setHdp(matchArray.getString(10));
-                info.setHdpOdds(matchArray.getString(11));
-                info.setHomeHdpOdds(matchArray.getString(12));
-                info.setAwayHdpOdds(matchArray.getString(13));
-                info.setHasOU(matchArray.getString(14));
-                info.setOU(matchArray.getString(15));
-                info.setIsHdpNew(matchArray.getString(16));
-                info.setIsOUNew(matchArray.getString(17));
-                info.setOUOdds(matchArray.getString(18));
-                info.setOverOdds(matchArray.getString(19));
-                info.setUnderOdds(matchArray.getString(20));
-                info.setIsOENew(matchArray.getString(21));
-                info.setHasOE(matchArray.getString(22));
-                info.setOEOdds(matchArray.getString(23));
-                info.setOddOdds(matchArray.getString(24));
-                info.setEvenOdds(matchArray.getString(25));
-                info.setIsInetBet_FH(matchArray.getString(26));
-                info.setHasHdp_FH(matchArray.getString(27));
-                info.setIsHomeGive_FH(matchArray.getString(28));
-                info.setHdp_FH(matchArray.getString(29));
-                info.setIsHdpNew_FH(matchArray.getString(30));
-                info.setHdpOdds_FH(matchArray.getString(31));
-                info.setHomeHdpOdds_FH(matchArray.getString(32));
-                info.setAwayHdpOdds_FH(matchArray.getString(33));
-                info.setHasOU_FH(matchArray.getString(34));
-                info.setOU_FH(matchArray.getString(35));
-                info.setIsOUNew_FH(matchArray.getString(36));
-                info.setOUOdds_FH(matchArray.getString(37));
-                info.setOverOdds_FH(matchArray.getString(38));
-                info.setUnderOdds_FH(matchArray.getString(39));
-                info.setIsOENew_FH(matchArray.getString(40));
-                info.setHasOE_FH(matchArray.getString(41));
-                info.setOEOdds_FH(matchArray.getString(42));
-                info.setOddOdds_FH(matchArray.getString(43));
-                info.setEvenOdds_FH(matchArray.getString(44));
-                info.setIsX12New(matchArray.getString(45));
-                info.setHasX12(matchArray.getString(46));
-                info.setX12_1Odds(matchArray.getString(47));
-                info.setX12_XOdds(matchArray.getString(48));
-                info.setX12_2Odds(matchArray.getString(49));
-                info.setPreSocOddsId(matchArray.getString(50));
-                info.setIsX12New_FH(matchArray.getString(51));
-                info.setHasX12_FH(matchArray.getString(52));
-                info.setX12_1Odds_FH(matchArray.getString(53));
-                info.setX12_XOdds_FH(matchArray.getString(54));
-                info.setX12_2Odds_FH(matchArray.getString(55));
+                info.setSocOddsId(matchArray.getString(0));//12882570,
+                info.setSocOddsId_FH(matchArray.getString(1));//        12883558,
+                info.setLive(matchArray.getString(2));//        '<fontcolor=red>LIVE<\/fontcolor>',
+                info.setIsLastCall(matchArray.getString(3));//        0,
+                info.setMatchDate(matchArray.getString(4));//        '03: 00PM',
+                info.setIsHomeGive(matchArray.getString(5));//        1,
+                info.setHome(matchArray.getString(6));//        '坎特伯雷公羊',
+                info.setAway(matchArray.getString(7));//        '尼森贾特斯',
+                info.setIsInetBet(matchArray.getString(8));//        0,
+                info.setHasHdp(matchArray.getString(9));//        1,
+                info.setHdp(matchArray.getString(10));//        10.5,
+                info.setHdpOdds(matchArray.getString(11));//        9.6,
+                info.setHomeHdpOdds(matchArray.getString(12));//        8,
+                info.setAwayHdpOdds(matchArray.getString(13));//        10.4,
+                info.setHasOU(matchArray.getString(14));//        1,
+                info.setOU(matchArray.getString(15));//        176.5,
+                info.setIsHdpNew(matchArray.getString(16));//        0,
+                info.setIsOUNew(matchArray.getString(17));//        0,
+                info.setOUOdds(matchArray.getString(18));//        -9.1,
+                info.setOverOdds(matchArray.getString(19));//        9.1,
+                info.setUnderOdds(matchArray.getString(20));//        9.1,
+                info.setIsOENew(matchArray.getString(21));//        0,
+                info.setHasOE(matchArray.getString(22));//        1,
+                info.setOEOdds(matchArray.getString(23));//        -9.4,
+                info.setOddOdds(matchArray.getString(24));//        9.4,
+                info.setEvenOdds(matchArray.getString(25));//        9.4,
+                info.setIsInetBet_FH(matchArray.getString(26));//        0,
+                info.setHasHdp_FH(matchArray.getString(27));//        1,
+                info.setIsHomeGive_FH(matchArray.getString(28));//        1,
+                info.setHdp_FH(matchArray.getString(29));//        5.5,
+                info.setIsHdpNew_FH(matchArray.getString(30));//        0,
+                info.setHdpOdds_FH(matchArray.getString(31));//        -9.6,
+                info.setHomeHdpOdds_FH(matchArray.getString(32));//        8.6,
+                info.setAwayHdpOdds_FH(matchArray.getString(33));//        9.6,
+                info.setHasOU_FH(matchArray.getString(34));//        1,
+                info.setOU_FH(matchArray.getString(35));//        88.5,
+                info.setIsOUNew_FH(matchArray.getString(36));//        0,
+                info.setOUOdds_FH(matchArray.getString(37));//        10,
+                info.setOverOdds_FH(matchArray.getString(38));//        8,
+                info.setUnderOdds_FH(matchArray.getString(39));//        10,
+                info.setIsOENew_FH(matchArray.getString(40));//        0,
+                info.setHasOE_FH(matchArray.getString(41));//        1,
+                info.setOEOdds_FH(matchArray.getString(42));//        -9.4,
+                info.setOddOdds_FH(matchArray.getString(43));//        9.4,
+                info.setEvenOdds_FH(matchArray.getString(44));//        9.4,
+                info.setIsX12New(matchArray.getString(45));//        0,
+                info.setHasX12(matchArray.getString(46));//        0,
+                info.setX12_1Odds(matchArray.getString(47));//        0,
+                info.setX12_XOdds(matchArray.getString(48));//        0,
+                info.setX12_2Odds(matchArray.getString(49));//        0,
+                info.setPreSocOddsId(matchArray.getString(50));//        0,
+                info.setIsX12New_FH(matchArray.getString(51));//        0,
+                info.setHasX12_FH(matchArray.getString(52));//        0,
+                info.setX12_1Odds_FH(matchArray.getString(53));//        0,
+                info.setX12_XOdds_FH(matchArray.getString(54));//        0,
+                info.setX12_2Odds_FH(matchArray.getString(55));//        0
         return info;
 
     }

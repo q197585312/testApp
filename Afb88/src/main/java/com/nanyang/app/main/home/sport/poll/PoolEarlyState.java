@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.iceHockey;
+package com.nanyang.app.main.home.sport.poll;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -9,19 +9,19 @@ import com.nanyang.app.main.home.sport.main.SportContract;
  * Created by Administrator on 2017/3/13.
  */
 
-public class IceHockeyEarlyState extends IceHockeyState {
-    public IceHockeyEarlyState(SportContract.View baseView) {
+public class PoolEarlyState extends PoolState {
+    public PoolEarlyState(SportContract.View baseView) {
         super(baseView);
     }
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.IceHockey));
+        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.Pool));
     }
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_ICE_HOCKEY_EARLY;
+        return AppConstant.getInstance().URL_POOL_EARLY;
     }
 
     @Override
@@ -32,13 +32,13 @@ public class IceHockeyEarlyState extends IceHockeyState {
                 getBaseView().switchState(this);
                 break;
             case "Today":
-                getBaseView().switchState(new IceHockeyTodayState(getBaseView()));
+                getBaseView().switchState(new PoolTodayState(getBaseView()));
                 break;
             case "Running":
-                getBaseView().switchState(new IceHockeyRunningState(getBaseView()));
+                getBaseView().switchState(new PoolRunningState(getBaseView()));
                 break;
             case "OutRight":
-                getBaseView().switchState(new IceHockeyOutRightState(getBaseView()));
+                getBaseView().switchState(new PoolOutRightState(getBaseView()));
                 break;
 
         }

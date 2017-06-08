@@ -39,10 +39,11 @@ public class AppConstant {
     //http://a8197c.a36588.com/Main.aspx?accType=EU
 
 //    public static String HOST="http://www.doo88.net/";
-    public String HOST = REAL_HOST;
+    public String HOST = APP_HOST;
 
     public String URL_LOGIN = HOST + "Default1.aspx";
     public String URL_MAIN = HOST + "main.aspx";
+
 
 
     public String URL_UPDATE_BALANCE = HOST + "_bet/PanelStakeBalance_App.aspx";
@@ -114,11 +115,11 @@ public class AppConstant {
     public String URL_SOCCER_MYANMAR_RUNNING = HOST + "_view/MOddsGen2.ashx?g=106&ot=r&update=true&r=1233177815";
     public String URL_SOCCER_MYANMAR_TODAY = HOST + "_view/MOddsGen2.ashx?g=106&ot=t&update=true&r=1233177815";
     public String URL_SOCCER_MYANMAR_EARLY = HOST + "_view/MOddsGen2.ashx?g=106&ot=e&update=true&r=1233177815";
-
+    //main55.afb88.com/_view/All_WFHGen.ashx?g=29&ot=e&update=true&r=265506937&LID=&_=1496903153702
     public String URL_BASEBALL_EARLY = HOST + "_view/All_WFHGen.ashx?g=29&ot=e&update=true&r=445360998";
-    public String URL_BASEBALL_TODAY = HOST + "_view/All_WFHGen.ashx?g=29&ot=r&update=true&r=445360998";
+    public String URL_BASEBALL_TODAY = HOST + "_view/All_WFHGen.ashx?g=29&ot=t&update=true&r=445360998";
     public String URL_BASEBALL_RUNNING = HOST + "_view/All_WFHGen.ashx?g=29&ot=r&update=true&r=445360998";
-    //http://main55.afb88.com/_view/OddsOutGen.ashx?g=39&ot=e&update=true&r=1186326052&LID=&_=1494322497189
+    //    http://main55.afb88.com/_view/OddsOutGen.ashx?g=39&ot=e&update=true&r=1288648832&LID=&_=1496903235059
     public String URL_BASEBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=39&update=true&r=1186326052";
 
     //http://main55.afb88.com/_view/OddsOutGen.ashx?g=39&ot=e&update=true&r=1078436031&LID=78a523670da52883&_=1494322797983
@@ -127,6 +128,16 @@ public class AppConstant {
     public String URL_ICE_HOCKEY_TODAY = HOST + "_view/All_Gen6.ashx?g=14&ot=t&update=true&r=1186326052";
     public String URL_ICE_HOCKEY_RUNING = HOST + "_view/All_Gen6.ashx?g=14&ot=r&update=true&r=1186326052";
     public String URL_ICE_HOCKEY_EARLY = HOST + "_view/All_Gen6.ashx?g=14&ot=e&update=true&r=1186326052";
+    //
+    public String URL_POOL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=32&update=true&r=1186326052";
+    public String URL_POOL_TODAY = HOST + "_view/All_Gen6.ashx?g=11&ot=t&update=true&r=1186326052";
+    public String URL_POOL_RUNING = HOST + "_view/All_Gen6.ashx?g=11&ot=r&update=true&r=1186326052";
+    public String URL_POOL_EARLY = HOST + "_view/All_Gen6.ashx?g=11&ot=e&update=true&r=1186326052";
+    //
+    public String URL_RUGBY_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=34&update=true&r=1186326052";
+    public String URL_RUGBY_TODAY = HOST + "_view/All_Gen6.ashx?g=17&ot=t&update=true&r=1186326052";
+    public String URL_RUGBY_RUNING = HOST + "_view/All_Gen6.ashx?g=17&ot=r&update=true&r=1186326052";
+    public String URL_RUGBY_EARLY = HOST + "_view/All_Gen6.ashx?g=17&ot=e&update=true&r=1186326052";
 
     public String URL_EUROPE_TODAY;
     public String URL_EUROPE_RUNING;
@@ -153,6 +164,7 @@ public class AppConstant {
     public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccHistory.aspx?role=mb&userName=";
     public String URL_PANEL = HOST + "_bet/panel.aspx";
     static AppConstant instance;
+    private String host;
 
     public void setHost(String host) {
         this.HOST = host;
@@ -210,15 +222,30 @@ public class AppConstant {
         URL_SOCCER_MYANMAR_EARLY = HOST + "_view/MOddsGen2.ashx?g=106&ot=e&update=true&r=1233177815";
 
         URL_BASEBALL_EARLY = HOST + "_view/All_WFHGen.ashx?g=29&ot=e&update=true&r=445360998";
-        URL_BASEBALL_TODAY = HOST + "_view/All_WFHGen.ashx?g=29&ot=r&update=true&r=445360998";
+        URL_BASEBALL_TODAY = HOST + "_view/All_WFHGen.ashx?g=29&ot=t&update=true&r=445360998";
         URL_BASEBALL_RUNNING = HOST + "_view/All_WFHGen.ashx?g=29&ot=r&update=true&r=445360998";
         URL_BASEBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=39&update=true&r=1186326052";
 
-        //http://main55.afb88.com/_view/OddsOutGen.ashx?g=39&ot=e&update=true&r=1078436031&LID=78a523670da52883&_=1494322797983
+        //http://main55.afb88.com/_view/All_Gen6.ashx?g=14&ot=r&update=true&r=1545705412
+        //http://main55.afb88.com/_view/OddsOutGen.ashx?g=33&ot=e&update=true&r=1341186982&LID=&_=1496905566929
         URL_ICE_HOCKEY_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=33&update=true&r=1186326052";
         URL_ICE_HOCKEY_TODAY = HOST + "_view/All_Gen6.ashx?g=14&ot=t&update=true&r=1186326052";
         URL_ICE_HOCKEY_RUNING = HOST + "_view/All_Gen6.ashx?g=14&ot=r&update=true&r=1186326052";
         URL_ICE_HOCKEY_EARLY = HOST + "_view/All_Gen6.ashx?g=14&ot=e&update=true&r=1186326052";
+
+        //http://main55.afb88.com/_view/All_Gen6.ashx?g=11&ot=t&update=true&r=340371970&LID=&_=1496906053812
+        //http://main55.afb88.com/_view/OddsOutGen.ashx?g=32&ot=e&update=true&r=1492002023&LID=&_=1496906224047
+        URL_POOL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=32&update=true&r=1186326052";
+        URL_POOL_TODAY = HOST + "_view/All_Gen6.ashx?g=11&ot=t&update=true&r=1186326052";
+        URL_POOL_RUNING = HOST + "_view/All_Gen6.ashx?g=11&ot=r&update=true&r=1186326052";
+        URL_POOL_EARLY = HOST + "_view/All_Gen6.ashx?g=11&ot=e&update=true&r=1186326052";
+        //http://main55.afb88.com/_view/All_Gen6.ashx?g=17&ot=e&update=true&r=2080506517&LID=&_=1496906889008
+        //http://main55.afb88.com/_view/OddsOutGen.ashx?g=34&ot=e&update=true&r=1222999374&LID=&_=1496906975411
+        URL_RUGBY_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=34&update=true&r=1186326052";
+        URL_RUGBY_TODAY = HOST + "_view/All_Gen6.ashx?g=17&ot=t&update=true&r=1186326052";
+        URL_RUGBY_RUNING = HOST + "_view/All_Gen6.ashx?g=17&ot=r&update=true&r=1186326052";
+        URL_RUGBY_EARLY = HOST + "_view/All_Gen6.ashx?g=17&ot=e&update=true&r=1186326052";
+
         //http://main55.afb88.com/_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994&LID=ba82fa925e9d154e&_=1495597268312
         URL_EUROPE_TODAY = HOST + "_view/OddsGen5.ashx?g=182&ot=t&update=true&r=1833149994";
         URL_EUROPE_RUNING = HOST + "_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994";
@@ -249,5 +276,4 @@ public class AppConstant {
             instance = new AppConstant();
         return instance;
     }
-
 }

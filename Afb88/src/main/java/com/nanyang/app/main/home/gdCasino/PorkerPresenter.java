@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.poker;
+package com.nanyang.app.main.home.gdCasino;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
