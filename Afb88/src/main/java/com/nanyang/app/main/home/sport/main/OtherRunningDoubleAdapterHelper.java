@@ -11,8 +11,8 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
  * Created by Administrator on 2017/5/11.
  */
 
-public class OtherRunningAdapterHelper extends OtherAdapterHelper {
-    public OtherRunningAdapterHelper(Context context) {
+public class OtherRunningDoubleAdapterHelper extends OtherDoubleAdapterHelper {
+    public OtherRunningDoubleAdapterHelper(Context context) {
         super(context);
     }
 

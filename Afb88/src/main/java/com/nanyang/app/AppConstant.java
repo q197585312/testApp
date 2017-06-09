@@ -45,7 +45,6 @@ public class AppConstant {
     public String URL_MAIN = HOST + "main.aspx";
 
 
-
     public String URL_UPDATE_BALANCE = HOST + "_bet/PanelStakeBalance_App.aspx";
     public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
     public String URL_ODDS_TYPE = HOST + "Main.aspx?accType=";
@@ -138,7 +137,26 @@ public class AppConstant {
     public String URL_RUGBY_TODAY = HOST + "_view/All_Gen6.ashx?g=17&ot=t&update=true&r=1186326052";
     public String URL_RUGBY_RUNING = HOST + "_view/All_Gen6.ashx?g=17&ot=r&update=true&r=1186326052";
     public String URL_RUGBY_EARLY = HOST + "_view/All_Gen6.ashx?g=17&ot=e&update=true&r=1186326052";
-
+    //http://main55.afb88.com/_view/All_Gen6.ashx?g=19&ot=e&update=true&r=1676840231&LID=&_=1496913931893
+    //http://main55.afb88.com/_view/OddsOutGen.ashx?g=35&ot=e&update=true&r=1836836693&LID=&_=1496913986764
+    //http://main55.afb88.com/_view/ParGen.ashx?g=20&ot=e&update=true&r=1508063117&LID=&_=1496914016514
+    public String URL_DARTS_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=35&update=true&r=1887771784";
+    public String URL_DARTS_EARLY = HOST + "_view/All_Gen6.ashx?g=19&ot=e&update=true&r=927620479";
+    public String URL_DARTS_TODAY = HOST + "_view/All_Gen6.ashx?g=19&ot=t&update=true&r=927620479";
+    public String URL_DARTS_RUNNING = HOST + "_view/All_Gen6.ashx?g=19&ot=r&update=true&r=927620479";
+    public String URL_DARTS_EARLY_MIX = HOST + "_view/ParGen.ashx?g=20&ot=e&update=true&r=927620479";
+    public String URL_DARTS_TODAY_MIX = HOST + "_view/ParGen.ashx?g=20&ot=t&update=true&r=927620479";
+    //http://main55.afb88.com/_view/All_Gen6.ashx?g=16&ot=e&update=true&r=1018773772&LID=&_=1496914467750
+    public String URL_BOXING_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=92&update=true&r=1186326052";
+    public String URL_BOXING_TODAY = HOST + "_view/All_Gen6.ashx?g=16&ot=t&update=true&r=1186326052";
+    public String URL_BOXING_RUNING = HOST + "_view/All_Gen6.ashx?g=16&ot=r&update=true&r=1186326052";
+    public String URL_BOXING_EARLY = HOST + "_view/All_Gen6.ashx?g=16&ot=e&update=true&r=1186326052";
+    //
+     public String URL_GOLF_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=37&update=true&r=1186326052";
+     public String URL_GOLF_TODAY = HOST + "_view/All_Gen6.ashx?g=22&ot=t&update=true&r=1186326052";
+     public String URL_GOLF_RUNING = HOST + "_view/All_Gen6.ashx?g=22&ot=r&update=true&r=1186326052";
+     public String URL_GOLF_EARLY = HOST + "_view/All_Gen6.ashx?g=22&ot=e&update=true&r=1186326052";
+    //
     public String URL_EUROPE_TODAY;
     public String URL_EUROPE_RUNING;
     public String URL_EUROPE_EARLY;
@@ -212,11 +230,12 @@ public class AppConstant {
         URL_E_SPORT_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=107&update=true&r=1770989484";
 
         URL_US_FOOTBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=30&update=true&r=1887771784";
-
         URL_US_FOOTBALL_EARLY = HOST + "_view/All_WFHGen.ashx?g=12&ot=e&update=true&r=927620479";
         URL_US_FOOTBALL_TODAY = HOST + "_view/All_WFHGen.ashx?g=12&ot=t&update=true&r=927620479";
         URL_US_FOOTBALL_RUNNING = HOST + "_view/All_WFHGen.ashx?g=12&ot=r&update=true&r=927620479";
-
+        URL_US_FOOTBALL_EARLY_MIX = HOST + "_view/ParGen.ashx?g=13&ot=e&update=true&r=927620479";
+        URL_US_FOOTBALL_TODAY_MIX = HOST + "_view/ParGen.ashx?g=13&ot=t&update=true&r=927620479";
+        //
         URL_SOCCER_MYANMAR_RUNNING = HOST + "_view/MOddsGen2.ashx?g=106&ot=r&update=true&r=1233177815";
         URL_SOCCER_MYANMAR_TODAY = HOST + "_view/MOddsGen2.ashx?g=106&ot=t&update=true&r=1233177815";
         URL_SOCCER_MYANMAR_EARLY = HOST + "_view/MOddsGen2.ashx?g=106&ot=e&update=true&r=1233177815";
@@ -245,6 +264,23 @@ public class AppConstant {
         URL_RUGBY_TODAY = HOST + "_view/All_Gen6.ashx?g=17&ot=t&update=true&r=1186326052";
         URL_RUGBY_RUNING = HOST + "_view/All_Gen6.ashx?g=17&ot=r&update=true&r=1186326052";
         URL_RUGBY_EARLY = HOST + "_view/All_Gen6.ashx?g=17&ot=e&update=true&r=1186326052";
+        //
+        URL_DARTS_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=35&update=true&r=1887771784";
+        URL_DARTS_EARLY = HOST + "_view/All_Gen6.ashx?g=19&ot=e&update=true&r=927620479";
+        URL_DARTS_TODAY = HOST + "_view/All_Gen6.ashx?g=19&ot=t&update=true&r=927620479";
+        URL_DARTS_RUNNING = HOST + "_view/All_Gen6.ashx?g=19&ot=r&update=true&r=927620479";
+        URL_DARTS_EARLY_MIX = HOST + "_view/ParGen.ashx?g=20&ot=e&update=true&r=927620479";
+        URL_DARTS_TODAY_MIX = HOST + "_view/ParGen.ashx?g=20&ot=t&update=true&r=927620479";
+        //
+        URL_BOXING_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=92&update=true&r=1186326052";
+        URL_BOXING_TODAY = HOST + "_view/All_Gen6.ashx?g=16&ot=t&update=true&r=1186326052";
+        URL_BOXING_RUNING = HOST + "_view/All_Gen6.ashx?g=16&ot=r&update=true&r=1186326052";
+        URL_BOXING_EARLY = HOST + "_view/All_Gen6.ashx?g=16&ot=e&update=true&r=1186326052";
+        //http://main55.afb88.com/_view/All_Gen6.ashx?g=22&ot=t&update=true&r=158540506&LID=&_=1496915863924
+        URL_GOLF_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=37&update=true&r=1186326052";
+        URL_GOLF_TODAY = HOST + "_view/All_Gen6.ashx?g=22&ot=t&update=true&r=1186326052";
+        URL_GOLF_RUNING = HOST + "_view/All_Gen6.ashx?g=22&ot=r&update=true&r=1186326052";
+        URL_GOLF_EARLY = HOST + "_view/All_Gen6.ashx?g=22&ot=e&update=true&r=1186326052";
 
         //http://main55.afb88.com/_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994&LID=ba82fa925e9d154e&_=1495597268312
         URL_EUROPE_TODAY = HOST + "_view/OddsGen5.ashx?g=182&ot=t&update=true&r=1833149994";

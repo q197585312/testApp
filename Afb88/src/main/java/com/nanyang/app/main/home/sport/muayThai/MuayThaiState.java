@@ -2,7 +2,7 @@ package com.nanyang.app.main.home.sport.muayThai;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.main.OtherAdapterHelper;
+import com.nanyang.app.main.home.sport.main.OtherDoubleAdapterHelper;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.financial.FinancialState;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -28,7 +28,7 @@ public abstract class MuayThaiState extends FinancialState{
 
     @Override
     public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
-        return new OtherAdapterHelper(getBaseView().getContextActivity());
+        return new OtherDoubleAdapterHelper(getBaseView().getContextActivity());
     }
     @Override
     protected List<MenuItemInfo> getTypes() {

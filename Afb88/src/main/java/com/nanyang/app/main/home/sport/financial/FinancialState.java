@@ -40,7 +40,7 @@ public abstract class FinancialState extends TennisState{
 
     @Override
     public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
-        return new FinancialAdapterHelper(getBaseView().getContextActivity());
+        return new OtherSingleAdapterHelper(getBaseView().getContextActivity());
     }
     @Override
     protected List<List<String>> initHeaderList() {

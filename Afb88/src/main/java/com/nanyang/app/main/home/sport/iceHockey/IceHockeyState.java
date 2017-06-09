@@ -3,7 +3,7 @@ package com.nanyang.app.main.home.sport.iceHockey;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
-import com.nanyang.app.main.home.sport.main.OtherAdapterHelper;
+import com.nanyang.app.main.home.sport.main.OtherDoubleAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.tennis.TennisState;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
@@ -28,7 +28,7 @@ public abstract class IceHockeyState extends TennisState{
 
     @Override
     public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
-        return new OtherAdapterHelper(getBaseView().getContextActivity());
+        return new OtherDoubleAdapterHelper(getBaseView().getContextActivity());
     }
     @Override
     protected List<MenuItemInfo> getTypes() {

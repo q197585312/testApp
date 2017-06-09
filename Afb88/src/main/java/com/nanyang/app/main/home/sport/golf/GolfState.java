@@ -1,12 +1,10 @@
-package com.nanyang.app.main.home.sport.e_sport;
+package com.nanyang.app.main.home.sport.golf;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.main.OtherDoubleAdapterHelper;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
+import com.nanyang.app.main.home.sport.financial.FinancialState;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.nanyang.app.main.home.sport.tennis.TennisState;
-import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 import java.util.ArrayList;
@@ -16,20 +14,14 @@ import java.util.List;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class ESportState extends TennisState{
+public abstract class GolfState extends FinancialState{
 
-    public ESportState(SportContract.View baseView) {
+
+    public GolfState(SportContract.View baseView) {
         super(baseView);
     }
-    @Override
-    protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
-        return new ESportBetHelper(getBaseView());
-    }
 
-    @Override
-    public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
-        return new OtherDoubleAdapterHelper(getBaseView().getContextActivity());
-    }
+
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
@@ -39,4 +31,16 @@ public abstract class ESportState extends TennisState{
         types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
+
+
+    @Override
+    protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
+        return new GolfBetHelper(getBaseView());
+    }
+
+/*    @Override
+    public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
+        return new GolfAdapterHelper(getBaseView().getContextActivity());
+    }*/
+
 }

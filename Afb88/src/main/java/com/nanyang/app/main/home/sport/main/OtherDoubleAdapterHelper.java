@@ -30,10 +30,10 @@ import com.unkonw.testapp.training.ScrollLayout;
  * }
  */
 
-public class OtherAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
+public class OtherDoubleAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
 
 
-    public OtherAdapterHelper(Context context) {
+    public OtherDoubleAdapterHelper(Context context) {
         super(context);
 
     }
