@@ -1,0 +1,185 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/bet_pop_parent_ll"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rectangle_white_green_stroke_grey_corner5"
+    android:gravity="center"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/bet_module_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/rectangle_green_top_corner5"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/want_transfer_money"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:id="@+id/bet_half_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_width="90dp"
+                android:layout_height="match_parent"
+                android:text="@string/bet_credit"
+                android:textColor="@color/black_grey"
+                android:textSize="12sp" />
+            <View
+                android:layout_width="0.7dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_dark" />
+            <TextView
+                android:id="@+id/tv_money_balance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/red" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/grey_dark" />
+
+        <LinearLayout
+
+            android:id="@+id/bet_gain_ll"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/textView"
+                android:gravity="center_vertical"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="@string/casino_balance"
+                android:textColor="@color/black_grey"
+                android:textSize="12sp" />
+            <View
+                android:layout_width="0.7dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_dark" />
+            <TextView
+                android:id="@+id/tv_casino_balance"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textColor="@color/red" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/grey_dark" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:gravity="center_vertical"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:text="@string/transfer_money"
+                android:textColor="@color/black_grey"
+                android:textSize="12sp" />
+            <View
+                android:layout_width="0.7dp"
+                android:layout_height="match_parent"
+                android:background="@color/grey_dark" />
+            <EditText
+                android:id="@+id/bet_amount_edt"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:background="@null"
+                android:gravity="center"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1.5dp"
+            android:background="@color/grey_dark" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_cancel_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@mipmap/yellow_btn_bet_top"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/cancel_transfer"
+            android:textColor="@color/green_black" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1px"
+            android:layout_weight="0.3" />
+
+        <TextView
+            android:id="@+id/tv_sure_btn"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_weight="1"
+            android:background="@mipmap/yellow_btn_bet_top"
+            android:gravity="center"
+            android:padding="10dp"
+            android:text="@string/transfer"
+            android:textColor="@color/green_black" />
+
+    </LinearLayout>
+
+</LinearLayout>

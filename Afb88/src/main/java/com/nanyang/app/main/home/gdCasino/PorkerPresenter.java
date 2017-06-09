@@ -1,7 +1,11 @@
 package com.nanyang.app.main.home.gdCasino;
 
+import android.util.Log;
+
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.main.center.model.TransferMoneyBean;
+import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -13,6 +17,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
+import static android.content.ContentValues.TAG;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
@@ -81,5 +86,64 @@ class PorkerPresenter extends BaseRetrofitPresenter<String, PorkerContract.View<
                 });
         mCompositeSubscription.add(subscription);
 
+    }
+    @Override
+    public void getTransferMoneyData(final String data) {
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getTransferMoneyData(AppConstant.getInstance().URL_TRANSFER_MONEY_DATA))
+                .subscribe(new Consumer<TransferMoneyBean>() {
+                    @Override
+                    public void accept(TransferMoneyBean transferMoneyBean) throws Exception {
+                        baseView.getMoneyMsg(transferMoneyBean,data);
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseView.hideLoadingDialog();
+                        Log.d(TAG, "accept: " + throwable.toString());
+
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+
+                    }
+                }, new Consumer<Subscription>() {
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        baseView.showLoadingDialog();
+                        subscription.request(Integer.MAX_VALUE);
+                    }
+                });
+        mCompositeSubscription.add(d);
+    }
+    @Override
+    public void gamesGDTransferMonet(String egLimit, final String data) {
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesGDTransferMoney(AppConstant.getInstance().URL_TRANSFER_MONEY_GD_GAMES, egLimit))
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        baseView.onGetTransferMoneyData(0,data);
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Consumer<Throwable>() {
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseView.onGetTransferMoneyData(-1,data);
+                        baseView.hideLoadingDialog();
+                    }
+                }, new Action() {
+                    @Override
+                    public void run() throws Exception {
+
+                    }
+                }, new Consumer<Subscription>() {
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        subscription.request(Integer.MAX_VALUE);
+                        baseView.showLoadingDialog();
+                    }
+                });
+        mCompositeSubscription.add(d);
     }
 }
