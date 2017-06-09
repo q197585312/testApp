@@ -1,13 +1,14 @@
 package com.nanyang.app.main.home.sport.basketball;
 
 import android.view.Gravity;
+import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
-import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
+import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
 import org.reactivestreams.Subscription;
@@ -35,7 +36,7 @@ public class BasketballCommonBetHelper extends BallBetHelper<BasketballCommonInf
 
     private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
 
-        BetPop pop = new BetPop(baseView.getContextActivity(), v);
+        BetPop pop = new BetPop(baseView.getContextActivity(),(View) v.getParent().getParent());
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);

@@ -36,7 +36,7 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
     }
 
 
-    private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
+    protected void createBetPop(BettingPromptBean bean, boolean isHf, TextView v,SoccerCommonInfo item) {
         BetPop pop = new BetPop(baseView.getContextActivity(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
@@ -85,18 +85,18 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
     @Override
     public Disposable clickOdds(SoccerCommonInfo item, String type, String odds, final TextView v, final boolean isHf, String params) {
         String url = getOddsUrl(item,  type, isHf, odds, params);
-        return getDisposable(v, isHf, url);
+        return getDisposable(v, isHf, url,item);
     }
 
     @NonNull
-    private Disposable getDisposable(final TextView v, final boolean isHf, String url) {
+    private Disposable getDisposable(final TextView v, final boolean isHf, String url, final SoccerCommonInfo item) {
         Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String str) throws Exception {
                         try {
                             BettingPromptBean bean = new Gson().fromJson(str, BettingPromptBean.class);
-                            createBetPop(bean, isHf, v);
+                            createBetPop(bean, isHf, v,item);
                         } catch (JsonSyntaxException e) {
                             throw new Exception(str, e);
                         }
@@ -128,6 +128,6 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
     @Override
     public Disposable clickOdds(SoccerCommonInfo itemData, int oid, String type, String odds, TextView v, boolean isHf, String params) {
         String url = getOddsUrl(oid + "", type,  odds, params);
-        return getDisposable(v, isHf, url);
+        return getDisposable(v, isHf, url,itemData);
     }
 }

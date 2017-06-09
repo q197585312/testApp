@@ -21,7 +21,10 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
+import com.unkonw.testapp.libs.api.CookieManger;
 import com.unkonw.testapp.libs.utils.SystemTool;
 
 import java.io.BufferedOutputStream;
@@ -277,14 +280,28 @@ public class AfbUtils {
         CookieSyncManager.getInstance().sync();
     }
 
-    public static SpannableStringBuilder setColorStyle(String str, int[] color, String[] strColors ){
+    public static SpannableStringBuilder setColorStyle(String str, int[] color, String[] strColors) {
 
-        SpannableStringBuilder style=new SpannableStringBuilder(str);
+        SpannableStringBuilder style = new SpannableStringBuilder(str);
         for (int i = 0; i < color.length; i++) {
-            int start=str.indexOf(strColors[i]);
-            int end=start+strColors[i].length();
-            style.setSpan(new ForegroundColorSpan(color[i]),start,end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+            int start = str.indexOf(strColors[i]);
+            int end = start + strColors[i].length();
+            style.setSpan(new ForegroundColorSpan(color[i]), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         }
         return style;
+    }
+
+    public static void synCookies(Context context, WebView webView, String url) {
+        webView.getSettings().setJavaScriptEnabled(true);
+             /* webView.getSettings().setSupportZoom(true);          //支持缩放
+            webView.getSettings().setBuiltInZoomControls(true);  //启用内置缩放装置*/
+        webView.setWebViewClient(new WebViewClient());
+        String cookie = "";
+        if (CookieManger.getCookieStore().get(url) != null && CookieManger.getCookieStore().get(url).size() > 0) {
+            cookie = CookieManger.getCookieStore().get(url).get(0).toString();
+            AfbUtils.synCookies(context, url, cookie);
+        }
+        webView.loadUrl(url);
+
     }
 }

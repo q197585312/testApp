@@ -6,6 +6,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -16,6 +17,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -55,8 +57,8 @@ public class BetPop extends BasePopupWindow {
     TextView betMaxWinTv;
     @Bind(R.id.bet_max_bet_tv)
     TextView betMaxBetTv;
-    @Bind(R.id.bet_pop_parent_ll)
-    View parentV;
+    @Bind(R.id.bet_pop_parent_web_ll)
+    WebView webView;
     @Bind(R.id.bet_half_tv)
     TextView halfTv;
 
@@ -69,9 +71,10 @@ public class BetPop extends BasePopupWindow {
 
     private IBetHelper presenter;
     private String hdp;
+    private com.nanyang.app.main.home.sportInterface.IRTMatchInfo rTMatchInfo;
 
     public BetPop(Context context, View v) {
-        this(context, v, DeviceUtils.dip2px(context,320), LinearLayout.LayoutParams.WRAP_CONTENT);
+        this(context, v, DeviceUtils.dip2px(context,350), LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
     public BetPop(Context mContext, View v, int width, int height) {
@@ -275,5 +278,20 @@ public class BetPop extends BasePopupWindow {
 
             }
         });/*"http://mobilesport.dig88api.com/_bet/JRecPanel.aspx?gt=s&info.getB()="+data.getType()+"&oId=9070924&odds=1",""*/
+    }
+
+    public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
+        this.rTMatchInfo = rTMatchInfo;
+        String lag = AfbUtils.getLanguage(context);
+        String l = "eng";
+        if (lag.equals("zh")) {
+            l = "eng";
+        } else {
+            l = "EN-US";
+        }
+        webView.setVisibility(View.VISIBLE);
+        String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + l;
+        AfbUtils.synCookies(context,webView,gameUrl);
+
     }
 }

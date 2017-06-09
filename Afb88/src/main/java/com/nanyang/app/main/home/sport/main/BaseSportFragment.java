@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -136,7 +137,12 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             int y = 0;
             pop.showPopupAtLocation(x, y);
         }
-
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                hideLoadingDialog();
+            }
+        },5000);
 
     }
 
@@ -153,7 +159,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             super.onReceivedError(view, errorCode, description, failingUrl);
             hideLoadingDialog();
         }
-
     }
 
 

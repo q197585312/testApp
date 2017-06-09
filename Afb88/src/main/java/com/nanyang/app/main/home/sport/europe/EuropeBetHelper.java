@@ -54,16 +54,16 @@ public class EuropeBetHelper extends BallBetHelper<EuropeInfo, BetView> {
             socOddsId = item.getSocOddsId_FH();
         }
         String url = getOddsUrl(socOddsId, type, isHf, odds, params);
-        return getDisposable(v, isHf, url);
+        return getDisposable(v, isHf, url,item);
     }
 
     @NonNull
-    private Disposable getDisposable(final TextView v, final boolean isHf, String url) {
+    private Disposable getDisposable(final TextView v, final boolean isHf, String url, final EuropeInfo item) {
         Disposable subscribe = getService(ApiService.class).getBetData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingPromptBean>() {//onNext
                     @Override
                     public void accept(BettingPromptBean bean) throws Exception {
-                        createBetPop(bean, isHf, v);
+                        createBetPop(bean, isHf, v,item);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -88,7 +88,7 @@ public class EuropeBetHelper extends BallBetHelper<EuropeInfo, BetView> {
         return subscribe;
     }
 
-    private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
+    protected void createBetPop(BettingPromptBean bean, boolean isHf, TextView v, EuropeInfo item) {
         BetPop pop = new BetPop(baseView.getContextActivity(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
@@ -98,7 +98,7 @@ public class EuropeBetHelper extends BallBetHelper<EuropeInfo, BetView> {
     @Override
     public Disposable clickOdds(EuropeInfo itemData, int oid, String type, String odds, TextView v, boolean isHf, String params) {
         String url = getOddsUrl(oid + "", type, false, odds, params);
-        return getDisposable(v, isHf, url);
+        return getDisposable(v, isHf, url, itemData);
     }
 
 

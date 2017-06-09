@@ -3,11 +3,9 @@ package com.nanyang.app.main.home.sport.dialog;
 import android.content.Context;
 import android.view.View;
 import android.webkit.WebView;
-import android.webkit.WebViewClient;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
-import com.unkonw.testapp.libs.api.CookieManger;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import cn.finalteam.toolsfinal.DeviceUtils;
@@ -37,29 +35,19 @@ public class WebPop extends BasePopupWindow {
         return R.layout.popupwindow_web_layout;
     }
 
+
     @Override
     protected void initView(View view) {
         super.initView(view);
         webView = (WebView) view.findViewById(R.id.web_wv);
-        webView.getSettings().setJavaScriptEnabled(true);
-             /* webView.getSettings().setSupportZoom(true);          //支持缩放
-            webView.getSettings().setBuiltInZoomControls(true);  //启用内置缩放装置*/
-        webView.setWebViewClient(new WebViewClient());
+
     }
 
 
     public void setUrl(String url) {
-        synCookies(url);
-        webView.loadUrl(url);
+        AfbUtils.synCookies(context,webView,url);
     }
 
-    public void synCookies(String url) {
-        String cookie = "";
-        if (CookieManger.getCookieStore().get(url) != null && CookieManger.getCookieStore().get(url).size() > 0) {
-            cookie = CookieManger.getCookieStore().get(url).get(0).toString();
-            AfbUtils.synCookies(context, url, cookie);
-        }
 
-    }
 
 }
