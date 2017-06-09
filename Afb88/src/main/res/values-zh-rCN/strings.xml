@@ -319,8 +319,8 @@
     <string name="Darts">Darts</string>
     <string name="Boxing">Boxing</string>
     <string name="Golf">Golf</string>
-    <string name="want_transfer_money">คุณต้องการที่จะทำให้การถ่ายโอนหรือไม่?</string>
-    <string name="casino_balance">GD สมดุล</string>
-    <string name="cancel_transfer">ยกเลิก</string>
-    <string name="transfer_money">การโอนเงิน</string>
+    <string name="want_transfer_money">是否确认转账?</string>
+    <string name="casino_balance">GD 余额</string>
+    <string name="cancel_transfer">取消</string>
+    <string name="transfer_money">转账金额</string>
 </resources>
