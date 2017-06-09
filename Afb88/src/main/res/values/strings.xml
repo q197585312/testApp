@@ -322,4 +322,8 @@ Bet successful. Please go to stake placed to check bet.
     <string name="Darts">Darts</string>
     <string name="Boxing">Boxing</string>
     <string name="Golf">Golf</string>
+    <string name="want_transfer_money">Would you like to make a transfer?</string>
+    <string name="casino_balance">GD Balance</string>
+    <string name="cancel_transfer">Cancel</string>
+    <string name="transfer_money">Transfer Money</string>
 </resources>

@@ -1,13 +1,17 @@
 package com.nanyang.app.main.home.gdCasino;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.SpannableStringBuilder;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,7 +20,9 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.gdCasino.model.PorkerCasinoBean;
+import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.PermissionUtils;
@@ -91,6 +97,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
             }
         }
     };
+
     /**
      * Callback received when a permissions request has been completed.
      */
@@ -99,25 +106,10 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
                                            @NonNull int[] grantResults) {
         PermissionUtils.requestPermissionsResult(this, requestCode, permissions, grantResults, mPermissionGrant);
     }
+
     @Override
     public void onGetData(String data) {
-        if (data.length() > 0) {
-            Bundle bundle = new Bundle();
-            bundle.putInt("gameType", 3);
-            bundle.putString("web_id", "-1");
-            bundle.putString("k", data);
-            bundle.putString("us", getApp().getUser().getUserName());
-
-            try {
-                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
-            } catch (Exception e) {
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
-                intent.setData(content_url);
-                startActivity(intent);
-            }
-        }
+        presenter.getTransferMoneyData(data);
     }
 
     @Override
@@ -162,6 +154,36 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         casinoRc.setAdapter(porkerAdapter);
     }
 
+    @Override
+    public void getMoneyMsg(final TransferMoneyBean transferMoneyBean, final String data) {
+        TransferMoneyPop pop = new TransferMoneyPop(mContext, casinoRc) {
+            @Override
+            public void initMsgData(TextView tv_balance, TextView tv_casino_balance, EditText edt_amount) {
+                TransferMoneyBean.DicAllBean bean = transferMoneyBean.getDicAll().get(0);
+                tv_balance.setText(isStartWithTag(bean.getCredit()));
+                tv_casino_balance.setText(isStartWithTag(bean.getGdBalance()));
+            }
+
+            @Override
+            public void setOnCancelLisener() {
+                startApp(data);
+            }
+
+            @Override
+            public void setOnSureLisener(String money) {
+                presenter.gamesGDTransferMonet(money,data);
+                closePopupWindow();
+            }
+
+        };
+        pop.showPopupCenterWindow();
+    }
+
+    @Override
+    public void onGetTransferMoneyData(int type,String data) {
+            startApp(data);
+    }
+
     private void loginGD() {
         if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
             presenter.skipGd88();
@@ -171,6 +193,42 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
             Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
             intent.setData(content_url);
             startActivity(intent);
+        }
+    }
+
+    private SpannableStringBuilder isStartWithTag(String str) {
+        if (str.startsWith("<SPAN")) {
+            String needStr = Html.fromHtml(str).toString();
+            if (needStr.startsWith("-")) {
+                return AfbUtils.handleStringTextColor(needStr, Color.RED);
+            }
+            return new SpannableStringBuilder(needStr);
+        } else {
+            if (str.startsWith("-")) {
+                return AfbUtils.handleStringTextColor(str, Color.RED);
+            } else {
+                return new SpannableStringBuilder(str);
+            }
+        }
+    }
+
+    private void startApp(String data) {
+        if (data.length() > 0) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("gameType", 3);
+            bundle.putString("web_id", "-1");
+            bundle.putString("k", data);
+            bundle.putString("us", getApp().getUser().getUserName());
+
+            try {
+                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
+            } catch (Exception e) {
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
+                intent.setData(content_url);
+                startActivity(intent);
+            }
         }
     }
 }
