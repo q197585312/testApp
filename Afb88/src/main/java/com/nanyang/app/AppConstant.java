@@ -152,11 +152,47 @@ public class AppConstant {
     public String URL_BOXING_RUNING = HOST + "_view/All_Gen6.ashx?g=16&ot=r&update=true&r=1186326052";
     public String URL_BOXING_EARLY = HOST + "_view/All_Gen6.ashx?g=16&ot=e&update=true&r=1186326052";
     //
-     public String URL_GOLF_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=37&update=true&r=1186326052";
-     public String URL_GOLF_TODAY = HOST + "_view/All_Gen6.ashx?g=22&ot=t&update=true&r=1186326052";
-     public String URL_GOLF_RUNING = HOST + "_view/All_Gen6.ashx?g=22&ot=r&update=true&r=1186326052";
-     public String URL_GOLF_EARLY = HOST + "_view/All_Gen6.ashx?g=22&ot=e&update=true&r=1186326052";
+    public String URL_GOLF_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=37&update=true&r=1186326052";
+    public String URL_GOLF_TODAY = HOST + "_view/All_Gen6.ashx?g=22&ot=t&update=true&r=1186326052";
+    public String URL_GOLF_RUNING = HOST + "_view/All_Gen6.ashx?g=22&ot=r&update=true&r=1186326052";
+    public String URL_GOLF_EARLY = HOST + "_view/All_Gen6.ashx?g=22&ot=e&update=true&r=1186326052";
+
+    //http://main55.afb88.com/_view/All_Gen6.ashx?g=51&ot=t&update=true&r=448891026&LID=&_=1497233419847
+    public String URL_BADMINTON_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=52&update=true&r=1186326052";
+    public String URL_BADMINTON_TODAY = HOST + "_view/All_Gen6.ashx?g=51&ot=t&update=true&r=1186326052";
+    public String URL_BADMINTON_RUNING = HOST + "_view/All_Gen6.ashx?g=51&ot=r&update=true&r=1186326052";
+    public String URL_BADMINTON_EARLY = HOST + "_view/All_Gen6.ashx?g=51&ot=e&update=true&r=1186326052";
+    //http://main55.afb88.com/_view/All_Gen6.ashx?g=44&ot=e&update=true&r=2130678057&LID=&_=1497238234614
+    public String URL_VOLLEYBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=62&update=true&r=1186326052";
+    public String URL_VOLLEYBALL_TODAY = HOST + "_view/All_Gen6.ashx?g=23&ot=t&update=true&r=1186326052";
+    public String URL_VOLLEYBALL_RUNING = HOST + "_view/All_Gen6.ashx?g=23&ot=r&update=true&r=1186326052";
+    public String URL_VOLLEYBALL_EARLY = HOST + "_view/All_Gen6.ashx?g=23&ot=e&update=true&r=1186326052";
     //
+    public String URL_CRICKET_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=61&update=true&r=1186326052";
+    public String URL_CRICKET_TODAY = HOST + "_view/All_Gen6.ashx?g=44&ot=t&update=true&r=1186326052";
+    public String URL_CRICKET_RUNING = HOST + "_view/All_Gen6.ashx?g=44&ot=r&update=true&r=1186326052";
+    public String URL_CRICKET_EARLY = HOST + "_view/All_Gen6.ashx?g=44&ot=e&update=true&r=1186326052";
+    //
+    public String URL_HANDBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=43&update=true&r=1186326052";
+    public String URL_HANDBALL_TODAY = HOST + "_view/All_Gen6.ashx?g=41&ot=t&update=true&r=1186326052";
+    public String URL_HANDBALL_RUNING = HOST + "_view/All_Gen6.ashx?g=41&ot=r&update=true&r=1186326052";
+    public String URL_HANDBALL_EARLY = HOST + "_view/All_Gen6.ashx?g=41&ot=e&update=true&r=1186326052";
+    //65
+    public String URL_CYCLING_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=64&update=true&r=1186326052";
+    public String URL_CYCLING_TODAY = HOST + "_view/All_Gen6.ashx?g=65&ot=t&update=true&r=1186326052";
+    public String URL_CYCLING_RUNING = HOST + "_view/All_Gen6.ashx?g=65&ot=r&update=true&r=1186326052";
+    public String URL_CYCLING_EARLY = HOST + "_view/All_Gen6.ashx?g=65&ot=e&update=true&r=1186326052";
+    //103
+    public String URL_WINTER_SPORT_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=104&update=true&r=1186326052";
+    public String URL_WINTER_SPORT_TODAY = HOST + "_view/All_Gen6.ashx?g=103&ot=t&update=true&r=1186326052";
+    public String URL_WINTER_SPORT_RUNING = HOST + "_view/All_Gen6.ashx?g=103&ot=r&update=true&r=1186326052";
+    public String URL_WINTER_SPORT_EARLY = HOST + "_view/All_Gen6.ashx?g=103&ot=e&update=true&r=1186326052";
+    //103
+//    http://main55.afb88.com/_view/ParGenWFH.ashx?g=99&ot=e&update=true&r=603659260&LID=&_=1497239829685
+    public String URL_SUPER_COMBO_TODAY = HOST + "_view/ParGenWFH.ashx?g=99&ot=t&update=true&r=1186326052";
+    public String URL_SUPER_COMBO_RUNING = HOST + "_view/ParGenWFH.ashx?g=99&ot=r&update=true&r=1186326052";
+    public String URL_SUPER_COMBO_EARLY = HOST + "_view/ParGenWFH.ashx?g=99&ot=e&update=true&r=1186326052";
+
     public String URL_EUROPE_TODAY;
     public String URL_EUROPE_RUNING;
     public String URL_EUROPE_EARLY;

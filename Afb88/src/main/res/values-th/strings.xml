@@ -310,4 +310,10 @@
     <string name="casino_balance">GD สมดุล</string>
     <string name="cancel_transfer">ยกเลิก</string>
     <string name="transfer_money">การโอนเงิน</string>
+    <string name="Badminton">Badminton</string>
+    <string name="Cricket">Cric</string>
+    <string name="Handball">Handball</string>
+    <string name="Cycling">Cycling</string>
+    <string name="WinterSport">WinterSport</string>
+    <string name="SuperCombo">SuperCombo</string>
 </resources>

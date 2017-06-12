@@ -326,4 +326,10 @@ Bet successful. Please go to stake placed to check bet.
     <string name="casino_balance">GD Balance</string>
     <string name="cancel_transfer">Cancel</string>
     <string name="transfer_money">Transfer Money</string>
+    <string name="Badminton">Badminton</string>
+    <string name="Cricket">Cric</string>
+    <string name="Handball">Handball</string>
+    <string name="Cycling">Cycling</string>
+    <string name="WinterSport">WinterSport</string>
+    <string name="SuperCombo">SuperCombo</string>
 </resources>

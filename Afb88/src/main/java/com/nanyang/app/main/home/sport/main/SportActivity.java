@@ -19,9 +19,12 @@ import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.home.sport.USFootball.USFootballFragment;
+import com.nanyang.app.main.home.sport.badminton.BadmintonFragment;
 import com.nanyang.app.main.home.sport.baseball.BaseballFragment;
 import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
 import com.nanyang.app.main.home.sport.boxing.BoxingFragment;
+import com.nanyang.app.main.home.sport.cricket.CricketFragment;
+import com.nanyang.app.main.home.sport.cycling.CyclingFragment;
 import com.nanyang.app.main.home.sport.darts.DartsFragment;
 import com.nanyang.app.main.home.sport.dialog.ChooseLanguagePop;
 import com.nanyang.app.main.home.sport.e_sport.ESportFragment;
@@ -30,12 +33,15 @@ import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
 import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
 import com.nanyang.app.main.home.sport.golf.GolfFragment;
+import com.nanyang.app.main.home.sport.handball.HandballFragment;
 import com.nanyang.app.main.home.sport.iceHockey.IceHockeyFragment;
 import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
 import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.poll.PoolFragment;
 import com.nanyang.app.main.home.sport.rugby.RugbyFragment;
+import com.nanyang.app.main.home.sport.superCombo.SuperComboFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
+import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -69,6 +75,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     BaseSportFragment dartsFragment = new DartsFragment();
     BaseSportFragment boxingFragment = new BoxingFragment();
     BaseSportFragment golfFragment = new GolfFragment();
+    BaseSportFragment badmintonFragment = new BadmintonFragment();
+    BaseSportFragment volleyballFragment = new VolleyballFragment();
+    BaseSportFragment cricketFragment = new CricketFragment();
+    BaseSportFragment handballFragment = new HandballFragment();
+    BaseSportFragment cyclingFragment = new CyclingFragment();
+    BaseSportFragment superComboFragment = new SuperComboFragment();
 
 
     @Bind(R.id.iv_add)
@@ -197,6 +209,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Darts), dartsFragment);
                 mapFragment.put(getString(R.string.Boxing), boxingFragment);
                 mapFragment.put(getString(R.string.Golf), golfFragment);
+                mapFragment.put(getString(R.string.Badminton), badmintonFragment);
+                mapFragment.put(getString(R.string.Volleyball), volleyballFragment);
+                mapFragment.put(getString(R.string.Cricket), cricketFragment);
+                mapFragment.put(getString(R.string.Handball), handballFragment);
+                mapFragment.put(getString(R.string.Cycling), cyclingFragment);
+                mapFragment.put(getString(R.string.SuperCombo), superComboFragment);
                 currentFragment = soccerFragment;
                 currentTag = getString(R.string.Soccer);
                 break;

@@ -95,7 +95,7 @@ public abstract class SoccerMixState extends SportState<SoccerMixInfo, SportCont
         };
     }
 
-    private void clickAdd(View v, SoccerMixInfo item) {
+    protected void clickAdd(View v, SoccerMixInfo item) {
         getBaseView().clickItemAdd(v,item,"mix");
     }
 
