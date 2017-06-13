@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.text.TextUtils;
 
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.Stake.StakeFragment;
 import com.nanyang.app.main.center.Statement.StatementFragment;
 import com.nanyang.app.main.center.changeLanguage.ChangeLanguageFragment;
+import com.nanyang.app.main.center.result.ResultOrderFragment;
 import com.nanyang.app.main.center.transferMoney.TransferMoneyFragment;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -29,6 +31,7 @@ public class PersonCenterActivity extends BaseToolbarActivity {
     private BaseFragment stakeFragment = new StakeFragment();
     private BaseFragment changeLanguageFragment = new ChangeLanguageFragment();
     private BaseFragment transferMoneyFragment = new TransferMoneyFragment();
+    private BaseFragment resultOrderFragment = new ResultOrderFragment();
     private Map<String, BaseFragment> fragments;
     private String currentTag;
 
@@ -48,12 +51,13 @@ public class PersonCenterActivity extends BaseToolbarActivity {
         fragments.put(getString(R.string.stake), stakeFragment);
         fragments.put(getString(R.string.choice_language), changeLanguageFragment);
         fragments.put(getString(R.string.transfer), transferMoneyFragment);
+        fragments.put(getString(R.string.result),resultOrderFragment);
         currentTag = getCurrentTag();
         showFragmentToActivity(fragments.get(currentTag), R.id.framelayout_person, currentTag);
     }
 
     private String getCurrentTag() {
-        return getIntent().getStringExtra("personCenter");
+        return getIntent().getStringExtra(AppConstant.KEY_STRING);
     }
 
 

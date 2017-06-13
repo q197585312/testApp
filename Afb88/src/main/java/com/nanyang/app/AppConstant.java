@@ -193,6 +193,8 @@ public class AppConstant {
     public String URL_SUPER_COMBO_RUNING = HOST + "_view/ParGenWFH.ashx?g=99&ot=r&update=true&r=1186326052";
     public String URL_SUPER_COMBO_EARLY = HOST + "_view/ParGenWFH.ashx?g=99&ot=e&update=true&r=1186326052";
 
+    //http://main55.afb88.com/_view/Result.aspx
+    public String URL_RESULT = HOST + "_view/Result_App.aspx";
     public String URL_EUROPE_TODAY;
     public String URL_EUROPE_RUNING;
     public String URL_EUROPE_EARLY;
@@ -217,6 +219,7 @@ public class AppConstant {
     public String URL_STAKE = HOST + "_bet/PanelStake_App.aspx";
     public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccHistory.aspx?role=mb&userName=";
     public String URL_PANEL = HOST + "_bet/panel.aspx";
+
     static AppConstant instance;
     private String host;
 

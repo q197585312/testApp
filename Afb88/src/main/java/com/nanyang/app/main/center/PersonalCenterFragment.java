@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.MainActivity;
@@ -64,6 +65,7 @@ public class PersonalCenterFragment extends BaseFragment {
         dataList.add(new MenuItemInfo(R.mipmap.center_info_modify, getString(R.string.change_password)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_language, getString(R.string.choice_language)));
         dataList.add(new MenuItemInfo(R.mipmap.center_info_transfer, getString(R.string.transfer)));
+        dataList.add(new MenuItemInfo(R.mipmap.center_info_order, getString(R.string.result)));
         BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, dataList, R.layout.info_item_text) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
@@ -75,25 +77,17 @@ public class PersonalCenterFragment extends BaseFragment {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
-
-                if (item.getText().equals(getString(R.string.change_password))) {
-                    Intent i = getStartIntent(getString(R.string.change_password));
-                    i.setClass(mContext, PersonCenterActivity.class);
-                    startActivity(i);
-                } else if (item.getText().equals(getString(R.string.choice_language))) {
-                    Intent i = getStartIntent(getString(R.string.choice_language));
-                    i.setClass(mContext, PersonCenterActivity.class);
-                    startActivity(i);
-                } else if (item.getText().equals(getString(R.string.Edit_information))) {
+                if (item.getText().equals(getString(R.string.Edit_information))) {
 //                    Intent i = getStartIntent(getString(R.string.Modify_Avatar));
 //                    MainActivity a = (MainActivity) getActivity();
 //                    i.setClass(a, PersonCenterActivity.class);
 //                    a.startActivityForResult(i, 0);
-                } else if (item.getText().equals(getString(R.string.transfer))) {
-                    Intent i = getStartIntent(getString(R.string.transfer));
+                }else {
+                    Intent i = getStartIntent(item.getText());
                     i.setClass(mContext, PersonCenterActivity.class);
                     startActivity(i);
                 }
+
             }
         });
         rvContent.setAdapter(adapter);
@@ -123,7 +117,7 @@ public class PersonalCenterFragment extends BaseFragment {
 
     private Intent getStartIntent(String type) {
         Intent i = new Intent();
-        i.putExtra("personCenter", type);
+        i.putExtra(AppConstant.KEY_STRING, type);
         return i;
     }
 

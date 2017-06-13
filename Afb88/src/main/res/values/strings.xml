@@ -332,4 +332,6 @@ Bet successful. Please go to stake placed to check bet.
     <string name="Cycling">Cycling</string>
     <string name="WinterSport">WinterSport</string>
     <string name="SuperCombo">SuperCombo</string>
+    <string name="hot_sort">hot_sort</string>
+    <string name="result">Result</string>
 </resources>
