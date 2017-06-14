@@ -16,8 +16,8 @@
             android:id="@+id/tv_game_type"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableBottom="@drawable/line_white"
+            android:layout_weight="3"
+            android:drawableBottom="@drawable/line_black"
             android:drawablePadding="5dp"
             android:drawableRight="@mipmap/arrow_down_drop_white"
             android:paddingBottom="5dp"
@@ -27,12 +27,13 @@
             android:textSize="12sp" />
 
         <TextView
+
             android:id="@+id/tv_game_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="15dp"
             android:layout_weight="1"
-            android:drawableBottom="@drawable/line_white"
+            android:drawableBottom="@drawable/line_black"
             android:drawablePadding="5dp"
             android:drawableRight="@mipmap/arrow_down_drop_white"
             android:paddingBottom="5dp"
@@ -41,12 +42,21 @@
             android:textColor="@color/green900"
             android:textSize="12sp" />
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="5dp">
+
         <TextView
             android:id="@+id/tv_market"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableBottom="@drawable/line_white"
+            android:layout_weight="3"
+            android:drawableBottom="@drawable/line_black"
             android:drawablePadding="5dp"
             android:drawableRight="@mipmap/arrow_down_drop_white"
             android:paddingBottom="5dp"
@@ -59,8 +69,9 @@
             android:id="@+id/tv_sort"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
             android:layout_weight="1"
-            android:drawableBottom="@drawable/line_white"
+            android:drawableBottom="@drawable/line_black"
             android:drawablePadding="5dp"
             android:drawableRight="@mipmap/arrow_down_drop_white"
             android:paddingBottom="5dp"
@@ -71,16 +82,17 @@
     </LinearLayout>
 
     <LinearLayout
-        android:padding="5dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:padding="5dp">
+
         <TextView
-            android:id="@+id/tv_module_itle"
+            android:id="@+id/tv_league_title"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawableBottom="@drawable/line_white"
+            android:layout_weight="3"
+            android:drawableBottom="@drawable/line_black"
             android:drawablePadding="5dp"
             android:drawableRight="@mipmap/arrow_down_drop_white"
             android:paddingBottom="5dp"
@@ -88,23 +100,25 @@
             android:text="@string/all"
             android:textColor="@color/green900"
             android:textSize="12sp" />
+
         <TextView
             android:id="@+id/tv_submit"
-            android:layout_marginLeft="15dp"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-                android:gravity="center"
+            android:layout_marginLeft="15dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/rectangle_green_allradius2"
+            android:gravity="center"
             android:paddingBottom="5dp"
             android:paddingTop="5dp"
-            android:background="@drawable/rectangle_green_allradius2"
             android:text="@string/Submit"
             android:textColor="@color/white"
             android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_title_parent1"
         style="@style/style_match_wrap"
         android:background="#1F5E1F"
         android:gravity="center"
@@ -113,11 +127,9 @@
         <TextView
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_marginLeft="7dp"
-            android:layout_weight="0.8"
-            android:gravity="center|left"
+            android:layout_weight="1"
+            android:gravity="center"
             android:paddingBottom="5dp"
-            android:paddingLeft="2dp"
             android:paddingTop="5dp"
             android:singleLine="true"
             android:text="@string/date"
@@ -129,19 +141,13 @@
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
-        <View
-            android:layout_width="0.4dp"
-            android:layout_height="30dp"
-            android:background="@color/default_fill_color" />
-
         <TextView
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="5"
+            android:layout_weight="4"
             android:gravity="center"
-            android:padding="2dp"
             android:singleLine="true"
-            android:text="@string/event_statement"
+            android:text="@string/Home"
             android:textColor="#000000"
             android:textSize="9sp" />
 
@@ -150,19 +156,13 @@
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
-        <View
-            android:layout_width="0.4dp"
-            android:layout_height="30dp"
-            android:background="@color/default_fill_color" />
-
         <TextView
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="0.8"
+            android:layout_weight="1.5"
             android:gravity="center"
-            android:padding="2dp"
             android:singleLine="true"
-            android:text="@string/stake_statement"
+            android:text="@string/result"
             android:textColor="#000000"
             android:textSize="9sp" />
 
@@ -171,19 +171,13 @@
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
-        <View
-            android:layout_width="0.4dp"
-            android:layout_height="30dp"
-            android:background="@color/default_fill_color" />
-
         <TextView
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="0.9"
+            android:layout_weight="4"
             android:gravity="center"
-            android:padding="2dp"
             android:singleLine="true"
-            android:text="@string/amount"
+            android:text="@string/Away"
             android:textColor="#000000"
             android:textSize="9sp" />
 
@@ -192,40 +186,165 @@
             android:layout_height="30dp"
             android:background="@color/green_light" />
 
-        <View
-            android:layout_width="0.4dp"
-            android:layout_height="30dp"
-            android:background="@color/default_fill_color" />
 
         <TextView
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="0.8"
+            android:layout_weight="1"
             android:gravity="center"
-            android:padding="2dp"
             android:singleLine="true"
-            android:text="@string/commission"
+            android:text="@string/HT"
             android:textColor="#000000"
             android:textSize="9sp" />
 
-        <View
-            android:layout_width="0.4dp"
-            android:layout_height="30dp"
-            android:background="@color/green_light" />
-
-        <View
-            android:layout_width="0.4dp"
-            android:layout_height="30dp"
-            android:background="@color/default_fill_color" />
     </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_title_parent2"
+        style="@style/style_match_wrap"
+        android:background="#1F5E1F"
+        android:gravity="center"
+        android:orientation="horizontal">
 
+        <TextView
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:text="@string/date"
+            android:textColor="#000000"
+            android:textSize="9sp" />
+
+        <View
+            android:layout_width="0.4dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <TextView
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/Home"
+            android:textColor="#000000"
+            android:textSize="9sp" />
+
+        <View
+            android:layout_width="0.4dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <TextView
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1.5"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="VS"
+            android:textColor="#000000"
+            android:textSize="9sp" />
+
+        <View
+            android:layout_width="0.4dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <TextView
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/Away"
+            android:textColor="#000000"
+            android:textSize="9sp" />
+
+        <View
+            android:layout_width="0.4dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+
+        <TextView
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="3"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/winner"
+            android:textColor="#000000"
+            android:textSize="9sp" />
+
+
+    </LinearLayout>
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_title_parent3"
+        style="@style/style_match_wrap"
+        android:background="#1F5E1F"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_time"
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:singleLine="true"
+            android:text="@string/date"
+            android:textColor="#000000"
+            android:textSize="9sp" />
+
+        <View
+            android:layout_width="0.4dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <TextView
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="4"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/league"
+            android:textColor="#000000"
+            android:textSize="9sp" />
+
+        <View
+            android:layout_width="0.4dp"
+            android:layout_height="30dp"
+            android:background="@color/green_light" />
+
+        <TextView
+
+            style="@style/text_match_black10"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@string/winner"
+            android:textColor="#000000"
+            android:textSize="9sp" />
+
+
+
+
+
+    </LinearLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
 
-    />
+        />
 
 
 </LinearLayout>

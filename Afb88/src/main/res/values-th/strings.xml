@@ -318,4 +318,18 @@
     <string name="SuperCombo">SuperCombo</string>
     <string name="hot_sort">hot_sort</string>
     <string name="result">Result</string>
+    <string name="Home">HOME</string>
+    <string name="Away">AWAY</string>
+    <string name="HT">HT</string>
+    <string name="league">League</string>
+    <string name="winner">Winner</string>
+    <string name="OLYMPIC">OLYMPIC</string>
+    <string name="Formula1">Formula</string>
+    <string name="Motor_Sports">Motor Sports</string>
+    <string name="Futsal">Futsal</string>
+    <string name="Water_Polo">Water Polo</string>
+    <string name="Table_Tennis">Table Tennis</string>
+    <string name="Beach_Soccer">Beach Soccer</string>
+    <string name="Squash">Squash</string>
+    <string name="Athletics">Athletics</string>
 </resources>

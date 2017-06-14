@@ -31,6 +31,7 @@ import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
 import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarBetHelper;
+import com.nanyang.app.main.home.sport.superCombo.SuperComboBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -149,6 +150,8 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         } else if (parent.equals(getString(R.string.Europe_View))) {
             paramT = "&T=MB2";
             helper = new EuropeBetHelper(this);
+        }else if (parent.equals(getString(R.string.SuperCombo))){
+            helper = new SuperComboBetHelper(this);
         }
 
 

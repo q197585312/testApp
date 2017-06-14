@@ -27,6 +27,35 @@ public class ResultInfo implements Serializable {
      * IsCancelFH : false
      * TodayDate : 13/06/2017 15:00:00
      */
+    /**  "ModuleId": 483868,
+     "MatchDate": "29/05 10:00PM",
+     "ModuleTitle": "[ 29/05/2017 ] BASKETBALL -- NBA CHAMPIONSHIP 2016/2017 - WINNING CONFERENCE",
+     "Home": "Western Conference",
+     "TodayDate": "29/05/2017 22:00:00",
+     "ModuleOrder": 1010,
+     "MatchCode": "BA11"*/
+    /**
+     *  {
+     "ModuleId": 481054,
+     "ModuleOrder": 10000,
+     "ModuleTitle": "MUAY THAI - RAJADAMNERN BOXING STADIUM",
+     "ColorCode": 12566463,
+     "MatchDate": "07:30PM",
+     "MatchCode": "M51",
+     "WorkingDate": "12/06/2017 00:00:00",
+     "HomeId": 1165257,
+     "Home": "Kongranong Mor.Puwana",
+     "AwayId": 1165258,
+     "Away": "Kongphet Sitsan",
+     "Score": "0 - 5",
+     "HTScore": "-",
+     "IsCancel": false,
+     "Res1": 255,
+     "IsCancelFH": false,
+     "Winner": "Kongphet Sitsan",
+     "TodayDate": "12/06/2017 19:30:00"
+     },
+     */
 
     private int ModuleId;
     private int ModuleOrder;
@@ -45,6 +74,15 @@ public class ResultInfo implements Serializable {
     private int Res1;
     private boolean IsCancelFH;
     private String TodayDate;
+    private String Winner;
+
+    public String getWinner() {
+        return Winner;
+    }
+
+    public void setWinner(String winner) {
+        Winner = winner;
+    }
 
     public int getModuleId() {
         return ModuleId;
