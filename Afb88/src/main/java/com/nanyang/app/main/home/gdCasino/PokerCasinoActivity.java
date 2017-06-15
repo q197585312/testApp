@@ -10,6 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -26,6 +27,7 @@ import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.PermissionUtils;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -171,8 +173,12 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
 
             @Override
             public void setOnSureLisener(String money) {
-                presenter.gamesGDTransferMonet(money,data);
-                closePopupWindow();
+                if (!TextUtils.isEmpty(money)&&Integer.parseInt(money)!=0){
+                    presenter.gamesGDTransferMonet(money,data);
+                    closePopupWindow();
+                }else {
+                    ToastUtils.showShort(getString(R.string.Input_the_amount_please));
+                }
             }
 
         };
@@ -180,8 +186,12 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
     }
 
     @Override
-    public void onGetTransferMoneyData(int type,String data) {
+    public void onGetTransferMoneyData(int type,String getBackStr,String data) {
+        if (getBackStr.contains("not allowed")){
+            ToastUtils.showShort(getBackStr);
+        }else {
             startApp(data);
+        }
     }
 
     private void loginGD() {
