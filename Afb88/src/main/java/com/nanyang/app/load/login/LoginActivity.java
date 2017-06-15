@@ -58,6 +58,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     AfbApplication app;
     @Bind(R.id.cb_login_remember)
     CheckBox cbLoginRemember;
+    @Bind(R.id.login_korea_rb)
+    RadioButton loginKoreaRb;
+    @Bind(R.id.login_vietnam_rb)
+    RadioButton loginVietnamRb;
+    @Bind(R.id.login_turkey_rb)
+    RadioButton loginTurkeyRb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,11 +85,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         initLanguage();
     }
 
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-    }
 
     private void initLanguage() {
         String language = AfbUtils.getLanguage(this);
@@ -108,6 +109,22 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                     AfbUtils.switchLanguage("th", this);
                     restart();
                     break;
+                case "ko":
+                    loginKoreaRb.setChecked(true);
+                    AfbUtils.switchLanguage("ko", this);
+                    restart();
+                    break;
+                case "vi":
+                    loginVietnamRb.setChecked(true);
+                    AfbUtils.switchLanguage("vi", this);
+                    restart();
+                    break;
+                case "tr":
+                    loginTurkeyRb.setChecked(true);
+                    AfbUtils.switchLanguage("tr", this);
+                    restart();
+                    break;
+
                 default:
                     loginEnglishRb.setChecked(true);
                     AfbUtils.switchLanguage("en", this);
@@ -140,7 +157,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         ToastUtils.showShort(msgRes);
     }
 
-    @OnClick({R.id.btn_login_login, R.id.tv_login_register, R.id.tv_login_forget, R.id.login_china_rb, R.id.login_english_rb, R.id.login_th_rb})
+    @OnClick({R.id.btn_login_login, R.id.tv_login_register, R.id.tv_login_forget, R.id.login_china_rb, R.id.login_english_rb, R.id.login_th_rb,R.id.login_korea_rb, R.id.login_vietnam_rb, R.id.login_turkey_rb})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
@@ -164,6 +181,19 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 AfbUtils.switchLanguage("en", this);
                 restart();
                 break;
+            case R.id.login_korea_rb:
+                AfbUtils.switchLanguage("ko", this);
+                restart();
+                break;
+            case R.id.login_vietnam_rb:
+                AfbUtils.switchLanguage("vi", this);
+                restart();
+                break;
+            case R.id.login_turkey_rb:
+                AfbUtils.switchLanguage("tr", this);
+                restart();
+                break;
+
         }
     }
 
@@ -219,4 +249,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         skipAct(MainActivity.class);
         finish();
     }
+
+
 }

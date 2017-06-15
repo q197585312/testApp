@@ -63,8 +63,8 @@
     <string name="loading">Loading</string>
     <string name="win">Win</string>
     <string name="draw">Draw</string>
-    <string name="odd">Odd</string>
-    <string name="even">Even</string>
+    <string name="odd">O</string>
+    <string name="even">E</string>
     <string name="double_chance">Double chance</string>
     <string name="x1">X1</string>
     <string name="x2">2X</string>
@@ -108,9 +108,7 @@
     <string name="Thai_game1">1D Game</string>
     <string name="Thai_game2">2D Game</string>
     <string name="Thai_game3">3D Game</string>
-    <string name="Thai_bet_hint">
-Bet successful. Please go to stake placed to check bet.
-</string>
+    <string name="Thai_bet_hint">Bet successful. Please go to stake placed to check bet.</string>
     <string name="Tennis">Tennis</string>
     <string name="Muay_Thai">MUAY THAI</string>
     <string name="HK_ODDS">HK ODDS</string>
@@ -327,12 +325,12 @@ Bet successful. Please go to stake placed to check bet.
     <string name="cancel_transfer">Cancel</string>
     <string name="transfer_money">Transfer Money</string>
     <string name="Badminton">Badminton</string>
-    <string name="Cricket">Cric</string>
+    <string name="Cricket">Cricket</string>
     <string name="Handball">Handball</string>
     <string name="Cycling">Cycling</string>
     <string name="WinterSport">WinterSport</string>
     <string name="SuperCombo">SuperCombo</string>
-    <string name="hot_sort">hot_sort</string>
+    <string name="hot_sort">Normal Sort</string>
     <string name="result">Result</string>
     <string name="Home">HOME</string>
     <string name="Away">AWAY</string>
@@ -348,4 +346,8 @@ Bet successful. Please go to stake placed to check bet.
     <string name="Beach_Soccer">Beach Soccer</string>
     <string name="Squash">Squash</string>
     <string name="Athletics">Athletics</string>
+    <string name="sort_by_time">Sort By Time</string>
+    <string name="Korea">Korea</string>
+    <string name="Vietnam">Vietnam</string>
+    <string name="Turkish">Turkish</string>
 </resources>

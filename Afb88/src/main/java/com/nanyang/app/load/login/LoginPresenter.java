@@ -131,6 +131,16 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                                 case "th":
                                     lang = "TH-TH";
                                     break;
+                                case "ko":
+                                    lang = "EN-TT";
+                                    break;
+                                case "vi":
+                                    lang = "EN-IE";
+                                    break;
+                                case "tr":
+                                    lang = "UR-PK";
+                                    break;
+
                                 default:
                                     lang = "EN-US";
                                     break;

@@ -5,14 +5,24 @@
     android:background="@drawable/rectangle_white_green_stroke_grey_corner5"
     android:gravity="center"
     android:orientation="vertical">
-
+    <FrameLayout
+        android:visibility="gone"
+        android:id="@+id/bet_pop_parent_top_fl"
+        android:layout_width="match_parent"
+        android:layout_height="240dp">
+        <ImageView
+            android:id="@+id/bet_pop_close_iv"
+            android:layout_gravity="right"
+            android:layout_width="wrap_content"
+            android:src="@mipmap/vs_oval_error"
+            android:layout_height="wrap_content" />
     <WebView
         android:background="@color/black_grey"
-        android:visibility="gone"
         android:id="@+id/bet_pop_parent_web_ll"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
+        android:layout_height="match_parent"
         android:layout_margin="2dp" />
+    </FrameLayout>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:id="@+id/bet_pop_parent_ll2"
@@ -302,7 +312,7 @@
             android:layout_marginTop="8dp"
             android:background="@mipmap/yellow_btn_bet_top"
             android:gravity="center"
-            android:padding="8dp"
+            android:padding="5dp"
             android:text="@string/bet"
             android:textColor="@color/green_black" />
     </LinearLayout>

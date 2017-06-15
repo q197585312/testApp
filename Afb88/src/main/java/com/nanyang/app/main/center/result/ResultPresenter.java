@@ -88,8 +88,8 @@ public class ResultPresenter extends BaseRetrofitPresenter<String, ResultContact
 
     public void initSort() {
         sortList = new ArrayList<>();
-        MenuItemInfo item1 = new MenuItemInfo(0, "热门排序", "0");
-        MenuItemInfo item2 = new MenuItemInfo(1, "时间排序", "1");
+        MenuItemInfo item1 = new MenuItemInfo(0, baseView.getContextActivity().getString(R.string.hot_sort), "0");
+        MenuItemInfo item2 = new MenuItemInfo(1, baseView.getContextActivity().getString(R.string.sort_by_time), "1");
         selectedMap.put("sortBy", item1.getType());
         sortList.add(item1);
         sortList.add(item2);
@@ -226,7 +226,7 @@ public class ResultPresenter extends BaseRetrofitPresenter<String, ResultContact
                         view1.setText(item.getText());
                         view1.setTextColor(baseView.getContextActivity().getResources().getColor(R.color.green900));
                         view1.setBackgroundResource(R.color.white);
-                        view1.setTextSize(12);
+                        view1.setTextSize(10);
                         ((RecyclerView.LayoutParams)view1.getLayoutParams()).setMargins(0,0,0,0);
                     }
                 };
@@ -326,7 +326,7 @@ marketType*/
                                 view1.setText(item);
                                 view1.setTextColor(baseView.getContextActivity().getResources().getColor(R.color.green900));
                                 view1.setBackgroundResource(R.color.white);
-                                view1.setTextSize(12);
+                                view1.setTextSize(10);
                                 ((RecyclerView.LayoutParams) view1.getLayoutParams()).setMargins(0, 0, 0, 0);
 
                             }

@@ -74,6 +74,45 @@ public class BettingPromptBean {
      "Test": "testing"
      }
      */
+    /*{
+    "BetType": "1_par",
+    "GTitle": "过关",
+    "ParIsHomeGive": true,
+    "ParHome": "卡迪斯",
+    "ParAway": "特內里費",
+    "ParIsRun": false,
+    "ParGameType3": "N",
+    "BetCoupon": 1,
+    "MaxParTicket": "5000",
+    "MaxPar": "5000",
+    "BetPar": [
+        {
+            "SocOddsId": 12919347,
+            "Home": "卡迪斯",
+            "Away": "特內里費",
+            "IsHomeGive": true,
+            "IsBetHome": true,
+            "ParFullTimeId": "0",
+            "TransType": "1",
+            "IsOddsChange": false,
+            "ParUrl": "http://main55.afb88.com/_bet/JRecPanel_App.aspx?g=99&b=1_par&oId=12919347&odds=2.34",
+            "BetHdp": "0",
+            "BetOu": "0",
+            "BetOdds": "2.36",
+            "Test2": "testing2"
+        }
+    ],
+    "PayoutOdds": 2.36,
+    "BetUrl": "PanelBet.aspx?betType=1_par&odds=2.36",
+    "MinLimit": "10",
+    "MaxLimit": "5000",
+    "HidOdds": "1.36",
+    "AmtS": "0",
+    "ExRate": "1",
+    "BetterOdds": 1,
+    "MoreBetUrl": "",
+    "Test": "testing"
+}*/
     private String BetType;
     private String GTitle;
     private String ModuleTitle;

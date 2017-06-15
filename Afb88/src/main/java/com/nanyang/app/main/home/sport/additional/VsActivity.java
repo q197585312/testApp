@@ -132,6 +132,29 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         isMixParlay = type.getRes() == 1;
         String parent = type.getParent();
 
+        fragmentsList = new ArrayList<>();
+
+        sf.setTitle(getString(R.string.scaleplate_asianplate));
+        bf.setTitle(getString(R.string.single_double));
+        cf.setTitle(getString(R.string.correct_score));
+        createPresenter(new VsPresenter(this));
+        if(parent.equals(getString(R.string.SuperCombo))){
+            isMixParlay=true;
+            fragmentsList.add(sf);
+            initFirstData((SoccerMixInfo) item);
+            helper = new SuperComboBetHelper(this);
+        }
+        else {
+            if (isMixParlay) {
+                fragmentsList.add(sf);
+                initFirstData((SoccerMixInfo) item);
+            } else {
+                fragmentsList.add(sf);
+                fragmentsList.add(bf);
+                fragmentsList.add(cf);
+
+            }
+        }
 
         if (parent.equals(getString(R.string.football))) {
 
@@ -150,8 +173,6 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         } else if (parent.equals(getString(R.string.Europe_View))) {
             paramT = "&T=MB2";
             helper = new EuropeBetHelper(this);
-        }else if (parent.equals(getString(R.string.SuperCombo))){
-            helper = new SuperComboBetHelper(this);
         }
 
 
@@ -163,21 +184,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         layoutParams.width = Toolbar.LayoutParams.MATCH_PARENT;
         vsTimeTv.setText(item.getMatchDate());
 
-        fragmentsList = new ArrayList<>();
 
-        sf.setTitle(getString(R.string.scaleplate_asianplate));
-        bf.setTitle(getString(R.string.single_double));
-        cf.setTitle(getString(R.string.correct_score));
-        createPresenter(new VsPresenter(this));
-        if (isMixParlay) {
-            fragmentsList.add(sf);
-            initFirstData((SoccerMixInfo) item);
-        } else {
-            fragmentsList.add(sf);
-            fragmentsList.add(bf);
-            fragmentsList.add(cf);
-
-        }
         tvTitle.setText(sf.getTitle());
         ballgamePagerVp.setAdapter(new MyFragmentPagerAdapter(getSupportFragmentManager(), fragmentsList));
 //        ballgameTabsPstabs.setViewPager(ballgamePagerVp);

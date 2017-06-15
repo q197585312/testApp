@@ -55,6 +55,9 @@ public class ChangeLanguageFragment extends BaseFragment<LanguagePresenter> impl
         dataList.add(new MenuItemInfo<>(R.mipmap.lang_zh_flag,getString(R.string.chinese),"zh", "ZH-CN"));
         dataList.add(new MenuItemInfo<>(R.mipmap.lang_en_flag,getString(R.string.english),"en", "EN-US"));
         dataList.add(new MenuItemInfo<>(R.mipmap.lang_th_flag,getString(R.string.thai),"th","TH-TH"));
+        dataList.add(new MenuItemInfo<>(R.mipmap.lang_ko_flag,getString(R.string.Korea),"ko","EN-TT"));
+        dataList.add(new MenuItemInfo<>(R.mipmap.lang_vi_flag,getString(R.string.Vietnam),"vi","EN-IE"));
+        dataList.add(new MenuItemInfo<>(R.mipmap.lang_tr_flag,getString(R.string.Turkish),"tr","UR-PK"));
         BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, dataList, R.layout.item_change_language) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {

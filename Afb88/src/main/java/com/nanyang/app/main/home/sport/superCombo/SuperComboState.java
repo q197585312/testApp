@@ -27,19 +27,19 @@ public abstract class SuperComboState extends SoccerMixState{
     }
     @Override
     protected void clickAdd(View v, SoccerMixInfo item) {
-        getBaseView().clickItemAdd(v,item,"common");
+        getBaseView().clickItemAdd(v,item,"mix");
     }
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
         return types;
     }
     @Override
     public boolean isMix() {
-        return false;
+        return true;
     }
     @Override
     public boolean mix() {

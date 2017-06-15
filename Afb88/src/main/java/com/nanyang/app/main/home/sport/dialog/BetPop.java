@@ -8,6 +8,7 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -24,6 +25,7 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import butterknife.Bind;
 import butterknife.BindString;
+import butterknife.OnClick;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
 
@@ -65,16 +67,19 @@ public class BetPop extends BasePopupWindow {
     @BindString(R.string.loading)
     String loading;
     BettingPromptBean bean;
+
+    @Bind(R.id.bet_pop_parent_top_fl)
+    FrameLayout betPopParentTopFl;
     private boolean betSelection;
     private String popTitle;
     private String state = "";
 
     private IBetHelper presenter;
     private String hdp;
-    private com.nanyang.app.main.home.sportInterface.IRTMatchInfo rTMatchInfo;
+    private IRTMatchInfo rTMatchInfo;
 
     public BetPop(Context context, View v) {
-        this(context, v, DeviceUtils.dip2px(context,350), LinearLayout.LayoutParams.WRAP_CONTENT);
+        this(context, v, DeviceUtils.dip2px(context, 350), LinearLayout.LayoutParams.WRAP_CONTENT);
     }
 
     public BetPop(Context mContext, View v, int width, int height) {
@@ -111,7 +116,7 @@ public class BetPop extends BasePopupWindow {
                     return;
                 }
                 //http://a8197c.a36588.com/_bet/PanelBet.aspx?betGrp=1&betType=under&oId=12042173&ou=3&isBetHome=False&isFH=False&accType=HK&odds=6.9&reducePercent=1&amt=11&isBetterOdds=true
-                presenter.bet(AppConstant.getInstance().HOST+ "_bet/" + bean.getBetUrl() + "&amt=" + s);
+                presenter.bet(AppConstant.getInstance().HOST + "_bet/" + bean.getBetUrl() + "&amt=" + s);
                 presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
                     @Override
                     public void callBack(String odds) {
@@ -183,7 +188,7 @@ public class BetPop extends BasePopupWindow {
      * "Test": "testing" }
      */
     public void setBetData(BettingPromptBean result, IBetHelper mPresenter) {
-        betBalanceTv.setText(((AfbApplication)context.getApplicationContext()).getUser().getBalance());
+        betBalanceTv.setText(((AfbApplication) context.getApplicationContext()).getUser().getBalance());
         this.presenter = mPresenter;
         ((BaseActivity) context).hideLoadingDialog();
         bean = result;
@@ -281,17 +286,24 @@ public class BetPop extends BasePopupWindow {
     }
 
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
-        this.rTMatchInfo = rTMatchInfo;
-        String lag = AfbUtils.getLanguage(context);
-        String l = "eng";
-        if (lag.equals("zh")) {
-            l = "eng";
-        } else {
-            l = "EN-US";
+        String rtsMatchId = rTMatchInfo.getRTSMatchId();
+        if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
+            this.rTMatchInfo = rTMatchInfo;
+            String lag = AfbUtils.getLanguage(context);
+            String l = "eng";
+            if (lag.equals("zh")) {
+                l = "eng";
+            } else {
+                l = "EN-US";
+            }
+            betPopParentTopFl.setVisibility(View.VISIBLE);
+            String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + l;
+            AfbUtils.synCookies(context, webView, gameUrl);
         }
-        webView.setVisibility(View.VISIBLE);
-        String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + l;
-        AfbUtils.synCookies(context,webView,gameUrl);
 
+    }
+
+    @OnClick(R.id.bet_pop_close_iv)
+    public void onClick() {
     }
 }

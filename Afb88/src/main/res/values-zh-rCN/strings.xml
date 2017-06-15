@@ -345,4 +345,8 @@
     <string name="Beach_Soccer">沙滩足球</string>
     <string name="Squash">壁球</string>
     <string name="Athletics">竞技</string>
+    <string name="sort_by_time">时间排序</string>
+    <string name="Korea">Korea</string>
+    <string name="Vietnam">Vietnam</string>
+    <string name="Turkish">Turkish</string>
 </resources>

@@ -94,7 +94,7 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
         helper.setClickLisenter(R.id.vs_row_content_tv22, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                adapter.notifyDataSetChanged();
                 if (getValue1(item) != null && (!getValue1(item).equals(""))&&Float.valueOf(getValue1(item))!=0f) {
                     if (position > 2 && position < 6) {
                         betHelper.clickOdds(itemData, item.getB().toString(), getValue1(item), (TextView) v, false, "&sc=" + item.getSc() + childParam);
@@ -112,6 +112,7 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
         helper.setClickLisenter(R.id.vs_row_content_tv32, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                adapter.notifyDataSetChanged();
                 if (getValue2(item) != null && (!getValue2(item).equals(""))&&Float.valueOf(getValue2(item))!=0f) {
                     if (position > 2 && position < 6) {
                         betHelper.clickOdds(itemData, item.getB().toString(), getValue2(item), (TextView) v, true, "&sc=" + item.getSc() + childParam);

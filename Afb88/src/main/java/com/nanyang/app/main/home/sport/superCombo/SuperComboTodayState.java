@@ -38,7 +38,7 @@ public class SuperComboTodayState extends SuperComboState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Today), "Today", getBaseView().getContextActivity().getString(R.string.SuperCombo));
+        return new MenuItemInfo<String>(1, getBaseView().getContextActivity().getString(R.string.Today), "Today", getBaseView().getContextActivity().getString(R.string.SuperCombo));
     }
 
 

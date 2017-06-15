@@ -25,8 +25,31 @@
             android:layout_margin="5dp"
             android:gravity="right"
             android:orientation="horizontal">
-
             <RadioButton
+                android:id="@+id/login_korea_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/flag_korea_selector"
+                android:button="@null"
+                android:gravity="center" />
+            <RadioButton
+                android:id="@+id/login_vietnam_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/flag_vietnam_selector"
+                android:button="@null"
+                android:gravity="center" />
+            <RadioButton
+                android:id="@+id/login_turkey_rb"
+                android:layout_width="32dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/flag_turkey_selector"
+                android:button="@null"
+                android:gravity="center" />
+            <RadioButton
+                android:layout_marginLeft="10dp"
                 android:id="@+id/login_china_rb"
                 android:layout_width="32dp"
                 android:layout_height="match_parent"
@@ -51,6 +74,7 @@
                 android:background="@drawable/flag_british_selector"
                 android:button="@null"
                 android:gravity="center" />
+
 
         </RadioGroup>
 
