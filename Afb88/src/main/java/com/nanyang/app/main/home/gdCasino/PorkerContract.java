@@ -12,7 +12,7 @@ public interface PorkerContract {
     interface View<T> extends IBaseView<T> {
         void initUi();
         void getMoneyMsg(TransferMoneyBean transferMoneyBean,String data);
-        void onGetTransferMoneyData(int type,String data);
+        void onGetTransferMoneyData(int type,String getBackStr,String data);
     }
 
     interface Presenter extends IBasePresenter {

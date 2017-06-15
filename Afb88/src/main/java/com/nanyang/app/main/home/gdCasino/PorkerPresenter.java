@@ -123,13 +123,13 @@ class PorkerPresenter extends BaseRetrofitPresenter<String, PorkerContract.View<
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetTransferMoneyData(0,data);
+                        baseView.onGetTransferMoneyData(0,s,data);
                         baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onGetTransferMoneyData(-1,data);
+                        baseView.onGetTransferMoneyData(-1,throwable.toString(),data);
                         baseView.hideLoadingDialog();
                     }
                 }, new Action() {
