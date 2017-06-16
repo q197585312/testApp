@@ -146,7 +146,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvToolbarTitle.setBackgroundResource(0);
         oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
         allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "&mt=0");
-        ;
     }
 
 

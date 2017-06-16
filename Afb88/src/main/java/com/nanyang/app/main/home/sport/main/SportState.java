@@ -1382,7 +1382,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         tv.setPadding(0, 0, 0, 0);
                         tv.setText(item.getText());
                         tv.setBackgroundResource(R.color.black_grey);
-                        ((SportActivity)baseView.getContextActivity()).setAllOdds(item);
+
 
                     }
                 };
@@ -1390,6 +1390,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         closePopupWindow();
+                        ((SportActivity)baseView.getContextActivity()).setAllOdds(item);
                         textView.setText(item.getText());
                         if (item.getText().equals(getBaseView().getContextActivity().getString(R.string.All_Markets))) {
                             textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.add_green, 0, 0, 0);
