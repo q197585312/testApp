@@ -350,4 +350,11 @@
     <string name="Korea">Korea</string>
     <string name="Vietnam">Vietnam</string>
     <string name="Turkish">Turkish</string>
+    <string name="EVEN">chẵn</string>
+    <string name="ODD">Lẻ</string>
+    <string name="FULL_1X2">FT.1X2</string>
+    <string name="FIRST5_H_A">FIRST5.HDP</string>
+    <string name="FIRST5_O_U">FIRST5.O/U</string>
+    <string name="A_TIE_B">A-TIE-B</string>
+    <string name="O_U">O/U</string>
 </resources>

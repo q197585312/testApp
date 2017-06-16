@@ -46,10 +46,25 @@ public class OtherDoubleAdapterHelper extends BallAdapterHelper<BasketballMixInf
         markAdd.setVisibility(View.GONE);
         tvCollection.setVisibility(View.GONE);
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        scrollChild(sl.getChildAt(1), false, item, item.getIsHomeGive(), item.getHasX12(), "", item.getHasOE(), "", item.getIsX12New(), "", "", "", item.getX12_1Odds(), item.getX12_2Odds(), "1", "2", "", ""
+        sl.getChildAt(0).setVisibility(View.VISIBLE);
+        ViewHolder holder = new ViewHolder(sl.getChildAt(0));
+        setUpDownOdds(true,item,false,item.getIsX12New(),item.getHasX12(),"",holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv,holder.viewpagerMatchVisitHdpoddsTv
+                ,item.getX12_1Odds(),item.getX12_2Odds(),"1","2");
+
+        setUpDownOdds(true,item,false,item.getIsHdpNew(),item.getHasHdp(),item.getHdp(),holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv,holder.viewpagerMatchUnderoddsTv
+                ,item.getHomeHdpOdds(),item.getAwayHdpOdds(),"home","away");
+
+        sl.getChildAt(1).setVisibility(View.VISIBLE);
+        ViewHolder holder2 = new ViewHolder(sl.getChildAt(1));
+        setUpDownOdds(true,item,false,item.getIsOUNew(),item.getHasOU(),item.getOU(),holder2.viewpagerMatchHomeHdpTv, holder2.viewpagerMatchVisitHdpTv, holder2.viewpagerMatchHomeHdpoddsTv,holder2.viewpagerMatchVisitHdpoddsTv
+                ,item.getOverOdds(),item.getUnderOdds(),"over","under");
+
+        setUpDownOdds(true,item,false,item.getIsOENew(),item.getHasOE(),"",holder2.viewpagerMatchOuTv, holder2.viewpagerMatchOu2Tv, holder2.viewpagerMatchOveroddsTv,holder2.viewpagerMatchUnderoddsTv
+                ,item.getOddOdds(),item.getEvenOdds(),"odd","even");
+        /*scrollChild(sl.getChildAt(1), false, item, item.getIsHomeGive(), item.getHasX12(), "", item.getHasOE(), "", item.getIsX12New(), "", "", "", item.getX12_1Odds(), item.getX12_2Odds(), "1", "2", "", ""
                 , true, false, true, item.getHasOE(), item.getIsOENew(), item.getOddOdds(), item.getEvenOdds(), "odd", "even");
         getBaseRecyclerAdapter().getItem(position).setIsX12New("0");
-        getBaseRecyclerAdapter().getItem(position).setIsOENew("0");
+        getBaseRecyclerAdapter().getItem(position).setIsOENew("0");*/
     }
 
 

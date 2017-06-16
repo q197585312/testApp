@@ -39,7 +39,7 @@ public class AppConstant {
     //http://a8197c.a36588.com/Main.aspx?accType=EU
 
 //    public static String HOST="http://www.doo88.net/";
-    public String HOST = APP_HOST;
+    public String HOST = REAL_HOST;
 
     public String URL_LOGIN = HOST + "Default1.aspx";
     public String URL_MAIN = HOST + "main.aspx";
@@ -192,9 +192,15 @@ public class AppConstant {
     public String URL_SUPER_COMBO_TODAY = HOST + "_view/ParGenWFH.ashx?g=99&ot=t&update=true&r=1186326052";
     public String URL_SUPER_COMBO_RUNING = HOST + "_view/ParGenWFH.ashx?g=99&ot=r&update=true&r=1186326052";
     public String URL_SUPER_COMBO_EARLY = HOST + "_view/ParGenWFH.ashx?g=99&ot=e&update=true&r=1186326052";
+    //57http://main55.afb88.com/_view/All_Gen6.ashx?g=57&ot=r&update=true&r=764149212&LID=&_=1497599416541
+    public String URL_TABLE_TENNIS_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=58&update=true&r=1186326052";
+    public String URL_TABLE_TENNIS_TODAY = HOST + "_view/All_Gen6.ashx?g=57&ot=t&update=true&r=1186326052";
+    public String URL_TABLE_TENNIS_RUNING = HOST + "_view/All_Gen6.ashx?g=57&ot=r&update=true&r=1186326052";
+    public String URL_TABLE_TENNIS_EARLY = HOST + "_view/All_Gen6.ashx?g=57&ot=e&update=true&r=1186326052";
 
     //http://main55.afb88.com/_view/Result.aspx
     public String URL_RESULT = HOST + "_view/Result_App.aspx";
+
     public String URL_EUROPE_TODAY;
     public String URL_EUROPE_RUNING;
     public String URL_EUROPE_EARLY;
@@ -320,6 +326,49 @@ public class AppConstant {
         URL_GOLF_TODAY = HOST + "_view/All_Gen6.ashx?g=22&ot=t&update=true&r=1186326052";
         URL_GOLF_RUNING = HOST + "_view/All_Gen6.ashx?g=22&ot=r&update=true&r=1186326052";
         URL_GOLF_EARLY = HOST + "_view/All_Gen6.ashx?g=22&ot=e&update=true&r=1186326052";
+        //http://main55.afb88.com/_view/All_Gen6.ashx?g=51&ot=t&update=true&r=448891026&LID=&_=1497233419847
+        URL_BADMINTON_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=52&update=true&r=1186326052";
+        URL_BADMINTON_TODAY = HOST + "_view/All_Gen6.ashx?g=51&ot=t&update=true&r=1186326052";
+        URL_BADMINTON_RUNING = HOST + "_view/All_Gen6.ashx?g=51&ot=r&update=true&r=1186326052";
+        URL_BADMINTON_EARLY = HOST + "_view/All_Gen6.ashx?g=51&ot=e&update=true&r=1186326052";
+        //http://main55.afb88.com/_view/All_Gen6.ashx?g=44&ot=e&update=true&r=2130678057&LID=&_=1497238234614
+        URL_VOLLEYBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=62&update=true&r=1186326052";
+        URL_VOLLEYBALL_TODAY = HOST + "_view/All_Gen6.ashx?g=23&ot=t&update=true&r=1186326052";
+        URL_VOLLEYBALL_RUNING = HOST + "_view/All_Gen6.ashx?g=23&ot=r&update=true&r=1186326052";
+        URL_VOLLEYBALL_EARLY = HOST + "_view/All_Gen6.ashx?g=23&ot=e&update=true&r=1186326052";
+        //
+        URL_CRICKET_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=61&update=true&r=1186326052";
+        URL_CRICKET_TODAY = HOST + "_view/All_Gen6.ashx?g=44&ot=t&update=true&r=1186326052";
+        URL_CRICKET_RUNING = HOST + "_view/All_Gen6.ashx?g=44&ot=r&update=true&r=1186326052";
+        URL_CRICKET_EARLY = HOST + "_view/All_Gen6.ashx?g=44&ot=e&update=true&r=1186326052";
+        //
+        URL_HANDBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=43&update=true&r=1186326052";
+        URL_HANDBALL_TODAY = HOST + "_view/All_Gen6.ashx?g=41&ot=t&update=true&r=1186326052";
+        URL_HANDBALL_RUNING = HOST + "_view/All_Gen6.ashx?g=41&ot=r&update=true&r=1186326052";
+        URL_HANDBALL_EARLY = HOST + "_view/All_Gen6.ashx?g=41&ot=e&update=true&r=1186326052";
+        //65
+        URL_CYCLING_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=64&update=true&r=1186326052";
+        URL_CYCLING_TODAY = HOST + "_view/All_Gen6.ashx?g=65&ot=t&update=true&r=1186326052";
+        URL_CYCLING_RUNING = HOST + "_view/All_Gen6.ashx?g=65&ot=r&update=true&r=1186326052";
+        URL_CYCLING_EARLY = HOST + "_view/All_Gen6.ashx?g=65&ot=e&update=true&r=1186326052";
+        //103
+        URL_WINTER_SPORT_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=104&update=true&r=1186326052";
+        URL_WINTER_SPORT_TODAY = HOST + "_view/All_Gen6.ashx?g=103&ot=t&update=true&r=1186326052";
+        URL_WINTER_SPORT_RUNING = HOST + "_view/All_Gen6.ashx?g=103&ot=r&update=true&r=1186326052";
+        URL_WINTER_SPORT_EARLY = HOST + "_view/All_Gen6.ashx?g=103&ot=e&update=true&r=1186326052";
+        //103
+//    http://main55.afb88.com/_view/ParGenWFH.ashx?g=99&ot=e&update=true&r=603659260&LID=&_=1497239829685
+        URL_SUPER_COMBO_TODAY = HOST + "_view/ParGenWFH.ashx?g=99&ot=t&update=true&r=1186326052";
+        URL_SUPER_COMBO_RUNING = HOST + "_view/ParGenWFH.ashx?g=99&ot=r&update=true&r=1186326052";
+        URL_SUPER_COMBO_EARLY = HOST + "_view/ParGenWFH.ashx?g=99&ot=e&update=true&r=1186326052";
+        //57http://main55.afb88.com/_view/All_Gen6.ashx?g=57&ot=r&update=true&r=764149212&LID=&_=1497599416541
+        URL_TABLE_TENNIS_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=58&update=true&r=1186326052";
+        URL_TABLE_TENNIS_TODAY = HOST + "_view/All_Gen6.ashx?g=57&ot=t&update=true&r=1186326052";
+        URL_TABLE_TENNIS_RUNING = HOST + "_view/All_Gen6.ashx?g=57&ot=r&update=true&r=1186326052";
+        URL_TABLE_TENNIS_EARLY = HOST + "_view/All_Gen6.ashx?g=57&ot=e&update=true&r=1186326052";
+
+        //http://main55.afb88.com/_view/Result.aspx
+        URL_RESULT = HOST + "_view/Result_App.aspx";
 
         //http://main55.afb88.com/_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994&LID=ba82fa925e9d154e&_=1495597268312
         URL_EUROPE_TODAY = HOST + "_view/OddsGen5.ashx?g=182&ot=t&update=true&r=1833149994";

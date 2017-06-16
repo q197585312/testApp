@@ -5,12 +5,12 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballCommonAdapterHelper;
 import com.nanyang.app.main.home.sport.basketball.BasketballCommonInfo;
 import com.nanyang.app.main.home.sport.basketball.BasketballCommonState;
-import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -23,7 +23,7 @@ public abstract class BaseballState extends BasketballCommonState {
         super(baseView);
     }
     @Override
-    protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
+    protected IBetHelper<BasketballCommonInfo> onSetBetHelper() {
         return new BaseballBetHelper(getBaseView());
     }
 
@@ -31,6 +31,21 @@ public abstract class BaseballState extends BasketballCommonState {
     public IAdapterHelper<BasketballCommonInfo> onSetAdapterHelper() {
         return new BaseballAdapter(getBaseView().getContextActivity());
 
+    }
+    @Override
+    protected List<List<String>> initHeaderList() {
+        List<List<String>> texts = new ArrayList<>();
+        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getContextActivity().getString(R.string.FULL_1X2)
+                , getBaseView().getContextActivity().getString(R.string.FULL_H_A)
+                , getBaseView().getContextActivity().getString(R.string.FULL_O_U)
+        ));
+        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getContextActivity().getString(R.string.FULL_O_E)
+                , getBaseView().getContextActivity().getString(R.string.FIRST5_H_A)
+                , getBaseView().getContextActivity().getString(R.string.FIRST5_O_U)
+        ));
+        texts.add(items0);
+        texts.add(items1);
+        return texts;
     }
     @Override
     protected List<MenuItemInfo> getTypes() {

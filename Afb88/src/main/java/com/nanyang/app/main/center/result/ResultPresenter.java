@@ -129,7 +129,7 @@ public class ResultPresenter extends BaseRetrofitPresenter<String, ResultContact
         MenuItemInfo item6 = new MenuItemInfo(0, d6, d6);
         MenuItemInfo item7 = new MenuItemInfo(0, d7, d7);
 
-        selectedMap.put("gameDate", item1.getType());
+        selectedMap.put("gameDate", item0.getType());
         gameDateList.add(item0);
         gameDateList.add(item1);
         gameDateList.add(item2);

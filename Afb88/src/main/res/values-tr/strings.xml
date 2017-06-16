@@ -63,8 +63,8 @@
     <string name="loading">Yükleniyor</string>
     <string name="win">kazanmak</string>
     <string name="draw">Çekmek</string>
-    <string name="odd">O</string>
-    <string name="even">E</string>
+    <string name="odd">Odd</string>
+    <string name="even">Even</string>
     <string name="double_chance">Çifte şans</string>
     <string name="x1">X1</string>
     <string name="x2">2X</string>
@@ -350,4 +350,11 @@
     <string name="Korea">Korea</string>
     <string name="Vietnam">Vietnam</string>
     <string name="Turkish">Turkish</string>
+    <string name="EVEN">E</string>
+    <string name="ODD">O</string>
+    <string name="FULL_1X2">FT.1X2</string>
+    <string name="FIRST5_H_A">FIRST5.HDP</string>
+    <string name="FIRST5_O_U">FIRST5.O/U</string>
+    <string name="A_TIE_B">A-TIE-B</string>
+    <string name="O_U">O/U</string>
 </resources>

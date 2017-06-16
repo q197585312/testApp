@@ -263,7 +263,7 @@
     <string name="bet_list">下注列表</string>
     <string name="PARLAY">过关</string>
     <string name="Baseball">棒球</string>
-    <string name="IceHockey">IceHockey</string>
+    <string name="IceHockey">冰球</string>
     <string name="Europe_View">欧洲</string>
     <string name="FT15MINSHANDICAP_OVER_UNDER"><![CDATA[全场15分钟亚州盤 & 大/小]]></string>
     <string name="HOME_TEAM_TOTAL_GOALS">主队总进球</string>
@@ -346,7 +346,14 @@
     <string name="Squash">壁球</string>
     <string name="Athletics">竞技</string>
     <string name="sort_by_time">时间排序</string>
-    <string name="Korea">Korea</string>
-    <string name="Vietnam">Vietnam</string>
-    <string name="Turkish">Turkish</string>
+    <string name="Korea">韩语</string>
+    <string name="Vietnam">越南语</string>
+    <string name="Turkish">土耳其语</string>
+    <string name="EVEN">双</string>
+    <string name="ODD">单</string>
+    <string name="FULL_1X2">全场 1X2</string>
+    <string name="FIRST5_H_A">先5局亚州盤</string>
+    <string name="FIRST5_O_U">先5局大小</string>
+    <string name="A_TIE_B">A-TIE-B</string>
+    <string name="O_U">大小</string>
 </resources>

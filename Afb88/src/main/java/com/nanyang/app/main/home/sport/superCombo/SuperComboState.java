@@ -43,6 +43,6 @@ public abstract class SuperComboState extends SoccerMixState{
     }
     @Override
     public boolean mix() {
-        return false;
+        return true;
     }
 }

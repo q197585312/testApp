@@ -59,9 +59,9 @@ public abstract class TennisState extends BasketballMixState{
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> lists = super.initHeaderList();
-        lists.get(0).set(0,getBaseView().getContextActivity().getString(R.string.HANDICAP));
-        lists.get(0).set(1,getBaseView().getContextActivity().getString(R.string.OVER_UNDER));
-        lists.get(1).set(0,getBaseView().getContextActivity().getString(R.string.TO_WIN));
+        lists.get(0).set(0,getBaseView().getContextActivity().getString(R.string.TO_WIN));
+        lists.get(0).set(1,getBaseView().getContextActivity().getString(R.string.HANDICAP));
+        lists.get(1).set(0,getBaseView().getContextActivity().getString(R.string.O_U));
         lists.get(1).set(1,getBaseView().getContextActivity().getString(R.string.ODD_EVEN));
         return lists;
     }

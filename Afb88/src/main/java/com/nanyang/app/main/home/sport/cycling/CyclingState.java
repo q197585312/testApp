@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.cycling;
 
+import android.view.View;
+
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.financial.OtherSingleAdapterHelper;
@@ -24,10 +26,14 @@ public abstract class CyclingState extends TennisState{
             public void onConvert(MyRecyclerViewHolder helper, int position, BasketballMixInfo item) {
                 super.onConvert(helper, position, item);
                 ScrollLayout sl = helper.getView(R.id.module_center_sl);
-                scrollChild(sl.getChildAt(0), false, item, item.getIsHomeGive(), item.getHasX12(), "", item.getHasOE(), "", item.getIsX12New(), "", "", "", item.getX12_1Odds(), item.getX12_2Odds(), "1", "2", "", ""
-                        , true, false, true, item.getHasOE(), item.getIsOENew(), item.getOddOdds(), item.getEvenOdds(), "odd", "even");
-                getBaseRecyclerAdapter().getItem(position).setIsX12New("0");
-                getBaseRecyclerAdapter().getItem(position).setIsOENew("0");
+                sl.getChildAt(0).setVisibility(View.VISIBLE);
+                ViewHolder holder = new ViewHolder(sl.getChildAt(0));
+                setUpDownOdds(true,item,false,item.getIsX12New(),item.getHasX12(),"",holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv,holder.viewpagerMatchVisitHdpoddsTv
+                        ,item.getX12_1Odds(),item.getX12_2Odds(),"1","2");
+
+                setUpDownOdds(true,item,false,item.getIsHdpNew(),item.getHasHdp(),item.getHdp(),holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv,holder.viewpagerMatchUnderoddsTv
+                        ,item.getHomeHdpOdds(),item.getAwayHdpOdds(),"home","away");
+
             }
         };
     }
@@ -43,6 +49,7 @@ public abstract class CyclingState extends TennisState{
     protected List<List<String>> initHeaderList() {
         List<List<String>> lists = super.initHeaderList();
         lists.remove(0);
+        lists.get(0).set(1,getBaseView().getContextActivity().getString(R.string.HANDICAP));
         return lists;
     }
 

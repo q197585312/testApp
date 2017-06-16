@@ -8,6 +8,7 @@ import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -38,9 +39,12 @@ public abstract class GolfState extends FinancialState{
         return new GolfBetHelper(getBaseView());
     }
 
-/*    @Override
-    public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
-        return new GolfAdapterHelper(getBaseView().getContextActivity());
-    }*/
+    @Override
+    protected List<List<String>> initHeaderList() {
+        List<List<String>> texts = new ArrayList<>();
+        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getContextActivity().getString(R.string.HANDICAP), getBaseView().getContextActivity().getString(R.string.A_TIE_B)));
+        texts.add(items0);
+        return texts;
+    }
 
 }

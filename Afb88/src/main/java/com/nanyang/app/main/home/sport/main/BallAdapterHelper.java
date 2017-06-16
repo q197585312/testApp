@@ -121,7 +121,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         tvRightMark.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                back.clickView(v, item,position);
+                back.clickView(v, item, position);
             }
         });
         if (item.getType() == SportInfo.Type.ITME) {
@@ -220,7 +220,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
 
     public View scrollChild(View vp, boolean isFh, I item, String isHomeGive, String hasHdp, String hdp, String hasOU, String ou, String isHdpNew, String isOUNew, String underOdds, String overOdds, String homeHdpOdds, String awayHdpOdds) {
-        return scrollChild(vp, isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "", "", "", "", true, true, false, "", "", "", "", "", "");
+        return scrollChild(vp, isFh, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds, "home", "away", "over", "under", true, true, false, "", "", "", "", "", "");
     }
 
 
@@ -228,122 +228,100 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             , boolean hapVisiable, boolean ouVisiable, boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
         vp.setVisibility(View.VISIBLE);
         ViewHolder holder = new ViewHolder(vp);
-
-        if (hapVisiable) {
-            holder.viewpagerMatchHomeHdpTv.setVisibility(View.VISIBLE);
-            holder.viewpagerMatchHomeHdpoddsTv.setVisibility(View.VISIBLE);
-            holder.viewpagerMatchVisitHdpTv.setVisibility(View.VISIBLE);
-            holder.viewpagerMatchVisitHdpoddsTv.setVisibility(View.VISIBLE);
-            if (homeHdpOdds.trim().isEmpty() || awayHdpOdds.trim().isEmpty() || (hdp.trim().isEmpty()&&!awayOddsType.equals("2"))) {
-                hasHdp = "0";
-            }
-            if (overOdds.trim().isEmpty() || underOdds.trim().isEmpty() || ou.trim().isEmpty()||ou.trim().equals("0")) {
-                hasOU = "0";
-            }
-            if (hasHdp.equals("0") || hasHdp.equals("")) {
-                holder.viewpagerMatchHomeHdpTv.setText("");
-                holder.viewpagerMatchHomeHdpoddsTv.setText("");
-                holder.viewpagerMatchVisitHdpTv.setText("");
-                holder.viewpagerMatchVisitHdpoddsTv.setText("");
-            } else {
-                String hdpS = changeValueF(hdp);
-                if (isHomeGive.equals("1")) {
-                    holder.viewpagerMatchVisitHdpTv.setText("");
-                    holder.viewpagerMatchHomeHdpTv.setText(hdpS);
-                } else {
-                    holder.viewpagerMatchVisitHdpTv.setText(hdpS);
-                    holder.viewpagerMatchHomeHdpTv.setText("");
-                }
-                if (homeOddsType.startsWith("mm") || awayOddsType.startsWith("mm")) {
-                    holder.viewpagerMatchVisitHdpTv.setTextSize(8);
-                    holder.viewpagerMatchHomeHdpTv.setTextSize(8);
-                }
-                boolean isAnimation = false;
-                if (isHdpNew.equals("1"))
-                    isAnimation = true;
-                else
-                    isAnimation = false;
-                if (homeOddsType.equals(""))
-                    homeOddsType = "home";
-                if (awayOddsType.equals(""))
-                    awayOddsType = "away";
-                setValue(item, holder.viewpagerMatchHomeHdpoddsTv, homeHdpOdds, isAnimation, homeOddsType, isFh,R.drawable.green_trans_shadow_top);
-                setValue(item, holder.viewpagerMatchVisitHdpoddsTv, awayHdpOdds, isAnimation, awayOddsType, isFh,R.drawable.green_trans_shadow_bottom);
-            }
-        } else {
-            holder.viewpagerMatchHomeHdpTv.setVisibility(View.GONE);
-            holder.viewpagerMatchHomeHdpoddsTv.setVisibility(View.GONE);
-            holder.viewpagerMatchVisitHdpTv.setVisibility(View.GONE);
-            holder.viewpagerMatchVisitHdpoddsTv.setVisibility(View.GONE);
-        }
-        if (ouVisiable) {
-            holder.viewpagerMatchOuTv.setVisibility(View.VISIBLE);
-            holder.viewpagerMatchOu2Tv.setVisibility(View.VISIBLE);
-            holder.viewpagerMatchOveroddsTv.setVisibility(View.VISIBLE);
-            holder.viewpagerMatchUnderoddsTv.setVisibility(View.VISIBLE);
-            if (hasOU.equals("0") || hasOU.equals("")) {
-                holder.viewpagerMatchOuTv.setText("");
-                holder.viewpagerMatchOu2Tv.setText("");
-                holder.viewpagerMatchOveroddsTv.setText("");
-                holder.viewpagerMatchUnderoddsTv.setText("");
-
-            } else {
-                String ouf = changeValueF(ou);
-                holder.viewpagerMatchOuTv.setText(ouf);
-                holder.viewpagerMatchOu2Tv.setText("");
-                boolean isAnimation = false;
-                if (isOUNew.equals("1"))
-                    isAnimation = true;
-                if (overOddsType.equals(""))
-                    overOddsType = "over";
-                if (underOddsType.equals(""))
-                    underOddsType = "under";
-                if (overOddsType.startsWith("mm") || underOddsType.startsWith("mm")) {
-                    holder.viewpagerMatchOuTv.setTextSize(8);
-                    holder.viewpagerMatchOu2Tv.setTextSize(8);
-                }
-                setValue(item, holder.viewpagerMatchUnderoddsTv, underOdds, isAnimation, underOddsType, isFh,R.drawable.green_trans_shadow_bottom);
-                setValue(item, holder.viewpagerMatchOveroddsTv, overOdds, isAnimation, overOddsType, isFh,R.drawable.green_trans_shadow_top);
-            }
-        } else {
-            holder.viewpagerMatchOuTv.setVisibility(View.GONE);
-            holder.viewpagerMatchOu2Tv.setVisibility(View.GONE);
-            holder.viewpagerMatchOveroddsTv.setVisibility(View.GONE);
-            holder.viewpagerMatchUnderoddsTv.setVisibility(View.GONE);
-        }
-        if (oeVisiable) {
-            holder.viewpagerOddLabelTv.setVisibility(View.VISIBLE);
-            holder.viewpagerEvenLabelTv.setVisibility(View.VISIBLE);
-            holder.viewpagerMatchOddTv.setVisibility(View.VISIBLE);
-            holder.viewpagerMatchEvenTv.setVisibility(View.VISIBLE);
-            if (hasOE.equals("1") && !OddOdds.equals("0") && !EvenOdds.equals("0") && !OddOdds.equals("") && !EvenOdds.equals("")) {
-                holder.viewpagerMatchOddTv.setText(AfbUtils.changeValueS(OddOdds));
-                holder.viewpagerMatchEvenTv.setText(AfbUtils.changeValueS(EvenOdds));
-                holder.viewpagerEvenLabelTv.setText(R.string.even);
-                holder.viewpagerOddLabelTv.setText(R.string.odd);
-                boolean isAnimation = false;
-                if (isOENew.equals("1"))
-                    isAnimation = true;
-                if (OddOddsType.equals(""))
-                    OddOddsType = "odd";
-                if (EvenOddsType.equals(""))
-                    EvenOddsType = "even";
-                setValue(item, holder.viewpagerMatchOddTv, OddOdds, isAnimation, OddOddsType, isFh,R.drawable.green_trans_shadow_top);
-                setValue(item, holder.viewpagerMatchEvenTv, EvenOdds, isAnimation, EvenOddsType, isFh,R.drawable.green_trans_shadow_bottom);
-            } else {
-                holder.viewpagerMatchOddTv.setText("");
-                holder.viewpagerMatchEvenTv.setText("");
-                holder.viewpagerEvenLabelTv.setText("");
-                holder.viewpagerOddLabelTv.setText("");
-            }
-        } else {
-            holder.viewpagerEvenLabelTv.setVisibility(View.GONE);
-            holder.viewpagerOddLabelTv.setVisibility(View.GONE);
-            holder.viewpagerMatchEvenTv.setVisibility(View.GONE);
-            holder.viewpagerMatchOddTv.setVisibility(View.GONE);
-        }
+        setUpDownOdds(hapVisiable, item, isFh, isHdpNew, hasHdp, hdp, holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv, holder.viewpagerMatchVisitHdpoddsTv
+                , homeHdpOdds, awayHdpOdds, homeOddsType, awayOddsType);
+        setUpDownOdds(ouVisiable, item, isFh, isOUNew, hasOU, ou, holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv, holder.viewpagerMatchUnderoddsTv
+                , overOdds, underOdds, overOddsType, underOddsType);
+        setUpDownOdds(oeVisiable, item, isFh, isOENew, hasOE, "", holder.viewpagerOddLabelTv, holder.viewpagerEvenLabelTv, holder.viewpagerMatchOddTv, holder.viewpagerMatchEvenTv
+                , OddOdds, EvenOdds, OddOddsType, EvenOddsType);
         return vp;
     }
+
+    public void setUpDownOdds(boolean visiableUpDown, I item, boolean isFh, String isNew, String hasUpDown, String upDown, TextView upTextTv, TextView downTextTv, TextView upOddsTv, TextView downOddsTv, String upOdds, String downOdds, String upType, String downType) {
+
+        if (visiableUpDown) {
+            upTextTv.setVisibility(View.VISIBLE);
+            upOddsTv.setVisibility(View.VISIBLE);
+            downTextTv.setVisibility(View.VISIBLE);
+            downOddsTv.setVisibility(View.VISIBLE);
+            String upStr = "";
+            String downStr = "";
+            downTextTv.setTextSize(12);
+            upTextTv.setTextSize(12);
+            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty()||upOdds.equals("0") || downOdds.equals("0")) {
+                hasUpDown = "0";
+            }
+            switch (upType) {
+                case "home":
+                case "mmhome":
+
+                    if (upDown.isEmpty()) {
+                        hasUpDown = "0";
+                    }
+
+                    String hdpS = changeValueF(upDown);
+                    if (item.getIsHomeGive().equals("1")) {
+                        upStr = hdpS;
+                        downStr = "";
+                    } else {
+                        upStr = "";
+                        downStr = hdpS;
+                    }
+                    if (upType.startsWith("mm")) {
+                        downTextTv.setTextSize(8);
+                        upTextTv.setTextSize(8);
+                    }
+                    break;
+                case "over":
+                case "mmover":
+                    if (upDown.isEmpty() || upDown.equals("0")) {
+                        hasUpDown = "0";
+                    }
+                    String ouf = changeValueF(upDown);
+                    upStr = ouf;
+                    downStr = "";
+                    if (upType.startsWith("mm")) {
+                        downTextTv.setTextSize(8);
+                        upTextTv.setTextSize(8);
+                    }
+                    break;
+
+                case "1":
+                    upStr = "1";
+                    downStr = "2";
+                    break;
+                case "odd":
+                    upStr = context.getString(R.string.ODD);
+                    downStr = context.getString(R.string.EVEN);
+                    break;
+
+            }
+
+            if (hasUpDown.equals("0") || hasUpDown.equals("")) {
+                upTextTv.setText("");
+                upOddsTv.setText("");
+                downTextTv.setText("");
+                downOddsTv.setText("");
+            } else {
+                upTextTv.setText(upStr);
+                downTextTv.setText(downStr);
+                upOddsTv.setText(upOdds);
+                downOddsTv.setText(downOdds);
+                boolean isAnimation = false;
+                if (isNew != null && isNew.equals("1")) {
+                    isAnimation = true;
+                }
+                setValue(item, upOddsTv, upOdds, isAnimation, upType, isFh, R.drawable.green_trans_shadow_top);
+                setValue(item, downOddsTv, downOdds, isAnimation, downType, isFh, R.drawable.green_trans_shadow_bottom);
+            }
+        } else {
+            upTextTv.setVisibility(View.GONE);
+            upOddsTv.setVisibility(View.GONE);
+            downTextTv.setVisibility(View.GONE);
+            downOddsTv.setVisibility(View.GONE);
+        }
+    }
+
 
     private String changeValueF(String f) {
         if (f.equals("") || f.startsWith("-"))
@@ -377,8 +355,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String value = f;
         if (f.equals("0")) {
             textView.setText("");
-        }
-        else {
+        } else {
             textView.setBackgroundResource(0);
             if (!f.equals("") && !f.equals("0")) {
                 if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
@@ -442,31 +419,32 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public static class ViewHolder {
         @Bind(R.id.viewpager_match_home_hdp_tv)
+        public
         TextView viewpagerMatchHomeHdpTv;
         @Bind(R.id.viewpager_match_home_hdpodds_tv)
-        TextView viewpagerMatchHomeHdpoddsTv;
+        public TextView viewpagerMatchHomeHdpoddsTv;
         @Bind(R.id.viewpager_match_ou_tv)
-        TextView viewpagerMatchOuTv;
+        public TextView viewpagerMatchOuTv;
         @Bind(R.id.viewpager_match_overodds_tv)
-        TextView viewpagerMatchOveroddsTv;
+        public TextView viewpagerMatchOveroddsTv;
         @Bind(R.id.viewpager_odd_label_tv)
-        TextView viewpagerOddLabelTv;
+        public TextView viewpagerOddLabelTv;
         @Bind(R.id.viewpager_match_odd_tv)
-        TextView viewpagerMatchOddTv;
+        public TextView viewpagerMatchOddTv;
         @Bind(R.id.viewpager_match_visit_hdp_tv)
-        TextView viewpagerMatchVisitHdpTv;
+        public TextView viewpagerMatchVisitHdpTv;
         @Bind(R.id.viewpager_match_visit_hdpodds_tv)
-        TextView viewpagerMatchVisitHdpoddsTv;
+        public TextView viewpagerMatchVisitHdpoddsTv;
         @Bind(R.id.viewpager_match_ou2_tv)
-        TextView viewpagerMatchOu2Tv;
+        public TextView viewpagerMatchOu2Tv;
         @Bind(R.id.viewpager_match_underodds_tv)
-        TextView viewpagerMatchUnderoddsTv;
+        public TextView viewpagerMatchUnderoddsTv;
         @Bind(R.id.viewpager_even_label_tv)
-        TextView viewpagerEvenLabelTv;
+        public TextView viewpagerEvenLabelTv;
         @Bind(R.id.viewpager_match_even_tv)
-        TextView viewpagerMatchEvenTv;
+        public TextView viewpagerMatchEvenTv;
 
-        ViewHolder(View view) {
+        public ViewHolder(View view) {
             ButterKnife.bind(this, view);
         }
     }

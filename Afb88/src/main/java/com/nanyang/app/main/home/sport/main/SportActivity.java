@@ -40,8 +40,10 @@ import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.poll.PoolFragment;
 import com.nanyang.app.main.home.sport.rugby.RugbyFragment;
 import com.nanyang.app.main.home.sport.superCombo.SuperComboFragment;
+import com.nanyang.app.main.home.sport.tableTennis.TableTennisFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
+import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -50,6 +52,7 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import butterknife.Bind;
@@ -80,7 +83,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     BaseSportFragment cricketFragment = new CricketFragment();
     BaseSportFragment handballFragment = new HandballFragment();
     BaseSportFragment cyclingFragment = new CyclingFragment();
+    BaseSportFragment winterSportFragment = new WinterSportFragment();
     BaseSportFragment superComboFragment = new SuperComboFragment();
+    BaseSportFragment tableTennisFragment = new TableTennisFragment();
 
 
     @Bind(R.id.iv_add)
@@ -164,7 +169,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             assert tvToolbarTitle != null;
             tvToolbarTitle.setText(item.getText());
         }
-        mapFragment = new HashMap<>();
+        mapFragment = new LinkedHashMap<>();
         switch (item.getParent()) {
 
             case "Financial":
@@ -210,11 +215,14 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Boxing), boxingFragment);
                 mapFragment.put(getString(R.string.Golf), golfFragment);
                 mapFragment.put(getString(R.string.Badminton), badmintonFragment);
+                mapFragment.put(getString(R.string.Table_Tennis), tableTennisFragment);
                 mapFragment.put(getString(R.string.Volleyball), volleyballFragment);
                 mapFragment.put(getString(R.string.Cricket), cricketFragment);
                 mapFragment.put(getString(R.string.Handball), handballFragment);
                 mapFragment.put(getString(R.string.Cycling), cyclingFragment);
+                mapFragment.put(getString(R.string.WinterSport), winterSportFragment);
                 mapFragment.put(getString(R.string.SuperCombo), superComboFragment);
+
                 currentFragment = soccerFragment;
                 currentTag = getString(R.string.Soccer);
                 break;
