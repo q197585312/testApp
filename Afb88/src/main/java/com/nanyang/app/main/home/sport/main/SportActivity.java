@@ -31,6 +31,7 @@ import com.nanyang.app.main.home.sport.e_sport.ESportFragment;
 import com.nanyang.app.main.home.sport.europe.EuropeFragment;
 import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
+import com.nanyang.app.main.home.sport.formula.FormulaFragment;
 import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
 import com.nanyang.app.main.home.sport.golf.GolfFragment;
 import com.nanyang.app.main.home.sport.handball.HandballFragment;
@@ -86,6 +87,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     BaseSportFragment winterSportFragment = new WinterSportFragment();
     BaseSportFragment superComboFragment = new SuperComboFragment();
     BaseSportFragment tableTennisFragment = new TableTennisFragment();
+    BaseSportFragment formulaFragment = new FormulaFragment();
 
 
     @Bind(R.id.iv_add)
@@ -212,6 +214,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Rugby), rugbyFragment);
                 mapFragment.put(getString(R.string.Darts), dartsFragment);
                 mapFragment.put(getString(R.string.Boxing), boxingFragment);
+                mapFragment.put(getString(R.string.Formula1), formulaFragment);
                 mapFragment.put(getString(R.string.Golf), golfFragment);
                 mapFragment.put(getString(R.string.Badminton), badmintonFragment);
                 mapFragment.put(getString(R.string.Table_Tennis), tableTennisFragment);

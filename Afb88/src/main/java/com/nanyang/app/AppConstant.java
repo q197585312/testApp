@@ -192,12 +192,16 @@ public class AppConstant {
     public String URL_SUPER_COMBO_TODAY = HOST + "_view/ParGenWFH.ashx?g=99&ot=t&update=true&r=1186326052";
     public String URL_SUPER_COMBO_RUNING = HOST + "_view/ParGenWFH.ashx?g=99&ot=r&update=true&r=1186326052";
     public String URL_SUPER_COMBO_EARLY = HOST + "_view/ParGenWFH.ashx?g=99&ot=e&update=true&r=1186326052";
-    //57http://main55.afb88.com/_view/All_Gen6.ashx?g=57&ot=r&update=true&r=764149212&LID=&_=1497599416541
+    //http://main55.afb88.com/_view/All_Gen6.ashx?g=25&ot=e&update=true&r=1912041035&LID=&_=1497859662375
+    public String URL_FORMULA_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=27&update=true&r=1186326052";
+    public String URL_FORMULA_TODAY = HOST + "_view/All_Gen6.ashx?g=25&ot=t&update=true&r=1186326052";
+    public String URL_FORMULA_RUNING = HOST + "_view/All_Gen6.ashx?g=25&ot=r&update=true&r=1186326052";
+    public String URL_FORMULA_EARLY = HOST + "_view/All_Gen6.ashx?g=25&ot=e&update=true&r=1186326052";
+    //http://main55.afb88.com/_view/All_Gen6.ashx?g=25&ot=e&update=true&r=674224967&LID=&_=1497859548627
     public String URL_TABLE_TENNIS_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=58&update=true&r=1186326052";
     public String URL_TABLE_TENNIS_TODAY = HOST + "_view/All_Gen6.ashx?g=57&ot=t&update=true&r=1186326052";
     public String URL_TABLE_TENNIS_RUNING = HOST + "_view/All_Gen6.ashx?g=57&ot=r&update=true&r=1186326052";
     public String URL_TABLE_TENNIS_EARLY = HOST + "_view/All_Gen6.ashx?g=57&ot=e&update=true&r=1186326052";
-
     //http://main55.afb88.com/_view/Result.aspx
     public String URL_RESULT = HOST + "_view/Result_App.aspx";
 
