@@ -190,6 +190,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         if (getBackStr.contains("not allowed")){
             ToastUtils.showShort(getBackStr);
         }else {
+            ToastUtils.showShort(getBackStr);
             startApp(data);
         }
     }
