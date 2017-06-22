@@ -5,12 +5,13 @@
       <GradleProjectSettings>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
-        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-3.2" />
+        <option name="gradleHome" value="$APPLICATION_HOME_DIR$/gradle/gradle-3.3" />
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Afb88" />
             <option value="$PROJECT_DIR$/baseLibs" />
+            <option value="$PROJECT_DIR$/skinlibrary" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
