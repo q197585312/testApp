@@ -5,7 +5,6 @@
 
 package com.unkonw.testapp.libs.base;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -18,11 +17,13 @@ import com.nostra13.universalimageloader.utils.L;
 import com.unkonw.testapp.R;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 
+import solid.ren.skinlibrary.base.SkinBaseApplication;
+
 
 /**
  * 基础的Application
  **/
-public class BaseApplication extends Application {
+public class BaseApplication extends SkinBaseApplication {
     private final String tag = BaseApplication.class.getSimpleName();
     private static DisplayImageOptions options;
     private static BaseApplication instance;

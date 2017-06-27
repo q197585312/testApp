@@ -22,6 +22,7 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.DialogLoading;
 
 import butterknife.ButterKnife;
+import solid.ren.skinlibrary.base.SkinBaseActivity;
 
 import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
 
@@ -31,7 +32,7 @@ import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
  * Created by Administrator on 2016/12/15 0015.
  */
 
-public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatActivity {
+public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseActivity {
     protected AppCompatActivity mContext;
     /**
      * 页面布局的 根view

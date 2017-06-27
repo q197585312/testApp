@@ -174,7 +174,8 @@ public class SkinManager implements ISkinLoader {
                         String skinPkgPath = SkinFileUtils.getSkinDir(context) + File.separator + params[0];
                         SkinL.i(TAG, "skinPackagePath:" + skinPkgPath);
                         File file = new File(skinPkgPath);
-                        if (!file.exists()) {
+                        boolean b = !file.exists();
+                        if (b) {
                             return null;
                         }
                         PackageManager mPm = context.getPackageManager();

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,9 +15,10 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
+import solid.ren.skinlibrary.base.SkinBaseFragment;
 
 
-public abstract class BaseFragment<T extends IBasePresenter> extends Fragment {
+public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFragment {
     public BaseActivity mContext;
     public View mContentView = null;
     /**

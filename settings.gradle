@@ -1,1 +1,1 @@
-include ':baseLibs', ':Afb88', ':skinlibrary'
+include ':baseLibs', ':Afb88', ':skinlibrary', ':skinpackage'

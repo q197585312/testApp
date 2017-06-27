@@ -23,6 +23,7 @@ public class AfbApplication extends BaseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+//        SkinAppManager.getInstance().initSkinLoader(this);
 //        KLog.init(BuildConfig.LOG_DEBUG, "AFB");
         Logger.setDebug(true);
         CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", true);

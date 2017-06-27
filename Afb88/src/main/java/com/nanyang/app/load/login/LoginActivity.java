@@ -2,6 +2,7 @@ package com.nanyang.app.load.login;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -25,6 +26,8 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
 import cn.finalteam.toolsfinal.ManifestUtils;
+import solid.ren.skinlibrary.SkinLoaderListener;
+import solid.ren.skinlibrary.loader.SkinManager;
 
 
 /**
@@ -64,6 +67,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     RadioButton loginVietnamRb;
     @Bind(R.id.login_turkey_rb)
     RadioButton loginTurkeyRb;
+    private boolean isSkin=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -251,4 +255,40 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
 
+    public void clickSkin(View view) {
+                if(!isSkin) {
+                    SkinManager.getInstance().loadSkin("theme_style.skin",
+                            new SkinLoaderListener() {
+                                @Override
+                                public void onStart() {
+                                    Log.i("SkinLoaderListener", "正在切换中");
+                                    showLoadingDialog();
+                                }
+
+                                @Override
+                                public void onSuccess() {
+                                    Log.i("SkinLoaderListener", "切换成功");
+                                    hideLoadingDialog();
+                                }
+
+                                @Override
+                                public void onFailed(String errMsg) {
+                                    Log.i("SkinLoaderListener", "切换失败:" + errMsg);
+                                    hideLoadingDialog();
+                                }
+
+                                @Override
+                                public void onProgress(int progress) {
+                                    Log.i("SkinLoaderListener", "皮肤文件下载中:" + progress);
+
+                                }
+                            }
+
+                    );
+                }else{
+                    SkinManager.getInstance().restoreDefaultTheme();
+                }
+        isSkin=!isSkin;
+
+    }
 }
