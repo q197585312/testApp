@@ -125,6 +125,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
         createPresenter(new LanguagePresenter(this));
@@ -164,6 +165,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Override
     public void initData() {
         super.initData();
+        tvToolbarLeft.setVisibility(View.VISIBLE);
+        tvToolbarLeft.setBackgroundResource(R.mipmap.sport_home_white_24dp);
         MenuItemInfo<String> item = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         if (item != null) {
             type = item.getType();

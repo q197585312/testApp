@@ -45,6 +45,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     private CompositeDisposable mCompositeSubscription;
     int errorCount = 0;
     protected TextView tvToolbarRight1;
+    protected TextView tvToolbarLeft;
 
     @Override
     public void initData() {
@@ -55,6 +56,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarRight = (TextView) findViewById(R.id.tv_toolbar_right);
         tvToolbarRight1 = (TextView) findViewById(R.id.tv_toolbar_right1);
         tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
+        tvToolbarLeft = (TextView) findViewById(R.id.tv_toolbar_left);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
         toolbar.setBackgroundResource(R.mipmap.toolbar_bg);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
