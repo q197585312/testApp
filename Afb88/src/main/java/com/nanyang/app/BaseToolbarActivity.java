@@ -58,7 +58,8 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
         tvToolbarLeft = (TextView) findViewById(R.id.tv_toolbar_left);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
-        toolbar.setBackgroundResource(R.mipmap.toolbar_bg);
+//        toolbar.setBackgroundResource();
+        dynamicAddView(toolbar, "background", R.mipmap.toolbar_bg);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

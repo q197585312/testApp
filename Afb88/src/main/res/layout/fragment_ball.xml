@@ -79,12 +79,12 @@
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:background="#179441" />
+            android:background="@color/green900" />
 
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:background="#2dc45c" />
+            android:background="@color/green500" />
 
 
         <com.unkonw.testapp.training.ScrollLayout
@@ -108,12 +108,12 @@
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:background="#179441" />
+            android:background="@color/green900" />
 
         <View
             android:layout_width="0.5dp"
             android:layout_height="match_parent"
-            android:background="#2dc45c" />
+            android:background="@color/green500" />
 
         <TextView
             android:id="@+id/tv_aos"

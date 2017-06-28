@@ -50,6 +50,9 @@
 
 
     <!--green-->
+    <color name="green_end">#aa085a23</color>
+    <color name="green_center">#093918</color>
+
     <color name="green500">#4CAF50</color>
 
     <color name="green900">#17ae48</color>

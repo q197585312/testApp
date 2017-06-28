@@ -2,14 +2,13 @@ package com.nanyang.app.main.home;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -17,8 +16,8 @@ import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.main.home.discount.DiscountActivity;
-import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.gdCasino.PokerCasinoActivity;
+import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -58,34 +57,7 @@ public class HomeFragment extends BaseFragment {
     public void initView() {
         super.initView();
         initBanner();
-        GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
-        rvContent.setLayoutManager(layoutManager);
-        List<MenuItemInfo> dataList = new ArrayList<>();
-        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.SportBook), "SportBook"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_live, getString(R.string.Live_Casino), "Live_Casino"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_financials, getString(R.string.Financial), "Financial"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_sports, getString(R.string.Europe_View), "Europe"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_specals4d, getString(R.string.Specials_4D), "Specials_4D"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_huay_thai, getString(R.string.Huay_Thai), "Huay_Thai"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_muay_thai, getString(R.string.Muay_Thai), "Muay_Thai"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_games, getString(R.string.E_Sport), "E_Sport"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_keno2, getString(R.string.Myanmar_Odds), "Myanmar_Odds"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_keno, getString(R.string.Keno), "Keno"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_poker, getString(R.string.Poker), "Poker"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_lottery, getString(R.string.Lottery), "Lottery"));
-
-//        dataList.add(new MenuItemInfo(R.mipmap.home_roulette, getString(R.string.Roulette), "Roulette"));
-//        dataList.add(new MenuItemInfo(R.mipmap.home_casino, getString(R.string.Casino), "Casino"));
-//        dataList.add(new MenuItemInfo(R.mipmap.home_discount, getString(R.string.Discount), "Discount"));
-        BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, dataList, R.layout.home_item_image_text) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                ImageView iv = holder.getView(R.id.iv_pic);
-                TextView tv = holder.getView(R.id.tv_text);
-                iv.setImageResource(item.getRes());
-                tv.setText(item.getText());
-            }
-        };
+        BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext,rvContent);
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
@@ -122,9 +94,11 @@ public class HomeFragment extends BaseFragment {
 
             }
         });
-        rvContent.setAdapter(adapter);
+
 
     }
+
+
 
     public void defaultSkip(final String type) {
         MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));

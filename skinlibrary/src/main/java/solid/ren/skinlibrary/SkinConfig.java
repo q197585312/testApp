@@ -24,7 +24,7 @@ public class SkinConfig {
     private static boolean isCanChangeStatusColor = false;
     private static boolean isCanChangeFont = false;
     private static boolean isDebug = false;
-    private static boolean isGlobalSkinApply = false;
+    private static boolean isGlobalSkinApply = true;
 
     /**
      * get path of last skin package path

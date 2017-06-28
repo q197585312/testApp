@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
     <RelativeLayout
+
         android:layout_width="match_parent"
         android:layout_height="240dp">
 
@@ -16,6 +19,7 @@
             android:background="@drawable/rectangle_green_gradient_line_trans"
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
+            skin:enable="true"
             android:layout_height="30dp">
         <LinearLayout
             android:layout_gravity="bottom|right"
@@ -26,6 +30,7 @@
             android:orientation="horizontal"/>
         </FrameLayout>
     </RelativeLayout>
+
     <View
         android:layout_height="0.9dp"
         android:background="@color/green500_trans"
@@ -36,10 +41,11 @@
         android:layout_width="match_parent"/>
 
     <android.support.v7.widget.RecyclerView
+        skin:enable="true"
         android:id="@+id/rv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#093918" />
+        android:background="@color/black_green" />
 
 
 
