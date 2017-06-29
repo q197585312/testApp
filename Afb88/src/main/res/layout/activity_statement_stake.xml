@@ -8,7 +8,7 @@
     <include layout="@layout/toolbar_layout" />
 
     <LinearLayout
-        android:background="#1F5E1F"
+        android:background="@color/green_dark"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -29,7 +29,7 @@
                 android:paddingTop="5dp"
                 android:singleLine="true"
                 android:text="@string/date"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:textSize="9sp" />
 
             <View
@@ -50,7 +50,7 @@
                 android:padding="2dp"
                 android:singleLine="true"
                 android:text="@string/event_statement"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:textSize="9sp" />
 
             <View
@@ -71,7 +71,7 @@
                 android:padding="2dp"
                 android:singleLine="true"
                 android:text="@string/stake_statement"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:textSize="9sp" />
 
             <View
@@ -92,7 +92,7 @@
                 android:padding="2dp"
                 android:singleLine="true"
                 android:text="@string/amount"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:textSize="9sp" />
 
             <View
@@ -113,7 +113,7 @@
                 android:padding="2dp"
                 android:singleLine="true"
                 android:text="@string/commission"
-                android:textColor="#000000"
+                android:textColor="@color/white"
                 android:textSize="9sp" />
 
             <View

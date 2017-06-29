@@ -46,7 +46,7 @@
         <TextView
             android:id="@+id/order_item_tv51"
             style="@style/text_wrap_black10"
-            android:background="@drawable/rectangle_green_allradius2"
+            android:background="@drawable/rectangle_green_all_corners2"
             android:padding="2dp"
             android:textColor="@color/white" />
 

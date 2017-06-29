@@ -139,7 +139,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
     public BasePopupWindow createPopupWindow(BasePopupWindow basePopupWindow) {
         if (popWindow != null) {
             popWindow.closePopupWindow();
-            popWindow = null;
         }
         this.popWindow = basePopupWindow;
         return popWindow;
@@ -188,7 +187,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
     }
 
     protected void showFragmentToActivity(@NonNull Fragment fragment, int frameId, String tag) {
-        checkNotNull(fragment);
+
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (!fragment.isAdded()) {
             transaction.add(frameId, fragment, tag);
@@ -242,6 +241,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
     public void skipAct(Class clazz) {
         Intent intent = new Intent(this, clazz);
         intent.putExtra("fromWhere", getClass().getSimpleName());
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -249,6 +249,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         Intent intent = new Intent(this, clazz);
         intent.putExtras(bundle);
         intent.putExtra("fromWhere", getClass().getSimpleName());
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 
@@ -257,6 +258,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         intent.putExtras(bundle);
         intent.putExtra("fromWhere", getClass().getSimpleName());
         intent.setFlags(flags);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }
 

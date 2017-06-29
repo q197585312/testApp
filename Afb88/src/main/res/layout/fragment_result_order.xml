@@ -108,7 +108,7 @@
             android:layout_marginLeft="15dp"
             android:layout_weight="1"
 
-            android:background="@drawable/rectangle_green_allradius2"
+            android:background="@drawable/rectangle_green_all_corners2"
             android:gravity="center"
             android:paddingBottom="3dp"
             android:paddingTop="3dp"
@@ -120,7 +120,7 @@
     <LinearLayout
         android:id="@+id/ll_title_parent1"
         style="@style/style_match_wrap"
-        android:background="#1F5E1F"
+        android:background="@color/green_dark"
         android:gravity="center"
         android:orientation="horizontal">
 

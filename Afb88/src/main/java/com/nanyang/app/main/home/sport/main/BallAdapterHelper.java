@@ -14,6 +14,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -372,6 +373,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     animation.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
+                            ((BaseActivity)context).dynamicAddView(textView, "background", resBg);
                             textView.setBackgroundResource(resBg);
                         }
 
@@ -382,7 +384,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
                         @Override
                         public void onAnimationRepeat(Animation animation) {
-                            textView.setBackgroundResource(resBg);
+                            ((BaseActivity)context).dynamicAddView(textView, "background", resBg);
                         }
                     });
                     textView.startAnimation(animation);

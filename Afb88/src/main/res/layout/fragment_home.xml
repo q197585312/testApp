@@ -19,7 +19,7 @@
             android:background="@drawable/rectangle_green_gradient_line_trans"
             android:layout_width="match_parent"
             android:layout_alignParentBottom="true"
-            skin:enable="true"
+
             android:layout_height="30dp">
         <LinearLayout
             android:layout_gravity="bottom|right"
@@ -41,7 +41,7 @@
         android:layout_width="match_parent"/>
 
     <android.support.v7.widget.RecyclerView
-        skin:enable="true"
+
         android:id="@+id/rv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

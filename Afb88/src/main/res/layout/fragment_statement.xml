@@ -19,6 +19,7 @@
             android:orientation="vertical">
 
             <include
+
                 android:id="@+id/title_view"
                 layout="@layout/item_statement_list" />
 
@@ -41,7 +42,7 @@
                     android:id="@+id/tv_blance_sure"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#57B350"
+                    android:background="@color/green900"
                     android:paddingBottom="7dp"
                     android:paddingLeft="30dp"
                     android:paddingRight="30dp"
@@ -55,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
-                android:background="#248C26"
+                android:background="@color/green_light_bg"
                 android:padding="7dp"
                 android:text="@string/transfer_log"
                 android:textColor="@color/white"
@@ -68,7 +69,7 @@
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/statement_transfer_rc"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+                android:layout_height="wrap_content"/>
         </LinearLayout>
     </ScrollView>
 </android.support.v4.widget.SwipeRefreshLayout>

@@ -24,4 +24,13 @@
     <color name="green_white_thick_line">#c0aad6</color>
     <color name="green_end">#aa32085a</color>
     <color name="green_center">#230939</color>
+
+    <color name="green_dark_bg">#120023</color>
+    <color name="green_light_bg">#651ba2</color>
+    <color name="green_thai_thousand_bg">#ecdbfb</color>
+    <color name="green_thai_thousand_wrol">#56248c</color>
+
+    <color name="google_green">#7634a8</color>
+
+
 </resources>

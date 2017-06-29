@@ -132,8 +132,6 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     @Override
     public void initView() {
         super.initView();
-        titleView.setBackgroundColor(0xff1F5E1F);
-        transferView.setBackgroundColor(0xff1F5E1F);
     }
 
     @Override

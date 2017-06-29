@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/green_light_white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -22,7 +23,7 @@
             android:paddingTop="5dp"
             android:singleLine="true"
             android:text="@string/date"
-            android:textColor="#000000" />
+            android:textColor="@color/black" />
 
         <View
             android:layout_width="0.4dp"

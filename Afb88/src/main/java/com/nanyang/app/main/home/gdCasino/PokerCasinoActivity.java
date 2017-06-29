@@ -21,6 +21,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.gdCasino.model.PorkerCasinoBean;
 import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
@@ -241,5 +242,12 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
                 startActivity(intent);
             }
         }
+    }
+
+    @Override
+    public void finish() {
+        skipAct(MainActivity.class);
+        super.finish();
+
     }
 }

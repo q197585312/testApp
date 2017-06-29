@@ -13,7 +13,7 @@
         android:background="@color/green_light_title"
         android:orientation="horizontal">
         <TextView
-            skin:enable="true"
+
             android:id="@+id/iv_all_add"
             android:layout_width="wrap_content"
             android:background="@color/green_light_white"
@@ -27,7 +27,7 @@
             android:contentDescription="@null"
             android:src="@mipmap/add_green" />
         <TextView
-            skin:enable="true"
+
             android:paddingLeft="25dp"
             android:gravity="center"
             android:layout_gravity="center"
@@ -39,7 +39,7 @@
             android:layout_weight="1" />
 
         <ImageView
-            skin:enable="true"
+
             android:id="@+id/iv_add"
             android:layout_width="25dp"
             android:layout_height="25dp"

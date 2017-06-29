@@ -275,11 +275,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 createChoosePop(view);
                 return;
             case "Not settled":
-                b.putString("personCenter", getBaseView().getContextActivity().getString(R.string.stake));
+                b.putString(AppConstant.KEY_STRING, getBaseView().getContextActivity().getString(R.string.stake));
                 ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class, b);
                 break;
             case "Settled":
-                b.putString("personCenter", getBaseView().getContextActivity().getString(R.string.statement));
+                b.putString(AppConstant.KEY_STRING, getBaseView().getContextActivity().getString(R.string.statement));
                 ((BaseToolbarActivity) baseView.getContextActivity()).skipAct(PersonCenterActivity.class, b);
                 break;
         }

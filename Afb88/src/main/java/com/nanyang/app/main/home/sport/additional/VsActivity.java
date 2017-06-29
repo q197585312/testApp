@@ -492,12 +492,12 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
                 break;
             case R.id.tv_not_settled:
                 Bundle bundle = new Bundle();
-                bundle.putString("personCenter", getString(R.string.stake));
+                bundle.putString(AppConstant.KEY_STRING, getString(R.string.stake));
                 skipAct(PersonCenterActivity.class, bundle);
                 break;
             case R.id.tv_settled:
                 Bundle bundle2 = new Bundle();
-                bundle2.putString("personCenter", getString(R.string.statement));
+                bundle2.putString(AppConstant.KEY_STRING, getString(R.string.statement));
                 skipAct(PersonCenterActivity.class, bundle2);
                 break;
             case R.id.iv_lift_nav:

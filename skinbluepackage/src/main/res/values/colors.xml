@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3f8cb5</color>
+    <color name="colorPrimaryDark">#30789f</color>
+    <color name="colorAccent">#FF4081</color>
+
+
+    <!--green-->
+    <color name="black_green">#0f2430</color>
+    <color name="green500">#4c89af</color>
+
+    <color name="green900">#1774ae</color>
+    <color name="green900_trans">#661777ae</color>
+    <color name="green500_trans">#66000000</color>
+
+    <color name="green_dark">#135781</color>
+    <color name="green_black">#0d3d59</color>
+    <color name="green_black_word">#003c62</color>
+    <color name="green_trans">#dd4c89af</color>
+    <color name="green_light">#a3cee8</color>
+    <color name="green_light_title">#8ecbea</color>
+    <color name="green_grey">#bcd6e2</color>
+    <color name="green_light_white">#c9dfeb</color>
+
+    <color name="green_white_thick_line">#aac6d6</color>
+    <color name="green_end">#aa083f5a</color>
+    <color name="green_center">#092739</color>
+
+    <color name="green_dark_bg">#001523</color>
+    <color name="green_light_bg">#1b71a2</color>
+    <color name="green_thai_thousand_bg">#dbeefb</color>
+    <color name="green_thai_thousand_wrol">#24648c</color>
+
+    <color name="google_green">#347ca8</color>
+
+
+</resources>

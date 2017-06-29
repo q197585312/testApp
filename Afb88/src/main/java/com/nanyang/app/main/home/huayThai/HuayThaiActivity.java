@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -69,5 +70,11 @@ public class HuayThaiActivity extends BaseToolbarActivity {
         data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, getString(R.string.game2d), "_view/nodds2TH_App.aspx","_view/nodds2TH_Bet_App.aspx"));
         data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), "_view/nodds3TH_App.aspx","_view/nodds3TH_Bet_App.aspx"));
         initRc();
+    }
+    @Override
+    public void finish() {
+        skipAct(MainActivity.class);
+        super.finish();
+
     }
 }

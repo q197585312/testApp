@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Afb88/Afb88.iml" filepath="$PROJECT_DIR$/Afb88/Afb88.iml" />
       <module fileurl="file://$PROJECT_DIR$/baseLibs/baseLibs.iml" filepath="$PROJECT_DIR$/baseLibs/baseLibs.iml" />
+      <module fileurl="file://$PROJECT_DIR$/skinbluepackage/skinbluepackage.iml" filepath="$PROJECT_DIR$/skinbluepackage/skinbluepackage.iml" />
       <module fileurl="file://$PROJECT_DIR$/skinlibrary/skinlibrary.iml" filepath="$PROJECT_DIR$/skinlibrary/skinlibrary.iml" />
       <module fileurl="file://$PROJECT_DIR$/skinpackage/skinpackage.iml" filepath="$PROJECT_DIR$/skinpackage/skinpackage.iml" />
       <module fileurl="file://$PROJECT_DIR$/testApp.iml" filepath="$PROJECT_DIR$/testApp.iml" />

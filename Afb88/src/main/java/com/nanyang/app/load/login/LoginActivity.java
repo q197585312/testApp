@@ -2,7 +2,6 @@ package com.nanyang.app.load.login;
 
 import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -26,7 +25,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
 import cn.finalteam.toolsfinal.ManifestUtils;
-import solid.ren.skinlibrary.SkinLoaderListener;
 import solid.ren.skinlibrary.loader.SkinManager;
 
 
@@ -67,7 +65,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     RadioButton loginVietnamRb;
     @Bind(R.id.login_turkey_rb)
     RadioButton loginTurkeyRb;
-    private boolean isSkin=false;
+
+    private int SkinInt=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -256,39 +255,51 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
 
     public void clickSkin(View view) {
-                if(!isSkin) {
+        switch (SkinInt++%3){
+            case 0:
+                SkinManager.getInstance().restoreDefaultTheme();
+                break;
+            case 1:
+                SkinManager.getInstance().loadSkin("theme_style.skin",null);
+                break;
+            case 2:
+                SkinManager.getInstance().loadSkin("theme_style_blue.skin",null);
+                break;
+        }
+
+             /*   if() {
                     SkinManager.getInstance().loadSkin("theme_style.skin",
                             new SkinLoaderListener() {
                                 @Override
                                 public void onStart() {
-                                    Log.i("SkinLoaderListener", "正在切换中");
+
                                     showLoadingDialog();
                                 }
 
                                 @Override
                                 public void onSuccess() {
-                                    Log.i("SkinLoaderListener", "切换成功");
+
                                     hideLoadingDialog();
                                 }
 
                                 @Override
                                 public void onFailed(String errMsg) {
-                                    Log.i("SkinLoaderListener", "切换失败:" + errMsg);
+
                                     hideLoadingDialog();
                                 }
 
                                 @Override
                                 public void onProgress(int progress) {
-                                    Log.i("SkinLoaderListener", "皮肤文件下载中:" + progress);
+
 
                                 }
                             }
 
                     );
                 }else{
-                    SkinManager.getInstance().restoreDefaultTheme();
-                }
-        isSkin=!isSkin;
+
+                }*/
+       
 
     }
 }

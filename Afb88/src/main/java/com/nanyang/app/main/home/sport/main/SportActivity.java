@@ -63,6 +63,7 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.finalteam.toolsfinal.logger.Logger;
 
 
 public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
@@ -101,6 +102,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private MenuItemInfo oddsType;
     private MenuItemInfo allOdds;
     private MenuItemInfo<String> item;
+    private String currentGameType = "";
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
@@ -123,7 +125,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.ll_sport_menu_bottom)
     LinearLayout llSportMenuBottom;
 
-    private String currentTag;
+    private String currentTag="";
     private HashMap<String, BaseSportFragment> mapFragment;
     private BaseSportFragment currentFragment;
 
@@ -184,45 +186,51 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             assert tvToolbarTitle != null;
             tvToolbarTitle.setText(item.getText());
         }
-        initFragment(item);
+        initFragment(item.getParent());
 
         getApp().setBetParList(null);
 
     }
 
-    private void initFragment(MenuItemInfo<String> item) {
-        mapFragment = new LinkedHashMap<>();
-        switch (item.getParent()) {
+    private void initFragment(String parentType) {
 
+        mapFragment = new LinkedHashMap<>();
+        Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
+        currentGameType = parentType;
+        Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
+        String localCurrentTag="";
+        BaseSportFragment localCurrentFragment;
+        switch (parentType) {
             case "Financial":
                 mapFragment.put(getString(R.string.Financial), financialFragment);
-                currentFragment = financialFragment;
-                currentTag = getString(R.string.Financial);
+                localCurrentTag = getString(R.string.Financial);
+                localCurrentFragment = financialFragment;
                 break;
             case "Specials_4D":
                 mapFragment.put(getString(R.string.Specials_4D), game4dFragment);
-                currentFragment = game4dFragment;
-                currentTag = getString(R.string.Specials_4D);
+                localCurrentTag = getString(R.string.Specials_4D);
+                localCurrentFragment = game4dFragment;
+
                 break;
             case "Muay_Thai":
                 mapFragment.put(getString(R.string.Muay_Thai), muayThaiFragment);
-                currentFragment = muayThaiFragment;
-                currentTag = getString(R.string.Muay_Thai);
+                localCurrentTag = getString(R.string.Muay_Thai);
+                localCurrentFragment = muayThaiFragment;
                 break;
             case "E_Sport":
                 mapFragment.put(getString(R.string.E_Sport), eSportFragment);
-                currentFragment = eSportFragment;
-                currentTag = getString(R.string.E_Sport);
+                localCurrentTag = getString(R.string.E_Sport);
+                localCurrentFragment = eSportFragment;
                 break;
             case "Myanmar_Odds":
                 mapFragment.put(getString(R.string.Myanmar_Odds), myanmarFragment);
-                currentFragment = myanmarFragment;
-                currentTag = getString(R.string.Myanmar_Odds);
+                localCurrentTag = getString(R.string.Myanmar_Odds);
+                localCurrentFragment = myanmarFragment;
                 break;
             case "Europe":
                 mapFragment.put(getString(R.string.Europe_View), europeFragment);
-                currentFragment = europeFragment;
-                currentTag = getString(R.string.Europe_View);
+                localCurrentTag = getString(R.string.Europe_View);
+                localCurrentFragment = europeFragment;
                 break;
             default:
                 mapFragment.put(getString(R.string.Soccer), soccerFragment);
@@ -246,29 +254,25 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.WinterSport), winterSportFragment);
                 mapFragment.put(getString(R.string.SuperCombo), superComboFragment);
 
-                currentFragment = soccerFragment;
-                currentTag = getString(R.string.Soccer);
+                localCurrentTag = getString(R.string.Soccer);
+                localCurrentFragment = soccerFragment;
                 break;
         }
-
-
-        tvTitle.setText(currentTag);
-        showFragmentToActivity(currentFragment, R.id.fl_content, currentTag);
+        selectFragmentTag(localCurrentTag,localCurrentFragment);
+//        showFragmentToActivity(currentFragment, R.id.fl_content, currentTag);
     }
 
     private void gameMenus(View v) {
-        createPopupWindow(new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+        popWindow = new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
-                return R.layout.popupwindow_choice;
+                return R.layout.popupwindow_all_game;
             }
 
             @Override
             protected void initView(View view) {
                 super.initView(view);
                 RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
-                rv.setBackgroundResource(R.color.green_black);
-
                 BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext, rv);
                 adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
@@ -307,30 +311,30 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                     }
                 });
             }
-        });
+        };
         popWindow.showPopupCenterWindow();
     }
 
-    private void defaultSkip(String parent) {
-        MenuItemInfo stateType = mapFragment.get(currentTag).presenter.getStateHelper().getStateType();
-        if(stateType.getParent()!=null&&parent.equals(stateType.getType())) {
-            stateType.setParent(parent);
-            initFragment(stateType);
+    private void defaultSkip(String parentType) {
+        if (!parentType.equals(currentGameType)) {
+            initFragment(parentType);
         }
     }
 
 
-    private void selectFragmentTag(String tag) {
-        if (!currentTag.equals(tag)) {
-            tvTitle.setText(tag);
-            hideFragmentToActivity(mapFragment.get(currentTag));
-            MenuItemInfo stateType = mapFragment.get(currentTag).presenter.getStateHelper().getStateType();
-            showFragmentToActivity(mapFragment.get(tag), R.id.fl_content, tag);
-            currentTag = tag;
-            currentFragment = mapFragment.get(currentTag);
-            currentFragment.switchParentType(stateType);
+    private void selectFragmentTag(String tag,BaseSportFragment localCurrentFragment) {
+        if (currentTag.isEmpty()) {
+            showFragmentToActivity(localCurrentFragment, R.id.fl_content, currentTag);
+        } else if (!currentTag.equals(tag)) {
+            hideFragmentToActivity(currentFragment);
+            MenuItemInfo stateType = currentFragment.presenter.getStateHelper().getStateType();
+            showFragmentToActivity(localCurrentFragment, R.id.fl_content, tag);
+            localCurrentFragment.switchParentType(stateType);
             setType(stateType.getType());
         }
+        currentFragment =localCurrentFragment;
+        currentTag = tag;
+        tvTitle.setText(tag);
     }
 
     @OnClick({R.id.tv_refresh, R.id.tv_collection, R.id.tv_menu, R.id.tv_mix, R.id.iv_add})
@@ -385,7 +389,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                             @Override
                             public void onItemClick(View view, MenuItemInfo item, int position) {
-                                selectFragmentTag(item.getText());
+                                selectFragmentTag(item.getText(),mapFragment.get(item.getText()));
                                 closePopupWindow();
                             }
                         });
