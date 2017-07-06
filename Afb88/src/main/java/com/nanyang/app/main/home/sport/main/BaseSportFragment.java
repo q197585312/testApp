@@ -298,7 +298,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     private void checkBg(TextView tvMix, boolean isMix, int sport_oval_u_green, int sport_oval_u_black) {
         if (isMix) {
-            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, sport_oval_u_green, 0, 0);
+            dynamicAddView(tvMix,"drawableTop",sport_oval_u_green);
+//            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, sport_oval_u_green, 0, 0);
         } else {
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, sport_oval_u_black, 0, 0);
         }
@@ -446,9 +447,11 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         if (allOddsType != null) {
             ivAllAdd.setText(allOddsType.getText());
             if (allOddsType.getText().equals(getString(R.string.All_Markets))) {
-                ivAllAdd.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.add_green, 0, 0, 0);
+                dynamicAddView(ivAllAdd,"drawableLeft",R.mipmap.add_green);
+//                .setCompoundDrawablesWithIntrinsicBounds(, 0, 0, 0);
             } else {
-                ivAllAdd.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.sport_delete_green, 0, 0, 0);
+                dynamicAddView(ivAllAdd,"drawableLeft",R.mipmap.sport_delete_green);
+//                ivAllAdd.setCompoundDrawablesWithIntrinsicBounds(, 0, 0, 0);
             }
         }
     }

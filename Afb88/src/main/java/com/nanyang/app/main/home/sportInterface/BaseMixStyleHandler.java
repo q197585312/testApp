@@ -38,7 +38,8 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
 
     @Override
     public void setMixBackground(TextView tv) {
-        tv.setBackgroundResource(R.drawable.sport_mix_parlay_bet_green_bg);
+        act.dynamicAddView(tv,"background",R.drawable.sport_mix_parlay_bet_green_bg);
+//        tv.setBackgroundResource(R.drawable.sport_mix_parlay_bet_green_bg);
         tv.setTextColor(act.getResources().getColor(R.color.white));
     }
 

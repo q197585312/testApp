@@ -374,7 +374,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         @Override
                         public void onAnimationStart(Animation animation) {
                             ((BaseActivity)context).dynamicAddView(textView, "background", resBg);
-                            textView.setBackgroundResource(resBg);
+//                            textView.setBackgroundResource(resBg);
                         }
 
                         @Override

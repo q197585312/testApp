@@ -255,15 +255,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
 
     public void clickSkin(View view) {
-        switch (SkinInt++%3){
+        switch (SkinInt++%2){
             case 0:
                 SkinManager.getInstance().restoreDefaultTheme();
                 break;
             case 1:
-                SkinManager.getInstance().loadSkin("theme_style.skin",null);
+                SkinManager.getInstance().loadSkin("skinbluepackage.skin",null);
                 break;
             case 2:
-                SkinManager.getInstance().loadSkin("theme_style_blue.skin",null);
+                SkinManager.getInstance().loadSkin("skinbluepackage.skin",null);
                 break;
         }
 

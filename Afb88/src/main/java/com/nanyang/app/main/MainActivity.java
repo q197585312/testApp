@@ -106,18 +106,23 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                     break;
             }
             TextView tvMenu = (TextView) fl.getChildAt(0);
-            tvMenu.setTextColor(getResources().getColor(R.color.green_black_word));
+//            tvMenu.setTextColor(getResources().getColor(R.color.green_black_word));
+
+            dynamicAddView(tvMenu, "textColor", R.color.green_black_word);
             switch (tvMenu.getId()) {
                 case R.id.tv_tab_home:
-                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_a_hover, 0, 0);
+                     dynamicAddView(tvMenu, "drawableTop", R.mipmap.main_menu_a_hover);
+//                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_a_hover, 0, 0);
                     showFragmentToActivity(homeFragment, R.id.fl_main_content);
                     break;
                 case R.id.tv_tab_center:
-                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_user_hover, 0, 0);
+                     dynamicAddView(tvMenu, "drawableTop", R.mipmap.main_menu_user_hover);
+//                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_user_hover, 0, 0);
                     showFragmentToActivity(centerFragment, R.id.fl_main_content);
                     break;
                 case R.id.tv_tab_statement:
-                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_order_hover, 0, 0);
+                     dynamicAddView(tvMenu, "drawableTop", R.mipmap.main_menu_order_hover);
+//                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_order_hover, 0, 0);
                     showFragmentToActivity(statementFragment, R.id.fl_main_content);
                     break;
             }

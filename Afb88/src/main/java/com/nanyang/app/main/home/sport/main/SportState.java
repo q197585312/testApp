@@ -409,6 +409,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected final List<TableSportInfo<B>> filterData(List<TableSportInfo<B>> allData) {
         List<TableSportInfo<B>> dateTemp = new ArrayList<>();
+        if(allData==null)
+            return dateTemp;
         for (TableSportInfo<B> bTableSportInfo : allData) {
             if (leagueSelectedMap.get(bTableSportInfo.getLeagueBean().getModuleId()) == null || leagueSelectedMap.get(bTableSportInfo.getLeagueBean().getModuleId())) {
                 dateTemp.add(bTableSportInfo);
@@ -1393,9 +1395,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         ((SportActivity)baseView.getContextActivity()).setAllOdds(item);
                         textView.setText(item.getText());
                         if (item.getText().equals(getBaseView().getContextActivity().getString(R.string.All_Markets))) {
-                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.add_green, 0, 0, 0);
+                            ((BaseToolbarActivity)baseView.getContextActivity()).dynamicAddView(textView,"drawableLeft",R.mipmap.add_green);
+//                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.add_green, 0, 0, 0);
                         } else {
-                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.sport_delete_green, 0, 0, 0);
+                            ((BaseToolbarActivity)baseView.getContextActivity()).dynamicAddView(textView,"drawableLeft",R.mipmap.sport_delete_green);
+//                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.sport_delete_green, 0, 0, 0);
                         }
                         setParam(item);
                         if (!getAllOddsUrl().isEmpty()) {

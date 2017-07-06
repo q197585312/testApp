@@ -3,6 +3,10 @@ package solid.ren.skinlibrary.attr.base;
 import java.util.HashMap;
 
 import solid.ren.skinlibrary.attr.BackgroundAttr;
+import solid.ren.skinlibrary.attr.DrawableBottomAttr;
+import solid.ren.skinlibrary.attr.DrawableLeftAttr;
+import solid.ren.skinlibrary.attr.DrawableRightAttr;
+import solid.ren.skinlibrary.attr.DrawableTopAttr;
 import solid.ren.skinlibrary.attr.ImageViewSrcAttr;
 import solid.ren.skinlibrary.attr.TextColorAttr;
 
@@ -19,6 +23,10 @@ public class AttrFactory {
         sSupportAttr.put("background", new BackgroundAttr());
         sSupportAttr.put("textColor", new TextColorAttr());
         sSupportAttr.put("src", new ImageViewSrcAttr());
+        sSupportAttr.put("drawableTop", new DrawableTopAttr());
+        sSupportAttr.put("drawableRight", new DrawableRightAttr());
+        sSupportAttr.put("drawableBottom", new DrawableBottomAttr());
+        sSupportAttr.put("drawableLeft", new DrawableLeftAttr());
     }
 
 
