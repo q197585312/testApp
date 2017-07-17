@@ -5,7 +5,7 @@ android {
     buildToolsVersion "25.0.0"
 
     defaultConfig {
-        applicationId "com.example.skinpackage"
+        applicationId "com.example.skinpackage.zese"
         minSdkVersion 15
         targetSdkVersion 26
         versionCode 1

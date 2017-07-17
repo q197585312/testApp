@@ -1,34 +1,53 @@
-package com.example.skinbluepackage;
+package com.example.skinpackage;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.webkit.WebSettings;
-import android.webkit.WebView;
+import android.widget.TextView;
 
-import com.example.skinbluepackage.blue.R;
+import com.example.skinpackage.zese.R;
 
 /**
  * Created by Administrator on 2017/7/7.
  */
 
 public class WelcomeActivity extends AppCompatActivity {
-    WebView testWeb;
+
+
+    TextView testTv;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.test_layout);
-        testWeb= (WebView) findViewById(R.id.testWeb);
-        loadHtml();
-    }
-    public void loadHtml()
-    {
+        setContentView(R.layout.test);
+        testTv = (TextView) findViewById(R.id.test_tv);
+        Intent intent = getIntent();
+        String action = intent.getAction();
+        if (Intent.ACTION_VIEW.equals(action)) {
+            Uri uri = intent.getData();
+            if (uri != null) {
+                String host = uri.getHost();
+                String dataString = intent.getDataString();
+                String id = uri.getQueryParameter("id");
+                String path = uri.getPath();
 
-        WebSettings wSet = testWeb.getSettings();
-        wSet.setJavaScriptEnabled(true);
-        testWeb.loadUrl("http://www.appgd88.com/index.html");
+                String queryString = uri.getQuery();
+                String sc=uri.getScheme();
+                StringBuilder builder = new StringBuilder();
+
+                builder.append("uri:" + dataString + "\n");
+                builder.append("Scheme:" + sc + "\n");
+                builder.append("host:" + host + "\n");
+                builder.append("path:" + path + "\n");
+                builder.append("queryString:" + queryString + "\n");
+                builder.append("id:" + id + "\n");
+                testTv.setText(builder.toString());
+            }
+        }
     }
+
     /*@Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
