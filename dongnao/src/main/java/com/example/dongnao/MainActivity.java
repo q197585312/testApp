@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
      * 顺序是：dispatch----intercept---touch 正常情况下 父容器不响应 onTouchEvent  给被触摸到的子view响应
     *  如果 interceptTouchEvent  再action down 的时候判断  返回true  就调用super。dispatchTouchEvent  false 不打断  如果child 为空 调用自身的 dis else 调用child。dispatchEvemt
      *
-     *  所谓的拦截 是指按下去以后的后续事件 拦截下来 给自己的
+     *  所谓的拦截 是指按下去以后的后续事件 拦截下来 给自己的ouTouch用
      *
      * */
     @Override
