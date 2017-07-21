@@ -39,7 +39,7 @@ public class AppConstant {
     //http://a8197c.a36588.com/Main.aspx?accType=EU
 
 //    public static String HOST="http://www.doo88.net/";
-    public String HOST = REAL_HOST;
+    public String HOST = APP_HOST;
 
     public String URL_LOGIN = HOST + "Default1.aspx";
     public String URL_MAIN = HOST + "main.aspx";
@@ -225,9 +225,10 @@ public class AppConstant {
 
 
     public String URL_RUNNING_MATCH_WEB = HOST + "_view/LiveCast.aspx";
+
     public String URL_STAEMENT = HOST + "_norm/AccHistory_App.aspx?";
     public String URL_STAKE = HOST + "_bet/PanelStake_App.aspx";
-    public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccHistory.aspx?role=mb&userName=";
+    public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccConfirmDate_App.aspx?role=mb&userName=";
     public String URL_PANEL = HOST + "_bet/panel.aspx";
 
     static AppConstant instance;
@@ -395,7 +396,7 @@ public class AppConstant {
         URL_RUNNING_MATCH_WEB = HOST + "_view/LiveCast.aspx";
         URL_STAEMENT = HOST + "_norm/AccHistory_App.aspx?";
         URL_STAKE = HOST + "_bet/PanelStake_App.aspx";
-        URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccHistory.aspx?role=mb&userName=";
+        URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccConfirmDate_App.aspx?role=mb&userName=";
         URL_PANEL = HOST + "_bet/panel.aspx";
     }
 

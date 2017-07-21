@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AppConstant;
@@ -21,10 +22,7 @@ import com.nanyang.app.main.center.model.StatementTransferBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -134,18 +132,34 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         super.initView();
     }
 
+    //
     @Override
     public void onGetData(String data) {
+
+
         Gson gson = new Gson();
-        String[] data1 = data.split("nyhxkj");
-        Type type = new TypeToken<ArrayList<StatementListBean>>() {
-        }.getType();
-        List<StatementListBean> list1 = gson.fromJson(data1[0], type);
-        initRc(list1);
-        Type type1 = new TypeToken<ArrayList<StatementTransferBean>>() {
-        }.getType();
-        List<StatementTransferBean> list2 = gson.fromJson(data1[1], type1);
-        initTransferRc(list2);
+        List<JsonObject> sts = gson.fromJson(data, new TypeToken<List<JsonObject>>() {
+        }.getType());
+        if (sts.size() > 2) {
+            ConfirmDate date1 = gson.fromJson(sts.get(0), new TypeToken<ConfirmDate>() {
+            }.getType());
+            if (date1 != null && date1.getDicConfirmDate() != null && !date1.getDicConfirmDate().isEmpty()) {
+                tv_blanceSure.setBackgroundResource(0);
+                tv_blanceSure.setText(date1.getDicConfirmDate());
+                tv_blanceSure.setClickable(false);
+            } else {
+                tv_blanceSure.setBackgroundResource(R.color.green900);
+                tv_blanceSure.setText(R.string.confirm_balance);
+                tv_blanceSure.setClickable(true);
+            }
+            SummaryBean listDate = gson.fromJson(sts.get(1), new TypeToken<SummaryBean>() {
+            }.getType());
+            initRc(listDate.getSummary());
+            DicTransfer list2 = gson.fromJson(sts.get(2), new TypeToken<DicTransfer>() {
+            }.getType());
+            initTransferRc(list2.getDicTransfer());
+        }
+
     }
 
     private void initTransferRc(List<StatementTransferBean> list) {
@@ -180,36 +194,19 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
 
     @Override
     public void onGetConfirmBlanceData(String data) {
-        tv_blanceSure.setText(isSureSucceed(data));
+        tv_blanceSure.setText(data);
+        tv_blanceSure.setClickable(false);
+        tv_blanceSure.setBackgroundResource(0);
     }
 
     @OnClick({R.id.tv_blance_sure})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_blance_sure:
-                if (tv_blanceSure.getText().toString().equals(getString(R.string.confirm_balance))) {
-                    presenter.confirmBlance(blanceBean.getMap(), AppConstant.getInstance().URL_STATEMENT_CONFIRM_BLANCE + userName);
-                } else {
-                    ToastUtils.showShort(getString(R.string.already_determine_the_balance));
-                }
+                presenter.confirmBlance(blanceBean.getMap(), AppConstant.getInstance().URL_STATEMENT_CONFIRM_BLANCE + userName);
                 break;
         }
 
-    }
 
-    private String isSureSucceed(String password) {
-        String sign = "<SPAN class='Normal'>";
-        int firstIndex = password.indexOf(sign) + sign.length();
-        int lastIndex = -1;
-        for (int i = firstIndex; i < password.length(); i++) {
-            String first = password.charAt(i) + "";
-            String next = password.charAt(i + 1) + "";
-            if (first.equals("<") && next.equals("/")) {
-                lastIndex = i;
-                break;
-            }
-        }
-        String msg = password.substring(firstIndex, lastIndex);
-        return msg;
     }
 }

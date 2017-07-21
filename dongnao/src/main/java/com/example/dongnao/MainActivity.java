@@ -35,13 +35,13 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
      * dispatchTouchEvent--->onTouchListener --->onTouch----返回false----> 执行自身onTouchEvent
      * 如果view为disEnable 则 onTouchListener 不会执行----> 自身onTouchEvent
      * 3、 onClick----》OnClickListener
-     * onClick 在 自身的onTouchEvent方法里面
+     * onClick 在 自身的onTouchEvent方法里面 o
      *
      * */
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         Log.i("test","Touch;action---"+motionEvent.getAction()+"----view:"+view);
-        View
+        View v = new View(getApplicationContext());
         return true;
     }
 

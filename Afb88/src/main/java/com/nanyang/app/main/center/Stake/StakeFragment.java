@@ -354,6 +354,8 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     }
 
     private void clickItem(View v, StakeListBean.DicAllBean item) {
+        if(item.getTransType()==null)
+            return;
         if (item.getTransType().startsWith("PA")) {
 //            http://main55.afb88.com/_norm/PamTrans.aspx?userName=demoafbAi1&id=138661496
             WebPop pop = new WebPop(mContext, v);
