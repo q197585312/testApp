@@ -49,10 +49,19 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
     /** 1，先触发的事件是父容器  中间多一个interceptTouchEvent 拦截事件 默认不拦截
      * 顺序是：dispatch----intercept---touch 正常情况下 父容器不响应 onTouchEvent  给被触摸到的子view响应
     *  如果 interceptTouchEvent  再action down 的时候判断  返回true  就调用super。dispatchTouchEvent  false 不打断  如果child 为空 调用自身的 dis else 调用child。dispatchEvemt
+
+     *  1，第一次 down 把mFirstTouchTarget 执空
+     *  2，所有的viewGroup都是默认不拦截的（拦截就是 自身的down 和以后的后续事件都不传递 拦截下来 给自己的ouTouch用使用，不拦截 自身的touch不响应）
+     *  3，dispatchTouchEvent down事件 传递  只要找到某一个子控件消耗事件 就返回true，没有就返回false（再 dispatchTransformedTouchEvent（）找消耗的view）
+     *  dispatchTouchEvent中 第一次 down  会给 mFirstTouchTarget制空，--》interceptTouchEvent true----》 dispatchTransformedTouchEvent（）把child传空----》super.dispatchTouchEvent-->view.dis--view.onTouchEvent
+     *                                                                    interceptTouchEvent false---> 一个多手指触摸多个的view 的单向链表 ----》for 循环   dispatchTransformedTouchEvent 把链表中的child view传进去 -->child 的onTouchEvent 为true的时候 给 group的mFirstTouchTarget 赋值
+     *                                                                    child.dispatchTouchEvent;  然后 递归到最后层的view的dispatchTouchEvent---》o'n'TouchEvent ---》true 本身的dispatchTouchEvent就会true 那么ViewGroup dispatchTransformedTouchEvent 就为true 直接就 给 group的mFirstTouchTarget 赋值
+     *                                                                    false 的时候  group的mFirstTouchTarget 为空 调用super.dispatchTouchEvent--->view.disptchTouchevent
      *
-     *  所谓的拦截 是指按下去以后的后续事件 拦截下来 给自己的ouTouch用
      *
-     * */
+     *
+     *
+     *  */
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         Log.i("test","Touch;action---"+motionEvent.getAction()+"----view:"+view);
