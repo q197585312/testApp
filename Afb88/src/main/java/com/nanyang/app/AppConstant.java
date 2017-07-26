@@ -228,7 +228,7 @@ public class AppConstant {
 
     public String URL_STAEMENT = HOST + "_norm/AccHistory_App.aspx?";
     public String URL_STAKE = HOST + "_bet/PanelStake_App.aspx";
-    public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccConfirmDate_App.aspx?role=mb&userName=";
+    public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "AccConfirmDate_App.aspx?userName=";
     public String URL_PANEL = HOST + "_bet/panel.aspx";
 
     static AppConstant instance;
