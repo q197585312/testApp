@@ -62,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements View.OnTouchListe
      *
      *
      *  */
+//    三 ，事件分发的应用
+     /** 再dispatchTouchEvent 里面*/
     @Override
     public boolean onTouch(View view, MotionEvent motionEvent) {
         Log.i("test","Touch;action---"+motionEvent.getAction()+"----view:"+view);
