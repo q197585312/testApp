@@ -9,8 +9,6 @@ import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
 
-import java.util.Map;
-
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
@@ -64,8 +62,8 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
     }
 
     @Override
-    public void confirmBlance(Map<String, String> map, String url) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).comfirmBlance(url, map))
+    public void confirmBlance(String url,String userName) {
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).comfirmBlance(url+userName))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {

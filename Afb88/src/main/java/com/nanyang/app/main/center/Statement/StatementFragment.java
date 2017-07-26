@@ -144,10 +144,11 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
             ConfirmDate date1 = gson.fromJson(sts.get(0), new TypeToken<ConfirmDate>() {
             }.getType());
             if (date1 != null && date1.getDicConfirmDate() != null && !date1.getDicConfirmDate().isEmpty()) {
-                tv_blanceSure.setBackgroundResource(0);
+                tv_blanceSure.setBackgroundResource(R.color.green900);
                 tv_blanceSure.setText(date1.getDicConfirmDate());
                 tv_blanceSure.setClickable(false);
             } else {
+                tv_blanceSure.setVisibility(View.VISIBLE);
                 tv_blanceSure.setBackgroundResource(R.color.green900);
                 tv_blanceSure.setText(R.string.confirm_balance);
                 tv_blanceSure.setClickable(true);
@@ -196,14 +197,14 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     public void onGetConfirmBlanceData(String data) {
         tv_blanceSure.setText(data);
         tv_blanceSure.setClickable(false);
-        tv_blanceSure.setBackgroundResource(0);
+        tv_blanceSure.setBackgroundResource(R.color.green900);
     }
 
     @OnClick({R.id.tv_blance_sure})
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_blance_sure:
-                presenter.confirmBlance(blanceBean.getMap(), AppConstant.getInstance().URL_STATEMENT_CONFIRM_BLANCE + userName);
+                presenter.confirmBlance(AppConstant.getInstance().URL_STATEMENT_CONFIRM_BLANCE, userName);
                 break;
         }
 

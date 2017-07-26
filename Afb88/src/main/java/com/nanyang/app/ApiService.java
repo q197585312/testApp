@@ -77,14 +77,15 @@ public interface ApiService {
     @FormUrlEncoded
     @POST
     Flowable<ResultBean> doHuayMap(@Url String url, @FieldMap Map<String, String> info);
+
     @GET
     Flowable<String> getData(@Url String url);
 
     @GET
     Flowable<String> postData(@Url String url);
+
     @GET
     Flowable<BettingPromptBean> getBetData(@Url String url);
-
 
 
     @GET
@@ -102,12 +103,8 @@ public interface ApiService {
     Flowable<String> Register(@FieldMap Map<String, String> info);
 
 
-
-
-
-    @FormUrlEncoded
-    @POST()
-    Flowable<String> comfirmBlance(@Url String url, @FieldMap Map<String, String> map);
+    @GET()
+    Flowable<String> comfirmBlance(@Url String url);
 
     @GET
     Flowable<List<StatementStakeListBean>> statementStake(@Url String url);
@@ -121,7 +118,7 @@ public interface ApiService {
 
     @FormUrlEncoded
     @POST
-    Flowable<String> changePasswrod(@Url String url,@FieldMap Map<String, String> map);
+    Flowable<String> changePasswrod(@Url String url, @FieldMap Map<String, String> map);
 
     //转账
     @GET
@@ -162,6 +159,7 @@ public interface ApiService {
     //选择语言
     @GET
     Flowable<String> switchLanguage(@Url String url, @Query("lang") String lang);
+
     @GET
     Flowable<HuayDrawDateInfo> getHuyaDrawDate(@Url String url);
 }
