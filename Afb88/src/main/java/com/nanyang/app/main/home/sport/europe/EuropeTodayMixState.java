@@ -10,15 +10,15 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
  * Created by Administrator on 2017/3/13.
  */
 
-public class EuropeTodayState extends EuropeState {
-    public EuropeTodayState(SportContract.View baseView) {
+public class EuropeTodayMixState extends EuropeMixState {
+    public EuropeTodayMixState(SportContract.View baseView) {
         super(baseView);
     }
 
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_EUROPE_TODAY;
+        return AppConstant.getInstance().URL_EUROPE_MIX_TODAY;
     }
 
     @Override
@@ -26,30 +26,31 @@ public class EuropeTodayState extends EuropeState {
 
         switch (item.getType()) {
             case "Early":
-                getBaseView().switchState(new EuropeEarlyState(getBaseView()));
+                getBaseView().switchState(new EuropeEarlyMixState(getBaseView()));
                 break;
             case "Today":
                 getBaseView().switchState(this);
                 break;
-            case "Running":
-                getBaseView().switchState(new EuropeRunningState(getBaseView()));
-                break;
+
         }
     }
 
-    @Override
-    protected void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeInfo item) {
 
-    }
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Today), "Today", getParentText());
+        return new MenuItemInfo<String>(1,getBaseView().getContextActivity().getString(R.string.Today),"Today",getParentText());
     }
 
     @Override
     public boolean mix() {
-        getBaseView().switchState(new EuropeTodayMixState(getBaseView()));
-        return true;
+        getBaseView().switchState(new EuropeTodayState(getBaseView()));
+        return super.mix();
     }
+
+    @Override
+    protected void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeMixInfo item) {
+
+    }
+
 }

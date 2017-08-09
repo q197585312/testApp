@@ -208,6 +208,8 @@ public class AppConstant {
     public String URL_EUROPE_TODAY;
     public String URL_EUROPE_RUNING;
     public String URL_EUROPE_EARLY;
+    public String URL_EUROPE_MIX_EARLY;
+    public String URL_EUROPE_MIX_TODAY;
 
 
     public String URL_TRANSFER_MONEY_DATA = HOST + "_Bet/PanelBalance_App.aspx?";
@@ -379,6 +381,8 @@ public class AppConstant {
         URL_EUROPE_TODAY = HOST + "_view/OddsGen5.ashx?g=182&ot=t&update=true&r=1833149994";
         URL_EUROPE_RUNING = HOST + "_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994";
         URL_EUROPE_EARLY = HOST + "_view/OddsGen5.ashx?g=182&ot=e&update=true&r=1833149994";
+        URL_EUROPE_MIX_EARLY=HOST+"_view/ParGenWFH.ashx?g=183&ot=e&update=true&r=524111120";
+        URL_EUROPE_MIX_TODAY=HOST+"_view/ParGenWFH.ashx?g=183&ot=t&update=true&r=524111120";
 
         URL_TRANSFER_MONEY_DATA = HOST + "_Bet/PanelBalance_App.aspx?";
         URL_CASHOUT_MONEY_E_GAMES = HOST + "_bet/FundEGCashOut.aspx";

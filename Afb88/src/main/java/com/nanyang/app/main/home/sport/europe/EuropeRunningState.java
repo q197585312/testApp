@@ -132,5 +132,10 @@ public class EuropeRunningState extends EuropeState {
         return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Running), "Running", getParentText());
     }
 
+    @Override
+    public boolean mix() {
+        return false;
+    }
+
 
 }

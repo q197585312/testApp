@@ -20,20 +20,20 @@ import android.view.View;
 
 public class PaintView extends View {
     private Paint mPaint;
-    private String str="sdsar32sdj周末还问速度加速。。。，，，,,,&3250596(^"
+    private String str="sdsar32sdj周末还问速度加速。。。，，，,,,&3250596(^";
     public PaintView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         mPaint=new Paint();
         mPaint.setAntiAlias(true);//反锯齿 画图片不用 会损失性能
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+ /*   @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         //view 会绘制多次 每次需要重置
         mPaint.reset();
-      /*  mPaint.setColor(Color.RED);
+      *//*  mPaint.setColor(Color.RED);
         mPaint.setAlpha(255);
         mPaint.setStyle(Paint.Style.FILL);//填充
         mPaint.setStyle(Paint.Style.FILL_AND_STROKE);//填充和秒边
@@ -48,7 +48,7 @@ public class PaintView extends View {
         mPaint.setStrokeJoin(Paint.Join.BEVEL);//圆弧
         mPaint.setStrokeJoin(Paint.Join.MITER);//直线
 
-        *//*上面是设置画笔属性*//*
+        *//**//*上面是设置画笔属性*//**//*
         canvas.drawCircle();
         Path path=new Path();
         path.moveTo();
@@ -70,7 +70,7 @@ public class PaintView extends View {
         mPaint.setTextSkewX(-0.5f);//设置文章倾斜
         mPaint.setTextAlign(Paint.Align.LEFT);//文本对其方式
         //计算制定字符的长度
-        mPaint.breakText()*/
+        mPaint.breakText()*//*
         mPaint.setTextSize(12);
         float[] ints = new float[10];
         int i = mPaint.breakText(str, true, Integer.MAX_VALUE, ints);
@@ -82,6 +82,13 @@ public class PaintView extends View {
         mPaint.getTextWidths()//获取文本宽度 一个精准的结果
 
         //字符基线
-         canvas.drawText(str,0,0,mPaint);//是文字的基线跟y对其
-    }
+         canvas. drawText(str,0,0,mPaint);//是文字的基线跟y对其
+        //文本Metrics 分为五条线
+        Paint.FontMetrics metrcs= mPaint.getFontMetrics();
+//        Paint.FontMetrics metrcs= mPaint.getFontMetricsInt();
+        metrcs.top;
+        metrcs.ascent;metrcs.descent;metrcs.descent;metrcs.bottom//以baseLine为基准线 上面是负 下面是正
+//        定制左上角位置
+                float baseline=top+(metrcs.bottom+metrcs.top)/2-metrcs.top
+    }*/
 }

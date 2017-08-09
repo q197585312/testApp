@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sport.europe;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.basketball.BasketballTodayMixState;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -50,5 +51,10 @@ public class EuropeEarlyState extends EuropeState {
     @Override
     protected void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeInfo item) {
 
+    }
+    @Override
+    public boolean mix() {
+        getBaseView().switchState(new EuropeEarlyMixState(getBaseView()));
+        return true;
     }
 }
