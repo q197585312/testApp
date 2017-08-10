@@ -4,6 +4,7 @@ import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.e_sport.ESportRunningState;
@@ -11,9 +12,11 @@ import com.nanyang.app.main.home.sport.e_sport.ESportTodayState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
+import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
+import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
@@ -251,6 +254,40 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
 
                     onMatchNotRepeat(helper, item, position,back);
                 }
+                EuropeMixStyleHandler handler = new EuropeMixStyleHandler((BaseToolbarActivity) getBaseView().getContextActivity());
+                handler.setCommonBackground(fullx);
+                handler.setCommonBackground(full1);
+                handler.setCommonBackground(full2);
+                handler.setCommonBackground(half1);
+                handler.setCommonBackground(half2);
+                handler.setCommonBackground(halfx);
+
+                String itemFullSocOddsId = item.getSocOddsId();
+
+                BettingParPromptBean.BetParBean mixItem = handler.getMixItem(itemFullSocOddsId);
+
+                if (mixItem != null) {
+                    if (mixItem.getTransType().equalsIgnoreCase("1"))
+                        handler.setMixBackground(full1);
+                    else if(mixItem.getTransType().equalsIgnoreCase("x")) {
+                        handler.setMixBackground(fullx);
+                    }else{
+                        handler.setMixBackground(full2);
+                    }
+                }
+
+                String itemHalfSocOddsId = item.getSocOddsId_FH();
+                BettingParPromptBean.BetParBean mixItemHalf = handler.getMixItem(itemHalfSocOddsId);
+
+                if (mixItemHalf != null) {
+                    if (mixItemHalf.getTransType().equalsIgnoreCase("1"))
+                        handler.setMixBackground(half1);
+                    else if(mixItemHalf.getTransType().equalsIgnoreCase("x")) {
+                        handler.setMixBackground(halfx);
+                    }else{
+                        handler.setMixBackground(half2);
+                    }
+                }
                 onChildConvert(helper, position, item);
             }
 
@@ -261,6 +298,8 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
 
         };
     }
+
+
 
     protected abstract void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeMixInfo item);
 
