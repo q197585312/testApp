@@ -7,8 +7,6 @@ import android.widget.TextView;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.e_sport.ESportRunningState;
-import com.nanyang.app.main.home.sport.e_sport.ESportTodayState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
@@ -16,7 +14,6 @@ import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
-import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
@@ -84,7 +81,11 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
         return texts;
     }
 
-
+    @Override
+    public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
+        super.setScrollHeaderContent(slHeader, tvAos);
+        tvAos.setVisibility(View.GONE);
+    }
     public boolean isCollection() {
         return false;
     }
@@ -181,9 +182,9 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
                     full1.setText(item.getX12_1Odds());
                     fullx.setText(item.getX12_XOdds());
                     full2.setText(item.getX12_2Odds());
-                    full1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds(), "1"));
-                    fullx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds(), "X"));
-                    full2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds(), "2"));
+                    full1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds(), "1",false));
+                    fullx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds(), "X",false));
+                    full2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds(), "2",false));
 
 
                 } else {
@@ -203,9 +204,9 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
                     half1.setText(item.getX12_1Odds_FH());
                     halfx.setText(item.getX12_XOdds_FH());
                     half2.setText(item.getX12_2Odds_FH());
-                    half1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds_FH(), "1"));
-                    halfx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds_FH(), "X"));
-                    half2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds_FH(), "2"));
+                    half1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds_FH(), "1",true));
+                    halfx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds_FH(), "X",true));
+                    half2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds_FH(), "2",true));
 
                 } else {
                     tvHalf1.setText("");
@@ -228,32 +229,9 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
                         headV.setVisibility(View.GONE);
                     }
                 }
-                String oldHomeName = "";
-                String oldAwayName = "";
-                String oldModuleTitle = "";
-                if (position > 0) {
-                    oldHomeName = back.getItem(position - 1).getHome();
-                    oldAwayName = back.getItem(position - 1).getAway();
+                View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+                tvRightMark.setVisibility(View.GONE);
 
-                    oldModuleTitle = back.getItem(position - 1).getModuleTitle().toString();
-                }
-                if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway())) {
-                    View tvRightMark = helper.getView(R.id.module_right_mark_tv);
-                    tvRightMark.setVisibility(View.INVISIBLE);
-
-                    onMatchRepeat(helper, item, position,back);
-                } else {
-                    View tvRightMark = helper.getView(R.id.module_right_mark_tv);
-                    tvRightMark.setVisibility(View.VISIBLE);
-                    tvRightMark.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            back.clickView(v, item,position);
-                        }
-                    });
-
-                    onMatchNotRepeat(helper, item, position,back);
-                }
                 EuropeMixStyleHandler handler = new EuropeMixStyleHandler((BaseToolbarActivity) getBaseView().getContextActivity());
                 handler.setCommonBackground(fullx);
                 handler.setCommonBackground(full1);
@@ -475,24 +453,26 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
     }
 
     class itemClick implements View.OnClickListener {
+        boolean isHalf;
         SportAdapterHelper.ItemCallBack<EuropeMixInfo> back;
         int position;
         EuropeMixInfo item;
         String odds;
         String type;
 
-        public itemClick(SportAdapterHelper.ItemCallBack<EuropeMixInfo> back, int position, EuropeMixInfo item, String odds, String type) {
+        public itemClick(SportAdapterHelper.ItemCallBack<EuropeMixInfo> back, int position, EuropeMixInfo item, String odds, String type,boolean isHalf) {
             this.position = position;
             this.item = item;
             this.odds = odds;
             this.back = back;
             this.type = type;
+            this.isHalf=isHalf;
         }
 
         @Override
         public void onClick(View v) {
             if (!odds.equals("") && Float.valueOf(odds) != 0)
-                back.clickOdds((TextView) v, item, type, false, odds);
+                back.clickOdds((TextView) v, item, type, isHalf, odds);
         }
     }
 }

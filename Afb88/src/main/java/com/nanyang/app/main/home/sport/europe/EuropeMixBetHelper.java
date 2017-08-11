@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.europe;
 
-import android.support.annotation.NonNull;
 import android.view.Gravity;
 import android.widget.TextView;
 
@@ -108,14 +107,18 @@ public class EuropeMixBetHelper extends BallBetHelper<EuropeMixInfo, BetView> {
     }
 
 
-//http://main55.afb88.net/_bet/JRecPanel.aspx?g=2&b=X_par&oId=13248116&odds=3.4
+    //http://main55.afb88.net/_bet/JRecPanel.aspx?g=2&b=X_par&oId=13248116&odds=3.4
     protected String getOddsUrl(EuropeMixInfo item, String type, boolean isHf, String odds, String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.getInstance().URL_ODDS);
         stringBuilder.append("g=2");
         stringBuilder.append("&b=" + type + "_par");
         stringBuilder.append("&oId=");
-        stringBuilder.append(item.getSocOddsId());
+        if (isHf) {
+            stringBuilder.append(item.getSocOddsId_FH());
+        } else {
+            stringBuilder.append(item.getSocOddsId());
+        }
         stringBuilder.append("&odds=" + odds);
 
         return stringBuilder.toString();

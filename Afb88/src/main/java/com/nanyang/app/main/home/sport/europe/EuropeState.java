@@ -188,9 +188,9 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                     full1.setText(item.getX12_1Odds());
                     fullx.setText(item.getX12_XOdds());
                     full2.setText(item.getX12_2Odds());
-                    full1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds(), "1"));
-                    fullx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds(), "X"));
-                    full2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds(), "2"));
+                    full1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds(), "1",false));
+                    fullx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds(), "X",false));
+                    full2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds(), "2",false));
 
 
                 } else {
@@ -210,9 +210,9 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                     half1.setText(item.getX12_1Odds_FH());
                     halfx.setText(item.getX12_XOdds_FH());
                     half2.setText(item.getX12_2Odds_FH());
-                    half1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds_FH(), "1"));
-                    halfx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds_FH(), "X"));
-                    half2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds_FH(), "2"));
+                    half1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds_FH(), "1",true));
+                    halfx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds_FH(), "X",true));
+                    half2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds_FH(), "2",true));
 
                 } else {
                     tvHalf1.setText("");
@@ -426,19 +426,21 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
         EuropeInfo item;
         String odds;
         String type;
+        boolean isHf;
 
-        public itemClick(SportAdapterHelper.ItemCallBack<EuropeInfo> back, int position, EuropeInfo item, String odds, String type) {
+        public itemClick(SportAdapterHelper.ItemCallBack<EuropeInfo> back, int position, EuropeInfo item, String odds, String type,boolean isHf) {
             this.position = position;
             this.item = item;
             this.odds = odds;
             this.back = back;
             this.type = type;
+            this.isHf=isHf;
         }
 
         @Override
         public void onClick(View v) {
             if (!odds.equals("") && Float.valueOf(odds) != 0)
-                back.clickOdds((TextView) v, item, type, false, odds);
+                back.clickOdds((TextView) v, item, type, isHf, odds);
         }
     }
 }
