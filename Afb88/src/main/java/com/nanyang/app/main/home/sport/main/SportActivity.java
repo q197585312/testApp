@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.guoqi.highlightview.Guide;
+import com.guoqi.highlightview.GuideBuilder;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
@@ -36,6 +38,7 @@ import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
 import com.nanyang.app.main.home.sport.golf.GolfFragment;
 import com.nanyang.app.main.home.sport.handball.HandballFragment;
 import com.nanyang.app.main.home.sport.iceHockey.IceHockeyFragment;
+import com.nanyang.app.main.home.sport.main.component.Simple2PicComponent;
 import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
 import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.poll.PoolFragment;
@@ -47,6 +50,7 @@ import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
 import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.SharePreferenceUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
@@ -63,6 +67,7 @@ import cn.finalteam.toolsfinal.logger.Logger;
 
 
 public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
+    private final String GUIDE_KEY="GUIDE";
     BaseSportFragment soccerFragment = new SoccerFragment();
     BaseSportFragment basketballFragment = new BasketballFragment();
     BaseSportFragment tennisFragment = new TennisFragment();
@@ -153,7 +158,65 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
         allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "&mt=0");
         tvToolbarLeft.setVisibility(View.VISIBLE);
+        initGuide();
     }
+
+    private void initGuide() {
+        boolean hasGuide = SharePreferenceUtil.getBoolean(mContext, GUIDE_KEY);
+        if(!hasGuide){
+            tvToolbarLeft.post(new Runnable() {
+                @Override public void run() {
+                    showGuideView();
+                }
+            });
+
+        }
+
+    }
+    public void showGuideView() {
+        GuideBuilder builder = new GuideBuilder();
+        builder.setTargetView(tvToolbarLeft)
+                .setAlpha(200)
+                .setHighTargetCorner(20)
+                .setOverlayTarget(false)
+                .setOutsideTouchable(false);
+        builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
+            @Override public void onShown() {
+            }
+
+            @Override public void onDismiss() {
+                showGuideView2();
+            }
+        });
+
+        builder.addComponent(new Simple2PicComponent());
+        Guide guide = builder.createGuide();
+        guide.setShouldCheckLocInWindow(false);
+        guide.show(mContext);
+    }
+
+    public void showGuideView2() {
+   /*     final GuideBuilder builder1 = new GuideBuilder();
+        builder1.setTargetView(ll_nearby)
+                .setAlpha(150)
+                .setHighTargetGraphStyle(Component.CIRCLE)
+                .setOverlayTarget(false)
+                .setExitAnimationId(android.R.anim.fade_out)
+                .setOutsideTouchable(false);
+        builder1.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
+            @Override public void onShown() {
+            }
+
+            @Override public void onDismiss() {
+            }
+        });
+
+        builder1.addComponent(new MutiComponent());
+        Guide guide = builder1.createGuide();
+        guide.setShouldCheckLocInWindow(false);
+        guide.show(SimpleGuideViewActivity.this);*/
+    }
+
 
 
     public String getType() {
