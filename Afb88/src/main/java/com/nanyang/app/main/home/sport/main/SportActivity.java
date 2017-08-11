@@ -38,7 +38,9 @@ import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
 import com.nanyang.app.main.home.sport.golf.GolfFragment;
 import com.nanyang.app.main.home.sport.handball.HandballFragment;
 import com.nanyang.app.main.home.sport.iceHockey.IceHockeyFragment;
-import com.nanyang.app.main.home.sport.main.component.Simple2PicComponent;
+import com.nanyang.app.main.home.sport.main.component.Base2PicComponent;
+import com.nanyang.app.main.home.sport.main.component.Left2PicComponent;
+import com.nanyang.app.main.home.sport.main.component.Right2PicComponent;
 import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
 import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.poll.PoolFragment;
@@ -94,11 +96,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     BaseSportFragment superComboFragment = new SuperComboFragment();
     BaseSportFragment tableTennisFragment = new TableTennisFragment();
     BaseSportFragment formulaFragment = new FormulaFragment();
-
+    BaseSportFragment localCurrentFragment;
 
     @Bind(R.id.iv_add)
     ImageView ivAdd;
-
+    @Bind(R.id.ll_choice)
+    LinearLayout llChoice;
 
     private MenuItemInfo oddsType;
     private MenuItemInfo allOdds;
@@ -169,7 +172,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                     showGuideView();
                 }
             });
-
         }
 
     }
@@ -185,38 +187,124 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
 
             @Override public void onDismiss() {
-                showGuideView2();
+                showGuideViewLanguage();
             }
         });
-
-        builder.addComponent(new Simple2PicComponent());
+        Base2PicComponent base2PicComponent = new Left2PicComponent();
+        base2PicComponent.setAnchorView(tvToolbarLeft);
+        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_left,R.mipmap.guide_home_choice);
+        base2PicComponent.setContentMarginLeftRight(20);
+        builder.addComponent(base2PicComponent);
         Guide guide = builder.createGuide();
         guide.setShouldCheckLocInWindow(false);
         guide.show(mContext);
     }
 
-    public void showGuideView2() {
-   /*     final GuideBuilder builder1 = new GuideBuilder();
-        builder1.setTargetView(ll_nearby)
-                .setAlpha(150)
-                .setHighTargetGraphStyle(Component.CIRCLE)
+    public void showGuideViewLanguage() {
+        GuideBuilder builder = new GuideBuilder();
+        builder.setTargetView(tvToolbarRight1)
+                .setAlpha(200)
+                .setHighTargetCorner(20)
                 .setOverlayTarget(false)
-                .setExitAnimationId(android.R.anim.fade_out)
                 .setOutsideTouchable(false);
-        builder1.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
+        builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
             @Override public void onShown() {
             }
 
             @Override public void onDismiss() {
+                showGuideViewGameType();
+
             }
         });
-
-        builder1.addComponent(new MutiComponent());
-        Guide guide = builder1.createGuide();
+        Base2PicComponent base2PicComponent = new Right2PicComponent();
+        base2PicComponent.setAnchorView(tvToolbarRight1);
+        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right,R.mipmap.guide_languge_choice);
+        builder.addComponent(base2PicComponent);
+        Guide guide = builder.createGuide();
         guide.setShouldCheckLocInWindow(false);
-        guide.show(SimpleGuideViewActivity.this);*/
+        guide.show(mContext);
     }
 
+
+
+    private void showGuideViewGameType() {
+        GuideBuilder builder = new GuideBuilder();
+        builder.setTargetView(tvToolbarRight)
+                .setAlpha(200)
+                .setHighTargetCorner(20)
+                .setOverlayTarget(false)
+                .setOutsideTouchable(false);
+        builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
+            @Override public void onShown() {
+            }
+
+            @Override public void onDismiss() {
+                showGuideViewGameChoice();
+
+            }
+        });
+        Base2PicComponent base2PicComponent = new Right2PicComponent();
+        base2PicComponent.setAnchorView(tvToolbarRight);
+        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right,R.mipmap.guide_game_type);
+        builder.addComponent(base2PicComponent);
+        Guide guide = builder.createGuide();
+        guide.setShouldCheckLocInWindow(false);
+        guide.show(mContext);
+    }
+    private void showGuideViewGameChoice() {
+        GuideBuilder builder = new GuideBuilder();
+        builder.setTargetView(llChoice)
+                .setAlpha(200)
+                .setHighTargetCorner(20)
+                .setOverlayTarget(false)
+                .setOutsideTouchable(false);
+        builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
+            @Override public void onShown() {
+            }
+
+            @Override public void onDismiss() {
+                showGuideViewGameHandicap();
+
+            }
+        });
+        Base2PicComponent base2PicComponent = new Right2PicComponent();
+        base2PicComponent.setAnchorView(llChoice);
+        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right,R.mipmap.guide_game_choice);
+        builder.addComponent(base2PicComponent);
+        Guide guide = builder.createGuide();
+        guide.setShouldCheckLocInWindow(false);
+        guide.show(mContext);
+    }
+
+    private void showGuideViewGameHandicap() {
+        View llOddsType = localCurrentFragment.llOddsType;
+        GuideBuilder builder = new GuideBuilder();
+        builder.setTargetView(llOddsType)
+                .setAlpha(200)
+                .setHighTargetCorner(20)
+                .setOverlayTarget(false)
+                .setOutsideTouchable(false);
+        builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
+            @Override public void onShown() {
+            }
+
+            @Override public void onDismiss() {
+              endGuide();
+            }
+        });
+        Base2PicComponent base2PicComponent = new Right2PicComponent();
+        base2PicComponent.setAnchorView(llOddsType);
+        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right,R.mipmap.guide_odds_type);
+        base2PicComponent.setContentMarginLeftRight(0);
+        builder.addComponent(base2PicComponent);
+        Guide guide = builder.createGuide();
+        guide.setShouldCheckLocInWindow(false);
+        guide.show(mContext);
+    }
+
+    private void endGuide() {
+
+    }
 
 
     public String getType() {
@@ -252,7 +340,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         currentGameType = parentType;
         Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
         String localCurrentTag="";
-        BaseSportFragment localCurrentFragment;
         switch (parentType) {
             case "Financial":
                 mapFragment.put(getString(R.string.Financial), financialFragment);

@@ -41,6 +41,5 @@ dependencies {
     compile 'cn.finalteam:toolsfinal:1.1.5'
     compile 'com.lsjwzh:materialloadingprogressbar:0.5.8-RELEASE'
     compile 'com.github.zhaokaiqiang.klog:library:1.5.0'
-    compile 'com.guoqi.widget:highlightview:1.0'
     compile project(':skinlibrary')
 }

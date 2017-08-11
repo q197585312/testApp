@@ -46,4 +46,5 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':baseLibs')
     compile 'com.tencent.bugly:crashreport:latest.release'
+    compile 'com.guoqi.widget:highlightview:1.0'
 }
