@@ -2,15 +2,23 @@ package com.nanyang.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.load.login.LoginActivity;
+import com.nanyang.app.main.home.discount.DiscountActivity;
+import com.nanyang.app.main.home.gdCasino.PokerCasinoActivity;
+import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
@@ -70,6 +78,14 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
         tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 80);
         tvToolbarTitle.getLayoutParams().height = DeviceUtils.dip2px(mContext, 40);
+
+        tvToolbarLeft.setBackgroundResource(R.mipmap.sport_home_white_24dp);
+        tvToolbarLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                gameMenus(v);
+            }
+        });
         updateBalanceTv(getApp().getUser().getBalance());
 
     }
@@ -262,6 +278,66 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         pop.getChooseCancelTv().setText(getString(R.string.cancel));
         onPopupWindowCreated(pop, Gravity.CENTER);
     }
+    protected void gameMenus(View v) {
+        popWindow = new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+            @Override
+            protected int onSetLayoutRes() {
+                return R.layout.popupwindow_all_game;
+            }
 
+            @Override
+            protected void initView(View view) {
+                super.initView(view);
+                RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
+                BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext, rv);
+                adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+                    @Override
+                    public void onItemClick(View view, MenuItemInfo item, int position) {
+                        switch (item.getType()) {
+                            case "SportBook":
+                            case "Financial":
+                            case "Specials_4D":
+                            case "Muay_Thai":
+                            case "E_Sport":
+                            case "Myanmar_Odds":
+                            case "Europe":
+                                defaultSkip(item.getType());
+           /*             createPopupWindow(getPopupWindow(item.getType()));
+                        popWindow.showPopupCenterWindow();*/
+                                break;
+                            case "Huay_Thai":
+                                skipAct(HuayThaiActivity.class);
+                                break;
+                            case "Live_Casino":
+                                Bundle b = new Bundle();
+                                b.putString("activity", "Live");
+                                skipAct(PokerCasinoActivity.class, b);
+                                break;
+                            case "Poker":
+                                ToastUtils.showShort(R.string.coming_soon);
+                                break;
+                            case "Discount":
+                                skipAct(DiscountActivity.class);
+                                break;
+                            default:
+                                ToastUtils.showShort(R.string.coming_soon);
+                        }
+                        closePopupWindow();
+
+                    }
+                });
+            }
+        };
+        popWindow.showPopupCenterWindow();
+    }
+
+    public void defaultSkip(String type){
+        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
+        menuItemInfo.setType("Today");
+        menuItemInfo.setParent(type);
+        Bundle b = new Bundle();
+        b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
+        skipAct(SportActivity.class, b);
+    }
 
 }

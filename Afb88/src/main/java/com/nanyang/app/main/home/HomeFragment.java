@@ -11,6 +11,7 @@ import android.widget.TextView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
@@ -101,12 +102,7 @@ public class HomeFragment extends BaseFragment {
 
 
     public void defaultSkip(final String type) {
-        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
-        menuItemInfo.setType("Today");
-        menuItemInfo.setParent(type);
-        Bundle b = new Bundle();
-        b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
-        skipAct(SportActivity.class, b);
+        ((BaseToolbarActivity)getBaseActivity()).defaultSkip(type);
 
     }
 

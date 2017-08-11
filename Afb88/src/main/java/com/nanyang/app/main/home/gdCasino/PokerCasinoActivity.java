@@ -123,6 +123,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
     @Override
     public void initUi() {
         Intent intent = getIntent();
+        tvToolbarLeft.setVisibility(View.VISIBLE);
         if (intent.getStringExtra("activity").equals("Porker")) {
             bannerImg.setBackgroundResource(R.mipmap.poker_banner);
         } else {

@@ -11,7 +11,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
@@ -19,9 +18,6 @@ import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.main.MainActivity;
-import com.nanyang.app.main.home.discount.DiscountActivity;
-import com.nanyang.app.main.home.gdCasino.PokerCasinoActivity;
-import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.sport.USFootball.USFootballFragment;
 import com.nanyang.app.main.home.sport.badminton.BadmintonFragment;
 import com.nanyang.app.main.home.sport.baseball.BaseballFragment;
@@ -156,6 +152,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvToolbarTitle.setBackgroundResource(0);
         oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
         allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "&mt=0");
+        tvToolbarLeft.setVisibility(View.VISIBLE);
     }
 
 
@@ -172,14 +169,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Override
     public void initData() {
         super.initData();
-        tvToolbarLeft.setVisibility(View.VISIBLE);
-        tvToolbarLeft.setBackgroundResource(R.mipmap.sport_home_white_24dp);
-        tvToolbarLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gameMenus(v);
-            }
-        });
+
         item = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         if (item != null) {
             type = item.getType();
@@ -253,7 +243,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Cycling), cyclingFragment);
                 mapFragment.put(getString(R.string.WinterSport), winterSportFragment);
                 mapFragment.put(getString(R.string.SuperCombo), superComboFragment);
-
                 localCurrentTag = getString(R.string.Soccer);
                 localCurrentFragment = soccerFragment;
                 break;
@@ -262,60 +251,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 //        showFragmentToActivity(currentFragment, R.id.fl_content, currentTag);
     }
 
-    private void gameMenus(View v) {
-        popWindow = new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
-            @Override
-            protected int onSetLayoutRes() {
-                return R.layout.popupwindow_all_game;
-            }
 
-            @Override
-            protected void initView(View view) {
-                super.initView(view);
-                RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
-                BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext, rv);
-                adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-                    @Override
-                    public void onItemClick(View view, MenuItemInfo item, int position) {
-                        switch (item.getType()) {
-                            case "SportBook":
-                            case "Financial":
-                            case "Specials_4D":
-                            case "Muay_Thai":
-                            case "E_Sport":
-                            case "Myanmar_Odds":
-                            case "Europe":
-                                defaultSkip(item.getType());
-           /*             createPopupWindow(getPopupWindow(item.getType()));
-                        popWindow.showPopupCenterWindow();*/
-                                break;
-                            case "Huay_Thai":
-                                skipAct(HuayThaiActivity.class);
-                                break;
-                            case "Live_Casino":
-                                Bundle b = new Bundle();
-                                b.putString("activity", "Live");
-                                skipAct(PokerCasinoActivity.class, b);
-                                break;
-                            case "Poker":
-                                ToastUtils.showShort(R.string.coming_soon);
-                                break;
-                            case "Discount":
-                                skipAct(DiscountActivity.class);
-                                break;
-                            default:
-                                ToastUtils.showShort(R.string.coming_soon);
-                        }
-                        closePopupWindow();
-
-                    }
-                });
-            }
-        };
-        popWindow.showPopupCenterWindow();
-    }
-
-    private void defaultSkip(String parentType) {
+    @Override
+    public void defaultSkip(String parentType) {
         if (!parentType.equals(currentGameType)) {
             initFragment(parentType);
         }
