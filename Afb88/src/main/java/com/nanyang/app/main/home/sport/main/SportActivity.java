@@ -303,7 +303,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     private void endGuide() {
-
+       SharePreferenceUtil.setValue(mContext, GUIDE_KEY,true);
     }
 
 

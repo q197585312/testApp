@@ -1,12 +1,10 @@
 package com.nanyang.app.main.home.sport.main.component;
 
-import android.app.Activity;
 import android.content.Context;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.guoqi.highlightview.Component;
 
@@ -22,15 +20,19 @@ public class Right2PicComponent extends Base2PicComponent {
         WindowManager systemService = (WindowManager) anchorView.getContext()
                 .getSystemService(Context.WINDOW_SERVICE
                 );
-
         int width = systemService.getDefaultDisplay().getWidth();
-        return width - (anchorView.getRight() + anchorView.getPaddingRight());
+        int[] location = new int[2];
+        anchorView.getLocationOnScreen(location);
+        int x = location[0];
+        int anchorViewWidth = anchorView.getWidth();
+        return width - (x + anchorViewWidth);
     }
 
     @Override
     protected void setArrowLineLayoutParams(FrameLayout.LayoutParams layoutParams) {
         layoutParams.rightMargin = anchorDistance;
         layoutParams.gravity = Gravity.RIGHT;
+
     }
 
     @Override
