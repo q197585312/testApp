@@ -1,35 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout  xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:background="@color/grey_background"
-    android:orientation="vertical"
-    android:layout_height="match_parent">
-    <TextView
-        android:padding="5dp"
-        android:layout_width="match_parent"
-        android:textStyle="bold"
-        android:layout_height="wrap_content"
-        android:textColor="@color/green900"
-        android:text="@string/Common_Game"
-        />
-    <View
-        android:background="@color/grey_button"
-        android:layout_width="match_parent"
-        android:layout_height="0.6dp"/>
-    <View
-        android:background="@color/grey_dialog_background"
-        android:layout_width="match_parent"
-        android:layout_height="0.6dp"/>
-<android.support.v7.widget.RecyclerView
-    android:layout_marginBottom="1dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:scrollbars="none"
-    android:id="@+id/rv_list"
-    android:gravity="bottom"
-    android:divider="@null"
-    android:layout_gravity="bottom"
-    >
-</android.support.v7.widget.RecyclerView>
+    android:background="@color/grey_background"
+    android:orientation="vertical">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="5dp"
+        android:text="@string/Common_Game"
+        android:textColor="@color/green900"
+        android:textStyle="bold" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="@color/grey_button" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="@color/grey_dialog_background" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:layout_marginBottom="1dp"
+        android:divider="@null"
+        android:gravity="bottom"
+        android:scrollbars="none"></android.support.v7.widget.RecyclerView>
+
+    <TextView
+        android:id="@+id/tv_jump_casino"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@mipmap/yellow_btn_bet_top"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="GD CASINO"
+        android:textColor="@color/green_black" />
 </LinearLayout>

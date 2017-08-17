@@ -12,6 +12,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.main.MainActivity;
+import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -95,5 +96,15 @@ public class ChangeLanguageFragment extends BaseFragment<LanguagePresenter> impl
     public void onLanguageSwitchSucceed(String str) {
         Intent intent = new Intent(getActivity(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
+    }
+
+    @Override
+    public void getMoneyMsg(TransferMoneyBean transferMoneyBean, String data) {
+
+    }
+
+    @Override
+    public void onGetTransferMoneyData(int type, String getBackStr, String data) {
+
     }
 }

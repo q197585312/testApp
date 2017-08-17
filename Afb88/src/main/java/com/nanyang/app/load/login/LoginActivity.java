@@ -17,6 +17,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.load.forgetPassword.ForgetActivity;
 import com.nanyang.app.load.register.RegisterActivity;
 import com.nanyang.app.main.MainActivity;
+import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -251,6 +252,16 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
         skipAct(MainActivity.class);
         finish();
+    }
+
+    @Override
+    public void getMoneyMsg(TransferMoneyBean transferMoneyBean, String data) {
+
+    }
+
+    @Override
+    public void onGetTransferMoneyData(int type, String getBackStr, String data) {
+
     }
 
 

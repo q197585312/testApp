@@ -1,11 +1,17 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -13,6 +19,7 @@ import android.widget.TextView;
 
 import com.guoqi.highlightview.Guide;
 import com.guoqi.highlightview.GuideBuilder;
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
@@ -20,6 +27,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.main.MainActivity;
+import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.sport.USFootball.USFootballFragment;
 import com.nanyang.app.main.home.sport.badminton.BadmintonFragment;
 import com.nanyang.app.main.home.sport.baseball.BaseballFragment;
@@ -29,6 +37,7 @@ import com.nanyang.app.main.home.sport.cricket.CricketFragment;
 import com.nanyang.app.main.home.sport.cycling.CyclingFragment;
 import com.nanyang.app.main.home.sport.darts.DartsFragment;
 import com.nanyang.app.main.home.sport.dialog.ChooseLanguagePop;
+import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
 import com.nanyang.app.main.home.sport.e_sport.ESportFragment;
 import com.nanyang.app.main.home.sport.europe.EuropeFragment;
 import com.nanyang.app.main.home.sport.financial.FinancialFragment;
@@ -65,8 +74,8 @@ import java.util.List;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import cn.finalteam.toolsfinal.ApkUtils;
 import cn.finalteam.toolsfinal.logger.Logger;
-
 
 public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
     private final String GUIDE_KEY="GUIDE";
@@ -481,15 +490,31 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                                 closePopupWindow();
                             }
                         });
+                        TextView tvJumpCasino = (TextView) view.findViewById(R.id.tv_jump_casino);
+                        tvJumpCasino.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                loginGD();
+                            }
+                        });
                     }
                 });
                 popWindow.setTrans(1f);
                 popWindow.showPopupDownWindow();
                 break;
-
         }
     }
-
+    private void loginGD() {
+        if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
+            presenter.skipGd88();
+        } else {
+            Intent intent = new Intent();
+            intent.setAction("android.intent.action.VIEW");
+            Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
+            intent.setData(content_url);
+            startActivity(intent);
+        }
+    }
     @Override
     protected void updateBalanceTv(String allData) {
 
@@ -508,7 +533,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     public void onGetData(String data) {
-
+        presenter.getTransferMoneyData(data);
     }
 
     @Override
@@ -522,6 +547,78 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         popWindow.closePopupWindow();
     }
 
+    public void getMoneyMsg(final TransferMoneyBean transferMoneyBean, final String data) {
+        popWindow.closePopupWindow();
+        TransferMoneyPop pop = new TransferMoneyPop(mContext, ivAdd) {
+            @Override
+            public void initMsgData(TextView tv_balance, TextView tv_casino_balance, EditText edt_amount) {
+                TransferMoneyBean.DicAllBean bean = transferMoneyBean.getDicAll().get(0);
+                tv_balance.setText(isStartWithTag(bean.getCredit()));
+                tv_casino_balance.setText(isStartWithTag(bean.getGdBalance()));
+            }
+
+            @Override
+            public void setOnCancelLisener() {
+                startApp(data);
+            }
+
+            @Override
+            public void setOnSureLisener(String money) {
+                if (!TextUtils.isEmpty(money)&&Integer.parseInt(money)!=0){
+                    presenter.gamesGDTransferMonet(money,data);
+                    closePopupWindow();
+                }else {
+                    ToastUtils.showShort(getString(R.string.Input_the_amount_please));
+                }
+            }
+
+        };
+        pop.showPopupCenterWindow();
+    }
+
+    public void onGetTransferMoneyData(int type, String getBackStr, String data) {
+        if (getBackStr.contains("not allowed")){
+            ToastUtils.showShort(getBackStr);
+        }else {
+            ToastUtils.showShort(getBackStr);
+            startApp(data);
+        }
+    }
+
+    private void startApp(String data) {
+        if (data.length() > 0) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("gameType", 3);
+            bundle.putString("web_id", "-1");
+            bundle.putString("k", data);
+            bundle.putString("us", getApp().getUser().getUserName());
+
+            try {
+                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
+            } catch (Exception e) {
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
+                intent.setData(content_url);
+                startActivity(intent);
+            }
+        }
+    }
+    private SpannableStringBuilder isStartWithTag(String str) {
+        if (str.startsWith("<SPAN")) {
+            String needStr = Html.fromHtml(str).toString();
+            if (needStr.startsWith("-")) {
+                return AfbUtils.handleStringTextColor(needStr, Color.RED);
+            }
+            return new SpannableStringBuilder(needStr);
+        } else {
+            if (str.startsWith("-")) {
+                return AfbUtils.handleStringTextColor(str, Color.RED);
+            } else {
+                return new SpannableStringBuilder(str);
+            }
+        }
+    }
     public void setOddsType(MenuItemInfo oddsType) {
         this.oddsType = oddsType;
     }
