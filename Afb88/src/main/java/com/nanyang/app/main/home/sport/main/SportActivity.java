@@ -475,7 +475,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                             @Override
                             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                                 TextView tv = holder.getView(R.id.item_text_tv);
-                                tv.setBackgroundResource(R.color.google_green);
+//                                tv.setBackgroundResource(R.color.google_green);
+                                dynamicAddView(tv, "background", R.color.google_green);
+
+                                //aaa
                                 tv.setText(item.getText());
                                 tv.setTextColor(getResources().getColor(R.color.white));
                             }

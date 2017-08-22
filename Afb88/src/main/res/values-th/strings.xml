@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Afb88 </string>
     <string name="Account">บัญชี </string>
     <string name="Password">รหัสผ่าน </string>
     <string name="Login">เข้าสู่ระบบ </string>

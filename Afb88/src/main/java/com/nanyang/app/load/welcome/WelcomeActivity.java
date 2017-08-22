@@ -18,6 +18,8 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.io.File;
 
+import solid.ren.skinlibrary.loader.SkinManager;
+
 
 public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements WelcomeContract.View {
 
@@ -30,6 +32,16 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        switch (getString(R.string.app_name)) {
+            case "Afb88":
+                SkinManager.getInstance().restoreDefaultTheme();
+                break;
+            case "I1bet88":
+                SkinManager.getInstance().loadSkin("skinbluepackage.skin", null);
+                break;
+        }
+
+
         setContentView(R.layout.activity_welcome);
         createPresenter(new WelcomePresenter(this));
         try {
@@ -51,7 +63,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                totleLength+=len;
+                totleLength += len;
                 Log.d("LOAD", "contentLength:" + contentLength + "\n" +
                         "length:" + totleLength);
                 mProgressBar.setProgress((int) (totleLength * 100 / contentLength));
@@ -114,7 +126,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
         downloadDialog.setCancelable(false);
         downloadDialog.show();
         presenter.updateVersion(version);
-        totleLength=0;
+        totleLength = 0;
     }
 
 }

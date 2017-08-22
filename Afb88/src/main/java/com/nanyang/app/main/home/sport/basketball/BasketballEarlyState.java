@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.basketball;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-
 import com.nanyang.app.main.home.sport.main.SportContract;
 
 /**

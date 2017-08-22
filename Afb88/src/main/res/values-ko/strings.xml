@@ -1,5 +1,4 @@
 <resources>
-    <string name="app_name">Afb88</string>
     <string name="Account">계정</string>
     <string name="Password">암호</string>
     <string name="Login">로그인</string>

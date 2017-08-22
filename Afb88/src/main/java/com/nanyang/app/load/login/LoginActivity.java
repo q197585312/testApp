@@ -14,7 +14,6 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
-import com.nanyang.app.load.forgetPassword.ForgetActivity;
 import com.nanyang.app.load.register.RegisterActivity;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
@@ -171,7 +170,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 skipAct(RegisterActivity.class);
                 break;
             case R.id.tv_login_forget:
-                skipAct(ForgetActivity.class);
+//                skipAct(ForgetActivity.class);
                 break;
             case R.id.login_china_rb:
                 AfbUtils.switchLanguage("zh", this);

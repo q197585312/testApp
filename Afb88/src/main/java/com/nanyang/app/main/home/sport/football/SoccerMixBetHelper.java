@@ -5,9 +5,9 @@ import android.widget.TextView;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
-import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.nanyang.app.main.home.sportInterface.BetView;
 

@@ -1,6 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
+    signingConfigs {
+        config {
+            keyAlias 'nykj'
+            keyPassword '123456'
+            storeFile file('F:/keystore/afb88.keystore.jks')
+            storePassword '123456'
+        }
+    }
     compileSdkVersion 25
     buildToolsVersion "25.0.0"
     defaultConfig {
@@ -18,23 +26,33 @@ android {
             zipAlignEnabled true
             buildConfigField "boolean", "LOG_DEBUG", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-
+            signingConfig signingConfigs.config
         }
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.config
         }
-
     }
     productFlavors {
-    }
-        lintOptions {
-            checkReleaseBuilds false
-            // Or, if you prefer, you can continue to check for errors in release builds,
-            // but continue the build even when errors are found:
-            abortOnError false
+        afb88 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb88"]
+            applicationId 'com.nanyang.app'
+            versionName '1.66'
         }
+        i1bet88 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet88"]
+            applicationId 'com.nanyang.app'
+            versionName '1.66'
+        }
+    }
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
 }
 
 dependencies {
