@@ -27,12 +27,14 @@ android {
             buildConfigField "boolean", "LOG_DEBUG", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
+            debuggable true
         }
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             signingConfig signingConfigs.config
+            debuggable true
         }
     }
     productFlavors {
@@ -44,7 +46,7 @@ android {
         i1bet88 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet88"]
             applicationId 'com.nanyang.app'
-            versionName '1.00'
+            versionName '1.01'
         }
     }
     lintOptions {

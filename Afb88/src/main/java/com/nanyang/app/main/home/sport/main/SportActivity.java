@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 
 import com.guoqi.highlightview.Guide;
 import com.guoqi.highlightview.GuideBuilder;
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
@@ -26,6 +28,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.sport.USFootball.USFootballFragment;
@@ -325,11 +328,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     String type = "";
-
+    AfbApplication app;
     @Override
     public void initData() {
         super.initData();
-
+        app = (AfbApplication) getApplication();
         item = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         if (item != null) {
             type = item.getType();
@@ -597,7 +600,15 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             bundle.putString("us", getApp().getUser().getUserName());
 
             try {
-                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
+//                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                ComponentName comp = new ComponentName("gaming178.com.baccaratgame",
+                        "gaming178.com.casinogame.Activity.WelcomeActivity");
+                intent.setComponent(comp);
+                if (bundle != null){
+                    intent.putExtras(bundle);
+                }
+                startActivityForResult(intent,7);
             } catch (Exception e) {
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
@@ -636,5 +647,14 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public MenuItemInfo getAllOddsType() {
         return allOdds;
+    }
+
+    @Override
+    public void againLogin(String gameType) {
+        presenter.login(new LoginInfo(app.getUser().getUserName(), app.getUser().getPassword()),gameType);
+    }
+    @Override
+    public void onLoginAgainFinish(String gameType) {
+        switchSkipAct(gameType);
     }
 }

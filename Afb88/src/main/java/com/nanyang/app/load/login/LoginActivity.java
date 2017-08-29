@@ -263,6 +263,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
     }
 
+    @Override
+    public void onLoginAgainFinish(String gameType) {
+
+    }
+
 
     public void clickSkin(View view) {
         switch (SkinInt++%2){

@@ -1,11 +1,11 @@
 package com.nanyang.app.main.home.gdCasino;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -17,10 +17,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.common.ILanguageView;
+import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.gdCasino.model.PorkerCasinoBean;
@@ -40,17 +44,19 @@ import cn.finalteam.toolsfinal.ApkUtils;
  * Created by Administrator on 2017/2/15.
  */
 
-public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> implements PorkerContract.View<String>, ActivityCompat.OnRequestPermissionsResultCallback {
+public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
     @Bind(R.id.porkercasino_rc)
     RecyclerView casinoRc;
     @Bind(R.id.banner_Img)
     ImageView bannerImg;
+    AfbApplication app;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokercasino);
-        createPresenter(new PorkerPresenter(this));
+        createPresenter(new LanguagePresenter(this));
+        app = (AfbApplication) getApplication();
         initUi();
        /* readExternalStorage();
         writeExternalStorage();*/
@@ -120,7 +126,6 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
 
     }
 
-    @Override
     public void initUi() {
         Intent intent = getIntent();
         tvToolbarLeft.setVisibility(View.VISIBLE);
@@ -156,6 +161,11 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
             }
         });
         casinoRc.setAdapter(porkerAdapter);
+    }
+
+    @Override
+    public void onLanguageSwitchSucceed(String str) {
+
     }
 
     @Override
@@ -234,7 +244,15 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
             bundle.putString("us", getApp().getUser().getUserName());
 
             try {
-                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
+//                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                ComponentName comp = new ComponentName("gaming178.com.baccaratgame",
+                        "gaming178.com.casinogame.Activity.WelcomeActivity");
+                intent.setComponent(comp);
+                if (bundle != null){
+                    intent.putExtras(bundle);
+                }
+                startActivityForResult(intent,7);
             } catch (Exception e) {
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
@@ -250,5 +268,13 @@ public class PokerCasinoActivity extends BaseToolbarActivity<PorkerPresenter> im
         skipAct(MainActivity.class);
         super.finish();
 
+    }
+    @Override
+    public void againLogin(String gameType) {
+        presenter.login(new LoginInfo(app.getUser().getUserName(), app.getUser().getPassword()),gameType);
+    }
+    @Override
+    public void onLoginAgainFinish(String gameType) {
+        switchSkipAct(gameType);
     }
 }

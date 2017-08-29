@@ -293,35 +293,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
-                        switch (item.getType()) {
-                            case "SportBook":
-                            case "Financial":
-                            case "Specials_4D":
-                            case "Muay_Thai":
-                            case "E_Sport":
-                            case "Myanmar_Odds":
-                            case "Europe":
-                                defaultSkip(item.getType());
-           /*             createPopupWindow(getPopupWindow(item.getType()));
-                        popWindow.showPopupCenterWindow();*/
-                                break;
-                            case "Huay_Thai":
-                                skipAct(HuayThaiActivity.class);
-                                break;
-                            case "Live_Casino":
-                                Bundle b = new Bundle();
-                                b.putString("activity", "Live");
-                                skipAct(PokerCasinoActivity.class, b);
-                                break;
-                            case "Poker":
-                                ToastUtils.showShort(R.string.coming_soon);
-                                break;
-                            case "Discount":
-                                skipAct(DiscountActivity.class);
-                                break;
-                            default:
-                                ToastUtils.showShort(R.string.coming_soon);
-                        }
+                        switchSkipAct(item.getType());
                         closePopupWindow();
 
                     }
@@ -331,7 +303,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         popWindow.showPopupCenterWindow();
     }
 
-    public void defaultSkip(String type){
+    public void defaultSkip(String type) {
         MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
         menuItemInfo.setType("Today");
         menuItemInfo.setParent(type);
@@ -340,4 +312,47 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         skipAct(SportActivity.class, b);
     }
 
+    public void switchSkipAct(String gameType) {
+        switch (gameType) {
+            case "SportBook":
+            case "Financial":
+            case "Specials_4D":
+            case "Muay_Thai":
+            case "E_Sport":
+            case "Myanmar_Odds":
+            case "Europe":
+                defaultSkip(gameType);
+           /*             createPopupWindow(getPopupWindow(item.getType()));
+                        popWindow.showPopupCenterWindow();*/
+                break;
+            case "Huay_Thai":
+                skipAct(HuayThaiActivity.class);
+                break;
+            case "Live_Casino":
+                Bundle b = new Bundle();
+                b.putString("activity", "Live");
+                skipAct(PokerCasinoActivity.class, b);
+                break;
+            case "Poker":
+                ToastUtils.showShort(R.string.coming_soon);
+                break;
+            case "Discount":
+                skipAct(DiscountActivity.class);
+                break;
+            default:
+                ToastUtils.showShort(R.string.coming_soon);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == 7 && resultCode == 8) {
+            String gameType = data.getStringExtra("gameType");
+            againLogin(gameType);
+        }
+    }
+    public void againLogin(String gameType){
+
+    }
 }
