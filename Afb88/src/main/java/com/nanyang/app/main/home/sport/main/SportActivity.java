@@ -598,7 +598,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             bundle.putString("web_id", "-1");
             bundle.putString("k", data);
             bundle.putString("us", getApp().getUser().getUserName());
-
+            bundle.putString("lang",AfbUtils.getLanguage(mContext));
             try {
 //                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
                 Intent intent = new Intent(Intent.ACTION_MAIN);
