@@ -3,4 +3,6 @@
     <color name="green900">#1774ae</color>
     <color name="green500">#4c89af</color>
     <color name="green_light_white">#C9DFEC</color>
+    <color name="update_bg1">#4c89af</color>
+    <color name="update_bg2">#1774ae</color>
 </resources>

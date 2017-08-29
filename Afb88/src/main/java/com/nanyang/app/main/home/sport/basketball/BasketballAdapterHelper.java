@@ -50,7 +50,8 @@ public class BasketballAdapterHelper extends BallAdapterHelper<BasketballMixInfo
         tvCollection.setVisibility(View.GONE);
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
         scrollChild(sl.getChildAt(1), false, item, item.getIsHomeGive(), item.getHasX12(), "", item.getHasOE(), "", item.getIsX12New(), "", "", "", item.getX12_1Odds(), item.getX12_2Odds(), "1", "2", "", ""
-                , true, false, true, item.getHasOE(), item.getIsOENew(), item.getOddOdds(), item.getEvenOdds(), "odd", "even");
+                , true, false, true, item.getHasOE(), item.getIsOENew(), (item.getOEOdds()!=null&&Float.valueOf(item.getOEOdds())>=1||Float.valueOf(item.getOEOdds())<=-1)?item.getOddOdds():"",
+                (item.getOEOdds()!=null&&Float.valueOf(item.getOEOdds())>=1||Float.valueOf(item.getOEOdds())<=-1)?item.getEvenOdds():"", "odd", "even");
         getBaseRecyclerAdapter().getItem(position).setIsX12New("0");
         getBaseRecyclerAdapter().getItem(position).setIsOENew("0");
         BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);

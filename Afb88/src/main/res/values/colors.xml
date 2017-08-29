@@ -13,4 +13,6 @@
     <color name="green_light_bg">#1ba248</color>
     <color name="green_thai_thousand_bg">#E9FBDB</color>
     <color name="green_thai_thousand_wrol">#248C26</color>
+    <color name="update_bg1">#8eeaac</color>
+    <color name="update_bg2">#17ae48</color>
 </resources>
