@@ -77,7 +77,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         assert tvToolbarTitle != null;
         tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
         tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 80);
-        tvToolbarTitle.getLayoutParams().height = DeviceUtils.dip2px(mContext, 40);
 
         tvToolbarLeft.setBackgroundResource(R.mipmap.sport_home_white_24dp);
         tvToolbarLeft.setOnClickListener(new View.OnClickListener() {

@@ -9,7 +9,7 @@ public class AppConstant {
 
     public static final String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
     public static final String CHECK_VERSION = "http://www.appgd88.com/i1bet88version.php?app=android";
-    public static final String DOWNLOAD_APP = "http://appgd88.com/afb88/download/android/i1bet88.apk";
+    public static final String DOWNLOAD_APP = "http://appgd88.com/i1bet88/download/android/i1bet88.apk";
 
 //Referer: http://new11.i1bet88.com/_view/odds21.aspx
     public static String APP_HOST = "http://main11.i1bet88.com/";
