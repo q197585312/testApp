@@ -83,12 +83,12 @@ public class ChangePasswordFragment extends BaseFragment {
             ToastUtils.showShort(getString(R.string.check_empty_password));
             return;
         }
-        if (oldPasswrod.length() < 8 || newPasswrod.length() < 8 || surePasswrod.length() < 8) {
+        if (newPasswrod.length() < 8 || surePasswrod.length() < 8) {
             ToastUtils.showShort(getString(R.string.check_length_password));
             return;
         } else {
             String regex = ".*[a-zA-Z].*[0-9]|.*[0-9].*[a-zA-Z]"; //匹配字母和数字组合
-            if (oldPasswrod.matches(regex) == false || newPasswrod.matches(regex) == false || surePasswrod.matches(regex) == false) {
+            if (newPasswrod.matches(regex) == false || surePasswrod.matches(regex) == false) {
                 ToastUtils.showShort(getString(R.string.check_length_password));
                 return;
             }

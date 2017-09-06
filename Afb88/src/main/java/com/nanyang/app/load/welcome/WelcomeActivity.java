@@ -39,6 +39,9 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
             case "I1bet88":
                 SkinManager.getInstance().loadSkin("skinbluepackage.skin", null);
                 break;
+            case "AP889":
+                SkinManager.getInstance().loadSkin("skinpurplepackage.skin", null);
+                break;
         }
 
 

@@ -48,6 +48,11 @@ android {
             applicationId 'com.nanyang.app'
             versionName '1.03'
         }
+        ap889 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ap889"]
+            applicationId 'com.nanyang.app'
+            versionName '1.00'
+        }
     }
     lintOptions {
         checkReleaseBuilds false

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="green900">#6517ae</color>
+    <color name="green500">#7f4caf</color>
+    <color name="green_light_white">#dbc9eb</color>
+    <color name="update_bg1">#6517ae</color>
+    <color name="update_bg2">#7f4caf</color>
+</resources>
