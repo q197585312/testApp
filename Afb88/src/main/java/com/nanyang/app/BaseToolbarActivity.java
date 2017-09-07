@@ -354,4 +354,15 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public void againLogin(String gameType){
 
     }
+    public int getHomeColor(){
+        switch (getString(R.string.app_name)){
+            case "Afb88":
+                return 0xff0d5924;
+            case "I1bet88":
+                return 0xff0E3D59;
+            case "AP889":
+                return 0xff300F2D;
+        }
+        return 0xff0d5924;
+    }
 }
