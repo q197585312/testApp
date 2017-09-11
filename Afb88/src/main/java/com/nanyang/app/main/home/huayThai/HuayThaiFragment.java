@@ -109,7 +109,21 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
         inflater = LayoutInflater.from(mContext);
         refresh();
         initIntroduceData(type);
+    }
 
+    @Override
+    public void refreshData(String gameType) {
+        super.refreshData(gameType);
+        if (gameType.equals(getString(R.string.game1d))) {
+            info = new MenuItemInfo<String>(R.mipmap.thai_thousand_1d, getString(R.string.game1d), "_view/nodds1TH_App.aspx", "_view/nodds1TH_Bet_App.aspx");
+        } else if (gameType.equals(getString(R.string.game2d))) {
+            info = new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, getString(R.string.game2d), "_view/nodds2TH_App.aspx", "_view/nodds2TH_Bet_App.aspx");
+        } else {
+            info = new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), "_view/nodds3TH_App.aspx", "_view/nodds3TH_Bet_App.aspx");
+        }
+        type = info.getText();
+        refresh();
+        initIntroduceData(type);
     }
 
     private void refresh() {

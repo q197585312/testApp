@@ -163,5 +163,8 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
     public void onAttach(Context context) {
         super.onAttach(context);
     }
+    public void refreshData(String type){
+
+    }
 
 }

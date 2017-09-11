@@ -138,7 +138,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
         casinoRc.setLayoutManager(new LinearLayoutManager(mContext));
         List<PorkerCasinoBean> dataList = new ArrayList<>();
         dataList.add(new PorkerCasinoBean(R.mipmap.casino_gd88, getString(R.string.gd88), getString(R.string.gd_content)));
-        dataList.add(new PorkerCasinoBean(R.mipmap.casino_gdc, getString(R.string.gdc), getString(R.string.gr_content)));
+//        dataList.add(new PorkerCasinoBean(R.mipmap.casino_gdc, getString(R.string.gdc), getString(R.string.gr_content)));
 
         BaseRecyclerAdapter<PorkerCasinoBean> porkerAdapter = new BaseRecyclerAdapter<PorkerCasinoBean>(mContext, dataList, R.layout.item_porkercasino) {
             @Override
