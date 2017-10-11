@@ -14,7 +14,7 @@ public class AppConstant {
 
     public static String APP_HOST = "http://main55.afb88.com/";
 //    public static String REAL_HOST = "http://www.doo88.net/";
-    public static String REAL_HOST = "http://ibcbetmain.afb88.com/";
+    public static String REAL_HOST = "http://www.ap889.com/";
     public static String KEY_STRING = "KEY_STRING";
     public static String KEY_DATA = "KEY_DATA";
     public static String KEY_INT = "KEY_INT";

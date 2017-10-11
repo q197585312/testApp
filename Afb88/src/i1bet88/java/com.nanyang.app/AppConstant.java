@@ -13,7 +13,7 @@ public class AppConstant {
 
 //Referer: http://new11.i1bet88.com/_view/odds21.aspx
     public static String APP_HOST = "http://main11.i1bet88.com/";
-    public static String REAL_HOST = "http://main11.i1bet88.com/";
+    public static String REAL_HOST = "http://www.i1bet88.com/";
 
     public static String KEY_STRING = "KEY_STRING";
     public static String KEY_DATA = "KEY_DATA";
