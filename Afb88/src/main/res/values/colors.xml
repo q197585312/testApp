@@ -15,4 +15,12 @@
     <color name="green_thai_thousand_wrol">#248C26</color>
     <color name="update_bg1">#8eeaac</color>
     <color name="update_bg2">#17ae48</color>
+    <color name="keno_grenn">#167732</color>
+    <color name="keno_ball_green">#11472D</color>
+    <color name="keno_deep_green">#08331F</color>
+    <color name="keno_text_clik1">#FE9D00</color>
+    <color name="keno_text_clik2">#A15E00</color>
+    <color name="keno_text_nomal1">#11662F</color>
+    <color name="keno_text_nomal2">#7AD791</color>
+    <color name="keno_line">#178731</color>
 </resources>

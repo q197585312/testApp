@@ -6,6 +6,7 @@ import com.nanyang.app.main.center.model.StatementStakeListBean;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.huayThai.HuayDrawDateInfo;
 import com.nanyang.app.main.home.huayThai.ResultBean;
+import com.nanyang.app.main.home.keno.bean.KenoDataBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
 import com.unkonw.testapp.login.DataBean;
@@ -162,4 +163,7 @@ public interface ApiService {
 
     @GET
     Flowable<HuayDrawDateInfo> getHuyaDrawDate(@Url String url);
+
+    @GET
+    Flowable<KenoDataBean> getKenoData(@Url String url);
 }

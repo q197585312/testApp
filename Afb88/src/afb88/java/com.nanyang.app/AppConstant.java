@@ -39,7 +39,7 @@ public class AppConstant {
     //http://a8197c.a36588.com/Main.aspx?accType=EU
 
 //    public static String HOST="http://www.doo88.net/";
-    public String HOST = REAL_HOST;
+    public String HOST = APP_HOST;
 
     public String URL_LOGIN = HOST + "Default1.aspx";
     public String URL_MAIN = HOST + "main.aspx";
@@ -232,7 +232,8 @@ public class AppConstant {
     public String URL_STAKE = HOST + "_bet/PanelStake_App.aspx";
     public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "AccConfirmDate_App.aspx?userName=";
     public String URL_PANEL = HOST + "_bet/panel.aspx";
-
+    //    http://main55.afb88.net/_view/kenGame_App.aspx
+    public String URL_KENO_DATA = HOST + "_view/kenGame_App.aspx";
     static AppConstant instance;
     private String host;
 
@@ -381,8 +382,8 @@ public class AppConstant {
         URL_EUROPE_TODAY = HOST + "_view/OddsGen5.ashx?g=182&ot=t&update=true&r=1833149994";
         URL_EUROPE_RUNING = HOST + "_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994";
         URL_EUROPE_EARLY = HOST + "_view/OddsGen5.ashx?g=182&ot=e&update=true&r=1833149994";
-        URL_EUROPE_MIX_EARLY=HOST+"_view/ParGenWFH.ashx?g=183&ot=e&update=true&r=524111120";
-        URL_EUROPE_MIX_TODAY=HOST+"_view/ParGenWFH.ashx?g=183&ot=t&update=true&r=524111120";
+        URL_EUROPE_MIX_EARLY = HOST + "_view/ParGenWFH.ashx?g=183&ot=e&update=true&r=524111120";
+        URL_EUROPE_MIX_TODAY = HOST + "_view/ParGenWFH.ashx?g=183&ot=t&update=true&r=524111120";
 
         URL_TRANSFER_MONEY_DATA = HOST + "_Bet/PanelBalance_App.aspx?";
         URL_CASHOUT_MONEY_E_GAMES = HOST + "_bet/FundEGCashOut.aspx";
@@ -402,6 +403,7 @@ public class AppConstant {
         URL_STAKE = HOST + "_bet/PanelStake_App.aspx";
         URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccConfirmDate_App.aspx?role=mb&userName=";
         URL_PANEL = HOST + "_bet/panel.aspx";
+        URL_KENO_DATA = HOST + "_view/kenGame_App.aspx";
     }
 
     public static AppConstant getInstance() {

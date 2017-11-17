@@ -142,4 +142,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
         this.mOnItemLongClickListener = mOnItemLongClickListener;
         return this;
     }
+    public void setData(List<T> mDatas){
+        this.mDatas = mDatas;
+        notifyDataSetChanged();
+    }
 }

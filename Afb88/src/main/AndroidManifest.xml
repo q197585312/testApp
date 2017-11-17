@@ -48,6 +48,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".main.MainActivity" />
+        <activity android:name=".main.home.keno.KenoActivity"/>
         <activity android:name=".load.register.RegisterActivity" />
         <activity android:name="com.unkonw.testapp.training.TestActivity">
             <!--<intent-filter>

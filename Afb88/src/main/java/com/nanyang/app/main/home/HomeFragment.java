@@ -19,6 +19,7 @@ import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.gdCasino.PokerCasinoActivity;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
+import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -87,6 +88,9 @@ public class HomeFragment extends BaseFragment {
                         break;
                     case "Discount":
                         skipAct(DiscountActivity.class);
+                        break;
+                    case "Keno":
+                        skipAct(KenoActivity.class);
                         break;
                     default:
                         ToastUtils.showShort(R.string.coming_soon);
