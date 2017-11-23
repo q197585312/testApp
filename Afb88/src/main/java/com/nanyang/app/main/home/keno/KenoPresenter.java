@@ -68,11 +68,11 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoDataBean, KenoContr
     }
 
     public void getBetStatu(final String p) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getKenoBetStatuData(AppConstant.getInstance().URL_KENO_STATU_DATA+p))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getKenoBetStatuData(AppConstant.getInstance().URL_KENO_STATU_DATA + p))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String str) throws Exception {
-                        String url = AppConstant.getInstance().URL_KENO_STATU_DATA+p;
+                        String url = AppConstant.getInstance().URL_KENO_STATU_DATA + p;
                         Log.d("String", "accept: ");
                     }
                 }, new Consumer<Throwable>() {
@@ -97,12 +97,20 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoDataBean, KenoContr
 
     @Override
     public void getKenoData() {
+        if (handler == null) {
+            handler = new Handler();
+        }
+        if (refreshDataRunable == null) {
+            refreshDataRunable = new RefreshDataRunable();
+        }
         handler.post(refreshDataRunable);
     }
 
     @Override
     public void stopRefreshData() {
-        handler.removeCallbacks(refreshDataRunable);
-        handler = null;
+        if (handler != null && refreshDataRunable != null) {
+            handler.removeCallbacks(refreshDataRunable);
+            handler = null;
+        }
     }
 }

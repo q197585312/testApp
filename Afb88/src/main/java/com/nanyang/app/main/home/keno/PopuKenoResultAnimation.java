@@ -79,9 +79,6 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
     protected void onClose() {
         super.onClose();
         handler.removeCallbacks(animationRunable);
-        KenoActivity aty = (KenoActivity) context;
-        aty.isCountDown = true;
-        Log.d("onClose", "onClose: " + aty.isCountDown);
     }
 
     class AnimationRunable implements Runnable {
@@ -135,6 +132,9 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
                         tv.setTextColor(0xff167732);
                     }
                     closePopupWindow();
+                    if (resultAnimationFinish != null) {
+                        resultAnimationFinish.OnResultAnimationFinish();
+                    }
                 }
             }
 
@@ -149,8 +149,18 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
         animatorSet.start();
     }
 
+    private ResultAnimationFinish resultAnimationFinish;
+
+    public void setResultAnimationFinish(ResultAnimationFinish resultAnimationFinish) {
+        this.resultAnimationFinish = resultAnimationFinish;
+    }
+
     @Override
     protected int onSetLayoutRes() {
         return R.layout.popu_keno_resule_animation;
+    }
+
+    interface ResultAnimationFinish {
+        void OnResultAnimationFinish();
     }
 }

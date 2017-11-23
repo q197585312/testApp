@@ -185,7 +185,6 @@
                 android:layout_marginRight="8dp"
                 android:background="@mipmap/keno_time_bg"
                 android:gravity="center"
-                android:text="120"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -222,717 +221,744 @@
 
     </LinearLayout>
 
-    <LinearLayout
-        android:id="@+id/ll_bet"
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1.3"
-        android:background="@color/keno_grenn"
-        android:orientation="vertical"
-        android:padding="5dp">
+        android:clickable="true"
+        android:layout_weight="1.3">
 
         <LinearLayout
+            android:id="@+id/ll_bet"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="@color/keno_grenn"
+            android:orientation="vertical"
+            android:padding="5dp">
 
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_big"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/selector_keno_big_small_bet">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="Big"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_big"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/selector_keno_big_small_bet">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center|right"
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="Big"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_big_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1410-811"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_set_top"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1.3"
+                    android:background="@drawable/selector_keno_set_bet">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="6dp"
+                        android:text="Set"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_tie_top_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="810"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_small"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/selector_keno_big_small_bet">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="Small"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_small_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="809-210"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_upper"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/selector_keno_big_small_bet">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="Up"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_up_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1-40"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_mid"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1.3"
+                    android:background="@drawable/selector_keno_set_bet">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="6dp"
+                        android:text="Mid"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_mid_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_lower"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/selector_keno_big_small_bet">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="Down"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_down_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="41-80"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_odd"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/selector_keno_big_small_bet">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="Odd"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_odd_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1,3,5,7,9"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_set_bottom"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1.3"
+                    android:background="@drawable/selector_keno_set_bet">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="6dp"
+                        android:text="Set"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="6dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_tie_bottom_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_even"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/selector_keno_big_small_bet">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="Even"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_even_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0,2,4,6,8"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:orientation="horizontal">
+
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_single"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="2"
+                    android:background="@drawable/selector_keno_big_small_bet">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="Single"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_single_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="1,3,5,7,9"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+
+                <com.nanyang.app.Utils.ChildPressdRelativeLayout
+                    android:id="@+id/rl_double"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="2"
+                    android:background="@drawable/selector_keno_big_small_bet">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="10dp"
+                        android:text="Double"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="15sp" />
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="10dp"
+                        android:gravity="center|right"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_double_odds"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text=""
+                            android:textColor="@color/keno_text_color2"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="0,2,4,6,8"
+                            android:textColor="@color/keno_text_color1"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1.1"
+                android:orientation="horizontal">
+
+                <com.nanyang.app.Utils.ChildPressdLinearLayout
+                    android:id="@+id/ll_gold"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_keno_gold_bet"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_big_odds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Gold"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_gold_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1410-811"
+                        android:text="210-695"
                         android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+                        android:textSize="10sp" />
+                </com.nanyang.app.Utils.ChildPressdLinearLayout>
 
 
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_set_top"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1.3"
-                android:background="@drawable/selector_keno_set_bet">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="6dp"
-                    android:text="Set"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center|right"
+                <com.nanyang.app.Utils.ChildPressdLinearLayout
+                    android:id="@+id/ll_wood"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_keno_gold_bet"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_tie_top_odds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Wood"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_wood_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="810"
+                        android:text="696-763"
                         android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+                        android:textSize="10sp" />
+                </com.nanyang.app.Utils.ChildPressdLinearLayout>
 
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_small"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/selector_keno_big_small_bet">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="Small"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center|right"
+                <com.nanyang.app.Utils.ChildPressdLinearLayout
+                    android:id="@+id/ll_water"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_keno_gold_bet"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_small_odds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Water"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_water_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text=""
                         android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
+                        android:textSize="10sp"
                         android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="809-210"
+                        android:text="764-855"
                         android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
+                        android:textSize="10sp" />
+                </com.nanyang.app.Utils.ChildPressdLinearLayout>
 
+                <com.nanyang.app.Utils.ChildPressdLinearLayout
+                    android:id="@+id/ll_fire"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_keno_gold_bet"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Fire"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_fire_odds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/keno_text_color2"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="856-923"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="10sp" />
+                </com.nanyang.app.Utils.ChildPressdLinearLayout>
+
+                <com.nanyang.app.Utils.ChildPressdLinearLayout
+                    android:id="@+id/ll_soil"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/selector_keno_gold_bet"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Soil"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_soil_odds"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=""
+                        android:textColor="@color/keno_text_color2"
+                        android:textSize="10sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="924-1410"
+                        android:textColor="@color/keno_text_color1"
+                        android:textSize="10sp" />
+                </com.nanyang.app.Utils.ChildPressdLinearLayout>
+            </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_drawing_close"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
+            android:layout_height="match_parent"
+            android:background="#90000000"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:visibility="gone">
 
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_upper"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/selector_keno_big_small_bet">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="Up"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center|right"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_up_odds"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1-40"
-                        android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
-
-
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_mid"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1.3"
-                android:background="@drawable/selector_keno_set_bet">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="6dp"
-                    android:text="Mid"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center|right"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_mid_odds"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
-
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_lower"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/selector_keno_big_small_bet">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="Down"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center|right"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_down_odds"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="41-80"
-                        android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
-
+            <TextView
+                android:id="@+id/tv_drawing_close"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="DRAWIN..."
+                android:textColor="@color/google_yellow"
+                android:textSize="25sp"
+                android:textStyle="bold" />
         </LinearLayout>
+    </RelativeLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_odd"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/selector_keno_big_small_bet">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="Odd"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center|right"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_odd_odds"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1,3,5,7,9"
-                        android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
-
-
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_set_bottom"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1.3"
-                android:background="@drawable/selector_keno_set_bet">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="6dp"
-                    android:text="Set"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="6dp"
-                    android:gravity="center|right"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_tie_bottom_odds"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
-
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_even"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/selector_keno_big_small_bet">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="Even"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center|right"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_even_odds"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0,2,4,6,8"
-                        android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1"
-            android:orientation="horizontal">
-
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_single"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="2"
-                android:background="@drawable/selector_keno_big_small_bet">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="Single"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center|right"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_single_odds"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="1,3,5,7,9"
-                        android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
-
-
-            <com.nanyang.app.Utils.ChildPressdRelativeLayout
-                android:id="@+id/rl_double"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="2"
-                android:background="@drawable/selector_keno_big_small_bet">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:text="Double"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="15sp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginRight="10dp"
-                    android:gravity="center|right"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_double_odds"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text=""
-                        android:textColor="@color/keno_text_color2"
-                        android:textSize="13sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="0,2,4,6,8"
-                        android:textColor="@color/keno_text_color1"
-                        android:textSize="11sp" />
-                </LinearLayout>
-            </com.nanyang.app.Utils.ChildPressdRelativeLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="5dp"
-            android:layout_weight="1.1"
-            android:orientation="horizontal">
-
-            <com.nanyang.app.Utils.ChildPressdLinearLayout
-                android:id="@+id/ll_gold"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/selector_keno_gold_bet"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Gold"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_gold_odds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/keno_text_color2"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="210-695"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="10sp" />
-            </com.nanyang.app.Utils.ChildPressdLinearLayout>
-
-
-            <com.nanyang.app.Utils.ChildPressdLinearLayout
-                android:id="@+id/ll_wood"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/selector_keno_gold_bet"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Wood"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_wood_odds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/keno_text_color2"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="696-763"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="10sp" />
-            </com.nanyang.app.Utils.ChildPressdLinearLayout>
-
-            <com.nanyang.app.Utils.ChildPressdLinearLayout
-                android:id="@+id/ll_water"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/selector_keno_gold_bet"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Water"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_water_odds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/keno_text_color2"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="764-855"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="10sp" />
-            </com.nanyang.app.Utils.ChildPressdLinearLayout>
-
-            <com.nanyang.app.Utils.ChildPressdLinearLayout
-                android:id="@+id/ll_fire"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginRight="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/selector_keno_gold_bet"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Fire"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_fire_odds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/keno_text_color2"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="856-923"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="10sp" />
-            </com.nanyang.app.Utils.ChildPressdLinearLayout>
-
-            <com.nanyang.app.Utils.ChildPressdLinearLayout
-                android:id="@+id/ll_soil"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/selector_keno_gold_bet"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Soil"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:id="@+id/tv_soil_odds"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text=""
-                    android:textColor="@color/keno_text_color2"
-                    android:textSize="10sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="924-1410"
-                    android:textColor="@color/keno_text_color1"
-                    android:textSize="10sp" />
-            </com.nanyang.app.Utils.ChildPressdLinearLayout>
-        </LinearLayout>
-    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -940,10 +966,10 @@
         android:background="@color/keno_deep_green" />
 
     <LinearLayout
+        android:id="@+id/ll_bet1"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/ll_bet1"
         android:background="@color/keno_grenn"
         android:orientation="vertical">
 

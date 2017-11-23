@@ -7,11 +7,11 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
@@ -97,8 +97,13 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     TextView tv_result;
     @Bind(R.id.ll_bet1)
     LinearLayout ll_bet1;
+    @Bind(R.id.ll_drawing_close)
+    LinearLayout ll_drawing_close;
+    @Bind(R.id.tv_drawing_close)
+    TextView tv_drawing_close;
     private CountDownTimer timer;
     private PopuKenoResult popuKenoResult;
+    private PopuKenoResultAnimation popuKenoResultAnimation;
     public final int CHINA = 0;
     public final int CANADA1 = 1;
     public final int CANADA2 = 2;
@@ -259,6 +264,10 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
         presenter.stopRefreshData();
     }
 
@@ -270,8 +279,6 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         presenter.getKenoData();
     }
 
-    PopuKenoResultAnimation popuKenoResultAnimation;
-
     @Override
     public void initView() {
         super.initView();
@@ -282,10 +289,25 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         elementlList = new ArrayList<>();
         singleDoubleList = new ArrayList<>();
         typeTvList = Arrays.asList(tv_china, tv_canada1, tv_canada2, tv_slovakia, tv_australia);
-        popuKenoResultAnimation = new PopuKenoResultAnimation(mContext, ll_result,
-                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         initViewPager();
         initAdapter();
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        popuKenoResultAnimation = new PopuKenoResultAnimation(mContext, ll_result,
+                LinearLayout.LayoutParams.MATCH_PARENT, (ll_bet.getHeight() + ll_bet1.getHeight() + AfbUtils.dp2px(mContext, 5)));
+        popuKenoResultAnimation.setResultAnimationFinish(new PopuKenoResultAnimation.ResultAnimationFinish() {
+            @Override
+            public void OnResultAnimationFinish() {
+                isNeedInitCountDown = true;
+                presenter.getKenoData();
+                isCanChangeBet = true;
+                ll_drawing_close.setVisibility(View.GONE);
+                ll_drawing_close.setClickable(false);
+            }
+        });
     }
 
     TextView tv;
@@ -495,32 +517,59 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         }
     }
 
-    public boolean isCountDown = true;
+    public boolean isNeedInitCountDown = true;//是否需要初始化倒计时
+    public boolean isCountDown = false;//是否在倒计时
+    public boolean isCanChangeBet = true;//是否可以切换下注类型
 
     private void initCountDown(KenoDataBean.PublicDataBean.CompanyDataBean bean) {
-        long countDownTime = AfbUtils.diffTime(bean.getClosing_date());
-        if (isCountDown) {
-            isCountDown = false;
+        if (bean.getResult_id() == null || bean.getResult_id().size() == 0) {
             if (timer != null) {
                 timer.cancel();
                 timer = null;
             }
+            tv_drawing_close.setText("CLOSE");
+            if (ll_drawing_close.getVisibility() == View.GONE) {
+                ll_drawing_close.setVisibility(View.VISIBLE);
+                ll_drawing_close.setClickable(true);
+            }
+            tv_count_down.setText("0");
+            return;
+        }
+        long countDownTime = AfbUtils.diffTime(bean.getClosing_date());
+        if (isNeedInitCountDown) {
+            isNeedInitCountDown = false;
+            if (timer != null) {
+                timer.cancel();
+                timer = null;
+            }
+            isCountDown = true;
             timer = new CountDownTimer(countDownTime, 1000) {
                 @Override
                 public void onTick(long millisUntilFinished) {
-                    tv_count_down.setText(millisUntilFinished / 1000 + "");
+                    if (tv_count_down != null) {
+                        tv_count_down.setText(millisUntilFinished / 1000 + "");
+                    }
+                    ll_drawing_close.setVisibility(View.GONE);
+                    ll_drawing_close.setClickable(false);
                 }
 
                 @Override
                 public void onFinish() {
+                    tv_drawing_close.setText("DRAWING...");
+                    if (ll_drawing_close.getVisibility() == View.GONE) {
+                        ll_drawing_close.setVisibility(View.VISIBLE);
+                        ll_drawing_close.setClickable(true);
+                    }
+                    isCountDown = false;
                     tv_count_down.setText("0");
                 }
             };
             timer.start();
         }
-        Log.d("initCountDown", bean.getResult_id().get(0).getId() + "----" + bean.getDraw_value() + "----" + bean.getDraw2_value());
         if (bean.getDraw2_value().equals(bean.getResult_id().get(0).getId()) &&
-                tv_count_down.getText().toString().equals("0") && !popuKenoResultAnimation.isShowing()) {
+                !isCountDown && !popuKenoResultAnimation.isShowing()) {
+            isCanChangeBet = false;
+            presenter.stopRefreshData();
             popuKenoResultAnimation.showPopupDownWindowWihte(0, 0);
             popuKenoResultAnimation.startAction(getResultList(bean));
         }
@@ -549,36 +598,22 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_china:
-                currentType = CHINA;
-                isCountDown = true;
-                updateDataType(currentType);
-                vp_way.setCurrentItem(0, false);
+                changBetType(CHINA);
                 break;
             case R.id.tv_canada1:
-                currentType = CANADA1;
-                isCountDown = true;
-                updateDataType(currentType);
-                vp_way.setCurrentItem(0, false);
+                changBetType(CANADA1);
                 break;
             case R.id.tv_canada2:
-                currentType = CANADA2;
-                isCountDown = true;
-                updateDataType(currentType);
-                vp_way.setCurrentItem(0, false);
+                changBetType(CANADA2);
                 break;
             case R.id.tv_slovakia:
-                currentType = SLOVAKIA;
-                isCountDown = true;
-                updateDataType(currentType);
-                vp_way.setCurrentItem(0, false);
+                changBetType(SLOVAKIA);
                 break;
             case R.id.tv_australia:
-                currentType = AUSTRALIA;
-                isCountDown = true;
-                updateDataType(currentType);
-                vp_way.setCurrentItem(0, false);
+                changBetType(AUSTRALIA);
                 break;
             case R.id.rl_big:
+                ToastUtils.showShort("aaa");
                 break;
             case R.id.rl_small:
                 break;
@@ -637,6 +672,15 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                     vp_way.setCurrentItem(vp_way.getCurrentItem() + 1, true);
                 }
                 break;
+        }
+    }
+
+    private void changBetType(int type) {
+        if (isCanChangeBet) {
+            currentType = type;
+            isNeedInitCountDown = true;
+            updateDataType(currentType);
+            vp_way.setCurrentItem(0, false);
         }
     }
 
