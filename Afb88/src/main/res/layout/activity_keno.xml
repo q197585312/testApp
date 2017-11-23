@@ -205,11 +205,13 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/img_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@mipmap/keno_result" />
+                android:background="@mipmap/keno_result_white" />
 
             <TextView
+                android:id="@+id/tv_result"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
@@ -221,6 +223,7 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/ll_bet"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1.3"
@@ -263,7 +266,7 @@
                         android:id="@+id/tv_big_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -306,9 +309,10 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_tie_top_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -351,7 +355,7 @@
                         android:id="@+id/tv_small_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -403,7 +407,7 @@
                         android:id="@+id/tv_up_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -446,9 +450,10 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_mid_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -492,7 +497,7 @@
                         android:id="@+id/tv_down_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -544,7 +549,7 @@
                         android:id="@+id/tv_odd_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -587,9 +592,10 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_tie_bottom_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -631,7 +637,7 @@
                         android:id="@+id/tv_even_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -683,7 +689,7 @@
                         android:id="@+id/tv_single_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -728,7 +734,7 @@
                         android:id="@+id/tv_double_odds"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="1.95"
+                        android:text=""
                         android:textColor="@color/keno_text_color2"
                         android:textSize="13sp"
                         android:textStyle="bold" />
@@ -772,7 +778,7 @@
                     android:id="@+id/tv_gold_odds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.92"
+                    android:text=""
                     android:textColor="@color/keno_text_color2"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -809,7 +815,7 @@
                     android:id="@+id/tv_wood_odds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.92"
+                    android:text=""
                     android:textColor="@color/keno_text_color2"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -844,7 +850,7 @@
                     android:id="@+id/tv_water_odds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.92"
+                    android:text=""
                     android:textColor="@color/keno_text_color2"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -868,7 +874,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_fire_odds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Fire"
@@ -877,9 +882,10 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_fire_odds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.92"
+                    android:text=""
                     android:textColor="@color/keno_text_color2"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -902,7 +908,6 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:id="@+id/tv_soil_odds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Soil"
@@ -911,9 +916,10 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/tv_soil_odds"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1.92"
+                    android:text=""
                     android:textColor="@color/keno_text_color2"
                     android:textSize="10sp"
                     android:textStyle="bold" />
@@ -937,7 +943,7 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/ll_test"
+        android:id="@+id/ll_bet1"
         android:background="@color/keno_grenn"
         android:orientation="vertical">
 

@@ -1,5 +1,8 @@
 package com.nanyang.app.main.home.keno;
 
+import android.os.Handler;
+import android.util.Log;
+
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
@@ -18,6 +21,9 @@ import io.reactivex.functions.Consumer;
  */
 
 public class KenoPresenter extends BaseRetrofitPresenter<KenoDataBean, KenoContract.View> implements KenoContract.Presenter {
+    private Handler handler;
+    private long countdownTime = 5000;
+    private RefreshDataRunable refreshDataRunable;
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -26,16 +32,48 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoDataBean, KenoContr
      */
     public KenoPresenter(KenoContract.View view) {
         super(view);
+        handler = new Handler();
+        refreshDataRunable = new RefreshDataRunable();
     }
 
-    @Override
-    public void getKenoData() {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getKenoData(AppConstant.getInstance().URL_KENO_DATA))
-                .subscribe(new Consumer<KenoDataBean>() {
+    class RefreshDataRunable implements Runnable {
+        @Override
+        public void run() {
+            Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getKenoData(AppConstant.getInstance().URL_KENO_DATA))
+                    .subscribe(new Consumer<KenoDataBean>() {
+                        @Override
+                        public void accept(KenoDataBean kenoDataBean) throws Exception {
+                            baseView.onGetData(kenoDataBean);
+                        }
+                    }, new Consumer<Throwable>() {
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            ToastUtils.showShort(throwable.toString());
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Action() {
+                        @Override
+                        public void run() throws Exception {
+
+                        }
+                    }, new Consumer<Subscription>() {
+                        @Override
+                        public void accept(Subscription subscription) throws Exception {
+                            subscription.request(Integer.MAX_VALUE);
+                        }
+                    });
+            mCompositeSubscription.add(d);
+            handler.postDelayed(this, countdownTime);
+        }
+    }
+
+    public void getBetStatu(final String p) {
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getKenoBetStatuData(AppConstant.getInstance().URL_KENO_STATU_DATA+p))
+                .subscribe(new Consumer<String>() {
                     @Override
-                    public void accept(KenoDataBean kenoDataBean) throws Exception {
-                        baseView.hideLoadingDialog();
-                        baseView.onGetData(kenoDataBean);
+                    public void accept(String str) throws Exception {
+                        String url = AppConstant.getInstance().URL_KENO_STATU_DATA+p;
+                        Log.d("String", "accept: ");
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -51,10 +89,20 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoDataBean, KenoContr
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
                         subscription.request(Integer.MAX_VALUE);
                     }
                 });
         mCompositeSubscription.add(d);
+    }
+
+    @Override
+    public void getKenoData() {
+        handler.post(refreshDataRunable);
+    }
+
+    @Override
+    public void stopRefreshData() {
+        handler.removeCallbacks(refreshDataRunable);
+        handler = null;
     }
 }

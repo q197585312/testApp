@@ -15,5 +15,7 @@ public class KenoContract {
 
     interface Presenter extends IBasePresenter {
         void getKenoData();
+        void stopRefreshData();
+        void getBetStatu(String s);
     }
 }

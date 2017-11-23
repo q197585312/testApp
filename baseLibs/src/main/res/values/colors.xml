@@ -43,12 +43,11 @@
     <color name="brown">#5d4037</color>
 
 
-
     <!--orange-->
-<color name="yellow_button">#feca34</color>
-<color name="yellow_gold">#FFF9F385</color>
+    <color name="yellow_button">#feca34</color>
+    <color name="yellow_gold">#FFF9F385</color>
 
-<color name="yellow_light_bg">#fdf1b5</color>
+    <color name="yellow_light_bg">#fdf1b5</color>
 
 
     <!--green-->
@@ -72,15 +71,14 @@
 
     <!--other-->
     <color name="background_tab_pressed">#6633B5E5</color>
-
-
-
     <color name="google_blue">#4285F4</color>
     <color name="google_red">#EA4335</color>
     <color name="google_green">#34A853</color>
     <color name="google_yellow">#FBBC05</color>
-
-
     <color name="default_shadow_color">#88757575</color>
     <color name="default_fill_color">#ffffff</color>
+    <color name="keno_result_green">#1FA147</color>
+    <color name="keno_result_line">#CCCCCC</color>
+    <color name="keno_result_total_bg">#D1E4D0</color>
+    <color name="keno_result_total_word_bg">#FF6C12</color>
 </resources>

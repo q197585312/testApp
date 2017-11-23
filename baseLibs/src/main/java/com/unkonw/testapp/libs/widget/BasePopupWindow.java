@@ -19,7 +19,7 @@ import butterknife.ButterKnife;
 public abstract class BasePopupWindow {
     protected Context context;
     private LayoutInflater inflater;
-    private PopupWindow popWindow;
+    public PopupWindow popWindow;
     protected int width;
     protected int height;
 
@@ -86,7 +86,6 @@ public abstract class BasePopupWindow {
         popWindow.setOutsideTouchable(true);
         popWindow.setBackgroundDrawable(new BitmapDrawable());
         popWindow.setOnDismissListener(new popDismissListener());
-        
     }
 
     private void setBackgroundAttr(float f) {
@@ -126,7 +125,10 @@ public abstract class BasePopupWindow {
         setBackgroundAttr(trans);
         popWindow.showAsDropDown(v,x,y);
     }
-
+    public void showPopupDownWindowWihte(int x,int y) {
+        closePopupWindow();
+        popWindow.showAsDropDown(v,x,y);
+    }
     public void showPopupGravityWindow(int gravity,int offsetX,int offsetY) {
         closePopupWindow();
 

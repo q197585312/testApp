@@ -2,16 +2,19 @@ package com.nanyang.app.main.home.keno;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.MyViewPagerAdapter;
@@ -76,19 +79,33 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     TextView tv_fire_odds;
     @Bind(R.id.tv_soil_odds)
     TextView tv_soil_odds;
-    @Bind(R.id.img_left)
-    ImageView img_left;
-    @Bind(R.id.img_right)
-    ImageView img_right;
     @Bind(R.id.tv_type)
     TextView tv_type;
     @Bind(R.id.vp_way)
     ViewPager vp_way;
+    @Bind(R.id.tv_tie_top_odds)
+    TextView tv_tie_top_odds;
+    @Bind(R.id.tv_mid_odds)
+    TextView tv_mid_odds;
+    @Bind(R.id.tv_tie_bottom_odds)
+    TextView tv_tie_bottom_odds;
+    @Bind(R.id.ll_bet)
+    LinearLayout ll_bet;
+    @Bind(R.id.img_result)
+    ImageView img_result;
+    @Bind(R.id.tv_result)
+    TextView tv_result;
+    @Bind(R.id.ll_bet1)
+    LinearLayout ll_bet1;
+    private CountDownTimer timer;
+    private PopuKenoResult popuKenoResult;
     public final int CHINA = 0;
     public final int CANADA1 = 1;
     public final int CANADA2 = 2;
     public final int SLOVAKIA = 3;
     public final int AUSTRALIA = 4;
+    public int currentType = 0;
+    MyViewPagerAdapter myViewPagerAdapter;
     List<TextView> typeTvList;
     KenoDataBean dataBean;
     KenoDataBean.PublicDataBean.CompanyDataBean chinaBean;
@@ -96,6 +113,11 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     KenoDataBean.PublicDataBean.CompanyDataBean canada2Bean;
     KenoDataBean.PublicDataBean.CompanyDataBean slovakiaBean;
     KenoDataBean.PublicDataBean.CompanyDataBean australiaBean;
+    List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> chinaBetIdBean;
+    List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> canada1BetIdBean;
+    List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> canada2BetIdBean;
+    List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> slovakiaBetIdBean;
+    List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> australiaBetIdBean;
     BaseRecyclerAdapter<String> adapterBigSmall;
     BaseRecyclerAdapter<String> adapterUpDown;
     BaseRecyclerAdapter<String> adapterOddEven;
@@ -125,63 +147,98 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         canada2Bean = data.getPublicData().get(0).getCompanyData().get(2);
         slovakiaBean = data.getPublicData().get(0).getCompanyData().get(3);
         australiaBean = data.getPublicData().get(0).getCompanyData().get(4);
-        updateDataType(CHINA, tv_china);
+        chinaBetIdBean = chinaBean.getBet_id();
+        canada1BetIdBean = canada1Bean.getBet_id();
+        canada2BetIdBean = canada2Bean.getBet_id();
+        slovakiaBetIdBean = slovakiaBean.getBet_id();
+        australiaBetIdBean = australiaBean.getBet_id();
+        updateDataType(currentType);
     }
+
+    private BaseRecyclerAdapter<String> getBetRcAdapter(List<String> list, final String type) {
+        return new BaseRecyclerAdapter<String>(mContext, list, R.layout.item_keno_bet) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, String item) {
+                TextView tv_content = holder.getView(R.id.tv_content);
+                tv_content.setText(item);
+                if (item.equals("B")) {
+                    tv_content.setBackgroundResource(R.mipmap.keno_red_ball);
+                } else if (item.equals("S")) {
+                    tv_content.setBackgroundResource(R.mipmap.keno_blue_ball);
+                } else if (item.equals("U")) {
+                    tv_content.setBackgroundResource(R.mipmap.keno_blue_ball);
+                } else if (item.equals("D")) {
+                    tv_content.setBackgroundResource(R.mipmap.keno_green_ball);
+                } else if (item.equals("O")) {
+                    tv_content.setBackgroundResource(R.mipmap.keno_blue_ball);
+                } else if (item.equals("T")) {
+                    switch (type) {
+                        case upDown:
+                            tv_content.setBackgroundResource(R.mipmap.keno_red_ball);
+                            break;
+                        case oddEven:
+                            tv_content.setBackgroundResource(R.mipmap.keno_green_ball);
+                            break;
+                        default:
+                            tv_content.setBackgroundResource(R.mipmap.keno_red_ball);
+                            break;
+                    }
+                } else if (item.equals("E")) {
+                    switch (type) {
+                        case oddEven:
+                        case singleDouble:
+                            tv_content.setBackgroundResource(R.mipmap.keno_red_ball);
+                            break;
+                        case elementl:
+                            tv_content.setBackgroundResource(R.mipmap.keno_brown_ball);
+                            break;
+                        default:
+                            tv_content.setBackgroundResource(R.mipmap.keno_green_ball);
+                            break;
+                    }
+                } else if (item.equals("A")) {
+                    tv_content.setText("W");
+                    tv_content.setBackgroundResource(R.mipmap.keno_green_ball);
+                } else if (item.equals("F")) {
+                    tv_content.setBackgroundResource(R.mipmap.keno_red_ball);
+                } else if (item.equals("W")) {
+                    tv_content.setBackgroundResource(R.mipmap.keno_blue_ball);
+                } else if (item.equals("G")) {
+                    tv_content.setBackgroundResource(R.mipmap.keno_yellow_ball);
+                }
+
+            }
+        };
+    }
+
+    private final String bigSmall = "bigSmall";
+    private final String upDown = "upDown";
+    private final String oddEven = "oddEven";
+    private final String singleDouble = "singleDouble";
+    private final String elementl = "elementl";
 
     private void initAdapter() {
-        GridLayoutManager layoutManager1 = new GridLayoutManager(mContext, 7);//设置为一个3列的纵向网格布局
-        GridLayoutManager layoutManager2 = new GridLayoutManager(mContext, 7);//设置为一个3列的纵向网格布局
-        GridLayoutManager layoutManager3 = new GridLayoutManager(mContext, 7);//设置为一个3列的纵向网格布局
-        GridLayoutManager layoutManager4 = new GridLayoutManager(mContext, 7);//设置为一个3列的纵向网格布局
-        GridLayoutManager layoutManager5 = new GridLayoutManager(mContext, 7);//设置为一个3列的纵向网格布局
-        adapterBigSmall = new BaseRecyclerAdapter<String>(mContext, bigSmallList, R.layout.item_keno_bet) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                TextView tv_content = holder.getView(R.id.tv_content);
-                tv_content.setText(item);
-            }
-        };
-        bigSmallRc.setLayoutManager(layoutManager1);
+        adapterBigSmall = getBetRcAdapter(bigSmallList, bigSmall);
+        adapterUpDown = getBetRcAdapter(upDownList, upDown);
+        adapterOddEven = getBetRcAdapter(oddEvenList, oddEven);
+        adapterSingleDouble = getBetRcAdapter(singleDoubleList, singleDouble);
+        adapterElement = getBetRcAdapter(elementlList, elementl);
         bigSmallRc.setAdapter(adapterBigSmall);
-        adapterUpDown = new BaseRecyclerAdapter<String>(mContext, upDownList, R.layout.item_keno_bet) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                TextView tv_content = holder.getView(R.id.tv_content);
-                tv_content.setText(item);
-            }
-        };
-        upDownRc.setLayoutManager(layoutManager2);
         upDownRc.setAdapter(adapterUpDown);
-        adapterOddEven = new BaseRecyclerAdapter<String>(mContext, oddEvenList, R.layout.item_keno_bet) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                TextView tv_content = holder.getView(R.id.tv_content);
-                tv_content.setText(item);
-            }
-        };
-        oddEvenRc.setLayoutManager(layoutManager3);
         oddEvenRc.setAdapter(adapterOddEven);
-        adapterSingleDouble = new BaseRecyclerAdapter<String>(mContext, singleDoubleList, R.layout.item_keno_bet) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                TextView tv_content = holder.getView(R.id.tv_content);
-                tv_content.setText(item);
-            }
-        };
-        singleDoubleRc.setLayoutManager(layoutManager4);
         singleDoubleRc.setAdapter(adapterSingleDouble);
-        adapterElement = new BaseRecyclerAdapter<String>(mContext, elementlList, R.layout.item_keno_bet) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                TextView tv_content = holder.getView(R.id.tv_content);
-                tv_content.setText(item);
-            }
-        };
-        elementlRc.setLayoutManager(layoutManager5);
         elementlRc.setAdapter(adapterElement);
+        setLayoutManager(bigSmallRc);
+        setLayoutManager(upDownRc);
+        setLayoutManager(oddEvenRc);
+        setLayoutManager(singleDoubleRc);
+        setLayoutManager(elementlRc);
     }
 
-    MyViewPagerAdapter myViewPagerAdapter;
+    private void setLayoutManager(RecyclerView rc) {
+        GridLayoutManager layoutManager = new GridLayoutManager(mContext, 7);
+        rc.setLayoutManager(layoutManager);
+    }
 
     private void initViewPager() {
         bigSmallRc = (RecyclerView) inflater.inflate(R.layout.item_rc, null);
@@ -200,12 +257,20 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        presenter.stopRefreshData();
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keno);
         createPresenter(new KenoPresenter(this));
         presenter.getKenoData();
     }
+
+    PopuKenoResultAnimation popuKenoResultAnimation;
 
     @Override
     public void initView() {
@@ -217,13 +282,37 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         elementlList = new ArrayList<>();
         singleDoubleList = new ArrayList<>();
         typeTvList = Arrays.asList(tv_china, tv_canada1, tv_canada2, tv_slovakia, tv_australia);
+        popuKenoResultAnimation = new PopuKenoResultAnimation(mContext, ll_result,
+                LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         initViewPager();
         initAdapter();
     }
 
-    private void updateDataType(int type, TextView tv) {
+    TextView tv;
+
+    private void updateDataType(int type) {
+//        presenter.getBetStatu("cn=CHINA" + "&b=KEN"+"&wd="+"2017-11-23|14:58:30"+
+//                "&draw="+chinaBean.getDraw_value()+"&id="+chinaBean.getOdds_id()+"&dt="+chinaBean.getMatchDate_value()+
+//                "&t=1"+"&v=1.95");
         for (int i = 0; i < typeTvList.size(); i++) {
             TextView t = typeTvList.get(i);
+            switch (type) {
+                case CHINA:
+                    tv = tv_china;
+                    break;
+                case CANADA1:
+                    tv = tv_canada1;
+                    break;
+                case CANADA2:
+                    tv = tv_canada2;
+                    break;
+                case SLOVAKIA:
+                    tv = tv_slovakia;
+                    break;
+                case AUSTRALIA:
+                    tv = tv_australia;
+                    break;
+            }
             if (tv.equals(t)) {
                 t.setBackgroundResource(R.mipmap.keno_tab_select_bg);
                 t.setTextColor(Color.WHITE);
@@ -348,8 +437,104 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
             drawTime = bean.getMatchDate2_value();
         }
         tv_draw_time.setText(drawTime);
-        tv_count_down.setText("120");
-//        tv_big_odds.setText();
+        initCountDown(bean);
+        List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> betIdBeanList = bean.getBet_id();
+        for (int i = 0; i < betIdBeanList.size(); i++) {
+            String betId = betIdBeanList.get(i).getId();
+            String odds = betIdBeanList.get(i).getValue();
+            switch (betId) {
+                case "1":
+                    tv_big_odds.setText(odds);
+                    break;
+                case "15":
+                    tv_tie_top_odds.setText(odds);
+                    break;
+                case "2":
+                    tv_small_odds.setText(odds);
+                    break;
+                case "7":
+                    tv_up_odds.setText(odds);
+                    break;
+                case "8":
+                    tv_mid_odds.setText(odds);
+                    break;
+                case "9":
+                    tv_down_odds.setText(odds);
+                    break;
+                case "3":
+                    tv_odd_odds.setText(odds);
+                    break;
+                case "16":
+                    tv_tie_bottom_odds.setText(odds);
+                    break;
+                case "4":
+                    tv_even_odds.setText(odds);
+                    break;
+                case "5":
+                    tv_single_odds.setText(odds);
+                    break;
+                case "6":
+                    tv_double_odds.setText(odds);
+                    break;
+                case "10":
+                    tv_gold_odds.setText(odds);
+                    break;
+                case "11":
+                    tv_wood_odds.setText(odds);
+                    break;
+                case "12":
+                    tv_water_odds.setText(odds);
+                    break;
+                case "13":
+                    tv_fire_odds.setText(odds);
+                    break;
+                case "14":
+                    tv_soil_odds.setText(odds);
+                    break;
+            }
+        }
+    }
+
+    public boolean isCountDown = true;
+
+    private void initCountDown(KenoDataBean.PublicDataBean.CompanyDataBean bean) {
+        long countDownTime = AfbUtils.diffTime(bean.getClosing_date());
+        if (isCountDown) {
+            isCountDown = false;
+            if (timer != null) {
+                timer.cancel();
+                timer = null;
+            }
+            timer = new CountDownTimer(countDownTime, 1000) {
+                @Override
+                public void onTick(long millisUntilFinished) {
+                    tv_count_down.setText(millisUntilFinished / 1000 + "");
+                }
+
+                @Override
+                public void onFinish() {
+                    tv_count_down.setText("0");
+                }
+            };
+            timer.start();
+        }
+        Log.d("initCountDown", bean.getResult_id().get(0).getId() + "----" + bean.getDraw_value() + "----" + bean.getDraw2_value());
+        if (bean.getDraw2_value().equals(bean.getResult_id().get(0).getId()) &&
+                tv_count_down.getText().toString().equals("0") && !popuKenoResultAnimation.isShowing()) {
+            popuKenoResultAnimation.showPopupDownWindowWihte(0, 0);
+            popuKenoResultAnimation.startAction(getResultList(bean));
+        }
+    }
+
+
+    private List<String> getResultList(KenoDataBean.PublicDataBean.CompanyDataBean bean) {
+        String result = bean.getResult_id().get(0).getValue().split("\\|")[0];
+        List<String> list = new ArrayList<>();
+        String[] resultArr = result.split(" ");
+        for (int i = 0; i < resultArr.length; i++) {
+            list.add(resultArr[i]);
+        }
+        return list;
     }
 
     @Override
@@ -359,23 +544,39 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
 
     @OnClick({R.id.rl_big, R.id.rl_small, R.id.rl_upper, R.id.rl_lower, R.id.rl_odd, R.id.rl_even, R.id.rl_single, R.id.rl_double,
             R.id.rl_set_top, R.id.rl_set_bottom, R.id.rl_mid, R.id.ll_gold, R.id.ll_wood, R.id.ll_water, R.id.ll_fire, R.id.ll_soil,
-            R.id.tv_china, R.id.tv_canada1, R.id.tv_canada2, R.id.tv_slovakia, R.id.tv_australia, R.id.ll_result})
+            R.id.tv_china, R.id.tv_canada1, R.id.tv_canada2, R.id.tv_slovakia, R.id.tv_australia, R.id.ll_result, R.id.img_left,
+            R.id.img_right})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_china:
-                updateDataType(CHINA, (TextView) view);
+                currentType = CHINA;
+                isCountDown = true;
+                updateDataType(currentType);
+                vp_way.setCurrentItem(0, false);
                 break;
             case R.id.tv_canada1:
-                updateDataType(CANADA1, (TextView) view);
+                currentType = CANADA1;
+                isCountDown = true;
+                updateDataType(currentType);
+                vp_way.setCurrentItem(0, false);
                 break;
             case R.id.tv_canada2:
-                updateDataType(CANADA2, (TextView) view);
+                currentType = CANADA2;
+                isCountDown = true;
+                updateDataType(currentType);
+                vp_way.setCurrentItem(0, false);
                 break;
             case R.id.tv_slovakia:
-                updateDataType(SLOVAKIA, (TextView) view);
+                currentType = SLOVAKIA;
+                isCountDown = true;
+                updateDataType(currentType);
+                vp_way.setCurrentItem(0, false);
                 break;
             case R.id.tv_australia:
-                updateDataType(AUSTRALIA, (TextView) view);
+                currentType = AUSTRALIA;
+                isCountDown = true;
+                updateDataType(currentType);
+                vp_way.setCurrentItem(0, false);
                 break;
             case R.id.rl_big:
                 break;
@@ -411,7 +612,48 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                 break;
             case R.id.ll_result:
                 //点击出历史结果
+                int h = ll_bet.getHeight() - findViewById(R.id.rl_single).getHeight() - findViewById(R.id.ll_gold).getHeight()
+                        - AfbUtils.dp2px(mContext, 12);
+                popuKenoResult = new PopuKenoResult(getCurrentTypeData().getResult_id(), mContext, ll_result,
+                        LinearLayout.LayoutParams.MATCH_PARENT, h);
+                popuKenoResult.showPopupDownWindowWihte(0, 0);
+                if (popuKenoResult.isShowing()) {
+                    ll_result.setBackgroundColor(Color.WHITE);
+                    img_result.setBackgroundResource(R.mipmap.keno_result_green);
+                    tv_result.setTextColor(0xff3BAB5C);
+                }
                 break;
+            case R.id.img_left:
+                if (vp_way.getCurrentItem() == 0) {
+                    return;
+                } else {
+                    vp_way.setCurrentItem(vp_way.getCurrentItem() - 1, true);
+                }
+                break;
+            case R.id.img_right:
+                if (vp_way.getCurrentItem() == myViewPagerAdapter.getCount() - 1) {
+                    return;
+                } else {
+                    vp_way.setCurrentItem(vp_way.getCurrentItem() + 1, true);
+                }
+                break;
+        }
+    }
+
+    private KenoDataBean.PublicDataBean.CompanyDataBean getCurrentTypeData() {
+        switch (currentType) {
+            case CHINA:
+                return chinaBean;
+            case CANADA1:
+                return canada1Bean;
+            case CANADA2:
+                return canada2Bean;
+            case SLOVAKIA:
+                return slovakiaBean;
+            case AUSTRALIA:
+                return australiaBean;
+            default:
+                return chinaBean;
         }
     }
 }

@@ -43,8 +43,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -310,8 +314,9 @@ public class AfbUtils {
         }
         webView.loadUrl(url);
     }
+
     @NonNull
-    public static BaseRecyclerAdapter getGamesAdapter(Context mContext,RecyclerView rvContent) {
+    public static BaseRecyclerAdapter getGamesAdapter(Context mContext, RecyclerView rvContent) {
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(layoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
@@ -343,5 +348,39 @@ public class AfbUtils {
         };
         rvContent.setAdapter(adapter);
         return adapter;
+    }
+
+    /**
+     * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+     */
+    public static int dp2px(Context context, float dpValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
+    }
+
+    /**
+     * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
+     */
+    public static int px2dp(Context context, float pxValue) {
+        final float scale = context.getResources().getDisplayMetrics().density;
+        return (int) (pxValue / scale + 0.5f);
+    }
+
+    public static long diffTime(String open) {
+        String format = "yyyy-MM-dd|HH:mm:ss";
+        DateFormat df = new SimpleDateFormat(format);
+        String other = df.format(new Date());
+        long diff = 0;
+        try {
+            Date d1 = df.parse(open);
+            Date d2 = df.parse(other);
+            long openTime = d1.getTime();
+            long nowTime = d2.getTime();
+            diff = openTime - nowTime;
+            return diff;
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return diff;
     }
 }

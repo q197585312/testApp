@@ -166,4 +166,7 @@ public interface ApiService {
 
     @GET
     Flowable<KenoDataBean> getKenoData(@Url String url);
+
+    @GET
+    Flowable<String> getKenoBetStatuData(@Url String url);
 }
