@@ -141,6 +141,7 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoDataBean, KenoContr
     public void stopRefreshData() {
         if (handler != null && refreshDataRunable != null) {
             handler.removeCallbacks(refreshDataRunable);
+            refreshDataRunable = null;
             handler = null;
         }
     }

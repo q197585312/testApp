@@ -30,12 +30,6 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
     private AnimationRunable animationRunable;
     private List<AnimatorSet> animatorSetList;
 
-    public PopuKenoResultAnimation(Context context, View v) {
-        super(context, v);
-        popWindow.setFocusable(false);
-        popWindow.setOutsideTouchable(false);
-    }
-
     public void startAction(List<String> animationDataList) {
         animatorSetList.clear();
         this.animationDataList = animationDataList;
@@ -105,10 +99,12 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
 
     public void stopAnimation() {
         for (int i = 0; i < animatorSetList.size(); i++) {
-            if (animatorSetList.get(i) != null) {
-                animatorSetList.get(i).cancel();
+            AnimatorSet animatorSet = animatorSetList.get(i);
+            if (animatorSet != null) {
+                animatorSet.cancel();
             }
         }
+        animatorSetList.clear();
     }
 
     private void startAnimation(final TextView view, final long delayedTime, final String animationStr) {
@@ -141,10 +137,8 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
                         tv.setBackgroundResource(R.mipmap.keno_animation_green_ball);
                         tv.setTextColor(0xff167732);
                     }
+                    closePopupWindow();
                     animatorSetList.clear();
-                    if (this != null && isShowing()) {
-                        closePopupWindow();
-                    }
                     if (resultAnimationFinish != null) {
                         resultAnimationFinish.OnResultAnimationFinish();
                     }

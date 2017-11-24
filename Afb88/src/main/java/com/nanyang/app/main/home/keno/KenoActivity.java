@@ -275,12 +275,14 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        presenter.stopRefreshData();
         if (timer != null) {
             timer.cancel();
             timer = null;
         }
-        presenter.stopRefreshData();
+        fishedActivity = true;
         popuKenoResultAnimation.stopAnimation();
+        popuKenoResultAnimation.closePopupWindow();
         ViewGroup view = (ViewGroup) getWindow().getDecorView();
         view.removeAllViews();
     }
@@ -316,11 +318,13 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         popuKenoResultAnimation.setResultAnimationFinish(new PopuKenoResultAnimation.ResultAnimationFinish() {
             @Override
             public void OnResultAnimationFinish() {
-                isNeedInitCountDown = true;
-                presenter.getKenoData();
-                isCanChangeBet = true;
-                if (ll_drawing_close != null) {
-                    ll_drawing_close.setVisibility(View.GONE);
+                if (!fishedActivity) {
+                    isNeedInitCountDown = true;
+                    isCanChangeBet = true;
+                    presenter.getKenoData();
+                    if (ll_drawing_close != null) {
+                        ll_drawing_close.setVisibility(View.GONE);
+                    }
                 }
             }
         });
@@ -551,7 +555,8 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     public boolean isNeedInitCountDown = true;//是否需要初始化倒计时
     public boolean isCountDown = false;//是否在倒计时
     public boolean isCanChangeBet = true;//是否可以切换下注类型
-    private boolean firstRefreshData = true;
+    private boolean firstRefreshData = true;//是否第一次加载数据
+    private boolean fishedActivity = false;//是否关闭keno这个界面
 
     private void initCountDown(KenoDataBean.PublicDataBean.CompanyDataBean bean) {
         if (bean.getResult_id() == null || bean.getResult_id().size() == 0) {
