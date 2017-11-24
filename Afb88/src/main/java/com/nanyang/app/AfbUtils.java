@@ -383,4 +383,10 @@ public class AfbUtils {
         }
         return diff;
     }
+
+    public static String getCurrentDate(String format) {
+        DateFormat df = new SimpleDateFormat(format);
+        String date = df.format(new Date());
+        return date;
+    }
 }

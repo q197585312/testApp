@@ -95,19 +95,20 @@
                 android:layout_height="55dp"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
-                android:layout_marginRight="19dp"
+                android:layout_marginRight="18dp"
                 android:background="@mipmap/keno_title_name" />
 
             <com.nanyang.app.Utils.RotateTextView
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="website"
+                android:text="官方网站"
                 android:textSize="11sp" />
         </RelativeLayout>
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:id="@+id/img_website"
+            android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:background="@mipmap/keno_china_logo" />
 
@@ -224,7 +225,6 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:clickable="true"
         android:layout_weight="1.3">
 
         <LinearLayout
@@ -943,6 +943,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="#90000000"
+            android:clickable="true"
             android:gravity="center"
             android:orientation="horizontal"
             android:visibility="gone">

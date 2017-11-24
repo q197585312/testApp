@@ -16,6 +16,7 @@ import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.gdCasino.PokerCasinoActivity;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
+import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -277,6 +278,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         pop.getChooseCancelTv().setText(getString(R.string.cancel));
         onPopupWindowCreated(pop, Gravity.CENTER);
     }
+
     protected void gameMenus(View v) {
         popWindow = new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
@@ -338,6 +340,9 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             case "Discount":
                 skipAct(DiscountActivity.class);
                 break;
+            case "Keno":
+                skipAct(KenoActivity.class);
+                break;
             default:
                 ToastUtils.showShort(R.string.coming_soon);
         }
@@ -351,11 +356,13 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             againLogin(gameType);
         }
     }
-    public void againLogin(String gameType){
+
+    public void againLogin(String gameType) {
 
     }
-    public int getHomeColor(){
-        switch (getString(R.string.app_name)){
+
+    public int getHomeColor() {
+        switch (getString(R.string.app_name)) {
             case "Afb88":
                 return 0xff0d5924;
             case "I1bet88":

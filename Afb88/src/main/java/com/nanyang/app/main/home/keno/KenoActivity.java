@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.keno;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
@@ -9,15 +10,18 @@ import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.MyViewPagerAdapter;
+import com.nanyang.app.main.center.PersonCenterActivity;
+import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -29,6 +33,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.OnClick;
+import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
  * Created by Administrator on 2017/11/16.
@@ -101,6 +106,8 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     LinearLayout ll_drawing_close;
     @Bind(R.id.tv_drawing_close)
     TextView tv_drawing_close;
+    @Bind(R.id.img_website)
+    ImageView img_website;
     private CountDownTimer timer;
     private PopuKenoResult popuKenoResult;
     private PopuKenoResultAnimation popuKenoResultAnimation;
@@ -145,6 +152,10 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         if (data == null) {
             ToastUtils.showShort("data null");
             return;
+        }
+        if (firstRefreshData) {
+            firstRefreshData = false;
+            hideLoadingDialog();
         }
         dataBean = data;
         chinaBean = data.getPublicData().get(0).getCompanyData().get(0);
@@ -269,6 +280,8 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
             timer = null;
         }
         presenter.stopRefreshData();
+        ViewGroup view = (ViewGroup) getWindow().getDecorView();
+        view.removeAllViews();
     }
 
     @Override
@@ -276,6 +289,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keno);
         createPresenter(new KenoPresenter(this));
+        showLoadingDialog();
         presenter.getKenoData();
     }
 
@@ -305,7 +319,16 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                 presenter.getKenoData();
                 isCanChangeBet = true;
                 ll_drawing_close.setVisibility(View.GONE);
-                ll_drawing_close.setClickable(false);
+            }
+        });
+        tvToolbarLeft.setBackgroundResource(R.mipmap.bet_list_logo);
+        tvToolbarLeft.setVisibility(View.VISIBLE);
+        tvToolbarLeft.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Bundle bundle = new Bundle();
+                bundle.putString(AppConstant.KEY_STRING, getString(R.string.stake));
+                skipAct(PersonCenterActivity.class, bundle);
             }
         });
     }
@@ -313,9 +336,6 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     TextView tv;
 
     private void updateDataType(int type) {
-//        presenter.getBetStatu("cn=CHINA" + "&b=KEN"+"&wd="+"2017-11-23|14:58:30"+
-//                "&draw="+chinaBean.getDraw_value()+"&id="+chinaBean.getOdds_id()+"&dt="+chinaBean.getMatchDate_value()+
-//                "&t=1"+"&v=1.95");
         for (int i = 0; i < typeTvList.size(); i++) {
             TextView t = typeTvList.get(i);
             switch (type) {
@@ -520,6 +540,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     public boolean isNeedInitCountDown = true;//是否需要初始化倒计时
     public boolean isCountDown = false;//是否在倒计时
     public boolean isCanChangeBet = true;//是否可以切换下注类型
+    private boolean firstRefreshData = true;
 
     private void initCountDown(KenoDataBean.PublicDataBean.CompanyDataBean bean) {
         if (bean.getResult_id() == null || bean.getResult_id().size() == 0) {
@@ -530,7 +551,6 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
             tv_drawing_close.setText("CLOSE");
             if (ll_drawing_close.getVisibility() == View.GONE) {
                 ll_drawing_close.setVisibility(View.VISIBLE);
-                ll_drawing_close.setClickable(true);
             }
             tv_count_down.setText("0");
             return;
@@ -550,7 +570,6 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                         tv_count_down.setText(millisUntilFinished / 1000 + "");
                     }
                     ll_drawing_close.setVisibility(View.GONE);
-                    ll_drawing_close.setClickable(false);
                 }
 
                 @Override
@@ -558,7 +577,6 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                     tv_drawing_close.setText("DRAWING...");
                     if (ll_drawing_close.getVisibility() == View.GONE) {
                         ll_drawing_close.setVisibility(View.VISIBLE);
-                        ll_drawing_close.setClickable(true);
                     }
                     isCountDown = false;
                     tv_count_down.setText("0");
@@ -591,59 +609,135 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         super.initData();
     }
 
+    private void bet(String betType) {
+        KenoDataBean.PublicDataBean.CompanyDataBean bean = getCurrentTypeData();
+        String params = "cn=" + bean.getCompany_name();
+        params += "&wd=" + AfbUtils.getCurrentDate("yyyy-MM-dd|HH:mm:ss");
+        params += "&draw=" + bean.getDraw_value();
+        params += "&id=" + bean.getOdds_id();
+        params += "&dt=" + bean.getMatchDate_value();
+        params += "&t=" + betType;
+        params += "&b=KEN";
+        for (int i = 0; i < bean.getBet_id().size(); i++) {
+            if (bean.getBet_id().get(i).getId().equals(betType)) {
+                params += "&v=" + bean.getBet_id().get(i).getValue();
+                break;
+            }
+        }
+        presenter.getBetStatu(params);
+    }
+
+    private KenoBetPopu kenoBetPopu;
+    private String currentBetType;
+
+    @Override
+    public void onGetBetLimit(KenoBetLimitBean bean) {
+        kenoBetPopu = new KenoBetPopu(mContext, ll_result, DeviceUtils.dip2px(mContext, 350), LinearLayout.LayoutParams.WRAP_CONTENT,
+                getCurrentTypeData(), currentBetType, bean);
+        kenoBetPopu.setKenoBet(new KenoBetPopu.KenoBet() {
+            @Override
+            public void onKenoBetListener(String params) {
+                presenter.KenoBet(params);
+            }
+        });
+        kenoBetPopu.showPopupCenterWindow();
+    }
+
+    @Override
+    public void onGetBetReturn(String str) {
+        ToastUtils.showShort(str);
+        kenoBetPopu.closePopupWindow();
+    }
+
     @OnClick({R.id.rl_big, R.id.rl_small, R.id.rl_upper, R.id.rl_lower, R.id.rl_odd, R.id.rl_even, R.id.rl_single, R.id.rl_double,
             R.id.rl_set_top, R.id.rl_set_bottom, R.id.rl_mid, R.id.ll_gold, R.id.ll_wood, R.id.ll_water, R.id.ll_fire, R.id.ll_soil,
             R.id.tv_china, R.id.tv_canada1, R.id.tv_canada2, R.id.tv_slovakia, R.id.tv_australia, R.id.ll_result, R.id.img_left,
-            R.id.img_right})
+            R.id.img_right, R.id.img_website})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_china:
+                img_website.setBackgroundResource(R.mipmap.keno_china_logo);
                 changBetType(CHINA);
                 break;
             case R.id.tv_canada1:
+                img_website.setBackgroundResource(R.mipmap.keno_canada1_logo);
                 changBetType(CANADA1);
                 break;
             case R.id.tv_canada2:
+                img_website.setBackgroundResource(R.mipmap.keno_canada2_logo);
                 changBetType(CANADA2);
                 break;
             case R.id.tv_slovakia:
+                img_website.setBackgroundResource(R.mipmap.keno_slovakia_logo);
                 changBetType(SLOVAKIA);
                 break;
             case R.id.tv_australia:
+                img_website.setBackgroundResource(R.mipmap.keno_austrla_logo);
                 changBetType(AUSTRALIA);
                 break;
             case R.id.rl_big:
-                ToastUtils.showShort("aaa");
+                currentBetType = "1";
+                bet("1");
                 break;
             case R.id.rl_small:
+                currentBetType = "2";
+                bet("2");
                 break;
             case R.id.rl_upper:
+                currentBetType = "7";
+                bet("7");
                 break;
             case R.id.rl_lower:
+                currentBetType = "9";
+                bet("9");
                 break;
             case R.id.rl_odd:
+                currentBetType = "3";
+                bet("3");
                 break;
             case R.id.rl_even:
+                currentBetType = "4";
+                bet("4");
                 break;
             case R.id.rl_single:
+                currentBetType = "5";
+                bet("5");
                 break;
             case R.id.rl_double:
+                currentBetType = "6";
+                bet("6");
                 break;
             case R.id.rl_set_top:
+                currentBetType = "15";
+                bet("15");
                 break;
             case R.id.rl_mid:
+                currentBetType = "8";
+                bet("8");
                 break;
             case R.id.rl_set_bottom:
+                currentBetType = "16";
+                bet("16");
                 break;
             case R.id.ll_gold:
+                currentBetType = "10";
+                bet("10");
                 break;
             case R.id.ll_wood:
+                currentBetType = "11";
+                bet("11");
                 break;
             case R.id.ll_water:
+                currentBetType = "12";
+                bet("12");
                 break;
             case R.id.ll_fire:
+                currentBetType = "13";
+                bet("13");
                 break;
             case R.id.ll_soil:
+                currentBetType = "14";
+                bet("14");
                 break;
             case R.id.ll_result:
                 //点击出历史结果
@@ -671,6 +765,11 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                 } else {
                     vp_way.setCurrentItem(vp_way.getCurrentItem() + 1, true);
                 }
+                break;
+            case R.id.img_website:
+                Intent i = new Intent(mContext, KenoWebActivity.class);
+                i.putExtra("url", getCurrentTypeData().getWeburl_value());
+                startActivity(i);
                 break;
         }
     }
@@ -700,4 +799,5 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                 return chinaBean;
         }
     }
+
 }
