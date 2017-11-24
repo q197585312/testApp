@@ -280,6 +280,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
             timer = null;
         }
         presenter.stopRefreshData();
+        popuKenoResultAnimation.stopAnimation();
         ViewGroup view = (ViewGroup) getWindow().getDecorView();
         view.removeAllViews();
     }

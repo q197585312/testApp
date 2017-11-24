@@ -28,7 +28,7 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
     private Handler handler = new Handler();
     private List<String> animationDataList;
     private AnimationRunable animationRunable;
-
+    private List<AnimatorSet> animatorSetList;
     public PopuKenoResultAnimation(Context context, View v) {
         super(context, v);
         popWindow.setFocusable(false);
@@ -36,6 +36,7 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
     }
 
     public void startAction(List<String> animationDataList) {
+        animatorSetList.clear();
         this.animationDataList = animationDataList;
         animationRunable = new AnimationRunable();
         handler.postDelayed(animationRunable, 100);
@@ -45,6 +46,7 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
         super(context, v, width, height);
         popWindow.setFocusable(false);
         popWindow.setOutsideTouchable(false);
+        animatorSetList = new ArrayList<>();
     }
 
     RecyclerView rc;
@@ -100,9 +102,16 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
         }
     }
 
-
+    public void stopAnimation(){
+        for (int i = 0; i < animatorSetList.size(); i++) {
+            if (animatorSetList.get(i)!=null){
+                animatorSetList.get(i).cancel();
+            }
+        }
+    }
     private void startAnimation(final TextView view, final long delayedTime, final String animationStr) {
         AnimatorSet animatorSet = new AnimatorSet();//组合动画
+        animatorSetList.add(animatorSet);
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(view, "scaleX", 1f, 1.3f, 1f);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(view, "scaleY", 1f, 1.3f, 1f);
         animatorSet.setStartDelay(delayedTime);
@@ -130,6 +139,7 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
                         tv.setBackgroundResource(R.mipmap.keno_animation_green_ball);
                         tv.setTextColor(0xff167732);
                     }
+                    animatorSetList.clear();
                     closePopupWindow();
                     if (resultAnimationFinish != null) {
                         resultAnimationFinish.OnResultAnimationFinish();
