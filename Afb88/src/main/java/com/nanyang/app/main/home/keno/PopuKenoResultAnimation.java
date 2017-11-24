@@ -29,6 +29,7 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
     private List<String> animationDataList;
     private AnimationRunable animationRunable;
     private List<AnimatorSet> animatorSetList;
+
     public PopuKenoResultAnimation(Context context, View v) {
         super(context, v);
         popWindow.setFocusable(false);
@@ -102,13 +103,14 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
         }
     }
 
-    public void stopAnimation(){
+    public void stopAnimation() {
         for (int i = 0; i < animatorSetList.size(); i++) {
-            if (animatorSetList.get(i)!=null){
+            if (animatorSetList.get(i) != null) {
                 animatorSetList.get(i).cancel();
             }
         }
     }
+
     private void startAnimation(final TextView view, final long delayedTime, final String animationStr) {
         AnimatorSet animatorSet = new AnimatorSet();//组合动画
         animatorSetList.add(animatorSet);
@@ -140,7 +142,9 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
                         tv.setTextColor(0xff167732);
                     }
                     animatorSetList.clear();
-                    closePopupWindow();
+                    if (this != null && isShowing()) {
+                        closePopupWindow();
+                    }
                     if (resultAnimationFinish != null) {
                         resultAnimationFinish.OnResultAnimationFinish();
                     }
