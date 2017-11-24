@@ -55,7 +55,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="成绩日期"
+                        android:text="@string/result_date"
                         android:textColor="@color/black_grey"
                         android:textSize="11sp" />
 
@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="公司:"
+                        android:text="@string/company"
                         android:textColor="@color/black_grey"
                         android:textSize="11sp" />
 
@@ -127,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="号码:"
+                        android:text="@string/num"
                         android:textColor="@color/black_grey"
                         android:textSize="11sp" />
 
@@ -156,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="right"
-                        android:text="赔率:"
+                        android:text="@string/odds_keno"
                         android:textColor="@color/black_grey"
                         android:textSize="11sp" />
 
@@ -181,6 +181,7 @@
             android:layout_marginRight="20dp"
             android:gravity="center"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -191,7 +192,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="max get"
+                    android:text="@string/max_get"
                     android:textColor="@color/black_grey"
                     android:textSize="11sp" />
 
@@ -204,10 +205,12 @@
                     android:gravity="center"
                     android:textColor="@color/green900" />
             </LinearLayout>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.5dp"
                 android:background="@color/grey_dark" />
+
             <LinearLayout
                 android:id="@+id/bet_amount_ll"
                 android:layout_width="match_parent"
@@ -233,6 +236,7 @@
                     android:hint="@string/betting_amount"
                     android:inputType="number"
                     android:textColor="@color/green900"
+                    android:textColorHint="@color/white"
                     android:textSize="14sp" />
             </LinearLayout>
 
@@ -328,10 +332,6 @@
                     android:textColor="@color/green900" />
             </LinearLayout>
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/grey_dark" />
         </LinearLayout>
 
         <TextView

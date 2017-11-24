@@ -318,7 +318,9 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                 isNeedInitCountDown = true;
                 presenter.getKenoData();
                 isCanChangeBet = true;
-                ll_drawing_close.setVisibility(View.GONE);
+                if (ll_drawing_close != null) {
+                    ll_drawing_close.setVisibility(View.GONE);
+                }
             }
         });
         tvToolbarLeft.setBackgroundResource(R.mipmap.bet_list_logo);
@@ -471,12 +473,20 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     private void initUi(KenoDataBean.PublicDataBean.CompanyDataBean bean) {
         String drawNum = bean.getDraw_value();
         if (TextUtils.isEmpty(drawNum)) {
-            drawNum = bean.getDraw2_value();
+            if (!TextUtils.isEmpty(bean.getDraw2_value())) {
+                drawNum = bean.getDraw2_value();
+            } else {
+                drawNum = "";
+            }
         }
         tv_draw_num.setText(drawNum);
         String drawTime = bean.getMatchDate_value();
         if (TextUtils.isEmpty(drawTime)) {
-            drawTime = bean.getMatchDate2_value();
+            if (!TextUtils.isEmpty(bean.getMatchDate2_value())) {
+                drawTime = bean.getMatchDate2_value();
+            } else {
+                drawTime = "";
+            }
         }
         tv_draw_time.setText(drawTime);
         initCountDown(bean);
@@ -607,6 +617,23 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     @Override
     public void initData() {
         super.initData();
+        setBet1Title(0);
+        vp_way.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                setBet1Title(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 
     private void bet(String betType) {
@@ -656,23 +683,33 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_china:
-                img_website.setBackgroundResource(R.mipmap.keno_china_logo);
+                if (isCanChangeBet) {
+                    img_website.setBackgroundResource(R.mipmap.keno_china_logo);
+                }
                 changBetType(CHINA);
                 break;
             case R.id.tv_canada1:
-                img_website.setBackgroundResource(R.mipmap.keno_canada1_logo);
+                if (isCanChangeBet) {
+                    img_website.setBackgroundResource(R.mipmap.keno_canada1_logo);
+                }
                 changBetType(CANADA1);
                 break;
             case R.id.tv_canada2:
-                img_website.setBackgroundResource(R.mipmap.keno_canada2_logo);
+                if (isCanChangeBet) {
+                    img_website.setBackgroundResource(R.mipmap.keno_canada2_logo);
+                }
                 changBetType(CANADA2);
                 break;
             case R.id.tv_slovakia:
-                img_website.setBackgroundResource(R.mipmap.keno_slovakia_logo);
+                if (isCanChangeBet) {
+                    img_website.setBackgroundResource(R.mipmap.keno_slovakia_logo);
+                }
                 changBetType(SLOVAKIA);
                 break;
             case R.id.tv_australia:
-                img_website.setBackgroundResource(R.mipmap.keno_austrla_logo);
+                if (isCanChangeBet) {
+                    img_website.setBackgroundResource(R.mipmap.keno_austrla_logo);
+                }
                 changBetType(AUSTRALIA);
                 break;
             case R.id.rl_big:
@@ -741,10 +778,8 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                 break;
             case R.id.ll_result:
                 //点击出历史结果
-                int h = ll_bet.getHeight() - findViewById(R.id.rl_single).getHeight() - findViewById(R.id.ll_gold).getHeight()
-                        - AfbUtils.dp2px(mContext, 12);
                 popuKenoResult = new PopuKenoResult(getCurrentTypeData().getResult_id(), mContext, ll_result,
-                        LinearLayout.LayoutParams.MATCH_PARENT, h);
+                        LinearLayout.LayoutParams.MATCH_PARENT, AfbUtils.dp2px(mContext, 164));
                 popuKenoResult.showPopupDownWindowWihte(0, 0);
                 if (popuKenoResult.isShowing()) {
                     ll_result.setBackgroundColor(Color.WHITE);
@@ -770,6 +805,26 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                 Intent i = new Intent(mContext, KenoWebActivity.class);
                 i.putExtra("url", getCurrentTypeData().getWeburl_value());
                 startActivity(i);
+                break;
+        }
+    }
+
+    private void setBet1Title(int positon) {
+        switch (positon) {
+            case 0:
+                tv_type.setText(getString(R.string.big_samll));
+                break;
+            case 1:
+                tv_type.setText(getString(R.string.up_down));
+                break;
+            case 2:
+                tv_type.setText(getString(R.string.odd_even_keno));
+                break;
+            case 3:
+                tv_type.setText(getString(R.string.single_double_keno));
+                break;
+            case 4:
+                tv_type.setText(getString(R.string.five_data));
                 break;
         }
     }

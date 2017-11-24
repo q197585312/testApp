@@ -24,9 +24,9 @@
             android:layout_weight="1"
             android:background="@mipmap/keno_tab_select_bg"
             android:gravity="center"
-            android:text="China"
+            android:text="@string/china"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_canada1"
@@ -36,9 +36,9 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Canada"
+            android:text="@string/canada1"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_canada2"
@@ -48,9 +48,9 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Canada"
+            android:text="@string/canada2"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_slovakia"
@@ -60,9 +60,9 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Slovakia"
+            android:text="@string/slovakia"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
 
         <TextView
             android:id="@+id/tv_australia"
@@ -72,9 +72,9 @@
             android:layout_marginRight="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="Australia"
+            android:text="@string/australia"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -102,7 +102,7 @@
                 android:layout_width="50dp"
                 android:layout_height="match_parent"
                 android:gravity="center"
-                android:text="官方网站"
+                android:text="@string/website"
                 android:textSize="11sp" />
         </RelativeLayout>
 
@@ -129,7 +129,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Current Draw"
+                android:text="@string/current_draw"
                 android:textSize="13sp" />
 
             <View
@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
                 android:layout_marginLeft="5dp"
-                android:text="betting time"
+                android:text="@string/count_down"
                 android:textColor="@color/black"
                 android:textSize="10sp" />
 
@@ -215,7 +215,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="7dp"
-                android:text="RESULT"
+                android:text="@string/result"
                 android:textColor="@color/white"
                 android:textSize="10sp" />
         </LinearLayout>
@@ -253,7 +253,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="Big"
+                        android:text="@string/big_keno"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="15sp" />
 
@@ -299,9 +299,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="6dp"
-                        android:text="Set"
+                        android:text="@string/tie_up_keno"
                         android:textColor="@color/keno_text_color1"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -342,7 +342,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="Small"
+                        android:text="@string/small_keno"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="15sp" />
 
@@ -394,7 +394,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="Up"
+                        android:text="@string/up_keno"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="15sp" />
 
@@ -440,9 +440,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="6dp"
-                        android:text="Mid"
+                        android:text="@string/mid_keno"
                         android:textColor="@color/keno_text_color1"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -484,7 +484,7 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="Down"
+                        android:text="@string/down_keno"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="15sp" />
 
@@ -536,7 +536,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="Odd"
+                        android:text="@string/odd_keno"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="15sp" />
 
@@ -582,9 +582,9 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="6dp"
-                        android:text="Set"
+                        android:text="@string/tie_bottom_keno"
                         android:textColor="@color/keno_text_color1"
-                        android:textSize="15sp" />
+                        android:textSize="13sp" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -624,7 +624,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="Even"
+                        android:text="@string/even_keno"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="15sp" />
 
@@ -676,7 +676,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="Single"
+                        android:text="@string/single_keno"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="15sp" />
 
@@ -721,7 +721,7 @@
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
                         android:layout_marginLeft="10dp"
-                        android:text="Double"
+                        android:text="@string/double_keno"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="15sp" />
 
@@ -773,7 +773,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Gold"
+                        android:text="@string/gold"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="11sp"
                         android:textStyle="bold" />
@@ -810,7 +810,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Wood"
+                        android:text="@string/wood"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="11sp"
                         android:textStyle="bold" />
@@ -845,7 +845,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Water"
+                        android:text="@string/water"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="11sp"
                         android:textStyle="bold" />
@@ -880,7 +880,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Fire"
+                        android:text="@string/fire"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="11sp"
                         android:textStyle="bold" />
@@ -914,7 +914,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Soil"
+                        android:text="@string/earth"
                         android:textColor="@color/keno_text_color1"
                         android:textSize="11sp"
                         android:textStyle="bold" />

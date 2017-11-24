@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.keno;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 /**
@@ -37,13 +39,15 @@ public class KenoBetPopu extends BasePopupWindow {
 
     private void initUi() {
         tv_time.setText(bean.getMatchDate_value());
-        tv_draw_num.setText(bean.getDraw_value());
+        tv_draw_num.setText(bean.getDraw_value() + context.getString(R.string.keno));
         tv_company_name.setText(bean.getCompany_name());
         tv_bet_type.setText(getTypeName());
         tv_bet_odds.setText(getBetOdds());
         tv_min.setText(limitBean.getMinMaxData().get(0).getMinLimit() + "");
         tv_max.setText(limitBean.getMinMaxData().get(0).getMaxLimit() + "");
-        tv_max_get.setText(limitBean.getMinMaxData().get(0).getAmtS() + "");
+        if (limitBean.getMinMaxData().get(0).getAmtS().equals("0")) {
+            tv_max_get.setText("");
+        }
     }
 
     private String getBetOdds() {
@@ -58,37 +62,37 @@ public class KenoBetPopu extends BasePopupWindow {
     private String getTypeName() {
         switch (type) {
             case "1":
-                return "big";
+                return context.getString(R.string.big_keno);
             case "2":
-                return "small";
+                return context.getString(R.string.small_keno);
             case "3":
-                return "odd";
+                return context.getString(R.string.odd_keno);
             case "4":
-                return "even";
+                return context.getString(R.string.even_keno);
             case "5":
-                return "single";
+                return context.getString(R.string.single_keno);
             case "6":
-                return "double";
+                return context.getString(R.string.double_keno);
             case "7":
-                return "up";
+                return context.getString(R.string.up_keno);
             case "8":
-                return "mid";
+                return context.getString(R.string.mid_keno);
             case "9":
-                return "down";
+                return context.getString(R.string.down_keno);
             case "10":
-                return "gold";
+                return context.getString(R.string.gold);
             case "11":
-                return "wood";
+                return context.getString(R.string.wood);
             case "12":
-                return "water";
+                return context.getString(R.string.water);
             case "13":
-                return "fire";
+                return context.getString(R.string.fire);
             case "14":
-                return "soil";
+                return context.getString(R.string.earth);
             case "15":
-                return "tie";
+                return context.getString(R.string.tie_up_keno);
             case "16":
-                return "tie";
+                return context.getString(R.string.tie_bottom_keno);
         }
         return "";
     }
@@ -120,6 +124,16 @@ public class KenoBetPopu extends BasePopupWindow {
         bet_sure_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                String money = edt_amount.getText().toString();
+                if (TextUtils.isEmpty(money)) {
+                    ToastUtils.showShort(context.getString(R.string.Input_the_amount_of_bets_please));
+                    return;
+                }
+                if (Integer.parseInt(money) < limitBean.getMinMaxData().get(0).getMinLimit() ||
+                        Integer.parseInt(money) > Integer.parseInt(limitBean.getMinMaxData().get(0).getMaxLimit())) {
+                    ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
+                    return;
+                }
                 if (kenoBet != null) {
                     params = "cn=" + bean.getCompany_name();
                     params += "&wd=" + AfbUtils.getCurrentDate("yyyy-MM-dd|HH:mm:ss");
@@ -128,7 +142,7 @@ public class KenoBetPopu extends BasePopupWindow {
                     params += "&dt=" + bean.getMatchDate_value();
                     params += "&t=" + type;
                     params += "&b=KEN";
-                    params += "&txtAmount=" + edt_amount.getText().toString();
+                    params += "&txtAmount=" + money;
                     for (int i = 0; i < bean.getBet_id().size(); i++) {
                         if (bean.getBet_id().get(i).getId().equals(type)) {
                             params += "&v=" + bean.getBet_id().get(i).getValue();

@@ -98,6 +98,11 @@ public class PopuKenoResult extends BasePopupWindow {
         }
         tv_total.setText(total + "");
         String[] type = bean.getType().split(" ");
+        for (int i = 0; i < type.length; i++) {
+            if (type[i].equals("A")) {
+                type[i] = "W";
+            }
+        }
         tv1.setText(type[0]);
         tv2.setText(type[1]);
         tv3.setText(type[2]);
