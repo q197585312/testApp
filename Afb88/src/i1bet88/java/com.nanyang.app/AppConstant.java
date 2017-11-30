@@ -232,6 +232,9 @@ public class AppConstant {
     public String URL_STAKE = HOST + "_bet/PanelStake_App.aspx";
     public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "AccConfirmDate_App.aspx?userName=";
     public String URL_PANEL = HOST + "_bet/panel.aspx";
+    public String URL_KENO_DATA = HOST + "_view/kenGame_App.aspx";
+    public String URL_KENO_STATU_DATA = HOST + "_bet/panel_keno_App.aspx?";
+    public String URL_KENO_BET = HOST + "_bet/panel_keno_bet_App.aspx?";
 
     static AppConstant instance;
     private String host;
@@ -402,6 +405,9 @@ public class AppConstant {
         URL_STAKE = HOST + "_bet/PanelStake_App.aspx";
         URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccConfirmDate_App.aspx?role=mb&userName=";
         URL_PANEL = HOST + "_bet/panel.aspx";
+        URL_KENO_DATA = HOST + "_view/kenGame_App.aspx";
+        URL_KENO_STATU_DATA = HOST + "_bet/panel_keno_App.aspx?";
+        URL_KENO_BET = HOST + "_bet/panel_keno_bet_App.aspx?";
     }
 
     public static AppConstant getInstance() {

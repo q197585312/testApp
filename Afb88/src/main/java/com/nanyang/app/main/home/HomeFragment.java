@@ -90,7 +90,11 @@ public class HomeFragment extends BaseFragment {
                         skipAct(DiscountActivity.class);
                         break;
                     case "Keno":
-                        skipAct(KenoActivity.class);
+                        if (getString(R.string.app_name).equals("Afb88")){
+                            skipAct(KenoActivity.class);
+                        }else {
+                            ToastUtils.showShort(R.string.coming_soon);
+                        }
                         break;
                     default:
                         ToastUtils.showShort(R.string.coming_soon);

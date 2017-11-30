@@ -117,6 +117,11 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     public final int SLOVAKIA = 3;
     public final int AUSTRALIA = 4;
     public int currentType = 0;
+    private final String bigSmall = "bigSmall";
+    private final String upDown = "upDown";
+    private final String oddEven = "oddEven";
+    private final String singleDouble = "singleDouble";
+    private final String elementl = "elementl";
     MyViewPagerAdapter myViewPagerAdapter;
     List<TextView> typeTvList;
     KenoDataBean dataBean;
@@ -226,12 +231,6 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
             }
         };
     }
-
-    private final String bigSmall = "bigSmall";
-    private final String upDown = "upDown";
-    private final String oddEven = "oddEven";
-    private final String singleDouble = "singleDouble";
-    private final String elementl = "elementl";
 
     private void initAdapter() {
         adapterBigSmall = getBetRcAdapter(bigSmallList, bigSmall);
