@@ -174,7 +174,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         canada2BetIdBean = canada2Bean.getBet_id();
         slovakiaBetIdBean = slovakiaBean.getBet_id();
         australiaBetIdBean = australiaBean.getBet_id();
-        updateDataType(currentType);
+        updateDataType();
     }
 
     private BaseRecyclerAdapter<String> getBetRcAdapter(List<String> list, final String type) {
@@ -287,7 +287,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (popuKenoResultAnimation != null && !popuKenoResultAnimation.isShowing()) {
+            if (isCanChangeBet) {
                 finish();
             }
         }
@@ -336,7 +336,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (popuKenoResultAnimation != null && !popuKenoResultAnimation.isShowing()) {
+                if (isCanChangeBet) {
                     finish();
                 }
             }
@@ -355,10 +355,10 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
 
     TextView tv;
 
-    private void updateDataType(int type) {
+    private void updateDataType() {
         for (int i = 0; i < typeTvList.size(); i++) {
             TextView t = typeTvList.get(i);
-            switch (type) {
+            switch (currentType) {
                 case CHINA:
                     tv = tv_china;
                     break;
@@ -383,93 +383,21 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                 t.setTextColor(Color.BLACK);
             }
         }
-        switch (type) {
-            case CHINA:
-                initUi(chinaBean);
-                initRcData(CHINA);
-                break;
-            case CANADA1:
-                initUi(canada1Bean);
-                initRcData(CANADA1);
-                break;
-            case CANADA2:
-                initUi(canada2Bean);
-                initRcData(CANADA2);
-                break;
-            case SLOVAKIA:
-                initUi(slovakiaBean);
-                initRcData(SLOVAKIA);
-                break;
-            case AUSTRALIA:
-                initUi(australiaBean);
-                initRcData(AUSTRALIA);
-                break;
-        }
+        initUi();
+        initRcData();
     }
 
-    private void initRcData(int type) {
-        char[] chinaBigSmallBetArr = chinaBean.getHistory_id_1().toCharArray();
-        char[] chinaUpDownBetArr = chinaBean.getHistory_id_2().toCharArray();
-        char[] chinaOddEvenBetArr = chinaBean.getHistory_id_3().toCharArray();
-        char[] chinaSingleDoubleBetArr = chinaBean.getHistory_id_4().toCharArray();
-        char[] chinaElementBetArr = chinaBean.getHistory_id_5().toCharArray();
-        char[] canada1BigSmallBetArr = canada1Bean.getHistory_id_1().toCharArray();
-        char[] canada1UpDownBetArr = canada1Bean.getHistory_id_2().toCharArray();
-        char[] canada1OddEvenBetArr = canada1Bean.getHistory_id_3().toCharArray();
-        char[] canada1SingleDoubleBetArr = canada1Bean.getHistory_id_4().toCharArray();
-        char[] canada1ElementBetArr = canada1Bean.getHistory_id_5().toCharArray();
-        char[] canada2BigSmallBetArr = canada2Bean.getHistory_id_1().toCharArray();
-        char[] canada2UpDownBetArr = canada2Bean.getHistory_id_2().toCharArray();
-        char[] canada2OddEvenBetArr = canada2Bean.getHistory_id_3().toCharArray();
-        char[] canada2SingleDoubleBetArr = canada2Bean.getHistory_id_4().toCharArray();
-        char[] canada2ElementBetArr = canada2Bean.getHistory_id_5().toCharArray();
-        char[] slovakiaBigSmallBetArr = slovakiaBean.getHistory_id_1().toCharArray();
-        char[] slovakiaUpDownBetArr = slovakiaBean.getHistory_id_2().toCharArray();
-        char[] slovakiaOddEvenBetArr = slovakiaBean.getHistory_id_3().toCharArray();
-        char[] slovakiaSingleDoubleBetArr = slovakiaBean.getHistory_id_4().toCharArray();
-        char[] slovakiaElementBetArr = slovakiaBean.getHistory_id_5().toCharArray();
-        char[] australiaBigSmallBetArr = australiaBean.getHistory_id_1().toCharArray();
-        char[] australiaUpDownBetArr = australiaBean.getHistory_id_2().toCharArray();
-        char[] australiaOddEvenBetArr = australiaBean.getHistory_id_3().toCharArray();
-        char[] australiaSingleDoubleBetArr = australiaBean.getHistory_id_4().toCharArray();
-        char[] australiaElementBetArr = australiaBean.getHistory_id_5().toCharArray();
-        switch (type) {
-            case CHINA:
-                parseList(chinaBigSmallBetArr, bigSmallList);
-                parseList(chinaUpDownBetArr, upDownList);
-                parseList(chinaOddEvenBetArr, oddEvenList);
-                parseList(chinaSingleDoubleBetArr, singleDoubleList);
-                parseList(chinaElementBetArr, elementlList);
-                break;
-            case CANADA1:
-                parseList(canada1BigSmallBetArr, bigSmallList);
-                parseList(canada1UpDownBetArr, upDownList);
-                parseList(canada1OddEvenBetArr, oddEvenList);
-                parseList(canada1SingleDoubleBetArr, singleDoubleList);
-                parseList(canada1ElementBetArr, elementlList);
-                break;
-            case CANADA2:
-                parseList(canada2BigSmallBetArr, bigSmallList);
-                parseList(canada2UpDownBetArr, upDownList);
-                parseList(canada2OddEvenBetArr, oddEvenList);
-                parseList(canada2SingleDoubleBetArr, singleDoubleList);
-                parseList(canada2ElementBetArr, elementlList);
-                break;
-            case SLOVAKIA:
-                parseList(slovakiaBigSmallBetArr, bigSmallList);
-                parseList(slovakiaUpDownBetArr, upDownList);
-                parseList(slovakiaOddEvenBetArr, oddEvenList);
-                parseList(slovakiaSingleDoubleBetArr, singleDoubleList);
-                parseList(slovakiaElementBetArr, elementlList);
-                break;
-            case AUSTRALIA:
-                parseList(australiaBigSmallBetArr, bigSmallList);
-                parseList(australiaUpDownBetArr, upDownList);
-                parseList(australiaOddEvenBetArr, oddEvenList);
-                parseList(australiaSingleDoubleBetArr, singleDoubleList);
-                parseList(australiaElementBetArr, elementlList);
-                break;
-        }
+    private void initRcData() {
+        char[] bigSmallBetArr = getCurrentTypeData().getHistory_id_1().toCharArray();
+        char[] upDownBetArr = getCurrentTypeData().getHistory_id_2().toCharArray();
+        char[] oddEvenBetArr = getCurrentTypeData().getHistory_id_3().toCharArray();
+        char[] singleDoubleBetArr = getCurrentTypeData().getHistory_id_4().toCharArray();
+        char[] elementBetArr = getCurrentTypeData().getHistory_id_5().toCharArray();
+        parseList(bigSmallBetArr, bigSmallList);
+        parseList(upDownBetArr, upDownList);
+        parseList(oddEvenBetArr, oddEvenList);
+        parseList(singleDoubleBetArr, singleDoubleList);
+        parseList(elementBetArr, elementlList);
         adapterBigSmall.setData(bigSmallList);
         adapterUpDown.setData(upDownList);
         adapterOddEven.setData(oddEvenList);
@@ -488,7 +416,8 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         }
     }
 
-    private void initUi(KenoDataBean.PublicDataBean.CompanyDataBean bean) {
+    private void initUi() {
+        KenoDataBean.PublicDataBean.CompanyDataBean bean = getCurrentTypeData();
         String drawNum = bean.getDraw_value();
         if (TextUtils.isEmpty(drawNum)) {
             if (!TextUtils.isEmpty(bean.getDraw2_value())) {
@@ -860,7 +789,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         if (isCanChangeBet) {
             currentType = type;
             isNeedInitCountDown = true;
-            updateDataType(currentType);
+            updateDataType();
             vp_way.setCurrentItem(0, false);
         }
     }
