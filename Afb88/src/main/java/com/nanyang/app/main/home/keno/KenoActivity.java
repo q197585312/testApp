@@ -8,6 +8,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -279,11 +280,18 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
             timer.cancel();
             timer = null;
         }
-        fishedActivity = true;
-        popuKenoResultAnimation.stopAnimation();
-        popuKenoResultAnimation.closePopupWindow();
         ViewGroup view = (ViewGroup) getWindow().getDecorView();
         view.removeAllViews();
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (popuKenoResultAnimation != null && !popuKenoResultAnimation.isShowing()) {
+                finish();
+            }
+        }
+        return true;
     }
 
     @Override
@@ -317,13 +325,19 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         popuKenoResultAnimation.setResultAnimationFinish(new PopuKenoResultAnimation.ResultAnimationFinish() {
             @Override
             public void OnResultAnimationFinish() {
-                if (!fishedActivity) {
-                    isNeedInitCountDown = true;
-                    isCanChangeBet = true;
-                    presenter.getKenoData();
-                    if (ll_drawing_close != null) {
-                        ll_drawing_close.setVisibility(View.GONE);
-                    }
+                isNeedInitCountDown = true;
+                isCanChangeBet = true;
+                presenter.getKenoData();
+                if (ll_drawing_close != null) {
+                    ll_drawing_close.setVisibility(View.GONE);
+                }
+            }
+        });
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (popuKenoResultAnimation != null && !popuKenoResultAnimation.isShowing()) {
+                    finish();
                 }
             }
         });
@@ -555,7 +569,6 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     public boolean isCountDown = false;//是否在倒计时
     public boolean isCanChangeBet = true;//是否可以切换下注类型
     private boolean firstRefreshData = true;//是否第一次加载数据
-    private boolean fishedActivity = false;//是否关闭keno这个界面
 
     private void initCountDown(KenoDataBean.PublicDataBean.CompanyDataBean bean) {
         if (bean.getResult_id() == null || bean.getResult_id().size() == 0) {
