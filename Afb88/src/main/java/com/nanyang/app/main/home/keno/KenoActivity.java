@@ -570,6 +570,15 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     public boolean isCanChangeBet = true;//是否可以切换下注类型
     private boolean firstRefreshData = true;//是否第一次加载数据
 
+    private String getCurrentBetStatus() {
+        switch (getCurrentTypeData().getStatus_value()) {
+            case "D":
+                return "DRAWING...";
+            default:
+                return "CLOSE";
+        }
+    }
+
     private void initCountDown(KenoDataBean.PublicDataBean.CompanyDataBean bean) {
         if (bean.getResult_id() == null || bean.getResult_id().size() == 0) {
             if (timer != null) {
@@ -602,7 +611,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
 
                 @Override
                 public void onFinish() {
-                    tv_drawing_close.setText("DRAWING...");
+                    tv_drawing_close.setText(getCurrentBetStatus());
                     if (ll_drawing_close.getVisibility() == View.GONE) {
                         ll_drawing_close.setVisibility(View.VISIBLE);
                     }
