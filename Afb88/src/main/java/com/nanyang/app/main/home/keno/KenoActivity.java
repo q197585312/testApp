@@ -129,17 +129,11 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     private final String singleDouble = "singleDouble";
     private final String elementl = "elementl";
     MyViewPagerAdapter myViewPagerAdapter;
-    KenoDataBean dataBean;
     KenoDataBean.PublicDataBean.CompanyDataBean chinaBean;
     KenoDataBean.PublicDataBean.CompanyDataBean canada1Bean;
     KenoDataBean.PublicDataBean.CompanyDataBean canada2Bean;
     KenoDataBean.PublicDataBean.CompanyDataBean slovakiaBean;
     KenoDataBean.PublicDataBean.CompanyDataBean australiaBean;
-    List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> chinaBetIdBean;
-    List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> canada1BetIdBean;
-    List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> canada2BetIdBean;
-    List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> slovakiaBetIdBean;
-    List<KenoDataBean.PublicDataBean.CompanyDataBean.BetIdBean> australiaBetIdBean;
     BaseRecyclerAdapter<String> adapterBigSmall;
     BaseRecyclerAdapter<String> adapterUpDown;
     BaseRecyclerAdapter<String> adapterOddEven;
@@ -167,17 +161,11 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
             firstRefreshData = false;
             hideLoadingDialog();
         }
-        dataBean = data;
         chinaBean = data.getPublicData().get(0).getCompanyData().get(0);
         canada1Bean = data.getPublicData().get(0).getCompanyData().get(1);
         canada2Bean = data.getPublicData().get(0).getCompanyData().get(2);
         slovakiaBean = data.getPublicData().get(0).getCompanyData().get(3);
         australiaBean = data.getPublicData().get(0).getCompanyData().get(4);
-        chinaBetIdBean = chinaBean.getBet_id();
-        canada1BetIdBean = canada1Bean.getBet_id();
-        canada2BetIdBean = canada2Bean.getBet_id();
-        slovakiaBetIdBean = slovakiaBean.getBet_id();
-        australiaBetIdBean = australiaBean.getBet_id();
         updateDataType();
     }
 
