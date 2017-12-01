@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.support.annotation.IdRes;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -14,6 +15,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
@@ -41,16 +44,18 @@ import cn.finalteam.toolsfinal.DeviceUtils;
  */
 
 public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> implements KenoContract.View {
-    @Bind(R.id.tv_china)
-    TextView tv_china;
-    @Bind(R.id.tv_canada1)
-    TextView tv_canada1;
-    @Bind(R.id.tv_canada2)
-    TextView tv_canada2;
-    @Bind(R.id.tv_slovakia)
-    TextView tv_slovakia;
-    @Bind(R.id.tv_australia)
-    TextView tv_australia;
+    @Bind(R.id.rg_tab)
+    RadioGroup rg_tab;
+    @Bind(R.id.rb_china)
+    RadioButton rb_china;
+    @Bind(R.id.rb_canada1)
+    RadioButton rb_canada1;
+    @Bind(R.id.rb_canada2)
+    RadioButton rb_canada2;
+    @Bind(R.id.rb_slovakia)
+    RadioButton rb_slovakia;
+    @Bind(R.id.rb_australia)
+    RadioButton rb_australia;
     @Bind(R.id.tv_draw_num)
     TextView tv_draw_num;
     @Bind(R.id.tv_draw_time)
@@ -124,7 +129,6 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     private final String singleDouble = "singleDouble";
     private final String elementl = "elementl";
     MyViewPagerAdapter myViewPagerAdapter;
-    List<TextView> typeTvList;
     KenoDataBean dataBean;
     KenoDataBean.PublicDataBean.CompanyDataBean chinaBean;
     KenoDataBean.PublicDataBean.CompanyDataBean canada1Bean;
@@ -312,7 +316,33 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         oddEvenList = new ArrayList<>();
         elementlList = new ArrayList<>();
         singleDoubleList = new ArrayList<>();
-        typeTvList = Arrays.asList(tv_china, tv_canada1, tv_canada2, tv_slovakia, tv_australia);
+        rg_tab.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int i) {
+                switch (i) {
+                    case R.id.rb_china:
+                        img_website.setBackgroundResource(R.mipmap.keno_china_logo);
+                        changBetType(CHINA);
+                        break;
+                    case R.id.rb_canada1:
+                        img_website.setBackgroundResource(R.mipmap.keno_canada1_logo);
+                        changBetType(CANADA1);
+                        break;
+                    case R.id.rb_canada2:
+                        img_website.setBackgroundResource(R.mipmap.keno_canada2_logo);
+                        changBetType(CANADA2);
+                        break;
+                    case R.id.rb_slovakia:
+                        img_website.setBackgroundResource(R.mipmap.keno_slovakia_logo);
+                        changBetType(SLOVAKIA);
+                        break;
+                    case R.id.rb_australia:
+                        img_website.setBackgroundResource(R.mipmap.keno_austrla_logo);
+                        changBetType(AUSTRALIA);
+                        break;
+                }
+            }
+        });
         initViewPager();
         initAdapter();
     }
@@ -327,6 +357,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
             public void OnResultAnimationFinish() {
                 isNeedInitCountDown = true;
                 isCanChangeBet = true;
+                setIsCanChangeType(true);
                 presenter.getKenoData();
                 if (ll_drawing_close != null) {
                     ll_drawing_close.setVisibility(View.GONE);
@@ -353,36 +384,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         });
     }
 
-    TextView tv;
-
     private void updateDataType() {
-        for (int i = 0; i < typeTvList.size(); i++) {
-            TextView t = typeTvList.get(i);
-            switch (currentType) {
-                case CHINA:
-                    tv = tv_china;
-                    break;
-                case CANADA1:
-                    tv = tv_canada1;
-                    break;
-                case CANADA2:
-                    tv = tv_canada2;
-                    break;
-                case SLOVAKIA:
-                    tv = tv_slovakia;
-                    break;
-                case AUSTRALIA:
-                    tv = tv_australia;
-                    break;
-            }
-            if (tv.equals(t)) {
-                t.setBackgroundResource(R.mipmap.keno_tab_select_bg);
-                t.setTextColor(Color.WHITE);
-            } else {
-                t.setBackgroundResource(0);
-                t.setTextColor(Color.BLACK);
-            }
-        }
         initUi();
         initRcData();
     }
@@ -553,12 +555,20 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         if (bean.getDraw2_value().equals(bean.getResult_id().get(0).getId()) &&
                 !isCountDown && !popuKenoResultAnimation.isShowing()) {
             isCanChangeBet = false;
+            setIsCanChangeType(false);
             presenter.stopRefreshData();
             popuKenoResultAnimation.showPopupDownWindowWihte(0, 0);
             popuKenoResultAnimation.startAction(getResultList(bean));
         }
     }
 
+    private void setIsCanChangeType(boolean b) {
+        rb_china.setClickable(b);
+        rb_canada1.setClickable(b);
+        rb_canada2.setClickable(b);
+        rb_slovakia.setClickable(b);
+        rb_australia.setClickable(b);
+    }
 
     private List<String> getResultList(KenoDataBean.PublicDataBean.CompanyDataBean bean) {
         String result = bean.getResult_id().get(0).getValue().split("\\|")[0];
@@ -634,40 +644,9 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
 
     @OnClick({R.id.rl_big, R.id.rl_small, R.id.rl_upper, R.id.rl_lower, R.id.rl_odd, R.id.rl_even, R.id.rl_single, R.id.rl_double,
             R.id.rl_set_top, R.id.rl_set_bottom, R.id.rl_mid, R.id.ll_gold, R.id.ll_wood, R.id.ll_water, R.id.ll_fire, R.id.ll_soil,
-            R.id.tv_china, R.id.tv_canada1, R.id.tv_canada2, R.id.tv_slovakia, R.id.tv_australia, R.id.ll_result, R.id.img_left,
-            R.id.img_right, R.id.img_website})
+            R.id.ll_result, R.id.img_left, R.id.img_right, R.id.img_website})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.tv_china:
-                if (isCanChangeBet) {
-                    img_website.setBackgroundResource(R.mipmap.keno_china_logo);
-                }
-                changBetType(CHINA);
-                break;
-            case R.id.tv_canada1:
-                if (isCanChangeBet) {
-                    img_website.setBackgroundResource(R.mipmap.keno_canada1_logo);
-                }
-                changBetType(CANADA1);
-                break;
-            case R.id.tv_canada2:
-                if (isCanChangeBet) {
-                    img_website.setBackgroundResource(R.mipmap.keno_canada2_logo);
-                }
-                changBetType(CANADA2);
-                break;
-            case R.id.tv_slovakia:
-                if (isCanChangeBet) {
-                    img_website.setBackgroundResource(R.mipmap.keno_slovakia_logo);
-                }
-                changBetType(SLOVAKIA);
-                break;
-            case R.id.tv_australia:
-                if (isCanChangeBet) {
-                    img_website.setBackgroundResource(R.mipmap.keno_austrla_logo);
-                }
-                changBetType(AUSTRALIA);
-                break;
             case R.id.rl_big:
                 currentBetType = "1";
                 bet("1");
@@ -786,12 +765,10 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     }
 
     private void changBetType(int type) {
-        if (isCanChangeBet) {
-            currentType = type;
-            isNeedInitCountDown = true;
-            updateDataType();
-            vp_way.setCurrentItem(0, false);
-        }
+        currentType = type;
+        isNeedInitCountDown = true;
+        updateDataType();
+        vp_way.setCurrentItem(0, false);
     }
 
     private KenoDataBean.PublicDataBean.CompanyDataBean getCurrentTypeData() {

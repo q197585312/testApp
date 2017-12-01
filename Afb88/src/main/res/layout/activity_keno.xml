@@ -6,76 +6,86 @@
 
     <include layout="@layout/toolbar_layout" />
 
-    <LinearLayout
+    <RadioGroup
+        android:id="@+id/rg_tab"
         android:layout_width="match_parent"
         android:layout_height="36dp"
         android:background="@mipmap/keno_tab_bg"
-        android:gravity="center"
         android:orientation="horizontal"
         android:paddingBottom="6dp"
         android:paddingTop="6dp">
 
-        <TextView
-            android:id="@+id/tv_china"
+        <RadioButton
+            android:id="@+id/rb_china"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
-            android:background="@mipmap/keno_tab_select_bg"
+            android:background="@drawable/keno_country_type_seleter"
+            android:button="@null"
+            android:checked="true"
             android:gravity="center"
             android:text="@string/china"
-            android:textColor="@color/black"
+            android:textColor="@color/keno_tab_color"
             android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_canada1"
+        <RadioButton
+            android:id="@+id/rb_canada1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:background="@drawable/keno_country_type_seleter"
+            android:button="@null"
             android:gravity="center"
             android:text="@string/canada1"
-            android:textColor="@color/black"
+            android:textColor="@color/keno_tab_color"
             android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_canada2"
+        <RadioButton
+            android:id="@+id/rb_canada2"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:background="@drawable/keno_country_type_seleter"
+            android:button="@null"
             android:gravity="center"
             android:text="@string/canada2"
-            android:textColor="@color/black"
+            android:textColor="@color/keno_tab_color"
             android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_slovakia"
+        <RadioButton
+            android:id="@+id/rb_slovakia"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:background="@drawable/keno_country_type_seleter"
+            android:button="@null"
             android:gravity="center"
             android:text="@string/slovakia"
-            android:textColor="@color/black"
+            android:textColor="@color/keno_tab_color"
             android:textSize="12sp" />
 
-        <TextView
-            android:id="@+id/tv_australia"
+        <RadioButton
+            android:id="@+id/rb_australia"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
             android:layout_weight="1"
+            android:background="@drawable/keno_country_type_seleter"
+            android:button="@null"
             android:gravity="center"
             android:text="@string/australia"
-            android:textColor="@color/black"
+            android:textColor="@color/keno_tab_color"
             android:textSize="12sp" />
-    </LinearLayout>
+    </RadioGroup>
 
     <LinearLayout
         android:layout_width="match_parent"
