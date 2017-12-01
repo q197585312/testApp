@@ -50,6 +50,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.TimeZone;
 
 /**
  * Created by Administrator on 2017/2/22.
@@ -369,7 +370,10 @@ public class AfbUtils {
     public static long diffTime(String open) {
         String format = "yyyy-MM-dd|HH:mm:ss";
         DateFormat df = new SimpleDateFormat(format);
-        String other = df.format(new Date());
+        DateFormat simpleDateFormat = new SimpleDateFormat(format);
+        TimeZone timeZone = TimeZone.getTimeZone("Asia/Hong_Kong");
+        simpleDateFormat.setTimeZone(timeZone);
+        String other = simpleDateFormat.format(new Date());
         long diff = 0;
         try {
             Date d1 = df.parse(open);
