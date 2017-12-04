@@ -24,5 +24,7 @@ public class KenoContract {
         void getBetStatu(String s);
 
         void KenoBet(String params);
+
+        void KenoBetSuccessMsg();
     }
 }

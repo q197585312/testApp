@@ -133,7 +133,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     moduleTitle.setVisibility(View.VISIBLE);
                     Half.setVisibility(View.VISIBLE);
                 }
-                if (item.getCombInfo().trim().isEmpty()) {
+                if (item.getCombInfo().trim().isEmpty() && !item.getTransType().equals("KEN")) {
                     combTv.setVisibility(View.GONE);
                 } else {
                     combTv.setVisibility(View.VISIBLE);
@@ -177,15 +177,13 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                             moduleTitle.setText(item.getHome() + " (" + getString(R.string.draw) + ")");
                         } else if (transType.equals("1")) {
                             moduleTitle.setText(item.getHome() + " (" + getString(R.string.win) + ")");
-                            if(item.isIsHomeGive()){
+                            if (item.isIsHomeGive()) {
                                 moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                             }
-                        }
-
-                         else if (transType.equals("2")) {
+                        } else if (transType.equals("2")) {
                             odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                             moduleTitle.setText(item.getAway() + " (" + getString(R.string.win) + ")");
-                            if(!item.isIsHomeGive()){
+                            if (!item.isIsHomeGive()) {
                                 moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                             }
 
@@ -221,28 +219,34 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         od = item.getDisplayOdds2();
                         odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                         if (transType.equals("FLG")) {
-                            moduleTitle.setText(item.getFGLGScore() );
+                            moduleTitle.setText(item.getFGLGScore());
                         } else if (transType.equals("HFT")) {
-                            moduleTitle.setText(item.getHTFTScore() );
+                            moduleTitle.setText(item.getHTFTScore());
                         }
                         moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                     } else if (transType.equals("TG") || transType.equals("CSR")) {
                         od = item.getDisplayOdds2();
 
                         if (transType.equals("TG")) {
-                            moduleTitle.setText(item.getTGScore() );
+                            moduleTitle.setText(item.getTGScore());
                             moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                             odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
                         } else if (transType.equals("CSR")) {
-                            moduleTitle.setText(item.getCSRScore() );
+                            moduleTitle.setText(item.getCSRScore());
                             moduleTitle.setVisibility(View.GONE);
-                            odds = item.getCSScore()+"@" + " " + item.getDisplayOdds2() + " (inet)";
+                            odds = item.getCSScore() + "@" + " " + item.getDisplayOdds2() + " (inet)";
                         }
                     } else if (transType.equals("DC")) {
                         od = item.getDisplayOdds2();
-                        odds ="@" + " " + item.getDisplayOdds2() + " (inet)";
-                        moduleTitle.setText(item.getDCScore() );
+                        odds = "@" + " " + item.getDisplayOdds2() + " (inet)";
+                        moduleTitle.setText(item.getDCScore());
                         moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
+                    } else if (transType.equals("KEN")) {
+                        combTv.setText(item.getKenoType() + "       " + item.getDisplayOdds2());
+                        moduleTitle.setText(item.getRes2());
+                        leagueTitle.setText(item.getBetType());
+                        Odds.setVisibility(View.GONE);
+                        Half.setVisibility(View.GONE);
                     }
                 }
                 if (item.isIsRun()) {
@@ -304,12 +308,13 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 if (transType.equals("1") && item.getGameType3().equals("O")) {
                     tType = getString(R.string.OutRight);
                     homeAway.setVisibility(View.GONE);
-                }
-                else{
+                } else {
                     homeAway.setVisibility(View.VISIBLE);
                 }
                 Half.setText(tType + half);
-                leagueTitle.setText(item.getModuleTitle());
+                if (!item.getTransType().equals("KEN")) {
+                    leagueTitle.setText(item.getModuleTitle());
+                }
                 String n = "Accepted";
                 if (item.getDangerStatus().equals("D")) {
                     n = "Waiting";
@@ -354,7 +359,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     }
 
     private void clickItem(View v, StakeListBean.DicAllBean item) {
-        if(item.getTransType()==null)
+        if (item.getTransType() == null)
             return;
         if (item.getTransType().startsWith("PA")) {
 //            http://main55.afb88.com/_norm/PamTrans.aspx?userName=demoafbAi1&id=138661496
@@ -365,7 +370,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
             webSettings.setAppCacheEnabled(false);
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
             //http://main55.afb88.com/_norm/PamTrans.aspx?userName=demoafbpk&id=140565088
-            String url = AppConstant.getInstance().HOST+ "_norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+            String url = AppConstant.getInstance().HOST + "_norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
             pop.setUrl(url);
             pop.showPopupCenterWindow();
         }

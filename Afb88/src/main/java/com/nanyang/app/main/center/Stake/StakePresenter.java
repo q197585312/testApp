@@ -30,7 +30,6 @@ public class StakePresenter extends BaseRetrofitPresenter<String, StakeContact.V
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String stakeListBeen) throws Exception {
-                        Log.d(TAG, "accept: " + stakeListBeen);
                         baseView.onGetData(stakeListBeen);
                         baseView.hideLoadingDialog();
                     }

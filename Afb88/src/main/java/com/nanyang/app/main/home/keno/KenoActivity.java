@@ -626,7 +626,12 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
 
     @Override
     public void onGetBetReturn(String str) {
-        ToastUtils.showShort(str);
+        if (str.equals("Success")) {
+            presenter.KenoBetSuccessMsg();
+        } else {
+            hideLoadingDialog();
+            ToastUtils.showShort(str);
+        }
         kenoBetPopu.closePopupWindow();
     }
 
