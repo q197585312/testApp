@@ -174,51 +174,52 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, String item) {
                 TextView tv_content = holder.getView(R.id.tv_content);
+                ImageView img_content = holder.getView(R.id.img_content);
                 tv_content.setText(item);
                 if (item.equals("B")) {
-                    tv_content.setBackgroundResource(R.mipmap.keno_red_ball);
+                    AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_red_ball);
                 } else if (item.equals("S")) {
-                    tv_content.setBackgroundResource(R.mipmap.keno_blue_ball);
+                    AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_blue_ball);
                 } else if (item.equals("U")) {
-                    tv_content.setBackgroundResource(R.mipmap.keno_blue_ball);
+                    AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_blue_ball);
                 } else if (item.equals("D")) {
-                    tv_content.setBackgroundResource(R.mipmap.keno_green_ball);
+                    AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_green_ball);
                 } else if (item.equals("O")) {
-                    tv_content.setBackgroundResource(R.mipmap.keno_blue_ball);
+                    AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_blue_ball);
                 } else if (item.equals("T")) {
                     switch (type) {
                         case upDown:
-                            tv_content.setBackgroundResource(R.mipmap.keno_red_ball);
+                            AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_red_ball);
                             break;
                         case oddEven:
-                            tv_content.setBackgroundResource(R.mipmap.keno_green_ball);
+                            AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_green_ball);
                             break;
                         default:
-                            tv_content.setBackgroundResource(R.mipmap.keno_red_ball);
+                            AfbUtils.GildLoadResForImg(mContext, img_content, R.mipmap.keno_red_ball);
                             break;
                     }
                 } else if (item.equals("E")) {
                     switch (type) {
                         case oddEven:
                         case singleDouble:
-                            tv_content.setBackgroundResource(R.mipmap.keno_red_ball);
+                            AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_red_ball);
                             break;
                         case elementl:
-                            tv_content.setBackgroundResource(R.mipmap.keno_brown_ball);
+                            AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_brown_ball);
                             break;
                         default:
-                            tv_content.setBackgroundResource(R.mipmap.keno_green_ball);
+                            AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_green_ball);
                             break;
                     }
                 } else if (item.equals("A")) {
                     tv_content.setText("W");
-                    tv_content.setBackgroundResource(R.mipmap.keno_green_ball);
+                    AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_green_ball);
                 } else if (item.equals("F")) {
-                    tv_content.setBackgroundResource(R.mipmap.keno_red_ball);
+                    AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_red_ball);
                 } else if (item.equals("W")) {
-                    tv_content.setBackgroundResource(R.mipmap.keno_blue_ball);
+                    AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_blue_ball);
                 } else if (item.equals("G")) {
-                    tv_content.setBackgroundResource(R.mipmap.keno_yellow_ball);
+                    AfbUtils.GildLoadResForImg(mContext,img_content,R.mipmap.keno_yellow_ball);
                 }
 
             }
@@ -377,22 +378,82 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         initRcData();
     }
 
+    private String lastBigSmallbetArr;
+    private String lastUpDownBetArr;
+    private String lastOddEvenBetArr;
+    private String lastSingleDoubleBetArr;
+    private String lastElementBetArr;
+    private String currentBigSmallbetArr;
+    private String currentUpDownBetArr;
+    private String currentOddEvenBetArr;
+    private String currentSingleDoubleBetArr;
+    private String currentElementBetArr;
+    char[] bigSmallBetArr;
+    char[] upDownBetArr;
+    char[] oddEvenBetArr;
+    char[] singleDoubleBetArr;
+    char[] elementBetArr;
+
     private void initRcData() {
-        char[] bigSmallBetArr = getCurrentTypeData().getHistory_id_1().toCharArray();
-        char[] upDownBetArr = getCurrentTypeData().getHistory_id_2().toCharArray();
-        char[] oddEvenBetArr = getCurrentTypeData().getHistory_id_3().toCharArray();
-        char[] singleDoubleBetArr = getCurrentTypeData().getHistory_id_4().toCharArray();
-        char[] elementBetArr = getCurrentTypeData().getHistory_id_5().toCharArray();
-        parseList(bigSmallBetArr, bigSmallList);
-        parseList(upDownBetArr, upDownList);
-        parseList(oddEvenBetArr, oddEvenList);
-        parseList(singleDoubleBetArr, singleDoubleList);
-        parseList(elementBetArr, elementlList);
-        adapterBigSmall.setData(bigSmallList);
-        adapterUpDown.setData(upDownList);
-        adapterOddEven.setData(oddEvenList);
-        adapterSingleDouble.setData(singleDoubleList);
-        adapterElement.setData(elementlList);
+        currentBigSmallbetArr = getCurrentTypeData().getHistory_id_1();
+        currentUpDownBetArr = getCurrentTypeData().getHistory_id_2();
+        currentOddEvenBetArr = getCurrentTypeData().getHistory_id_3();
+        currentSingleDoubleBetArr = getCurrentTypeData().getHistory_id_4();
+        currentElementBetArr = getCurrentTypeData().getHistory_id_5();
+        if (lastBigSmallbetArr == null && lastUpDownBetArr == null && lastOddEvenBetArr == null &&
+                lastSingleDoubleBetArr == null && lastElementBetArr == null) {
+            lastBigSmallbetArr = getCurrentTypeData().getHistory_id_1();
+            lastUpDownBetArr = getCurrentTypeData().getHistory_id_2();
+            lastOddEvenBetArr = getCurrentTypeData().getHistory_id_3();
+            lastSingleDoubleBetArr = getCurrentTypeData().getHistory_id_4();
+            lastElementBetArr = getCurrentTypeData().getHistory_id_5();
+            bigSmallBetArr = getCurrentTypeData().getHistory_id_1().toCharArray();
+            upDownBetArr = getCurrentTypeData().getHistory_id_2().toCharArray();
+            oddEvenBetArr = getCurrentTypeData().getHistory_id_3().toCharArray();
+            singleDoubleBetArr = getCurrentTypeData().getHistory_id_4().toCharArray();
+            elementBetArr = getCurrentTypeData().getHistory_id_5().toCharArray();
+            parseList(bigSmallBetArr, bigSmallList);
+            adapterBigSmall.setData(bigSmallList);
+            parseList(upDownBetArr, upDownList);
+            adapterUpDown.setData(upDownList);
+            parseList(oddEvenBetArr, oddEvenList);
+            adapterOddEven.setData(oddEvenList);
+            parseList(singleDoubleBetArr, singleDoubleList);
+            adapterSingleDouble.setData(singleDoubleList);
+            parseList(elementBetArr, elementlList);
+            adapterElement.setData(elementlList);
+        } else {
+            if (lastBigSmallbetArr != currentBigSmallbetArr) {
+                bigSmallBetArr = getCurrentTypeData().getHistory_id_1().toCharArray();
+                parseList(bigSmallBetArr, bigSmallList);
+                adapterBigSmall.setData(bigSmallList);
+                lastBigSmallbetArr = getCurrentTypeData().getHistory_id_1();
+            }
+            if (lastUpDownBetArr != currentUpDownBetArr) {
+                upDownBetArr = getCurrentTypeData().getHistory_id_2().toCharArray();
+                parseList(upDownBetArr, upDownList);
+                adapterUpDown.setData(upDownList);
+                lastUpDownBetArr = getCurrentTypeData().getHistory_id_2();
+            }
+            if (lastOddEvenBetArr != currentOddEvenBetArr) {
+                oddEvenBetArr = getCurrentTypeData().getHistory_id_3().toCharArray();
+                parseList(oddEvenBetArr, oddEvenList);
+                adapterOddEven.setData(oddEvenList);
+                lastOddEvenBetArr = getCurrentTypeData().getHistory_id_3();
+            }
+            if (lastSingleDoubleBetArr != currentSingleDoubleBetArr) {
+                singleDoubleBetArr = getCurrentTypeData().getHistory_id_4().toCharArray();
+                parseList(singleDoubleBetArr, singleDoubleList);
+                adapterSingleDouble.setData(singleDoubleList);
+                lastSingleDoubleBetArr = getCurrentTypeData().getHistory_id_4();
+            }
+            if (lastElementBetArr != currentElementBetArr) {
+                elementBetArr = getCurrentTypeData().getHistory_id_5().toCharArray();
+                parseList(elementBetArr, elementlList);
+                adapterElement.setData(elementlList);
+                lastElementBetArr = getCurrentTypeData().getHistory_id_5();
+            }
+        }
     }
 
     private void parseList(char[] arr, List<String> list) {
@@ -711,7 +772,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                 popuKenoResult.showPopupDownWindowWihte(0, 0);
                 if (popuKenoResult.isShowing()) {
                     ll_result.setBackgroundColor(Color.WHITE);
-                    img_result.setBackgroundResource(R.mipmap.keno_result_green);
+                    AfbUtils.GildLoadResForImg(mContext,img_result,R.mipmap.keno_result_green);
                     tv_result.setTextColor(0xff3BAB5C);
                 }
                 break;

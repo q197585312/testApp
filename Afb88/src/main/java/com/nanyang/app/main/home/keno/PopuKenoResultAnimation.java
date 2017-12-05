@@ -138,7 +138,6 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
                         tv.setBackgroundResource(R.mipmap.keno_animation_green_ball);
                         tv.setTextColor(0xff167732);
                     }
-                    stopAnimation();
                     closePopupWindow();
                     if (resultAnimationFinish != null) {
                         resultAnimationFinish.OnResultAnimationFinish();

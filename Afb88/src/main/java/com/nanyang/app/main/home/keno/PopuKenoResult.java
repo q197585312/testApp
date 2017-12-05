@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
 import com.nanyang.app.main.home.keno.bean.KenoResultBean;
@@ -28,13 +29,16 @@ public class PopuKenoResult extends BasePopupWindow {
     private List<KenoResultBean> resultList;
     private List<String> numList;
     private BaseRecyclerAdapter<String> adapter;
+    private Context context;
 
     public PopuKenoResult(Context context, View v) {
         super(context, v);
+        this.context = context;
     }
 
     public PopuKenoResult(Context context, View v, int width, int height) {
         super(context, v, width, height);
+        this.context = context;
     }
 
     public PopuKenoResult(List<KenoDataBean.PublicDataBean.CompanyDataBean.ResultIdBean> resultIdList,
@@ -43,6 +47,7 @@ public class PopuKenoResult extends BasePopupWindow {
         this.resultIdList = resultIdList;
         resultList = new ArrayList<>();
         numList = new ArrayList<>();
+        this.context = context;
         adapter = new BaseRecyclerAdapter<String>(context, numList, R.layout.item_keno_result) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, String item) {
@@ -164,6 +169,6 @@ public class PopuKenoResult extends BasePopupWindow {
     protected void onClose() {
         v.setBackgroundColor(0x00000000);
         tv.setTextColor(Color.WHITE);
-        img.setBackgroundResource(R.mipmap.keno_result_white);
+        AfbUtils.GildLoadResForImg(context,img,R.mipmap.keno_result_white);
     }
 }

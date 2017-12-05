@@ -29,6 +29,7 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.api.CookieManger;
@@ -392,5 +393,9 @@ public class AfbUtils {
         DateFormat df = new SimpleDateFormat(format);
         String date = df.format(new Date());
         return date;
+    }
+
+    public static void GildLoadResForImg(Context context, ImageView img, int res) {
+        Glide.with(context).load(res).asBitmap().into(img);
     }
 }
