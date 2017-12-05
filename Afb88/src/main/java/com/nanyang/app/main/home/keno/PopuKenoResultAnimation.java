@@ -102,6 +102,7 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
             AnimatorSet animatorSet = animatorSetList.get(i);
             if (animatorSet != null) {
                 animatorSet.cancel();
+                animatorSet = null;
             }
         }
         animatorSetList.clear();
@@ -137,8 +138,8 @@ public class PopuKenoResultAnimation extends BasePopupWindow {
                         tv.setBackgroundResource(R.mipmap.keno_animation_green_ball);
                         tv.setTextColor(0xff167732);
                     }
+                    stopAnimation();
                     closePopupWindow();
-                    animatorSetList.clear();
                     if (resultAnimationFinish != null) {
                         resultAnimationFinish.OnResultAnimationFinish();
                     }

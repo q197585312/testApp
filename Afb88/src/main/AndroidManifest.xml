@@ -32,7 +32,7 @@
 
     <uses-sdk tools:overrideLibrary="com.guoqi.highlightview" />
     <application
-
+        android:largeHeap="true"
         android:name=".AfbApplication"
         android:allowBackup="true"
         android:icon="@mipmap/app_logo"
