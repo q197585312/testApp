@@ -336,41 +336,46 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         initAdapter();
     }
 
+    private boolean initWindow = true;
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        popuKenoResultAnimation = new PopuKenoResultAnimation(mContext, ll_result,
-                LinearLayout.LayoutParams.MATCH_PARENT, (ll_bet.getHeight() + ll_bet1.getHeight() + AfbUtils.dp2px(mContext, 5)));
-        popuKenoResultAnimation.setResultAnimationFinish(new PopuKenoResultAnimation.ResultAnimationFinish() {
-            @Override
-            public void OnResultAnimationFinish() {
-                isNeedInitCountDown = true;
-                isCanChangeBet = true;
-                setIsCanChangeType(true);
-                presenter.getKenoData();
-                if (ll_drawing_close != null) {
-                    ll_drawing_close.setVisibility(View.GONE);
+        if (initWindow) {
+            initWindow = false;
+            popuKenoResultAnimation = new PopuKenoResultAnimation(mContext, ll_result,
+                    LinearLayout.LayoutParams.MATCH_PARENT, (ll_bet.getHeight() + ll_bet1.getHeight() + AfbUtils.dp2px(mContext, 5)));
+            popuKenoResultAnimation.setResultAnimationFinish(new PopuKenoResultAnimation.ResultAnimationFinish() {
+                @Override
+                public void OnResultAnimationFinish() {
+                    isNeedInitCountDown = true;
+                    isCanChangeBet = true;
+                    setIsCanChangeType(true);
+                    presenter.getKenoData();
+                    if (ll_drawing_close != null) {
+                        ll_drawing_close.setVisibility(View.GONE);
+                    }
                 }
-            }
-        });
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (isCanChangeBet) {
-                    finish();
+            });
+            toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (isCanChangeBet) {
+                        finish();
+                    }
                 }
-            }
-        });
-        tvToolbarLeft.setBackgroundResource(R.mipmap.bet_list_logo);
-        tvToolbarLeft.setVisibility(View.VISIBLE);
-        tvToolbarLeft.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Bundle bundle = new Bundle();
-                bundle.putString(AppConstant.KEY_STRING, getString(R.string.stake));
-                skipAct(PersonCenterActivity.class, bundle);
-            }
-        });
+            });
+            tvToolbarLeft.setBackgroundResource(R.mipmap.bet_list_logo);
+            tvToolbarLeft.setVisibility(View.VISIBLE);
+            tvToolbarLeft.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(AppConstant.KEY_STRING, getString(R.string.stake));
+                    skipAct(PersonCenterActivity.class, bundle);
+                }
+            });
+        }
     }
 
     private void updateDataType() {
