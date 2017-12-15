@@ -372,6 +372,8 @@
     <string name="up_keno">Up</string>
     <string name="mid_keno">Tie</string>
     <string name="down_keno">Down</string>
+    <string name="bet_mid_keno">up/down Tie</string>
+    <string name="bet_tie_bottom_keno">odds/evens Tie</string>
     <string name="odd_keno">Odds</string>
     <string name="tie_bottom_keno">Tie</string>
     <string name="even_keno">Evens</string>

@@ -371,6 +371,8 @@
     <string name="up_keno">上</string>
     <string name="mid_keno">中</string>
     <string name="down_keno">下</string>
+    <string name="bet_mid_keno">中</string>
+    <string name="bet_tie_bottom_keno">奇偶 和</string>
     <string name="odd_keno">奇</string>
     <string name="tie_bottom_keno">和</string>
     <string name="even_keno">偶</string>

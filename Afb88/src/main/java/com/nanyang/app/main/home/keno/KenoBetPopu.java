@@ -76,7 +76,7 @@ public class KenoBetPopu extends BasePopupWindow {
             case "7":
                 return context.getString(R.string.up_keno);
             case "8":
-                return context.getString(R.string.mid_keno);
+                return context.getString(R.string.bet_mid_keno);
             case "9":
                 return context.getString(R.string.down_keno);
             case "10":
@@ -92,7 +92,7 @@ public class KenoBetPopu extends BasePopupWindow {
             case "15":
                 return context.getString(R.string.tie_up_keno);
             case "16":
-                return context.getString(R.string.tie_bottom_keno);
+                return context.getString(R.string.bet_tie_bottom_keno);
         }
         return "";
     }
