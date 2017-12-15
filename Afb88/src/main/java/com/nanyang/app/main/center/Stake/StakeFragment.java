@@ -107,6 +107,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 TextView refno = holder.getView(R.id.order_item_tv1);
                 TextView homeAway = holder.getView(R.id.order_item_tv2);
                 TextView combTv = holder.getView(R.id.order_item_tv21);
+                TextView order_item_tv22 = holder.getView(R.id.order_item_tv22);
                 TextView moduleTitle = holder.getView(R.id.order_item_tv4);
                 TextView leagueTitle = holder.getView(R.id.order_item_league);
                 TextView Odds = holder.getView(R.id.order_item_tv3);
@@ -121,9 +122,9 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     moduleTitle.setVisibility(View.GONE);
                     Half.setVisibility(View.GONE);
                     combTv.setVisibility(View.GONE);
+                    order_item_tv22.setVisibility(View.GONE);
                     amt.setText(item.getAmt());
                     dangerStatus.setText("Total:");
-
                     return;
                 } else {
                     combTv.setVisibility(View.VISIBLE);
@@ -135,12 +136,18 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 }
                 if (item.getCombInfo().trim().isEmpty() && !item.getTransType().equals("KEN")) {
                     combTv.setVisibility(View.GONE);
+                    combTv.setTextColor(Color.RED);
+                    combTv.setTextColor(getResources().getColor(R.color.black_grey));
                 } else {
                     combTv.setVisibility(View.VISIBLE);
-                    combTv.setText(item.getCombInfo());
+                    combTv.setTextColor(getResources().getColor(R.color.red_title));
                 }
                 refno.setText(item.getRefNo() + "(" + item.getTransDate() + ")");
-                homeAway.setText(item.getHome() + "  vs  " + item.getAway());
+                if (transType.equals("KEN")) {
+                    homeAway.setText(item.getHome() + "  X  " + item.getAway());
+                } else {
+                    homeAway.setText(item.getHome() + "  vs  " + item.getAway());
+                }
                 moduleTitle.setTextColor(0xff333333);
                 Odds.setTextColor(0xff333333);
                 moduleTitle.setText(item.getModuleTitle());
@@ -242,7 +249,9 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                         moduleTitle.setText(item.getDCScore());
                         moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
                     } else if (transType.equals("KEN")) {
-                        combTv.setText(item.getKenoType() + "       " + item.getDisplayOdds2());
+                        order_item_tv22.setVisibility(View.VISIBLE);
+                        combTv.setText(item.getKenoType());
+                        order_item_tv22.setText("       "+item.getDisplayOdds2());
                         moduleTitle.setText(item.getRes2());
                         leagueTitle.setText(item.getBetType());
                         Odds.setVisibility(View.GONE);

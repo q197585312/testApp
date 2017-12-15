@@ -6,6 +6,7 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 
 import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
@@ -196,7 +197,7 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoDataBean, KenoContr
         StakeListBean.DicAllBean item = list1.get(0);
         builder.append(item.getRefNo() + "(" + item.getTransDate() + ")");
         builder.append("\n");
-        builder.append(item.getHome() + "  vs  " + item.getAway());
+        builder.append(item.getHome() + "  X  " + item.getAway());
         builder.append("\n");
         builder.append(item.getKenoType() + "       " + item.getDisplayOdds2());
         builder.append("\n");
@@ -225,6 +226,8 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoDataBean, KenoContr
         int start = str.indexOf(n);
         int end = start + n.length();
         SpannableStringBuilder style = new SpannableStringBuilder(str);
+        String oddsType = item.getKenoType();
+        style.setSpan(new ForegroundColorSpan(0xffad0c11), str.indexOf(oddsType),str.indexOf(oddsType)+oddsType.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         if (item.getDangerStatus().equals("D")) {
             style.setSpan(new BackgroundColorSpan(Color.YELLOW), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else if (item.getDangerStatus().equals("R")) {
