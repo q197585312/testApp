@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -156,11 +157,38 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvToolbarRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_list_layer, 0);
         tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_white_language, 0);
         tvToolbarRight1.setVisibility(View.VISIBLE);
+        if (getString(R.string.app_name).equals("AP889")){
+            String lg= AfbUtils.getLanguage(mContext);
+            switch (lg){
+                case "zh":
+                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_zh_flag, 0);
+                    break;
+                case "en":
+                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_en_flag, 0);
+                    break;
+                case "th":
+                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_th_flag, 0);
+                    break;
+                case "ko":
+                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_ko_flag, 0);
+                    break;
+                case "vi":
+                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_vi_flag, 0);
+                    break;
+                case "tr":
+                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_tr_flag, 0);
+                    break;
+                default:
+                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_en_flag, 0);
+                    break;
+            }
+        }
         tvToolbarRight1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 ChooseLanguagePop pop = new ChooseLanguagePop(SportActivity.this, v, presenter);
                 onPopupWindowCreated(pop, Gravity.CENTER);
+                pop.setShowTv(tvToolbarRight1);
             }
         });
         tvToolbarRight.setOnClickListener(new View.OnClickListener() {
@@ -175,7 +203,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvToolbarLeft.setVisibility(View.VISIBLE);
         initGuide();
     }
-
     private void initGuide() {
         boolean hasGuide = SharePreferenceUtil.getBoolean(mContext, GUIDE_KEY);
         if(!hasGuide){
@@ -240,8 +267,14 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
 
     private void showGuideViewGameType() {
+        TextView gameTypeTv;
+        if (getString(R.string.app_name).equals("AP889")){
+            gameTypeTv = tvToolbarTitle;
+        }else {
+            gameTypeTv = tvToolbarRight;
+        }
         GuideBuilder builder = new GuideBuilder();
-        builder.setTargetView(tvToolbarRight)
+        builder.setTargetView(gameTypeTv)
                 .setAlpha(200)
                 .setHighTargetCorner(20)
                 .setOverlayTarget(false)
@@ -256,7 +289,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
         });
         Base2PicComponent base2PicComponent = new Right2PicComponent();
-        base2PicComponent.setAnchorView(tvToolbarRight);
+        base2PicComponent.setAnchorView(gameTypeTv);
         base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right,R.mipmap.guide_game_type);
         builder.addComponent(base2PicComponent);
         Guide guide = builder.createGuide();
@@ -338,6 +371,19 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             type = item.getType();
             assert tvToolbarTitle != null;
             tvToolbarTitle.setText(item.getText());
+            if (getString(R.string.app_name).equals("AP889")){
+                Toolbar.LayoutParams params = new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT,Toolbar.LayoutParams.WRAP_CONTENT);
+                params.gravity = Gravity.CENTER;
+                tvToolbarTitle.setLayoutParams(params);
+                tvToolbarTitle.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.sport_odds_type_arrow_oval_green,0);
+                tvToolbarTitle.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        currentFragment.toolbarRightClick(v);
+                    }
+                });
+                tvToolbarRight.setVisibility(View.GONE);
+            }
         }
         initFragment(item.getParent());
 

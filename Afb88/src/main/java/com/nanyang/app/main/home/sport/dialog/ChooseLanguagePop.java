@@ -83,6 +83,9 @@ public class ChooseLanguagePop extends BasePopupWindow {
 
                 if(!lag.equals(AfbUtils.getLanguage(context))){
                     AfbUtils.switchLanguage(lag,context);
+                    if (tv!=null){
+                        tv.setBackgroundResource(item.getRes());
+                    }
                     switchLanguage(item.getParent());
                 }
             }
@@ -106,6 +109,10 @@ public class ChooseLanguagePop extends BasePopupWindow {
 
     public void switchLanguage(String lang) {
         presenter.switchLanguage(lang);
+    }
+    TextView tv;
+    public void setShowTv(TextView tv){
+        this.tv = tv;
     }
 
 }

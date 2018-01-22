@@ -59,12 +59,23 @@ public class HomeFragment extends BaseFragment {
     public void initView() {
         super.initView();
         initBanner();
-        BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext,rvContent);
+        BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext, rvContent);
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
                 switch (item.getType()) {
                     case "SportBook":
+                        if (getString(R.string.app_name).equals("AP889")) {
+                            MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Running));
+                            menuItemInfo.setType("Running");
+                            menuItemInfo.setParent(item.getType());
+                            Bundle b1 = new Bundle();
+                            b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
+                            skipAct(SportActivity.class, b1);
+                        } else {
+                            defaultSkip(item.getType());
+                        }
+                        break;
                     case "Financial":
                     case "Specials_4D":
                     case "Muay_Thai":
@@ -90,9 +101,9 @@ public class HomeFragment extends BaseFragment {
                         skipAct(DiscountActivity.class);
                         break;
                     case "Keno":
-                        if (getString(R.string.app_name).equals("Afb88")){
+                        if (getString(R.string.app_name).equals("Afb88")) {
                             skipAct(KenoActivity.class);
-                        }else {
+                        } else {
                             ToastUtils.showShort(R.string.coming_soon);
                         }
                         break;
@@ -108,9 +119,8 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-
     public void defaultSkip(final String type) {
-        ((BaseToolbarActivity)getBaseActivity()).defaultSkip(type);
+        ((BaseToolbarActivity) getBaseActivity()).defaultSkip(type);
 
     }
 
