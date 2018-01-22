@@ -188,7 +188,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             public void onClick(View v) {
                 ChooseLanguagePop pop = new ChooseLanguagePop(SportActivity.this, v, presenter);
                 onPopupWindowCreated(pop, Gravity.CENTER);
-                pop.setShowTv(tvToolbarRight1);
+                if (getString(R.string.app_name).equals("AP889")){
+                    pop.setShowTv(tvToolbarRight1);
+                }
             }
         });
         tvToolbarRight.setOnClickListener(new View.OnClickListener() {

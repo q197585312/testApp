@@ -204,6 +204,14 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         }
         transaction.commit();
     }
+    protected void removeFragmentToActivity(@NonNull Fragment fragment) {
+        checkNotNull(fragment);
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (fragment.isAdded()) {
+            transaction.remove(fragment);
+        }
+        transaction.commit();
+    }
 
     /**
      * 显示一个Toast信息
