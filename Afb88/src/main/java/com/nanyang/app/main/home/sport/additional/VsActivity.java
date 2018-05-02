@@ -138,13 +138,12 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         bf.setTitle(getString(R.string.single_double));
         cf.setTitle(getString(R.string.correct_score));
         createPresenter(new VsPresenter(this));
-        if(parent.equals(getString(R.string.SuperCombo))){
-            isMixParlay=true;
+        if (parent.equals(getString(R.string.SuperCombo))) {
+            isMixParlay = true;
             fragmentsList.add(sf);
             initFirstData((SoccerMixInfo) item);
             helper = new SuperComboBetHelper(this);
-        }
-        else {
+        } else {
             if (isMixParlay) {
                 fragmentsList.add(sf);
                 initFirstData((SoccerMixInfo) item);
@@ -439,12 +438,20 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         if (result.getFT15MINSHANDICAP_OVER_UNDER_0() != null) {
             rows.add(new VsTableRowBean("over", Arrays.asList(new VsCellBean(getString(R.string.over), "", 0), new VsCellBean(result.getFT15MINSHANDICAP_OVER_UNDER_0().getFT_OU(), "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_0().getO(), result.getFT15MINSHANDICAP_OVER_UNDER_0().getOid())), true, false, getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(00:00-15:00)", "", "", ""));
             rows.add(new VsTableRowBean("under", Arrays.asList(new VsCellBean(getString(R.string.under), "", 0), new VsCellBean("", "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_0().getU(), result.getFT15MINSHANDICAP_OVER_UNDER_0().getOid())), true));
+        }
+        if (result.getFT15MINSHANDICAP_OVER_UNDER_15() != null) {
             rows.add(new VsTableRowBean("over", Arrays.asList(new VsCellBean(getString(R.string.over), "", 0), new VsCellBean(result.getFT15MINSHANDICAP_OVER_UNDER_15().getFT_OU(), "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_15().getO(), result.getFT15MINSHANDICAP_OVER_UNDER_15().getOid())), true, false, getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(15:01-30:00)", "", "", ""));
             rows.add(new VsTableRowBean("under", Arrays.asList(new VsCellBean(getString(R.string.under), "", 0), new VsCellBean("", "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_15().getU(), result.getFT15MINSHANDICAP_OVER_UNDER_15().getOid())), true));
+        }
+        if (result.getFT15MINSHANDICAP_OVER_UNDER_30_N() != null) {
             rows.add(new VsTableRowBean("over", Arrays.asList(new VsCellBean(getString(R.string.over), "", 0), new VsCellBean(result.getFT15MINSHANDICAP_OVER_UNDER_30_N().getFT_OU(), "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_30_N().getO(), result.getFT15MINSHANDICAP_OVER_UNDER_30_N().getOid())), true, false, getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(30:01-45:00)", "", "", ""));
             rows.add(new VsTableRowBean("under", Arrays.asList(new VsCellBean(getString(R.string.under), "", 0), new VsCellBean("", "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_30_N().getU(), result.getFT15MINSHANDICAP_OVER_UNDER_30_N().getOid())), true));
+        }
+        if (result.getFT15MINSHANDICAP_OVER_UNDER_45() != null) {
             rows.add(new VsTableRowBean("over", Arrays.asList(new VsCellBean(getString(R.string.over), "", 0), new VsCellBean(result.getFT15MINSHANDICAP_OVER_UNDER_45().getFT_OU(), "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_45().getO(), result.getFT15MINSHANDICAP_OVER_UNDER_45().getOid())), true, false, getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(45:01-60:00)", "", "", ""));
             rows.add(new VsTableRowBean("under", Arrays.asList(new VsCellBean(getString(R.string.under), "", 0), new VsCellBean("", "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_45().getU(), result.getFT15MINSHANDICAP_OVER_UNDER_45().getOid())), true));
+        }
+        if (result.getFT15MINSHANDICAP_OVER_UNDER_60() != null) {
             rows.add(new VsTableRowBean("over", Arrays.asList(new VsCellBean(getString(R.string.over), "", 0), new VsCellBean(result.getFT15MINSHANDICAP_OVER_UNDER_60().getFT_OU(), "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_60().getO(), result.getFT15MINSHANDICAP_OVER_UNDER_60().getOid())), true, false, getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(60:01-75:00)", "", "", ""));
             rows.add(new VsTableRowBean("under", Arrays.asList(new VsCellBean(getString(R.string.under), "", 0), new VsCellBean("", "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_60().getU(), result.getFT15MINSHANDICAP_OVER_UNDER_60().getOid())), true));
         }
