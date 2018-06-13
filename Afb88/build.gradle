@@ -46,12 +46,12 @@ android {
         i1bet88 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet88"]
             applicationId 'com.nanyang.app_i1bet88'
-            versionName '1.07'
+            versionName '1.08'
         }
         ap889 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ap889"]
             applicationId 'com.nanyang.app_ap889'
-            versionName '1.04'
+            versionName '1.05'
         }
     }
     lintOptions {
