@@ -312,8 +312,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 if (isNew != null && isNew.equals("1")) {
                     isAnimation = true;
                 }
-                setValue(item, upOddsTv, upOdds, isAnimation, upType, isFh, R.drawable.green_trans_shadow_top);
-                setValue(item, downOddsTv, downOdds, isAnimation, downType, isFh, R.drawable.green_trans_shadow_bottom);
+                setValue(item, upOddsTv, upOdds, isAnimation, upType, isFh, R.drawable.green_trans_shadow_top,true);
+                setValue(item, upTextTv, upOdds, false, upType, isFh, R.drawable.green_trans_shadow_top,false);
+                setValue(item, downOddsTv, downOdds, isAnimation, downType, isFh, R.drawable.green_trans_shadow_bottom,true);
+                setValue(item, downTextTv, downOdds, false, downType, isFh, R.drawable.green_trans_shadow_bottom,false);
             }
         } else {
             upTextTv.setVisibility(View.GONE);
@@ -352,7 +354,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         return ss;
     }
 
-    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg) {
+    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg,boolean isShowText) {
         String value = f;
         if (f.equals("0")) {
             textView.setText("");
@@ -401,12 +403,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 textView.setOnClickListener(null);
             }
-            if (Float.valueOf(value) < 0) {
-                textView.setTextColor(red_black);
-            } else {
-                textView.setTextColor(black_grey);
+            if (isShowText){
+                if (Float.valueOf(value) < 0) {
+                    textView.setTextColor(red_black);
+                } else {
+                    textView.setTextColor(black_grey);
+                }
+                textView.setText(value);
             }
-            textView.setText(value);
         }
 
 
