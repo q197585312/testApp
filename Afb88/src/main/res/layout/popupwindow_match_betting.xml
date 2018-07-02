@@ -65,15 +65,29 @@
                     android:text="中国队"
                     android:textColor="@color/black_grey"
                     android:textSize="11sp" />
-
                 <TextView
+                    android:id="@+id/tv_home_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black_grey"
+                    android:textSize="11sp" />
+                <TextView
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="VS"
                     android:textColor="@color/green900"
                     android:textSize="11sp"
                     android:textStyle="bold" />
-
+                <TextView
+                    android:id="@+id/tv_away_score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/black_grey"
+                    android:textSize="11sp" />
                 <TextView
                     android:id="@+id/bet_away_tv"
                     android:layout_width="0dp"

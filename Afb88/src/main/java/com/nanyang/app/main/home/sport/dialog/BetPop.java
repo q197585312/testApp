@@ -63,6 +63,10 @@ public class BetPop extends BasePopupWindow {
     WebView webView;
     @Bind(R.id.bet_half_tv)
     TextView halfTv;
+    @Bind(R.id.tv_home_score)
+    TextView tv_home_score;
+    @Bind(R.id.tv_away_score)
+    TextView tv_away_score;
 
     @BindString(R.string.loading)
     String loading;
@@ -196,8 +200,11 @@ public class BetPop extends BasePopupWindow {
         betMaxWinTv.setText(result.getMinLimit());
         betMaxBetTv.setText(result.getMaxLimit());
         betModuleTitleTv.setText(result.getModuleTitle());
-        if (result.isIsRun())
-            betScoreTv.setText(result.getRunHomeScore() + " V " + result.getRunAwayScore());
+        if (result.isIsRun()){
+//            betScoreTv.setText(result.getRunHomeScore() + " V " + result.getRunAwayScore());
+            tv_home_score.setText(result.getRunHomeScore());
+            tv_away_score.setText(result.getRunAwayScore());
+        }
         boolean isHome = result.isIsHomeGive();
         if (isHome) {
             betHomeTv.setTextColor(context.getResources().getColor(R.color.red_title));
