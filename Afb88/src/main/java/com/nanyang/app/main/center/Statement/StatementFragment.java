@@ -195,6 +195,9 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
 
     @Override
     public void onGetConfirmBlanceData(String data) {
+        if (data.contains("<html>")){
+            return;
+        }
         tv_blanceSure.setText(data);
         tv_blanceSure.setClickable(false);
         tv_blanceSure.setBackgroundResource(R.color.green900);
