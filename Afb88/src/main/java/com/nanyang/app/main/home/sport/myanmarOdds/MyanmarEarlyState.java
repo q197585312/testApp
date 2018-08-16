@@ -21,10 +21,13 @@ public class MyanmarEarlyState extends MyanmarState {
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Early),"Early",getBaseView().getContextActivity().getString(R.string.Myanmar_Odds));
     }
-
+    @Override
+    protected String getAllOddsUrl() {
+        return AppConstant.getInstance().HOST+"_view/MOddsGen2.ashx?ot=e&update=true&r=2000335655&wd="+TimeUtils.dateFormat(new Date(),"yyyy-MM-dd")+"&ia=0&oview=0&ov=0&&LID=";
+    }
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_SOCCER_MYANMAR_EARLY+"&wd="+ TimeUtils.dateFormat(new Date(),"yyyy-MM-dd");
+        return AppConstant.getInstance().URL_SOCCER_MYANMAR_EARLY+"&wd="+ TimeUtils.dateFormat(new Date(),"yyyy-MM-dd")+param.getType();
     }
 
     @Override
