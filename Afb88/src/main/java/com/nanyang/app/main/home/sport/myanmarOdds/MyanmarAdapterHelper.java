@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.myanmarOdds;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
@@ -22,6 +23,7 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final MyanmarInfo item) {
         super.onConvert(helper, position, item);
+        LinearLayout ll_data1 = helper.getView(R.id.ll_data1);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
@@ -31,7 +33,7 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
         tvCollection.setVisibility(View.GONE);
 
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        scrollChild(sl.getChildAt(1),true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), "0", "0", item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
+        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), "0", "0", item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
 
         String hasMMHdp = "0";
         if (!item.MMHdpOdds.equals("0") && Integer.valueOf(item.MMHdpPct) != -1) {
@@ -45,10 +47,10 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
 
 
         String ouMM = item.getMMOU() + "(" + Integer.valueOf(item.getMMOUPct()) / 100 + ")";
-        scrollChild(sl.getChildAt(2), false, item, item.getMMIsHomeGive(), hasMMHdp, hdpMM, hasMMOu, ouMM, "0", "0", item.getMMOUOdds(), item.getMMOUOdds(), item.getMMHdpOdds(), item.getMMHdpOdds(),
-                "mmhome", "mmaway", "mmover", "mmunder",
-                true, true, false, "", "", "", "", "", ""
-        );
+//        scrollChild(sl.getChildAt(2), false, item, item.getMMIsHomeGive(), hasMMHdp, hdpMM, hasMMOu, ouMM, "0", "0", item.getMMOUOdds(), item.getMMOUOdds(), item.getMMHdpOdds(), item.getMMHdpOdds(),
+//                "mmhome", "mmaway", "mmover", "mmunder",
+//                true, true, false, "", "", "", "", "", ""
+//        );
         String homeRank = item.getHomeRank();
         String awayRank = item.getAwayRank();
         String away = item.getAway();
@@ -65,7 +67,24 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
         String rcHome = item.getRCHome();
         checkRedCards(awayRedCardTv, rcAway);
         checkRedCards(homeRedCardTv, rcHome);
-
+        if ((!item.getMMHdpOdds().equals("0") && !item.getMMHdpPct().equals("-1")) || (!item.getMMOUOdds().equals("0") && !item.getMMOUPct().equals("-1"))) {
+            ll_data1.setVisibility(View.VISIBLE);
+            TextView awayTv1 = helper.getView(R.id.module_match_away_team_tv1);
+            TextView homeTv1 = helper.getView(R.id.module_match_home_team_tv1);
+            TextView awayRedCardTv1 = helper.getView(R.id.module_match_away_red_card_tv1);
+            TextView homeRedCardTv1 = helper.getView(R.id.module_match_home_red_card_tv1);
+            homeTv1.setText(home);
+            awayTv1.setText(away);
+            checkRedCards(awayRedCardTv1, rcAway);
+            checkRedCards(homeRedCardTv1, rcHome);
+            ScrollLayout sl1 = helper.getView(R.id.module_center_sl1);
+            scrollChild(sl1.getChildAt(0), false, item, item.getMMIsHomeGive(), hasMMHdp, hdpMM, hasMMOu, ouMM, "0", "0", item.getMMOUOdds(), item.getMMOUOdds(), item.getMMHdpOdds(), item.getMMHdpOdds(),
+                    "mmhome", "mmaway", "mmover", "mmunder",
+                    true, true, false, "", "", "", "", "", ""
+            );
+        }else {
+            ll_data1.setVisibility(View.GONE);
+        }
 
     }
 

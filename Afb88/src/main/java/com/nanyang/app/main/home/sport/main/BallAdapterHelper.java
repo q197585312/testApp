@@ -56,17 +56,27 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         View headV = helper.getView(R.id.module_match_head_v);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
+        TextView dateTv1 = helper.getView(R.id.module_match_date_tv1);
         TextView timeTv = helper.getView(R.id.module_match_time_tv);
+        TextView timeTv1 = helper.getView(R.id.module_match_time_tv1);
         TextView liveTv = helper.getView(R.id.module_match_live_iv);
+        TextView liveTv1 = helper.getView(R.id.module_match_live_iv1);
         TextView homeTv = helper.getTextView(R.id.module_match_home_team_tv);
+        TextView homeTv1 = helper.getTextView(R.id.module_match_home_team_tv1);
         TextView awayTv = helper.getTextView(R.id.module_match_away_team_tv);
+        TextView awayTv1 = helper.getTextView(R.id.module_match_away_team_tv1);
         View tvRightMark = helper.getView(R.id.module_right_mark_tv);
         final View tvCollection = helper.getView(R.id.module_match_collection_tv);
         liveTv.setTextColor(red_black);
+        liveTv1.setTextColor(red_black);
         dateTv.setTextColor(red_black);
+        dateTv1.setTextColor(red_black);
         timeTv.setTextColor(black_grey);
+        timeTv1.setTextColor(black_grey);
         dateTv.setTextSize(10);
+        dateTv1.setTextSize(10);
         dateTv.setPadding(0, 0, 0, 0);
+        dateTv1.setPadding(0, 0, 0, 0);
 
         String time = item.getMatchDate();
         if (time.length() > 6) {
@@ -74,48 +84,68 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             time = TimeUtils.dateFormatChange(time, "KK:mmaa", "HH:mm", Locale.ENGLISH);
         }
         timeTv.setText(time);
+        timeTv1.setText(time);
 
         if (!item.getLive().equals("")) {
             if (item.getLive().contains("LIVE")) {
                 dateTv.setText("LIVE");
+                dateTv1.setText("LIVE");
                 liveTv.setVisibility(View.GONE);
+                liveTv1.setVisibility(View.GONE);
             } else {
                 String channel = item.getLive();
                 channel = Html.fromHtml(channel).toString();
                 String[] channels = channel.split("\n");
                 if (channels.length == 1) {
                     liveTv.setVisibility(View.GONE);
-                    if (channel.trim().length() > 6)
+                    liveTv1.setVisibility(View.GONE);
+                    if (channel.trim().length() > 6){
                         dateTv.setTextSize(8);
+                        dateTv1.setTextSize(8);
+                    }
                     dateTv.setText(channel.trim());
+                    dateTv1.setText(channel.trim());
                 } else if (channels.length == 2) {
                     liveTv.setTextSize(7);
-                    if (channels[1].trim().length() >= 6)
+                    liveTv1.setTextSize(7);
+                    if (channels[1].trim().length() >= 6){
                         dateTv.setTextSize(8);
+                        dateTv1.setTextSize(8);
+                    }
                     else {
                         dateTv.setTextSize(9);
+                        dateTv1.setTextSize(9);
                     }
                     liveTv.setVisibility(View.VISIBLE);
+                    liveTv1.setVisibility(View.VISIBLE);
                     liveTv.setText(channels[0].trim());
+                    liveTv1.setText(channels[0].trim());
                     dateTv.setText(channels[1].trim());
+                    dateTv1.setText(channels[1].trim());
                 }
             }
         } else {
             if (item.getMatchDate().length() > 6) {
                 String date = item.getMatchDate().substring(0, 5);
                 dateTv.setText(date);
+                dateTv1.setText(date);
             } else {
                 dateTv.setText(item.getMatchDate());
+                dateTv1.setText(item.getMatchDate());
             }
         }
         tvCollection.setVisibility(View.GONE);
         String isHomeGive = item.getIsHomeGive();
         if (isHomeGive.equals("1")) {
             homeTv.setTextColor(red_black);
+            homeTv1.setTextColor(red_black);
             awayTv.setTextColor(black_grey);
+            awayTv1.setTextColor(black_grey);
         } else {
             homeTv.setTextColor(black_grey);
+            homeTv1.setTextColor(black_grey);
             awayTv.setTextColor(red_black);
+            awayTv1.setTextColor(red_black);
         }
 
         tvRightMark.setVisibility(View.GONE);
@@ -138,6 +168,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
         }
         final ScrollLayout sl = helper.getView(R.id.module_center_sl);
+        final ScrollLayout sl1 = helper.getView(R.id.module_center_sl1);
+        sl1.getChildAt(0).setVisibility(View.VISIBLE);
+        sl1.getChildAt(1).setVisibility(View.VISIBLE);
         String hasHdp = item.getHasHdp();
         String hdp = item.getHdp();
         String hasOU = item.getHasOU();
@@ -151,8 +184,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         scrollChild(sl.getChildAt(0), false, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
         getBaseRecyclerAdapter().getItem(position).setIsHdpNew("0");
         getBaseRecyclerAdapter().getItem(position).setIsOUNew("0");
-        if (!slFollowers.contains(sl))
+        if (!slFollowers.contains(sl)){
             slFollowers.add(sl);
+            slFollowers.add(sl1);
+        }
         sl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -168,7 +203,31 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 return false;
             }
         });
+        sl1.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                ScrollLayout scrollLayout = back.onSetHeaderFollower();
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        slFollowers.add(scrollLayout);
+                        break;
+                }
+
+                sl1.setFollowScrolls(slFollowers);
+
+                return false;
+            }
+        });
         sl.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
+            @Override
+            public void changePosition(int index) {
+                if (slIndex != index) {
+                    slIndex = index;
+
+                }
+            }
+        });
+        sl1.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
             @Override
             public void changePosition(int index) {
                 if (slIndex != index) {
@@ -179,14 +238,20 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         });
         if (sl.getTargetIndex() != slIndex)
             sl.setCurrentIndex(slIndex);
+        if (sl1.getTargetIndex() != slIndex)
+            sl1.setCurrentIndex(slIndex);
         String away = item.getAway();
         String home = item.getHome();
         homeTv.setText(home);
+        homeTv1.setText(home);
         awayTv.setText(away);
+        awayTv1.setText(away);
         if (liveTv.getText().toString().trim().isEmpty()) {
             liveTv.setVisibility(View.GONE);
+            liveTv1.setVisibility(View.GONE);
         } else {
             liveTv.setVisibility(View.VISIBLE);
+            liveTv1.setVisibility(View.VISIBLE);
         }
         String oldHomeName = "";
         String oldAwayName = "";
@@ -425,8 +490,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public static class ViewHolder {
         @Bind(R.id.viewpager_match_home_hdp_tv)
-        public
-        TextView viewpagerMatchHomeHdpTv;
+        public TextView viewpagerMatchHomeHdpTv;
         @Bind(R.id.viewpager_match_home_hdpodds_tv)
         public TextView viewpagerMatchHomeHdpoddsTv;
         @Bind(R.id.viewpager_match_ou_tv)
