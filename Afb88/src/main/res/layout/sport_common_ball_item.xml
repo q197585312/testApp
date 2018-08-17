@@ -200,6 +200,7 @@
                 android:background="@color/grey_dialog_background" />
 
             <FrameLayout
+                android:id="@+id/fl_right"
                 android:layout_width="24dp"
                 android:layout_height="wrap_content">
 
