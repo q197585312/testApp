@@ -5,16 +5,19 @@ import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
+import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.R;
 import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.api.Api;
+import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.IBaseView;
 
@@ -173,8 +176,27 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
         builder.append("\n");
         builder.append(item.getHome() + "  vs  " + item.getAway());
         builder.append("\n");
-        if (item.isIsRun()) {
-            builder.append("(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")");
+        String typeName = "";
+        if (item.getTransType().startsWith("MM")) {
+            String type = item.getTransType();
+            if (type.equals("MMO")) {
+                if (item.isIsBetHome()) {
+                    typeName = baseView.getContextActivity().getString(R.string.over);
+                } else {
+                    typeName = baseView.getContextActivity().getString(R.string.under);
+                }
+            } else {
+                if (item.isIsBetHome()) {
+                    typeName = item.getHome();
+                } else {
+                    typeName = item.getAway();
+                }
+            }
+            builder.append(typeName + "(" + item.getHdp() + "(" + Integer.parseInt(item.getMMPct()) / 100 + ")" + "@" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")");
+        } else {
+            if (item.isIsRun()) {
+                builder.append("(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")");
+            }
         }
         String odds = item.getDisplayOdds2();
         if (item.getTransType().equals("HDP") || item.getTransType().equals("OU") || item.getTransType().equals("OE"))
@@ -210,6 +232,15 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
         int start = str.indexOf(n);
         int end = start + n.length();
         SpannableStringBuilder style = new SpannableStringBuilder(str);
+        if (item.getTransType().startsWith("MM")) {
+            int star1 = str.indexOf("(" + Integer.parseInt(item.getMMPct()) / 100 + ")@");
+            int end1 = str.indexOf(")@") + 1;
+            if (item.getMMPct().startsWith("-")) {
+                style.setSpan(new ForegroundColorSpan(Color.RED), star1, end1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+            } else {
+                style.setSpan(new ForegroundColorSpan(Color.BLUE), star1, end1, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+            }
+        }
         if (item.getDangerStatus().equals("D")) {
             style.setSpan(new BackgroundColorSpan(Color.YELLOW), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
         } else if (item.getDangerStatus().equals("R")) {
@@ -232,6 +263,6 @@ public abstract class BallBetHelper<B extends SportInfo, V extends BetView> impl
 
     @Override
     public Disposable clickOdds(B itemData, int oid, String type, String value, TextView v, boolean isHf, String params) {
-       return clickOdds( itemData,  type,  value,  v,  isHf,  params);
+        return clickOdds(itemData, type, value, v, isHf, params);
     }
 }

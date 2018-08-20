@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.dialog;
 
 import android.content.Context;
 import android.text.Html;
+import android.text.SpannableStringBuilder;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -200,7 +201,7 @@ public class BetPop extends BasePopupWindow {
         betMaxWinTv.setText(result.getMinLimit());
         betMaxBetTv.setText(result.getMaxLimit());
         betModuleTitleTv.setText(result.getModuleTitle());
-        if (result.isIsRun()){
+        if (result.isIsRun()) {
 //            betScoreTv.setText(result.getRunHomeScore() + " V " + result.getRunAwayScore());
             tv_home_score.setText(result.getRunHomeScore());
             tv_away_score.setText(result.getRunAwayScore());
@@ -274,7 +275,17 @@ public class BetPop extends BasePopupWindow {
             }
         }
         betNameTv.setText(state);
-        betHdpTv.setText(hdp + "@");
+        if (result.getBetType().startsWith("mm")) {
+            String str = hdp + "@";
+            if (str.contains("-") && str.contains("(") && str.contains(")")) {
+                SpannableStringBuilder ssb = AfbUtils.handleStringTextColor(str, str.indexOf("(") + 1, str.indexOf(")"), context.getResources().getColor(R.color.red_title));
+                betHdpTv.setText(ssb);
+            } else {
+                betHdpTv.setText(hdp + "@");
+            }
+        } else {
+            betHdpTv.setText(hdp + "@");
+        }
         String odds = Html.fromHtml(result.getBetOdds()).toString();
         if (odds != null && !odds.isEmpty() && Float.valueOf(odds) < 0) {
             betOddsTv.setTextColor(context.getResources().getColor(R.color.red_title));

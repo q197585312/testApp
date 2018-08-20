@@ -251,15 +251,35 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     } else if (transType.equals("KEN")) {
                         order_item_tv22.setVisibility(View.VISIBLE);
                         combTv.setText(item.getKenoType());
-                        order_item_tv22.setText("       "+item.getDisplayOdds2());
+                        order_item_tv22.setText("       " + item.getDisplayOdds2());
                         moduleTitle.setText(item.getRes2());
                         leagueTitle.setText(item.getBetType());
                         Odds.setVisibility(View.GONE);
                         Half.setVisibility(View.GONE);
+                    } else if (transType.startsWith("MM")) {
+                        od = item.getHdp();
+                        odds = od + "(" + Integer.parseInt(item.getMMPct()) / 100 + ")" + " (" + item.getRunHomeScore() + "-" + item.getRunAwayScore() + ")" + "@" + odds + " (Inet)";
+                        if (item.isIsBetHome()) {
+                            if (transType.equals("MMO")) {
+                                moduleTitle.setText(getString(R.string.over));
+                            } else {
+                                moduleTitle.setText(item.getHome());
+                            }
+                            moduleTitle.setTextColor(getResources().getColor(R.color.red_title));
+                        } else {
+                            if (transType.equals("MMO")) {
+                                moduleTitle.setText(getString(R.string.under));
+                            } else {
+                                moduleTitle.setText(item.getAway());
+                            }
+                            moduleTitle.setTextColor(Color.BLUE);
+                        }
                     }
                 }
-                if (item.isIsRun()) {
-                    odds = "(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")" + odds;
+                if (!transType.startsWith("MM")) {
+                    if (item.isIsRun()) {
+                        odds = "(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")" + odds;
+                    }
                 }
                 int start = odds.indexOf(od);
                 int end = start + od.length();
@@ -269,8 +289,13 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 } else {
                     style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.black_grey)), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
-
-
+                if (transType.startsWith("MM") && item.getMMPct().startsWith("-")) {
+                    int start1 = odds.indexOf("(" + Integer.parseInt(item.getMMPct()) / 100 + ")") + 1;
+                    int end1 = start1 + ("(" + Integer.parseInt(item.getMMPct()) / 100 + ")").length()-2;
+                    if (end1 > start1) {
+                        style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.red_title)), start1, end1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                    }
+                }
                 Odds.setText(style);
                 String half = "";
                 if (item.getFullTimeId() > 0) {

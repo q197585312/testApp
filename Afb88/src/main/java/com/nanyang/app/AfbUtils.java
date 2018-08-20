@@ -268,6 +268,11 @@ public class AfbUtils {
         style.setSpan(new ForegroundColorSpan(color), bend, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return style;
     }
+    public static SpannableStringBuilder handleStringTextColor(String str,int startIndex,int endIndex ,int color) {
+        SpannableStringBuilder style = new SpannableStringBuilder(str);
+        style.setSpan(new ForegroundColorSpan(color), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        return style;
+    }
 
     public static SpannableStringBuilder handleStringTextColor(String str, int color) {
         SpannableStringBuilder style = new SpannableStringBuilder(str);
