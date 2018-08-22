@@ -12,9 +12,8 @@ public class AppConstant {
     public static final String DOWNLOAD_APP = "http://appgd88.com/afb88/download/android/afb88.apk";
 
 
-//    public static String APP_HOST = "http://main55.afb88.com/";
-    public static String APP_HOST = "http://103.206.122.65/";
-    public static String REAL_HOST = "http://www.doo88.net/";
+    public static String APP_HOST = "http://main55.afb88.com/";
+    public static String REAL_HOST = "http://103.206.122.65/";
 
     public static String KEY_STRING = "KEY_STRING";
     public static String KEY_DATA = "KEY_DATA";
@@ -42,7 +41,7 @@ public class AppConstant {
 //    public static String HOST="http://www.doo88.net/";
     public String HOST = APP_HOST;
 
-    public String URL_LOGIN = HOST + "Default1.aspx";
+    public String URL_LOGIN = HOST + "W0/Pub/pcode.axd";
     public String URL_MAIN = HOST + "main.aspx";
 
 

@@ -53,6 +53,11 @@ android {
             applicationId 'com.nanyang.app_ap889'
             versionName '1.09'
         }
+        wfmain{
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wfmain"]
+            applicationId 'com.nanyang.app_wfmain'
+            versionName '1.00'
+        }
     }
     lintOptions {
         checkReleaseBuilds false
