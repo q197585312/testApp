@@ -12,8 +12,8 @@ public class AppConstant {
     public static final String DOWNLOAD_APP = "http://appgd88.com/afb88/download/android/afb88.apk";
 
 
-//    public static String APP_HOST = "http://main55.afb88.com/";
-    public static String APP_HOST = "http://103.206.122.65/";
+    public static String APP_HOST = "http://main55.afb88.com/";
+//    public static String APP_HOST = "http://103.206.122.65/";
     public static String REAL_HOST = "http://www.doo88.net/";
 
     public static String KEY_STRING = "KEY_STRING";
@@ -44,7 +44,7 @@ public class AppConstant {
 
     public String URL_LOGIN = HOST + "Default1.aspx";
     public String URL_MAIN = HOST + "main.aspx";
-
+    public String _BET="_bet/";
 
     public String URL_UPDATE_BALANCE = HOST + "_bet/PanelStakeBalance_App.aspx";
     public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";

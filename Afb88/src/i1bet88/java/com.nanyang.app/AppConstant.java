@@ -44,7 +44,7 @@ public class AppConstant {
     public String URL_LOGIN = HOST + "Default1.aspx";
     public String URL_MAIN = HOST + "main.aspx";
 
-
+    public String _BET="_bet/";
     public String URL_UPDATE_BALANCE = HOST + "_bet/PanelStakeBalance_App.aspx";
     public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
     public String URL_ODDS_TYPE = HOST + "Main.aspx?accType=";

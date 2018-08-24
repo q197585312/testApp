@@ -2,11 +2,13 @@ package com.nanyang.app.load.login;
 
 
 import android.app.Activity;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.common.SwitchLanguage;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -56,10 +58,90 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
         });
     }*/
 
+    @NonNull
+    private String getLanguage() {
+        String lag = AfbUtils.getLanguage((Activity) baseView);
+        String lang;
+        switch (lag) {
+            case "zh":
+                lang = "ZH-CN";
+                break;
+            case "en":
+                lang = "EN-US";
+                break;
+            case "th":
+                lang = "TH-TH";
+                break;
+            case "ko":
+                lang = "EN-TT";
+                break;
+            case "vi":
+                lang = "EN-IE";
+                break;
+            case "tr":
+                lang = "UR-PK";
+                break;
 
+            default:
+                lang = "EN-US";
+                break;
+        }
+        return lang;
+    }
     @Override
     public void login(final LoginInfo info) {
         if (checkUserAvailable(info)) {
+            if(BuildConfig.FLAVOR.equals("wfmain")){
+                Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login",getLanguage()))
+
+                        .flatMap(new Function<String, Flowable<String>>() {
+                            @Override
+                            public Flowable<String> apply(String s) throws Exception {
+                                String regex = "window.location";
+                                Pattern p = Pattern.compile(regex);
+                                Matcher m = p.matcher(s);
+                                if (m.find()) {
+                                    return getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN);
+                                }
+                                Exception exception1 = new Exception("Server Error");
+                                throw exception1;
+
+                            }
+                        })
+
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Consumer<String>() {//onNext
+                            @Override
+                            public void accept(String str) throws Exception {
+
+                                //#	Result	Protocol	Host	URL	Body	Caching	Content-Type	Process	Comments	Custom
+
+                            /*    SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
+                                switchLanguage.switchLanguage(lang);*/
+                                baseView.onLanguageSwitchSucceed("");
+                            }
+                        }, new Consumer<Throwable>() {//错误
+                            @Override
+                            public void accept(Throwable throwable) throws Exception {
+                                baseView.onFailed(throwable.getMessage());
+                                baseView.hideLoadingDialog();
+                            }
+                        }, new Action() {//完成
+                            @Override
+                            public void run() throws Exception {
+                                baseView.hideLoadingDialog();
+                            }
+                        }, new Consumer<Subscription>() {//开始绑定
+                            @Override
+                            public void accept(Subscription subscription) throws Exception {
+                                baseView.showLoadingDialog();
+                                subscription.request(Long.MAX_VALUE);
+                            }
+                        });
+                mCompositeSubscription.add(subscription);
+                return;
+            }
 
             Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN)
                     .flatMap(new Function<String, Flowable<String>>() {
@@ -119,32 +201,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                     .subscribe(new Consumer<String>() {//onNext
                         @Override
                         public void accept(String str) throws Exception {
-                            String lag = AfbUtils.getLanguage((Activity) baseView);
-                            String lang;
-                            switch (lag) {
-                                case "zh":
-                                    lang = "ZH-CN";
-                                    break;
-                                case "en":
-                                    lang = "EN-US";
-                                    break;
-                                case "th":
-                                    lang = "TH-TH";
-                                    break;
-                                case "ko":
-                                    lang = "EN-TT";
-                                    break;
-                                case "vi":
-                                    lang = "EN-IE";
-                                    break;
-                                case "tr":
-                                    lang = "UR-PK";
-                                    break;
-
-                                default:
-                                    lang = "EN-US";
-                                    break;
-                            }
+                            String lang = getLanguage();
                             SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
                             switchLanguage.switchLanguage(lang);
 
@@ -170,6 +227,8 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
             mCompositeSubscription.add(subscription);
         }
     }
+
+
 
     private boolean checkUserAvailable(LoginInfo info) {
         if (info.getTxtUserName().isEmpty()) {

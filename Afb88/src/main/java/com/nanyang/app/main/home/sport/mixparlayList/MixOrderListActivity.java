@@ -225,7 +225,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         }
 //a8197c.a36588.com/_Bet/PanelBet.aspx?betType=X_par&odds=160.670744228768&amt=10&coupon=1&exRate=1
         //"PanelBet.aspx?betType=X_par&odds=160.670744228768",
-        betUrl = AppConstant.getInstance().HOST+ "_bet/" + getApp().getBetParList().getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + getApp().getBetParList().getExRate();
+        betUrl = AppConstant.getInstance().HOST+ AppConstant.getInstance()._BET + getApp().getBetParList().getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + getApp().getBetParList().getExRate();
         helper.bet(betUrl);
 
     }

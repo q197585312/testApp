@@ -26,14 +26,14 @@ android {
             zipAlignEnabled true
             buildConfigField "boolean", "LOG_DEBUG", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
             debuggable true
         }
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+//            signingConfig signingConfigs.config
             debuggable true
         }
     }
@@ -56,7 +56,7 @@ android {
         wfmain{
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wfmain"]
             applicationId 'com.nanyang.app_wfmain'
-            versionName '1.00'
+            versionName '2.00'
         }
     }
     lintOptions {

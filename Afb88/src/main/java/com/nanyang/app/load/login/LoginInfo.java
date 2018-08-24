@@ -1,5 +1,8 @@
 package com.nanyang.app.load.login;
 
+import com.google.gson.Gson;
+
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -84,7 +87,8 @@ public class LoginInfo {
         this.txtUserName = txtUserName;
         this.password_password = password_password;
     }
-
+    public LoginInfo() {
+    }
     public Map<String, String> getMap() {
         Map<String, String> map = new HashMap<>();
         map.put("lstLang", lstLang);
@@ -110,4 +114,58 @@ public class LoginInfo {
                         "&btnSignIn=" + btnSignIn
                 ;
     }
+
+    /*_db	{}
+    _fm	{"ACT":"Login","ID":"zmb2","PW":"12345678","lang":"","pgLable":"0.8980293281634196","vsn":"4.0.121","PT":"wfDefault0"}*/
+    public Map<String, String> getWfmain(String ACT,String Lang) {
+        Map<String, String> map = new HashMap<>();
+        map.put("_fm", new LoginWfBean(ACT,Lang).getJson());
+        return map;
+    }
+    public Map<String, String> getWfLanguage(String Lang) {
+        Map<String, String> map = new HashMap<>();
+        map.put("_fm", new LanguageWfBean(Lang).getJson());
+        return map;
+    }
+
+    class LoginWfBean implements Serializable {
+//       {"ACT":"Login","ID":"zmb2","PW":"12345678","lang":"","pgLable":"0.8980293281634196","vsn":"4.0.121","PT":"wfDefault0"}
+
+        public LoginWfBean(String ACT, String lang) {
+            this.ACT = ACT;
+            this.lang = lang;
+        }
+
+        String ACT = "Login";
+        String ID = txtUserName;
+        String PW = password_password;
+        String lang = "";
+        String pgLable = "0.8980293281634196";
+        String vsn = "4.0.121";
+        String PT = "wfDefault0";
+        String getJson(){
+            return new Gson().toJson(this);
+        }
+    }
+
+
+   public static class LanguageWfBean implements Serializable {
+// {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
+
+        public LanguageWfBean(String lang) {
+            this.lang = lang;
+        }
+
+        String ACT = "GetTT";
+        String accType = "";
+        String lang = "";
+        String pgLable = "0.8980293281634196";
+        String vsn = "4.0.121";
+        String PT = "wfDefault0";
+       public String getJson(){
+            return new Gson().toJson(this);
+        }
+    }
+
+
 }
