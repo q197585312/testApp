@@ -1,11 +1,14 @@
 package com.unkonw.testapp.libs.base;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -205,6 +208,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         }
         transaction.commit();
     }
+
     protected void removeFragmentToActivity(@NonNull Fragment fragment) {
         checkNotNull(fragment);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
@@ -223,6 +227,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void showLoadingDialog() {
         if (loading == null) {
             loading = new DialogLoading(this);
@@ -274,6 +279,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
     public String getMsgIntent(String type) {
         return getIntent().getStringExtra(type);
     }
+
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         if (newConfig.fontScale != 1)//非默认值
@@ -290,5 +296,10 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
             res.updateConfiguration(newConfig, res.getDisplayMetrics());
         }
         return res;
+    }
+
+
+    public Activity getContextActivity() {
+        return this;
     }
 }

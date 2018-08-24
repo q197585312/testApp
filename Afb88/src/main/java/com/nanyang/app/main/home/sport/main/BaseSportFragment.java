@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -142,7 +143,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             public void run() {
                 hideLoadingDialog();
             }
-        },5000);
+        }, 5000);
 
     }
 
@@ -189,10 +190,10 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 View childAt = slHeader.getChildAt(index);
                 ImageView nextView = (ImageView) childAt.findViewById(R.id.iv_next);
                 ImageView previousView = (ImageView) childAt.findViewById(R.id.iv_previous);
-                if(slHeader.canMovable(index+1)&&slHeader.canMovable(index-1)) {
+                if (slHeader.canMovable(index + 1) && slHeader.canMovable(index - 1)) {
                     nextView.setVisibility(View.VISIBLE);
                     previousInit(index, previousView);
-                }else if(slHeader.canMovable(index+1)){
+                } else if (slHeader.canMovable(index + 1)) {
                     nextView.setVisibility(View.GONE);
                     previousView.setVisibility(View.VISIBLE);
                     previousView.setImageResource(R.mipmap.arrow_right_white_double);
@@ -200,14 +201,13 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                         @Override
                         public void onClick(View v) {
 
-                            moveToIndex(index+1);
+                            moveToIndex(index + 1);
                         }
                     });
-                }
-                else if(slHeader.canMovable(index-1)){
+                } else if (slHeader.canMovable(index - 1)) {
                     nextView.setVisibility(View.GONE);
                     previousInit(index, previousView);
-                }else{
+                } else {
                     nextView.setVisibility(View.GONE);
                     previousView.setVisibility(View.GONE);
                 }
@@ -217,24 +217,24 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             View childAt = slHeader.getChildAt(i);
             View nextView = childAt.findViewById(R.id.iv_next);
             View previousView = childAt.findViewById(R.id.iv_previous);
-                if (nextView != null && previousView != null) {
+            if (nextView != null && previousView != null) {
 
-                    nextView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            int targetIndex = slHeader.getTargetIndex() + 1;
+                nextView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int targetIndex = slHeader.getTargetIndex() + 1;
 
-                            moveToIndex(targetIndex);
-                        }
-                    });
-                    previousView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            int targetIndex = slHeader.getTargetIndex() - 1;
-                            moveToIndex(targetIndex);
-                        }
-                    });
-                }
+                        moveToIndex(targetIndex);
+                    }
+                });
+                previousView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        int targetIndex = slHeader.getTargetIndex() - 1;
+                        moveToIndex(targetIndex);
+                    }
+                });
+            }
 
         }
 /*
@@ -298,7 +298,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     private void checkBg(TextView tvMix, boolean isMix, int sport_oval_u_green, int sport_oval_u_black) {
         if (isMix) {
-            dynamicAddView(tvMix,"drawableTop",sport_oval_u_green);
+            dynamicAddView(tvMix, "drawableTop", sport_oval_u_green);
 //            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, sport_oval_u_green, 0, 0);
         } else {
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, sport_oval_u_black, 0, 0);
@@ -317,10 +317,18 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         this.baseRecyclerAdapter = baseRecyclerAdapter;
     }
 
+    Handler handler = new Handler();
 
     @Override
-    public void onFailed(String message) {
-        ToastUtils.showShort(message);
+    public void onFailed(final String message) {
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                ToastUtils.showShort(message);
+            }
+        });
+
     }
 
     @Override
@@ -391,7 +399,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
             nextView.setVisibility(View.GONE);
             previousView.setVisibility(View.GONE);
-        }else{
+        } else {
             nextView.setVisibility(View.GONE);
             previousView.setVisibility(View.VISIBLE);
             previousView.setImageResource(R.mipmap.arrow_right_white_double);
@@ -447,10 +455,10 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         if (allOddsType != null) {
             ivAllAdd.setText(allOddsType.getText());
             if (allOddsType.getText().equals(getString(R.string.All_Markets))) {
-                dynamicAddView(ivAllAdd,"drawableLeft",R.mipmap.add_green);
+                dynamicAddView(ivAllAdd, "drawableLeft", R.mipmap.add_green);
 //                .setCompoundDrawablesWithIntrinsicBounds(, 0, 0, 0);
             } else {
-                dynamicAddView(ivAllAdd,"drawableLeft",R.mipmap.sport_delete_green);
+                dynamicAddView(ivAllAdd, "drawableLeft", R.mipmap.sport_delete_green);
 //                ivAllAdd.setCompoundDrawablesWithIntrinsicBounds(, 0, 0, 0);
             }
         }
@@ -573,6 +581,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             ((BaseToolbarActivity) mContext).reLoginPrompt(str, back);
         }
     }
+
     @Override
     public void clickItemAdd(View v, SportInfo item, String type) {
         Bundle b = new Bundle();

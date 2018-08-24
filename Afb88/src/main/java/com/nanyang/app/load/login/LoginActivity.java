@@ -1,5 +1,6 @@
 package com.nanyang.app.load.login;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -154,6 +155,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             ToastUtils.showShort(error);
         }
     }
+
+
 
     @Override
     public void promptMsg(int msgRes) {

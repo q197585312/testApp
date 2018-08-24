@@ -1,9 +1,12 @@
 package com.unkonw.testapp.libs.base;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -100,6 +103,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
         mContext.showToast(content);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void showLoadingDialog() {
         mContext.showLoadingDialog();
     }
@@ -163,8 +167,13 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
     public void onAttach(Context context) {
         super.onAttach(context);
     }
-    public void refreshData(String type){
+
+    public void refreshData(String type) {
 
     }
 
+
+    public Activity getContextActivity() {
+        return getBaseActivity();
+    }
 }

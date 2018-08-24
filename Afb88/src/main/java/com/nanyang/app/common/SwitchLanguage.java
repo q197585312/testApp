@@ -1,6 +1,5 @@
 package com.nanyang.app.common;
 
-import android.app.Activity;
 import android.support.annotation.NonNull;
 
 import com.nanyang.app.AfbUtils;
@@ -12,16 +11,11 @@ import com.unkonw.testapp.libs.api.Api;
 
 import org.reactivestreams.Subscription;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
@@ -40,7 +34,7 @@ public class SwitchLanguage implements ILanguageSwitch {
     }
     @NonNull
     private String getLanguage() {
-        String lag = AfbUtils.getLanguage((Activity) baseView);
+        String lag = AfbUtils.getLanguage(baseView.getContextActivity());
         String lang;
         switch (lag) {
             case "zh":

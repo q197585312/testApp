@@ -72,7 +72,7 @@ public class StakeListBean implements Serializable{
          * Amt : 32.00
          * R_DateTime : [22/03 5:28:23 pm]
          */
-
+/*[26968, 'Waiting', 'HDP', 'Handicap', 'Home', 'HDP000269686', '24/08 2:17:53 pm', 'test', 'TEST [A]', 'TEST [B]', 1, 1, '-1.25', '1.19', 'HK', '', '20', 'D', '0-0', 'N', '', 'True'],*/
         private int SocTransId;
         private String TransType;
         private String RefNo;

@@ -25,7 +25,7 @@ public class ToastUtils {
      * @param message
      */
     public static void showShort(CharSequence message) {
-        if (TextUtils.isEmpty(message)) {
+        if (TextUtils.isEmpty(message)||message==null) {
             message = "";
         }
         if (isShow)

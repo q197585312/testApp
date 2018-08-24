@@ -47,9 +47,9 @@ public class AppConstant {
 
     public String _BET="Bet/";
 
-    public String URL_UPDATE_BALANCE = HOST + "Bet/PanelStakeBalance_App.aspx";
+    public String URL_UPDATE_BALANCE = HOST + "Bet/PanelStakeBalance_App.aspx";//http://103.206.122.65/Bet/BetStake.ashx
     public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
-    public String URL_ODDS_TYPE = HOST + "Main.aspx?accType=";
+    public String URL_ODDS_TYPE = HOST + "W0/Pub/wfMain0.html?accType=";//http://103.206.122.65/W0/Pub/wfMain0.html?accType=HK
     public String URL_FOOTBALL_RUNNING = HOST + "_view/RMOddsGen1.ashx?ot=r&ov=0&tf=-1&TFStatus=0&update=false&r=153004462&FAV=&SL=&_=1111";
     public String URL_FOOTBALL_TODAY = HOST + "_view/RMOddsGen1.ashx?ot=t&ov=0&tf=-1&TFStatus=0&update=false&r=153004462&wd=&ia=0&FAV=&SL=&_=1111";
     public String URL_FOOTBALL_EARLY = HOST + "_view/RMOddsGen1.ashx?ot=e&ov=0&tf=2&TFStatus=0&update=false&r=246503518&FAV=&SL=&_=1111";
@@ -205,16 +205,20 @@ public class AppConstant {
     public String URL_TABLE_TENNIS_RUNING = HOST + "_view/All_Gen6.ashx?g=57&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
     public String URL_TABLE_TENNIS_EARLY = HOST + "_view/All_Gen6.ashx?g=57&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //http://main55.afb88.com/_view/Result.aspx
-    public String URL_RESULT = HOST + "_view/Result_App.aspx";
+    public String URL_RESULT = HOST + "_view/Result_App.aspx";//好的
 
-    public String URL_EUROPE_TODAY;
+/*    public String URL_EUROPE_TODAY;
     public String URL_EUROPE_RUNING;
     public String URL_EUROPE_EARLY;
     public String URL_EUROPE_MIX_EARLY;
-    public String URL_EUROPE_MIX_TODAY;
+    public String URL_EUROPE_MIX_TODAY;*/
+   public String URL_EUROPE_TODAY = HOST + "_view/OddsGen5.ashx?g=182&ot=t&update=true&r=1833149994&FAV=&SL=&_=1111";
+   public String URL_EUROPE_RUNING = HOST + "_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994&FAV=&SL=&_=1111";
+   public String URL_EUROPE_EARLY = HOST + "_view/OddsGen5.ashx?g=182&ot=e&update=true&r=1833149994&FAV=&SL=&_=1111";
+   public String URL_EUROPE_MIX_EARLY = HOST + "_view/ParGenWFH.ashx?g=183&ot=e&update=true&r=524111120&FAV=&SL=&_=1111";
+   public String URL_EUROPE_MIX_TODAY = HOST + "_view/ParGenWFH.ashx?g=183&ot=t&update=true&r=524111120&FAV=&SL=&_=1111";
 
-
-    public String URL_TRANSFER_MONEY_DATA = HOST + "Bet/PanelBalance_App.aspx?";
+    public String URL_TRANSFER_MONEY_DATA = HOST + "Bet/PanelBalance_App.aspx?";//好的
     public String URL_CASHOUT_MONEY_E_GAMES = HOST + "Bet/FundEGCashOut.aspx";
     public String URL_TRANSFER_MONEY_E_GAMES = HOST + "Bet/FundEGTransfer.aspx";
     public String URL_CASHOUT_MONEY_GD_GAMES = HOST + "Bet/FundLDCashOut.aspx";
@@ -230,12 +234,12 @@ public class AppConstant {
 
     public String URL_RUNNING_MATCH_WEB = HOST + "_view/LiveCast.aspx";
 
-    public String URL_STAEMENT = HOST + "_norm/AccHistory_App.aspx?";
-    public String URL_STAKE = HOST + "Bet/PanelStake_App.aspx";
-    public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "AccConfirmDate_App.aspx?userName=";
+    public String URL_STAEMENT = HOST + "_norm/AccHistory_App.aspx?";//好的
+    public String URL_STAKE = HOST + "Bet/PanelStake_App.aspx";//haizai nong
+    public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "_norm/AccConfirmDate_App.aspx?userName=";
     public String URL_PANEL = HOST + "Bet/panel.aspx";
     //    http://main55.afb88.net/_view/kenGame_App.aspx
-    public String URL_KENO_DATA = HOST + "_view/kenGame_App.aspx";
+    public String URL_KENO_DATA = HOST + "_view/kenGame_App.aspx";//不管
     public String URL_KENO_STATU_DATA = HOST + "Bet/panel_keno_App.aspx?";
     public String URL_KENO_BET = HOST + "Bet/panel_kenoBet_App.aspx?";
     static AppConstant instance;
@@ -389,7 +393,7 @@ public class AppConstant {
         URL_EUROPE_MIX_EARLY = HOST + "_view/ParGenWFH.ashx?g=183&ot=e&update=true&r=524111120";
         URL_EUROPE_MIX_TODAY = HOST + "_view/ParGenWFH.ashx?g=183&ot=t&update=true&r=524111120";
 
-        URL_TRANSFER_MONEY_DATA = HOST + "_Bet/PanelBalance_App.aspx?";
+        URL_TRANSFER_MONEY_DATA = HOST + "Bet/PanelBalance_App.aspx?";
         URL_CASHOUT_MONEY_E_GAMES = HOST + "Bet/FundEGCashOut.aspx";
         URL_TRANSFER_MONEY_E_GAMES = HOST + "Bet/FundEGTransfer.aspx";
         URL_CASHOUT_MONEY_GD_GAMES = HOST + "Bet/FundLDCashOut.aspx";

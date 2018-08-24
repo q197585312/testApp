@@ -92,6 +92,7 @@ public class ChangeLanguageFragment extends BaseFragment<LanguagePresenter> impl
         ToastUtils.showShort(error);
     }
 
+
     @Override
     public void onLanguageSwitchSucceed(String str) {
         Intent intent = new Intent(getActivity(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

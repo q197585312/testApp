@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.PersonCenterActivity;
@@ -122,8 +123,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         mCompositeSubscription = new CompositeDisposable();
 
     }
+
     /**
-     *设置item中的子View 点击时间 响应     back.clickOdds(markTv, item, type, isHf, f);
+     * 设置item中的子View 点击时间 响应     back.clickOdds(markTv, item, type, isHf, f);
+     *
      * @return
      */
     protected abstract SportAdapterHelper.ItemCallBack onSetItemCallBack();
@@ -152,11 +155,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void refresh() {
         if (param == null) {
 
-            param=((SportActivity)getBaseView().getContextActivity()).getAllOddsType();
+            param = ((SportActivity) getBaseView().getContextActivity()).getAllOddsType();
             setParam(param);
         }
+        String url = getUrlString();
 
-        Disposable subscribe = getService(ApiService.class).getData(getRefreshUrl()).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
+
+        Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                 .map(new Function<String, List<TableSportInfo<B>>>() {
 
                     @Override
@@ -214,6 +219,16 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 });
         mCompositeSubscription.add(subscribe);
 
+    }
+
+    private String getUrlString() {
+        String url = getRefreshUrl();
+        if (BuildConfig.FLAVOR.equals("wfmain")) {
+            MenuItemInfo oddtype = ((SportActivity) getBaseView().getContextActivity()).getOddsType();
+            if (oddtype != null)
+                url = url + "&accType=" + oddtype.getType();
+        }
+        return url;
     }
 
     @Override
@@ -312,7 +327,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void showData() {
         List<B> listData = toMatchList(pageData);
         baseRecyclerAdapter.addAllAndClear(listData);
-        List<B> listDataAll= toMatchList(filterData);
+        List<B> listDataAll = toMatchList(filterData);
         baseView.onGetData(listDataAll);
     }
 
@@ -409,7 +424,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected final List<TableSportInfo<B>> filterData(List<TableSportInfo<B>> allData) {
         List<TableSportInfo<B>> dateTemp = new ArrayList<>();
-        if(allData==null)
+        if (allData == null)
             return dateTemp;
         for (TableSportInfo<B> bTableSportInfo : allData) {
             if (leagueSelectedMap.get(bTableSportInfo.getLeagueBean().getModuleId()) == null || leagueSelectedMap.get(bTableSportInfo.getLeagueBean().getModuleId())) {
@@ -424,15 +439,17 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected abstract List<TableSportInfo<B>> filterChildData(List<TableSportInfo<B>> dateTemp);
-    String LLD="";
+
+    String LLD = "";
     Runnable dataUpdateRunnable = new Runnable() {
         @Override
         public void run() {
             Flowable<String> flowable = null;
+            String url = getUrlString();
             if (LLD != null && LLD.length() > 0) {
-                flowable = getService(ApiService.class).getData(getRefreshUrl() + "&LID=" + LLD);
+                flowable = getService(ApiService.class).getData(url + "&LID=" + LLD);
             } else
-                flowable = getService(ApiService.class).getData(getRefreshUrl());
+                flowable = getService(ApiService.class).getData(url);
             Disposable subscribe = flowable
                     .subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
                     .takeWhile(new Predicate<String>() {
@@ -955,80 +972,80 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
      * ]
      */
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    protected List<TableSportInfo<B>> updateJsonArray(String updateString)throws JSONException {
+    protected List<TableSportInfo<B>> updateJsonArray(String updateString) throws JSONException {
 
-            updateString = Html.fromHtml(updateString).toString();
-            LogUtil.d("UpdateData", updateString);
-            JSONArray jsonArray = new JSONArray(updateString);
-            boolean modified = false;
-            boolean deleted = false;
-            boolean added = false;
-            if (jsonArray.length() > 5) {
-                parseLidValue(jsonArray);//解析 下一个pid
-                JSONArray modifyArray = jsonArray.getJSONArray(5);
+        updateString = Html.fromHtml(updateString).toString();
+        LogUtil.d("UpdateData", updateString);
+        JSONArray jsonArray = new JSONArray(updateString);
+        boolean modified = false;
+        boolean deleted = false;
+        boolean added = false;
+        if (jsonArray.length() > 5) {
+            parseLidValue(jsonArray);//解析 下一个pid
+            JSONArray modifyArray = jsonArray.getJSONArray(5);
 
-                if (modifyArray.length() > 0) {
-                    modified = true;
-                }
-                JSONArray deleteArray = jsonArray.getJSONArray(2);
-                List<String> deleteData = new ArrayList<>();
-                for (int i = 0; i < deleteArray.length(); i++) {
-                    deleteData.add(deleteArray.getString(i));
-                    deleted = true;
-                }
-                JSONArray addArray = jsonArray.getJSONArray(3);
-                if (addArray.length() > 0) {
-                    added = true;
-                }
+            if (modifyArray.length() > 0) {
+                modified = true;
+            }
+            JSONArray deleteArray = jsonArray.getJSONArray(2);
+            List<String> deleteData = new ArrayList<>();
+            for (int i = 0; i < deleteArray.length(); i++) {
+                deleteData.add(deleteArray.getString(i));
+                deleted = true;
+            }
+            JSONArray addArray = jsonArray.getJSONArray(3);
+            if (addArray.length() > 0) {
+                added = true;
+            }
 //                Map<String, JSONArray> addMap = new HashMap<>();
 //                Map<JSONArray, JSONArray> addMapLeague = new HashMap<>();
 
 
-                for (int i = 0; i < dataJsonArray.length(); i++) {
-                    JSONArray jsonArray3 = dataJsonArray.getJSONArray(i);
-                    if (jsonArray3.length() > 1) {
-                        JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
-                        for (int j = 0; j < LeagueMatchArray.length(); j++) {
-                            String sid = LeagueMatchArray.getJSONArray(j).getString(getIndexSocOddsId());
-                            for (int k = 0; k < modifyArray.length(); k++) {
-                                JSONArray jsonArray1 = modifyArray.getJSONArray(k);
-                                String modifyId = jsonArray1.getString(0);
-                                JSONArray modifyIndex = jsonArray1.getJSONArray(1);
-                                JSONArray modifyData = jsonArray1.getJSONArray(2);
-                                Log.d("UPDATE","modify--->modifyIndex:"+modifyIndex.toString());
-                                Log.d("UPDATE","modify--->modifyData:"+modifyData.toString());
-                                if (modifyId.equals(sid)) {
-                                    for (int l = 0; l < modifyIndex.length(); l++) {
-                                        LeagueMatchArray.getJSONArray(j).put(modifyIndex.getInt(l), modifyData.getString(l));
-                                        Log.d("UPDATE","modify--->"+modifyIndex.getInt(l)+":"+ modifyData.getString(l));
-                                    }
+            for (int i = 0; i < dataJsonArray.length(); i++) {
+                JSONArray jsonArray3 = dataJsonArray.getJSONArray(i);
+                if (jsonArray3.length() > 1) {
+                    JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                    for (int j = 0; j < LeagueMatchArray.length(); j++) {
+                        String sid = LeagueMatchArray.getJSONArray(j).getString(getIndexSocOddsId());
+                        for (int k = 0; k < modifyArray.length(); k++) {
+                            JSONArray jsonArray1 = modifyArray.getJSONArray(k);
+                            String modifyId = jsonArray1.getString(0);
+                            JSONArray modifyIndex = jsonArray1.getJSONArray(1);
+                            JSONArray modifyData = jsonArray1.getJSONArray(2);
+                            Log.d("UPDATE", "modify--->modifyIndex:" + modifyIndex.toString());
+                            Log.d("UPDATE", "modify--->modifyData:" + modifyData.toString());
+                            if (modifyId.equals(sid)) {
+                                for (int l = 0; l < modifyIndex.length(); l++) {
+                                    LeagueMatchArray.getJSONArray(j).put(modifyIndex.getInt(l), modifyData.getString(l));
+                                    Log.d("UPDATE", "modify--->" + modifyIndex.getInt(l) + ":" + modifyData.getString(l));
                                 }
                             }
-                            if (deleteData.contains(sid)) {
-                                Log.d("UPDATE","modify--->remove:"+sid);
-                                LeagueMatchArray.remove(j);
-                            }
                         }
-                        if (LeagueMatchArray.length() < 1) {
-                            dataJsonArray.remove(i);
+                        if (deleteData.contains(sid)) {
+                            Log.d("UPDATE", "modify--->remove:" + sid);
+                            LeagueMatchArray.remove(j);
                         }
                     }
-                }
-
-                if (added) {
-                    for (int i = 0; i < addArray.length(); i++) {
-                        JSONArray array = addArray.getJSONArray(i);
-                        if (array.length() > 1)
-                            addJson(array);
+                    if (LeagueMatchArray.length() < 1) {
+                        dataJsonArray.remove(i);
                     }
                 }
-                if (added || deleted || modified) {
-                    return updateJsonData(dataJsonArray);
-                }
-
             }
 
-            return new ArrayList<>();
+            if (added) {
+                for (int i = 0; i < addArray.length(); i++) {
+                    JSONArray array = addArray.getJSONArray(i);
+                    if (array.length() > 1)
+                        addJson(array);
+                }
+            }
+            if (added || deleted || modified) {
+                return updateJsonData(dataJsonArray);
+            }
+
+        }
+
+        return new ArrayList<>();
 
     }
 
@@ -1392,13 +1409,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         closePopupWindow();
-                        ((SportActivity)baseView.getContextActivity()).setAllOdds(item);
+                        ((SportActivity) baseView.getContextActivity()).setAllOdds(item);
                         textView.setText(item.getText());
                         if (item.getText().equals(getBaseView().getContextActivity().getString(R.string.All_Markets))) {
-                            ((BaseToolbarActivity)baseView.getContextActivity()).dynamicAddView(textView,"drawableLeft",R.mipmap.add_green);
+                            ((BaseToolbarActivity) baseView.getContextActivity()).dynamicAddView(textView, "drawableLeft", R.mipmap.add_green);
 //                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.add_green, 0, 0, 0);
                         } else {
-                            ((BaseToolbarActivity)baseView.getContextActivity()).dynamicAddView(textView,"drawableLeft",R.mipmap.sport_delete_green);
+                            ((BaseToolbarActivity) baseView.getContextActivity()).dynamicAddView(textView, "drawableLeft", R.mipmap.sport_delete_green);
 //                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.sport_delete_green, 0, 0, 0);
                         }
                         setParam(item);
