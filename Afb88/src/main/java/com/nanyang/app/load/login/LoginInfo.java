@@ -26,6 +26,9 @@ public class LoginInfo {
     public void set__EVENTVALIDATION(String __EVENTVALIDATION) {
         this.__EVENTVALIDATION = __EVENTVALIDATION;
     }
+    public void set__VIEWSTATEGENERATOR(String __VIEWSTATEGENERATOR) {
+        this.__VIEWSTATEGENERATOR = __VIEWSTATEGENERATOR;
+    }
 
     /* __VIEWSTATE	/wEPDwUKLTE5MDg0OTk2OA9kFgJmD2QWBAIBDxYCHgVzdHlsZQUxYmFja2dyb3VuZDp1cmwoaW1hZ2VzL2xvZ2luX0VOLVVTLnBuZykgbm8tcmVwZWF0OxYCZg9kFgICBw8PFgIeBFRleHQFBUxvZ2luZGQCAg8WAh8ABTliYWNrZ3JvdW5kOnVybChpbWFnZXMvbGlzdF9FTi1VUy5wbmcpIG5vLXJlcGVhdCBjZW50ZXIgMDtkZNRh3MZ0akiK/k7BU0DrdOa2KqSQAkPJBUPNRKepAPLW
         __EVENTVALIDATION	/wEdAAYfMKBnGzoFoip6aJJE6fpaiHrx0gRh57qNYHb+gYJUfmN6ZYJNGAQHn0c9zMgZU3A/F856zktixbVekFwCZlBeynuqL3cQJfeeYQ4/gSeOva+f28GNV31+z65DbDqxMS5lXRgroCj8wpuoKkde4QtUV2EKHgwjnQ91GIjhKi6heQ==
@@ -36,8 +39,9 @@ public class LoginInfo {
         btnSignIn	Login*/
     private String __VIEWSTATE = "/wEPDwULLTE1NzgzODQwNTIPZBYCZg9kFgRmDxYCHgVzdHlsZQUxYmFja2dyb3VuZDp1cmwoaW1hZ2VzL2xvZ2luX0VOLVVTLnBuZykgbm8tcmVwZWF0OxYCZg9kFgICCQ8PFgIeBFRleHQFBUxvZ2luZGQCAQ8WAh8ABTliYWNrZ3JvdW5kOnVybChpbWFnZXMvbGlzdF9FTi1VUy5wbmcpIG5vLXJlcGVhdCBjZW50ZXIgMDtkZFQZd7i8stdYFQuPOPwiVWF56AvyxMUH0QGpyPjYhlg5";
     private String __EVENTVALIDATION = "/wEdAAYpPXKEnSgwS5OM83/1znbNY3plgk0YBAefRz3MyBlTcD8XznrOS2LFtV6QXAJmUF7Ke6ovdxAl955hDj+BJ469iHrx0gRh57qNYHb+gYJUfq+f28GNV31+z65DbDqxMS7eqPw3s2V7Bn4zHu2v1nVEy/P4mxqMWRPvxWg3VzRGSA==";
+    private String __VIEWSTATEGENERATOR = "";
 
-    private String lstLang = "Default.aspx?lang=EN-US";
+    private String lstLang = "Default61smart.aspx?lang=EN-US";
     private String txtUserName;
     private String password_clear = "PASSWORD";
     private String password_password;
@@ -93,11 +97,12 @@ public class LoginInfo {
         Map<String, String> map = new HashMap<>();
         map.put("lstLang", lstLang);
         map.put("txtUserName", txtUserName);
-        map.put("password_clear", password_clear);
+//        map.put("password_clear", password_clear);
         map.put("password_password", password_password);
         map.put("btnSignIn", btnSignIn);
         map.put("__VIEWSTATE", __VIEWSTATE);
         map.put("__EVENTVALIDATION", __EVENTVALIDATION);
+//        map.put("__VIEWSTATEGENERATOR", __VIEWSTATEGENERATOR);
 
         return map;
     }
