@@ -24,6 +24,7 @@ import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -312,36 +313,18 @@ public class AfbUtils {
 
     public static void synCookies(Context context, WebView webView, String url) {
         WebSettings webSettings = webView.getSettings();
-//支持缩放，默认为true。
-        webSettings .setSupportZoom(false);
-//调整图片至适合webview的大小
-        webSettings .setUseWideViewPort(true);
-// 缩放至屏幕的大小
-        webSettings .setLoadWithOverviewMode(true);
-//设置默认编码
-        webSettings .setDefaultTextEncodingName("utf-8");
-////设置自动加载图片
-        webSettings .setLoadsImagesAutomatically(true);
-
-//多窗口
-        webSettings.supportMultipleWindows();
-//获取触摸焦点
-        webView.requestFocusFromTouch();
-//允许访问文件
-        webSettings.setAllowFileAccess(true);
-//开启javascript
+        //开启javascript
         webSettings.setJavaScriptEnabled(true);
-        //支持通过JS打开新窗口
-        webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-//提高渲染的优先级
-        webSettings.setRenderPriority(WebSettings.RenderPriority.HIGH);
-        //支持内容重新布局
-        webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-//关闭webview中缓存
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
-
-
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webView.getSettings().setAllowFileAccess(true);// 设置允许访问文件数据
+        webView.getSettings().setSupportZoom(false);
+        webView.getSettings().setBuiltInZoomControls(true);
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webView.getSettings().setDomStorageEnabled(true);
+        webView.getSettings().setDatabaseEnabled(true);
         webView.setWebViewClient(new WebViewClient());
+        webView.setWebChromeClient(new WebChromeClient());
         String cookie = "";
         if (CookieManger.getCookieStore().get(url) != null && CookieManger.getCookieStore().get(url).size() > 0) {
             cookie = CookieManger.getCookieStore().get(url).get(0).toString();
