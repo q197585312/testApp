@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.baseball;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.basketball.BasketballCommonAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 
 /**
@@ -15,10 +14,6 @@ public class BaseballEarlyState extends BaseballState {
         super(baseView);
     }
 
-    @Override
-    protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
-        return null;
-    }
 
     @Override
     public MenuItemInfo getStateType() {

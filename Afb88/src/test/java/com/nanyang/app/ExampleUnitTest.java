@@ -2,8 +2,6 @@ package com.nanyang.app;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
-
 /**
  * Example local unit test, which will execute on the development machine (host).
  *
@@ -12,6 +10,18 @@ import static org.junit.Assert.*;
 public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
-        assertEquals(4, 2 + 2);
+        String id= "|1|50|452265||";
+        String[] split = id.split("\\|");
+        if (split.length > 3) {
+            String a = split[2];;
+        }
+       /* String s = "伯恩利 (X)\\n @ 3.10\\n||r=1968463123|5|13";
+        String[] split = s.split("\\|");
+        System.out.println(split.length);
+        if (split.length == 5) {
+            System.out.println(split.length);
+        }*/
     }
+
+
 }

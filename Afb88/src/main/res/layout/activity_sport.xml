@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:skin="http://schemas.android.com/android/skin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:skin="http://schemas.android.com/android/skin"
     android:orientation="vertical">
 
     <include layout="@layout/toolbar_layout" />
@@ -13,62 +13,68 @@
         android:layout_height="wrap_content"
         android:background="@color/green_light_title"
         android:orientation="horizontal">
+
         <TextView
 
             android:id="@+id/iv_all_add"
             android:layout_width="wrap_content"
-            android:background="@color/green_light_white"
             android:layout_height="wrap_content"
-            android:padding="5dp"
-            android:drawableLeft="@mipmap/add_green"
-            android:text="@string/All_Markets"
-            android:textSize="12sp"
-            android:textColor="@color/green900"
-            android:drawablePadding="5dp"
+            android:background="@color/green_light_white"
             android:contentDescription="@null"
-            android:src="@mipmap/add_green" />
+            android:drawableLeft="@mipmap/add_green"
+            android:drawablePadding="5dp"
+            android:padding="5dp"
+            android:src="@mipmap/add_green"
+            android:text="@string/All_Markets"
+            android:textColor="@color/green900"
+            android:textSize="12sp" />
+
         <LinearLayout
             android:id="@+id/ll_choice"
             android:layout_width="0dp"
-            android:layout_weight="1"
-            android:layout_height="wrap_content">
-        <TextView
-            android:paddingLeft="25dp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:id="@+id/tv_title"
-            android:textStyle="bold"
-            android:layout_width="0dp"
-            android:textColor="@color/white"
             android:layout_height="wrap_content"
-            android:layout_weight="1" />
+            android:layout_weight="1">
 
-        <ImageView
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingLeft="25dp"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
 
-            android:id="@+id/iv_add"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:padding="5dp"
-            android:background="@color/green_light_white"
-            android:contentDescription="@null"
-            android:src="@mipmap/add_green" />
+            <ImageView
+
+                android:id="@+id/iv_add"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@color/green_light_white"
+                android:contentDescription="@null"
+                android:padding="5dp"
+                android:src="@mipmap/add_green" />
         </LinearLayout>
     </LinearLayout>
 
     <FrameLayout
-        android:background="@color/grey_background"
         android:id="@+id/fl_content"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_weight="1"
+        android:background="@color/grey_background" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.8dp"
         android:background="@color/grey_light" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/white" />
+
     <LinearLayout
         android:id="@+id/ll_sport_menu_bottom"
         android:layout_width="match_parent"
@@ -77,64 +83,84 @@
         android:orientation="horizontal">
 
         <TextView
-            android:textStyle="bold"
-
             android:id="@+id/tv_refresh"
+
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
+            android:drawablePadding="2dp"
             android:drawableTop="@mipmap/sport_refresh_black"
+            android:gravity="center"
             android:paddingTop="5dp"
             android:text="@string/refresh"
             android:textColor="@color/gray_dark"
-            android:drawablePadding="2dp"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:textStyle="bold"
-
             android:id="@+id/tv_collection"
+
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
             android:drawableTop="@mipmap/sport_star_black"
+            android:gravity="center"
             android:paddingTop="5dp"
             android:text="@string/collection"
             android:textColor="@color/grey_dark"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
         <TextView
-            android:textStyle="bold"
-
             android:id="@+id/tv_menu"
+
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:gravity="center"
             android:layout_weight="1"
             android:drawableTop="@mipmap/sport_menu_list_black"
+            android:gravity="center"
             android:paddingTop="5dp"
             android:text="@string/menu"
             android:textColor="@color/grey_dark"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:textStyle="bold"
-
-            android:id="@+id/tv_mix"
+        <FrameLayout
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@null"
+            android:gravity="center">
 
-            android:button="@null"
-            android:drawableTop="@mipmap/sport_oval_u_black"
-            android:paddingTop="5dp"
-            android:text="@string/mix"
-            android:textColor="@color/grey_dark"
-            android:textSize="12sp" />
+            <TextView
+                android:id="@+id/tv_mix"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:button="@null"
+                android:drawableTop="@mipmap/sport_black_shopping_cart"
+                android:gravity="center"
+                android:paddingTop="5dp"
+                android:text="@string/ORDER"
+                android:textColor="@color/grey_dark"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:visibility="gone"
+                android:layout_marginLeft="10dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/oval_green_stroke_black"
+                android:id="@+id/tv_mix_count"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:text="10"
+                android:textStyle="bold"
+                android:textSize="9dp"
+                android:layout_width="18dp"
+                android:layout_height="18dp" />
+        </FrameLayout>
+
+
     </LinearLayout>
 
 </LinearLayout>

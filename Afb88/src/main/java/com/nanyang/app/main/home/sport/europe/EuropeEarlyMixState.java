@@ -4,6 +4,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
@@ -16,7 +17,7 @@ public class EuropeEarlyMixState extends EuropeMixState {
     }
 
     @Override
-    protected void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeMixInfo item) {
+    protected void onChildConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
 
     }
 

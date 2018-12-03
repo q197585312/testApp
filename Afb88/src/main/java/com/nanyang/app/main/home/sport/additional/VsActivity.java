@@ -20,11 +20,11 @@ import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
 import com.nanyang.app.main.home.sport.europe.EuropeBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerCommonBetHelper;
-import com.nanyang.app.main.home.sport.football.SoccerMixBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerRunningBetHelper;
+import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
+import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
 import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -158,7 +158,13 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         if (parent.equals(getString(R.string.football))) {
 
             if (isMixParlay) {
-                helper = new SoccerMixBetHelper(this);
+                helper = new BallBetHelper(this) {
+                    @Override
+                    protected String getBallG() {
+                        return "1";
+                    }
+
+                };
             } else {
                 helper = new SoccerCommonBetHelper(this);
                 if (matchType.equals("Running"))
@@ -233,9 +239,9 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             socOddsId_hf = Integer.valueOf(item.getSocOddsId_FH());
         if (item.getSocOddsId() != null && !item.getSocOddsId().equals(""))
             socOddsId = Integer.valueOf(item.getSocOddsId());
-        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1), new int[]{getResources().getColor(R.color.red_title)}, new String[]{getString(R.string.h1)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_1Odds_FH(), socOddsId_hf)), true, false, setColorStyle("1  x  2", new int[]{getResources().getColor(R.color.red_title), getResources().getColor(R.color.blue)}, new String[]{"1", "x"}), "", "", ""),
-                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx), new int[]{getResources().getColor(R.color.blue)}, new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_XOdds_FH(), socOddsId_hf))),
-                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_2Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_2Odds_FH(), socOddsId_hf)), true),
+        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1), new int[]{getResources().getColor(R.color.red_title)}, new String[]{getString(R.string.h1)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("",  item.getX12_1Odds_FH(), socOddsId_hf)), true, false, setColorStyle("1  x  2", new int[]{getResources().getColor(R.color.red_title), getResources().getColor(R.color.blue)}, new String[]{"1", "x"}), "", "", ""),
+                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx), new int[]{getResources().getColor(R.color.blue)}, new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("",  item.getX12_XOdds_FH(), socOddsId_hf))),
+                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_2Odds(), socOddsId), new VsCellBean("",  item.getX12_2Odds_FH(), socOddsId_hf)), true),
                 new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), "", "", ""),
                 new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
         datas.add(rows);
@@ -400,13 +406,13 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
     private void secondFragmentData(ScaleBean result) {
         List<VsTableRowBean> rows;
-        rows = new ArrayList<>(Arrays.asList(new VsTableRowBean("htft", Arrays.asList(new VsCellBean(getString(R.string.hh), result.getHTFT().getHH(), "&sc=" + "11", result.getHTFT().getOid()), new VsCellBean(getString(R.string.hd), result.getHTFT().getHD(), "&sc=" + "10", result.getHTFT().getOid()), new VsCellBean(getString(R.string.ha), result.getHTFT().getHA(), "&sc=" + "12", result.getHTFT().getOid())), true, false, getString(R.string.half_full_time), "", "", ""),
-                new VsTableRowBean("htft", Arrays.asList(new VsCellBean(getString(R.string.dh), result.getHTFT().getDH(), "&sc=" + "1", result.getHTFT().getOid()), new VsCellBean(getString(R.string.dd), result.getHTFT().getDD(), "&sc=" + "0", result.getHTFT().getOid()), new VsCellBean(getString(R.string.da), result.getHTFT().getDA(), "&sc=" + "2", result.getHTFT().getOid()))),
-                new VsTableRowBean("htft", Arrays.asList(new VsCellBean(getString(R.string.ah), result.getHTFT().getAH(), "&sc=" + "21", result.getHTFT().getOid()), new VsCellBean(getString(R.string.ad), result.getHTFT().getAD(), "&sc=" + "20", result.getHTFT().getOid()), new VsCellBean(getString(R.string.aa), result.getHTFT().getAA(), "&sc=" + "22", result.getHTFT().getOid())), true),
-                new VsTableRowBean("fglg", Arrays.asList(new VsCellBean("HF", result.getFGLG().getHF(), "&sc=" + "10", result.getFGLG().getOid()), new VsCellBean("HL", result.getFGLG().getHL(), "&sc=" + "1", result.getFGLG().getOid()), new VsCellBean("AF", result.getFGLG().getAF(), "&sc=" + "20", result.getFGLG().getOid()),
-                        new VsCellBean("AL", result.getFGLG().getAL(), "&sc=" + "2", result.getFGLG().getOid()), new VsCellBean("NO GOAL", result.getFGLG().getNO_GOAL(), "&sc=" + "0", result.getFGLG().getOid())), true, true, getString(R.string.first_last_goal), "", "", ""),
-                new VsTableRowBean("tg", Arrays.asList(new VsCellBean("0~1", result.getTG().getT0_1(), "&sc=" + "1", result.getTG().getOid()), new VsCellBean("2~3", result.getTG().getT2_3(), "&sc=" + "23", result.getTG().getOid()), new VsCellBean("4~6", result.getTG().getT4_6(), "&sc=" + "46", result.getTG().getOid()),
-                        new VsCellBean("", "", 0), new VsCellBean("7 & OVER", result.getTG().getT7_OVER(), "&sc=" + "70", result.getTG().getOid())), true, true, getString(R.string.total_goals), "", "", "")
+        rows = new ArrayList<>(Arrays.asList(new VsTableRowBean("htft", Arrays.asList(new VsCellBean(getString(R.string.hh), result.getHTFT().getHH(), /*"&sc=" +*/ "11", result.getHTFT().getOid()), new VsCellBean(getString(R.string.hd), result.getHTFT().getHD(), /*"&sc=" +*/ "10", result.getHTFT().getOid()), new VsCellBean(getString(R.string.ha), result.getHTFT().getHA(), /*"&sc=" +*/ "12", result.getHTFT().getOid())), true, false, getString(R.string.half_full_time), "", "", ""),
+                new VsTableRowBean("htft", Arrays.asList(new VsCellBean(getString(R.string.dh), result.getHTFT().getDH(), /*"&sc=" +*/ "1", result.getHTFT().getOid()), new VsCellBean(getString(R.string.dd), result.getHTFT().getDD(), /*"&sc=" +*/ "0", result.getHTFT().getOid()), new VsCellBean(getString(R.string.da), result.getHTFT().getDA(), /*"&sc=" +*/ "2", result.getHTFT().getOid()))),
+                new VsTableRowBean("htft", Arrays.asList(new VsCellBean(getString(R.string.ah), result.getHTFT().getAH(), /*"&sc=" +*/ "21", result.getHTFT().getOid()), new VsCellBean(getString(R.string.ad), result.getHTFT().getAD(), /*"&sc=" +*/ "20", result.getHTFT().getOid()), new VsCellBean(getString(R.string.aa), result.getHTFT().getAA(), /*"&sc=" +*/ "22", result.getHTFT().getOid())), true),
+                new VsTableRowBean("fglg", Arrays.asList(new VsCellBean("HF", result.getFGLG().getHF(), /*"&sc=" +*/ "10", result.getFGLG().getOid()), new VsCellBean("HL", result.getFGLG().getHL(), /*"&sc=" +*/ "1", result.getFGLG().getOid()), new VsCellBean("AF", result.getFGLG().getAF(), /*"&sc=" +*/ "20", result.getFGLG().getOid()),
+                        new VsCellBean("AL", result.getFGLG().getAL(), /*"&sc=" +*/ "2", result.getFGLG().getOid()), new VsCellBean("NO GOAL", result.getFGLG().getNO_GOAL(), /*"&sc=" +*/ "0", result.getFGLG().getOid())), true, true, getString(R.string.first_last_goal), "", "", ""),
+                new VsTableRowBean("tg", Arrays.asList(new VsCellBean("0~1", result.getTG().getT0_1(), /*"&sc=" +*/ "1", result.getTG().getOid()), new VsCellBean("2~3", result.getTG().getT2_3(), /*"&sc=" +*/ "23", result.getTG().getOid()), new VsCellBean("4~6", result.getTG().getT4_6(), /*"&sc=" +*/ "46", result.getTG().getOid()),
+                        new VsCellBean("", "", 0), new VsCellBean("7 & OVER", result.getTG().getT7_OVER(), /*"&sc=" +*/ "70", result.getTG().getOid())), true, true, getString(R.string.total_goals), "", "", "")
         ));
         if (result.getHOMETEAMTG() != null) {
             rows.add(new VsTableRowBean("", Arrays.asList(new VsCellBean(result.getHOMETEAMTG().getFT_OU() + "      " + getString(R.string.O), result.getHOMETEAMTG().getFT_O(), "over", "", result.getHOMETEAMTG().getOid()), new VsCellBean("" + getString(R.string.U), result.getHOMETEAMTG().getFT_U(), "under", "", result.getHOMETEAMTG().getOid()), new VsCellBean(result.getHOMETEAMTG().getFH_OU() + "      " + "FH." + getString(R.string.O), result.getHOMETEAMTG().getFH_O(), "over", "", result.getHOMETEAMTG().getOid_FH()),
@@ -524,10 +530,10 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     }
 
     @Override
-    public void onUpdateMixSucceed(BettingParPromptBean bean) {
+    public void onUpdateMixSucceed(AfbClickResponseBean bean) {
         getApp().setBetParList(bean);
-        if (getApp().getBetParList() != null && getApp().getBetParList().getBetPar() != null && getApp().getBetParList().getBetPar().size() > 0) {
-            tvMixParlayOrder.setText("" + getApp().getBetParList().getBetPar().size());
+        if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
+            tvMixParlayOrder.setText("" + getApp().getBetParList().getList().size());
             llMixParlayOrder.setVisibility(View.VISIBLE);
 
         } else {

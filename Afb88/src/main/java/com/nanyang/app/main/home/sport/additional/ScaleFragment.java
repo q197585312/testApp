@@ -95,14 +95,15 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 adapter.notifyDataSetChanged();
+                String aa = childParam;
                 if (getValue1(item) != null && (!getValue1(item).equals(""))&&Float.valueOf(getValue1(item))!=0f) {
                     if (position > 2 && position < 6) {
-                        betHelper.clickOdds(itemData, item.getB().toString(), getValue1(item), (TextView) v, false, "&sc=" + item.getSc() + childParam);
+                        betHelper.clickOdds(itemData, item.getB().toString(), getValue1(item), (TextView) v, false, /*"&sc=" +*/ item.getSc().toString() /*+ childParam*/);
                     } else if(position<8) {
-                        betHelper.clickOdds(itemData, item.getB().toString(), getValue1(item), (TextView) v, false, "&g=5" + childParam);
+                        betHelper.clickOdds(itemData, item.getB().toString(), getValue1(item), (TextView) v, false, ""/*"&g=5" + childParam*/);
                     }
                     else{
-                        betHelper.clickOdds(itemData, item.getRows().get(1).getOid(), item.getB().toString(), getValue1(item), (TextView) v, false, childParam);
+                        betHelper.clickOdds(itemData, item.getRows().get(1).getOid(), item.getB().toString(), getValue1(item), (TextView) v, false,"" /*childParam*/);
                     }
 
 
@@ -115,12 +116,12 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
                 adapter.notifyDataSetChanged();
                 if (getValue2(item) != null && (!getValue2(item).equals(""))&&Float.valueOf(getValue2(item))!=0f) {
                     if (position > 2 && position < 6) {
-                        betHelper.clickOdds(itemData, item.getB().toString(), getValue2(item), (TextView) v, true, "&sc=" + item.getSc() + childParam);
+                        betHelper.clickOdds(itemData, item.getB().toString(), getValue2(item), (TextView) v, true, /*"&sc=" +*/ item.getSc().toString() /*+ childParam*/);
                     }  else if(position<8)  {
-                        betHelper.clickOdds(itemData, item.getB().toString(), getValue2(item), (TextView) v, true, "&g=5" + childParam);
+                        betHelper.clickOdds(itemData, item.getB().toString(), getValue2(item), (TextView) v, true,"" /*+"&g=5"  childParam*/);
                     }
                     else{
-                        betHelper.clickOdds(itemData, item.getRows().get(2).getOid(), item.getB().toString(), getValue2(item), (TextView) v, false, childParam);
+                        betHelper.clickOdds(itemData, item.getRows().get(2).getOid(), item.getB().toString(), getValue2(item), (TextView) v, false, ""/*childParam*/);
                     }
 
                 }
@@ -162,11 +163,11 @@ public class ScaleFragment extends BaseVsFragment<VsTableRowBean> {
             socOddsId_hf = Integer.valueOf(item.getSocOddsId_FH());
         if (item.getSocOddsId() != null && !item.getSocOddsId().equals(""))
             socOddsId = Integer.valueOf(item.getSocOddsId());
-        rows =   new ArrayList<>(Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1),new int[]{getResources().getColor(R.color.red_title)},new String[]{getString(R.string.h1)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_1Odds_FH(), socOddsId_hf)), true, false, setColorStyle("1  x  2",new int[]{getResources().getColor(R.color.red_title),getResources().getColor(R.color.blue)},new String[]{"1","x"}), "", "", ""),
-                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx),new int[]{getResources().getColor(R.color.blue)},new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_XOdds_FH(), socOddsId_hf))),
-                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_2Odds(), socOddsId), new VsCellBean("", item.getHasX12_FH().equals("0") ? "" : item.getX12_2Odds_FH(), socOddsId_hf)), true),
-                new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : AfbUtils.decimalValue(Float.valueOf(item.getOddOdds())/10, "0.00"), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), "", "", ""),
-                new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : AfbUtils.decimalValue(Float.valueOf(item.getEvenOdds())/10, "0.00"), socOddsId), new VsCellBean("", "", socOddsId_hf)), true)));
+        rows =   new ArrayList<>(Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1),new int[]{getResources().getColor(R.color.red_title)},new String[]{getString(R.string.h1)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("",item.getX12_1Odds_FH(), socOddsId_hf)), true, false, setColorStyle("1  x  2",new int[]{getResources().getColor(R.color.red_title),getResources().getColor(R.color.blue)},new String[]{"1","x"}), "", "", ""),
+                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx),new int[]{getResources().getColor(R.color.blue)},new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("",item.getX12_XOdds_FH(), socOddsId_hf))),
+                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_2Odds(), socOddsId), new VsCellBean("",item.getX12_2Odds_FH(), socOddsId_hf)), true),
+                new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", AfbUtils.decimalValue(Float.valueOf(item.getOddOdds())/10, "0.00"), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), "", "", ""),
+                new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", AfbUtils.decimalValue(Float.valueOf(item.getEvenOdds())/10, "0.00"), socOddsId), new VsCellBean("", "", socOddsId_hf)), true)));
         setData(rows);
 
     }

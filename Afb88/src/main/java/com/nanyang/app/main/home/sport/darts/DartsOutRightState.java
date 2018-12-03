@@ -5,6 +5,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -49,5 +50,10 @@ public class DartsOutRightState extends OutRightState {
                 break;
         }
 
+    }
+
+    @Override
+    public IBetHelper onSetBetHelper() {
+        return new DartsBetHelper(getBaseView());
     }
 }

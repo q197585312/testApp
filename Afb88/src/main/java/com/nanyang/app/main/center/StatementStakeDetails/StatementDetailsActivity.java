@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
@@ -41,6 +42,10 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
 
     private void getData() {
         dataUrl = AppConstant.getInstance().HOST+ "_norm/";
+        if(BuildConfig.FLAVOR.equals("afb1188")){
+            //http://www.afb1188.com/W0/Pub/_norm/wfAccMatchWL0.html?userName=Demoafba0310&to=2018/11/23&from=2018/11/23
+//            dataUrl = AppConstant.getInstance().HOST+ "W0/Pub/_norm/";
+        }
         String urlEnd = getMsgIntent("stake_details");
         presenter.getStatementStakeDetailsData(dataUrl + urlEnd);
     }

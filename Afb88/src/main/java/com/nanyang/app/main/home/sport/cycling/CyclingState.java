@@ -3,9 +3,9 @@ package com.nanyang.app.main.home.sport.cycling;
 import android.view.View;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.financial.OtherSingleAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.tennis.TennisState;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -20,10 +20,10 @@ import java.util.List;
 
 public abstract class CyclingState extends TennisState{
     @Override
-    public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
+    public IAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new OtherSingleAdapterHelper(getBaseView().getContextActivity()){
             @Override
-            public void onConvert(MyRecyclerViewHolder helper, int position, BasketballMixInfo item) {
+            public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
                 super.onConvert(helper, position, item);
                 ScrollLayout sl = helper.getView(R.id.module_center_sl);
                 sl.getChildAt(0).setVisibility(View.VISIBLE);
@@ -32,7 +32,7 @@ public abstract class CyclingState extends TennisState{
                         ,item.getX12_1Odds(),item.getX12_2Odds(),"1","2");
 
                 setUpDownOdds(true,item,false,item.getIsHdpNew(),item.getHasHdp(),item.getHdp(),holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv,holder.viewpagerMatchUnderoddsTv
-                        ,item.getHomeHdpOdds(),item.getAwayHdpOdds(),"home","away");
+                        ,item.getHOdds(),item.getAOdds(),"home","away");
 
             }
         };
@@ -42,7 +42,7 @@ public abstract class CyclingState extends TennisState{
         super(baseView);
     }
     @Override
-    protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
+    public IBetHelper<BallInfo> onSetBetHelper() {
         return new CyclingBetHelper(getBaseView());
     }
     @Override

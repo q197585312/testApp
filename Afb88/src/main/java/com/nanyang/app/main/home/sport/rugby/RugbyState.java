@@ -1,7 +1,7 @@
 package com.nanyang.app.main.home.sport.rugby;
 
-import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.tennis.TennisState;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
@@ -15,7 +15,7 @@ public abstract class RugbyState extends TennisState{
         super(baseView);
     }
     @Override
-    protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
+    public IBetHelper<BallInfo> onSetBetHelper() {
         return new RugbyBetHelper(getBaseView());
     }
 }

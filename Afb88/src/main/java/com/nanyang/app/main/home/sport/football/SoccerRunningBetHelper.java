@@ -1,11 +1,5 @@
 package com.nanyang.app.main.home.sport.football;
 
-import android.view.Gravity;
-import android.widget.TextView;
-
-import com.nanyang.app.main.home.sport.dialog.BetPop;
-import com.nanyang.app.main.home.sport.model.BettingPromptBean;
-import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
 /**
@@ -18,7 +12,7 @@ public class SoccerRunningBetHelper extends SoccerCommonBetHelper {
     }
 
 
-    @Override
+  /*  @Override
     protected String getOddsUrl(SoccerCommonInfo item, String type, boolean isHf, String odds, String params) {
         return super.getOddsUrl(item, type, isHf, odds, params) + "&isRun=true";
     }
@@ -34,6 +28,6 @@ public class SoccerRunningBetHelper extends SoccerCommonBetHelper {
         pop.setIsHf(isHf);
         pop.setrTMatchInfo(item);
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);
-    }
+    }*/
 
 }

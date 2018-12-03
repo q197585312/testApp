@@ -4,23 +4,23 @@ import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.e_sport.ESportRunningState;
 import com.nanyang.app.main.home.sport.e_sport.ESportTodayState;
+import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.nanyang.app.main.home.sport.main.SportState;
-import com.nanyang.app.main.home.sport.model.LeagueBean;
+import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
+import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +33,7 @@ import java.util.Map;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class EuropeState extends SportState<EuropeInfo, SportContract.View<EuropeInfo>> {
+public abstract class EuropeState extends BallState {
 
 
     public EuropeState(SportContract.View baseView) {
@@ -41,10 +41,9 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
     }
 
     @Override
-    protected List<TableSportInfo<EuropeInfo>> filterChildData(List<TableSportInfo<EuropeInfo>> dateTemp) {
+    protected List<TableSportInfo<BallInfo>> filterChildData(List<TableSportInfo<BallInfo>> dateTemp) {
         return dateTemp;
     }
-
 
 
     @Override
@@ -62,6 +61,7 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
 
         }
     }
+
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
@@ -77,9 +77,8 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
     }
 
 
-
     @Override
-    protected IBetHelper<EuropeInfo> onSetBetHelper() {
+    public IBetHelper<BallInfo> onSetBetHelper() {
         return new EuropeBetHelper(getBaseView());
     }
 
@@ -102,10 +101,10 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
     }
 
     @Override
-    public SportAdapterHelper<EuropeInfo> onSetAdapterHelper() {
-        return new SportAdapterHelper<EuropeInfo>() {
+    public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
+        return new SportAdapterHelper<BallInfo>() {
             @Override
-            public void onConvert(MyRecyclerViewHolder helper, final int position, final EuropeInfo item) {
+            public void onConvert(MyRecyclerViewHolder helper, final int position, final BallInfo item) {
 
                 TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
                 View headV = helper.getView(R.id.module_match_head_v);
@@ -188,9 +187,9 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                     full1.setText(item.getX12_1Odds());
                     fullx.setText(item.getX12_XOdds());
                     full2.setText(item.getX12_2Odds());
-                    full1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds(), "1",false));
-                    fullx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds(), "X",false));
-                    full2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds(), "2",false));
+                    full1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds(), "1", false));
+                    fullx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds(), "X", false));
+                    full2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds(), "2", false));
 
 
                 } else {
@@ -210,9 +209,9 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                     half1.setText(item.getX12_1Odds_FH());
                     halfx.setText(item.getX12_XOdds_FH());
                     half2.setText(item.getX12_2Odds_FH());
-                    half1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds_FH(), "1",true));
-                    halfx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds_FH(), "X",true));
-                    half2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds_FH(), "2",true));
+                    half1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds_FH(), "1", true));
+                    halfx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds_FH(), "X", true));
+                    half2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds_FH(), "2", true));
 
                 } else {
                     tvHalf1.setText("");
@@ -248,20 +247,23 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
                     View tvRightMark = helper.getView(R.id.module_right_mark_tv);
                     tvRightMark.setVisibility(View.INVISIBLE);
 
-                    onMatchRepeat(helper, item, position,back);
+                    onMatchRepeat(helper, item, position, back);
                 } else {
                     View tvRightMark = helper.getView(R.id.module_right_mark_tv);
                     tvRightMark.setVisibility(View.VISIBLE);
                     tvRightMark.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            back.clickView(v, item,position);
+                            back.clickView(v, item, position);
                         }
                     });
 
-                    onMatchNotRepeat(helper, item, position,back);
+                    onMatchNotRepeat(helper, item, position, back);
                 }
                 onChildConvert(helper, position, item);
+                updateMixBackground(helper, item);
+
+
             }
 
             @Override
@@ -272,40 +274,90 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
         };
     }
 
-    protected abstract void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeInfo item);
+    private void updateMixBackground(MyRecyclerViewHolder helper, BallInfo item) {
+        BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) getBaseView().getContextActivity());
+        String itemFullSocOddsId = item.getSocOddsId();
+        String itemHfSocOddsId = item.getSocOddsId_FH();
+        AfbClickBetBean mixItem = handler.getMixItem(itemFullSocOddsId);
+        int index = 0;
+        if (mixItem == null) {
+            mixItem = handler.getMixItem(itemHfSocOddsId);
+            index = 1;
+        }
+        TextView half1 = (TextView) helper.getView(R.id.europe_1_half_time_odds_tv);
+        handler.setCommonBackground(half1);
+        TextView halfX = (TextView) helper.getView(R.id.europe_x_half_time_odds_tv);
+        handler.setCommonBackground(halfX);
+        TextView half2 = (TextView) helper.getView(R.id.europe_2_half_time_odds_tv);
+        handler.setCommonBackground(half2);
+        TextView fullTv1 = (TextView) helper.getView(R.id.europe_1_full_time_odds_tv);
+        handler.setCommonBackground(fullTv1);
+        TextView fullTvX = (TextView) helper.getView(R.id.europe_x_full_time_odds_tv);
+        handler.setCommonBackground(fullTvX);
+        TextView fullTv2 = (TextView) helper.getView(R.id.europe_2_full_time_odds_tv);
+        handler.setCommonBackground(fullTv2);
+        if (mixItem != null) {
+            String transType = new AfbParseHelper().getBetTypeFromId(mixItem.getId());
+            if (transType.startsWith("1")) {
+                setMixBackground(handler, fullTv1, half1, index);
+            } else if (transType.startsWith("X")) {
+                setMixBackground(handler, fullTvX, halfX, index);
+            } else if (transType.startsWith("2")) {
+                setMixBackground(handler, fullTv2, half2, index);
+            }
 
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, EuropeInfo item, int position, SportAdapterHelper.ItemCallBack<EuropeInfo> back) {
+
+        }
+    }
+
+    private void setMixBackground(BaseMixStyleHandler handler, TextView fullTv, TextView half, int index) {
+        switch (index) {
+            case 0:
+                handler.setMixBackground(fullTv);
+                break;
+            case 1:
+                handler.setMixBackground(half);
+                break;
+
+        }
+
+    }
+
+    protected abstract void onChildConvert(MyRecyclerViewHolder helper, int position, BallInfo item);
+
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, BallInfo item, int position, SportAdapterHelper.ItemCallBack<BallInfo> back) {
         repMap.put(position, false);
     }
 
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, EuropeInfo item, int position, SportAdapterHelper.ItemCallBack<EuropeInfo> back) {
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item, int position, SportAdapterHelper.ItemCallBack<BallInfo> back) {
         repMap.put(position, true);
     }
+
     public Map<Integer, Boolean> getRepMap() {
         return repMap;
     }
 
     Map<Integer, Boolean> repMap = new HashMap<>();
+
     public int getNextNotRepeat(int position) {
-        if(position<getBaseRecyclerAdapter().getItemCount()) {
-            if (repMap.get(position + 1)==null||!repMap.get(position + 1)) {
+        if (position < getBaseRecyclerAdapter().getItemCount()) {
+            if (repMap.get(position + 1) == null || !repMap.get(position + 1)) {
                 return position;
             } else {
                 return getNextNotRepeat(position + 1);
             }
-        }
-        else
+        } else
             return 0;
 
     }
 
-    @Override
-    protected List<TableSportInfo<EuropeInfo>> updateJsonData(JSONArray dataListArray) throws JSONException {
-        ArrayList<TableSportInfo<EuropeInfo>> tableModules = new ArrayList<>();
+ /*   @Override
+    protected List<TableSportInfo<BallInfo>> updateJsonData(JSONArray dataListArray) throws JSONException {
+        ArrayList<TableSportInfo<BallInfo>> tableModules = new ArrayList<>();
         if (dataListArray.length() > 0) {
             for (int i = 0; i < dataListArray.length(); i++) {
                 LeagueBean leagueBean;
-                List<EuropeInfo> matchList = new ArrayList<>();
+                List<BallInfo> matchList = new ArrayList<>();
                 JSONArray jsonArray3 = dataListArray.getJSONArray(i);
                 if (jsonArray3.length() > 1) {
                     JSONArray LeagueArray = jsonArray3.getJSONArray(0);
@@ -329,75 +381,29 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
         }
         return tableModules;
     }
-
-    private EuropeInfo parseMatch(JSONArray matchArray) throws JSONException {
-        EuropeInfo info = new EuropeInfo();
-        info.setSocOddsId(matchArray.getString(0));
-        info.setSocOddsId_FH(matchArray.getString(1));
-        info.setLive(matchArray.getString(2));
-        info.setIsLastCall(matchArray.getString(3));
-        info.setMatchDate(matchArray.getString(4));
-        info.setHome(matchArray.getString(5));
-        info.setAway(matchArray.getString(6));
-        info.setOENew(matchArray.getString(7));
-        info.setIsInetBet(matchArray.getString(8));
-        info.setHasOE(matchArray.getString(9));
-        info.setOEOdds(matchArray.getString(10));
-        info.setOddOdds(matchArray.getString(11));
-        info.setEvenOdds(matchArray.getString(12));
-        info.setX12New(matchArray.getString(13));
-        info.setHasX12(matchArray.getString(14));
-        info.setX12_1Odds(matchArray.getString(15));
-        info.setX12_XOdds(matchArray.getString(16));
-        info.setX12_2Odds(matchArray.getString(17));
-        info.setIsInetBet_FH(matchArray.getString(18));
-        info.setHasX12_FH(matchArray.getString(19));
-        info.setX12_1Odds_FH(matchArray.getString(20));
-        info.setX12_XOdds_FH(matchArray.getString(21));
-        info.setX12_2Odds_FH(matchArray.getString(22));
-        info.setX12New_FH(matchArray.getString(23));
-        info.setPreSocOddsId(matchArray.getString(24));
-        info.setCurMinute(matchArray.getString(25));
-        info.setStatus(matchArray.getString(26));
-        info.setRTSMatchId(matchArray.getString(27));
-        info.setStatsId(matchArray.getString(28));
-        info.setRCHome(matchArray.getString(29));
-        info.setRCAway(matchArray.getString(30));
-        return info;
-
-    }
-
-    @Override
-    protected int getIndexSocOddsId() {
-        return 0;
-    }
-
-    @Override
-    protected int getIndexPreSocOddsId() {
-        return 1;
-    }
+*/
 
 
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
-        return new SportAdapterHelper.ItemCallBack<EuropeInfo>() {
+        return new SportAdapterHelper.ItemCallBack<BallInfo>() {
             @Override
-            public EuropeInfo getItem(int position) {
+            public BallInfo getItem(int position) {
                 return baseRecyclerAdapter.getItem(position);
             }
 
             @Override
-            public void clickOdds(TextView v, EuropeInfo item, String type, boolean isHf, String odds) {
-                IBetHelper helper = onSetBetHelper();
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds) {
+                IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf, "g=5");
+                helper.clickOdds(item, type, odds, v, isHf, "");
             }
 
             @Override
-            public void clickView(View v, final EuropeInfo item, int position) {
+            public void clickView(View v, final BallInfo item, int position) {
                 switch (v.getId()) {
                     case R.id.module_right_mark_tv:
-                        getBaseView().clickItemAdd(v,item,"common");
+                        getBaseView().clickItemAdd(v, item, "common");
 
                         break;
                     case R.id.iv_hall_btn:
@@ -413,28 +419,29 @@ public abstract class EuropeState extends SportState<EuropeInfo, SportContract.V
         };
     }
 
-    protected void clickHallBtn(View v, final EuropeInfo item, int position) {
+    protected void clickHallBtn(View v, final BallInfo item, int position) {
 
     }
+
     public String getParentText() {
         return getBaseView().getContextActivity().getString(R.string.Europe_View);
     }
 
     class itemClick implements View.OnClickListener {
-        SportAdapterHelper.ItemCallBack<EuropeInfo> back;
+        SportAdapterHelper.ItemCallBack<BallInfo> back;
         int position;
-        EuropeInfo item;
+        BallInfo item;
         String odds;
         String type;
         boolean isHf;
 
-        public itemClick(SportAdapterHelper.ItemCallBack<EuropeInfo> back, int position, EuropeInfo item, String odds, String type,boolean isHf) {
+        public itemClick(SportAdapterHelper.ItemCallBack<BallInfo> back, int position, BallInfo item, String odds, String type, boolean isHf) {
             this.position = position;
             this.item = item;
             this.odds = odds;
             this.back = back;
             this.type = type;
-            this.isHf=isHf;
+            this.isHf = isHf;
         }
 
         @Override

@@ -6,6 +6,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
@@ -16,26 +17,27 @@ import cn.finalteam.toolsfinal.DeviceUtils;
  * Created by Administrator on 2017/3/14.
  */
 
-public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballCommonInfo> {
+public class BasketballCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
     public BasketballCommonAdapterHelper(Context context) {
         super(context);
     }
 
 
     @Override
-    public void onConvert(MyRecyclerViewHolder helper, final int position, final BasketballCommonInfo item) {
+    public void onConvert(MyRecyclerViewHolder helper, final int position, final BallInfo item) {
+
        if(!item.getEvenOdds().equals(item.getOddOdds())||item.getOddOdds().isEmpty()||item.getEvenOdds().isEmpty()||Float.valueOf(item.getOddOdds())==0f||Float.valueOf(item.getEvenOdds())==0f){
-           item.setHasOE("0");
+//           item.setHasOE("0");
        }
         if(!item.getEvenOdds_FH().equals(item.getOddOdds_FH())||item.getOddOdds_FH().isEmpty()||item.getEvenOdds_FH().isEmpty()||Float.valueOf(item.getOddOdds_FH())==0f||Float.valueOf(item.getEvenOdds_FH())==0f){
-            item.setHasOE_FH("0");
+//            item.setHasOE_FH("0");
         }
 
         if(item.getOU().equals("0")||item.getOU().equals("")){
-            item.setHasOU("0");
+//            item.setHasOU("0");
         }
         if(item.getOU_FH().equals("0")||item.getOU_FH().equals("")){
-            item.setHasOU_FH("0");
+//            item.setHasOU_FH("0");
         }
         super.onConvert(helper, position, item);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
@@ -59,10 +61,10 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
         });
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
 
-        scrollChild(sl.getChildAt(0), false, item, item.getIsHomeGive(), item.getHasHdp(), item.getHdp(), item.getHasOU(), item.getOU(), item.getIsHdpNew(), item.getIsOUNew(), item.getUnderOdds(), item.getOverOdds(), item.getHomeHdpOdds(), item.getAwayHdpOdds(), "home", "away", "over", "under",
+        scrollChild(sl.getChildAt(0), false, item, item.getIsHomeGive(), item.getHasHdp(), item.getHdp(), item.getHasOU(), item.getOU(), item.getIsHdpNew(), item.getIsOUNew(), item.getUOdds(), item.getOOdds(), item.getHOdds(), item.getAOdds(), "home", "away", "over", "under",
                 true, true, true, item.getHasOE(), item.getIsOENew(), item.getOddOdds(), item.getEvenOdds(), "odd", "even"
         );
-        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH()
+        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUOdds_FH(), item.getOOdds_FH(), item.getHOdds_FH(), item.getAOdds_FH()
                 , "home", "away", "over", "under",
                 true, true, true,
                 item.getHasOE_FH(), item.getIsOENew_FH(), item.getOddOdds_FH(), item.getEvenOdds_FH()
@@ -92,6 +94,7 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BasketballC
         String home = item.getHome();
         homeTv.setText(home);
         awayTv.setText(away);
+        updateMixBackground(item, sl  , "home", "away", "over", "under", "odd", "even");
 
     }
 

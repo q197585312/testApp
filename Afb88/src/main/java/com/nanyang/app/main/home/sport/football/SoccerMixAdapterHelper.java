@@ -6,8 +6,8 @@ import android.view.View;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
-import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
+import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
@@ -33,7 +33,7 @@ import com.unkonw.testapp.training.ScrollLayout;
  * "Test2": "testing2"
  * }
  */
-public class SoccerMixAdapterHelper extends BallAdapterHelper<SoccerMixInfo> {
+public class SoccerMixAdapterHelper extends BallAdapterHelper<BallInfo> {
 
 
     public SoccerMixAdapterHelper(Context context) {
@@ -43,27 +43,27 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<SoccerMixInfo> {
 
 
     @Override
-    public void onConvert(MyRecyclerViewHolder helper, int position, final SoccerMixInfo item) {
+    public void onConvert(MyRecyclerViewHolder helper, int position, final BallInfo item) {
         super.onConvert(helper, position, item);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
 
         tvCollection.setVisibility(View.GONE);
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
+        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUOdds_FH(), item.getOOdds_FH(), item.getHOdds_FH(), item.getAOdds_FH());
         getBaseRecyclerAdapter().getItem(position).setIsHdpNew_FH("0");
         getBaseRecyclerAdapter().getItem(position).setIsOUNew_FH("0");
         String itemFullSocOddsId = item.getSocOddsId();
         String itemHfSocOddsId = item.getSocOddsId_FH();
 
         BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
-        BettingParPromptBean.BetParBean mixItem = handler.getMixItem(itemFullSocOddsId);
+        AfbClickBetBean mixItem = handler.getMixItem(itemFullSocOddsId);
         int index = 0;
         if (mixItem == null) {
             mixItem = handler.getMixItem(itemHfSocOddsId);
             index = 1;
         }
         if (mixItem != null) {
-            handler.parseMixBackground(mixItem, index, sl);
+            handler.parseMixBackground(mixItem, index, sl, "home", "away", "over", "under", "odd", "even");
         } else {
             handler.parseCommonBackground(0, sl);
             handler.parseCommonBackground(1, sl);
@@ -72,13 +72,13 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<SoccerMixInfo> {
     }
 
     @Override
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, SoccerMixInfo item, int position) {
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, BallInfo item, int position) {
         super.onMatchNotRepeat(helper, item, position);
 
     }
 
     @Override
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerMixInfo item, int position) {
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item, int position) {
         super.onMatchRepeat(helper, item, position);
 
     }

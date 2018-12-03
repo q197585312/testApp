@@ -6,7 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
@@ -20,7 +20,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
 
     @Override
-    public void onConvert(MyRecyclerViewHolder helper, int position, final SoccerCommonInfo item) {
+    public void onConvert(MyRecyclerViewHolder helper, int position, final BallInfo item) {
 
         super.onConvert(helper, position, item);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
@@ -81,7 +81,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     }
 
     @Override
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final SoccerCommonInfo item, final int position) {
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final BallInfo item, final int position) {
         super.onMatchNotRepeat(helper, item,position);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         String rtsMatchId = item.getRTSMatchId();
@@ -102,7 +102,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     }
 
     @Override
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item,int position) {
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item,int position) {
         super.onMatchRepeat(helper, item, position);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);

@@ -5,6 +5,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballEarlyMixState;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 /**
  * Created by Administrator on 2017/6/2.
@@ -14,6 +15,11 @@ class DartsEarlyMixState extends BasketballEarlyMixState {
 
     public DartsEarlyMixState(SportContract.View baseView) {
         super(baseView);
+    }
+
+    @Override
+    public IBetHelper onSetBetHelper() {
+        return new DartsBetHelper(getBaseView());
     }
 
     @Override

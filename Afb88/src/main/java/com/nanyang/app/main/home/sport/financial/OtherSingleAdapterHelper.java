@@ -4,8 +4,8 @@ import android.content.Context;
 import android.view.View;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
@@ -14,7 +14,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 
 
-public class OtherSingleAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
+public class OtherSingleAdapterHelper extends BallAdapterHelper<BallInfo> {
 
 
     public OtherSingleAdapterHelper(Context context) {
@@ -23,7 +23,7 @@ public class OtherSingleAdapterHelper extends BallAdapterHelper<BasketballMixInf
     }
 
     @Override
-    public void onConvert(MyRecyclerViewHolder helper, int position, final BasketballMixInfo item) {
+    public void onConvert(MyRecyclerViewHolder helper, int position, final BallInfo item) {
         super.onConvert(helper, position, item);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
         View markAdd = helper.getView(R.id.module_right_mark_tv);

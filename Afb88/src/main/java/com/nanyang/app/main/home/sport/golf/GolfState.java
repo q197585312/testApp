@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.golf;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.financial.FinancialState;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -35,7 +34,7 @@ public abstract class GolfState extends FinancialState{
 
 
     @Override
-    protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
+    public IBetHelper onSetBetHelper() {
         return new GolfBetHelper(getBaseView());
     }
 

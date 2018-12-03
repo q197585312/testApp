@@ -4,7 +4,10 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballRunningState;
+import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -44,6 +47,15 @@ public class USFootballRunningState extends BasketballRunningState {
     @Override
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getBaseView().getContextActivity().getString(R.string.US_Football));
+    }
+    @Override
+    public IBetHelper<BallInfo> onSetBetHelper() {
+        return new BallBetHelper(getBaseView()) {
+            @Override
+            protected String getBallG() {
+                return "12";
+            }
+        };
     }
 
 }

@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.support.annotation.NonNull;
 import android.widget.TextView;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -17,6 +18,9 @@ public interface IBetHelper<B> {
     void setResultCallBack(ResultCallBack back);
 
     Disposable clickOdds(B itemData, int oid, String type, String odds, TextView v, boolean isHf, String params);
+
+    @NonNull
+    Disposable getRefreshOdds(String url);
 
 
     interface ResultCallBack{

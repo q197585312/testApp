@@ -137,6 +137,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     TextView tvMenu;
     @Bind(R.id.tv_mix)
     TextView tvMix;
+    @Bind(R.id.tv_mix_count)
+    TextView tvMixCount;
     @Bind(R.id.tv_title)
     TextView tvTitle;
     @Bind(R.id.ll_sport_menu_bottom)
@@ -498,11 +500,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 currentFragment.menu(tvMenu);
                 break;
             case R.id.tv_mix:
-                if (currentFragment.mix(tvMix))
+              /*  if (currentFragment.mix(tvMix))
                     tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
                 else {
                     getApp().setBetParList(null);
-                }
+                }*/
                 break;
             case R.id.iv_add:
                 createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {

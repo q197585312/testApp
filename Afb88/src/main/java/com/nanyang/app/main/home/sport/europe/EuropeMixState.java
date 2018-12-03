@@ -7,20 +7,17 @@ import android.widget.TextView;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.nanyang.app.main.home.sport.main.SportState;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
-import com.nanyang.app.main.home.sport.model.LeagueBean;
+import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
-
-import org.json.JSONArray;
-import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -33,7 +30,7 @@ import java.util.Map;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportContract.View<EuropeMixInfo>> {
+public abstract class EuropeMixState extends BallState {
 
 
     public EuropeMixState(SportContract.View baseView) {
@@ -41,12 +38,14 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
     }
 
     @Override
-    protected List<TableSportInfo<EuropeMixInfo>> filterChildData(List<TableSportInfo<EuropeMixInfo>> dateTemp) {
+    protected List<TableSportInfo<BallInfo>> filterChildData(List<TableSportInfo<BallInfo>> dateTemp) {
         return dateTemp;
     }
 
-
-
+    @Override
+    public IBetHelper onSetBetHelper() {
+        return new EuropeBetHelper(getBaseView());
+    }
 
     @Override
     protected List<MenuItemInfo> getTypes() {
@@ -68,10 +67,6 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
 
 
 
-    @Override
-    protected IBetHelper<EuropeMixInfo> onSetBetHelper() {
-        return new EuropeMixBetHelper(getBaseView());
-    }
 
     @Override
     protected List<List<String>> initHeaderList() {
@@ -96,10 +91,10 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
     }
 
     @Override
-    public SportAdapterHelper<EuropeMixInfo> onSetAdapterHelper() {
-        return new SportAdapterHelper<EuropeMixInfo>() {
+    public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
+        return new SportAdapterHelper<BallInfo>() {
             @Override
-            public void onConvert(MyRecyclerViewHolder helper, final int position, final EuropeMixInfo item) {
+            public void onConvert(MyRecyclerViewHolder helper, final int position, final BallInfo item) {
 
                 TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
                 View headV = helper.getView(R.id.module_match_head_v);
@@ -196,7 +191,8 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
                     full2.setText("");
                     fullx.setText("");
                 }
-                if (item.getHasX12_FH().equals("1")) {
+
+                if (item.getHasX12().equals("1")) {
                     tvHalf1.setText("1");
                     tvHalf2.setText("2");
                     tvHalfx.setText("X");
@@ -242,12 +238,13 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
 
                 String itemFullSocOddsId = item.getSocOddsId();
 
-                BettingParPromptBean.BetParBean mixItem = handler.getMixItem(itemFullSocOddsId);
+                AfbClickBetBean mixItem = handler.getMixItem(itemFullSocOddsId);
+                AfbParseHelper helper1=new AfbParseHelper();
 
                 if (mixItem != null) {
-                    if (mixItem.getTransType().equalsIgnoreCase("1"))
+                    if (helper1.getBetTypeFromId(mixItem.getId()).startsWith("1"))
                         handler.setMixBackground(full1);
-                    else if(mixItem.getTransType().equalsIgnoreCase("x")) {
+                    else if(helper1.getBetTypeFromId(mixItem.getId()).startsWith("x")||helper1.getBetTypeFromId(mixItem.getId()).startsWith("X")) {
                         handler.setMixBackground(fullx);
                     }else{
                         handler.setMixBackground(full2);
@@ -255,12 +252,12 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
                 }
 
                 String itemHalfSocOddsId = item.getSocOddsId_FH();
-                BettingParPromptBean.BetParBean mixItemHalf = handler.getMixItem(itemHalfSocOddsId);
+                AfbClickBetBean mixItemHalf = handler.getMixItem(itemHalfSocOddsId);
 
                 if (mixItemHalf != null) {
-                    if (mixItemHalf.getTransType().equalsIgnoreCase("1"))
+                    if (helper1.getBetTypeFromId(mixItem.getId()).startsWith("1"))
                         handler.setMixBackground(half1);
-                    else if(mixItemHalf.getTransType().equalsIgnoreCase("x")) {
+                    else if(helper1.getBetTypeFromId(mixItem.getId()).startsWith("x")||helper1.getBetTypeFromId(mixItem.getId()).startsWith("X")) {
                         handler.setMixBackground(halfx);
                     }else{
                         handler.setMixBackground(half2);
@@ -279,13 +276,13 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
 
 
 
-    protected abstract void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeMixInfo item);
+    protected abstract void onChildConvert(MyRecyclerViewHolder helper, int position, BallInfo item);
 
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, EuropeMixInfo item, int position, SportAdapterHelper.ItemCallBack<EuropeMixInfo> back) {
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, BallInfo item, int position, SportAdapterHelper.ItemCallBack<BallInfo> back) {
         repMap.put(position, false);
     }
 
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, EuropeMixInfo item, int position, SportAdapterHelper.ItemCallBack<EuropeMixInfo> back) {
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item, int position, SportAdapterHelper.ItemCallBack<BallInfo> back) {
         repMap.put(position, true);
     }
     public Map<Integer, Boolean> getRepMap() {
@@ -306,127 +303,24 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
 
     }
 
-    @Override
-    protected List<TableSportInfo<EuropeMixInfo>> updateJsonData(JSONArray dataListArray) throws JSONException {
-        ArrayList<TableSportInfo<EuropeMixInfo>> tableModules = new ArrayList<>();
-        if (dataListArray.length() > 0) {
-            for (int i = 0; i < dataListArray.length(); i++) {
-                LeagueBean leagueBean;
-                List<EuropeMixInfo> matchList = new ArrayList<>();
-                JSONArray jsonArray3 = dataListArray.getJSONArray(i);
-                if (jsonArray3.length() > 1) {
-                    JSONArray LeagueArray = jsonArray3.getJSONArray(0);
-                    if (LeagueArray.length() > 1) {
-                        leagueBean = new LeagueBean(LeagueArray.get(0).toString(), LeagueArray.getString(1));
-                    } else {
-                        continue;
-                    }
-                    JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
-                    if (LeagueMatchArray.length() > 0) {
-                        for (int j = 0; j < LeagueMatchArray.length(); j++) {
-                            JSONArray matchArray = LeagueMatchArray.getJSONArray(j);
-                            matchList.add(parseMatch(matchArray));
-                        }
-                    } else {
-                        continue;
-                    }
-                    tableModules.add(new TableSportInfo<>(leagueBean, matchList));
-                }
-            }
-        }
-        return tableModules;
-    }
-
-    private EuropeMixInfo parseMatch(JSONArray matchArray) throws JSONException {
-        EuropeMixInfo info = new EuropeMixInfo();
-        info.setSocOddsId(matchArray.getString(0));
-        info.setSocOddsId_FH(matchArray.getString(1));
-        info.setLive(matchArray.getString(2));
-        info.setIsLastCall(matchArray.getString(3));
-        info.setMatchDate(matchArray.getString(4));
-        info.setIsHomeGive(matchArray.getString(5));
-        info.setHome(matchArray.getString(6));
-        info.setAway(matchArray.getString(7));
-        info.setX12New(matchArray.getString(8));
-        info.setHasX12(matchArray.getString(9));
-        info.setIsInetBet(matchArray.getString(10));
-        info.setX12_1Odds(matchArray.getString(11));
-        info.setX12_XOdds(matchArray.getString(12));
-        info.setX12_2Odds(matchArray.getString(13));
-        info.setHasHdp(matchArray.getString(14));
-        info.setHdp(matchArray.getString(15));
-        info.setHdpOdds(matchArray.getString(16));
-        info.setHomeHdpOdds(matchArray.getString(17));
-        info.setAwayHdpOdds(matchArray.getString(18));
-        info.setHasOU(matchArray.getString(19));
-        info.setOU(matchArray.getString(20));
-        info.setIsHdpNew(matchArray.getString(21));//HdpNew
-        info.setIsOUNew(matchArray.getString(22));//OUNew
-        info.setOUOdds(matchArray.getString(23));
-        info.setOverOdds(matchArray.getString(24));
-        info.setUnderOdds(matchArray.getString(25));
-        info.setOENew(matchArray.getString(26));
-        info.setHasOE(matchArray.getString(27));
-        info.setOEOdds(matchArray.getString(28));
-        info.setOddOdds(matchArray.getString(29));
-        info.setEvenOdds(matchArray.getString(30));
-        info.setX12New_FH(matchArray.getString(31));
-        info.setHasX12_FH(matchArray.getString(32));
-        info.setIsInetBet_FH(matchArray.getString(33));
-        info.setX12_1Odds_FH(matchArray.getString(34));
-        info.setX12_XOdds_FH(matchArray.getString(35));
-        info.setX12_2Odds_FH(matchArray.getString(36));
-        info.setHasHdp_FH(matchArray.getString(37));
-        info.setIsHomeGive_FH(matchArray.getString(38));
-        info.setHdp_FH(matchArray.getString(39));
-        info.setIsHdpNew_FH(matchArray.getString(40));//HdpNew_FH
-        info.setHdpOdds_FH(matchArray.getString(41));
-        info.setHomeHdpOdds_FH(matchArray.getString(42));
-        info.setAwayHdpOdds_FH(matchArray.getString(43));
-        info.setHasOU_FH(matchArray.getString(44));
-        info.setOU_FH(matchArray.getString(45));
-        info.setIsOUNew_FH(matchArray.getString(46));//OUNew_FH
-        info.setOUOdds_FH(matchArray.getString(47));
-        info.setOverOdds_FH(matchArray.getString(48));
-        info.setUnderOdds_FH(matchArray.getString(49));
-        info.setPreSocOddsId(matchArray.getString(50));
-        info.setCurMinute(matchArray.getString(51));
-        info.setStatus(matchArray.getString(52));
-        info.setStatsId(matchArray.getString(53));
-        info.setRCHome(matchArray.getString(54));
-        info.setRCAway(matchArray.getString(55));
-        return info;
-
-    }
-
-    @Override
-    protected int getIndexSocOddsId() {
-        return 0;
-    }
-
-    @Override
-    protected int getIndexPreSocOddsId() {
-        return 50;
-    }
-
 
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
-        return new SportAdapterHelper.ItemCallBack<EuropeMixInfo>() {
+        return new SportAdapterHelper.ItemCallBack<BallInfo>() {
             @Override
-            public EuropeMixInfo getItem(int position) {
+            public BallInfo getItem(int position) {
                 return baseRecyclerAdapter.getItem(position);
             }
 
             @Override
-            public void clickOdds(TextView v, EuropeMixInfo item, String type, boolean isHf, String odds) {
-                IBetHelper helper = onSetBetHelper();
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds) {
+                IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf, "g=5");
+                helper.clickOdds(item, type, odds, v, isHf, "");
             }
 
             @Override
-            public void clickView(View v, final EuropeMixInfo item, int position) {
+            public void clickView(View v, final BallInfo item, int position) {
                 switch (v.getId()) {
                     case R.id.module_right_mark_tv:
 //                        getBaseView().clickItemAdd(v,item,"common");
@@ -445,7 +339,9 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
         };
     }
 
-    protected void clickHallBtn(View v, final EuropeMixInfo item, int position) {
+
+
+    protected void clickHallBtn(View v, final BallInfo item, int position) {
 
     }
     public String getParentText() {
@@ -454,13 +350,13 @@ public abstract class EuropeMixState extends SportState<EuropeMixInfo, SportCont
 
     class itemClick implements View.OnClickListener {
         boolean isHalf;
-        SportAdapterHelper.ItemCallBack<EuropeMixInfo> back;
+        SportAdapterHelper.ItemCallBack<BallInfo> back;
         int position;
-        EuropeMixInfo item;
+        BallInfo item;
         String odds;
         String type;
 
-        public itemClick(SportAdapterHelper.ItemCallBack<EuropeMixInfo> back, int position, EuropeMixInfo item, String odds, String type,boolean isHalf) {
+        public itemClick(SportAdapterHelper.ItemCallBack<BallInfo> back, int position, BallInfo item, String odds, String type,boolean isHalf) {
             this.position = position;
             this.item = item;
             this.odds = odds;

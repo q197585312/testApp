@@ -6,7 +6,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
-import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
@@ -18,7 +18,7 @@ import java.util.Map;
  * Created by Administrator on 2017/3/14.
  */
 
-public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInfo> {
+public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
     public Map<Integer, Boolean> getRepMap() {
         return repMap;
     }
@@ -31,7 +31,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
 
 
     @Override
-    public void onConvert(MyRecyclerViewHolder helper, final int position, final SoccerCommonInfo item) {
+    public void onConvert(MyRecyclerViewHolder helper, final int position, final BallInfo item) {
         super.onConvert(helper, position, item);
 
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
@@ -50,12 +50,13 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
             }
         });
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
-        getBaseRecyclerAdapter().getItem(position).setIsHdpNew_FH("0");
-        getBaseRecyclerAdapter().getItem(position).setIsOUNew_FH("0");
-
-
+        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUOdds_FH(), item.getOOdds_FH(), item.getHOdds_FH(), item.getAOdds_FH());
+//        getBaseRecyclerAdapter().getItem(position).setIsHdpNew_FH("0");
+//        getBaseRecyclerAdapter().getItem(position).setIsOUNew_FH("0");
+        updateMixBackground(item, sl, "home", "away", "over", "under", "odd", "even");
     }
+
+
 
     public int getNextNotRepeat(int position) {
         if(position<getBaseRecyclerAdapter().getItemCount()) {
@@ -70,7 +71,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
 
     }
     @Override
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item, int position) {//
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, BallInfo item, int position) {//
         super.onMatchNotRepeat(helper,item,position);
         TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
@@ -105,7 +106,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
      * //重复上一个
      */
     @Override
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, SoccerCommonInfo item, int position) {
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item, int position) {
         super.onMatchRepeat(helper,item,position);
         TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
@@ -116,7 +117,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<SoccerCommonInf
 
         llLeft1.setVisibility(View.INVISIBLE);
         llLeft2.setVisibility(View.INVISIBLE);
-        item.setHasOE("0");
+//        item.setHasOE("0");
         repMap.put(position, true);
     }
 

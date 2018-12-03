@@ -17,8 +17,8 @@ android {
         targetSdkVersion 19
         versionCode 1
         versionName '1.66'
-
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        buildConfigField "String", "HOST_AFB", '"http;//www.afb1188.com"'
     }
     buildTypes {
         release {
@@ -37,26 +37,22 @@ android {
             debuggable true
         }
     }
+
     productFlavors {
         afb88 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb88"]
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb88"
+            ]
             applicationId 'com.nanyang.app'
             versionName '1.75'
+            buildConfigField "String", "HOST_AFB", '"http://main55.afb88.com/"'
         }
-        i1bet88 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet88"]
-            applicationId 'com.nanyang.app_i1bet88'
-            versionName '1.12'
-        }
-        ap889 {
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ap889"]
-            applicationId 'com.nanyang.app_ap889'
-            versionName '1.09'
-        }
-        wfmain{
-            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wfmain"]
-            applicationId 'com.nanyang.app_wfmain'
+        afb1188 {
+            manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"
+            ]
+            applicationId 'com.nanyang.afb1188'
             versionName '2.00'
+            buildConfigField "String", "HOST_AFB", '"http://www.afb1188.com/"'
+
         }
     }
     lintOptions {

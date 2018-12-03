@@ -2,8 +2,8 @@ package com.nanyang.app.main.home.sport.financial;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.tennis.TennisState;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -34,12 +34,12 @@ public abstract class FinancialState extends TennisState{
 
 
     @Override
-    protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
+    public IBetHelper onSetBetHelper() {
         return new FinancialBetHelper(getBaseView());
     }
 
     @Override
-    public IAdapterHelper<BasketballMixInfo> onSetAdapterHelper() {
+    public IAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new OtherSingleAdapterHelper(getBaseView().getContextActivity());
     }
     @Override

@@ -45,4 +45,9 @@ public interface IObtainDataState {
     boolean mix();
 
     void clearMix();
+
+    /* AfbParseHelper<B> afbParseHelper = new AfbParseHelper<B>();
+            B ballInfo = afbParseHelper.parseJsonArray(matchArray);
+            return ballInfo;*/
+    IBetHelper getBetHelper();
 }

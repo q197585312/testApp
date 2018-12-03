@@ -10,6 +10,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
@@ -44,7 +45,7 @@ public class EuropeRunningState extends EuropeState {
     }
 
     @Override
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final EuropeInfo item, final int position, final SportAdapterHelper.ItemCallBack<EuropeInfo> back) {
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final BallInfo item, final int position, final SportAdapterHelper.ItemCallBack<BallInfo> back) {
         super.onMatchNotRepeat(helper, item, position, back);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         String rtsMatchId = item.getRTSMatchId();
@@ -62,7 +63,7 @@ public class EuropeRunningState extends EuropeState {
     }
 
     @Override
-    protected void clickHallBtn(View v, EuropeInfo item, int position) {
+    protected void clickHallBtn(View v, BallInfo item, int position) {
         super.clickHallBtn(v, item, position);
         int nextNotRepeat = getNextNotRepeat(position);
         getBaseView().onWebShow(nextNotRepeat, position, item, v);
@@ -71,14 +72,14 @@ public class EuropeRunningState extends EuropeState {
     }
 
     @Override
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, EuropeInfo item, int position, SportAdapterHelper.ItemCallBack<EuropeInfo> back) {
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item, int position, SportAdapterHelper.ItemCallBack<BallInfo> back) {
         super.onMatchRepeat(helper, item, position, back);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
     }
 
     @Override
-    protected void onChildConvert(MyRecyclerViewHolder helper, int position, EuropeInfo item) {
+    protected void onChildConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
         TextView timeTv = helper.getView(R.id.module_match_time_tv);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         helper.getView(R.id.module_match_live_iv).setVisibility(View.GONE);

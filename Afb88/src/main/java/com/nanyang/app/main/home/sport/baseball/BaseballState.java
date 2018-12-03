@@ -3,9 +3,9 @@ package com.nanyang.app.main.home.sport.baseball;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballCommonAdapterHelper;
-import com.nanyang.app.main.home.sport.basketball.BasketballCommonInfo;
 import com.nanyang.app.main.home.sport.basketball.BasketballCommonState;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
@@ -23,12 +23,12 @@ public abstract class BaseballState extends BasketballCommonState {
         super(baseView);
     }
     @Override
-    protected IBetHelper<BasketballCommonInfo> onSetBetHelper() {
+    public IBetHelper<BallInfo> onSetBetHelper() {
         return new BaseballBetHelper(getBaseView());
     }
 
     @Override
-    public IAdapterHelper<BasketballCommonInfo> onSetAdapterHelper() {
+    public IAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new BaseballAdapter(getBaseView().getContextActivity());
 
     }

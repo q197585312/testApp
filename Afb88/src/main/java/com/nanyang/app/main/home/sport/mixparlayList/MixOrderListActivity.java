@@ -17,8 +17,10 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
+import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -36,7 +38,6 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.BindString;
 import cn.finalteam.toolsfinal.StringUtils;
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Administrator on 2017/2/21.
@@ -60,7 +61,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private String betUrl;
 
 
-    BaseRecyclerAdapter<BettingParPromptBean.BetParBean> listAdapter;
+    BaseRecyclerAdapter<AfbClickBetBean> listAdapter;
     private LinearLayout llBottom;
     private TextView footerCountTv;
     private TextView footerContentTv;
@@ -76,7 +77,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         assert tvToolbarTitle != null;
         setContentView(R.layout.activity_mix_parlay_list);
         createPresenter(new MixOrderListPresenter(this));
-        if (getApp().getBetParList() == null || getApp().getBetParList().getBetPar().size() < 1)
+        if (getApp().getBetParList() == null || getApp().getBetParList().getList().size() < 1)
             return;
         initBottomListData();
         initListData();
@@ -84,24 +85,25 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         tvToolbarTitle.setText(R.string.MixParlay);
         tvToolbarRight.setVisibility(View.GONE);
         type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
+
         helper = new BallBetHelper(this) {
             @Override
-            public Disposable clickOdds(Object item, String type, String odds, TextView v, boolean isHf, String params) {
-                return null;
+            protected String getBallG() {
+                return "";
             }
         };
     }
 
     private void initListData() {
         rvContent.setLayoutManager(new LinearLayoutManager(mContext));
-        listAdapter = new BaseRecyclerAdapter<BettingParPromptBean.BetParBean>(mContext, new ArrayList<BettingParPromptBean.BetParBean>(), R.layout.mix_parlay_order_item) {
+        listAdapter = new BaseRecyclerAdapter<AfbClickBetBean>(mContext, new ArrayList<AfbClickBetBean>(), R.layout.mix_parlay_order_item) {
             @Override
-            public void convert(MyRecyclerViewHolder helper, final int position, final BettingParPromptBean.BetParBean item) {
+            public void convert(MyRecyclerViewHolder helper, final int position, final AfbClickBetBean item) {
 
                 helper.setText(R.id.clearance_type_tv, type.getParent());
-                if (!item.getParFullTimeId().equals("0") && !item.getParFullTimeId().equals("")) {
-                    helper.setText(R.id.clearance_type_tv, getString(R.string.football) + "(" + getString(R.string.half_time) + ")");
-                }
+
+                helper.setText(R.id.clearance_type_tv, "(" + item.getIsFH() + ")");
+
 
                 helper.setText(R.id.clearance_home_tv, item.getHome());
                 helper.setText(R.id.clearance_away_tv, item.getAway());
@@ -118,7 +120,12 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
             @Override
             public void onDeleteClick(int position) {
-                presenter.removeBetItem(listAdapter.getItem(position));
+                AfbClickBetBean item = listAdapter.getItem(position);
+                getApp().getBetAfbList().getList().remove(item);
+                helper.getRefreshOdds(getApp().getRefreshOddsUrl());
+                if (listAdapter.getItemCount() < 1) {
+                    presenter.removeAll();
+                }
             }
         });
         presenter.obtainListData();
@@ -207,7 +214,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         if (StringUtils.isEmpty(amt)) {
             ToastUtils.showShort(R.string.input_bet_amount_please);
             return;
-        } else if (getApp().getBetParList() == null || getApp().getBetParList().getBetPar().size() < 3) {
+        } else if (getApp().getBetParList() == null || getApp().getBetParList().getList().size() < 3) {
 
             ToastUtils.showShort(R.string.clearance_should_be_more_than_three);
             return;
@@ -225,8 +232,16 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         }
 //a8197c.a36588.com/_Bet/PanelBet.aspx?betType=X_par&odds=160.670744228768&amt=10&coupon=1&exRate=1
         //"PanelBet.aspx?betType=X_par&odds=160.670744228768",
-        betUrl = AppConstant.getInstance().HOST+ AppConstant.getInstance()._BET + getApp().getBetParList().getBetUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + getApp().getBetParList().getExRate();
-        helper.bet(betUrl);
+        betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + getApp().getBetParList().getParUrl() + "&amt=" + amt + "&coupon=" + selectedBean.getAmount() + "&exRate=" + getApp().getBetParList().getExRate();
+        StringBuilder BETIDBuilder = new StringBuilder();
+        BETIDBuilder.append("&BETID=");
+        for (AfbClickBetBean afbClickBetBean : getApp().getBetParList().getList()) {
+            BETIDBuilder.append(afbClickBetBean.getId());
+            BETIDBuilder.append(",");
+        }
+        String betId = BETIDBuilder.toString();
+        betId = betId.substring(0, betId.length() - 1);
+        helper.bet(betUrl + betId);
 
     }
 
@@ -280,25 +295,19 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     SpannableStringBuilder style;
 
 
-    public void setOddsText(MyRecyclerViewHolder helper, BettingParPromptBean.BetParBean item) {
-        String b = item.getTransType();
-        boolean isHome = item.isIsBetHome();
-        String hdp = item.getBetHdp();
+    public void setOddsText(MyRecyclerViewHolder helper, AfbClickBetBean item) {
+        String b = new AfbParseHelper<>().getBetTypeFromId(item.getId());
+        boolean isHome = item.getBTeam().equalsIgnoreCase("Home");
+        String hdp = item.getHdp();
         String state = b;
         SpannableStringBuilder style = null;
-        if (b.equals("1"))
+        if (b.startsWith("1"))
             state = item.getHome() + "(" + mContext.getString(R.string.win) + ")";
-        else if (b.equals("1_par"))
-            state = "1X2:" + item.getHome() + "(" + mContext.getString(R.string.win) + ")";
-        else if (b.equals("2"))
+        else if (b.startsWith("2"))
             state = item.getAway() + "(" + mContext.getString(R.string.win) + ")";
-        else if (b.equals("2_par")) {
-            state = "1X2:" + item.getAway() + "(" + mContext.getString(R.string.win) + ")";
-        } else if (b.equalsIgnoreCase("x"))
+        else if (b.startsWith("x") || b.startsWith("X"))
             state = item.getHome() + "(" + mContext.getString(R.string.draw) + ")";
-        else if (b.equalsIgnoreCase("X_par")) {
-            state = "1X2:" + item.getHome() + "(" + mContext.getString(R.string.draw) + ")";
-        } else if (b.equalsIgnoreCase("OE")) {
+        else if (b.startsWith("even") || b.startsWith("odd")) {
             if (isHome) {
                 state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.odd) + ")";
                 style = new SpannableStringBuilder(state);
@@ -307,34 +316,34 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                 state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.even) + ")";
             }
 
-        } else if (b.equals("dc")) {
+        } else if (b.startsWith("dc")) {
             state = getString(R.string.double_chance);
-        } else if (b.equals("htft")) {
+        } else if (b.startsWith("htft")) {
             state = getString(R.string.half_full_time);
-        } else if (b.equals("fglg")) {
+        } else if (b.startsWith("fglg")) {
             state = getString(R.string.first_last_goal);
 
-        } else if (b.equals("tg")) {
+        } else if (b.startsWith("tg")) {
             state = getString(R.string.total_goals);
 
-        } else if (b.equalsIgnoreCase("HDP")) {
+        } else if (b.startsWith("home") || b.startsWith("away")) {
             if (isHome) {
 
                 state = "HDP:" + item.getHome();
-                if (item.isIsHomeGive()) {
+                if (item.getIsGive() == 1) {
                     style = new SpannableStringBuilder(state);
                     style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.red_title)), state.indexOf(":"), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             } else {
                 state = "HDP:" + item.getAway();
-                if (!item.isIsHomeGive()) {
+                if (item.getIsGive() == 0) {
                     style = new SpannableStringBuilder(state);
                     style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.red_title)), state.indexOf(":"), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                 }
             }
 
-        } else if (b.equalsIgnoreCase("OU")) {
-            hdp = item.getBetOu();
+        } else if (b.startsWith("under") || b.startsWith("over")) {
+            hdp = item.getHdp();
             if (isHome) {
                 state = "OU:" + item.getHome() + "(" + getString(R.string.over) + ")";
                 style = new SpannableStringBuilder(state);
@@ -350,11 +359,11 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         TextView tc = helper.getView(R.id.clearance_odds_content_tv);
         tc.setText(style);
         String state2 = "";
-        if (!item.getParFullTimeId().equals("0") && !item.getParFullTimeId().equals("")) {
-            state2 = "(" + getString(R.string.half_time) + ")";
-        }
 
-        helper.setText(R.id.clearance_odds_content_tv2, state2 + "  " + hdp + "@" + item.getBetOdds());
+        state2 = "(" + item.getIsFH() + ")";
+
+
+        helper.setText(R.id.clearance_odds_content_tv2, state2 + "  " + hdp + "@" + item.getOdds());
     }
 
     @Override
@@ -364,10 +373,10 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
 
     @Override
-    public void obtainListData(BettingParPromptBean betInfo) {
+    public void obtainListData(AfbClickResponseBean betInfo) {
         getApp().setBetParList(betInfo);
-        if (betInfo != null && betInfo.getBetPar() != null)
-            listAdapter.addAllAndClear(betInfo.getBetPar());
+        if (betInfo != null && betInfo.getList() != null)
+            listAdapter.addAllAndClear(betInfo.getList());
         else {
             listAdapter.clearItems(true);
         }
@@ -387,8 +396,8 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
 
     @Override
-    public void onUpdateMixSucceed(BettingParPromptBean bean) {
-
+    public void onUpdateMixSucceed(AfbClickResponseBean bean) {
+        obtainListData(bean);
     }
 
 }

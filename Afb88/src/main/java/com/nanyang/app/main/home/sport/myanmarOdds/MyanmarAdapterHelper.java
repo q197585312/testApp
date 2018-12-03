@@ -33,7 +33,7 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
         tvCollection.setVisibility(View.GONE);
 
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), "0", "0", item.getUnderOdds_FH(), item.getOverOdds_FH(), item.getHomeHdpOdds_FH(), item.getAwayHdpOdds_FH());
+        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), "0", "0", item.getUOdds_FH(), item.getOOdds_FH(), item.getHOdds_FH(), item.getAOdds_FH());
 
         String hasMMHdp = "0";
         if (!item.MMHdpOdds.equals("0") && Integer.valueOf(item.MMHdpPct) != -1) {
@@ -82,10 +82,10 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
                     "mmhome", "mmaway", "mmover", "mmunder",
                     true, true, false, "", "", "", "", "", ""
             );
-        }else {
+        } else {
             ll_data1.setVisibility(View.GONE);
         }
-
+        updateMixBackground(item, sl, "home", "away", "over", "under", "odd", "even");
     }
 
     private void checkRedCards(TextView awayRedCardTv, String rcAway) {

@@ -1,17 +1,25 @@
 package com.nanyang.app;
 
 import android.support.test.runner.AndroidJUnit4;
+import android.text.Html;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.internal.LinkedTreeMap;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
+import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
+import org.json.JSONArray;
+import org.json.JSONException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -21,13 +29,144 @@ import java.util.Map;
 
 import cn.finalteam.toolsfinal.logger.Logger;
 
+import static android.support.test.InstrumentationRegistry.getContext;
+
 /**
  * Instrumentation test, which will execute on an Android device.
  *
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
+
+
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+
+    private String LID="";
+
+    public void testFile(){
+        String Update=openFileString("jsonUpdateTest.txt");
+        String Result=openFileString("jsonTableListTest.txt");
+        try {
+            updateMatch(Result,Update);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    private void updateMatch(String result, String update) throws JSONException {
+        update = Html.fromHtml(update).toString();
+        LogUtil.d("UpdateData", update);
+        JSONArray jsonArray = new JSONArray(update);
+
+
+    }
+
+    protected List<TableSportInfo<BallInfo>> updateJsonArray(JSONArray jsonArray) throws JSONException {
+
+        boolean modified = false;
+        boolean deleted = false;
+        boolean added = false;
+        if (jsonArray.length() > 5) {
+            JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
+            if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
+                synchronized (this) {
+                    LID = jsonArrayLID.getString(1);
+                }
+            } else {
+                LID = "";
+            }//解析 下一个pid
+
+           if(jsonArrayLID.optInt(0)==1){
+               return refresh();
+           }
+
+            JSONArray deleteArray = jsonArray.getJSONArray(2);
+            List<String> deleteData = new ArrayList<>();
+            for (int i = 0; i < deleteArray.length(); i++) {
+                deleteData.add(deleteArray.getString(i));
+                deleted = true;
+            }
+
+            JSONArray modifyArray = jsonArray.getJSONArray(5);
+
+            if (modifyArray.length() > 0) {
+                modified = true;
+            }
+
+            JSONArray addArray = jsonArray.getJSONArray(3);
+            if (addArray.length() > 0) {
+                added = true;
+            }
+//                Map<String, JSONArray> addMap = new HashMap<>();
+//                Map<JSONArray, JSONArray> addMapLeague = new HashMap<>();
+
+
+            for (int i = 0; i < dataJsonArray.length(); i++) {
+                JSONArray jsonArray3 = dataJsonArray.getJSONArray(i);
+                if (jsonArray3.length() > 1) {
+                    JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                    for (int j = 0; j < LeagueMatchArray.length(); j++) {
+                        String sid = LeagueMatchArray.getJSONArray(j).getString(getIndexSocOddsId());
+                        for (int k = 0; k < modifyArray.length(); k++) {
+                            JSONArray jsonArray1 = modifyArray.getJSONArray(k);
+                            String modifyId = jsonArray1.getString(0);
+                            JSONArray modifyIndex = jsonArray1.getJSONArray(1);
+                            JSONArray modifyData = jsonArray1.getJSONArray(2);
+                            Log.d("UPDATE", "modify--->modifyIndex:" + modifyIndex.toString());
+                            Log.d("UPDATE", "modify--->modifyData:" + modifyData.toString());
+                            if (modifyId.equals(sid)) {
+                                for (int l = 0; l < modifyIndex.length(); l++) {
+                                    LeagueMatchArray.getJSONArray(j).put(modifyIndex.getInt(l), modifyData.getString(l));
+                                    Log.d("UPDATE", "modify--->" + modifyIndex.getInt(l) + ":" + modifyData.getString(l));
+                                }
+                            }
+                        }
+                        if (deleteData.contains(sid)) {
+                            Log.d("UPDATE", "modify--->remove:" + sid);
+                            LeagueMatchArray.remove(j);
+                        }
+                    }
+                    if (LeagueMatchArray.length() < 1) {
+                        dataJsonArray.remove(i);
+                    }
+                }
+            }
+
+            if (added) {
+                for (int i = 0; i < addArray.length(); i++) {
+                    JSONArray array = addArray.getJSONArray(i);
+                    if (array.length() > 1)
+                        addJson(array);
+                }
+            }
+            if (added || deleted || modified) {
+                return updateJsonData(dataJsonArray);
+            }
+
+        }
+
+        return new ArrayList<>();
+
+    }
+
+    private List<TableSportInfo<BallInfo>> refresh() {
+        return new ArrayList<>();
+    }
+
+    protected String openFileString(String result) {
+        try {
+            InputStreamReader inputReader = new InputStreamReader(getContext().getAssets().open(result));
+            BufferedReader bufReader = new BufferedReader(inputReader);
+            String line="";
+            while((line = bufReader.readLine()) != null)
+                result += line;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
     @Test
     public void useAppContext() throws Exception {
         // Context of the app under test.

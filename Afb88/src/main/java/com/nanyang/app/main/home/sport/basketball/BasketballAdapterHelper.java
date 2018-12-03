@@ -1,15 +1,8 @@
 package com.nanyang.app.main.home.sport.basketball;
 
 import android.content.Context;
-import android.view.View;
 
-import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
-import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.training.ScrollLayout;
 
 /**
  * Created by Administrator on 2017/3/14.
@@ -40,7 +33,7 @@ public class BasketballAdapterHelper extends BallAdapterHelper<BasketballMixInfo
         super(context);
 
     }
-
+/*
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final BasketballMixInfo item) {
         super.onConvert(helper, position, item);
@@ -56,7 +49,7 @@ public class BasketballAdapterHelper extends BallAdapterHelper<BasketballMixInfo
         getBaseRecyclerAdapter().getItem(position).setIsOENew("0");
         BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
         String itemFullSocOddsId = item.getSocOddsId();
-        BettingParPromptBean.BetParBean mixItem = handler.getMixItem(itemFullSocOddsId);
+        AfbClickBetBean mixItem = handler.getMixItem(itemFullSocOddsId);
         if (mixItem != null) {
             if (mixItem.getTransType().equalsIgnoreCase("OE"))
                 handler.parseMixBackground(mixItem, 1, sl);
@@ -67,7 +60,7 @@ public class BasketballAdapterHelper extends BallAdapterHelper<BasketballMixInfo
             handler.parseCommonBackground(0, sl);
             handler.parseCommonBackground(1, sl);
         }
-    }
+    }*/
 
 
 }

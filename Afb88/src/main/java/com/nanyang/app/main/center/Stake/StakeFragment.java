@@ -406,7 +406,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
             //http://main55.afb88.com/_norm/PamTrans.aspx?userName=demoafbpk&id=140565088
             String url = "";
-            if (BuildConfig.FLAVOR.equals("wfmain")) {
+            if (BuildConfig.FLAVOR.equals("afb1188")) {
 //            /W0/Pub/_norm/wfPamTrans0.html?
 //                url = AppConstant.getInstance().HOST + "W0/Pub/wfBetSlip0.html?id=" + item.getSocTransId()+"&transType="+item.getTransType();
                 url = AppConstant.getInstance().HOST + "_Norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();

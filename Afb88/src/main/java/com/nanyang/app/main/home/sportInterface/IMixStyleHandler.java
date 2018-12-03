@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sportInterface;
 
 import android.widget.TextView;
 
+import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 
 /**
@@ -9,7 +10,7 @@ import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
  */
 
 public interface IMixStyleHandler {
-    BettingParPromptBean.BetParBean  getMixItem(String proId);
+    AfbClickBetBean getMixItem(String proId);
 
     void setCommonBackground(TextView view);
 

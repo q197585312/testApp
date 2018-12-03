@@ -6,7 +6,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.nanyang.app.main.home.sport.model.SoccerCommonInfo;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 /**
@@ -64,14 +64,12 @@ public class SoccerRunningState extends SoccerCommonState {
     }
 
     @Override
-    protected IBetHelper onSetBetHelper() {
+    public IBetHelper onSetBetHelper() {
         return new SoccerRunningBetHelper(getBaseView());
     }
 
-    protected void clickHallBtn(View v, final SoccerCommonInfo item, int position) {
+    protected void clickHallBtn(View v, BallInfo item, int position) {
         int nextNotRepeat = ((SoccerRunningAdapterHelper) getAdapterHelper()).getNextNotRepeat(position);
         getBaseView().onWebShow(nextNotRepeat,position,item,v);
-
-
     }
 }

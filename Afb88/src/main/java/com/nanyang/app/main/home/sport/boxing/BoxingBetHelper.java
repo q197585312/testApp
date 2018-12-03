@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home.sport.boxing;
 
-import com.nanyang.app.AppConstant;
-import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.tennis.TennisBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
@@ -15,8 +13,13 @@ public class BoxingBetHelper extends TennisBetHelper {
         super(baseView);
     }
 
+    @Override
+    protected String getBallG() {
+        return "16";
+    }
 
 //http://main55.afb88.com/_bet/JRecPanel.aspx?g=16&b=home&oId=12556772&odds=12.6
+/*
     @Override
     protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds,String params) {
         StringBuilder stringBuilder = new StringBuilder();
@@ -27,6 +30,7 @@ public class BoxingBetHelper extends TennisBetHelper {
         stringBuilder.append("&odds=" + odds);
         return stringBuilder.toString();
     }
+*/
 
 
 }

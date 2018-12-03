@@ -103,7 +103,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
         mContext.showToast(content);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
+
     public void showLoadingDialog() {
         mContext.showLoadingDialog();
     }

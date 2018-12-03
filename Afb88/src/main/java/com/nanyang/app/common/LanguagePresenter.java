@@ -188,7 +188,7 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
         return lang;
     }
     public void login(final LoginInfo info, final String gameType) {
-        if(BuildConfig.FLAVOR.equals("wfmain")){
+        if(BuildConfig.FLAVOR.equals("afb1188")){
             Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login",getLanguage()))
 
                     .flatMap(new Function<String, Flowable<String>>() {

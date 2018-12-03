@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Looper;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -24,7 +23,7 @@ import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.additional.VsActivity;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
@@ -292,7 +291,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     public boolean mix(TextView tvMix) {
         boolean isMix = presenter.getStateHelper().mix();
-        checkBg(tvMix, isMix, R.mipmap.sport_oval_u_green, R.mipmap.sport_oval_u_black);
+        checkBg(tvMix, isMix, R.mipmap.sport_green_shopping_cart, R.mipmap.sport_black_shopping_cart);
         return isMix;
     }
 
@@ -307,7 +306,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     @Override
     public void checkMix(boolean isMix) {
-        checkBg(((SportActivity) getActivity()).tvMix, isMix, R.mipmap.sport_oval_u_green, R.mipmap.sport_oval_u_black);
+        checkBg(((SportActivity) getActivity()).tvMix, isMix, R.mipmap.sport_green_shopping_cart, R.mipmap.sport_black_shopping_cart);
     }
 
     @Override
@@ -344,23 +343,28 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     @Override
-    public void onUpdateMixSucceed(BettingParPromptBean bean) {
+    public void onUpdateMixSucceed(AfbClickResponseBean bean) {
         getApp().setBetParList(bean);
         updateMixOrderCount();
-        if (presenter.getStateHelper().isMix())
-            baseRecyclerAdapter.notifyDataSetChanged();
-
+        baseRecyclerAdapter.notifyDataSetChanged();
     }
 
     private void updateMixOrderCount() {
-        if (getApp().getBetParList() != null && getApp().getBetParList().getBetPar() != null && getApp().getBetParList().getBetPar().size() > 0) {
-            tvMixParlayOrder.setText("" + getApp().getBetParList().getBetPar().size());
+        if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
+            tvMixParlayOrder.setText("" + getApp().getBetParList().getList().size());
             llMixParlayOrder.setVisibility(View.VISIBLE);
+            checkMix(true);
+            ((SportActivity) getActivity()).tvMixCount.setVisibility(View.VISIBLE);
+            ((SportActivity) getActivity()).tvMixCount.setText("" + getApp().getBetParList().getList().size());
 
         } else {
             tvMixParlayOrder.setText("0");
             llMixParlayOrder.setVisibility(View.GONE);
+            checkMix(false);
+            ((SportActivity) getActivity()).tvMixCount.setVisibility(View.GONE);
+            ((SportActivity) getActivity()).tvMixCount.setText("0");
         }
+
     }
 
     public void toolbarRightClick(View v) {
@@ -499,11 +503,22 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 clickOddsType(view);
                 break;
             case R.id.ll_mix_parlay_order:
-                Bundle bundle = new Bundle();
-                bundle.putSerializable(AppConstant.KEY_DATA, presenter.getStateHelper().getStateType());
-                skipAct(MixOrderListActivity.class, bundle);
+                clickOrder();
                 break;
 
+        }
+    }
+
+    private void clickOrder() {
+        if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList()==null||getApp().getBetAfbList().getList().size() < 1)
+            return;
+        if (getApp().getBetAfbList().getList().size() == 1) {
+            String refreshOddsUrl = getApp().getRefreshOddsUrl();
+            presenter.getStateHelper().getBetHelper().getRefreshOdds(refreshOddsUrl);
+        } else if (getApp().getBetAfbList().getList().size() > 1) {
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(AppConstant.KEY_DATA, presenter.getStateHelper().getStateType());
+            skipAct(MixOrderListActivity.class, bundle);
         }
     }
 
@@ -559,6 +574,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     @Override
     public void onBetSuccess(String betResult) {
         getContextActivity().onBetSuccess(betResult);
+        updateMixOrderCount();
+        baseRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override

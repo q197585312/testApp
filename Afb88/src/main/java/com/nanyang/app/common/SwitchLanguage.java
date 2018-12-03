@@ -66,7 +66,7 @@ public class SwitchLanguage implements ILanguageSwitch {
     public void switchLanguage(String lang) {
 //     http://main55.afb88.com/Main.aspx?lang=EN-US
 //         {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
-        if(BuildConfig.FLAVOR.equals("wfmain")){
+        if(BuildConfig.FLAVOR.equals("afb1188")){
             Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, new LoginInfo().getWfLanguage(getLanguage()))
 
                    /* .flatMap(new Function<String, Flowable<String>>() {

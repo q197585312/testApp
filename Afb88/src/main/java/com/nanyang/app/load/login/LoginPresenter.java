@@ -15,6 +15,7 @@ import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
 
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -91,8 +92,11 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
     @Override
     public void login(final LoginInfo info) {
         if (checkUserAvailable(info)) {
-            if(BuildConfig.FLAVOR.equals("wfmain")){
-                Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login",getLanguage()))
+            //http://www.afb1188.com/W0/Pub/pcode.axd
+            final String url_login = AppConstant.getInstance().URL_LOGIN;
+            Map<String, String> infoWfmain = info.getWfmain("Login", getLanguage());
+            if(BuildConfig.FLAVOR.equals("afb1188")){
+                Disposable subscription = getService(ApiService.class).doPostMap(url_login, infoWfmain)
 
                         .flatMap(new Function<String, Flowable<String>>() {
                             @Override
@@ -101,7 +105,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                                 Pattern p = Pattern.compile(regex);
                                 Matcher m = p.matcher(s);
                                 if (m.find()) {
-                                    return getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN);
+                                    return getService(ApiService.class).getData(url_login);
                                 }
                                 Exception exception1 = new Exception("Server Error");
                                 throw exception1;
@@ -143,7 +147,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                 return;
             }
 
-            Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN)
+            Disposable subscription = getService(ApiService.class).getData(url_login)
                     .flatMap(new Function<String, Flowable<String>>() {
                         @Override
                         public Flowable<String> apply(String s) throws Exception {
@@ -154,7 +158,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                             info.set__VIEWSTATE(__VIEWSTATE);
                             info.set__EVENTVALIDATION(__EVENTVALIDATION);
 
-                            return getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getMap());
+                            return getService(ApiService.class).doPostMap(url_login, info.getMap());
 
                         }
                     })

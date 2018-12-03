@@ -1,8 +1,8 @@
 package com.nanyang.app.main.home.sport.formula;
 
-import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.cycling.CyclingState;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 /**
@@ -18,7 +18,7 @@ public abstract class FormulaState extends CyclingState {
 
 
     @Override
-    protected IBetHelper<BasketballMixInfo> onSetBetHelper() {
+    public IBetHelper<BallInfo> onSetBetHelper() {
         return new FormulaBetHelper(getBaseView());
     }
 

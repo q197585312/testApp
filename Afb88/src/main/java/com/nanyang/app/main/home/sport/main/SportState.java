@@ -9,7 +9,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +23,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
+import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -66,15 +66,12 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  */
 
 public abstract class SportState<B extends SportInfo, V extends SportContract.View<B>> implements IObtainDataState {
-    private String LID;
+    private String LID="";
 
     private int page;
     private List<TableSportInfo<B>> filterData;
     private Map<String, Boolean> leagueSelectedMap = new HashMap<>();
-    /**
-     * 当前显示数据的JsonArray，用来更新
-     */
-    protected JSONArray dataJsonArray;
+
     /**
      * 显示的所有数据
      */
@@ -166,8 +163,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
                     @Override
                     public List<TableSportInfo<B>> apply(String s) throws Exception {
-
-                        return parseTableModuleBeen(s);
+                        return getTableSportInfos(s);
 
                     }
                 })
@@ -223,7 +219,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private String getUrlString() {
         String url = getRefreshUrl();
-        if (BuildConfig.FLAVOR.equals("wfmain")) {
+        if (BuildConfig.FLAVOR.equals("afb1188")) {
             MenuItemInfo oddtype = ((SportActivity) getBaseView().getContextActivity()).getOddsType();
             if (oddtype != null)
                 url = url + "&accType=" + oddtype.getType();
@@ -318,8 +314,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);
     }
 
-    protected abstract IBetHelper onSetBetHelper();
-
 
     /***
      * 显示数据最终调用的方法
@@ -365,36 +359,51 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         } else {
             JSONArray jsonArray = new JSONArray(s);
             if (jsonArray.length() > 4) {
-                parseLidValue(jsonArray);
                 JSONArray dataListArray = jsonArray.getJSONArray(3);
-                this.dataJsonArray = dataListArray;
                 return updateJsonData(dataListArray);
             }
         }
         return new ArrayList<>();
     }
 
-    protected abstract List<TableSportInfo<B>> updateJsonData(JSONArray dataListArray) throws JSONException;
-
-    /**
-     * 解析出下次更新需要的LID对象
-     */
-    protected void parseLidValue(JSONArray jsonArray) throws JSONException {
-        JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
-        if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
-            synchronized (this) {
-                LID = jsonArrayLID.getString(1);
+    protected List<TableSportInfo<B>> updateJsonData(JSONArray dataListArray) throws JSONException {
+        ArrayList<TableSportInfo<B>> tableModules = new ArrayList<>();
+        if (dataListArray.length() > 0) {
+            for (int i = 0; i < dataListArray.length(); i++) {
+                JSONArray jsonArray3 = dataListArray.getJSONArray(i);
+                TableSportInfo<B> bTableSportInfo = parseTableSportMatch(jsonArray3, false);
+                if (bTableSportInfo != null && bTableSportInfo.getRows() != null && bTableSportInfo.getRows().size() > 0)
+                    tableModules.add(bTableSportInfo);
             }
-        } else {
-            LID = "";
         }
+        return tableModules;
+    }
+
+    protected TableSportInfo<B> parseTableSportMatch(JSONArray jsonArray3, boolean notify) throws JSONException {
+        LeagueBean leagueBean = null;
+        List<B> matchList = new ArrayList<>();
+        if (jsonArray3.length() > 1) {
+            JSONArray LeagueArray = jsonArray3.getJSONArray(0);
+            if (LeagueArray.length() > 1) {
+                leagueBean = new LeagueBean(LeagueArray.get(0).toString(), LeagueArray.getString(1));
+                JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
+                if (LeagueMatchArray.length() > 0) {
+                    for (int j = 0; j < LeagueMatchArray.length(); j++) {
+                        JSONArray matchArray = LeagueMatchArray.getJSONArray(j);
+                        matchList.add(parseMatch(matchArray, notify));
+                    }
+                }
+            }
+
+            return new TableSportInfo<>(leagueBean, matchList);
+
+        }
+        return null;
     }
 
     protected abstract String getRefreshUrl();
 
     public void initAllData(List<TableSportInfo<B>> allData) {
-
-        this.allData = allData;
         page = 0;
         updateAllDate(allData);
     }
@@ -440,14 +449,36 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected abstract List<TableSportInfo<B>> filterChildData(List<TableSportInfo<B>> dateTemp);
 
-    String LLD = "";
+    private List<TableSportInfo<B>> getTableSportInfos(String s) throws JSONException {
+        String updateString = Html.fromHtml(s).toString();
+        JSONArray jsonArray = new JSONArray(updateString);
+        if (jsonArray.length() >= 5) {
+            JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
+            if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
+                synchronized (this) {
+                    LID = jsonArrayLID.getString(1);
+                }
+            } else {
+                LID = "";
+            }//解析 下一个pid
+            if (jsonArrayLID.optInt(0) == 1) {
+                this.allData = parseTableModuleBeen(s);
+            } else {
+                this.allData = updateJsonArray(s);
+            }
+
+        }
+        return allData;
+    }
+
+
     Runnable dataUpdateRunnable = new Runnable() {
         @Override
         public void run() {
             Flowable<String> flowable = null;
             String url = getUrlString();
-            if (LLD != null && LLD.length() > 0) {
-                flowable = getService(ApiService.class).getData(url + "&LID=" + LLD);
+            if (LID.length() > 0) {
+                flowable = getService(ApiService.class).getData(url + "&LID=" + LID);
             } else
                 flowable = getService(ApiService.class).getData(url);
             Disposable subscribe = flowable
@@ -461,11 +492,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     .map(new Function<String, List<TableSportInfo<B>>>() {
                         @Override
                         public List<TableSportInfo<B>> apply(String s) throws Exception {
-                            if (LLD != null && LLD.length() > 0)
-                                return updateJsonArray(s);
-                            else
-                                return parseTableModuleBeen(s);
+                            return getTableSportInfos(s);
                         }
+
                     })
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
@@ -515,628 +544,96 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
     }
 
-    /**
-     * [
-     * [0,'3e1358ea90115b1','r',0,0,1,0,1,-1,'eng'],
-     * [],
-     * [12325904,12327827],
-     * [//增加
-     * [
-     * [636,'巴西圣保罗州锦标赛',0,0],
-     * [
-     * [
-     * 12325912,
-     * 0,
-     * '1-2',
-     * 223320,
-     * 11510,
-     * 0,
-     * 1,
-     * 0,
-     * '08: 45AM',
-     * 2,
-     * 45,
-     * 1,
-     * 1,
-     * -1,
-     * 0,
-     * '',
-     * '奥萨斯库奥达斯',
-     * 0,
-     * 797179,
-     * '',
-     * '聖安德雷',
-     * 0,
-     * 0,
-     * 1.2,
-     * 55.5,
-     * 1,
-     * 3.5,
-     * 1,
-     * 2,
-     * 50,
-     * 1.2,
-     * -1.2,
-     * 0,
-     * 0,
-     * 0,
-     * 0.2,
-     * 1000,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 1000,
-     * 0.2,
-     * 0,
-     * 594528922,
-     * "03/29/2017",
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 1,
-     * 1,
-     * 0,
-     * 0,
-     * 1
-     * ],
-     * [
-     * 12325979,
-     * 0,
-     * '3-1',
-     * 1925,
-     * 257515,
-     * 0,
-     * 0,
-     * 0,
-     * '08: 45AM',
-     * 2,
-     * 43,
-     * 1,
-     * 1,
-     * 4.2,
-     * 1,
-     * '',
-     * '山度士',
-     * 0,
-     * 797177,
-     * '',
-     * '甘美奥诺瓦里桑蒂诺',
-     * 0,
-     * 0,
-     * 3.4,
-     * 25,
-     * 1,
-     * 4.5,
-     * 3,
-     * 1,
-     * 41.6,
-     * 1.6,
-     * -1.6,
-     * 0,
-     * 0,
-     * 0,
-     * 0.2,
-     * 1000,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 1000,
-     * 0.2,
-     * 0,
-     * 395371622,
-     * "03/29/2017",
-     * 12325893,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 0,
-     * 1,
-     * 1,
-     * 0,
-     * 0,
-     * 1
-     * ]
-     * ]
-     * ]
-     * ],
-     * [],//4
-     * [ // 修改
-     * [
-     * 12325976,
-     * [
-     * 13,
-     * 23,
-     * 24,
-     * 29,
-     * 30,
-     * 31,
-     * 48
-     * ],
-     * [
-     * -2.1,
-     * 2.3,
-     * 34.4,
-     * 32.2,
-     * 2.3,
-     * -2.3,
-     * 12325912
-     * ]
-     * ],
-     * [
-     * 12325908,
-     * [
-     * 13,
-     * 23,
-     * 24,
-     * 29,
-     * 30,
-     * 31
-     * ],
-     * [
-     * 4.5,
-     * 3.7,
-     * 23.2,
-     * 41.6,
-     * 1.6,
-     * -1.6
-     * ]
-     * ],
-     * [
-     * 12325968,
-     * [
-     * 13,
-     * 23,
-     * 24,
-     * 48
-     * ],
-     * [
-     * 9.1,
-     * 8.1,
-     * 11.2,
-     * 12325979
-     * ]
-     * ],
-     * [
-     * 12325938,
-     * [
-     * 29,
-     * 30,
-     * 31
-     * ],
-     * [
-     * 40,
-     * 1.7,
-     * -1.7
-     * ]
-     * ],
-     * [
-     * 12325949,
-     * [
-     * 25,
-     * 26,
-     * 29,
-     * 30,
-     * 31
-     * ],
-     * [
-     * 0,
-     * 0,
-     * 1000,
-     * 0.2,
-     * 0
-     * ]
-     * ],
-     * [
-     * 12327811,
-     * [
-     * 60
-     * ],
-     * [
-     * 0
-     * ]
-     * ],
-     * [
-     * 12328393,
-     * [
-     * 13,
-     * 22,
-     * 23,
-     * 24,
-     * 26,
-     * 29,
-     * 30,
-     * 31
-     * ],
-     * [
-     * 9.5,
-     * 0,
-     * 10.7,
-     * 7.3,
-     * 1.75,
-     * 41.6,
-     * 0.4,
-     * -0.4
-     * ]
-     * ],
-     * [
-     * 12328156,
-     * [
-     * 13,
-     * 22,
-     * 23,
-     * 24,
-     * 26,
-     * 29,
-     * 30,
-     * 31,
-     * 35,
-     * 36,
-     * 37,
-     * 43,
-     * 44,
-     * 45
-     * ],
-     * [
-     * 8,
-     * 0.25,
-     * 5.8,
-     * 12.8,
-     * 4.25,
-     * 6.2,
-     * 12.1,
-     * 8.2,
-     * 23.2,
-     * 2.3,
-     * -2.3,
-     * 14,
-     * 5.1,
-     * -5.1
-     * ]
-     * ],
-     * [
-     * 12328661,
-     * [
-     * 13,
-     * 22,
-     * 23,
-     * 24,
-     * 26,
-     * 29,
-     * 30,
-     * 31,
-     * 35,
-     * 36,
-     * 37,
-     * 43,
-     * 44,
-     * 45
-     * ],
-     * [
-     * -8.2,
-     * 0.5,
-     * 9.6,
-     * 8.4,
-     * 4.5,
-     * 8.9,
-     * 9.1,
-     * -9.1,
-     * 15.8,
-     * 4.3,
-     * -4.3,
-     * 21.2,
-     * 2.7,
-     * -2.7
-     * ]
-     * ],
-     * [
-     * 12328178,
-     * [
-     * 50,
-     * 51,
-     * 52,
-     * 57,
-     * 60
-     * ],
-     * [
-     * 3.37,
-     * 5.08,
-     * 1.61,
-     * 1,
-     * 1
-     * ]
-     * ],
-     * [
-     * 12328475,
-     * [
-     * 59
-     * ],
-     * [
-     * 0
-     * ]
-     * ],
-     * [
-     * 12328230,
-     * [
-     * 29,
-     * 30,
-     * 31
-     * ],
-     * [
-     * 8.5,
-     * 9.7,
-     * -9.7
-     * ]
-     * ],
-     * [
-     * 12328233,
-     * [
-     * 29,
-     * 30,
-     * 31
-     * ],
-     * [
-     * 13.6,
-     * 5.5,
-     * -5.5
-     * ]
-     * ],
-     * [
-     * 12327656,
-     * [
-     * 29,
-     * 30,
-     * 31
-     * ],
-     * [
-     * 16.9,
-     * 4.1,
-     * -4.1
-     * ]
-     * ],
-     * [
-     * 12328455,
-     * [
-     * 29,
-     * 30,
-     * 31
-     * ],
-     * [
-     * 31.2,
-     * 1.4,
-     * -1.4
-     * ]
-     * ],
-     * [
-     * 12328180,
-     * [
-     * 13,
-     * 23,
-     * 24,
-     * 29,
-     * 30,
-     * 31,
-     * 59
-     * ],
-     * [
-     * -8.7,
-     * 9.5,
-     * 8.9,
-     * 12,
-     * 6.5,
-     * -6.5,
-     * 1
-     * ]
-     * ],
-     * [
-     * 12328182,
-     * [
-     * 13,
-     * 23,
-     * 24,
-     * 29,
-     * 30,
-     * 31,
-     * 59
-     * ],
-     * [
-     * -4.8,
-     * 15.1,
-     * 5,
-     * 7.3,
-     * 10.9,
-     * 9.1,
-     * 1
-     * ]
-     * ]
-     * ]
-     * ]
-     */
     @TargetApi(Build.VERSION_CODES.KITKAT)
     protected List<TableSportInfo<B>> updateJsonArray(String updateString) throws JSONException {
 
         updateString = Html.fromHtml(updateString).toString();
         LogUtil.d("UpdateData", updateString);
         JSONArray jsonArray = new JSONArray(updateString);
-        boolean modified = false;
-        boolean deleted = false;
-        boolean added = false;
         if (jsonArray.length() > 5) {
-            parseLidValue(jsonArray);//解析 下一个pid
-            JSONArray modifyArray = jsonArray.getJSONArray(5);
-
-            if (modifyArray.length() > 0) {
-                modified = true;
-            }
             JSONArray deleteArray = jsonArray.getJSONArray(2);
-            List<String> deleteData = new ArrayList<>();
             for (int i = 0; i < deleteArray.length(); i++) {
-                deleteData.add(deleteArray.getString(i));
-                deleted = true;
+                delMatch(deleteArray.getString(i));
             }
             JSONArray addArray = jsonArray.getJSONArray(3);
-            if (addArray.length() > 0) {
-                added = true;
-            }
-//                Map<String, JSONArray> addMap = new HashMap<>();
-//                Map<JSONArray, JSONArray> addMapLeague = new HashMap<>();
-
-
-            for (int i = 0; i < dataJsonArray.length(); i++) {
-                JSONArray jsonArray3 = dataJsonArray.getJSONArray(i);
-                if (jsonArray3.length() > 1) {
-                    JSONArray LeagueMatchArray = jsonArray3.getJSONArray(1);
-                    for (int j = 0; j < LeagueMatchArray.length(); j++) {
-                        String sid = LeagueMatchArray.getJSONArray(j).getString(getIndexSocOddsId());
-                        for (int k = 0; k < modifyArray.length(); k++) {
-                            JSONArray jsonArray1 = modifyArray.getJSONArray(k);
-                            String modifyId = jsonArray1.getString(0);
-                            JSONArray modifyIndex = jsonArray1.getJSONArray(1);
-                            JSONArray modifyData = jsonArray1.getJSONArray(2);
-                            Log.d("UPDATE", "modify--->modifyIndex:" + modifyIndex.toString());
-                            Log.d("UPDATE", "modify--->modifyData:" + modifyData.toString());
-                            if (modifyId.equals(sid)) {
-                                for (int l = 0; l < modifyIndex.length(); l++) {
-                                    LeagueMatchArray.getJSONArray(j).put(modifyIndex.getInt(l), modifyData.getString(l));
-                                    Log.d("UPDATE", "modify--->" + modifyIndex.getInt(l) + ":" + modifyData.getString(l));
-                                }
-                            }
-                        }
-                        if (deleteData.contains(sid)) {
-                            Log.d("UPDATE", "modify--->remove:" + sid);
-                            LeagueMatchArray.remove(j);
-                        }
-                    }
-                    if (LeagueMatchArray.length() < 1) {
-                        dataJsonArray.remove(i);
-                    }
-                }
+            for (int i = 0; i < addArray.length(); i++) {
+                addMatch(addArray.getJSONArray(i));
             }
 
-            if (added) {
-                for (int i = 0; i < addArray.length(); i++) {
-                    JSONArray array = addArray.getJSONArray(i);
-                    if (array.length() > 1)
-                        addJson(array);
-                }
+            JSONArray modifyArray = jsonArray.getJSONArray(5);
+            for (int i = 0; i < modifyArray.length(); i++) {
+                modifyMatch(modifyArray.getJSONArray(i));
             }
-            if (added || deleted || modified) {
-                return updateJsonData(dataJsonArray);
-            }
-
+        } else {
+            LID = "";
         }
 
-        return new ArrayList<>();
+        return allData;
 
     }
 
-    /*[//增加
-     [[636,'巴西圣保罗州锦标赛',0,0],[
-     [12325912,0,'1-2', 223320,11510,0,1, 0, '08: 45AM', 2, 45, 1, 1,-1, 0, '', '奥萨斯库奥达斯', 0, 797179, '', '聖安德雷', 0, 0, 1.2, 55.5, 1, 3.5, 1, 2, 50, 1.2, -1.2, 0, 0, 0, 0.2, 1000, 0, 0, 0, 0, 0, 0, 1000, 0.2, 0, 59458922, "03/29/2017", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1],
-     [ ]
-     ]
-
-     ]
-     ],*/
-    private void addJson(JSONArray array) throws JSONException {
-        JSONArray leagueNew = array.getJSONArray(0);
-        JSONArray arrayNew = array.getJSONArray(1);
-        for (int i = 0; i < dataJsonArray.length(); i++) { //先找联赛
-            /**具体单个的联赛*/
-            JSONArray dataTableOld = dataJsonArray.getJSONArray(i);
-            if (dataTableOld.length() > 1) {
-                JSONArray LeagueOld = dataTableOld.getJSONArray(0);
-                /**旧数据比赛详情*/
-                JSONArray matchArrayOld = dataTableOld.getJSONArray(1);
-                if (LeagueOld.getString(1).equals(leagueNew.get(1))) {//找到了联赛
-                    /**修改后的所有联赛*/
-
-                    JSONArray matchArrayTemp = new JSONArray();
-                    for (int j = 0; j < arrayNew.length(); j++) {//遍历要添加的比赛
-                        /**比赛详情*/
-                        JSONArray matchArrayNew = new JSONArray();
-                        boolean addMatch = false;
-                        JSONArray matchNew = arrayNew.getJSONArray(j);
-                        String preId = matchNew.getString(getIndexPreSocOddsId());
-                        String idNew = matchNew.getString(getIndexSocOddsId());
-                        List<String> oldIds = new ArrayList<>();
-                        for (int k = 0; k < matchArrayOld.length(); k++) {
-                            oldIds.add(matchArrayOld.getJSONArray(k).getString(getIndexSocOddsId()));
-                        }
-                        if (oldIds.contains(idNew)) {
-                            continue;
-                        }
-
-                        for (int k = 0; k < matchArrayOld.length(); k++) {
-                            String id = matchArrayOld.getJSONArray(k).getString(getIndexSocOddsId());
-                            matchArrayNew.put(matchArrayOld.getJSONArray(k));
-                            if (preId.equals(id)) {
-                                matchArrayNew.put(matchNew);
-                                addMatch = true;
-                            }
-                        }
-
-                        if (!addMatch) {
-                            matchArrayNew = new JSONArray();
-                            matchArrayNew.put(matchNew);
-                            for (int k = 0; k < matchArrayOld.length(); k++) {
-                                matchArrayNew.put(matchArrayOld.getJSONArray(k));
-                            }
-                        }
-                        matchArrayOld = matchArrayNew;
-                        matchArrayTemp = matchArrayNew;
+    private void modifyMatch(JSONArray jsonArray) {
+        if (jsonArray.length() > 2) {
+            for (int i = 0; i < allData.size(); i++) {
+                List<B> rows = allData.get(i).getRows();
+                for (int i1 = 0; i1 < rows.size(); i1++) {
+                    if (rows.get(i1).getSocOddsId().equals(jsonArray.optString(0))) {
+                        modifySoc(i, i1, jsonArray.optJSONArray(1), jsonArray.optJSONArray(2));
                     }
-                    dataTableOld.put(1, matchArrayTemp);//替换联赛数据
-                    dataJsonArray.put(i, dataTableOld);
-                    return;
                 }
             }
         }
-        boolean addMatch = false;//没有找到联赛
-        String preId = arrayNew.getJSONArray(0).getString(getIndexPreSocOddsId());//第一个联赛是否有比赛id
-        JSONArray dataArray = new JSONArray();
-        for (int i = 0; i < dataJsonArray.length(); i++) {
-            JSONArray jsonArray = dataJsonArray.getJSONArray(i).getJSONArray(1);
-            String id = jsonArray.getJSONArray(jsonArray.length() - 1).getString(getIndexSocOddsId());
-            dataArray.put(dataJsonArray.getJSONArray(i));
-            if (preId.equals(id)) {
-                dataArray.put(array);
-                addMatch = true;
-            }
-        }
-        if (!addMatch) {
-            dataArray = new JSONArray();
-            dataArray.put(array);
-            for (int i = 0; i < dataJsonArray.length(); i++) {
-                dataArray.put(dataJsonArray.get(i));
-            }
-        }
-        dataJsonArray = dataArray;
     }
 
+    private void modifySoc(int i, int i1, JSONArray indexArray, JSONArray dataArray) {
+        allData.get(i).getRows().get(i1).setNotify(false);
+        for (int k = 0; k < indexArray.length(); k++) {
+            allData.get(i).getRows().get(i1).setValue(indexArray.optInt(k), dataArray.optString(k));
+        }
+    }
 
-    protected abstract int getIndexSocOddsId();
+    private void addMatch(JSONArray match) throws JSONException {
+        for (int i = 0; i < allData.size(); i++) {
+            LeagueBean leagueBean = allData.get(i).getLeagueBean();
+            if (leagueBean != null && leagueBean.getModuleId().equals(match.optJSONArray(0).optString(0))) {
+                JSONArray socArray = match.optJSONArray(1);
+                for (int j = 0; j < socArray.length(); j++) {
+                    addSoc(i, socArray.optJSONArray(j), true);
+                }
+                return;
+            }
+        }
+        allData.add(allData.size(), parseTableSportMatch(match, true));
+    }
 
-    protected abstract int getIndexPreSocOddsId();
+    private void addSoc(int i, JSONArray soc, boolean notify) throws JSONException {
+        B b = parseMatch(soc, notify);
+        List<B> rows = allData.get(i).getRows();
+        for (int i1 = 0; i1 < rows.size(); i1++) {
+            if (rows.get(i1).getSocOddsId().equals(b.getPreSocOddsId())) {
+                allData.get(i).getRows().add(i1 + 1, b);
+                return;
+            }
+        }
+        allData.get(i).getRows().add(0, b);
+    }
+
+    private void delMatch(String sid) throws JSONException {
+        for (int i = 0; i < allData.size(); i++) {
+            List<B> rows = allData.get(i).getRows();
+            if (rows != null && rows.size() > 0) {
+                for (int j = 0; j < rows.size(); j++) {
+                    if (rows.get(j).getSocOddsId().equals(sid)) {
+                        allData.get(i).getRows().remove(j);
+                        if (allData.get(i).getRows().size() == 0) {
+                            allData.remove(i);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
 
     @Override
     public void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
@@ -1432,4 +929,17 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         baseView.onPopupWindowCreated(basePopupWindow, -2);
 
     }
+
+
+    protected abstract B parseMatch(JSONArray matchArray, boolean notify) throws JSONException;
+
+    IBetHelper betHelper;
+
+    public IBetHelper getBetHelper() {
+        if (betHelper == null)
+            betHelper = onSetBetHelper();
+        return betHelper;
+    }
+
+    public abstract IBetHelper onSetBetHelper();
 }

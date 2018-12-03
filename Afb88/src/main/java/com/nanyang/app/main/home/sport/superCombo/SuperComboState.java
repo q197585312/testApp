@@ -6,7 +6,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.football.SoccerMixState;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 import java.util.ArrayList;
@@ -22,11 +22,11 @@ public abstract class SuperComboState extends SoccerMixState{
         super(baseView);
     }
     @Override
-    protected IBetHelper<SoccerMixInfo> onSetBetHelper() {
+    public IBetHelper<BallInfo> onSetBetHelper() {
         return new SuperComboBetHelper(getBaseView());
     }
     @Override
-    protected void clickAdd(View v, SoccerMixInfo item) {
+    protected void clickAdd(View v, BallInfo item) {
         getBaseView().clickItemAdd(v,item,"mix");
     }
     @Override

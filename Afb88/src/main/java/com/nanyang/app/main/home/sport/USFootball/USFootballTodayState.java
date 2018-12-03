@@ -4,7 +4,10 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.basketball.BasketballTodayState;
+import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -51,5 +54,13 @@ public class USFootballTodayState extends BasketballTodayState {
         getBaseView().switchState(new USFootballTodayMixState(getBaseView()));
         return true;
     }
-
+    @Override
+    public IBetHelper<BallInfo> onSetBetHelper() {
+        return new BallBetHelper(getBaseView()) {
+            @Override
+            protected String getBallG() {
+                return "12";
+            }
+        };
+    }
 }

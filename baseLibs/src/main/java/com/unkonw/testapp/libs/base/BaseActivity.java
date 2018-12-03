@@ -5,10 +5,8 @@ import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -58,6 +56,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
      */
     protected DialogLoading loading;
     protected BasePopupWindow popWindow;
+    private boolean hasAttached=false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,6 +84,18 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         setContentView(view);
 
 
+    }
+
+    @Override
+    public void onAttachedToWindow() {
+        super.onAttachedToWindow();
+        hasAttached=true;
+    }
+
+    @Override
+    public void onDetachedFromWindow() {
+        super.onDetachedFromWindow();
+        hasAttached=false;
     }
 
     @Override
@@ -227,12 +238,11 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
     public void showLoadingDialog() {
         if (loading == null) {
             loading = new DialogLoading(this);
         }
-        if (isDestroyed() || isFinishing()) {
+        if (isFinishing()||!hasAttached) {
             loading.dismiss();
             return;
         }

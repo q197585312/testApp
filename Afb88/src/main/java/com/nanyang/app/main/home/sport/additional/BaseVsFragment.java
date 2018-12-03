@@ -33,7 +33,7 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     List<T> list;
 
 
-    protected IBetHelper betHelper;
+    public IBetHelper betHelper;
     protected BallInfo itemData;
     @Bind(R.id.tv_vs_header)
     LinearLayout tvVsHeader;

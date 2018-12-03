@@ -56,7 +56,7 @@ public class BasketballRunningState extends BasketballCommonState {
         return  new BasketballCommonAdapterHelper(getBaseView().getContextActivity());
     }
     @Override
-    protected IBetHelper onSetBetHelper() {
+    public IBetHelper onSetBetHelper() {
         return new BasketballCommonBetHelper(getBaseView());
     }
 }

@@ -1,11 +1,10 @@
 package com.nanyang.app.main.home.sport.mixparlayList;
 
 
-import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
+import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -40,7 +39,7 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
             selectedBean = new ClearanceBetAmountBean(1, "");
             return;
         }
-        List<BettingParPromptBean.BetParBean> betPar = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getBetPar();
+        List<AfbClickBetBean> betPar = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getList();
         if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() != null && betPar != null && betPar.size() > 2) {
             if (selectedBean == null || selectedBean.getTitle().equals(""))
                 selectedBean = new ClearanceBetAmountBean(1, betPar.size() + "  X  1");
@@ -71,44 +70,7 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
 
     //http://a0096f.panda88.org/_Bet/ParRemove.aspx
 //    http://a0096f.panda88.org/_bet/JRecPanel.aspx?g=2&b=even_par&oId=12225781&odds=18.2&isBP=1&RemoveId=12225358
-    public void removeBetItem(BettingParPromptBean.BetParBean item) {
 
-        String ParUrl = item.getParUrl();
-        String url = ParUrl + "&isBP=1&RemoveId=" + item.getSocOddsId();
-
-        Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).getData(url))
-//                    mApiWrapper.goMain()
-                .subscribe(new Consumer<String>() {//onNext
-                    @Override
-                    public void accept(String str) throws Exception {
-                        if (str.length() > 0) {
-                            BettingParPromptBean bean = new Gson().fromJson(str, BettingParPromptBean.class);
-                            baseView.obtainListData(bean);
-                        } else {
-                            baseView.obtainListData(null);
-                        }
-
-                    }
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        baseView.onFailed(throwable.getMessage());
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Action() {//完成
-                    @Override
-                    public void run() throws Exception {
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Consumer<Subscription>() {//开始绑定
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
-                        subscription.request(Long.MAX_VALUE);
-                    }
-                });
-        mCompositeSubscription.add(subscription);
-    }
 
     public void removeAll() {
         Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).getData(AppConstant.getInstance().URL_SOCCER_REMOVE_MIX))

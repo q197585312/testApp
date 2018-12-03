@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home.sport.darts;
 
-import com.nanyang.app.AppConstant;
-import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.tennis.TennisBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
@@ -15,8 +13,12 @@ public class DartsBetHelper extends TennisBetHelper {
         super(baseView);
     }
 
-//   http://a8206d.a36588.com/_Bet/JRecPanel.aspx?g=106&b=1&oId=12269721&odds=1.53
     @Override
+    protected String getBallG() {
+        return "19";
+    }
+    //   http://a8206d.a36588.com/_Bet/JRecPanel.aspx?g=106&b=1&oId=12269721&odds=1.53
+/*    @Override
     protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds,String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.getInstance().URL_ODDS);
@@ -25,7 +27,7 @@ public class DartsBetHelper extends TennisBetHelper {
         stringBuilder.append("&oId=" + item.getSocOddsId());
         stringBuilder.append("&odds=" + odds);
         return stringBuilder.toString();
-    }
+    }*/
 
 
 }

@@ -5,14 +5,65 @@ import java.io.Serializable;
 /**
  * Created by Administrator on 2017/3/11.
  */
-public class SportInfo implements Serializable{
-    public enum Type{
-        TITLE,ITME
+public class SportInfo implements Serializable {
+
+
+    private boolean notify;
+
+    public void setValue(int i, String s) {
+        switch (i) {
+            case 0:
+                setSocOddsId(s);
+                break;
+            case 1:
+                setHome(s);
+                break;
+            case 2:
+                setIsInetBet(s);
+                break;
+            case 3:
+                setIsX12New(s);
+                break;
+            case 4:
+                setHasX12(s);
+                break;
+            case 5:
+                setX12_1Odds(s);
+                setIsX12New("1");
+                break;
+            case 6:
+                setPreSocOddsId(s);
+                break;
+        }
     }
+
+    public void setNotify(boolean notify) {
+        this.notify = notify;
+        if(notify){
+            setIsX12New("1");
+        }else{
+            setIsX12New("0");
+        }
+    }
+
+    public enum Type {
+        TITLE, ITME
+    }
+
     SportInfo.Type type;
     String moduleId;
     CharSequence moduleTitle;
-    String SocOddsId,   Home,IsInetBet, isX12New, HasX12, X12_1Odds , PreSocOddsId;
+    String SocOddsId, Home, IsInetBet, isX12New, HasX12, X12_1Odds, PreSocOddsId;
+
+    public String getAway() {
+        return Away;
+    }
+
+    public void setAway(String away) {
+        Away = away;
+    }
+
+    String Away;
 
     public Type getType() {
         return type;
@@ -71,7 +122,7 @@ public class SportInfo implements Serializable{
     }
 
     public String getHasX12() {
-        return HasX12;
+        return "1";
     }
 
     public void setHasX12(String hasX12) {
@@ -94,7 +145,7 @@ public class SportInfo implements Serializable{
         PreSocOddsId = preSocOddsId;
     }
 
-    public static class ParseInfo{
-        int SocOddsId=0,   Home=1,IsInetBet=2, isX12New=3, HasX12=4, X12_1Odds=5 , PreSocOddsId=6;
+    public static class ParseInfo {
+        int SocOddsId = 0, Home = 1, IsInetBet = 2, isX12New = 3, HasX12 = 4, X12_1Odds = 5, PreSocOddsId = 6;
     }
 }

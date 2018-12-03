@@ -364,9 +364,9 @@ public class AfbUtils {
         dataList.add(new MenuItemInfo(R.mipmap.home_muay_thai, mContext.getString(R.string.Muay_Thai), "Muay_Thai"));
         dataList.add(new MenuItemInfo(R.mipmap.home_games, mContext.getString(R.string.E_Sport), "E_Sport"));
         dataList.add(new MenuItemInfo(R.mipmap.home_keno2, mContext.getString(R.string.Myanmar_Odds), "Myanmar_Odds"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_keno, mContext.getString(R.string.Keno), "Keno"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_poker, mContext.getString(R.string.Poker), "Poker"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_lottery, mContext.getString(R.string.Lottery), "Lottery"));
+//        dataList.add(new MenuItemInfo(R.mipmap.home_keno, mContext.getString(R.string.Keno), "Keno"));
+//        dataList.add(new MenuItemInfo(R.mipmap.home_poker, mContext.getString(R.string.Poker), "Poker"));
+//        dataList.add(new MenuItemInfo(R.mipmap.home_lottery, mContext.getString(R.string.Lottery), "Lottery"));
 
 //        dataList.add(new MenuItemInfo(R.mipmap.home_roulette, getString(R.string.Roulette), "Roulette"));
 //        dataList.add(new MenuItemInfo(R.mipmap.home_casino, getString(R.string.Casino), "Casino"));

@@ -14,6 +14,8 @@ public class BadmintonEarlyState extends BadmintonState {
         super(baseView);
     }
 
+
+
     @Override
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.Badminton));

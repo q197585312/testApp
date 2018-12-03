@@ -73,6 +73,7 @@
                     android:textColor="@color/black_grey"
                     android:textSize="11sp" />
                 <TextView
+                    android:id="@+id/tv_vs"
                     android:layout_marginLeft="2dp"
                     android:layout_marginRight="2dp"
                     android:layout_width="wrap_content"

@@ -395,4 +395,5 @@
     <string name="odds_keno">Odds:</string>
     <string name="max_get">MAX PAYOUT:</string>
     <string name="keno">(Keno)</string>
+    <string name="can_not_mixparly">This Match can\'t MixParlay</string>
 </resources>

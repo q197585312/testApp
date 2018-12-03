@@ -17,7 +17,8 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.model.BettingPromptBean;
+import com.nanyang.app.main.home.sport.main.AfbParseHelper;
+import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.base.BaseActivity;
@@ -66,16 +67,18 @@ public class BetPop extends BasePopupWindow {
     TextView halfTv;
     @Bind(R.id.tv_home_score)
     TextView tv_home_score;
+    @Bind(R.id.tv_vs)
+    TextView tv_vs;
     @Bind(R.id.tv_away_score)
     TextView tv_away_score;
 
     @BindString(R.string.loading)
     String loading;
-    BettingPromptBean bean;
+    AfbClickBetBean bean;
 
     @Bind(R.id.bet_pop_parent_top_fl)
     FrameLayout betPopParentTopFl;
-    private boolean betSelection;
+
     private String popTitle;
     private String state = "";
 
@@ -109,29 +112,30 @@ public class BetPop extends BasePopupWindow {
 
 
     private void goBetting() {
+        //http://www.afb1188.com/Bet/hBetSub.ashx?betType=1&oId=471838&odds=3.6&BTMD=S&amt=11&_=1543457323225
         String s = betAmountEdt.getText().toString().trim();
         if (!StringUtils.isEmpty(s)) {
-            if (!bean.getMaxLimit().equals("") && !bean.getMaxLimit().equals("0") && !bean.getMinLimit().equals("")) {
+            if (bean.getMaxLimit() > 0 && bean.getMinLimit() > 0) {
                 int count = Integer.valueOf(s);
-                int max = Integer.valueOf(bean.getMaxLimit());
-                int min = Integer.valueOf(bean.getMinLimit());
+                int max = bean.getMaxLimit();
+                int min = bean.getMinLimit();
                 if (count > max || count < min) {
                     ToastUtils.showShort(R.string.invalid_amount_bet);
                     betAmountEdt.setText("");
                     return;
                 }
-                presenter.bet(AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + bean.getBetUrl() + "&amt=" + s);
+                presenter.bet(AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + bean.getBeturl() + "&amt=" + s);
                 presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
                     @Override
                     public void callBack(String odds) {
-                        String betUrl = bean.getBetUrl();
+                        String betUrl = bean.getBeturl();
                         String substring1 = betUrl.substring(0, betUrl.indexOf("odds=") + 5);
                         String sb = betUrl.substring(betUrl.indexOf("odds="));
                         String substring2 = "";
                         if (sb.indexOf("&") > 0) {
                             substring2 = sb.substring(sb.indexOf("&"));
                         }
-                        bean.setBetUrl(substring1 + odds + substring2);
+                        bean.setBeturl(substring1 + odds + substring2);
                         betOddsTv.setText(AfbUtils.decimalValue(Float.valueOf(odds) / 10, "0.00"));
                     }
                 });
@@ -152,16 +156,6 @@ public class BetPop extends BasePopupWindow {
     protected void initView(View view) {
         super.initView(view);
 
-    }
-
-    public void setIsHf(boolean betSelection) {
-        this.betSelection = betSelection;
-        if (betSelection) {
-            halfTv.setVisibility(View.VISIBLE);
-            halfTv.setText(context.getString(R.string.half_time));
-        } else {
-            halfTv.setVisibility(View.GONE);
-        }
     }
 
 
@@ -191,21 +185,22 @@ public class BetPop extends BasePopupWindow {
      * "MoreBetUrl": "../_View/MoreBet.aspx?oId=12219287&home=AS%e6%91%a9%e7%ba%b3%e5%93%a5&away=%e6%9b%bc%e5%9f%8e&moduleTitle=%e6%ac%a7%e6%b4%b2%e5%86%a0%e5%86%9b%e8%81%94%e8%b5%9b&date=03%3a45AM&lang=eng",
      * "Test": "testing" }
      */
-    public void setBetData(BettingPromptBean result, IBetHelper mPresenter) {
+    public void setBetData(AfbClickBetBean result, IBetHelper mPresenter) {
         betBalanceTv.setText(((AfbApplication) context.getApplicationContext()).getUser().getBalance());
         this.presenter = mPresenter;
         ((BaseActivity) context).hideLoadingDialog();
         bean = result;
         betSureBtn.setEnabled(true);
-        betMaxWinTv.setText(result.getMinLimit());
-        betMaxBetTv.setText(result.getMaxLimit());
-        betModuleTitleTv.setText(result.getModuleTitle());
-        if (result.isIsRun()) {
+        betMaxWinTv.setText(result.getMinLimit() + "");
+        betMaxBetTv.setText(result.getMaxLimit() + "");
+        betModuleTitleTv.setText(result.getLeague());
+        if (result.getIsRun() == 1) {
 //            betScoreTv.setText(result.getRunHomeScore() + " V " + result.getRunAwayScore());
-            tv_home_score.setText(result.getRunHomeScore());
-            tv_away_score.setText(result.getRunAwayScore());
+            tv_home_score.setText(result.getScore());
+            tv_away_score.setVisibility(View.GONE);
+            tv_vs.setVisibility(View.GONE);
         }
-        boolean isHome = result.isIsHomeGive();
+        boolean isHome = result.getIsGive() == 1;
         if (isHome) {
             betHomeTv.setTextColor(context.getResources().getColor(R.color.red_title));
         } else {
@@ -213,9 +208,10 @@ public class BetPop extends BasePopupWindow {
         }
         betHomeTv.setText(result.getHome());
         betAwayTv.setText(result.getAway());
-        popTitle = result.getGTitle();
+        popTitle = result.getBTT();
         hdp = "";
-        switch (result.getBetType()) {
+        String betTypeFromId = new AfbParseHelper<>().getBetTypeFromId(result.getId());
+        switch (betTypeFromId) {
             case "1":
                 state = result.getHome() + "(" + context.getString(R.string.win) + ")";
 
@@ -261,20 +257,14 @@ public class BetPop extends BasePopupWindow {
                 betNameTv.setTextColor(context.getResources().getColor(R.color.red_title));
                 break;
         }
-        if (result.getBetHdp() != null) {
-            if ((result.isIsHomeGive() && result.getBetType().equals("home")) || (!result.isIsHomeGive() && result.getBetType().equals("away"))) {
+        if (result.getHdp() != null) {
+            if ((result.getIsGive() == 1 && betTypeFromId.equals("home")) || (result.getIsGive() != 1 && betTypeFromId.equals("away"))) {
 
-                hdp = "-" + Html.fromHtml(result.getBetHdp()).toString();
-
-
-            } else {
-
-                hdp = Html.fromHtml(result.getBetHdp()).toString();
-
+                hdp = Html.fromHtml(result.getHdp()).toString();
             }
         }
         betNameTv.setText(state);
-        if (result.getBetType().startsWith("mm")) {
+        if (betTypeFromId.startsWith("mm")) {
             String str = hdp + "@";
             if (str.contains("-") && str.contains("(") && str.contains(")")) {
                 SpannableStringBuilder ssb = AfbUtils.handleStringTextColor(str, str.indexOf("(") + 1, str.indexOf(")"), context.getResources().getColor(R.color.red_title));
@@ -285,7 +275,7 @@ public class BetPop extends BasePopupWindow {
         } else {
             betHdpTv.setText(hdp + "@");
         }
-        String odds = Html.fromHtml(result.getBetOdds()).toString();
+        String odds = Html.fromHtml(result.getOdds()).toString();
         if (odds != null && !odds.isEmpty() && Float.valueOf(odds) < 0) {
             betOddsTv.setTextColor(context.getResources().getColor(R.color.red_title));
         } else {
@@ -300,6 +290,8 @@ public class BetPop extends BasePopupWindow {
 
             }
         });/*"http://mobilesport.dig88api.com/_bet/JRecPanel.aspx?gt=s&info.getB()="+data.getType()+"&oId=9070924&odds=1",""*/
+        halfTv.setVisibility(View.VISIBLE);
+        halfTv.setText(result.getIsFH());
     }
 
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {

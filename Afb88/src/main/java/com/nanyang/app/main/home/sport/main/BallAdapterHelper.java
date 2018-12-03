@@ -10,9 +10,11 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
+import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.TimeUtils;
@@ -99,7 +101,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 if (channels.length == 1) {
                     liveTv.setVisibility(View.GONE);
                     liveTv1.setVisibility(View.GONE);
-                    if (channel.trim().length() > 6){
+                    if (channel.trim().length() > 6) {
                         dateTv.setTextSize(8);
                         dateTv1.setTextSize(8);
                     }
@@ -108,11 +110,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 } else if (channels.length == 2) {
                     liveTv.setTextSize(7);
                     liveTv1.setTextSize(7);
-                    if (channels[1].trim().length() >= 6){
+                    if (channels[1].trim().length() >= 6) {
                         dateTv.setTextSize(8);
                         dateTv1.setTextSize(8);
-                    }
-                    else {
+                    } else {
                         dateTv.setTextSize(9);
                         dateTv1.setTextSize(9);
                     }
@@ -177,10 +178,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String ou = item.getOU();
         String isHdpNew = item.getIsHdpNew();
         String isOUNew = item.getIsOUNew();
-        String underOdds = item.getUnderOdds();
-        String overOdds = item.getOverOdds();
-        String homeHdpOdds = item.getHomeHdpOdds();
-        String awayHdpOdds = item.getAwayHdpOdds();
+        String underOdds = item.getUOdds();
+        String overOdds = item.getOOdds();
+        String homeHdpOdds = item.getHOdds();
+        String awayHdpOdds = item.getAOdds();
         scrollChild(sl.getChildAt(0), false, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
         getBaseRecyclerAdapter().getItem(position).setIsHdpNew("0");
         getBaseRecyclerAdapter().getItem(position).setIsOUNew("0");
@@ -268,6 +269,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         } else {
             onMatchNotRepeat(helper, item, position);
         }
+
+    }
+
+    protected void updateMixBackground(BallInfo item, ScrollLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
+        BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
+        handler.updateMixBackground(item, sl, type01, type02, type11, type12, type21, type22);
     }
 
     protected void onMatchNotRepeat(MyRecyclerViewHolder helper, I item, int position) {
@@ -314,7 +321,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             String downStr = "";
             downTextTv.setTextSize(12);
             upTextTv.setTextSize(12);
-            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty()||upOdds.equals("0") || downOdds.equals("0")) {
+            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.3 || Math.abs(Float.valueOf(downOdds)) < 0.3) {
                 hasUpDown = "0";
             }
             switch (upType) {
@@ -371,16 +378,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 upTextTv.setText(upStr);
                 downTextTv.setText(downStr);
-                upOddsTv.setText(upOdds);
-                downOddsTv.setText(downOdds);
                 boolean isAnimation = false;
                 if (isNew != null && isNew.equals("1")) {
                     isAnimation = true;
                 }
-                setValue(item, upOddsTv, upOdds, isAnimation, upType, isFh, R.drawable.green_trans_shadow_top,true);
-                setValue(item, upTextTv, upOdds, false, upType, isFh, R.drawable.green_trans_shadow_top,false);
-                setValue(item, downOddsTv, downOdds, isAnimation, downType, isFh, R.drawable.green_trans_shadow_bottom,true);
-                setValue(item, downTextTv, downOdds, false, downType, isFh, R.drawable.green_trans_shadow_bottom,false);
+                setValue(item, upOddsTv, upOdds, isAnimation, upType, isFh, R.drawable.green_trans_shadow_top, true);
+                setValue(item, upTextTv, upOdds, false, upType, isFh, R.drawable.green_trans_shadow_top, false);
+                setValue(item, downOddsTv, downOdds, isAnimation, downType, isFh, R.drawable.green_trans_shadow_bottom, true);
+                setValue(item, downTextTv, downOdds, false, downType, isFh, R.drawable.green_trans_shadow_bottom, false);
             }
         } else {
             upTextTv.setVisibility(View.GONE);
@@ -419,7 +424,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         return ss;
     }
 
-    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg,boolean isShowText) {
+    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg, boolean isShowText) {
         String value = f;
         if (f.equals("0")) {
             textView.setText("");
@@ -440,7 +445,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     animation.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
-                            ((BaseActivity)context).dynamicAddView(textView, "background", resBg);
+                            ((BaseActivity) context).dynamicAddView(textView, "background", resBg);
 //                            textView.setBackgroundResource(resBg);
                         }
 
@@ -451,7 +456,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
                         @Override
                         public void onAnimationRepeat(Animation animation) {
-                            ((BaseActivity)context).dynamicAddView(textView, "background", resBg);
+                            ((BaseActivity) context).dynamicAddView(textView, "background", resBg);
                         }
                     });
                     textView.startAnimation(animation);
@@ -468,7 +473,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 textView.setOnClickListener(null);
             }
-            if (isShowText){
+            if (isShowText) {
                 if (Float.valueOf(value) < 0) {
                     textView.setTextColor(red_black);
                 } else {

@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home.sport.winterSport;
 
-import com.nanyang.app.AppConstant;
-import com.nanyang.app.main.home.sport.basketball.BasketballMixInfo;
 import com.nanyang.app.main.home.sport.tennis.TennisBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
@@ -15,9 +13,13 @@ public class WinterSportBetHelper extends TennisBetHelper {
         super(baseView);
     }
 
-
-
     @Override
+    protected String getBallG() {
+        return "103";
+    }
+
+
+/*  @Override
     protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds,String params) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(AppConstant.getInstance().URL_ODDS);
@@ -26,7 +28,7 @@ public class WinterSportBetHelper extends TennisBetHelper {
         stringBuilder.append("&oId=" + item.getSocOddsId());
         stringBuilder.append("&odds=" + odds);
         return stringBuilder.toString();
-    }
+    }*/
 
 
 }
