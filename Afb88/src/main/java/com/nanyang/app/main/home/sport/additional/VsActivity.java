@@ -239,9 +239,9 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             socOddsId_hf = Integer.valueOf(item.getSocOddsId_FH());
         if (item.getSocOddsId() != null && !item.getSocOddsId().equals(""))
             socOddsId = Integer.valueOf(item.getSocOddsId());
-        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1), new int[]{getResources().getColor(R.color.red_title)}, new String[]{getString(R.string.h1)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("",  item.getX12_1Odds_FH(), socOddsId_hf)), true, false, setColorStyle("1  x  2", new int[]{getResources().getColor(R.color.red_title), getResources().getColor(R.color.blue)}, new String[]{"1", "x"}), "", "", ""),
-                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx), new int[]{getResources().getColor(R.color.blue)}, new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("",  item.getX12_XOdds_FH(), socOddsId_hf))),
-                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_2Odds(), socOddsId), new VsCellBean("",  item.getX12_2Odds_FH(), socOddsId_hf)), true),
+        rows = Arrays.asList(new VsTableRowBean("1_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1), new int[]{getResources().getColor(R.color.red_title)}, new String[]{getString(R.string.h1)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_1Odds(), socOddsId), new VsCellBean("", item.getX12_1Odds_FH(), socOddsId_hf)), true, false, setColorStyle("1  x  2", new int[]{getResources().getColor(R.color.red_title), getResources().getColor(R.color.blue)}, new String[]{"1", "x"}), "", "", ""),
+                new VsTableRowBean("X_par", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx), new int[]{getResources().getColor(R.color.blue)}, new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_XOdds(), socOddsId), new VsCellBean("", item.getX12_XOdds_FH(), socOddsId_hf))),
+                new VsTableRowBean("2_par", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", item.getHasX12().equals("0") ? "" : item.getX12_2Odds(), socOddsId), new VsCellBean("", item.getX12_2Odds_FH(), socOddsId_hf)), true),
                 new VsTableRowBean("odd_par", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getOddOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true, false, getString(R.string.odd_even), "", "", ""),
                 new VsTableRowBean("even_par", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", item.getHasOE().equals("0") ? "" : item.getEvenOdds(), socOddsId), new VsCellBean("", "", socOddsId_hf)), true));
         datas.add(rows);
@@ -498,10 +498,18 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
                 finish();
                 break;
             case R.id.ll_mix_parlay_order:
-                Bundle b = new Bundle();
-                b.putSerializable(AppConstant.KEY_DATA, type);
-                skipAct(MixOrderListActivity.class, b);
-                finish();
+                if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList() == null || getApp().getBetAfbList().getList().size() < 1)
+                    return;
+                if (getApp().getBetAfbList().getList().size() == 1) {
+                    String refreshOddsUrl = getApp().getRefreshOddsUrl();
+                    helper.getRefreshOdds(refreshOddsUrl);
+                } else if (getApp().getBetAfbList().getList().size() > 1) {
+                    Bundle b = new Bundle();
+                    b.putSerializable(AppConstant.KEY_DATA, type);
+                    skipAct(MixOrderListActivity.class, b);
+                    finish();
+                }
+
                 break;
             case R.id.tv_not_settled:
                 Bundle bundle = new Bundle();
@@ -532,6 +540,11 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     @Override
     public void onUpdateMixSucceed(AfbClickResponseBean bean) {
         getApp().setBetParList(bean);
+        onBetEnd();
+
+    }
+
+    private void onBetEnd() {
         if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
             tvMixParlayOrder.setText("" + getApp().getBetParList().getList().size());
             llMixParlayOrder.setVisibility(View.VISIBLE);
@@ -540,7 +553,11 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             tvMixParlayOrder.setText("0");
             llMixParlayOrder.setVisibility(View.GONE);
         }
-
     }
 
+    @Override
+    public void onBetSuccess(String betResult) {
+        super.onBetSuccess(betResult);
+        onBetEnd();
+    }
 }

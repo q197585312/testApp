@@ -66,7 +66,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  */
 
 public abstract class SportState<B extends SportInfo, V extends SportContract.View<B>> implements IObtainDataState {
-    private String LID="";
+    private String LID = "";
 
     private int page;
     private List<TableSportInfo<B>> filterData;
@@ -466,7 +466,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             } else {
                 this.allData = updateJsonArray(s);
             }
-
         }
         return allData;
     }
@@ -550,19 +549,24 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         updateString = Html.fromHtml(updateString).toString();
         LogUtil.d("UpdateData", updateString);
         JSONArray jsonArray = new JSONArray(updateString);
-        if (jsonArray.length() > 5) {
+        if (jsonArray.length() > 4) {
             JSONArray deleteArray = jsonArray.getJSONArray(2);
             for (int i = 0; i < deleteArray.length(); i++) {
                 delMatch(deleteArray.getString(i));
             }
             JSONArray addArray = jsonArray.getJSONArray(3);
             for (int i = 0; i < addArray.length(); i++) {
-                addMatch(addArray.getJSONArray(i));
+                addMatch(addArray.getJSONArray(i), true);
             }
-
-            JSONArray modifyArray = jsonArray.getJSONArray(5);
-            for (int i = 0; i < modifyArray.length(); i++) {
-                modifyMatch(modifyArray.getJSONArray(i));
+            JSONArray updateArray = jsonArray.getJSONArray(4);
+            for (int i = 0; i < updateArray.length(); i++) {
+                addMatch(updateArray.getJSONArray(i), false);
+            }
+            if (jsonArray.length() > 5) {
+                JSONArray modifyArray = jsonArray.getJSONArray(5);
+                for (int i = 0; i < modifyArray.length(); i++) {
+                    modifyMatch(modifyArray.getJSONArray(i));
+                }
             }
         } else {
             LID = "";
@@ -592,13 +596,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
-    private void addMatch(JSONArray match) throws JSONException {
+    private void addMatch(JSONArray match, boolean isNew) throws JSONException {
         for (int i = 0; i < allData.size(); i++) {
             LeagueBean leagueBean = allData.get(i).getLeagueBean();
             if (leagueBean != null && leagueBean.getModuleId().equals(match.optJSONArray(0).optString(0))) {
                 JSONArray socArray = match.optJSONArray(1);
                 for (int j = 0; j < socArray.length(); j++) {
-                    addSoc(i, socArray.optJSONArray(j), true);
+                    addSoc(i, socArray.optJSONArray(j), true, isNew);
                 }
                 return;
             }
@@ -606,13 +610,20 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         allData.add(allData.size(), parseTableSportMatch(match, true));
     }
 
-    private void addSoc(int i, JSONArray soc, boolean notify) throws JSONException {
+    private void addSoc(int i, JSONArray soc, boolean notify, boolean isNew) throws JSONException {
         B b = parseMatch(soc, notify);
         List<B> rows = allData.get(i).getRows();
         for (int i1 = 0; i1 < rows.size(); i1++) {
-            if (rows.get(i1).getSocOddsId().equals(b.getPreSocOddsId())) {
-                allData.get(i).getRows().add(i1 + 1, b);
-                return;
+            if (isNew) {
+                if (rows.get(i1).getSocOddsId().equals(b.getPreSocOddsId())) {
+                    allData.get(i).getRows().add(i1 + 1, b);
+                    return;
+                }
+            } else {
+                if (rows.get(i1).getSocOddsId().equals(b.getSocOddsId())) {
+                    allData.get(i).getRows().set(i1, b);
+                    return;
+                }
             }
         }
         allData.get(i).getRows().add(0, b);

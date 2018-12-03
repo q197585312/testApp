@@ -82,7 +82,7 @@ import cn.finalteam.toolsfinal.ApkUtils;
 import cn.finalteam.toolsfinal.logger.Logger;
 
 public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
-    private final String GUIDE_KEY="GUIDE";
+    private final String GUIDE_KEY = "GUIDE";
     BaseSportFragment soccerFragment = new SoccerFragment();
     BaseSportFragment basketballFragment = new BasketballFragment();
     BaseSportFragment tennisFragment = new TennisFragment();
@@ -144,7 +144,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.ll_sport_menu_bottom)
     LinearLayout llSportMenuBottom;
 
-    private String currentTag="";
+    private String currentTag = "";
     private HashMap<String, BaseSportFragment> mapFragment;
     private BaseSportFragment currentFragment;
 
@@ -159,9 +159,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvToolbarRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_list_layer, 0);
         tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_white_language, 0);
         tvToolbarRight1.setVisibility(View.VISIBLE);
-        if (getString(R.string.app_name).equals("AP889")){
-            String lg= AfbUtils.getLanguage(mContext);
-            switch (lg){
+        if (getString(R.string.app_name).equals("AP889")) {
+            String lg = AfbUtils.getLanguage(mContext);
+            switch (lg) {
                 case "zh":
                     tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_zh_flag, 0);
                     break;
@@ -190,7 +190,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             public void onClick(View v) {
                 ChooseLanguagePop pop = new ChooseLanguagePop(SportActivity.this, v, presenter);
                 onPopupWindowCreated(pop, Gravity.CENTER);
-                if (getString(R.string.app_name).equals("AP889")){
+                if (getString(R.string.app_name).equals("AP889")) {
                     pop.setShowTv(tvToolbarRight1);
                 }
             }
@@ -207,17 +207,20 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvToolbarLeft.setVisibility(View.VISIBLE);
         initGuide();
     }
+
     private void initGuide() {
         boolean hasGuide = SharePreferenceUtil.getBoolean(mContext, GUIDE_KEY);
-        if(!hasGuide){
+        if (!hasGuide) {
             tvToolbarLeft.post(new Runnable() {
-                @Override public void run() {
+                @Override
+                public void run() {
                     showGuideView();
                 }
             });
         }
 
     }
+
     public void showGuideView() {
         GuideBuilder builder = new GuideBuilder();
         builder.setTargetView(tvToolbarLeft)
@@ -226,16 +229,18 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 .setOverlayTarget(false)
                 .setOutsideTouchable(false);
         builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
-            @Override public void onShown() {
+            @Override
+            public void onShown() {
             }
 
-            @Override public void onDismiss() {
+            @Override
+            public void onDismiss() {
                 showGuideViewLanguage();
             }
         });
         Base2PicComponent base2PicComponent = new Left2PicComponent();
         base2PicComponent.setAnchorView(tvToolbarLeft);
-        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_left,R.mipmap.guide_home_choice);
+        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_left, R.mipmap.guide_home_choice);
         base2PicComponent.setContentMarginLeftRight(20);
         builder.addComponent(base2PicComponent);
         Guide guide = builder.createGuide();
@@ -251,17 +256,19 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 .setOverlayTarget(false)
                 .setOutsideTouchable(false);
         builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
-            @Override public void onShown() {
+            @Override
+            public void onShown() {
             }
 
-            @Override public void onDismiss() {
+            @Override
+            public void onDismiss() {
                 showGuideViewGameType();
 
             }
         });
         Base2PicComponent base2PicComponent = new Right2PicComponent();
         base2PicComponent.setAnchorView(tvToolbarRight1);
-        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right,R.mipmap.guide_languge_choice);
+        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right, R.mipmap.guide_languge_choice);
         builder.addComponent(base2PicComponent);
         Guide guide = builder.createGuide();
         guide.setShouldCheckLocInWindow(false);
@@ -269,12 +276,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
 
-
     private void showGuideViewGameType() {
         TextView gameTypeTv;
-        if (getString(R.string.app_name).equals("AP889")){
+        if (getString(R.string.app_name).equals("AP889")) {
             gameTypeTv = tvToolbarTitle;
-        }else {
+        } else {
             gameTypeTv = tvToolbarRight;
         }
         GuideBuilder builder = new GuideBuilder();
@@ -284,22 +290,25 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 .setOverlayTarget(false)
                 .setOutsideTouchable(false);
         builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
-            @Override public void onShown() {
+            @Override
+            public void onShown() {
             }
 
-            @Override public void onDismiss() {
+            @Override
+            public void onDismiss() {
                 showGuideViewGameChoice();
 
             }
         });
         Base2PicComponent base2PicComponent = new Right2PicComponent();
         base2PicComponent.setAnchorView(gameTypeTv);
-        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right,R.mipmap.guide_game_type);
+        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right, R.mipmap.guide_game_type);
         builder.addComponent(base2PicComponent);
         Guide guide = builder.createGuide();
         guide.setShouldCheckLocInWindow(false);
         guide.show(mContext);
     }
+
     private void showGuideViewGameChoice() {
         GuideBuilder builder = new GuideBuilder();
         builder.setTargetView(llChoice)
@@ -308,17 +317,19 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 .setOverlayTarget(false)
                 .setOutsideTouchable(false);
         builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
-            @Override public void onShown() {
+            @Override
+            public void onShown() {
             }
 
-            @Override public void onDismiss() {
+            @Override
+            public void onDismiss() {
                 showGuideViewGameHandicap();
 
             }
         });
         Base2PicComponent base2PicComponent = new Right2PicComponent();
         base2PicComponent.setAnchorView(llChoice);
-        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right,R.mipmap.guide_game_choice);
+        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right, R.mipmap.guide_game_choice);
         builder.addComponent(base2PicComponent);
         Guide guide = builder.createGuide();
         guide.setShouldCheckLocInWindow(false);
@@ -334,16 +345,18 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 .setOverlayTarget(false)
                 .setOutsideTouchable(false);
         builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
-            @Override public void onShown() {
+            @Override
+            public void onShown() {
             }
 
-            @Override public void onDismiss() {
-              endGuide();
+            @Override
+            public void onDismiss() {
+                endGuide();
             }
         });
         Base2PicComponent base2PicComponent = new Right2PicComponent();
         base2PicComponent.setAnchorView(llOddsType);
-        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right,R.mipmap.guide_odds_type);
+        base2PicComponent.setPicRes(R.mipmap.arrow_line_guide_right, R.mipmap.guide_odds_type);
         base2PicComponent.setContentMarginLeftRight(0);
         builder.addComponent(base2PicComponent);
         Guide guide = builder.createGuide();
@@ -352,7 +365,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     private void endGuide() {
-       SharePreferenceUtil.setValue(mContext, GUIDE_KEY,true);
+        SharePreferenceUtil.setValue(mContext, GUIDE_KEY, true);
     }
 
 
@@ -366,6 +379,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     String type = "";
     AfbApplication app;
+
     @Override
     public void initData() {
         super.initData();
@@ -375,11 +389,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             type = item.getType();
             assert tvToolbarTitle != null;
             tvToolbarTitle.setText(item.getText());
-            if (getString(R.string.app_name).equals("AP889")){
-                Toolbar.LayoutParams params = new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT,Toolbar.LayoutParams.WRAP_CONTENT);
+            if (getString(R.string.app_name).equals("AP889")) {
+                Toolbar.LayoutParams params = new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, Toolbar.LayoutParams.WRAP_CONTENT);
                 params.gravity = Gravity.CENTER;
                 tvToolbarTitle.setLayoutParams(params);
-                tvToolbarTitle.setCompoundDrawablesWithIntrinsicBounds(0,0,R.mipmap.sport_odds_type_arrow_oval_green,0);
+                tvToolbarTitle.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_odds_type_arrow_oval_green, 0);
                 tvToolbarTitle.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -401,7 +415,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
         currentGameType = parentType;
         Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
-        String localCurrentTag="";
+        String localCurrentTag = "";
         switch (parentType) {
             case "Financial":
                 mapFragment.put(getString(R.string.Financial), financialFragment);
@@ -459,7 +473,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 localCurrentFragment = soccerFragment;
                 break;
         }
-        selectFragmentTag(localCurrentTag,localCurrentFragment);
+        selectFragmentTag(localCurrentTag, localCurrentFragment);
 //        showFragmentToActivity(currentFragment, R.id.fl_content, currentTag);
     }
 
@@ -472,7 +486,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
 
-    private void selectFragmentTag(String tag,BaseSportFragment localCurrentFragment) {
+    private void selectFragmentTag(String tag, BaseSportFragment localCurrentFragment) {
         if (currentTag.isEmpty()) {
             showFragmentToActivity(localCurrentFragment, R.id.fl_content, currentTag);
         } else if (!currentTag.equals(tag)) {
@@ -482,7 +496,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             localCurrentFragment.switchParentType(stateType);
             setType(stateType.getType());
         }
-        currentFragment =localCurrentFragment;
+        currentFragment = localCurrentFragment;
         currentTag = tag;
         tvTitle.setText(tag);
     }
@@ -500,6 +514,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 currentFragment.menu(tvMenu);
                 break;
             case R.id.tv_mix:
+                currentFragment.clickOrder();
               /*  if (currentFragment.mix(tvMix))
                     tvCollection.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_star_black, 0, 0);
                 else {
@@ -542,7 +557,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                             @Override
                             public void onItemClick(View view, MenuItemInfo item, int position) {
-                                selectFragmentTag(item.getText(),mapFragment.get(item.getText()));
+                                selectFragmentTag(item.getText(), mapFragment.get(item.getText()));
                                 closePopupWindow();
                             }
                         });
@@ -560,6 +575,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 break;
         }
     }
+
     private void loginGD() {
         if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
             presenter.skipGd88();
@@ -571,6 +587,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             startActivity(intent);
         }
     }
+
     @Override
     protected void updateBalanceTv(String allData) {
 
@@ -620,10 +637,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
             @Override
             public void setOnSureLisener(String money) {
-                if (!TextUtils.isEmpty(money)&&Integer.parseInt(money)!=0){
-                    presenter.gamesGDTransferMonet(money,data);
+                if (!TextUtils.isEmpty(money) && Integer.parseInt(money) != 0) {
+                    presenter.gamesGDTransferMonet(money, data);
                     closePopupWindow();
-                }else {
+                } else {
                     ToastUtils.showShort(getString(R.string.Input_the_amount_please));
                 }
             }
@@ -633,9 +650,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     public void onGetTransferMoneyData(int type, String getBackStr, String data) {
-        if (getBackStr.contains("not allowed")){
+        if (getBackStr.contains("not allowed")) {
             ToastUtils.showShort(getBackStr);
-        }else {
+        } else {
             ToastUtils.showShort(getBackStr);
             startApp(data);
         }
@@ -648,18 +665,18 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             bundle.putString("web_id", "-1");
             bundle.putString("k", data);
             bundle.putString("us", getApp().getUser().getUserName());
-            bundle.putString("lang",AfbUtils.getLanguage(mContext));
-            bundle.putInt("homeColor",getHomeColor());
+            bundle.putString("lang", AfbUtils.getLanguage(mContext));
+            bundle.putInt("homeColor", getHomeColor());
             try {
 //                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 ComponentName comp = new ComponentName("gaming178.com.baccaratgame",
                         "gaming178.com.casinogame.Activity.WelcomeActivity");
                 intent.setComponent(comp);
-                if (bundle != null){
+                if (bundle != null) {
                     intent.putExtras(bundle);
                 }
-                startActivityForResult(intent,7);
+                startActivityForResult(intent, 7);
             } catch (Exception e) {
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
@@ -669,6 +686,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
         }
     }
+
     private SpannableStringBuilder isStartWithTag(String str) {
         if (str.startsWith("<SPAN")) {
             String needStr = Html.fromHtml(str).toString();
@@ -684,6 +702,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
         }
     }
+
     public void setOddsType(MenuItemInfo oddsType) {
         this.oddsType = oddsType;
     }
@@ -702,8 +721,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     public void againLogin(String gameType) {
-        presenter.login(new LoginInfo(app.getUser().getUserName(), app.getUser().getPassword()),gameType);
+        presenter.login(new LoginInfo(app.getUser().getUserName(), app.getUser().getPassword()), gameType);
     }
+
     @Override
     public void onLoginAgainFinish(String gameType) {
         switchSkipAct(gameType);

@@ -64,8 +64,8 @@ public class AfbApplication extends BaseApplication {
             if (!cn.finalteam.toolsfinal.StringUtils.isEmpty(typeOdds) && typeOdds.endsWith("_par")) {
                 String replace = itemId.replaceFirst(typeOdds, typeOdds.substring(0, typeOdds.indexOf("_par")));
                 itemId = replace;
-                betOddsUrl = "BTMD=S&coupon=0&BETID=" + itemId;
             }
+            betOddsUrl = "BTMD=S&coupon=0&BETID=" + itemId;
         } else {
             for (AfbClickBetBean afbClickBetBean : betAfbList.getList()) {
                 String itemId = afbClickBetBean.getId();

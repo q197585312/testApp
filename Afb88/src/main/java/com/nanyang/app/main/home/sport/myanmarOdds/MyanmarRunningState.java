@@ -1,17 +1,10 @@
 package com.nanyang.app.main.home.sport.myanmarOdds;
 
-import android.view.View;
-import android.widget.TextView;
-
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
-import com.unkonw.testapp.libs.utils.TimeUtils;
-import com.unkonw.testapp.training.ScrollLayout;
-
-import java.util.Date;
 
 /**
  * Created by Administrator on 2017/3/21.
@@ -55,9 +48,4 @@ public class MyanmarRunningState extends MyanmarState {
         return new MyanmarRunningAdapterHelper(getBaseView().getContextActivity());
     }
 
-    @Override
-    public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
-        super.setScrollHeaderContent(slHeader, tvAos);
-        tvAos.setVisibility(View.GONE);
-    }
 }

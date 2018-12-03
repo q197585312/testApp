@@ -300,7 +300,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     @Override
                     public AfbClickResponseBean apply(String s) throws Exception {
                         AfbClickResponseBean bean = null;
-                        s = Html.fromHtml(s).toString();
                         if (s.contains("Session Expired")) {
                             getBaseView().onFailed(s);
                             getBaseView().hideLoadingDialog();

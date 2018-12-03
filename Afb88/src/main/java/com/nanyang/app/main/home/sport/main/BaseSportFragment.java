@@ -509,7 +509,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         }
     }
 
-    private void clickOrder() {
+    public void clickOrder() {
         if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList()==null||getApp().getBetAfbList().getList().size() < 1)
             return;
         if (getApp().getBetAfbList().getList().size() == 1) {

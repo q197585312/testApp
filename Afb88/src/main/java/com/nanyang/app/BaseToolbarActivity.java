@@ -249,6 +249,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             popWindow.closePopupWindow();
         getApp().setBetParList(null);
         updateBalance();
+
     }
 
     public Activity getContextActivity() {
