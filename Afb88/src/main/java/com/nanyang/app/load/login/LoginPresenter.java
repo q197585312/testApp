@@ -155,8 +155,11 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                             String __VIEWSTATE = substring1.substring(0, substring1.indexOf("\""));
                             String substring2 = s.substring(s.indexOf("id=\"__EVENTVALIDATION\" value=\"") + 30);
                             String __EVENTVALIDATION = substring2.substring(0, substring2.indexOf("\""));
+                            String substring3 = s.substring(s.indexOf("id=\"__VIEWSTATEGENERATOR\" value=\"") + 33);
+                            String __VIEWSTATEGENERATOR = substring3.substring(0, substring3.indexOf("\""));
                             info.set__VIEWSTATE(__VIEWSTATE);
                             info.set__EVENTVALIDATION(__EVENTVALIDATION);
+                            info.set__VIEWSTATEGENERATOR(__VIEWSTATEGENERATOR);
 
                             return getService(ApiService.class).doPostMap(url_login, info.getMap());
 

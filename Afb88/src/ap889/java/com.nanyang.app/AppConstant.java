@@ -8,14 +8,13 @@ public class AppConstant {
 
 
     public static final String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
-    public static final String CHECK_VERSION = "http://www.appgd88.com/afb88version.php?app=android";
-    public static final String DOWNLOAD_APP = "http://appgd88.com/afb88/download/android/afb88.apk";
+    public static final String CHECK_VERSION = "http://www.appgd88.com/ap889version.php?app=android";
+    public static final String DOWNLOAD_APP = "http://appgd88.com/ap889/download/android/ap889.apk";
 
 
     public static String APP_HOST = "http://main55.afb88.com/";
-//    public static String APP_HOST = "http://103.206.122.65/";
-    public static String REAL_HOST = "http://www.doo88.net/";
-
+//    public static String REAL_HOST = "http://www.doo88.net/";
+    public static String REAL_HOST = "http://www.ap889.com/";
     public static String KEY_STRING = "KEY_STRING";
     public static String KEY_DATA = "KEY_DATA";
     public static String KEY_INT = "KEY_INT";
@@ -41,11 +40,11 @@ public class AppConstant {
 
 //    public static String HOST="http://www.doo88.net/";
     public String HOST = REAL_HOST;
-
-    public String URL_LOGIN = HOST + "Default1.aspx";
+    //http://ibcbetmain.afb88.com/Default61.aspx?lang=
+    public String URL_LOGIN = HOST + "Default61smart.aspx";
     public String URL_MAIN = HOST + "main.aspx";
-    public String _BET="_bet/";
 
+    public String _BET="_bet/";
     public String URL_UPDATE_BALANCE = HOST + "_bet/PanelStakeBalance_App.aspx";
     public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
     public String URL_ODDS_TYPE = HOST + "Main.aspx?accType=";
@@ -233,7 +232,6 @@ public class AppConstant {
     public String URL_STAKE = HOST + "_bet/PanelStake_App.aspx";
     public String URL_STATEMENT_CONFIRM_BLANCE = HOST + "AccConfirmDate_App.aspx?userName=";
     public String URL_PANEL = HOST + "_bet/panel.aspx";
-    //    http://main55.afb88.net/_view/kenGame_App.aspx
     public String URL_KENO_DATA = HOST + "_view/kenGame_App.aspx";
     public String URL_KENO_STATU_DATA = HOST + "_bet/panel_keno_App.aspx?";
     public String URL_KENO_BET = HOST + "_bet/panel_keno_bet_App.aspx?";
@@ -385,8 +383,8 @@ public class AppConstant {
         URL_EUROPE_TODAY = HOST + "_view/OddsGen5.ashx?g=182&ot=t&update=true&r=1833149994";
         URL_EUROPE_RUNING = HOST + "_view/OddsGen5.ashx?g=182&ot=r&update=true&r=1833149994";
         URL_EUROPE_EARLY = HOST + "_view/OddsGen5.ashx?g=182&ot=e&update=true&r=1833149994";
-        URL_EUROPE_MIX_EARLY = HOST + "_view/ParGenWFH.ashx?g=183&ot=e&update=true&r=524111120";
-        URL_EUROPE_MIX_TODAY = HOST + "_view/ParGenWFH.ashx?g=183&ot=t&update=true&r=524111120";
+        URL_EUROPE_MIX_EARLY=HOST+"_view/ParGenWFH.ashx?g=183&ot=e&update=true&r=524111120";
+        URL_EUROPE_MIX_TODAY=HOST+"_view/ParGenWFH.ashx?g=183&ot=t&update=true&r=524111120";
 
         URL_TRANSFER_MONEY_DATA = HOST + "_Bet/PanelBalance_App.aspx?";
         URL_CASHOUT_MONEY_E_GAMES = HOST + "_bet/FundEGCashOut.aspx";
