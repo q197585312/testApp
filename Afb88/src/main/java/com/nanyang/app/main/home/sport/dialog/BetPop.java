@@ -18,7 +18,9 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
+import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
+import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.base.BaseActivity;
@@ -57,6 +59,8 @@ public class BetPop extends BasePopupWindow {
     @Bind(R.id.bet_sure_btn)
     TextView betSureBtn;
 
+    @Bind(R.id.bet_sure_cancel)
+    TextView betCancelBtn;
     @Bind(R.id.bet_max_win_tv)
     TextView betMaxWinTv;
     @Bind(R.id.bet_max_bet_tv)
@@ -82,7 +86,7 @@ public class BetPop extends BasePopupWindow {
     private String popTitle;
     private String state = "";
 
-    private IBetHelper presenter;
+    private SportBetHelper presenter;
     private String hdp;
     private IRTMatchInfo rTMatchInfo;
 
@@ -185,12 +189,13 @@ public class BetPop extends BasePopupWindow {
      * "MoreBetUrl": "../_View/MoreBet.aspx?oId=12219287&home=AS%e6%91%a9%e7%ba%b3%e5%93%a5&away=%e6%9b%bc%e5%9f%8e&moduleTitle=%e6%ac%a7%e6%b4%b2%e5%86%a0%e5%86%9b%e8%81%94%e8%b5%9b&date=03%3a45AM&lang=eng",
      * "Test": "testing" }
      */
-    public void setBetData(AfbClickBetBean result, IBetHelper mPresenter) {
+    public void setBetData(AfbClickBetBean result, SportBetHelper mPresenter) {
         betBalanceTv.setText(((AfbApplication) context.getApplicationContext()).getUser().getBalance());
         this.presenter = mPresenter;
         ((BaseActivity) context).hideLoadingDialog();
         bean = result;
         betSureBtn.setEnabled(true);
+        betCancelBtn.setEnabled(true);
         betMaxWinTv.setText(result.getMinLimit() + "");
         betMaxBetTv.setText(result.getMaxLimit() + "");
         betModuleTitleTv.setText(result.getLeague());
@@ -290,8 +295,19 @@ public class BetPop extends BasePopupWindow {
 
             }
         });/*"http://mobilesport.dig88api.com/_bet/JRecPanel.aspx?gt=s&info.getB()="+data.getType()+"&oId=9070924&odds=1",""*/
+        betCancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goCancel();
+            }
+        });
         halfTv.setVisibility(View.VISIBLE);
         halfTv.setText(result.getIsFH());
+    }
+
+    private void goCancel() {
+        closePopupWindow();
+        ((BetView) presenter.getBaseView()).onUpdateMixSucceed(null);
     }
 
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {

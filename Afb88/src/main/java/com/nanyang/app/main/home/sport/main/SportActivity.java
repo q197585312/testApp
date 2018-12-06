@@ -58,7 +58,6 @@ import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
 import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.poll.PoolFragment;
 import com.nanyang.app.main.home.sport.rugby.RugbyFragment;
-import com.nanyang.app.main.home.sport.superCombo.SuperComboFragment;
 import com.nanyang.app.main.home.sport.tableTennis.TableTennisFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
@@ -106,7 +105,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     BaseSportFragment handballFragment = new HandballFragment();
     BaseSportFragment cyclingFragment = new CyclingFragment();
     BaseSportFragment winterSportFragment = new WinterSportFragment();
-    BaseSportFragment superComboFragment = new SuperComboFragment();
+//    BaseSportFragment superComboFragment = new SuperComboFragment();
     BaseSportFragment tableTennisFragment = new TableTennisFragment();
     BaseSportFragment formulaFragment = new FormulaFragment();
     BaseSportFragment localCurrentFragment;
@@ -468,7 +467,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Handball), handballFragment);
                 mapFragment.put(getString(R.string.Cycling), cyclingFragment);
                 mapFragment.put(getString(R.string.WinterSport), winterSportFragment);
-                mapFragment.put(getString(R.string.SuperCombo), superComboFragment);
+//                mapFragment.put(getString(R.string.SuperCombo), superComboFragment);
                 localCurrentTag = getString(R.string.Soccer);
                 localCurrentFragment = soccerFragment;
                 break;

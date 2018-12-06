@@ -11,7 +11,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 /**
  * Created by Administrator on 2015/11/4.
  */
-public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
+public class ThirdFragment extends BaseVsFragment<VsTableRowBean> {
 
     @Override
     public void initData() {
@@ -20,13 +20,12 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
     }
 
 
-
     @Override
     protected void convertItem(MyRecyclerViewHolder helper, final int position, final VsTableRowBean item) {
         helper.setVisible(R.id.vs_row_head_ll, item.isHasHead());
         helper.setVisible(R.id.vs_row_foot_ll, item.isHasFoot());
         if (item.isHasHead()) {
-            helper.setVisible(R.id.vs_row_head_second_ll,false);
+            helper.setVisible(R.id.vs_row_head_second_ll, false);
             helper.setText(R.id.vs_header_module_title_tv, item.getModuleTitle());
             helper.setText(R.id.vs_header_left_title_tv, "");
             helper.setText(R.id.vs_header_center_title_tv, "");
@@ -34,16 +33,16 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
         }
         helper.setText(R.id.vs_row_content_tv11, item.getRows().get(0).getKey());
         helper.setText(R.id.vs_row_content_tv12, item.getRows().get(0).getValue());
-        setOddsTextColor(item.getRows().get(0).getValue(),helper.getTextView(R.id.vs_row_content_tv12));
+        setOddsTextColor(item.getRows().get(0).getValue(), helper.getTextView(R.id.vs_row_content_tv12));
 
         helper.setText(R.id.vs_row_content_tv21, item.getRows().get(1).getKey());
         helper.setText(R.id.vs_row_content_tv22, item.getRows().get(1).getValue());
-        setOddsTextColor(item.getRows().get(1).getValue(),helper.getTextView(R.id.vs_row_content_tv22));
+        setOddsTextColor(item.getRows().get(1).getValue(), helper.getTextView(R.id.vs_row_content_tv22));
 
         helper.setText(R.id.vs_row_content_tv31, item.getRows().get(2).getKey());
         helper.setText(R.id.vs_row_content_tv32, item.getRows().get(2).getValue());
-        setOddsTextColor(item.getRows().get(2).getValue(),helper.getTextView(R.id.vs_row_content_tv32));
-        
+        setOddsTextColor(item.getRows().get(2).getValue(), helper.getTextView(R.id.vs_row_content_tv32));
+
         if (item.getRows().get(0).getValue() == null || item.getRows().get(0).getValue().equals("")) {
             helper.setVisibility(R.id.vs_row_content_tv1x, View.INVISIBLE);
         } else {
@@ -64,7 +63,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             public void onClick(View v) {
 
                 if (item.getRows().get(0).getValue() != null && (!item.getRows().get(0).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData,item.getB().toString(),item.getRows().get(0).getValue(),(TextView) v,item.isFh(),/*"&sc="+*/item.getRows().get(0).getSc()/*+childParam*/);
+                    betHelper.clickOdds(itemData, item.getRows().get(0).getOid(), item.getB().toString(), item.getRows().get(0).getValue(), (TextView) v, item.isFh(),/*"&sc="+*/item.getRows().get(0).getSc(), false/*+childParam*/);
 
                 }
             }
@@ -73,7 +72,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(1).getValue() != null && (!item.getRows().get(1).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData,item.getB().toString(),item.getRows().get(1).getValue(),(TextView) v,item.isFh(),/*"&sc="+*/item.getRows().get(1).getSc()/*+childParam*/);
+                    betHelper.clickOdds(itemData, item.getRows().get(1).getOid(), item.getB().toString(), item.getRows().get(1).getValue(), (TextView) v, item.isFh(),/*"&sc="+*/item.getRows().get(1).getSc(), false/*+childParam*/);
 
                 }
             }
@@ -82,7 +81,7 @@ public class CorrectFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(2).getValue() != null && (!item.getRows().get(2).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData,item.getB().toString(),item.getRows().get(2).getValue(),(TextView) v,item.isFh(),/*"&sc="+*/item.getRows().get(2).getSc()/*+childParam*/);
+                    betHelper.clickOdds(itemData, item.getRows().get(1).getOid(), item.getB().toString(), item.getRows().get(2).getValue(), (TextView) v, item.isFh(),/*"&sc="+*/item.getRows().get(2).getSc(), false/*+childParam*/);
 
                 }
             }

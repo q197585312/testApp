@@ -1,4 +1,5 @@
 <resources>
+    <string name="app_name">AFB1188</string>
     <string name="Account">Account</string>
     <string name="Password">Password</string>
     <string name="Login">Login</string>
@@ -139,7 +140,7 @@
     <string name="ad">AD</string>
     <string name="aa">AA</string>
     <string name="Modify_Avatar">Modify Avatar</string>
-    <!--ScaleFragment-->
+    <!--FirstFragment-->
     <string name="encounter">Encounter</string>
     <string name="home_and_away">Home And Away</string>
 

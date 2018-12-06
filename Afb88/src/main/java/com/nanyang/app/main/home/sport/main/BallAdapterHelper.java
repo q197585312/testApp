@@ -43,6 +43,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     protected Set<ScrollLayout> slFollowers = new HashSet<>();
 
+    public void setSlIndex(int slIndex) {
+        this.slIndex = slIndex;
+    }
+
     private int slIndex = 0;
 
 
@@ -185,7 +189,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         scrollChild(sl.getChildAt(0), false, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
         getBaseRecyclerAdapter().getItem(position).setIsHdpNew("0");
         getBaseRecyclerAdapter().getItem(position).setIsOUNew("0");
-        if (!slFollowers.contains(sl)){
+        if (!slFollowers.contains(sl)) {
             slFollowers.add(sl);
             slFollowers.add(sl1);
         }
@@ -228,15 +232,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
             }
         });
-        sl1.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
-            @Override
-            public void changePosition(int index) {
-                if (slIndex != index) {
-                    slIndex = index;
 
-                }
-            }
-        });
         if (sl.getTargetIndex() != slIndex)
             sl.setCurrentIndex(slIndex);
         if (sl1.getTargetIndex() != slIndex)

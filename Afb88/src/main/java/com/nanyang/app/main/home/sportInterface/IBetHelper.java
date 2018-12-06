@@ -17,7 +17,7 @@ public interface IBetHelper<B> {
 
     void setResultCallBack(ResultCallBack back);
 
-    Disposable clickOdds(B itemData, int oid, String type, String odds, TextView v, boolean isHf, String params);
+    Disposable clickOdds(B itemData, int oid, String type, String odds, TextView v, boolean isHf, String params ,boolean hasPar);
 
     @NonNull
     Disposable getRefreshOdds(String url);

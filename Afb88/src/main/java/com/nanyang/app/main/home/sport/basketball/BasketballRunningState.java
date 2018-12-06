@@ -57,6 +57,6 @@ public class BasketballRunningState extends BasketballCommonState {
     }
     @Override
     public IBetHelper onSetBetHelper() {
-        return new BasketballCommonBetHelper(getBaseView());
+        return new BasketballRunningBetHelper(getBaseView());
     }
 }

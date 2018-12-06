@@ -102,7 +102,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
                 helper.setText(R.id.clearance_type_tv, type.getParent());
 
-                helper.setText(R.id.clearance_type_tv, "(" + item.getIsFH() + ")");
+                helper.setText(R.id.clearance_type_tv, "" + item.getIsFH() + "");
 
 
                 helper.setText(R.id.clearance_home_tv, item.getHome());
@@ -120,12 +120,14 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
             @Override
             public void onDeleteClick(int position) {
+                if (listAdapter.getItemCount() <= 1) {
+                    presenter.removeAll();
+                    return;
+                }
                 AfbClickBetBean item = listAdapter.getItem(position);
                 getApp().getBetAfbList().getList().remove(item);
                 helper.getRefreshOdds(getApp().getRefreshOddsUrl());
-                if (listAdapter.getItemCount() < 1) {
-                    presenter.removeAll();
-                }
+
             }
         });
         presenter.obtainListData();
@@ -360,7 +362,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         tc.setText(style);
         String state2 = "";
 
-        state2 = "(" + item.getIsFH() + ")";
+        state2 = "" + item.getIsFH() + "";
 
 
         helper.setText(R.id.clearance_odds_content_tv2, state2 + "  " + hdp + "@" + item.getOdds());
@@ -379,6 +381,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             listAdapter.addAllAndClear(betInfo.getList());
         else {
             listAdapter.clearItems(true);
+            finish();
         }
         presenter.showBottomSelectedList();
     }

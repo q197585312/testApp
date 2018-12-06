@@ -31,6 +31,7 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.IBaseView;
 
 import org.json.JSONArray;
+import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
 import java.util.List;
@@ -224,7 +225,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     }
 
     @Override
-    public Disposable clickOdds(B itemData, int oid, String type, String value, TextView v, boolean isHf, String params) {
+    public Disposable clickOdds(B itemData, int oid, String type, String value, TextView v, boolean isHf, String params, boolean hasPar) {
         return clickOdds(itemData, type, value, v, isHf, params);
     }
 
@@ -297,27 +298,30 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).map(new Function<String, AfbClickResponseBean>() {
 
+
                     @Override
                     public AfbClickResponseBean apply(String s) throws Exception {
                         AfbClickResponseBean bean = null;
-                        if (s.contains("Session Expired")) {
+                        JSONArray jsonArray = null;
+                        try {
+                            jsonArray = new JSONArray(s);
+                        } catch (JSONException e) {
                             getBaseView().onFailed(s);
                             getBaseView().hideLoadingDialog();
-                        } else {
-                            JSONArray jsonArray = new JSONArray(s);
-                            if (jsonArray.length() > 1) {
-
-                                JSONArray dataListArray = jsonArray.getJSONArray(0);
-                                List<AfbClickBetBean> list = new Gson().fromJson(dataListArray.toString(), new TypeToken<List<AfbClickBetBean>>() {
-                                }.getType());
-//[10000, 3, 4.654056, 10000, 'hBetSub.ashx?BTMD=P&odds=4.654056', 1, 0]
-                                JSONArray dataListArray1 = jsonArray.getJSONArray(1);
-
-                                bean = new AfbClickResponseBean(list, dataListArray1);
-                                ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(bean);
-
-                            }
+                            return null;
                         }
+                        if (jsonArray.length() > 1) {
+                            JSONArray dataListArray = jsonArray.getJSONArray(0);
+                            List<AfbClickBetBean> list = new Gson().fromJson(dataListArray.toString(), new TypeToken<List<AfbClickBetBean>>() {
+                            }.getType());
+//[10000, 3, 4.654056, 10000, 'hBetSub.ashx?BTMD=P&odds=4.654056', 1, 0]
+                            JSONArray dataListArray1 = jsonArray.getJSONArray(1);
+
+                            bean = new AfbClickResponseBean(list, dataListArray1);
+                            bean = initHasPar(bean);
+                            ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(bean);
+                        }
+
                         return bean;
 
 
@@ -354,5 +358,9 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         if (compositeSubscription != null)
             compositeSubscription.add(subscribe);
         return subscribe;
+    }
+
+    protected AfbClickResponseBean initHasPar(AfbClickResponseBean bean) {
+        return bean;
     }
 }

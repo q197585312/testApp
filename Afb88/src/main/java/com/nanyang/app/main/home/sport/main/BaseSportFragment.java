@@ -274,6 +274,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 slHeader.setFollowScrolls(slFollowers);
             slHeader.moveToIndex(targetIndex);
         }
+        ((BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper()).setSlIndex(targetIndex);
     }
 
 

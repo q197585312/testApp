@@ -79,6 +79,7 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
                     @Override
                     public void accept(String Str) throws Exception {
                         baseView.obtainListData(null);
+
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override

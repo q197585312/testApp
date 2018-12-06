@@ -18,6 +18,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
+import com.nanyang.app.main.home.sport.europe.EuropeBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerCommonBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerRunningBetHelper;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
@@ -25,9 +26,11 @@ import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.ScaleBean;
+import com.nanyang.app.main.home.sport.model.SoccerMixInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
+import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarBetHelper;
 import com.nanyang.app.main.home.sport.superCombo.SuperComboBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -51,7 +54,7 @@ import static com.nanyang.app.AfbUtils.setColorStyle;
 /**
  * Created by Administrator on 2015/10/22.
  */
-public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetView<String> {
+public class VsActivity1 extends BaseToolbarActivity<VsPresenter> implements BetView<String> {
     @Bind(R.id.vs_time_tv)
     TextView vsTimeTv;
     /*    @Bind(R.id.ballgame_tabs_pstabs)
@@ -75,11 +78,6 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     private ThirdFragment cf = new ThirdFragment();
     private int currentIndex = 0;
 
-    public String getChildParam() {
-        return childParam;
-    }
-
-    private String childParam = "";
 
     public boolean isMixParlay() {
         return isMixParlay;
@@ -117,15 +115,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA2);
         tvToolbarRight.setVisibility(View.GONE);
         matchType = type.getType();
-        switch (matchType) {
-            case "Early":
-                childParam = "&today=e";
-                break;
-            case "Today":
-            case "Running":
-                childParam = "&today=t";
-                break;
-        }
+
         isMixParlay = type.getRes() == 1;
         String parent = type.getParent();
 
@@ -138,12 +128,12 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         if (parent.equals(getString(R.string.SuperCombo))) {
             isMixParlay = true;
             fragmentsList.add(sf);
-            initFirstData( item);
+            initFirstData((SoccerMixInfo) item);
             helper = new SuperComboBetHelper(this);
         } else {
             if (isMixParlay) {
                 fragmentsList.add(sf);
-                initFirstData( item);
+                initFirstData((SoccerMixInfo) item);
             } else {
                 fragmentsList.add(sf);
                 fragmentsList.add(bf);
@@ -169,14 +159,14 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             }
         } else if (parent.equals(getString(R.string.Myanmar_Odds))) {
             paramT = "&T=MB2";
-//            helper = new MyanmarBetHelper(this);
+            helper = new MyanmarBetHelper(this);
             //http://main55.afb88.com/_view/pgajaxS.axd?T=MB2&oId=12795891&home=%E5%9F%83%E6%96%AF%E8%92%82%E7%89%B9%E6%96%AF&away=%E4%BF%9D%E5%9C%B0%E8%8A%B1%E9%AB%98&moduleTitle=%E5%8D%97%E7%BE%8E%E8%A7%A3%E6%94%BE%E8%80%85%E6%9D%AF&date=08:45AM&lang=eng&isRun=true&_=1495764426627
             //http://a8206d.a36588.com/_view/pgajaxS.axd?T=MB2&oId=12270813&home=Rochdale&away=Millwall&moduleTitle=ENGLISH%20LEAGUE%20ONE&date=03:45AM&lang=EN-US&isRun=false&_=1490092254432
         } else if (parent.equals(getString(R.string.Europe_View))) {
             paramT = "&T=MB2";
-//            helper = new EuropeBetHelper(this);
+            helper = new EuropeBetHelper(this);
         }
-        helper = new SoccerCommonBetHelper(this);
+
 
         assert tvToolbarTitle != null;
         tvToolbarTitle.setBackgroundResource(0);
@@ -220,8 +210,15 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         return item;
     }
 
+    public boolean getMixParlay() {
+        return isMixParlay;
+    }
 
-    private void initFirstData(BallInfo item) {
+    public void setMixParlay(boolean mixParlay) {
+        this.isMixParlay = mixParlay;
+    }
+
+    private void initFirstData(SoccerMixInfo item) {
         List<VsTableRowBean> rows = new ArrayList<VsTableRowBean>();
         int socOddsId_hf = 0;
         int socOddsId = 0;
@@ -292,7 +289,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         Iterator<Map.Entry<String, Object>> iterator = dataMap.entrySet().iterator();
         Integer firstPre = null;
         Integer firstSuffix = null;
-        List<VsActivity.Csr> list = new ArrayList<>();
+        List<VsActivity1.Csr> list = new ArrayList<>();
         while (iterator.hasNext()) {
             Map.Entry<String, Object> next = iterator.next();
             String score = next.getKey();
@@ -300,11 +297,11 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             if (score.equals("oid") || odds == null)
                 continue;
             if (score.equals("AOS")) {
-                VsActivity.Csr csr;
+                VsActivity1.Csr csr;
                 if (isHf)
-                    csr = new VsActivity.Csr(isHf, score, odds, "80");
+                    csr = new VsActivity1.Csr(isHf, score, odds, "80");
                 else
-                    csr = new VsActivity.Csr(isHf, score, odds, "70");
+                    csr = new VsActivity1.Csr(isHf, score, odds, "70");
                 list.add(csr);
                 continue;
             }
@@ -328,7 +325,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             } else {
                 oddsType = suffix + "";
             }
-            VsActivity.Csr csr = new VsActivity.Csr(isHf, score, odds, oddsType);
+            VsActivity1.Csr csr = new VsActivity1.Csr(isHf, score, odds, oddsType);
             list.add(csr);
 
         }
@@ -420,16 +417,22 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
     }
 
-    private void firstFragmentData(ScaleBean result) {
+    /*private void firstFragmentData(MBean result) {
         List<VsTableRowBean> rows;
-        rows = new ArrayList<>(Arrays.asList(new VsTableRowBean("1", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1), new int[]{getResources().getColor(R.color.red_title)}, new String[]{getString(R.string.h1)}), "", result.getFT1x2().getOid()), new VsCellBean("", result.getFT1x2().getF1(), result.getFT1x2().getOid()), new VsCellBean("", result.getFH1x2().getF1(), result.getFH1x2().getOid())), true, false, setColorStyle("1  x  2", new int[]{getResources().getColor(R.color.red_title), getResources().getColor(R.color.blue)}, new String[]{"1", "x"}), "", "", ""),
-                new VsTableRowBean("X", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx), new int[]{getResources().getColor(R.color.blue)}, new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", result.getFT1x2().getX(), result.getFT1x2().getOid()), new VsCellBean("", result.getFH1x2().getX(), result.getFH1x2().getOid()))),
-                new VsTableRowBean("2", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", result.getFT1x2().getF2(), result.getFT1x2().getOid()), new VsCellBean("", result.getFH1x2().getF2(), result.getFH1x2().getOid())), true),
-                new VsTableRowBean("dc", "10", Arrays.asList(new VsCellBean(setColorStyle("1X", new int[]{getResources().getColor(R.color.red_title), getResources().getColor(R.color.blue)}, new String[]{"1", "X"}), "", 0), new VsCellBean("", result.getFTDC().getF1x(), result.getFTDC().getOid()), new VsCellBean("", result.getFHDC().getF1x(), result.getFHDC().getOid())), true, false, getString(R.string.double_chance), "", "", ""),
-                new VsTableRowBean("dc", "12", Arrays.asList(new VsCellBean(setColorStyle("12", new int[]{getResources().getColor(R.color.red_title)}, new String[]{"1"}), "", 0), new VsCellBean("", result.getFTDC().getF12(), result.getFTDC().getOid()), new VsCellBean("", result.getFHDC().getF12(), result.getFHDC().getOid()))),
-                new VsTableRowBean("dc", "2", Arrays.asList(new VsCellBean(setColorStyle("X2", new int[]{getResources().getColor(R.color.blue)}, new String[]{"X"}), "", 0), new VsCellBean("", result.getFTDC().getFx2(), result.getFTDC().getOid()), new VsCellBean("", result.getFHDC().getFx2(), result.getFHDC().getOid())), true),
-                new VsTableRowBean("odd", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0), new VsCellBean("", result.getFTOE().getODD(), result.getFTOE().getOid()), new VsCellBean("", result.getFHOE().getODD(), result.getFHOE().getOid())), true, false, getString(R.string.odd_even), "", "", ""),
-                new VsTableRowBean("even", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0), new VsCellBean("", result.getFTOE().getEVEN(), result.getFTOE().getOid()), new VsCellBean("", result.getFHOE().getEVEN(), result.getFHOE().getOid())), true)
+        rows = new ArrayList<>(Arrays.asList(new VsTableRowBean("1", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1), new int[]{getResources().getColor(R.color.red_title)}, new String[]{getString(R.string.h1)}), ""
+                        , result.getF1X2_SocOddsId()), new VsCellBean("", result.getF1(), result.getF1X2_SocOddsId()), new VsCellBean("", result.getH1(), result.getH1X2_SocOddsId())), true, false, setColorStyle("1  x  2", new int[]{getResources().getColor(R.color.red_title), getResources().getColor(R.color.blue)}, new String[]{"1", "x"}), "", "", ""),
+                new VsTableRowBean("X", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx), new int[]{getResources().getColor(R.color.blue)}, new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", result.getFX(), result.getF1X2_SocOddsId()), new VsCellBean("", result.getHX(), result.getH1X2_SocOddsId()))),
+                new VsTableRowBean("2", Arrays.asList(new VsCellBean(getString(R.string.a2), "", 0), new VsCellBean("", result.getF2(), result.getF1X2_SocOddsId()), new VsCellBean("", result.getH2(), result.getH1X2_SocOddsId())), true),
+                new VsTableRowBean("dc", "10", Arrays.asList(new VsCellBean(setColorStyle("1X", new int[]{getResources().getColor(R.color.red_title), getResources().getColor(R.color.blue)}, new String[]{"1", "X"}), "", 0)
+                        , new VsCellBean("", result.getFHD(), result.getFDB_SocOddsId()), new VsCellBean("", result.getHHD(), result.getHDB_SocOddsId())), true, false, getString(R.string.double_chance), "", "", ""),
+                new VsTableRowBean("dc", "12", Arrays.asList(new VsCellBean(setColorStyle("12", new int[]{getResources().getColor(R.color.red_title)}, new String[]{"1"}), "", 0)
+                        , new VsCellBean("", result.getFHA(), result.getFDB_SocOddsId()), new VsCellBean("", result.getHHA(), result.getHDB_SocOddsId()))),
+                new VsTableRowBean("dc", "2", Arrays.asList(new VsCellBean(setColorStyle("X2", new int[]{getResources().getColor(R.color.blue)}, new String[]{"X"}), "", 0)
+                        , new VsCellBean("", result.getFDA(), result.getFDB_SocOddsId()), new VsCellBean("", result.getHDA(), result.getHDB_SocOddsId())), true),
+                new VsTableRowBean("odd", Arrays.asList(new VsCellBean(getString(R.string.odd), "", 0)
+                        , new VsCellBean("", result.getFOdd(), result.getFOE_SocOddsId()), new VsCellBean("", "", 0)), true, false, getString(R.string.odd_even), "", "", ""),
+                new VsTableRowBean("even", Arrays.asList(new VsCellBean(getString(R.string.even), "", 0)
+                        , new VsCellBean("", result.getFEven(), result.getFOE_SocOddsId()), new VsCellBean("", "", 0)), true)
         ));
         if (result.getFT15MINSHANDICAP_OVER_UNDER_0() != null) {
             rows.add(new VsTableRowBean("over", Arrays.asList(new VsCellBean(getString(R.string.over), "", 0), new VsCellBean(result.getFT15MINSHANDICAP_OVER_UNDER_0().getFT_OU(), "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_0().getO(), result.getFT15MINSHANDICAP_OVER_UNDER_0().getOid())), true, false, getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(00:00-15:00)", "", "", ""));
@@ -454,13 +457,12 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         datas.add(rows);
         sf.setData(rows);
     }
-
+*/
     @Override
     protected void onResume() {
         super.onResume();
         if (!isMixParlay)
             presenter.scale(paramT, item, matchType);
-        onBetEnd();
     }
 
     @Override
@@ -476,10 +478,10 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
     @Override
     public void onGetData(String data) {
-        ScaleBean bean = new Gson().fromJson(data, ScaleBean.class);
+/*        MBean bean = new Gson().fromJson(data, MBean.class);
         firstFragmentData(bean);
         secondFragmentData(bean);
-        thirdFragmentData(data);
+        thirdFragmentData(data);*/
     }
 
     @OnClick({R.id.tv_back, R.id.tv_not_settled, R.id.tv_settled, R.id.ll_mix_parlay_order, R.id.iv_lift_nav, R.id.iv_right_nav})
@@ -530,8 +532,6 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
     @Override
     public void onUpdateMixSucceed(AfbClickResponseBean bean) {
-        BaseVsFragment baseVsFragment = fragmentsList.get(currentIndex);
-        baseVsFragment.getAdapter().notifyDataSetChanged();
         getApp().setBetParList(bean);
         onBetEnd();
 

@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.model;
 
+import android.text.Html;
+
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 
 import java.io.Serializable;
@@ -59,6 +61,12 @@ public class AfbClickBetBean implements Serializable {
     private String outright;
     private String IsFH;
 
+    public String getHasPar() {
+        return hasPar;
+    }
+
+    private String hasPar;
+
     public String getId() {
         return id;
     }
@@ -76,6 +84,7 @@ public class AfbClickBetBean implements Serializable {
     }
 
     public String getOdds() {
+        Odds=Html.fromHtml(Odds).toString();
         return Odds;
     }
 
@@ -192,6 +201,7 @@ public class AfbClickBetBean implements Serializable {
     }
 
     public void setBTT(String bTT) {
+        bTT=Html.fromHtml(bTT).toString();
         this.bTT = bTT;
     }
 
@@ -259,5 +269,10 @@ public class AfbClickBetBean implements Serializable {
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    public void setHasPar(String hasPar) {
+        this.hasPar=hasPar;
+
     }
 }

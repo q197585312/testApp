@@ -409,7 +409,9 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
             if (BuildConfig.FLAVOR.equals("afb1188")) {
 //            /W0/Pub/_norm/wfPamTrans0.html?
 //                url = AppConstant.getInstance().HOST + "W0/Pub/wfBetSlip0.html?id=" + item.getSocTransId()+"&transType="+item.getTransType();
-                url = AppConstant.getInstance().HOST + "_Norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+                //http://www.afb1188.com/W0/Pub/_norm/wfPamTrans0.html?userName=Demoafba0311&id=6261
+//                url = AppConstant.getInstance().HOST + "_Norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+                url = AppConstant.getInstance().HOST + "W0/Pub/_norm/wfPamTrans0.html?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
 
             } else {
                 url = AppConstant.getInstance().HOST + "_norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();

@@ -29,6 +29,11 @@ import butterknife.ButterKnife;
 public abstract class BaseVsFragment<T> extends BaseFragment {
     @Bind(R.id.base_rv)
     RecyclerView baseRc;
+
+    public BaseRecyclerAdapter<T> getAdapter() {
+        return adapter;
+    }
+
     BaseRecyclerAdapter<T> adapter;
     List<T> list;
 
