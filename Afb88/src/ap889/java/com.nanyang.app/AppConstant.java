@@ -40,8 +40,8 @@ public class AppConstant {
 
 //    public static String HOST="http://www.doo88.net/";
     public String HOST = REAL_HOST;
-
-    public String URL_LOGIN = HOST + "Default1.aspx";
+    //http://ibcbetmain.afb88.com/Default61.aspx?lang=
+    public String URL_LOGIN = HOST + "Default61smart.aspx";
     public String URL_MAIN = HOST + "main.aspx";
 
     public String _BET="_bet/";
