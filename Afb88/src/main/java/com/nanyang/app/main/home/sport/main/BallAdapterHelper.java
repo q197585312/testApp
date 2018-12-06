@@ -227,15 +227,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
             }
         });
-        sl1.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
-            @Override
-            public void changePosition(int index) {
-                if (slIndex != index) {
-                    slIndex = index;
 
-                }
-            }
-        });
         if (sl.getTargetIndex() != slIndex)
             sl.setCurrentIndex(slIndex);
         if (sl1.getTargetIndex() != slIndex)
