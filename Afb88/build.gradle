@@ -19,6 +19,7 @@ android {
         versionName '1.66'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "HOST_AFB", '"http;//www.afb1188.com"'
+        signingConfig signingConfigs.config
     }
     buildTypes {
         release {
@@ -28,6 +29,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //            signingConfig signingConfigs.config
             debuggable true
+            signingConfig signingConfigs.config
         }
         debug {
             buildConfigField "boolean", "LOG_DEBUG", "true"
@@ -35,6 +37,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //            signingConfig signingConfigs.config
             debuggable true
+            signingConfig signingConfigs.config
         }
     }
 
@@ -50,9 +53,8 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"
             ]
             applicationId 'com.nanyang.afb1188'
-            versionName '2.00'
+            versionName '1.00'
             buildConfigField "String", "HOST_AFB", '"http://www.afb1188.com/"'
-
         }
     }
     lintOptions {

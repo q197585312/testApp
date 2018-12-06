@@ -8,12 +8,11 @@ public class AppConstant {
 
 
     public static final String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
-    public static final String CHECK_VERSION = "http://www.appgd88.com/afb88version.php?app=android";
-    public static final String DOWNLOAD_APP = "http://appgd88.com/afb88/download/android/afb88.apk";
+    public static final String CHECK_VERSION = "http://www.appgd88.com/afb1188version.php?app=android";
+    public static final String DOWNLOAD_APP = "http://appgd88.com/afb1188/download/android/afb1188.apk";
 
 //http://www.afb1188.com/W0/Pub/pcode.axd
-    public static String APP_HOST = "http://main55.afb88.com/";
-    public static String REAL_HOST = BuildConfig.HOST_AFB;
+
 
     public static String KEY_STRING = "KEY_STRING";
     public static String KEY_DATA = "KEY_DATA";
