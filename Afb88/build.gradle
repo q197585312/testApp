@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'nykj'
             keyPassword '123456'
-            storeFile file('F:/keystore/afb88.keystore.jks')
+            storeFile file('./afb88.keystore.jks')
             storePassword '123456'
         }
     }
