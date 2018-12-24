@@ -54,7 +54,7 @@ android {
             ]
             applicationId 'com.nanyang.afb1188'
             versionName '1.00'
-            buildConfigField "String", "HOST_AFB", '"http://www.afb1188.com/"'
+            buildConfigField "String", "HOST_AFB", '"https://www.afb1188.com/"'
         }
     }
     lintOptions {
