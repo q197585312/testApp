@@ -14,7 +14,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.home.discount.DiscountActivity;
-import com.nanyang.app.main.home.gdCasino.PokerCasinoActivity;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
@@ -334,7 +333,8 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             case "Live_Casino":
                 Bundle b = new Bundle();
                 b.putString("activity", "Live");
-                skipAct(PokerCasinoActivity.class, b);
+                ToastUtils.showShort(R.string.coming_soon);
+//                skipAct(PokerCasinoActivity.class, b);
                 break;
             case "Poker":
                 ToastUtils.showShort(R.string.coming_soon);

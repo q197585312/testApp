@@ -317,7 +317,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             String downStr = "";
             downTextTv.setTextSize(12);
             upTextTv.setTextSize(12);
-            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.3 || Math.abs(Float.valueOf(downOdds)) < 0.3) {
+            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.5 || Math.abs(Float.valueOf(downOdds)) < 0.5) {
                 hasUpDown = "0";
             }
             switch (upType) {

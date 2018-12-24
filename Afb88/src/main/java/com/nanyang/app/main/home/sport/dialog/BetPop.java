@@ -263,10 +263,8 @@ public class BetPop extends BasePopupWindow {
                 break;
         }
         if (result.getHdp() != null) {
-            if ((result.getIsGive() == 1 && betTypeFromId.equals("home")) || (result.getIsGive() != 1 && betTypeFromId.equals("away"))) {
 
-                hdp = Html.fromHtml(result.getHdp()).toString();
-            }
+            hdp = Html.fromHtml(result.getHdp()).toString();
         }
         betNameTv.setText(state);
         if (betTypeFromId.startsWith("mm")) {
@@ -311,6 +309,8 @@ public class BetPop extends BasePopupWindow {
     }
 
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
+        if (rTMatchInfo == null)
+            return;
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
             this.rTMatchInfo = rTMatchInfo;

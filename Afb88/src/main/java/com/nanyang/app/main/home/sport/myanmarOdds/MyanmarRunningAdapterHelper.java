@@ -38,8 +38,8 @@ public class MyanmarRunningAdapterHelper extends MyanmarAdapterHelper {
         if (item.getRunHomeScore() != null && item.getRunAwayScore() != null && !item.getRunAwayScore().equals("") && !item.getRunHomeScore().equals("")) {
             String sHome = item.getRunHomeScore();
             String sAway = item.getRunAwayScore();
-            dateTv.setText(sHome + "-" + sAway);
-            dateTv1.setText(sHome + "-" + sAway);
+            dateTv.setText(sHome + " - " + sAway);
+            dateTv1.setText(sHome + " - " + sAway);
 
         } else {
             dateTv.setText("");
@@ -50,34 +50,27 @@ public class MyanmarRunningAdapterHelper extends MyanmarAdapterHelper {
             timeTv1.setText("HT");
         } else {
             int min;
-            int start;
             try {
 
                 switch (item.getStatus()) {
                     case "0":
-                        timeTv.setText(context.getString(R.string.not_started));
-                        timeTv1.setText(context.getString(R.string.not_started));
+                        timeTv.setText("LIVE");
                         break;
                     case "2":
                         min = Integer.valueOf(item.getCurMinute());
-                        start = 45;
-                        min = min + start;
+
                         if (min < 130 && min > 0) {
-                            timeTv.setText(min + context.getString(R.string.min));
-                            timeTv1.setText(min + context.getString(R.string.min));
+                            timeTv.setText("2H " + min + "'");
                         } else {
                             timeTv.setText("");
-                            timeTv1.setText("");
                         }
                         break;
                     default:
                         min = Integer.valueOf(item.getCurMinute());
                         if (min < 130 && min > 0) {
-                            timeTv.setText(min + context.getString(R.string.min));
-                            timeTv1.setText(min + context.getString(R.string.min));
+                            timeTv.setText("1H "+min + "'");
                         } else {
                             timeTv.setText("");
-                            timeTv1.setText("");
                         }
                         break;
                 }
@@ -86,7 +79,6 @@ public class MyanmarRunningAdapterHelper extends MyanmarAdapterHelper {
             } catch (Exception e) {
                 e.printStackTrace();
                 timeTv.setText("");
-                timeTv1.setText("");
             }
         }
         dateTv.setTextColor(context.getResources().getColor(R.color.red_title));

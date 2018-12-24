@@ -3,10 +3,8 @@ package com.unkonw.testapp.libs.base;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.RequiresApi;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +26,11 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
      * 使用CompositeSubscription来持有所有的Subscriptions
      */
     public CompositeDisposable mCompositeSubscription;
+
+    public T getPresenter() {
+        return presenter;
+    }
+
     /**
      * Api类的包装 对象
      */

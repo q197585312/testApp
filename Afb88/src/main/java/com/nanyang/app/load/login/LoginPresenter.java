@@ -89,13 +89,14 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
         }
         return lang;
     }
+
     @Override
     public void login(final LoginInfo info) {
         if (checkUserAvailable(info)) {
             //http://www.afb1188.com/W0/Pub/pcode.axd
             final String url_login = AppConstant.getInstance().URL_LOGIN;
             Map<String, String> infoWfmain = info.getWfmain("Login", getLanguage());
-            if(BuildConfig.FLAVOR.equals("afb1188")){
+            if (BuildConfig.FLAVOR.equals("afb1188")) {
                 Disposable subscription = getService(ApiService.class).doPostMap(url_login, infoWfmain)
 
                         .flatMap(new Function<String, Flowable<String>>() {
@@ -121,8 +122,8 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 
                                 //#	Result	Protocol	Host	URL	Body	Caching	Content-Type	Process	Comments	Custom
 
-                            /*    SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
-                                switchLanguage.switchLanguage(lang);*/
+                                SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
+                                switchLanguage.switchLanguage(getLanguage(),"MY");
                                 baseView.onLanguageSwitchSucceed("");
                             }
                         }, new Consumer<Throwable>() {//错误
@@ -155,11 +156,9 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                             String __VIEWSTATE = substring1.substring(0, substring1.indexOf("\""));
                             String substring2 = s.substring(s.indexOf("id=\"__EVENTVALIDATION\" value=\"") + 30);
                             String __EVENTVALIDATION = substring2.substring(0, substring2.indexOf("\""));
-                            String substring3 = s.substring(s.indexOf("id=\"__VIEWSTATEGENERATOR\" value=\"") + 33);
-                            String __VIEWSTATEGENERATOR = substring3.substring(0, substring3.indexOf("\""));
+
                             info.set__VIEWSTATE(__VIEWSTATE);
                             info.set__EVENTVALIDATION(__EVENTVALIDATION);
-                            info.set__VIEWSTATEGENERATOR(__VIEWSTATEGENERATOR);
 
                             return getService(ApiService.class).doPostMap(url_login, info.getMap());
 
@@ -234,7 +233,6 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
             mCompositeSubscription.add(subscription);
         }
     }
-
 
 
     private boolean checkUserAvailable(LoginInfo info) {

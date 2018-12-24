@@ -105,7 +105,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     BaseSportFragment handballFragment = new HandballFragment();
     BaseSportFragment cyclingFragment = new CyclingFragment();
     BaseSportFragment winterSportFragment = new WinterSportFragment();
-//    BaseSportFragment superComboFragment = new SuperComboFragment();
+    //    BaseSportFragment superComboFragment = new SuperComboFragment();
     BaseSportFragment tableTennisFragment = new TableTennisFragment();
     BaseSportFragment formulaFragment = new FormulaFragment();
     BaseSportFragment localCurrentFragment;
@@ -205,6 +205,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "&mt=0");
         tvToolbarLeft.setVisibility(View.VISIBLE);
         initGuide();
+        presenter.switchOddsType("MY");
     }
 
     private void initGuide() {
@@ -473,6 +474,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 break;
         }
         selectFragmentTag(localCurrentTag, localCurrentFragment);
+
 //        showFragmentToActivity(currentFragment, R.id.fl_content, currentTag);
     }
 

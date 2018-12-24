@@ -11,6 +11,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
@@ -42,6 +43,11 @@ public class EuropeRunningState extends EuropeState {
                 break;
 
         }
+    }
+
+    @Override
+    public IBetHelper<BallInfo> onSetBetHelper() {
+        return new EuropeRunningBetHelper(getBaseView());
     }
 
     @Override
@@ -93,7 +99,6 @@ public class EuropeRunningState extends EuropeState {
             dateTv.setText(score.trim());
         } else {
             int min;
-            int start;
             try {
 
                 switch (item.getStatus()) {
@@ -102,10 +107,9 @@ public class EuropeRunningState extends EuropeState {
                         break;
                     case "2":
                         min = Integer.valueOf(item.getCurMinute());
-                        start = 45;
-                        min = min + start;
+
                         if (min < 130 && min > 0) {
-                            timeTv.setText(min + getBaseView().getContextActivity().getString(R.string.min));
+                            timeTv.setText("2H " + min + "'");
                         } else {
                             timeTv.setText("");
                         }
@@ -113,7 +117,7 @@ public class EuropeRunningState extends EuropeState {
                     default:
                         min = Integer.valueOf(item.getCurMinute());
                         if (min < 130 && min > 0) {
-                            timeTv.setText(min + getBaseView().getContextActivity().getString(R.string.min));
+                            timeTv.setText("1H "+min + "'");
                         } else {
                             timeTv.setText("");
                         }

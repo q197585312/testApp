@@ -15,6 +15,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
@@ -304,6 +305,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         AfbClickResponseBean bean = null;
                         JSONArray jsonArray = null;
                         try {
+                            s = AfbUtils.delHTMLTag(s);
                             jsonArray = new JSONArray(s);
                         } catch (JSONException e) {
                             getBaseView().onFailed(s);
@@ -329,9 +331,8 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 }).subscribe(new Consumer<AfbClickResponseBean>() {//onNext
                     @Override
                     public void accept(AfbClickResponseBean bean) throws Exception {
-                        if (bean == null || bean.getList() == null || bean.getList().size() == 0)
-                            return;
-                        if (bean.getList().size() == 1) {
+                        if (bean == null || bean.getList() == null || bean.getList().size() == 0) {
+                        } else if (bean.getList().size() == 1) {
                             createBetPop(bean.getList().get(0), v == null ? new View(getBaseView().getContextActivity()) : v);
                         }
                         baseView.onUpdateMixSucceed(bean);

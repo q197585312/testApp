@@ -32,7 +32,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
         if (item.getRunHomeScore() != null && item.getRunAwayScore() != null && !item.getRunAwayScore().equals("") && !item.getRunHomeScore().equals("")) {
             String sHome = item.getRunHomeScore();
             String sAway = item.getRunAwayScore();
-            dateTv.setText(sHome + "-" + sAway);
+            dateTv.setText(sHome + " - " + sAway);
 
         } else {
             dateTv.setText("");
@@ -41,7 +41,6 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             timeTv.setText("HT");
         } else {
             int min;
-            int start;
             try {
 
                 switch (item.getStatus()) {
@@ -50,10 +49,9 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
                         break;
                     case "2":
                         min = Integer.valueOf(item.getCurMinute());
-                        start = 45;
-                        min = min + start;
+
                         if (min < 130 && min > 0) {
-                            timeTv.setText(min + context.getString(R.string.min));
+                            timeTv.setText("2H " + min + "'");
                         } else {
                             timeTv.setText("");
                         }
@@ -61,7 +59,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
                     default:
                         min = Integer.valueOf(item.getCurMinute());
                         if (min < 130 && min > 0) {
-                            timeTv.setText(min + context.getString(R.string.min));
+                            timeTv.setText("1H "+min + "'");
                         } else {
                             timeTv.setText("");
                         }

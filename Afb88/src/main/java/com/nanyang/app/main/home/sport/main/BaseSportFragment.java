@@ -605,6 +605,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         Bundle b = new Bundle();
         b.putSerializable(AppConstant.KEY_DATA, item);
         b.putSerializable(AppConstant.KEY_DATA2, presenter.getStateHelper().getStateType());
+        MenuItemInfo oddsType = ((SportActivity) getContextActivity()).getOddsType();
+        b.putSerializable(AppConstant.KEY_DATA3, oddsType);
         skipAct(VsActivity.class, b);
     }
 }

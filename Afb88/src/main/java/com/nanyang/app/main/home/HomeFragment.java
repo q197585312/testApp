@@ -17,7 +17,6 @@ import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.main.home.discount.DiscountActivity;
-import com.nanyang.app.main.home.gdCasino.PokerCasinoActivity;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
@@ -92,7 +91,8 @@ public class HomeFragment extends BaseFragment {
                     case "Live_Casino":
                         Bundle b = new Bundle();
                         b.putString("activity", "Live");
-                        skipAct(PokerCasinoActivity.class, b);
+                        ToastUtils.showShort(R.string.coming_soon);
+//                        skipAct(PokerCasinoActivity.class, b);
                         break;
                     case "Poker":
                         ToastUtils.showShort(R.string.coming_soon);
