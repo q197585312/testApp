@@ -82,7 +82,7 @@ public class StakeListBean implements Serializable{
         private String Home;
         private String Away;
         private int FullTimeId;
-        private boolean IsRun;
+        private int IsRun;
         private int RunHomeScore;
         private int RunAwayScore;
         private String WorkingDate;
@@ -190,11 +190,11 @@ public class StakeListBean implements Serializable{
             this.FullTimeId = FullTimeId;
         }
 
-        public boolean isIsRun() {
+        public int isIsRun() {
             return IsRun;
         }
 
-        public void setIsRun(boolean IsRun) {
+        public void setIsRun(int IsRun) {
             this.IsRun = IsRun;
         }
 

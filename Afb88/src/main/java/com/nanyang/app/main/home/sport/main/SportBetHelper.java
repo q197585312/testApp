@@ -116,6 +116,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         baseView.hideLoadingDialog();
+                        baseView.onFailed(throwable.getMessage());
                     }
                 }, new Action() {
                     @Override
@@ -158,7 +159,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             }
             builder.append(typeName + "(" + item.getHdp() + "(" + Integer.parseInt(item.getMMPct()) / 100 + ")" + "@" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")");
         } else {
-            if (item.isIsRun()) {
+            if (item.isIsRun()==1) {
                 builder.append("(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")");
             }
         }

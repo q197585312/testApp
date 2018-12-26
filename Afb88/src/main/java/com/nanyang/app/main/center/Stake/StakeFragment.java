@@ -70,7 +70,8 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     @Override
     public void onGetData(String data) {
         Gson gson = new Gson();
-        data = Html.fromHtml(data).toString();
+        data=AfbUtils.delHTMLTag(data);
+//        data = Html.fromHtml(data).toString();
         String[] data1 = data.split("nyhxkj");
         StakeListBean stakeListBean = gson.fromJson(data1[0], StakeListBean.class);
         StakeListBean2 stakeListBean2 = gson.fromJson(data1[1], StakeListBean2.class);
@@ -278,7 +279,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     }
                 }
                 if (!transType.startsWith("MM")) {
-                    if (item.isIsRun()) {
+                    if (item.isIsRun()==1) {
                         odds = "(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")" + odds;
                     }
                 }
