@@ -28,6 +28,7 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -113,6 +114,11 @@ public class AfbUtils {
     public static String decimalValue(float v, String format) {
         DecimalFormat decimalFormat = new DecimalFormat(format);//构造方法的字符格式这里如果小数不足2位,会以0补足.
         return decimalFormat.format(v);//format 返回的是字符串
+    }
+    public static String decimalValue(String v, String format) {
+        DecimalFormat decimalFormat = new DecimalFormat(format);//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        Long aLong = Long.valueOf(v);
+        return decimalFormat.format(aLong);//format 返回的是字符串
     }
 
     public static void appJump(Context context, String packageName, String cls, Bundle bundle) {
@@ -445,4 +451,42 @@ public class AfbUtils {
     public static void GildLoadResForImg(Context context, ImageView img, int res) {
         Glide.with(context).load(res).asBitmap().into(img);
     }
+
+    public static String touzi_ed_values22 = "";
+
+    /**
+     * 在数字型字符串千分位加逗号
+     * @param str
+     * @param edtext
+     * @return sb.toString()
+     */
+    public static String addComma(String str,TextView edtext){
+
+        touzi_ed_values22 = edtext.getText().toString().trim().replaceAll(",","");
+
+        boolean neg = false;
+        if (str.startsWith("-")){  //处理负数
+            str = str.substring(1);
+            neg = true;
+        }
+        String tail = null;
+        if (str.indexOf('.') != -1){ //处理小数点
+            tail = str.substring(str.indexOf('.'));
+            str = str.substring(0, str.indexOf('.'));
+        }
+        StringBuilder sb = new StringBuilder(str);
+        sb.reverse();
+        for (int i = 3; i < sb.length(); i += 4){
+            sb.insert(i, ',');
+        }
+        sb.reverse();
+        if (neg){
+            sb.insert(0, '-');
+        }
+        if (tail != null){
+            sb.append(tail);
+        }
+        return sb.toString();
+    }
+
 }

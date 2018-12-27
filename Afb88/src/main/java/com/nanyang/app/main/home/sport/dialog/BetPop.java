@@ -1,8 +1,10 @@
 package com.nanyang.app.main.home.sport.dialog;
 
 import android.content.Context;
+import android.text.Editable;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -112,13 +114,33 @@ public class BetPop extends BasePopupWindow {
             }
 
         });
+        betAmountEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!AfbUtils.touzi_ed_values22.equals(betAmountEdt.getText().toString().trim().replaceAll(",", ""))) {
+                    betAmountEdt.setText(AfbUtils.addComma(betAmountEdt.getText().toString().trim().replaceAll(",", ""), betAmountEdt));
+                    betAmountEdt.setSelection(AfbUtils.addComma(betAmountEdt.getText().toString().trim().replaceAll(",", ""), betAmountEdt).length());
+                }
+
+            }
+        });
     }
 
 
     private void goBetting() {
         //http://www.afb1188.com/Bet/hBetSub.ashx?betType=1&oId=471838&odds=3.6&BTMD=S&amt=11&_=1543457323225
-        String s = betAmountEdt.getText().toString().trim();
-        if (!StringUtils.isEmpty(s)) {
+        String s1 = betAmountEdt.getText().toString().trim();
+        if (!StringUtils.isEmpty(s1)) {
+            String s = s1.replaceAll(",", "");
             if (bean.getMaxLimit() > 0 && bean.getMinLimit() > 0) {
                 int count = Integer.valueOf(s);
                 int max = bean.getMaxLimit();

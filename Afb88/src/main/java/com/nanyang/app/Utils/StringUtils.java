@@ -197,12 +197,7 @@ public final class StringUtils {
         return url;
     }
 
-    public static String floatDecimalFormat(float f,String format) {
-        DecimalFormat decimalFormat = new DecimalFormat(format);//构造方法的字符格式这里如果小数不足2位,会以0补足.
-        return decimalFormat.format(f);//format 返回的是字符串收藏不除以10
 
-
-    }
     public static  Map<String,Integer> countDifferentCharMap(String str) {
         Map<String,Integer> countMap=new LinkedHashMap<>();
         for (char ch : str.toCharArray()) {
