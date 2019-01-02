@@ -2,17 +2,21 @@ package com.nanyang.app.main.home.sport.mixparlayList;
 
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.Editable;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
@@ -55,7 +59,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     private Map<Boolean, Integer> selectedMap = new HashMap<>();
 
 
-    private TextView headOddsEdt;
+    private EditText headOddsEdt;
     private ImageView moreIv;
     private TextView headAmountTv;
     private String betUrl;
@@ -139,7 +143,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         View selectLl = findViewById(R.id.header_clearance_select_ll);
         //header
         headAmountTv = (TextView) findViewById(R.id.header_clearance_amount_tv);
-        headOddsEdt = (TextView) findViewById(R.id.header_clearance_odds_edt);
+        headOddsEdt = (EditText) findViewById(R.id.header_clearance_odds_edt);
         moreIv = (ImageView) findViewById(R.id.header_clearance_more_mark_iv);
         //footer
         footerCountTv = (TextView) findViewById(R.id.footer_clearance_count_tv);
@@ -170,6 +174,29 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         selectedMap.put(true, 0);
         llBottom = (LinearLayout) findViewById(R.id.ll_bottom_content);
         presenter.showBottomSelectedList();
+        headOddsEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!AfbUtils.touzi_ed_values22.equals(headOddsEdt.getText().toString().trim().replaceAll(",", ""))) {
+                    if (getApp().getBetAfbList() != null && !StringUtils.isEmpty(s.toString().trim()) && Integer.valueOf(s.toString().trim().replaceAll(",", "")) > Integer.valueOf(getApp().getBetAfbList().getMaxLimit())) {
+                        headOddsEdt.setText(AfbUtils.addComma(getApp().getBetAfbList().getMaxLimit(), headOddsEdt));
+                    } else {
+                        headOddsEdt.setText(AfbUtils.addComma(headOddsEdt.getText().toString().trim().replaceAll(",", ""), headOddsEdt));
+                    }
+                    headOddsEdt.setSelection(AfbUtils.addComma(headOddsEdt.getText().toString().trim().replaceAll(",", ""), headOddsEdt).length());
+                }
+            }
+        });
     }
 
     private void addBottomDate(List<ClearanceBetAmountBean> data) {
@@ -183,7 +210,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                 TextView viewById = (TextView) inflate.findViewById(R.id.selectable_text_content_tv);
                 viewById.setText(clearanceBetAmountBean.getTitle());
                 if (position == selectedMap.get(true)) {
-                    footerCountTv.setText(clearanceBetAmountBean.getTitle());
+//                    footerCountTv.setText(clearanceBetAmountBean.getTitle());
 //                    viewById.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.menu_right_hover, 0);
                     dynamicAddView(viewById, "drawableRight", R.mipmap.menu_right_hover);
                 } else {
@@ -195,7 +222,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                     public void onClick(View v) {
                         selectedMap.put(true, finalPosition);
                         headAmountTv.setText(clearanceBetAmountBean.getTitle());
-                        footerCountTv.setText(clearanceBetAmountBean.getTitle());
+//                        footerCountTv.setText(clearanceBetAmountBean.getTitle());
                         selectedBean = clearanceBetAmountBean;
                     }
                 });
@@ -212,11 +239,11 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
     private void submitParBet(View v) {
 
-        String amt = headOddsEdt.getText().toString().trim();
+        String amt = headOddsEdt.getText().toString().trim().replaceAll(",", "");
         if (StringUtils.isEmpty(amt)) {
             ToastUtils.showShort(R.string.input_bet_amount_please);
             return;
-        } else if (getApp().getBetParList() == null || getApp().getBetParList().getList().size() < 3) {
+        } else if (getApp().getBetParList() == null || getApp().getBetParList().getList().size() < 2) {
 
             ToastUtils.showShort(R.string.clearance_should_be_more_than_three);
             return;
@@ -264,14 +291,16 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             Toast.makeText(mContext, getString(R.string.bet_succeed), Toast.LENGTH_SHORT).show();
             getApp().setBetParList(null);
             finish();
-        } else if (result.startsWith("MULTIBET")) {
+        } else if (result.startsWith("MULTIBET") || result.startsWith("NA")) {
+            Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
             getApp().setBetParList(null);
             finish();
         } else if (result.startsWith("PARCHG")) {
             BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, rvContent) {
                 @Override
                 protected void clickSure(View v) {
-                    helper.bet(betUrl);
+                    helper.getRefreshOdds(getApp().getRefreshOddsUrl());
+
                 }
             };
             pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
@@ -377,9 +406,19 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     @Override
     public void obtainListData(AfbClickResponseBean betInfo) {
         getApp().setBetParList(betInfo);
-        if (betInfo != null && betInfo.getList() != null)
+
+        if (betInfo != null && betInfo.getList() != null && footerCountTv != null && footerContentTv != null) {
+            String s = "";
+            try {
+                if (!StringUtils.isEmpty(getApp().getBetParList().getPayoutOdds()))
+                    s = AfbUtils.decimalValue(Float.valueOf(getApp().getBetParList().getPayoutOdds()), "0.00");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            footerCountTv.setText(getString(R.string.odds) + ": " + s);
+            footerContentTv.setText(getString(R.string.max_bet) + getApp().getBetParList().getMaxLimit() + "    " + getString(R.string.min_bet) + getApp().getBetParList().getMinLimit());
             listAdapter.addAllAndClear(betInfo.getList());
-        else {
+        } else {
             listAdapter.clearItems(true);
             finish();
         }

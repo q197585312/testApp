@@ -1,13 +1,13 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.graphics.Color;
-import android.os.SystemClock;
 import android.support.annotation.NonNull;
 import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.TextView;
@@ -159,7 +159,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             }
             builder.append(typeName + "(" + item.getHdp() + "(" + Integer.parseInt(item.getMMPct()) / 100 + ")" + "@" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")");
         } else {
-            if (item.isIsRun()==1) {
+            if (item.isIsRun() == 1) {
                 builder.append("(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")");
             }
         }
@@ -241,11 +241,16 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
 
     @Override
     public Disposable bet(String url) {
+
+        url=url+"&_="+System.currentTimeMillis();
+        Log.d("betUrl", url);
         Disposable subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String allData) throws Exception {
+                        allData = AfbUtils.delHTMLTag(allData);
+                        Log.d("betUrl","betResult:"+allData);
                         String[] split = allData.split("\\|");
                         if (split.length >= 5) {
                             baseView.onBetSuccess(allData);
@@ -288,7 +293,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
 
     @NonNull
     protected Disposable getDisposable(final TextView v, final boolean isHf, String betOddsUrl) {
-        String url = AppConstant.getInstance().URL_ODDS + betOddsUrl + "&_=" + SystemClock.currentThreadTimeMillis();
+        String url = AppConstant.getInstance().URL_ODDS + betOddsUrl ;
         this.v = v;
         Disposable subscribe = getRefreshOdds(url);
         return subscribe;
@@ -297,6 +302,8 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     @NonNull
     @Override
     public Disposable getRefreshOdds(String url) {
+        url=url+"&_="+System.currentTimeMillis();
+        Log.d("betUrl", "getRefreshOdds:" + url);
         Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).map(new Function<String, AfbClickResponseBean>() {
 
@@ -307,6 +314,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         JSONArray jsonArray = null;
                         try {
                             s = AfbUtils.delHTMLTag(s);
+                            Log.d("betUrl", "getRefreshResult:" + s);
                             jsonArray = new JSONArray(s);
                         } catch (JSONException e) {
                             getBaseView().onFailed(s);

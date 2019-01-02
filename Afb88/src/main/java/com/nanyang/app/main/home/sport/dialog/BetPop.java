@@ -127,7 +127,11 @@ public class BetPop extends BasePopupWindow {
             @Override
             public void afterTextChanged(Editable s) {
                 if (!AfbUtils.touzi_ed_values22.equals(betAmountEdt.getText().toString().trim().replaceAll(",", ""))) {
-                    betAmountEdt.setText(AfbUtils.addComma(betAmountEdt.getText().toString().trim().replaceAll(",", ""), betAmountEdt));
+                    if (bean != null && !StringUtils.isEmpty(s.toString().trim()) && Integer.valueOf(s.toString().trim().replaceAll(",", "")) > bean.getMaxLimit()) {
+                        betAmountEdt.setText(AfbUtils.addComma(bean.getMaxLimit() + "", betAmountEdt));
+                    } else {
+                        betAmountEdt.setText(AfbUtils.addComma(betAmountEdt.getText().toString().trim().replaceAll(",", ""), betAmountEdt));
+                    }
                     betAmountEdt.setSelection(AfbUtils.addComma(betAmountEdt.getText().toString().trim().replaceAll(",", ""), betAmountEdt).length());
                 }
 
@@ -161,8 +165,9 @@ public class BetPop extends BasePopupWindow {
                         if (sb.indexOf("&") > 0) {
                             substring2 = sb.substring(sb.indexOf("&"));
                         }
-                        bean.setBeturl(substring1 + odds + substring2);
-                        betOddsTv.setText(AfbUtils.decimalValue(Float.valueOf(odds) / 10, "0.00"));
+
+                        bean.setBeturl(substring1 + AfbUtils.decimalValue(Float.valueOf(odds) * 10, "0.00") + substring2);
+                        betOddsTv.setText(AfbUtils.decimalValue(Float.valueOf(odds), "0.00"));
                     }
                 });
             }

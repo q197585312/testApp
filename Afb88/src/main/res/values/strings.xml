@@ -97,7 +97,7 @@
     <string name="football">Football</string>
     <string name="odds">Odds</string>
     <string name="input_bet_amount_please">Input bet amount please</string>
-    <string name="clearance_should_be_more_than_three">Mix parlay should be more than three</string>
+    <string name="clearance_should_be_more_than_three">Mix parlay should be more than two</string>
     <string name="bet_failed">Bet failed</string>
     <string name="bet_succeed">Bet succeed</string>
 
