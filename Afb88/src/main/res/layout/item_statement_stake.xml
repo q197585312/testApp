@@ -61,7 +61,7 @@
             android:id="@+id/tv_stake_state"
             style="@style/text_match_black10"
             android:layout_width="0dp"
-            android:layout_weight="0.8"
+            android:layout_weight="1"
             android:gravity="center"
             android:padding="2dp"
             android:singleLine="true"

@@ -21,6 +21,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import java.util.List;
 
 import butterknife.Bind;
+import cn.finalteam.toolsfinal.StringUtils;
 
 /**
  * Created by Administrator on 2017/3/22.
@@ -41,8 +42,8 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
     }
 
     private void getData() {
-        dataUrl = AppConstant.getInstance().HOST+ "_norm/";
-        if(BuildConfig.FLAVOR.equals("afb1188")){
+        dataUrl = AppConstant.getInstance().HOST + "_norm/";
+        if (BuildConfig.FLAVOR.equals("afb1188")) {
             //http://www.afb1188.com/W0/Pub/_norm/wfAccMatchWL0.html?userName=Demoafba0310&to=2018/11/23&from=2018/11/23
 //            dataUrl = AppConstant.getInstance().HOST+ "W0/Pub/_norm/";
         }
@@ -72,7 +73,11 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
                 TextView Home_and_Away = holder.getView(R.id.tv_Home_and_Away);
                 Home_and_Away.setText(item.getHome() + " VS " + item.getAway());
                 TextView WorkingDate = holder.getView(R.id.tv_WorkingDate);
-                WorkingDate.setText(item.getWorkingDate());
+                String sss = item.getIsRun() + " " + item.getFirstHalf() + " "
+                        + ((!StringUtils.isEmpty(item.getRunHomeScore()) && !StringUtils.isEmpty(item.getRunAwayScore())) ? "(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")" : "")
+                        + "   " + item.getWorkingDate();
+                sss = sss.trim();
+                WorkingDate.setText(sss);
                 TextView Result = holder.getView(R.id.tv_Result);
                 Result.setText(item.getResult());
                 TextView BetType = holder.getView(R.id.tv_BetType);
@@ -135,7 +140,7 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
             webSettings.setAppCacheEnabled(false);
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
             //http://main55.afb88.com/_norm/APamTrans.aspx?userName=demoafbpk&id=140565088
-            String url = AppConstant.getInstance().HOST+ "_norm/PamTrans.aspx?userName=" + getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+            String url = AppConstant.getInstance().HOST + "_norm/PamTrans.aspx?userName=" + getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
             pop.setUrl(url);
             pop.showPopupCenterWindow();
         }
