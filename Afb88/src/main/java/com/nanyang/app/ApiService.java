@@ -17,12 +17,15 @@ import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -76,6 +79,10 @@ public interface ApiService {
     @FormUrlEncoded
     @POST
     Flowable<String> doPostMap(@Url String url, @FieldMap Map<String, String> info);
+
+    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    @POST
+    Flowable<String> doPostJson(@Url String url, @Body RequestBody info);
 
     @FormUrlEncoded
     @POST

@@ -3,6 +3,7 @@ package com.nanyang.app.load.welcome;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,14 +11,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ProgressBar;
 
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
+import com.nanyang.app.main.MainActivity;
+import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.io.File;
 
+import cn.finalteam.toolsfinal.AppCacheUtils;
 import solid.ren.skinlibrary.loader.SkinManager;
 
 
@@ -47,12 +52,10 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
         setContentView(R.layout.activity_welcome);
         createPresenter(new WelcomePresenter(this));
-        try {
-            presenter.checkVersion(SystemTool.getPackageInfo(this).versionName);
-        } catch (PackageManager.NameNotFoundException e) {
-            e.printStackTrace();
-            skipAct(LoginActivity.class);
-        }
+        presenter.checkInitCheck(getIntent());
+
+
+
 
     }
 
@@ -132,4 +135,25 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
         totleLength = 0;
     }
 
+    @Override
+    public void onLanguageSwitchSucceed(String str) {
+        ToastUtils.showShort(R.string.Login_Success);
+        skipAct(MainActivity.class);
+        finish();
+    }
+
+    @Override
+    public void getMoneyMsg(TransferMoneyBean transferMoneyBean, String data) {
+
+    }
+
+    @Override
+    public void onGetTransferMoneyData(int type, String getBackStr, String data) {
+
+    }
+
+    @Override
+    public void onLoginAgainFinish(String gameType) {
+
+    }
 }
