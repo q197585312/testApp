@@ -52,10 +52,12 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
         setContentView(R.layout.activity_welcome);
         createPresenter(new WelcomePresenter(this));
-        presenter.checkInitCheck(getIntent());
-
-
-
+        try {
+            presenter.checkVersion(SystemTool.getPackageInfo(getContextActivity()).versionName);
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+            ((BaseActivity) getContextActivity()).skipAct(LoginActivity.class);
+        }
 
     }
 
@@ -100,9 +102,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        skipAct(LoginActivity.class);
-        finish();
-
+        presenter.checkInitCheck(getIntent());
     }
 
     private void showUpdateDialog(final String version) {

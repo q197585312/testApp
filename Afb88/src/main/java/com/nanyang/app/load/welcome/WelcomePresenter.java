@@ -138,12 +138,9 @@ class WelcomePresenter extends BaseRetrofitPresenter<String, WelcomeContract.Vie
     public void checkInitCheck(Intent intent) {
         Bundle extras = intent.getExtras();
         if (intent == null || extras == null) {
-            try {
-                checkVersion(SystemTool.getPackageInfo(baseView.getContextActivity()).versionName);
-            } catch (PackageManager.NameNotFoundException e) {
-                e.printStackTrace();
-                ((BaseActivity) baseView.getContextActivity()).skipAct(LoginActivity.class);
-            }
+            ((BaseActivity) baseView.getContextActivity()).skipAct(LoginActivity.class);
+            baseView.getContextActivity().finish();
+
         } else {
             String companyKey = extras.getString("companyKey");
             String userName = extras.getString("userName");
