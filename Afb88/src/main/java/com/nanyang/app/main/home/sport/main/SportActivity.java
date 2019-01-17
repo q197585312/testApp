@@ -206,6 +206,13 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvToolbarLeft.setVisibility(View.VISIBLE);
         initGuide();
         presenter.switchOddsType("MY");
+
+    }
+
+    @Override
+    public void initAgent() {
+        super.initAgent();
+        ivAdd.setVisibility(View.GONE);
     }
 
     private void initGuide() {

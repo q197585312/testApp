@@ -12,10 +12,13 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.nanyang.app.AfbApplication;
+import com.nanyang.app.AppConstant;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -137,9 +140,18 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> implements W
 
     @Override
     public void onLanguageSwitchSucceed(String str) {
+        AppConstant.getInstance().IS_AGENT=true;
         ToastUtils.showShort(R.string.Login_Success);
-        skipAct(MainActivity.class);
+        defaultSkip("SportBook");
         finish();
+    }
+    public void defaultSkip(String type) {
+        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
+        menuItemInfo.setType("Today");
+        menuItemInfo.setParent(type);
+        Bundle b = new Bundle();
+        b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
+        skipAct(SportActivity.class, b);
     }
 
     @Override

@@ -86,7 +86,14 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             }
         });
         updateBalanceTv(getApp().getUser().getBalance());
+        if(AppConstant.IS_AGENT){
+            initAgent();
+        }
 
+    }
+
+    public void initAgent() {
+        tvToolbarLeft.setVisibility(View.GONE);
     }
 
     @Override
