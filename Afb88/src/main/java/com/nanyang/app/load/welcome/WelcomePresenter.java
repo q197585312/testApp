@@ -10,6 +10,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.common.SwitchLanguage;
@@ -137,7 +138,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<String, WelcomeContract.Vie
 
     public void checkInitCheck(Intent intent) {
         Bundle extras = intent.getExtras();
-        if (intent == null || extras == null) {
+        if (intent == null || extras == null || extras.getString("companyKey") == null) {
             ((BaseActivity) baseView.getContextActivity()).skipAct(LoginActivity.class);
             baseView.getContextActivity().finish();
 
@@ -214,6 +215,9 @@ class WelcomePresenter extends BaseRetrofitPresenter<String, WelcomeContract.Vie
 
     private String getSkipLanguage(String language) {
         String lang;
+        AfbUtils.switchLanguage(language, baseView.getContextActivity());
+        if (language.startsWith("zh") || language.startsWith("ZH"))
+            return "ZH-CN";
         switch (language) {
             case "zh":
                 lang = "ZH-CN";

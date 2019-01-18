@@ -28,7 +28,6 @@ import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -302,7 +301,8 @@ public class AfbUtils {
         style.setSpan(new ForegroundColorSpan(color), bend, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return style;
     }
-    public static SpannableStringBuilder handleStringTextColor(String str,int startIndex,int endIndex ,int color) {
+
+    public static SpannableStringBuilder handleStringTextColor(String str, int startIndex, int endIndex, int color) {
         SpannableStringBuilder style = new SpannableStringBuilder(str);
         style.setSpan(new ForegroundColorSpan(color), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return style;
@@ -371,14 +371,16 @@ public class AfbUtils {
         rvContent.setLayoutManager(layoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
         dataList.add(new MenuItemInfo(R.mipmap.home_sports, mContext.getString(R.string.SportBook), "SportBook"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_live, mContext.getString(R.string.Live_Casino), "Live_Casino"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_financials, mContext.getString(R.string.Financial), "Financial"));
         dataList.add(new MenuItemInfo(R.mipmap.home_sports, mContext.getString(R.string.Europe_View), "Europe"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_keno2, mContext.getString(R.string.Myanmar_Odds), "Myanmar_Odds"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_financials, mContext.getString(R.string.Financial), "Financial"));
+
+        dataList.add(new MenuItemInfo(R.mipmap.home_games, mContext.getString(R.string.E_Sport), "E_Sport"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_live, mContext.getString(R.string.Live_Casino), "Live_Casino"));
         dataList.add(new MenuItemInfo(R.mipmap.home_specals4d, mContext.getString(R.string.Specials_4D), "Specials_4D"));
         dataList.add(new MenuItemInfo(R.mipmap.home_huay_thai, mContext.getString(R.string.Huay_Thai), "Huay_Thai"));
         dataList.add(new MenuItemInfo(R.mipmap.home_muay_thai, mContext.getString(R.string.Muay_Thai), "Muay_Thai"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_games, mContext.getString(R.string.E_Sport), "E_Sport"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_keno2, mContext.getString(R.string.Myanmar_Odds), "Myanmar_Odds"));
+
 //        dataList.add(new MenuItemInfo(R.mipmap.home_keno, mContext.getString(R.string.Keno), "Keno"));
 //        dataList.add(new MenuItemInfo(R.mipmap.home_poker, mContext.getString(R.string.Poker), "Poker"));
 //        dataList.add(new MenuItemInfo(R.mipmap.home_lottery, mContext.getString(R.string.Lottery), "Lottery"));
@@ -451,34 +453,35 @@ public class AfbUtils {
 
     /**
      * 在数字型字符串千分位加逗号
+     *
      * @param str
      * @param edtext
      * @return sb.toString()
      */
-    public static String addComma(String str,TextView edtext){
+    public static String addComma(String str, TextView edtext) {
 
-        touzi_ed_values22 = edtext.getText().toString().trim().replaceAll(",","");
+        touzi_ed_values22 = edtext.getText().toString().trim().replaceAll(",", "");
 
         boolean neg = false;
-        if (str.startsWith("-")){  //处理负数
+        if (str.startsWith("-")) {  //处理负数
             str = str.substring(1);
             neg = true;
         }
         String tail = null;
-        if (str.indexOf('.') != -1){ //处理小数点
+        if (str.indexOf('.') != -1) { //处理小数点
             tail = str.substring(str.indexOf('.'));
             str = str.substring(0, str.indexOf('.'));
         }
         StringBuilder sb = new StringBuilder(str);
         sb.reverse();
-        for (int i = 3; i < sb.length(); i += 4){
+        for (int i = 3; i < sb.length(); i += 4) {
             sb.insert(i, ',');
         }
         sb.reverse();
-        if (neg){
+        if (neg) {
             sb.insert(0, '-');
         }
-        if (tail != null){
+        if (tail != null) {
             sb.append(tail);
         }
         return sb.toString();

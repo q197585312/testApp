@@ -254,6 +254,13 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             }
         });*/
         setTitle(getTitle());
+        if(AppConstant.getInstance().IS_AGENT){
+            initAgent();
+        }
+    }
+
+    public void initAgent() {
+
     }
 
     private void previousInit(final int index, ImageView previousView) {

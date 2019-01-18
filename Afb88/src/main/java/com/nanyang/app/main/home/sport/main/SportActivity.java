@@ -184,6 +184,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                     break;
             }
         }
+
         tvToolbarRight1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -207,13 +208,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         initGuide();
         presenter.switchOddsType("MY");
 
+
     }
 
-    @Override
-    public void initAgent() {
-        super.initAgent();
-        ivAdd.setVisibility(View.GONE);
-    }
 
     private void initGuide() {
         boolean hasGuide = SharePreferenceUtil.getBoolean(mContext, GUIDE_KEY);
@@ -475,6 +472,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 mapFragment.put(getString(R.string.Handball), handballFragment);
                 mapFragment.put(getString(R.string.Cycling), cyclingFragment);
                 mapFragment.put(getString(R.string.WinterSport), winterSportFragment);
+                mapFragment.put(getString(R.string.E_Sport), eSportFragment);
+                mapFragment.put(getString(R.string.Myanmar_Odds), myanmarFragment);
+                mapFragment.put(getString(R.string.Europe_View), europeFragment);
 //                mapFragment.put(getString(R.string.SuperCombo), superComboFragment);
                 localCurrentTag = getString(R.string.Soccer);
                 localCurrentFragment = soccerFragment;
@@ -603,8 +603,13 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     protected void onBackCLick(View v) {
-        Intent intent = new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-        startActivity(intent);
+        if (AppConstant.getInstance().IS_AGENT) {
+            finish();
+        } else {
+            Intent intent = new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }
+
     }
 
     @Override

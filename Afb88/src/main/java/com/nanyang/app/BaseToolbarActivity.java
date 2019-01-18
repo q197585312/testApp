@@ -86,9 +86,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             }
         });
         updateBalanceTv(getApp().getUser().getBalance());
-        if(AppConstant.IS_AGENT){
-            initAgent();
-        }
 
     }
 
@@ -96,10 +93,14 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarLeft.setVisibility(View.GONE);
     }
 
+
     @Override
     protected void onResume() {
         super.onResume();
         startUpdateState();
+        if (AppConstant.getInstance().IS_AGENT) {
+            initAgent();
+        }
     }
 
     protected void onBackCLick(View v) {
@@ -266,8 +267,12 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
             @Override
             protected void clickSure(View v) {
-                Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+                if (AppConstant.IS_AGENT) {
+                    finish();
+                } else {
+                    Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
             }
 
             @Override

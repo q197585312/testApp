@@ -364,7 +364,7 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
 
         Map<String, String> map = new HashMap<>();
 
-        LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean("");
+        LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean(getLanguage());
         languageWfBean.setAccType(oddsType);
         map.put("_fm", languageWfBean.getJson());
         Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, map)
