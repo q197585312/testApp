@@ -8,6 +8,7 @@ import com.nanyang.app.main.home.sport.main.SportActivity;
 public class SoccerFragment extends BaseSportFragment {
 
 
+
     @Override
     public void initData() {
         super.initData();

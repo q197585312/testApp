@@ -21,6 +21,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
@@ -597,17 +598,30 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     private void addMatch(JSONArray match, boolean isNew) throws JSONException {
+        JSONArray socArray = match.optJSONArray(1);
+        B b = parseMatch(socArray.getJSONArray(0), false);
+        int n = 0;
+        if (isNew) {
+            LID = "";
+        }
         for (int i = 0; i < allData.size(); i++) {
-            LeagueBean leagueBean = allData.get(i).getLeagueBean();
+            TableSportInfo<B> bTableSportInfo = allData.get(i);
+            LeagueBean leagueBean = bTableSportInfo.getLeagueBean();
             if (leagueBean != null && leagueBean.getModuleId().equals(match.optJSONArray(0).optString(0))) {
-                JSONArray socArray = match.optJSONArray(1);
                 for (int j = 0; j < socArray.length(); j++) {
                     addSoc(i, socArray.optJSONArray(j), true, isNew);
                 }
                 return;
             }
         }
-        allData.add(allData.size(), parseTableSportMatch(match, true));
+        for (int i = 0; i < allData.size(); i++) {
+            TableSportInfo<B> bTableSportInfo = allData.get(i);
+            if (bTableSportInfo.getRows().get(bTableSportInfo.getRows().size() - 1).getSocOddsId().equals(b.getPreSocOddsId())) {
+                n = i + 1;
+                break;
+            }
+        }
+        allData.add(n, parseTableSportMatch(match, true));
     }
 
     private void addSoc(int i, JSONArray soc, boolean notify, boolean isNew) throws JSONException {
@@ -707,12 +721,28 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     @Override
-    public void switchOddsType(String oddsType) {
-        Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType).subscribeOn(Schedulers.io())
+    public void switchOddsType(final String oddsType) {
+
+        Map<String, String> map = new HashMap<>();
+
+        LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean("");
+        languageWfBean.setAccType(oddsType);
+        map.put("_fm", languageWfBean.getJson());
+        Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, map)
+
+
+                .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
+                .flatMap(new Function<String, Flowable<String>>() {
+                    @Override
+                    public Flowable<String> apply(String s) throws Exception {
+                       return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
+                    }
+                })
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
-                    public void accept(String allData) throws Exception {
+                    public void accept(String str) throws Exception {
+
                         refresh();
                     }
                 }, new Consumer<Throwable>() {//错误
@@ -734,6 +764,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     }
                 });
         mCompositeSubscription.add(subscription);
+
     }
 
     @Override

@@ -32,6 +32,7 @@ public class SwitchLanguage implements ILanguageSwitch {
         this.baseView = baseView;
         this.mCompositeSubscription = mCompositeSubscription;
     }
+
     @NonNull
     private String getLanguage() {
         String lag = AfbUtils.getLanguage(baseView.getContextActivity());
@@ -62,38 +63,19 @@ public class SwitchLanguage implements ILanguageSwitch {
         }
         return lang;
     }
+
     @Override
     public void switchLanguage(String lang) {
 //     http://main55.afb88.com/Main.aspx?lang=EN-US
 //         {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
-        if(BuildConfig.FLAVOR.equals("afb1188")){
+        if (BuildConfig.FLAVOR.equals("afb1188")) {
             Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, new LoginInfo().getWfLanguage(getLanguage()))
-
-                   /* .flatMap(new Function<String, Flowable<String>>() {
-                        @Override
-                        public Flowable<String> apply(String s) throws Exception {
-                            String regex = "window.location";
-                            Pattern p = Pattern.compile(regex);
-                            Matcher m = p.matcher(s);
-                            if (m.find()) {
-                                return getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN);
-                            }
-                            Exception exception1 = new Exception("Server Error");
-                            throw exception1;
-
-                        }
-                    })*/
 
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Consumer<String>() {//onNext
                         @Override
                         public void accept(String str) throws Exception {
-
-                            //#	Result	Protocol	Host	URL	Body	Caching	Content-Type	Process	Comments	Custom
-
-                            /*    SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
-                                switchLanguage.switchLanguage(lang);*/
                             baseView.onLanguageSwitchSucceed("");
                         }
                     }, new Consumer<Throwable>() {//错误
@@ -145,4 +127,39 @@ public class SwitchLanguage implements ILanguageSwitch {
         mCompositeSubscription.add(d);
     }
 
+    public void switchLanguage(String lang, String accType) {
+//     http://main55.afb88.com/Main.aspx?lang=EN-US
+//         {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
+        if (BuildConfig.FLAVOR.equals("afb1188")) {
+            Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, new LoginInfo().getWfLanguage(lang, accType))
+
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<String>() {//onNext
+                        @Override
+                        public void accept(String str) throws Exception {
+                            baseView.onLanguageSwitchSucceed("");
+                        }
+                    }, new Consumer<Throwable>() {//错误
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            baseView.onFailed(throwable.getMessage());
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Action() {//完成
+                        @Override
+                        public void run() throws Exception {
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Consumer<Subscription>() {//开始绑定
+                        @Override
+                        public void accept(Subscription subscription) throws Exception {
+                            baseView.showLoadingDialog();
+                            subscription.request(Long.MAX_VALUE);
+                        }
+                    });
+            mCompositeSubscription.add(subscription);
+            return;
+        }
+    }
 }

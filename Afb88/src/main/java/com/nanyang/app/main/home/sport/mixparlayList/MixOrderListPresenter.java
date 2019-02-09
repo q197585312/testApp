@@ -40,11 +40,14 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<String, MixOrderListCo
             return;
         }
         List<AfbClickBetBean> betPar = ((BaseToolbarActivity) (baseView)).getApp().getBetParList().getList();
-        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() != null && betPar != null && betPar.size() > 2) {
+        if (((BaseToolbarActivity) (baseView)).getApp().getBetParList() != null && betPar != null && betPar.size() > 1) {
             if (selectedBean == null || selectedBean.getTitle().equals(""))
                 selectedBean = new ClearanceBetAmountBean(1, betPar.size() + "  X  1");
             int size = betPar.size();
-            if (size == 3) {
+            if (size == 2) {
+                baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "2  X  1"), new ClearanceBetAmountBean(2, "2  X  2"), new ClearanceBetAmountBean(3, "2  X  3")));
+            }
+            else if (size == 3) {
                 baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "3  X  1"), new ClearanceBetAmountBean(3, "3  X  3"), new ClearanceBetAmountBean(4, "3  X  4")));
             } else if (size == 4) {
                 baseView.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "4  X  1"), new ClearanceBetAmountBean(4, "4  X  4"), new ClearanceBetAmountBean(5, "4  X  5"), new ClearanceBetAmountBean(6, "4  X  6")));

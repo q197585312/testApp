@@ -54,6 +54,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.TimeZone;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Created by Administrator on 2017/2/22.
@@ -62,6 +64,35 @@ import java.util.TimeZone;
 public class AfbUtils {
     public static String nativePath = Environment.getExternalStorageDirectory().getPath() + "/afb88";
     public static String headImgName = "/head.png";
+    /**
+     * 定义script的正则表达式
+     */
+    private static final String REGEX_SCRIPT = "<script[^>]*?>[\\s\\S]*?<\\/script>";
+    /**
+     * 定义style的正则表达式
+     */
+    private static final String REGEX_STYLE = "<style[^>]*?>[\\s\\S]*?<\\/style>";
+    /**
+     * 定义HTML标签的正则表达式
+     */
+    private static final String REGEX_HTML = "<[^>]+>";
+
+    public static String delHTMLTag(String htmlStr) {
+        // 过滤script标签
+        Pattern p_script = Pattern.compile(REGEX_SCRIPT, Pattern.CASE_INSENSITIVE);
+        Matcher m_script = p_script.matcher(htmlStr);
+        htmlStr = m_script.replaceAll("");
+        // 过滤style标签
+        Pattern p_style = Pattern.compile(REGEX_STYLE, Pattern.CASE_INSENSITIVE);
+        Matcher m_style = p_style.matcher(htmlStr);
+        htmlStr = m_style.replaceAll("");
+        // 过滤html标签
+        Pattern p_html = Pattern.compile(REGEX_HTML, Pattern.CASE_INSENSITIVE);
+        Matcher m_html = p_html.matcher(htmlStr);
+        htmlStr = m_html.replaceAll("");
+
+        return htmlStr.trim(); // 返回文本字符串
+    }
 
     public static String changeValueS(String v) {
         if (v == null || v.equals(""))
@@ -270,7 +301,8 @@ public class AfbUtils {
         style.setSpan(new ForegroundColorSpan(color), bend, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return style;
     }
-    public static SpannableStringBuilder handleStringTextColor(String str,int startIndex,int endIndex ,int color) {
+
+    public static SpannableStringBuilder handleStringTextColor(String str, int startIndex, int endIndex, int color) {
         SpannableStringBuilder style = new SpannableStringBuilder(str);
         style.setSpan(new ForegroundColorSpan(color), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return style;
@@ -339,14 +371,16 @@ public class AfbUtils {
         rvContent.setLayoutManager(layoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
         dataList.add(new MenuItemInfo(R.mipmap.home_sports, mContext.getString(R.string.SportBook), "SportBook"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_live, mContext.getString(R.string.Live_Casino), "Live_Casino"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_financials, mContext.getString(R.string.Financial), "Financial"));
         dataList.add(new MenuItemInfo(R.mipmap.home_sports, mContext.getString(R.string.Europe_View), "Europe"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_keno2, mContext.getString(R.string.Myanmar_Odds), "Myanmar_Odds"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_financials, mContext.getString(R.string.Financial), "Financial"));
+
+        dataList.add(new MenuItemInfo(R.mipmap.home_games, mContext.getString(R.string.E_Sport), "E_Sport"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_live, mContext.getString(R.string.Live_Casino), "Live_Casino"));
         dataList.add(new MenuItemInfo(R.mipmap.home_specals4d, mContext.getString(R.string.Specials_4D), "Specials_4D"));
         dataList.add(new MenuItemInfo(R.mipmap.home_huay_thai, mContext.getString(R.string.Huay_Thai), "Huay_Thai"));
         dataList.add(new MenuItemInfo(R.mipmap.home_muay_thai, mContext.getString(R.string.Muay_Thai), "Muay_Thai"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_games, mContext.getString(R.string.E_Sport), "E_Sport"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_keno2, mContext.getString(R.string.Myanmar_Odds), "Myanmar_Odds"));
+
 //        dataList.add(new MenuItemInfo(R.mipmap.home_keno, mContext.getString(R.string.Keno), "Keno"));
 //        dataList.add(new MenuItemInfo(R.mipmap.home_poker, mContext.getString(R.string.Poker), "Poker"));
 //        dataList.add(new MenuItemInfo(R.mipmap.home_lottery, mContext.getString(R.string.Lottery), "Lottery"));
@@ -414,4 +448,43 @@ public class AfbUtils {
     public static void GildLoadResForImg(Context context, ImageView img, int res) {
         Glide.with(context).load(res).asBitmap().into(img);
     }
+
+    public static String touzi_ed_values22 = "";
+
+    /**
+     * 在数字型字符串千分位加逗号
+     *
+     * @param str
+     * @param edtext
+     * @return sb.toString()
+     */
+    public static String addComma(String str, TextView edtext) {
+
+        touzi_ed_values22 = edtext.getText().toString().trim().replaceAll(",", "");
+
+        boolean neg = false;
+        if (str.startsWith("-")) {  //处理负数
+            str = str.substring(1);
+            neg = true;
+        }
+        String tail = null;
+        if (str.indexOf('.') != -1) { //处理小数点
+            tail = str.substring(str.indexOf('.'));
+            str = str.substring(0, str.indexOf('.'));
+        }
+        StringBuilder sb = new StringBuilder(str);
+        sb.reverse();
+        for (int i = 3; i < sb.length(); i += 4) {
+            sb.insert(i, ',');
+        }
+        sb.reverse();
+        if (neg) {
+            sb.insert(0, '-');
+        }
+        if (tail != null) {
+            sb.append(tail);
+        }
+        return sb.toString();
+    }
+
 }

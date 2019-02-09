@@ -20,6 +20,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.center.model.StakeListBean2;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
@@ -70,7 +71,8 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
     @Override
     public void onGetData(String data) {
         Gson gson = new Gson();
-        data = Html.fromHtml(data).toString();
+        data = AfbUtils.delHTMLTag(data);
+//        data = Html.fromHtml(data).toString();
         String[] data1 = data.split("nyhxkj");
         StakeListBean stakeListBean = gson.fromJson(data1[0], StakeListBean.class);
         StakeListBean2 stakeListBean2 = gson.fromJson(data1[1], StakeListBean2.class);
@@ -116,6 +118,11 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                 TextView dangerStatus = holder.getView(R.id.order_item_tv51);
                 TextView amt = holder.getView(R.id.order_item_tv52);
 
+                String amt1 = item.getAmt();
+                if (!cn.finalteam.toolsfinal.StringUtils.isEmpty(amt1)) {
+                    amt1 = AfbUtils.addComma(amt1, amt);
+
+                }
                 if (position == data.size() - 1) {
                     refno.setVisibility(View.GONE);
                     homeAway.setVisibility(View.GONE);
@@ -124,7 +131,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     Half.setVisibility(View.GONE);
                     combTv.setVisibility(View.GONE);
                     order_item_tv22.setVisibility(View.GONE);
-                    amt.setText(item.getAmt());
+                    amt.setText(amt1);
                     dangerStatus.setText("Total:");
                     return;
                 } else {
@@ -278,7 +285,7 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     }
                 }
                 if (!transType.startsWith("MM")) {
-                    if (item.isIsRun()) {
+                    if (item.isIsRun() == 1) {
                         odds = "(" + item.getRunHomeScore() + " - " + item.getRunAwayScore() + ")" + odds;
                     }
                 }
@@ -379,8 +386,8 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
                     n = "Total " + n;
                 }
                 dangerStatus.setText(n);
+                amt.setText(amt1);
 
-                amt.setText(item.getAmt());
             }
 
         };

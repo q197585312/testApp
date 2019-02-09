@@ -97,7 +97,7 @@
     <string name="football">足球</string>
     <string name="odds">赔率</string>
     <string name="input_bet_amount_please">请输入下注数量</string>
-    <string name="clearance_should_be_more_than_three">过关最少需要下3注</string>
+    <string name="clearance_should_be_more_than_three">过关最少需要下2注</string>
     <string name="bet_failed">下注失败</string>
     <string name="bet_succeed">下注成功</string>
 

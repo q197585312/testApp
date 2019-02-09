@@ -72,7 +72,7 @@ public abstract class SoccerCommonState extends BallState {
             }
 
             @Override
-            public void clickView(View v, BallInfo item,int position) {
+            public void clickView(View v, BallInfo item, int position) {
                 switch (v.getId()) {
                     case R.id.module_match_collection_fl:
                     case R.id.module_match_collection_tv:
@@ -82,7 +82,7 @@ public abstract class SoccerCommonState extends BallState {
                         clickAdd(v, item);
                         break;
                     case R.id.iv_hall_btn:
-                        clickHallBtn(v, item,position);
+                        clickHallBtn(v, item, position);
                         break;
                 }
 

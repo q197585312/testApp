@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -74,8 +73,8 @@ class VsPresenter extends BaseRetrofitPresenter<String, BetView<String>> impleme
         if (type.equals("Running"))
             isRunning = true;
 
-        String url = AppConstant.getInstance().HOST + "_view/MoreBet_App.aspx?oId=" + bean.getSocOddsId() + "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getModuleTitle().toString()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning
-                + paramT;
+        String url = AppConstant.getInstance().HOST + "_view/MoreBet_App.aspx?oId=" + bean.getSocOddsId() /*+ "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getModuleTitle().toString()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning*/
+       + "&T=MB2&mt=0";
         url = url + "&t=" + System.currentTimeMillis();
         return url;
     }

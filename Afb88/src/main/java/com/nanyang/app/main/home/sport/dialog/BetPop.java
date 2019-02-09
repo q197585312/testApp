@@ -1,8 +1,10 @@
 package com.nanyang.app.main.home.sport.dialog;
 
 import android.content.Context;
+import android.text.Editable;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -112,13 +114,37 @@ public class BetPop extends BasePopupWindow {
             }
 
         });
+        betAmountEdt.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (!AfbUtils.touzi_ed_values22.equals(betAmountEdt.getText().toString().trim().replaceAll(",", ""))) {
+                    if (bean != null && !StringUtils.isEmpty(s.toString().trim()) && Integer.valueOf(s.toString().trim().replaceAll(",", "")) > bean.getMaxLimit()) {
+                        betAmountEdt.setText(AfbUtils.addComma(bean.getMaxLimit() + "", betAmountEdt));
+                    } else {
+                        betAmountEdt.setText(AfbUtils.addComma(betAmountEdt.getText().toString().trim().replaceAll(",", ""), betAmountEdt));
+                    }
+                    betAmountEdt.setSelection(AfbUtils.addComma(betAmountEdt.getText().toString().trim().replaceAll(",", ""), betAmountEdt).length());
+                }
+
+            }
+        });
     }
 
 
     private void goBetting() {
         //http://www.afb1188.com/Bet/hBetSub.ashx?betType=1&oId=471838&odds=3.6&BTMD=S&amt=11&_=1543457323225
-        String s = betAmountEdt.getText().toString().trim();
-        if (!StringUtils.isEmpty(s)) {
+        String s1 = betAmountEdt.getText().toString().trim();
+        if (!StringUtils.isEmpty(s1)) {
+            String s = s1.replaceAll(",", "");
             if (bean.getMaxLimit() > 0 && bean.getMinLimit() > 0) {
                 int count = Integer.valueOf(s);
                 int max = bean.getMaxLimit();
@@ -139,8 +165,9 @@ public class BetPop extends BasePopupWindow {
                         if (sb.indexOf("&") > 0) {
                             substring2 = sb.substring(sb.indexOf("&"));
                         }
-                        bean.setBeturl(substring1 + odds + substring2);
-                        betOddsTv.setText(AfbUtils.decimalValue(Float.valueOf(odds) / 10, "0.00"));
+
+                        bean.setBeturl(substring1 + AfbUtils.decimalValue(Float.valueOf(odds) * 10, "0.00") + substring2);
+                        betOddsTv.setText(AfbUtils.decimalValue(Float.valueOf(odds), "0.00"));
                     }
                 });
             }
@@ -263,10 +290,8 @@ public class BetPop extends BasePopupWindow {
                 break;
         }
         if (result.getHdp() != null) {
-            if ((result.getIsGive() == 1 && betTypeFromId.equals("home")) || (result.getIsGive() != 1 && betTypeFromId.equals("away"))) {
 
-                hdp = Html.fromHtml(result.getHdp()).toString();
-            }
+            hdp = Html.fromHtml(result.getHdp()).toString();
         }
         betNameTv.setText(state);
         if (betTypeFromId.startsWith("mm")) {
@@ -311,6 +336,8 @@ public class BetPop extends BasePopupWindow {
     }
 
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
+        if (rTMatchInfo == null)
+            return;
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
             this.rTMatchInfo = rTMatchInfo;

@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.load.register.RegisterActivity;
 import com.nanyang.app.main.MainActivity;
@@ -66,7 +67,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     @Bind(R.id.login_turkey_rb)
     RadioButton loginTurkeyRb;
 
-    private int SkinInt=0;
+    private int SkinInt = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -156,13 +157,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
 
-
     @Override
     public void promptMsg(int msgRes) {
         ToastUtils.showShort(msgRes);
     }
 
-    @OnClick({R.id.btn_login_login, R.id.tv_login_register, R.id.tv_login_forget, R.id.login_china_rb, R.id.login_english_rb, R.id.login_th_rb,R.id.login_korea_rb, R.id.login_vietnam_rb, R.id.login_turkey_rb})
+    @OnClick({R.id.btn_login_login, R.id.tv_login_register, R.id.tv_login_forget, R.id.login_china_rb, R.id.login_english_rb, R.id.login_th_rb, R.id.login_korea_rb, R.id.login_vietnam_rb, R.id.login_turkey_rb})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
@@ -250,7 +250,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             AppCacheUtils.getInstance(this).put("USER_NAME", "");
         }
 
-
+        AppConstant.getInstance().IS_AGENT = false;
         skipAct(MainActivity.class);
         finish();
     }
@@ -272,15 +272,15 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
 
 
     public void clickSkin(View view) {
-        switch (SkinInt++%2){
+        switch (SkinInt++ % 2) {
             case 0:
                 SkinManager.getInstance().restoreDefaultTheme();
                 break;
             case 1:
-                SkinManager.getInstance().loadSkin("skinbluepackage.skin",null);
+                SkinManager.getInstance().loadSkin("skinbluepackage.skin", null);
                 break;
             case 2:
-                SkinManager.getInstance().loadSkin("skinbluepackage.skin",null);
+                SkinManager.getInstance().loadSkin("skinbluepackage.skin", null);
                 break;
         }
 

@@ -76,7 +76,7 @@ public class AfbApplication extends BaseApplication {
         }
 
 
-        return AppConstant.getInstance().URL_ODDS + betOddsUrl + "&_=" + SystemClock.currentThreadTimeMillis();
+        return AppConstant.getInstance().URL_ODDS + betOddsUrl ;
 
     }
 }

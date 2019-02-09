@@ -26,9 +26,7 @@ public class LoginInfo {
     public void set__EVENTVALIDATION(String __EVENTVALIDATION) {
         this.__EVENTVALIDATION = __EVENTVALIDATION;
     }
-    public void set__VIEWSTATEGENERATOR(String __VIEWSTATEGENERATOR) {
-        this.__VIEWSTATEGENERATOR = __VIEWSTATEGENERATOR;
-    }
+
 
     /* __VIEWSTATE	/wEPDwUKLTE5MDg0OTk2OA9kFgJmD2QWBAIBDxYCHgVzdHlsZQUxYmFja2dyb3VuZDp1cmwoaW1hZ2VzL2xvZ2luX0VOLVVTLnBuZykgbm8tcmVwZWF0OxYCZg9kFgICBw8PFgIeBFRleHQFBUxvZ2luZGQCAg8WAh8ABTliYWNrZ3JvdW5kOnVybChpbWFnZXMvbGlzdF9FTi1VUy5wbmcpIG5vLXJlcGVhdCBjZW50ZXIgMDtkZNRh3MZ0akiK/k7BU0DrdOa2KqSQAkPJBUPNRKepAPLW
         __EVENTVALIDATION	/wEdAAYfMKBnGzoFoip6aJJE6fpaiHrx0gRh57qNYHb+gYJUfmN6ZYJNGAQHn0c9zMgZU3A/F856zktixbVekFwCZlBeynuqL3cQJfeeYQ4/gSeOva+f28GNV31+z65DbDqxMS5lXRgroCj8wpuoKkde4QtUV2EKHgwjnQ91GIjhKi6heQ==
@@ -39,9 +37,8 @@ public class LoginInfo {
         btnSignIn	Login*/
     private String __VIEWSTATE = "/wEPDwULLTE1NzgzODQwNTIPZBYCZg9kFgRmDxYCHgVzdHlsZQUxYmFja2dyb3VuZDp1cmwoaW1hZ2VzL2xvZ2luX0VOLVVTLnBuZykgbm8tcmVwZWF0OxYCZg9kFgICCQ8PFgIeBFRleHQFBUxvZ2luZGQCAQ8WAh8ABTliYWNrZ3JvdW5kOnVybChpbWFnZXMvbGlzdF9FTi1VUy5wbmcpIG5vLXJlcGVhdCBjZW50ZXIgMDtkZFQZd7i8stdYFQuPOPwiVWF56AvyxMUH0QGpyPjYhlg5";
     private String __EVENTVALIDATION = "/wEdAAYpPXKEnSgwS5OM83/1znbNY3plgk0YBAefRz3MyBlTcD8XznrOS2LFtV6QXAJmUF7Ke6ovdxAl955hDj+BJ469iHrx0gRh57qNYHb+gYJUfq+f28GNV31+z65DbDqxMS7eqPw3s2V7Bn4zHu2v1nVEy/P4mxqMWRPvxWg3VzRGSA==";
-    private String __VIEWSTATEGENERATOR = "";
 
-    private String lstLang = "Default61smart.aspx?lang=EN-US";
+    private String lstLang = "Default.aspx?lang=EN-US";
     private String txtUserName;
     private String password_clear = "PASSWORD";
     private String password_password;
@@ -91,8 +88,10 @@ public class LoginInfo {
         this.txtUserName = txtUserName;
         this.password_password = password_password;
     }
+
     public LoginInfo() {
     }
+
     public Map<String, String> getMap() {
         Map<String, String> map = new HashMap<>();
         map.put("lstLang", lstLang);
@@ -122,14 +121,23 @@ public class LoginInfo {
 
     /*_db	{}
     _fm	{"ACT":"Login","ID":"zmb2","PW":"12345678","lang":"","pgLable":"0.8980293281634196","vsn":"4.0.121","PT":"wfDefault0"}*/
-    public Map<String, String> getWfmain(String ACT,String Lang) {
+    public Map<String, String> getWfmain(String ACT, String Lang) {
         Map<String, String> map = new HashMap<>();
-        map.put("_fm", new LoginWfBean(ACT,Lang).getJson());
+        map.put("_fm", new LoginWfBean(ACT, Lang).getJson());
         return map;
     }
+
     public Map<String, String> getWfLanguage(String Lang) {
         Map<String, String> map = new HashMap<>();
         map.put("_fm", new LanguageWfBean(Lang).getJson());
+        return map;
+    }
+
+    public Map<String, String> getWfLanguage(String Lang, String acctype) {
+        Map<String, String> map = new HashMap<>();
+        LanguageWfBean languageWfBean = new LanguageWfBean(Lang);
+        languageWfBean.setAccType(acctype);
+        map.put("_fm", languageWfBean.getJson());
         return map;
     }
 
@@ -148,26 +156,37 @@ public class LoginInfo {
         String pgLable = "0.15504609525960888";
         String vsn = "4.0.12";
         String PT = "wfDefault0";
-        String getJson(){
+
+        String getJson() {
             return new Gson().toJson(this);
         }
     }
 
 
-   public static class LanguageWfBean implements Serializable {
-// {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
+    public static class LanguageWfBean implements Serializable {
+        // {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
 //{"ACT":"GetTT","lang":"","accType":"","IsToday":"1","pgLable":"0.6229094620888556","vsn":"001","PT":"wfMain0"}
         public LanguageWfBean(String lang) {
             this.lang = lang;
         }
 
         String ACT = "GetTT";
+
+        public String getAccType() {
+            return accType;
+        }
+
+        public void setAccType(String accType) {
+            this.accType = accType;
+        }
+
         String accType = "";
         String lang = "";
         String pgLable = "0.6229094620888556";
         String vsn = "001";
         String PT = "wfMain0";
-       public String getJson(){
+
+        public String getJson() {
             return new Gson().toJson(this);
         }
     }

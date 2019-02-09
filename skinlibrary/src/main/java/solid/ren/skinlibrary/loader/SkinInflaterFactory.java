@@ -73,7 +73,6 @@ public class SkinInflaterFactory implements LayoutInflaterFactory {
      */
     private void parseSkinAttr(Context context, AttributeSet attrs, View view) {
         List<SkinAttr> viewAttrs = new ArrayList<>();//存储View可更换皮肤属性的集合
-        SkinL.i(TAG, "viewName:" + view.getClass().getSimpleName());
         for (int i = 0; i < attrs.getAttributeCount(); i++) {//遍历当前View的属性
             String attrName = attrs.getAttributeName(i);//属性名
             String attrValue = attrs.getAttributeValue(i);//属性值

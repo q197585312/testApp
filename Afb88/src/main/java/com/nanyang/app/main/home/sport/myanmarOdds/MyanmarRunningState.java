@@ -5,6 +5,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 /**
  * Created by Administrator on 2017/3/21.
@@ -17,15 +18,17 @@ public class MyanmarRunningState extends MyanmarState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getBaseView().getContextActivity().getString(R.string.Myanmar_Odds));
+        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Running), "Running", getBaseView().getContextActivity().getString(R.string.Myanmar_Odds));
     }
+
     @Override
     protected String getAllOddsUrl() {
-        return AppConstant.getInstance().HOST+"_view/MOddsGen2.ashx?ot=r&update=true&r=1849481838&ov=0&LID=";
+        return AppConstant.getInstance().HOST + "_view/MOddsGen2.ashx?ot=r&update=true&r=1849481838&ov=0&LID=";
     }
+
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_SOCCER_MYANMAR_RUNNING+param.getType();
+        return AppConstant.getInstance().URL_SOCCER_MYANMAR_RUNNING + param.getType();
     }
 
     @Override
@@ -48,4 +51,8 @@ public class MyanmarRunningState extends MyanmarState {
         return new MyanmarRunningAdapterHelper(getBaseView().getContextActivity());
     }
 
+    @Override
+    public IBetHelper<MyanmarInfo> onSetBetHelper() {
+        return new MyanmarRunningBetHelper(getBaseView());
+    }
 }

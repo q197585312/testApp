@@ -52,16 +52,16 @@ public class ClassicLoadMoreFooterView extends SwipeLoadMoreFooterLayout {
             ivSuccess.setVisibility(GONE);
             progressBar.setVisibility(GONE);
             if (-y >= mFooterHeight) {
-                tvLoadMore.setText("松开加载更多");
+                tvLoadMore.setText(R.string.release_to_load_more);
             } else {
-                tvLoadMore.setText("上拉加载");
+                tvLoadMore.setText(R.string.pull_up_to_load);
             }
         }
     }
 
     @Override
     public void onLoadMore() {
-        tvLoadMore.setText("加载更多");
+        tvLoadMore.setText(R.string.load_more);
         progressBar.setVisibility(VISIBLE);
     }
 

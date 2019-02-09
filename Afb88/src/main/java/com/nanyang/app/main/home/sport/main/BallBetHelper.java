@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.util.Log;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
@@ -20,9 +21,9 @@ import io.reactivex.disposables.Disposable;
 
 public abstract class BallBetHelper<B extends BallInfo, V extends BetView> extends SportBetHelper<B, V> {
 
-    private boolean isHf;
-    private B item;
-    private boolean hasPar;
+    protected boolean isHf;
+    protected B item;
+    protected boolean hasPar;
 
     public BallBetHelper(V baseView) {
         super(baseView);
@@ -59,6 +60,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
 
                 if (afbClickBetBean.getLeague().trim().equalsIgnoreCase(item.getModuleTitle().toString().trim()) &&
                         afbClickBetBean.getHome().trim().equalsIgnoreCase(item.getHome().trim()) && afbClickBetBean.getAway().equalsIgnoreCase(item.getAway().trim()) ) {
+                    Log.d("xxx","hasTeam");
                     continue;
                 }
                 if (!cn.finalteam.toolsfinal.StringUtils.isEmpty(typeOdds) && !typeOdds.endsWith("_par")) {
@@ -108,5 +110,6 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
     }
 
     protected abstract String getBallG();
+
 
 }

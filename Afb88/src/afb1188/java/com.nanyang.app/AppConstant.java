@@ -10,6 +10,7 @@ public class AppConstant {
     public static final String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
     public static final String CHECK_VERSION = "http://www.appgd88.com/afb1188version.php?app=android";
     public static final String DOWNLOAD_APP = "http://appgd88.com/afb1188/download/android/afb1188.apk";
+    public static boolean IS_AGENT = false;
 
 //http://www.afb1188.com/W0/Pub/pcode.axd
 
@@ -38,13 +39,13 @@ public class AppConstant {
     //http://a8197c.a36588.com/Main.aspx?accType=EU
 
 //    public static String HOST="http://www.doo88.net/";
-    public String HOST =  BuildConfig.HOST_AFB;
-//http://www.afb1188.com/W0/Pub/pcode.axd
+    public String HOST = BuildConfig.HOST_AFB;
+    //http://www.afb1188.com/W0/Pub/pcode.axd
     public String URL_LOGIN = HOST + "W0/Pub/pcode.axd";///W0/Pub/pcode.axd
-//    、、/W0/Pub/wfMain0.html
+    //    、、/W0/Pub/wfMain0.html
     public String URL_MAIN = HOST + "W0/Pub/wfMain0.html";
 
-    public String _BET="Bet/";
+    public String _BET = "Bet/";
 
     public String URL_UPDATE_BALANCE = HOST + "Bet/PanelStakeBalance_App.aspx";//http://103.206.122.65/Bet/BetStake.ashx
     public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
@@ -59,7 +60,7 @@ public class AppConstant {
 
 
     public String URL_ODDS_AFB1188 = HOST + "Bet/hBetOdds.ashx?";
-//    public String URL_ODDS = HOST + "Bet/JRecPanel_App.aspx?";
+    //    public String URL_ODDS = HOST + "Bet/JRecPanel_App.aspx?";
     public String URL_ODDS = URL_ODDS_AFB1188;
     public String URL_SOCCER_REMOVE_MIX = HOST + "Bet/ParRemove.aspx";
 
@@ -209,16 +210,16 @@ public class AppConstant {
     //http://main55.afb88.com/_view/Result.aspx
     public String URL_RESULT = HOST + "_view/Result_App.aspx";//好的
 
-/*    public String URL_EUROPE_TODAY;
-    public String URL_EUROPE_RUNING;
-    public String URL_EUROPE_EARLY;
-    public String URL_EUROPE_MIX_EARLY;
-    public String URL_EUROPE_MIX_TODAY;*/
-   public String URL_EUROPE_TODAY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=182&ot=t&update=true&r=1833149994&FAV=&SL=&_=1111";
-   public String URL_EUROPE_RUNING = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=182&ot=r&update=true&r=1833149994&FAV=&SL=&_=1111";
-   public String URL_EUROPE_EARLY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=182&ot=e&update=true&r=1833149994&FAV=&SL=&_=1111";
-   public String URL_EUROPE_MIX_EARLY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=183&ot=e&update=true&r=524111120&FAV=&SL=&_=1111";
-   public String URL_EUROPE_MIX_TODAY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=183&ot=t&update=true&r=524111120&FAV=&SL=&_=1111";
+    /*    public String URL_EUROPE_TODAY;
+        public String URL_EUROPE_RUNING;
+        public String URL_EUROPE_EARLY;
+        public String URL_EUROPE_MIX_EARLY;
+        public String URL_EUROPE_MIX_TODAY;*/
+    public String URL_EUROPE_TODAY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=182&ot=t&update=true&r=1833149994&FAV=&SL=&_=1111";
+    public String URL_EUROPE_RUNING = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=182&ot=r&update=true&r=1833149994&FAV=&SL=&_=1111";
+    public String URL_EUROPE_EARLY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=182&ot=e&update=true&r=1833149994&FAV=&SL=&_=1111";
+    public String URL_EUROPE_MIX_EARLY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=183&ot=e&update=true&r=524111120&FAV=&SL=&_=1111";
+    public String URL_EUROPE_MIX_TODAY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=183&ot=t&update=true&r=524111120&FAV=&SL=&_=1111";
 
     public String URL_TRANSFER_MONEY_DATA = HOST + "Bet/PanelBalance_App.aspx?";//好的
     public String URL_CASHOUT_MONEY_E_GAMES = HOST + "Bet/FundEGCashOut.aspx";
@@ -418,7 +419,7 @@ public class AppConstant {
         URL_KENO_STATU_DATA = HOST + "Bet/panel_keno_App.aspx?";
         URL_KENO_BET = HOST + "Bet/panel_kenoBet_App.aspx?";
         URL_ODDS_AFB1188 = HOST + "Bet/hBetOdds.ashx?";
-        URL_ODDS=URL_ODDS_AFB1188;
+        URL_ODDS = URL_ODDS_AFB1188;
     }
 
     public static AppConstant getInstance() {

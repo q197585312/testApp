@@ -74,6 +74,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     private SecondFragment bf = new SecondFragment();
     private ThirdFragment cf = new ThirdFragment();
     private int currentIndex = 0;
+    private MenuItemInfo oddsType;
 
     public String getChildParam() {
         return childParam;
@@ -87,8 +88,8 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
     private boolean isMixParlay = false;
     private String url = "";
-    private ArrayList<BaseVsFragment> fragmentsList;
-    List<List<VsTableRowBean>> datas = new ArrayList();
+    private ArrayList<BaseVsFragment<VsTableRowBean>> fragmentsList;
+    List<List<VsTableRowBean>> datas = new ArrayList<>();
 
     public MenuItemInfo<String> getType() {
         return type;
@@ -115,6 +116,9 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         super.initData();
         item = (BallInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA2);
+        if( getIntent().getSerializableExtra(AppConstant.KEY_DATA3)!=null){
+            oddsType= (MenuItemInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA3);
+        }
         tvToolbarRight.setVisibility(View.GONE);
         matchType = type.getType();
         switch (matchType) {
@@ -129,7 +133,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         isMixParlay = type.getRes() == 1;
         String parent = type.getParent();
 
-        fragmentsList = new ArrayList<>();
+        fragmentsList = new ArrayList<BaseVsFragment<VsTableRowBean>>();
 
         sf.setTitle(getString(R.string.scaleplate_asianplate));
         bf.setTitle(getString(R.string.single_double));
@@ -138,12 +142,12 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         if (parent.equals(getString(R.string.SuperCombo))) {
             isMixParlay = true;
             fragmentsList.add(sf);
-            initFirstData( item);
+            initFirstData(item);
             helper = new SuperComboBetHelper(this);
         } else {
             if (isMixParlay) {
                 fragmentsList.add(sf);
-                initFirstData( item);
+                initFirstData(item);
             } else {
                 fragmentsList.add(sf);
                 fragmentsList.add(bf);
@@ -154,19 +158,6 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
         if (parent.equals(getString(R.string.football))) {
 
-            if (isMixParlay) {
-                helper = new BallBetHelper(this) {
-                    @Override
-                    protected String getBallG() {
-                        return "1";
-                    }
-
-                };
-            } else {
-                helper = new SoccerCommonBetHelper(this);
-                if (matchType.equals("Running"))
-                    helper = new SoccerRunningBetHelper(this);
-            }
         } else if (parent.equals(getString(R.string.Myanmar_Odds))) {
             paramT = "&T=MB2";
 //            helper = new MyanmarBetHelper(this);
@@ -177,7 +168,18 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 //            helper = new EuropeBetHelper(this);
         }
         helper = new SoccerCommonBetHelper(this);
-
+        if (isMixParlay) {
+            helper = new BallBetHelper(this) {
+                @Override
+                protected String getBallG() {
+                    return "1";
+                }
+            };
+        } else {
+            helper = new SoccerCommonBetHelper(this);
+            if (matchType.equals("Running"))
+                helper = new SoccerRunningBetHelper(this);
+        }
         assert tvToolbarTitle != null;
         tvToolbarTitle.setBackgroundResource(0);
         tvToolbarTitle.setText(item.getHome() + "  VS  " + item.getAway());
@@ -203,7 +205,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
             @Override
             public void onPageSelected(int position) {
-                BaseVsFragment baseVsFragment = fragmentsList.get(position);
+                BaseVsFragment<VsTableRowBean> baseVsFragment = fragmentsList.get(position);
                 baseVsFragment.setData(datas.get(position));
                 tvTitle.setText(baseVsFragment.getTitle());
                 currentIndex = position;
@@ -385,9 +387,9 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
         Map<String, Object> map = new HashMap<String, Object>();
         map = gson.fromJson(str, map.getClass());
-        LinkedTreeMap<String, Object> dataMapFT = (LinkedTreeMap) map.get("FT_CS");
+        LinkedTreeMap<String, Object> dataMapFT = (LinkedTreeMap<String, Object>) map.get("FT_CS");
         parseRows(rows, dataMapFT, false, getString(R.string.correct_full), setColorStyle(getString(R.string.h1), new int[]{getResources().getColor(R.color.red_title)}, new String[]{getString(R.string.h1)}), setColorStyle(getString(R.string.dx), new int[]{getResources().getColor(R.color.blue)}, new String[]{getString(R.string.dx)}), getString(R.string.a2));
-        LinkedTreeMap<String, Object> dataMapFH = (LinkedTreeMap) map.get("FH_CS");
+        LinkedTreeMap<String, Object> dataMapFH = (LinkedTreeMap<String, Object>) map.get("FH_CS");
         parseRows(rows, dataMapFH, true, getString(R.string.correct_half), setColorStyle(getString(R.string.h1), new int[]{getResources().getColor(R.color.red_title)}, new String[]{getString(R.string.h1)}), setColorStyle(getString(R.string.dx), new int[]{getResources().getColor(R.color.blue)}, new String[]{getString(R.string.dx)}), getString(R.string.a2));
         datas.add(rows);
         cf.setData(rows);
@@ -459,7 +461,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     protected void onResume() {
         super.onResume();
         if (!isMixParlay)
-            presenter.scale(paramT, item, matchType);
+            presenter.scale(oddsType!=null?oddsType.getType():"", item, matchType);
         onBetEnd();
     }
 
@@ -530,7 +532,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
     @Override
     public void onUpdateMixSucceed(AfbClickResponseBean bean) {
-        BaseVsFragment baseVsFragment = fragmentsList.get(currentIndex);
+        BaseVsFragment<VsTableRowBean> baseVsFragment = fragmentsList.get(currentIndex);
         baseVsFragment.getAdapter().notifyDataSetChanged();
         getApp().setBetParList(bean);
         onBetEnd();
