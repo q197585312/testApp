@@ -97,7 +97,7 @@
             android:layout_width="match_parent"
             android:layout_height="80dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="80dp">
+            android:layout_marginTop="10dp">
 
             <ImageView
                 android:layout_width="match_parent"
@@ -105,68 +105,23 @@
                 android:layout_gravity="center"
                 android:src="@mipmap/logo" />
         </FrameLayout>
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
+            android:layout_height="70dp">
 
             <android.support.v4.view.ViewPager
-                android:id="@+id/detail_top_vp"
+                android:id="@+id/login_images_vp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
 
-            <LinearLayout
-                android:id="@+id/detail_bottom_ll"
-                style="@style/style_match_wrap_padding5"
-                android:layout_gravity="bottom"
-                android:background="@drawable/rectangle_trans"
-                android:gravity="center"
-                android:orientation="horizontal">
+            <com.unkonw.testapp.libs.view.indicator.CirclePageIndicator
+                android:id="@+id/login_indicator_cpi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|bottom"
+                android:gravity="center" />
 
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1">
-
-                    <TextView
-                        android:id="@+id/detail_top_content_tv"
-                        style="@style/style_weight_horizontal"
-                        android:singleLine="true"
-                        android:textColor="@color/white"
-                        android:textSize="10sp" />
-
-                    <LinearLayout
-                        android:id="@+id/ll_autoScrollLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:orientation="horizontal"
-                        android:visibility="gone">
-
-                        <ImageView
-                            android:layout_width="23dp"
-                            android:layout_height="23dp"
-                            android:background="@mipmap/horn" />
-
-                        <nanyang.com.dig88.Util.AutoScrollLayout
-                            android:id="@+id/autoScrollLayout"
-                            android:layout_width="0dp"
-                            android:layout_height="20dp"
-                            android:layout_gravity="bottom"
-                            android:layout_weight="1"
-                            android:gravity="center_vertical"></nanyang.com.dig88.Util.AutoScrollLayout>
-                    </LinearLayout>
-
-                </FrameLayout>
-
-                <xs.com.mylibrary.myview.indicator.CirclePageIndicator
-                    android:id="@+id/detail_top_cpi"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:paddingLeft="10dp"
-                    android:paddingTop="2dp" />
-            </LinearLayout>
         </FrameLayout>
 
         <LinearLayout
