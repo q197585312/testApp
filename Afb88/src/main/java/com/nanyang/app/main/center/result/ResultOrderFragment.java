@@ -1,6 +1,5 @@
 package com.nanyang.app.main.center.result;
 
-import android.app.Activity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -233,10 +232,7 @@ public class ResultOrderFragment extends BaseFragment<ResultPresenter> implement
 
     }
 
-    @Override
-    public Activity getContextActivity() {
-        return getBaseActivity();
-    }
+
 
     @Override
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
