@@ -66,7 +66,7 @@ public abstract class BasketballMixState extends BallState {
                 return 0;
             }
         };
-//        return new BasketballAdapterHelper(getBaseView().getContextActivity());
+//        return new BasketballAdapterHelper(getBaseView().getBaseActivity());
     }
 
     @Override

@@ -19,8 +19,8 @@ import static android.content.ContentValues.TAG;
  * Created by Administrator on 2017/3/11.
  */
 
-public class StatementPresenter extends BaseRetrofitPresenter<String, StatementContact.View> implements StatementContact.Presenter {
-    public StatementPresenter(StatementContact.View view) {
+public class StatementPresenter extends BaseRetrofitPresenter<StatementFragment> implements StatementContact.Presenter {
+    public StatementPresenter(StatementFragment view) {
         super(view);
     }
 
@@ -36,15 +36,15 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetData(s);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetData(s);
+                        baseContext.hideLoadingDialog();
                     }
 
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.d(TAG, "accept: " + throwable.toString());
-                        baseView.hideLoadingDialog();
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -54,7 +54,7 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                         subscription.request(Integer.MAX_VALUE);
                     }
                 });
@@ -63,18 +63,18 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
 
     @Override
     public void confirmBlance(String url,String userName) {
-        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).comfirmBlance(url+userName))
+        Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getData(url+userName))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetConfirmBlanceData(s);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetConfirmBlanceData(s);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.d(TAG, "accept: " + throwable.toString());
-                        baseView.hideLoadingDialog();
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -85,7 +85,7 @@ public class StatementPresenter extends BaseRetrofitPresenter<String, StatementC
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Integer.MAX_VALUE);
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(d);

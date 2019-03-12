@@ -21,6 +21,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
@@ -31,6 +32,8 @@ import com.nanyang.app.main.home.gdCasino.model.PorkerCasinoBean;
 import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.base.IBaseView;
 import com.unkonw.testapp.libs.utils.PermissionUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -117,8 +120,13 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
     }
 
     @Override
-    public void onGetData(String data) {
-        presenter.getTransferMoneyData(data);
+    public void onGetData(final String data) {
+        presenter.getTransferMoneyData(new BaseConsumer<TransferMoneyBean>(this) {
+            @Override
+            protected void onBaseGetData(TransferMoneyBean transferMoneyBean) {
+                getMoneyMsg(transferMoneyBean, data);
+            }
+        });
     }
 
     @Override
@@ -179,16 +187,21 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
             }
 
             @Override
-            public void setOnCancelLisener() {
+            public void setOnCancelListener() {
                 startApp(data);
             }
 
             @Override
-            public void setOnSureLisener(String money) {
-                if (!TextUtils.isEmpty(money)&&Integer.parseInt(money)!=0){
-                    presenter.gamesGDTransferMonet(money,data);
+            public void setOnSureListener(final String money) {
+                if (!TextUtils.isEmpty(money) && Integer.parseInt(money) != 0) {
+                    presenter.gamesGDTransferMonet(money, new BaseConsumer<String>(PokerCasinoActivity.this) {
+                        @Override
+                        protected void onBaseGetData(String data) {
+                            onGetTransferMoneyData(0, money, data);
+                        }
+                    });
                     closePopupWindow();
-                }else {
+                } else {
                     ToastUtils.showShort(getString(R.string.Input_the_amount_please));
                 }
             }
@@ -198,10 +211,10 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
     }
 
     @Override
-    public void onGetTransferMoneyData(int type,String getBackStr,String data) {
-        if (getBackStr.contains("not allowed")){
+    public void onGetTransferMoneyData(int type, String getBackStr, String data) {
+        if (getBackStr.contains("not allowed")) {
             ToastUtils.showShort(getBackStr);
-        }else {
+        } else {
             ToastUtils.showShort(getBackStr);
             startApp(data);
         }
@@ -209,7 +222,17 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
 
     private void loginGD() {
         if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
-            presenter.skipGd88();
+            presenter.skipGd88(new IBaseView<String>() {
+                @Override
+                public void onGetData(String data) {
+                    PokerCasinoActivity.this.onGetData(data);
+                }
+
+                @Override
+                public void onFailed(String error) {
+
+                }
+            });
         } else {
             Intent intent = new Intent();
             intent.setAction("android.intent.action.VIEW");
@@ -242,18 +265,18 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
             bundle.putString("web_id", "-1");
             bundle.putString("k", data);
             bundle.putString("us", getApp().getUser().getUserName());
-            bundle.putString("lang",AfbUtils.getLanguage(mContext));
-            bundle.putInt("homeColor",getHomeColor());
+            bundle.putString("lang", AfbUtils.getLanguage(mContext));
+            bundle.putInt("homeColor", getHomeColor());
             try {
 //                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
                 Intent intent = new Intent(Intent.ACTION_MAIN);
                 ComponentName comp = new ComponentName("gaming178.com.baccaratgame",
                         "gaming178.com.casinogame.Activity.WelcomeActivity");
                 intent.setComponent(comp);
-                if (bundle != null){
+                if (bundle != null) {
                     intent.putExtras(bundle);
                 }
-                startActivityForResult(intent,7);
+                startActivityForResult(intent, 7);
             } catch (Exception e) {
                 Intent intent = new Intent();
                 intent.setAction("android.intent.action.VIEW");
@@ -270,10 +293,20 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
         super.finish();
 
     }
+
     @Override
-    public void againLogin(String gameType) {
-        presenter.login(new LoginInfo(app.getUser().getUserName(), app.getUser().getPassword()),gameType);
+    public void againLogin(final String gameType) {
+        presenter.login(new LoginInfo(app.getUser().getUserName(), app.getUser().getPassword()), new BaseConsumer<String>(this) {
+            @Override
+            protected void onBaseGetData(String data) {
+                if (BuildConfig.FLAVOR.equals("afb1188"))
+                    onLanguageSwitchSucceed(data);
+                else
+                    onLoginAgainFinish(gameType);
+            }
+        });
     }
+
     @Override
     public void onLoginAgainFinish(String gameType) {
         switchSkipAct(gameType);

@@ -22,10 +22,10 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
 
 /*
     protected void createBetPop(BettingPromptBean bean, boolean isHf, TextView v,SoccerCommonInfo item) {
-        BetPop pop = new BetPop(baseView.getContextActivity(), v);
+        BetPop pop = new BetPop(baseContext.getBaseActivity(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
-        baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+        baseContext.onPopupWindowCreated(pop, Gravity.CENTER);
     }
 
     //http://main55.afb88.com/_bet/JRecPanel.aspx?gt=s&b=dc&sc=10&oId=12286344&odds=1.29

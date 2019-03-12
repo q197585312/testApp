@@ -19,14 +19,14 @@ import io.reactivex.functions.Consumer;
  * Created by Administrator on 2017/3/22.
  */
 
-public class StatementStakePresenter extends BaseRetrofitPresenter<List<StatementStakeListBean>, StatementStakeContact.View> implements StatementStakeContact.Presenter {
+public class StatementStakePresenter extends BaseRetrofitPresenter<StatementStakeActivity> implements StatementStakeContact.Presenter {
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      *
      * @param view
      */
-    public StatementStakePresenter(StatementStakeContact.View view) {
+    public StatementStakePresenter(StatementStakeActivity view) {
         super(view);
     }
 
@@ -36,14 +36,14 @@ public class StatementStakePresenter extends BaseRetrofitPresenter<List<Statemen
                 .subscribe(new Consumer<List<StatementStakeListBean>>() {
                     @Override
                     public void accept(List<StatementStakeListBean> statementStakeListBeen) throws Exception {
-                        baseView.onGetData(statementStakeListBeen);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetData(statementStakeListBeen);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.d("Consumer", "accept: " + throwable.toString());
-                        baseView.hideLoadingDialog();
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -53,7 +53,7 @@ public class StatementStakePresenter extends BaseRetrofitPresenter<List<Statemen
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                         subscription.request(Integer.MAX_VALUE);
                     }
                 });

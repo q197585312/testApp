@@ -53,21 +53,21 @@ public abstract class TransferMoneyPop extends BasePopupWindow {
             @Override
             public void onClick(View view) {
                 closePopupWindow();
-                setOnCancelLisener();
+                setOnCancelListener();
             }
         });
         tv_sure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setOnSureLisener(edt_amount.getText().toString());
+                setOnSureListener(edt_amount.getText().toString());
             }
         });
     }
 
     public abstract void initMsgData(TextView tv_balance, TextView tv_casino_balance, EditText edt_amount);
 
-    public abstract void setOnCancelLisener();
+    public abstract void setOnCancelListener();
 
-    public abstract void setOnSureLisener(String money);
+    public abstract void setOnSureListener(String money);
 
 }

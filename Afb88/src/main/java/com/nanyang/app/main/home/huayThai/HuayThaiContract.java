@@ -1,7 +1,7 @@
 package com.nanyang.app.main.home.huayThai;
 
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
-import com.unkonw.testapp.libs.view.IBaseView;
+import com.unkonw.testapp.libs.base.IBaseView;
 
 /**
  * Created by Administrator on 2017/2/27.

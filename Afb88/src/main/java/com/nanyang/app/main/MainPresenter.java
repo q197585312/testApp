@@ -14,9 +14,9 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-class MainPresenter extends BaseRetrofitPresenter<String, MainContract.View> implements MainContract.Presenter {
+class MainPresenter extends BaseRetrofitPresenter<MainActivity> implements MainContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
-    MainPresenter(MainContract.View view) {
+    MainPresenter(MainActivity view) {
         super(view);
     }
 

@@ -11,27 +11,22 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.common.SwitchLanguage;
+import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
-
-import org.reactivestreams.Subscription;
 
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import io.reactivex.Flowable;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> implements LoginContract.Presenter {
+class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
-    LoginPresenter(LoginContract.View view) {
+    LoginPresenter(LoginActivity view) {
         super(view);
     }
 
@@ -45,23 +40,23 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
             @Override
             public void onResponse(Call<String> call, final Response<String> response) {
                 if (response.isSuccessful() ) {
-                    baseView.onGetData(response.body());
+                    baseContext.onBaseGetData(response.body());
                 } else {
-                    baseView.onGetData("失败");
+                    baseContext.onBaseGetData("失败");
                 }
 
             }
 
             @Override
             public void onFailure(Call<String> call, final Throwable t) {
-                baseView.onGetData(t.getMessage());
+                baseContext.onBaseGetData(t.getMessage());
             }
         });
     }*/
 
     @NonNull
     private String getLanguage() {
-        String lag = AfbUtils.getLanguage((Activity) baseView);
+        String lag = AfbUtils.getLanguage((Activity) baseContext);
         String lang;
         switch (lag) {
             case "zh":
@@ -90,14 +85,14 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
         return lang;
     }
 
-    @Override
-    public void login(final LoginInfo info) {
+
+    public void login(final LoginInfo info, BaseConsumer<String> baseConsumer) {
         if (checkUserAvailable(info)) {
             //http://www.afb1188.com/W0/Pub/pcode.axd
             final String url_login = AppConstant.getInstance().URL_LOGIN;
             Map<String, String> infoWfmain = info.getWfmain("Login", getLanguage());
             if (BuildConfig.FLAVOR.equals("afb1188")) {
-                Disposable subscription = getService(ApiService.class).doPostMap(url_login, infoWfmain)
+                doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(url_login, infoWfmain)
 
                         .flatMap(new Function<String, Flowable<String>>() {
                             @Override
@@ -112,43 +107,17 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
                                 throw exception1;
 
                             }
-                        })
+                        }).flatMap(new Function<String, Flowable<String>>() {
+                            @Override
+                            public Flowable<String> apply(String s) throws Exception {
+                                SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext);
+                                return switchLanguage.switchLanguage(getLanguage(), "MY");
+                            }
 
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Consumer<String>() {//onNext
-                            @Override
-                            public void accept(String str) throws Exception {
-
-                                //#	Result	Protocol	Host	URL	Body	Caching	Content-Type	Process	Comments	Custom
-
-                                SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
-                                switchLanguage.switchLanguage(getLanguage(),"MY");
-                                baseView.onLanguageSwitchSucceed("");
-                            }
-                        }, new Consumer<Throwable>() {//错误
-                            @Override
-                            public void accept(Throwable throwable) throws Exception {
-                                baseView.onFailed(throwable.getMessage());
-                                baseView.hideLoadingDialog();
-                            }
-                        }, new Action() {//完成
-                            @Override
-                            public void run() throws Exception {
-                                baseView.hideLoadingDialog();
-                            }
-                        }, new Consumer<Subscription>() {//开始绑定
-                            @Override
-                            public void accept(Subscription subscription) throws Exception {
-                                baseView.showLoadingDialog();
-                                subscription.request(Long.MAX_VALUE);
-                            }
-                        });
-                mCompositeSubscription.add(subscription);
+                        }), baseConsumer);
                 return;
             }
-
-            Disposable subscription = getService(ApiService.class).getData(url_login)
+            doRetrofitApiOnUiThread(getService(ApiService.class).getData(url_login)
                     .flatMap(new Function<String, Flowable<String>>() {
                         @Override
                         public Flowable<String> apply(String s) throws Exception {
@@ -174,7 +143,7 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 
                                 String url = m.group(1);
                                 if (url.contains("Maintenance")) {
-                                    Exception exception = new Exception(((Activity) baseView).getString(R.string.System_maintenance));
+                                    Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
                                     throw exception;
                                 } else {
 //                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
@@ -201,51 +170,29 @@ class LoginPresenter extends BaseRetrofitPresenter<String, LoginContract.View> i
 
 
                         }
-                    })
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<String>() {//onNext
+                    }).flatMap(new Function<String, Flowable<String>>() {
                         @Override
-                        public void accept(String str) throws Exception {
+                        public Flowable<String> apply(String str) throws Exception {
                             String lang = getLanguage();
-                            SwitchLanguage switchLanguage = new SwitchLanguage(baseView, mCompositeSubscription);
-                            switchLanguage.switchLanguage(lang);
+                            SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext);
+                            return switchLanguage.switchLanguage(lang);
 
                         }
-                    }, new Consumer<Throwable>() {//错误
-                        @Override
-                        public void accept(Throwable throwable) throws Exception {
-                            baseView.onFailed(throwable.getMessage());
-                            baseView.hideLoadingDialog();
-                        }
-                    }, new Action() {//完成
-                        @Override
-                        public void run() throws Exception {
-                            baseView.hideLoadingDialog();
-                        }
-                    }, new Consumer<Subscription>() {//开始绑定
-                        @Override
-                        public void accept(Subscription subscription) throws Exception {
-                            baseView.showLoadingDialog();
-                            subscription.request(Long.MAX_VALUE);
-                        }
-                    });
-            mCompositeSubscription.add(subscription);
+                    }), baseConsumer);
         }
     }
 
 
     private boolean checkUserAvailable(LoginInfo info) {
         if (info.getTxtUserName().isEmpty()) {
-            baseView.promptMsg(R.string.Account_empty);
+            baseContext.promptMsg(R.string.Account_empty);
             return false;
         }
         if (info.getPassword_password().isEmpty()) {
-            baseView.promptMsg(R.string.Password_empty);
+            baseContext.promptMsg(R.string.Password_empty);
             return false;
         }
         return true;
     }
-
 
 }

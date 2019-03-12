@@ -2,7 +2,7 @@ package com.nanyang.app.main.center.StatementStakeDetails;
 
 import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
-import com.unkonw.testapp.libs.view.IBaseView;
+import com.unkonw.testapp.libs.base.IBaseView;
 
 import java.util.List;
 

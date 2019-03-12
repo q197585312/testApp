@@ -526,7 +526,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     }
 
     @Override
-    public Activity getContextActivity() {
+    public Activity getBaseActivity() {
         return this;
     }
 

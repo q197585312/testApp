@@ -2,20 +2,17 @@ package com.nanyang.app.common;
 
 import android.support.annotation.NonNull;
 
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.load.login.LoginInfo;
 import com.unkonw.testapp.libs.api.Api;
+import com.unkonw.testapp.libs.base.IBaseContext;
+import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
-import org.reactivestreams.Subscription;
-
+import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
@@ -24,142 +21,41 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/4/19.
  */
 
-public class SwitchLanguage implements ILanguageSwitch {
+public class SwitchLanguage<V extends IBaseContext> extends BaseRetrofitPresenter<V> {
     ILanguageView<String> baseView;
     CompositeDisposable mCompositeSubscription;
 
-    public SwitchLanguage(ILanguageView<String> baseView, CompositeDisposable mCompositeSubscription) {
-        this.baseView = baseView;
-        this.mCompositeSubscription = mCompositeSubscription;
+    /**
+     * 使用CompositeSubscription来持有所有的Subscriptions
+     *
+     * @param IBaseActivity
+     */
+    public SwitchLanguage(V IBaseActivity) {
+        super(IBaseActivity);
     }
+
 
     @NonNull
     private String getLanguage() {
-        String lag = AfbUtils.getLanguage(baseView.getContextActivity());
-        String lang;
-        switch (lag) {
-            case "zh":
-                lang = "ZH-CN";
-                break;
-            case "en":
-                lang = "EN-US";
-                break;
-            case "th":
-                lang = "TH-TH";
-                break;
-            case "ko":
-                lang = "EN-TT";
-                break;
-            case "vi":
-                lang = "EN-IE";
-                break;
-            case "tr":
-                lang = "UR-PK";
-                break;
-
-            default:
-                lang = "EN-US";
-                break;
-        }
-        return lang;
+        LanguageHelper helper = new LanguageHelper(baseContext.getBaseActivity());
+        return helper.getLanguage();
     }
 
-    @Override
-    public void switchLanguage(String lang) {
+
+    public Flowable<String> switchLanguage(String lang) {
 //     http://main55.afb88.com/Main.aspx?lang=EN-US
 //         {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
         if (BuildConfig.FLAVOR.equals("afb1188")) {
-            Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, new LoginInfo().getWfLanguage(getLanguage()))
-
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<String>() {//onNext
-                        @Override
-                        public void accept(String str) throws Exception {
-                            baseView.onLanguageSwitchSucceed("");
-                        }
-                    }, new Consumer<Throwable>() {//错误
-                        @Override
-                        public void accept(Throwable throwable) throws Exception {
-                            baseView.onFailed(throwable.getMessage());
-                            baseView.hideLoadingDialog();
-                        }
-                    }, new Action() {//完成
-                        @Override
-                        public void run() throws Exception {
-                            baseView.hideLoadingDialog();
-                        }
-                    }, new Consumer<Subscription>() {//开始绑定
-                        @Override
-                        public void accept(Subscription subscription) throws Exception {
-                            baseView.showLoadingDialog();
-                            subscription.request(Long.MAX_VALUE);
-                        }
-                    });
-            mCompositeSubscription.add(subscription);
-            return;
+            return getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, new LoginInfo().getWfLanguage(getLanguage()));
         }
+        return Api.getService(ApiService.class).switchLanguage(AppConstant.getInstance().URL_CHANGE_LANGUAGE, lang).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
 
-        Disposable d = Api.getService(ApiService.class).switchLanguage(AppConstant.getInstance().URL_CHANGE_LANGUAGE, lang).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        baseView.hideLoadingDialog();
-                        baseView.onLanguageSwitchSucceed(s);
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Consumer<Subscription>() {
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        subscription.request(Integer.MAX_VALUE);
-                        baseView.showLoadingDialog();
-                    }
-                });
-        mCompositeSubscription.add(d);
     }
 
-    public void switchLanguage(String lang, String accType) {
+    public Flowable<String> switchLanguage(String lang, String accType) {
 //     http://main55.afb88.com/Main.aspx?lang=EN-US
 //         {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
-        if (BuildConfig.FLAVOR.equals("afb1188")) {
-            Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, new LoginInfo().getWfLanguage(lang, accType))
+        return getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, new LoginInfo().getWfLanguage(lang, accType));
 
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<String>() {//onNext
-                        @Override
-                        public void accept(String str) throws Exception {
-                            baseView.onLanguageSwitchSucceed("");
-                        }
-                    }, new Consumer<Throwable>() {//错误
-                        @Override
-                        public void accept(Throwable throwable) throws Exception {
-                            baseView.onFailed(throwable.getMessage());
-                            baseView.hideLoadingDialog();
-                        }
-                    }, new Action() {//完成
-                        @Override
-                        public void run() throws Exception {
-                            baseView.hideLoadingDialog();
-                        }
-                    }, new Consumer<Subscription>() {//开始绑定
-                        @Override
-                        public void accept(Subscription subscription) throws Exception {
-                            baseView.showLoadingDialog();
-                            subscription.request(Long.MAX_VALUE);
-                        }
-                    });
-            mCompositeSubscription.add(subscription);
-            return;
-        }
     }
 }

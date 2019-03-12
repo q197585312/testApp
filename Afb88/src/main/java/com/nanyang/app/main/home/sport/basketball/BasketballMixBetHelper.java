@@ -52,17 +52,17 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
                 });
         if (compositeSubscription != null)
             compositeSubscription.add(subscribe);*//*
-        new BaseMixStyleHandler((BaseToolbarActivity) baseView.getContextActivity()).setMixBackground(v);
+        new BaseMixStyleHandler((BaseToolbarActivity) baseContext.getBaseActivity()).setMixBackground(v);
         Disposable subscribe = getService(ApiService.class).updateMixParlayBet(getOddsUrl(item, type, isHf, odds, params)).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingParPromptBean>() {//onNext
                     @Override
                     public void accept(BettingParPromptBean bean) throws Exception {
-                        baseView.onUpdateMixSucceed(bean);
+                        baseContext.onUpdateMixSucceed(bean);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        new BaseMixStyleHandler((BaseToolbarActivity) baseView.getContextActivity()).setCommonBackground(v);
+                        new BaseMixStyleHandler((BaseToolbarActivity) baseContext.getBaseActivity()).setCommonBackground(v);
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().hideLoadingDialog();
                     }
@@ -85,10 +85,10 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
 
 
     private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
-        BetPop pop = new BetPop(baseView.getContextActivity(), v);
+        BetPop pop = new BetPop(baseContext.getBaseActivity(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
-        baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+        baseContext.onPopupWindowCreated(pop, Gravity.CENTER);
     }
 
     //http://a0096f.panda88.org/_Bet/JRecPanel.aspx?g=10&b=odd&oId=12264769&odds=9.4

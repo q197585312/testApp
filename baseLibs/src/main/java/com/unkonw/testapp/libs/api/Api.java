@@ -6,6 +6,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.unkonw.testapp.libs.base.BaseApplication;
+import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.ToStringConverterFactory;
 
 import java.io.File;
@@ -17,6 +18,7 @@ import io.reactivex.Flowable;
 import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.Cache;
@@ -47,7 +49,7 @@ public class Api {
     private static Retrofit retrofit;
     private static Object service;
 
-    public static  <T> T getService(Class<T> cls) {
+    public static <T> T getService(Class<T> cls) {
         if (service == null) {
             service = getRetrofit().create(cls);
         }
@@ -57,7 +59,7 @@ public class Api {
     /**
      * 拦截器  给所有的请求添加消息头
      */
-    private static Interceptor mInterceptor = new Interceptor(){
+    private static Interceptor mInterceptor = new Interceptor() {
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
             Request request = chain.request()
@@ -87,7 +89,7 @@ public class Api {
 //                    .addInterceptor(mInterceptor)
                     .cache(cache)
                     .build();*/
-            OkHttpClient client=new OkHttpClient.Builder()
+            OkHttpClient client = new OkHttpClient.Builder()
                     .connectTimeout(10, TimeUnit.SECONDS)
                     .writeTimeout(15, TimeUnit.SECONDS)
                     .readTimeout(15, TimeUnit.SECONDS)
@@ -114,11 +116,12 @@ public class Api {
 
     /**
      * 对 Observable<T> 做统一的处理，处理了线程调度、分割返回结果等操作组合了起来
+     *
      * @param responseObservable
      * @param <T>
      * @return
      */
-    public  <T > Flowable<T> applySchedulers(Flowable<T> responseObservable) {
+    public <T> Flowable<T> applySchedulers(Flowable<T> responseObservable) {
         return responseObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Function<T, Flowable<T>>() {
@@ -130,13 +133,32 @@ public class Api {
                 ;
     }
 
+    /**
+     * 对 Observable<T> 做统一的处理，处理了线程调度、分割返回结果等操作组合了起来
+     *
+     * @param responseObservable
+     * @param <T>
+     * @return
+     */
+    public <T> Disposable applyDisposable(Flowable<T> responseObservable, final BaseConsumer<T> baseConsumer) {
+        return responseObservable.subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .flatMap(new Function<T, Flowable<T>>() {
+                    @Override
+                    public Flowable<T> apply(T tResponse) throws Exception {
+                        return flatResponse(tResponse);
+                    }
+                }).subscribe(baseConsumer.onNext, baseConsumer.onError, baseConsumer.onCompleted, baseConsumer.onStart)
+                ;
+    }
 
     /**
      * 对网络接口返回的Response进行分割操作 对于jasn 解析错误以及返回的 响应实体为空的情况
+     *
      * @param response
      * @return
      */
-    public < T > Flowable<T> flatResponse(final T response) {
+    public <T> Flowable<T> flatResponse(final T response) {
         return Flowable.create(new FlowableOnSubscribe<T>() {
             @Override
             public void subscribe(FlowableEmitter<T> subscriber) throws Exception {
@@ -154,7 +176,7 @@ public class Api {
                     subscriber.onComplete();
                 }
             }
-        },BackpressureStrategy.BUFFER);
+        }, BackpressureStrategy.BUFFER);
 
     }
 

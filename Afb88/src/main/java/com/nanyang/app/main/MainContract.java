@@ -1,7 +1,7 @@
 package com.nanyang.app.main;
 
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
-import com.unkonw.testapp.libs.view.IBaseView;
+import com.unkonw.testapp.libs.base.IBaseView;
 
 public interface MainContract {
     interface View extends IBaseView<String> {

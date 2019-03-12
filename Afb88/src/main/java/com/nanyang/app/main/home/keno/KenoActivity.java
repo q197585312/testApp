@@ -29,6 +29,7 @@ import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -43,7 +44,7 @@ import cn.finalteam.toolsfinal.DeviceUtils;
  * Created by Administrator on 2017/11/16.
  */
 
-public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> implements KenoContract.View {
+public class KenoActivity extends BaseToolbarActivity<KenoPresenter> {
     @Bind(R.id.rg_tab)
     RadioGroup rg_tab;
     @Bind(R.id.rb_china)
@@ -151,7 +152,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     RecyclerView elementlRc;
     LayoutInflater inflater;
 
-    @Override
+
     public void onGetData(KenoDataBean data) {
         if (data == null) {
             ToastUtils.showShort("data null");
@@ -260,10 +261,6 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         vp_way.setAdapter(myViewPagerAdapter);
     }
 
-    @Override
-    public void onFailed(String error) {
-
-    }
 
     @Override
     protected void onDestroy() {
@@ -293,7 +290,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
         setContentView(R.layout.activity_keno);
         createPresenter(new KenoPresenter(this));
         showLoadingDialog();
-        presenter.getKenoData();
+        presenter.getKenoData(kenoConsumer);
     }
 
     @Override
@@ -337,6 +334,12 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
     }
 
     private boolean initWindow = true;
+    BaseConsumer kenoConsumer = new BaseConsumer<KenoDataBean>(KenoActivity.this) {
+        @Override
+        protected void onBaseGetData(KenoDataBean data) {
+            onBaseGetData(data);
+        }
+    };
 
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
@@ -351,7 +354,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                     isNeedInitCountDown = true;
                     isCanChangeBet = true;
                     setIsCanChangeType(true);
-                    presenter.getKenoData();
+                    presenter.getKenoData(kenoConsumer);
                     if (ll_drawing_close != null) {
                         ll_drawing_close.setVisibility(View.GONE);
                     }
@@ -671,33 +674,43 @@ public class KenoActivity extends BaseToolbarActivity<KenoContract.Presenter> im
                 break;
             }
         }
-        presenter.getBetStatu(params);
+        presenter.getBetStatus(params, new BaseConsumer<KenoBetLimitBean>(this) {
+            @Override
+            protected void onBaseGetData(KenoBetLimitBean data) {
+                onGetBetLimit(data);
+            }
+        });
     }
 
     private KenoBetPopu kenoBetPopu;
     private String currentBetType;
 
-    @Override
+
     public void onGetBetLimit(KenoBetLimitBean bean) {
         kenoBetPopu = new KenoBetPopu(mContext, ll_result, DeviceUtils.dip2px(mContext, 350), LinearLayout.LayoutParams.WRAP_CONTENT,
                 getCurrentTypeData(), currentBetType, bean);
         kenoBetPopu.setKenoBet(new KenoBetPopu.KenoBet() {
             @Override
             public void onKenoBetListener(String params) {
-                presenter.KenoBet(params);
+                presenter.kenoBet(params, new BaseConsumer<String>(KenoActivity.this) {
+                    @Override
+                    protected void onBaseGetData(String data) {
+                        onGetBetReturn(data);
+                    }
+                });
             }
         });
         kenoBetPopu.showPopupCenterWindow();
     }
 
-    @Override
+
     public void onGetBetReturn(String str) {
-        if (str.equals("Success")) {
-            presenter.KenoBetSuccessMsg();
-        } else {
-            hideLoadingDialog();
-            ToastUtils.showShort(str);
-        }
+        presenter.KenoBetSuccessMsg(new BaseConsumer<String>(this) {
+            @Override
+            protected void onBaseGetData(String data) {
+                presenter.handleDicAllBean(data);
+            }
+        });
         kenoBetPopu.closePopupWindow();
     }
 

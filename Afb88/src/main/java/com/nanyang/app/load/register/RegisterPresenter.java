@@ -17,9 +17,9 @@ import io.reactivex.functions.Consumer;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-public class RegisterPresenter extends BaseRetrofitPresenter<String, RegisterContract.View> implements RegisterContract.Presenter {
+public class RegisterPresenter extends BaseRetrofitPresenter<RegisterActivity> implements RegisterContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
-    public RegisterPresenter(RegisterContract.View view) {
+    public RegisterPresenter(RegisterActivity view) {
         super(view);
     }
 
@@ -37,16 +37,16 @@ public class RegisterPresenter extends BaseRetrofitPresenter<String, RegisterCon
              @Override
              public void onResponse(Call<String> call, final Response<String> response) {
                  if (response.isSuccessful() ) {
-                     baseView.onGetData(response.body());
+                     baseContext.onBaseGetData(response.body());
                  } else {
-                     baseView.onGetData("失败");
+                     baseContext.onBaseGetData("失败");
                  }
 
              }
 
              @Override
              public void onFailure(Call<String> call, final Throwable t) {
-                 baseView.onGetData(t.getMessage());
+                 baseContext.onBaseGetData(t.getMessage());
              }
          });
      }*/
@@ -61,24 +61,24 @@ public class RegisterPresenter extends BaseRetrofitPresenter<String, RegisterCon
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String Str) throws Exception {
-                        baseView.onGetData(Str);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetData(Str);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onFailed(throwable.getMessage());
-                        baseView.hideLoadingDialog();
+                        baseContext.onFailed(throwable.getMessage());
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {//完成
                     @Override
                     public void run() throws Exception {
-                        baseView.hideLoadingDialog();
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                         subscription.request(Long.MAX_VALUE);
                     }
                 });
@@ -91,25 +91,25 @@ public class RegisterPresenter extends BaseRetrofitPresenter<String, RegisterCon
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetData(s);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetData(s);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onFailed(throwable.toString());
-                        baseView.hideLoadingDialog();
+                        baseContext.onFailed(throwable.toString());
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
                     public void run() throws Exception {
-                        baseView.hideLoadingDialog();
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Long.MAX_VALUE);
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(disposable);

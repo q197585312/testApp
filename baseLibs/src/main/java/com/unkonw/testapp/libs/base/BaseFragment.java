@@ -1,6 +1,5 @@
 package com.unkonw.testapp.libs.base;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
@@ -19,7 +18,7 @@ import io.reactivex.disposables.CompositeDisposable;
 import solid.ren.skinlibrary.base.SkinBaseFragment;
 
 
-public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFragment {
+public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFragment implements IBaseContext {
     public BaseActivity mContext;
     public View mContentView = null;
     /**
@@ -176,7 +175,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
     }
 
 
-    public Activity getContextActivity() {
+    public BaseActivity getContextActivity() {
         return getBaseActivity();
     }
 }

@@ -7,7 +7,6 @@ import android.support.annotation.NonNull;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sportInterface.BetView;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -22,13 +21,13 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-class VsPresenter extends BaseRetrofitPresenter<String, BetView<String>> implements IBasePresenter {
+class VsPresenter extends BaseRetrofitPresenter<VsActivity> implements IBasePresenter {
     private String type;
     private BallInfo bean;
     private String paramT;
 
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
-    VsPresenter(BetView view) {
+    VsPresenter(VsActivity view) {
         super(view);
     }
 
@@ -41,25 +40,25 @@ class VsPresenter extends BaseRetrofitPresenter<String, BetView<String>> impleme
         Disposable subscription = mApiWrapper.applySchedulers(getService(ApiService.class).getData(url)).subscribe(new Consumer<String>() {//onNext
             @Override
             public void accept(String Str) throws Exception {
-                baseView.onGetData(Str);
+                baseContext.onGetData(Str);
                 startUpdate();
-                baseView.hideLoadingDialog();
+                baseContext.hideLoadingDialog();
             }
         }, new Consumer<Throwable>() {//错误
             @Override
             public void accept(Throwable throwable) throws Exception {
-                baseView.onFailed(throwable.getMessage());
-                baseView.hideLoadingDialog();
+                baseContext.onFailed(throwable.getMessage());
+                baseContext.hideLoadingDialog();
             }
         }, new Action() {//完成
             @Override
             public void run() throws Exception {
-                baseView.hideLoadingDialog();
+                baseContext.hideLoadingDialog();
             }
         }, new Consumer<Subscription>() {//开始绑定
             @Override
             public void accept(Subscription subscription) throws Exception {
-                baseView.showLoadingDialog();
+                baseContext.showLoadingDialog();
                 subscription.request(Long.MAX_VALUE);
             }
         });
@@ -102,7 +101,7 @@ class VsPresenter extends BaseRetrofitPresenter<String, BetView<String>> impleme
                     .subscribe(new Consumer<String>() {//onNext
                                    @Override
                                    public void accept(String allData) throws Exception {
-                                       baseView.onGetData(allData);
+                                       baseContext.onGetData(allData);
 
                                    }
                                }, new Consumer<Throwable>() {

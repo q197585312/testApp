@@ -64,6 +64,8 @@ import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
 import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.base.IBaseView;
 import com.unkonw.testapp.libs.utils.SharePreferenceUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -207,8 +209,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvToolbarLeft.setVisibility(View.VISIBLE);
         initGuide();
         presenter.switchOddsType("MY");
-
-
     }
 
 
@@ -586,7 +586,16 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     private void loginGD() {
         if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
-            presenter.skipGd88();
+            presenter.skipGd88(new IBaseView<String>() {
+                @Override
+                public void onGetData(String data) {
+                    SportActivity.this.onGetData(data);
+                }
+                @Override
+                public void onFailed(String error) {
+
+                }
+            });
         } else {
             Intent intent = new Intent();
             intent.setAction("android.intent.action.VIEW");
@@ -618,8 +627,13 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     @Override
-    public void onGetData(String data) {
-        presenter.getTransferMoneyData(data);
+    public void onGetData(final String data) {
+        presenter.getTransferMoneyData(new BaseConsumer<TransferMoneyBean>(this) {
+            @Override
+            protected void onBaseGetData(TransferMoneyBean transferMoneyBean) {
+                getMoneyMsg(transferMoneyBean, data);
+            }
+        });
     }
 
     @Override
@@ -644,14 +658,19 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
 
             @Override
-            public void setOnCancelLisener() {
+            public void setOnCancelListener() {
                 startApp(data);
             }
 
             @Override
-            public void setOnSureLisener(String money) {
+            public void setOnSureListener(final String money) {
                 if (!TextUtils.isEmpty(money) && Integer.parseInt(money) != 0) {
-                    presenter.gamesGDTransferMonet(money, data);
+                    presenter.gamesGDTransferMonet(money, new BaseConsumer<String>(SportActivity.this) {
+                        @Override
+                        protected void onBaseGetData(String data) {
+                            onGetTransferMoneyData(0, money, data);
+                        }
+                    });
                     closePopupWindow();
                 } else {
                     ToastUtils.showShort(getString(R.string.Input_the_amount_please));
@@ -734,7 +753,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     public void againLogin(String gameType) {
-        presenter.login(new LoginInfo(app.getUser().getUserName(), app.getUser().getPassword()), gameType);
+        presenter.login(new LoginInfo(app.getUser().getUserName(), app.getUser().getPassword()), new BaseConsumer<String>(this) {
+            @Override
+            protected void onBaseGetData(String data) {
+                onLanguageSwitchSucceed(data);
+            }
+        });
     }
 
     @Override

@@ -1,6 +1,5 @@
 package com.nanyang.app;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -259,9 +258,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     }
 
-    public Activity getContextActivity() {
-        return this;
-    }
 
     public void reLoginPrompt(String msg, final SportContract.CallBack callBack) {
         BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {

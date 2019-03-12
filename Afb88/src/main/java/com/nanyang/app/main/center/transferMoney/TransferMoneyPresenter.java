@@ -20,7 +20,7 @@ import static android.content.ContentValues.TAG;
  * Created by Administrator on 2017/3/30.
  */
 
-public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyBean, TransferMoneyContact.View> implements TransferMoneyContact.Presenter {
+public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyFragment> implements TransferMoneyContact.Presenter {
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -37,13 +37,13 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                 .subscribe(new Consumer<TransferMoneyBean>() {
                     @Override
                     public void accept(TransferMoneyBean transferMoneyBean) throws Exception {
-                        baseView.onGetData(transferMoneyBean);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetData(transferMoneyBean);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.hideLoadingDialog();
+                        baseContext.hideLoadingDialog();
                         Log.d(TAG, "accept: " + throwable.toString());
 
                     }
@@ -55,7 +55,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                         subscription.request(Integer.MAX_VALUE);
                     }
                 });
@@ -68,14 +68,14 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetCashoutMoneyData(s);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetCashoutMoneyData(s);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onGetCashoutMoneyData(throwable.toString());
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetCashoutMoneyData(throwable.toString());
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -86,7 +86,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Integer.MAX_VALUE);
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(d);
@@ -98,16 +98,16 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetTransferMoneyData(s);
-                        baseView.refreshEdt(1);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetTransferMoneyData(s);
+                        baseContext.refreshEdt(1);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onGetTransferMoneyData(throwable.toString());
-                        baseView.refreshEdt(1);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetTransferMoneyData(throwable.toString());
+                        baseContext.refreshEdt(1);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -118,7 +118,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Integer.MAX_VALUE);
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(d);
@@ -130,14 +130,14 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetCashoutMoneyData(s);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetCashoutMoneyData(s);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onGetCashoutMoneyData(throwable.toString());
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetCashoutMoneyData(throwable.toString());
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -148,7 +148,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Integer.MAX_VALUE);
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(d);
@@ -160,16 +160,16 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetTransferMoneyData(s);
-                        baseView.refreshEdt(2);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetTransferMoneyData(s);
+                        baseContext.refreshEdt(2);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onGetTransferMoneyData(throwable.toString());
-                        baseView.refreshEdt(2);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetTransferMoneyData(throwable.toString());
+                        baseContext.refreshEdt(2);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -180,7 +180,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Integer.MAX_VALUE);
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(d);
@@ -192,14 +192,14 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetCashoutMoneyData(s);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetCashoutMoneyData(s);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onGetCashoutMoneyData(throwable.toString());
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetCashoutMoneyData(throwable.toString());
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -210,7 +210,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Integer.MAX_VALUE);
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(d);
@@ -222,16 +222,16 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetTransferMoneyData(s);
-                        baseView.refreshEdt(3);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetTransferMoneyData(s);
+                        baseContext.refreshEdt(3);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onGetTransferMoneyData(throwable.toString());
-                        baseView.refreshEdt(3);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetTransferMoneyData(throwable.toString());
+                        baseContext.refreshEdt(3);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -242,7 +242,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Integer.MAX_VALUE);
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(d);
@@ -254,14 +254,14 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetCashoutMoneyData(s);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetCashoutMoneyData(s);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onGetCashoutMoneyData(throwable.toString());
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetCashoutMoneyData(throwable.toString());
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -272,7 +272,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Integer.MAX_VALUE);
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(d);
@@ -284,16 +284,16 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetTransferMoneyData(s);
-                        baseView.refreshEdt(4);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetTransferMoneyData(s);
+                        baseContext.refreshEdt(4);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onGetTransferMoneyData(throwable.toString());
-                        baseView.refreshEdt(4);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetTransferMoneyData(throwable.toString());
+                        baseContext.refreshEdt(4);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -304,7 +304,7 @@ public class TransferMoneyPresenter extends BaseRetrofitPresenter<TransferMoneyB
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Integer.MAX_VALUE);
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(d);

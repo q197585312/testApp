@@ -9,8 +9,8 @@ import android.widget.TextView;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.BaseFragment;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/2/24.
  */
 
-public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements HuayThaiContract.View {
+public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> {
     @Bind(R.id.tv_grade_date)
     TextView tvGradeDate;
     @Bind(R.id.layout_bet1)
@@ -127,7 +127,12 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
     }
 
     private void refresh() {
-        presenter.refresh(AppConstant.getInstance().HOST + info.getType());
+        presenter.refresh(AppConstant.getInstance().HOST + info.getType(), new BaseConsumer<HuayDrawDateInfo>(this) {
+            @Override
+            protected void onBaseGetData(HuayDrawDateInfo data) {
+                onBaseGetData(data);
+            }
+        });
     }
 
     private void loadIntroduceData() {
@@ -194,12 +199,6 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
     }
 
 
-    @Override
-    public void onFailed(String error) {
-        ToastUtils.showShort(error);
-    }
-
-    @Override
     public void onResultData(ResultBean s) {
         if (s != null && s.getDicAll().size() > 0) {
             for (int i = 0; i < s.getDicAll().size(); i++) {
@@ -345,7 +344,6 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> implements
     }
 
 
-    @Override
     public void onGetData(HuayDrawDateInfo data) {
         selectDic = data.getDicAll().get(0);
         popDate = new BaseListPopupWindow<HuayDrawDateInfo.DicAllBean>(mContext, tvGradeDate, tvGradeDate.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, tvGradeDate) {

@@ -29,7 +29,7 @@ import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.libs.view.IBaseView;
+import com.unkonw.testapp.libs.base.IBaseView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -110,7 +110,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     @Override
                     public void accept(StakeListBean.DicAllBean dicAllBean) throws Exception {
                         handleDicAllBean(dicAllBean);
-                        baseView.hideLoadingDialog();
+                        baseView.sdd();
                     }
                 }, new Consumer<Throwable>() {
                     @Override

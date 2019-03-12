@@ -19,13 +19,13 @@ import io.reactivex.functions.Consumer;
  * Created by Administrator on 2017/3/22.
  */
 
-public class StatementStakeDetailsPresenter extends BaseRetrofitPresenter<List<StatementStakeDetailsListBean>, StatementStakeDetailsContact.View> implements StatementStakeDetailsContact.Presenter {
+public class StatementStakeDetailsPresenter extends BaseRetrofitPresenter<StatementDetailsActivity> implements StatementStakeDetailsContact.Presenter {
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      *
      * @param view
      */
-    public StatementStakeDetailsPresenter(StatementStakeDetailsContact.View view) {
+    public StatementStakeDetailsPresenter(StatementDetailsActivity  view) {
         super(view);
     }
 
@@ -35,15 +35,15 @@ public class StatementStakeDetailsPresenter extends BaseRetrofitPresenter<List<S
                 .subscribe(new Consumer<List<StatementStakeDetailsListBean>>() {
                     @Override
                     public void accept(List<StatementStakeDetailsListBean> statementStakeDetailsListBeen) throws Exception {
-                        baseView.onGetData(statementStakeDetailsListBeen);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetData(statementStakeDetailsListBeen);
+                        baseContext.hideLoadingDialog();
                     }
 
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         Log.d("Consumer", "accept: " + throwable.toString());
-                        baseView.hideLoadingDialog();
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
@@ -53,7 +53,7 @@ public class StatementStakeDetailsPresenter extends BaseRetrofitPresenter<List<S
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                         subscription.request(Integer.MAX_VALUE);
                     }
                 });

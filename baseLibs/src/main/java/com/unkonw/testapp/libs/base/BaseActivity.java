@@ -1,6 +1,5 @@
 package com.unkonw.testapp.libs.base;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -23,6 +22,8 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.DialogLoading;
 
+import org.greenrobot.eventbus.EventBus;
+
 import butterknife.ButterKnife;
 import solid.ren.skinlibrary.base.SkinBaseActivity;
 
@@ -34,7 +35,7 @@ import static com.google.gson.internal.$Gson$Preconditions.checkNotNull;
  * Created by Administrator on 2016/12/15 0015.
  */
 
-public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseActivity {
+public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseActivity implements IBaseContext {
     protected AppCompatActivity mContext;
     /**
      * 页面布局的 根view
@@ -69,6 +70,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         mContext = this;
         //Activity管理
         ActivityPageManager.getInstance().addActivity(this);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -189,6 +191,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
             presenter.unSubscribe();
         }
         ButterKnife.unbind(this);
+        EventBus.getDefault().unregister(this);
     }
 
     /**
@@ -309,7 +312,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
     }
 
 
-    public Activity getContextActivity() {
+    public BaseActivity<T> getBaseActivity() {
         return this;
     }
 }

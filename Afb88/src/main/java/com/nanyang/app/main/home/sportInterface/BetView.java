@@ -1,7 +1,7 @@
 package com.nanyang.app.main.home.sportInterface;
 
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
-import com.unkonw.testapp.libs.view.IBaseView;
+import com.unkonw.testapp.libs.base.IBaseView;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 public interface BetView<B> extends IBaseView<B> {

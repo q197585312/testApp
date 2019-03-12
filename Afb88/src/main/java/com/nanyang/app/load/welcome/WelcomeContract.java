@@ -1,9 +1,7 @@
 package com.nanyang.app.load.welcome;
 
-import com.nanyang.app.common.ILanguageSwitch;
 import com.nanyang.app.common.ILanguageView;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
-import com.unkonw.testapp.libs.view.IBaseView;
 
 import java.io.File;
 

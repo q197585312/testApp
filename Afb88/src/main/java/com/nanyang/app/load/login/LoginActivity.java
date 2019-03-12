@@ -16,10 +16,16 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.load.register.RegisterActivity;
+import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
-import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.unkonw.testapp.libs.base.BaseActivity;
+import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -33,7 +39,7 @@ import solid.ren.skinlibrary.loader.SkinManager;
  * Created by Administrator on 2017/1/10 0010.
  */
 
-public class LoginActivity extends BaseActivity<LoginPresenter> implements LoginContract.View {
+public class LoginActivity extends BaseActivity<LoginPresenter> {
 
 
     @Bind(R.id.login_language_rg)
@@ -87,6 +93,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
             cbLoginRemember.setChecked(true);
         }
         initLanguage();
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void loadBannerImage(AllBannerImagesBean data) {
+        List<AllBannerImagesBean.BannersBean> loginBanners = data.getLoginBanners();
     }
 
 
@@ -141,13 +153,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         }
     }
 
-    @Override
+
     public void onGetData(String data) {
 
 
     }
 
-    @Override
+
     public void onFailed(String error) {
         if (error != null && error.equals(getString(R.string.System_maintenance))) {
             ToastUtils.showMyToast(error);
@@ -157,7 +169,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
     }
 
 
-    @Override
     public void promptMsg(int msgRes) {
         ToastUtils.showShort(msgRes);
     }
@@ -228,13 +239,18 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         String us = edtLoginUsername.getText().toString();
         String k = edtLoginPassword.getText().toString();//"a7c7366ecd6041489d08ecb9ac1f39c9"
         if (!TextUtils.isEmpty(us) && !TextUtils.isEmpty(k)) {
-            presenter.login(new LoginInfo(us, k));
+            presenter.login(new LoginInfo(us, k), new BaseConsumer<String>(this) {
+                @Override
+                protected void onBaseGetData(String data) {
+                    onLanguageSwitchSucceed(data);
+                }
+            });
         } else {
             ToastUtils.showShort(getString(R.string.enter_username_or_password));
         }
     }
 
-    @Override
+
     public void onLanguageSwitchSucceed(String str) {
         ToastUtils.showShort(R.string.Login_Success);
         app = (AfbApplication) getApplication();
@@ -255,21 +271,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
         finish();
     }
 
-    @Override
-    public void getMoneyMsg(TransferMoneyBean transferMoneyBean, String data) {
-
-    }
-
-    @Override
-    public void onGetTransferMoneyData(int type, String getBackStr, String data) {
-
-    }
-
-    @Override
-    public void onLoginAgainFinish(String gameType) {
-
-    }
-
 
     public void clickSkin(View view) {
         switch (SkinInt++ % 2) {
@@ -283,40 +284,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 SkinManager.getInstance().loadSkin("skinbluepackage.skin", null);
                 break;
         }
-
-             /*   if() {
-                    SkinManager.getInstance().loadSkin("theme_style.skin",
-                            new SkinLoaderListener() {
-                                @Override
-                                public void onStart() {
-
-                                    showLoadingDialog();
-                                }
-
-                                @Override
-                                public void onSuccess() {
-
-                                    hideLoadingDialog();
-                                }
-
-                                @Override
-                                public void onFailed(String errMsg) {
-
-                                    hideLoadingDialog();
-                                }
-
-                                @Override
-                                public void onProgress(int progress) {
-
-
-                                }
-                            }
-
-                    );
-                }else{
-
-                }*/
-
 
     }
 }

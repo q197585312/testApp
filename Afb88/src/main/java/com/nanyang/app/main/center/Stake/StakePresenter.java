@@ -1,7 +1,5 @@
 package com.nanyang.app.main.center.Stake;
 
-import android.util.Log;
-
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.unkonw.testapp.libs.api.Api;
@@ -13,14 +11,12 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 
-import static android.content.ContentValues.TAG;
-
 /**
  * Created by Administrator on 2017/3/23.
  */
 
-public class StakePresenter extends BaseRetrofitPresenter<String, StakeContact.View> implements StakeContact.Presenter {
-    public StakePresenter(StakeContact.View view) {
+public class StakePresenter extends BaseRetrofitPresenter<StakeFragment> implements StakeContact.Presenter {
+    public StakePresenter(StakeFragment view) {
         super(view);
     }
 
@@ -30,23 +26,23 @@ public class StakePresenter extends BaseRetrofitPresenter<String, StakeContact.V
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String stakeListBeen) throws Exception {
-                        baseView.onGetData(stakeListBeen);
-                        baseView.hideLoadingDialog();
+                        baseContext.onGetData(stakeListBeen);
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.hideLoadingDialog();
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Action() {
                     @Override
                     public void run() throws Exception {
-                        baseView.hideLoadingDialog();
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
+                        baseContext.showLoadingDialog();
                         subscription.request(Integer.MAX_VALUE);
                     }
                 });

@@ -1,6 +1,7 @@
 package com.nanyang.app;
 
 
+import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.nanyang.app.main.center.model.StatementStakeListBean;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
@@ -92,9 +93,6 @@ public interface ApiService {
     Flowable<String> getData(@Url String url);
 
     @GET
-    Flowable<String> postData(@Url String url);
-
-    @GET
     Flowable<BettingPromptBean> getBetData(@Url String url);
 
 
@@ -112,9 +110,6 @@ public interface ApiService {
     @POST("http://www.afbasia88.com/_view/Register1.aspx")
     Flowable<String> Register(@FieldMap Map<String, String> info);
 
-
-    @GET()
-    Flowable<String> comfirmBlance(@Url String url);
 
     @GET
     Flowable<List<StatementStakeListBean>> statementStake(@Url String url);
@@ -177,8 +172,9 @@ public interface ApiService {
     Flowable<KenoDataBean> getKenoData(@Url String url);
 
     @GET
-    Flowable<KenoBetLimitBean> getKenoBetStatuData(@Url String url);
+    Flowable<KenoBetLimitBean> getKenoBetStatusData(@Url String url);
 
     @GET
-    Flowable<String> getKenoBetUrl(@Url String url);
+    Flowable<AllBannerImagesBean> getAllImagesData(@Url String url);
+
 }
