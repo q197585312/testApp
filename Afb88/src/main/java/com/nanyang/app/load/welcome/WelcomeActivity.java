@@ -135,6 +135,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter>{
 
 
     public void onLanguageSwitchSucceed(String str) {
+        //测试哈提交
         AppConstant.getInstance().IS_AGENT=true;
         ToastUtils.showShort(R.string.Login_Success);
         defaultSkip("SportBook");
