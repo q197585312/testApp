@@ -200,7 +200,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
     }
     public void loadAllImages() {
 //        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
-        doRetrofitApiOnDefaultThread(getService(ApiService.class).getAllImagesData(" http://www.appgd88.com/api/afb1188.php?app=" + BuildConfig.FLAVOR + "&lang=" +  new LanguageHelper(baseContext.getBaseActivity()).getLanguage()), new BaseConsumer<AllBannerImagesBean>(baseContext) {
+        doRetrofitApiOnDefaultThread(getService(ApiService.class).getAllImagesData("http://www.appgd88.com/api/afb1188.php?app=" + BuildConfig.FLAVOR + "&lang=" +  new LanguageHelper(baseContext.getBaseActivity()).getLanguage()), new BaseConsumer<AllBannerImagesBean>(baseContext) {
             @Override
             protected void onBaseGetData(AllBannerImagesBean data) {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
