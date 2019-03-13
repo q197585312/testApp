@@ -19,7 +19,7 @@ public class MyanmarEarlyState extends MyanmarState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Early),"Early",getBaseView().getContextActivity().getString(R.string.Myanmar_Odds));
+        return new MenuItemInfo<String>(0,getBaseView().getBaseActivity().getString(R.string.Early),"Early",getBaseView().getBaseActivity().getString(R.string.Myanmar_Odds));
     }
     @Override
     protected String getAllOddsUrl() {

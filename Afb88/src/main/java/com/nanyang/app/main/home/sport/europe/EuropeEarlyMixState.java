@@ -23,7 +23,7 @@ public class EuropeEarlyMixState extends EuropeMixState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1, getBaseView().getContextActivity().getString(R.string.Early), "Early",getParentText());
+        return new MenuItemInfo<String>(1, getBaseView().getBaseActivity().getString(R.string.Early), "Early",getParentText());
     }
 
     @Override

@@ -44,11 +44,11 @@ public class TennisRunningState extends TennisState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getBaseView().getContextActivity().getString(R.string.Tennis));
+        return new MenuItemInfo<String>(0,getBaseView().getBaseActivity().getString(R.string.Running),"Running",getBaseView().getBaseActivity().getString(R.string.Tennis));
     }
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new OtherRunningDoubleAdapterHelper(getBaseView().getContextActivity());
+        return new OtherRunningDoubleAdapterHelper(getBaseView().getBaseActivity());
     }
 
 }

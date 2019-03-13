@@ -27,7 +27,7 @@ import java.util.List;
  */
 
 public class SoccerEarlyState extends SoccerCommonState {
-    private MenuItemInfo selectedDateInfo= new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.all), "");;
+    private MenuItemInfo selectedDateInfo= new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.all), "");;
 
     public SoccerEarlyState(SportContract.View baseView) {
         super(baseView);
@@ -71,17 +71,17 @@ public class SoccerEarlyState extends SoccerCommonState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early", getBaseView().getContextActivity().getString(R.string.football));
+        return new MenuItemInfo<String>(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getBaseActivity().getString(R.string.football));
     }
 
     @Override
     protected SoccerCommonAdapterHelper onSetCommonAdapterHelper() {
-        return new SoccerEarlyAdapterHelper(getBaseView().getContextActivity());
+        return new SoccerEarlyAdapterHelper(getBaseView().getBaseActivity());
     }
 
     @Override
     protected void bindMenuAdapter(BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter, List<MenuItemInfo> types) {
-        types.add(new MenuItemInfo(R.mipmap.menu_date_white, getBaseView().getContextActivity().getString(R.string.date), "Date"));
+        types.add(new MenuItemInfo(R.mipmap.menu_date_white, getBaseView().getBaseActivity().getString(R.string.date), "Date"));
         super.bindMenuAdapter(baseRecyclerAdapter, types);
     }
 
@@ -127,7 +127,7 @@ public class SoccerEarlyState extends SoccerCommonState {
     }*/
 
     private void showDateChoicePop() {
-        BasePopupWindow popChoice = new BasePopupWindow(getBaseView().getContextActivity(), new View(getBaseView().getContextActivity()), 800, LinearLayout.LayoutParams.WRAP_CONTENT) {
+        BasePopupWindow popChoice = new BasePopupWindow(getBaseView().getBaseActivity(), new View(getBaseView().getBaseActivity()), 800, LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice_date;
@@ -136,7 +136,7 @@ public class SoccerEarlyState extends SoccerCommonState {
             protected void initView(View view) {
                 super.initView(view);
                 RecyclerView lv = (RecyclerView) view.findViewById(R.id.base_rv);
-                lv.setLayoutManager(new LinearLayoutManager(getBaseView().getContextActivity()));
+                lv.setLayoutManager(new LinearLayoutManager(getBaseView().getBaseActivity()));
                 BaseRecyclerAdapter<MenuItemInfo> adapter = getAdapter();
                 adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
@@ -161,15 +161,15 @@ public class SoccerEarlyState extends SoccerCommonState {
                 String d4 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 4), "yyyy-MM-dd");
                 String d5 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 5), "yyyy-MM-dd");
                 String dv = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
-                String d6 = getBaseView().getContextActivity().getString(R.string.six_day);
-                MenuItemInfo item0 = new MenuItemInfo(2, getBaseView().getContextActivity().getString(R.string.all), "");
+                String d6 = getBaseView().getBaseActivity().getString(R.string.six_day);
+                MenuItemInfo item0 = new MenuItemInfo(2, getBaseView().getBaseActivity().getString(R.string.all), "");
                 MenuItemInfo item1 = new MenuItemInfo(0, d1, d1);
                 MenuItemInfo item2 = new MenuItemInfo(0, d2, d2);
                 MenuItemInfo item3 = new MenuItemInfo(0, d3, d3);
                 MenuItemInfo item4 = new MenuItemInfo(0, d4, d4);
                 MenuItemInfo item5 = new MenuItemInfo(0, d5, d5);
                 MenuItemInfo item6 = new MenuItemInfo(1, d6, dv);
-                return new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getContextActivity(),new ArrayList<>(Arrays.asList(item0, item1, item2, item3, item4, item5, item6)), R.layout.text_base_item) {
+                return new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getBaseActivity(),new ArrayList<>(Arrays.asList(item0, item1, item2, item3, item4, item5, item6)), R.layout.text_base_item) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                         TextView view1 = holder.getView(R.id.item_text_tv);

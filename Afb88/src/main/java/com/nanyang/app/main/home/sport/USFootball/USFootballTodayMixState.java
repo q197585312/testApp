@@ -28,6 +28,6 @@ class USFootballTodayMixState extends BasketballTodayMixState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1,getBaseView().getContextActivity().getString(R.string.Today),"Today",getBaseView().getContextActivity().getString(R.string.US_Football));
+        return new MenuItemInfo<String>(1,getBaseView().getBaseActivity().getString(R.string.Today),"Today",getBaseView().getBaseActivity().getString(R.string.US_Football));
     }
 }

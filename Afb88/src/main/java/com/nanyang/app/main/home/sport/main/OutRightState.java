@@ -102,10 +102,10 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.OutRight), "OutRight"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
 
@@ -144,7 +144,7 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
 
     @Override
     public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
-        tvAos.getLayoutParams().width = DeviceUtils.dip2px(getBaseView().getContextActivity(), 50);
+        tvAos.getLayoutParams().width = DeviceUtils.dip2px(getBaseView().getBaseActivity(), 50);
         tvAos.setText(R.string.win);
         for (int i = 0; i < slHeader.getChildCount(); i++) {
             View childAt = slHeader.getChildAt(i);

@@ -26,9 +26,9 @@ public abstract class FinancialState extends TennisState{
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
         return types;
     }
 
@@ -40,7 +40,7 @@ public abstract class FinancialState extends TennisState{
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new OtherSingleAdapterHelper(getBaseView().getContextActivity());
+        return new OtherSingleAdapterHelper(getBaseView().getBaseActivity());
     }
     @Override
     protected List<List<String>> initHeaderList() {

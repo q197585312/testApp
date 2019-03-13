@@ -16,7 +16,7 @@ public class Game4dEarlyState extends Game4dState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.Specials_4D));
+        return new MenuItemInfo<String>(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early",getBaseView().getBaseActivity().getString(R.string.Specials_4D));
     }
 
     @Override

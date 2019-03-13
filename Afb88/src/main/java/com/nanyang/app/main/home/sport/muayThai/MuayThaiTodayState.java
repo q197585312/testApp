@@ -38,7 +38,7 @@ public class MuayThaiTodayState extends MuayThaiState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Today), "Today", getBaseView().getContextActivity().getString(R.string.Muay_Thai));
+        return new MenuItemInfo<String>(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getBaseActivity().getString(R.string.Muay_Thai));
     }
 
 

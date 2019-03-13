@@ -21,7 +21,7 @@ import java.util.List;
 public abstract class CyclingState extends TennisState{
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new OtherSingleAdapterHelper(getBaseView().getContextActivity()){
+        return new OtherSingleAdapterHelper(getBaseView().getBaseActivity()){
             @Override
             public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
                 super.onConvert(helper, position, item);
@@ -49,7 +49,7 @@ public abstract class CyclingState extends TennisState{
     protected List<List<String>> initHeaderList() {
         List<List<String>> lists = super.initHeaderList();
         lists.remove(0);
-        lists.get(0).set(1,getBaseView().getContextActivity().getString(R.string.HANDICAP));
+        lists.get(0).set(1,getBaseView().getBaseActivity().getString(R.string.HANDICAP));
         return lists;
     }
 

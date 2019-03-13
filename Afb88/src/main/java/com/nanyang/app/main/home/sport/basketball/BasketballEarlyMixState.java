@@ -24,7 +24,7 @@ public class BasketballEarlyMixState extends BasketballMixState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.Basketball));
+        return new MenuItemInfo<String>(1, getBaseView().getBaseActivity().getString(R.string.Early), "Early",getBaseView().getBaseActivity().getString(R.string.Basketball));
     }
 
     @Override

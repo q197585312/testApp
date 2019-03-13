@@ -16,7 +16,7 @@ public class VolleyballEarlyState extends VolleyballState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Early), "Early",getBaseView().getContextActivity().getString(R.string.Volleyball));
+        return new MenuItemInfo<String>(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early",getBaseView().getBaseActivity().getString(R.string.Volleyball));
     }
 
     @Override

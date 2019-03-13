@@ -24,7 +24,7 @@ public class TennisOutRightState extends OutRightState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.OutRight),"OutRight",getBaseView().getContextActivity().getString(R.string.Tennis));
+        return new MenuItemInfo<String>(0,getBaseView().getBaseActivity().getString(R.string.OutRight),"OutRight",getBaseView().getBaseActivity().getString(R.string.Tennis));
     }
 //http://a8206d.a36588.com/_view/OddsOutGen.ashx?g=36&ot=e&update=true&r=447758500&LID=&_=1490064297392
     @Override

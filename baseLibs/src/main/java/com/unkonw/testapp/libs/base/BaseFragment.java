@@ -173,9 +173,4 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
     public void refreshData(String type) {
 
     }
-
-
-    public BaseActivity getContextActivity() {
-        return getBaseActivity();
-    }
 }

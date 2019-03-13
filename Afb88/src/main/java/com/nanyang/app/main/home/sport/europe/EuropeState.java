@@ -65,9 +65,9 @@ public abstract class EuropeState extends BallState {
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
         return types;
     }
 
@@ -85,7 +85,7 @@ public abstract class EuropeState extends BallState {
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> texts = new ArrayList<>();
-        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getContextActivity().getString(R.string.full_time), getBaseView().getContextActivity().getString(R.string.half_time)));
+        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getBaseActivity().getString(R.string.full_time), getBaseView().getBaseActivity().getString(R.string.half_time)));
         texts.add(items0);
         return texts;
     }
@@ -275,7 +275,7 @@ public abstract class EuropeState extends BallState {
     }
 
     private void updateMixBackground(MyRecyclerViewHolder helper, BallInfo item) {
-        BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) getBaseView().getContextActivity());
+        BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) getBaseView().getBaseActivity());
         String itemFullSocOddsId = item.getSocOddsId();
         String itemHfSocOddsId = item.getSocOddsId_FH();
         AfbClickBetBean mixItem = handler.getMixItem(itemFullSocOddsId);
@@ -424,7 +424,7 @@ public abstract class EuropeState extends BallState {
     }
 
     public String getParentText() {
-        return getBaseView().getContextActivity().getString(R.string.Europe_View);
+        return getBaseView().getBaseActivity().getString(R.string.Europe_View);
     }
 
     class itemClick implements View.OnClickListener {

@@ -50,11 +50,11 @@ public class BasketballTodayState extends BasketballCommonState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Today),"Today",getBaseView().getContextActivity().getString(R.string.Basketball));
+        return new MenuItemInfo<String>(0,getBaseView().getBaseActivity().getString(R.string.Today),"Today",getBaseView().getBaseActivity().getString(R.string.Basketball));
     }
 
     @Override
     protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
-        return new BasketballCommonAdapterHelper(getBaseView().getContextActivity());
+        return new BasketballCommonAdapterHelper(getBaseView().getBaseActivity());
     }
 }

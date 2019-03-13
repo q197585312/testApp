@@ -258,6 +258,7 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> {
                         protected void onBaseGetData(ResultBean data) {
                             onResultData(data);
                         }
+
                     });
                 }
                 break;

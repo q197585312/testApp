@@ -170,10 +170,10 @@ public abstract class SoccerCommonState extends BallState {
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.OutRight), "OutRight"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
 

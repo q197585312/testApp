@@ -28,24 +28,24 @@ public abstract class IceHockeyState extends TennisState{
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new OtherDoubleAdapterHelper(getBaseView().getContextActivity());
+        return new OtherDoubleAdapterHelper(getBaseView().getBaseActivity());
     }
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.OutRight), "OutRight"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> lists = super.initHeaderList();
-        lists.get(0).set(0,getBaseView().getContextActivity().getString(R.string.TO_WIN));
-        lists.get(0).set(1,getBaseView().getContextActivity().getString(R.string.HANDICAP));
-        lists.get(1).set(0,getBaseView().getContextActivity().getString(R.string.O_U));
-        lists.get(1).set(1,getBaseView().getContextActivity().getString(R.string.ODD_EVEN));
+        lists.get(0).set(0,getBaseView().getBaseActivity().getString(R.string.TO_WIN));
+        lists.get(0).set(1,getBaseView().getBaseActivity().getString(R.string.HANDICAP));
+        lists.get(1).set(0,getBaseView().getBaseActivity().getString(R.string.O_U));
+        lists.get(1).set(1,getBaseView().getBaseActivity().getString(R.string.ODD_EVEN));
         return lists;
     }
 }

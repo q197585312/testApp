@@ -38,7 +38,7 @@ public class FinancialTodayState extends FinancialState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Today),"Today",getBaseView().getContextActivity().getString(R.string.Financial));
+        return new MenuItemInfo<String>(0,getBaseView().getBaseActivity().getString(R.string.Today),"Today",getBaseView().getBaseActivity().getString(R.string.Financial));
     }
 
 

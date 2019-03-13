@@ -64,7 +64,7 @@ public abstract class SoccerMixState extends BallState {
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new SoccerMixAdapterHelper(getBaseView().getContextActivity());
+        return new SoccerMixAdapterHelper(getBaseView().getBaseActivity());
     }
 
     @Override
@@ -149,8 +149,8 @@ public abstract class SoccerMixState extends BallState {
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
         return types;
     }
 

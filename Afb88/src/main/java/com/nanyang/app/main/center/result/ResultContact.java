@@ -14,7 +14,7 @@ import java.util.List;
 
 public class ResultContact {
     interface View extends IBaseView<String> {
-        Activity getContextActivity();
+        Activity getBaseActivity();
         void onPopupWindowCreated(BasePopupWindow pop, int center);
         void onModuleList(String item, List<ResultInfo> resultInfos);
     }

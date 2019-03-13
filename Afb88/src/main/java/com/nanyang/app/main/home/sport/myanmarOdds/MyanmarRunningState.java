@@ -18,7 +18,7 @@ public class MyanmarRunningState extends MyanmarState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Running), "Running", getBaseView().getContextActivity().getString(R.string.Myanmar_Odds));
+        return new MenuItemInfo<String>(0, getBaseView().getBaseActivity().getString(R.string.Running), "Running", getBaseView().getBaseActivity().getString(R.string.Myanmar_Odds));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class MyanmarRunningState extends MyanmarState {
 
     @Override
     public IAdapterHelper<MyanmarInfo> onSetAdapterHelper() {
-        return new MyanmarRunningAdapterHelper(getBaseView().getContextActivity());
+        return new MyanmarRunningAdapterHelper(getBaseView().getBaseActivity());
     }
 
     @Override

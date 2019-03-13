@@ -29,19 +29,19 @@ public abstract class BaseballState extends BasketballCommonState {
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new BaseballAdapter(getBaseView().getContextActivity());
+        return new BaseballAdapter(getBaseView().getBaseActivity());
 
     }
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> texts = new ArrayList<>();
-        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getContextActivity().getString(R.string.FULL_1X2)
-                , getBaseView().getContextActivity().getString(R.string.FULL_H_A)
-                , getBaseView().getContextActivity().getString(R.string.FULL_O_U)
+        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getBaseActivity().getString(R.string.FULL_1X2)
+                , getBaseView().getBaseActivity().getString(R.string.FULL_H_A)
+                , getBaseView().getBaseActivity().getString(R.string.FULL_O_U)
         ));
-        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getContextActivity().getString(R.string.FULL_O_E)
-                , getBaseView().getContextActivity().getString(R.string.FIRST5_H_A)
-                , getBaseView().getContextActivity().getString(R.string.FIRST5_O_U)
+        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getBaseActivity().getString(R.string.FULL_O_E)
+                , getBaseView().getBaseActivity().getString(R.string.FIRST5_H_A)
+                , getBaseView().getBaseActivity().getString(R.string.FIRST5_O_U)
         ));
         texts.add(items0);
         texts.add(items1);
@@ -50,10 +50,10 @@ public abstract class BaseballState extends BasketballCommonState {
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
-        types.add(new MenuItemInfo(0, getBaseView().getContextActivity().getString(R.string.OutRight), "OutRight"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
     @Override

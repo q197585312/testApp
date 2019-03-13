@@ -48,7 +48,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
 
     @Override
     public IAdapterHelper<MyanmarInfo> onSetAdapterHelper() {
-        return new MyanmarAdapterHelper(getBaseView().getContextActivity());
+        return new MyanmarAdapterHelper(getBaseView().getBaseActivity());
     }
 
     @Override
@@ -198,9 +198,9 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(1, getBaseView().getContextActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
         return types;
     }
 

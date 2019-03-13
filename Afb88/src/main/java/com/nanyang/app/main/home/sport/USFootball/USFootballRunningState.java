@@ -46,7 +46,7 @@ public class USFootballRunningState extends BasketballRunningState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getBaseView().getContextActivity().getString(R.string.US_Football));
+        return new MenuItemInfo<String>(0,getBaseView().getBaseActivity().getString(R.string.Running),"Running",getBaseView().getBaseActivity().getString(R.string.US_Football));
     }
     @Override
     public IBetHelper<BallInfo> onSetBetHelper() {

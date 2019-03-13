@@ -90,6 +90,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     }
 
     protected void updateFirstStake() {
+
         Disposable d = Api.getService(ApiService.class).getData(AppConstant.getInstance().URL_STAKE).subscribeOn(Schedulers.io()).observeOn(Schedulers.computation())
                 .map(new Function<String, StakeListBean.DicAllBean>() {
 
@@ -146,9 +147,9 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             String type = item.getTransType();
             if (type.equals("MMO")) {
                 if (item.isIsBetHome()) {
-                    typeName = baseView.getContextActivity().getString(R.string.over);
+                    typeName = baseView.getBaseActivity().getString(R.string.over);
                 } else {
-                    typeName = baseView.getContextActivity().getString(R.string.under);
+                    typeName = baseView.getBaseActivity().getString(R.string.under);
                 }
             } else {
                 if (item.isIsBetHome()) {
@@ -286,7 +287,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     }
 
     protected void createBetPop(AfbClickBetBean bean, View v) {
-        BetPop pop = new BetPop(baseView.getContextActivity(), v);
+        BetPop pop = new BetPop(baseView.getBaseActivity(), v);
         pop.setBetData(bean, this);
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);
     }
@@ -342,7 +343,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     public void accept(AfbClickResponseBean bean) throws Exception {
                         if (bean == null || bean.getList() == null || bean.getList().size() == 0) {
                         } else if (bean.getList().size() == 1) {
-                            createBetPop(bean.getList().get(0), v == null ? new View(getBaseView().getContextActivity()) : v);
+                            createBetPop(bean.getList().get(0), v == null ? new View(getBaseView().getBaseActivity()) : v);
                         }
                         baseView.onUpdateMixSucceed(bean);
 

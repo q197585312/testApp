@@ -128,23 +128,23 @@ public class ResultOrderFragment extends BaseFragment<ResultPresenter> implement
                         setFL(awayLTv, awayL);
                         if (item.isIsCancel()) {
                             scoreTv.setText(R.string.cancel);
-                            scoreTv.setTextColor(getContextActivity().getResources().getColor(R.color.red_title));
+                            scoreTv.setTextColor(getBaseActivity().getResources().getColor(R.color.red_title));
                         } else {
-                            scoreTv.setTextColor(getContextActivity().getResources().getColor(R.color.black_grey));
+                            scoreTv.setTextColor(getBaseActivity().getResources().getColor(R.color.black_grey));
                         }
                         if (item.isIsCancelFH()) {
                             halfTv.setText(R.string.cancel);
-                            halfTv.setTextColor(getContextActivity().getResources().getColor(R.color.red_title));
+                            halfTv.setTextColor(getBaseActivity().getResources().getColor(R.color.red_title));
                         } else {
-                            halfTv.setTextColor(getContextActivity().getResources().getColor(R.color.black_grey));
+                            halfTv.setTextColor(getBaseActivity().getResources().getColor(R.color.black_grey));
                         }
 
                     } else {
                         ((LinearLayout.LayoutParams) halfTv.getLayoutParams()).weight = 3;
                         halfTv.setText(item.getWinner());
                         scoreTv.setText("VS");
-                        scoreTv.setTextColor(getContextActivity().getResources().getColor(R.color.black_grey));
-                        halfTv.setTextColor(getContextActivity().getResources().getColor(R.color.black_grey));
+                        scoreTv.setTextColor(getBaseActivity().getResources().getColor(R.color.black_grey));
+                        halfTv.setTextColor(getBaseActivity().getResources().getColor(R.color.black_grey));
                     }
 
                 } else {

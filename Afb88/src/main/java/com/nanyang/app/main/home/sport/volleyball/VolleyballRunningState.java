@@ -42,7 +42,7 @@ public class VolleyballRunningState extends VolleyballState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Running),"Running",getBaseView().getContextActivity().getString(R.string.Volleyball));
+        return new MenuItemInfo<String>(0,getBaseView().getBaseActivity().getString(R.string.Running),"Running",getBaseView().getBaseActivity().getString(R.string.Volleyball));
     }
 
 }

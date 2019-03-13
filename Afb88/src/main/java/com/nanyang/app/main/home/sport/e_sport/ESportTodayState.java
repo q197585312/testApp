@@ -42,7 +42,7 @@ public class ESportTodayState extends ESportState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Today), "Today", getBaseView().getContextActivity().getString(R.string.E_Sport));
+        return new MenuItemInfo<String>(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getBaseActivity().getString(R.string.E_Sport));
     }
 
 

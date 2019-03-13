@@ -42,7 +42,7 @@ public class CricketTodayState extends CricketState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getContextActivity().getString(R.string.Today), "Today", getBaseView().getContextActivity().getString(R.string.Cricket));
+        return new MenuItemInfo<String>(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getBaseActivity().getString(R.string.Cricket));
     }
 
 

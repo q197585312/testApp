@@ -20,7 +20,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2017/2/5 0005.
  */
-public class RegisterActivity extends BaseActivity<RegisterPresenter> implements RegisterContract.View, View.OnFocusChangeListener {
+public class RegisterActivity extends BaseActivity<RegisterPresenter> implements  View.OnFocusChangeListener {
 
 
     @Bind(R.id.edt_account)
@@ -65,12 +65,12 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     TextView tvAccountnumberPrompt;
 
 
-    @Override
+
     public void onFailed(String error) {
 
     }
 
-    @Override
+
     public void onGetData(String data) {
         Toast.makeText(mContext, data, Toast.LENGTH_SHORT).show();
     }

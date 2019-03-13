@@ -424,7 +424,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             });
         }
 
-        getContextActivity().getTvToolbarTitle().setText(state.getStateType().getText());
+        getBaseActivity().getTvToolbarTitle().setText(state.getStateType().getText());
 
         ((SportState) presenter.getStateHelper()).initAllOdds(ivAllAdd);
         presenter.getStateHelper().refresh();
@@ -440,7 +440,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
 
     @Override
-    public BaseToolbarActivity getContextActivity() {
+    public BaseToolbarActivity getBaseActivity() {
         return (BaseToolbarActivity) getBaseActivity();
     }
 
@@ -460,10 +460,10 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     private void rememberLastOdds() {
-        MenuItemInfo oddsType = ((SportActivity) getContextActivity()).getOddsType();
+        MenuItemInfo oddsType = ((SportActivity) getBaseActivity()).getOddsType();
         if (oddsType != null)
             tvOddsType.setText(oddsType.getText());
-        MenuItemInfo allOddsType = ((SportActivity) getContextActivity()).getAllOddsType();
+        MenuItemInfo allOddsType = ((SportActivity) getBaseActivity()).getAllOddsType();
         if (allOddsType != null) {
             ivAllAdd.setText(allOddsType.getText());
             if (allOddsType.getText().equals(getString(R.string.All_Markets))) {
@@ -561,7 +561,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
-                        ((SportActivity) getContextActivity()).setOddsType(item);
+                        ((SportActivity) getBaseActivity()).setOddsType(item);
                         presenter.getStateHelper().switchOddsType(item.getType());
                         closePopupWindow();
                         tvOddsType.setText(item.getText());
@@ -581,14 +581,14 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     @Override
     public void onBetSuccess(String betResult) {
-        getContextActivity().onBetSuccess(betResult);
+        getBaseActivity().onBetSuccess(betResult);
         updateMixOrderCount();
         baseRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
-        getContextActivity().onPopupWindowCreated(pop, center);
+        getBaseActivity().onPopupWindowCreated(pop, center);
     }
 
     public void switchParentType(MenuItemInfo stateType) {
@@ -612,7 +612,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         Bundle b = new Bundle();
         b.putSerializable(AppConstant.KEY_DATA, item);
         b.putSerializable(AppConstant.KEY_DATA2, presenter.getStateHelper().getStateType());
-        MenuItemInfo oddsType = ((SportActivity) getContextActivity()).getOddsType();
+        MenuItemInfo oddsType = ((SportActivity) getBaseActivity()).getOddsType();
         b.putSerializable(AppConstant.KEY_DATA3, oddsType);
         skipAct(VsActivity.class, b);
     }

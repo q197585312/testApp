@@ -53,11 +53,11 @@ public class SoccerTodayState extends SoccerCommonState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getContextActivity().getString(R.string.Today),"Today",getBaseView().getContextActivity().getString(R.string.football));
+        return new MenuItemInfo<String>(0,getBaseView().getBaseActivity().getString(R.string.Today),"Today",getBaseView().getBaseActivity().getString(R.string.football));
     }
 
     @Override
     protected SoccerCommonAdapterHelper onSetCommonAdapterHelper() {
-        return new SoccerTodayAdapterHelper(getBaseView().getContextActivity());
+        return new SoccerTodayAdapterHelper(getBaseView().getBaseActivity());
     }
 }

@@ -33,7 +33,7 @@ public class SoccerRunningBetHelper extends SoccerCommonBetHelper {
     */
 
     protected void createBetPop(AfbClickBetBean bean, View v) {
-        BetPop pop = new BetPop(baseView.getContextActivity(), v);
+        BetPop pop = new BetPop(baseView.getBaseActivity(), v);
         pop.setBetData(bean, this);
         pop.setrTMatchInfo(item);
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);
