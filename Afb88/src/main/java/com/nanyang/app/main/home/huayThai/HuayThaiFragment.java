@@ -253,7 +253,12 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> {
                 break;
             case R.id.tv_submit:
                 if (checkVisiable(info.getText())) {
-                    presenter.submitBet(AppConstant.getInstance().HOST + info.getParent(), getParam());
+                    presenter.submitBet(AppConstant.getInstance().HOST + info.getParent(), getParam(), new BaseConsumer<ResultBean>(this) {
+                        @Override
+                        protected void onBaseGetData(ResultBean data) {
+                            onResultData(data);
+                        }
+                    });
                 }
                 break;
         }
