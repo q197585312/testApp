@@ -17,12 +17,12 @@ import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
     private ArrayList<ImageView> reusableImgViews = new ArrayList<>();
-    private List<AllBannerImagesBean.BannersBean> lists;
+    private List<AllBannerImagesBean.MainBannersBean> lists;
     public LinearLayout layout;
     public int itemTrueAmount;
     private Context context;
 
-    public ViewPagerAdapter(List<AllBannerImagesBean.BannersBean> lists, LinearLayout layout, Context context) {
+    public ViewPagerAdapter(List<AllBannerImagesBean.MainBannersBean> lists, LinearLayout layout, Context context) {
         super();
         this.lists = lists;
         this.layout = layout;

@@ -25,8 +25,6 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.List;
-
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
@@ -97,8 +95,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(AllBannerImagesBean data) {
-        List<AllBannerImagesBean.BannersBean> loginBanners = data.getLoginBanners();
+    public void onEvent(AllBannerImagesBean.LoginBannersBean data) {
+
     }
 
 

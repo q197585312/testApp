@@ -185,16 +185,16 @@ public class HomeFragment extends BaseFragment {
 
 
 
-    private void initViewPager(List<AllBannerImagesBean.BannersBean> lists) {
+    private void initViewPager(List<AllBannerImagesBean.MainBannersBean> lists) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(lists, inLayout, getActivity());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(viewPager.listener);
     }
 
     @Subscribe
-    public void onAllImagesEvent(AllBannerImagesBean data){
-        List<AllBannerImagesBean.BannersBean> mainBanners = data.getMainBanners();
-        initViewPager(mainBanners);
+    public void onAllImagesEvent(List<AllBannerImagesBean.MainBannersBean> data){
+
+        initViewPager(data);
 
     }
 

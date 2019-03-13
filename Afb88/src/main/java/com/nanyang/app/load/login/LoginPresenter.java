@@ -204,7 +204,9 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
             @Override
             protected void onBaseGetData(AllBannerImagesBean data) {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
-                EventBus.getDefault().post(data);
+                EventBus.getDefault().post(data.getLoginBanners());
+                EventBus.getDefault().post(data.getMainBanners());
+                EventBus.getDefault().post(data.getMain());
             }
         });
     }
