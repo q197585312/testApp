@@ -27,7 +27,9 @@
             android:layout_gravity="right"
             android:layout_margin="5dp"
             android:gravity="right"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:visibility="gone"
+            >
 
             <RadioButton
                 android:id="@+id/login_korea_rb"
