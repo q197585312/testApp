@@ -45,11 +45,11 @@ public class ESportRunningState extends ESportState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getBaseActivity().getString(R.string.Running),"Running",getBaseView().getBaseActivity().getString(R.string.Specials_4D));
+        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Specials_4D));
     }
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new OtherRunningDoubleAdapterHelper(getBaseView().getBaseActivity());
+        return new OtherRunningDoubleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
 }

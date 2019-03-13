@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.additional;
 
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
@@ -525,10 +524,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         }
     }
 
-    @Override
-    public Activity getBaseActivity() {
-        return this;
-    }
+
 
     @Override
     public void onUpdateMixSucceed(AfbClickResponseBean bean) {

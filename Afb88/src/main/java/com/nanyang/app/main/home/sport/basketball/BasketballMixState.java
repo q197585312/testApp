@@ -66,7 +66,7 @@ public abstract class BasketballMixState extends BallState {
                 return 0;
             }
         };
-//        return new BasketballAdapterHelper(getBaseView().getBaseActivity());
+//        return new BasketballAdapterHelper(getBaseView().getIBaseContext());
     }
 
     @Override
@@ -137,8 +137,8 @@ public abstract class BasketballMixState extends BallState {
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
         return types;
     }
 
@@ -156,8 +156,8 @@ public abstract class BasketballMixState extends BallState {
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> lists = super.initHeaderList();
-        lists.get(1).set(0, getBaseView().getBaseActivity().getString(R.string.TO_WIN));
-        lists.get(1).set(1, getBaseView().getBaseActivity().getString(R.string.FULL_O_E));
+        lists.get(1).set(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.TO_WIN));
+        lists.get(1).set(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.FULL_O_E));
         return lists;
     }
 
@@ -165,6 +165,6 @@ public abstract class BasketballMixState extends BallState {
     public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
         super.setScrollHeaderContent(slHeader, tvAos);
         tvAos.setVisibility(View.GONE);
-        slHeader.getLayoutParams().width = DeviceUtils.dip2px(getBaseView().getBaseActivity(), 140);
+        slHeader.getLayoutParams().width = DeviceUtils.dip2px(getBaseView().getIBaseContext().getBaseActivity(), 140);
     }
 }

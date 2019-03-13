@@ -52,7 +52,7 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
                 });
         if (compositeSubscription != null)
             compositeSubscription.add(subscribe);*//*
-        new BaseMixStyleHandler((BaseToolbarActivity) baseContext.getBaseActivity()).setMixBackground(v);
+        new BaseMixStyleHandler((BaseToolbarActivity) baseContext.getIBaseContext()).setMixBackground(v);
         Disposable subscribe = getService(ApiService.class).updateMixParlayBet(getOddsUrl(item, type, isHf, odds, params)).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).subscribe(new Consumer<BettingParPromptBean>() {//onNext
                     @Override
@@ -62,7 +62,7 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        new BaseMixStyleHandler((BaseToolbarActivity) baseContext.getBaseActivity()).setCommonBackground(v);
+                        new BaseMixStyleHandler((BaseToolbarActivity) baseContext.getIBaseContext()).setCommonBackground(v);
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().hideLoadingDialog();
                     }
@@ -85,7 +85,7 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
 
 
     private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
-        BetPop pop = new BetPop(baseContext.getBaseActivity(), v);
+        BetPop pop = new BetPop(baseContext.getIBaseContext(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
         baseContext.onPopupWindowCreated(pop, Gravity.CENTER);

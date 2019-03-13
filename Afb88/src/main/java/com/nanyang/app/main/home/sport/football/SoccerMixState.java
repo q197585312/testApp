@@ -64,7 +64,7 @@ public abstract class SoccerMixState extends BallState {
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new SoccerMixAdapterHelper(getBaseView().getBaseActivity());
+        return new SoccerMixAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
 
     @Override
@@ -149,8 +149,8 @@ public abstract class SoccerMixState extends BallState {
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
         return types;
     }
 
@@ -174,17 +174,17 @@ public abstract class SoccerMixState extends BallState {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         getBaseView().onFailed(throwable.getMessage());
-                        getBaseView().hideLoadingDialog();
+                        getBaseView().getIBaseContext().hideLoadingDialog();
                     }
                 }, new Action() {//完成
                     @Override
                     public void run() throws Exception {
-                        getBaseView().hideLoadingDialog();
+                        getBaseView().getIBaseContext().hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        getBaseView().showLoadingDialog();
+                        getBaseView().getIBaseContext().showLoadingDialog();
                         subscription.request(Long.MAX_VALUE);
                     }
                 });

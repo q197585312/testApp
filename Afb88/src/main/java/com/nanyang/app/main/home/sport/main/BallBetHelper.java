@@ -50,7 +50,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 || betAfbList.getList().get(0).getOddsG().equals("50") || betAfbList.getList().get(0).getOddsType().startsWith("mm") || !hasPar))) {
             betOddsUrl = "BTMD=S&coupon=0&BETID=" + oddsUrlBean.getBETID();
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
-            getBaseView().onFailed(getBaseView().getBaseActivity().getString(R.string.can_not_mixparly));
+            getBaseView().onFailed(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.can_not_mixparly));
             return new CompositeDisposable();
         } else {
             String ids = "";

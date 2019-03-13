@@ -68,7 +68,7 @@ public class TennisBetHelper extends BallBetHelper<BallInfo, BetView> {
     }
 
     private void createBetPop(AfbClickBetBean bean, boolean isHf, TextView v) {
-        BetPop pop = new BetPop(baseContext.getBaseActivity(), v);
+        BetPop pop = new BetPop(baseContext.getIBaseContext(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
         baseContext.onPopupWindowCreated(pop, Gravity.CENTER);

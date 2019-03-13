@@ -101,7 +101,7 @@ public abstract class BasketballCommonState extends BallState {
 
 
     protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
-        return new BasketballCommonAdapterHelper(getBaseView().getBaseActivity());
+        return new BasketballCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
 
 
@@ -168,18 +168,18 @@ public abstract class BasketballCommonState extends BallState {
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.OutRight), "OutRight"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
 
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> lists = super.initHeaderList();
-        lists.get(0).add(getBaseView().getBaseActivity().getString(R.string.FULL_O_E));
-        lists.get(1).add(getBaseView().getBaseActivity().getString(R.string.HALF_O_E));
+        lists.get(0).add(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.FULL_O_E));
+        lists.get(1).add(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.HALF_O_E));
         return lists;
     }
 
@@ -187,6 +187,6 @@ public abstract class BasketballCommonState extends BallState {
     public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
         super.setScrollHeaderContent(slHeader, tvAos);
         tvAos.setVisibility(View.GONE);
-        slHeader.getLayoutParams().width = DeviceUtils.dip2px(getBaseView().getBaseActivity(), 210);
+        slHeader.getLayoutParams().width = DeviceUtils.dip2px(getBaseView().getIBaseContext().getBaseActivity(), 210);
     }
 }

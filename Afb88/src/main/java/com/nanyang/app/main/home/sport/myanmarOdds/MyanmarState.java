@@ -48,7 +48,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
 
     @Override
     public IAdapterHelper<MyanmarInfo> onSetAdapterHelper() {
-        return new MyanmarAdapterHelper(getBaseView().getBaseActivity());
+        return new MyanmarAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
 
     @Override
@@ -198,9 +198,9 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Running), "Running"));
         return types;
     }
 
@@ -212,7 +212,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
 //    @Override
 //    protected List<List<String>> initHeaderList() {
 //        List<List<String>> lists = super.initHeaderList();
-//        lists.add(new ArrayList<>(Arrays.asList(getBaseView().getBaseActivity().getString(R.string.AFB_FT_HDP), getBaseView().getBaseActivity().getString(R.string.AFB_FT_OU))));
+//        lists.add(new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.AFB_FT_HDP), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.AFB_FT_OU))));
 //        return lists;
 //    }
 

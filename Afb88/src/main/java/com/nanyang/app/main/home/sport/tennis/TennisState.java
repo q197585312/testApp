@@ -48,10 +48,10 @@ public abstract class TennisState extends BasketballCommonState{
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.OutRight), "OutRight"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
     @Override
@@ -69,8 +69,8 @@ public abstract class TennisState extends BasketballCommonState{
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> texts = new ArrayList<>();
-        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getBaseActivity().getString(R.string.TO_WIN), getBaseView().getBaseActivity().getString(R.string.HANDICAP)));
-        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getBaseActivity().getString(R.string.O_U), getBaseView().getBaseActivity().getString(R.string.ODD_EVEN)));
+        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.TO_WIN), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.HANDICAP)));
+        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.O_U), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.ODD_EVEN)));
         texts.add(items0);
         texts.add(items1);
         return texts;
@@ -80,12 +80,12 @@ public abstract class TennisState extends BasketballCommonState{
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new OtherDoubleAdapterHelper(getBaseView().getBaseActivity());
+        return new OtherDoubleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
     @Override
     public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
         super.setScrollHeaderContent(slHeader, tvAos);
         tvAos.setVisibility(View.GONE);
-        slHeader.getLayoutParams().width= DeviceUtils.dip2px(getBaseView().getBaseActivity(),140);
+        slHeader.getLayoutParams().width= DeviceUtils.dip2px(getBaseView().getIBaseContext().getBaseActivity(),140);
     }
 }

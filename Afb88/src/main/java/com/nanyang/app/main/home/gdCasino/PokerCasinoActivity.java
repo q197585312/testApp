@@ -33,7 +33,7 @@ import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
-import com.unkonw.testapp.libs.base.IBaseView;
+import com.unkonw.testapp.libs.base.BaseView;
 import com.unkonw.testapp.libs.utils.PermissionUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -222,15 +222,10 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
 
     private void loginGD() {
         if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
-            presenter.skipGd88(new IBaseView<String>() {
+            presenter.skipGd88(new BaseView<PokerCasinoActivity, String>(this) {
                 @Override
                 public void onGetData(String data) {
                     PokerCasinoActivity.this.onGetData(data);
-                }
-
-                @Override
-                public void onFailed(String error) {
-
                 }
             });
         } else {

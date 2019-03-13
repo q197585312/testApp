@@ -65,7 +65,8 @@ import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
-import com.unkonw.testapp.libs.base.IBaseView;
+
+import com.unkonw.testapp.libs.base.BaseView;
 import com.unkonw.testapp.libs.utils.SharePreferenceUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -586,14 +587,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     private void loginGD() {
         if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
-            presenter.skipGd88(new IBaseView<String>() {
+            presenter.skipGd88(new BaseView<SportActivity, String>(this) {
                 @Override
                 public void onGetData(String data) {
                     SportActivity.this.onGetData(data);
-                }
-                @Override
-                public void onFailed(String error) {
-
                 }
             });
         } else {

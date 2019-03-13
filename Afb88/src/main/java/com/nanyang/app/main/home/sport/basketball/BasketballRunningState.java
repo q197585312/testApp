@@ -47,13 +47,13 @@ public class BasketballRunningState extends BasketballCommonState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getBaseActivity().getString(R.string.Running),"Running",getBaseView().getBaseActivity().getString(R.string.Basketball));
+        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Basketball));
     }
 
 
     @Override
     protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
-        return  new BasketballCommonAdapterHelper(getBaseView().getBaseActivity());
+        return  new BasketballCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
     @Override
     public IBetHelper onSetBetHelper() {

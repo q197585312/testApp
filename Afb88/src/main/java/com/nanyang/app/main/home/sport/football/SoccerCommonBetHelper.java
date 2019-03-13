@@ -22,7 +22,7 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
 
 /*
     protected void createBetPop(BettingPromptBean bean, boolean isHf, TextView v,SoccerCommonInfo item) {
-        BetPop pop = new BetPop(baseContext.getBaseActivity(), v);
+        BetPop pop = new BetPop(baseContext.getIBaseContext(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
         baseContext.onPopupWindowCreated(pop, Gravity.CENTER);

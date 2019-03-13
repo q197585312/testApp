@@ -7,4 +7,5 @@ package com.unkonw.testapp.libs.base;
 public interface IBaseView<T> {
     void onGetData(T data);
     void onFailed(String error);
+    IBaseContext getIBaseContext();
 }

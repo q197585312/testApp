@@ -28,8 +28,8 @@ import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.api.Api;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.base.IBaseView;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -111,23 +111,23 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     @Override
                     public void accept(StakeListBean.DicAllBean dicAllBean) throws Exception {
                         handleDicAllBean(dicAllBean);
-                        baseView.sdd();
+                        baseView.getIBaseContext().hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.hideLoadingDialog();
+                        baseView.getIBaseContext().hideLoadingDialog();
                         baseView.onFailed(throwable.getMessage());
                     }
                 }, new Action() {
                     @Override
                     public void run() throws Exception {
-                        baseView.hideLoadingDialog();
+                        baseView.getIBaseContext().hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
+                        baseView.getIBaseContext().showLoadingDialog();
                         subscription.request(Integer.MAX_VALUE);
                     }
                 });
@@ -147,9 +147,9 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             String type = item.getTransType();
             if (type.equals("MMO")) {
                 if (item.isIsBetHome()) {
-                    typeName = baseView.getBaseActivity().getString(R.string.over);
+                    typeName = baseView.getIBaseContext().getBaseActivity().getString(R.string.over);
                 } else {
-                    typeName = baseView.getBaseActivity().getString(R.string.under);
+                    typeName = baseView.getIBaseContext().getBaseActivity().getString(R.string.under);
                 }
             } else {
                 if (item.isIsBetHome()) {
@@ -267,17 +267,17 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         baseView.onFailed(throwable.getMessage());
-                        baseView.hideLoadingDialog();
+                        baseView.getIBaseContext().hideLoadingDialog();
                     }
                 }, new Action() {//完成
                     @Override
                     public void run() throws Exception {
-                        baseView.hideLoadingDialog();
+                        baseView.getIBaseContext().hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
+                        baseView.getIBaseContext().showLoadingDialog();
                         subscription.request(Long.MAX_VALUE);
                     }
                 });
@@ -287,7 +287,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     }
 
     protected void createBetPop(AfbClickBetBean bean, View v) {
-        BetPop pop = new BetPop(baseView.getBaseActivity(), v);
+        BetPop pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
         pop.setBetData(bean, this);
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);
     }
@@ -319,7 +319,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                             jsonArray = new JSONArray(s);
                         } catch (JSONException e) {
                             getBaseView().onFailed(s);
-                            getBaseView().hideLoadingDialog();
+                            getBaseView().getIBaseContext().hideLoadingDialog();
                             return null;
                         }
                         if (jsonArray.length() > 1) {
@@ -343,7 +343,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     public void accept(AfbClickResponseBean bean) throws Exception {
                         if (bean == null || bean.getList() == null || bean.getList().size() == 0) {
                         } else if (bean.getList().size() == 1) {
-                            createBetPop(bean.getList().get(0), v == null ? new View(getBaseView().getBaseActivity()) : v);
+                            createBetPop(bean.getList().get(0), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
                         }
                         baseView.onUpdateMixSucceed(bean);
 
@@ -352,17 +352,17 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         getBaseView().onFailed(throwable.getMessage());
-                        getBaseView().hideLoadingDialog();
+                        getBaseView().getIBaseContext().hideLoadingDialog();
                     }
                 }, new Action() {//完成
                     @Override
                     public void run() throws Exception {
-                        getBaseView().hideLoadingDialog();
+                        getBaseView().getIBaseContext().hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        getBaseView().showLoadingDialog();
+                        getBaseView().getIBaseContext().showLoadingDialog();
                         subscription.request(Long.MAX_VALUE);
                     }
                 });

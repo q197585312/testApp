@@ -28,14 +28,14 @@ public abstract class MuayThaiState extends FinancialState{
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new OtherDoubleAdapterHelper(getBaseView().getBaseActivity());
+        return new OtherDoubleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Running), "Running"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Running), "Running"));
         return types;
     }
 }

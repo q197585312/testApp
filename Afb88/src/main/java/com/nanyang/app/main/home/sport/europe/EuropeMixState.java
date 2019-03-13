@@ -50,8 +50,8 @@ public abstract class EuropeMixState extends BallState {
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(1, getBaseView().getBaseActivity().getString(R.string.Early), "Early"));
+        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
+        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
         return types;
     }
     @Override
@@ -71,7 +71,7 @@ public abstract class EuropeMixState extends BallState {
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> texts = new ArrayList<>();
-        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getBaseActivity().getString(R.string.full_time), getBaseView().getBaseActivity().getString(R.string.half_time)));
+        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.full_time), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.half_time)));
         texts.add(items0);
         return texts;
     }
@@ -228,7 +228,7 @@ public abstract class EuropeMixState extends BallState {
                 View tvRightMark = helper.getView(R.id.module_right_mark_tv);
                 tvRightMark.setVisibility(View.GONE);
 
-                EuropeMixStyleHandler handler = new EuropeMixStyleHandler((BaseToolbarActivity) getBaseView().getBaseActivity());
+                EuropeMixStyleHandler handler = new EuropeMixStyleHandler((BaseToolbarActivity) getBaseView().getIBaseContext());
                 handler.setCommonBackground(fullx);
                 handler.setCommonBackground(full1);
                 handler.setCommonBackground(full2);
@@ -345,7 +345,7 @@ public abstract class EuropeMixState extends BallState {
 
     }
     public String getParentText() {
-        return getBaseView().getBaseActivity().getString(R.string.Europe_View);
+        return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Europe_View);
     }
 
     class itemClick implements View.OnClickListener {

@@ -107,7 +107,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void setBaseView(V mBaseView) {
         this.baseView = mBaseView;
         adapterHelper = onSetAdapterHelper();
-        baseRecyclerAdapter = new BaseRecyclerAdapter<B>(baseView.getBaseActivity(), new ArrayList<B>(), adapterHelper.onSetAdapterItemLayout()) {
+        baseRecyclerAdapter = new BaseRecyclerAdapter<B>(baseView.getIBaseContext().getBaseActivity(), new ArrayList<B>(), adapterHelper.onSetAdapterItemLayout()) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, B item) {
                 adapterHelper.onConvert(holder, position, item);
@@ -153,7 +153,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void refresh() {
         if (param == null) {
 
-            param = ((SportActivity) getBaseView().getBaseActivity()).getAllOddsType();
+            param = ((SportActivity) getBaseView().getIBaseContext()).getAllOddsType();
             setParam(param);
         }
         String url = getUrlString();
@@ -176,14 +176,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         baseView.checkMix(isMix());
                         initAllData(allData1);
                         startUpdateData();
-                        baseView.hideLoadingDialog();
+                        baseView.getIBaseContext().hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         baseView.onFailed(throwable.getMessage());
-                        baseView.hideLoadingDialog();
-                        baseView.reLoginPrompt(getBaseView().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
+                        baseView.getIBaseContext().hideLoadingDialog();
+                        baseView.reLoginPrompt(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
                             @Override
                             public void clickCancel(View v) {
                                 refresh();
@@ -193,22 +193,22 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 }, new Action() {//完成
                     @Override
                     public void run() throws Exception {
-                        baseView.hideLoadingDialog();
+                        baseView.getIBaseContext().hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
                     public void accept(Subscription subscription1) throws Exception {
 
-                        if (!NetWorkUtil.isNetConnected(getBaseView().getBaseActivity())) {
+                        if (!NetWorkUtil.isNetConnected(getBaseView().getIBaseContext().getBaseActivity())) {
                             subscription1.cancel();
-                            baseView.reLoginPrompt(getBaseView().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
+                            baseView.reLoginPrompt(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
                                 @Override
                                 public void clickCancel(View v) {
                                     refresh();
                                 }
                             });
                         } else {
-                            baseView.showLoadingDialog();
+                            baseView.getIBaseContext().showLoadingDialog();
                             subscription1.request(Long.MAX_VALUE);
                         }
 
@@ -221,7 +221,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     private String getUrlString() {
         String url = getRefreshUrl();
         if (BuildConfig.FLAVOR.equals("afb1188")) {
-            MenuItemInfo oddtype = ((SportActivity) getBaseView().getBaseActivity()).getOddsType();
+            MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext()).getOddsType();
             if (oddtype != null)
                 url = url + "&accType=" + oddtype.getType();
         }
@@ -231,7 +231,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     @Override
     public boolean menu(TextView tvMenu) {
 
-        popMenu = new BasePopupWindow(baseView.getBaseActivity(), tvMenu, LinearLayout.LayoutParams.MATCH_PARENT, 150) {
+        popMenu = new BasePopupWindow(baseView.getIBaseContext().getBaseActivity(), tvMenu, LinearLayout.LayoutParams.MATCH_PARENT, 150) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice_bottom;
@@ -250,9 +250,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     private void setBottomMenuAdapter(RecyclerView rv_list) {
-        rv_list.setLayoutManager(new GridLayoutManager(baseView.getBaseActivity(), 4));
+        rv_list.setLayoutManager(new GridLayoutManager(baseView.getIBaseContext().getBaseActivity(), 4));
 
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(baseView.getBaseActivity(), new ArrayList<MenuItemInfo>(), R.layout.text_base_item) {
+        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(baseView.getIBaseContext().getBaseActivity(), new ArrayList<MenuItemInfo>(), R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
@@ -263,9 +263,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             }
         };
         List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(R.mipmap.menu_group_oval_white, baseView.getBaseActivity().getString(R.string.Choose), "Choose"));
-        types.add(new MenuItemInfo(R.mipmap.menu_error_white, baseView.getBaseActivity().getString(R.string.bet_list), "Not settled"));
-        types.add(new MenuItemInfo(R.mipmap.menu_right_oval_white, baseView.getBaseActivity().getString(R.string.statement), "Settled"));
+        types.add(new MenuItemInfo(R.mipmap.menu_group_oval_white, baseView.getIBaseContext().getBaseActivity().getString(R.string.Choose), "Choose"));
+        types.add(new MenuItemInfo(R.mipmap.menu_error_white, baseView.getIBaseContext().getBaseActivity().getString(R.string.bet_list), "Not settled"));
+        types.add(new MenuItemInfo(R.mipmap.menu_right_oval_white, baseView.getIBaseContext().getBaseActivity().getString(R.string.statement), "Settled"));
         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
@@ -287,12 +287,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 createChoosePop(view);
                 return;
             case "Not settled":
-                b.putString(AppConstant.KEY_STRING, getBaseView().getBaseActivity().getString(R.string.stake));
-                ((BaseToolbarActivity) baseView.getBaseActivity()).skipAct(PersonCenterActivity.class, b);
+                b.putString(AppConstant.KEY_STRING, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.stake));
+                ((BaseToolbarActivity) baseView.getIBaseContext()).skipAct(PersonCenterActivity.class, b);
                 break;
             case "Settled":
-                b.putString(AppConstant.KEY_STRING, getBaseView().getBaseActivity().getString(R.string.statement));
-                ((BaseToolbarActivity) baseView.getBaseActivity()).skipAct(PersonCenterActivity.class, b);
+                b.putString(AppConstant.KEY_STRING, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.statement));
+                ((BaseToolbarActivity) baseView.getIBaseContext()).skipAct(PersonCenterActivity.class, b);
                 break;
         }
     }
@@ -303,7 +303,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     private void createChoosePop(View view) {
-        ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getBaseActivity(), view);
+        ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getIBaseContext().getBaseActivity(), view);
         pop.setList(allData, leagueSelectedMap);
         pop.setBack(new ChooseMatchPop.CallBack() {
             @Override
@@ -486,7 +486,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     .takeWhile(new Predicate<String>() {
                         @Override
                         public boolean test(String s) throws Exception {
-                            return NetWorkUtil.isNetConnected(baseView.getBaseActivity());
+                            return NetWorkUtil.isNetConnected(baseView.getIBaseContext().getBaseActivity());
                         }
                     })
                     .map(new Function<String, List<TableSportInfo<B>>>() {
@@ -692,7 +692,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     @Override
     public BaseRecyclerAdapter switchTypeAdapter() {
 
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getBaseActivity(), getTypes(), R.layout.text_base_item) {
+        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), getTypes(), R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
@@ -749,17 +749,17 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         baseView.onFailed(throwable.getMessage());
-                        baseView.hideLoadingDialog();
+                        baseView.getIBaseContext().hideLoadingDialog();
                     }
                 }, new Action() {//完成
                     @Override
                     public void run() throws Exception {
-                        baseView.hideLoadingDialog();
+                        baseView.getIBaseContext().hideLoadingDialog();
                     }
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
+                        baseView.getIBaseContext().showLoadingDialog();
                         subscription.request(Long.MAX_VALUE);
                     }
                 });
@@ -787,17 +787,17 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         @Override
                         public void accept(Throwable throwable) throws Exception {
                             getBaseView().onFailed(throwable.getMessage());
-                            getBaseView().hideLoadingDialog();
+                            getBaseView().getIBaseContext().hideLoadingDialog();
                         }
                     }, new Action() {//完成
                         @Override
                         public void run() throws Exception {
-                            getBaseView().hideLoadingDialog();
+                            getBaseView().getIBaseContext().hideLoadingDialog();
                         }
                     }, new Consumer<Subscription>() {//开始绑定
                         @Override
                         public void accept(Subscription subscription) throws Exception {
-                            getBaseView().showLoadingDialog();
+                            getBaseView().getIBaseContext().showLoadingDialog();
                             subscription.request(Long.MAX_VALUE);
                         }
                     });
@@ -809,7 +809,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
         tvAos.setText(R.string.AOS);
         ViewGroup.LayoutParams layoutParams = tvAos.getLayoutParams();
-        layoutParams.width = DeviceUtils.dip2px(getBaseView().getBaseActivity(), 24);
+        layoutParams.width = DeviceUtils.dip2px(getBaseView().getIBaseContext().getBaseActivity(), 24);
         List<List<String>> lists = initHeaderList();
         for (int i = 0; i < lists.size(); i++) {
             View childAt = slHeader.getChildAt(i);
@@ -836,8 +836,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected List<List<String>> initHeaderList() {
         List<List<String>> texts = new ArrayList<>();
-        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getBaseActivity().getString(R.string.FULL_H_A), getBaseView().getBaseActivity().getString(R.string.FULL_O_U)));
-        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getBaseActivity().getString(R.string.HALF_H_A), getBaseView().getBaseActivity().getString(R.string.HALF_O_U)));
+        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.FULL_H_A), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.FULL_O_U)));
+        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.HALF_H_A), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.HALF_O_U)));
         texts.add(items0);
         texts.add(items1);
         return texts;
@@ -876,7 +876,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         @Override
                         public void accept(Throwable throwable) throws Exception {
 
-                            baseView.hideLoadingDialog();
+                            baseView.getIBaseContext().hideLoadingDialog();
                         }
                     }, new Action() {//完成
                         @Override
@@ -886,7 +886,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     }, new Consumer<Subscription>() {//开始绑定
                         @Override
                         public void accept(Subscription subscription) throws Exception {
-                            baseView.showLoadingDialog();
+                            baseView.getIBaseContext().showLoadingDialog();
                             subscription.request(Long.MAX_VALUE);
                         }
                     });
@@ -916,7 +916,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private void showAllOdds(final TextView textView) {
 
-        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getBaseActivity(), textView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), textView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -927,13 +927,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 super.initView(view);
                 RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
                 rv.setPadding(0, 0, 0, 0);
-                rv.setLayoutManager(new LinearLayoutManager(getBaseView().getBaseActivity()));
+                rv.setLayoutManager(new LinearLayoutManager(getBaseView().getIBaseContext().getBaseActivity()));
                 List<MenuItemInfo> list = new ArrayList<>();
-                list.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.All_Markets), "&mt=0"));//accType=
-                list.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Main_Markets), "&mt=1"));
-                list.add(new MenuItemInfo(0, getBaseView().getBaseActivity().getString(R.string.Other_Bet_Markets), "&mt=2"));
+                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.All_Markets), "&mt=0"));//accType=
+                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Main_Markets), "&mt=1"));
+                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Other_Bet_Markets), "&mt=2"));
 
-                BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getBaseActivity(), list, R.layout.text_base_item) {
+                BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), list, R.layout.text_base_item) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                         TextView tv = holder.getView(R.id.item_text_tv);
@@ -948,13 +948,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         closePopupWindow();
-                        ((SportActivity) baseView.getBaseActivity()).setAllOdds(item);
+                        ((SportActivity) baseView.getIBaseContext()).setAllOdds(item);
                         textView.setText(item.getText());
-                        if (item.getText().equals(getBaseView().getBaseActivity().getString(R.string.All_Markets))) {
-                            ((BaseToolbarActivity) baseView.getBaseActivity()).dynamicAddView(textView, "drawableLeft", R.mipmap.add_green);
+                        if (item.getText().equals(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.All_Markets))) {
+                            ((BaseToolbarActivity) baseView.getIBaseContext()).dynamicAddView(textView, "drawableLeft", R.mipmap.add_green);
 //                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.add_green, 0, 0, 0);
                         } else {
-                            ((BaseToolbarActivity) baseView.getBaseActivity()).dynamicAddView(textView, "drawableLeft", R.mipmap.sport_delete_green);
+                            ((BaseToolbarActivity) baseView.getIBaseContext()).dynamicAddView(textView, "drawableLeft", R.mipmap.sport_delete_green);
 //                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.sport_delete_green, 0, 0, 0);
                         }
                         setParam(item);

@@ -17,12 +17,14 @@ import android.view.WindowManager;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.AutoUtils;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.DialogLoading;
 
 import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
 import solid.ren.skinlibrary.base.SkinBaseActivity;
@@ -57,7 +59,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
      */
     protected DialogLoading loading;
     protected BasePopupWindow popWindow;
-    private boolean hasAttached=false;
+    private boolean hasAttached = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,13 +93,13 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
-        hasAttached=true;
+        hasAttached = true;
     }
 
     @Override
     public void onDetachedFromWindow() {
         super.onDetachedFromWindow();
-        hasAttached=false;
+        hasAttached = false;
     }
 
     @Override
@@ -245,7 +247,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         if (loading == null) {
             loading = new DialogLoading(this);
         }
-        if (isFinishing()||!hasAttached) {
+        if (isFinishing() || !hasAttached) {
             loading.dismiss();
             return;
         }
@@ -315,4 +317,15 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
     public BaseActivity<T> getBaseActivity() {
         return this;
     }
+
+    public IBaseContext getIBaseContext() {
+        return this;
+    }
+
+    @Subscribe
+    public void onEvent(Object obj) {
+        if (obj != null)
+            LogUtil.d("接收消息----------------->" + obj.toString());
+    }
+
 }

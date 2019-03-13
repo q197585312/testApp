@@ -19,7 +19,7 @@ public class EuropeRunningBetHelper extends EuropeBetHelper {
 
     @Override
     protected void createBetPop(AfbClickBetBean bean, View v) {
-        BetPop pop = new BetPop(baseView.getBaseActivity(), v);
+        BetPop pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
         pop.setBetData(bean, this);
         pop.setrTMatchInfo(item);
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);

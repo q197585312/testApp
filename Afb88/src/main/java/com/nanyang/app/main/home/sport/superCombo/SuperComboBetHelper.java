@@ -68,7 +68,7 @@ public class SuperComboBetHelper extends BallBetHelper<BallInfo, BetView> {
         return subscribe;
     }
     private void createBetPop(BettingPromptBean bean, boolean isHf, TextView v) {
-        BetPop pop = new BetPop(baseContext.getBaseActivity(), v);
+        BetPop pop = new BetPop(baseContext.getIBaseContext(), v);
         pop.setBetData(bean, this);
         pop.setIsHf(isHf);
         baseContext.onPopupWindowCreated(pop, Gravity.CENTER);

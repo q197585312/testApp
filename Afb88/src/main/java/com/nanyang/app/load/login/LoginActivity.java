@@ -97,7 +97,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
     @Subscribe(threadMode = ThreadMode.MAIN)
-    public void loadBannerImage(AllBannerImagesBean data) {
+    public void onEvent(AllBannerImagesBean data) {
         List<AllBannerImagesBean.BannersBean> loginBanners = data.getLoginBanners();
     }
 
