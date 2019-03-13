@@ -65,8 +65,8 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
         tvToolbarLeft = (TextView) findViewById(R.id.tv_toolbar_left);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
-//        toolbar.setBackgroundResource();
-        dynamicAddView(toolbar, "background", R.mipmap.toolbar_bg);
+        toolbar.setBackgroundResource(R.color.green_black_word);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +74,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             }
         });
         assert tvToolbarTitle != null;
-        tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
+//        tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
         tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 100);
 
         tvToolbarLeft.setBackgroundResource(R.mipmap.sport_home_white_24dp);
@@ -84,7 +84,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 gameMenus(v);
             }
         });
-        updateBalanceTv(getApp().getUser().getBalance());
+        updateBalanceTv(getApp().getUser().getUserName());
 
     }
 
@@ -208,7 +208,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     protected void updateBalanceTv(String allData) {
-        tvToolbarRight.setText(getString(R.string.Bet_Credit) + "\n" + allData);
+        tvToolbarRight.setText(getString(R.string.welcome) + " " + allData);
     }
 
 

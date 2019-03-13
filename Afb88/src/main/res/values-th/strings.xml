@@ -343,4 +343,5 @@
     <string name="A_TIE_B">A-TIE-B</string>
     <string name="O_U">O/U</string>
     <string name="can_not_mixparly">This Match can\'t MixParlay</string>
+    <string name="welcome">WELCOME</string>
 </resources>

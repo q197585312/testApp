@@ -286,4 +286,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         }
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        presenter.loadAllImages();
+    }
 }
