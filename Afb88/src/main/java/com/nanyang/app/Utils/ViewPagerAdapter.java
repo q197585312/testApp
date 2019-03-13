@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
@@ -16,12 +17,12 @@ import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
     private ArrayList<ImageView> reusableImgViews = new ArrayList<>();
-    private List<String> lists;
+    private List<AllBannerImagesBean.BannersBean> lists;
     public LinearLayout layout;
     public int itemTrueAmount;
     private Context context;
 
-    public ViewPagerAdapter(List<String> lists, LinearLayout layout, Context context) {
+    public ViewPagerAdapter(List<AllBannerImagesBean.BannersBean> lists, LinearLayout layout, Context context) {
         super();
         this.lists = lists;
         this.layout = layout;
@@ -49,7 +50,7 @@ public class ViewPagerAdapter extends PagerAdapter {
             imgView = reusableImgViews.remove(reusableImgViews.size() - 1);
         }
 
-        String url = lists.get(getBannerIndexOfPosition(position));
+        String url = lists.get(getBannerIndexOfPosition(position)).getImg();
         ImageLoader.getInstance().displayImage(url, imgView, displayImageOptions);
         container.addView(imgView);
         return imgView;

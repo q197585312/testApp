@@ -18,7 +18,6 @@ import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
-import org.greenrobot.eventbus.EventBus;
 import org.reactivestreams.Subscription;
 
 import java.io.BufferedInputStream;
@@ -152,7 +151,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                             AfbApplication app = (AfbApplication) baseContext.getBaseActivity().getApplication();
                             app.getUser().setUserName(us);
                             app.getUser().setPassword("");
-                            return switchLanguage.switchLanguage(getSkipLanguage(language), "MY");
+                            return switchLanguage.switchLanguage( new LanguageHelper(baseContext.getBaseActivity()).getLanguage(), "MY");
                         }
                         return null;
                     }
@@ -160,25 +159,6 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
             @Override
             protected void onBaseGetData(String data) {
                 WelcomePresenter.this.baseContext.onLanguageSwitchSucceed(data);
-            }
-        });
-
-
-    }
-
-    private String getSkipLanguage(String language) {
-        return new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
-
-    }
-
-
-    public void loadAllImages() {
-//        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
-        doRetrofitApiOnDefaultThread(getService(ApiService.class).getAllImagesData(" http://www.appgd88.com/api/afb1188.php?app=" + BuildConfig.FLAVOR + "&lang=" + getSkipLanguage("")), new BaseConsumer<AllBannerImagesBean>(baseContext) {
-            @Override
-            protected void onBaseGetData(AllBannerImagesBean data) {
-//                @Subscribe(threadMode = ThreadMode.MainThread)
-                EventBus.getDefault().post(data);
             }
         });
     }

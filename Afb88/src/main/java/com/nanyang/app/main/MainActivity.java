@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
@@ -49,14 +50,18 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         flCurrentMenu = flMenuHome;
         showFragmentToActivity(homeFragment, R.id.fl_main_content);
         createPresenter(new MainPresenter(this));
-
-        toolbar.setNavigationIcon(R.mipmap.home_menu_nav);
+        toolbar.setNavigationIcon(R.mipmap.logo);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
             }
         });
+        initUserData();
+    }
+
+    private void initUserData() {
+
+        ((AfbApplication) mContext.getApplication()).getUser().getBalance();
     }
 
     @Override

@@ -10,10 +10,14 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.SwitchLanguage;
+import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -194,5 +198,14 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
         }
         return true;
     }
-
+    public void loadAllImages() {
+//        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
+        doRetrofitApiOnDefaultThread(getService(ApiService.class).getAllImagesData(" http://www.appgd88.com/api/afb1188.php?app=" + BuildConfig.FLAVOR + "&lang=" +  new LanguageHelper(baseContext.getBaseActivity()).getLanguage()), new BaseConsumer<AllBannerImagesBean>(baseContext) {
+            @Override
+            protected void onBaseGetData(AllBannerImagesBean data) {
+//                @Subscribe(threadMode = ThreadMode.MainThread)
+                EventBus.getDefault().post(data);
+            }
+        });
+    }
 }

@@ -62,7 +62,6 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter>{
             e.printStackTrace();
             ((BaseActivity) getBaseActivity()).skipAct(LoginActivity.class);
         }
-        presenter.loadAllImages();
 
     }
 

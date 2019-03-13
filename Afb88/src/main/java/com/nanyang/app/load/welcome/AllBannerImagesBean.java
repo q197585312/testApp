@@ -27,7 +27,7 @@ public class AllBannerImagesBean implements Serializable {
      */
 
     private List<BannersBean> loginBanners;
-    private List<String> mainBanners;
+    private List<BannersBean> mainBanners;
     /**
      * id : 1
      * img : https://www.afb1188.com/H50/Img/soccer.jpg
@@ -59,11 +59,11 @@ public class AllBannerImagesBean implements Serializable {
         this.loginBanners = loginBanners;
     }
 
-    public List<String> getMainBanners() {
+    public List<BannersBean> getMainBanners() {
         return mainBanners;
     }
 
-    public void setMainBanners(List<String> mainBanners) {
+    public void setMainBanners(List<BannersBean> mainBanners) {
         this.mainBanners = mainBanners;
     }
 

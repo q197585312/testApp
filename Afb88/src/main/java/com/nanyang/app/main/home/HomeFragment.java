@@ -9,36 +9,29 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
+import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
-import org.reactivestreams.Subscription;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
 
 public class HomeFragment extends BaseFragment {
 
@@ -57,7 +50,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView() {
         super.initView();
-        initBanner();
+
         BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext, rvContent);
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
@@ -190,42 +183,19 @@ public class HomeFragment extends BaseFragment {
         };
     }
 
-    private List<String> lists;
 
-    private void initViewPager() {
+
+    private void initViewPager(List<AllBannerImagesBean.BannersBean> lists) {
         ViewPagerAdapter adapter = new ViewPagerAdapter(lists, inLayout, getActivity());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(viewPager.listener);
     }
 
-    private void initBanner() {
-        Disposable d = Api.getService(ApiService.class).getBannerUrl()
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<List<String>>() {
-                    @Override
-                    public void accept(List<String> strings) throws Exception {
-                        lists = strings;
-                        initViewPager();
-                    }
-                }, new Consumer<Throwable>() {
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
+    @Subscribe
+    public void onAllImagesEvent(AllBannerImagesBean data){
+        List<AllBannerImagesBean.BannersBean> mainBanners = data.getMainBanners();
+        initViewPager(mainBanners);
 
-                    }
-                }, new Action() {
-                    @Override
-                    public void run() throws Exception {
-
-                    }
-                }, new Consumer<Subscription>() {
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        subscription.request(Integer.MAX_VALUE);
-                    }
-                });
-        CompositeDisposable compositeDisposable = new CompositeDisposable();
-        compositeDisposable.add(d);
     }
 
 }
