@@ -153,7 +153,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void refresh() {
         if (param == null) {
 
-            param = ((SportActivity) getBaseView().getIBaseContext()).getAllOddsType();
+            param = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType();
             setParam(param);
         }
         String url = getUrlString();
@@ -221,7 +221,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     private String getUrlString() {
         String url = getRefreshUrl();
         if (BuildConfig.FLAVOR.equals("afb1188")) {
-            MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext()).getOddsType();
+            MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
             if (oddtype != null)
                 url = url + "&accType=" + oddtype.getType();
         }
