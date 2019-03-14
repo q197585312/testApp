@@ -17,6 +17,10 @@ import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
+import org.greenrobot.eventbus.EventBus;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +36,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
         super(view);
     }
 
+    public List<String> languageList;
 
    /* @Override
     public void login(Map<String,String> info) {
@@ -55,6 +60,16 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
             }
         });
     }*/
+    public void initLanguage() {
+        languageList = new ArrayList<String>();
+        languageList.add("ENGLISH");
+        languageList.add("中文(简体)");
+        languageList.add("中文(繁體)");
+        languageList.add("ภาษาไทย");
+        languageList.add("Tiếng Việt");
+        languageList.add("KOREAN");
+        languageList.add("TURKISH");
+    }
 
     @NonNull
     private String getLanguage() {
@@ -203,7 +218,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
             protected void onBaseGetData(AllBannerImagesBean data) {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
                     LoginPresenter.this.baseContext.sendImageEvent(data);
-                
+
             }
         });
     }

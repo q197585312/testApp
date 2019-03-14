@@ -7,18 +7,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.load.ListLoginBanners;
 import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.load.ListMainPictures;
-import com.nanyang.app.load.register.RegisterActivity;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
@@ -34,10 +32,7 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
-import cn.finalteam.toolsfinal.ManifestUtils;
-import solid.ren.skinlibrary.loader.SkinManager;
 
 
 /**
@@ -47,38 +42,21 @@ import solid.ren.skinlibrary.loader.SkinManager;
 public class LoginActivity extends BaseActivity<LoginPresenter> {
 
 
-    @Bind(R.id.login_language_rg)
-    RadioGroup loginLanguageRg;
     @Bind(R.id.edt_login_username)
     EditText edtLoginUsername;
     @Bind(R.id.edt_login_password)
     EditText edtLoginPassword;
     @Bind(R.id.btn_login_login)
     Button btnLoginLogin;
-    @Bind(R.id.tv_login_register)
-    TextView tvLoginRegister;
     @Bind(R.id.tv_login_forget)
     TextView tvLoginForget;
-    @Bind(R.id.tv_login_version)
-    TextView tvLoginVersion;
-
-    @Bind(R.id.login_china_rb)
-    RadioButton loginChinaRb;
-    @Bind(R.id.login_english_rb)
-    RadioButton loginEnglishRb;
-    @Bind(R.id.login_th_rb)
-    RadioButton loginthRb;
     AfbApplication app;
     @Bind(R.id.cb_login_remember)
     CheckBox cbLoginRemember;
-    @Bind(R.id.login_korea_rb)
-    RadioButton loginKoreaRb;
-    @Bind(R.id.login_vietnam_rb)
-    RadioButton loginVietnamRb;
-    @Bind(R.id.login_turkey_rb)
-    RadioButton loginTurkeyRb;
-
-    private int SkinInt = 0;
+    @Bind(R.id.login_images_vp)
+    AutoScrollViewPager loginImagesvp;
+    @Bind(R.id.login_indicator_cpi)
+    LinearLayout loginIndicatorCpi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,12 +75,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         } else {
             cbLoginRemember.setChecked(true);
         }
-        initLanguage();
-        EventBus.getDefault().register(this);
+       /* initLanguage();*/
+
     }
 
 
-    private void initLanguage() {
+
+    /*private void initLanguage() {
         String language = AfbUtils.getLanguage(this);
         if (language != null && !TextUtils.isEmpty(language)) {
             loginChinaRb.setChecked(false);
@@ -151,7 +130,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             AfbUtils.switchLanguage("en", this);
             restart();
         }
-    }
+    }*/
 
 
 
@@ -170,7 +149,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         ToastUtils.showShort(msgRes);
     }
 
-    @OnClick({R.id.btn_login_login, R.id.tv_login_register, R.id.tv_login_forget, R.id.login_china_rb, R.id.login_english_rb, R.id.login_th_rb, R.id.login_korea_rb, R.id.login_vietnam_rb, R.id.login_turkey_rb})
+   /* @OnClick({R.id.btn_login_login, R.id.tv_login_register, R.id.tv_login_forget, R.id.login_china_rb, R.id.login_english_rb, R.id.login_th_rb, R.id.login_korea_rb, R.id.login_vietnam_rb, R.id.login_turkey_rb})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
@@ -208,15 +187,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
                 break;
 
         }
-    }
+    }*/
 
     private void restart() {
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
         btnLoginLogin.setText(getString(R.string.Login));
-        tvLoginRegister.setText(getString(R.string.No_Account));
         tvLoginForget.setText(getString(R.string.Forget_password));
-        tvLoginVersion.setText(getString(R.string.Version) + ":" + ManifestUtils.getVersionName(this));
         cbLoginRemember.setText(R.string.remember_me);
 
     }
@@ -269,26 +246,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
 
-    public void clickSkin(View view) {
-        switch (SkinInt++ % 2) {
-            case 0:
-                SkinManager.getInstance().restoreDefaultTheme();
-                break;
-            case 1:
-                SkinManager.getInstance().loadSkin("skinbluepackage.skin", null);
-                break;
-            case 2:
-                SkinManager.getInstance().loadSkin("skinbluepackage.skin", null);
-                break;
-        }
-
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         presenter.loadAllImages();
     }
+
+
 
     @Override
     protected void onDestroy() {

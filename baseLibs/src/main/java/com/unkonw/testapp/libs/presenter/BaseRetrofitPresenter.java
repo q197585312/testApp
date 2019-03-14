@@ -57,4 +57,6 @@ public abstract class BaseRetrofitPresenter<V extends IBaseContext> implements I
                 .observeOn(Schedulers.io())
                 .subscribe(baseConsumer.onNext, baseConsumer.onError, baseConsumer.onCompleted, baseConsumer.onStart);
     }
+
+
 }
