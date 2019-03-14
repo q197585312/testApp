@@ -266,7 +266,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
     public void sendImageEvent(AllBannerImagesBean data) {
         LogUtil.d(getClass().getSimpleName(),"sendEvent--------------->"+data.toString());
-
         EventBus.getDefault().postSticky(new ListMainPictures(data.getMain()));
         EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
         EventBus.getDefault().postSticky(new ListLoginBanners(data.getLoginBanners()));
