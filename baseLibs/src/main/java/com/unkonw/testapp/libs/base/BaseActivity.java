@@ -23,7 +23,6 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.DialogLoading;
 
-import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 
 import butterknife.ButterKnife;
@@ -72,7 +71,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         mContext = this;
         //Activity管理
         ActivityPageManager.getInstance().addActivity(this);
-        EventBus.getDefault().register(this);
+
     }
 
     @Override
@@ -193,7 +192,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
             presenter.unSubscribe();
         }
         ButterKnife.unbind(this);
-        EventBus.getDefault().unregister(this);
     }
 
     /**
@@ -325,7 +323,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
     @Subscribe
     public void onEvent(Object obj) {
         if (obj != null)
-            LogUtil.d("接收消息----------------->" + obj.toString());
+            LogUtil.d(getLocalClassName()+"接收消息----------------->" + obj.toString());
     }
 
 }

@@ -17,8 +17,6 @@ import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -204,9 +202,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
             @Override
             protected void onBaseGetData(AllBannerImagesBean data) {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
-                EventBus.getDefault().post(data.getLoginBanners());
-                EventBus.getDefault().post(data.getMainBanners());
-                EventBus.getDefault().post(data.getMain());
+                    LoginPresenter.this.baseContext.onGetData(data);
             }
         });
     }

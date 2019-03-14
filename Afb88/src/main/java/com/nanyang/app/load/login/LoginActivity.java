@@ -20,10 +20,14 @@ import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -91,12 +95,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             cbLoginRemember.setChecked(true);
         }
         initLanguage();
-
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(AllBannerImagesBean.LoginBannersBean data) {
-
+        EventBus.getDefault().register(this);
     }
 
 
@@ -152,9 +151,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
 
-    public void onGetData(String data) {
-
-
+    public void onGetData(AllBannerImagesBean data) {
+        LogUtil.d("--------------->"+getClass().getSimpleName(),data.toString());
+        EventBus.getDefault().postSticky(data.getMain());
+        EventBus.getDefault().postSticky(data.getMainBanners());
+        EventBus.getDefault().postSticky(data.getLoginBanners());
     }
 
 
@@ -289,5 +290,16 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     protected void onResume() {
         super.onResume();
         presenter.loadAllImages();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
+    public void onEvent(List<AllBannerImagesBean.LoginBannersBean> data) {
+        data.toString();
     }
 }
