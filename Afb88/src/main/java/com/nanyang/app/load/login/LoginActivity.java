@@ -13,8 +13,11 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
+import com.nanyang.app.load.ListLoginBanners;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.load.ListMainBanners;
+import com.nanyang.app.load.ListMainPictures;
+import com.nanyang.app.load.register.RegisterActivity;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
@@ -265,8 +268,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     public void sendImageEvent(AllBannerImagesBean data) {
         LogUtil.d(getClass().getSimpleName(),"sendEvent--------------->"+data.toString());
 
-        EventBus.getDefault().postSticky(new ListMainBanners(data.getMain()));
+        EventBus.getDefault().postSticky(new ListMainPictures(data.getMain()));
         EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
-        EventBus.getDefault().postSticky(new ListMainBanners(data.getLoginBanners()));
+        EventBus.getDefault().postSticky(new ListLoginBanners(data.getLoginBanners()));
     }
 }
