@@ -2,9 +2,11 @@ package com.nanyang.app.main.home;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -13,9 +15,12 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.load.ListMainBanners;
+import com.nanyang.app.load.ListMainPictures;
+import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
@@ -54,60 +59,6 @@ public class HomeFragment extends BaseFragment {
     public void initView() {
         super.initView();
         EventBus.getDefault().register(this);
-        BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext, rvContent);
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-            @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                switch (item.getType()) {
-                    case "SportBook":
-                        if (getString(R.string.app_name).equals("AP889")) {
-                            MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Running));
-                            menuItemInfo.setType("Running");
-                            menuItemInfo.setParent(item.getType());
-                            Bundle b1 = new Bundle();
-                            b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
-                            skipAct(SportActivity.class, b1);
-                        } else {
-                            defaultSkip(item.getType());
-                        }
-                        break;
-                    case "Financial":
-                    case "Specials_4D":
-                    case "Muay_Thai":
-                    case "E_Sport":
-                    case "Myanmar_Odds":
-                    case "Europe":
-                        defaultSkip(item.getType());
-           /*             createPopupWindow(getPopupWindow(item.getType()));
-                        popWindow.showPopupCenterWindow();*/
-                        break;
-                    case "Huay_Thai":
-                        skipAct(HuayThaiActivity.class);
-                        break;
-                    case "Live_Casino":
-                        Bundle b = new Bundle();
-                        b.putString("activity", "Live");
-                        ToastUtils.showShort(R.string.coming_soon);
-//                        skipAct(PokerCasinoActivity.class, b);
-                        break;
-                    case "Poker":
-                        ToastUtils.showShort(R.string.coming_soon);
-                        break;
-                    case "Discount":
-                        skipAct(DiscountActivity.class);
-                        break;
-                    case "Keno":
-                        skipAct(KenoActivity.class);
-                        break;
-                    default:
-                        ToastUtils.showShort(R.string.coming_soon);
-                }
-
-
-            }
-        });
-
-
     }
 
 
@@ -195,8 +146,83 @@ public class HomeFragment extends BaseFragment {
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(ListMainBanners data) {
-        LogUtil.d(getClass().getSimpleName(),"onEvent------------>"+ data.toString());
+        LogUtil.d(getClass().getSimpleName(), "onEvent------------>" + data.toString());
         initViewPager(data);
+    }
+
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEventMainContent(ListMainPictures data) {
+        LogUtil.d(getClass().getSimpleName(), "onEvent------------>" + data.toString());
+        initContent(data.getBannersBeen());
+    }
+
+    private void initContent(List<AllBannerImagesBean.BannersBean> data) {
+        GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
+        rvContent.setLayoutManager(layoutManager);
+
+
+        BaseRecyclerAdapter<AllBannerImagesBean.BannersBean> adapter = new BaseRecyclerAdapter<AllBannerImagesBean.BannersBean>(mContext, data, R.layout.home_item_image_text) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, AllBannerImagesBean.BannersBean item) {
+                ImageView iv = holder.getView(R.id.iv_pic);
+                TextView tv = holder.getView(R.id.tv_text);
+                holder.setImageByUrl(R.id.iv_pic, item.getImg());
+                SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getId());
+                tv.setText(sportIdBean.getTextRes());
+            }
+        };
+        rvContent.setAdapter(adapter);
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+            @Override
+            public void onItemClick(View view, MenuItemInfo item, int position) {
+                switch (item.getType()) {
+                    case "SportBook":
+                        if (getString(R.string.app_name).equals("AP889")) {
+                            MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Running));
+                            menuItemInfo.setType("Running");
+                            menuItemInfo.setParent(item.getType());
+                            Bundle b1 = new Bundle();
+                            b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
+                            skipAct(SportActivity.class, b1);
+                        } else {
+                            defaultSkip(item.getType());
+                        }
+                        break;
+                    case "Financial":
+                    case "Specials_4D":
+                    case "Muay_Thai":
+                    case "E_Sport":
+                    case "Myanmar_Odds":
+                    case "Europe":
+                        defaultSkip(item.getType());
+           /*             createPopupWindow(getPopupWindow(item.getType()));
+                        popWindow.showPopupCenterWindow();*/
+                        break;
+                    case "Huay_Thai":
+                        skipAct(HuayThaiActivity.class);
+                        break;
+                    case "Live_Casino":
+                        Bundle b = new Bundle();
+                        b.putString("activity", "Live");
+                        ToastUtils.showShort(R.string.coming_soon);
+//                        skipAct(PokerCasinoActivity.class, b);
+                        break;
+                    case "Poker":
+                        ToastUtils.showShort(R.string.coming_soon);
+                        break;
+                    case "Discount":
+                        skipAct(DiscountActivity.class);
+                        break;
+                    case "Keno":
+                        skipAct(KenoActivity.class);
+                        break;
+                    default:
+                        ToastUtils.showShort(R.string.coming_soon);
+                }
+
+
+            }
+        });
     }
 
     @Override
