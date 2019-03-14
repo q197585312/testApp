@@ -17,8 +17,6 @@ import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
-import org.greenrobot.eventbus.EventBus;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
