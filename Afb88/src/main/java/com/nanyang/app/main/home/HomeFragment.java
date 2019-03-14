@@ -15,7 +15,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
-import com.nanyang.app.load.welcome.AllBannerImagesBean;
+import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
@@ -187,15 +187,15 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-    private void initViewPager(List<AllBannerImagesBean.MainBannersBean> lists) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(lists, inLayout, getActivity());
+    private void initViewPager(ListMainBanners lists) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(lists.getBannersBeen(), inLayout, getActivity());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(viewPager.listener);
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
-    public void onEvent(List<AllBannerImagesBean.MainBannersBean> data) {
-        LogUtil.d(getClass().getSimpleName(),"------------>"+ data.toString());
+    public void onEvent(ListMainBanners data) {
+        LogUtil.d(getClass().getSimpleName(),"onEvent------------>"+ data.toString());
         initViewPager(data);
     }
 

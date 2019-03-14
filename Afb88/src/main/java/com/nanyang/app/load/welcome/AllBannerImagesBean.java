@@ -438,20 +438,20 @@ public class AllBannerImagesBean implements Serializable {
      * img : https://www.afb1188.com/H50/img/slide_show_festival.jpg
      */
 
-    private List<LoginBannersBean> loginBanners;
+    private List<BannersBean> loginBanners;
     /**
      * id : 1
      * url :
      * img : http://appgd88.com/images/afb88/home_banner_1.jpg
      */
 
-    private List<MainBannersBean> mainBanners;
+    private List<BannersBean> mainBanners;
     /**
      * id : 1
      * img : https://www.afb1188.com/H50/Img/soccer.jpg
      */
 
-    private List<MainBean> main;
+    private List<BannersBean> main;
 
     public String getStatus() {
         return status;
@@ -463,27 +463,27 @@ public class AllBannerImagesBean implements Serializable {
 
 
 
-    public List<LoginBannersBean> getLoginBanners() {
+    public List<BannersBean> getLoginBanners() {
         return loginBanners;
     }
 
-    public void setLoginBanners(List<LoginBannersBean> loginBanners) {
+    public void setLoginBanners(List<BannersBean> loginBanners) {
         this.loginBanners = loginBanners;
     }
 
-    public List<MainBannersBean> getMainBanners() {
+    public List<BannersBean> getMainBanners() {
         return mainBanners;
     }
 
-    public void setMainBanners(List<MainBannersBean> mainBanners) {
+    public void setMainBanners(List<BannersBean> mainBanners) {
         this.mainBanners = mainBanners;
     }
 
-    public List<MainBean> getMain() {
+    public List<BannersBean> getMain() {
         return main;
     }
 
-    public void setMain(List<MainBean> main) {
+    public void setMain(List<BannersBean> main) {
         this.main = main;
     }
 
@@ -519,7 +519,7 @@ public class AllBannerImagesBean implements Serializable {
         }
     }
 
-    public static class MainBannersBean {
+    public static class BannersBean {
         private String id;
         private String url;
         private String img;
@@ -549,24 +549,5 @@ public class AllBannerImagesBean implements Serializable {
         }
     }
 
-    public static class MainBean {
-        private String id;
-        private String img;
 
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getImg() {
-            return img;
-        }
-
-        public void setImg(String img) {
-            this.img = img;
-        }
-    }
 }

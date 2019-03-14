@@ -15,6 +15,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
+import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.load.register.RegisterActivity;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
@@ -151,12 +152,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
 
-    public void onGetData(AllBannerImagesBean data) {
-        LogUtil.d("--------------->"+getClass().getSimpleName(),data.toString());
-        EventBus.getDefault().postSticky(data.getMain());
-        EventBus.getDefault().postSticky(data.getMainBanners());
-        EventBus.getDefault().postSticky(data.getLoginBanners());
-    }
+
 
 
     public void onFailed(String error) {
@@ -300,6 +296,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
 
     @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
     public void onEvent(List<AllBannerImagesBean.LoginBannersBean> data) {
-        data.toString();
+        LogUtil.d(getClass().getSimpleName(),"onEvent--------------->"+data.toString());
+    }
+    public void sendImageEvent(AllBannerImagesBean data) {
+        LogUtil.d(getClass().getSimpleName(),"sendEvent--------------->"+data.toString());
+
+        EventBus.getDefault().postSticky(new ListMainBanners(data.getMain()));
+        EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
+        EventBus.getDefault().postSticky(new ListMainBanners(data.getLoginBanners()));
     }
 }
