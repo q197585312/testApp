@@ -13,10 +13,8 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
-import com.nanyang.app.load.ListMainBanners;
-import com.nanyang.app.load.register.RegisterActivity;
 import com.nanyang.app.Utils.AutoScrollViewPager;
-import com.nanyang.app.Utils.ViewPagerAdapter;
+import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
@@ -79,18 +77,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
 
     }
 
-    private void initViewPager(List<AllBannerImagesBean.MainBannersBean> lists) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(lists, loginIndicatorCpi, mContext);
-        loginImagesvp.setAdapter(adapter);
-        loginImagesvp.addOnPageChangeListener(loginImagesvp.listener);
-    }
-
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void onEvent(AllBannerImagesBean.LoginBannersBean data) {
-
-        initLanguage();
-        EventBus.getDefault().register(this);
-    }
 
 
     /*private void initLanguage() {
@@ -205,9 +191,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
         btnLoginLogin.setText(getString(R.string.Login));
-        tvLoginRegister.setText(getString(R.string.No_Account));
         tvLoginForget.setText(getString(R.string.Forget_password));
-        tvLoginVersion.setText(getString(R.string.Version) + ":" + ManifestUtils.getVersionName(this));
         cbLoginRemember.setText(R.string.remember_me);
 
     }
