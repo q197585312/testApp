@@ -15,7 +15,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
-import com.nanyang.app.load.welcome.AllBannerImagesBean;
+import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
@@ -23,10 +23,13 @@ import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -50,7 +53,7 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView() {
         super.initView();
-
+        EventBus.getDefault().register(this);
         BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext, rvContent);
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
@@ -184,18 +187,21 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-
-    private void initViewPager(List<AllBannerImagesBean.MainBannersBean> lists) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(lists, inLayout, getActivity());
+    private void initViewPager(ListMainBanners lists) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(lists.getBannersBeen(), inLayout, getActivity());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(viewPager.listener);
     }
 
-    @Subscribe
-    public void onAllImagesEvent(List<AllBannerImagesBean.MainBannersBean> data){
-
+    @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
+    public void onEvent(ListMainBanners data) {
+        LogUtil.d(getClass().getSimpleName(),"onEvent------------>"+ data.toString());
         initViewPager(data);
-
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

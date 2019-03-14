@@ -13,14 +13,18 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
+import com.nanyang.app.load.ListMainBanners;
+import com.nanyang.app.load.register.RegisterActivity;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -84,6 +88,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEvent(AllBannerImagesBean.LoginBannersBean data) {
 
+        initLanguage();
+        EventBus.getDefault().register(this);
     }
 
 
@@ -139,10 +145,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }*/
 
 
-    public void onGetData(String data) {
 
-
-    }
 
 
     public void onFailed(String error) {
@@ -202,7 +205,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
         btnLoginLogin.setText(getString(R.string.Login));
+        tvLoginRegister.setText(getString(R.string.No_Account));
         tvLoginForget.setText(getString(R.string.Forget_password));
+        tvLoginVersion.setText(getString(R.string.Version) + ":" + ManifestUtils.getVersionName(this));
         cbLoginRemember.setText(R.string.remember_me);
 
     }
@@ -262,4 +267,22 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
 
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
+    public void onEvent(List<AllBannerImagesBean.LoginBannersBean> data) {
+        LogUtil.d(getClass().getSimpleName(),"onEvent--------------->"+data.toString());
+    }
+    public void sendImageEvent(AllBannerImagesBean data) {
+        LogUtil.d(getClass().getSimpleName(),"sendEvent--------------->"+data.toString());
+
+        EventBus.getDefault().postSticky(new ListMainBanners(data.getMain()));
+        EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
+        EventBus.getDefault().postSticky(new ListMainBanners(data.getLoginBanners()));
+    }
 }

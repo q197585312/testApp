@@ -13,9 +13,6 @@ import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 import solid.ren.skinlibrary.base.SkinBaseFragment;
@@ -57,7 +54,6 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
         ButterKnife.bind(this, mContentView);
         initView();
         initData();
-        EventBus.getDefault().register(this);
         return mContentView;
 
     }
@@ -69,13 +65,9 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
         if (presenter != null) {
             presenter.unSubscribe();
         }
-        EventBus.getDefault().unregister(this);
     }
 
-    @Subscribe
-    public void onEvent(Object obj) {
-        getBaseActivity().onEvent(obj);
-    }
+
 
     /**
      * 创建相应的 presenter
@@ -188,4 +180,6 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
     public IBaseContext getIBaseContext() {
         return this;
     }
+
+
 }

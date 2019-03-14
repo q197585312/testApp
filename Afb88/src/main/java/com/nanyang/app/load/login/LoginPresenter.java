@@ -223,6 +223,4 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
             }
         });
     }
-
-
 }
