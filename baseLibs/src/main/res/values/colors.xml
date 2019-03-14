@@ -68,6 +68,7 @@
     <color name="green_light_title">#8eeaac</color>
     <color name="green_grey">#bce2c8</color>
     <color name="green_light_white">#FFC9EBD5</color>
+    <color name="green_login_btn">#289F45</color>
 
     <!--other-->
     <color name="background_tab_pressed">#6633B5E5</color>
