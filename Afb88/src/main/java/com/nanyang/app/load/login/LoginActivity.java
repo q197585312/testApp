@@ -11,9 +11,12 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
+import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.load.ListLoginBanners;
 import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.load.ListMainPictures;
@@ -23,15 +26,16 @@ import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
 
 
@@ -57,12 +61,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     AutoScrollViewPager loginImagesvp;
     @Bind(R.id.login_indicator_cpi)
     LinearLayout loginIndicatorCpi;
+    @Bind(R.id.login_language)
+    TextView loginLanguage;
+    @Bind(R.id.login_language_prompt)
+    TextView loginLanguagePrompt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
+
         ButterKnife.bind(this);
         createPresenter(new LoginPresenter(this));
         edtLoginPassword.setOnKeyListener(onKeyListener);
@@ -75,62 +84,77 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         } else {
             cbLoginRemember.setChecked(true);
         }
-       /* initLanguage();*/
 
+        initLanguage();
+
+    }
+    @OnClick(R.id.login_language)
+    public void setLanguagepop(View view) {
+        BaseListPopupWindow<MenuItemInfo> popu = new BaseListPopupWindow<MenuItemInfo>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, loginLanguage, loginLanguagePrompt) {
+            @Override
+            public int getRecyclerViewId() {
+                return R.id.base_rv;
+            }
+
+            @Override
+            protected void convertTv(TextView tv, MenuItemInfo item) {
+                tv.setText(item.getText());
+                AfbUtils.switchLanguage(item.getType(), mContext);
+                tv1.setVisibility(View.GONE);
+                restart();
+
+            }
+        };
+        List<MenuItemInfo> languageList = new ArrayList<MenuItemInfo>();
+
+        MenuItemInfo info = new MenuItemInfo();
+        info.setText("ENGLISH");
+        info.setType("en");
+        languageList.add(info);
+
+        MenuItemInfo info1 = new MenuItemInfo();
+        info1.setText("中文(简体)");
+        info1.setType("zh");
+        languageList.add(info1);
+
+        /*MenuItemInfo info2 = new MenuItemInfo();
+        info2.setText("中文(繁體)");
+        info2.setType("tw");
+        languageList.add(info);*/
+
+        MenuItemInfo info3 = new MenuItemInfo();
+        info3.setText("ภาษาไทย");
+        info3.setType("th");
+        languageList.add(info3);
+
+        MenuItemInfo info4 = new MenuItemInfo();
+        info4.setText("Tiếng Việt");
+        info4.setType("vi");
+        languageList.add(info4);
+
+        MenuItemInfo info5 = new MenuItemInfo();
+        info5.setText("KOREAN");
+        info5.setType("ko");
+        languageList.add(info5);
+
+        MenuItemInfo info6 = new MenuItemInfo();
+        info6.setText("TURKISH");
+        info6.setType("tr");
+        languageList.add(info6);
+        popu.setData(languageList);
+        popu.showPopupDownWindow();
     }
 
 
-
-    /*private void initLanguage() {
+    private void initLanguage() {
         String language = AfbUtils.getLanguage(this);
-        if (language != null && !TextUtils.isEmpty(language)) {
-            loginChinaRb.setChecked(false);
-            loginEnglishRb.setChecked(false);
-            loginthRb.setChecked(false);
-            switch (language) {
-                case "zh":
-                    loginChinaRb.setChecked(true);
-                    AfbUtils.switchLanguage("zh", this);
-                    restart();
-                    break;
-                case "en":
-
-                    loginEnglishRb.setChecked(true);
-                    AfbUtils.switchLanguage("en", this);
-                    restart();
-                    break;
-                case "th":
-                    loginthRb.setChecked(true);
-                    AfbUtils.switchLanguage("th", this);
-                    restart();
-                    break;
-                case "ko":
-                    loginKoreaRb.setChecked(true);
-                    AfbUtils.switchLanguage("ko", this);
-                    restart();
-                    break;
-                case "vi":
-                    loginVietnamRb.setChecked(true);
-                    AfbUtils.switchLanguage("vi", this);
-                    restart();
-                    break;
-                case "tr":
-                    loginTurkeyRb.setChecked(true);
-                    AfbUtils.switchLanguage("tr", this);
-                    restart();
-                    break;
-
-                default:
-                    loginEnglishRb.setChecked(true);
-                    AfbUtils.switchLanguage("en", this);
-                    restart();
-            }
+        if (!TextUtils.isEmpty(language)) {
+            AfbUtils.switchLanguage(language, this);
         } else {
-            loginEnglishRb.setChecked(true);
             AfbUtils.switchLanguage("en", this);
             restart();
         }
-    }*/
+    }
 
 
 
@@ -149,51 +173,21 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         ToastUtils.showShort(msgRes);
     }
 
-   /* @OnClick({R.id.btn_login_login, R.id.tv_login_register, R.id.tv_login_forget, R.id.login_china_rb, R.id.login_english_rb, R.id.login_th_rb, R.id.login_korea_rb, R.id.login_vietnam_rb, R.id.login_turkey_rb})
+   @OnClick({R.id.btn_login_login,R.id.login_language})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
                 login();
                 break;
-            case R.id.tv_login_register:
-                skipAct(RegisterActivity.class);
-                break;
-            case R.id.tv_login_forget:
-//                skipAct(ForgetActivity.class);
-                break;
-            case R.id.login_china_rb:
-                AfbUtils.switchLanguage("zh", this);
-                restart();
-                break;
-            case R.id.login_th_rb:
-                AfbUtils.switchLanguage("th", this);
-                restart();
-                break;
-            case R.id.login_english_rb:
-                AfbUtils.switchLanguage("en", this);
-                restart();
-                break;
-            case R.id.login_korea_rb:
-                AfbUtils.switchLanguage("ko", this);
-                restart();
-                break;
-            case R.id.login_vietnam_rb:
-                AfbUtils.switchLanguage("vi", this);
-                restart();
-                break;
-            case R.id.login_turkey_rb:
-                AfbUtils.switchLanguage("tr", this);
-                restart();
-                break;
-
         }
-    }*/
+    }
 
     private void restart() {
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
         btnLoginLogin.setText(getString(R.string.Login));
         tvLoginForget.setText(getString(R.string.Forget_password));
+        loginLanguage.setText(getString(R.string.language_switch));
         cbLoginRemember.setText(R.string.remember_me);
 
     }
@@ -260,15 +254,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         EventBus.getDefault().unregister(this);
     }
 
-    @Subscribe(sticky = true,threadMode = ThreadMode.MAIN)
-    public void onEvent(List<AllBannerImagesBean.LoginBannersBean> data) {
-        LogUtil.d(getClass().getSimpleName(),"onEvent--------------->"+data.toString());
-    }
     public void sendImageEvent(AllBannerImagesBean data) {
         LogUtil.d(getClass().getSimpleName(),"sendEvent--------------->"+data.toString());
-
         EventBus.getDefault().postSticky(new ListMainPictures(data.getMain()));
         EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
-        EventBus.getDefault().postSticky(new ListLoginBanners(data.getLoginBanners()));
+        initViewPager(new ListLoginBanners(data.getLoginBanners()));
     }
+
+    private void initViewPager(ListLoginBanners lists) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(lists.getBannersBeen(), loginIndicatorCpi, mContext);
+        loginImagesvp.setAdapter(adapter);
+        loginImagesvp.addOnPageChangeListener(loginImagesvp.listener);
+    }
+
 }

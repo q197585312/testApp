@@ -33,28 +33,9 @@
                 android:layout_marginTop="10dp"
                 android:src="@mipmap/logo" />
         </FrameLayout>
-
-        <!--<FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="100dp">
-
-            <android.support.v4.view.ViewPager
-                android:id="@+id/login_images_vp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
-
-            <com.unkonw.testapp.libs.view.indicator.CirclePageIndicator
-                android:id="@+id/login_indicator_cpi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal|bottom"
-                android:gravity="center" />
-
-        </FrameLayout>-->
         <RelativeLayout
-
             android:layout_width="match_parent"
-            android:layout_height="100dp">
+            android:layout_height="150dp">
 
             <com.nanyang.app.Utils.AutoScrollViewPager
                 android:id="@+id/login_images_vp"
@@ -66,7 +47,7 @@
                 android:layout_height="20dp">
 
                 <LinearLayout
-                    android:layout_gravity="bottom|right"
+                    android:layout_gravity="bottom|center_horizontal"
                     android:id="@+id/login_indicator_cpi"
                     android:layout_margin="2dp"
                     android:layout_width="wrap_content"
@@ -85,13 +66,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
+                android:text="@string/language_switch"
                 android:background="@color/white"
                 android:drawableBottom="@drawable/line_white"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:minLines="1"
                 android:singleLine="true"
-                android:textColor="@color/white"
+                android:textColor="@color/gray_dark"
                 android:textColorHint="@color/grey_background_trans"
                 android:textSize="17sp" />
             <TextView
@@ -99,7 +81,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text=""
-                android:textColor="@color/white"
+                android:textColor="@color/gray_dark"
                 android:visibility="gone" />
 
             <View

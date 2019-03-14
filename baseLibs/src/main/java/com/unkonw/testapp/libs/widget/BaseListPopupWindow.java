@@ -18,7 +18,7 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
     RecyclerView recyclerView;
 
     private TextView tv;
-    private TextView tv1;
+    public TextView tv1;
     private List<T> data;
 
     public BaseListPopupWindow(Context context, View v, int width, int height, TextView tv) {
@@ -62,12 +62,12 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<T>() {
             @Override
             public void onItemClick(View view, T item, int position) {
-                if (tv != null) {
-                    convertTv(tv,item);
-                }
                 if (tv1 != null) {
                     tv1.setText("OK");
                     tv1.setVisibility(View.VISIBLE);
+                }
+                if (tv != null) {
+                    convertTv(tv,item);
                 }
                 closePopupWindow();
 

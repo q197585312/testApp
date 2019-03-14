@@ -56,4 +56,8 @@ public class MenuItemInfo<P> implements Serializable {
         this.res = res;
     }
 
+
+    public MenuItemInfo() {
+        super();
+    }
 }
