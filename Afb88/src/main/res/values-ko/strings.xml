@@ -354,4 +354,10 @@
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
     <string name="language_switch">KOREAN</string>
+    <string name="my_account">내 계정</string>
+    <string name="messages">信息</string>
+    <string name="contact">联系我们</string>
+    <string name="setting">设置</string>
+    <string name="how_to_use">使用方法</string>
+    <string name="logout">登出</string>
 </resources>

@@ -402,4 +402,10 @@
     <string name="gd88_casino">gd88 casino</string>
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
+    <string name="my_account">My Account</string>
+    <string name="messages">messages</string>
+    <string name="contact">contact</string>
+    <string name="setting">setting</string>
+    <string name="how_to_use">How to use</string>
+    <string name="logout">logout</string>
 </resources>
