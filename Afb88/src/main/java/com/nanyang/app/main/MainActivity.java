@@ -11,10 +11,12 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.load.login.LoginActivity;
+import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.center.Statement.StatementFragment;
-import com.nanyang.app.main.home.contact.ContactFragment;
 import com.nanyang.app.main.home.HomeFragment;
+import com.nanyang.app.main.home.contact.ContactFragment;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
@@ -67,8 +69,10 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     @Override
     protected void onResume() {
         super.onResume();
-
         presenter.oddsType();
+        //"ACT":"GetTT","PT":"wfMainH50","lang":"ZH-CN"
+        String language = new LanguageHelper(mContext).getLanguage();
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("GetTT","wfMainH50",language));
 
     }
 

@@ -149,6 +149,14 @@ public class LoginInfo {
             this.lang = lang;
         }
 
+        public LoginWfBean(String ACT, String ID, String PW, String lang, String pgLable, String vsn, String PT) {
+            this.ACT = ACT;
+            this.ID = ID;
+            this.PW = PW;
+            this.lang = lang;
+            this.PT = PT;
+        }
+
         String ACT = "Login";
         String ID = txtUserName;
         String PW = password_password;
@@ -164,7 +172,8 @@ public class LoginInfo {
 
 
     public static class LanguageWfBean implements Serializable {
-        // {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
+        //{"ACT":"GetTT","PT":"wfMainH50","lang":"ZH-CN","accType":"","pgLable":"0.38311782637122316","vsn":"001"}&_db={}
+        // {"ACT":"GetTT",,"PT":"wfMain0" "lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121"}
 //{"ACT":"GetTT","lang":"","accType":"","IsToday":"1","pgLable":"0.6229094620888556","vsn":"001","PT":"wfMain0"}
         public LanguageWfBean(String lang) {
             this.lang = lang;
@@ -185,6 +194,12 @@ public class LoginInfo {
         String pgLable = "0.6229094620888556";
         String vsn = "001";
         String PT = "wfMain0";
+
+        public LanguageWfBean(String ACT, String lang, String PT) {
+            this.ACT = ACT;
+            this.lang = lang;
+            this.PT = PT;
+        }
 
         public String getJson() {
             return new Gson().toJson(this);

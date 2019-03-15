@@ -3,6 +3,9 @@ package com.nanyang.app.main;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BuildConfig;
+import com.nanyang.app.load.login.LoginInfo;
+import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import org.reactivestreams.Subscription;
@@ -47,5 +50,15 @@ class MainPresenter extends BaseRetrofitPresenter<MainActivity> implements MainC
                 });
         mCompositeSubscription.add(subscription);
 
+    }
+
+    public void loadAllMainData(LoginInfo.LanguageWfBean languageWfBean) {
+
+        doRetrofitApiOnDefaultThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm="+languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) {
+
+            }
+        });
     }
 }
