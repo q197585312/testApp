@@ -23,4 +23,6 @@
     <color name="keno_text_nomal1">#11662F</color>
     <color name="keno_text_nomal2">#7AD791</color>
     <color name="keno_line">#178731</color>
+    <color name="contact_back">#E0E0E0</color>
+    <color name="contact_font">#737373</color>
 </resources>

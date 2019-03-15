@@ -2,6 +2,7 @@ package com.nanyang.app;
 
 
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
+import com.nanyang.app.main.center.model.Contact;
 import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
 import com.nanyang.app.main.center.model.StatementStakeListBean;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
@@ -91,6 +92,9 @@ public interface ApiService {
 
     @GET
     Flowable<String> getData(@Url String url);
+
+    @GET
+    Flowable<Contact> getContactData(@Url String url);
 
     @GET
     Flowable<BettingPromptBean> getBetData(@Url String url);
