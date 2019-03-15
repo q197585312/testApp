@@ -6,7 +6,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,15 +20,11 @@ import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.load.ListMainPictures;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
-import com.nanyang.app.main.home.discount.DiscountActivity;
-import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
-import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.LogUtil;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import org.greenrobot.eventbus.EventBus;
@@ -164,18 +159,20 @@ public class HomeFragment extends BaseFragment {
         BaseRecyclerAdapter<AllBannerImagesBean.BannersBean> adapter = new BaseRecyclerAdapter<AllBannerImagesBean.BannersBean>(mContext, data, R.layout.home_item_image_text) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, AllBannerImagesBean.BannersBean item) {
-                ImageView iv = holder.getView(R.id.iv_pic);
                 TextView tv = holder.getView(R.id.tv_text);
                 holder.setImageByUrl(R.id.iv_pic, item.getImg());
                 SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getId());
-                tv.setText(sportIdBean.getTextRes());
+                if (sportIdBean!=null&&sportIdBean.getTextRes() > 0)
+                    tv.setText(getString(sportIdBean.getTextRes()));
             }
         };
         rvContent.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<AllBannerImagesBean.BannersBean>() {
             @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                switch (item.getType()) {
+            public void onItemClick(View view, AllBannerImagesBean.BannersBean item, int position) {
+                SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getId());
+
+              /*  switch (item.getType()) {
                     case "SportBook":
                         if (getString(R.string.app_name).equals("AP889")) {
                             MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Running));
@@ -195,8 +192,8 @@ public class HomeFragment extends BaseFragment {
                     case "Myanmar_Odds":
                     case "Europe":
                         defaultSkip(item.getType());
-           /*             createPopupWindow(getPopupWindow(item.getType()));
-                        popWindow.showPopupCenterWindow();*/
+           *//*             createPopupWindow(getPopupWindow(item.getType()));
+                        popWindow.showPopupCenterWindow();*//*
                         break;
                     case "Huay_Thai":
                         skipAct(HuayThaiActivity.class);
@@ -218,7 +215,7 @@ public class HomeFragment extends BaseFragment {
                         break;
                     default:
                         ToastUtils.showShort(R.string.coming_soon);
-                }
+                }*/
 
 
             }
