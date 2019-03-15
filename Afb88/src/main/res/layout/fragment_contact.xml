@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+    android:background="@color/contact_back"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="  Customer Service specialists are available to answer all of your questions, payment or otherwise in English and Chinese."
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/contact_back"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/contact_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                >
+            </android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:layout_marginTop="6dp"
+                android:text="Customer Service Hotline"
+                android:textStyle="bold"
+                android:paddingTop="10dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="International call charges may apply to you. Phone calls to us may be recorded for customer protection, information verification, quality assurance purposes and regulatory compliance."
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:background="@color/white"
+                android:paddingTop="10dp"
+                android:paddingBottom="10dp"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/contact_back"/>
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/contact_list_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                >
+            </android.support.v7.widget.RecyclerView>
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
