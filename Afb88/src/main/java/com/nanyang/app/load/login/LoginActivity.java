@@ -258,11 +258,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         LogUtil.d(getClass().getSimpleName(),"sendEvent--------------->"+data.toString());
         EventBus.getDefault().postSticky(new ListMainPictures(data.getMain()));
         EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
-        initViewPager(new ListLoginBanners(data.getLoginBanners()));
+        initViewPager(data.getLoginBanners());
     }
 
-    private void initViewPager(ListLoginBanners lists) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(lists.getBannersBeen(), loginIndicatorCpi, mContext);
+    private void initViewPager(List<AllBannerImagesBean.BannersBean> list) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(list, loginIndicatorCpi, mContext);
         loginImagesvp.setAdapter(adapter);
         loginImagesvp.addOnPageChangeListener(loginImagesvp.listener);
     }
