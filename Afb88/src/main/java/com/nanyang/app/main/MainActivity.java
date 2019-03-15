@@ -12,8 +12,8 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
-import com.nanyang.app.main.center.PersonalCenterFragment;
 import com.nanyang.app.main.center.Statement.StatementFragment;
+import com.nanyang.app.main.home.contact.ContactFragment;
 import com.nanyang.app.main.home.HomeFragment;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -37,7 +37,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     FrameLayout flCurrentMenu;
 
     BaseFragment homeFragment = new HomeFragment();
-    BaseFragment centerFragment = new PersonalCenterFragment();
+    BaseFragment centerFragment = new ContactFragment();
     BaseFragment statementFragment = new StatementFragment();
 
     @Override
