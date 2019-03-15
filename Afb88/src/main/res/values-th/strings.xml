@@ -348,4 +348,10 @@
     <string name="gd88_casino">gd88 casino</string>
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
+    <string name="my_account">บัญชีของฉัน</string>
+    <string name="messages">信息</string>
+    <string name="contact">联系我们</string>
+    <string name="setting">设置</string>
+    <string name="how_to_use">使用方法</string>
+    <string name="logout">登出</string>
 </resources>

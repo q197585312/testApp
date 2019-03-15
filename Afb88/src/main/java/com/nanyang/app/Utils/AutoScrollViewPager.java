@@ -54,6 +54,7 @@ public class AutoScrollViewPager extends ViewPager {
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(25, 25);
         params.leftMargin = 7;
         viewList = new ArrayList<>();
+        viewList.clear();
         setCurrentItem(index);
         for (int i = 0; i < tureItemCount; i++) {
             View view = new View(getContext());
