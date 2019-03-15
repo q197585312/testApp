@@ -173,6 +173,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 case R.id.tv_tab_home:
                     tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_a, 0, 0);
                     hideFragmentToActivity(homeFragment);
+                    showHomePop();
                     break;
                 case R.id.tv_tab_center:
                     tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_user, 0, 0);
@@ -206,6 +207,10 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             }
             flCurrentMenu = fl;
         }
+
+    }
+
+    private void showHomePop() {
 
     }
 

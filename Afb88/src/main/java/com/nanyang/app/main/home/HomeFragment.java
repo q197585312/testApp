@@ -156,13 +156,13 @@ public class HomeFragment extends BaseFragment {
         rvContent.setLayoutManager(layoutManager);
 
 
-        BaseRecyclerAdapter<AllBannerImagesBean.BannersBean> adapter = new BaseRecyclerAdapter<AllBannerImagesBean.BannersBean>(mContext, data, R.layout.home_item_image_text) {
+        BaseRecyclerAdapter<AllBannerImagesBean.BannersBean> adapter = new BaseRecyclerAdapter<AllBannerImagesBean.BannersBean>(mContext, data, R.layout.home_sport_item_image_text) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, AllBannerImagesBean.BannersBean item) {
                 TextView tv = holder.getView(R.id.tv_text);
                 holder.setImageByUrl(R.id.iv_pic, item.getImg());
                 SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getId());
-                if (sportIdBean!=null&&sportIdBean.getTextRes() > 0)
+                if (sportIdBean != null && sportIdBean.getTextRes() > 0)
                     tv.setText(getString(sportIdBean.getTextRes()));
             }
         };
@@ -171,52 +171,12 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, AllBannerImagesBean.BannersBean item, int position) {
                 SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getId());
-
-              /*  switch (item.getType()) {
-                    case "SportBook":
-                        if (getString(R.string.app_name).equals("AP889")) {
-                            MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Running));
-                            menuItemInfo.setType("Running");
-                            menuItemInfo.setParent(item.getType());
-                            Bundle b1 = new Bundle();
-                            b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
-                            skipAct(SportActivity.class, b1);
-                        } else {
-                            defaultSkip(item.getType());
-                        }
-                        break;
-                    case "Financial":
-                    case "Specials_4D":
-                    case "Muay_Thai":
-                    case "E_Sport":
-                    case "Myanmar_Odds":
-                    case "Europe":
-                        defaultSkip(item.getType());
-           *//*             createPopupWindow(getPopupWindow(item.getType()));
-                        popWindow.showPopupCenterWindow();*//*
-                        break;
-                    case "Huay_Thai":
-                        skipAct(HuayThaiActivity.class);
-                        break;
-                    case "Live_Casino":
-                        Bundle b = new Bundle();
-                        b.putString("activity", "Live");
-                        ToastUtils.showShort(R.string.coming_soon);
-//                        skipAct(PokerCasinoActivity.class, b);
-                        break;
-                    case "Poker":
-                        ToastUtils.showShort(R.string.coming_soon);
-                        break;
-                    case "Discount":
-                        skipAct(DiscountActivity.class);
-                        break;
-                    case "Keno":
-                        skipAct(KenoActivity.class);
-                        break;
-                    default:
-                        ToastUtils.showShort(R.string.coming_soon);
-                }*/
-
+                MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Running));
+                menuItemInfo.setType("Running");
+                menuItemInfo.setParent(sportIdBean.getType());
+                Bundle b1 = new Bundle();
+                b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
+                skipAct(sportIdBean.getCls(), b1);
 
             }
         });
