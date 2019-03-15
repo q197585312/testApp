@@ -32,6 +32,7 @@
     <!--transparent-->
     <color name="transparent">@android:color/transparent</color>
     <color name="trans_black">#77000000</color>
+    <color name="trans_black_light">#33000000</color>
     <color name="trans_white">#66ffffff</color>
     <!--red-->
     <color name="red">#ff0000</color>

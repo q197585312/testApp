@@ -1,5 +1,7 @@
 package com.nanyang.app;
 
+import com.nanyang.app.main.home.sport.main.SportActivity;
+
 import java.io.Serializable;
 
 /**
@@ -7,13 +9,34 @@ import java.io.Serializable;
  */
 
 public class SportIdBean implements Serializable {
+    public Class<SportActivity> getCls() {
+        return cls;
+    }
+
+    public void setCls(Class<SportActivity> cls) {
+        this.cls = cls;
+    }
+
+    private Class<SportActivity> cls;
     String id;
     int textRes;
     int sportCount;
 
-    public SportIdBean(String id, int textRes) {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    String type;
+
+    public SportIdBean(String id, int textRes, String type, Class<SportActivity> cls) {
         this.id = id;
         this.textRes = textRes;
+        this.type = type;
+        this.cls = cls;
     }
 
     public String getId() {
