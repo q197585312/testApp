@@ -22,6 +22,7 @@ import com.nanyang.app.main.center.Statement.StatementFragment;
 import com.nanyang.app.main.center.model.More;
 import com.nanyang.app.main.home.HomeFragment;
 import com.nanyang.app.main.home.contact.ContactFragment;
+import com.nanyang.app.main.home.person.PersonCenterFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -54,6 +55,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     BaseFragment homeFragment = new HomeFragment();
     BaseFragment centerFragment = new ContactFragment();
     BaseFragment statementFragment = new StatementFragment();
+    BaseFragment personFragment = new PersonCenterFragment();
     private List<More> dataList;
 
     @Override
@@ -103,7 +105,9 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             @Override
             public void onItemClick(View view, More item, int position) {
                 if (getString(R.string.my_account).equals(item.getText())) {
-
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+                    hideFragmentToActivity(personFragment);
+                    showFragmentToActivity(personFragment,R.id.fl_main_content);
                 } else if (getString(R.string.messages).equals(item.getText())) {
 
                 } else if (getString(R.string.statement).equals(item.getText())) {

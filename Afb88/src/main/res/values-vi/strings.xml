@@ -369,4 +369,6 @@
     <string name="how_to_use">Cách sử dụng</string>
     <string name="logout">Điều mà các</string>
     <string name="more">hơn</string>
+    <string name="last_login_date">Giờ đăng nhập</string>
+    <string name="nike_name">Biệt danh</string>
 </resources>

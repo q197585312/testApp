@@ -406,5 +406,7 @@
     <string name="setting">设置</string>
     <string name="how_to_use">使用方法</string>
     <string name="logout">登出</string>
-    <string name="more">more</string>
+    <string name="more">更多</string>
+    <string name="last_login_date">登录时间</string>
+    <string name="nike_name">昵称</string>
 </resources>

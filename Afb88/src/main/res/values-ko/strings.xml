@@ -361,4 +361,6 @@
     <string name="how_to_use">사용하는 방법</string>
     <string name="logout">사용하는 방법</string>
     <string name="more">더 많은</string>
+    <string name="last_login_date">로그인 시간</string>
+    <string name="nike_name">별명</string>
 </resources>

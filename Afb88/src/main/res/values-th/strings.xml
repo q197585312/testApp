@@ -355,4 +355,6 @@
     <string name="how_to_use">วิธีใช้</string>
     <string name="logout">ออกจากระบบ</string>
     <string name="more">ขึ้น</string>
+    <string name="last_login_date">เวลาเข้าระบบ</string>
+    <string name="nike_name">ชื่อเล่น</string>
 </resources>
