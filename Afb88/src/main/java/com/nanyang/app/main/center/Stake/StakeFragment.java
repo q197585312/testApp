@@ -6,7 +6,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
@@ -20,7 +19,6 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.center.model.StakeListBean2;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
@@ -417,11 +415,11 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
 //            /W0/Pub/_norm/wfPamTrans0.html?
 //                url = AppConstant.getInstance().HOST + "W0/Pub/wfBetSlip0.html?id=" + item.getSocTransId()+"&transType="+item.getTransType();
                 //http://www.afb1188.com/W0/Pub/_norm/wfPamTrans0.html?userName=Demoafba0311&id=6261
-//                url = AppConstant.getInstance().HOST + "_Norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
-                url = AppConstant.getInstance().HOST + "W0/Pub/_norm/wfPamTrans0.html?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+//                url = AppConstant.getInstance().HOST + "_Norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getLoginName() + "&id=" + item.getSocTransId();
+                url = AppConstant.getInstance().HOST + "W0/Pub/_norm/wfPamTrans0.html?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getLoginName() + "&id=" + item.getSocTransId();
 
             } else {
-                url = AppConstant.getInstance().HOST + "_norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+                url = AppConstant.getInstance().HOST + "_norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getLoginName() + "&id=" + item.getSocTransId();
 
             }
             pop.setUrl(url);

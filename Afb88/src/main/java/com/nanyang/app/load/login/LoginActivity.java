@@ -17,7 +17,6 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
-import com.nanyang.app.load.ListLoginBanners;
 import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.load.ListMainPictures;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
@@ -224,7 +223,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         app = (AfbApplication) getApplication();
         String username = edtLoginUsername.getText().toString();
         String password = edtLoginPassword.getText().toString();
-        app.getUser().setUserName(username);
+        app.getUser().setLoginName(username);
         app.getUser().setPassword(password);
         if (cbLoginRemember.isChecked()) {
             AppCacheUtils.getInstance(this).put("PASS_WORD", password);

@@ -64,7 +64,7 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     public void initData() {
         super.initData();
         AfbApplication app = (AfbApplication) getActivity().getApplication();
-        userName = app.getUser().getUserName();
+        userName = app.getUser().getLoginName();
         blanceBean = new StatementSureBlanceBean();
         presenter.getStatementData(userName);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark);
