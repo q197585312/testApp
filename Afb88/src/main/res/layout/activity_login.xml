@@ -33,6 +33,7 @@
                 android:layout_marginTop="10dp"
                 android:src="@mipmap/logo" />
         </FrameLayout>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="150dp">
@@ -40,19 +41,20 @@
             <com.nanyang.app.Utils.AutoScrollViewPager
                 android:id="@+id/login_images_vp"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"/>
+                android:layout_height="match_parent" />
+
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_alignParentBottom="true"
-                android:layout_height="20dp">
+                android:layout_height="20dp"
+                android:layout_alignParentBottom="true">
 
                 <LinearLayout
-                    android:layout_gravity="bottom|center_horizontal"
                     android:id="@+id/login_indicator_cpi"
-                    android:layout_margin="2dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"/>
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_margin="2dp"
+                    android:orientation="horizontal" />
             </FrameLayout>
         </RelativeLayout>
 
@@ -61,28 +63,22 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:padding="25dp">
+
             <TextView
                 android:id="@+id/login_language"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="@string/language_switch"
                 android:background="@color/white"
                 android:drawableBottom="@drawable/line_white"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:minLines="1"
+                android:padding="10dp"
                 android:singleLine="true"
+                android:text="@string/language_switch"
                 android:textColor="@color/gray_dark"
                 android:textColorHint="@color/grey_background_trans"
                 android:textSize="17sp" />
-            <TextView
-                android:id="@+id/login_language_prompt"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/gray_dark"
-                android:visibility="gone" />
 
             <View
                 android:layout_width="match_parent"
@@ -96,10 +92,10 @@
                 android:background="@color/white"
                 android:drawableBottom="@drawable/line_white"
                 android:drawablePadding="5dp"
-                android:padding="10dp"
                 android:gravity="center_vertical"
                 android:hint="@string/Account"
                 android:minLines="1"
+                android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@color/gray_dark"
                 android:textColorHint="@color/gray_dark"
@@ -115,13 +111,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                android:padding="10dp"
                 android:drawableBottom="@drawable/line_white"
                 android:drawablePadding="5dp"
                 android:gravity="center_vertical"
                 android:hint="@string/Password"
                 android:inputType="textPassword"
                 android:minLines="1"
+                android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@color/gray_dark"
                 android:textColorHint="@color/gray_dark"

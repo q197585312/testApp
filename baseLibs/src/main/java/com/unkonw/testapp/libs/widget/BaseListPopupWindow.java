@@ -45,6 +45,14 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
         this.data=data;
         adapter.addAllAndClear(data);
     }
+    public int getItemLayoutId(){
+        return R.layout.register_base_test;
+
+    }
+    public void onConvert(MyRecyclerViewHolder holder, int position, T item) {
+        TextView tv = holder.getView(R.id.item_regist_text_tv);
+        convertTv(tv,item);
+    }
 
     @Override
     protected void initView(View view) {
@@ -52,12 +60,13 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
         recyclerView = (RecyclerView) view.findViewById(getRecyclerViewId());
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        adapter = new BaseRecyclerAdapter<T>(context, new ArrayList<T>(), R.layout.register_base_test) {
+        adapter = new BaseRecyclerAdapter<T>(context, new ArrayList<T>(), getItemLayoutId()) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, T item) {
-                TextView tv = holder.getView(R.id.item_regist_text_tv);
-                convertTv(tv,item);
+                onConvert(holder,position,item);
             }
+
+
         };
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<T>() {
             @Override
@@ -76,7 +85,7 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
         recyclerView.setAdapter(adapter);
     }
 
-    protected abstract void convertTv(TextView tv, T item);
+    protected  void convertTv(TextView tv, T item){}
 
     @Override
     protected int onSetLayoutRes() {

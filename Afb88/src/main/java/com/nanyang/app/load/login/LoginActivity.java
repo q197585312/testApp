@@ -63,8 +63,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     LinearLayout loginIndicatorCpi;
     @Bind(R.id.login_language)
     TextView loginLanguage;
-    @Bind(R.id.login_language_prompt)
-    TextView loginLanguagePrompt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,7 +88,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
     @OnClick(R.id.login_language)
     public void setLanguagepop(View view) {
-        BaseListPopupWindow<MenuItemInfo> popu = new BaseListPopupWindow<MenuItemInfo>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, loginLanguage, loginLanguagePrompt) {
+        BaseListPopupWindow<MenuItemInfo> popu = new BaseListPopupWindow<MenuItemInfo>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, loginLanguage) {
             @Override
             public int getRecyclerViewId() {
                 return R.id.base_rv;
@@ -100,7 +98,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             protected void convertTv(TextView tv, MenuItemInfo item) {
                 tv.setText(item.getText());
                 AfbUtils.switchLanguage(item.getType(), mContext);
-                tv1.setVisibility(View.GONE);
                 restart();
 
             }
