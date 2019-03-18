@@ -362,10 +362,11 @@
     <string name="gd88_casino">gd88 casino</string>
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
-    <string name="my_account">我的账户</string>
-    <string name="messages">信息</string>
-    <string name="contact">联系我们</string>
-    <string name="setting">设置</string>
-    <string name="how_to_use">使用方法</string>
-    <string name="logout">登出</string>
+    <string name="my_account">Tài khoản của tôi</string>
+    <string name="messages">Thông Báo</string>
+    <string name="contact">Liên hệ với chúng tôi </string>
+    <string name="setting">cài đặt</string>
+    <string name="how_to_use">Cách sử dụng</string>
+    <string name="logout">Điều mà các</string>
+    <string name="more">hơn</string>
 </resources>

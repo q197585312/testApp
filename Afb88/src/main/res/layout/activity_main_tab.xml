@@ -128,7 +128,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:text="更多"
+            android:text="@string/more"
             android:textColor="@color/white"
             android:background="#137D33"
             android:gravity="left|center_vertical"
