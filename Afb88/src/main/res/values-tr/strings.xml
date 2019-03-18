@@ -187,7 +187,7 @@
     <string name="w_l">W/L</string>
     <string name="commission">Com</string>
     <string name="settled_statement">yerleşik</string>
-    <string name="balance">Denge</string>
+    <string name="balances">Denge</string>
     <string name="confirm_balance">Lütfen bakiyenizi doğrulayın</string>
     <string name="transfer_log">Aktarım Günlüğü</string>
     <string name="description">Açıklama</string>

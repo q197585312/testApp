@@ -2,6 +2,7 @@ package com.unkonw.testapp.libs.base;
 
 import android.util.Log;
 
+import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
 import io.reactivex.functions.Action;
@@ -57,6 +58,6 @@ public abstract class BaseConsumer<T> {
         baseContext.showLoadingDialog();
     }
 
-    protected abstract void onBaseGetData(T data);
+    protected abstract void onBaseGetData(T data) throws JSONException;
 
 }

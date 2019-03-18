@@ -259,7 +259,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
             bundle.putInt("gameType", 3);
             bundle.putString("web_id", "-1");
             bundle.putString("k", data);
-            bundle.putString("us", getApp().getUser().getUserName());
+            bundle.putString("us", getApp().getUser().getLoginName());
             bundle.putString("lang", AfbUtils.getLanguage(mContext));
             bundle.putInt("homeColor", getHomeColor());
             try {
@@ -291,7 +291,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
 
     @Override
     public void againLogin(final String gameType) {
-        presenter.login(new LoginInfo(app.getUser().getUserName(), app.getUser().getPassword()), new BaseConsumer<String>(this) {
+        presenter.login(new LoginInfo(app.getUser().getLoginName(), app.getUser().getPassword()), new BaseConsumer<String>(this) {
             @Override
             protected void onBaseGetData(String data) {
                 if (BuildConfig.FLAVOR.equals("afb1188"))

@@ -84,7 +84,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 gameMenus(v);
             }
         });
-        updateBalanceTv(getApp().getUser().getUserName());
+        updateBalanceTv(getApp().getUser().getLoginName());
 
     }
 
@@ -196,7 +196,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                                @Override
                                public void accept(String allData) throws Exception {
                                    updateBalanceTv(allData);
-                                   getApp().getUser().setBalance(allData);
+                                   getApp().getUser().setBalances(allData);
                                }
                            }, new Consumer<Throwable>() {//错误
                                @Override

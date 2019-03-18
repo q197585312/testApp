@@ -186,7 +186,7 @@
     <string name="w_l">W / L</string>
     <string name="commission">Com</string>
     <string name="settled_statement">Định cư</string>
-    <string name="balance">Cân đối</string>
+    <string name="balances">Cân đối</string>
     <string name="confirm_balance">Vui lòng xác nhận số dư của bạn</string>
     <string name="transfer_log">Transfer Log</string>
     <string name="description">Sự miêu tả</string>

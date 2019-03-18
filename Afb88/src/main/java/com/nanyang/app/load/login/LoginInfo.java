@@ -191,8 +191,8 @@ public class LoginInfo {
 
         String accType = "";
         String lang = "";
-        String pgLable = "0.6229094620888556";
-        String vsn = "001";
+/*        String pgLable = "0.6229094620888556";
+        String vsn = "001";*/
         String PT = "wfMain0";
 
         public LanguageWfBean(String ACT, String lang, String PT) {

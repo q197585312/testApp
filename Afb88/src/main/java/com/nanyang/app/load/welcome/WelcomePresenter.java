@@ -149,7 +149,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                         if (!StringUtils.isEmpty(str) && str.contains("wfMain")) {
                             SwitchLanguage switchLanguage = new SwitchLanguage(baseContext);
                             AfbApplication app = (AfbApplication) baseContext.getBaseActivity().getApplication();
-                            app.getUser().setUserName(us);
+                            app.getUser().setLoginName(us);
                             app.getUser().setPassword("");
                             return switchLanguage.switchLanguage( new LanguageHelper(baseContext.getBaseActivity()).getLanguage(), "MY");
                         }

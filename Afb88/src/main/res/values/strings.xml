@@ -187,8 +187,8 @@
     <string name="w_l">W/L</string>
     <string name="commission">Com</string>
     <string name="settled_statement">Settled</string>
-    <string name="balance">Balance</string>
-    <string name="confirm_balance">Please confirm your balance</string>
+    <string name="balances">Balance</string>
+    <string name="confirm_balance">Please confirm your balances</string>
     <string name="transfer_log">Transfer Log</string>
     <string name="description">Description</string>
     <string name="amount">Amount</string>
@@ -203,7 +203,7 @@
     <string name="valid_amount_m">Valid Amount:</string>
     <string name="w_l_m">W/L:</string>
     <string name="commission_m">Com:</string>
-    <string name="already_determine_the_balance">Already Determine the balance</string>
+    <string name="already_determine_the_balance">Already Determine the balances</string>
     <!--语言选择-->
     <string name="double_click_exit_application">Double click exit application</string>
     <string name="choice_language">Choose Language</string>
@@ -240,7 +240,7 @@
     <string name="transfer_W88_Casino">Transfer W88 Casino</string>
     <string name="blance_W88_Casino">W88 Casino Balance</string>
     <string name="Input_the_amount_please">Input the amount please</string>
-    <string name="money_not_enough">balance not enough</string>
+    <string name="money_not_enough">balances not enough</string>
     <string name="login_out">Are You Sure Logout</string>
     <string name="enter_username_or_password">Please enter the user name or password</string>
     <string name="grade_m">Result:</string>
