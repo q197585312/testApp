@@ -3,10 +3,14 @@ package com.nanyang.app.main;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
@@ -14,10 +18,16 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.load.login.LoginActivity;
+import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.center.Statement.StatementFragment;
+import com.nanyang.app.main.center.model.More;
 import com.nanyang.app.main.home.HomeFragment;
 import com.nanyang.app.main.home.contact.ContactFragment;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.nanyang.app.main.home.contact.ContactFragment;
+import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -40,15 +50,21 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     FrameLayout flMenuHome;
     @Bind(R.id.fl_menu_login_out)
     FrameLayout flLoginOut;
+    @Bind(R.id.drawer_more)
+    DrawerLayout drawerLayout;
+
     @Bind(R.id.home_pop)
     TextView homePop;
     @Bind(R.id.ll_tab_menu_bottom)
     LinearLayout ll_tab_menu_bottom;
     FrameLayout flCurrentMenu;
+    @Bind(R.id.main_more)
+    RecyclerView reContent;
 
     BaseFragment homeFragment = new HomeFragment();
     BaseFragment centerFragment = new ContactFragment();
     BaseFragment statementFragment = new StatementFragment();
+    private List<More> dataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +76,74 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         flCurrentMenu = flMenuHome;
         showFragmentToActivity(homeFragment, R.id.fl_main_content);
         createPresenter(new MainPresenter(this));
+        LinearLayoutManager llm = new LinearLayoutManager(mContext);
+        reContent.setLayoutManager(llm);
+        dataList = new ArrayList<>();
+        More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0);
+        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message);
+        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0);
+        More m4 = new More(R.mipmap.result, getString(R.string.result), 0);
+        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0);
+        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0);
+        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0);
+        More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
+        dataList.add(m1);
+        dataList.add(m2);
+        dataList.add(m3);
+        dataList.add(m4);
+        dataList.add(m5);
+        dataList.add(m6);
+        dataList.add(m7);
+        dataList.add(m8);
+        BaseRecyclerAdapter<More> adapter = new BaseRecyclerAdapter<More>(mContext, dataList, R.layout.item_main_more) {
+
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, More item) {
+                ImageView ivLeft = holder.getImageView(R.id.more_left_img);
+                ImageView ivRight = holder.getImageView(R.id.more_img_right);
+                ivLeft.setImageResource(item.getImage_left());
+                if (item.getImage_right() != 0) {
+                    ivRight.setImageResource(item.getImage_right());
+                }
+                TextView tv = holder.getTextView(R.id.more_text);
+                tv.setText(item.getText());
+            }
+        };
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<More>() {
+            @Override
+            public void onItemClick(View view, More item, int position) {
+                if (getString(R.string.my_account).equals(item.getText())) {
+
+                } else if (getString(R.string.messages).equals(item.getText())) {
+
+                } else if (getString(R.string.statement).equals(item.getText())) {
+
+                } else if (getString(R.string.result).equals(item.getText())) {
+
+                } else if (getString(R.string.contact).equals(item.getText())) {
+
+                } else if (getString(R.string.setting).equals(item.getText())) {
+
+                } else {
+                    BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
+                        @Override
+                        protected void clickSure(View v) {
+                            Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    };
+                    pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+                    pop.getChooseMessage().setText(getString(R.string.login_out));
+                    pop.getChooseSureTv().setText(getString(R.string.sure));
+                    pop.getChooseCancelTv().setText(getString(R.string.cancel));
+                    onPopupWindowCreated(pop, Gravity.CENTER);
+                }
+
+
+            }
+        });
+        reContent.setAdapter(adapter);
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         toolbar.setNavigationIcon(R.mipmap.logo);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,32 +155,24 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     private void initUserData() {
 
-        ((AfbApplication) mContext.getApplication()).getUser().getBalance();
+        ((AfbApplication) mContext.getApplication()).getUser().getBalances();
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         presenter.oddsType();
+        //"ACT":"GetTT","PT":"wfMainH50","lang":"ZH-CN"
+        String language = new LanguageHelper(mContext).getLanguage();
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate",language,"wfMainH50"));
 
     }
 
     @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_statemente, R.id.fl_menu_login_out})
     public void onClick(View view) {
         if (view.getId() == R.id.fl_menu_login_out) {
-            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
-                @Override
-                protected void clickSure(View v) {
-                    Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
-            };
-            pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-            pop.getChooseMessage().setText(getString(R.string.login_out));
-            pop.getChooseSureTv().setText(getString(R.string.sure));
-            pop.getChooseCancelTv().setText(getString(R.string.cancel));
-            onPopupWindowCreated(pop, Gravity.CENTER);
+            drawerLayout.openDrawer(Gravity.RIGHT);
+
         } else {
             clickTabMenu((FrameLayout) view);
         }

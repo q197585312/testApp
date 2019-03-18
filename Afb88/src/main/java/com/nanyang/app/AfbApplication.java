@@ -1,7 +1,5 @@
 package com.nanyang.app;
 
-import android.os.SystemClock;
-
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
@@ -18,6 +16,10 @@ public class AfbApplication extends BaseApplication {
 
 
     private AfbClickResponseBean betAfbList;
+
+    public void setUser(PersonalInfo user) {
+        this.user = user;
+    }
 
     public PersonalInfo getUser() {
         return user;

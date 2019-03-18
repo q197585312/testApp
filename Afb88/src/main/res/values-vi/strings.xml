@@ -186,7 +186,7 @@
     <string name="w_l">W / L</string>
     <string name="commission">Com</string>
     <string name="settled_statement">Định cư</string>
-    <string name="balance">Cân đối</string>
+    <string name="balances">Cân đối</string>
     <string name="confirm_balance">Vui lòng xác nhận số dư của bạn</string>
     <string name="transfer_log">Transfer Log</string>
     <string name="description">Sự miêu tả</string>
@@ -362,4 +362,11 @@
     <string name="gd88_casino">gd88 casino</string>
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
+    <string name="my_account">Tài khoản của tôi</string>
+    <string name="messages">Thông Báo</string>
+    <string name="contact">Liên hệ với chúng tôi </string>
+    <string name="setting">cài đặt</string>
+    <string name="how_to_use">Cách sử dụng</string>
+    <string name="logout">Điều mà các</string>
+    <string name="more">hơn</string>
 </resources>

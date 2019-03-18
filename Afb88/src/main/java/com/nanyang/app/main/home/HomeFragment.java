@@ -142,7 +142,9 @@ public class HomeFragment extends BaseFragment {
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(ListMainBanners data) {
         LogUtil.d(getClass().getSimpleName(), "onEvent------------>" + data.toString());
-        initViewPager(data);
+        if (this!=null){
+            initViewPager(data);
+        }
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)

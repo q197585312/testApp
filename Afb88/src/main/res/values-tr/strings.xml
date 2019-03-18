@@ -187,7 +187,7 @@
     <string name="w_l">W/L</string>
     <string name="commission">Com</string>
     <string name="settled_statement">yerleşik</string>
-    <string name="balance">Denge</string>
+    <string name="balances">Denge</string>
     <string name="confirm_balance">Lütfen bakiyenizi doğrulayın</string>
     <string name="transfer_log">Aktarım Günlüğü</string>
     <string name="description">Açıklama</string>
@@ -362,4 +362,11 @@
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
     <string name="language_switch">TURKISH</string>
+    <string name="my_account">Benim hesabım</string>
+    <string name="messages">Mesaj</string>
+    <string name="contact">Bize Ulaşın</string>
+    <string name="setting">ayarlar</string>
+    <string name="how_to_use">NASIL KULLANILIR</string>
+    <string name="logout">Logout</string>
+    <string name="more">daha</string>
 </resources>

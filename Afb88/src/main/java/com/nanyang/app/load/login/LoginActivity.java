@@ -17,7 +17,6 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
-import com.nanyang.app.load.ListLoginBanners;
 import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.load.ListMainPictures;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
@@ -221,7 +220,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         app = (AfbApplication) getApplication();
         String username = edtLoginUsername.getText().toString();
         String password = edtLoginPassword.getText().toString();
-        app.getUser().setUserName(username);
+        app.getUser().setLoginName(username);
         app.getUser().setPassword(password);
         if (cbLoginRemember.isChecked()) {
             AppCacheUtils.getInstance(this).put("PASS_WORD", password);
@@ -255,11 +254,11 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         LogUtil.d(getClass().getSimpleName(),"sendEvent--------------->"+data.toString());
         EventBus.getDefault().postSticky(new ListMainPictures(data.getMain()));
         EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
-        initViewPager(new ListLoginBanners(data.getLoginBanners()));
+        initViewPager(data.getLoginBanners());
     }
 
-    private void initViewPager(ListLoginBanners lists) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(lists.getBannersBeen(), loginIndicatorCpi, mContext);
+    private void initViewPager(List<AllBannerImagesBean.BannersBean> list) {
+        ViewPagerAdapter adapter = new ViewPagerAdapter(list, loginIndicatorCpi, mContext);
         loginImagesvp.setAdapter(adapter);
         loginImagesvp.addOnPageChangeListener(loginImagesvp.listener);
     }

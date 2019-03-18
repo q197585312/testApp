@@ -180,7 +180,7 @@
     <string name="w_l">승리/손실</string>
     <string name="commission">위원회</string>
     <string name="settled_statement">청산</string>
-    <string name="balance">균형</string>
+    <string name="balances">균형</string>
     <string name="confirm_balance">잔고 확인</string>
     <string name="transfer_log">전송 기록</string>
     <string name="description">기술</string>
@@ -354,4 +354,11 @@
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
     <string name="language_switch">KOREAN</string>
+    <string name="my_account">내 계정</string>
+    <string name="messages">메시지</string>
+    <string name="contact">결과</string>
+    <string name="setting">연락처</string>
+    <string name="how_to_use">사용하는 방법</string>
+    <string name="logout">사용하는 방법</string>
+    <string name="more">더 많은</string>
 </resources>

@@ -177,7 +177,7 @@
     <string name="w_l">ชนะ/สูญเสีย </string>
     <string name="commission">สำนักงานคณะกรรมการกำกับ </string>
     <string name="settled_statement">สำนักหักบัญชี </string>
-    <string name="balance">ยอดคงเหลือ </string>
+    <string name="balances">ยอดคงเหลือ </string>
     <string name="confirm_balance">ตรวจสอบให้แน่ใจยอดเงินของคุณ </string>
     <string name="transfer_log">บันทึกการถ่ายโอน </string>
     <string name="description">คำอธิบาย </string>
@@ -348,4 +348,11 @@
     <string name="gd88_casino">gd88 casino</string>
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
+    <string name="my_account">บัญชีของฉัน</string>
+    <string name="messages">ข้อความ</string>
+    <string name="contact">ติดต่อเรา </string>
+    <string name="setting">กำหนดค่า</string>
+    <string name="how_to_use">วิธีใช้</string>
+    <string name="logout">ออกจากระบบ</string>
+    <string name="more">ขึ้น</string>
 </resources>

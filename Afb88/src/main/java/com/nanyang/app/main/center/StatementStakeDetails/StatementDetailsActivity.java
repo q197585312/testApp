@@ -140,7 +140,7 @@ public class StatementDetailsActivity extends BaseToolbarActivity<StatementStake
             webSettings.setAppCacheEnabled(false);
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
             //http://main55.afb88.com/_norm/APamTrans.aspx?userName=demoafbpk&id=140565088
-            String url = AppConstant.getInstance().HOST + "_norm/PamTrans.aspx?userName=" + getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+            String url = AppConstant.getInstance().HOST + "_norm/PamTrans.aspx?userName=" + getApp().getUser().getLoginName() + "&id=" + item.getSocTransId();
             pop.setUrl(url);
             pop.showPopupCenterWindow();
         }

@@ -217,7 +217,7 @@ public class BetPop extends BasePopupWindow {
      * "Test": "testing" }
      */
     public void setBetData(AfbClickBetBean result, SportBetHelper mPresenter) {
-        betBalanceTv.setText(((AfbApplication) context.getApplicationContext()).getUser().getBalance());
+        betBalanceTv.setText(((AfbApplication) context.getApplicationContext()).getUser().getBalances());
         this.presenter = mPresenter;
         ((BaseActivity) context).hideLoadingDialog();
         bean = result;

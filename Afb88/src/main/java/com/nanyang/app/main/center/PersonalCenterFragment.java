@@ -52,8 +52,8 @@ public class PersonalCenterFragment extends BaseFragment {
         super.initView();
         aty = (MainActivity) getActivity();
         initHead();
-        tvBalance.setText(((AfbApplication) mContext.getApplication()).getUser().getBalance());
-        tvUserName.setText(((AfbApplication) mContext.getApplication()).getUser().getUserName());
+        tvBalance.setText(((AfbApplication) mContext.getApplication()).getUser().getBalances());
+        tvUserName.setText(((AfbApplication) mContext.getApplication()).getUser().getLoginName());
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(mLayoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();

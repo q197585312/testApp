@@ -187,7 +187,7 @@
     <string name="w_l">赢/输</string>
     <string name="commission">佣金</string>
     <string name="settled_statement">清帐</string>
-    <string name="balance">结余</string>
+    <string name="balances">结余</string>
     <string name="confirm_balance">请确认你的余额</string>
     <string name="transfer_log">转账记录</string>
     <string name="description">记述</string>
@@ -400,4 +400,11 @@
     <string name="gd88_casino">gd88 casino</string>
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
+    <string name="my_account">我的账户</string>
+    <string name="messages">信息</string>
+    <string name="contact">联系我们</string>
+    <string name="setting">设置</string>
+    <string name="how_to_use">使用方法</string>
+    <string name="logout">登出</string>
+    <string name="more">more</string>
 </resources>

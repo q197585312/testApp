@@ -57,7 +57,7 @@ public class ChangePasswordFragment extends BaseFragment {
     public void initView() {
         super.initView();
         app = (AfbApplication) getActivity().getApplication();
-        tv_accName.setText(app.getUser().getUserName());
+        tv_accName.setText(app.getUser().getLoginName());
     }
 
     @Override
