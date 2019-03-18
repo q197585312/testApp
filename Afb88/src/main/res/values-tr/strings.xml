@@ -369,6 +369,8 @@
     <string name="how_to_use">NASIL KULLANILIR</string>
     <string name="logout">Logout</string>
     <string name="more">daha</string>
+    <string name="last_login_date">Giriş zamanı</string>
+    <string name="nike_name">Kullanıcı adı</string>
 
     <!--主页home pop-->
     <string name="home_user_name">Kullanıcı adı</string>

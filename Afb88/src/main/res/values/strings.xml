@@ -409,6 +409,8 @@
     <string name="how_to_use">How to use</string>
     <string name="logout">logout</string>
     <string name="more">More</string>
+    <string name="last_login_date">Last Login Date</string>
+    <string name="nike_name">Nick Name</string>
 
     <!--主页home pop-->
     <string name="home_user_name">User Name</string>
