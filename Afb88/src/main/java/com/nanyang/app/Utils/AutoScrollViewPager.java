@@ -55,6 +55,7 @@ public class AutoScrollViewPager extends ViewPager {
         params.leftMargin = 7;
         viewList = new ArrayList<>();
         viewList.clear();
+        index = tureItemCount * 10;
         setCurrentItem(index);
         for (int i = 0; i < tureItemCount; i++) {
             View view = new View(getContext());
@@ -78,7 +79,7 @@ public class AutoScrollViewPager extends ViewPager {
             return false;
         }
     });
-    private int index = 201;
+    private int index;
     private Timer timer = new Timer();
     private TimerTask task;
 
@@ -135,11 +136,13 @@ public class AutoScrollViewPager extends ViewPager {
 
         @Override
         public void onPageSelected(int position) {
-            for (int i = 0; i < tureItemCount; i++) {
-                if (i == position % tureItemCount) {
-                    viewList.get(i).setBackgroundResource(R.drawable.indicator_selected);
-                } else {
-                    viewList.get(i).setBackgroundResource(R.drawable.indicator_selecte_no);
+            if (viewList != null && viewList.size() > 0) {
+                for (int i = 0; i < tureItemCount; i++) {
+                    if (i == position % tureItemCount) {
+                        viewList.get(i).setBackgroundResource(R.drawable.indicator_selected);
+                    } else {
+                        viewList.get(i).setBackgroundResource(R.drawable.indicator_selecte_no);
+                    }
                 }
             }
         }
