@@ -1,5 +1,6 @@
 package com.nanyang.app;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +23,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.DisplayMetrics;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
@@ -402,28 +404,28 @@ public class AfbUtils {
 	}],*/
     public static SportIdBean identificationSportById(String id) {
         HashMap<String, SportIdBean> beanHashMap = new HashMap<>();
-        beanHashMap.put("1", new SportIdBean("1", R.string.Soccer,"SportBook",SportActivity.class));
-        beanHashMap.put("Cashio", new SportIdBean("Cashio", R.string.gd88_casino, "Casino",SportActivity.class));
-        beanHashMap.put("2", new SportIdBean("2", R.string.Basketball,"Basketball",SportActivity.class));
-        beanHashMap.put("3", new SportIdBean("3", R.string.Tennis,"Tennis",SportActivity.class));
-        beanHashMap.put("9", new SportIdBean("9", R.string.Baseball,"Baseball",SportActivity.class));
-        beanHashMap.put("20", new SportIdBean("20", R.string.Badminton,"Badminton",SportActivity.class));
-        beanHashMap.put("34", new SportIdBean("34", R.string.E_Sport,"E_Sport",SportActivity.class));
-        beanHashMap.put("13", new SportIdBean("13", R.string.Darts,"Darts",SportActivity.class));
-        beanHashMap.put("15", new SportIdBean("15", R.string.Financial,"Financial",SportActivity.class));
-        beanHashMap.put("19", new SportIdBean("19", R.string.Futsal,"Financial",SportActivity.class));
-        beanHashMap.put("17", new SportIdBean("17", R.string.Golf,"Golf",SportActivity.class));
-        beanHashMap.put("25", new SportIdBean("25", R.string.Handball,"Handball",SportActivity.class));
-        beanHashMap.put("10", new SportIdBean("25", R.string.IceHockey,"IceHockey",SportActivity.class));
-        beanHashMap.put("16", new SportIdBean("25", R.string.Motor_Sports,"Motor_Sports",SportActivity.class));
-        beanHashMap.put("12", new SportIdBean("12", R.string.Rugby,"Rugby",SportActivity.class));
-        beanHashMap.put("11", new SportIdBean("11", R.string.Snooker,"Snooker",SportActivity.class));
-        beanHashMap.put("22", new SportIdBean("22", R.string.Table_Tennis,"Table_Tennis",SportActivity.class));
-        beanHashMap.put("8", new SportIdBean("8", R.string.US_Football,"US_Football",SportActivity.class));
-        beanHashMap.put("24", new SportIdBean("24", R.string.Volleyball,"Volleyball",SportActivity.class));
-        beanHashMap.put("21", new SportIdBean("21", R.string.Water_Polo,"Water_Polo",SportActivity.class));
-        beanHashMap.put("0", new SportIdBean("0", R.string.Running,"Running",SportActivity.class));
-        beanHashMap.put("999", new SportIdBean("999", R.string.OutRight,"OutRight",SportActivity.class));
+        beanHashMap.put("1", new SportIdBean("1", R.string.Soccer, "SportBook", SportActivity.class));
+        beanHashMap.put("Cashio", new SportIdBean("Cashio", R.string.gd88_casino, "Casino", SportActivity.class));
+        beanHashMap.put("2", new SportIdBean("2", R.string.Basketball, "Basketball", SportActivity.class));
+        beanHashMap.put("3", new SportIdBean("3", R.string.Tennis, "Tennis", SportActivity.class));
+        beanHashMap.put("9", new SportIdBean("9", R.string.Baseball, "Baseball", SportActivity.class));
+        beanHashMap.put("20", new SportIdBean("20", R.string.Badminton, "Badminton", SportActivity.class));
+        beanHashMap.put("34", new SportIdBean("34", R.string.E_Sport, "E_Sport", SportActivity.class));
+        beanHashMap.put("13", new SportIdBean("13", R.string.Darts, "Darts", SportActivity.class));
+        beanHashMap.put("15", new SportIdBean("15", R.string.Financial, "Financial", SportActivity.class));
+        beanHashMap.put("19", new SportIdBean("19", R.string.Futsal, "Financial", SportActivity.class));
+        beanHashMap.put("17", new SportIdBean("17", R.string.Golf, "Golf", SportActivity.class));
+        beanHashMap.put("25", new SportIdBean("25", R.string.Handball, "Handball", SportActivity.class));
+        beanHashMap.put("10", new SportIdBean("25", R.string.IceHockey, "IceHockey", SportActivity.class));
+        beanHashMap.put("16", new SportIdBean("25", R.string.Motor_Sports, "Motor_Sports", SportActivity.class));
+        beanHashMap.put("12", new SportIdBean("12", R.string.Rugby, "Rugby", SportActivity.class));
+        beanHashMap.put("11", new SportIdBean("11", R.string.Snooker, "Snooker", SportActivity.class));
+        beanHashMap.put("22", new SportIdBean("22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class));
+        beanHashMap.put("8", new SportIdBean("8", R.string.US_Football, "US_Football", SportActivity.class));
+        beanHashMap.put("24", new SportIdBean("24", R.string.Volleyball, "Volleyball", SportActivity.class));
+        beanHashMap.put("21", new SportIdBean("21", R.string.Water_Polo, "Water_Polo", SportActivity.class));
+        beanHashMap.put("0", new SportIdBean("0", R.string.Running, "Running", SportActivity.class));
+        beanHashMap.put("999", new SportIdBean("999", R.string.OutRight, "OutRight", SportActivity.class));
         return beanHashMap.get(id);
     }
 
@@ -546,6 +548,27 @@ public class AfbUtils {
             sb.append(tail);
         }
         return sb.toString();
+    }
+
+    private static DisplayMetrics metric;
+
+    private static void initDM(Activity activity) {
+        if (metric == null) {
+            metric = new DisplayMetrics();
+            activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
+        }
+    }
+
+    public static int getScreenHeight(Activity activity) {
+        initDM(activity);
+        int height = metric.heightPixels;
+        return height;
+    }
+
+    public static int getScreenWidth(Activity activity) {
+        initDM(activity);
+        int width = metric.widthPixels;
+        return width;
     }
 
 }

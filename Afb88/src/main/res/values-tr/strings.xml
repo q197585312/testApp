@@ -369,4 +369,14 @@
     <string name="how_to_use">NASIL KULLANILIR</string>
     <string name="logout">Logout</string>
     <string name="more">daha</string>
+
+    <!--主页home pop-->
+    <string name="home_user_name">Kullanıcı adı</string>
+    <string name="home_currency">Para Birimi</string>
+    <string name="home_cash_balance">Nakit Bakiye</string>
+    <string name="home_not_standing">Ödenmemiş</string>
+    <string name="home_min_bet">Min. Bahis</string>
+    <string name="home_bet_credit">Bahis Kredisi</string>
+    <string name="home_given_credit">Verilmiş kredi</string>
+
 </resources>

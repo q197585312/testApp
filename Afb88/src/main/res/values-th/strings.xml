@@ -355,4 +355,13 @@
     <string name="how_to_use">วิธีใช้</string>
     <string name="logout">ออกจากระบบ</string>
     <string name="more">ขึ้น</string>
+
+    <!--主页home pop-->
+    <string name="home_user_name">ชื่อผู้ใช้</string>
+    <string name="home_currency">สกุลเงิน</string>
+    <string name="home_cash_balance">ยอด ได้/เสีย</string>
+    <string name="home_not_standing">รายการคงค้าง</string>
+    <string name="home_min_bet">พนันขั้นต่ำ</string>
+    <string name="home_bet_credit">วงเงินคงเหลือ</string>
+    <string name="home_given_credit">วงเงิน</string>
 </resources>

@@ -369,4 +369,13 @@
     <string name="how_to_use">Cách sử dụng</string>
     <string name="logout">Điều mà các</string>
     <string name="more">hơn</string>
+
+    <!--主页home pop-->
+    <string name="home_user_name">Tên đăng nhập</string>
+    <string name="home_currency">Tiền tệ</string>
+    <string name="home_cash_balance">Số dư tiền mặt</string>
+    <string name="home_not_standing">Cược đang chờ kết quả</string>
+    <string name="home_min_bet">Cược nhỏ nhất</string>
+    <string name="home_bet_credit">Tài khoản cược</string>
+    <string name="home_given_credit">tài khoản chính</string>
 </resources>

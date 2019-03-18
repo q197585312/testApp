@@ -2,37 +2,36 @@ package com.nanyang.app.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.MenuItemInfo;
+import com.nanyang.app.Been.HomePopItemBeen;
+import com.nanyang.app.Pop.HomePopupWindow;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguageHelper;
+import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.center.Statement.StatementFragment;
 import com.nanyang.app.main.center.model.More;
 import com.nanyang.app.main.home.HomeFragment;
 import com.nanyang.app.main.home.contact.ContactFragment;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.nanyang.app.main.home.contact.ContactFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
-import com.unkonw.testapp.libs.widget.HomePopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -164,7 +163,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         presenter.oddsType();
         //"ACT":"GetTT","PT":"wfMainH50","lang":"ZH-CN"
         String language = new LanguageHelper(mContext).getLanguage();
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate",language,"wfMainH50"));
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"));
 
     }
 
@@ -180,33 +179,37 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     private void clickTabMenu(FrameLayout fl) {
         if (fl.getId() == R.id.fl_menu_home) {
-            HomePopupWindow<MenuItemInfo> popu = new HomePopupWindow<MenuItemInfo>(mContext, ll_tab_menu_bottom, LinearLayout.LayoutParams.MATCH_PARENT, 500, homePop) {
+            HomePopupWindow<HomePopItemBeen> pop = new HomePopupWindow<HomePopItemBeen>(mContext, ll_tab_menu_bottom, LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) {
                 @Override
-                public int getRecyclerViewId() {
-                    return R.id.item_home_text_tv;
+                public void initItem(MyRecyclerViewHolder holder, int position, HomePopItemBeen item) {
+//                    ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
+//                    layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+//                    holder.itemView.setLayoutParams(layoutParams);
+                    TextView name = holder.getTextView(R.id.tv_type_name);
+                    TextView data = holder.getTextView(R.id.tv_type_data);
+                    name.setText(item.getName());
+                    data.setText(item.getData());
                 }
-                @Override
-                public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                    RecyclerView tv = holder.getView(R.id.item_home_text_tv);
 
+                @Override
+                public List<HomePopItemBeen> getCurrentData() {
+                    PersonalInfo info = getApp().getUser();
+                    List<HomePopItemBeen> dataList = new ArrayList<>();
+                    dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
+                    dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2()));
+                    dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), info.getBalances()));
+                    dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
+                    dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
+                    dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
+                    dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), info.getTotalCredit()));
+                    return dataList;
                 }
             };
-            List<MenuItemInfo> languageList = new ArrayList<MenuItemInfo>();
-            MenuItemInfo info = new MenuItemInfo();
-            info.setText("ENGLISH");
-            info.setType("en");
-            languageList.add(info);
-
-            MenuItemInfo info1 = new MenuItemInfo();
-            info1.setText("中文(简体)");
-            info1.setType("zh");
-            languageList.add(info1);
-
-            popu.setData(languageList);
             int windowPos[] = new int[2];
             ll_tab_menu_bottom.getLocationOnScreen(windowPos);
             int viewY = windowPos[1];
-            popu.popWindow.showAtLocation(ll_tab_menu_bottom,Gravity.NO_GRAVITY, 0, viewY-500);
+            int height = pop.getHeight();
+            pop.showAtLocation(Gravity.NO_GRAVITY, 0, viewY - (AfbUtils.dp2px(mContext, 40)) * 7);
         }
         if (flCurrentMenu != fl) {
             TextView tvOld = (TextView) flCurrentMenu.getChildAt(0);
@@ -215,6 +218,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 case R.id.tv_tab_home:
                     tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_a, 0, 0);
                     hideFragmentToActivity(homeFragment);
+                    showHomePop();
                     break;
                 case R.id.tv_tab_center:
                     tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_user, 0, 0);
@@ -251,6 +255,9 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     }
 
+    private void showHomePop() {
+
+    }
 
     @Override
     public void onFailed(String error) {
