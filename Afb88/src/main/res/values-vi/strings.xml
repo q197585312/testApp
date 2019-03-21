@@ -28,7 +28,7 @@
     <string name="Recharge">Nạp tiền</string>
     <string name="Withdrawals">Rút tiền</string>
     <string name="My_order">Đơn hàng của tôi</string>
-    <string name="History_record">Ghi chép lịch sử</string>
+    <string name="history_record">Ghi chép lịch sử</string>
     <string name="Game_type">Loại trò chơi</string>
     <string name="Start_time">Thời gian bắt đầu</string>
     <string name="End_time">Thời gian kết thúc</string>
@@ -50,7 +50,7 @@
     <string name="Odds_Type">Loại Tỷ lệ</string>
     <string name="AOS">AOS</string>
     <string name="Matchs">Trận đấu</string>
-    <string name="Running">Đang chạy</string>
+    <string name="running">Đang chạy</string>
     <string name="not_allowed_to_bet">Không được đặt cược</string>
     <string name="no_records">Không có hồ sơ</string>
     <string name="ORDER">GỌI MÓN</string>

@@ -28,7 +28,7 @@
     <string name="Recharge">충전</string>
     <string name="Withdrawals">인출</string>
     <string name="My_order">싱글 참고</string>
-    <string name="History_record">베팅 기록</string>
+    <string name="history_record">베팅 기록</string>
     <string name="Game_type">경기 type</string>
     <string name="Start_time">시작 시간</string>
     <string name="End_time">종료 시간</string>
@@ -50,7 +50,7 @@
     <string name="Odds_Type">핸디캡</string>
     <string name="AOS">AOS</string>
     <string name="Matchs">경쟁</string>
-    <string name="Running">땅볼</string>
+    <string name="running">땅볼</string>
     <string name="not_allowed_to_bet">당신은 내기 할 수</string>
     <string name="no_records">아무런 기록이 없다</string>
     <string name="ORDER">싱글 참고</string>

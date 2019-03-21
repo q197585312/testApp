@@ -42,7 +42,7 @@ public class FormulaRunningState extends FormulaState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Formula1));
+        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Formula1));
     }
 
 }

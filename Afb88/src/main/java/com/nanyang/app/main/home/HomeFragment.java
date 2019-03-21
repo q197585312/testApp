@@ -81,7 +81,7 @@ public class HomeFragment extends BaseFragment {
                 MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
                 menuItemInfo.setType("Today");
                 menuItemInfo.setParent(type);
-                MenuItemInfo<String> menuItemInfo1 = new MenuItemInfo<String>(0, getString(R.string.Running));
+                MenuItemInfo<String> menuItemInfo1 = new MenuItemInfo<String>(0, getString(R.string.running));
                 menuItemInfo1.setType("Running");
                 menuItemInfo1.setParent(type);
                 MenuItemInfo<String> menuItemInfo2 = new MenuItemInfo<String>(0, getString(R.string.Early));
@@ -173,7 +173,7 @@ public class HomeFragment extends BaseFragment {
             @Override
             public void onItemClick(View view, AllBannerImagesBean.BannersBean item, int position) {
                 SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getId());
-                MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Running));
+                MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.running));
                 menuItemInfo.setType("Running");
                 menuItemInfo.setParent(sportIdBean.getType());
                 Bundle b1 = new Bundle();

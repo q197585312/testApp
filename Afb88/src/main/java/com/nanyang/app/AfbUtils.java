@@ -422,7 +422,7 @@ public class AfbUtils {
         beanHashMap.put("8", new SportIdBean("8", R.string.US_Football,"US_Football",SportActivity.class));
         beanHashMap.put("24", new SportIdBean("24", R.string.Volleyball,"Volleyball",SportActivity.class));
         beanHashMap.put("21", new SportIdBean("21", R.string.Water_Polo,"Water_Polo",SportActivity.class));
-        beanHashMap.put("0", new SportIdBean("0", R.string.Running,"Running",SportActivity.class));
+        beanHashMap.put("0", new SportIdBean("0", R.string.running,"Running",SportActivity.class));
         beanHashMap.put("999", new SportIdBean("999", R.string.OutRight,"OutRight",SportActivity.class));
         return beanHashMap.get(id);
     }

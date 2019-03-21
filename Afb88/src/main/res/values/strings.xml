@@ -29,7 +29,7 @@
     <string name="Recharge">Recharge</string>
     <string name="Withdrawals">Withdrawals</string>
     <string name="My_order">My order</string>
-    <string name="History_record">History record</string>
+    <string name="history_record">History record</string>
     <string name="Game_type">Game type</string>
     <string name="Start_time">Start time</string>
     <string name="End_time">End time</string>
@@ -51,7 +51,7 @@
     <string name="Odds_Type">Odds Type</string>
     <string name="AOS">AOS</string>
     <string name="Matchs">Matchs</string>
-    <string name="Running">Running</string>
+    <string name="running">Running</string>
     <string name="not_allowed_to_bet">Not allowed to bet</string>
     <string name="no_records">No records</string>
     <string name="ORDER">ORDER</string>

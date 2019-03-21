@@ -28,7 +28,7 @@
     <string name="Recharge">Recharge</string>
     <string name="Withdrawals">取款</string>
     <string name="My_order">注单</string>
-    <string name="History_record">下注记录</string>
+    <string name="history_record">下注记录</string>
     <string name="Game_type">Game type</string>
     <string name="Start_time">开始时间</string>
     <string name="End_time">End time</string>
@@ -50,7 +50,7 @@
     <string name="Odds_Type">盘口</string>
     <string name="AOS">AOS</string>
     <string name="Matchs">比赛</string>
-    <string name="Running">滚球</string>
+    <string name="running">滚球</string>
     <string name="not_allowed_to_bet">不能下注</string>
     <string name="no_records">没有记录</string>
     <string name="ORDER">注单</string>

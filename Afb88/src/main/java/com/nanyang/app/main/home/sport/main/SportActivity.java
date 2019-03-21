@@ -40,7 +40,6 @@ import com.nanyang.app.main.home.sport.boxing.BoxingFragment;
 import com.nanyang.app.main.home.sport.cricket.CricketFragment;
 import com.nanyang.app.main.home.sport.cycling.CyclingFragment;
 import com.nanyang.app.main.home.sport.darts.DartsFragment;
-import com.nanyang.app.main.home.sport.dialog.ChooseLanguagePop;
 import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
 import com.nanyang.app.main.home.sport.e_sport.ESportFragment;
 import com.nanyang.app.main.home.sport.europe.EuropeFragment;
@@ -65,7 +64,6 @@ import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
-
 import com.unkonw.testapp.libs.base.BaseView;
 import com.unkonw.testapp.libs.utils.SharePreferenceUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -133,7 +131,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     FrameLayout flContent;
     @Bind(R.id.tv_refresh)
     TextView tvRefresh;
-    @Bind(R.id.tv_collection)
+    @Bind(R.id.tv_match_type)
     TextView tvCollection;
     @Bind(R.id.tv_menu)
     TextView tvMenu;
@@ -158,46 +156,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         ButterKnife.bind(this);
         createPresenter(new LanguagePresenter(this));
         assert tvToolbarRight != null;
-        tvToolbarRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_list_layer, 0);
-        tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_white_language, 0);
-        tvToolbarRight1.setVisibility(View.VISIBLE);
-        if (getString(R.string.app_name).equals("AP889")) {
-            String lg = AfbUtils.getLanguage(mContext);
-            switch (lg) {
-                case "zh":
-                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_zh_flag, 0);
-                    break;
-                case "en":
-                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_en_flag, 0);
-                    break;
-                case "th":
-                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_th_flag, 0);
-                    break;
-                case "ko":
-                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_ko_flag, 0);
-                    break;
-                case "vi":
-                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_vi_flag, 0);
-                    break;
-                case "tr":
-                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_tr_flag, 0);
-                    break;
-                default:
-                    tvToolbarRight1.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.lang_en_flag, 0);
-                    break;
-            }
-        }
 
-        tvToolbarRight1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ChooseLanguagePop pop = new ChooseLanguagePop(SportActivity.this, v, presenter);
-                onPopupWindowCreated(pop, Gravity.CENTER);
-                if (getString(R.string.app_name).equals("AP889")) {
-                    pop.setShowTv(tvToolbarRight1);
-                }
-            }
-        });
+
+        tvToolbarRight1.setVisibility(View.GONE);
+
+
         tvToolbarRight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -510,13 +473,13 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvTitle.setText(tag);
     }
 
-    @OnClick({R.id.tv_refresh, R.id.tv_collection, R.id.tv_menu, R.id.tv_mix, R.id.iv_add})
+    @OnClick({R.id.tv_refresh, R.id.tv_match_type, R.id.tv_menu, R.id.tv_mix, R.id.iv_add})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_refresh:
                 currentFragment.refresh();
                 break;
-            case R.id.tv_collection:
+            case R.id.tv_match_type:
                 currentFragment.collection(tvCollection);
                 break;
             case R.id.tv_menu:

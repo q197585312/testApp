@@ -28,7 +28,7 @@
     <string name="Recharge">เติมเงิน </string>
     <string name="Withdrawals">เงินสด </string>
     <string name="My_order">หมายเหตุเดี่ยว </string>
-    <string name="History_record">บันทึกเดิมพัน </string>
+    <string name="history_record">บันทึกเดิมพัน </string>
     <string name="Game_type">Game พิมพ์ </string>
     <string name="Start_time">เวลาเริ่มต้น </string>
     <string name="End_time">End เวลา </string>
@@ -50,7 +50,7 @@
     <string name="Odds_Type">แฮนดิแค็ </string>
     <string name="AOS">AOS </string>
     <string name="Matchs">เกม </string>
-    <string name="Running">บอล </string>
+    <string name="running">บอล </string>
     <string name="not_allowed_to_bet">คุณไม่สามารถเดิมพัน </string>
     <string name="no_records">ไม่มีประวัติการ </string>
     <string name="ORDER">หมายเหตุเดี่ยว </string>
