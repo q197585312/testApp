@@ -20,7 +20,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
 
     public BaseRecyclerAdapter(Context context, List<T> mDatas, int layoutId) {
         mLayoutInflater = LayoutInflater.from(context);
-        this.mContext=context;
+        this.mContext = context;
         this.mLayoutId = layoutId;
         this.mDatas = mDatas;
     }
@@ -40,7 +40,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     public final void onBindViewHolder(MyRecyclerViewHolder holder, int position) {
         holder.getHolderView().setTag(position);
         T item = getItem(position);
-        convert(holder, position,item);
+        convert(holder, position, item);
     }
 
     public abstract void convert(MyRecyclerViewHolder holder, int position, T item);
@@ -59,8 +59,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
         if (isNotify)
             notifyDataSetChanged();
     }
-
-
 
 
     public void addItem(T item) {
@@ -103,16 +101,16 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     @Override
     public void onClick(View view) {
         int position = (Integer) view.getTag();
-        T item=getItem(position);
+        T item = getItem(position);
         if (mOnItemClickListener != null)
-            mOnItemClickListener.onItemClick(view,item, position);
+            mOnItemClickListener.onItemClick(view, item, position);
     }
 
     @Override
     public boolean onLongClick(View view) {
         int position = (Integer) view.getTag();
         if (mOnItemLongClickListener != null) {
-            mOnItemLongClickListener.onItemLongClick(view,getItem(position), position);
+            mOnItemLongClickListener.onItemLongClick(view, getItem(position), position);
             return true;
         }
         return false;
@@ -142,7 +140,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
         this.mOnItemLongClickListener = mOnItemLongClickListener;
         return this;
     }
-    public void setData(List<T> mDatas){
+
+    public void setData(List<T> mDatas) {
         this.mDatas = mDatas;
         notifyDataSetChanged();
     }

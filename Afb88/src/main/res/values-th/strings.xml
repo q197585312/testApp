@@ -349,9 +349,21 @@
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
     <string name="my_account">บัญชีของฉัน</string>
-    <string name="messages">信息</string>
-    <string name="contact">联系我们</string>
-    <string name="setting">设置</string>
-    <string name="how_to_use">使用方法</string>
-    <string name="logout">登出</string>
+    <string name="messages">ข้อความ</string>
+    <string name="contact">ติดต่อเรา </string>
+    <string name="setting">กำหนดค่า</string>
+    <string name="how_to_use">วิธีใช้</string>
+    <string name="logout">ออกจากระบบ</string>
+    <string name="more">ขึ้น</string>
+    <string name="last_login_date">เวลาเข้าระบบ</string>
+    <string name="nike_name">ชื่อเล่น</string>
+
+    <!--主页home pop-->
+    <string name="home_user_name">ชื่อผู้ใช้</string>
+    <string name="home_currency">สกุลเงิน</string>
+    <string name="home_cash_balance">ยอด ได้/เสีย</string>
+    <string name="home_not_standing">รายการคงค้าง</string>
+    <string name="home_min_bet">พนันขั้นต่ำ</string>
+    <string name="home_bet_credit">วงเงินคงเหลือ</string>
+    <string name="home_given_credit">วงเงิน</string>
 </resources>

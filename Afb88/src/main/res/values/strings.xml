@@ -408,4 +408,16 @@
     <string name="setting">setting</string>
     <string name="how_to_use">How to use</string>
     <string name="logout">logout</string>
+    <string name="more">More</string>
+    <string name="last_login_date">Last Login Date</string>
+    <string name="nike_name">Nick Name</string>
+
+    <!--主页home pop-->
+    <string name="home_user_name">User Name</string>
+    <string name="home_currency">Currency</string>
+    <string name="home_cash_balance">Case Banlance</string>
+    <string name="home_not_standing">Outstanding</string>
+    <string name="home_min_bet">Min Bet</string>
+    <string name="home_bet_credit">Bet Credit</string>
+    <string name="home_given_credit">Given Credit</string>
 </resources>

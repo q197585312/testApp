@@ -362,10 +362,23 @@
     <string name="basketball">Basketball</string>
     <string name="Snooker" />
     <string name="language_switch">TURKISH</string>
-    <string name="my_account">我的账户</string>
-    <string name="messages">信息</string>
-    <string name="contact">联系我们</string>
-    <string name="setting">设置</string>
-    <string name="how_to_use">使用方法</string>
-    <string name="logout">登出</string>
+    <string name="my_account">Benim hesabım</string>
+    <string name="messages">Mesaj</string>
+    <string name="contact">Bize Ulaşın</string>
+    <string name="setting">ayarlar</string>
+    <string name="how_to_use">NASIL KULLANILIR</string>
+    <string name="logout">Logout</string>
+    <string name="more">daha</string>
+    <string name="last_login_date">Giriş zamanı</string>
+    <string name="nike_name">Kullanıcı adı</string>
+
+    <!--主页home pop-->
+    <string name="home_user_name">Kullanıcı adı</string>
+    <string name="home_currency">Para Birimi</string>
+    <string name="home_cash_balance">Nakit Bakiye</string>
+    <string name="home_not_standing">Ödenmemiş</string>
+    <string name="home_min_bet">Min. Bahis</string>
+    <string name="home_bet_credit">Bahis Kredisi</string>
+    <string name="home_given_credit">Verilmiş kredi</string>
+
 </resources>

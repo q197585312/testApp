@@ -1,5 +1,6 @@
 package com.nanyang.app;
 
+import android.app.Activity;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +23,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.ForegroundColorSpan;
+import android.util.DisplayMetrics;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
@@ -546,6 +548,27 @@ public class AfbUtils {
             sb.append(tail);
         }
         return sb.toString();
+    }
+
+    private static DisplayMetrics metric;
+
+    private static void initDM(Activity activity) {
+        if (metric == null) {
+            metric = new DisplayMetrics();
+            activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
+        }
+    }
+
+    public static int getScreenHeight(Activity activity) {
+        initDM(activity);
+        int height = metric.heightPixels;
+        return height;
+    }
+
+    public static int getScreenWidth(Activity activity) {
+        initDM(activity);
+        int width = metric.widthPixels;
+        return width;
     }
 
 }

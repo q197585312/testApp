@@ -19,6 +19,27 @@
             android:layout_height="0dp"
             android:layout_weight="1" />
 
+
+    <TextView
+        android:id="@+id/home_pop"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        android:drawableBottom="@drawable/line_white"
+        android:drawablePadding="5dp"
+        android:gravity="center_vertical"
+        android:minLines="1"
+        android:padding="10dp"
+        android:singleLine="true"
+        android:textColor="@color/gray_dark"
+        android:visibility="gone"
+        android:textColorHint="@color/grey_background_trans"
+        android:textSize="17sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.8dp"
+        android:background="@color/grey_light" />
         <View
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
@@ -128,7 +149,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="44dp"
-            android:text="更多"
+            android:text="@string/more"
             android:textColor="@color/white"
             android:background="#137D33"
             android:gravity="left|center_vertical"
