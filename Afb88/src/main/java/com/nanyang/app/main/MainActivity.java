@@ -116,7 +116,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 if (getString(R.string.my_account).equals(item.getText())) {
                     drawerLayout.closeDrawer(Gravity.RIGHT);
                     hideFragmentToActivity(personFragment);
-                    showFragmentToActivity(personFragment,R.id.fl_main_content);
+                    showFragmentToActivity(personFragment, R.id.fl_main_content);
                 } else if (getString(R.string.messages).equals(item.getText())) {
 
                 } else if (getString(R.string.statement).equals(item.getText())) {
@@ -154,6 +154,11 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             }
         });
         initUserData();
+    }
+
+    @Override
+    protected void updateBalanceTv(String allData) {
+        tvToolbarRight.setText(getString(R.string.welcome) + " " + getApp().getUser().getLoginName());
     }
 
     private void initUserData() {

@@ -9,12 +9,17 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.koushikdutta.async.callback.CompletedCallback;
+import com.koushikdutta.async.callback.WritableCallback;
+import com.koushikdutta.async.http.AsyncHttpClient;
+import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
@@ -57,7 +62,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
@@ -86,7 +90,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected BasePopupWindow popMenu;
     private SwipeToLoadLayout swipeToLoadLayout;
     protected MenuItemInfo param = null;
+    protected WebSocket webSocket;
 
+    private String TAG = getClass().getCanonicalName();
+    private DataUpdateRunnable dataUpdateRunnable;
 
     public int getPageSize() {
         return pageSize;
@@ -148,73 +155,102 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected BaseRecyclerAdapter<B> baseRecyclerAdapter;
-
+    https://www.afb1188.com/H50/Pub/pcode.axd?_fm=%7B%22ACT%22%3A%22Getmenu%22%2C%22ot%22%3A%22t%22%2C%22pgLable%22%3A%220.5025137446223212%22%2C%22vsn%22%3A%224.0.12%22%2C%22PT%22%3A%22wfMainH50%22%7D&_db=%7B%7D
+    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=200&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
+    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"Getmenu","ot":"t","pgLable":"0.5025137446223212","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
+    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=1&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
     @Override
     public void refresh() {
-        if (param == null) {
 
+        if (!NetWorkUtil.isNetConnected(getBaseView().getIBaseContext().getBaseActivity())) {
+            baseView.reLoginPrompt(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
+                @Override
+                public void clickCancel(View v) {
+                    refresh();
+                }
+            });
+            return;
+        }
+        if (webSocket != null && webSocket.isOpen()) {
+            webSocket.close();
+        }
+
+        if (param == null) {
             param = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType();
             setParam(param);
         }
+
         String url = getUrlString();
+        LogUtil.d(getClass().getSimpleName(), "send------" + url);
+        AsyncHttpClient.getDefaultInstance().websocket(url, null, new AsyncHttpClient.WebSocketConnectCallback() {
+            @Override
+            public void onCompleted(Exception ex, final WebSocket webSocket) {
 
-
-        Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-                .map(new Function<String, List<TableSportInfo<B>>>() {
-
+                Log.i(TAG, "----------------startHttpClientWebSocket------websocket---onCompleted-" + webSocket);
+                if (ex != null) {
+                    Log.e(TAG, "Exception----------------" + ex.getLocalizedMessage());
+                    ex.printStackTrace();
+                    return;
+                }
+                webSocket.setStringCallback(new WebSocket.StringCallback() {
                     @Override
-                    public List<TableSportInfo<B>> apply(String s) throws Exception {
-                        return getTableSportInfos(s);
-
-                    }
-                })
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<TableSportInfo<B>>>() {//onNext
-                    @Override
-                    public void accept(List<TableSportInfo<B>> allData1) throws Exception {
-                        baseView.checkMix(isMix());
-                        initAllData(allData1);
-                        startUpdateData();
-                        baseView.getIBaseContext().hideLoadingDialog();
-                    }
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        baseView.onFailed(throwable.getMessage());
-                        baseView.getIBaseContext().hideLoadingDialog();
-                        baseView.reLoginPrompt(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
-                            @Override
-                            public void clickCancel(View v) {
-                                refresh();
-                            }
-                        });
-                    }
-                }, new Action() {//完成
-                    @Override
-                    public void run() throws Exception {
-                        baseView.getIBaseContext().hideLoadingDialog();
-                    }
-                }, new Consumer<Subscription>() {//开始绑定
-                    @Override
-                    public void accept(Subscription subscription1) throws Exception {
-
-                        if (!NetWorkUtil.isNetConnected(getBaseView().getIBaseContext().getBaseActivity())) {
-                            subscription1.cancel();
-                            baseView.reLoginPrompt(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
+                    public void onStringAvailable(String s) {
+                        Log.d("Socket", "onStringAvailable-----------" + s);
+                        if (s.equals("3"))
+                            return;
+                        try {
+                            allData = getTableSportInfos(s);
+                            updateHandler.post(new Runnable() {
                                 @Override
-                                public void clickCancel(View v) {
-                                    refresh();
+                                public void run() {
+                                    if (baseView.getIBaseContext().getBaseActivity() != null && baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
+                                        baseView.checkMix(isMix());
+                                        initAllData(allData);
+                                    }
                                 }
                             });
-                        } else {
-                            baseView.getIBaseContext().showLoadingDialog();
-                            subscription1.request(Long.MAX_VALUE);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
                         }
 
                     }
                 });
-        mCompositeSubscription.add(subscribe);
+
+                webSocket.setClosedCallback(new CompletedCallback() {
+                    @Override
+                    public void onCompleted(Exception ex) {
+                        if (ex != null) {
+                            Log.d("Socket", "onClosedCallback出错");
+                            return;
+                        }
+                        Log.d("Socket", "onClosedCallback");
+                        refresh();
+                    }
+                });
+
+                webSocket.setEndCallback(new CompletedCallback() {
+                    @Override
+                    public void onCompleted(Exception ex) {
+                        if (ex != null) {
+                            Log.d("Socket", "setEndCallback出错");
+                            return;
+                        }
+                        Log.d("Socket", "setEndCallback");
+                    }
+                });
+                SportState.this.webSocket = webSocket;
+                startUpdateData();
+                webSocket.setWriteableCallback(new WritableCallback() {
+                    @Override
+                    public void onWriteable() {
+                        Log.d("Socket", "WritableCallback");
+
+                    }
+                });
+
+            }
+        });
 
     }
 
@@ -229,7 +265,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     @Override
-    public boolean menu(TextView tvMenu) {
+    public boolean menu(View tvMenu) {
 
         popMenu = new BasePopupWindow(baseView.getIBaseContext().getBaseActivity(), tvMenu, LinearLayout.LayoutParams.MATCH_PARENT, 150) {
             @Override
@@ -302,7 +338,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     }
 
-    private void createChoosePop(View view) {
+    public void createChoosePop(View view) {
         ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getIBaseContext().getBaseActivity(), view);
         pop.setList(allData, leagueSelectedMap);
         pop.setBack(new ChooseMatchPop.CallBack() {
@@ -395,9 +431,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     }
                 }
             }
-
             return new TableSportInfo<>(leagueBean, matchList);
-
         }
         return null;
     }
@@ -452,6 +486,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private List<TableSportInfo<B>> getTableSportInfos(String s) throws JSONException {
         String updateString = Html.fromHtml(s).toString();
+
         JSONArray jsonArray = new JSONArray(updateString);
         if (jsonArray.length() >= 5) {
             JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
@@ -472,68 +507,32 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
 
-    Runnable dataUpdateRunnable = new Runnable() {
+    class DataUpdateRunnable implements Runnable {
+        public DataUpdateRunnable(WebSocket webSocket) {
+            this.webSocket = webSocket;
+        }
+
+        WebSocket webSocket;
+
         @Override
         public void run() {
-            Flowable<String> flowable = null;
-            String url = getUrlString();
-            if (LID.length() > 0) {
-                flowable = getService(ApiService.class).getData(url + "&LID=" + LID);
-            } else
-                flowable = getService(ApiService.class).getData(url);
-            Disposable subscribe = flowable
-                    .subscribeOn(Schedulers.io()).observeOn(Schedulers.io())
-                    .takeWhile(new Predicate<String>() {
-                        @Override
-                        public boolean test(String s) throws Exception {
-                            return NetWorkUtil.isNetConnected(baseView.getIBaseContext().getBaseActivity());
-                        }
-                    })
-                    .map(new Function<String, List<TableSportInfo<B>>>() {
-                        @Override
-                        public List<TableSportInfo<B>> apply(String s) throws Exception {
-                            return getTableSportInfos(s);
-                        }
-
-                    })
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<List<TableSportInfo<B>>>() {//onNext
-                                   @Override
-                                   public void accept(List<TableSportInfo<B>> allData) throws Exception {
-                                       if (allData != null) {
-                                           updateAllDate(allData);
-                                       }
-                                   }
-                               }, new Consumer<Throwable>() {//错误
-                                   @Override
-                                   public void accept(Throwable throwable) throws Exception {
-                                       baseView.onFailed(throwable.getMessage());
-                                   }
-                               }, new Action() {//完成
-                                   @Override
-                                   public void run() throws Exception {
-
-                                   }
-                               }, new Consumer<Subscription>() {//开始绑定
-                                   @Override
-                                   public void accept(Subscription subscription1) throws Exception {
-
-                                       subscription1.request(Long.MAX_VALUE);
-                                   }
-                               }
-                    );
-            mCompositeSubscription.add(subscribe);
-
-            updateHandler.postDelayed(this, 20000);// 50是延时时长
+            String cmd = "1";
+            if (webSocket.isOpen()) {
+                webSocket.send(cmd);
+                Log.d("Socket", "发送了：" + cmd);
+            }
+            updateHandler.postDelayed(this, 30000);
         }
-    };
+    }
+
+
     Handler updateHandler = new Handler();
 
     @Override
     public void startUpdateData() {
-        stopUpdateData();
-        updateHandler.postDelayed(dataUpdateRunnable, 20000);// 打开定时器，执行操作
+        updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
+        dataUpdateRunnable = new DataUpdateRunnable(webSocket);
+        updateHandler.post(dataUpdateRunnable);// 打开定时器，执行操作
     }
 
 
@@ -542,6 +541,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         if (mCompositeSubscription != null)
             mCompositeSubscription.clear();
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
+        if (webSocket != null)
+            webSocket.close();
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -736,7 +737,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 .flatMap(new Function<String, Flowable<String>>() {
                     @Override
                     public Flowable<String> apply(String s) throws Exception {
-                       return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
+                        return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
                     }
                 })
                 .subscribe(new Consumer<String>() {//onNext
@@ -941,22 +942,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         tv.setText(item.getText());
                         tv.setBackgroundResource(R.color.black_grey);
 
-
                     }
                 };
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         closePopupWindow();
-                        ((SportActivity) baseView.getIBaseContext()).setAllOdds(item);
+                        ((SportActivity) baseView.getIBaseContext().getBaseActivity()).setAllOdds(item);
                         textView.setText(item.getText());
-                        if (item.getText().equals(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.All_Markets))) {
-                            ((BaseToolbarActivity) baseView.getIBaseContext()).dynamicAddView(textView, "drawableLeft", R.mipmap.add_green);
-//                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.add_green, 0, 0, 0);
-                        } else {
-                            ((BaseToolbarActivity) baseView.getIBaseContext()).dynamicAddView(textView, "drawableLeft", R.mipmap.sport_delete_green);
-//                            textView.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.sport_delete_green, 0, 0, 0);
-                        }
                         setParam(item);
                         if (!getAllOddsUrl().isEmpty()) {
                             refresh();

@@ -366,4 +366,5 @@
     <string name="home_min_bet">พนันขั้นต่ำ</string>
     <string name="home_bet_credit">วงเงินคงเหลือ</string>
     <string name="home_given_credit">วงเงิน</string>
+    <string name="sport_match">Sport</string>
 </resources>

@@ -420,4 +420,5 @@
     <string name="home_min_bet">Min Bet</string>
     <string name="home_bet_credit">Bet Credit</string>
     <string name="home_given_credit">Given Credit</string>
+    <string name="sport_match">Sport</string>
 </resources>

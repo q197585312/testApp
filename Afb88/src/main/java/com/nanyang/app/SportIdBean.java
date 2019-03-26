@@ -1,5 +1,6 @@
 package com.nanyang.app;
 
+import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 
 import java.io.Serializable;
@@ -9,6 +10,16 @@ import java.io.Serializable;
  */
 
 public class SportIdBean implements Serializable {
+    public BaseSportFragment getBaseFragment() {
+        return baseFragment;
+    }
+
+    public void setBaseFragment(BaseSportFragment baseFragment) {
+        this.baseFragment = baseFragment;
+    }
+
+    private BaseSportFragment baseFragment;
+
     public Class<SportActivity> getCls() {
         return cls;
     }
@@ -32,11 +43,12 @@ public class SportIdBean implements Serializable {
 
     String type;
 
-    public SportIdBean(String id, int textRes, String type, Class<SportActivity> cls) {
+    public SportIdBean(String id, int textRes, String type, Class<SportActivity> cls, BaseSportFragment baseFragment) {
         this.id = id;
         this.textRes = textRes;
         this.type = type;
         this.cls = cls;
+        this.baseFragment = baseFragment;
     }
 
     public String getId() {

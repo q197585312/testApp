@@ -380,4 +380,5 @@
     <string name="home_min_bet">Cược nhỏ nhất</string>
     <string name="home_bet_credit">Tài khoản cược</string>
     <string name="home_given_credit">tài khoản chính</string>
+    <string name="sport_match">Sport</string>
 </resources>

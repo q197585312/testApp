@@ -372,4 +372,5 @@
     <string name="home_min_bet">최소 베팅</string>
     <string name="home_bet_credit">베팅 금액</string>
     <string name="home_given_credit">기본 크레디트</string>
+    <string name="sport_match">Sport</string>
 </resources>

@@ -380,5 +380,6 @@
     <string name="home_min_bet">Min. Bahis</string>
     <string name="home_bet_credit">Bahis Kredisi</string>
     <string name="home_given_credit">Verilmiş kredi</string>
+    <string name="sport_match">Sport</string>
 
 </resources>

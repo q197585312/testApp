@@ -418,4 +418,5 @@
     <string name="home_min_bet">最小注码</string>
     <string name="home_bet_credit">投注额度</string>
     <string name="home_given_credit">信用额度</string>
+    <string name="sport_match">体育博彩</string>
 </resources>

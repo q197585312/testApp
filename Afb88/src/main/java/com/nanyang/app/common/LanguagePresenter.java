@@ -174,7 +174,7 @@ public class LanguagePresenter<T extends IBaseContext> extends BaseRetrofitPrese
 
     }
 
-    public void switchOddsType(final String oddsType) {
+    public void switchOddsType(final String oddsType, BaseConsumer<String> consumer) {
 
 
         Map<String, String> map = new HashMap<>();
@@ -187,11 +187,6 @@ public class LanguagePresenter<T extends IBaseContext> extends BaseRetrofitPrese
             public Flowable<String> apply(String s) throws Exception {
                 return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
             }
-        }), new BaseConsumer<String>(baseContext) {
-            @Override
-            protected void onBaseGetData(String data) {
-
-            }
-        });
+        }), consumer);
     }
 }

@@ -33,6 +33,7 @@ public class AfbApplication extends BaseApplication {
 //        SkinAppManager.getInstance().initSkinLoader(this);
 //        KLog.init(BuildConfig.LOG_DEBUG, "AFB");
         Logger.setDebug(true);
+        AfbUtils.initAllSprotMap();
         CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", true);
     }
 
@@ -78,7 +79,7 @@ public class AfbApplication extends BaseApplication {
         }
 
 
-        return AppConstant.getInstance().URL_ODDS + betOddsUrl ;
+        return AppConstant.getInstance().URL_ODDS + betOddsUrl;
 
     }
 }

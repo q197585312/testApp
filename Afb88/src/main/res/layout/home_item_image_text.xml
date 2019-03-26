@@ -32,7 +32,7 @@
 </LinearLayout>
     <View
         android:layout_width="0.9dp"
-        android:background="@color/green500_trans"
+        android:background="@color/black66_trans"
         android:layout_height="match_parent"/>
     <View
         android:layout_width="0.7dp"

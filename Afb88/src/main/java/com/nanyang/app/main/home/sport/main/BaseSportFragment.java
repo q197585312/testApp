@@ -52,12 +52,7 @@ import cn.finalteam.toolsfinal.DeviceUtils;
 
 public abstract class BaseSportFragment extends BaseFragment<SportPresenter> implements SportContract.View<SportInfo> {
 
-    @Bind(R.id.tv_total_match)
-    protected TextView tvTotalMatch;
-    @Bind(R.id.tv_odds_type)
-    protected TextView tvOddsType;
-    @Bind(R.id.ll_odds_type)
-    protected View llOddsType;
+
     @Bind(R.id.swipe_target)
     protected RecyclerView rvContent;
 
@@ -254,7 +249,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             }
         });*/
         setTitle(getTitle());
-        if(AppConstant.getInstance().IS_AGENT){
+        if (AppConstant.getInstance().IS_AGENT) {
             initAgent();
         }
     }
@@ -289,27 +284,25 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         presenter.getStateHelper().refresh();
     }
 
-    public void collection(TextView tvCollection) {
+    public void collection(View tvCollection) {
         checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.sport_star_green, R.mipmap.sport_star_black);
     }
 
-    public void menu(TextView tvMenu) {
+    public void menu(View tvMenu) {
         presenter.getStateHelper().menu(tvMenu);
     }
 
     public boolean mix(TextView tvMix) {
         boolean isMix = presenter.getStateHelper().mix();
-        checkBg(tvMix, isMix, R.mipmap.sport_green_shopping_cart, R.mipmap.sport_black_shopping_cart);
+
         return isMix;
     }
 
-    private void checkBg(TextView tvMix, boolean isMix, int sport_oval_u_green, int sport_oval_u_black) {
-        if (isMix) {
-            dynamicAddView(tvMix, "drawableTop", sport_oval_u_green);
-//            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, sport_oval_u_green, 0, 0);
-        } else {
-            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, sport_oval_u_black, 0, 0);
-        }
+    private void checkBg(View tvMix, boolean isCollection, int sport_oval_u_green, int sport_oval_u_black) {
+        if (isCollection)
+            tvMix.setBackgroundResource(sport_oval_u_green);
+        else
+            tvMix.setBackgroundResource(sport_oval_u_black);
     }
 
     @Override
@@ -340,10 +333,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     @Override
     public void onGetData(List<SportInfo> data) {
-        if (tvTotalMatch != null)
-            tvTotalMatch.setText(data.size() + "");
-        else
-            tvTotalMatch.setText("0");
+
     }
 
     public AfbApplication getApp() {
@@ -424,7 +414,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             });
         }
 
-        ((BaseToolbarActivity)getIBaseContext().getBaseActivity()).getTvToolbarTitle().setText(state.getStateType().getText());
+        ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).getTvToolbarTitle().setText(state.getStateType().getText());
 
         ((SportState) presenter.getStateHelper()).initAllOdds(ivAllAdd);
         presenter.getStateHelper().refresh();
@@ -437,8 +427,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     public int onSetLayoutId() {
         return R.layout.fragment_ball;
     }
-
-
 
 
     @Override
@@ -457,32 +445,23 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     private void rememberLastOdds() {
-        MenuItemInfo oddsType = ((SportActivity) getIBaseContext().getBaseActivity()).getOddsType();
-        if (oddsType != null)
-            tvOddsType.setText(oddsType.getText());
-        MenuItemInfo allOddsType = ((SportActivity) getIBaseContext().getBaseActivity()).getAllOddsType();
-        if (allOddsType != null) {
-            ivAllAdd.setText(allOddsType.getText());
-            if (allOddsType.getText().equals(getString(R.string.All_Markets))) {
-                dynamicAddView(ivAllAdd, "drawableLeft", R.mipmap.add_green);
-//                .setCompoundDrawablesWithIntrinsicBounds(, 0, 0, 0);
-            } else {
-                dynamicAddView(ivAllAdd, "drawableLeft", R.mipmap.sport_delete_green);
-//                ivAllAdd.setCompoundDrawablesWithIntrinsicBounds(, 0, 0, 0);
-            }
-        }
+        getBaseActivity().rememberLastOdds();
     }
 
     @Override
     public void onResume() {
         super.onResume();
         if (!isFirstIn) {
+
             presenter.getStateHelper().refresh();
             updateMixOrderCount();
         }
         isFirstIn = false;
     }
 
+    public SportActivity getBaseActivity() {
+        return (SportActivity) this.getActivity();
+    }
 
     @Override
     public void onDestroyView() {
@@ -501,12 +480,10 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
 
-    @OnClick({R.id.ll_odds_type, R.id.ll_mix_parlay_order})
+    @OnClick({R.id.ll_mix_parlay_order})
     public void onClick(View view) {
         switch (view.getId()) {
-            case R.id.ll_odds_type:
-                clickOddsType(view);
-                break;
+     
             case R.id.ll_mix_parlay_order:
                 clickOrder();
                 break;
@@ -515,7 +492,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     public void clickOrder() {
-        if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList()==null||getApp().getBetAfbList().getList().size() < 1)
+        if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList() == null || getApp().getBetAfbList().getList().size() < 1)
             return;
         if (getApp().getBetAfbList().getList().size() == 1) {
             String refreshOddsUrl = getApp().getRefreshOddsUrl();
@@ -527,8 +504,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         }
     }
 
-    private void clickOddsType(View view) {
-        createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+    public void clickOddsType(final TextView tvOddsType) {
+        createPopupWindow(new BasePopupWindow(mContext, tvOddsType, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -578,14 +555,14 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     @Override
     public void onBetSuccess(String betResult) {
-        ((BaseToolbarActivity)getIBaseContext().getBaseActivity()).onBetSuccess(betResult);
+        ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).onBetSuccess(betResult);
         updateMixOrderCount();
         baseRecyclerAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
-        ((BaseToolbarActivity)getIBaseContext().getBaseActivity()).onPopupWindowCreated(pop, center);
+        ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).onPopupWindowCreated(pop, center);
     }
 
     public void switchParentType(MenuItemInfo stateType) {

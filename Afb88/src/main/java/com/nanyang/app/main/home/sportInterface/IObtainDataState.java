@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sportInterface;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
@@ -20,7 +21,7 @@ public interface IObtainDataState {
 
     boolean collection();
 
-    boolean menu(TextView tvMenu);
+    boolean menu(View tvMenu);
 
     void onPrevious(SwipeToLoadLayout swipeToLoadLayout);
 
@@ -50,4 +51,6 @@ public interface IObtainDataState {
             B ballInfo = afbParseHelper.parseJsonArray(matchArray);
             return ballInfo;*/
     IBetHelper getBetHelper();
+
+    void createChoosePop(View view);
 }

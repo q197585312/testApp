@@ -17,6 +17,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     private String hasOU_FH;
     private String isHdpNew_FH;
     private String isOUNew_FH;
+    private String tvPathIBC;
 
     public void setIsHdpNew(String isHdpNew) {
         this.isHdpNew = isHdpNew;
@@ -925,5 +926,9 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
             setIsOUNew_FH("0");
             setIsOENew_FH("0");
         }
+    }
+
+    public void setTvPathIBC(String tvPathIBC) {
+        this.tvPathIBC = tvPathIBC;
     }
 }

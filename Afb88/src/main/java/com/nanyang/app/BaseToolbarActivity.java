@@ -84,9 +84,10 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 gameMenus(v);
             }
         });
-        updateBalanceTv(getApp().getUser().getLoginName());
+
 
     }
+
 
     public void initAgent() {
         tvToolbarLeft.setVisibility(View.GONE);
@@ -208,7 +209,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     protected void updateBalanceTv(String allData) {
-        tvToolbarRight.setText(getString(R.string.welcome) + " " + allData);
+        tvToolbarRight.setText( allData);
     }
 
 
@@ -323,6 +324,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     public void switchSkipAct(String gameType) {
+        SportIdBean sportIdBean = AfbUtils.identificationSportById(gameType);
         switch (gameType) {
             case "SportBook":
             case "Financial":
