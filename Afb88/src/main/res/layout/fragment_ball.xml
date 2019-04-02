@@ -8,61 +8,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey_background"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:paddingLeft="2dp">
-
-        <TextView
-            android:id="@+id/tv_total_match"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="0"
-            android:textColor="@color/green900"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:layout_marginTop="5dp"
-            android:text="@string/Total"
-            android:textColor="@color/green900" />
-        <LinearLayout
-            android:id="@+id/ll_odds_type"
-            android:orientation="horizontal"
-            android:gravity="center_vertical"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
-                android:id="@+id/tv_odds_type"
-                android:layout_width="0dp"
-                android:paddingRight="5dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right|center_vertical"
-                android:text="@string/HK_ODDS"
-                android:textColor="@color/green900" />
-            <ImageView
-                android:id="@+id/iv_odds_type"
-                android:layout_height="match_parent"
-                android:layout_width="25dp"
-                android:padding="3dp"
-                android:layout_gravity="center"
-                android:background="@color/black_grey"
-                android:src="@mipmap/sport_odds_type_arrow_oval_green"
-                android:gravity="right|center_vertical"
-                />
-        </LinearLayout>
-
-
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         android:background="@color/green900"
         android:gravity="center_vertical"
         android:orientation="horizontal">

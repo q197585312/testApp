@@ -91,15 +91,15 @@ public abstract class SoccerMixState extends BallState {
             public void clickView(View v, BallInfo item, int position) {
                 switch (v.getId()) {
                     case R.id.module_right_mark_tv:
-                        clickAdd(v, item);
+                        clickAdd(v, item,position);
                 }
             }
 
         };
     }
 
-    protected void clickAdd(View v, BallInfo item) {
-        getBaseView().clickItemAdd(v, item, "mix");
+    protected void clickAdd(View v, BallInfo item, int position) {
+        getBaseView().clickItemAdd(v, item, position);
     }
 
 /*

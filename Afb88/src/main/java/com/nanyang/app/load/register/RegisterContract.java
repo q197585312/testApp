@@ -1,7 +1,7 @@
 package com.nanyang.app.load.register;
 
-import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.base.IBaseView;
+import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
 public interface RegisterContract {
     interface View extends IBaseView<String> {

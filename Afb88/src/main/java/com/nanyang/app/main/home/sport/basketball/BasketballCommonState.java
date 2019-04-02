@@ -75,7 +75,7 @@ public abstract class BasketballCommonState extends BallState {
                         collectionItemCommon(item);
                         break;
                     case R.id.module_right_mark_tv:
-                        clickAdd(v, item);
+                        clickAdd(v, item,position);
                         break;
                 }
 
@@ -92,8 +92,8 @@ public abstract class BasketballCommonState extends BallState {
         return new BasketballCommonBetHelper(getBaseView());
     }
 
-    private void clickAdd(View v, BallInfo item) {
-        getBaseView().clickItemAdd(v, item, "common");
+    private void clickAdd(View v, BallInfo item, int position) {
+        getBaseView().clickItemAdd(v, item, position);
     }
 
 

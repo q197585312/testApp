@@ -58,6 +58,11 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
      */
     protected DialogLoading loading;
     protected BasePopupWindow popWindow;
+
+    public boolean isHasAttached() {
+        return hasAttached;
+    }
+
     private boolean hasAttached = false;
 
     @Override

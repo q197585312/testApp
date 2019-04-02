@@ -132,7 +132,7 @@ public class ActivityPageManager {
 
 	@SuppressWarnings("deprecation")
 	private static void unbindViewReferences(View view) {
-		// set all listeners to null (not every view and not every API level
+		// set all listeners to null (not every contentView and not every API level
 		// supports the methods)
 		try {
 		    view.setOnClickListener(null);

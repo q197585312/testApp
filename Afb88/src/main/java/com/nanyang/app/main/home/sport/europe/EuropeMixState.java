@@ -147,7 +147,7 @@ public abstract class EuropeMixState extends BallState {
                             else {
                                 dateTv.setTextSize(9);
                             }
-                            liveTv.setVisibility(View.VISIBLE);
+                            liveTv.setVisibility(View.GONE);
                             liveTv.setText(channel1.trim());
                             dateTv.setText(channel2);
                         } else {

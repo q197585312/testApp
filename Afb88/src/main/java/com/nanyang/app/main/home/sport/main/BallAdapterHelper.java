@@ -2,16 +2,19 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
 import android.text.Html;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
@@ -20,8 +23,11 @@ import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
+import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 import java.util.Set;
 
 import butterknife.Bind;
@@ -36,6 +42,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     final int black_grey = 0XFF333333;
     protected Context context;
+    private AdditionBean additionData;
+    private int additionPosition;
+
 
     public Set<ScrollLayout> getSlFollowers() {
         return slFollowers;
@@ -49,6 +58,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     private int slIndex = 0;
 
+    public synchronized void notifyPositionAddition(AdditionBean data, int position) {
+        this.additionData = data;
+        this.additionPosition = position;
+        getBaseRecyclerAdapter().notifyItemChanged(position);
+
+    }
 
     public BallAdapterHelper(Context context) {
         this.context = context;
@@ -56,6 +71,30 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
+        LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
+        List<BallInfo> repeatRow = item.getRepeatRow();
+        if (position == additionPosition && additionMap.get(true) != null && additionMap.get(true) == additionPosition) {
+            parent.setVisibility(View.VISIBLE);
+            parent.removeAllViews();
+            View titleLL = LayoutInflater.from(context).inflate(R.layout.item_addition_common_title, null);
+            parent.addView(titleLL);
+            for (BallInfo ballInfo : repeatRow) {
+                View inflate = LayoutInflater.from(context).inflate(R.layout.item_addition_common_sport, null);
+                TextView home_tv = inflate.findViewById(R.id.home_tv);
+                TextView home_odd_tv = inflate.findViewById(R.id.home_odd_tv);
+                TextView away_tv = inflate.findViewById(R.id.away_tv);
+                TextView away_odd_tv = inflate.findViewById(R.id.away_odd_tv);
+
+                TextView hf_home_tv = inflate.findViewById(R.id.hf_home_tv);
+                TextView hf_home_odd_tv = inflate.findViewById(R.id.hf_home_odd_tv);
+                TextView hf_away_tv = inflate.findViewById(R.id.hf_away_tv);
+                TextView hf_away_odd_tv = inflate.findViewById(R.id.hf_away_odd_tv);
+                setUpDownOdds(true, (I) ballInfo, false, "0", item.getHasHdp(), item.getHdp(), home_tv, away_tv, home_odd_tv, away_odd_tv, item.getHOdds(), item.getAOdds(), "home", "away");
+                setUpDownOdds(true, (I) ballInfo, true, "0", item.getHasHdp_FH(), item.getHdp_FH(), hf_home_tv, hf_away_tv, hf_home_odd_tv, hf_away_odd_tv, item.getHOdds_FH(), item.getAOdds_FH(), "home", "away");
+            }
+        } else {
+            parent.setVisibility(View.GONE);
+        }
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
         helper.getView(R.id.iv_hall_btn).setVisibility(View.GONE);
@@ -71,7 +110,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView homeTv1 = helper.getTextView(R.id.module_match_home_team_tv1);
         TextView awayTv = helper.getTextView(R.id.module_match_away_team_tv);
         TextView awayTv1 = helper.getTextView(R.id.module_match_away_team_tv1);
-        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+        TextView gameSumTv = helper.getView(R.id.module_right_mark_tv);
         final View tvCollection = helper.getView(R.id.module_match_collection_tv);
         liveTv.setTextColor(red_black);
         liveTv1.setTextColor(red_black);
@@ -121,7 +160,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         dateTv.setTextSize(9);
                         dateTv1.setTextSize(9);
                     }
-                    liveTv.setVisibility(View.VISIBLE);
+                    liveTv.setVisibility(View.GONE);
                     liveTv1.setVisibility(View.VISIBLE);
                     liveTv.setText(channels[0].trim());
                     liveTv1.setText(channels[0].trim());
@@ -153,13 +192,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             awayTv1.setTextColor(red_black);
         }
 
-        tvRightMark.setVisibility(View.GONE);
-        tvRightMark.setOnClickListener(new View.OnClickListener() {
+        gameSumTv.setVisibility(View.GONE);
+        gameSumTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 back.clickView(v, item, position);
             }
         });
+        gameSumTv.setText("+ " + item.getGamesSum());
         if (item.getType() == SportInfo.Type.ITME) {
             matchTitleTv.setVisibility(View.GONE);
             headV.setVisibility(View.GONE);
@@ -247,7 +287,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             liveTv.setVisibility(View.GONE);
             liveTv1.setVisibility(View.GONE);
         } else {
-            liveTv.setVisibility(View.VISIBLE);
+            liveTv.setVisibility(View.GONE);
             liveTv1.setVisibility(View.VISIBLE);
         }
         String oldHomeName = "";
@@ -265,6 +305,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         } else {
             onMatchNotRepeat(helper, item, position);
         }
+
 
     }
 
@@ -486,6 +527,17 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     @Override
     public int onSetAdapterItemLayout() {
         return R.layout.sport_common_ball_item;
+    }
+
+    Map<Boolean, Integer> additionMap = new HashMap<>();
+
+    public void changeAddition(int position) {
+        Integer p = additionMap.get(true);
+        if (p != null && p == position) {
+            additionMap.put(true, -1);
+        } else {
+            additionMap.put(true, position);
+        }
     }
 
 

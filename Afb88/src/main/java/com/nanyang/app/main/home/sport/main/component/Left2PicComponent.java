@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.main.component;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 
 import com.guoqi.highlightview.Component;
 

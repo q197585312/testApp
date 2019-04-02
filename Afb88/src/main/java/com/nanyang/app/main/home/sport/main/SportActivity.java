@@ -5,7 +5,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.widget.GridLayoutManager;
+import android.support.annotation.IdRes;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
@@ -16,6 +17,8 @@ import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.koushikdutta.async.http.WebSocket;
@@ -78,7 +81,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     TextView ivAllAdd;
     @Bind(R.id.tv_odds_type)
     TextView tvOddsType;
-    @Bind(R.id.tv_league_main)
+    @Bind(R.id.tv_league_major)
     TextView tvLeagueMain;
     @Bind(R.id.iv_add)
     ImageView ivAdd;
@@ -134,6 +137,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
             }
         });
+
     }
 
 
@@ -397,45 +401,53 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     }
 
-    public void clickBettingHistory(View view) {
+    public void clickBets(View view) {
         Bundle b = new Bundle();
         b.putString(AppConstant.KEY_STRING, getString(R.string.stake));
         skipAct(PersonCenterActivity.class, b);
     }
 
     public void clickSportSelect(View view) {
-        createPopupWindow(new BasePopupWindow(mContext, view, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+        createPopupWindow(new BasePopupWindow(mContext, view, AfbUtils.dp2px(mContext, 200), AfbUtils.dp2px(mContext, 300)) {
             @Override
             protected int onSetLayoutRes() {
-                return R.layout.popupwindow_choice_game;
+                return R.layout.sport_game_switch_bottom_popupwindow;
             }
 
             @Override
             protected void initView(View view) {
                 super.initView(view);
-                RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
-                rv.setLayoutManager(new GridLayoutManager(mContext, 3));
-                List<MenuItemInfo> list = new ArrayList<>();
-                Iterator<String> iterator = mapFragment.keySet().iterator();
+                RecyclerView rv = view.findViewById(R.id.game_list_rcv);
+
+                RadioGroup games_switch_rg = view.findViewById(R.id.games_switch_rg);
+                final RadioButton sports_selected = view.findViewById(R.id.sports_selected);
+                final RadioButton others_selected = view.findViewById(R.id.others_selected);
+
+
+                rv.setLayoutManager(new LinearLayoutManager(mContext));
+                final List<SportIdBean> listSport = new ArrayList<>();
+                final List<SportIdBean> listOther = new ArrayList<>();
+                Iterator<SportIdBean> iterator = AfbUtils.sportMap.values().iterator();
                 while (iterator.hasNext()) {
-                    list.add(new MenuItemInfo(0, iterator.next()));
+                    listSport.add(iterator.next());
+                }
+                Iterator<SportIdBean> iterator1 = AfbUtils.othersMap.values().iterator();
+                while (iterator1.hasNext()) {
+                    listOther.add(iterator1.next());
                 }
 
-                BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base) {
+                final BaseRecyclerAdapter<SportIdBean> baseRecyclerAdapter = new BaseRecyclerAdapter<SportIdBean>(mContext, new ArrayList<SportIdBean>(), R.layout.text_item) {
                     @Override
-                    public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
+                    public void convert(MyRecyclerViewHolder holder, int position, SportIdBean item) {
                         TextView tv = holder.getView(R.id.item_text_tv);
-//                                tv.setBackgroundResource(R.color.google_green);
-                        dynamicAddView(tv, "background", R.color.google_green);
-
-                        //aaa
-                        tv.setText(item.getText());
-                        tv.setTextColor(getResources().getColor(R.color.white));
+                        tv.setBackgroundResource(R.color.white);
+                        tv.setText(item.getTextRes());
+                        tv.setTextColor(getResources().getColor(R.color.google_green));
                     }
-
                 };
 
                 rv.setAdapter(baseRecyclerAdapter);
+                baseRecyclerAdapter.addAllAndClear(listSport);
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
@@ -443,17 +455,35 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                         closePopupWindow();
                     }
                 });
-                TextView tvJumpCasino = (TextView) view.findViewById(R.id.tv_jump_casino);
+      /*          TextView tvJumpCasino = (TextView) view.findViewById(R.id.tv_jump_casino);
                 tvJumpCasino.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
                         loginGD();
                     }
+                });*/
+                games_switch_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup radioGroup, @IdRes int id) {
+                        sports_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        others_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        switch (id) {
+                            case R.id.sports_selected:
+                                baseRecyclerAdapter.addAllAndClear(listSport);
+                                sports_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_blue);
+                                break;
+                            case R.id.others_selected:
+                                baseRecyclerAdapter.addAllAndClear(listOther);
+                                others_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_blue);
+                                break;
+                        }
+                    }
                 });
             }
         });
         popWindow.setTrans(1f);
-        popWindow.showPopupDownWindow();
+        popWindow.showPopupWindowUpCenter(view,AfbUtils.dp2px(mContext, 300),AfbUtils.dp2px(mContext, 200));
+
 
     }
 
@@ -487,4 +517,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             ivAllAdd.setText(allOddsType.getText());
         }
     }
+
+    public void clickMajor(View view) {
+        TextView tx = (TextView) view;
+
+        currentFragment.checkMajor(tx);
+    }
+
 }

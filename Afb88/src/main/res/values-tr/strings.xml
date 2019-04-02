@@ -381,5 +381,8 @@
     <string name="home_bet_credit">Bahis Kredisi</string>
     <string name="home_given_credit">Verilmiş kredi</string>
     <string name="sport_match">Sport</string>
+    <string name="Five_Major_Match">五大联赛</string>
+    <string name="others">Others</string>
+    <string name="all_running">All Running</string>
 
 </resources>

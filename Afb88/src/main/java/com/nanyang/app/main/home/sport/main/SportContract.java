@@ -14,7 +14,7 @@ public interface SportContract {
     interface View<B extends SportInfo> extends BetView<List<B>> {
         void setAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter);
         void switchState(IObtainDataState state);
-        void clickItemAdd(android.view.View v, B item, String type);
+        void clickItemAdd(android.view.View v, B item, int position);
         ScrollLayout onSetScrollHeader();
         void checkMix(boolean mix);
         void reLoginPrompt(String str,CallBack back);

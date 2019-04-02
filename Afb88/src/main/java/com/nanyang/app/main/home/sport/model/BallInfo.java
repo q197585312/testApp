@@ -6,6 +6,10 @@ package com.nanyang.app.main.home.sport.model;
 
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import cn.finalteam.toolsfinal.StringUtils;
 
 /**
@@ -18,6 +22,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     private String isHdpNew_FH;
     private String isOUNew_FH;
     private String tvPathIBC;
+    private List<BallInfo> repeatRow;
 
     public void setIsHdpNew(String isHdpNew) {
         this.isHdpNew = isHdpNew;
@@ -116,6 +121,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     public void setIsInetBet(String isInetBet) {
         IsInetBet = isInetBet;
     }
+
 
     public String getIsHomeGive() {
         return IsHomeGive;
@@ -930,5 +936,17 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
 
     public void setTvPathIBC(String tvPathIBC) {
         this.tvPathIBC = tvPathIBC;
+    }
+
+
+    public void setRepeatRow(List<BallInfo> repeatRow) {
+        this.repeatRow = repeatRow;
+    }
+
+    public List<BallInfo> getRepeatRow() {
+        if (repeatRow == null) {
+            return new ArrayList<>(Arrays.asList(this));
+        } else
+            return repeatRow;
     }
 }

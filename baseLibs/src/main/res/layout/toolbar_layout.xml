@@ -1,54 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="44dp"
     android:background="?attr/colorPrimary"
     android:minHeight="44dp"
-    android:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-    android:="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-    >
+    android:popupTheme="@style/ThemeOverlay.AppCompat.Light">
+
     <TextView
         android:id="@+id/tv_toolbar_left"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:textSize="10sp"
         android:gravity="center|left"
-        android:textColor="@android:color/white" />
-        <TextView
-            android:id="@+id/tv_toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:textColor="@android:color/white" />
-    <LinearLayout
-        android:layout_gravity="right|bottom"
-        android:paddingRight="5dp"
-        android:gravity="center_vertical"
+        android:textColor="@android:color/white"
+        android:textSize="10sp"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/tv_toolbar_title"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="16sp" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="right|bottom"
+        android:gravity="center_vertical"
+        android:paddingRight="5dp">
+
         <TextView
-            android:layout_marginRight="10dp"
             android:id="@+id/tv_toolbar_right1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:textSize="10sp"
+            android:layout_marginRight="10dp"
             android:gravity="center"
-            android:textColor="@android:color/white" />
+            android:textColor="@android:color/white"
+            android:textSize="10sp"
+            android:visibility="gone" />
+
         <TextView
             android:id="@+id/tv_toolbar_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
 
-            android:textSize="10sp"
             android:gravity="center_vertical|right"
-            android:textColor="@color/yellow_button" />
+            android:textColor="@color/yellow_button"
+            android:textSize="10sp" />
     </LinearLayout>
 
 

@@ -92,7 +92,7 @@ public class SwipeToLoadLayout extends ViewGroup {
     private int mStatus = STATUS.STATUS_DEFAULT;
 
     /**
-     * target view top offset
+     * target contentView top offset
      */
     private int mHeaderOffset;
 
@@ -102,7 +102,7 @@ public class SwipeToLoadLayout extends ViewGroup {
     private int mTargetOffset;
 
     /**
-     * target view bottom offset
+     * target contentView bottom offset
      */
     private int mFooterOffset;
 
@@ -446,10 +446,10 @@ public class SwipeToLoadLayout extends ViewGroup {
             case MotionEvent.ACTION_UP:
                 // swipeToRefresh -> finger up -> finger down if the status is still swipeToRefresh
                 // in onInterceptTouchEvent ACTION_DOWN event will stop the scroller
-                // if the event pass to the child view while ACTION_MOVE(condition is false)
+                // if the event pass to the child contentView while ACTION_MOVE(condition is false)
                 // in onInterceptTouchEvent ACTION_MOVE the ACTION_UP or ACTION_CANCEL will not be
                 // passed to onInterceptTouchEvent and onTouchEvent. Instead It will be passed to
-                // child view's onTouchEvent. So we must deal this situation in dispatchTouchEvent
+                // child contentView's onTouchEvent. So we must deal this situation in dispatchTouchEvent
                 onActivePointerUp();
                 break;
         }
@@ -481,7 +481,7 @@ public class SwipeToLoadLayout extends ViewGroup {
                     return true;
                 }
 
-                // let children view handle the ACTION_DOWN;
+                // let children contentView handle the ACTION_DOWN;
 
                 // 1. children consumed:
                 // if at least one of children onTouchEvent() ACTION_DOWN return true.
@@ -691,8 +691,8 @@ public class SwipeToLoadLayout extends ViewGroup {
     }
 
     /**
-     * set refresh header view, the view must at lease be an implement of {@code SwipeRefreshTrigger}.
-     * the view can also implement {@code SwipeTrigger} for more extension functions
+     * set refresh header contentView, the contentView must at lease be an implement of {@code SwipeRefreshTrigger}.
+     * the contentView can also implement {@code SwipeTrigger} for more extension functions
      *
      * @param view
      */
@@ -706,13 +706,13 @@ public class SwipeToLoadLayout extends ViewGroup {
                 addView(view);
             }
         } else {
-            Log.e(TAG, "Refresh header view must be an implement of SwipeRefreshTrigger");
+            Log.e(TAG, "Refresh header contentView must be an implement of SwipeRefreshTrigger");
         }
     }
 
     /**
-     * set load more footer view, the view must at least be an implement of SwipeLoadTrigger
-     * the view can also implement {@code SwipeTrigger} for more extension functions
+     * set load more footer contentView, the contentView must at least be an implement of SwipeLoadTrigger
+     * the contentView can also implement {@code SwipeTrigger} for more extension functions
      *
      * @param view
      */
@@ -726,7 +726,7 @@ public class SwipeToLoadLayout extends ViewGroup {
                 addView(mFooterView);
             }
         } else {
-            Log.e(TAG, "Load more footer view must be an implement of SwipeLoadTrigger");
+            Log.e(TAG, "Load more footer contentView must be an implement of SwipeLoadTrigger");
         }
     }
 
@@ -751,7 +751,7 @@ public class SwipeToLoadLayout extends ViewGroup {
 
     /**
      * set the value of {@link #mRefreshTriggerOffset}.
-     * Default value is the refresh header view height {@link #mHeaderHeight}<p/>
+     * Default value is the refresh header contentView height {@link #mHeaderHeight}<p/>
      * If the offset you set is smaller than {@link #mHeaderHeight} or not set,
      * using {@link #mHeaderHeight} as default value
      *
@@ -763,7 +763,7 @@ public class SwipeToLoadLayout extends ViewGroup {
 
     /**
      * set the value of {@link #mLoadMoreTriggerOffset}.
-     * Default value is the load more footer view height {@link #mFooterHeight}<p/>
+     * Default value is the load more footer contentView height {@link #mFooterHeight}<p/>
      * If the offset you set is smaller than {@link #mFooterHeight} or not set,
      * using {@link #mFooterHeight} as default value
      *
@@ -962,8 +962,8 @@ public class SwipeToLoadLayout extends ViewGroup {
     /**
      * copy from {@link android.support.v4.widget.SwipeRefreshLayout#canChildScrollUp()}
      *
-     * @return Whether it is possible for the child view of this layout to
-     * scroll up. Override this if the child view is a custom view.
+     * @return Whether it is possible for the child contentView of this layout to
+     * scroll up. Override this if the child contentView is a custom contentView.
      */
     protected boolean canChildScrollUp() {
         if (android.os.Build.VERSION.SDK_INT < 14) {
@@ -981,8 +981,8 @@ public class SwipeToLoadLayout extends ViewGroup {
     }
 
     /**
-     * Whether it is possible for the child view of this layout to
-     * scroll down. Override this if the child view is a custom view.
+     * Whether it is possible for the child contentView of this layout to
+     * scroll down. Override this if the child contentView is a custom contentView.
      *
      * @return
      */

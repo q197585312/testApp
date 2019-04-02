@@ -24,13 +24,13 @@ public abstract class BasePopupWindow {
     protected int height;
 
     protected View v;
-    protected View view;
+    protected View contentView;
 
     public void setTrans(float trans) {
         this.trans = trans;
     }
 
-    private float trans=0.3f;
+    private float trans = 0.3f;
 
 
     public BasePopupWindow(Context context, View v) {
@@ -59,12 +59,12 @@ public abstract class BasePopupWindow {
     protected abstract int onSetLayoutRes();
 
     private void initPop() {
-        int  layoutId= onSetLayoutRes();
-        view = inflater.inflate(layoutId, null);
-        ButterKnife.bind(this, view);
-        initView(view);
+        int layoutId = onSetLayoutRes();
+        contentView = inflater.inflate(layoutId, null);
+        ButterKnife.bind(this, contentView);
+        initView(contentView);
 
-        popWindow = new PopupWindow(view, width, height, true);
+        popWindow = new PopupWindow(contentView, width, height, true);
         // 设置动画效果
 //        WindowManager.LayoutParams params = new WindowManager.LayoutParams(
 //                WindowManager.LayoutParams.WRAP_CONTENT,
@@ -89,20 +89,21 @@ public abstract class BasePopupWindow {
     }
 
     private void setBackgroundAttr(float f) {
-        WindowManager.LayoutParams params= ((Activity)context).getWindow().getAttributes();
-        params.alpha=f;
-        ((Activity)context).getWindow().setAttributes(params);
+        WindowManager.LayoutParams params = ((Activity) context).getWindow().getAttributes();
+        params.alpha = f;
+        ((Activity) context).getWindow().setAttributes(params);
     }
 
     protected void initView(View view) {
 
     }
+
     /**
      * 添加新笔记时弹出的popWin关闭的事件，主要是为了将背景透明度改回来
-     * @author cg
      *
+     * @author cg
      */
-    class popDismissListener implements PopupWindow.OnDismissListener{
+    class popDismissListener implements PopupWindow.OnDismissListener {
 
         @Override
         public void onDismiss() {
@@ -117,54 +118,82 @@ public abstract class BasePopupWindow {
     }
 
     public void showPopupDownWindow() {
-       showPopupDownWindow(0,0);
+        showPopupDownWindow(0, 0);
     }
-    public void showPopupDownWindow(int x,int y) {
+
+    public void showPopupDownWindow(int x, int y) {
         closePopupWindow();
 
         setBackgroundAttr(trans);
-        popWindow.showAsDropDown(v,x,y);
+        popWindow.showAsDropDown(v, x, y);
     }
-    public void showPopupDownWindowWihte(int x,int y) {
+
+    public void showPopupDownWindowWihte(int x, int y) {
         closePopupWindow();
-        popWindow.showAsDropDown(v,x,y);
+        popWindow.showAsDropDown(v, x, y);
     }
-    public void showPopupGravityWindow(int gravity,int offsetX,int offsetY) {
+
+    public void showPopupGravityWindow(int gravity, int offsetX, int offsetY) {
         closePopupWindow();
 
         setBackgroundAttr(trans);
-        popWindow.showAtLocation(v,gravity, offsetX, offsetY);
+        popWindow.showAtLocation(v, gravity, offsetX, offsetY);
     }
-    public  void showAtLocation(int gravity,int offsetX,int offsetY){
+
+    public void showAtLocation(int gravity, int offsetX, int offsetY) {
         closePopupWindow();
         setBackgroundAttr(trans);
-        popWindow.showAtLocation(v,gravity, offsetX, offsetY);
+        popWindow.showAtLocation(v, gravity, offsetX, offsetY);
     }
+
     public void showPopupCenterWindow() {
         closePopupWindow();
-
         setBackgroundAttr(trans);
-        if(context!=null&&!((Activity)context).isFinishing()) {
+        if (context != null && !((Activity) context).isFinishing()) {
             popWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
         }
     }
 
+    public void showPopupWindowUpCenter(View view,int popupHeight,int popupWidth) {
+        //获取自身的长宽高
+/*        contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int popupHeight = contentView.getMeasuredHeight();
+        int popupWidth = contentView.getMeasuredWidth();*/
+//获取需要在其上方显示的控件的位置信息
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+//在控件上方显示    向上移动y轴是负数
+        popWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight );
+    }
+    public void showPopupWindowUpCenter(View view) {
+        //获取自身的长宽高
+        contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
+        int popupHeight = contentView.getMeasuredHeight();
+        int popupWidth = contentView.getMeasuredWidth();
+//获取需要在其上方显示的控件的位置信息
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+//在控件上方显示    向上移动y轴是负数
+        popWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight );
+    }
     /**
      * 关闭popupwindow
      */
     public void closePopupWindow() {
         if (popWindow != null && popWindow.isShowing()) {
-            ButterKnife.unbind(view);
+            ButterKnife.unbind(contentView);
             popWindow.dismiss();
         }
     }
-    public void showPopupAtLocation(int x,int y) {
+
+    public void showPopupAtLocation(int x, int y) {
         closePopupWindow();
         setBackgroundAttr(trans);
         popWindow.showAtLocation(v, Gravity.NO_GRAVITY, x, y);
 
     }
-    public int  getHeight(){
-        return view.getHeight();
+
+    public int getHeight() {
+        return contentView.getHeight();
     }
 }

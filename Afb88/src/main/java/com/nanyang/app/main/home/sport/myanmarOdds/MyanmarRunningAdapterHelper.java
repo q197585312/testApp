@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**

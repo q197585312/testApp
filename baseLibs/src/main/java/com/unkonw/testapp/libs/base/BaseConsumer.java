@@ -21,7 +21,7 @@ public abstract class BaseConsumer<T> {
     public Consumer<T> onNext;
     public IBaseContext baseContext;
 
-    public  BaseConsumer(IBaseContext iBaseActivity) {
+    public BaseConsumer(IBaseContext iBaseActivity) {
         this.baseContext = iBaseActivity;
         onNext = new Consumer<T>() {
             @Override
@@ -33,9 +33,7 @@ public abstract class BaseConsumer<T> {
         onError = new Consumer<Throwable>() {
             @Override
             public void accept(Throwable throwable) throws Exception {
-                baseContext.hideLoadingDialog();
-                Log.d(TAG, "accept: " + throwable.toString());
-
+                onError(throwable);
             }
         };
         onCompleted = new Action() {
@@ -52,6 +50,11 @@ public abstract class BaseConsumer<T> {
             }
         };
 
+    }
+
+    protected void onError(Throwable throwable) {
+        baseContext.hideLoadingDialog();
+        Log.d(TAG, "accept: " + throwable.toString());
     }
 
     protected void onAccept() {

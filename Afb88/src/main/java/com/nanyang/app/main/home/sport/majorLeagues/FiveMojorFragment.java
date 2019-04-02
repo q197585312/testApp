@@ -1,11 +1,15 @@
-package com.nanyang.app.main.home.sport.iceHockey;
+package com.nanyang.app.main.home.sport.majorLeagues;
 
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.iceHockey.IceHockeyEarlyState;
+import com.nanyang.app.main.home.sport.iceHockey.IceHockeyOutRightState;
+import com.nanyang.app.main.home.sport.iceHockey.IceHockeyRunningState;
+import com.nanyang.app.main.home.sport.iceHockey.IceHockeyTodayState;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 
 
-public class IceHockeyFragment extends BaseSportFragment {
+public class FiveMojorFragment extends BaseSportFragment {
 
     @Override
     public void initData() {
@@ -41,7 +45,6 @@ public class IceHockeyFragment extends BaseSportFragment {
     public String getTitle() {
         return getString(R.string.IceHockey);
     }
-
 
 
 }

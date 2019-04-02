@@ -18,7 +18,7 @@ public class VolleyballRunningState extends VolleyballState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_VOLLEYBALL_RUNING;
+        return  AppConstant.getInstance().URL_VOLLEYBALL_RUNING;
     }
 
     @Override

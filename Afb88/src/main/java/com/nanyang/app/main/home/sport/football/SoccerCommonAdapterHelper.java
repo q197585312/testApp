@@ -35,7 +35,6 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
         super.onConvert(helper, position, item);
 
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
-        View flCollection = helper.getView(R.id.module_match_collection_fl);
 
 
 
@@ -43,7 +42,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
             tvCollection.setBackgroundResource(R.mipmap.star_red_solid);
         else
             tvCollection.setBackgroundResource(R.mipmap.star_red_not_solid);
-        flCollection.setOnClickListener(new View.OnClickListener() {
+        tvCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 back.clickView(v, item,position);

@@ -25,7 +25,7 @@ import java.io.File;
 import solid.ren.skinlibrary.loader.SkinManager;
 
 
-public class WelcomeActivity extends BaseActivity<WelcomePresenter>{
+public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
 
 
     private Dialog noticeDialog;
@@ -57,8 +57,13 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter>{
                 protected void onBaseGetData(String data) {
                     onGetData(data);
                 }
+
+                @Override
+                protected void onError(Throwable throwable) {
+                    ((BaseActivity) getBaseActivity()).skipAct(LoginActivity.class);
+                }
             });
-        } catch (PackageManager.NameNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             ((BaseActivity) getBaseActivity()).skipAct(LoginActivity.class);
         }
@@ -88,7 +93,6 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter>{
         downloadDialog.dismiss();
         SystemTool.installApk(mContext, file);
     }
-
 
 
     public void onGetData(String data) {
@@ -136,11 +140,12 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter>{
 
     public void onLanguageSwitchSucceed(String str) {
         //测试哈提交
-        AppConstant.getInstance().IS_AGENT=true;
+        AppConstant.getInstance().IS_AGENT = true;
         ToastUtils.showShort(R.string.Login_Success);
         defaultSkip("SportBook");
         finish();
     }
+
     public void defaultSkip(String type) {
         MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
         menuItemInfo.setType("Today");

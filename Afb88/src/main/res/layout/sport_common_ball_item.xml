@@ -12,27 +12,336 @@
         android:layout_height="20dp"
         android:padding="5dp" />
 
-    <TextView
-        android:id="@+id/module_match_title_tv"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:background="@color/green_light"
-        android:gravity="center"
-        android:maxLines="1"
-        android:paddingBottom="2dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="2dp"
-        android:text="联赛名称"
-        android:textColor="@color/green_dark_bg"
-        android:textSize="11sp" />
-
     <LinearLayout
-        android:id="@+id/ll_data1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:visibility="gone">
+        android:background="@color/green_grey_bg"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="3dp">
+
+        <TextView
+
+            android:id="@+id/module_League_collection_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@mipmap/star_red_not_solid"
+            android:gravity="center"
+            android:textColor="@color/grey_dark_word"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/module_match_title_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingBottom="2dp"
+            android:paddingLeft="10dp"
+            android:paddingTop="2dp"
+            android:text="联赛名称"
+            android:textColor="@color/green_dark_bg"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/module_match_collection_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:background="@mipmap/star_red_not_solid"
+                android:gravity="center"
+                android:textColor="@color/grey_dark_word"
+                android:textSize="10sp" />
+
+            <TextView
+                android:id="@+id/module_match_live_iv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:maxLines="1"
+                android:textSize="7sp"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/module_match_date_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="03/11"
+                android:textColor="@color/grey_thick_line"
+                android:textSize="10sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/module_match_time_tv"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:text="03/11"
+                android:textColor="@color/grey_thick_line"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/module_right_mark_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="14dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/match_btn_shadow_bottom"
+                android:paddingLeft="3dp"
+                android:paddingRight="3dp"
+                android:text="+16"
+                android:textColor="@color/black_grey"
+                android:textSize="10sp"
+                android:visibility="visible" />
+
+            <ImageView
+                android:id="@+id/iv_hall_btn"
+                android:layout_width="16dp"
+                android:layout_height="14dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/soccer_hall"
+                android:visibility="visible" />
+
+            <TextView
+                android:id="@+id/hdp_title_tv"
+                android:layout_width="56dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="FT.HDP"
+                android:textColor="@color/black_grey"
+                android:textSize="9sp" />
+
+            <TextView
+                android:id="@+id/ou_title_tv"
+                android:layout_width="70dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:maxLines="1"
+                android:text="FT.OU"
+                android:textColor="@color/black_grey"
+                android:textSize="9sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_data1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+                <LinearLayout
+                    android:id="@+id/module_match_left1_ll1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginLeft="3dp"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:padding="3dp">
+
+                    <TextView
+                        android:id="@+id/module_match_live_iv1"
+                        android:layout_width="28dp"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:textSize="7sp"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/module_match_date_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:maxLength="10"
+                        android:maxLines="1"
+                        android:text="03/11"
+                        android:textColor="@color/grey_thick_line"
+                        android:textSize="10sp" />
+
+                    <TextView
+                        android:id="@+id/module_match_time_tv1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:maxLength="5"
+                        android:maxLines="1"
+                        android:text="03/11"
+                        android:textColor="@color/grey_thick_line"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/module_match_left2_ll1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical"
+                    android:padding="2dp">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/module_match_home_red_card_tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:background="@color/red"
+                            android:gravity="center"
+                            android:paddingLeft="1dp"
+                            android:paddingRight="1dp"
+                            android:textColor="@color/white"
+                            android:textSize="9sp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+
+                        <TextView
+                            android:id="@+id/module_match_home_team_tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:drawablePadding="5dp"
+                            android:gravity="left"
+                            android:maxLines="1"
+                            android:text="zheshiyigeceshi mingz "
+                            android:textColor="@color/black_grey"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/module_match_away_red_card_tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginTop="1dp"
+                            android:gravity="center"
+                            android:paddingLeft="1dp"
+                            android:paddingRight="1dp"
+                            android:textColor="@color/white"
+                            android:textSize="9sp"
+                            android:textStyle="bold"
+                            android:visibility="visible"
+
+                            />
+
+                        <TextView
+                            android:id="@+id/module_match_away_team_tv1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="2dp"
+                            android:layout_marginTop="1dp"
+                            android:drawablePadding="5dp"
+                            android:gravity="left"
+                            android:maxLines="1"
+                            android:text="zheshiyigeceshi mingz "
+                            android:textColor="@color/black_grey"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/green_white_thick_line" />
+
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_dialog_background" />
+
+                <com.unkonw.testapp.training.ScrollLayout
+                    android:id="@+id/module_center_sl1"
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent">
+
+                    <include
+                        layout="@layout/sport_item_table_module_viewpager"
+                        android:visibility="gone" />
+
+                    <include
+                        layout="@layout/sport_item_table_module_viewpager"
+                        android:visibility="gone" />
+
+                    <include
+                        layout="@layout/sport_item_table_module_viewpager"
+                        android:visibility="gone" />
+
+                </com.unkonw.testapp.training.ScrollLayout>
+
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/green_white_thick_line" />
+
+                <View
+                    android:layout_width="0.6dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/grey_dialog_background" />
+
+                <FrameLayout
+                    android:id="@+id/fl_right"
+                    android:layout_width="24dp"
+                    android:layout_height="wrap_content">
+
+                </FrameLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="@color/green_white_thick_line" />
+
+            <View
+                android:id="@+id/bottom_line1"
+                android:layout_width="match_parent"
+                android:layout_height="0.6dp"
+                android:background="@color/grey_dialog_background" />
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -40,54 +349,32 @@
             android:gravity="center"
             android:orientation="horizontal">
 
+            <FrameLayout
+                android:id="@+id/module_match_collection_fl"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center">
+
+
+            </FrameLayout>
 
             <LinearLayout
-                android:id="@+id/module_match_left1_ll1"
+                android:id="@+id/module_match_left1_ll"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
-                android:layout_marginLeft="3dp"
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="vertical"
                 android:padding="3dp">
 
-                <TextView
-                    android:id="@+id/module_match_live_iv1"
-                    android:layout_width="28dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:maxLines="1"
-                    android:textSize="7sp"
-                    android:visibility="visible" />
 
-                <TextView
-                    android:id="@+id/module_match_date_tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:maxLength="10"
-                    android:maxLines="1"
-                    android:text="03/11"
-                    android:textColor="@color/grey_thick_line"
-                    android:textSize="10sp" />
-
-                <TextView
-                    android:id="@+id/module_match_time_tv1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:maxLength="5"
-                    android:maxLines="1"
-                    android:text="03/11"
-                    android:textColor="@color/grey_thick_line"
-                    android:textSize="10sp" />
             </LinearLayout>
 
             <LinearLayout
-                android:id="@+id/module_match_left2_ll1"
+                android:id="@+id/module_match_left2_ll"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="50dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
@@ -100,7 +387,20 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/module_match_home_red_card_tv1"
+                        android:id="@+id/module_match_home_score_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:paddingLeft="1dp"
+                        android:paddingRight="1dp"
+                        android:textColor="@color/red"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/module_match_home_red_card_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
@@ -111,10 +411,10 @@
                         android:textColor="@color/white"
                         android:textSize="9sp"
                         android:textStyle="bold"
-                        android:visibility="gone" />
+                        android:visibility="visible" />
 
                     <TextView
-                        android:id="@+id/module_match_home_team_tv1"
+                        android:id="@+id/module_match_home_team_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
@@ -133,7 +433,7 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/module_match_away_red_card_tv1"
+                        android:id="@+id/module_match_away_score_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
@@ -144,12 +444,24 @@
                         android:textColor="@color/white"
                         android:textSize="9sp"
                         android:textStyle="bold"
-                        android:visibility="visible"
-
-                        />
+                        android:visibility="visible" />
 
                     <TextView
-                        android:id="@+id/module_match_away_team_tv1"
+                        android:id="@+id/module_match_away_red_card_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginTop="1dp"
+                        android:gravity="center"
+                        android:paddingLeft="1dp"
+                        android:paddingRight="1dp"
+                        android:textColor="@color/white"
+                        android:textSize="9sp"
+                        android:textStyle="bold"
+                        android:visibility="visible" />
+
+                    <TextView
+                        android:id="@+id/module_match_away_team_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="2dp"
@@ -163,6 +475,7 @@
                 </LinearLayout>
             </LinearLayout>
 
+
             <View
                 android:layout_width="0.6dp"
                 android:layout_height="match_parent"
@@ -174,7 +487,7 @@
                 android:background="@color/grey_dialog_background" />
 
             <com.unkonw.testapp.training.ScrollLayout
-                android:id="@+id/module_center_sl1"
+                android:id="@+id/module_center_sl"
                 android:layout_width="140dp"
                 android:layout_height="match_parent">
 
@@ -202,231 +515,9 @@
                 android:layout_height="match_parent"
                 android:background="@color/grey_dialog_background" />
 
-            <FrameLayout
-                android:id="@+id/fl_right"
-                android:layout_width="24dp"
-                android:layout_height="wrap_content">
-
-            </FrameLayout>
-
         </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="0.6dp"
-            android:background="@color/green_white_thick_line" />
-
-        <View
-            android:id="@+id/bottom_line1"
-            android:layout_width="match_parent"
-            android:layout_height="0.6dp"
-            android:background="@color/grey_dialog_background" />
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:orientation="horizontal">
-
-        <FrameLayout
-            android:id="@+id/module_match_collection_fl"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/module_match_collection_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:background="@mipmap/star_red_not_solid"
-                android:gravity="center"
-                android:textColor="@color/grey_dark_word"
-                android:textSize="10sp" />
-        </FrameLayout>
-
-        <LinearLayout
-            android:id="@+id/module_match_left1_ll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="3dp">
-
-            <TextView
-                android:id="@+id/module_match_live_iv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:maxLines="1"
-                android:textSize="7sp"
-                android:visibility="visible" />
-
-            <TextView
-                android:id="@+id/module_match_date_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="03/11"
-                android:textColor="@color/grey_thick_line"
-                android:textSize="10sp" />
-
-            <TextView
-                android:id="@+id/module_match_time_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:gravity="center"
-                android:maxLines="1"
-                android:text="03/11"
-                android:textColor="@color/grey_thick_line"
-                android:textSize="9sp" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/module_match_left2_ll"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center_vertical"
-            android:orientation="vertical"
-            android:padding="2dp">
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/module_match_home_red_card_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:background="@color/red"
-                    android:gravity="center"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:textColor="@color/white"
-                    android:textSize="9sp"
-                    android:textStyle="bold"
-                    android:visibility="gone" />
-
-                <TextView
-                    android:id="@+id/module_match_home_team_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
-                    android:drawablePadding="5dp"
-                    android:gravity="left"
-                    android:maxLines="1"
-                    android:text="zheshiyigeceshi mingz "
-                    android:textColor="@color/black_grey"
-                    android:textSize="11sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/module_match_away_red_card_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="1dp"
-                    android:gravity="center"
-                    android:paddingLeft="1dp"
-                    android:paddingRight="1dp"
-                    android:textColor="@color/white"
-                    android:textSize="9sp"
-                    android:textStyle="bold"
-                    android:visibility="visible"
-
-                    />
-
-                <TextView
-                    android:id="@+id/module_match_away_team_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginTop="1dp"
-                    android:drawablePadding="5dp"
-                    android:gravity="left"
-                    android:maxLines="1"
-                    android:text="zheshiyigeceshi mingz "
-                    android:textColor="@color/black_grey"
-                    android:textSize="11sp" />
-            </LinearLayout>
-        </LinearLayout>
-
-        <ImageView
-            android:id="@+id/iv_hall_btn"
-            android:layout_width="14dp"
-            android:layout_height="14dp"
-            android:src="@mipmap/soccer_hall"
-            android:visibility="visible" />
-
-        <View
-            android:layout_width="0.6dp"
-            android:layout_height="match_parent"
-            android:background="@color/green_white_thick_line" />
-
-        <View
-            android:layout_width="0.6dp"
-            android:layout_height="match_parent"
-            android:background="@color/grey_dialog_background" />
-
-        <com.unkonw.testapp.training.ScrollLayout
-            android:id="@+id/module_center_sl"
-            android:layout_width="140dp"
-            android:layout_height="match_parent">
-
-            <include
-                layout="@layout/sport_item_table_module_viewpager"
-                android:visibility="gone" />
-
-            <include
-                layout="@layout/sport_item_table_module_viewpager"
-                android:visibility="gone" />
-
-            <include
-                layout="@layout/sport_item_table_module_viewpager"
-                android:visibility="gone" />
-
-        </com.unkonw.testapp.training.ScrollLayout>
-
-        <View
-            android:layout_width="0.6dp"
-            android:layout_height="match_parent"
-            android:background="@color/green_white_thick_line" />
-
-        <View
-            android:layout_width="0.6dp"
-            android:layout_height="match_parent"
-            android:background="@color/grey_dialog_background" />
-
-        <FrameLayout
-            android:id="@+id/module_right_mark_tv"
-            android:layout_width="24dp"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:drawableRight="@mipmap/add_red_oval" />
-        </FrameLayout>
-
-    </LinearLayout>
 
     <View
         android:layout_width="match_parent"
@@ -438,4 +529,13 @@
         android:layout_width="match_parent"
         android:layout_height="0.6dp"
         android:background="@color/grey_dialog_background" />
+
+    <LinearLayout
+        android:id="@+id/common_ball_parent_ll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical" />
+
+
 </LinearLayout>

@@ -92,7 +92,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected MenuItemInfo param = null;
     protected WebSocket webSocket;
 
-    private String TAG = getClass().getCanonicalName();
+    private String TAG = "SportState";
     private DataUpdateRunnable dataUpdateRunnable;
 
     public int getPageSize() {
@@ -155,10 +155,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected BaseRecyclerAdapter<B> baseRecyclerAdapter;
-    https://www.afb1188.com/H50/Pub/pcode.axd?_fm=%7B%22ACT%22%3A%22Getmenu%22%2C%22ot%22%3A%22t%22%2C%22pgLable%22%3A%220.5025137446223212%22%2C%22vsn%22%3A%224.0.12%22%2C%22PT%22%3A%22wfMainH50%22%7D&_db=%7B%7D
-    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=200&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
-    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"Getmenu","ot":"t","pgLable":"0.5025137446223212","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
-    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=1&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
+
+    //    https://www.afb1188.com/H50/Pub/pcode.axd?_fm=%7B%22ACT%22%3A%22Getmenu%22%2C%22ot%22%3A%22t%22%2C%22pgLable%22%3A%220.5025137446223212%22%2C%22vsn%22%3A%224.0.12%22%2C%22PT%22%3A%22wfMainH50%22%7D&_db=%7B%7D
+//    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=200&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
+//    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"Getmenu","ot":"t","pgLable":"0.5025137446223212","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
+//    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=1&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
     @Override
     public void refresh() {
 
@@ -449,7 +450,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         showCurrentData();
     }
 
-    private void showCurrentData() {
+    protected void showCurrentData() {
         pageData(filterData);
         showData();
     }
@@ -977,4 +978,5 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     public abstract IBetHelper onSetBetHelper();
+
 }

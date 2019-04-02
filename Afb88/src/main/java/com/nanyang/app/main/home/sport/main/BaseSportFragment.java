@@ -20,10 +20,15 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
-import com.nanyang.app.main.home.sport.additional.VsActivity;
+import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
+import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorEarlyState;
+import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorRunningState;
+import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorTodayState;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
+import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
@@ -72,6 +77,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     private BaseRecyclerAdapter baseRecyclerAdapter;
     private boolean isInit = false;
     private TextView ivAllAdd;
+    private boolean isMajor;
+    private AdditionPresenter additionPresenter;
 
 
     @Override
@@ -139,6 +146,38 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             }
         }, 5000);
 
+    }
+
+    public void checkMajor(TextView tx) {
+        isMajor = !isMajor;
+        if (isMajor)
+            tx.setTextColor(getResources().getColor(R.color.yellow_button));
+        else
+            tx.setTextColor(getResources().getColor(R.color.white));
+        MenuItemInfo stateType = presenter.getStateHelper().getStateType();
+        if (isMajor) {
+            switchMajorType(stateType.getType());
+        } else {
+            switchType(stateType.getType());
+        }
+    }
+
+
+    private void switchMajorType(String type) {
+        switch (type) {
+            case "Running":
+                switchState(new FiveMajorRunningState(this));
+                break;
+            case "Today":
+                switchState(new FiveMajorTodayState(this));
+                break;
+            case "Early":
+                switchState(new FiveMajorEarlyState(this));
+                break;
+            default:
+                switchState(new FiveMajorTodayState(this));
+                break;
+        }
     }
 
     private class DigWebViewClient extends WebViewClient {
@@ -252,6 +291,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         if (AppConstant.getInstance().IS_AGENT) {
             initAgent();
         }
+        additionPresenter = new AdditionPresenter(this);
     }
 
     public void initAgent() {
@@ -381,7 +421,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
                     }
                 });
         popWindow.setTrans(1f);
-        popWindow.showPopupDownWindow();
+        popWindow.showPopupWindowUpCenter(v);
     }
 
     private void setChooseTypeAdapter(RecyclerView rv_list) {
@@ -473,7 +513,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // TODO: inflate a fragment view
+        // TODO: inflate a fragment contentView
         View rootView = super.onCreateView(inflater, container, savedInstanceState);
         ButterKnife.bind(this, rootView);
         return rootView;
@@ -483,7 +523,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     @OnClick({R.id.ll_mix_parlay_order})
     public void onClick(View view) {
         switch (view.getId()) {
-     
+
             case R.id.ll_mix_parlay_order:
                 clickOrder();
                 break;
@@ -582,12 +622,17 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     @Override
-    public void clickItemAdd(View v, SportInfo item, String type) {
-        Bundle b = new Bundle();
-        b.putSerializable(AppConstant.KEY_DATA, item);
-        b.putSerializable(AppConstant.KEY_DATA2, presenter.getStateHelper().getStateType());
-        MenuItemInfo oddsType = ((SportActivity) getIBaseContext().getBaseActivity()).getOddsType();
-        b.putSerializable(AppConstant.KEY_DATA3, oddsType);
-        skipAct(VsActivity.class, b);
+    public void clickItemAdd(View v, SportInfo item, int position) {
+        additionPresenter.addition((BallInfo) item,position);
+        if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
+            adapterHelper.changeAddition(position);
+        }
+    }
+    public void onAddition(AdditionBean data, int position) {
+        if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
+            adapterHelper.notifyPositionAddition(data,position);
+        }
     }
 }

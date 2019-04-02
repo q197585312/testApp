@@ -19,9 +19,9 @@
     <color name="grey_background">#e5e5e5</color>
     <color name="grey_background_trans">#aae5e5e5</color>
     <color name="grey_thick_line">#ededed</color>
-    <color name="green_thick_line">#179441</color>
-    <color name="green_white_thick_line">#aad6b8</color>
+
     <color name="grey_button">#bebebe</color>
+    <color name="grey_button_grey">#B0BFBF</color>
     <color name="grey_line_button">#9f9f9f</color>
     <color name="grey_dark_word">#4c4c4c</color>
     <color name="grey_dialog_background">#f0f0f0</color>
@@ -54,15 +54,19 @@
     <!--green-->
     <color name="green_end">#aa085a23</color>
     <color name="green_center">#093918</color>
-
+    <color name="green_thick_line">#179441</color>
+    <color name="green_white_thick_line">#aad6b8</color>
+    <color name="green_grey_bg">#A8C0B0</color>
     <color name="green500">#4CAF50</color>
 
     <color name="green900">#17ae48</color>
     <color name="green900_trans">#6617ae48</color>
-    <color name="green500_trans">#66000000</color>
+    <color name="black44_trans">#44000000</color>
+    <color name="black66_trans">#66000000</color>
 
-    <color name="green_dark">#138137</color>
+    <color name="green_dark">#FF137D33</color>
     <color name="green_black">#0d5924</color>
+
     <color name="green_black_word">#006230</color>
     <color name="green_trans">#dd4CAF50</color>
     <color name="green_light">#a3e8ac</color>

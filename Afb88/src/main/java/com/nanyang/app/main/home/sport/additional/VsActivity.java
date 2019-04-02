@@ -23,7 +23,7 @@ import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sport.model.ScaleBean;
+import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
@@ -395,7 +395,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
     }
 
-    private void secondFragmentData(ScaleBean result) {
+    private void secondFragmentData(AdditionBean result) {
         List<VsTableRowBean> rows;
         rows = new ArrayList<>(Arrays.asList(new VsTableRowBean("htft", Arrays.asList(new VsCellBean(getString(R.string.hh), result.getHTFT().getHH(), /*"&sc=" +*/ "11", result.getHTFT().getOid()), new VsCellBean(getString(R.string.hd), result.getHTFT().getHD(), /*"&sc=" +*/ "10", result.getHTFT().getOid()), new VsCellBean(getString(R.string.ha), result.getHTFT().getHA(), /*"&sc=" +*/ "12", result.getHTFT().getOid())), true, false, getString(R.string.half_full_time), "", "", ""),
                 new VsTableRowBean("htft", Arrays.asList(new VsCellBean(getString(R.string.dh), result.getHTFT().getDH(), /*"&sc=" +*/ "1", result.getHTFT().getOid()), new VsCellBean(getString(R.string.dd), result.getHTFT().getDD(), /*"&sc=" +*/ "0", result.getHTFT().getOid()), new VsCellBean(getString(R.string.da), result.getHTFT().getDA(), /*"&sc=" +*/ "2", result.getHTFT().getOid()))),
@@ -421,7 +421,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
     }
 
-    private void firstFragmentData(ScaleBean result) {
+    private void firstFragmentData(AdditionBean result) {
         List<VsTableRowBean> rows;
         rows = new ArrayList<>(Arrays.asList(new VsTableRowBean("1", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.h1), new int[]{getResources().getColor(R.color.red_title)}, new String[]{getString(R.string.h1)}), "", result.getFT1x2().getOid()), new VsCellBean("", result.getFT1x2().getF1(), result.getFT1x2().getOid()), new VsCellBean("", result.getFH1x2().getF1(), result.getFH1x2().getOid())), true, false, setColorStyle("1  x  2", new int[]{getResources().getColor(R.color.red_title), getResources().getColor(R.color.blue)}, new String[]{"1", "x"}), "", "", ""),
                 new VsTableRowBean("X", Arrays.asList(new VsCellBean(setColorStyle(getString(R.string.dx), new int[]{getResources().getColor(R.color.blue)}, new String[]{getString(R.string.dx)}), "", 0), new VsCellBean("", result.getFT1x2().getX(), result.getFT1x2().getOid()), new VsCellBean("", result.getFH1x2().getX(), result.getFH1x2().getOid()))),
@@ -477,7 +477,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
     @Override
     public void onGetData(String data) {
-        ScaleBean bean = new Gson().fromJson(data, ScaleBean.class);
+        AdditionBean bean = new Gson().fromJson(data, AdditionBean.class);
         firstFragmentData(bean);
         secondFragmentData(bean);
         thirdFragmentData(data);

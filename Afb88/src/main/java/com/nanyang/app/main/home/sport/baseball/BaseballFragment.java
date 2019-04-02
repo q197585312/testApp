@@ -1,11 +1,8 @@
 package com.nanyang.app.main.home.sport.baseball;
 
-import android.view.View;
-
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
-import com.nanyang.app.main.home.sport.model.SportInfo;
 
 
 public class BaseballFragment extends BaseSportFragment {
@@ -46,8 +43,5 @@ public class BaseballFragment extends BaseSportFragment {
     }
 
 
-    @Override
-    public void clickItemAdd(View v, SportInfo item, String type) {
 
-    }
 }

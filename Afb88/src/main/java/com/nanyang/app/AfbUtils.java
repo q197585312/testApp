@@ -53,6 +53,7 @@ import com.nanyang.app.main.home.sport.handball.HandballFragment;
 import com.nanyang.app.main.home.sport.iceHockey.IceHockeyFragment;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
+import com.nanyang.app.main.home.sport.main.SportState;
 import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
 import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.poll.PoolFragment;
@@ -108,6 +109,7 @@ public class AfbUtils {
      * 定义HTML标签的正则表达式
      */
     private static final String REGEX_HTML = "<[^>]+>";
+    private static Map<String,SportState> majorStateHashMap=new HashMap<>();
 
     public static String delHTMLTag(String htmlStr) {
         // 过滤script标签
@@ -430,7 +432,9 @@ public class AfbUtils {
 		"id": "999",
 		"img": "https:\/\/www.afb1188.com\/H50\/Img\/Outright.jpg"
 	}],*/
-    static HashMap<String, SportIdBean> beanHashMap = new HashMap<>();
+    public static HashMap<String, SportIdBean> beanHashMap = new HashMap<>();
+    public static HashMap<String, SportIdBean> sportMap = new HashMap<>();
+    public static HashMap<String, SportIdBean> othersMap = new HashMap<>();
 
 
     public static void initAllSprotMap() {
@@ -441,6 +445,7 @@ public class AfbUtils {
         BaseSportFragment game4dFragment = new Game4dFragment();
         BaseSportFragment eSportFragment = new ESportFragment();
         BaseSportFragment muayThaiFragment = new MuayThaiFragment();
+
         BaseSportFragment myanmarFragment = new MyanmarFragment();
         BaseSportFragment europeFragment = new EuropeFragment();
         BaseSportFragment usFootballFragment = new USFootballFragment();
@@ -454,6 +459,7 @@ public class AfbUtils {
         BaseSportFragment badmintonFragment = new BadmintonFragment();
         BaseSportFragment volleyballFragment = new VolleyballFragment();
         BaseSportFragment cricketFragment = new CricketFragment();
+
         BaseSportFragment handballFragment = new HandballFragment();
         BaseSportFragment cyclingFragment = new CyclingFragment();
         BaseSportFragment winterSportFragment = new WinterSportFragment();
@@ -472,16 +478,35 @@ public class AfbUtils {
         beanHashMap.put("19", new SportIdBean("19", R.string.Futsal, "Futsal", SportActivity.class, soccerFragment));
         beanHashMap.put("17", new SportIdBean("17", R.string.Golf, "Golf", SportActivity.class, golfFragment));
         beanHashMap.put("25", new SportIdBean("25", R.string.Handball, "Handball", SportActivity.class, handballFragment));
-        beanHashMap.put("10", new SportIdBean("25", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment));
-        beanHashMap.put("16", new SportIdBean("25", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, cricketFragment));
+        beanHashMap.put("10", new SportIdBean("10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment));
+        beanHashMap.put("44", new SportIdBean("44", R.string.cricket, "Cricket", SportActivity.class, cricketFragment));
         beanHashMap.put("12", new SportIdBean("12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment));
         beanHashMap.put("11", new SportIdBean("11", R.string.Snooker, "Snooker", SportActivity.class, soccerFragment));
         beanHashMap.put("22", new SportIdBean("22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment));
         beanHashMap.put("8", new SportIdBean("8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment));
         beanHashMap.put("24", new SportIdBean("24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment));
         beanHashMap.put("21", new SportIdBean("21", R.string.Water_Polo, "Water_Polo", SportActivity.class, winterSportFragment));
-        beanHashMap.put("0", new SportIdBean("0", R.string.running, "Running", SportActivity.class, soccerFragment));
+        beanHashMap.put("0", new SportIdBean("0", R.string.all_running, "AllRunning", SportActivity.class, soccerFragment));
         beanHashMap.put("999", new SportIdBean("999", R.string.OutRight, "OutRight", SportActivity.class, soccerFragment));
+
+        sportMap.put("0", new SportIdBean("0", R.string.all_running, "AllRunning", SportActivity.class, soccerFragment));
+        sportMap.put("5", new SportIdBean("5", R.string.Europe_View, "Europe", SportActivity.class, soccerFragment));
+        sportMap.put("1", new SportIdBean("1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment));
+        sportMap.put("2", new SportIdBean("2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment));
+        sportMap.put("3", new SportIdBean("3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment));
+        sportMap.put("15", new SportIdBean("15", R.string.Financial, "Financial", SportActivity.class, financialFragment));
+        sportMap.put("34", new SportIdBean("34", R.string.E_Sport, "E_Sport", SportActivity.class, eSportFragment));
+        sportMap.put("6", new SportIdBean("6", R.string.Specials_4D, "Specials_4D", SportActivity.class, soccerFragment));
+        sportMap.put("999", new SportIdBean("999", R.string.OutRight, "OutRight", SportActivity.class, soccerFragment));
+
+        othersMap.put("24", new SportIdBean("24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment));
+        othersMap.put("44", new SportIdBean("44", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, cricketFragment));
+        othersMap.put("17", new SportIdBean("17", R.string.Golf, "Golf", SportActivity.class, golfFragment));
+        othersMap.put("108", new SportIdBean("108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment));
+        othersMap.put("16", new SportIdBean("16", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment));
+        othersMap.put("12", new SportIdBean("12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment));
+        othersMap.put("10", new SportIdBean("10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment));
+
 
     }
 

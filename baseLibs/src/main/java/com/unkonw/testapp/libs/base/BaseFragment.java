@@ -39,6 +39,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
     protected BasePopupWindow popWindow;
     private String title;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

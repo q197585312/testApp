@@ -29,7 +29,6 @@ import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.listview.ItemRemoveRecyclerView;
 import com.unkonw.testapp.libs.view.listview.OnItemClickListener;

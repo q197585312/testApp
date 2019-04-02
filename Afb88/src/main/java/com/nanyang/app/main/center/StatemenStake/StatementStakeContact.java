@@ -1,8 +1,8 @@
 package com.nanyang.app.main.center.StatemenStake;
 
 import com.nanyang.app.main.center.model.StatementStakeListBean;
-import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.base.IBaseView;
+import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
 import java.util.List;
 

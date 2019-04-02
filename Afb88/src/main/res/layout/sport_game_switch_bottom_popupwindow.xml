@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="200dp"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+
+    <RadioGroup
+        android:id="@+id/games_switch_rg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:drawableBottom="@drawable/line_blue"
+            android:layout_margin="5dp"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:checked="true"
+            android:id="@+id/sports_selected"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:text="@string/SportBook"
+            android:textColor="@color/gray_blue_txt_selector" />
+
+        <RadioButton
+            android:layout_margin="5dp"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:id="@+id/others_selected"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:button="@null"
+            android:text="@string/other"
+            android:textColor="@color/gray_blue_txt_selector" />
+    </RadioGroup>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/game_list_rcv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

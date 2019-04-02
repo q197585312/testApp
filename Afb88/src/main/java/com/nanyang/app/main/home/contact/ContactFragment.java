@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.contact;
 
-import android.graphics.Color;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;

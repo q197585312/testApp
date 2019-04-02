@@ -419,4 +419,8 @@
     <string name="home_bet_credit">投注额度</string>
     <string name="home_given_credit">信用额度</string>
     <string name="sport_match">体育博彩</string>
+    <string name="Five_Major_Match">五大联赛</string>
+    <string name="others">其他</string>
+    <string name="all_running">All Running</string>
+    <string name="cricket">Cricket</string>
 </resources>

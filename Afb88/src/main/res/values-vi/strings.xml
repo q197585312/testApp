@@ -381,4 +381,8 @@
     <string name="home_bet_credit">Tài khoản cược</string>
     <string name="home_given_credit">tài khoản chính</string>
     <string name="sport_match">Sport</string>
+    <string name="Five_Major_Match">五大联赛</string>
+    <string name="others">Others</string>
+    <string name="all_running">All Running</string>
+    <string name="cricket">Cricket</string>
 </resources>

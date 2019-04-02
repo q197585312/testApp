@@ -1,8 +1,8 @@
 package com.nanyang.app.main.center.transferMoney;
 
 import com.nanyang.app.main.center.model.TransferMoneyBean;
-import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.base.IBaseView;
+import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
 /**
  * Created by Administrator on 2017/3/30.

@@ -105,7 +105,7 @@ public class ViewHolder  {
     }
 
     /**
-     * @param viewId The id of the view you want to retrieve.
+     * @param viewId The id of the contentView you want to retrieve.
      * @deprecated retrieveView(viewId) instead
      */
     public <T extends View> T getView(int viewId) {
@@ -113,8 +113,8 @@ public class ViewHolder  {
     }
 
     /**
-     * @param viewId The view id.
-     * @param value  The text to put in the text view.
+     * @param viewId The contentView id.
+     * @param value  The text to put in the text contentView.
      * @return The ViewHolder for chaining.
      */
     public ViewHolder setText(int viewId, String value) {
@@ -144,7 +144,7 @@ public class ViewHolder  {
     }
 
     /**
-     * @param viewId The view id.
+     * @param viewId The contentView id.
      * @param value  visibility One of VISIBLE, INVISIBLE, or GONE.
      * @return The ViewHolder for chaining.
      */
@@ -156,7 +156,7 @@ public class ViewHolder  {
         retrieveView(viewId).setEnabled(value);
     }
     /**
-     * @param viewId     The view id.
+     * @param viewId     The contentView id.
      * @param imageResId The image resource id.
      * @return The ViewHolder for chaining.
      */
@@ -167,7 +167,7 @@ public class ViewHolder  {
     }
 
     /**
-     * @param viewId   The view id.
+     * @param viewId   The contentView id.
      * @param drawable The image drawable.
      * @return The ViewHolder for chaining.
      */
@@ -186,7 +186,7 @@ public class ViewHolder  {
     }
 
     /**
-     * Sets the background color for this view.
+     * Sets the background color for this contentView.
      *
      * @param viewId
      * @param colorRes
@@ -214,7 +214,7 @@ public class ViewHolder  {
     }
 
     /**
-     * Register a callback to be invoked when this view is clicked. If this view
+     * Register a callback to be invoked when this contentView is clicked. If this contentView
      * is not clickable, it becomes clickable.
      */
     public ViewHolder setClickLisenter(int viewId, OnClickListener listener) {
@@ -241,7 +241,7 @@ public class ViewHolder  {
     }
 
     /**
-     * @param viewId  The view id.
+     * @param viewId  The contentView id.
      * @param visible True for VISIBLE, false for GONE.
      * @return The ViewHolder for chaining.
      */

@@ -26,8 +26,8 @@ public abstract class SuperComboState extends SoccerMixState{
         return new SuperComboBetHelper(getBaseView());
     }
     @Override
-    protected void clickAdd(View v, BallInfo item) {
-        getBaseView().clickItemAdd(v,item,"mix");
+    protected void clickAdd(View v, BallInfo item, int position) {
+        getBaseView().clickItemAdd(v,item,position);
     }
     @Override
     protected List<MenuItemInfo> getTypes() {

@@ -1,8 +1,6 @@
 package com.nanyang.app.main.home.sport.majorLeagues;
 
 import com.nanyang.app.MenuItemInfo;
-import com.nanyang.app.main.home.sport.e_sport.ESportRunningState;
-import com.nanyang.app.main.home.sport.e_sport.ESportTodayState;
 import com.nanyang.app.main.home.sport.europe.EuropeState;
 import com.nanyang.app.main.home.sport.football.SoccerCommonAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
@@ -10,40 +8,29 @@ import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
+import java.util.HashMap;
+
 /**
  * Created by ASUS on 2019/3/26.
  */
 
-public class FiveMajorState extends EuropeState {
+public abstract class FiveMajorState extends EuropeState {
+    HashMap<String, FiveMajorState> majorStateHashMap = new HashMap<>();
 
     public FiveMajorState(SportContract.View baseView) {
         super(baseView);
+
     }
 
-    @Override
-    protected String getRefreshUrl() {
-        return null;
-    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item) {
-        switch (item.getType()) {
-            case "Early":
-                getBaseView().switchState(this);
-                break;
-            case "Today":
-                getBaseView().switchState(new ESportTodayState(getBaseView()));
-                break;
-            case "Running":
-                getBaseView().switchState(new ESportRunningState(getBaseView()));
-                break;
-
-        }
+        getBaseView().switchState(majorStateHashMap.get(item.getType()));
     }
 
     @Override
     public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new SoccerCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity())
+        return new SoccerCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
 
     @Override
@@ -51,10 +38,7 @@ public class FiveMajorState extends EuropeState {
 
     }
 
-    @Override
-    public MenuItemInfo getStateType() {
-        return null;
-    }
+
 
     @Override
     public boolean mix() {

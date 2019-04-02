@@ -12,6 +12,7 @@ import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
+import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.unkonw.testapp.login.DataBean;
 import com.unkonw.testapp.login.ResBaseBean;
 
@@ -180,5 +181,8 @@ public interface ApiService {
 
     @GET
     Flowable<AllBannerImagesBean> getAllImagesData(@Url String url);
+
+    @GET
+    Flowable<AdditionBean> getAdditionData(@Url String url);
 
 }

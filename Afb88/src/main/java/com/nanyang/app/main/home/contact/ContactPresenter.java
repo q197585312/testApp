@@ -1,21 +1,9 @@
 package com.nanyang.app.main.home.contact;
 
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import com.nanyang.app.ApiService;
-import com.nanyang.app.R;
 import com.nanyang.app.main.center.model.Contact;
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 

@@ -157,7 +157,7 @@ public abstract class EuropeState extends BallState {
                             else {
                                 dateTv.setTextSize(9);
                             }
-                            liveTv.setVisibility(View.VISIBLE);
+                            liveTv.setVisibility(View.GONE);
                             liveTv.setText(channel1.trim());
                             dateTv.setText(channel2);
                         } else {
@@ -403,7 +403,7 @@ public abstract class EuropeState extends BallState {
             public void clickView(View v, final BallInfo item, int position) {
                 switch (v.getId()) {
                     case R.id.module_right_mark_tv:
-                        getBaseView().clickItemAdd(v, item, "common");
+                        getBaseView().clickItemAdd(v, item, position);
 
                         break;
                     case R.id.iv_hall_btn:

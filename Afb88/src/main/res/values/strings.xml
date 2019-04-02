@@ -156,7 +156,7 @@
     <string name="cash_out">Cash Out</string>
     <string name="event">Event</string>
     <string name="detail">Detail</string>
-    <string name="other">Other</string>
+    <string name="other">Others</string>
     <string name="Choose">Choose Matches</string>
     <string name="Common_Game">Common Game</string>
     <string name="E_Sport">E-Sports</string>
@@ -401,7 +401,7 @@
     <string name="language_switch">ENGLISH</string>
     <string name="gd88_casino">gd88 casino</string>
     <string name="basketball">Basketball</string>
-    <string name="Snooker" />
+    <string name="Snooker" >Snooker</string>
     <string name="my_account">My Account</string>
     <string name="messages">messages</string>
     <string name="contact">contact</string>
@@ -421,4 +421,8 @@
     <string name="home_bet_credit">Bet Credit</string>
     <string name="home_given_credit">Given Credit</string>
     <string name="sport_match">Sport</string>
+    <string name="Five_Major_Match">五大联赛</string>
+    <string name="others">Others</string>
+    <string name="all_running">All Running</string>
+    <string name="cricket">Cricket</string>
 </resources>

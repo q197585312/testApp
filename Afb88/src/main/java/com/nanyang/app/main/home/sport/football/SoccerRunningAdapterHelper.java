@@ -26,13 +26,16 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         TextView liveTv = helper.getView(R.id.module_match_live_iv);
         TextView timeTv = helper.getView(R.id.module_match_time_tv);
+        TextView homeScoreTv = helper.getView(R.id.module_match_home_score_tv);
+        TextView awayScoreTv = helper.getView(R.id.module_match_away_score_tv);
         dateTv.setTextAppearance(context, R.style.text_bold);
         dateTv.setPadding(0, 0, 10, 0);
         liveTv.setVisibility(View.GONE);
         if (item.getRunHomeScore() != null && item.getRunAwayScore() != null && !item.getRunAwayScore().equals("") && !item.getRunHomeScore().equals("")) {
             String sHome = item.getRunHomeScore();
             String sAway = item.getRunAwayScore();
-            dateTv.setText(sHome + " - " + sAway);
+            awayScoreTv.setText(sAway);
+            homeScoreTv.setText(sHome);
 
         } else {
             dateTv.setText("");
@@ -59,7 +62,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
                     default:
                         min = Integer.valueOf(item.getCurMinute());
                         if (min < 130 && min > 0) {
-                            timeTv.setText("1H "+min + "'");
+                            timeTv.setText("1H " + min + "'");
                         } else {
                             timeTv.setText("");
                         }
@@ -80,7 +83,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
     @Override
     protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final BallInfo item, final int position) {
-        super.onMatchNotRepeat(helper, item,position);
+        super.onMatchNotRepeat(helper, item, position);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         String rtsMatchId = item.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
@@ -89,7 +92,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
                 @Override
                 public void onClick(View v) {
 
-                    back.clickView(v, item,position);
+                    back.clickView(v, item, position);
                 }
             });
         } else {
@@ -100,7 +103,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     }
 
     @Override
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item,int position) {
+    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item, int position) {
         super.onMatchRepeat(helper, item, position);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
