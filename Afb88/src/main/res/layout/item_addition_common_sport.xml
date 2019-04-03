@@ -38,7 +38,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:text="@string/home"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
@@ -47,7 +47,7 @@
                         android:id="@+id/home_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:padding="3dp"
+                    android:padding="1dp"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -82,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:text="@string/Away"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
@@ -91,7 +91,7 @@
                         android:id="@+id/away_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -101,7 +101,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:padding="3dp"
+                    android:padding="1dp"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -133,7 +133,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:text="@string/over"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
@@ -142,7 +142,7 @@
                         android:id="@+id/over_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -153,7 +153,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:padding="3dp"
+                    android:padding="1dp"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -177,7 +177,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:text="@string/under"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
@@ -186,7 +186,7 @@
                         android:id="@+id/under_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -197,7 +197,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:padding="3dp"
+                    android:padding="1dp"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -228,7 +228,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:text="@string/home"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
@@ -237,7 +237,7 @@
                         android:id="@+id/hf_home_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -248,7 +248,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:padding="3dp"
+                    android:padding="1dp"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -272,7 +272,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:text="@string/Away"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
@@ -281,7 +281,7 @@
                         android:id="@+id/hf_away_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -292,7 +292,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:padding="3dp"
+                    android:padding="1dp"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -324,7 +324,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:text="@string/over"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
@@ -333,7 +333,7 @@
                         android:id="@+id/hf_over_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -344,7 +344,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:padding="3dp"
+                    android:padding="1dp"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -368,7 +368,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:text="@string/under"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
@@ -377,7 +377,7 @@
                         android:id="@+id/hf_under_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="3dp"
+                        android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -388,7 +388,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="right"
-                    android:padding="3dp"
+                    android:padding="1dp"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />

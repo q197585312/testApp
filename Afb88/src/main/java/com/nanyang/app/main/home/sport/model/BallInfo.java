@@ -6,8 +6,6 @@ package com.nanyang.app.main.home.sport.model;
 
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import cn.finalteam.toolsfinal.StringUtils;
@@ -944,9 +942,6 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     }
 
     public List<BallInfo> getRepeatRow() {
-        if (repeatRow == null) {
-            return new ArrayList<>(Arrays.asList(this));
-        } else
             return repeatRow;
     }
 }

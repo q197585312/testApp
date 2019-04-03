@@ -16,10 +16,12 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.FT1x2Bean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseActivity;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -73,27 +75,84 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
         LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
         List<BallInfo> repeatRow = item.getRepeatRow();
+
         if (position == additionPosition && additionMap.get(true) != null && additionMap.get(true) == additionPosition) {
+            LogUtil.d("Addition", "--------------repeatRow:" + (repeatRow == null ? "null" : repeatRow.size()));
             parent.setVisibility(View.VISIBLE);
             parent.removeAllViews();
             View titleLL = LayoutInflater.from(context).inflate(R.layout.item_addition_common_title, null);
             parent.addView(titleLL);
-            for (BallInfo ballInfo : repeatRow) {
-                View inflate = LayoutInflater.from(context).inflate(R.layout.item_addition_common_sport, null);
-                TextView home_tv = inflate.findViewById(R.id.home_tv);
-                TextView home_odd_tv = inflate.findViewById(R.id.home_odd_tv);
-                TextView away_tv = inflate.findViewById(R.id.away_tv);
-                TextView away_odd_tv = inflate.findViewById(R.id.away_odd_tv);
+            if (repeatRow == null || repeatRow.size() == 0) {
+                addAdditionView(parent, item);
+            } else {
+                for (BallInfo ballInfo : repeatRow) {
+                    addAdditionView(parent, ballInfo);
+                }
+            }
+            if (additionData != null) {
+                if (additionData.getFT1x2() != null && additionData.getFT1x2().getOid() >= 0) {
+                    addAdditionFT1x2(additionData.getFT1x2(),parent);
+                }
+            /*    if (additionData.getFH1x2() != null && additionData.getFH1x2().getOid() >= 0) {
+                    addAdditionFH1x2(additionData.getFH1x2());
+                }
+                if (additionData.getFTCS() != null && additionData.getFTCS().getOid() >= 0) {
+                    addAdditionFTCS(additionData.getFTCS());
+                }
+                if (additionData.getFHCS() != null && additionData.getFHCS().getOid() >= 0) {
+                    addAdditionFHCS(additionData.getFHCS());
+                }
 
-                TextView hf_home_tv = inflate.findViewById(R.id.hf_home_tv);
-                TextView hf_home_odd_tv = inflate.findViewById(R.id.hf_home_odd_tv);
-                TextView hf_away_tv = inflate.findViewById(R.id.hf_away_tv);
-                TextView hf_away_odd_tv = inflate.findViewById(R.id.hf_away_odd_tv);
-                setUpDownOdds(true, (I) ballInfo, false, "0", item.getHasHdp(), item.getHdp(), home_tv, away_tv, home_odd_tv, away_odd_tv, item.getHOdds(), item.getAOdds(), "home", "away");
-                setUpDownOdds(true, (I) ballInfo, true, "0", item.getHasHdp_FH(), item.getHdp_FH(), hf_home_tv, hf_away_tv, hf_home_odd_tv, hf_away_odd_tv, item.getHOdds_FH(), item.getAOdds_FH(), "home", "away");
+                if (additionData.getFTDC() != null && additionData.getFTDC().getOid() >= 0) {
+                    addAdditionFTDC(additionData.getFTDC());
+                }
+                if (additionData.getFHDC() != null && additionData.getFHDC().getOid() >= 0) {
+                    addAdditionFHDC(additionData.getFHDC());
+                }
+                if (additionData.getFTOE() != null && additionData.getFTOE().getOid() >= 0) {
+                    addAdditionFTOE(additionData.getFTOE());
+                }
+                if (additionData.getFHOE() != null && additionData.getFHOE().getOid() >= 0) {
+                    addAdditionFHOE(additionData.getFHOE());
+                }
+
+                if (additionData.getHTFT() != null && additionData.getFTOE().getOid() >= 0) {//半场全场
+                    addAdditionFTOE(additionData.getFTOE());
+                }
+                if (additionData.getFGLG() != null && additionData.getFGLG().getOid() >= 0) {//最后得分 最先得分
+                    addAdditionFGLG(additionData.getFGLG());
+                }
+                if (additionData.getTG() != null && additionData.getTG().getOid() >= 0) {//最后得分 最先得分
+                    addAdditionTG(additionData.getTG());
+                }
+                if (additionData.getHOMETEAMTG() != null && additionData.getHOMETEAMTG().getOid() >= 0) {//最后得分 最先得分
+                    addAdditionHOMETEAMTG(additionData.getHOMETEAMTG());
+                }
+                if (additionData.getAWAYTEAMTG() != null && additionData.getAWAYTEAMTG().getOid() >= 0) {//最后得分 最先得分
+                    addAdditionAWAYTEAMTG(additionData.getAWAYTEAMTG());
+                }
+                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_0() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_0().getOid() >= 0) {
+                    addAdditionFT15MINSHANDICAP_OVER_UNDER_0(additionData.getFT15MINSHANDICAP_OVER_UNDER_0());
+                }
+                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_15() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_15().getOid() >= 0) {
+                    addAdditionFT15MINSHANDICAP_OVER_UNDER_15(additionData.getFT15MINSHANDICAP_OVER_UNDER_15());
+                }
+                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_30_N() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_30_N().getOid() >= 0) {
+                    addAdditgetFT15MINSHANDICAP_OVER_UNDER_30_N(additionData.getFT15MINSHANDICAP_OVER_UNDER_30_N());
+                }
+                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_45() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_45().getOid() >= 0) {
+                    addAdditgetFT15MINSHANDICAP_OVER_UNDER_45(additionData.getFT15MINSHANDICAP_OVER_UNDER_45());
+                }
+                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_60() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_60().getOid() >= 0) {
+                    addAdditgetFT15MINSHANDICAP_OVER_UNDER_60(additionData.getFT15MINSHANDICAP_OVER_UNDER_60());
+                }
+*/
+//                 rows.add(new VsTableRowBean("over", Arrays.asList(new VsCellBean(getString(R.string.over), "", 0), new VsCellBean(result.getFT15MINSHANDICAP_OVER_UNDER_0().getFT_OU(), "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_0().getO(), result.getFT15MINSHANDICAP_OVER_UNDER_0().getOid())), true, false, getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(00:00-15:00)", "", "", ""));
+
             }
         } else {
             parent.setVisibility(View.GONE);
+
         }
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
@@ -307,6 +366,27 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
 
 
+    }
+
+    private void addAdditionFT1x2(FT1x2Bean ft1x2, LinearLayout parent) {
+
+
+    }
+
+    private void addAdditionView(LinearLayout parent, BallInfo ballInfo) {
+        View inflate = LayoutInflater.from(context).inflate(R.layout.item_addition_common_sport, null);
+        TextView home_tv = inflate.findViewById(R.id.home_tv);
+        TextView home_odd_tv = inflate.findViewById(R.id.home_odd_tv);
+        TextView away_tv = inflate.findViewById(R.id.away_tv);
+        TextView away_odd_tv = inflate.findViewById(R.id.away_odd_tv);
+
+        TextView hf_home_tv = inflate.findViewById(R.id.hf_home_tv);
+        TextView hf_home_odd_tv = inflate.findViewById(R.id.hf_home_odd_tv);
+        TextView hf_away_tv = inflate.findViewById(R.id.hf_away_tv);
+        TextView hf_away_odd_tv = inflate.findViewById(R.id.hf_away_odd_tv);
+        setUpDownOdds(true, (I) ballInfo, false, "0", ballInfo.getHasHdp(), ballInfo.getHdp(), home_tv, away_tv, home_odd_tv, away_odd_tv, ballInfo.getHOdds(), ballInfo.getAOdds(), "home", "away");
+        setUpDownOdds(true, (I) ballInfo, true, "0", ballInfo.getHasHdp_FH(), ballInfo.getHdp_FH(), hf_home_tv, hf_away_tv, hf_home_odd_tv, hf_away_odd_tv, ballInfo.getHOdds_FH(), ballInfo.getAOdds_FH(), "home", "away");
+        parent.addView(inflate);
     }
 
     protected void updateMixBackground(BallInfo item, ScrollLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {

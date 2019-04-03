@@ -72,7 +72,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
                     AdditionPresenter.this.baseContext.onAddition(data, position);
                 }
             });
-            updateHandler.postDelayed(this, 20000);// 50是延时时长
+//            updateHandler.postDelayed(this, 20000);// 50是延时时长
         }
     }
 }
