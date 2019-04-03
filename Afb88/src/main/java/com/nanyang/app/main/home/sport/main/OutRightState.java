@@ -54,7 +54,7 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
                 markTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        back.clickOdds(markTv, item, "1", false, item.getX12_1Odds());
+                        back.clickOdds(markTv, item, "1", false, item.getX12_1Odds(),Integer.valueOf(item.getSocOddsId()),"");
                     }
                 });
                 if (item.getType() == SportInfo.Type.ITME) {
@@ -119,10 +119,10 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
             }
 
             @Override
-            public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds) {
+            public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds,int oid,String sc) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf, "");
+                helper.clickOdds(item, type, odds, v, isHf, sc);
             }
 
             @Override

@@ -313,7 +313,7 @@ public abstract class EuropeMixState extends BallState {
             }
 
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds,int oid,String sc) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 helper.clickOdds(item, type, odds, v, isHf, "");
@@ -368,7 +368,7 @@ public abstract class EuropeMixState extends BallState {
         @Override
         public void onClick(View v) {
             if (!odds.equals("") && Float.valueOf(odds) != 0)
-                back.clickOdds((TextView) v, item, type, isHalf, odds);
+                back.clickOdds((TextView) v, item, type, isHalf, odds,Integer.valueOf(isHalf ? item.getSocOddsId_FH() : item.getSocOddsId()),"");
         }
     }
 }

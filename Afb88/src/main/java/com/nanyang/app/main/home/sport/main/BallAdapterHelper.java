@@ -16,7 +16,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sport.model.FT1x2Bean;
+import com.nanyang.app.main.home.sport.model.CSBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -80,7 +80,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             LogUtil.d("Addition", "--------------repeatRow:" + (repeatRow == null ? "null" : repeatRow.size()));
             parent.setVisibility(View.VISIBLE);
             parent.removeAllViews();
-            View titleLL = LayoutInflater.from(context).inflate(R.layout.item_addition_common_title, null);
+            View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
             parent.addView(titleLL);
             if (repeatRow == null || repeatRow.size() == 0) {
                 addAdditionView(parent, item);
@@ -91,18 +91,19 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
             if (additionData != null) {
                 if (additionData.getFT1x2() != null && additionData.getFT1x2().getOid() >= 0) {
-                    addAdditionFT1x2(additionData.getFT1x2(),parent);
+                    addAddition1x2(additionData.getFT1x2().getF1(), additionData.getFT1x2().getX(), additionData.getFT1x2().getF2(), additionData.getFT1x2().getOid(), false, parent, item,
+                            "1", "X", "2", "1", "x", "2");
                 }
-            /*    if (additionData.getFH1x2() != null && additionData.getFH1x2().getOid() >= 0) {
-                    addAdditionFH1x2(additionData.getFH1x2());
+                if (additionData.getFH1x2() != null && additionData.getFH1x2().getOid() >= 0) {
+                    addAddition1x2(additionData.getFH1x2().getF1(), additionData.getFH1x2().getX(), additionData.getFH1x2().getF2(), additionData.getFH1x2().getOid(), true, parent, item, "1", "X", "2", "1", "x", "2");
                 }
-                if (additionData.getFTCS() != null && additionData.getFTCS().getOid() >= 0) {
-                    addAdditionFTCS(additionData.getFTCS());
+                if (additionData.getFTCS() != null && additionData.getFTCS().getOid() >= 0) {//波胆
+                    addAdditionCS(additionData.getFTCS(), false, parent, item,"70");
                 }
                 if (additionData.getFHCS() != null && additionData.getFHCS().getOid() >= 0) {
-                    addAdditionFHCS(additionData.getFHCS());
+                    addAdditionCS(additionData.getFHCS(), true, parent, item,"80");
                 }
-
+/*
                 if (additionData.getFTDC() != null && additionData.getFTDC().getOid() >= 0) {
                     addAdditionFTDC(additionData.getFTDC());
                 }
@@ -145,8 +146,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
                 if (additionData.getFT15MINSHANDICAP_OVER_UNDER_60() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_60().getOid() >= 0) {
                     addAdditgetFT15MINSHANDICAP_OVER_UNDER_60(additionData.getFT15MINSHANDICAP_OVER_UNDER_60());
-                }
-*/
+                }*/
 //                 rows.add(new VsTableRowBean("over", Arrays.asList(new VsCellBean(getString(R.string.over), "", 0), new VsCellBean(result.getFT15MINSHANDICAP_OVER_UNDER_0().getFT_OU(), "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_0().getO(), result.getFT15MINSHANDICAP_OVER_UNDER_0().getOid())), true, false, getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(00:00-15:00)", "", "", ""));
 
             }
@@ -368,13 +368,94 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     }
 
-    private void addAdditionFT1x2(FT1x2Bean ft1x2, LinearLayout parent) {
+    private void addAdditionCS(CSBean ftcs, boolean isHalf, LinearLayout parent, I item, String aos) {
+        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
+        addTitle(parent, inflate, R.string.correct_full);
+        addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
+                "1:0", "0:0", "0:1", "csr", "csr", "csr", "10", "0", "1");
+        addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
+                "2:0", "1:1", "0:2", "csr", "csr", "csr", "20", "11", "2");
+        addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
+                "2:1", "2:2", "1:2", "csr", "csr", "csr", "21", "22", "12");
+        addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
+                "3:0", "3:3", "0:3", "csr", "csr", "csr", "30", "33", "3");
+        addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
+                "3:1", "4:4", "1:3", "csr", "csr", "csr", "31", "44", "13");
+        addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
+                "3:2", "AOS", "2:3", "csr", "csr", "csr", "32", aos, "23");
+
+        addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
+                "4:0", "", "0:4", "csr", "csr", "csr", "40", "", "4");
+        addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
+                "4:1", "", "1:4", "csr", "csr", "csr", "41", "", "14");
+        addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
+                "4:2", "", "2:4", "csr", "csr", "csr", "42", "", "24");
+        addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
+                "4:3", "", "3:4", "csr", "csr", "csr", "43", "", "34");
+    }
 
 
+    private void addAddition1x2(String f1, String x, String f2, int oid, boolean isHalf, LinearLayout parent, I item,
+                                String up1, String up2, String up3, String type1, String type2, String type3) {
+
+
+        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
+        addTitle(parent, inflate, R.string.FULL_1X2);
+        View inflate1X2 = LayoutInflater.from(context).inflate(R.layout.addition_1x2_sport_item, null);
+        TextView up1_tv = inflate1X2.findViewById(R.id.up1_tv);
+        TextView down1_tv = inflate1X2.findViewById(R.id.down1_tv);
+        TextView up2_tv = inflate1X2.findViewById(R.id.up2_tv);
+        TextView down2_tv = inflate1X2.findViewById(R.id.down2_tv);
+        TextView up3_tv = inflate1X2.findViewById(R.id.up3_tv);
+        TextView down3_tv = inflate1X2.findViewById(R.id.down3_tv);
+        setTextValue(up1_tv, up1);
+        setTextValue(up2_tv, up2);
+        setTextValue(up3_tv, up3);
+        setTextValueClick(down1_tv, f1, type1, oid, item, isHalf, "");
+        setTextValueClick(down2_tv, x, type2, oid, item, isHalf, "");
+        setTextValueClick(down3_tv, f2, type3, oid, item, isHalf, "");
+        parent.addView(inflate1X2);
+    }
+
+    private void addAddition(String f1, String x, String f2, int oid, boolean isHalf, LinearLayout parent, I item,
+                             String up1, String up2, String up3, String type1, String type2, String type3, String sc1, String sc2, String sc3) {
+
+
+        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
+        addTitle(parent, inflate, R.string.FULL_1X2);
+        View inflate1X2 = LayoutInflater.from(context).inflate(R.layout.addition_1x2_sport_item, null);
+        TextView up1_tv = inflate1X2.findViewById(R.id.up1_tv);
+        TextView down1_tv = inflate1X2.findViewById(R.id.down1_tv);
+        TextView up2_tv = inflate1X2.findViewById(R.id.up2_tv);
+        TextView down2_tv = inflate1X2.findViewById(R.id.down2_tv);
+        TextView up3_tv = inflate1X2.findViewById(R.id.up3_tv);
+        TextView down3_tv = inflate1X2.findViewById(R.id.down3_tv);
+        setTextValue(up1_tv, up1);
+        setTextValue(up2_tv, up2);
+        setTextValue(up3_tv, up3);
+        setTextValueClick(down1_tv, f1, type1, oid, item, isHalf, sc1);
+        setTextValueClick(down2_tv, x, type2, oid, item, isHalf, sc2);
+        setTextValueClick(down3_tv, f2, type3, oid, item, isHalf, sc3);
+        parent.addView(inflate1X2);
+    }
+
+    private void addTitle(LinearLayout parent, View inflate, int titleRes) {
+        TextView titleTv = inflate.findViewById(R.id.title_tv);
+        titleTv.setText(titleRes);
+        parent.addView(inflate);
+    }
+
+    private void setTextValueClick(TextView textView, String content, String type, int oid, I item, boolean isHalf, String sc) {
+        textView.setText(content);
+        back.clickOdds(textView, item, type, isHalf, content, oid, sc);
+    }
+
+    private void setTextValue(TextView tv, String s) {
+        tv.setText(s);
     }
 
     private void addAdditionView(LinearLayout parent, BallInfo ballInfo) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.item_addition_common_sport, null);
+        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_sport_item, null);
         TextView home_tv = inflate.findViewById(R.id.home_tv);
         TextView home_odd_tv = inflate.findViewById(R.id.home_odd_tv);
         TextView away_tv = inflate.findViewById(R.id.away_tv);
@@ -584,7 +665,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        back.clickOdds((TextView) v, item, type, isHf, f);
+                        back.clickOdds((TextView) v, item, type, isHf, f, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), "");
                     }
                 });
             } else {

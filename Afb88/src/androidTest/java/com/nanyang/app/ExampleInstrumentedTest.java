@@ -65,6 +65,7 @@ public class ExampleInstrumentedTest {
 
     protected List<TableSportInfo<BallInfo>> updateJsonArray(JSONArray jsonArray) throws JSONException {
 
+/*
         boolean modified = false;
         boolean deleted = false;
         boolean added = false;
@@ -146,8 +147,9 @@ public class ExampleInstrumentedTest {
             }
 
         }
-
+*/
         return new ArrayList<>();
+
 
     }
 
