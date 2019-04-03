@@ -3,14 +3,17 @@ package com.nanyang.app;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.Utils.TimeUtils;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.home.discount.DiscountActivity;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
@@ -27,7 +30,8 @@ import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import org.reactivestreams.Subscription;
 
-import cn.finalteam.toolsfinal.DeviceUtils;
+import java.util.Locale;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -47,7 +51,13 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     TextView tvToolbarRight;
     @Nullable
     protected
+    TextView tvTime;
+    @Nullable
+    protected
     Toolbar toolbar;
+    @Nullable
+    protected
+    LinearLayout llRight;
 
     private CompositeDisposable mCompositeSubscription;
     int errorCount = 0;
@@ -58,15 +68,15 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public void initData() {
         super.initData();
         mCompositeSubscription = new CompositeDisposable();
-
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvToolbarRight = (TextView) findViewById(R.id.tv_toolbar_right);
         tvToolbarRight1 = (TextView) findViewById(R.id.tv_toolbar_right1);
+        tvTime = (TextView) findViewById(R.id.tv_time);
         tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
         tvToolbarLeft = (TextView) findViewById(R.id.tv_toolbar_left);
+        llRight = (LinearLayout) findViewById(R.id.ll_right);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
         toolbar.setBackgroundResource(R.color.green_black_word);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -75,8 +85,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         });
         assert tvToolbarTitle != null;
 //        tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
-        tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 100);
-
+//        tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 100);
         tvToolbarLeft.setBackgroundResource(R.mipmap.sport_home_white_24dp);
         tvToolbarLeft.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,8 +93,10 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 gameMenus(v);
             }
         });
-
-
+        if (isNeedUpdateTime()) {
+            llRight.setVisibility(View.VISIBLE);
+            updateHandler.post(timeUpdateRunnable);
+        }
     }
 
 
@@ -113,6 +124,18 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
     }
 
+    public boolean isNeedUpdateTime() {
+        return false;
+    }
+
+    Runnable timeUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            String currentTime = "HK: " + TimeUtils.getTime("dd MM月 yyyy hh:mm:ss aa z", Locale.ENGLISH);
+            tvTime.setText(currentTime);
+            updateHandler.postDelayed(this, 1000);
+        }
+    };
 
     Runnable dataUpdateRunnable = new Runnable() {
         @Override
@@ -181,7 +204,16 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
 
-    Handler updateHandler = new Handler();
+    Handler updateHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            switch (msg.what) {
+                case 7:
+                    tvTime.setText((String) msg.obj);
+                    break;
+            }
+        }
+    };
 
     public void startUpdateState() {
         stopUpdateState();
@@ -209,7 +241,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     protected void updateBalanceTv(String allData) {
-        tvToolbarRight.setText( allData);
+        tvToolbarRight.setText(allData);
     }
 
 
@@ -383,5 +415,13 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 return 0xff300F2D;
         }
         return 0xff0d5924;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (isNeedUpdateTime()) {
+            updateHandler.removeCallbacks(timeUpdateRunnable);
+        }
     }
 }

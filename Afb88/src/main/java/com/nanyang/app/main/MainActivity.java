@@ -147,13 +147,21 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         });
         reContent.setAdapter(adapter);
         drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        toolbar.setNavigationIcon(R.mipmap.logo);
+        toolbar.setNavigationIcon(null);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
+        tvToolbarLeft.setVisibility(View.VISIBLE);
+        tvToolbarLeft.setBackgroundResource(R.mipmap.left_logo);
         initUserData();
+    }
+
+    @Override
+    public boolean isNeedUpdateTime() {
+        return true;
     }
 
     @Override
