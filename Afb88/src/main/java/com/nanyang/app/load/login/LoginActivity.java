@@ -14,6 +14,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
+import com.nanyang.app.Pop.PopChoiceLanguage;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
@@ -21,6 +22,7 @@ import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.load.ListMainPictures;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -62,6 +64,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     LinearLayout loginIndicatorCpi;
     @Bind(R.id.login_language)
     TextView loginLanguage;
+    private PopChoiceLanguage popLanguage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,66 +84,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         } else {
             cbLoginRemember.setChecked(true);
         }
-
         initLanguage();
-
     }
-    @OnClick(R.id.login_language)
-    public void setLanguagepop(View view) {
-        BaseListPopupWindow<MenuItemInfo> popu = new BaseListPopupWindow<MenuItemInfo>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, loginLanguage) {
-            @Override
-            public int getRecyclerViewId() {
-                return R.id.base_rv;
-            }
-
-            @Override
-            protected void convertTv(TextView tv, MenuItemInfo item) {
-                tv.setText(item.getText());
-                AfbUtils.switchLanguage(item.getType(), mContext);
-                restart();
-
-            }
-        };
-        List<MenuItemInfo> languageList = new ArrayList<MenuItemInfo>();
-
-        MenuItemInfo info = new MenuItemInfo();
-        info.setText("ENGLISH");
-        info.setType("en");
-        languageList.add(info);
-
-        MenuItemInfo info1 = new MenuItemInfo();
-        info1.setText("中文(简体)");
-        info1.setType("zh");
-        languageList.add(info1);
-
-        /*MenuItemInfo info2 = new MenuItemInfo();
-        info2.setText("中文(繁體)");
-        info2.setType("tw");
-        languageList.add(info);*/
-
-        MenuItemInfo info3 = new MenuItemInfo();
-        info3.setText("ภาษาไทย");
-        info3.setType("th");
-        languageList.add(info3);
-
-        MenuItemInfo info4 = new MenuItemInfo();
-        info4.setText("Tiếng Việt");
-        info4.setType("vi");
-        languageList.add(info4);
-
-        MenuItemInfo info5 = new MenuItemInfo();
-        info5.setText("KOREAN");
-        info5.setType("ko");
-        languageList.add(info5);
-
-        MenuItemInfo info6 = new MenuItemInfo();
-        info6.setText("TURKISH");
-        info6.setType("tr");
-        languageList.add(info6);
-        popu.setData(languageList);
-        popu.showPopupDownWindow();
-    }
-
 
     private void initLanguage() {
         String language = AfbUtils.getLanguage(this);
@@ -151,9 +96,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             restart();
         }
     }
-
-
-
 
 
     public void onFailed(String error) {
@@ -169,11 +111,56 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         ToastUtils.showShort(msgRes);
     }
 
-   @OnClick({R.id.btn_login_login,R.id.login_language})
+    @OnClick({R.id.btn_login_login, R.id.login_language})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_login_login:
                 login();
+                break;
+            case R.id.login_language:
+                if (popLanguage == null) {
+                    popLanguage = new PopChoiceLanguage(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT) {
+                        @Override
+                        public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
+                            TextView tv = holder.getView(R.id.item_regist_text_tv);
+                            tv.setText(item.getText());
+                        }
+
+                        @Override
+                        public void onClickItem(MenuItemInfo item, int position) {
+                            loginLanguage.setText(item.getText());
+                            AfbUtils.switchLanguage(item.getType(), mContext);
+                            restart();
+                        }
+                    };
+                    List<MenuItemInfo> languageList = new ArrayList<>();
+                    MenuItemInfo info = new MenuItemInfo();
+                    info.setText("ENGLISH");
+                    info.setType("en");
+                    languageList.add(info);
+                    MenuItemInfo info1 = new MenuItemInfo();
+                    info1.setText("中文(简体)");
+                    info1.setType("zh");
+                    languageList.add(info1);
+                    MenuItemInfo info3 = new MenuItemInfo();
+                    info3.setText("ภาษาไทย");
+                    info3.setType("th");
+                    languageList.add(info3);
+                    MenuItemInfo info4 = new MenuItemInfo();
+                    info4.setText("Tiếng Việt");
+                    info4.setType("vi");
+                    languageList.add(info4);
+                    MenuItemInfo info5 = new MenuItemInfo();
+                    info5.setText("KOREAN");
+                    info5.setType("ko");
+                    languageList.add(info5);
+                    MenuItemInfo info6 = new MenuItemInfo();
+                    info6.setText("TURKISH");
+                    info6.setType("tr");
+                    languageList.add(info6);
+                    popLanguage.setData(languageList);
+                }
+                popLanguage.showPopupDownWindow();
                 break;
         }
     }
@@ -243,7 +230,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -251,7 +237,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
     public void sendImageEvent(AllBannerImagesBean data) {
-        LogUtil.d(getClass().getSimpleName(),"sendEvent--------------->"+data.toString());
+        LogUtil.d(getClass().getSimpleName(), "sendEvent--------------->" + data.toString());
         EventBus.getDefault().postSticky(new ListMainPictures(data.getMain()));
         EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
         initViewPager(data.getLoginBanners());
