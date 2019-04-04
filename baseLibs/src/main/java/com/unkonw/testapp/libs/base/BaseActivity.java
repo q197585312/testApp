@@ -205,7 +205,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
      * @param fragment
      * @param frameId
      */
-    protected void showFragmentToActivity(@NonNull Fragment fragment, int frameId) {
+    public void showFragmentToActivity(@NonNull Fragment fragment, int frameId) {
         showFragmentToActivity(fragment, frameId, null);
     }
 
@@ -219,7 +219,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
         transaction.commit();
     }
 
-    protected void hideFragmentToActivity(@NonNull Fragment fragment) {
+    public void hideFragmentToActivity(@NonNull Fragment fragment) {
         checkNotNull(fragment);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (fragment.isAdded()) {
@@ -328,7 +328,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends SkinBaseAct
     @Subscribe
     public void onEvent(Object obj) {
         if (obj != null)
-            LogUtil.d(getLocalClassName()+"接收消息----------------->" + obj.toString());
+            LogUtil.d(getLocalClassName() + "接收消息----------------->" + obj.toString());
     }
 
 }

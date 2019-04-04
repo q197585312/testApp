@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.SystemTool;
@@ -50,7 +51,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         SystemTool.switchLanguage(SystemTool.getLanguage(mContext), mContext);
-        View mContentView = inflater
+        mContentView = inflater
                 .inflate(onSetLayoutId(), container, false);
         ButterKnife.bind(this, mContentView);
         initView();
@@ -67,7 +68,6 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
             presenter.unSubscribe();
         }
     }
-
 
 
     /**

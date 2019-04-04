@@ -2,10 +2,12 @@ package com.nanyang.app.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -45,14 +47,12 @@ import butterknife.OnClick;
 
 
 public class MainActivity extends BaseToolbarActivity<MainPresenter> implements MainContract.View {
-
     @Bind(R.id.fl_menu_home)
     FrameLayout flMenuHome;
     @Bind(R.id.fl_menu_login_out)
     FrameLayout flLoginOut;
     @Bind(R.id.drawer_more)
     DrawerLayout drawerLayout;
-
     @Bind(R.id.home_pop)
     TextView homePop;
     @Bind(R.id.ll_tab_menu_bottom)
@@ -61,10 +61,12 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     @Bind(R.id.main_more)
     RecyclerView reContent;
 
-    BaseFragment homeFragment = new HomeFragment();
-    BaseFragment centerFragment = new ContactFragment();
-    BaseFragment statementFragment = new StatementFragment();
-    BaseFragment personFragment = new PersonCenterFragment();
+    public BaseSwitchFragment homeFragment = new HomeFragment();
+    public BaseSwitchFragment statementFragment = new StatementFragment();
+    public BaseSwitchFragment contactFragment = new ContactFragment();
+    public BaseSwitchFragment personFragment = new PersonCenterFragment();
+    public BaseSwitchFragment indexFragment;
+    public BaseSwitchFragment lastIndexFragment;
     private List<More> dataList;
 
     @Override
@@ -75,7 +77,8 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         setContentView(R.layout.activity_main_tab);
         ButterKnife.bind(this);
         flCurrentMenu = flMenuHome;
-        showFragmentToActivity(homeFragment, R.id.fl_main_content);
+        indexFragment = homeFragment;
+        switchFragment(homeFragment);
         createPresenter(new MainPresenter(this));
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
         reContent.setLayoutManager(llm);
@@ -113,10 +116,9 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<More>() {
             @Override
             public void onItemClick(View view, More item, int position) {
+                drawerLayout.closeDrawer(Gravity.RIGHT);
                 if (getString(R.string.my_account).equals(item.getText())) {
-                    drawerLayout.closeDrawer(Gravity.RIGHT);
-                    hideFragmentToActivity(personFragment);
-                    showFragmentToActivity(personFragment, R.id.fl_main_content);
+                    switchFragment(personFragment);
                 } else if (getString(R.string.messages).equals(item.getText())) {
 
                 } else if (getString(R.string.statement).equals(item.getText())) {
@@ -178,102 +180,52 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     protected void onResume() {
         super.onResume();
         presenter.oddsType();
-        //"ACT":"GetTT","PT":"wfMainH50","lang":"ZH-CN"
         String language = new LanguageHelper(mContext).getLanguage();
         presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"));
-
     }
 
     @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_statemente, R.id.fl_menu_login_out})
     public void onClick(View view) {
-        if (view.getId() == R.id.fl_menu_login_out) {
-            drawerLayout.openDrawer(Gravity.RIGHT);
+        switch (view.getId()) {
+            case R.id.fl_menu_home:
+                HomePopupWindow<HomePopItemBeen> pop = new HomePopupWindow<HomePopItemBeen>(mContext, ll_tab_menu_bottom, LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) {
+                    @Override
+                    public void initItem(MyRecyclerViewHolder holder, int position, HomePopItemBeen item) {
+                        TextView name = holder.getTextView(R.id.tv_type_name);
+                        TextView data = holder.getTextView(R.id.tv_type_data);
+                        name.setText(item.getName());
+                        data.setText(item.getData());
+                    }
 
-        } else {
-            clickTabMenu((FrameLayout) view);
+                    @Override
+                    public List<HomePopItemBeen> getCurrentData() {
+                        PersonalInfo info = getApp().getUser();
+                        List<HomePopItemBeen> dataList = new ArrayList<>();
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), info.getBalances()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), info.getTotalCredit()));
+                        return dataList;
+                    }
+                };
+                int windowPos[] = new int[2];
+                ll_tab_menu_bottom.getLocationOnScreen(windowPos);
+                int viewY = windowPos[1];
+                pop.showAtLocation(Gravity.NO_GRAVITY, 0, viewY - (AfbUtils.dp2px(mContext, 40)) * 7);
+                break;
+            case R.id.fl_menu_center:
+                switchFragment(contactFragment);
+                break;
+            case R.id.fl_menu_statemente:
+                switchFragment(statementFragment);
+                break;
+            case R.id.fl_menu_login_out:
+                drawerLayout.openDrawer(Gravity.RIGHT);
+                break;
         }
-    }
-
-    private void clickTabMenu(FrameLayout fl) {
-        if (fl.getId() == R.id.fl_menu_home) {
-            HomePopupWindow<HomePopItemBeen> pop = new HomePopupWindow<HomePopItemBeen>(mContext, ll_tab_menu_bottom, LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) {
-                @Override
-                public void initItem(MyRecyclerViewHolder holder, int position, HomePopItemBeen item) {
-//                    ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-//                    layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-//                    holder.itemView.setLayoutParams(layoutParams);
-                    TextView name = holder.getTextView(R.id.tv_type_name);
-                    TextView data = holder.getTextView(R.id.tv_type_data);
-                    name.setText(item.getName());
-                    data.setText(item.getData());
-                }
-
-                @Override
-                public List<HomePopItemBeen> getCurrentData() {
-                    PersonalInfo info = getApp().getUser();
-                    List<HomePopItemBeen> dataList = new ArrayList<>();
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), info.getBalances()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), info.getTotalCredit()));
-                    return dataList;
-                }
-            };
-            int windowPos[] = new int[2];
-            ll_tab_menu_bottom.getLocationOnScreen(windowPos);
-            int viewY = windowPos[1];
-            int height = pop.getHeight();
-            pop.showAtLocation(Gravity.NO_GRAVITY, 0, viewY - (AfbUtils.dp2px(mContext, 40)) * 7);
-        }
-        if (flCurrentMenu != fl) {
-            TextView tvOld = (TextView) flCurrentMenu.getChildAt(0);
-            tvOld.setTextColor(getResources().getColor(R.color.black_grey));
-            switch (tvOld.getId()) {
-                case R.id.tv_tab_home:
-                    tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_a, 0, 0);
-                    hideFragmentToActivity(homeFragment);
-                    showHomePop();
-                    break;
-                case R.id.tv_tab_center:
-                    tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_user, 0, 0);
-                    hideFragmentToActivity(centerFragment);
-                    break;
-                case R.id.tv_tab_statement:
-                    tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_order, 0, 0);
-                    hideFragmentToActivity(statementFragment);
-                    break;
-            }
-            TextView tvMenu = (TextView) fl.getChildAt(0);
-//            tvMenu.setTextColor(getResources().getColor(R.color.green_black_word));
-
-            dynamicAddView(tvMenu, "textColor", R.color.green_black_word);
-            switch (tvMenu.getId()) {
-                case R.id.tv_tab_home:
-                    dynamicAddView(tvMenu, "drawableTop", R.mipmap.main_menu_a_hover);
-//                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_a_hover, 0, 0);
-                    showFragmentToActivity(homeFragment, R.id.fl_main_content);
-                    break;
-                case R.id.tv_tab_center:
-                    dynamicAddView(tvMenu, "drawableTop", R.mipmap.main_menu_user_hover);
-//                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_user_hover, 0, 0);
-                    showFragmentToActivity(centerFragment, R.id.fl_main_content);
-                    break;
-                case R.id.tv_tab_statement:
-                    dynamicAddView(tvMenu, "drawableTop", R.mipmap.main_menu_order_hover);
-//                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_order_hover, 0, 0);
-                    showFragmentToActivity(statementFragment, R.id.fl_main_content);
-                    break;
-            }
-            flCurrentMenu = fl;
-        }
-
-    }
-
-    private void showHomePop() {
-
     }
 
     @Override
@@ -286,22 +238,48 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         ToastUtils.showShort(data);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0 && resultCode == 1) {
-            centerFragment.initHead();
+    public void switchFragment(BaseSwitchFragment fragment) {
+        if (fragment == indexFragment && lastIndexFragment != null) {
+            return;
         }
+        indexFragment = fragment;
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (!fragment.isAdded()) {
+            transaction.add(R.id.fl_main_content, fragment);
+        } else {
+            transaction.show(fragment);
+        }
+        if (lastIndexFragment != null) {
+            transaction.hide(lastIndexFragment);
+        }
+        lastIndexFragment = indexFragment;
+        transaction.commit();
     }
 
     @Override
-    public void onBackPressed() {
-        if (isTwoFinish()) {
-            finish();
-        } else {
-            ToastUtils.showShort(getString(R.string.double_click_exit_application));
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (indexFragment == homeFragment) {
+                if (isTwoFinish()) {
+                    finish();
+                } else {
+                    ToastUtils.showShort(getString(R.string.double_click_exit_application));
+                }
+            } else {
+                indexFragment.back();
+            }
         }
+        return true;
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        if (isTwoFinish()) {
+//            finish();
+//        } else {
+//            ToastUtils.showShort(getString(R.string.double_click_exit_application));
+//        }
+//    }
 
     private boolean isFinish = true;
 

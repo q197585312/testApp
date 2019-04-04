@@ -65,9 +65,9 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
 
-                    android:drawableTop="@mipmap/main_menu_a_hover"
-                    android:text="@string/home"
-                    android:textColor="@color/green_black_word"
+                    android:drawableTop="@mipmap/main_menu_a"
+                    android:text="结余"
+                    android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </FrameLayout>
@@ -104,7 +104,7 @@
                     android:layout_gravity="center"
 
                     android:drawableTop="@mipmap/main_menu_user"
-                    android:text="@string/center"
+                    android:text="联系我们"
                     android:textColor="@color/black_grey"
 
                     android:textSize="12sp"
@@ -124,7 +124,7 @@
                     android:layout_gravity="center"
 
                     android:drawableTop="@mipmap/main_menu_logout"
-                    android:text="@string/Logout"
+                    android:text="更多"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -154,7 +154,7 @@
             android:paddingLeft="10dp"
             android:text="@string/more"
             android:textColor="@color/white"
-            android:textSize="22sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <android.support.v7.widget.RecyclerView

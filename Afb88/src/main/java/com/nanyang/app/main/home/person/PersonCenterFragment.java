@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.load.PersonalInfo;
+import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.model.PersonCenter;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -23,7 +24,7 @@ import butterknife.Bind;
  * Created by 47184 on 2019/3/18.
  */
 
-public class PersonCenterFragment extends BaseFragment {
+public class PersonCenterFragment extends BaseSwitchFragment {
 
     @Bind(R.id.person_center_view)
     RecyclerView rcContent;
@@ -38,21 +39,21 @@ public class PersonCenterFragment extends BaseFragment {
     @Override
     public void initData() {
         super.initData();
+        setCurrentFragmentTitle();
         aty = (MainActivity) getActivity();
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
         rcContent.setLayoutManager(llm);
         List<PersonCenter> list = new ArrayList<>();
-        PersonalInfo person =  aty.getApp().getUser();
-        PersonCenter pc = new PersonCenter(getString(R.string.login_name),person.getLoginName());
-        PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name),"");
-
-        PersonCenter pc1 = new PersonCenter(getString(R.string.currency),person.getCurCode2());
-        PersonCenter pc2 = new PersonCenter(getString(R.string.cash_balance),person.getBalances());
-        PersonCenter pc3 = new PersonCenter(getString(R.string.outstanding_txn),person.getEtotalstanding());
-        PersonCenter pc4 = new PersonCenter(getString(R.string.min_bet_m),person.getMinLimit());
-        PersonCenter pc5 = new PersonCenter(getString(R.string.bet_credit),person.getCredit2());
-        PersonCenter pc6 = new PersonCenter(getString(R.string.given_credit),person.getTotalCredit());
-        PersonCenter pc7 = new PersonCenter(getString(R.string.last_login_date),person.getLastLoginDate());
+        PersonalInfo person = aty.getApp().getUser();
+        PersonCenter pc = new PersonCenter(getString(R.string.login_name), person.getLoginName());
+        PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name), "");
+        PersonCenter pc1 = new PersonCenter(getString(R.string.currency), person.getCurCode2());
+        PersonCenter pc2 = new PersonCenter(getString(R.string.cash_balance), person.getBalances());
+        PersonCenter pc3 = new PersonCenter(getString(R.string.outstanding_txn), person.getEtotalstanding());
+        PersonCenter pc4 = new PersonCenter(getString(R.string.min_bet_m), person.getMinLimit());
+        PersonCenter pc5 = new PersonCenter(getString(R.string.bet_credit), person.getCredit2());
+        PersonCenter pc6 = new PersonCenter(getString(R.string.given_credit), person.getTotalCredit());
+        PersonCenter pc7 = new PersonCenter(getString(R.string.last_login_date), person.getLastLoginDate());
         list.add(pc);
         list.add(pc8);
         list.add(pc1);
@@ -62,22 +63,22 @@ public class PersonCenterFragment extends BaseFragment {
         list.add(pc5);
         list.add(pc6);
         list.add(pc7);
-        BaseRecyclerAdapter<PersonCenter> adapter = new BaseRecyclerAdapter<PersonCenter>(mContext,list,R.layout.item_person_center) {
+        BaseRecyclerAdapter<PersonCenter> adapter = new BaseRecyclerAdapter<PersonCenter>(mContext, list, R.layout.item_person_center) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, PersonCenter item) {
-                if(item.getName().equals(getString(R.string.nike_name)) || item.getName().equals(getString(R.string.given_credit))){
+                if (item.getName().equals(getString(R.string.nike_name)) || item.getName().equals(getString(R.string.given_credit))) {
                     View view = holder.getView(R.id.person_view_lin);
                     view.setVisibility(View.VISIBLE);
                 }
                 TextView name = holder.getTextView(R.id.person_name);
                 name.setText(item.getName());
                 TextView value = holder.getTextView(R.id.person_value);
-                if(item.getName().equals(getString(R.string.nike_name))){
+                if (item.getName().equals(getString(R.string.nike_name))) {
                     value.setVisibility(View.GONE);
                     ImageView iv = holder.getImageView(R.id.person_img);
                     iv.setImageResource(R.mipmap.myacount);
                     iv.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     value.setText(item.getValue());
                 }
             }

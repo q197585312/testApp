@@ -15,13 +15,18 @@ import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
+import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.center.StatemenStake.StatementStakeActivity;
+import com.nanyang.app.main.center.model.Contact;
 import com.nanyang.app.main.center.model.StatementListBean;
 import com.nanyang.app.main.center.model.StatementSureBlanceBean;
 import com.nanyang.app.main.center.model.StatementTransferBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.BaseFragment;
+
+import org.json.JSONException;
 
 import java.util.List;
 
@@ -32,7 +37,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/3/11.
  */
 
-public class StatementFragment extends BaseFragment<StatementContact.Presenter> implements StatementContact.View {
+public class StatementFragment extends BaseSwitchFragment {
     @Bind(R.id.statement_list_rc)
     RecyclerView rc;
     @Bind(R.id.statement_transfer_rc)
@@ -52,7 +57,6 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        createPresenter(new StatementPresenter(this));
     }
 
     @Override
@@ -63,18 +67,55 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     @Override
     public void initData() {
         super.initData();
+        setCurrentFragmentTitle();
         AfbApplication app = (AfbApplication) getActivity().getApplication();
         userName = app.getUser().getLoginName();
         blanceBean = new StatementSureBlanceBean();
-        presenter.getStatementData(userName);
+        presenter.getStatementData(new BaseConsumer<String>(mContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                initContent(data);
+            }
+        });
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
-                presenter.getStatementData(userName);
+                presenter.getStatementData(new BaseConsumer<String>(mContext) {
+                    @Override
+                    protected void onBaseGetData(String data) throws JSONException {
+                        initContent(data);
+                    }
+                });
                 swipeRefreshLayout.setRefreshing(false);
             }
         });
+    }
+
+    private void initContent(String data) {
+        Gson gson = new Gson();
+        List<JsonObject> sts = gson.fromJson(data, new TypeToken<List<JsonObject>>() {
+        }.getType());
+        if (sts.size() > 2) {
+            ConfirmDate date1 = gson.fromJson(sts.get(0), new TypeToken<ConfirmDate>() {
+            }.getType());
+            if (date1 != null && date1.getDicConfirmDate() != null && !date1.getDicConfirmDate().isEmpty()) {
+                tv_blanceSure.setBackgroundResource(R.color.green900);
+                tv_blanceSure.setText(date1.getDicConfirmDate());
+                tv_blanceSure.setClickable(false);
+            } else {
+                tv_blanceSure.setVisibility(View.VISIBLE);
+                tv_blanceSure.setBackgroundResource(R.color.green900);
+                tv_blanceSure.setText(R.string.confirm_balance);
+                tv_blanceSure.setClickable(true);
+            }
+            SummaryBean listDate = gson.fromJson(sts.get(1), new TypeToken<SummaryBean>() {
+            }.getType());
+            initRc(listDate.getSummary());
+            DicTransfer list2 = gson.fromJson(sts.get(2), new TypeToken<DicTransfer>() {
+            }.getType());
+            initTransferRc(list2.getDicTransfer());
+        }
     }
 
     private void initRc(final List<StatementListBean> data) {
@@ -132,36 +173,6 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         super.initView();
     }
 
-    //
-    @Override
-    public void onGetData(String data) {
-
-
-        Gson gson = new Gson();
-        List<JsonObject> sts = gson.fromJson(data, new TypeToken<List<JsonObject>>() {
-        }.getType());
-        if (sts.size() > 2) {
-            ConfirmDate date1 = gson.fromJson(sts.get(0), new TypeToken<ConfirmDate>() {
-            }.getType());
-            if (date1 != null && date1.getDicConfirmDate() != null && !date1.getDicConfirmDate().isEmpty()) {
-                tv_blanceSure.setBackgroundResource(R.color.green900);
-                tv_blanceSure.setText(date1.getDicConfirmDate());
-                tv_blanceSure.setClickable(false);
-            } else {
-                tv_blanceSure.setVisibility(View.VISIBLE);
-                tv_blanceSure.setBackgroundResource(R.color.green900);
-                tv_blanceSure.setText(R.string.confirm_balance);
-                tv_blanceSure.setClickable(true);
-            }
-            SummaryBean listDate = gson.fromJson(sts.get(1), new TypeToken<SummaryBean>() {
-            }.getType());
-            initRc(listDate.getSummary());
-            DicTransfer list2 = gson.fromJson(sts.get(2), new TypeToken<DicTransfer>() {
-            }.getType());
-            initTransferRc(list2.getDicTransfer());
-        }
-
-    }
 
     private void initTransferRc(List<StatementTransferBean> list) {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);
@@ -188,14 +199,12 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
         rc_Transfer.setAdapter(baseRecyclerAdapter);
     }
 
-    @Override
     public void onFailed(String error) {
 
     }
 
-    @Override
     public void onGetConfirmBlanceData(String data) {
-        if (data.contains("<html>")){
+        if (data.contains("<html>")) {
             return;
         }
         tv_blanceSure.setText(data);
@@ -207,7 +216,17 @@ public class StatementFragment extends BaseFragment<StatementContact.Presenter> 
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.tv_blance_sure:
-                presenter.confirmBlance(AppConstant.getInstance().URL_STATEMENT_CONFIRM_BLANCE, userName);
+                presenter.confirmBlance(new BaseConsumer<String>(mContext) {
+                    @Override
+                    protected void onBaseGetData(String data) throws JSONException {
+                        if (data.contains("<html>")) {
+                            return;
+                        }
+                        tv_blanceSure.setText(data);
+                        tv_blanceSure.setClickable(false);
+                        tv_blanceSure.setBackgroundResource(R.color.green900);
+                    }
+                }, AppConstant.getInstance().URL_STATEMENT_CONFIRM_BLANCE + userName);
                 break;
         }
 
