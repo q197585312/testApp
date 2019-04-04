@@ -8,16 +8,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp">
+        android:layout_height="180dp">
 
         <com.nanyang.app.Utils.AutoScrollViewPager
             android:id="@+id/auto_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="240dp" />
+            android:layout_height="match_parent" />
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="30dp"
+            android:layout_height="20dp"
             android:layout_alignParentBottom="true"
             android:background="@drawable/line_white">
 

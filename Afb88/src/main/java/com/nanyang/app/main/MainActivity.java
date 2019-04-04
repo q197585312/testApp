@@ -25,6 +25,7 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.center.Statement.StatementFragment;
 import com.nanyang.app.main.center.model.More;
 import com.nanyang.app.main.home.HomeFragment;
@@ -62,7 +63,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     RecyclerView reContent;
 
     public BaseSwitchFragment homeFragment = new HomeFragment();
-    public BaseSwitchFragment statementFragment = new StatementFragment();
+    public BaseSwitchFragment statementFragment = new BetCenterFragment();
     public BaseSwitchFragment contactFragment = new ContactFragment();
     public BaseSwitchFragment personFragment = new PersonCenterFragment();
     public BaseSwitchFragment indexFragment;
@@ -122,7 +123,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 } else if (getString(R.string.messages).equals(item.getText())) {
 
                 } else if (getString(R.string.statement).equals(item.getText())) {
-
+                    switchFragment(statementFragment);
                 } else if (getString(R.string.result).equals(item.getText())) {
 
                 } else if (getString(R.string.contact).equals(item.getText())) {
