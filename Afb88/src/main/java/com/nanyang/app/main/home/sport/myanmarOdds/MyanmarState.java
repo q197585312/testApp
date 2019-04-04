@@ -65,7 +65,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
             }
 
             @Override
-            public void clickOdds(TextView v, MyanmarInfo item, String type, boolean isHf, String odds) {
+            public void clickOdds(TextView v, MyanmarInfo item, String type, boolean isHf, String odds,int oid,String sc) {
                 IBetHelper<MyanmarInfo> helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 helper.clickOdds(item, type, odds, v, isHf, "");
