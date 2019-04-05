@@ -385,5 +385,24 @@
     <string name="others">Others</string>
     <string name="all_running">All Running</string>
     <string name="cricket">Cricket</string>
+    <string name="howtouse_title1_1">Chọn sản phẩm và múi giờ</string>
+    <string name="howtouse_content1_1">1. Đầu tiên chọn thể loại trò chơi thể thao</string>
+    <string name="howtouse_content1_2">2. Chọn giải đấu ngày / cuộn / đầu / ngày, tất cả các trò chơi tiếp theo</string>
+    <string name="howtouse_title2_1">Chọn giải đấu</string>
+    <string name="howtouse_content2_1">- Hiển thị tất cả các giải đấu thuộc thể loại trò chơi hoặc thể loại được chọn</string>
+    <string name="howtouse_content2_2">- Chọn giải đấu bạn muốn xem.</string>
+    <string name="howtouse_title3_1">Key largo chỉ riêng</string>
+    <string name="howtouse_content3_1">- Nhập danh sách đặt cược cho nhiều cược hoặc vé hỗn hợp</string>
+    <string name="howtouse_content3_2">- Hiển thị số lượng cược đặt cược hoặc cược hỗn hợp được đặt</string>
+    <string name="howtouse_title4_1">Mục ưa thích của tôi</string>
+    <string name="howtouse_content4_1">1. Nhấp vào các ngôi sao trước giải đấu hoặc phiên bạn yêu thích</string>
+    <string name="howtouse_content4_2">2. Nhấp vào các ngôi sao ở góc trên bên phải để hiển thị các giải đấu hoặc trận đấu yêu thích.</string>
+    <string name="howtouse_content4_3">3. Nhấp một lần để thoát khỏi chế độ yêu thích của tôi.</string>
+    <string name="howtouse_title5_1">Trò chơi bóng / trò chơi bóng</string>
+    <string name="howtouse_content5_1">1. Liệt kê tất cả các trận đấu hỗ trợ trò chơi bóng hoặc trò chơi bóng</string>
+    <string name="howtouse_content5_2">2. Nhấp vào nút "Pooball Tournament" hoặc "Ballball Video" để xem cược.</string>
+    <string name="howtouse_btn">SKIP</string>
+    <string name="howtouse_btn2">BẮT ĐẦU</string>
+    <string name="announcements">Thông Báo</string>
     <string name="HALF_1X2">Half 1X2</string>
 </resources>

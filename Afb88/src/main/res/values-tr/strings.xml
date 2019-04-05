@@ -384,6 +384,25 @@
     <string name="Five_Major_Match">五大联赛</string>
     <string name="others">Others</string>
     <string name="all_running">All Running</string>
+    <string name="howtouse_title1_1">Ürün ve saat dilimini seçin</string>
+    <string name="howtouse_content1_1">1. İlk önce spor oyunu kategorisini seçin</string>
+    <string name="howtouse_content1_2">2. Bugün / rulo / erken / tarih liglerini seçin, sonraki tüm oyunlar</string>
+    <string name="howtouse_title2_1">Lig seç</string>
+    <string name="howtouse_content2_1">- Seçilen spor veya oyun kategorisi altındaki tüm ligleri göster</string>
+    <string name="howtouse_content2_2">- İzlemek istediğiniz ligi seçin.</string>
+    <string name="howtouse_title3_1">Bet Slip</string>
+    <string name="howtouse_content3_1">- Birden fazla bahis veya karışık geçiş için bahis listesini girin</string>
+    <string name="howtouse_content3_2">- Yerleştirilecek çoklu bahislerin veya karışık bahislerin sayısını görüntüleyin</string>
+    <string name="howtouse_title4_1">Benim favorim</string>
+    <string name="howtouse_content4_1">1. En sevdiğiniz lig veya seanstan önce yıldızlara tıklayın</string>
+    <string name="howtouse_content4_2">2. Favori ligleri veya maçları göstermek için sağ üst köşedeki yıldızlara tıklayın.</string>
+    <string name="howtouse_content4_3">3. Favori modumu bırakmak için bir kez tıklayın.</string>
+    <string name="howtouse_title5_1">Top oyunu / top oyunu</string>
+    <string name="howtouse_content5_1">1. Top oyununu veya top oyununu destekleyen tüm maçları listeleyin</string>
+    <string name="howtouse_content5_2">2. Bahsi izlemek için "Pooball Turnuvası" veya "Ballball Video" düğmesine tıklayın.</string>
+    <string name="howtouse_btn">ATLA</string>
+    <string name="howtouse_btn2">BAŞLA</string>
+    <string name="announcements">Duyurular</string>
     <string name="HALF_1X2">Half 1X2</string>
 
 </resources>

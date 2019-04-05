@@ -1,44 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <RelativeLayout
+    <include layout="@layout/include_fragment_title"></include>
 
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="240dp">
+        android:layout_height="180dp">
 
         <com.nanyang.app.Utils.AutoScrollViewPager
             android:id="@+id/auto_viewpager"
             android:layout_width="match_parent"
-            android:layout_height="240dp"/>
+            android:layout_height="match_parent" />
+
         <FrameLayout
-            android:background="@drawable/line_white"
             android:layout_width="match_parent"
+            android:layout_height="20dp"
             android:layout_alignParentBottom="true"
-            android:layout_height="30dp">
-        <LinearLayout
-            android:layout_gravity="bottom|right"
-            android:id="@+id/in_layout"
-            android:layout_marginBottom="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"/>
+            android:background="@drawable/line_white">
+
+            <LinearLayout
+                android:id="@+id/in_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|right"
+                android:layout_marginBottom="20dp"
+                android:orientation="horizontal" />
         </FrameLayout>
     </RelativeLayout>
 
 
-
     <android.support.v7.widget.RecyclerView
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
         android:id="@+id/rv_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white" />
-
+        android:background="@color/white"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
 
 </LinearLayout>

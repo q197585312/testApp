@@ -371,5 +371,24 @@
     <string name="others">Others</string>
     <string name="all_running">All Running</string>
     <string name="cricket">Cricket</string>
+    <string name="howtouse_title1_1">เลือกผลิตภัณฑ์และเขตเวลา</string>
+    <string name="howtouse_content1_1">1. เลือกหมวดเกมกีฬาก่อน</string>
+    <string name="howtouse_content1_2">2. เลือกลีกวันนี้ / ม้วน / ต้น / วันเกมที่ตามมาทั้งหมด</string>
+    <string name="howtouse_title2_1">เลือกลีก</string>
+    <string name="howtouse_content2_1">- แสดงลีกทั้งหมดภายใต้หมวดหมู่กีฬาหรือเกมที่เลือก</string>
+    <string name="howtouse_content2_2">- เลือกลีกที่คุณต้องการดู</string>
+    <string name="howtouse_title3_1">รายการบันทึกย่อ</string>
+    <string name="howtouse_content3_1">- ป้อนรายการเดิมพันสำหรับการเดิมพันหลายครั้งหรือการผสมผสานกัน</string>
+    <string name="howtouse_content3_2">- แสดงจำนวนของการเดิมพันจำนวนมากหรือการเดิมพันแบบผสมที่จะวาง</string>
+    <string name="howtouse_title4_1">รายการโปรดของฉัน</string>
+    <string name="howtouse_content4_1">1. คลิกที่ดาวก่อนที่จะมีลีกหรือเซสชั่นที่คุณชื่นชอบ</string>
+    <string name="howtouse_content4_2">2. คลิกที่ดาวที่มุมบนขวาเพื่อแสดงลีกที่ชื่นชอบหรือการแข่งขัน</string>
+    <string name="howtouse_content4_3">3. คลิกครั้งเดียวเพื่อออกจากโหมดโปรดของฉัน</string>
+    <string name="howtouse_title5_1">เกมลูกบอล / เกมบอล</string>
+    <string name="howtouse_content5_1">1. รายการการแข่งขันทั้งหมดที่สนับสนุนเกมบอลหรือเกมบอล</string>
+    <string name="howtouse_content5_2">2. คลิกที่ปุ่ม "Pooball Tournament" หรือ "Ballball Video" เพื่อดูการเดิมพัน</string>
+    <string name="howtouse_btn">ข้าม</string>
+    <string name="howtouse_btn2">เริ่มต้น</string>
+    <string name="announcements">ประกาศ</string>
     <string name="HALF_1X2">Half 1X2</string>
 </resources>

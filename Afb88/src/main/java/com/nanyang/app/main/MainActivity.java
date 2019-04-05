@@ -2,10 +2,12 @@ package com.nanyang.app.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
@@ -23,14 +25,15 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
-import com.nanyang.app.main.center.Statement.StatementFragment;
+import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.center.model.More;
 import com.nanyang.app.main.home.HomeFragment;
 import com.nanyang.app.main.home.contact.ContactFragment;
+import com.nanyang.app.main.home.howtouse.HowToUseFragment;
+import com.nanyang.app.main.home.message.MessageFragment;
 import com.nanyang.app.main.home.person.PersonCenterFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
@@ -45,14 +48,12 @@ import butterknife.OnClick;
 
 
 public class MainActivity extends BaseToolbarActivity<MainPresenter> implements MainContract.View {
-
     @Bind(R.id.fl_menu_home)
     FrameLayout flMenuHome;
     @Bind(R.id.fl_menu_login_out)
     FrameLayout flLoginOut;
     @Bind(R.id.drawer_more)
     DrawerLayout drawerLayout;
-
     @Bind(R.id.home_pop)
     TextView homePop;
     @Bind(R.id.ll_tab_menu_bottom)
@@ -61,10 +62,14 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     @Bind(R.id.main_more)
     RecyclerView reContent;
 
-    BaseFragment homeFragment = new HomeFragment();
-    BaseFragment centerFragment = new ContactFragment();
-    BaseFragment statementFragment = new StatementFragment();
-    BaseFragment personFragment = new PersonCenterFragment();
+    public BaseSwitchFragment homeFragment = new HomeFragment();
+    public BaseSwitchFragment statementFragment = new BetCenterFragment();
+    public BaseSwitchFragment contactFragment = new ContactFragment();
+    public BaseSwitchFragment personFragment = new PersonCenterFragment();
+    public BaseSwitchFragment howToUseFragment = new HowToUseFragment();
+    public BaseSwitchFragment messageFragment = new MessageFragment();
+    public BaseSwitchFragment indexFragment;
+    public BaseSwitchFragment lastIndexFragment;
     private List<More> dataList;
 
     @Override
@@ -75,27 +80,13 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         setContentView(R.layout.activity_main_tab);
         ButterKnife.bind(this);
         flCurrentMenu = flMenuHome;
-        showFragmentToActivity(homeFragment, R.id.fl_main_content);
+        indexFragment = homeFragment;
+        switchFragment(homeFragment);
         createPresenter(new MainPresenter(this));
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
         reContent.setLayoutManager(llm);
         dataList = new ArrayList<>();
-        More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0);
-        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message);
-        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0);
-        More m4 = new More(R.mipmap.result, getString(R.string.result), 0);
-        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0);
-        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0);
-        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0);
-        More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
-        dataList.add(m1);
-        dataList.add(m2);
-        dataList.add(m3);
-        dataList.add(m4);
-        dataList.add(m5);
-        dataList.add(m6);
-        dataList.add(m7);
-        dataList.add(m8);
+        initDataList();
         BaseRecyclerAdapter<More> adapter = new BaseRecyclerAdapter<More>(mContext, dataList, R.layout.item_main_more) {
 
             @Override
@@ -113,21 +104,8 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<More>() {
             @Override
             public void onItemClick(View view, More item, int position) {
-                if (getString(R.string.my_account).equals(item.getText())) {
-                    drawerLayout.closeDrawer(Gravity.RIGHT);
-                    hideFragmentToActivity(personFragment);
-                    showFragmentToActivity(personFragment, R.id.fl_main_content);
-                } else if (getString(R.string.messages).equals(item.getText())) {
-
-                } else if (getString(R.string.statement).equals(item.getText())) {
-
-                } else if (getString(R.string.result).equals(item.getText())) {
-
-                } else if (getString(R.string.contact).equals(item.getText())) {
-
-                } else if (getString(R.string.setting).equals(item.getText())) {
-
-                } else {
+                drawerLayout.closeDrawer(Gravity.RIGHT);
+                if (getString(R.string.logout).equals(item.getText())) {
                     BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
                         @Override
                         protected void clickSure(View v) {
@@ -140,6 +118,10 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                     pop.getChooseSureTv().setText(getString(R.string.sure));
                     pop.getChooseCancelTv().setText(getString(R.string.cancel));
                     onPopupWindowCreated(pop, Gravity.CENTER);
+                }else{
+                    if(item.getFragment()!=null){
+                        switchFragment(item.getFragment());
+                    }
                 }
 
 
@@ -157,6 +139,25 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         tvToolbarLeft.setVisibility(View.VISIBLE);
         tvToolbarLeft.setBackgroundResource(R.mipmap.left_logo);
         initUserData();
+    }
+
+    public void initDataList(){
+        More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0,personFragment);
+        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message,messageFragment);
+        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0,statementFragment);
+        More m4 = new More(R.mipmap.result, getString(R.string.result), 0);
+        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0,contactFragment);
+        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0);
+        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0,howToUseFragment);
+        More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
+        dataList.add(m1);
+        dataList.add(m2);
+        dataList.add(m3);
+        dataList.add(m4);
+        dataList.add(m5);
+        dataList.add(m6);
+        dataList.add(m7);
+        dataList.add(m8);
     }
 
     @Override
@@ -178,102 +179,53 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     protected void onResume() {
         super.onResume();
         presenter.oddsType();
-        //"ACT":"GetTT","PT":"wfMainH50","lang":"ZH-CN"
         String language = new LanguageHelper(mContext).getLanguage();
         presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"));
-
     }
 
     @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_statemente, R.id.fl_menu_login_out})
     public void onClick(View view) {
-        if (view.getId() == R.id.fl_menu_login_out) {
-            drawerLayout.openDrawer(Gravity.RIGHT);
+        switch (view.getId()) {
+            case R.id.fl_menu_home:
+                HomePopupWindow<HomePopItemBeen> pop = new HomePopupWindow<HomePopItemBeen>(mContext, ll_tab_menu_bottom, LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) {
+                    @Override
+                    public void initItem(MyRecyclerViewHolder holder, int position, HomePopItemBeen item) {
+                        TextView name = holder.getTextView(R.id.tv_type_name);
+                        TextView data = holder.getTextView(R.id.tv_type_data);
+                        name.setText(item.getName());
+                        data.setText(item.getData());
+                    }
 
-        } else {
-            clickTabMenu((FrameLayout) view);
+                    @Override
+                    public List<HomePopItemBeen> getCurrentData() {
+                        PersonalInfo info = getApp().getUser();
+                        List<HomePopItemBeen> dataList = new ArrayList<>();
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), info.getBalances()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), info.getTotalCredit()));
+                        return dataList;
+                    }
+                };
+                int windowPos[] = new int[2];
+                ll_tab_menu_bottom.getLocationOnScreen(windowPos);
+                int viewY = windowPos[1];
+                pop.showAtLocation(Gravity.NO_GRAVITY, 0, viewY - (AfbUtils.dp2px(mContext, 40)) * 7);
+                break;
+            case R.id.fl_menu_center:
+                switchFragment(contactFragment);
+                break;
+            case R.id.fl_menu_statemente:
+                statementFragment.setSwitchType(BetCenterFragment.statementNew);
+                switchFragment(statementFragment);
+                break;
+            case R.id.fl_menu_login_out:
+                drawerLayout.openDrawer(Gravity.RIGHT);
+                break;
         }
-    }
-
-    private void clickTabMenu(FrameLayout fl) {
-        if (fl.getId() == R.id.fl_menu_home) {
-            HomePopupWindow<HomePopItemBeen> pop = new HomePopupWindow<HomePopItemBeen>(mContext, ll_tab_menu_bottom, LinearLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT) {
-                @Override
-                public void initItem(MyRecyclerViewHolder holder, int position, HomePopItemBeen item) {
-//                    ViewGroup.LayoutParams layoutParams = holder.itemView.getLayoutParams();
-//                    layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-//                    holder.itemView.setLayoutParams(layoutParams);
-                    TextView name = holder.getTextView(R.id.tv_type_name);
-                    TextView data = holder.getTextView(R.id.tv_type_data);
-                    name.setText(item.getName());
-                    data.setText(item.getData());
-                }
-
-                @Override
-                public List<HomePopItemBeen> getCurrentData() {
-                    PersonalInfo info = getApp().getUser();
-                    List<HomePopItemBeen> dataList = new ArrayList<>();
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), info.getBalances()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
-                    dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), info.getTotalCredit()));
-                    return dataList;
-                }
-            };
-            int windowPos[] = new int[2];
-            ll_tab_menu_bottom.getLocationOnScreen(windowPos);
-            int viewY = windowPos[1];
-            int height = pop.getHeight();
-            pop.showAtLocation(Gravity.NO_GRAVITY, 0, viewY - (AfbUtils.dp2px(mContext, 40)) * 7);
-        }
-        if (flCurrentMenu != fl) {
-            TextView tvOld = (TextView) flCurrentMenu.getChildAt(0);
-            tvOld.setTextColor(getResources().getColor(R.color.black_grey));
-            switch (tvOld.getId()) {
-                case R.id.tv_tab_home:
-                    tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_a, 0, 0);
-                    hideFragmentToActivity(homeFragment);
-                    showHomePop();
-                    break;
-                case R.id.tv_tab_center:
-                    tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_user, 0, 0);
-                    hideFragmentToActivity(centerFragment);
-                    break;
-                case R.id.tv_tab_statement:
-                    tvOld.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_order, 0, 0);
-                    hideFragmentToActivity(statementFragment);
-                    break;
-            }
-            TextView tvMenu = (TextView) fl.getChildAt(0);
-//            tvMenu.setTextColor(getResources().getColor(R.color.green_black_word));
-
-            dynamicAddView(tvMenu, "textColor", R.color.green_black_word);
-            switch (tvMenu.getId()) {
-                case R.id.tv_tab_home:
-                    dynamicAddView(tvMenu, "drawableTop", R.mipmap.main_menu_a_hover);
-//                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_a_hover, 0, 0);
-                    showFragmentToActivity(homeFragment, R.id.fl_main_content);
-                    break;
-                case R.id.tv_tab_center:
-                    dynamicAddView(tvMenu, "drawableTop", R.mipmap.main_menu_user_hover);
-//                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_user_hover, 0, 0);
-                    showFragmentToActivity(centerFragment, R.id.fl_main_content);
-                    break;
-                case R.id.tv_tab_statement:
-                    dynamicAddView(tvMenu, "drawableTop", R.mipmap.main_menu_order_hover);
-//                    tvMenu.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.main_menu_order_hover, 0, 0);
-                    showFragmentToActivity(statementFragment, R.id.fl_main_content);
-                    break;
-            }
-            flCurrentMenu = fl;
-        }
-
-    }
-
-    private void showHomePop() {
-
     }
 
     @Override
@@ -286,22 +238,53 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         ToastUtils.showShort(data);
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 0 && resultCode == 1) {
-            centerFragment.initHead();
+    public void switchFragment(BaseSwitchFragment fragment) {
+        if (fragment == indexFragment && lastIndexFragment != null) {
+            indexFragment.showContent();
+            return;
         }
+        indexFragment = fragment;
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (!fragment.isAdded()) {
+            transaction.add(R.id.fl_main_content, fragment);
+        } else {
+            transaction.show(fragment);
+        }
+        if (lastIndexFragment != null) {
+            transaction.hide(lastIndexFragment);
+        }
+        lastIndexFragment = indexFragment;
+        transaction.commit();
     }
 
     @Override
-    public void onBackPressed() {
-        if (isTwoFinish()) {
-            finish();
-        } else {
-            ToastUtils.showShort(getString(R.string.double_click_exit_application));
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (indexFragment == homeFragment) {
+                if(drawerLayout.isDrawerOpen(Gravity.RIGHT)){
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+                }else{
+                    if (isTwoFinish()) {
+                        finish();
+                    } else {
+                        ToastUtils.showShort(getString(R.string.double_click_exit_application));
+                    }
+                }
+            } else {
+                indexFragment.back();
+            }
         }
+        return true;
     }
+
+//    @Override
+//    public void onBackPressed() {
+//        if (isTwoFinish()) {
+//            finish();
+//        } else {
+//            ToastUtils.showShort(getString(R.string.double_click_exit_application));
+//        }
+//    }
 
     private boolean isFinish = true;
 

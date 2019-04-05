@@ -417,6 +417,14 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         return 0xff0d5924;
     }
 
+    public void setToolbarVisibility(boolean b) {
+        if (b) {
+            toolbar.setVisibility(View.VISIBLE);
+        } else {
+            toolbar.setVisibility(View.GONE);
+        }
+    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();

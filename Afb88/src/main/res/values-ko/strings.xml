@@ -377,5 +377,24 @@
     <string name="others">Others</string>
     <string name="all_running">All Running</string>
     <string name="cricket">Cricket</string>
+    <string name="howtouse_title1_1">제품 및 표준 시간대 선택</string>
+    <string name="howtouse_content1_1">1. 먼저 스포츠 게임 카테고리를 선택하십시오.</string>
+    <string name="howtouse_content1_2">2. 오늘 / 롤 / 이른 / 데이트 리그, 모든 후속 게임을 선택하십시오.</string>
+    <string name="howtouse_title2_1">언어 선택</string>
+    <string name="howtouse_content2_1">- 선택한 스포츠 또는 게임 카테고리의 모든 리그 표시</string>
+    <string name="howtouse_content2_2">-보고 싶은 리그를 선택하십시오.</string>
+    <string name="howtouse_title3_1">참고: 단</string>
+    <string name="howtouse_content3_1">- 여러 개의 베팅 또는 혼합 된 패스에 대한 베팅 목록 입력</string>
+    <string name="howtouse_content3_2">- 여러 베팅 또는 베팅 된 베팅의 수 표시</string>
+    <string name="howtouse_title4_1">내가 가장 좋아하는</string>
+    <string name="howtouse_content4_1">1. 좋아하는 리그 나 세션 전에 별을 클릭하십시오.</string>
+    <string name="howtouse_content4_2">2. 오른쪽 상단 모서리에있는 별을 클릭하여 좋아하는 리그 나 경기를 표시하십시오.</string>
+    <string name="howtouse_content4_3">3. 한 번 클릭하여 좋아하는 모드를 종료하십시오.</string>
+    <string name="howtouse_title5_1">볼 게임 / 볼 게임</string>
+    <string name="howtouse_content5_1">1. 볼 게임이나 볼 게임을 지원하는 모든 경기를 나열하십시오.</string>
+    <string name="howtouse_content5_2">2. "Pooball Tournament"또는 "Ballball Video"버튼을 클릭하여 내기를보십시오.</string>
+    <string name="howtouse_btn">버킷</string>
+    <string name="howtouse_btn2">스타트</string>
+    <string name="announcements">발표</string>
     <string name="HALF_1X2">FH.1X2</string>
 </resources>

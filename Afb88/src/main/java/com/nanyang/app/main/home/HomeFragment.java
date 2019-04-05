@@ -20,6 +20,7 @@ import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.load.ListMainPictures;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
+import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -36,7 +37,7 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class HomeFragment extends BaseFragment {
+public class HomeFragment extends BaseSwitchFragment {
 
     @Bind(R.id.auto_viewpager)
     AutoScrollViewPager viewPager;
@@ -56,6 +57,11 @@ public class HomeFragment extends BaseFragment {
         EventBus.getDefault().register(this);
     }
 
+    @Override
+    public void initData() {
+        super.initData();
+        setCurrentFragmentTitle();
+    }
 
     public void defaultSkip(final String type) {
         ((BaseToolbarActivity) getBaseActivity()).defaultSkip(type);
@@ -142,7 +148,7 @@ public class HomeFragment extends BaseFragment {
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(ListMainBanners data) {
         LogUtil.d(getClass().getSimpleName(), "onEvent------------>" + data.toString());
-        if (this!=null){
+        if (this != null) {
             initViewPager(data);
         }
     }
@@ -188,5 +194,10 @@ public class HomeFragment extends BaseFragment {
     public void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+    }
+
+    public void setCurrentFragmentTitle() {
+        setToolbarVisibility(true);
+        setBackTitleVisibility(false);
     }
 }
