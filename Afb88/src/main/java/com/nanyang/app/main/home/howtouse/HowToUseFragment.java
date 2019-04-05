@@ -55,6 +55,7 @@ public class HowToUseFragment extends BaseSwitchFragment {
     @Override
     public void initData() {
         super.initData();
+        setCurrentFragmentTitle();
     }
 
     @Override
@@ -91,7 +92,7 @@ public class HowToUseFragment extends BaseSwitchFragment {
         leftImg.setVisibility(View.INVISIBLE);
     }
 
-    @OnClick({R.id.img_left,R.id.img_right})
+    @OnClick({R.id.img_left,R.id.img_right,R.id.howtouse_btn})
     public void clickImg(View view){
         switch (view.getId()){
             case R.id.img_left:
@@ -99,6 +100,7 @@ public class HowToUseFragment extends BaseSwitchFragment {
                     index--;
                     if(index==0){
                         leftImg.setVisibility(View.INVISIBLE);
+                        hwotouseBtn.setText(getString(R.string.howtouse_btn));
                     }
                     if(index==dataList.size()-2){
                         rightImg.setVisibility(View.VISIBLE);
@@ -111,6 +113,7 @@ public class HowToUseFragment extends BaseSwitchFragment {
                     index++;
                     if(index==dataList.size()-1){
                         rightImg.setVisibility(View.INVISIBLE);
+                        hwotouseBtn.setText(getString(R.string.howtouse_btn2));
                     }
                     if(index==1){
                         leftImg.setVisibility(View.VISIBLE);
@@ -118,8 +121,31 @@ public class HowToUseFragment extends BaseSwitchFragment {
                     changeContent(dataList.get(index));
                 }
                 break;
+            case R.id.howtouse_btn:
+                back();
+                break;
 
         }
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        if (!hidden) {
+            setCurrentFragmentTitle();
+            index = 0;
+            hwotouseBtn.setText(getString(R.string.howtouse_btn));
+            //默认为选择第一条数据
+            changeContent(dataList.get(index));
+            //第一页隐藏左箭头
+            leftImg.setVisibility(View.INVISIBLE);
+            rightImg.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void setCurrentFragmentTitle() {
+        setToolbarVisibility(false);
+        setBackTitleVisibility(false);
     }
 
     public void changeContent(HowToUse htu){
