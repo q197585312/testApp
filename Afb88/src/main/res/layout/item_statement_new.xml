@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/green1"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="fdsaffads"
+                android:textColor="@color/black"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_com"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="COM:0 "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" W/L:"
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_WinLose"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="400 "
+                    android:textColor="@color/black" />
+
+                <TextView
+                    android:id="@+id/tv_settled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" SETTLED:0"
+                    android:textColor="@color/black" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/img_open1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@mipmap/down_black" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_addView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"></LinearLayout>
+</LinearLayout>

@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -118,13 +119,19 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                     pop.getChooseSureTv().setText(getString(R.string.sure));
                     pop.getChooseCancelTv().setText(getString(R.string.cancel));
                     onPopupWindowCreated(pop, Gravity.CENTER);
-                }else{
-                    if(item.getFragment()!=null){
-                        switchFragment(item.getFragment());
+                } else {
+                    BaseSwitchFragment fragment = item.getFragment();
+                    if (fragment != null) {
+                        if (fragment instanceof BetCenterFragment) {
+                            String switchType = item.getSwitchType();
+                            if (!TextUtils.isEmpty(switchType)) {
+                                fragment.setSwitchType(item.getSwitchType());
+                                fragment.showContent();
+                            }
+                        }
+                        switchFragment(fragment);
                     }
                 }
-
-
             }
         });
         reContent.setAdapter(adapter);
@@ -141,14 +148,14 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         initUserData();
     }
 
-    public void initDataList(){
-        More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0,personFragment);
+    public void initDataList() {
+        More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0, personFragment);
         More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message);
-        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0,statementFragment);
-        More m4 = new More(R.mipmap.result, getString(R.string.result), 0);
-        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0,contactFragment);
+        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
+        More m4 = new More(R.mipmap.result, getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
+        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0, contactFragment);
         More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0);
-        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0,howToUseFragment);
+        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0, howToUseFragment);
         More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
         dataList.add(m1);
         dataList.add(m2);

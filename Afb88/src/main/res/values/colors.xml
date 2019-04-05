@@ -26,4 +26,8 @@
     <color name="contact_back">#E0E0E0</color>
     <color name="contact_font">#737373</color>
     <color name="howtouse_redio">#E6E6E6</color>
+    <color name="green1">#E8FDEA</color>
+    <color name="blue1">#0000FF</color>
+    <color name="blue2">#0073E6</color>
+    <color name="gary">#989898</color>
 </resources>

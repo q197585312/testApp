@@ -85,6 +85,9 @@ public class BetCenterFragment extends BaseSwitchFragment {
     private int currentIndex = 0;
 
     public void switchFragment() {
+        if (rbUnsettled == null) {
+            return;
+        }
         if (currentIndex == 0) {
             rbUnsettled.setChecked(true);
         } else if (currentIndex == 1) {

@@ -12,6 +12,15 @@ public class More {
     private String text;
     private int image_right;
     private BaseSwitchFragment fragment;
+    private String switchType;
+
+    public String getSwitchType() {
+        return switchType;
+    }
+
+    public void setSwitchType(String switchType) {
+        this.switchType = switchType;
+    }
 
     public More() {
     }
@@ -26,6 +35,13 @@ public class More {
         this.text = text;
         this.image_right = image_right;
         this.fragment = fragment;
+    }
+    public More(int image_left, String text, int image_right,BaseSwitchFragment fragment,String switchType) {
+        this.image_left = image_left;
+        this.text = text;
+        this.image_right = image_right;
+        this.fragment = fragment;
+        this.switchType = switchType;
     }
 
     public int getImage_left() {

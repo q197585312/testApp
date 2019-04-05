@@ -1,5 +1,6 @@
 package com.unkonw.testapp.libs.presenter;
 
+import com.google.gson.Gson;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
@@ -15,7 +16,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public abstract class BaseRetrofitPresenter<V extends IBaseContext> implements IBasePresenter {
 
-
+    public Gson gson;
     public V baseContext;
     protected CompositeDisposable mCompositeSubscription;
 
@@ -41,6 +42,9 @@ public abstract class BaseRetrofitPresenter<V extends IBaseContext> implements I
         mCompositeSubscription = new CompositeDisposable();
         this.baseContext = iBaseContext;
         this.mApiWrapper = createRetrofitApi();
+        if (gson == null) {
+            gson = new Gson();
+        }
     }
 
     public Api createRetrofitApi() {
@@ -57,7 +61,6 @@ public abstract class BaseRetrofitPresenter<V extends IBaseContext> implements I
                 .observeOn(Schedulers.io())
                 .subscribe(baseConsumer.onNext, baseConsumer.onError, baseConsumer.onCompleted, baseConsumer.onStart);
     }
-
 
 
 }
