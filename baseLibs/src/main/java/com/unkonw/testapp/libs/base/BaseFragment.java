@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.google.gson.Gson;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -39,6 +40,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
     public T presenter;
     protected BasePopupWindow popWindow;
     private String title;
+    public Gson gson;
 
 
     @Override
@@ -54,6 +56,9 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
         mContentView = inflater
                 .inflate(onSetLayoutId(), container, false);
         ButterKnife.bind(this, mContentView);
+        if (gson == null) {
+            gson = new Gson();
+        }
         initView();
         initData();
         return mContentView;
@@ -177,10 +182,12 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
 
     }
 
+    public void refreshData() {
+
+    }
 
     public IBaseContext getIBaseContext() {
         return this;
     }
-
 
 }

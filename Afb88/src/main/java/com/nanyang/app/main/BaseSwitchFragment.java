@@ -66,4 +66,14 @@ public abstract class BaseSwitchFragment extends BaseFragment<BaseSwitchPresente
     public void back() {
         mainActivity.switchFragment(mainActivity.homeFragment);
     }
+
+    public String switchType = "";
+
+    public void setSwitchType(String switchType) {
+        this.switchType = switchType;
+    }
+
+    public void showContent() {
+
+    }
 }

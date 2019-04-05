@@ -123,6 +123,8 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                         switchFragment(item.getFragment());
                     }
                 }
+
+
             }
         });
         reContent.setAdapter(adapter);
@@ -217,6 +219,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 switchFragment(contactFragment);
                 break;
             case R.id.fl_menu_statemente:
+                statementFragment.setSwitchType(BetCenterFragment.statementNew);
                 switchFragment(statementFragment);
                 break;
             case R.id.fl_menu_login_out:
@@ -237,6 +240,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     public void switchFragment(BaseSwitchFragment fragment) {
         if (fragment == indexFragment && lastIndexFragment != null) {
+            indexFragment.showContent();
             return;
         }
         indexFragment = fragment;
