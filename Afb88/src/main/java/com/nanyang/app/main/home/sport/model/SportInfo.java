@@ -10,6 +10,10 @@ public class SportInfo implements Serializable {
 
     private boolean notify;
 
+
+
+
+
     public void setValue(int i, String s) {
         switch (i) {
             case 0:

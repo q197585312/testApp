@@ -2,13 +2,11 @@ package com.nanyang.app.main.home.sport.europe;
 
 import android.text.Html;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -50,23 +48,6 @@ public class EuropeRunningState extends EuropeState {
         return new EuropeRunningBetHelper(getBaseView());
     }
 
-    @Override
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final BallInfo item, final int position, final SportAdapterHelper.ItemCallBack<BallInfo> back) {
-        super.onMatchNotRepeat(helper, item, position, back);
-        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
-        String rtsMatchId = item.getRTSMatchId();
-        if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
-            ivHall.setVisibility(View.VISIBLE);
-            ivHall.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    back.clickView(v, item, position);
-                }
-            });
-        } else {
-            ivHall.setVisibility(View.GONE);
-        }
-    }
 
     @Override
     protected void clickHallBtn(View v, BallInfo item, int position) {
@@ -77,12 +58,6 @@ public class EuropeRunningState extends EuropeState {
 
     }
 
-    @Override
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item, int position, SportAdapterHelper.ItemCallBack<BallInfo> back) {
-        super.onMatchRepeat(helper, item, position, back);
-        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
-        ivHall.setVisibility(View.GONE);
-    }
 
     @Override
     protected void onChildConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {

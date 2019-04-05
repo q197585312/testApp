@@ -5,12 +5,10 @@
     android:orientation="vertical">
 
 
-    <include layout="@layout/include_vs_table_footer" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="1dp"
         android:orientation="horizontal"
         android:padding="1dp">
 

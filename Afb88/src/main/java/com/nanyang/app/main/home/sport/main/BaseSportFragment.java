@@ -26,9 +26,9 @@ import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorEarlyState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorRunningState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorTodayState;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
+import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
@@ -40,11 +40,9 @@ import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -65,12 +63,9 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     protected TextView tvMixParlayOrder;
     @Bind(R.id.ll_mix_parlay_order)
     protected LinearLayout llMixParlayOrder;
-    @Bind(R.id.sl_header)
-    protected ScrollLayout slHeader;
 
 
-    @Bind(R.id.tv_aos)
-    protected TextView tvAos;
+
     @Bind(R.id.swipeToLoadLayout)
     protected SwipeToLoadLayout swipeToLoadLayout;
     private boolean isFirstIn;
@@ -216,77 +211,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             }
         });
         rememberLastOdds();
-        slHeader.setTouchAble(false);
-        slHeader.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
-            @Override
-            public void changePosition(final int index) {
-                View childAt = slHeader.getChildAt(index);
-                ImageView nextView = (ImageView) childAt.findViewById(R.id.iv_next);
-                ImageView previousView = (ImageView) childAt.findViewById(R.id.iv_previous);
-                if (slHeader.canMovable(index + 1) && slHeader.canMovable(index - 1)) {
-                    nextView.setVisibility(View.VISIBLE);
-                    previousInit(index, previousView);
-                } else if (slHeader.canMovable(index + 1)) {
-                    nextView.setVisibility(View.GONE);
-                    previousView.setVisibility(View.VISIBLE);
-                    previousView.setImageResource(R.mipmap.arrow_right_white_double);
-                    previousView.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-
-                            moveToIndex(index + 1);
-                        }
-                    });
-                } else if (slHeader.canMovable(index - 1)) {
-                    nextView.setVisibility(View.GONE);
-                    previousInit(index, previousView);
-                } else {
-                    nextView.setVisibility(View.GONE);
-                    previousView.setVisibility(View.GONE);
-                }
-            }
-        });
-        for (int i = 0; i < slHeader.getChildCount(); i++) {
-            View childAt = slHeader.getChildAt(i);
-            View nextView = childAt.findViewById(R.id.iv_next);
-            View previousView = childAt.findViewById(R.id.iv_previous);
-            if (nextView != null && previousView != null) {
-
-                nextView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int targetIndex = slHeader.getTargetIndex() + 1;
-
-                        moveToIndex(targetIndex);
-                    }
-                });
-                previousView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int targetIndex = slHeader.getTargetIndex() - 1;
-                        moveToIndex(targetIndex);
-                    }
-                });
-            }
-
-        }
-/*
-        slHeader.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-
-                        if (slFollowers != null)
-
-                        break;
-                }
-
-
-                return false;
-            }
-        });*/
         setTitle(getTitle());
         if (AppConstant.getInstance().IS_AGENT) {
             initAgent();
@@ -310,12 +234,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     private void moveToIndex(int targetIndex) {
-        if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
-            Set slFollowers = ((BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper()).getSlFollowers();
-            if (slFollowers != null)
-                slHeader.setFollowScrolls(slFollowers);
-            slHeader.moveToIndex(targetIndex);
-        }
         ((BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper()).setSlIndex(targetIndex);
     }
 
@@ -325,7 +243,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     }
 
     public void collection(View tvCollection) {
-        checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.sport_star_green, R.mipmap.sport_star_black);
+        checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.star_red_solid, R.mipmap.sport_game_star_yellow);
     }
 
     public void menu(View tvMenu) {
@@ -433,26 +351,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     @Override
     public void switchState(IObtainDataState state) {
         presenter.setStateHelper(state);
-        presenter.getStateHelper().setScrollHeaderContent(slHeader, tvAos);
-        View childAt = slHeader.getChildAt(0);
-        ImageView nextView = (ImageView) childAt.findViewById(R.id.iv_next);
-        ImageView previousView = (ImageView) childAt.findViewById(R.id.iv_previous);
-        if (slHeader.getMovableChildCount() < 2) {
 
-            nextView.setVisibility(View.GONE);
-            previousView.setVisibility(View.GONE);
-        } else {
-            nextView.setVisibility(View.GONE);
-            previousView.setVisibility(View.VISIBLE);
-            previousView.setImageResource(R.mipmap.arrow_right_white_double);
-            previousView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
-                    moveToIndex(1);
-                }
-            });
-        }
 
         ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).getTvToolbarTitle().setText(state.getStateType().getText());
 
@@ -586,11 +485,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         });
         popWindow.setTrans(1f);
         popWindow.showPopupDownWindow();
-    }
-
-    @Override
-    public ScrollLayout onSetScrollHeader() {
-        return slHeader;
     }
 
     @Override

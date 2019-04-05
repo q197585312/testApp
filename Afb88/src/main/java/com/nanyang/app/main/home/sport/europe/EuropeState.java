@@ -20,7 +20,6 @@ import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -404,7 +403,6 @@ public abstract class EuropeState extends BallState {
                 switch (v.getId()) {
                     case R.id.module_right_mark_tv:
                         getBaseView().clickItemAdd(v, item, position);
-
                         break;
                     case R.id.iv_hall_btn:
                         clickHallBtn(v, item, position);
@@ -412,10 +410,6 @@ public abstract class EuropeState extends BallState {
                 }
             }
 
-            @Override
-            public ScrollLayout onSetHeaderFollower() {
-                return getBaseView().onSetScrollHeader();
-            }
         };
     }
 

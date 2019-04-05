@@ -50,7 +50,7 @@ public class AdditionBean implements Serializable{
      */
 
     @SerializedName("FT_1x2")
-    private FT1x2Bean FT1x2;
+    private F1x2Bean FT1x2;
     /**
      * 12 : 1.23
      * oid : 9112330
@@ -59,7 +59,7 @@ public class AdditionBean implements Serializable{
      */
 
     @SerializedName("FT_DC")
-    private FTDCBean FTDC;
+    private DCBean FTDC;
     /**
      * oid : 9112330
      * ODD : 1.00
@@ -78,7 +78,7 @@ public class AdditionBean implements Serializable{
      */
 
     @SerializedName("FH_1x2")
-    private FH1x2Bean FH1x2;
+    private F1x2Bean FH1x2;
     /**
      * 12 : 1.47
      * oid : 9112336
@@ -87,7 +87,7 @@ public class AdditionBean implements Serializable{
      */
 
     @SerializedName("FH_DC")
-    private FHDCBean FHDC;
+    private DCBean FHDC;
     /**
      * oid : 9112329
      * HH : 2.25
@@ -196,23 +196,23 @@ public class AdditionBean implements Serializable{
         Date = date;
     }
 
-    public FT1x2Bean getFT1x2() {
+    public F1x2Bean getFT1x2() {
         if(FT1x2==null)
-            return new FT1x2Bean();
+            return new F1x2Bean();
         return FT1x2;
     }
 
-    public void setFT1x2(FT1x2Bean FT1x2) {
+    public void setFT1x2(F1x2Bean FT1x2) {
         this.FT1x2 = FT1x2;
     }
 
-    public FTDCBean getFTDC() {
+    public DCBean getFTDC() {
         if(FTDC==null)
-            return new FTDCBean();
+            return new DCBean();
         return FTDC;
     }
 
-    public void setFTDC(FTDCBean FTDC) {
+    public void setFTDC(DCBean FTDC) {
         this.FTDC = FTDC;
     }
 
@@ -226,23 +226,23 @@ public class AdditionBean implements Serializable{
         this.FTOE = FTOE;
     }
 
-    public FH1x2Bean getFH1x2() {
+    public F1x2Bean getFH1x2() {
         if(FH1x2==null)
-            return new FH1x2Bean();
+            return new F1x2Bean();
         return FH1x2;
     }
 
-    public void setFH1x2(FH1x2Bean FH1x2) {
+    public void setFH1x2(F1x2Bean FH1x2) {
         this.FH1x2 = FH1x2;
     }
 
-    public FHDCBean getFHDC() {
+    public DCBean getFHDC() {
         if(FHDC==null)
-            return  new FHDCBean();
+            return  new DCBean();
         return FHDC;
     }
 
-    public void setFHDC(FHDCBean FHDC) {
+    public void setFHDC(DCBean FHDC) {
         this.FHDC = FHDC;
     }
 

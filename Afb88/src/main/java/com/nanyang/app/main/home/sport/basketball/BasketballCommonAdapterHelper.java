@@ -7,7 +7,6 @@ import android.widget.TextView;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -46,19 +45,7 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
         View tvRightMark = helper.getView(R.id.module_right_mark_tv);
         View vp = helper.getView(R.id.module_center_sl);
         vp.getLayoutParams().width = DeviceUtils.dip2px(context, 210);
-
         tvRightMark.setVisibility(View.GONE);
-        if (((BallItemCallBack) back).isItemCollection(item))
-            tvCollection.setBackgroundResource(R.mipmap.star_red_solid);
-        else
-            tvCollection.setBackgroundResource(R.mipmap.star_red_not_solid);
-
-        tvCollection.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                back.clickView(v, item,position);
-            }
-        });
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
 
         scrollChild(sl.getChildAt(0), false, item, item.getIsHomeGive(), item.getHasHdp(), item.getHdp(), item.getHasOU(), item.getOU(), item.getIsHdpNew(), item.getIsOUNew(), item.getUOdds(), item.getOOdds(), item.getHOdds(), item.getAOdds(), "home", "away", "over", "under",

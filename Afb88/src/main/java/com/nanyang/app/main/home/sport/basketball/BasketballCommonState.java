@@ -14,14 +14,10 @@ import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -29,7 +25,6 @@ import cn.finalteam.toolsfinal.DeviceUtils;
 
 public abstract class BasketballCommonState extends BallState {
 
-    protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
 
 
@@ -56,13 +51,9 @@ public abstract class BasketballCommonState extends BallState {
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<BallInfo>(baseRecyclerAdapter) {
-            @Override
-            public boolean isItemCollection(BallInfo item) {
-                return isItemCollectionCommon(item);
-            }
 
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds,int oid,String sc) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 helper.clickOdds(item, type, odds, v, isHf, "");
@@ -74,19 +65,19 @@ public abstract class BasketballCommonState extends BallState {
                     case R.id.module_match_collection_tv:
                         collectionItemCommon(item);
                         break;
+                    case R.id.module_League_collection_tv:
+                        collectionLeagueCommon(item);
+                        break;
                     case R.id.module_right_mark_tv:
-                        clickAdd(v, item,position);
+                        clickAdd(v, item, position);
                         break;
                 }
 
             }
 
-            @Override
-            public ScrollLayout onSetHeaderFollower() {
-                return getBaseView().onSetScrollHeader();
-            }
         };
     }
+
     @Override
     public IBetHelper onSetBetHelper() {
         return new BasketballCommonBetHelper(getBaseView());
@@ -105,27 +96,10 @@ public abstract class BasketballCommonState extends BallState {
     }
 
 
-    public void collectionItemCommon(BallInfo item) {
-        String moduleKey = item.getModuleTitle().toString();
-        Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
-        if (moduleMap == null)
-            moduleMap = new HashMap<>();
-        String localKey = item.getHome() + "+" + item.getAway();
-        Boolean v = moduleMap.get(localKey);
-        if (v == null || !v) {
-            moduleMap.put(localKey, true);
-        } else {
-            moduleMap.put(localKey, false);
-        }
-        localCollectionMap.put(moduleKey, moduleMap);
-        baseRecyclerAdapter.notifyDataSetChanged();
-    }
-
     public boolean isItemCollectionCommon(BallInfo item) {
 
         return !(localCollectionMap.get(item.getModuleTitle()) == null || localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
     }
-
 
 
     @Override
@@ -183,10 +157,5 @@ public abstract class BasketballCommonState extends BallState {
         return lists;
     }
 
-    @Override
-    public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
-        super.setScrollHeaderContent(slHeader, tvAos);
-        tvAos.setVisibility(View.GONE);
-        slHeader.getLayoutParams().width = DeviceUtils.dip2px(getBaseView().getIBaseContext().getBaseActivity(), 210);
-    }
+
 }

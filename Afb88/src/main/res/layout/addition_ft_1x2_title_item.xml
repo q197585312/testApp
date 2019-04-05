@@ -4,15 +4,6 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/green_white_thick_line" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.5dp"
-        android:background="@color/grey_dialog_background" />
 
     <TextView
         android:id="@+id/title_tv"
@@ -21,8 +12,6 @@
         android:gravity="center"
         android:padding="5dp"
         android:text="@string/FULL_1X2"
-        android:textColor="@color/green500"
+        android:textColor="@color/black_grey"
         android:textSize="12sp" />
-
-    <include layout="@layout/include_vs_table_footer" />
 </LinearLayout>
