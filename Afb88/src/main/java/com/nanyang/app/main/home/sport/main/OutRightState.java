@@ -9,15 +9,12 @@ import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -130,10 +127,6 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
 
             }
 
-            @Override
-            public ScrollLayout onSetHeaderFollower() {
-                return getBaseView().onSetScrollHeader();
-            }
         };
     }
 
@@ -142,14 +135,5 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
         return new OutRightBetHelper(getBaseView());
     }
 
-    @Override
-    public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
-        tvAos.getLayoutParams().width = DeviceUtils.dip2px(getBaseView().getIBaseContext().getBaseActivity(), 50);
-        tvAos.setText(R.string.win);
-        for (int i = 0; i < slHeader.getChildCount(); i++) {
-            View childAt = slHeader.getChildAt(i);
-            childAt.setVisibility(View.GONE);
-        }
-    }
 
 }

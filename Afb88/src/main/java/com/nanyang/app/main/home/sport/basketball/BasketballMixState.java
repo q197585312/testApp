@@ -15,14 +15,10 @@ import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -30,7 +26,6 @@ import cn.finalteam.toolsfinal.DeviceUtils;
 
 public abstract class BasketballMixState extends BallState {
 
-    protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
 
 
@@ -72,10 +67,7 @@ public abstract class BasketballMixState extends BallState {
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<BallInfo>(baseRecyclerAdapter) {
-            @Override
-            public boolean isItemCollection(BallInfo item) {
-                return false;
-            }
+
 
             @Override
             public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds,int oid,String sc) {
@@ -87,11 +79,6 @@ public abstract class BasketballMixState extends BallState {
             @Override
             public void clickView(View v, BallInfo item, int position) {
 
-            }
-
-            @Override
-            public ScrollLayout onSetHeaderFollower() {
-                return getBaseView().onSetScrollHeader();
             }
 
         };
@@ -161,10 +148,4 @@ public abstract class BasketballMixState extends BallState {
         return lists;
     }
 
-    @Override
-    public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
-        super.setScrollHeaderContent(slHeader, tvAos);
-        tvAos.setVisibility(View.GONE);
-        slHeader.getLayoutParams().width = DeviceUtils.dip2px(getBaseView().getIBaseContext().getBaseActivity(), 140);
-    }
 }

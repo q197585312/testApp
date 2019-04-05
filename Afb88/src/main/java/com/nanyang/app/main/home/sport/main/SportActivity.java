@@ -73,8 +73,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     ImageView ivHomeBack;
     @Bind(R.id.match_cup_iv)
     ImageView matchCupIv;
-    @Bind(R.id.match_collection_iv)
-    ImageView matchCollectionIv;
+
     @Bind(R.id.running_iv)
     ImageView runningIv;
     @Bind(R.id.iv_all_add)

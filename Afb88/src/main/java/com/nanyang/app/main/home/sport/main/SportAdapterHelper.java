@@ -7,7 +7,6 @@ import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.training.ScrollLayout;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -51,7 +50,7 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
         void clickOdds(TextView v, B item, String type, boolean isHf, String odds,int oid,String sc);
 
         void clickView(View v, B item,int position);
-        ScrollLayout onSetHeaderFollower();
+
     }
 
     public <I extends ItemCallBack<B>> void setItemCallBack(I back) {

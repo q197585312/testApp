@@ -12,7 +12,6 @@ import android.text.Html;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -40,7 +39,6 @@ import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -54,7 +52,6 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cn.finalteam.toolsfinal.DeviceUtils;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -72,6 +69,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 public abstract class SportState<B extends SportInfo, V extends SportContract.View<B>> implements IObtainDataState {
     private String LID = "";
+    protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
 
     private int page;
     private List<TableSportInfo<B>> filterData;
@@ -369,6 +367,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         for (int i = 0; i < pageList.size(); i++) {
             TableSportInfo<B> item = pageList.get(i);
             List<B> rows = item.getRows();
+            boolean isLeagueCollection = true;
             for (int j = 0; j < rows.size(); j++) {
                 B cell = rows.get(j);
                 if (j == 0) {
@@ -379,7 +378,15 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 cell.setModuleId(item.getLeagueBean().getModuleId());
                 cell.setModuleTitle(item.getLeagueBean().getModuleTitle());
                 pageMatch.add(cell);
+                Map<String, Boolean> moduleMap = localCollectionMap.get(cell.getModuleTitle().toString());
+                if (moduleMap == null)
+                    moduleMap = new HashMap<>();
+                if (moduleMap.get(cell.getHome() + "+" + cell.getAway()) == null) {
+                    moduleMap.put(cell.getHome() + "+" + cell.getAway(), false);
+                    localCollectionMap.put(cell.getModuleTitle().toString(), moduleMap);
+                }
             }
+
         }
         return pageMatch;
     }
@@ -480,7 +487,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         if (swipeToLoadLayout != null)
             swipeToLoadLayout.setLoadMoreEnabled(true);
         return filterData;
-
     }
 
     protected abstract List<TableSportInfo<B>> filterChildData(List<TableSportInfo<B>> dateTemp);
@@ -807,34 +813,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
-    @Override
-    public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
-        tvAos.setText(R.string.AOS);
-        ViewGroup.LayoutParams layoutParams = tvAos.getLayoutParams();
-        layoutParams.width = DeviceUtils.dip2px(getBaseView().getIBaseContext().getBaseActivity(), 24);
-        List<List<String>> lists = initHeaderList();
-        for (int i = 0; i < lists.size(); i++) {
-            View childAt = slHeader.getChildAt(i);
-            childAt.setVisibility(View.VISIBLE);
-            ViewHolder viewHolder = new ViewHolder(childAt);
-            List<String> strings = lists.get(i);
-            if (strings.size() > 0) {
-                viewHolder.tvHeadLeft.setVisibility(View.VISIBLE);
-                viewHolder.tvHeadLeft.setText(strings.get(0));
-            } else
-                viewHolder.tvHeadLeft.setVisibility(View.GONE);
-            if (strings.size() > 1) {
-                viewHolder.tvHeadRight.setVisibility(View.VISIBLE);
-                viewHolder.tvHeadRight.setText(strings.get(1));
-            } else
-                viewHolder.tvHeadRight.setVisibility(View.GONE);
-            if (strings.size() > 2) {
-                viewHolder.tvHead3.setVisibility(View.VISIBLE);
-                viewHolder.tvHead3.setText(strings.get(2));
-            } else
-                viewHolder.tvHead3.setVisibility(View.GONE);
-        }
-    }
 
     protected List<List<String>> initHeaderList() {
         List<List<String>> texts = new ArrayList<>();
@@ -862,40 +840,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     public void setParam(MenuItemInfo mt) {
         this.param = mt;
-        switchAllOdds(mt.getType());
-
     }
 
-    public void switchAllOdds(String oddsType) {
-        if (!getAllOddsUrl().isEmpty()) {
-            Disposable subscription = getService(ApiService.class).getData(getAllOddsUrl() + oddsType).subscribeOn(Schedulers.io())
-                    .observeOn(Schedulers.io())
-                    .subscribe(new Consumer<String>() {//onNext
-                        @Override
-                        public void accept(String allData) throws Exception {
-                        }
-                    }, new Consumer<Throwable>() {//错误
-                        @Override
-                        public void accept(Throwable throwable) throws Exception {
-
-                            baseView.getIBaseContext().hideLoadingDialog();
-                        }
-                    }, new Action() {//完成
-                        @Override
-                        public void run() throws Exception {
-
-                        }
-                    }, new Consumer<Subscription>() {//开始绑定
-                        @Override
-                        public void accept(Subscription subscription) throws Exception {
-                            baseView.getIBaseContext().showLoadingDialog();
-                            subscription.request(Long.MAX_VALUE);
-                        }
-                    });
-            mCompositeSubscription.add(subscription);
-
-        }
-    }
 
     protected String getAllOddsUrl() {
         return "";
@@ -979,4 +925,37 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     public abstract IBetHelper onSetBetHelper();
 
+    public boolean isItemCollectionCommon(B item) {
+        return !(localCollectionMap.get(item.getModuleTitle()) == null || localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
+    }
+
+    public boolean isLeagueCollectionCommon(B item) {
+        Map<String, Boolean> stringBooleanMap = localCollectionMap.get(item.getModuleTitle().toString());
+        return !stringBooleanMap.containsValue(false);
+    }
+
+    public void collectionLeagueCommon(B item) {
+        boolean isCollection = isLeagueCollectionCommon(item);
+        for (String s : localCollectionMap.get(item.getModuleTitle().toString()).keySet()) {
+            localCollectionMap.get(item.getModuleTitle().toString()).put(s, !isCollection);
+        }
+        baseRecyclerAdapter.notifyDataSetChanged();
+    }
+
+
+    public void collectionItemCommon(B item) {
+        String moduleKey = item.getModuleTitle().toString();
+        Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
+        if (moduleMap == null)
+            moduleMap = new HashMap<>();
+        String localKey = item.getHome() + "+" + item.getAway();
+        Boolean v = moduleMap.get(localKey);
+        if (v == null || !v) {
+            moduleMap.put(localKey, true);
+        } else {
+            moduleMap.put(localKey, false);
+        }
+        localCollectionMap.put(moduleKey, moduleMap);
+        baseRecyclerAdapter.notifyDataSetChanged();
+    }
 }

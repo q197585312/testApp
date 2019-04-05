@@ -423,6 +423,7 @@
     <string name="others">其他</string>
     <string name="all_running">All Running</string>
     <string name="cricket">Cricket</string>
+    <string name="HALF_1X2">半场1X2</string>
     <string name="howtouse_title1_1">选择产品与时间区</string>
     <string name="howtouse_content1_1">1. 先选择运动游戏类别</string>
     <string name="howtouse_content1_2">2. 选择今日/滚球/早盘/日期 的联赛 后列所有场次</string>
@@ -440,4 +441,6 @@
     <string name="howtouse_content5_1">1. 列出所有支持滚球赛事或者滚球视讯的比赛</string>
     <string name="howtouse_content5_2">2. 点击”滚球赛事”或者”滚球视讯”的按钮即可进行观赏中下注</string>
     <string name="howtouse_btn">略过</string>
+    <string name="howtouse_btn2">开始</string>
+    <string name="announcements">公告</string>
 </resources>

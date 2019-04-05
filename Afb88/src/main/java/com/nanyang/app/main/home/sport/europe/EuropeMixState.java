@@ -17,7 +17,6 @@ import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.TimeUtils;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -76,11 +75,7 @@ public abstract class EuropeMixState extends BallState {
         return texts;
     }
 
-    @Override
-    public void setScrollHeaderContent(ScrollLayout slHeader, TextView tvAos) {
-        super.setScrollHeaderContent(slHeader, tvAos);
-        tvAos.setVisibility(View.GONE);
-    }
+
     public boolean isCollection() {
         return false;
     }
@@ -332,10 +327,6 @@ public abstract class EuropeMixState extends BallState {
                 }
             }
 
-            @Override
-            public ScrollLayout onSetHeaderFollower() {
-                return getBaseView().onSetScrollHeader();
-            }
         };
     }
 

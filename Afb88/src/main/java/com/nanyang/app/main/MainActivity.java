@@ -27,15 +27,14 @@ import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
-import com.nanyang.app.main.center.Statement.StatementFragment;
 import com.nanyang.app.main.center.model.More;
 import com.nanyang.app.main.home.HomeFragment;
 import com.nanyang.app.main.home.contact.ContactFragment;
 import com.nanyang.app.main.home.howtouse.HowToUseFragment;
+import com.nanyang.app.main.home.message.MessageFragment;
 import com.nanyang.app.main.home.person.PersonCenterFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
@@ -69,6 +68,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     public BaseSwitchFragment contactFragment = new ContactFragment();
     public BaseSwitchFragment personFragment = new PersonCenterFragment();
     public BaseSwitchFragment howToUseFragment = new HowToUseFragment();
+    public BaseSwitchFragment messageFragment = new MessageFragment();
     public BaseSwitchFragment indexFragment;
     public BaseSwitchFragment lastIndexFragment;
     private List<More> dataList;
@@ -106,7 +106,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             @Override
             public void onItemClick(View view, More item, int position) {
                 drawerLayout.closeDrawer(Gravity.RIGHT);
-                if (getString(R.string.login_out).equals(item.getText())) {
+                if (getString(R.string.logout).equals(item.getText())) {
                     BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
                         @Override
                         protected void clickSure(View v) {
@@ -268,10 +268,14 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (indexFragment == homeFragment) {
-                if (isTwoFinish()) {
-                    finish();
-                } else {
-                    ToastUtils.showShort(getString(R.string.double_click_exit_application));
+                if(drawerLayout.isDrawerOpen(Gravity.RIGHT)){
+                    drawerLayout.closeDrawer(Gravity.RIGHT);
+                }else{
+                    if (isTwoFinish()) {
+                        finish();
+                    } else {
+                        ToastUtils.showShort(getString(R.string.double_click_exit_application));
+                    }
                 }
             } else {
                 indexFragment.back();

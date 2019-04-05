@@ -3,6 +3,7 @@ package com.nanyang.app.main;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -15,6 +16,7 @@ public abstract class BaseSwitchFragment extends BaseFragment<BaseSwitchPresente
     ImageView imgBack;
     LinearLayout llBackTitle;
     MainActivity mainActivity;
+    TextView title;
 
     @Override
     public void initData() {
@@ -28,6 +30,7 @@ public abstract class BaseSwitchFragment extends BaseFragment<BaseSwitchPresente
         super.initView();
         llBackTitle = mContentView.findViewById(R.id.ll_back_title);
         imgBack = mContentView.findViewById(R.id.img_back);
+        title = mContentView.findViewById(R.id.title);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -56,6 +59,10 @@ public abstract class BaseSwitchFragment extends BaseFragment<BaseSwitchPresente
         if (!hidden) {
             setCurrentFragmentTitle();
         }
+    }
+
+    public void setTitle(String title){
+        this.title.setText(title);
     }
 
     public void setCurrentFragmentTitle() {

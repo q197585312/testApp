@@ -14,10 +14,8 @@ import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -27,7 +25,7 @@ import java.util.Map;
 
 public abstract class SoccerCommonState extends BallState {
 
-    protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
+
     private boolean isCollection;
 
 
@@ -54,14 +52,16 @@ public abstract class SoccerCommonState extends BallState {
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<BallInfo>(baseRecyclerAdapter) {
-            @Override
-            public ScrollLayout onSetHeaderFollower() {
-                return getBaseView().onSetScrollHeader();
-            }
+
 
             @Override
             public boolean isItemCollection(BallInfo item) {
                 return isItemCollectionCommon(item);
+            }
+
+            @Override
+            public boolean isLeagueCollection(BallInfo item) {
+                return isLeagueCollectionCommon(item);
             }
 
             @Override
@@ -77,6 +77,9 @@ public abstract class SoccerCommonState extends BallState {
                     case R.id.module_match_collection_tv:
                         collectionItemCommon(item);
                         break;
+                    case R.id.module_League_collection_tv:
+                        collectionLeagueCommon(item);
+                        break;
                     case R.id.module_right_mark_tv:
                         clickAdd(v, item,position);
                         break;
@@ -88,6 +91,7 @@ public abstract class SoccerCommonState extends BallState {
             }
         };
     }
+
 
     protected void clickHallBtn(View v, BallInfo item, int position) {
 
@@ -107,27 +111,6 @@ public abstract class SoccerCommonState extends BallState {
 
     protected abstract SoccerCommonAdapterHelper onSetCommonAdapterHelper();
 
-
-    public void collectionItemCommon(BallInfo item) {
-        String moduleKey = item.getModuleTitle().toString();
-        Map<String, Boolean> moduleMap = localCollectionMap.get(moduleKey);
-        if (moduleMap == null)
-            moduleMap = new HashMap<>();
-        String localKey = item.getHome() + "+" + item.getAway();
-        Boolean v = moduleMap.get(localKey);
-        if (v == null || !v) {
-            moduleMap.put(localKey, true);
-        } else {
-            moduleMap.put(localKey, false);
-        }
-        localCollectionMap.put(moduleKey, moduleMap);
-        baseRecyclerAdapter.notifyDataSetChanged();
-    }
-
-    public boolean isItemCollectionCommon(BallInfo item) {
-
-        return !(localCollectionMap.get(item.getModuleTitle()) == null || localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
-    }
 
 
     @Override

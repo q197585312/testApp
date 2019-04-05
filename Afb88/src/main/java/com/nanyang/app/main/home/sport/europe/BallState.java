@@ -5,7 +5,6 @@ import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
-import com.unkonw.testapp.libs.utils.LogUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -18,6 +17,8 @@ import java.util.List;
  */
 
 public abstract class BallState extends SportState<BallInfo, SportContract.View<BallInfo>> {
+
+
     public BallState(SportContract.View<BallInfo> baseView) {
         super(baseView);
     }
@@ -55,36 +56,36 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
         BallInfo next = rows.get(i);
         next.setRepeatRow(null);
         BallInfo tempData;
-        LogUtil.e("Addition", "getModuleTitle:" + temp.getLeagueBean().getModuleTitle() + ",getRowsSize:" + temp.getRows().size());
+    /*    LogUtil.e("Addition", "getModuleTitle:" + temp.getLeagueBean().getModuleTitle() + ",getRowsSize:" + temp.getRows().size());
         LogUtil.e("Addition", "data.getHome:" + data.getHome() + ",getRepeatRowSize:" + (data.getRepeatRow() == null ? "null" : data.getRepeatRow().size()));
-        LogUtil.e("Addition", "i:" + i + ",next.getHome:" + next.getHome() + "getRepeatRowSize:" + (next.getRepeatRow() == null ? "null" : next.getRepeatRow().size()));
+        LogUtil.e("Addition", "i:" + i + ",next.getHome:" + next.getHome() + "getRepeatRowSize:" + (next.getRepeatRow() == null ? "null" : next.getRepeatRow().size()));*/
         if (oldHomeName.equals(next.getHome()) && oldAwayName.equals(next.getAway())) {
-            LogUtil.e("Addition", "home,相等了");
+//            LogUtil.e("Addition", "home,相等了");
             List<BallInfo> repeatRow = data.getRepeatRow();
             if (repeatRow == null || repeatRow.size() == 0) {
-                LogUtil.e("Addition", "null,第一个 添加自己");
+/*                LogUtil.e("Addition", "null,第一个 添加自己");*/
                 repeatRow = new ArrayList<>();
                 repeatRow.add(data);
             }
             repeatRow.add(next);
             data.setRepeatRow(repeatRow);
             tempData = data;
-            LogUtil.e("Addition", "tempData=data,tempData.getRepeatRow().size:" + tempData.getRepeatRow().size());
+         /*   LogUtil.e("Addition", "tempData=data,tempData.getRepeatRow().size:" + tempData.getRepeatRow().size());*/
 
         } else {
-            LogUtil.e("Addition", "home,不等了");
+       /*     LogUtil.e("Addition", "home,不等了");*/
             temp.getRows().add(data);
             tempData = next;
-            LogUtil.e("Addition", "tempData=next,tempData.getRepeatRow().size:" + (tempData.getRepeatRow() == null ? "null" : tempData.getRepeatRow().size()));
+   /*         LogUtil.e("Addition", "tempData=next,tempData.getRepeatRow().size:" + (tempData.getRepeatRow() == null ? "null" : tempData.getRepeatRow().size()));*/
         }
 
         if (i == rows.size() - 1) {
             temp.getRows().add(tempData);
-            LogUtil.e("Addition", "最后一个了i:" + i + "tempData.getRepeatRow().size:" + (tempData.getRepeatRow() == null ? "null" : tempData.getRepeatRow().size()));
-            LogUtil.e("Addition", "最后一个了i:" + i + "temp.getRows().size:" + (temp.getRows() == null ? "null" : temp.getRows().size()));
+          /*  LogUtil.e("Addition", "最后一个了i:" + i + "tempData.getRepeatRow().size:" + (tempData.getRepeatRow() == null ? "null" : tempData.getRepeatRow().size()));
+            LogUtil.e("Addition", "最后一个了i:" + i + "temp.getRows().size:" + (temp.getRows() == null ? "null" : temp.getRows().size()));*/
             return temp;
         } else {
-            LogUtil.e("Addition", "开始下一个i:" + (i + 1) + "temp.getRows().size:" + (tempData.getRepeatRow() == null ? "null" : tempData.getRepeatRow().size()));
+           /* LogUtil.e("Addition", "开始下一个i:" + (i + 1) + "temp.getRows().size:" + (tempData.getRepeatRow() == null ? "null" : tempData.getRepeatRow().size()));*/
             return doFindRepeat(temp, tempData, i + 1, rows);
         }
     }
@@ -96,4 +97,6 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
         }
         return noRepeatList;
     }
+
+
 }

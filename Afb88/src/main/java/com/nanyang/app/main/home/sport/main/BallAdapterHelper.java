@@ -14,21 +14,25 @@ import android.widget.TextView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.CSBean;
+import com.nanyang.app.main.home.sport.model.DCBean;
+import com.nanyang.app.main.home.sport.model.F1x2Bean;
+import com.nanyang.app.main.home.sport.model.FGLGBean;
+import com.nanyang.app.main.home.sport.model.FTOEBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
+import com.nanyang.app.main.home.sport.model.TGBean;
+import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseActivity;
-import com.unkonw.testapp.libs.utils.LogUtil;
-import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 
@@ -77,7 +81,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         List<BallInfo> repeatRow = item.getRepeatRow();
 
         if (position == additionPosition && additionMap.get(true) != null && additionMap.get(true) == additionPosition) {
-            LogUtil.d("Addition", "--------------repeatRow:" + (repeatRow == null ? "null" : repeatRow.size()));
+//            LogUtil.d("Addition", "--------------repeatRow:" + (repeatRow == null ? "null" : repeatRow.size()));
             parent.setVisibility(View.VISIBLE);
             parent.removeAllViews();
             View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
@@ -90,63 +94,69 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
             }
             if (additionData != null) {
-                if (additionData.getFT1x2() != null && additionData.getFT1x2().getOid() >= 0) {
-                    addAddition1x2(additionData.getFT1x2().getF1(), additionData.getFT1x2().getX(), additionData.getFT1x2().getF2(), additionData.getFT1x2().getOid(), false, parent, item,
-                            "1", "X", "2", "1", "x", "2");
+                if (additionData.getFT1x2() != null && additionData.getFT1x2().getOid() > 0) {
+                    addAddition1x2(additionData.getFT1x2(), false, parent, item);
                 }
-                if (additionData.getFH1x2() != null && additionData.getFH1x2().getOid() >= 0) {
-                    addAddition1x2(additionData.getFH1x2().getF1(), additionData.getFH1x2().getX(), additionData.getFH1x2().getF2(), additionData.getFH1x2().getOid(), true, parent, item, "1", "X", "2", "1", "x", "2");
+                if (additionData.getFH1x2() != null && additionData.getFH1x2().getOid() > 0) {
+                    addAddition1x2(additionData.getFH1x2(), true, parent, item);
                 }
-                if (additionData.getFTCS() != null && additionData.getFTCS().getOid() >= 0) {//波胆
-                    addAdditionCS(additionData.getFTCS(), false, parent, item,"70");
+                if (additionData.getFTCS() != null && additionData.getFTCS().getOid() > 0) {//波胆
+                    addAdditionCS(additionData.getFTCS(), false, parent, item, "70");
                 }
-                if (additionData.getFHCS() != null && additionData.getFHCS().getOid() >= 0) {
-                    addAdditionCS(additionData.getFHCS(), true, parent, item,"80");
-                }
-/*
-                if (additionData.getFTDC() != null && additionData.getFTDC().getOid() >= 0) {
-                    addAdditionFTDC(additionData.getFTDC());
-                }
-                if (additionData.getFHDC() != null && additionData.getFHDC().getOid() >= 0) {
-                    addAdditionFHDC(additionData.getFHDC());
-                }
-                if (additionData.getFTOE() != null && additionData.getFTOE().getOid() >= 0) {
-                    addAdditionFTOE(additionData.getFTOE());
-                }
-                if (additionData.getFHOE() != null && additionData.getFHOE().getOid() >= 0) {
-                    addAdditionFHOE(additionData.getFHOE());
+                if (additionData.getFHCS() != null && additionData.getFHCS().getOid() > 0) {
+                    addAdditionCS(additionData.getFHCS(), true, parent, item, "80");
                 }
 
-                if (additionData.getHTFT() != null && additionData.getFTOE().getOid() >= 0) {//半场全场
-                    addAdditionFTOE(additionData.getFTOE());
+                if (additionData.getFTDC() != null && additionData.getFTDC().getOid() > 0) {
+                    addAdditionDC(additionData.getFTDC(), false, parent, item);
+
                 }
-                if (additionData.getFGLG() != null && additionData.getFGLG().getOid() >= 0) {//最后得分 最先得分
-                    addAdditionFGLG(additionData.getFGLG());
+                if (additionData.getFHDC() != null && additionData.getFHDC().getOid() > 0) {
+                    addAdditionDC(additionData.getFHDC(), true, parent, item);
                 }
-                if (additionData.getTG() != null && additionData.getTG().getOid() >= 0) {//最后得分 最先得分
-                    addAdditionTG(additionData.getTG());
+
+                if (additionData.getFTOE() != null && additionData.getFTOE().getOid() > 0) {
+                    addAdditionOE(additionData.getFTOE(), false, parent, item);
                 }
-                if (additionData.getHOMETEAMTG() != null && additionData.getHOMETEAMTG().getOid() >= 0) {//最后得分 最先得分
-                    addAdditionHOMETEAMTG(additionData.getHOMETEAMTG());
+                if (additionData.getFHOE() != null && additionData.getFHOE().getOid() > 0) {
+                    addAdditionOE(additionData.getFHOE(), true, parent, item);
                 }
-                if (additionData.getAWAYTEAMTG() != null && additionData.getAWAYTEAMTG().getOid() >= 0) {//最后得分 最先得分
-                    addAdditionAWAYTEAMTG(additionData.getAWAYTEAMTG());
+                if (additionData.getFGLG() != null && additionData.getFGLG().getOid() > 0) {//最后得分 最先得分
+                    addAdditionFGLG(additionData.getFGLG(), parent, item);
                 }
-                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_0() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_0().getOid() >= 0) {
-                    addAdditionFT15MINSHANDICAP_OVER_UNDER_0(additionData.getFT15MINSHANDICAP_OVER_UNDER_0());
+                if (additionData.getTG() != null && additionData.getTG().getOid() > 0) {//zho 最先得分
+                    addAdditionTG(additionData.getTG(), parent, item);
                 }
-                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_15() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_15().getOid() >= 0) {
-                    addAdditionFT15MINSHANDICAP_OVER_UNDER_15(additionData.getFT15MINSHANDICAP_OVER_UNDER_15());
+
+                if (additionData.getHOMETEAMTG() != null && additionData.getHOMETEAMTG().getOid() > 0) {//最后得分 最先得分
+                    addAdditionTEAMTG(additionData.getHOMETEAMTG(), false, parent, item);
                 }
-                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_30_N() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_30_N().getOid() >= 0) {
-                    addAdditgetFT15MINSHANDICAP_OVER_UNDER_30_N(additionData.getFT15MINSHANDICAP_OVER_UNDER_30_N());
+                if (additionData.getAWAYTEAMTG() != null && additionData.getAWAYTEAMTG().getOid() > 0) {//最后得分 最先得分
+                    addAdditionTEAMTG(additionData.getAWAYTEAMTG(), true, parent, item);
                 }
-                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_45() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_45().getOid() >= 0) {
-                    addAdditgetFT15MINSHANDICAP_OVER_UNDER_45(additionData.getFT15MINSHANDICAP_OVER_UNDER_45());
+                /*"(00:00-15:00)"
+"(15:01-30:00)"
+"(30:01-45:00)"
+"(45:01-60:00)"
+"(60:01-75:00)"*/
+                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_0() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_0().getOid() > 0) {
+                    addAdditionFT15MINSHANDICAP_OVER_UNDER(additionData.getFT15MINSHANDICAP_OVER_UNDER_0(), context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(00:00-15:00)", parent, item);
                 }
-                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_60() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_60().getOid() >= 0) {
-                    addAdditgetFT15MINSHANDICAP_OVER_UNDER_60(additionData.getFT15MINSHANDICAP_OVER_UNDER_60());
-                }*/
+                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_15() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_15().getOid() > 0) {
+                    addAdditionFT15MINSHANDICAP_OVER_UNDER(additionData.getFT15MINSHANDICAP_OVER_UNDER_15(), context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(15:01-30:00)", parent, item);
+                }
+                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_30_N() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_30_N().getOid() > 0) {
+                    addAdditionFT15MINSHANDICAP_OVER_UNDER(additionData.getFT15MINSHANDICAP_OVER_UNDER_30_N(), context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(30:01-45:00)", parent, item);
+                }
+                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_45() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_45().getOid() > 0) {
+                    addAdditionFT15MINSHANDICAP_OVER_UNDER(additionData.getFT15MINSHANDICAP_OVER_UNDER_45(), context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(45:01-60:00)", parent, item);
+                }
+                if (additionData.getFT15MINSHANDICAP_OVER_UNDER_60() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_60().getOid() > 0) {
+                    addAdditionFT15MINSHANDICAP_OVER_UNDER(additionData.getFT15MINSHANDICAP_OVER_UNDER_60(), context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(60:01-75:00)", parent, item);
+                }
+ /*
+
+*/
 //                 rows.add(new VsTableRowBean("over", Arrays.asList(new VsCellBean(getString(R.string.over), "", 0), new VsCellBean(result.getFT15MINSHANDICAP_OVER_UNDER_0().getFT_OU(), "", 0), new VsCellBean("", result.getFT15MINSHANDICAP_OVER_UNDER_0().getO(), result.getFT15MINSHANDICAP_OVER_UNDER_0().getOid())), true, false, getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(00:00-15:00)", "", "", ""));
 
             }
@@ -155,9 +165,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         }
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
-        ivHall.setVisibility(View.GONE);
-        helper.getView(R.id.iv_hall_btn).setVisibility(View.GONE);
+        ivHall.setVisibility(View.INVISIBLE);
+
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
+        TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
+
+        View contentParentLl = helper.getView(R.id.content_parent_ll);
+        contentParentLl.setBackgroundResource((position % 2 == 0) ? R.color.white : R.color.grey_white);
+        View matchTitleLl = helper.getView(R.id.module_match_title_ll);
         View headV = helper.getView(R.id.module_match_head_v);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         TextView dateTv1 = helper.getView(R.id.module_match_date_tv1);
@@ -181,12 +196,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         dateTv1.setTextSize(10);
         dateTv.setPadding(0, 0, 0, 0);
         dateTv1.setPadding(0, 0, 0, 0);
-
         String time = item.getMatchDate();
-        if (time.length() > 6) {
+  /*      if (time.length() > 6) {
             time = time.substring(time.length() - 7, time.length());
             time = TimeUtils.dateFormatChange(time, "KK:mmaa", "HH:mm", Locale.ENGLISH);
-        }
+        }*/
         timeTv.setText(time);
         timeTv1.setText(time);
 
@@ -237,7 +251,25 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 dateTv1.setText(item.getMatchDate());
             }
         }
-        tvCollection.setVisibility(View.GONE);
+
+        if (((BallItemCallBack) back).isItemCollection(item))
+            tvCollection.setBackgroundResource(R.mipmap.star_red_solid);
+        else
+            tvCollection.setBackgroundResource(R.mipmap.star_red_not_solid);
+        tvCollection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back.clickView(v, item, position);
+            }
+        });
+        LeagueCollectionTv.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        back.clickView(view, item, position);
+                    }
+                }
+        );
         String isHomeGive = item.getIsHomeGive();
         if (isHomeGive.equals("1")) {
             homeTv.setTextColor(red_black);
@@ -260,17 +292,20 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         });
         gameSumTv.setText("+ " + item.getGamesSum());
         if (item.getType() == SportInfo.Type.ITME) {
-            matchTitleTv.setVisibility(View.GONE);
+            matchTitleLl.setVisibility(View.GONE);
             headV.setVisibility(View.GONE);
+            LeagueCollectionTv.setBackgroundResource(R.mipmap.star_red_not_solid);
 
         } else {
-            matchTitleTv.setVisibility(View.VISIBLE);
+            LeagueCollectionTv.setBackgroundResource(((BallItemCallBack) back).isLeagueCollection(item) ? R.mipmap.star_red_solid : R.mipmap.star_red_not_solid);
+            matchTitleLl.setVisibility(View.VISIBLE);
             headV.setVisibility(View.VISIBLE);
             matchTitleTv.setText(item.getModuleTitle());
             if (position == 0) {
                 headV.setVisibility(View.GONE);
             }
         }
+
         final ScrollLayout sl = helper.getView(R.id.module_center_sl);
         final ScrollLayout sl1 = helper.getView(R.id.module_center_sl1);
         sl1.getChildAt(0).setVisibility(View.VISIBLE);
@@ -295,27 +330,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         sl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                ScrollLayout scrollLayout = back.onSetHeaderFollower();
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        slFollowers.add(scrollLayout);
-                        break;
-                }
 
                 sl.setFollowScrolls(slFollowers);
-
                 return false;
             }
         });
         sl1.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
-                ScrollLayout scrollLayout = back.onSetHeaderFollower();
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_DOWN:
-                        slFollowers.add(scrollLayout);
-                        break;
-                }
 
                 sl1.setFollowScrolls(slFollowers);
 
@@ -365,12 +387,80 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             onMatchNotRepeat(helper, item, position);
         }
 
+    }
 
+    private void addAdditionFT15MINSHANDICAP_OVER_UNDER(AdditionBean.FT15MINSHANDICAPOVERUNDERBean tg, String title, LinearLayout parent, I item) {
+        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
+        addTitle(parent, inflate, title);
+        addAddition(tg.getO(), tg.getU(), tg.getOid(), false, parent, item,
+                context.getString(R.string.O) + tg.getFT_OU(), context.getString(R.string.U) + tg.getFT_OU(), "over", "under", "", "");
+    }
+
+    private void addAdditionTEAMTG(AdditionBean.TEAMTGBean tg, boolean isAway, LinearLayout parent, I item) {
+        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
+        if (isAway)
+            addTitle(parent, inflate, context.getString(R.string.AWAY_TEAM_TOTAL_GOALS));
+        else
+            addTitle(parent, inflate, context.getString(R.string.HOME_TEAM_TOTAL_GOALS));
+/*https://www.afb1188.com/Bet/hBetOdds.ashx?BTMD=S&coupon=0&BETID=s|over|1|739583||&_=1554348545809*/
+        addAddition(tg.getFT_O(), tg.getFT_U(), tg.getOid(), false, parent, item,
+                "FT.Over " + tg.getFT_OU(), "FT.Under " + tg.getFT_OU(), "over", "under", "", "");
+        addAddition(tg.getFH_O(), tg.getFH_U(), tg.getOid_FH(), true, parent, item,
+                "FT.Over " + tg.getFH_OU(), "FT.Under " + tg.getFH_OU(), "over", "under", "", "");
+    }
+
+    private void addAdditionTG(TGBean tg, LinearLayout parent, I item) {
+        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
+        addTitle(parent, inflate, context.getString(R.string.total_goals));
+
+        addAddition(tg.getT0_1(), tg.getT2_3(), tg.getOid(), false, parent, item,
+                "0~1", "2~3", "tg", "tg", "1", "23");
+        addAddition(tg.getT0_1(), tg.getT2_3(), tg.getOid(), false, parent, item,
+                "4~6", "7~Over", "tg", "tg", "46", "70");
+    }
+
+    private void addAdditionFGLG(FGLGBean fglg, LinearLayout parent, I item) {
+        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
+        addTitle(parent, inflate, context.getString(R.string.first_last_goal));
+
+        addAddition(fglg.getHF(), fglg.getNO_GOAL(), fglg.getAF(), fglg.getOid(), false, parent, item,
+                "HFG", "NG", "AFG", "fglg", "fglg", "fglg", "10 ", "0", "20");
+        addAddition(fglg.getHF(), fglg.getNO_GOAL(), fglg.getAF(), fglg.getOid(), false, parent, item,
+                "HLG", "", "ALG", "fglg", "", "fglg", "1 ", "", "2");
+    }
+
+    private void addAdditionOE(FTOEBean ftoe, boolean isHalf, LinearLayout parent, I item) {
+        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
+        if (isHalf) {
+            addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.single_double));
+        } else {
+            addTitle(parent, inflate, context.getString(R.string.full_time) + context.getString(R.string.single_double));
+        }
+
+        addAddition(ftoe.getODD(), ftoe.getEVEN(), ftoe.getOid(), isHalf, parent, item,
+                "1X", "12", "dc", "dc", "10", "12");
+    }
+
+
+    private void addAdditionDC(DCBean ftdc, boolean isHalf, LinearLayout parent, I item) {
+        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
+        if (isHalf) {
+            addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.double_chance));
+        } else {
+            addTitle(parent, inflate, context.getString(R.string.full_time) + context.getString(R.string.double_chance));
+        }
+        addAddition(ftdc.getF1x(), ftdc.getF12(), ftdc.getFx2(), ftdc.getOid(), isHalf, parent, item,
+                "1X", "12", "X2", "dc", "dc", "dc", "10", "12", "2");
     }
 
     private void addAdditionCS(CSBean ftcs, boolean isHalf, LinearLayout parent, I item, String aos) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
-        addTitle(parent, inflate, R.string.correct_full);
+        if (isHalf) {
+            addTitle(parent, inflate, R.string.correct_half);
+        } else {
+            addTitle(parent, inflate, R.string.correct_full);
+        }
+
         addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
                 "1:0", "0:0", "0:1", "csr", "csr", "csr", "10", "0", "1");
         addAddition(ftcs.getC1_0(), ftcs.getC0_0(), ftcs.getC0_1(), ftcs.getOid(), isHalf, parent, item,
@@ -395,34 +485,28 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
 
-    private void addAddition1x2(String f1, String x, String f2, int oid, boolean isHalf, LinearLayout parent, I item,
-                                String up1, String up2, String up3, String type1, String type2, String type3) {
-
-
+    private void addAddition1x2(F1x2Bean ft1x2, boolean isHalf, LinearLayout parent, I item) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
-        addTitle(parent, inflate, R.string.FULL_1X2);
-        View inflate1X2 = LayoutInflater.from(context).inflate(R.layout.addition_1x2_sport_item, null);
-        TextView up1_tv = inflate1X2.findViewById(R.id.up1_tv);
-        TextView down1_tv = inflate1X2.findViewById(R.id.down1_tv);
-        TextView up2_tv = inflate1X2.findViewById(R.id.up2_tv);
-        TextView down2_tv = inflate1X2.findViewById(R.id.down2_tv);
-        TextView up3_tv = inflate1X2.findViewById(R.id.up3_tv);
-        TextView down3_tv = inflate1X2.findViewById(R.id.down3_tv);
-        setTextValue(up1_tv, up1);
-        setTextValue(up2_tv, up2);
-        setTextValue(up3_tv, up3);
-        setTextValueClick(down1_tv, f1, type1, oid, item, isHalf, "");
-        setTextValueClick(down2_tv, x, type2, oid, item, isHalf, "");
-        setTextValueClick(down3_tv, f2, type3, oid, item, isHalf, "");
-        parent.addView(inflate1X2);
+        if (isHalf) {
+            addTitle(parent, inflate, R.string.HALF_1X2);
+        } else {
+            addTitle(parent, inflate, R.string.FULL_1X2);
+        }
+        addAddition(ft1x2.getF1(), ft1x2.getX(), ft1x2.getF2(), ft1x2.getOid(), false, parent, item,
+                "1", "X", "2", "1", "x", "2", "", "", "");
+    }
+
+    private void addAddition(String f1, String f2, int oid, boolean isHalf, LinearLayout parent, I item, String up1, String up2, String type1, String type2, String sc1, String sc2) {
+
+        addAddition(f1, f2, "", oid, isHalf, parent, item,
+                up1, up2, "", type1, type2, "", sc1, sc2, "");
+        View viewById = parent.getChildAt(parent.getChildCount() - 1).findViewById(R.id.content3_ll);
+        viewById.setVisibility(View.GONE);
     }
 
     private void addAddition(String f1, String x, String f2, int oid, boolean isHalf, LinearLayout parent, I item,
                              String up1, String up2, String up3, String type1, String type2, String type3, String sc1, String sc2, String sc3) {
 
-
-        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
-        addTitle(parent, inflate, R.string.FULL_1X2);
         View inflate1X2 = LayoutInflater.from(context).inflate(R.layout.addition_1x2_sport_item, null);
         TextView up1_tv = inflate1X2.findViewById(R.id.up1_tv);
         TextView down1_tv = inflate1X2.findViewById(R.id.down1_tv);
@@ -440,14 +524,26 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     private void addTitle(LinearLayout parent, View inflate, int titleRes) {
+        addTitle(parent, inflate, context.getString(titleRes));
+    }
+
+    private void addTitle(LinearLayout parent, View inflate, String title) {
         TextView titleTv = inflate.findViewById(R.id.title_tv);
-        titleTv.setText(titleRes);
+        titleTv.setText(title);
         parent.addView(inflate);
     }
 
-    private void setTextValueClick(TextView textView, String content, String type, int oid, I item, boolean isHalf, String sc) {
+    private void setTextValueClick(final TextView textView, final String content, final String type, final int oid, final I item, final boolean isHalf, final String sc) {
         textView.setText(content);
-        back.clickOdds(textView, item, type, isHalf, content, oid, sc);
+        if (StringUtils.isNull(content) || StringUtils.isNull(type) || oid < 1)
+            return;
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                back.clickOdds(textView, item, type, isHalf, content, oid, sc);
+            }
+        });
+
     }
 
     private void setTextValue(TextView tv, String s) {
@@ -530,7 +626,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         hasUpDown = "0";
                     }
 
-                    String hdpS = changeValueF(upDown);
+                    String hdpS = upDown;
                     if (item.getIsHomeGive().equals("1")) {
                         upStr = hdpS;
                         downStr = "";
@@ -548,7 +644,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     if (upDown.isEmpty() || upDown.equals("0")) {
                         hasUpDown = "0";
                     }
-                    String ouf = changeValueF(upDown);
+                    String ouf = upDown;
                     upStr = ouf;
                     downStr = "";
                     if (upType.startsWith("mm")) {

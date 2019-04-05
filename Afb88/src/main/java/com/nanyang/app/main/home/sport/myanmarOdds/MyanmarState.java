@@ -12,15 +12,12 @@ import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -28,7 +25,6 @@ import java.util.Map;
 
 public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract.View<MyanmarInfo>> {
 
-    protected Map<String, Map<String, Boolean>> localCollectionMap = new HashMap<>();
     private boolean isCollection;
 
 
@@ -55,15 +51,9 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<MyanmarInfo>(baseRecyclerAdapter) {
             @Override
-            public ScrollLayout onSetHeaderFollower() {
-                return getBaseView().onSetScrollHeader();
-            }
-
-            @Override
             public boolean isItemCollection(MyanmarInfo item) {
-                return false;
+                return isItemCollectionCommon(item);
             }
-
             @Override
             public void clickOdds(TextView v, MyanmarInfo item, String type, boolean isHf, String odds,int oid,String sc) {
                 IBetHelper<MyanmarInfo> helper = getBetHelper();
