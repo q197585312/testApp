@@ -2,6 +2,8 @@ package com.nanyang.app.main.BetCenter;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.nanyang.app.R;
@@ -20,10 +22,21 @@ import butterknife.Bind;
 public class BetCenterFragment extends BaseSwitchFragment {
     @Bind(R.id.rg_bet_center)
     RadioGroup rgBetCenter;
+    @Bind(R.id.rb_unsettled)
+    RadioButton rbUnsettled;
+    @Bind(R.id.rb_statement)
+    RadioButton rbStatement;
+    @Bind(R.id.rb_grade)
+    RadioButton rbGrade;
+    @Bind(R.id.SwipeRefreshLayout)
+    SwipeRefreshLayout swipeRefreshLayout;
     List<BaseFragment> baseFragmentList;
     BaseFragment unsettledFragment = new UnsettledFragment();
     BaseFragment statementNewFragment = new StatementNewFragment();
     BaseFragment gradeFragment = new GradeFragment();
+    public static String unsettled = "unsettled";
+    public static String statementNew = "statementNew";
+    public static String grade = "grade";
 
     @Override
     public int onSetLayoutId() {
@@ -34,6 +47,14 @@ public class BetCenterFragment extends BaseSwitchFragment {
     public void initData() {
         super.initData();
         setCurrentFragmentTitle();
+        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark);
+        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                baseFragmentList.get(currentIndex).refreshData();
+                swipeRefreshLayout.setRefreshing(false);
+            }
+        });
     }
 
     @Override
@@ -45,22 +66,35 @@ public class BetCenterFragment extends BaseSwitchFragment {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_unsettled:
-                        switchFragment(0);
+                        currentIndex = 0;
                         break;
                     case R.id.rb_statement:
-                        switchFragment(1);
+                        currentIndex = 1;
                         break;
                     case R.id.rb_grade:
-                        switchFragment(2);
+                        currentIndex = 2;
                         break;
                 }
+                switchFragment();
             }
         });
+        showContent();
     }
 
     private int lastIndex = -1;
+    private int currentIndex = 0;
 
-    public void switchFragment(int currentIndex) {
+    public void switchFragment() {
+        if (currentIndex == 0) {
+            rbUnsettled.setChecked(true);
+        } else if (currentIndex == 1) {
+            rbStatement.setChecked(true);
+        } else {
+            rbGrade.setChecked(true);
+        }
+        if (lastIndex == currentIndex) {
+            return;
+        }
         BaseFragment fragment = baseFragmentList.get(currentIndex);
         FragmentTransaction transaction = mContext.getSupportFragmentManager().beginTransaction();
         if (!fragment.isAdded()) {
@@ -73,5 +107,23 @@ public class BetCenterFragment extends BaseSwitchFragment {
         }
         lastIndex = currentIndex;
         transaction.commit();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        showContent();
+    }
+
+    @Override
+    public void showContent() {
+        if (switchType.equals(unsettled)) {
+            currentIndex = 0;
+        } else if (switchType.equals(statementNew)) {
+            currentIndex = 1;
+        } else {
+            currentIndex = 2;
+        }
+        switchFragment();
     }
 }

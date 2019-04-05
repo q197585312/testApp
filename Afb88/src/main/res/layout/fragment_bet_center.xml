@@ -10,18 +10,19 @@
     <RadioGroup
         android:id="@+id/rg_bet_center"
         android:layout_width="match_parent"
-        android:layout_height="40dp"
+        android:layout_height="44dp"
         android:orientation="horizontal">
 
         <RadioButton
-            android:text=""
             android:id="@+id/rb_unsettled"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selector_bet_center_select"
             android:button="@null"
-            android:checked="false" />
+            android:checked="false"
+            android:gravity="center"
+            android:text="进行中" />
 
         <RadioButton
             android:id="@+id/rb_statement"
@@ -30,7 +31,9 @@
             android:layout_weight="1"
             android:background="@drawable/selector_bet_center_select"
             android:button="@null"
-            android:checked="true" />
+            android:checked="true"
+            android:gravity="center"
+            android:text="@string/statement" />
 
         <RadioButton
             android:id="@+id/rb_grade"
@@ -39,11 +42,20 @@
             android:layout_weight="1"
             android:background="@drawable/selector_bet_center_select"
             android:button="@null"
-            android:checked="false" />
+            android:checked="false"
+            android:gravity="center"
+            android:text="@string/result" />
     </RadioGroup>
 
-    <FrameLayout
-        android:id="@+id/fl_content"
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/SwipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent">
+
+        <FrameLayout
+            android:id="@+id/fl_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></FrameLayout>
+
+    </android.support.v4.widget.SwipeRefreshLayout>
 </LinearLayout>

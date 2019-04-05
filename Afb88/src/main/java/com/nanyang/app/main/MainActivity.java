@@ -123,9 +123,11 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 } else if (getString(R.string.messages).equals(item.getText())) {
 
                 } else if (getString(R.string.statement).equals(item.getText())) {
+                    statementFragment.setSwitchType(BetCenterFragment.statementNew);
                     switchFragment(statementFragment);
                 } else if (getString(R.string.result).equals(item.getText())) {
-
+                    statementFragment.setSwitchType(BetCenterFragment.grade);
+                    switchFragment(statementFragment);
                 } else if (getString(R.string.contact).equals(item.getText())) {
 
                 } else if (getString(R.string.setting).equals(item.getText())) {
@@ -221,6 +223,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 switchFragment(contactFragment);
                 break;
             case R.id.fl_menu_statemente:
+                statementFragment.setSwitchType(BetCenterFragment.statementNew);
                 switchFragment(statementFragment);
                 break;
             case R.id.fl_menu_login_out:
@@ -241,6 +244,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     public void switchFragment(BaseSwitchFragment fragment) {
         if (fragment == indexFragment && lastIndexFragment != null) {
+            indexFragment.showContent();
             return;
         }
         indexFragment = fragment;

@@ -5,9 +5,4 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="statement_new"
-        android:textColor="@color/black" />
 </LinearLayout>
