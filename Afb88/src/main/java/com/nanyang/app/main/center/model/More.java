@@ -1,5 +1,8 @@
 package com.nanyang.app.main.center.model;
 
+import com.nanyang.app.main.BaseSwitchFragment;
+import com.unkonw.testapp.libs.base.BaseFragment;
+
 /**
  * Created by 47184 on 2019/3/15.
  */
@@ -8,6 +11,7 @@ public class More {
     private int image_left;
     private String text;
     private int image_right;
+    private BaseSwitchFragment fragment;
 
     public More() {
     }
@@ -16,6 +20,12 @@ public class More {
         this.image_left = image_left;
         this.text = text;
         this.image_right = image_right;
+    }
+    public More(int image_left, String text, int image_right,BaseSwitchFragment fragment) {
+        this.image_left = image_left;
+        this.text = text;
+        this.image_right = image_right;
+        this.fragment = fragment;
     }
 
     public int getImage_left() {
@@ -40,5 +50,13 @@ public class More {
 
     public void setImage_right(int image_right) {
         this.image_right = image_right;
+    }
+
+    public BaseSwitchFragment getFragment() {
+        return fragment;
+    }
+
+    public void setFragment(BaseSwitchFragment fragment) {
+        this.fragment = fragment;
     }
 }

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray_dark"
+    android:paddingTop="70dp"
+    android:paddingLeft="40dp"
+    android:paddingRight="40dp"
+    android:paddingBottom="50dp">
+
+    <include layout="@layout/include_fragment_title"
+        android:visibility="gone"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/white"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/left"
+            android:id="@+id/img_left"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:id="@+id/howtouse_content_layout">
+
+            <ImageView
+                android:id="@+id/howtosue_img"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:src="@mipmap/howtouse_step_1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/howtouse_title"
+                android:text="选择产品与时间区"
+                android:textColor="@color/black"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/howtouse_text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:textColor="@color/contact_font" />
+            <TextView
+                android:id="@+id/howtouse_text2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:textColor="@color/contact_font" />
+            <TextView
+                android:id="@+id/howtouse_text3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="5dp"
+                android:text=""
+                android:textColor="@color/contact_font" />
+        </LinearLayout>
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical"
+            android:src="@mipmap/right"
+            android:id="@+id/img_right"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        android:background="@color/white">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:paddingBottom="20dp"
+            android:gravity="center"
+            android:id="@+id/howtouse_redio_layout">
+        </LinearLayout>
+        <TextView
+            android:id="@+id/howtouse_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="略过"
+            android:gravity="right"
+            android:textSize="16sp"
+            android:paddingBottom="5dp"
+            android:paddingRight="20dp"
+            android:textColor="@color/update_bg2"/>
+    </LinearLayout>
+
+</LinearLayout>

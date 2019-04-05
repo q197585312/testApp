@@ -425,4 +425,21 @@
     <string name="others">Others</string>
     <string name="all_running">All Running</string>
     <string name="cricket">Cricket</string>
+    <string name="howtouse_title1_1">选择产品与时间区</string>
+    <string name="howtouse_content1_1">1. 先选择运动游戏类别</string>
+    <string name="howtouse_content1_2">2. 选择今日/滚球/早盘/日期 的联赛 后列所有场次</string>
+    <string name="howtouse_title2_1">选择联赛</string>
+    <string name="howtouse_content2_1">- 在选定的运动或游戏类别下显示所有联赛</string>
+    <string name="howtouse_content2_2">- 选择想看的联赛</string>
+    <string name="howtouse_title3_1">注单</string>
+    <string name="howtouse_content3_1">- 进入多注或混合过关的投注清单</string>
+    <string name="howtouse_content3_2">- 显示多注或混合过关待投注的数量</string>
+    <string name="howtouse_title4_1">我的最愛</string>
+    <string name="howtouse_content4_1">1. 在喜爱的联赛或场次前点击星星</string>
+    <string name="howtouse_content4_2">2. 点选右上角的星星来显示有加入最爱的联赛或场次</string>
+    <string name="howtouse_content4_3">3. 再点选一次就能离开我的最爱模式</string>
+    <string name="howtouse_title5_1">滚球赛事/滚球视讯</string>
+    <string name="howtouse_content5_1">1. 列出所有支持滚球赛事或者滚球视讯的比赛</string>
+    <string name="howtouse_content5_2">2. 点击”滚球赛事”或者”滚球视讯”的按钮即可进行观赏中下注</string>
+    <string name="howtouse_btn">略过</string>
 </resources>

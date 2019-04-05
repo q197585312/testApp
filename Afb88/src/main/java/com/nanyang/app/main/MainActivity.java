@@ -30,6 +30,7 @@ import com.nanyang.app.main.center.Statement.StatementFragment;
 import com.nanyang.app.main.center.model.More;
 import com.nanyang.app.main.home.HomeFragment;
 import com.nanyang.app.main.home.contact.ContactFragment;
+import com.nanyang.app.main.home.howtouse.HowToUseFragment;
 import com.nanyang.app.main.home.person.PersonCenterFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -66,6 +67,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     public BaseSwitchFragment statementFragment = new BetCenterFragment();
     public BaseSwitchFragment contactFragment = new ContactFragment();
     public BaseSwitchFragment personFragment = new PersonCenterFragment();
+    public BaseSwitchFragment howToUseFragment = new HowToUseFragment();
     public BaseSwitchFragment indexFragment;
     public BaseSwitchFragment lastIndexFragment;
     private List<More> dataList;
@@ -84,22 +86,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
         reContent.setLayoutManager(llm);
         dataList = new ArrayList<>();
-        More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0);
-        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message);
-        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0);
-        More m4 = new More(R.mipmap.result, getString(R.string.result), 0);
-        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0);
-        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0);
-        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0);
-        More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
-        dataList.add(m1);
-        dataList.add(m2);
-        dataList.add(m3);
-        dataList.add(m4);
-        dataList.add(m5);
-        dataList.add(m6);
-        dataList.add(m7);
-        dataList.add(m8);
+        initDataList();
         BaseRecyclerAdapter<More> adapter = new BaseRecyclerAdapter<More>(mContext, dataList, R.layout.item_main_more) {
 
             @Override
@@ -118,19 +105,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
             @Override
             public void onItemClick(View view, More item, int position) {
                 drawerLayout.closeDrawer(Gravity.RIGHT);
-                if (getString(R.string.my_account).equals(item.getText())) {
-                    switchFragment(personFragment);
-                } else if (getString(R.string.messages).equals(item.getText())) {
-
-                } else if (getString(R.string.statement).equals(item.getText())) {
-                    switchFragment(statementFragment);
-                } else if (getString(R.string.result).equals(item.getText())) {
-
-                } else if (getString(R.string.contact).equals(item.getText())) {
-
-                } else if (getString(R.string.setting).equals(item.getText())) {
-
-                } else {
+                if (getString(R.string.login_out).equals(item.getText())) {
                     BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
                         @Override
                         protected void clickSure(View v) {
@@ -143,9 +118,11 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                     pop.getChooseSureTv().setText(getString(R.string.sure));
                     pop.getChooseCancelTv().setText(getString(R.string.cancel));
                     onPopupWindowCreated(pop, Gravity.CENTER);
+                }else{
+                    if(item.getFragment()!=null){
+                        switchFragment(item.getFragment());
+                    }
                 }
-
-
             }
         });
         reContent.setAdapter(adapter);
@@ -160,6 +137,25 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         tvToolbarLeft.setVisibility(View.VISIBLE);
         tvToolbarLeft.setBackgroundResource(R.mipmap.left_logo);
         initUserData();
+    }
+
+    public void initDataList(){
+        More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0,personFragment);
+        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message);
+        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0,statementFragment);
+        More m4 = new More(R.mipmap.result, getString(R.string.result), 0);
+        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0,contactFragment);
+        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0);
+        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0,howToUseFragment);
+        More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
+        dataList.add(m1);
+        dataList.add(m2);
+        dataList.add(m3);
+        dataList.add(m4);
+        dataList.add(m5);
+        dataList.add(m6);
+        dataList.add(m7);
+        dataList.add(m8);
     }
 
     @Override
