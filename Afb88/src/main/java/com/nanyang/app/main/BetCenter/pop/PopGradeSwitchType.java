@@ -23,9 +23,8 @@ import butterknife.ButterKnife;
  */
 
 public abstract class PopGradeSwitchType extends BasePopupWindow {
-    public PopGradeSwitchType(Context context, View v, int width, int height, List<DataInfoBean> dataList) {
+    public PopGradeSwitchType(Context context, View v, int width, int height) {
         super(context, v, width, height);
-        adapter.setData(dataList);
     }
 
     @Override
@@ -49,13 +48,18 @@ public abstract class PopGradeSwitchType extends BasePopupWindow {
             }
         };
         rcContent.setLayoutManager(new LinearLayoutManager(context));
-        rcContent.setAdapter(adapter);
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<DataInfoBean>() {
             @Override
             public void onItemClick(View view, DataInfoBean item, int position) {
                 onClickItem(item);
+                closePopupWindow();
             }
         });
+        rcContent.setAdapter(adapter);
+    }
+
+    public void setDataList(List<DataInfoBean> dataList) {
+        adapter.setData(dataList);
     }
 
     public abstract void onClickItem(DataInfoBean item);

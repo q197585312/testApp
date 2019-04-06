@@ -475,4 +475,8 @@
     <string name="Athletics_name">竞技</string>
     <string name="ESports_name">电子竞技</string>
     <string name="Muay_Thai_name">泰拳</string>
+    <string name="today_match">今日赛事</string>
+    <string name="yesterday_match">昨日赛事</string>
+    <string name="sports">体育博彩</string>
+    <string name="all_match">所有赛事</string>
 </resources>

@@ -17,6 +17,11 @@ public class BaseParamBean {
     String Id;
     String transType;
     String socTransId;
+    String C_GameType;
+    String GameType;
+    String Date;
+    String Dates;
+    String LeagueType;
 
     public BaseParamBean(String ACT, String PT) {
         this.ACT = ACT;
@@ -53,6 +58,18 @@ public class BaseParamBean {
         this.PT = PT;
         this.socTransId = socTransId;
         this.transType = transType;
+        this.pgLable = pgLable;
+        this.vsn = vsn;
+    }
+
+    public BaseParamBean(String ACT, String C_GameType, String GameType, String Date, String Dates, String PT, String LeagueType, String pgLable, String vsn) {
+        this.ACT = ACT;
+        this.C_GameType = C_GameType;
+        this.GameType = GameType;
+        this.Date = Date;
+        this.Dates = Dates;
+        this.PT = PT;
+        this.LeagueType = LeagueType;
         this.pgLable = pgLable;
         this.vsn = vsn;
     }

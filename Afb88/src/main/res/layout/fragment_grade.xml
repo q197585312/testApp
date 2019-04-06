@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_weight="1"
-            android:text="体育博彩"
+            android:text="@string/sports"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -82,7 +82,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="8dp"
                 android:layout_weight="1"
-                android:text="今日赛事"
+                android:text="@string/today_match"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -114,7 +114,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="5dp"
                 android:layout_weight="1"
-                android:text="足球"
+                android:text="@string/Soccer_name"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -141,7 +141,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_weight="1"
-            android:text="所有联赛"
+            android:text="@string/all_match"
             android:textColor="@color/white"
             android:textSize="14sp" />
 
