@@ -1,4 +1,6 @@
 <resources>
+    <item type="id" name="tag_first"></item>
+    <item type="id" name="tag_second"></item>
     <string name="app_name">AFB1188</string>
     <string name="Account">Account</string>
     <string name="Password">Password</string>

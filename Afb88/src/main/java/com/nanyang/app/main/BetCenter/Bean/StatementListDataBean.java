@@ -168,6 +168,17 @@ public class StatementListDataBean {
         this.index25 = index25;
     }
 
+    public StatementListDataBean(String index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7) {
+        this.index0 = index0;
+        this.index1 = index1;
+        this.index2 = index2;
+        this.index3 = index3;
+        this.index4 = index4;
+        this.index5 = index5;
+        this.index6 = index6;
+        this.index7 = index7;
+    }
+
     public StatementListDataBean(String index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8) {
         this.index0 = index0;
         this.index1 = index1;
