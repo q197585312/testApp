@@ -8,6 +8,7 @@ import android.widget.RadioGroup;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BaseSwitchPresenter;
 import com.unkonw.testapp.libs.base.BaseFragment;
 
 import java.util.Arrays;
@@ -46,6 +47,7 @@ public class BetCenterFragment extends BaseSwitchFragment {
     @Override
     public void initData() {
         super.initData();
+        createPresenter(new BaseSwitchPresenter(this));
         setCurrentFragmentTitle();
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

@@ -1,6 +1,5 @@
 package com.nanyang.app.common;
 
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
@@ -9,13 +8,16 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.base.IBaseView;
-import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+
+import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -31,21 +33,28 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/4/19.
  */
 
-public class LanguagePresenter<T extends IBaseContext> extends BaseRetrofitPresenter<T> {
-    SwitchLanguage<T> switchLanguage;
+public class LanguagePresenter extends BaseSwitchPresenter {
+    SwitchLanguage switchLanguage;
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      *
-     * @param view
+     * @param iBaseContext
      */
-    public LanguagePresenter(T view) {
-        super(view);
-        switchLanguage = new SwitchLanguage<T>(view);
+    public LanguagePresenter(IBaseContext iBaseContext) {
+        super(iBaseContext);
+        switchLanguage = new SwitchLanguage(iBaseContext);
     }
 
+//    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","lang":"ZH-CN","pgLable":"0.18120996831154568","vsn":"4.0.12","PT":"wfLoginH50"}&_db={}
     public void switchLanguage(String lang) {
-        switchLanguage.switchLanguage(lang);
+        doRetrofitApiOnDefaultThread(switchLanguage.switchLanguage(lang), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                LogUtil.d("ssssssss",data);
+            }
+        });
+
     }
 
     public void skipGd88(final IBaseView baseView) {
@@ -136,7 +145,7 @@ public class LanguagePresenter<T extends IBaseContext> extends BaseRetrofitPrese
 
                             String url = m.group(1);
                             if (url.contains("Maintenance")) {
-                                Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
+                                Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
                                 throw exception;
                             } else {
 //                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
@@ -167,7 +176,7 @@ public class LanguagePresenter<T extends IBaseContext> extends BaseRetrofitPrese
                     @Override
                     public Flowable<String> apply(String str) throws Exception {
                         LanguageHelper helper = new LanguageHelper(baseContext.getBaseActivity());
-                        SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext);
+                        SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext.getBaseActivity());
                         return switchLanguage.switchLanguage(helper.getLanguage());
                     }
                 }), baseConsumer);

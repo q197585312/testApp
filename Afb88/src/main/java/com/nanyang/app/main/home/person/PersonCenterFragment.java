@@ -9,11 +9,11 @@ import android.widget.TextView;
 import com.nanyang.app.R;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.model.PersonCenter;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +24,7 @@ import butterknife.Bind;
  * Created by 47184 on 2019/3/18.
  */
 
-public class PersonCenterFragment extends BaseSwitchFragment {
+public class PersonCenterFragment extends BaseSwitchFragment<BaseSwitchPresenter> {
 
     @Bind(R.id.person_center_view)
     RecyclerView rcContent;
@@ -39,6 +39,7 @@ public class PersonCenterFragment extends BaseSwitchFragment {
     @Override
     public void initData() {
         super.initData();
+        createPresenter(new BaseSwitchPresenter(this));
         setCurrentFragmentTitle();
         aty = (MainActivity) getActivity();
         LinearLayoutManager llm = new LinearLayoutManager(mContext);

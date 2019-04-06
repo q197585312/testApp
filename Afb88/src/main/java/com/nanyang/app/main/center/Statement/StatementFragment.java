@@ -16,15 +16,14 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.center.StatemenStake.StatementStakeActivity;
-import com.nanyang.app.main.center.model.Contact;
 import com.nanyang.app.main.center.model.StatementListBean;
 import com.nanyang.app.main.center.model.StatementSureBlanceBean;
 import com.nanyang.app.main.center.model.StatementTransferBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
-import com.unkonw.testapp.libs.base.BaseFragment;
 
 import org.json.JSONException;
 
@@ -37,7 +36,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/3/11.
  */
 
-public class StatementFragment extends BaseSwitchFragment {
+public class StatementFragment extends BaseSwitchFragment<BaseSwitchPresenter> {
     @Bind(R.id.statement_list_rc)
     RecyclerView rc;
     @Bind(R.id.statement_transfer_rc)
@@ -67,6 +66,7 @@ public class StatementFragment extends BaseSwitchFragment {
     @Override
     public void initData() {
         super.initData();
+        createPresenter(new BaseSwitchPresenter(this));
         setCurrentFragmentTitle();
         AfbApplication app = (AfbApplication) getActivity().getApplication();
         userName = app.getUser().getLoginName();

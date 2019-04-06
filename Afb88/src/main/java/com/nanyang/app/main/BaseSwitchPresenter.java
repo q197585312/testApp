@@ -4,6 +4,7 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.center.model.Contact;
 import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
@@ -12,13 +13,13 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2019/4/3.
  */
 
-public class BaseSwitchPresenter extends BaseRetrofitPresenter<BaseSwitchFragment> {
+public class BaseSwitchPresenter extends BaseRetrofitPresenter<IBaseContext> {
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
      *
      * @param iBaseContext
      */
-    public BaseSwitchPresenter(BaseSwitchFragment iBaseContext) {
+    public BaseSwitchPresenter(IBaseContext iBaseContext) {
         super(iBaseContext);
     }
 

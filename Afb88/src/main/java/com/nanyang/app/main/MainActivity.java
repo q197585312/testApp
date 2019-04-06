@@ -27,6 +27,7 @@ import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
+import com.nanyang.app.main.center.changeLanguage.ChangeLanguageFragment;
 import com.nanyang.app.main.center.model.More;
 import com.nanyang.app.main.home.HomeFragment;
 import com.nanyang.app.main.home.contact.ContactFragment;
@@ -66,6 +67,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     public BaseSwitchFragment homeFragment = new HomeFragment();
     public BaseSwitchFragment statementFragment = new BetCenterFragment();
     public BaseSwitchFragment contactFragment = new ContactFragment();
+    BaseSwitchFragment changeLanguageFragment = new ChangeLanguageFragment();
     public BaseSwitchFragment personFragment = new PersonCenterFragment();
     public BaseSwitchFragment howToUseFragment = new HowToUseFragment();
     public BaseSwitchFragment messageFragment = new MessageFragment();
@@ -154,7 +156,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
         More m4 = new More(R.mipmap.result, getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
         More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0, contactFragment);
-        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0);
+        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0,changeLanguageFragment);
         More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0, howToUseFragment);
         More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
         dataList.add(m1);
@@ -268,9 +270,9 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (indexFragment == homeFragment) {
-                if(drawerLayout.isDrawerOpen(Gravity.RIGHT)){
+                if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
                     drawerLayout.closeDrawer(Gravity.RIGHT);
-                }else{
+                } else {
                     if (isTwoFinish()) {
                         finish();
                     } else {

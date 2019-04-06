@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/green_light_white"
     android:orientation="vertical">
-
+    <include layout="@layout/include_fragment_title"/>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rc"
         android:layout_width="match_parent"

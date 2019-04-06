@@ -58,7 +58,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pokercasino);
-        createPresenter(new LanguagePresenter(this));
+//        createPresenter(new LanguagePresenter(this));
         app = (AfbApplication) getApplication();
         initUi();
        /* readExternalStorage();

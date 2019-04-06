@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.model.Contact;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -24,7 +25,7 @@ import butterknife.Bind;
  * Created by 47184 on 2019/3/14.
  */
 
-public class ContactFragment extends BaseSwitchFragment {
+public class ContactFragment extends BaseSwitchFragment<BaseSwitchPresenter> {
     private static final String TAG = "ContactFragment";
     @Bind(R.id.contact_list)
     RecyclerView rvContent;
@@ -47,6 +48,7 @@ public class ContactFragment extends BaseSwitchFragment {
     public void initData() {
         super.initData();
         setCurrentFragmentTitle();
+        createPresenter(new BaseSwitchPresenter(this));
         aty = (MainActivity) getActivity();
         MyLinearLayoutManager mLayoutManager = new MyLinearLayoutManager(mContext);//设置为一个纵向网格布局
         rvContent.setLayoutManager(mLayoutManager);

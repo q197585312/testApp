@@ -43,8 +43,8 @@ public class SwitchLanguage<V extends IBaseContext> extends BaseRetrofitPresente
 
 
     public Flowable<String> switchLanguage(String lang) {
-//     http://main55.afb88.com/Main.aspx?lang=EN-US
-//         {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
+       // https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","PT":"wfMainH50","lang":"EN-US","accType":"","pgLable":"0.43137153259436567","vsn":"001"}&_db={}
+//     http://main55.afb88.com/Main.aspx?lang=EN-US     {"ACT":"GetTT","lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121","PT":"wfMain0"}
         if (BuildConfig.FLAVOR.equals("afb1188")) {
             return getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, new LoginInfo().getWfLanguage(getLanguage()));
         }

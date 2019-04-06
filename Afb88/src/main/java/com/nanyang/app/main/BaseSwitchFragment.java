@@ -12,7 +12,7 @@ import com.unkonw.testapp.libs.base.BaseFragment;
  * Created by Administrator on 2019/4/3.
  */
 
-public abstract class BaseSwitchFragment extends BaseFragment<BaseSwitchPresenter> {
+public abstract class BaseSwitchFragment<P extends BaseSwitchPresenter> extends BaseFragment<P> {
     ImageView imgBack;
     LinearLayout llBackTitle;
     MainActivity mainActivity;
@@ -21,7 +21,7 @@ public abstract class BaseSwitchFragment extends BaseFragment<BaseSwitchPresente
     @Override
     public void initData() {
         super.initData();
-        createPresenter(new BaseSwitchPresenter(this));
+
         mainActivity = (MainActivity) getBaseActivity();
     }
 

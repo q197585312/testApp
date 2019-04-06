@@ -11,11 +11,11 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -27,7 +27,7 @@ import butterknife.Bind;
  * Created by Administrator on 2017/3/28.
  */
 
-public class ChangeLanguageFragment extends BaseFragment<LanguagePresenter> implements ILanguageView<String> {
+public class ChangeLanguageFragment extends BaseSwitchFragment<LanguagePresenter> implements ILanguageView<String> {
     @Bind(R.id.rc)
     RecyclerView rc;
 

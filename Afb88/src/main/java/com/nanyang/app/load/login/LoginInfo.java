@@ -193,7 +193,7 @@ public class LoginInfo {
         String lang = "";
 /*        String pgLable = "0.6229094620888556";
         String vsn = "001";*/
-        String PT = "wfMain0";
+        String PT = "wfMainH50";
 
         public LanguageWfBean(String ACT, String lang, String PT) {
             this.ACT = ACT;
