@@ -135,7 +135,6 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvSettled = view.findViewById(R.id.tv_settled);
             final ImageView imgOpen1 = view.findViewById(R.id.img_open1);
             final LinearLayout llAddView = view.findViewById(R.id.ll_addView);
-            imgOpen1.setTag(R.id.tag_first, i);
             String date = bean.getIndex1();
             final String[] dateTrue = date.split(" ");
             String dateStr = DateUtils.format(dateTrue[0], "yyyy-MM-dd", "dd/MM/yyyy") + " " +
