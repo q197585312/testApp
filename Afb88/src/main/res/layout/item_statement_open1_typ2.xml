@@ -61,14 +61,44 @@
         android:textColor="@color/black"
         android:textSize="13sp" />
 
-    <TextView
-        android:id="@+id/tv_match_at"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="right"
-        android:text="0fdasfdasfsaf1"
-        android:textColor="@color/black"
-        android:textSize="13sp" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tv_match_at1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="0fdasfdasfsaf1"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+        <TextView
+            android:id="@+id/tv_match_at2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="0fdasfdasfsaf1"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+        <TextView
+            android:id="@+id/tv_match_at3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="0fdasfdasfsaf1"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+        <TextView
+            android:id="@+id/tv_match_at4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="0fdasfdasfsaf1"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tv_match_grade"
@@ -112,7 +142,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="ODDS "
+                    android:text="@string/Odds"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 
@@ -159,7 +189,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="W/L "
+                    android:text="@string/WL"
                     android:textColor="@color/black"
                     android:textSize="14sp" />
 

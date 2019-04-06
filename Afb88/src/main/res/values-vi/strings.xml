@@ -405,4 +405,16 @@
     <string name="howtouse_btn2">BẮT ĐẦU</string>
     <string name="announcements">Thông Báo</string>
     <string name="HALF_1X2">Half 1X2</string>
+    <string name="Parlay">PARLAY</string>
+    <string name="Amt">Tiền cược</string>
+    <string name="WL">Thắng/Thua</string>
+    <string name="Com">Tiền nước</string>
+    <string name="Lastweeksummary">Bản tóm tắt của tuần trước</string>
+    <string name="Settled">Xử lý</string>
+    <string name="Odds">Tỷ lệ cược</string>
+    <string name="ID">ID</string>
+    <string name="Result">Kết quả</string>
+    <string name="CloseDetail">Đóng các thông tin chi tiết</string>
+    <string name="OpenDetail">Mở thông tin chi tiết</string>
+    <string name="TotalOdds">Tất cả tỷ lệ</string>
 </resources>

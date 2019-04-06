@@ -397,4 +397,16 @@
     <string name="howtouse_btn2">스타트</string>
     <string name="announcements">발표</string>
     <string name="HALF_1X2">FH.1X2</string>
+    <string name="Parlay">Parlay</string>
+    <string name="Amt">금액</string>
+    <string name="WL">승/패</string>
+    <string name="Com">Com</string>
+    <string name="Lastweeksummary">지난주 요약</string>
+    <string name="Settled">완료</string>
+    <string name="Odds">승산</string>
+    <string name="ID">ID</string>
+    <string name="Result">결과</string>
+    <string name="CloseDetail">상세 한 정보를 닫다.</string>
+    <string name="OpenDetail">상세 한 정보를 펼치다.</string>
+    <string name="TotalOdds">총 배율</string>
 </resources>

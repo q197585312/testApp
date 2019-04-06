@@ -101,6 +101,13 @@
     </RelativeLayout>
 
     <LinearLayout
+        android:id="@+id/ll_addView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone"></LinearLayout>
+
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
@@ -115,7 +122,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="过关"
+            android:text="@string/Parlay"
             android:textColor="@color/blue2"
             android:textSize="14sp" />
 
@@ -125,7 +132,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="AMT:600"
+            android:text="@string/Amt"
             android:textColor="@color/black"
             android:textSize="14sp" />
 
@@ -140,7 +147,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="W/L:"
+                android:text="@string/WL"
                 android:textColor="@color/black"
                 android:textSize="14sp" />
 
@@ -148,8 +155,8 @@
                 android:id="@+id/tv_wl"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/blue2"
                 android:text="150"
+                android:textColor="@color/blue2"
                 android:textSize="14sp" />
         </LinearLayout>
 
@@ -159,16 +166,8 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="COM:0"
+            android:text="@string/Com"
             android:textColor="@color/black"
             android:textSize="14sp" />
     </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/ll_addView1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="8dp"
-        android:visibility="gone"></LinearLayout>
 </LinearLayout>

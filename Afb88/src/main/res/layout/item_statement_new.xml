@@ -35,13 +35,13 @@
                     android:id="@+id/tv_com"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="COM:0 "
+                    android:text="@string/Com"
                     android:textColor="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" W/L:"
+                    android:text="@string/WL"
                     android:textColor="@color/black" />
 
                 <TextView

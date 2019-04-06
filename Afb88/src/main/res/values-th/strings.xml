@@ -391,4 +391,16 @@
     <string name="howtouse_btn2">เริ่มต้น</string>
     <string name="announcements">ประกาศ</string>
     <string name="HALF_1X2">Half 1X2</string>
+    <string name="Parlay">สเต็ป</string>
+    <string name="Amt">จำนวน</string>
+    <string name="WL">ได้/เสีย</string>
+    <string name="Com">คอมมิชชั่น</string>
+    <string name="Lastweeksummary">สรุปสัปดาห์ที่ผ่านมา</string>
+    <string name="Settled">ชำระ</string>
+    <string name="Odds">ราคา</string>
+    <string name="ID">ไอดี</string>
+    <string name="Result">ผลการแข่งขัน</string>
+    <string name="CloseDetail">ปิดรายละเอียด</string>
+    <string name="OpenDetail">เปิดข้อมูลเพิ่มเติม</string>
+    <string name="TotalOdds">อัตราต่อรองรวม</string>
 </resources>

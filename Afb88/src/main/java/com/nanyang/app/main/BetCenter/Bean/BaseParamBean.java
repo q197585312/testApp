@@ -2,9 +2,6 @@ package com.nanyang.app.main.BetCenter.Bean;
 
 import com.google.gson.Gson;
 
-import java.util.HashMap;
-import java.util.Map;
-
 /**
  * Created by Administrator on 2019/4/4.
  */
@@ -15,10 +12,11 @@ public class BaseParamBean {
     String WorkingDate;
     String pgLable;
     String vsn;
-
-    public BaseParamBean() {
-
-    }
+    String to;
+    String from;
+    String Id;
+    String transType;
+    String socTransId;
 
     public BaseParamBean(String ACT, String PT) {
         this.ACT = ACT;
@@ -33,18 +31,31 @@ public class BaseParamBean {
         this.vsn = vsn;
     }
 
-    public Map<String, String> getFmBaseMp() {
-        Map<String, String> map = new HashMap<>();
-        map.put("_fm", new BaseParamBean("GetTT", "wfStatement2H50").getJson());
-        return map;
+    public BaseParamBean(String ACT, String PT, String Id, String pgLable, String vsn, int type) {
+        this.ACT = ACT;
+        this.PT = PT;
+        this.Id = Id;
+        this.pgLable = pgLable;
+        this.vsn = vsn;
     }
 
-    public Map<String, String> getFmSatementOpen1Mp(String date) {
-        Map<String, String> map = new HashMap<>();
-        map.put("_fm", new BaseParamBean("GetTableD", "wfStatement2H50", date, "", "").getJson());
-        return map;
+    public BaseParamBean(String ACT, String PT, String to, String from, String pgLable, String vsn) {
+        this.ACT = ACT;
+        this.PT = PT;
+        this.to = to;
+        this.from = from;
+        this.pgLable = pgLable;
+        this.vsn = vsn;
     }
 
+    public BaseParamBean(String ACT, String PT, String socTransId, String transType, String pgLable, String vsn, int type) {
+        this.ACT = ACT;
+        this.PT = PT;
+        this.socTransId = socTransId;
+        this.transType = transType;
+        this.pgLable = pgLable;
+        this.vsn = vsn;
+    }
 
     public String getJson() {
         return new Gson().toJson(this);
