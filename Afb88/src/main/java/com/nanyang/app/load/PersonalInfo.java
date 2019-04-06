@@ -6,7 +6,7 @@ package com.nanyang.app.load;
 
 public class PersonalInfo {
 
-    String password="";
+    String password = "";
 
     public String getLastLoginDate() {
         return lastLoginDate;
@@ -25,6 +25,7 @@ public class PersonalInfo {
      * credit2 : 0
      * TotalCredit : 0
      * "CurCode2":"MYR",
+     * "credit2":"-3732.93",
      */
 
     private String lastLoginDate;
@@ -35,7 +36,88 @@ public class PersonalInfo {
     private String MinLimit;
     private String credit2;
     private String TotalCredit;
+    String CTOddsDiff;
+    String CTSpreadDiff;
+    String oddsDiff;
+    String spreadDiff;
 
+    public String getBetable() {
+        return betable;
+    }
+
+    public void setBetable(String betable) {
+        this.betable = betable;
+    }
+
+    public String getTfDate() {
+        return tfDate;
+    }
+
+    public void setTfDate(String tfDate) {
+        this.tfDate = tfDate;
+    }
+
+    public String getLangCol() {
+        return LangCol;
+    }
+
+    public void setLangCol(String langCol) {
+        LangCol = langCol;
+    }
+
+    public String getUm() {
+        return um;
+    }
+
+    public void setUm(String um) {
+        this.um = um;
+    }
+
+    public String getDelay() {
+        return delay;
+    }
+
+    public void setDelay(String delay) {
+        this.delay = delay;
+    }
+
+    String betable;
+    String tfDate;
+    String LangCol;
+    String um;
+    String delay;
+
+    public String getCTOddsDiff() {
+        return CTOddsDiff;
+    }
+
+    public void setCTOddsDiff(String CTOddsDiff) {
+        this.CTOddsDiff = CTOddsDiff;
+    }
+
+    public String getCTSpreadDiff() {
+        return CTSpreadDiff;
+    }
+
+    public void setCTSpreadDiff(String CTSpreadDiff) {
+        this.CTSpreadDiff = CTSpreadDiff;
+    }
+
+    public String getOddsDiff() {
+        return oddsDiff;
+    }
+
+    public void setOddsDiff(String oddsDiff) {
+        this.oddsDiff = oddsDiff;
+    }
+
+    public String getSpreadDiff() {
+        return spreadDiff;
+    }
+
+    public void setSpreadDiff(String spreadDiff) {
+        this.spreadDiff = spreadDiff;
+    }
 
 
 
@@ -46,7 +128,6 @@ public class PersonalInfo {
     public void setPassword(String password) {
         this.password = password;
     }
-
 
 
     public String getLoginName() {

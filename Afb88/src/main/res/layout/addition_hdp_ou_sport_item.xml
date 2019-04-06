@@ -37,7 +37,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:padding="1dp"
-                        android:text="@string/home"
+                        android:text="@string/Home"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
 
@@ -82,7 +82,7 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/Away"
-                        android:textColor="@color/red"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -133,7 +133,7 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/over"
-                        android:textColor="@color/red"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -177,7 +177,7 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/under"
-                        android:textColor="@color/red"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -227,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:padding="1dp"
-                        android:text="@string/home"
+                        android:text="@string/Home"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
 
@@ -272,7 +272,7 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/Away"
-                        android:textColor="@color/red"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -324,7 +324,7 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/over"
-                        android:textColor="@color/red"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -368,7 +368,7 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/under"
-                        android:textColor="@color/red"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView

@@ -27,9 +27,8 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
         TextView timeTv = helper.getView(R.id.module_match_time_tv);
         TextView homeScoreTv = helper.getView(R.id.module_match_home_score_tv);
         TextView awayScoreTv = helper.getView(R.id.module_match_away_score_tv);
-        dateTv.setTextAppearance(context, R.style.text_bold);
-        dateTv.setPadding(0, 0, 10, 0);
         liveTv.setVisibility(View.GONE);
+        dateTv.setVisibility(View.GONE);
         if (item.getRunHomeScore() != null && item.getRunAwayScore() != null && !item.getRunAwayScore().equals("") && !item.getRunHomeScore().equals("")) {
             String sHome = item.getRunHomeScore();
             String sAway = item.getRunAwayScore();
@@ -37,7 +36,8 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             homeScoreTv.setText(sHome);
 
         } else {
-            dateTv.setText("");
+            awayScoreTv.setText("");
+            homeScoreTv.setText("");
         }
         if (item.getLive().contains("HT")) {
             timeTv.setText("HT");

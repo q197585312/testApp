@@ -188,7 +188,7 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             @Override
             public void afterTextChanged(Editable s) {
                 if (!AfbUtils.touzi_ed_values22.equals(headOddsEdt.getText().toString().trim().replaceAll(",", ""))) {
-                    if (getApp().getBetAfbList() != null && !StringUtils.isEmpty(s.toString().trim()) && Integer.valueOf(s.toString().trim().replaceAll(",", "")) > Integer.valueOf(getApp().getBetAfbList().getMaxLimit())) {
+                    if (getApp().getBetAfbList() != null && !StringUtils.isEmpty(s.toString().trim()) && Float.valueOf(s.toString().trim().replaceAll(",", "")) > Float.valueOf(getApp().getBetAfbList().getMaxLimit())) {
                         headOddsEdt.setText(AfbUtils.addComma(getApp().getBetAfbList().getMaxLimit(), headOddsEdt));
                     } else {
                         headOddsEdt.setText(AfbUtils.addComma(headOddsEdt.getText().toString().trim().replaceAll(",", ""), headOddsEdt));
