@@ -4,14 +4,17 @@ package com.nanyang.app.main.home.sport.additional;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
+import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
-import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.AdditionBean;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import org.json.JSONException;
 
@@ -39,7 +42,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
     private String getUrl() {
 
         String url = AppConstant.getInstance().HOST + "_view/MoreBet_App.aspx?oId=" + bean.getSocOddsId() /*+ "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&moduleTitle=" + StringUtils.URLEncode(bean.getModuleTitle().toString()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning*/
-                + "&T=MB2&mt=0";
+                + "&T=MB2" + ((SportActivity) baseContext.getIBaseContext().getBaseActivity()).getAllOddsType().getType();
         url = url + "&t=" + System.currentTimeMillis();
         return url;
     }
@@ -66,13 +69,16 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
 
         @Override
         public void run() {
-            doRetrofitApiOnUiThread(getService(ApiService.class).getAdditionData(getUrl()), new BaseConsumer<AdditionBean>(baseContext) {
+            doRetrofitApiOnUiThread(getService(ApiService.class).getData(getUrl()), new BaseConsumer<String>(baseContext) {
                 @Override
-                protected void onBaseGetData(AdditionBean data) throws JSONException {
-                    AdditionPresenter.this.baseContext.onAddition(data, position);
+                protected void onBaseGetData(String data) throws JSONException {
+                    Gson gson = new Gson();
+                    LogUtil.d("Addition", "-------" + data);
+                    AdditionBean additionBean = gson.fromJson(data, AdditionBean.class);
+                    AdditionPresenter.this.baseContext.onAddition(additionBean, position);
                 }
             });
-//            updateHandler.postDelayed(this, 20000);// 50是延时时长
+            updateHandler.postDelayed(this, 20000);// 50是延时时长
         }
     }
 }

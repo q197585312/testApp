@@ -84,7 +84,7 @@ public class AppConstant {
    // https://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&g=1&ot=r&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-25&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
 //    https://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&g=1&ot=r&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-25&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
     //https://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&g=1&ot=r&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-25&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=
-
+//http://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&tp=0&fh=1&g=1&ot=r&ov=0&tf=-1&TFStatus=0&update=false&r=153004462&FAV=&SL=&_=1111&mt=0&accType=MY
     public String URL_FIVE_MAJOR_RUNNING = "http://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&tp=0&fh=1&g=200&ot=r&ov=0&tf=-1&TFStatus=0&update=false&r=153004462&FAV=&SL=&_=1111";
     public String URL_FIVE_MAJOR_TODAY = "http://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&tp=0&fh=1&g=200&ot=t&ov=0&tf=-1&TFStatus=0&update=false&r=153004462&wd=&ia=0&FAV=&SL=&_=1111";
     public String URL_FIVE_MAJOR_EARLY = "http://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&tp=0&fh=1&g=200&ot=e&ov=0&tf=2&TFStatus=0&update=false&r=246503518&FAV=&SL=&_=1111";
