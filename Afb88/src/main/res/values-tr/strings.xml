@@ -404,5 +404,17 @@
     <string name="howtouse_btn2">BAŞLA</string>
     <string name="announcements">Duyurular</string>
     <string name="HALF_1X2">Half 1X2</string>
+    <string name="Parlay">Parlay</string>
+    <string name="Amt">Mkt.</string>
+    <string name="WL">K/K</string>
+    <string name="Com">Kom</string>
+    <string name="Lastweeksummary">Geçen hafta özeti</string>
+    <string name="Settled">Sonuçlandı</string>
+    <string name="Odds">ORAN</string>
+    <string name="ID">ID</string>
+    <string name="Result">Sonuç</string>
+    <string name="CloseDetail">Close Detail</string>
+    <string name="OpenDetail">Open Detail</string>
+    <string name="TotalOdds">Total Odds</string>
 
 </resources>

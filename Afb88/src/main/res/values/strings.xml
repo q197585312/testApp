@@ -477,4 +477,17 @@
     <string name="Athletics_name">Athletics</string>
     <string name="ESports_name">E-Sports</string>
     <string name="Muay_Thai_name">Muay Thai</string>
+    <string name="Parlay">PARLAY</string>
+    <string name="Amt">Amt</string>
+    <string name="WL">W/L</string>
+    <string name="Com">Com</string>
+    <string name="Lastweeksummary">Last week summary</string>
+    <string name="Settled">Settled</string>
+    <string name="Est_Payout">Est. /Payout</string>
+    <string name="Odds">Odds</string>
+    <string name="ID">ID</string>
+    <string name="Result">Result</string>
+    <string name="CloseDetail">Close Detail</string>
+    <string name="OpenDetail">Open Detail</string>
+    <string name="TotalOdds">Total Odds</string>
 </resources>

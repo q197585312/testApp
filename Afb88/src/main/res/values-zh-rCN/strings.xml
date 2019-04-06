@@ -475,4 +475,17 @@
     <string name="Athletics_name">竞技</string>
     <string name="ESports_name">电子竞技</string>
     <string name="Muay_Thai_name">泰拳</string>
+    <string name="Parlay">过关</string>
+    <string name="Amt">数额</string>
+    <string name="WL">输/赢</string>
+    <string name="Com">佣金</string>
+    <string name="Lastweeksummary">本周旧帐</string>
+    <string name="Settled">清帐</string>
+    <string name="Est_Payout">估计赢得数额</string>
+    <string name="Odds">赔率</string>
+    <string name="ID">编号</string>
+    <string name="Result">比数</string>
+    <string name="CloseDetail">关闭详细信息</string>
+    <string name="OpenDetail">打开详细信息</string>
+    <string name="TotalOdds">总赔率</string>
 </resources>
