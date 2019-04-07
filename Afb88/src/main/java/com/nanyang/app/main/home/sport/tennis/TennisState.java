@@ -18,7 +18,7 @@ import java.util.List;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class TennisState extends BasketballCommonState{
+public abstract class TennisState extends BasketballCommonState {
 
 
     public TennisState(SportContract.View baseView) {
@@ -39,15 +39,17 @@ public abstract class TennisState extends BasketballCommonState{
     protected void onTypeClick(MenuItemInfo item) {
 
     }
+
     @Override
     protected List<MenuItemInfo> getTypes() {
         List<MenuItemInfo> types = new ArrayList<>();
         types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
         types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
         types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running"));
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight), "OutRight"));
+//        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
+
     @Override
     public boolean mix() {
         return false;
@@ -59,7 +61,6 @@ public abstract class TennisState extends BasketballCommonState{
     }
 
 
-
     @Override
     protected List<List<String>> initHeaderList() {
         List<List<String>> texts = new ArrayList<>();
@@ -69,7 +70,6 @@ public abstract class TennisState extends BasketballCommonState{
         texts.add(items1);
         return texts;
     }
-
 
 
     @Override

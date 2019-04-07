@@ -9,6 +9,14 @@ public class LeagueBean implements Serializable {
     String moduleTitle;
     String moduleId;
 
+    @Override
+    public String toString() {
+        return "LeagueBean{" +
+                "moduleTitle='" + moduleTitle + '\'' +
+                ", moduleId='" + moduleId + '\'' +
+                '}';
+    }
+
     public String getModuleTitle() {
         return moduleTitle;
     }

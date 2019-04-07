@@ -67,7 +67,10 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 repeatRow = new ArrayList<>();
                 repeatRow.add(data);
             }
+            next.setModuleId(data.getModuleId());
+            next.setModuleTitle(data.getModuleTitle());
             repeatRow.add(next);
+
             data.setRepeatRow(repeatRow);
             tempData = data;
          /*   LogUtil.e("Addition", "tempData=data,tempData.getRepeatRow().size:" + tempData.getRepeatRow().size());*/

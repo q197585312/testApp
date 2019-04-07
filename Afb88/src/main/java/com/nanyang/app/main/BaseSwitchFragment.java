@@ -5,6 +5,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.unkonw.testapp.libs.base.BaseFragment;
 
@@ -15,14 +16,14 @@ import com.unkonw.testapp.libs.base.BaseFragment;
 public abstract class BaseSwitchFragment<P extends BaseSwitchPresenter> extends BaseFragment<P> {
     ImageView imgBack;
     LinearLayout llBackTitle;
-    MainActivity mainActivity;
+    BaseToolbarActivity mainActivity;
     TextView title;
 
     @Override
     public void initData() {
         super.initData();
 
-        mainActivity = (MainActivity) getBaseActivity();
+        mainActivity = (BaseToolbarActivity) getBaseActivity();
     }
 
     @Override

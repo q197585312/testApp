@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -15,9 +15,17 @@ import android.widget.TextView;
 
 import com.nanyang.app.Utils.TimeUtils;
 import com.nanyang.app.load.login.LoginActivity;
+import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BetCenter.BetCenterFragment;
+import com.nanyang.app.main.center.changeLanguage.ChangeLanguageFragment;
+import com.nanyang.app.main.home.HomeFragment;
+import com.nanyang.app.main.home.contact.ContactFragment;
 import com.nanyang.app.main.home.discount.DiscountActivity;
+import com.nanyang.app.main.home.howtouse.HowToUseFragment;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
+import com.nanyang.app.main.home.message.MessageFragment;
+import com.nanyang.app.main.home.person.PersonCenterFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -431,5 +439,32 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         if (isNeedUpdateTime()) {
             updateHandler.removeCallbacks(timeUpdateRunnable);
         }
+    }
+    public BaseSwitchFragment homeFragment = new HomeFragment();
+    public BaseSwitchFragment statementFragment = new BetCenterFragment();
+    public BaseSwitchFragment contactFragment = new ContactFragment();
+    public BaseSwitchFragment changeLanguageFragment = new ChangeLanguageFragment();
+    public BaseSwitchFragment personFragment = new PersonCenterFragment();
+    public BaseSwitchFragment howToUseFragment = new HowToUseFragment();
+    public BaseSwitchFragment messageFragment = new MessageFragment();
+    public BaseSwitchFragment indexFragment;
+    public BaseSwitchFragment lastIndexFragment;
+    public void switchFragment(BaseSwitchFragment fragment) {
+        if (fragment == indexFragment && lastIndexFragment != null) {
+            indexFragment.showContent();
+            return;
+        }
+        indexFragment = fragment;
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        if (!fragment.isAdded()) {
+            transaction.add(R.id.fl_main_content, fragment);
+        } else {
+            transaction.show(fragment);
+        }
+        if (lastIndexFragment != null) {
+            transaction.hide(lastIndexFragment);
+        }
+        lastIndexFragment = indexFragment;
+        transaction.commit();
     }
 }

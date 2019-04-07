@@ -31,4 +31,12 @@ public class TableSportInfo<T extends SportInfo> implements Serializable {
         this.leagueBean = leagueBean;
         this.rows = rows;
     }
+
+    @Override
+    public String toString() {
+        return "TableSportInfo{" +
+                "leagueBean=" + leagueBean +
+                ", rows=" + rows +
+                '}';
+    }
 }

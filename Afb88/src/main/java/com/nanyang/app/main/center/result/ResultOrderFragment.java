@@ -265,7 +265,7 @@ marketType*/
                 presenter.selectedType("sortBy", view);
                 break;
             case R.id.tv_league_title:
-                presenter.selectedType("moduleTitle", view);
+                presenter.selectedType("ModuleTitle", view);
                 break;
         }
     }

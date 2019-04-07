@@ -24,7 +24,7 @@ public class BettingPromptBean {
  "AmtS": "0",
  "ExRate": "1",
  "BetterOdds": 1,
- "MoreBetUrl": "../_View/MoreBet.aspx?oId=12333468&home=Adelaide+United&away=Perth+Glory&moduleTitle=AUSTRALIA+HYUNDAI+A+LEAGUE&date=04%3a50PM&lang=EN-US",
+ "MoreBetUrl": "../_View/MoreBet.aspx?oId=12333468&home=Adelaide+United&away=Perth+Glory&ModuleTitle=AUSTRALIA+HYUNDAI+A+LEAGUE&date=04%3a50PM&lang=EN-US",
  "Test": "testing"*/
 
     /**{"BetType": "away",
@@ -46,7 +46,7 @@ public class BettingPromptBean {
      * "MinLimit": "10",
      * "MaxLimit": "30000",
      * "HidOdds": "1.08",
-     * "AmtS": "0", "ExRate": "1", "BetterOdds": 1, "MoreBetUrl": "../_View/MoreBet.aspx?oId=12219287&home=AS%e6%91%a9%e7%ba%b3%e5%93%a5&away=%e6%9b%bc%e5%9f%8e&moduleTitle=%e6%ac%a7%e6%b4%b2%e5%86%a0%e5%86%9b%e8%81%94%e8%b5%9b&date=03%3a45AM&lang=eng", "Test": "testing" }*/
+     * "AmtS": "0", "ExRate": "1", "BetterOdds": 1, "MoreBetUrl": "../_View/MoreBet.aspx?oId=12219287&home=AS%e6%91%a9%e7%ba%b3%e5%93%a5&away=%e6%9b%bc%e5%9f%8e&ModuleTitle=%e6%ac%a7%e6%b4%b2%e5%86%a0%e5%86%9b%e8%81%94%e8%b5%9b&date=03%3a45AM&lang=eng", "Test": "testing" }*/
     /**
      {
      "BetType": "dc",
@@ -70,7 +70,7 @@ public class BettingPromptBean {
      "AmtS": "0",
      "ExRate": "1",
      "BetterOdds": 1,
-     "MoreBetUrl": "../_View/MoreBet.aspx?oId=12262811&home=%e4%b8%ad%e5%b2%b8%e6%b0%b4%e6%89%8b&away=%e9%98%bf%e5%be%b7%e8%8e%b1%e5%be%b7%e8%81%94&moduleTitle=%e6%be%b3%e6%b4%b2%e7%94%b2%e7%bb%84%e8%81%94%e8%b5%9b&date=&lang=eng",
+     "MoreBetUrl": "../_View/MoreBet.aspx?oId=12262811&home=%e4%b8%ad%e5%b2%b8%e6%b0%b4%e6%89%8b&away=%e9%98%bf%e5%be%b7%e8%8e%b1%e5%be%b7%e8%81%94&ModuleTitle=%e6%be%b3%e6%b4%b2%e7%94%b2%e7%bb%84%e8%81%94%e8%b5%9b&date=&lang=eng",
      "Test": "testing"
      }
      */

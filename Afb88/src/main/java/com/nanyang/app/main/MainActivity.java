@@ -2,7 +2,6 @@ package com.nanyang.app.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -247,24 +246,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         ToastUtils.showShort(data);
     }
 
-    public void switchFragment(BaseSwitchFragment fragment) {
-        if (fragment == indexFragment && lastIndexFragment != null) {
-            indexFragment.showContent();
-            return;
-        }
-        indexFragment = fragment;
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (!fragment.isAdded()) {
-            transaction.add(R.id.fl_main_content, fragment);
-        } else {
-            transaction.show(fragment);
-        }
-        if (lastIndexFragment != null) {
-            transaction.hide(lastIndexFragment);
-        }
-        lastIndexFragment = indexFragment;
-        transaction.commit();
-    }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

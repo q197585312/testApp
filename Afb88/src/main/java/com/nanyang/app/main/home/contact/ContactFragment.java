@@ -7,10 +7,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.BaseSwitchPresenter;
-import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.model.Contact;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -37,7 +37,7 @@ public class ContactFragment extends BaseSwitchFragment<BaseSwitchPresenter> {
     BaseRecyclerAdapter<Contact.ContactBean> adapter;
     BaseRecyclerAdapter<Contact.ContactBean> adapter1;
 
-    MainActivity aty;
+    BaseToolbarActivity aty;
 
     @Override
     public int onSetLayoutId() {
@@ -49,7 +49,7 @@ public class ContactFragment extends BaseSwitchFragment<BaseSwitchPresenter> {
         super.initData();
         setCurrentFragmentTitle();
         createPresenter(new BaseSwitchPresenter(this));
-        aty = (MainActivity) getActivity();
+        aty = (BaseToolbarActivity) getActivity();
         MyLinearLayoutManager mLayoutManager = new MyLinearLayoutManager(mContext);//设置为一个纵向网格布局
         rvContent.setLayoutManager(mLayoutManager);
         MyLinearLayoutManager mLayoutManager1 = new MyLinearLayoutManager(mContext);
