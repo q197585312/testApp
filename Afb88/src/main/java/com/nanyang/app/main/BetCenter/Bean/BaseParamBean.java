@@ -22,6 +22,7 @@ public class BaseParamBean {
     String Date;
     String Dates;
     String LeagueType;
+    String Type;
 
     public BaseParamBean(String ACT, String PT) {
         this.ACT = ACT;
@@ -34,6 +35,16 @@ public class BaseParamBean {
         this.WorkingDate = WorkingDate;
         this.pgLable = pgLable;
         this.vsn = vsn;
+    }
+
+    public BaseParamBean(String ACT, String PT, String type) {
+        this.ACT = ACT;
+        this.PT = PT;
+        if(PT.equals("wfRunningH50")){
+            this.Type = type;
+        }
+        this.pgLable = "";
+        this.vsn = "";
     }
 
     public BaseParamBean(String ACT, String PT, String Id, String pgLable, String vsn, int type) {
