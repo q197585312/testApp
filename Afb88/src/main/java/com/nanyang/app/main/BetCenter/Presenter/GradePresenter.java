@@ -70,40 +70,68 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
         return list;
     }
 
-    public List<DataInfoBean> getFootballDataList() {
+    public List<DataInfoBean> getFootballDataList(int type) {
         List<DataInfoBean> list = new ArrayList<>();
-        list.add(new DataInfoBean(baseContext.getString(R.string.Soccer_name), "S,S,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string._1D_name), "1,S,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string._2D_name), "2,S,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Basketball_name), "B,B,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Olympic_name), "B,OL,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.USFootball_name), "B,N,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Baseball_name), "S,BB,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.IceHockey_name), "S,H,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.PoolSnooker_name), "S,K,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Rugby_name), "B,R,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Tennis_name), "B,T,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Darts_name), "S,D,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.boxing_name), "S,X,p4,g4"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Formula1_name), "S,F1H,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.MotorSports_name), "S,MSH,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Golf_name), "S,G,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Futsal_name), "S,FS,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Badminton_name), "B,BD,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.WaterPolo_name), "B,WP,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.TableTennis_name), "B,TT,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Cricket_name), "S,CK,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Volleyball_name), "S,V,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Handball_name), "B,HB,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.BeachSoccer_name), "B,BS,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Financials_name), "S,F,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.WinterSport_name), "S,WS,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Cycling_name), "S,CYH,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Squash_name), "B,SQ,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.HuayThai_name), "S,TH,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Athletics_name), "B,AT,p2,g2"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.ESports_name), "S,ES,p1,g1"));
-        list.add(new DataInfoBean(baseContext.getString(R.string.Muay_Thai_name), "S,MT,p4,g4"));
+        if (type == 1) {
+            list.add(new DataInfoBean(baseContext.getString(R.string.Soccer_name), "S,S,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string._1D_name), "1,S,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string._2D_name), "2,S,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Basketball_name), "B,B,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Olympic_name), "B,OL,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.USFootball_name), "B,N,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Baseball_name), "S,BB,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.IceHockey_name), "S,H,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.PoolSnooker_name), "S,K,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Rugby_name), "B,R,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Tennis_name), "B,T,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Darts_name), "S,D,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.boxing_name), "S,X,p4,g4"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Formula1_name), "S,F1H,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.MotorSports_name), "S,MSH,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Golf_name), "S,G,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Futsal_name), "S,FS,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Badminton_name), "B,BD,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.WaterPolo_name), "B,WP,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.TableTennis_name), "B,TT,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Cricket_name), "S,CK,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Volleyball_name), "S,V,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Handball_name), "B,HB,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.BeachSoccer_name), "B,BS,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Financials_name), "S,F,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.WinterSport_name), "S,WS,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Cycling_name), "S,CYH,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Squash_name), "B,SQ,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.HuayThai_name), "S,TH,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Athletics_name), "B,AT,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.ESports_name), "S,ES,p1,g1"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Muay_Thai_name), "S,MT,p4,g4"));
+        } else {
+            list.add(new DataInfoBean(baseContext.getString(R.string.Soccer_Outright), "S,SO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Basketball_Outright), "S,BO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Olympic_Outright), "S,OLO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.US_Football_Outright), "S,NO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Baseball_Outright), "S,BBO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Ice_Hockey_Outright), "S,HO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Pool_Snooker_Outright), "S,KO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Rugby_Outright), "S,RO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Tennis_Outright), "B,TO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Darts_Outright), "S,DO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.BOXING_Outright), "S,XO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Motor_Sports_Outright), "S,MSO,p2,g2"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Golf_Outright), "S,GO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Futsal_Outright), "S,FSO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Badminton_Outright), "B,BDO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Water_Polo_Outright), "B,WPO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Table_Tennis_Outright), "B,TTO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Cricket_Outright), "S,CKO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Volleyball_Outright), "S,VO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Handball_Outright), "B,HBO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Beach_Soccer_Outright), "B,BSO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Winter_Sport_Outright), "S,WSO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Cycling_Outright), "S,CYO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.Athletics_Outright), "B,ATO,p3,g3"));
+            list.add(new DataInfoBean(baseContext.getString(R.string.E_Sports_Outright), "S,ESO,p3,g3"));
+        }
         return list;
     }
 
@@ -144,10 +172,9 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
                 }
             }
         });
-        gradeFragment.onGeChampionGradeData();
     }
 
-    public void getNormalGradeData(String gameType, String data, String LeagueType) {
+    public void getGradeData(String gameType, String data, String LeagueType) {
         String p = BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetDate", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson();
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
             @Override
@@ -164,7 +191,7 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
                         GradeAllMatchBean bean = new GradeAllMatchBean(jsonArrayArr.getInt(0), jsonArrayArr.getInt(1), jsonArrayArr.getString(2));
                         list.add(bean);
                     }
-                    gradeFragment.onGetNormalGradeData(list);
+                    gradeFragment.onGetGradeData(list);
                 }
             }
         });
@@ -196,9 +223,5 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
                 }
             }
         });
-    }
-
-    public void getChampionGradeData() {
-        gradeFragment.onGeChampionGradeData();
     }
 }
