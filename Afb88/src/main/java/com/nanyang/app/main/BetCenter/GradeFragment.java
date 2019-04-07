@@ -3,6 +3,7 @@ package com.nanyang.app.main.BetCenter;
 import android.support.annotation.IdRes;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
@@ -14,14 +15,18 @@ import com.nanyang.app.R;
 import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.main.BetCenter.Bean.DataInfoBean;
 import com.nanyang.app.main.BetCenter.Bean.GradeAllMatchBean;
+import com.nanyang.app.main.BetCenter.Bean.GradeOpenDataBean;
 import com.nanyang.app.main.BetCenter.Presenter.GradePresenter;
 import com.nanyang.app.main.BetCenter.pop.PopGradeSwitchType;
+import com.nanyang.app.main.MainContract;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -54,6 +59,9 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
     private String date;
     private String leagueType;
     private BaseRecyclerAdapter<GradeAllMatchBean> normalAdapter;
+    private Map<Integer, Boolean> normalStatusMap;
+    private int clickPosition;
+    private LayoutInflater layoutInflater;
 
 
     @Override
@@ -64,13 +72,13 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
     @Override
     public void initData() {
         super.initData();
+        normalStatusMap = new HashMap<>();
         rgType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_normal:
                         currentRequestType = 1;
-
                         break;
                     case R.id.rb_champion:
                         currentRequestType = 2;
@@ -80,10 +88,10 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
             }
         });
         createPresenter(new GradePresenter(this));
+        layoutInflater = LayoutInflater.from(mContext);
         initAdapter();
-//        getGradeData();
         gameType = "S,S,p1,g1";
-        date = DateUtils.getCurrentDate("yyyy-MM-dd");
+        date = presenter.getDateDataList().get(0).getType();
         leagueType = "0";
         getAllMatchDataList();
     }
@@ -91,17 +99,50 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
     private void initAdapter() {
         normalAdapter = new BaseRecyclerAdapter<GradeAllMatchBean>(mContext, new ArrayList<GradeAllMatchBean>(), R.layout.item_normal_content) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, GradeAllMatchBean item) {
+            public void convert(MyRecyclerViewHolder holder, final int position, GradeAllMatchBean item) {
                 LinearLayout llContent = holder.getView(R.id.ll_content);
+                LinearLayout llAddView = holder.getView(R.id.ll_addView);
                 TextView tvContent = holder.getView(R.id.tv_content);
-                tvContent.setText(item.getIndex1());
+                tvContent.setText(item.getIndex2());
                 if (position % 2 == 0) {
                     llContent.setBackgroundColor(0xffEFEFEF);
                 } else {
                     llContent.setBackgroundColor(0xffD6DBD7);
                 }
+                llAddView.removeAllViews();
+                if (item.getGradeOpenDataBeanlist() != null) {
+                    boolean status = normalStatusMap.get(position);
+                    if (status) {
+                        addNormalView(item.getGradeOpenDataBeanlist(), llAddView);
+                        llAddView.setVisibility(View.VISIBLE);
+                    } else {
+                        llAddView.setVisibility(View.GONE);
+                    }
+                } else {
+                    llAddView.setVisibility(View.GONE);
+                }
             }
         };
+        normalAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<GradeAllMatchBean>() {
+            @Override
+            public void onItemClick(View view, GradeAllMatchBean item, int position) {
+                boolean status = normalStatusMap.get(position);
+                normalStatusMap.put(position, !status);
+                clickPosition = position;
+                LinearLayout addView = view.findViewById(R.id.ll_addView);
+                leagueType = normalAdapter.getItem(position).getIndex0() + "";
+                if (addView.getChildCount() < 1) {
+                    getGradeContentOpenData();
+                } else {
+                    int visibility = addView.getVisibility();
+                    if (visibility == View.VISIBLE) {
+                        addView.setVisibility(View.GONE);
+                    } else {
+                        addView.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
         rcContent.setLayoutManager(new LinearLayoutManager(mContext));
         rcContent.setAdapter(normalAdapter);
     }
@@ -114,16 +155,65 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
     public void onGetAllMatchDataList(List<DataInfoBean> list) {
         if (popAllMatch == null) {
             popAllMatch = createPop(llAllMatch, tvAllMatch, 4);
-            popAllMatch.setDataList(list);
         }
+        popAllMatch.setDataList(list);
+        getGradeContentData();
     }
 
+
     public void onGetNormalGradeData(List<GradeAllMatchBean> list) {
+        normalStatusMap.clear();
+        for (int i = 0; i < list.size(); i++) {
+            normalStatusMap.put(i, false);
+        }
         normalAdapter.setData(list);
     }
 
     public void onGeChampionGradeData() {
 
+    }
+
+    public void onGradeContentOpenData(List<GradeOpenDataBean> list) {
+        GradeAllMatchBean item = normalAdapter.getItem(clickPosition);
+        item.setGradeOpenDataBeanlist(list);
+        normalAdapter.notifyDataSetChanged();
+    }
+
+    private void addNormalView(List<GradeOpenDataBean> list, LinearLayout llAddView) {
+        for (int i = 0; i < list.size(); i++) {
+            GradeOpenDataBean bean = list.get(i);
+            View view = layoutInflater.inflate(R.layout.item_grade_open, null);
+            TextView tvDate = view.findViewById(R.id.tv_date);
+            TextView tvTeamName1 = view.findViewById(R.id.tv_team_name1);
+            TextView tvFh1 = view.findViewById(R.id.tv_fh1);
+            TextView tvFt1 = view.findViewById(R.id.tv_ft1);
+            TextView tvTeamName2 = view.findViewById(R.id.tv_team_name2);
+            TextView tvFh2 = view.findViewById(R.id.tv_fh2);
+            TextView tvFt2 = view.findViewById(R.id.tv_ft2);
+            String date = DateUtils.format(bean.getIndex6(), "yyyy-MM-dd HH:mm:ss", "dd/MM/yyyy");
+            tvDate.setText(date);
+            tvTeamName1.setText(bean.getIndex8());
+            tvTeamName2.setText(bean.getIndex10());
+            String index12 = bean.getIndex12();
+            if (index12.contains("-")) {
+                String[] fhArr = index12.split("-");
+                tvFh1.setText(fhArr[0].trim());
+                tvFh2.setText(fhArr[1].trim());
+            } else {
+                tvFh1.setText("");
+                tvFh2.setText("");
+            }
+            String index11 = bean.getIndex11();
+            if (index11.contains("-")) {
+                String[] ftArr = index11.split("-");
+                tvFt1.setText(ftArr[0].trim());
+                tvFt2.setText(ftArr[1].trim());
+            } else {
+                tvFt1.setText("");
+                tvFt2.setText("");
+            }
+            llAddView.addView(view);
+        }
     }
 
     private void getAllMatchDataList() {
@@ -136,6 +226,10 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
         } else {
             presenter.getChampionGradeData();
         }
+    }
+
+    private void getGradeContentOpenData() {
+        presenter.getGradeContentOpenData(gameType, date, leagueType);
     }
 
     @OnClick({R.id.ll_sports, R.id.ll_date, R.id.ll_football, R.id.ll_all_match})
@@ -171,7 +265,7 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
         }
     }
 
-    private PopGradeSwitchType createPop(View v, final TextView tv, final int type) {
+    private PopGradeSwitchType createPop(View v, TextView tv, final int type) {
         int popHeight = AfbUtils.getScreenHeight(mContext) / 2;
         if (type == 1 || type == 2) {
             popHeight = ViewGroup.LayoutParams.WRAP_CONTENT;
@@ -179,17 +273,29 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
         PopGradeSwitchType popGradeSwitchType = new PopGradeSwitchType(mContext, v, v.getWidth(), popHeight) {
             @Override
             public void onClickItem(DataInfoBean item) {
-                tv.setText(item.getName());
                 switch (type) {
                     case 1:
+                        tvSports.setText(item.getName());
+                        leagueType = "0";
+                        tvAllMatch.setText(getString(R.string.all_match));
+                        getAllMatchDataList();
                         break;
                     case 2:
+                        tvDate.setText(item.getName());
+                        leagueType = "0";
+                        tvAllMatch.setText(getString(R.string.all_match));
                         date = item.getType();
+                        getAllMatchDataList();
                         break;
                     case 3:
+                        tvFootball.setText(item.getName());
+                        leagueType = "0";
+                        tvAllMatch.setText(getString(R.string.all_match));
                         gameType = item.getType();
+                        getAllMatchDataList();
                         break;
                     case 4:
+                        tvAllMatch.setText(item.getName());
                         leagueType = item.getType();
                         getGradeContentData();
                         break;

@@ -5,9 +5,11 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.DateUtils;
+import com.nanyang.app.Utils.TimeUtils;
 import com.nanyang.app.main.BetCenter.Bean.BaseParamBean;
 import com.nanyang.app.main.BetCenter.Bean.DataInfoBean;
 import com.nanyang.app.main.BetCenter.Bean.GradeAllMatchBean;
+import com.nanyang.app.main.BetCenter.Bean.GradeOpenDataBean;
 import com.nanyang.app.main.BetCenter.GradeFragment;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -50,7 +52,11 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
 
     public List<DataInfoBean> getDateDataList() {
         List<DataInfoBean> list = new ArrayList<>();
+        String dateType = TimeUtils.getTime("aa", Locale.ENGLISH);
         String currentDate = DateUtils.getCurrentDate("yyyy-MM-dd");
+        if (dateType.equals("AM")) {
+            currentDate = DateUtils.getAddDay(currentDate, -1, "yyyy-MM-dd");
+        }
         list.add(new DataInfoBean(baseContext.getString(R.string.today_match), currentDate));
         for (int i = -1; i > -8; i--) {
             String name;
@@ -103,7 +109,7 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
 
 
     public void getAllMatchDataList(String gameType, String data, String LeagueType) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetDate", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson()), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTableL", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 String updateString = AfbUtils.delHTMLTag(data);
@@ -115,7 +121,7 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
                     List<DataInfoBean> list = new ArrayList<>();
                     for (int i = 0; i < jsonArrayData4.length(); i++) {
                         JSONArray jsonArrayArr = jsonArrayData4.getJSONArray(i);
-                        DataInfoBean bean = new DataInfoBean(jsonArrayArr.getString(2), jsonArrayArr.getInt(0) + "");
+                        DataInfoBean bean = new DataInfoBean(jsonArrayArr.getString(1), jsonArrayArr.getInt(0) + "");
                         list.add(bean);
                     }
                     String language = AfbUtils.getLanguage(gradeFragment.getContext());
@@ -142,7 +148,8 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
     }
 
     public void getNormalGradeData(String gameType, String data, String LeagueType) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTableL", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson()), new BaseConsumer<String>(baseContext) {
+        String p = BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetDate", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson();
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 String updateString = AfbUtils.delHTMLTag(data);
@@ -154,10 +161,38 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
                     List<GradeAllMatchBean> list = new ArrayList<>();
                     for (int i = 0; i < jsonArrayData4.length(); i++) {
                         JSONArray jsonArrayArr = jsonArrayData4.getJSONArray(i);
-                        GradeAllMatchBean bean = new GradeAllMatchBean(jsonArrayArr.getInt(0), jsonArrayArr.getString(1));
+                        GradeAllMatchBean bean = new GradeAllMatchBean(jsonArrayArr.getInt(0), jsonArrayArr.getInt(1), jsonArrayArr.getString(2));
                         list.add(bean);
                     }
                     gradeFragment.onGetNormalGradeData(list);
+                }
+            }
+        });
+    }
+
+    public void getGradeContentOpenData(String gameType, String data, String LeagueType) {
+        String p = BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetDateD", gameType, gameType, data, data, "wfStatementH50", LeagueType, "", "").getJson();
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                String updateString = AfbUtils.delHTMLTag(data);
+                JSONArray jsonArray = new JSONArray(updateString);
+                if (jsonArray.length() > 3) {
+                    JSONArray jsonArrayData1 = jsonArray.getJSONArray(3);
+                    JSONArray jsonArrayData2 = jsonArrayData1.getJSONArray(0);
+                    JSONArray jsonArrayData4 = jsonArrayData2.getJSONArray(2);
+                    List<GradeOpenDataBean> list = new ArrayList<>();
+                    for (int i = 0; i < jsonArrayData4.length(); i++) {
+                        JSONArray jsonArrayArr = jsonArrayData4.getJSONArray(i);
+                        GradeOpenDataBean bean = new GradeOpenDataBean(jsonArrayArr.getInt(0), jsonArrayArr.getInt(1), jsonArrayArr.getString(2),
+                                jsonArrayArr.getInt(3), jsonArrayArr.getString(4), jsonArrayArr.getString(5),
+                                jsonArrayArr.getString(6), jsonArrayArr.getInt(7), jsonArrayArr.getString(8),
+                                jsonArrayArr.getInt(9), jsonArrayArr.getString(10), jsonArrayArr.getString(11),
+                                jsonArrayArr.getString(12), jsonArrayArr.getInt(13), jsonArrayArr.getInt(14),
+                                jsonArrayArr.getInt(15), jsonArrayArr.getString(16), jsonArrayArr.getString(17));
+                        list.add(bean);
+                    }
+                    gradeFragment.onGradeContentOpenData(list);
                 }
             }
         });
