@@ -494,4 +494,10 @@
     <string name="yesterday_match">Yesterday</string>
     <string name="sports">SPORTS</string>
     <string name="all_match">All League</string>
+    <string name="WAITING2">WAITING</string>
+    <string name="ACCEPTED2">ACCEPTED</string>
+    <string name="REJECTED2">REJECTED</string>
+    <string name="CANCELLED2">CANCELLED</string>
+    <string name="Note">Note</string>
+    <string name="Pleasenote2">Please note that the displayed time is based on GMT +8 hours</string>
 </resources>

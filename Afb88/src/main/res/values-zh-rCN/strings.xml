@@ -492,4 +492,10 @@
     <string name="yesterday_match">昨日赛事</string>
     <string name="sports">体育博彩</string>
     <string name="all_match">所有赛事</string>
+    <string name="WAITING2">等待中</string>
+    <string name="ACCEPTED2">已接受</string>
+    <string name="REJECTED2">被拒绝</string>
+    <string name="CANCELLED2">取消</string>
+    <string name="Note">注意</string>
+    <string name="Pleasenote2">请注意显示时间为GMT+8时区</string>
 </resources>
