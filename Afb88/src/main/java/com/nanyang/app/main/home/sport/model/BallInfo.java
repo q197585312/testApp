@@ -10,17 +10,21 @@ import java.util.List;
 
 import cn.finalteam.toolsfinal.StringUtils;
 
+ /* SportInfo.Type type;
+          String moduleId;
+          CharSequence ModuleTitle;
+          String SocOddsId, Home, IsInetBet, isX12New, HasX12, X12_1Odds, PreSocOddsId;*/
 /**
  * ],String[[12683157 ,String12683159 ,String'' ,String0,String'04/06 02:45AM' ,String'Juventus [n]' ,String'Real Madrid' ,String0,String1,String1,String-10,String10,String9,String0,String1,String2.89,String3.13,2.47,1,1,3.5,1.98,3.21,0,0,0,0,0,0,0,0]]],[[;
  */
 public class BallInfo extends SportInfo implements IRTMatchInfo {
 
-    private String hasHdp_FH;
-    private String hasOU_FH;
-    private String isHdpNew_FH;
-    private String isOUNew_FH;
-    private String tvPathIBC;
-    private List<BallInfo> repeatRow;
+    String hasHdp_FH;
+    String hasOU_FH;
+    String isHdpNew_FH;
+    String isOUNew_FH;
+    String tvPathIBC;
+    List<BallInfo> repeatRow;
 
     public void setIsHdpNew(String isHdpNew) {
         this.isHdpNew = isHdpNew;
@@ -34,13 +38,13 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
         this.isOENew_FH = isOENew_FH;
     }
 
-    private String isHdpNew;
-    private String hasHdp;
-    private String isOUNew;
-    private String isOENew;
-    private String hasOE;
-    private String hasOE_FH;
-    private String isOENew_FH;
+    String isHdpNew;
+    String hasHdp;
+    String isOUNew;
+    String isOENew;
+    String hasOE;
+    String hasOE_FH;
+    String isOENew_FH;
 
     @Override
     public String getSocOddsId() {
@@ -561,8 +565,8 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
         HasPar_FH = hasPar_FH;
     }
 
-    String SocOddsId;
-    String PreSocOddsId;
+
+
     String SocOddsId_FH;
     String Live;
     String IsLastCall;
@@ -574,8 +578,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     String RTSMatchId;
     String HomeId;
     String AwayId;
-    String Home;
-    String Away;
+
     String HomeRank;
     String AwayRank;
     String RunHomeScore;
@@ -619,7 +622,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     String WorkingDate;
     String TodayDate;
     String ModuleOrder;
-    String ModuleId;
+
     String MatchCode;
     String SortNum;
     String GGID;
@@ -943,5 +946,10 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
 
     public List<BallInfo> getRepeatRow() {
             return repeatRow;
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
     }
 }

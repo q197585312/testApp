@@ -2,7 +2,6 @@ package com.nanyang.app.main;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -152,7 +151,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     public void initDataList() {
         More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0, personFragment);
-        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message);
+        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message,messageFragment);
         More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
         More m4 = new More(R.mipmap.result, getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
         More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0, contactFragment);
@@ -247,24 +246,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         ToastUtils.showShort(data);
     }
 
-    public void switchFragment(BaseSwitchFragment fragment) {
-        if (fragment == indexFragment && lastIndexFragment != null) {
-            indexFragment.showContent();
-            return;
-        }
-        indexFragment = fragment;
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (!fragment.isAdded()) {
-            transaction.add(R.id.fl_main_content, fragment);
-        } else {
-            transaction.show(fragment);
-        }
-        if (lastIndexFragment != null) {
-            transaction.hide(lastIndexFragment);
-        }
-        lastIndexFragment = indexFragment;
-        transaction.commit();
-    }
+
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {

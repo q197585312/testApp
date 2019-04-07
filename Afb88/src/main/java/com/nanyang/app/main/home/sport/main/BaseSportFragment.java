@@ -65,7 +65,6 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     protected LinearLayout llMixParlayOrder;
 
 
-
     @Bind(R.id.swipeToLoadLayout)
     protected SwipeToLoadLayout swipeToLoadLayout;
     private boolean isFirstIn;
@@ -246,6 +245,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
         checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.star_red_solid, R.mipmap.sport_game_star_yellow);
     }
 
+
     public void menu(View tvMenu) {
         presenter.getStateHelper().menu(tvMenu);
     }
@@ -263,10 +263,19 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             tvMix.setBackgroundResource(sport_oval_u_black);
     }
 
+    private void checkBgTop(TextView tvMix, boolean isMix, int mixRes, int noMixRes) {
+
+        if (isMix)
+            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, mixRes, 0, 0);
+        else
+            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, noMixRes, 0, 0);
+    }
+
     @Override
     public void checkMix(boolean isMix) {
-        checkBg(((SportActivity) getActivity()).tvMix, isMix, R.mipmap.sport_green_shopping_cart, R.mipmap.sport_black_shopping_cart);
+        checkBgTop(((SportActivity) getActivity()).tvMix, isMix, R.mipmap.sport_botton_teb_shopping, R.mipmap.sport_botton_teb_shopping_black);
     }
+
 
     @Override
     public void setAdapter(BaseRecyclerAdapter baseRecyclerAdapter) {
@@ -351,10 +360,7 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
     @Override
     public void switchState(IObtainDataState state) {
         presenter.setStateHelper(state);
-
-
-        ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).getTvToolbarTitle().setText(state.getStateType().getText());
-
+        ((SportActivity) getIBaseContext().getBaseActivity()).tvMatchType.setText(state.getStateType().getText());
         ((SportState) presenter.getStateHelper()).initAllOdds(ivAllAdd);
         presenter.getStateHelper().refresh();
         if (popWindow != null)
@@ -517,16 +523,17 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
 
     @Override
     public void clickItemAdd(View v, SportInfo item, int position) {
-        additionPresenter.addition((BallInfo) item,position);
+        additionPresenter.addition((BallInfo) item, position);
         if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.changeAddition(position);
         }
     }
+
     public void onAddition(AdditionBean data, int position) {
         if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
-            adapterHelper.notifyPositionAddition(data,position);
+            adapterHelper.notifyPositionAddition(data, position);
         }
     }
 }

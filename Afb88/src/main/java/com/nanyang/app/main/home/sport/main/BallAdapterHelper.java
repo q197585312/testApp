@@ -29,6 +29,7 @@ import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseActivity;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.HashMap;
@@ -566,11 +567,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     private void setTextValueClick(final TextView textView, final String content, final String type, final int oid, final I item, final boolean isHalf, final String sc) {
         textView.setText(content);
-        if (StringUtils.isNull(content) || StringUtils.isNull(type) || oid < 1)
+        if (StringUtils.isNull(content) || StringUtils.isNull(type) || oid < 1) {
             return;
+        }
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                LogUtil.d("xxxxx", item.toString());
                 back.clickOdds(textView, item, type, isHalf, content, oid, sc);
             }
         });
@@ -809,6 +812,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        LogUtil.d("xxxxx", item.toString());
                         back.clickOdds((TextView) v, item, type, isHf, f, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), "");
                     }
                 });

@@ -18,7 +18,7 @@ public class VsTableRowBean extends SportInfo {
     boolean isFh;
     private CharSequence Sc;
     private CharSequence b;
-    CharSequence ModuleTitle;
+    String ModuleTitle;
     CharSequence leftTitle;
     CharSequence centerTitle;
     CharSequence rightTitle;
@@ -35,11 +35,11 @@ public class VsTableRowBean extends SportInfo {
         Sc = sc;
     }
 
-    public CharSequence getModuleTitle() {
+    public String getModuleTitle() {
         return ModuleTitle;
     }
 
-    public void setModuleTitle(CharSequence moduleTitle) {
+    public void setModuleTitle(String moduleTitle) {
         ModuleTitle = moduleTitle;
     }
 
@@ -122,7 +122,7 @@ public class VsTableRowBean extends SportInfo {
         this.rightTitle = rightTitle;
         this.centerTitle = centerTitle;
         this.leftTitle = leftTitle;
-        ModuleTitle = moduleTitle;
+        ModuleTitle = moduleTitle.toString();
     }
 
     public VsTableRowBean(CharSequence b, List<VsCellBean> rows, boolean hasHead, boolean hasFoot, CharSequence moduleTitle, CharSequence leftTitle, CharSequence centerTitle, CharSequence rightTitle) {

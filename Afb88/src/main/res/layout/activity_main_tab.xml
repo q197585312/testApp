@@ -160,6 +160,6 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/main_more"
             android:layout_width="260dp"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"/>
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>

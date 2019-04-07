@@ -1,6 +1,5 @@
 package com.nanyang.app.Utils;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.widget.Toast;
 
@@ -23,6 +22,7 @@ public final class StringUtils {
 
     /**
      * 把string数组装换成get请求的？/& 拼接的字符串
+     *
      * @param strings
      * @return
      */
@@ -57,15 +57,16 @@ public final class StringUtils {
         }
         return false;
     }
+
     /**
      * 判断字符串是否为null或""
      *
      * @param string
      * @return 为空或null返回false，否则返回true
      */
-    @SuppressLint("NewApi")
+
     public static boolean isNull(String string) {
-        return !(string == null && "".equals(string));
+        return (string == null || "".equals(string.trim()));
     }
 
     public static String join(String[] array, String sep) {
@@ -176,20 +177,22 @@ public final class StringUtils {
 
     /**
      * 使用java正则表达式去掉多余的.与0
+     *
      * @param s
      * @return
      */
-    public static String subZeroAndDot(float s){
-        String ss=s+"";
-        if(ss.indexOf(".") > 0){
+    public static String subZeroAndDot(float s) {
+        String ss = s + "";
+        if (ss.indexOf(".") > 0) {
             ss = ss.replaceAll("0+?$", "");//去掉多余的0
             ss = ss.replaceAll("[.]$", "");//如最后一位是.则去掉
         }
         return ss;
     }
-    public static String  URLEncode(String url)  {
+
+    public static String URLEncode(String url) {
         try {
-            return URLEncoder.encode(url,"UTF-8");
+            return URLEncoder.encode(url, "UTF-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -197,8 +200,8 @@ public final class StringUtils {
     }
 
 
-    public static  Map<String,Integer> countDifferentCharMap(String str) {
-        Map<String,Integer> countMap=new LinkedHashMap<>();
+    public static Map<String, Integer> countDifferentCharMap(String str) {
+        Map<String, Integer> countMap = new LinkedHashMap<>();
         for (char ch : str.toCharArray()) {
             String ss = String.valueOf(ch);
             Integer count = countMap.get(ss);
@@ -210,15 +213,17 @@ public final class StringUtils {
         }
         return countMap;
     }
+
     public static String findGroup0(String str1, String fromat) {
         Pattern pattern2 = Pattern.compile(fromat);
         Matcher matcher2 = pattern2.matcher(str1);
         while (matcher2.find()) {
-           return matcher2.group(0);
+            return matcher2.group(0);
         }
         return "";
     }
-    public static boolean matches(String str1,  String fromat){
+
+    public static boolean matches(String str1, String fromat) {
         return str1.matches(fromat);
     }
 

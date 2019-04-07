@@ -301,7 +301,7 @@ marketType*/
                 marketPop = choicePop("marketType", marketList, (TextView) v);
                 baseContext.onPopupWindowCreated(marketPop, -2);
                 break;
-            case "moduleTitle":
+            case "ModuleTitle":
                 Iterator<Map.Entry<String, List<ResultInfo>>> iterator = moduleMap.entrySet().iterator();
                 final List<String> modules=new ArrayList<>();
                 while (iterator.hasNext()){

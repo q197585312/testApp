@@ -492,6 +492,12 @@
     <string name="yesterday_match">昨日赛事</string>
     <string name="sports">体育博彩</string>
     <string name="all_match">所有赛事</string>
+    <string name="WAITING2">等待中</string>
+    <string name="ACCEPTED2">已接受</string>
+    <string name="REJECTED2">被拒绝</string>
+    <string name="CANCELLED2">取消</string>
+    <string name="Note">注意</string>
+    <string name="Pleasenote2">请注意显示时间为GMT+8时区</string>
     <string name="Soccer_Outright">足球 - 优胜冠军</string>
     <string name="Basketball_Outright">篮球 - 优胜冠军</string>
     <string name="Olympic_Outright">奥运 - 优胜冠军</string>

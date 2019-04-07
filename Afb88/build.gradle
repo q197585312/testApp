@@ -19,6 +19,7 @@ android {
         versionName '1.66'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "HOST_AFB", '"http;//www.afb1188.com"'
+        buildConfigField "String", "HOST_SPORT", '"http://ws.afb1188.com:8888/fnOddsGen"'
         signingConfig signingConfigs.config
     }
     buildTypes {

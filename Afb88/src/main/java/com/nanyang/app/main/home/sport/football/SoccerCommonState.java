@@ -13,6 +13,7 @@ import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
@@ -65,10 +66,11 @@ public abstract class SoccerCommonState extends BallState {
             }
 
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds,int oid,String sc) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf, "");
+                helper.clickOdds(item, type, odds, v, isHf, sc);
+                LogUtil.d("xxxx", "点击的Item：" + item.toString() + ",odds=" + odds, ",v=" + v, ",isHf=" + isHf, ",sc=" + sc);
             }
 
             @Override
@@ -81,7 +83,7 @@ public abstract class SoccerCommonState extends BallState {
                         collectionLeagueCommon(item);
                         break;
                     case R.id.module_right_mark_tv:
-                        clickAdd(v, item,position);
+                        clickAdd(v, item, position);
                         break;
                     case R.id.iv_hall_btn:
                         clickHallBtn(v, item, position);
@@ -110,7 +112,6 @@ public abstract class SoccerCommonState extends BallState {
 
 
     protected abstract SoccerCommonAdapterHelper onSetCommonAdapterHelper();
-
 
 
     @Override
@@ -155,7 +156,7 @@ public abstract class SoccerCommonState extends BallState {
         types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
         types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running"));
         types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight), "OutRight"));
+//        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight), "OutRight"));
         return types;
     }
 

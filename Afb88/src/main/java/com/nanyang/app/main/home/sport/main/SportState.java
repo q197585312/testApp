@@ -376,7 +376,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         for (int i = 0; i < pageList.size(); i++) {
             TableSportInfo<B> item = pageList.get(i);
             List<B> rows = item.getRows();
-            boolean isLeagueCollection = true;
             for (int j = 0; j < rows.size(); j++) {
                 B cell = rows.get(j);
                 if (j == 0) {
@@ -386,6 +385,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 }
                 cell.setModuleId(item.getLeagueBean().getModuleId());
                 cell.setModuleTitle(item.getLeagueBean().getModuleTitle());
+                if (item.getLeagueBean().getModuleId() == null || item.getLeagueBean().getModuleTitle() == null)
+                    LogUtil.e("xxxx", "null---" + item.toString());
                 pageMatch.add(cell);
                 Map<String, Boolean> moduleMap = localCollectionMap.get(cell.getModuleTitle().toString());
                 if (moduleMap == null)

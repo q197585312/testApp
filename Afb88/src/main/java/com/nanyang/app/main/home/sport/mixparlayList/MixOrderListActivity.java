@@ -250,14 +250,20 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
 
         }
         if (!getApp().getBetParList().getMaxLimit().equals("") && !getApp().getBetParList().getMaxLimit().equals("0") && !getApp().getBetParList().getMinLimit().equals("")) {
-            int max = Integer.valueOf(getApp().getBetParList().getMaxLimit());
-            int min = Integer.valueOf(getApp().getBetParList().getMinLimit());
-            int amount = Integer.valueOf(amt);
-            if (amount < min || amount > max) {
-                Toast.makeText(mContext, getString(R.string.invalid_amount_bet), Toast.LENGTH_SHORT).show();
-                headOddsEdt.setText("");
-                return;
+            try {
+                int max = Integer.valueOf(getApp().getBetParList().getMaxLimit());
+                int min = Integer.valueOf(getApp().getBetParList().getMinLimit());
+                int amount = Integer.valueOf(amt);
+                if (amount < min || amount > max) {
+                    Toast.makeText(mContext, getString(R.string.invalid_amount_bet), Toast.LENGTH_SHORT).show();
+                    headOddsEdt.setText("");
+                    return;
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+                ToastUtils.showShort(e.getMessage());
             }
+
         }
 //a8197c.a36588.com/_Bet/PanelBet.aspx?betType=X_par&odds=160.670744228768&amt=10&coupon=1&exRate=1
         //"PanelBet.aspx?betType=X_par&odds=160.670744228768",
@@ -401,7 +407,6 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
     public void onFailed(String error) {
         checkEnd(error);
     }
-
 
 
     @Override

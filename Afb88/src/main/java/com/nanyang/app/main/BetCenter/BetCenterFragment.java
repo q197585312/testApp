@@ -103,7 +103,7 @@ public class BetCenterFragment extends BaseSwitchFragment {
         BaseFragment fragment = baseFragmentList.get(currentIndex);
         FragmentTransaction transaction = mContext.getSupportFragmentManager().beginTransaction();
         if (!fragment.isAdded()) {
-            transaction.add(R.id.fl_content, fragment);
+            transaction.add(R.id.fl_main_content, fragment);
         } else {
             transaction.show(fragment);
         }

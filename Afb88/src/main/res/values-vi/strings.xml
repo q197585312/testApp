@@ -417,4 +417,10 @@
     <string name="CloseDetail">Đóng các thông tin chi tiết</string>
     <string name="OpenDetail">Mở thông tin chi tiết</string>
     <string name="TotalOdds">Tất cả tỷ lệ</string>
+    <string name="WAITING2">Chờ đợi</string>
+    <string name="ACCEPTED2">Đã chấp nhận</string>
+    <string name="REJECTED2">Bị TỪ CHỐI</string>
+    <string name="CANCELLED2">ĐÃ HỦY</string>
+    <string name="Note">Chú ý</string>
+    <string name="Pleasenote2">Hãy lưu ý rằng thời gian cho thấy thời gian biểu diễn cho thấy sự thay đổi trong thời gian</string>
 </resources>

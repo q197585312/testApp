@@ -57,10 +57,10 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
             for (AfbClickBetBean afbClickBetBean : betAfbList.getList()) {
                 String itemId = afbClickBetBean.getId();
                 String typeOdds = afbClickBetBean.getOddsType();
-
-                if (afbClickBetBean.getLeague().trim().equalsIgnoreCase(item.getModuleTitle().toString().trim()) &&
-                        afbClickBetBean.getHome().trim().equalsIgnoreCase(item.getHome().trim()) && afbClickBetBean.getAway().equalsIgnoreCase(item.getAway().trim()) ) {
-                    Log.d("xxx","hasTeam");
+                Log.d("xxx", "点击的Item：" + item.toString());
+                if (afbClickBetBean.getLeague().trim().equalsIgnoreCase(item.getModuleTitle().trim()) &&
+                        afbClickBetBean.getHome().trim().equalsIgnoreCase(item.getHome().trim()) && afbClickBetBean.getAway().equalsIgnoreCase(item.getAway().trim())) {
+                    Log.d("xxx", "hasTeam");
                     continue;
                 }
                 if (!cn.finalteam.toolsfinal.StringUtils.isEmpty(typeOdds) && !typeOdds.endsWith("_par")) {
@@ -75,8 +75,10 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
     }
 
     private boolean isOneTeamBoolean(B item, AfbClickResponseBean betAfbList) {
-        boolean onTeam = betAfbList.getList().get(0).getLeague().equalsIgnoreCase(item.getModuleTitle().toString()) &&
-                betAfbList.getList().get(0).getHome().equalsIgnoreCase(item.getHome()) && betAfbList.getList().get(0).getAway().equalsIgnoreCase(item.getAway()) /*&& (betAfbList.getList().get(0).getIsGive() + "").equalsIgnoreCase(item.getIsHomeGive())*/;
+        boolean onTeam =
+                betAfbList.getList().get(0).getLeague().equalsIgnoreCase(item.getModuleTitle()) &&
+                        betAfbList.getList().get(0).getHome().equalsIgnoreCase(item.getHome()) &&
+                        betAfbList.getList().get(0).getAway().equalsIgnoreCase(item.getAway()) /*&& (betAfbList.getList().get(0).getIsGive() + "").equalsIgnoreCase(item.getIsHomeGive())*/;
         return onTeam;
     }
 

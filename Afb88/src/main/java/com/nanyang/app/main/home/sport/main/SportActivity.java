@@ -6,12 +6,15 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -31,9 +34,13 @@ import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.center.PersonCenterActivity;
+import com.nanyang.app.main.center.model.More;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -42,6 +49,7 @@ import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.BaseView;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
+import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import org.json.JSONException;
 
@@ -59,6 +67,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private final String GUIDE_KEY = "GUIDE";
 
     BaseSportFragment localCurrentFragment;
+    @Bind(R.id.drawer_more)
+    DrawerLayout drawerLayout;
+
     @Bind(R.id.tv_toolbar_left)
     TextView tvToolbarLeft;
     @Bind(R.id.tv_toolbar_title)
@@ -84,7 +95,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     TextView tvLeagueMain;
     @Bind(R.id.iv_add)
     ImageView ivAdd;
-    @Bind(R.id.fl_content)
+    @Bind(R.id.fl_main_content)
     FrameLayout flContent;
     @Bind(R.id.tv_record)
     TextView tvRecord;
@@ -95,7 +106,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.tv_mix_count)
     TextView tvMixCount;
     @Bind(R.id.tv_way_run)
-    TextView tvMatchType;
+    public TextView tvMatchType;
     @Bind(R.id.tv_menu)
     TextView tvMenu;
     @Bind(R.id.ll_sport_menu_bottom)
@@ -104,7 +115,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     TextView sportTitleTv;
     @Bind(R.id.tv_balance)
     TextView tvBalance;
-
+    @Bind(R.id.main_more)
+    RecyclerView reContent;
 
     private MenuItemInfo oddsType;
     private MenuItemInfo allOdds;
@@ -136,7 +148,80 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
             }
         });
+        initDrawer();
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
 
+    private void initDrawer() {
+        LinearLayoutManager llm = new LinearLayoutManager(mContext);
+        reContent.setLayoutManager(llm);
+        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message);
+    /*    More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0, personFragment);
+
+        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
+        More m4 = new More(R.mipmap.result, getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
+        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0, contactFragment);
+        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0,changeLanguageFragment);
+        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0, howToUseFragment);*/
+        More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
+        List<More> dataList = new ArrayList<>();
+//        dataList.add(m1);
+        dataList.add(m2);
+//        dataList.add(m3);
+//        dataList.add(m4);
+//        dataList.add(m5);
+//        dataList.add(m6);
+//        dataList.add(m7);
+        dataList.add(m8);
+
+        BaseRecyclerAdapter<More> adapter = new BaseRecyclerAdapter<More>(mContext, dataList, R.layout.item_main_more) {
+
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, More item) {
+                ImageView ivLeft = holder.getImageView(R.id.more_left_img);
+                ImageView ivRight = holder.getImageView(R.id.more_img_right);
+                ivLeft.setImageResource(item.getImage_left());
+                if (item.getImage_right() != 0) {
+                    ivRight.setImageResource(item.getImage_right());
+                }
+                TextView tv = holder.getTextView(R.id.more_text);
+                tv.setText(item.getText());
+            }
+        };
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<More>() {
+            @Override
+            public void onItemClick(View view, More item, int position) {
+                drawerLayout.closeDrawer(Gravity.RIGHT);
+                if (getString(R.string.logout).equals(item.getText())) {
+                    BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
+                        @Override
+                        protected void clickSure(View v) {
+                            Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
+                    };
+                    pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+                    pop.getChooseMessage().setText(getString(R.string.login_out));
+                    pop.getChooseSureTv().setText(getString(R.string.sure));
+                    pop.getChooseCancelTv().setText(getString(R.string.cancel));
+                    onPopupWindowCreated(pop, Gravity.CENTER);
+                } else {
+                    BaseSwitchFragment fragment = item.getFragment();
+                    if (fragment != null) {
+                        if (fragment instanceof BetCenterFragment) {
+                            String switchType = item.getSwitchType();
+                            if (!TextUtils.isEmpty(switchType)) {
+                                fragment.setSwitchType(item.getSwitchType());
+                                fragment.showContent();
+                            }
+                        }
+                        switchFragment(fragment);
+                    }
+                }
+            }
+        });
+        reContent.setAdapter(adapter);
+        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
 
@@ -194,11 +279,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     private void selectFragmentTag(String tag, BaseSportFragment localCurrentFragment) {
         if (currentTag.isEmpty()) {
-            showFragmentToActivity(localCurrentFragment, R.id.fl_content, currentTag);
+            showFragmentToActivity(localCurrentFragment, R.id.fl_main_content, currentTag);
         } else if (!currentTag.equals(tag)) {
             hideFragmentToActivity(currentFragment);
             MenuItemInfo stateType = currentFragment.presenter.getStateHelper().getStateType();
-            showFragmentToActivity(localCurrentFragment, R.id.fl_content, tag);
+            showFragmentToActivity(localCurrentFragment, R.id.fl_main_content, tag);
             localCurrentFragment.switchParentType(stateType);
             setType(stateType.getType());
         }
@@ -447,10 +532,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
                 rv.setAdapter(baseRecyclerAdapter);
                 baseRecyclerAdapter.addAllAndClear(listSport);
-                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
                     @Override
-                    public void onItemClick(View view, MenuItemInfo item, int position) {
-                        selectFragmentTag(item.getText(), mapFragment.get(item.getText()));
+                    public void onItemClick(View view, SportIdBean item, int position) {
+                        selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
                         closePopupWindow();
                     }
                 });
@@ -481,7 +566,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
         });
         popWindow.setTrans(1f);
-        popWindow.showPopupWindowUpCenter(view,AfbUtils.dp2px(mContext, 300),AfbUtils.dp2px(mContext, 200));
+        popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 300), AfbUtils.dp2px(mContext, 200));
 
 
     }
@@ -492,7 +577,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
 
     public void clickMoreMenu(View view) {
-        currentFragment.menu(view);
+        drawerLayout.openDrawer(Gravity.RIGHT);
+//        currentFragment.menu(view);
     }
 
     public void clickOrder(View view) {
@@ -521,6 +607,16 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         TextView tx = (TextView) view;
 
         currentFragment.checkMajor(tx);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                drawerLayout.closeDrawer(Gravity.RIGHT);
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
 }

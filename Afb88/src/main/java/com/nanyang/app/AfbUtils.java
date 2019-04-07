@@ -124,6 +124,7 @@ public class AfbUtils {
         Pattern p_html = Pattern.compile(REGEX_HTML, Pattern.CASE_INSENSITIVE);
         Matcher m_html = p_html.matcher(htmlStr);
         htmlStr = m_html.replaceAll("");
+        htmlStr = htmlStr.replace("&nbsp;","");
 
         return htmlStr.trim(); // 返回文本字符串
     }

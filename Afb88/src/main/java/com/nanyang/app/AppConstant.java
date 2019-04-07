@@ -94,58 +94,58 @@ public class AppConstant {
     public String URL_FOOTBALL_TODAY = "http://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&tp=0&fh=1&g=1&ot=t&ov=0&tf=-1&TFStatus=0&update=false&r=153004462&wd=&ia=0&FAV=&SL=&_=1111";
     public String URL_FOOTBALL_EARLY = "http://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&tp=0&fh=1&g=1&ot=e&ov=0&tf=2&TFStatus=0&update=false&r=246503518&FAV=&SL=&_=1111";
     public String URL_FOOTBALL_EARLY_Mix = "http://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&&tp=0&fh=1&g=4&ot=e&update=true&r=866546094&FAV=&SL=&_=1111";
-    public String URL_FOOTBALL_TODAY_Mix = "wsSocAllGen.ashx&tp=0&fh=1&g=4&ot=t&update=true&r=1027945624&FAV=&SL=&_=1111";
+    public String URL_FOOTBALL_TODAY_Mix = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=4&ot=t&update=true&r=1027945624&FAV=&SL=&_=1111";
     public String URL_FOOTBALL_OUT_RIGHT = HOST + "_view/OddsGen50.ashx?update=true&r=2076712019&FAV=&SL=&_=1111";
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=703018&r=1553931820250&_=1553931794406
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=726142&r=1553931973916&_=1553931794436 、、
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=726142&r=1553931976885&_=1553931794437
 
 
+//https://ws.afb1188.com:8887/fnOddsGen?wst=wsSocAllGen&g=9&ot=r&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-04-08&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
 
-
-    public String URL_BASKETBALL_RUNNING = "wsSocAllGen.ashx&tp=0&fh=1&g=9&ot=r&update=true&r=757267892&FAV=&SL=&_=1111";
-    public String URL_BASKETBALL_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=9&ot=t&update=true&r=757267892&FAV=&SL=&_=1111";
-    public String URL_BASKETBALL_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=9&ot=e&update=true&r=2033192118&FAV=&SL=&_=1111";
+    public String URL_BASKETBALL_RUNNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=9&ot=r&update=true&r=757267892&FAV=&SL=&_=1111";
+    public String URL_BASKETBALL_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=9&ot=t&update=true&r=757267892&FAV=&SL=&_=1111";
+    public String URL_BASKETBALL_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=9&ot=e&update=true&r=2033192118&FAV=&SL=&_=1111";
 
     public String URL_BASKETBALL_EARLY_Mix = HOST + "_view/ParGen.ashx?g=10&ot=e&update=true&r=866546094&FAV=&SL=&_=1111";
     public String URL_BASKETBALL_TODAY_Mix = HOST + "_view/ParGen.ashx?g=10&ot=t&update=true&r=408754578&FAV=&SL=&_=1111";
     public String URL_BASKETBALL_OUT_RIGHT = HOST + "_view/OddsOutGen.ashx?g=31&update=true&r=1267181584&FAV=&SL=&_=1111";
 
 
-    public String URL_TENNIS_RUNNING = "wsSocAllGen.ashx&tp=0&fh=1&g=21&ot=r&update=true&r=442357900&FAV=&SL=&_=1111";
-    public String URL_TENNIS_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=21&ot=t&update=true&r=1323982190&FAV=&SL=&_=1111";
-    public String URL_TENNIS_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=21&ot=e&update=true&r=876540788&FAV=&SL=&_=1111";
-    public String URL_TENNIS_OUTRIGHT = "wsSocAllGen.ashx&tp=0&fh=1&g=36&update=true&r=446070790&FAV=&SL=&_=1111";
+    public String URL_TENNIS_RUNNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=21&ot=r&update=true&r=442357900&FAV=&SL=&_=1111";
+    public String URL_TENNIS_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=21&ot=t&update=true&r=1323982190&FAV=&SL=&_=1111";
+    public String URL_TENNIS_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=21&ot=e&update=true&r=876540788&FAV=&SL=&_=1111";
+    public String URL_TENNIS_OUTRIGHT = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=36&update=true&r=446070790&FAV=&SL=&_=1111";
 
     //
-    public String URL_FINANCIAL_RUNNING = "wsSocAllGen.ashx&tp=0&fh=1&g=7&ot=r&update=true&r=442357900&FAV=&SL=&_=1111";
-    public String URL_FINANCIAL_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=7&ot=t&update=true&r=442357900&FAV=&SL=&_=1111";
-    public String URL_FINANCIAL_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=7&ot=e&update=true&r=1634139687&FAV=&SL=&_=1111";
+    public String URL_FINANCIAL_RUNNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=7&ot=r&update=true&r=442357900&FAV=&SL=&_=1111";
+    public String URL_FINANCIAL_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=7&ot=t&update=true&r=442357900&FAV=&SL=&_=1111";
+    public String URL_FINANCIAL_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=7&ot=e&update=true&r=1634139687&FAV=&SL=&_=1111";
 
     //泰拳http://a8197c.a36588.com/_View/SocAllGen.ashx?tp=0&fh=1&g=108&ot=t&update=true&r=1661815184&LID=&_=1488527593418
-    public String URL_MUAY_THAI_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=108&ot=t&update=true&r=1233177815&FAV=&SL=&_=1111";
-    public String URL_MUAY_THAI_RUNNING = "wsSocAllGen.ashx&tp=0&fh=1&g=108&ot=r&update=true&r=1770989484&FAV=&SL=&_=1111";
-    public String URL_MUAY_THAI_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=108&ot=e&update=true&r=1770989484&FAV=&SL=&_=1111";
+    public String URL_MUAY_THAI_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=108&ot=t&update=true&r=1233177815&FAV=&SL=&_=1111";
+    public String URL_MUAY_THAI_RUNNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=108&ot=r&update=true&r=1770989484&FAV=&SL=&_=1111";
+    public String URL_MUAY_THAI_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=108&ot=e&update=true&r=1770989484&FAV=&SL=&_=1111";
 
     //http://a8197c.a36588.com/_View/SocAllGen.ashx?tp=0&fh=1&g=6&ot=t&update=true&r=740497289&LID=&_=1488958736003
-    public String URL_4D_SPECIAL_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=6&ot=t&update=true&r=1233177815&FAV=&SL=&_=1111";
-    public String URL_4D_SPECIAL_RUNNING = "wsSocAllGen.ashx&tp=0&fh=1&g=6&ot=r&update=true&r=1770989484&FAV=&SL=&_=1111";
-    public String URL_4D_SPECIAL_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=6&ot=e&update=true&r=1770989484&FAV=&SL=&_=1111";
+    public String URL_4D_SPECIAL_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=6&ot=t&update=true&r=1233177815&FAV=&SL=&_=1111";
+    public String URL_4D_SPECIAL_RUNNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=6&ot=r&update=true&r=1770989484&FAV=&SL=&_=1111";
+    public String URL_4D_SPECIAL_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=6&ot=e&update=true&r=1770989484&FAV=&SL=&_=1111";
 
     //http://a8197c.a36588.com/_View/SocAllGen.ashx?tp=0&fh=1&g=106&ot=t&update=true&r=1098285451&LID=&_=1488958947996
     //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=106&ot=t&update=true&r=1233177815
     //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=106&ot=r&update=true&r=596496978&LID=&_=1490255406588
-    public String URL_E_SPORT_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=106&ot=t&update=true&r=1233177815&FAV=&SL=&_=1111";
-    public String URL_E_SPORT_RUNNING = "wsSocAllGen.ashx&tp=0&fh=1&g=106&ot=r&update=true&r=1770989484&FAV=&SL=&_=1111";
-    public String URL_E_SPORT_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=106&ot=e&update=true&r=1770989484&FAV=&SL=&_=1111";
+    public String URL_E_SPORT_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=106&ot=t&update=true&r=1233177815&FAV=&SL=&_=1111";
+    public String URL_E_SPORT_RUNNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=106&ot=r&update=true&r=1770989484&FAV=&SL=&_=1111";
+    public String URL_E_SPORT_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=106&ot=e&update=true&r=1770989484&FAV=&SL=&_=1111";
     public String URL_E_SPORT_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=107&update=true&r=1770989484&FAV=&SL=&_=1111";
     //http://main55.afb88.com/_view/OddsOutGen.ashx?g=30&ot=e&update=true&r=741280160&LID=&_=1494315555262
     public String URL_US_FOOTBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=30&update=true&r=1887771784&FAV=&SL=&_=1111";
 
     //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=12&ot=e&update=true&r=1259640348&LID=&_=1496371504834
-    public String URL_US_FOOTBALL_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=12&ot=e&update=true&r=927620479&FAV=&SL=&_=1111";
-    public String URL_US_FOOTBALL_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=12&ot=t&update=true&r=927620479&FAV=&SL=&_=1111";
-    public String URL_US_FOOTBALL_RUNNING = "wsSocAllGen.ashx&tp=0&fh=1&g=12&ot=r&update=true&r=927620479&FAV=&SL=&_=1111";
+    public String URL_US_FOOTBALL_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=12&ot=e&update=true&r=927620479&FAV=&SL=&_=1111";
+    public String URL_US_FOOTBALL_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=12&ot=t&update=true&r=927620479&FAV=&SL=&_=1111";
+    public String URL_US_FOOTBALL_RUNNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=12&ot=r&update=true&r=927620479&FAV=&SL=&_=1111";
     //http://main55.afb88.com/_view/ParGen.ashx?g=13&ot=e&update=true&r=1990142665&LID=&_=1496373260537
     public String URL_US_FOOTBALL_EARLY_MIX = HOST + "_view/ParGen.ashx?g=13&ot=e&update=true&r=927620479&FAV=&SL=&_=1111";
     public String URL_US_FOOTBALL_TODAY_MIX = HOST + "_view/ParGen.ashx?g=13&ot=t&update=true&r=927620479&FAV=&SL=&_=1111";
@@ -158,93 +158,93 @@ public class AppConstant {
     public String URL_SOCCER_MYANMAR_TODAY = HOST + "_view/MOddsGen2.ashx?g=106&ot=t&update=true&r=1233177815&FAV=&SL=&_=1111";
     public String URL_SOCCER_MYANMAR_EARLY = HOST + "_view/MOddsGen2.ashx?g=106&ot=e&update=true&r=1233177815&FAV=&SL=&_=1111";
     //main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=29&ot=e&update=true&r=265506937&LID=&_=1496903153702
-    public String URL_BASEBALL_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=29&ot=e&update=true&r=445360998&FAV=&SL=&_=1111";
-    public String URL_BASEBALL_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=29&ot=t&update=true&r=445360998&FAV=&SL=&_=1111";
-    public String URL_BASEBALL_RUNNING = "wsSocAllGen.ashx&tp=0&fh=1&g=29&ot=r&update=true&r=445360998&FAV=&SL=&_=1111";
+    public String URL_BASEBALL_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=29&ot=e&update=true&r=445360998&FAV=&SL=&_=1111";
+    public String URL_BASEBALL_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=29&ot=t&update=true&r=445360998&FAV=&SL=&_=1111";
+    public String URL_BASEBALL_RUNNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=29&ot=r&update=true&r=445360998&FAV=&SL=&_=1111";
     //    http://main55.afb88.com/_view/OddsOutGen.ashx?g=39&ot=e&update=true&r=1288648832&LID=&_=1496903235059
     public String URL_BASEBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=39&update=true&r=1186326052&FAV=&SL=&_=1111";
 
     //http://main55.afb88.com/_view/OddsOutGen.ashx?g=39&ot=e&update=true&r=1078436031&LID=78a523670da52883&_=1494322797983
     public String URL_ICE_HOCKEY_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=33&update=true&r=1186326052&FAV=&SL=&_=1111";
     //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=14&ot=e&update=true&r=922582020&LID=&_=1494322984276
-    public String URL_ICE_HOCKEY_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=14&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_ICE_HOCKEY_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=14&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_ICE_HOCKEY_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=14&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_ICE_HOCKEY_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=14&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_ICE_HOCKEY_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=14&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_ICE_HOCKEY_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=14&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //
     public String URL_POOL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=32&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_POOL_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=11&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_POOL_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=11&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_POOL_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=11&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_POOL_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=11&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_POOL_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=11&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_POOL_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=11&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //
     public String URL_RUGBY_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=34&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_RUGBY_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=17&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_RUGBY_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=17&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_RUGBY_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=17&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_RUGBY_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=17&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_RUGBY_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=17&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_RUGBY_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=17&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=19&ot=e&update=true&r=1676840231&LID=&_=1496913931893
     //http://main55.afb88.com/_view/OddsOutGen.ashx?g=35&ot=e&update=true&r=1836836693&LID=&_=1496913986764
     //http://main55.afb88.com/_view/ParGen.ashx?g=20&ot=e&update=true&r=1508063117&LID=&_=1496914016514
     public String URL_DARTS_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=35&update=true&r=1887771784&FAV=&SL=&_=1111";
-    public String URL_DARTS_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=19&ot=e&update=true&r=927620479&FAV=&SL=&_=1111";
-    public String URL_DARTS_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=19&ot=t&update=true&r=927620479&FAV=&SL=&_=1111";
-    public String URL_DARTS_RUNNING = "wsSocAllGen.ashx&tp=0&fh=1&g=19&ot=r&update=true&r=927620479&FAV=&SL=&_=1111";
+    public String URL_DARTS_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=19&ot=e&update=true&r=927620479&FAV=&SL=&_=1111";
+    public String URL_DARTS_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=19&ot=t&update=true&r=927620479&FAV=&SL=&_=1111";
+    public String URL_DARTS_RUNNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=19&ot=r&update=true&r=927620479&FAV=&SL=&_=1111";
     public String URL_DARTS_EARLY_MIX = HOST + "_view/ParGen.ashx?g=20&ot=e&update=true&r=927620479&FAV=&SL=&_=1111";
     public String URL_DARTS_TODAY_MIX = HOST + "_view/ParGen.ashx?g=20&ot=t&update=true&r=927620479&FAV=&SL=&_=1111";
     //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=16&ot=e&update=true&r=1018773772&LID=&_=1496914467750
     public String URL_BOXING_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=92&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_BOXING_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=16&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_BOXING_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=16&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_BOXING_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=16&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_BOXING_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=16&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_BOXING_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=16&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_BOXING_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=16&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //
     public String URL_GOLF_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=37&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_GOLF_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=22&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_GOLF_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=22&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_GOLF_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=22&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_GOLF_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=22&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_GOLF_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=22&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_GOLF_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=22&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
 
     //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=51&ot=t&update=true&r=448891026&LID=&_=1497233419847
     public String URL_BADMINTON_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=52&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_BADMINTON_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=51&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_BADMINTON_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=51&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_BADMINTON_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=51&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_BADMINTON_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=51&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_BADMINTON_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=51&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_BADMINTON_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=51&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=44&ot=e&update=true&r=2130678057&LID=&_=1497238234614
     public String URL_VOLLEYBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=62&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_VOLLEYBALL_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=23&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_VOLLEYBALL_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=23&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_VOLLEYBALL_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=23&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_VOLLEYBALL_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=23&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_VOLLEYBALL_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=23&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_VOLLEYBALL_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=23&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //
     public String URL_CRICKET_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=61&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_CRICKET_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=44&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_CRICKET_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=44&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_CRICKET_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=44&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_CRICKET_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=44&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_CRICKET_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=44&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_CRICKET_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=44&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //
     public String URL_HANDBALL_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=43&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_HANDBALL_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=41&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_HANDBALL_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=41&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_HANDBALL_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=41&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_HANDBALL_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=41&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_HANDBALL_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=41&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_HANDBALL_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=41&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //65
     public String URL_CYCLING_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=64&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_CYCLING_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=65&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_CYCLING_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=65&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_CYCLING_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=65&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_CYCLING_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=65&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_CYCLING_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=65&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_CYCLING_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=65&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //103
     public String URL_WINTER_SPORT_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=104&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_WINTER_SPORT_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=103&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_WINTER_SPORT_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=103&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_WINTER_SPORT_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=103&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_WINTER_SPORT_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=103&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_WINTER_SPORT_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=103&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_WINTER_SPORT_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=103&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //103
 //    http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=99&ot=e&update=true&r=603659260&LID=&_=1497239829685
-    public String URL_SUPER_COMBO_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=99&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_SUPER_COMBO_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=99&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_SUPER_COMBO_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=99&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_SUPER_COMBO_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=99&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_SUPER_COMBO_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=99&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_SUPER_COMBO_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=99&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=25&ot=e&update=true&r=1912041035&LID=&_=1497859662375
     public String URL_FORMULA_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=27&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_FORMULA_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=25&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_FORMULA_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=25&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_FORMULA_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=25&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_FORMULA_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=25&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_FORMULA_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=25&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_FORMULA_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=25&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
     //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=25&ot=e&update=true&r=674224967&LID=&_=1497859548627
     public String URL_TABLE_TENNIS_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=58&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_TABLE_TENNIS_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=57&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_TABLE_TENNIS_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=57&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
-    public String URL_TABLE_TENNIS_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=57&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_TABLE_TENNIS_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=57&ot=t&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_TABLE_TENNIS_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=57&ot=r&update=true&r=1186326052&FAV=&SL=&_=1111";
+    public String URL_TABLE_TENNIS_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=57&ot=e&update=true&r=1186326052&FAV=&SL=&_=1111";
 
 
     /*    public String URL_EUROPE_TODAY;
@@ -252,11 +252,11 @@ public class AppConstant {
         public String URL_EUROPE_EARLY;
         public String URL_EUROPE_MIX_EARLY;
         public String URL_EUROPE_MIX_TODAY;*/
-    public String URL_EUROPE_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=182&ot=t&update=true&r=1833149994&FAV=&SL=&_=1111";
-    public String URL_EUROPE_RUNING = "wsSocAllGen.ashx&tp=0&fh=1&g=182&ot=r&update=true&r=1833149994&FAV=&SL=&_=1111";
-    public String URL_EUROPE_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=182&ot=e&update=true&r=1833149994&FAV=&SL=&_=1111";
-    public String URL_EUROPE_MIX_EARLY = "wsSocAllGen.ashx&tp=0&fh=1&g=183&ot=e&update=true&r=524111120&FAV=&SL=&_=1111";
-    public String URL_EUROPE_MIX_TODAY = "wsSocAllGen.ashx&tp=0&fh=1&g=183&ot=t&update=true&r=524111120&FAV=&SL=&_=1111";
+    public String URL_EUROPE_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=182&ot=t&update=true&r=1833149994&FAV=&SL=&_=1111";
+    public String URL_EUROPE_RUNING = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=182&ot=r&update=true&r=1833149994&FAV=&SL=&_=1111";
+    public String URL_EUROPE_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=182&ot=e&update=true&r=1833149994&FAV=&SL=&_=1111";
+    public String URL_EUROPE_MIX_EARLY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=183&ot=e&update=true&r=524111120&FAV=&SL=&_=1111";
+    public String URL_EUROPE_MIX_TODAY = BuildConfig.HOST_SPORT+"?wst=wsSocAllGen&tp=0&fh=1&g=183&ot=t&update=true&r=524111120&FAV=&SL=&_=1111";
 
     public String URL_TRANSFER_MONEY_DATA = HOST + "Bet/PanelBalance_App.aspx?";//好的
     public String URL_CASHOUT_MONEY_E_GAMES = HOST + "Bet/FundEGCashOut.aspx";

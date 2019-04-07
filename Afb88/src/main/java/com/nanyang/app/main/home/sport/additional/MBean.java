@@ -18,7 +18,7 @@ public class MBean implements Serializable {
      * homeName : 般尼茅夫
      * awayName : 哈德斯菲尔德
      * live : 05/12 03:45 AM
-     * Param : 'pgajaxS.axd?T=MB2&ot=&oId=482202&home=&away=&moduleTitle=&date='
+     * Param : 'pgajaxS.axd?T=MB2&ot=&oId=482202&home=&away=&ModuleTitle=&date='
      * Betable : True
      * O2 : 大
      * U2 : 小

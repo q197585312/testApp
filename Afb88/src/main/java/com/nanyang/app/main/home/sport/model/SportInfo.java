@@ -55,9 +55,9 @@ public class SportInfo implements Serializable {
     }
 
     SportInfo.Type type;
-    String moduleId;
-    CharSequence moduleTitle;
-    String SocOddsId, Home, IsInetBet, isX12New, HasX12, X12_1Odds, PreSocOddsId;
+    public String ModuleId;
+    public String ModuleTitle;
+    public String SocOddsId, Home, IsInetBet, isX12New, HasX12, X12_1Odds, PreSocOddsId;
 
     public String getAway() {
         return Away;
@@ -78,19 +78,37 @@ public class SportInfo implements Serializable {
     }
 
     public String getModuleId() {
-        return moduleId;
+        return ModuleId;
     }
 
     public void setModuleId(String moduleId) {
-        this.moduleId = moduleId;
+        this.ModuleId = moduleId;
     }
 
-    public CharSequence getModuleTitle() {
-        return moduleTitle;
+    public String getModuleTitle() {
+        return ModuleTitle;
     }
 
-    public void setModuleTitle(CharSequence moduleTitle) {
-        this.moduleTitle = moduleTitle;
+    @Override
+    public String toString() {
+        return "SportInfo{" +
+                "notify=" + notify +
+                ", type=" + type +
+                ", moduleId='" + ModuleId + '\'' +
+                ", ModuleTitle=" + ModuleTitle +
+                ", SocOddsId='" + SocOddsId + '\'' +
+                ", Home='" + Home + '\'' +
+                ", IsInetBet='" + IsInetBet + '\'' +
+                ", isX12New='" + isX12New + '\'' +
+                ", HasX12='" + HasX12 + '\'' +
+                ", X12_1Odds='" + X12_1Odds + '\'' +
+                ", PreSocOddsId='" + PreSocOddsId + '\'' +
+                ", Away='" + Away + '\'' +
+                '}';
+    }
+
+    public void setModuleTitle(String moduleTitle) {
+        this.ModuleTitle = moduleTitle;
     }
 
     public String getSocOddsId() {
@@ -149,7 +167,5 @@ public class SportInfo implements Serializable {
         PreSocOddsId = preSocOddsId;
     }
 
-    public static class ParseInfo {
-        int SocOddsId = 0, Home = 1, IsInetBet = 2, isX12New = 3, HasX12 = 4, X12_1Odds = 5, PreSocOddsId = 6;
-    }
+
 }
