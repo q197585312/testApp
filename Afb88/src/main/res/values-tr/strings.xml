@@ -416,5 +416,11 @@
     <string name="CloseDetail">Close Detail</string>
     <string name="OpenDetail">Open Detail</string>
     <string name="TotalOdds">Total Odds</string>
+    <string name="WAITING2">WAITING</string>
+    <string name="ACCEPTED2">Kabul edildi</string>
+    <string name="REJECTED2">REDDEDİLDİ</string>
+    <string name="CANCELLED2">İPTAL EDİLDİ</string>
+    <string name="Note">Note</string>
+    <string name="Pleasenote2">Please note that the displayed time is based on GMT +8 hours</string>
 
 </resources>

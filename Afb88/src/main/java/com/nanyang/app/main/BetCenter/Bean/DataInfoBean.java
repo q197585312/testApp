@@ -1,10 +1,12 @@
 package com.nanyang.app.main.BetCenter.Bean;
 
+import android.support.annotation.NonNull;
+
 /**
  * Created by Administrator on 2019/4/6.
  */
 
-public class DataInfoBean {
+public class DataInfoBean implements Comparable<DataInfoBean> {
     private String name;
     private String type;
 
@@ -27,5 +29,12 @@ public class DataInfoBean {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    @Override
+    public int compareTo(@NonNull DataInfoBean o) {
+        String s1 = this.getName();
+        String s2 = o.getName();
+        return s1.compareTo(s2);
     }
 }

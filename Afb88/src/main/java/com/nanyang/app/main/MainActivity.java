@@ -151,7 +151,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     public void initDataList() {
         More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0, personFragment);
-        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message);
+        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message,messageFragment);
         More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
         More m4 = new More(R.mipmap.result, getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
         More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0, contactFragment);

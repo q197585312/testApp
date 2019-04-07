@@ -902,6 +902,11 @@ public class DateUtils {
         Date date = new Date();
         return dateFormat.format(date);
     }
+    public static String getCurrentDate(String format) {
+        DateFormat df = new SimpleDateFormat(format);
+        String date = df.format(new Date());
+        return date;
+    }
 
     /**
      * 创建一个"yyyyMM"日期的格式化对象

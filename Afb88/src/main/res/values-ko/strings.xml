@@ -409,4 +409,10 @@
     <string name="CloseDetail">상세 한 정보를 닫다.</string>
     <string name="OpenDetail">상세 한 정보를 펼치다.</string>
     <string name="TotalOdds">총 배율</string>
+    <string name="WAITING2">기다리다.</string>
+    <string name="ACCEPTED2">수락</string>
+    <string name="REJECTED2">거부됨</string>
+    <string name="CANCELLED2">취소</string>
+    <string name="Note">주의</string>
+    <string name="Pleasenote2">시간이 GMT+8시에 있 음을 주의 해 주세요.</string>
 </resources>
