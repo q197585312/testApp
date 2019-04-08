@@ -26,8 +26,8 @@ import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.MainActivity;
-import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.gdCasino.model.PorkerCasinoBean;
 import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -121,12 +121,12 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
 
     @Override
     public void onGetData(final String data) {
-        presenter.getTransferMoneyData(new BaseConsumer<TransferMoneyBean>(this) {
-            @Override
-            protected void onBaseGetData(TransferMoneyBean transferMoneyBean) {
-                getMoneyMsg(transferMoneyBean, data);
-            }
-        });
+//        presenter.getTransferMoneyData(new BaseConsumer<TransferMoneyBean>(this) {
+//            @Override
+//            protected void onBaseGetData(TransferMoneyBean transferMoneyBean) {
+//                getMoneyMsg(transferMoneyBean, data);
+//            }
+//        });
     }
 
     @Override
@@ -176,39 +176,39 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
 
     }
 
-    @Override
-    public void getMoneyMsg(final TransferMoneyBean transferMoneyBean, final String data) {
-        TransferMoneyPop pop = new TransferMoneyPop(mContext, casinoRc) {
-            @Override
-            public void initMsgData(TextView tv_balance, TextView tv_casino_balance, EditText edt_amount) {
-                TransferMoneyBean.DicAllBean bean = transferMoneyBean.getDicAll().get(0);
-                tv_balance.setText(isStartWithTag(bean.getCredit()));
-                tv_casino_balance.setText(isStartWithTag(bean.getGdBalance()));
-            }
-
-            @Override
-            public void setOnCancelListener() {
-                startApp(data);
-            }
-
-            @Override
-            public void setOnSureListener(final String money) {
-                if (!TextUtils.isEmpty(money) && Integer.parseInt(money) != 0) {
-                    presenter.gamesGDTransferMonet(money, new BaseConsumer<String>(PokerCasinoActivity.this) {
-                        @Override
-                        protected void onBaseGetData(String data) {
-                            onGetTransferMoneyData(0, money, data);
-                        }
-                    });
-                    closePopupWindow();
-                } else {
-                    ToastUtils.showShort(getString(R.string.Input_the_amount_please));
-                }
-            }
-
-        };
-        pop.showPopupCenterWindow();
-    }
+//    @Override
+//    public void getMoneyMsg(final TransferMoneyBean transferMoneyBean, final String data) {
+//        TransferMoneyPop pop = new TransferMoneyPop(mContext, casinoRc) {
+//            @Override
+//            public void initMsgData(TextView tv_balance, TextView tv_casino_balance, EditText edt_amount) {
+//                TransferMoneyBean.DicAllBean bean = transferMoneyBean.getDicAll().get(0);
+//                tv_balance.setText(isStartWithTag(bean.getCredit()));
+//                tv_casino_balance.setText(isStartWithTag(bean.getGdBalance()));
+//            }
+//
+//            @Override
+//            public void setOnCancelListener() {
+//                startApp(data);
+//            }
+//
+//            @Override
+//            public void setOnSureListener(final String money) {
+//                if (!TextUtils.isEmpty(money) && Integer.parseInt(money) != 0) {
+//                    presenter.gamesGDTransferMonet(money, new BaseConsumer<String>(PokerCasinoActivity.this) {
+//                        @Override
+//                        protected void onBaseGetData(String data) {
+//                            onGetTransferMoneyData(0, money, data);
+//                        }
+//                    });
+//                    closePopupWindow();
+//                } else {
+//                    ToastUtils.showShort(getString(R.string.Input_the_amount_please));
+//                }
+//            }
+//
+//        };
+//        pop.showPopupCenterWindow();
+//    }
 
     @Override
     public void onGetTransferMoneyData(int type, String getBackStr, String data) {
@@ -287,6 +287,16 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
         skipAct(MainActivity.class);
         super.finish();
 
+    }
+
+    @Override
+    public int getDrawerLayoutId() {
+        return 0;
+    }
+
+    @Override
+    public BaseSwitchFragment getFirstShowFragment() {
+        return null;
     }
 
     @Override

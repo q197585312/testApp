@@ -26,7 +26,6 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginInfo;
-import com.nanyang.app.main.center.PersonCenterActivity;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -330,14 +329,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             case "Choose":
                 createChoosePop(view);
                 return;
-            case "Not settled":
-                b.putString(AppConstant.KEY_STRING, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.stake));
-                ((BaseToolbarActivity) baseView.getIBaseContext()).skipAct(PersonCenterActivity.class, b);
-                break;
-            case "Settled":
-                b.putString(AppConstant.KEY_STRING, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.statement));
-                ((BaseToolbarActivity) baseView.getIBaseContext()).skipAct(PersonCenterActivity.class, b);
-                break;
+//            case "Not settled":
+//                b.putString(AppConstant.KEY_STRING, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.stake));
+//                ((BaseToolbarActivity) baseView.getIBaseContext()).skipAct(PersonCenterActivity.class, b);
+//                break;
+//            case "Settled":
+//                b.putString(AppConstant.KEY_STRING, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.statement));
+//                ((BaseToolbarActivity) baseView.getIBaseContext()).skipAct(PersonCenterActivity.class, b);
+//                break;
         }
     }
 

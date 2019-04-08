@@ -48,7 +48,6 @@ public class BetCenterFragment extends BaseSwitchFragment {
     public void initData() {
         super.initData();
         createPresenter(new BaseSwitchPresenter(this));
-        setCurrentFragmentTitle();
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
@@ -68,12 +67,15 @@ public class BetCenterFragment extends BaseSwitchFragment {
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_unsettled:
+                        setBackTitle("进行中");
                         currentIndex = 0;
                         break;
                     case R.id.rb_statement:
+                        setBackTitle(getString(R.string.statement));
                         currentIndex = 1;
                         break;
                     case R.id.rb_grade:
+                        setBackTitle(getString(R.string.result));
                         currentIndex = 2;
                         break;
                 }
@@ -103,7 +105,7 @@ public class BetCenterFragment extends BaseSwitchFragment {
         BaseFragment fragment = baseFragmentList.get(currentIndex);
         FragmentTransaction transaction = mContext.getSupportFragmentManager().beginTransaction();
         if (!fragment.isAdded()) {
-            transaction.add(R.id.fl_main_content, fragment);
+            transaction.add(R.id.fl_betCenter_content, fragment);
         } else {
             transaction.show(fragment);
         }
@@ -126,8 +128,10 @@ public class BetCenterFragment extends BaseSwitchFragment {
             currentIndex = 0;
         } else if (switchType.equals(statementNew)) {
             currentIndex = 1;
+            setBackTitle(getString(R.string.statement));
         } else {
             currentIndex = 2;
+            setBackTitle(getString(R.string.result));
         }
         switchFragment();
     }

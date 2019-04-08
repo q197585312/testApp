@@ -1,17 +1,11 @@
 package com.nanyang.app.main;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -23,20 +17,10 @@ import com.nanyang.app.Pop.HomePopupWindow;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.load.PersonalInfo;
-import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
-import com.nanyang.app.main.center.changeLanguage.ChangeLanguageFragment;
-import com.nanyang.app.main.center.model.More;
-import com.nanyang.app.main.home.HomeFragment;
-import com.nanyang.app.main.home.contact.ContactFragment;
-import com.nanyang.app.main.home.howtouse.HowToUseFragment;
-import com.nanyang.app.main.home.message.MessageFragment;
-import com.nanyang.app.main.home.person.PersonCenterFragment;
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,26 +37,10 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     FrameLayout flMenuHome;
     @Bind(R.id.fl_menu_login_out)
     FrameLayout flLoginOut;
-    @Bind(R.id.drawer_more)
-    DrawerLayout drawerLayout;
     @Bind(R.id.home_pop)
     TextView homePop;
     @Bind(R.id.ll_tab_menu_bottom)
     LinearLayout ll_tab_menu_bottom;
-    FrameLayout flCurrentMenu;
-    @Bind(R.id.main_more)
-    RecyclerView reContent;
-
-    public BaseSwitchFragment homeFragment = new HomeFragment();
-    public BaseSwitchFragment statementFragment = new BetCenterFragment();
-    public BaseSwitchFragment contactFragment = new ContactFragment();
-    BaseSwitchFragment changeLanguageFragment = new ChangeLanguageFragment();
-    public BaseSwitchFragment personFragment = new PersonCenterFragment();
-    public BaseSwitchFragment howToUseFragment = new HowToUseFragment();
-    public BaseSwitchFragment messageFragment = new MessageFragment();
-    public BaseSwitchFragment indexFragment;
-    public BaseSwitchFragment lastIndexFragment;
-    private List<More> dataList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,62 +49,8 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         AfbUtils.switchLanguage(lag, mContext);
         setContentView(R.layout.activity_main_tab);
         ButterKnife.bind(this);
-        flCurrentMenu = flMenuHome;
-        indexFragment = homeFragment;
         switchFragment(homeFragment);
         createPresenter(new MainPresenter(this));
-        LinearLayoutManager llm = new LinearLayoutManager(mContext);
-        reContent.setLayoutManager(llm);
-        dataList = new ArrayList<>();
-        initDataList();
-        BaseRecyclerAdapter<More> adapter = new BaseRecyclerAdapter<More>(mContext, dataList, R.layout.item_main_more) {
-
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, More item) {
-                ImageView ivLeft = holder.getImageView(R.id.more_left_img);
-                ImageView ivRight = holder.getImageView(R.id.more_img_right);
-                ivLeft.setImageResource(item.getImage_left());
-                if (item.getImage_right() != 0) {
-                    ivRight.setImageResource(item.getImage_right());
-                }
-                TextView tv = holder.getTextView(R.id.more_text);
-                tv.setText(item.getText());
-            }
-        };
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<More>() {
-            @Override
-            public void onItemClick(View view, More item, int position) {
-                drawerLayout.closeDrawer(Gravity.RIGHT);
-                if (getString(R.string.logout).equals(item.getText())) {
-                    BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
-                        @Override
-                        protected void clickSure(View v) {
-                            Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                        }
-                    };
-                    pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-                    pop.getChooseMessage().setText(getString(R.string.login_out));
-                    pop.getChooseSureTv().setText(getString(R.string.sure));
-                    pop.getChooseCancelTv().setText(getString(R.string.cancel));
-                    onPopupWindowCreated(pop, Gravity.CENTER);
-                } else {
-                    BaseSwitchFragment fragment = item.getFragment();
-                    if (fragment != null) {
-                        if (fragment instanceof BetCenterFragment) {
-                            String switchType = item.getSwitchType();
-                            if (!TextUtils.isEmpty(switchType)) {
-                                fragment.setSwitchType(item.getSwitchType());
-                                fragment.showContent();
-                            }
-                        }
-                        switchFragment(fragment);
-                    }
-                }
-            }
-        });
-        reContent.setAdapter(adapter);
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         toolbar.setNavigationIcon(null);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,25 +61,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         tvToolbarLeft.setVisibility(View.VISIBLE);
         tvToolbarLeft.setBackgroundResource(R.mipmap.left_logo);
         initUserData();
-    }
-
-    public void initDataList() {
-        More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0, personFragment);
-        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message,messageFragment);
-        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
-        More m4 = new More(R.mipmap.result, getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
-        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0, contactFragment);
-        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0,changeLanguageFragment);
-        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0, howToUseFragment);
-        More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
-        dataList.add(m1);
-        dataList.add(m2);
-        dataList.add(m3);
-        dataList.add(m4);
-        dataList.add(m5);
-        dataList.add(m6);
-        dataList.add(m7);
-        dataList.add(m8);
     }
 
     @Override
@@ -179,8 +74,17 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     }
 
     private void initUserData() {
-
         ((AfbApplication) mContext.getApplication()).getUser().getBalances();
+    }
+
+    @Override
+    public int getDrawerLayoutId() {
+        return R.id.drawer_more;
+    }
+
+    @Override
+    public BaseSwitchFragment getFirstShowFragment() {
+        return homeFragment;
     }
 
     @Override
@@ -247,19 +151,18 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     }
 
 
-
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
+            if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
+                drawerLayout.closeDrawer(Gravity.RIGHT);
+                return true;
+            }
             if (indexFragment == homeFragment) {
-                if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                    drawerLayout.closeDrawer(Gravity.RIGHT);
+                if (isTwoFinish()) {
+                    finish();
                 } else {
-                    if (isTwoFinish()) {
-                        finish();
-                    } else {
-                        ToastUtils.showShort(getString(R.string.double_click_exit_application));
-                    }
+                    ToastUtils.showShort(getString(R.string.double_click_exit_application));
                 }
             } else {
                 indexFragment.back();
@@ -267,15 +170,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         }
         return true;
     }
-
-//    @Override
-//    public void onBackPressed() {
-//        if (isTwoFinish()) {
-//            finish();
-//        } else {
-//            ToastUtils.showShort(getString(R.string.double_click_exit_application));
-//        }
-//    }
 
     private boolean isFinish = true;
 

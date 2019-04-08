@@ -2,10 +2,7 @@ package com.nanyang.app;
 
 
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
-import com.nanyang.app.main.center.model.Contact;
-import com.nanyang.app.main.center.model.StatementStakeDetailsListBean;
-import com.nanyang.app.main.center.model.StatementStakeListBean;
-import com.nanyang.app.main.center.model.TransferMoneyBean;
+import com.nanyang.app.main.BetCenter.Bean.Contact;
 import com.nanyang.app.main.home.huayThai.HuayDrawDateInfo;
 import com.nanyang.app.main.home.huayThai.ResultBean;
 import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
@@ -115,24 +112,12 @@ public interface ApiService {
     @POST("http://www.afbasia88.com/_view/Register1.aspx")
     Flowable<String> Register(@FieldMap Map<String, String> info);
 
-
-    @GET
-    Flowable<List<StatementStakeListBean>> statementStake(@Url String url);
-
-    @GET
-    Flowable<List<StatementStakeDetailsListBean>> statementStakeDetails(@Url String url);
-
-
     @GET("http://appgd88.com/images/afb88.php?app=afb88")
     Flowable<List<String>> getBannerUrl();
 
     @FormUrlEncoded
     @POST
     Flowable<String> changePasswrod(@Url String url, @FieldMap Map<String, String> map);
-
-    //转账
-    @GET
-    Flowable<TransferMoneyBean> getTransferMoneyData(@Url String url);
 
     @POST
     @FormUrlEncoded

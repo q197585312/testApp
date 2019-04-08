@@ -24,7 +24,6 @@ import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
@@ -55,12 +54,6 @@ public class HomeFragment extends BaseSwitchFragment {
     public void initView() {
         super.initView();
         EventBus.getDefault().register(this);
-    }
-
-    @Override
-    public void initData() {
-        super.initData();
-        setCurrentFragmentTitle();
     }
 
     public void defaultSkip(final String type) {
@@ -196,6 +189,7 @@ public class HomeFragment extends BaseSwitchFragment {
         EventBus.getDefault().unregister(this);
     }
 
+    @Override
     public void setCurrentFragmentTitle() {
         setToolbarVisibility(true);
         setBackTitleVisibility(false);

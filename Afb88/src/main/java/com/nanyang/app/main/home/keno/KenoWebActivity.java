@@ -9,6 +9,7 @@ import android.webkit.WebViewClient;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.BaseSwitchFragment;
 
 /**
  * Created by Administrator on 2017/11/24.
@@ -54,5 +55,15 @@ public class KenoWebActivity extends BaseToolbarActivity {
                 hideLoadingDialog();
             }
         });
+    }
+
+    @Override
+    public int getDrawerLayoutId() {
+        return 0;
+    }
+
+    @Override
+    public BaseSwitchFragment getFirstShowFragment() {
+        return null;
     }
 }

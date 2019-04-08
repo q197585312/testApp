@@ -9,12 +9,10 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
-import com.nanyang.app.main.center.model.TransferMoneyBean;
-import com.unkonw.testapp.libs.api.Api;
+import com.nanyang.app.main.changeLanguage.ChangeLanguageFragment;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.base.IBaseView;
-import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONException;
@@ -35,6 +33,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 public class LanguagePresenter extends BaseSwitchPresenter {
     SwitchLanguage switchLanguage;
+    ChangeLanguageFragment changeLanguageFragment;
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -44,14 +43,15 @@ public class LanguagePresenter extends BaseSwitchPresenter {
     public LanguagePresenter(IBaseContext iBaseContext) {
         super(iBaseContext);
         switchLanguage = new SwitchLanguage(iBaseContext);
+        changeLanguageFragment = (ChangeLanguageFragment) iBaseContext;
     }
 
-//    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","lang":"ZH-CN","pgLable":"0.18120996831154568","vsn":"4.0.12","PT":"wfLoginH50"}&_db={}
+    //    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","lang":"ZH-CN","pgLable":"0.18120996831154568","vsn":"4.0.12","PT":"wfLoginH50"}&_db={}
     public void switchLanguage(String lang) {
         doRetrofitApiOnDefaultThread(switchLanguage.switchLanguage(lang), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
-                LogUtil.d("ssssssss",data);
+                changeLanguageFragment.onLanguageSwitchSucceed(data);
             }
         });
 
@@ -84,14 +84,6 @@ public class LanguagePresenter extends BaseSwitchPresenter {
         };
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "_View/LiveDealerGDC.aspx"), baseConsumer);
 
-    }
-
-    public void getTransferMoneyData(BaseConsumer<TransferMoneyBean> baseConsumer) {
-        doRetrofitApiOnUiThread(Api.getService(ApiService.class).getTransferMoneyData(AppConstant.getInstance().URL_TRANSFER_MONEY_DATA), baseConsumer);
-    }
-
-    public void gamesGDTransferMonet(String egLimit, BaseConsumer<String> consumer) {
-        doRetrofitApiOnUiThread(Api.getService(ApiService.class).gamesGDTransferMoney(AppConstant.getInstance().URL_TRANSFER_MONEY_GD_GAMES, egLimit), consumer);
     }
 
     @NonNull

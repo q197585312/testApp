@@ -24,7 +24,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.MyViewPagerAdapter;
-import com.nanyang.app.main.center.PersonCenterActivity;
+import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -375,7 +375,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoPresenter> {
                 public void onClick(View view) {
                     Bundle bundle = new Bundle();
                     bundle.putString(AppConstant.KEY_STRING, getString(R.string.stake));
-                    skipAct(PersonCenterActivity.class, bundle);
+//                    skipAct(PersonCenterActivity.class, bundle);
                 }
             });
         }
@@ -659,6 +659,16 @@ public class KenoActivity extends BaseToolbarActivity<KenoPresenter> {
         });
     }
 
+    @Override
+    public int getDrawerLayoutId() {
+        return 0;
+    }
+
+    @Override
+    public BaseSwitchFragment getFirstShowFragment() {
+        return null;
+    }
+
     private void bet(String betType) {
         KenoDataBean.PublicDataBean.CompanyDataBean bean = getCurrentTypeData();
         String params = "cn=" + bean.getCompany_name();
@@ -708,7 +718,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoPresenter> {
         presenter.KenoBetSuccessMsg(new BaseConsumer<String>(this) {
             @Override
             protected void onBaseGetData(String data) {
-                presenter.handleDicAllBean(data);
+//                presenter.handleDicAllBean(data);
             }
         });
         kenoBetPopu.closePopupWindow();

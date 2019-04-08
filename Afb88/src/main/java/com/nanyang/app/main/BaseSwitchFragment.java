@@ -17,13 +17,13 @@ public abstract class BaseSwitchFragment<P extends BaseSwitchPresenter> extends 
     ImageView imgBack;
     LinearLayout llBackTitle;
     BaseToolbarActivity mainActivity;
-    TextView title;
+    TextView tvBackTitle;
 
     @Override
     public void initData() {
         super.initData();
-
         mainActivity = (BaseToolbarActivity) getBaseActivity();
+        setCurrentFragmentTitle();
     }
 
     @Override
@@ -31,7 +31,7 @@ public abstract class BaseSwitchFragment<P extends BaseSwitchPresenter> extends 
         super.initView();
         llBackTitle = mContentView.findViewById(R.id.ll_back_title);
         imgBack = mContentView.findViewById(R.id.img_back);
-        title = mContentView.findViewById(R.id.title);
+        tvBackTitle = mContentView.findViewById(R.id.tv_title);
         imgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -62,8 +62,8 @@ public abstract class BaseSwitchFragment<P extends BaseSwitchPresenter> extends 
         }
     }
 
-    public void setTitle(String title){
-        this.title.setText(title);
+    public void setBackTitle(String title) {
+        tvBackTitle.setText(title);
     }
 
     public void setCurrentFragmentTitle() {
@@ -72,7 +72,7 @@ public abstract class BaseSwitchFragment<P extends BaseSwitchPresenter> extends 
     }
 
     public void back() {
-        mainActivity.switchFragment(mainActivity.homeFragment);
+        mainActivity.switchFragment(mainActivity.getFirstShowFragment());
     }
 
     public String switchType = "";

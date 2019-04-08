@@ -11,7 +11,6 @@ import android.text.style.ForegroundColorSpan;
 import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
 import com.unkonw.testapp.libs.api.Api;
@@ -86,69 +85,69 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoActivity> {
         }
     }
 
-    protected void handleDicAllBean(String stakeListBeen) {
-        baseContext.hideLoadingDialog();
-        Gson gson = new Gson();
-        stakeListBeen = Html.fromHtml(stakeListBeen).toString();
-        String[] data1 = stakeListBeen.split("nyhxkj");
-        StakeListBean stakeListBean = gson.fromJson(data1[0], StakeListBean.class);
-        List<StakeListBean.DicAllBean> list1 = stakeListBean.getDicAll();
-        if (list1 == null) {
-            ToastUtils.showShort("Success");
-            return;
-        }
-        StringBuilder builder = new StringBuilder();
-        StakeListBean.DicAllBean item = list1.get(0);
-        builder.append(item.getRefNo() + "(" + item.getTransDate() + ")");
-        builder.append("\n");
-        builder.append(item.getHome() + "  X  " + item.getAway());
-        builder.append("\n");
-        builder.append(item.getKenoType() + "       " + item.getDisplayOdds2());
-        builder.append("\n");
-        builder.append(item.getRes2());
-        builder.append("\n");
-        builder.append(item.getBetType());
-        String n = "Accepted";
-        if (item.getDangerStatus().equals("D")) {
-            n = "Waiting";
-        } else if (item.getDangerStatus().equals("R")) {
-            n = "Rejected " + item.getR_DateTime();
-        } else if (item.getDangerStatus().equals("RR")) {
-            n = "Rejected (Red Card " + item.getR_DateTime() + ")";
-        } else if (item.getDangerStatus().equals("RP")) {
-            n = "Rejected (Goal Disallowed " + item.getR_DateTime() + ")";
-        } else if (item.getDangerStatus().equals("RA")) {
-            n = "Rejected (Abnormal Bet " + item.getR_DateTime() + ")";
-        } else if (item.getDangerStatus().equals("RG")) {
-            n = "Rejected (Goal " + item.getR_DateTime() + ")";
-        } else if (item.getDangerStatus().equals("0")) {
-            n = "Oddschange";
-        }
-        builder.append("\n");
-        builder.append(n + "     " + item.getAmt());
-        String str = builder.toString();
-        int start = str.indexOf(n);
-        int end = start + n.length();
-        SpannableStringBuilder style = new SpannableStringBuilder(str);
-        String oddsType = item.getKenoType();
-        style.setSpan(new ForegroundColorSpan(0xffad0c11), str.indexOf(oddsType), str.indexOf(oddsType) + oddsType.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        if (item.getDangerStatus().equals("D")) {
-            style.setSpan(new BackgroundColorSpan(Color.YELLOW), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else if (item.getDangerStatus().equals("R")) {
-            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else if (item.getDangerStatus().equals("RR")) {
-            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else if (item.getDangerStatus().equals("RP")) {
-            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else if (item.getDangerStatus().equals("RA")) {
-            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else if (item.getDangerStatus().equals("RG")) {
-            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else if (item.getDangerStatus().equals("0")) {
-            style.setSpan(new BackgroundColorSpan(Color.YELLOW), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        } else {
-            style.setSpan(new BackgroundColorSpan(Color.GREEN), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        }
-        ToastUtils.showShort(style);
-    }
+//    protected void handleDicAllBean(String stakeListBeen) {
+//        baseContext.hideLoadingDialog();
+//        Gson gson = new Gson();
+//        stakeListBeen = Html.fromHtml(stakeListBeen).toString();
+//        String[] data1 = stakeListBeen.split("nyhxkj");
+//        StakeListBean stakeListBean = gson.fromJson(data1[0], StakeListBean.class);
+//        List<StakeListBean.DicAllBean> list1 = stakeListBean.getDicAll();
+//        if (list1 == null) {
+//            ToastUtils.showShort("Success");
+//            return;
+//        }
+//        StringBuilder builder = new StringBuilder();
+//        StakeListBean.DicAllBean item = list1.get(0);
+//        builder.append(item.getRefNo() + "(" + item.getTransDate() + ")");
+//        builder.append("\n");
+//        builder.append(item.getHome() + "  X  " + item.getAway());
+//        builder.append("\n");
+//        builder.append(item.getKenoType() + "       " + item.getDisplayOdds2());
+//        builder.append("\n");
+//        builder.append(item.getRes2());
+//        builder.append("\n");
+//        builder.append(item.getBetType());
+//        String n = "Accepted";
+//        if (item.getDangerStatus().equals("D")) {
+//            n = "Waiting";
+//        } else if (item.getDangerStatus().equals("R")) {
+//            n = "Rejected " + item.getR_DateTime();
+//        } else if (item.getDangerStatus().equals("RR")) {
+//            n = "Rejected (Red Card " + item.getR_DateTime() + ")";
+//        } else if (item.getDangerStatus().equals("RP")) {
+//            n = "Rejected (Goal Disallowed " + item.getR_DateTime() + ")";
+//        } else if (item.getDangerStatus().equals("RA")) {
+//            n = "Rejected (Abnormal Bet " + item.getR_DateTime() + ")";
+//        } else if (item.getDangerStatus().equals("RG")) {
+//            n = "Rejected (Goal " + item.getR_DateTime() + ")";
+//        } else if (item.getDangerStatus().equals("0")) {
+//            n = "Oddschange";
+//        }
+//        builder.append("\n");
+//        builder.append(n + "     " + item.getAmt());
+//        String str = builder.toString();
+//        int start = str.indexOf(n);
+//        int end = start + n.length();
+//        SpannableStringBuilder style = new SpannableStringBuilder(str);
+//        String oddsType = item.getKenoType();
+//        style.setSpan(new ForegroundColorSpan(0xffad0c11), str.indexOf(oddsType), str.indexOf(oddsType) + oddsType.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+//        if (item.getDangerStatus().equals("D")) {
+//            style.setSpan(new BackgroundColorSpan(Color.YELLOW), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        } else if (item.getDangerStatus().equals("R")) {
+//            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        } else if (item.getDangerStatus().equals("RR")) {
+//            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        } else if (item.getDangerStatus().equals("RP")) {
+//            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        } else if (item.getDangerStatus().equals("RA")) {
+//            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        } else if (item.getDangerStatus().equals("RG")) {
+//            style.setSpan(new BackgroundColorSpan(Color.RED), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        } else if (item.getDangerStatus().equals("0")) {
+//            style.setSpan(new BackgroundColorSpan(Color.YELLOW), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        } else {
+//            style.setSpan(new BackgroundColorSpan(Color.GREEN), start, end, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        }
+//        ToastUtils.showShort(style);
+//    }
 }

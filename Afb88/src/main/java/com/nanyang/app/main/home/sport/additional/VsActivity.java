@@ -15,7 +15,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.center.PersonCenterActivity;
+import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
 import com.nanyang.app.main.home.sport.football.SoccerCommonBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerRunningBetHelper;
@@ -215,6 +215,16 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 
             }
         });
+    }
+
+    @Override
+    public int getDrawerLayoutId() {
+        return 0;
+    }
+
+    @Override
+    public BaseSwitchFragment getFirstShowFragment() {
+        return null;
     }
 
     public SportInfo getItem() {
@@ -506,12 +516,12 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             case R.id.tv_not_settled:
                 Bundle bundle = new Bundle();
                 bundle.putString(AppConstant.KEY_STRING, getString(R.string.stake));
-                skipAct(PersonCenterActivity.class, bundle);
+//                skipAct(PersonCenterActivity.class, bundle);
                 break;
             case R.id.tv_settled:
                 Bundle bundle2 = new Bundle();
                 bundle2.putString(AppConstant.KEY_STRING, getString(R.string.statement));
-                skipAct(PersonCenterActivity.class, bundle2);
+//                skipAct(PersonCenterActivity.class, bundle2);
                 break;
             case R.id.iv_lift_nav:
                 if (currentIndex > 0)

@@ -37,11 +37,9 @@ import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BetCenter.Bean.More;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.MainActivity;
-import com.nanyang.app.main.center.PersonCenterActivity;
-import com.nanyang.app.main.center.model.More;
-import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -251,6 +249,16 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     @Override
+    public int getDrawerLayoutId() {
+        return 0;
+    }
+
+    @Override
+    public BaseSwitchFragment getFirstShowFragment() {
+        return null;
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (webSocket != null)
@@ -335,12 +343,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     public void onGetData(final String data) {
-        presenter.getTransferMoneyData(new BaseConsumer<TransferMoneyBean>(this) {
-            @Override
-            protected void onBaseGetData(TransferMoneyBean transferMoneyBean) {
-                getMoneyMsg(transferMoneyBean, data);
-            }
-        });
+//        presenter.getTransferMoneyData(new BaseConsumer<TransferMoneyBean>(this) {
+//            @Override
+//            protected void onBaseGetData(TransferMoneyBean transferMoneyBean) {
+//                getMoneyMsg(transferMoneyBean, data);
+//            }
+//        });
     }
 
     @Override
@@ -354,39 +362,39 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         popWindow.closePopupWindow();
     }
 
-    public void getMoneyMsg(final TransferMoneyBean transferMoneyBean, final String data) {
-        popWindow.closePopupWindow();
-        TransferMoneyPop pop = new TransferMoneyPop(mContext, ivAdd) {
-            @Override
-            public void initMsgData(TextView tv_balance, TextView tv_casino_balance, EditText edt_amount) {
-                TransferMoneyBean.DicAllBean bean = transferMoneyBean.getDicAll().get(0);
-                tv_balance.setText(isStartWithTag(bean.getCredit()));
-                tv_casino_balance.setText(isStartWithTag(bean.getGdBalance()));
-            }
-
-            @Override
-            public void setOnCancelListener() {
-                startApp(data);
-            }
-
-            @Override
-            public void setOnSureListener(final String money) {
-                if (!TextUtils.isEmpty(money) && Integer.parseInt(money) != 0) {
-                    presenter.gamesGDTransferMonet(money, new BaseConsumer<String>(SportActivity.this) {
-                        @Override
-                        protected void onBaseGetData(String data) {
-                            onGetTransferMoneyData(0, money, data);
-                        }
-                    });
-                    closePopupWindow();
-                } else {
-                    ToastUtils.showShort(getString(R.string.Input_the_amount_please));
-                }
-            }
-
-        };
-        pop.showPopupCenterWindow();
-    }
+//    public void getMoneyMsg(final TransferMoneyBean transferMoneyBean, final String data) {
+//        popWindow.closePopupWindow();
+//        TransferMoneyPop pop = new TransferMoneyPop(mContext, ivAdd) {
+//            @Override
+//            public void initMsgData(TextView tv_balance, TextView tv_casino_balance, EditText edt_amount) {
+//                TransferMoneyBean.DicAllBean bean = transferMoneyBean.getDicAll().get(0);
+//                tv_balance.setText(isStartWithTag(bean.getCredit()));
+//                tv_casino_balance.setText(isStartWithTag(bean.getGdBalance()));
+//            }
+//
+//            @Override
+//            public void setOnCancelListener() {
+//                startApp(data);
+//            }
+//
+//            @Override
+//            public void setOnSureListener(final String money) {
+//                if (!TextUtils.isEmpty(money) && Integer.parseInt(money) != 0) {
+//                    presenter.gamesGDTransferMonet(money, new BaseConsumer<String>(SportActivity.this) {
+//                        @Override
+//                        protected void onBaseGetData(String data) {
+//                            onGetTransferMoneyData(0, money, data);
+//                        }
+//                    });
+//                    closePopupWindow();
+//                } else {
+//                    ToastUtils.showShort(getString(R.string.Input_the_amount_please));
+//                }
+//            }
+//
+//        };
+//        pop.showPopupCenterWindow();
+//    }
 
     public void onGetTransferMoneyData(int type, String getBackStr, String data) {
         if (getBackStr.contains("not allowed")) {
@@ -488,7 +496,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public void clickBets(View view) {
         Bundle b = new Bundle();
         b.putString(AppConstant.KEY_STRING, getString(R.string.stake));
-        skipAct(PersonCenterActivity.class, b);
+//        skipAct(PersonCenterActivity.class, b);
     }
 
     public void clickSportSelect(View view) {

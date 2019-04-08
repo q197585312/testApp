@@ -2,7 +2,7 @@ package com.nanyang.app.main;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.main.center.model.Contact;
+import com.nanyang.app.main.BetCenter.Bean.Contact;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
