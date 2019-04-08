@@ -138,12 +138,20 @@ public class HomeFragment extends BaseSwitchFragment {
         viewPager.addOnPageChangeListener(viewPager.listener);
     }
 
+
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(ListMainBanners data) {
         LogUtil.d(getClass().getSimpleName(), "onEvent------------>" + data.toString());
         if (this != null) {
             initViewPager(data);
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(viewPager!=null)
+            viewPager.stopTask();
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)

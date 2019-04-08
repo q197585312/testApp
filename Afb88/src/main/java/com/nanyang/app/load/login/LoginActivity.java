@@ -27,7 +27,6 @@ import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -234,6 +233,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     protected void onDestroy() {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
+        if (loginImagesvp != null)
+            loginImagesvp.stopTask();
     }
 
     public void sendImageEvent(AllBannerImagesBean data) {
@@ -248,5 +249,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         loginImagesvp.setAdapter(adapter);
         loginImagesvp.addOnPageChangeListener(loginImagesvp.listener);
     }
+
 
 }

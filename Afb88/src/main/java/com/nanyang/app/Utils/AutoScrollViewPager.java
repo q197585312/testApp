@@ -121,7 +121,7 @@ public class AutoScrollViewPager extends ViewPager {
         return super.onTouchEvent(arg0);
     }
 
-    private void stopTask() {
+    public void stopTask() {
         if (task != null) {
             task.cancel();
             task = null;

@@ -77,6 +77,10 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
                     AdditionBean additionBean = gson.fromJson(data, AdditionBean.class);
                     AdditionPresenter.this.baseContext.onAddition(additionBean, position);
                 }
+
+                @Override
+                protected void onAccept() {
+                }
             });
             updateHandler.postDelayed(this, 20000);// 50是延时时长
         }
