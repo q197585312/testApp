@@ -67,18 +67,17 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvCom = view.findViewById(R.id.tv_com);
             TextView tvWinLose = view.findViewById(R.id.tv_WinLose);
             TextView tvSettled = view.findViewById(R.id.tv_settled);
-            final ImageView imgOpen1 = view.findViewById(R.id.img_open1);
             final LinearLayout llAddView = view.findViewById(R.id.ll_addView);
             String date = DateUtils.format(bean.getIndex1(), "yyyy-MM-dd", "dd/MM/yyyy") + " " +
                     DateUtils.getChinaWeek(DateUtils.format(bean.getIndex1(), "yyyy-MM-dd"));
             if (bean.getIndex0().equals("1")) {
                 date = getString(R.string.Lastweeksummary);
-                imgOpen1.setTag(1);//1是上周数据 2是本周正常数据
+                view.setTag(1);//1是上周数据 2是本周正常数据
             } else {
-                imgOpen1.setTag(2);
+                view.setTag(2);
             }
             tvDate.setText(date);
-            tvCom.setText(getString(R.string.Com)+" " + bean.getIndex5() + " ");
+            tvCom.setText(getString(R.string.Com) + " " + bean.getIndex5() + " ");
             String wl = bean.getIndex4();
             tvWinLose.setText(" " + wl + " ");
             if (wl.startsWith("-")) {
@@ -86,8 +85,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             } else {
                 tvWinLose.setTextColor(Color.BLUE);
             }
-            tvSettled.setText(" "+getString(R.string.Settled)+" " + bean.getIndex6());
-            imgOpen1.setOnClickListener(new View.OnClickListener() {
+            tvSettled.setText(" " + getString(R.string.Settled) + " " + bean.getIndex6());
+            view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     currentLlAddView = llAddView;
@@ -133,14 +132,13 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvCom = view.findViewById(R.id.tv_com);
             TextView tvWinLose = view.findViewById(R.id.tv_WinLose);
             TextView tvSettled = view.findViewById(R.id.tv_settled);
-            final ImageView imgOpen1 = view.findViewById(R.id.img_open1);
             final LinearLayout llAddView = view.findViewById(R.id.ll_addView);
             String date = bean.getIndex1();
             final String[] dateTrue = date.split(" ");
             String dateStr = DateUtils.format(dateTrue[0], "yyyy-MM-dd", "dd/MM/yyyy") + " " +
                     DateUtils.getChinaWeek(DateUtils.format(bean.getIndex1(), "yyyy-MM-dd"));
             tvDate.setText(dateStr);
-            tvCom.setText(getString(R.string.Com)+" " + bean.getIndex5() + " ");
+            tvCom.setText(getString(R.string.Com) + " " + bean.getIndex5() + " ");
             String wl = bean.getIndex4();
             tvWinLose.setText(" " + wl + " ");
             if (wl.startsWith("-")) {
@@ -148,8 +146,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             } else {
                 tvWinLose.setTextColor(Color.BLUE);
             }
-            tvSettled.setText(" "+getString(R.string.Settled)+" " + bean.getIndex6());
-            imgOpen1.setOnClickListener(new View.OnClickListener() {
+            tvSettled.setText(" " + getString(R.string.Settled) + " " + bean.getIndex6());
+            view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     currentLlAddView = llAddView;
@@ -187,7 +185,6 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 TextView tvOdds = view.findViewById(R.id.tv_odds);
                 TextView tvType = view.findViewById(R.id.tv_type);
                 final LinearLayout llAddView1 = view.findViewById(R.id.ll_addView1);
-                ImageView imgOpen2 = view.findViewById(R.id.img_open2);
                 TextView tvAmt = view.findViewById(R.id.tv_amt);
                 TextView tvWl = view.findViewById(R.id.tv_wl);
                 TextView tvCom = view.findViewById(R.id.tv_com);
@@ -195,10 +192,10 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 int number = i + 1;
                 tvNumber.setText(number < 10 ? ("0" + number) : "" + number);
                 tvMatchType.setText(bean.getIndex1());
-                tvEstPayout.setText(getString(R.string.Est_Payout)+" " + AfbUtils.decimalValue(Float.parseFloat(bean.getIndex3()) * Float.parseFloat(bean.getIndex9()), "0.00"));
-                tvOdds.setText(getString(R.string.Odds)+" " + bean.getIndex3());
+                tvEstPayout.setText(getString(R.string.Est_Payout) + " " + AfbUtils.decimalValue(Float.parseFloat(bean.getIndex3()) * Float.parseFloat(bean.getIndex9()), "0.00"));
+                tvOdds.setText(getString(R.string.Odds) + " " + bean.getIndex3());
                 tvType.setText(bean.getIndex17());
-                tvAmt.setText(getString(R.string.Amt)+" " + bean.getIndex9());
+                tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex9());
                 String winLose = bean.getIndex10();
                 tvWl.setText(winLose);
                 if (winLose.startsWith("-")) {
@@ -206,8 +203,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 } else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
-                tvCom.setText(getString(R.string.Com)+" " + bean.getIndex18());
-                imgOpen2.setOnClickListener(new View.OnClickListener() {
+                tvCom.setText(getString(R.string.Com) + " " + bean.getIndex18());
+                view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         currentLlAddView = llAddView1;
@@ -238,7 +235,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 TextView tvHandicap = view.findViewById(R.id.tv_handicap);
                 TextView tvCom = view.findViewById(R.id.tv_com);
                 TextView tvWl = view.findViewById(R.id.tv_wl);
-                tvIdDate.setText(getString(R.string.ID)+":[" + bean.getIndex13() + "]" + bean.getIndex0());
+                tvIdDate.setText(getString(R.string.ID) + ":[" + bean.getIndex13() + "]" + bean.getIndex0());
                 int number = i + 1;
                 tvNumber.setText(number < 10 ? ("0" + number) : "" + number);
                 tvMatchType.setText(bean.getIndex12());
@@ -269,7 +266,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvMatchAt4.setVisibility(View.VISIBLE);
                 }
                 tvMatchGrade.setText(bean.getIndex5() + " " + bean.getIndex20());
-                tvAmt.setText(getString(R.string.Amt)+" " + bean.getIndex9());
+                tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex9());
                 if (odds.startsWith("-")) {
                     tvOdds.setTextColor(Color.RED);
                     tvMatchAt3.setTextColor(Color.RED);
@@ -279,7 +276,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 }
                 tvOdds.setText(odds);
                 tvHandicap.setText("(" + bean.getIndex16() + ")");
-                tvCom.setText(getString(R.string.Com)+" " + bean.getIndex18());
+                tvCom.setText(getString(R.string.Com) + " " + bean.getIndex18());
                 String winLose = bean.getIndex10();
                 tvWl.setText(winLose);
                 if (winLose.startsWith("-")) {
@@ -335,7 +332,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 tvWL.setTextColor(Color.RED);
             }
             tvWL.setText(AfbUtils.delHTMLTag(wlStr));
-            tvScore.setText(getString(R.string.Result)+":" + bean.getIndex6() + "-" + bean.getIndex7());
+            tvScore.setText(getString(R.string.Result) + ":" + bean.getIndex6() + "-" + bean.getIndex7());
             if (i == 0) {
                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 1);
                 int margin = AfbUtils.dp2px(mContext, 3);
@@ -411,11 +408,11 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 tvWL.setTextColor(Color.RED);
             }
             tvWL.setText(AfbUtils.delHTMLTag(wlStr));
-            tvScore.setText(getString(R.string.Result)+" " + bean.getIndex6() + "-" + bean.getIndex7());
+            tvScore.setText(getString(R.string.Result) + " " + bean.getIndex6() + "-" + bean.getIndex7());
             if (i == 0) {
                 llTitle.setVisibility(View.VISIBLE);
-                tvTotalOdds.setText(getString(R.string.TotalOdds)+":" + bean.getIndex18());
-                tvAmt.setText(getString(R.string.Amt)+" " + bean.getIndex15());
+                tvTotalOdds.setText(getString(R.string.TotalOdds) + ":" + bean.getIndex18());
+                tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex15());
             } else {
                 int currentPositionId = bean.getIndex0();
                 int lastPositionId = list.get(i - 1).getIndex0();
@@ -429,8 +426,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     v.setLayoutParams(params);
                     currentLlAddView.addView(v);
                     llTitle.setVisibility(View.VISIBLE);
-                    tvTotalOdds.setText(getString(R.string.TotalOdds)+":" + bean.getIndex18());
-                    tvAmt.setText(getString(R.string.Amt)+" " + bean.getIndex15());
+                    tvTotalOdds.setText(getString(R.string.TotalOdds) + ":" + bean.getIndex18());
+                    tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex15());
                 }
             }
             currentLlAddView.addView(view);
