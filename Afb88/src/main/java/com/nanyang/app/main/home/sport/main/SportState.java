@@ -185,7 +185,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             @Override
             public void onCompleted(Exception ex, final WebSocket webSocket) {
 
-                Log.i(TAG, "----------------startHttpClientWebSocket------websocket---onCompleted-" + webSocket);
                 if (ex != null) {
                     Log.e(TAG, "Exception----------------" + ex.getLocalizedMessage());
                     ex.printStackTrace();

@@ -24,7 +24,6 @@ import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
@@ -145,12 +144,20 @@ public class HomeFragment extends BaseSwitchFragment {
         viewPager.addOnPageChangeListener(viewPager.listener);
     }
 
+
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
     public void onEvent(ListMainBanners data) {
         LogUtil.d(getClass().getSimpleName(), "onEvent------------>" + data.toString());
         if (this != null) {
             initViewPager(data);
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if(viewPager!=null)
+            viewPager.stopTask();
     }
 
     @Subscribe(sticky = true, threadMode = ThreadMode.MAIN)
