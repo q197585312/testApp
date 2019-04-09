@@ -9,18 +9,18 @@ import java.util.List;
  */
 
 public class ListMainPictures {
-    public ListMainPictures(List<AllBannerImagesBean.BannersBean> bannersBeen) {
+    public ListMainPictures(List<AllBannerImagesBean.MainBannersBean> bannersBeen) {
         this.bannersBeen = bannersBeen;
     }
 
-    public List<AllBannerImagesBean.BannersBean> getBannersBeen() {
+    public List<AllBannerImagesBean.MainBannersBean> getBannersBeen() {
         return bannersBeen;
     }
 
-    public void setBannersBeen(List<AllBannerImagesBean.BannersBean> bannersBeen) {
+    public void setBannersBeen(List<AllBannerImagesBean.MainBannersBean> bannersBeen) {
         this.bannersBeen = bannersBeen;
     }
 
-    List<AllBannerImagesBean.BannersBean> bannersBeen;
+    List<AllBannerImagesBean.MainBannersBean> bannersBeen;
 
 }

@@ -16,6 +16,7 @@ import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -202,6 +203,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
             @Override
             protected void onBaseGetData(AllBannerImagesBean data) {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
+                LogUtil.d("AllBannerImagesBean",data.toString());
                     LoginPresenter.this.baseContext.sendImageEvent(data);
 
             }

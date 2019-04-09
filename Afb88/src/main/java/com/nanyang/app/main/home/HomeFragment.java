@@ -160,26 +160,26 @@ public class HomeFragment extends BaseSwitchFragment {
         initContent(data.getBannersBeen());
     }
 
-    private void initContent(List<AllBannerImagesBean.BannersBean> data) {
+    private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(layoutManager);
 
 
-        BaseRecyclerAdapter<AllBannerImagesBean.BannersBean> adapter = new BaseRecyclerAdapter<AllBannerImagesBean.BannersBean>(mContext, data, R.layout.home_sport_item_image_text) {
+        BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean> adapter = new BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean>(mContext, data, R.layout.home_sport_item_image_text) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, AllBannerImagesBean.BannersBean item) {
+            public void convert(MyRecyclerViewHolder holder, int position, AllBannerImagesBean.MainBannersBean item) {
                 TextView tv = holder.getView(R.id.tv_text);
                 holder.setImageByUrl(R.id.iv_pic, item.getImg());
-                SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getId());
+                SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getG());
                 if (sportIdBean != null && sportIdBean.getTextRes() > 0)
                     tv.setText(getString(sportIdBean.getTextRes()));
             }
         };
         rvContent.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<AllBannerImagesBean.BannersBean>() {
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<AllBannerImagesBean.MainBannersBean>() {
             @Override
-            public void onItemClick(View view, AllBannerImagesBean.BannersBean item, int position) {
-                SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getId());
+            public void onItemClick(View view, AllBannerImagesBean.MainBannersBean item, int position) {
+                SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getG());
                 MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.running));
                 menuItemInfo.setType("Running");
                 menuItemInfo.setParent(sportIdBean.getType());
