@@ -12,7 +12,6 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -77,15 +76,7 @@ public class HuayThaiActivity extends BaseToolbarActivity {
         tvToolbarLeft.setVisibility(View.VISIBLE);
     }
 
-    @Override
-    public int getDrawerLayoutId() {
-        return 0;
-    }
 
-    @Override
-    public BaseSwitchFragment getFirstShowFragment() {
-        return null;
-    }
 
     @Override
     public void finish() {

@@ -10,7 +10,6 @@ import android.widget.TextView;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseSwitchFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -47,15 +46,7 @@ public class HuayThaiGamesActivity extends BaseToolbarActivity {
 
     }
 
-    @Override
-    public int getDrawerLayoutId() {
-        return 0;
-    }
 
-    @Override
-    public BaseSwitchFragment getFirstShowFragment() {
-        return null;
-    }
 
     @Override
     public void initView() {

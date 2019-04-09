@@ -20,6 +20,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorEarlyState;
@@ -34,7 +35,6 @@ import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
@@ -53,7 +53,7 @@ import cn.finalteam.toolsfinal.DeviceUtils;
  * Created by Administrator on 2017/3/13.
  */
 
-public abstract class BaseSportFragment extends BaseFragment<SportPresenter> implements SportContract.View<SportInfo> {
+public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresenter> implements SportContract.View<SportInfo> {
 
 
     @Bind(R.id.swipe_target)
@@ -402,6 +402,8 @@ public abstract class BaseSportFragment extends BaseFragment<SportPresenter> imp
             updateMixOrderCount();
         }
         isFirstIn = false;
+        getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
+
     }
 
     public SportActivity getBaseActivity() {

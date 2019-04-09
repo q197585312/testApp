@@ -139,5 +139,5 @@
             android:background="@color/white" />
     </LinearLayout>
 
-    <include layout="@layout/include_drawer_layout_right"></include>
+    <include layout="@layout/include_drawer_layout_right"/>
 </android.support.v4.widget.DrawerLayout>

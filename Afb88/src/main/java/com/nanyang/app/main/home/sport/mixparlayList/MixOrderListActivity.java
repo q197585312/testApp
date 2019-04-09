@@ -21,7 +21,6 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
@@ -288,15 +287,6 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         finish();
     }
 
-    @Override
-    public int getDrawerLayoutId() {
-        return 0;
-    }
-
-    @Override
-    public BaseSwitchFragment getFirstShowFragment() {
-        return null;
-    }
 
     private void checkEnd(String result) {
         if (result == null) {

@@ -1,6 +1,8 @@
 package com.nanyang.app.main;
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.widget.DrawerLayout;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -19,6 +21,7 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
+import com.nanyang.app.main.home.HomeFragment;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -41,6 +44,13 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     TextView homePop;
     @Bind(R.id.ll_tab_menu_bottom)
     LinearLayout ll_tab_menu_bottom;
+    @Nullable
+    protected
+    @Bind(R.id.drawer_more)
+    DrawerLayout drawerLayout;
+    private AfbDrawerViewHolder afbDrawerViewHolder;
+
+    @Nullable
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +59,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         AfbUtils.switchLanguage(lag, mContext);
         setContentView(R.layout.activity_main_tab);
         ButterKnife.bind(this);
-        switchFragment(homeFragment);
         createPresenter(new MainPresenter(this));
         toolbar.setNavigationIcon(null);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
@@ -61,7 +70,12 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         tvToolbarLeft.setVisibility(View.VISIBLE);
         tvToolbarLeft.setBackgroundResource(R.mipmap.left_logo);
         initUserData();
+        afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this);
+        afbDrawerViewHolder.initDefaultFragment(homeFragment);
+        afbDrawerViewHolder.switchFragment(homeFragment);
     }
+
+    private BaseSwitchFragment homeFragment = new HomeFragment();
 
     @Override
     public boolean isNeedUpdateTime() {
@@ -75,16 +89,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     private void initUserData() {
         ((AfbApplication) mContext.getApplication()).getUser().getBalances();
-    }
-
-    @Override
-    public int getDrawerLayoutId() {
-        return R.id.drawer_more;
-    }
-
-    @Override
-    public BaseSwitchFragment getFirstShowFragment() {
-        return homeFragment;
     }
 
     @Override
@@ -128,11 +132,11 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 pop.showAtLocation(Gravity.NO_GRAVITY, 0, viewY - (AfbUtils.dp2px(mContext, 40)) * 7);
                 break;
             case R.id.fl_menu_center:
-                switchFragment(contactFragment);
+                afbDrawerViewHolder.switchFragment(afbDrawerViewHolder.getContactFragment());
                 break;
             case R.id.fl_menu_statemente:
-                statementFragment.setSwitchType(BetCenterFragment.statementNew);
-                switchFragment(statementFragment);
+                afbDrawerViewHolder.getStatementFragment().setSwitchType(BetCenterFragment.statementNew);
+                afbDrawerViewHolder.switchFragment(afbDrawerViewHolder.getStatementFragment());
                 break;
             case R.id.fl_menu_login_out:
                 drawerLayout.openDrawer(Gravity.RIGHT);
@@ -153,23 +157,9 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                drawerLayout.closeDrawer(Gravity.RIGHT);
-                return true;
-            }
-            if (indexFragment == homeFragment) {
-                if (isTwoFinish()) {
-                    finish();
-                } else {
-                    ToastUtils.showShort(getString(R.string.double_click_exit_application));
-                }
-            } else {
-                indexFragment.back();
-            }
-        }
-        return true;
+        return afbDrawerViewHolder.onKeyDown(keyCode, event);
     }
+
 
     private boolean isFinish = true;
 
@@ -187,6 +177,11 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         } else {
             return true;
         }
+    }
+
+    @Override
+    public void onBackCLick(View v) {
+        afbDrawerViewHolder.isBack(false);
     }
 
 }
