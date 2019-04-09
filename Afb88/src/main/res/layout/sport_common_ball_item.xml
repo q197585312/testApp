@@ -44,7 +44,7 @@
             android:paddingBottom="2dp"
             android:paddingLeft="10dp"
             android:paddingTop="2dp"
-            android:textColor="@color/green_dark_bg"
+            android:textColor="@color/green"
             android:textSize="11sp" />
     </LinearLayout>
 
