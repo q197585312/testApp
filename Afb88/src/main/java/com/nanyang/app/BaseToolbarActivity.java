@@ -5,36 +5,20 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.text.TextUtils;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.Utils.TimeUtils;
 import com.nanyang.app.load.login.LoginActivity;
-import com.nanyang.app.main.BaseSwitchFragment;
-import com.nanyang.app.main.BetCenter.Bean.More;
-import com.nanyang.app.main.BetCenter.BetCenterFragment;
-import com.nanyang.app.main.changeLanguage.ChangeLanguageFragment;
-import com.nanyang.app.main.contact.ContactFragment;
-import com.nanyang.app.main.home.HomeFragment;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.nanyang.app.main.howtouse.HowToUseFragment;
-import com.nanyang.app.main.message.MessageFragment;
-import com.nanyang.app.main.person.PersonCenterFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
@@ -44,8 +28,6 @@ import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import org.reactivestreams.Subscription;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -74,12 +56,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     @Nullable
     protected
     LinearLayout llRight;
-    @Nullable
-    protected
-    DrawerLayout drawerLayout;
-    @Nullable
-    protected
-    RecyclerView drawerLayoutRightRc;
+
 
     private CompositeDisposable mCompositeSubscription;
     int errorCount = 0;
@@ -120,90 +97,14 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             llRight.setVisibility(View.VISIBLE);
             updateHandler.post(timeUpdateRunnable);
         }
-//        initDrawerLayout();
-//        switchFragment(getFirstShowFragment());
+
+
+
     }
 
-    public BaseSwitchFragment homeFragment = new HomeFragment();
-    public BaseSwitchFragment statementFragment = new BetCenterFragment();
-    public BaseSwitchFragment contactFragment = new ContactFragment();
-    public BaseSwitchFragment changeLanguageFragment = new ChangeLanguageFragment();
-    public BaseSwitchFragment personFragment = new PersonCenterFragment();
-    public BaseSwitchFragment howToUseFragment = new HowToUseFragment();
-    public BaseSwitchFragment messageFragment = new MessageFragment();
-    public BaseSwitchFragment indexFragment;
-    public BaseSwitchFragment lastIndexFragment;
 
-    private void initDrawerLayout() {
-        drawerLayout = (DrawerLayout) findViewById(getDrawerLayoutId());
-        drawerLayoutRightRc = (RecyclerView) findViewById(R.id.main_more);
-        More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0, personFragment);
-        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message, messageFragment);
-        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
-        More m4 = new More(R.mipmap.result, getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
-        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0, contactFragment);
-        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0, changeLanguageFragment);
-        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0, howToUseFragment);
-        More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
-        List<More> dataList = new ArrayList<>();
-        dataList.add(m1);
-        dataList.add(m2);
-        dataList.add(m3);
-        dataList.add(m4);
-        dataList.add(m5);
-        dataList.add(m6);
-        dataList.add(m7);
-        dataList.add(m8);
-        BaseRecyclerAdapter<More> adapter = new BaseRecyclerAdapter<More>(mContext, dataList, R.layout.item_main_more) {
 
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, More item) {
-                ImageView ivLeft = holder.getImageView(R.id.more_left_img);
-                ImageView ivRight = holder.getImageView(R.id.more_img_right);
-                ivLeft.setImageResource(item.getImage_left());
-                if (item.getImage_right() != 0) {
-                    ivRight.setImageResource(item.getImage_right());
-                }
-                TextView tv = holder.getTextView(R.id.more_text);
-                tv.setText(item.getText());
-            }
-        };
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<More>() {
-            @Override
-            public void onItemClick(View view, More item, int position) {
-                drawerLayout.closeDrawer(Gravity.RIGHT);
-                if (getString(R.string.logout).equals(item.getText())) {
-                    BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
-                        @Override
-                        protected void clickSure(View v) {
-                            Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                        }
-                    };
-                    pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-                    pop.getChooseMessage().setText(getString(R.string.login_out));
-                    pop.getChooseSureTv().setText(getString(R.string.sure));
-                    pop.getChooseCancelTv().setText(getString(R.string.cancel));
-                    onPopupWindowCreated(pop, Gravity.CENTER);
-                } else {
-                    BaseSwitchFragment fragment = item.getFragment();
-                    if (fragment != null) {
-                        if (fragment instanceof BetCenterFragment) {
-                            String switchType = item.getSwitchType();
-                            if (!TextUtils.isEmpty(switchType)) {
-                                fragment.setSwitchType(item.getSwitchType());
-                                fragment.showContent();
-                            }
-                        }
-                        switchFragment(fragment);
-                    }
-                }
-            }
-        });
-        drawerLayoutRightRc.setLayoutManager(new LinearLayoutManager(mContext));
-        drawerLayoutRightRc.setAdapter(adapter);
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-    }
+
 
 
     public void initAgent() {
@@ -220,7 +121,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         }
     }
 
-    protected void onBackCLick(View v) {
+    public void onBackCLick(View v) {
         finish();
     }
 
@@ -528,10 +429,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         }
     }
 
-    public abstract int getDrawerLayoutId();
-
-    public abstract BaseSwitchFragment getFirstShowFragment();
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
@@ -540,38 +437,4 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         }
     }
 
-    public void switchFragment(BaseSwitchFragment fragment) {
-        if (fragment == indexFragment && lastIndexFragment != null) {
-            indexFragment.showContent();
-            return;
-        }
-        indexFragment = fragment;
-        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-        if (!fragment.isAdded()) {
-            transaction.add(R.id.fl_main_content, fragment);
-        } else {
-            transaction.show(fragment);
-        }
-        if (lastIndexFragment != null) {
-            transaction.hide(lastIndexFragment);
-        }
-        lastIndexFragment = indexFragment;
-        transaction.commit();
-    }
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                drawerLayout.closeDrawer(Gravity.RIGHT);
-                return true;
-            }
-            if (indexFragment == homeFragment) {
-                finish();
-            } else {
-                indexFragment.back();
-            }
-        }
-        return true;
-    }
 }

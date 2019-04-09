@@ -10,9 +10,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,10 +24,8 @@ import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
-import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.home.gdCasino.model.PorkerCasinoBean;
-import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -289,15 +285,7 @@ public class PokerCasinoActivity extends BaseToolbarActivity<LanguagePresenter> 
 
     }
 
-    @Override
-    public int getDrawerLayoutId() {
-        return 0;
-    }
 
-    @Override
-    public BaseSwitchFragment getFirstShowFragment() {
-        return null;
-    }
 
     @Override
     public void againLogin(final String gameType) {

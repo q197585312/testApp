@@ -57,13 +57,4 @@ public class KenoWebActivity extends BaseToolbarActivity {
         });
     }
 
-    @Override
-    public int getDrawerLayoutId() {
-        return 0;
-    }
-
-    @Override
-    public BaseSwitchFragment getFirstShowFragment() {
-        return null;
-    }
 }

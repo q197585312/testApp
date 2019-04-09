@@ -24,7 +24,6 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.MyViewPagerAdapter;
-import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -657,16 +656,6 @@ public class KenoActivity extends BaseToolbarActivity<KenoPresenter> {
 
             }
         });
-    }
-
-    @Override
-    public int getDrawerLayoutId() {
-        return 0;
-    }
-
-    @Override
-    public BaseSwitchFragment getFirstShowFragment() {
-        return null;
     }
 
     private void bet(String betType) {

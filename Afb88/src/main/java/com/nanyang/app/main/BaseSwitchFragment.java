@@ -8,16 +8,18 @@ import android.widget.TextView;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.unkonw.testapp.libs.base.BaseFragment;
+import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
 /**
  * Created by Administrator on 2019/4/3.
  */
 
-public abstract class BaseSwitchFragment<P extends BaseSwitchPresenter> extends BaseFragment<P> {
+public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseFragment<P> {
     ImageView imgBack;
     LinearLayout llBackTitle;
     BaseToolbarActivity mainActivity;
     TextView tvBackTitle;
+    public AfbDrawerViewHolder holder;
 
     @Override
     public void initData() {
@@ -32,12 +34,13 @@ public abstract class BaseSwitchFragment<P extends BaseSwitchPresenter> extends 
         llBackTitle = mContentView.findViewById(R.id.ll_back_title);
         imgBack = mContentView.findViewById(R.id.img_back);
         tvBackTitle = mContentView.findViewById(R.id.tv_title);
-        imgBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                back();
-            }
-        });
+        if (imgBack != null)
+            imgBack.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    ((BaseToolbarActivity) getBaseActivity()).onBackCLick(tvBackTitle);
+                }
+            });
     }
 
     public void setToolbarVisibility(boolean b) {
@@ -71,9 +74,6 @@ public abstract class BaseSwitchFragment<P extends BaseSwitchPresenter> extends 
         setBackTitleVisibility(true);
     }
 
-    public void back() {
-        mainActivity.switchFragment(mainActivity.getFirstShowFragment());
-    }
 
     public String switchType = "";
 
@@ -83,5 +83,9 @@ public abstract class BaseSwitchFragment<P extends BaseSwitchPresenter> extends 
 
     public void showContent() {
 
+    }
+
+    public void setHolder(AfbDrawerViewHolder holder) {
+        this.holder = holder;
     }
 }

@@ -15,15 +15,14 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
 import com.nanyang.app.main.home.sport.football.SoccerCommonBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerRunningBetHelper;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
+import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
@@ -217,15 +216,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         });
     }
 
-    @Override
-    public int getDrawerLayoutId() {
-        return 0;
-    }
 
-    @Override
-    public BaseSwitchFragment getFirstShowFragment() {
-        return null;
-    }
 
     public SportInfo getItem() {
         return item;

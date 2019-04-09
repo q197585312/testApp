@@ -12,11 +12,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -34,20 +32,14 @@ import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
-import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
-import com.nanyang.app.main.BaseSwitchFragment;
-import com.nanyang.app.main.BetCenter.Bean.More;
-import com.nanyang.app.main.BetCenter.BetCenterFragment;
-import com.nanyang.app.main.MainActivity;
-import com.nanyang.app.main.home.sport.dialog.TransferMoneyPop;
+import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.BaseView;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
-import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import org.json.JSONException;
 
@@ -68,6 +60,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.drawer_more)
     DrawerLayout drawerLayout;
 
+    @Bind(R.id.sport_header_ll)
+    View sportHeaderLl;
     @Bind(R.id.tv_toolbar_left)
     TextView tvToolbarLeft;
     @Bind(R.id.tv_toolbar_title)
@@ -121,6 +115,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private MenuItemInfo<String> item;
     private String currentGameType = "";
     public WebSocket webSocket;
+    private AfbDrawerViewHolder afbDrawerViewHolder;
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
@@ -133,6 +128,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
@@ -146,80 +142,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
             }
         });
-        initDrawer();
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-    }
-
-    private void initDrawer() {
-        LinearLayoutManager llm = new LinearLayoutManager(mContext);
-        reContent.setLayoutManager(llm);
-        More m2 = new More(R.mipmap.messages, getString(R.string.messages), R.mipmap.message);
-    /*    More m1 = new More(R.mipmap.myacount, getString(R.string.my_account), 0, personFragment);
-
-        More m3 = new More(R.mipmap.statement, getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
-        More m4 = new More(R.mipmap.result, getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
-        More m5 = new More(R.mipmap.phone, getString(R.string.contact), 0, contactFragment);
-        More m6 = new More(R.mipmap.setting, getString(R.string.setting), 0,changeLanguageFragment);
-        More m7 = new More(R.mipmap.setting, getString(R.string.how_to_use), 0, howToUseFragment);*/
-        More m8 = new More(R.mipmap.logout, getString(R.string.logout), 0);
-        List<More> dataList = new ArrayList<>();
-//        dataList.add(m1);
-        dataList.add(m2);
-//        dataList.add(m3);
-//        dataList.add(m4);
-//        dataList.add(m5);
-//        dataList.add(m6);
-//        dataList.add(m7);
-        dataList.add(m8);
-
-        BaseRecyclerAdapter<More> adapter = new BaseRecyclerAdapter<More>(mContext, dataList, R.layout.item_main_more) {
-
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, More item) {
-                ImageView ivLeft = holder.getImageView(R.id.more_left_img);
-                ImageView ivRight = holder.getImageView(R.id.more_img_right);
-                ivLeft.setImageResource(item.getImage_left());
-                if (item.getImage_right() != 0) {
-                    ivRight.setImageResource(item.getImage_right());
-                }
-                TextView tv = holder.getTextView(R.id.more_text);
-                tv.setText(item.getText());
-            }
-        };
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<More>() {
-            @Override
-            public void onItemClick(View view, More item, int position) {
-                drawerLayout.closeDrawer(Gravity.RIGHT);
-                if (getString(R.string.logout).equals(item.getText())) {
-                    BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
-                        @Override
-                        protected void clickSure(View v) {
-                            Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            startActivity(intent);
-                        }
-                    };
-                    pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-                    pop.getChooseMessage().setText(getString(R.string.login_out));
-                    pop.getChooseSureTv().setText(getString(R.string.sure));
-                    pop.getChooseCancelTv().setText(getString(R.string.cancel));
-                    onPopupWindowCreated(pop, Gravity.CENTER);
-                } else {
-                    BaseSwitchFragment fragment = item.getFragment();
-                    if (fragment != null) {
-                        if (fragment instanceof BetCenterFragment) {
-                            String switchType = item.getSwitchType();
-                            if (!TextUtils.isEmpty(switchType)) {
-                                fragment.setSwitchType(item.getSwitchType());
-                                fragment.showContent();
-                            }
-                        }
-                        switchFragment(fragment);
-                    }
-                }
-            }
-        });
-        reContent.setAdapter(adapter);
-        drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
 
@@ -239,6 +161,14 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         super.initData();
         app = (AfbApplication) getApplication();
         item = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
+        afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this);
+
+        afbDrawerViewHolder.setSwitchCallBack(new AfbDrawerViewHolder.ISwitchCallBack() {
+            @Override
+            public void onSwitch() {
+                sportHeaderLl.setVisibility(View.GONE);
+            }
+        });
         if (item != null) {
             type = item.getType();
             assert tvToolbarTitle != null;
@@ -248,15 +178,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         getApp().setBetParList(null);
     }
 
-    @Override
-    public int getDrawerLayoutId() {
-        return 0;
-    }
-
-    @Override
-    public BaseSwitchFragment getFirstShowFragment() {
-        return null;
-    }
 
     @Override
     protected void onDestroy() {
@@ -273,7 +194,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         Logger.getDefaultLogger().d("localCurrentFragment:" + localCurrentFragment);
         String localCurrentTag = getString(sportIdBean.getTextRes());
         selectFragmentTag(localCurrentTag, localCurrentFragment);
-
+        afbDrawerViewHolder.initDefaultFragment(localCurrentFragment);
     }
 
 
@@ -299,6 +220,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         currentTag = tag;
         tvSportSelect.setText(tag);
         sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);
+        afbDrawerViewHolder.initDefaultFragment(currentFragment);
 
     }
 
@@ -326,20 +248,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
 
     @Override
-    protected void onBackCLick(View v) {
-        if (AppConstant.getInstance().IS_AGENT) {
-            finish();
-        } else {
-            Intent intent = new Intent(mContext, MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-        }
-
+    public void onBackCLick(View v) {
+        afbDrawerViewHolder.isBack(false);
     }
 
-    @Override
-    public void onBackPressed() {
-        onBackCLick(flContent);
-    }
 
     @Override
     public void onGetData(final String data) {
@@ -619,12 +531,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK) {
-            if (drawerLayout.isDrawerOpen(Gravity.RIGHT)) {
-                drawerLayout.closeDrawer(Gravity.RIGHT);
-            }
-        }
-        return super.onKeyDown(keyCode, event);
+        return afbDrawerViewHolder.onKeyDown(keyCode, event);
     }
 
 }

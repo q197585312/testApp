@@ -117,7 +117,7 @@ public class HowToUseFragment extends BaseSwitchFragment {
                 }
                 break;
             case R.id.howtouse_btn:
-                back();
+                holder.isBack(false);
                 break;
 
         }

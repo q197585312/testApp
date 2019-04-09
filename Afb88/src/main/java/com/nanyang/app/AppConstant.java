@@ -291,14 +291,17 @@ public class AppConstant {
         URL_UPDATE_BALANCE = HOST + "Bet/PanelStakeBalance_App.aspx";
         URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
         URL_ODDS_TYPE = HOST + "Main.aspx?accType=";
+        URL_ODDS = HOST + "Bet/JRecPanel_App.aspx?";
+        URL_SOCCER_REMOVE_MIX = HOST + "Bet/ParRemove.aspx";
+        //http://main55.afb88.com/_view/Result.aspx
+        URL_RESULT = HOST + "_view/Result_App.aspx";
+
         URL_FOOTBALL_RUNNING = HOST + "_View/SocAllGen.ashx?ot=r&ov=0&tf=-1&TFStatus=0&update=false&r=153004462";
         URL_FOOTBALL_TODAY = HOST + "_View/SocAllGen.ashx?ot=t&ov=0&tf=-1&TFStatus=0&update=false&r=153004462&wd=&ia=0";
         URL_FOOTBALL_EARLY = HOST + "_View/SocAllGen.ashx?ot=e&ov=0&tf=2&TFStatus=0&update=false&r=246503518";
         URL_FOOTBALL_EARLY_Mix = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=4&ot=e&update=true&r=866546094";
         URL_FOOTBALL_TODAY_Mix = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=4&ot=t&update=true&r=1027945624";
         URL_FOOTBALL_OUT_RIGHT = HOST + "_view/OddsGen50.ashx?update=true&r=2076712019";
-        URL_ODDS = HOST + "Bet/JRecPanel_App.aspx?";
-        URL_SOCCER_REMOVE_MIX = HOST + "Bet/ParRemove.aspx";
 
         URL_BASKETBALL_RUNNING = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=9&ot=r&update=true&r=757267892";
         URL_BASKETBALL_TODAY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=9&ot=t&update=true&r=757267892";
@@ -423,8 +426,6 @@ public class AppConstant {
         URL_TABLE_TENNIS_RUNING = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=57&ot=r&update=true&r=1186326052";
         URL_TABLE_TENNIS_EARLY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=57&ot=e&update=true&r=1186326052";
 
-        //http://main55.afb88.com/_view/Result.aspx
-        URL_RESULT = HOST + "_view/Result_App.aspx";
 
         //http://main55.afb88.com/_View/SocAllGen.ashx?tp=0&fh=1&g=182&ot=r&update=true&r=1833149994&LID=ba82fa925e9d154e&_=1495597268312
         URL_EUROPE_TODAY = HOST + "_View/SocAllGen.ashx?tp=0&fh=1&g=182&ot=t&update=true&r=1833149994";
