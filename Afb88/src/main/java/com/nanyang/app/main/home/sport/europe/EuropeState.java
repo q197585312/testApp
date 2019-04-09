@@ -229,9 +229,9 @@ public abstract class EuropeState extends BallState {
                     matchTitleTv.setVisibility(View.VISIBLE);
                     headV.setVisibility(View.VISIBLE);
                     matchTitleTv.setText(item.getModuleTitle());
-                    if (position == 0) {
-                        headV.setVisibility(View.GONE);
-                    }
+//                    if (position == 0) {
+//                        headV.setVisibility(View.GONE);
+//                    }
                 }
                 String oldHomeName = "";
                 String oldAwayName = "";

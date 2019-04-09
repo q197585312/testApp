@@ -216,9 +216,9 @@ public abstract class EuropeMixState extends BallState {
                     matchTitleTv.setVisibility(View.VISIBLE);
                     headV.setVisibility(View.VISIBLE);
                     matchTitleTv.setText(item.getModuleTitle());
-                    if (position == 0) {
-                        headV.setVisibility(View.GONE);
-                    }
+//                    if (position == 0) {
+//                        headV.setVisibility(View.GONE);
+//                    }
                 }
                 View tvRightMark = helper.getView(R.id.module_right_mark_tv);
                 tvRightMark.setVisibility(View.GONE);

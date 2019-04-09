@@ -88,4 +88,8 @@
     <color name="keno_result_line">#CCCCCC</color>
     <color name="keno_result_total_bg">#D1E4D0</color>
     <color name="keno_result_total_word_bg">#FF6C12</color>
+    <color name="green_title">#A9C1B1</color>
+    <color name="green_content1">#E8FDEA</color>
+    <color name="green_content2">#EBF5ED</color>
+    <color name="green_line">#ACD2B8</color>
 </resources>

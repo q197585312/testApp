@@ -180,6 +180,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         View contentParentLl = helper.getView(R.id.content_parent_ll);
         contentParentLl.setBackgroundResource((position % 2 == 0) ? R.color.white : R.color.grey_white);
         View matchTitleLl = helper.getView(R.id.module_match_title_ll);
+        View LlMatchContent = helper.getView(R.id.ll_match_content);
+        LlMatchContent.setBackgroundResource((position % 2 == 0) ? R.color.green_content1 : R.color.green_content2);
         View headV = helper.getView(R.id.module_match_head_v);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         TextView dateTv1 = helper.getView(R.id.module_match_date_tv1);
@@ -308,9 +310,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             matchTitleLl.setVisibility(View.VISIBLE);
             headV.setVisibility(View.VISIBLE);
             matchTitleTv.setText(item.getModuleTitle());
-            if (position == 0) {
-                headV.setVisibility(View.GONE);
-            }
+//            if (position == 0) {
+//                headV.setVisibility(View.GONE);
+//            }
         }
 
         final ScrollLayout sl = helper.getView(R.id.module_center_sl);
