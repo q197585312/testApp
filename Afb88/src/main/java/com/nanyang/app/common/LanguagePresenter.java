@@ -9,7 +9,6 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
-import com.nanyang.app.main.changeLanguage.ChangeLanguageFragment;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.base.IBaseView;
@@ -33,7 +32,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 public class LanguagePresenter extends BaseSwitchPresenter {
     SwitchLanguage switchLanguage;
-    ChangeLanguageFragment changeLanguageFragment;
+    ILanguageView changeLanguageFragment;
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -43,7 +42,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
     public LanguagePresenter(IBaseContext iBaseContext) {
         super(iBaseContext);
         switchLanguage = new SwitchLanguage(iBaseContext);
-        changeLanguageFragment = (ChangeLanguageFragment) iBaseContext;
+        changeLanguageFragment = (ILanguageView) iBaseContext;
     }
 
     //    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","lang":"ZH-CN","pgLable":"0.18120996831154568","vsn":"4.0.12","PT":"wfLoginH50"}&_db={}

@@ -89,7 +89,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     @Override
     public void initData() {
         super.initData();
-//        initDrawerLayout();
+
         mCompositeSubscription = new CompositeDisposable();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvToolbarRight = (TextView) findViewById(R.id.tv_toolbar_right);
@@ -120,7 +120,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             llRight.setVisibility(View.VISIBLE);
             updateHandler.post(timeUpdateRunnable);
         }
-
+//        initDrawerLayout();
 //        switchFragment(getFirstShowFragment());
     }
 
