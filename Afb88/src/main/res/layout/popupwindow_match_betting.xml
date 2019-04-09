@@ -2,7 +2,7 @@
     android:id="@+id/bet_pop_parent_ll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle_white_green_stroke_grey_corner5"
+    android:background="@color/white"
     android:gravity="center"
     android:orientation="vertical">
     <FrameLayout
@@ -24,13 +24,11 @@
         android:layout_margin="2dp" />
     </FrameLayout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    <LinearLayout
         android:id="@+id/bet_pop_parent_ll2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@drawable/rectangle_white_green_stroke_grey_corner5"
-
         android:orientation="vertical">
 
         <LinearLayout
@@ -39,15 +37,27 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/bet_module_title_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@drawable/rectangle_green_top_corner5"
+                android:background="@color/green_dark"
+                android:drawableLeft="@mipmap/arrow_left_white_double"
+                android:drawablePadding="5dp"
                 android:padding="5dp"
-                android:text=""
+                android:text="@string/Parlay"
                 android:textColor="@color/white"
-                android:textSize="11sp"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/bet_module_title_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:padding="5dp"
+                android:text="sss"
+                android:textColor="@color/black_grey"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <LinearLayout
@@ -65,6 +75,7 @@
                     android:text="中国队"
                     android:textColor="@color/black_grey"
                     android:textSize="11sp" />
+
                 <TextView
                     android:id="@+id/tv_home_score"
                     android:layout_width="wrap_content"
@@ -72,16 +83,18 @@
                     android:gravity="center"
                     android:textColor="@color/black_grey"
                     android:textSize="11sp" />
+
                 <TextView
                     android:id="@+id/tv_vs"
-                    android:layout_marginLeft="2dp"
-                    android:layout_marginRight="2dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="2dp"
+                    android:layout_marginRight="2dp"
                     android:text="VS"
                     android:textColor="@color/green900"
                     android:textSize="11sp"
                     android:textStyle="bold" />
+
                 <TextView
                     android:id="@+id/tv_away_score"
                     android:layout_width="wrap_content"
@@ -89,6 +102,7 @@
                     android:gravity="center"
                     android:textColor="@color/black_grey"
                     android:textSize="11sp" />
+
                 <TextView
                     android:id="@+id/bet_away_tv"
                     android:layout_width="0dp"
@@ -319,36 +333,39 @@
                 android:layout_height="0.5dp"
                 android:background="@color/grey_dark" />
         </LinearLayout>
+
         <LinearLayout
-            android:layout_margin="8dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
 
             android:orientation="horizontal">
+
             <TextView
                 android:id="@+id/bet_sure_cancel"
                 android:layout_width="0dp"
-                android:layout_weight="1"
-                android:layout_margin="8dp"
                 android:layout_height="30dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
                 android:background="@drawable/keno_tv_yellow_bg"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/delete"
                 android:textColor="@color/black_grey" />
+
             <TextView
                 android:id="@+id/bet_sure_btn"
-                android:layout_margin="8dp"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="30dp"
+                android:layout_margin="8dp"
+                android:layout_weight="1"
                 android:background="@drawable/keno_tv_green_bg"
                 android:gravity="center"
                 android:padding="5dp"
                 android:text="@string/bet"
                 android:textColor="@color/white" />
         </LinearLayout>
-        </LinearLayout>
+    </LinearLayout>
 
 
 </LinearLayout>
