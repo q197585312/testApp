@@ -242,7 +242,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     public void collection(View tvCollection) {
-        checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.star_red_solid, R.mipmap.sport_game_star_yellow);
+        checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_yellow);
     }
 
 
