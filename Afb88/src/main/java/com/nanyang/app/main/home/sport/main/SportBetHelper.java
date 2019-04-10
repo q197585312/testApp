@@ -286,7 +286,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         return subscription;
     }
 
-    protected void createBetPop(AfbClickBetBean bean, View v) {
+    protected void createBetPop(List<AfbClickBetBean> bean, View v) {
         BetPop pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
         pop.setBetData(bean, this);
         baseView.onPopupWindowCreated(pop, Gravity.CENTER);
@@ -343,7 +343,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     public void accept(AfbClickResponseBean bean) throws Exception {
                         if (bean == null || bean.getList() == null || bean.getList().size() == 0) {
                         } else if (bean.getList().size() == 1) {
-                            createBetPop(bean.getList().get(0), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
+                            createBetPop(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
                         }
                         baseView.onUpdateMixSucceed(bean);
 

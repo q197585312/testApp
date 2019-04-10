@@ -101,8 +101,13 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
         date = presenter.getDateDataList().get(0).getType();
         tvDate.setText(presenter.getDateDataList().get(0).getName());
         leagueType = "0";
-        popFootball = createPop(tvFootball, tvFootball, 3);
-        popFootball.setDataList(footballDataList);
+        tvFootball.post(new Runnable() {
+            @Override
+            public void run() {
+                popFootball = createPop(tvFootball, tvFootball, 3);
+                popFootball.setDataList(presenter.getFootballDataList(currentRequestType));
+            }
+        });
         tvFootball.setText(footballDataList.get(0).getName());
         tvAllMatch.setText(getString(R.string.all_match));
     }

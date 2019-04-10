@@ -76,6 +76,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -109,7 +110,7 @@ public class AfbUtils {
      * 定义HTML标签的正则表达式
      */
     private static final String REGEX_HTML = "<[^>]+>";
-    private static Map<String,SportState> majorStateHashMap=new HashMap<>();
+    private static Map<String, SportState> majorStateHashMap = new HashMap<>();
 
     public static String delHTMLTag(String htmlStr) {
         // 过滤script标签
@@ -124,7 +125,7 @@ public class AfbUtils {
         Pattern p_html = Pattern.compile(REGEX_HTML, Pattern.CASE_INSENSITIVE);
         Matcher m_html = p_html.matcher(htmlStr);
         htmlStr = m_html.replaceAll("");
-        htmlStr = htmlStr.replace("&nbsp;","");
+        htmlStr = htmlStr.replace("&nbsp;", "");
 
         return htmlStr.trim(); // 返回文本字符串
     }
@@ -665,6 +666,14 @@ public class AfbUtils {
         initDM(activity);
         int width = metric.widthPixels;
         return width;
+    }
+
+    public static String scientificCountingToString(String scientificCounting) {
+        BigDecimal bd = new BigDecimal(scientificCounting);
+        String s = bd.toPlainString();
+        DecimalFormat df = new DecimalFormat("#,###.00");
+        String format = df.format(Double.parseDouble(s));
+        return format;
     }
 
 }

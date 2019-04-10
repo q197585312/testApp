@@ -7,6 +7,8 @@ import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/3/19 0019.
  */
@@ -32,7 +34,7 @@ public class SoccerRunningBetHelper extends SoccerCommonBetHelper {
     }
     */
 
-    protected void createBetPop(AfbClickBetBean bean, View v) {
+    protected void createBetPop(List<AfbClickBetBean> bean, View v) {
         BetPop pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
         pop.setBetData(bean, this);
         pop.setrTMatchInfo(item);

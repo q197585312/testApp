@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.football;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 
@@ -22,6 +23,12 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     public void onConvert(MyRecyclerViewHolder helper, int position, final BallInfo item) {
 
         super.onConvert(helper, position, item);
+        View LlMatchContent = helper.getView(R.id.ll_match_content);
+        LlMatchContent.setBackgroundResource((position % 2 == 0) ? R.color.green_content1 : R.color.green_content2);
+        View matchTitleLl = helper.getView(R.id.module_match_title_ll);
+        View viewLine = helper.getView(R.id.view_line);
+        viewLine.setBackgroundColor(ContextCompat.getColor(context, R.color.green_line));
+        matchTitleLl.setBackgroundColor(ContextCompat.getColor(context, R.color.green_title));
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         TextView liveTv = helper.getView(R.id.module_match_live_iv);
         TextView timeTv = helper.getView(R.id.module_match_time_tv);
