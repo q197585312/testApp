@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BaseMoreFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -18,7 +18,7 @@ import butterknife.Bind;
  * Created by 47184 on 2019/4/5.
  */
 
-public class MessageFragment extends BaseSwitchFragment {
+public class MessageFragment extends BaseMoreFragment {
 
     @Bind(R.id.message_list)
     RecyclerView rv;
@@ -44,11 +44,7 @@ public class MessageFragment extends BaseSwitchFragment {
             }
         };
         rv.setAdapter(adapter);
-    }
-
-    @Override
-    public void initView() {
-        super.initView();
         setBackTitle(getString(R.string.messages));
     }
+
 }

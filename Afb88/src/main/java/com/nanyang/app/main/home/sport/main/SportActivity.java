@@ -61,6 +61,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     DrawerLayout drawerLayout;
 
     @Bind(R.id.sport_header_ll)
+    public
     View sportHeaderLl;
     @Bind(R.id.tv_toolbar_left)
     TextView tvToolbarLeft;
@@ -161,14 +162,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         super.initData();
         app = (AfbApplication) getApplication();
         item = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
-        afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this);
+        afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
 
-        afbDrawerViewHolder.setSwitchCallBack(new AfbDrawerViewHolder.ISwitchCallBack() {
-            @Override
-            public void onSwitch() {
-                sportHeaderLl.setVisibility(View.GONE);
-            }
-        });
         if (item != null) {
             type = item.getType();
             assert tvToolbarTitle != null;
@@ -207,12 +202,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
 
     private void selectFragmentTag(String tag, BaseSportFragment localCurrentFragment) {
+        afbDrawerViewHolder.switchFragment(localCurrentFragment);
         if (currentTag.isEmpty()) {
-            showFragmentToActivity(localCurrentFragment, R.id.fl_main_content, currentTag);
+
         } else if (!currentTag.equals(tag)) {
-            hideFragmentToActivity(currentFragment);
             MenuItemInfo stateType = currentFragment.presenter.getStateHelper().getStateType();
-            showFragmentToActivity(localCurrentFragment, R.id.fl_main_content, tag);
             localCurrentFragment.switchParentType(stateType);
             setType(stateType.getType());
         }
@@ -220,7 +214,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         currentTag = tag;
         tvSportSelect.setText(tag);
         sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);
-        afbDrawerViewHolder.initDefaultFragment(currentFragment);
 
     }
 

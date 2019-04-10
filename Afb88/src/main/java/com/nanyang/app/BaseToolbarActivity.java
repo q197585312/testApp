@@ -42,13 +42,13 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 public abstract class BaseToolbarActivity<T extends IBasePresenter> extends BaseActivity<T> {
     @Nullable
-    protected
+    public
     TextView tvToolbarTitle;
     @Nullable
-    protected
+    public
     TextView tvToolbarRight;
     @Nullable
-    protected
+    public
     TextView tvTime;
     @Nullable
     protected
@@ -60,8 +60,8 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     private CompositeDisposable mCompositeSubscription;
     int errorCount = 0;
-    protected TextView tvToolbarRight1;
-    protected TextView tvToolbarLeft;
+    public TextView tvToolbarRight1;
+    public TextView tvToolbarLeft;
 
     @Override
     public void initData() {
@@ -97,14 +97,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             llRight.setVisibility(View.VISIBLE);
             updateHandler.post(timeUpdateRunnable);
         }
-
-
-
     }
-
-
-
-
 
 
     public void initAgent() {
@@ -421,12 +414,8 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         return 0xff0d5924;
     }
 
-    public void setToolbarVisibility(boolean b) {
-        if (b) {
-            toolbar.setVisibility(View.VISIBLE);
-        } else {
-            toolbar.setVisibility(View.GONE);
-        }
+    public void setToolbarVisibility(int b) {
+        toolbar.setVisibility(b);
     }
 
     @Override

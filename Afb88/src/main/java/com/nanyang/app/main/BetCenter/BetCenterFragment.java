@@ -7,7 +7,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.BaseSwitchPresenter;
 import com.unkonw.testapp.libs.base.BaseFragment;
 
@@ -20,7 +20,7 @@ import butterknife.Bind;
  * Created by Administrator on 2019/4/4.
  */
 
-public class BetCenterFragment extends BaseSwitchFragment {
+public class BetCenterFragment extends BaseMoreFragment {
     @Bind(R.id.rg_bet_center)
     RadioGroup rgBetCenter;
     @Bind(R.id.rb_unsettled)
@@ -82,7 +82,6 @@ public class BetCenterFragment extends BaseSwitchFragment {
                 switchFragment();
             }
         });
-        showContent();
     }
 
     private int lastIndex = -1;
@@ -116,14 +115,11 @@ public class BetCenterFragment extends BaseSwitchFragment {
         transaction.commit();
     }
 
-    @Override
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        showContent();
-    }
+
 
     @Override
     public void showContent() {
+        super.showContent();
         if (switchType.equals(unsettled)) {
             currentIndex = 0;
         } else if (switchType.equals(statementNew)) {
@@ -135,4 +131,6 @@ public class BetCenterFragment extends BaseSwitchFragment {
         }
         switchFragment();
     }
+
+
 }

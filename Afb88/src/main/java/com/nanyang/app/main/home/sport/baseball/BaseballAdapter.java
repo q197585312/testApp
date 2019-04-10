@@ -33,15 +33,7 @@ public class BaseballAdapter extends BallAdapterHelper<BallInfo> {
         View vp = helper.getView(R.id.module_center_sl);
         vp.getLayoutParams().width = DeviceUtils.dip2px(context, 210);
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
-     /*   scrollChild(sl.getChildAt(0), false, item, item.getIsHomeGive(), item.getHasHdp(), item.getHdp(), item.getHasOU(), item.getOU(), item.getIsHdpNew(), item.getIsOUNew(), item.getUOdds(), item.getOOdds(), item.getHOdds(), item.getAOdds(), "home", "away", "over", "under",
-                true, true, true,    item.getHasX12(), item.getIsX12New(), item.getX12_1Odds(), item.getX12_2Odds()
-                , "1", "2"
-        );
-        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUOdds_FH(), item.getOOdds_FH(), item.getHOdds_FH(), item.getAOdds_FH()
-                , "home", "away", "over", "under",
-                true, true, true,
-                item.getHasOE(), item.getIsOENew(), item.getOddOdds(), item.getEvenOdds(), "odd", "even"
-        );*/
+
         sl.getChildAt(0).setVisibility(View.VISIBLE);
         ViewHolder holder = new ViewHolder(sl.getChildAt(0));
         setUpDownOdds(true, item, false, item.getIsX12New(), item.getHasX12(), "", holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv, holder.viewpagerMatchVisitHdpoddsTv

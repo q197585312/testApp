@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.BetCenter.Bean.Contact;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -25,7 +25,7 @@ import butterknife.Bind;
  * Created by 47184 on 2019/3/14.
  */
 
-public class ContactFragment extends BaseSwitchFragment<BaseSwitchPresenter> {
+public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
     private static final String TAG = "ContactFragment";
     @Bind(R.id.contact_list)
     RecyclerView rvContent;

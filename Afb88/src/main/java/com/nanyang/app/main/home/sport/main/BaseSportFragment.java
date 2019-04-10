@@ -403,7 +403,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }
         isFirstIn = false;
         getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
-
+        getBaseActivity().toolbar.setVisibility(View.GONE);
     }
 
     public SportActivity getBaseActivity() {
@@ -537,5 +537,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.notifyPositionAddition(data, position);
         }
+    }
+
+    public void showContent() {
+        getBaseActivity().setToolbarVisibility(View.GONE);
+        getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
     }
 }
