@@ -1,7 +1,6 @@
 package com.nanyang.app.main;
 
 import android.content.Intent;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -30,9 +29,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AfbDrawerViewHolder implements IDrawerView {
+    private int fragmentResId;
     private BaseToolbarActivity baseToolbarActivity;
     private RecyclerView drawerLayoutRightRc;
-    private ISwitchCallBack iSwitchCallBack;
 
     public BaseSwitchFragment getHomeFragment() {
         return homeFragment;
@@ -72,9 +71,10 @@ public class AfbDrawerViewHolder implements IDrawerView {
     private BaseSwitchFragment indexFragment;
     private BaseSwitchFragment lastIndexFragment;
 
-    public AfbDrawerViewHolder(DrawerLayout drawerLayout, BaseToolbarActivity context) {
+    public AfbDrawerViewHolder(DrawerLayout drawerLayout, BaseToolbarActivity context, int fragmentResId) {
         this.drawerLayout = drawerLayout;
         this.baseToolbarActivity = context;
+        this.fragmentResId = fragmentResId;
         initDrawerLayout();
 
     }
@@ -82,18 +82,9 @@ public class AfbDrawerViewHolder implements IDrawerView {
 
     public void initDefaultFragment(BaseSwitchFragment homeFragment) {
         this.homeFragment = homeFragment;
-
     }
 
     DrawerLayout drawerLayout;
-
-    public interface ISwitchCallBack {
-        void onSwitch();
-    }
-
-    public void setSwitchCallBack(ISwitchCallBack iSwitchCallBack) {
-        this.iSwitchCallBack = iSwitchCallBack;
-    }
 
     @Override
     public void initDrawerLayout() {
@@ -155,12 +146,10 @@ public class AfbDrawerViewHolder implements IDrawerView {
                 } else {
                     BaseSwitchFragment fragment = item.getFragment();
                     if (fragment != null) {
-                        if (fragment instanceof BetCenterFragment) {
-                            String switchType = item.getSwitchType();
-                            if (!TextUtils.isEmpty(switchType)) {
-                                fragment.setSwitchType(item.getSwitchType());
-                                fragment.showContent();
-                            }
+                        String switchType = item.getSwitchType();
+
+                        if (!TextUtils.isEmpty(switchType)) {
+                            fragment.setSwitchType(item.getSwitchType());
                         }
                         switchFragment(fragment);
                     }
@@ -174,24 +163,15 @@ public class AfbDrawerViewHolder implements IDrawerView {
     }
 
     public void switchFragment(BaseSwitchFragment fragment) {
-        if (iSwitchCallBack != null)
-            iSwitchCallBack.onSwitch();
-        if (fragment == indexFragment && lastIndexFragment != null) {
-            indexFragment.showContent();
-            return;
+
+        if (fragment != indexFragment || lastIndexFragment == null) {
+            indexFragment = fragment;
+            baseToolbarActivity.showFragmentToActivity(fragment, fragmentResId);
+            if (lastIndexFragment != null) {
+                baseToolbarActivity.hideFragmentToActivity(lastIndexFragment);
+            }
+            lastIndexFragment = indexFragment;
         }
-        indexFragment = fragment;
-        FragmentTransaction transaction = baseToolbarActivity.getSupportFragmentManager().beginTransaction();
-        if (!fragment.isAdded()) {
-            transaction.add(R.id.fl_main_content, fragment);
-        } else {
-            transaction.show(fragment);
-        }
-        if (lastIndexFragment != null) {
-            transaction.hide(lastIndexFragment);
-        }
-        lastIndexFragment = indexFragment;
-        transaction.commit();
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

@@ -6,7 +6,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.BetCenter.Bean.HowToUse;
 
 import java.util.ArrayList;
@@ -19,7 +19,7 @@ import butterknife.OnClick;
  * Created by 47184 on 2019/4/4.
  */
 
-public class HowToUseFragment extends BaseSwitchFragment {
+public class HowToUseFragment extends BaseMoreFragment {
 
     @Bind(R.id.howtouse_content_layout)
     LinearLayout contentLayout;
@@ -126,7 +126,7 @@ public class HowToUseFragment extends BaseSwitchFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         if (!hidden) {
-            setCurrentFragmentTitle();
+            setToolbarVisibility(View.VISIBLE);
             index = 0;
             hwotouseBtn.setText(getString(R.string.howtouse_btn));
             //默认为选择第一条数据
@@ -137,11 +137,6 @@ public class HowToUseFragment extends BaseSwitchFragment {
         }
     }
 
-    @Override
-    public void setCurrentFragmentTitle() {
-        setToolbarVisibility(false);
-        setBackTitleVisibility(false);
-    }
 
     public void changeContent(HowToUse htu) {
         howtouseText1.setText("");

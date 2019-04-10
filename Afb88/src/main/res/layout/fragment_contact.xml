@@ -5,8 +5,6 @@
     android:background="@color/contact_back"
     android:orientation="vertical">
 
-    <include layout="@layout/include_fragment_title"/>
-
     <android.support.v4.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -70,7 +70,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         tvToolbarLeft.setVisibility(View.VISIBLE);
         tvToolbarLeft.setBackgroundResource(R.mipmap.left_logo);
         initUserData();
-        afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this);
+        afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
         afbDrawerViewHolder.initDefaultFragment(homeFragment);
         afbDrawerViewHolder.switchFragment(homeFragment);
     }

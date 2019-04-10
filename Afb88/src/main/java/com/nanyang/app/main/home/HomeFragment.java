@@ -20,7 +20,7 @@ import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.load.ListMainBanners;
 import com.nanyang.app.load.ListMainPictures;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
-import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -36,7 +36,7 @@ import java.util.List;
 
 import butterknife.Bind;
 
-public class HomeFragment extends BaseSwitchFragment {
+public class HomeFragment extends BaseMoreFragment {
 
     @Bind(R.id.auto_viewpager)
     AutoScrollViewPager viewPager;
@@ -197,9 +197,4 @@ public class HomeFragment extends BaseSwitchFragment {
         EventBus.getDefault().unregister(this);
     }
 
-    @Override
-    public void setCurrentFragmentTitle() {
-        setToolbarVisibility(true);
-        setBackTitleVisibility(false);
-    }
 }
