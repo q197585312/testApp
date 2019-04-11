@@ -18,8 +18,6 @@ import com.nanyang.app.Pop.PopChoiceLanguage;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
-import com.nanyang.app.load.ListMainBanners;
-import com.nanyang.app.load.ListMainPictures;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -27,8 +25,6 @@ import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
-
-import org.greenrobot.eventbus.EventBus;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -194,6 +190,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
                 protected void onBaseGetData(String data) {
                     onLanguageSwitchSucceed(data);
                 }
+
+                @Override
+                protected void onError(Throwable throwable) {
+                    super.onError(throwable);
+                    ToastUtils.showShort(getString(R.string.Net_Error));
+                }
             });
         } else {
             ToastUtils.showShort(getString(R.string.enter_username_or_password));
@@ -232,15 +234,17 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+
         if (loginImagesvp != null)
             loginImagesvp.stopTask();
     }
 
     public void sendImageEvent(AllBannerImagesBean data) {
         LogUtil.d(getClass().getSimpleName(), "sendEvent--------------->" + data.toString());
-        EventBus.getDefault().postSticky(new ListMainPictures(data.getMain()));
-        EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
+//        EventBus.getDefault().postSticky(new ListMainPictures());
+//        EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
+        ((AfbApplication) getApplication()).setListMainPictures(data.getMain());
+        ((AfbApplication) getApplication()).setListMainBanners(data.getMainBanners());
         initViewPager(data.getLoginBanners());
     }
 

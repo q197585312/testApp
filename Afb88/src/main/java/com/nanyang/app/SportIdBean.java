@@ -10,6 +10,16 @@ import java.io.Serializable;
  */
 
 public class SportIdBean implements Serializable {
+    public String getDbid() {
+        return dbid;
+    }
+
+    public void setDbid(String dbid) {
+        this.dbid = dbid;
+    }
+
+    private String dbid;
+
     public BaseSportFragment getBaseFragment() {
         return baseFragment;
     }
@@ -43,8 +53,9 @@ public class SportIdBean implements Serializable {
 
     String type;
 
-    public SportIdBean(String id, int textRes, String type, Class<SportActivity> cls, BaseSportFragment baseFragment) {
-        this.id = id;
+    public SportIdBean(String g, String dbid, int textRes, String type, Class<SportActivity> cls, BaseSportFragment baseFragment) {
+        this.dbid = dbid;
+        this.id = g;
         this.textRes = textRes;
         this.type = type;
         this.cls = cls;

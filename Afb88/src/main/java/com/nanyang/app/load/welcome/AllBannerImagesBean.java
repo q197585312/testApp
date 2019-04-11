@@ -163,7 +163,14 @@ public class AllBannerImagesBean implements Serializable {
             this.img = img;
         }
 
-
+        @Override
+        public String toString() {
+            return "MainBannersBean{" +
+                    "dbid='" + dbid + '\'' +
+                    ", g='" + g + '\'' +
+                    ", img='" + img + '\'' +
+                    '}';
+        }
     }
 
     public static class BannersBean {

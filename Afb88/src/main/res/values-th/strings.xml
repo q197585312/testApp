@@ -409,4 +409,5 @@
     <string name="CANCELLED2">ยกเลิก</string>
     <string name="Note">สนใจ</string>
     <string name="Pleasenote2">โปรดทราบว่าโซนเวลาจะแสดง GMT +8</string>
+    <string name="Net_Error">Net Error</string>
 </resources>

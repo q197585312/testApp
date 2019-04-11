@@ -1,6 +1,7 @@
 package com.nanyang.app;
 
 import com.nanyang.app.load.PersonalInfo;
+import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -9,6 +10,7 @@ import com.unkonw.testapp.libs.base.BaseApplication;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.List;
 
 import cn.finalteam.toolsfinal.logger.Logger;
 
@@ -20,6 +22,17 @@ public class AfbApplication extends BaseApplication {
 
 
     private AfbClickResponseBean betAfbList;
+
+    public List<AllBannerImagesBean.MainBannersBean> getListMainPictures() {
+        return listMainPictures;
+    }
+
+    public List<AllBannerImagesBean.BannersBean> getListMainBanners() {
+        return listMainBanners;
+    }
+
+    private List<AllBannerImagesBean.MainBannersBean> listMainPictures;
+    private List<AllBannerImagesBean.BannersBean> listMainBanners;
 
     public void setUser(PersonalInfo user) {
         this.user = user;
@@ -106,6 +119,14 @@ public class AfbApplication extends BaseApplication {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public void setListMainPictures(List<AllBannerImagesBean.MainBannersBean> listMainPictures) {
+        this.listMainPictures = listMainPictures;
+    }
+
+    public void setListMainBanners(List<AllBannerImagesBean.BannersBean> listMainBanners) {
+        this.listMainBanners = listMainBanners;
     }
 }
 

@@ -1,12 +1,10 @@
 package com.nanyang.app.main;
 
 
-import com.google.gson.Gson;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BuildConfig;
-import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -23,7 +21,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-class MainPresenter extends BaseRetrofitPresenter<MainActivity> implements MainContract.Presenter {
+public class MainPresenter extends BaseRetrofitPresenter<MainActivity> implements MainContract.Presenter {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     MainPresenter(MainActivity view) {
         super(view);
@@ -58,7 +56,11 @@ class MainPresenter extends BaseRetrofitPresenter<MainActivity> implements MainC
 
     }
 
-    public void loadAllMainData(LoginInfo.LanguageWfBean languageWfBean) {
+    public interface CallBack<T> {
+        void onBack(T data);
+    }
+
+    public void loadAllMainData(LoginInfo.LanguageWfBean languageWfBean, final CallBack<String> back) {
         doRetrofitApiOnDefaultThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
@@ -67,11 +69,8 @@ class MainPresenter extends BaseRetrofitPresenter<MainActivity> implements MainC
                 if (jsonArray.length() > 3) {
                     JSONArray jsonArrayData = jsonArray.getJSONArray(3);
                     if (jsonArrayData.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
-
                         JSONObject jsonObject = jsonArrayData.getJSONObject(0);
-                        PersonalInfo personalInfo = new Gson().fromJson(jsonObject.toString(), PersonalInfo.class);
-                        personalInfo.setPassword(MainPresenter.this.baseContext.getApp().getUser().getPassword());
-                        MainPresenter.this.baseContext.getApp().setUser(personalInfo);
+                        back.onBack(jsonObject.toString());
 
                     }
                 }

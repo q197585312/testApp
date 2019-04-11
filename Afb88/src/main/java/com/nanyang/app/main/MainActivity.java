@@ -11,6 +11,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
@@ -96,7 +97,60 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         super.onResume();
         presenter.oddsType();
         String language = new LanguageHelper(mContext).getLanguage();
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"));
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"), new MainPresenter.CallBack<String>() {
+            @Override
+            public void onBack(String data) {
+                PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
+                personalInfo.setPassword(getApp().getUser().getPassword());
+                getApp().setUser(personalInfo);
+            }
+        });
+
+        /*{
+		"M_TAm36": 76,
+		"M_RAm36": 12,
+		"M_EAm36": 373,
+		"M_TAm1": 200,
+		"M_RAm1": 35,
+		"M_EAm1": 545,
+		"M_TAm2": 55,
+		"M_TAm3": 38,
+		"M_TAm4": 22,
+		"M_EAm4": 104,
+		"M_EAm5": 91,
+		"M_Name33_18": "1D 游戏",
+		"M_TAm33_18": 5,
+		"M_RAm33_18": 0,
+		"M_EAm33_18": 5,
+		"M_Name33_19": "2D 游戏",
+		"M_TAm33_19": 3,
+		"M_RAm33_19": 0,
+		"M_EAm33_19": 3,
+		"M_Name33_20": "3D 游戏",
+		"M_TAm33_20": 4,
+		"M_RAm33_20": 0,
+		"M_EAm33_20": 4,
+		"M_TAm9": 22,
+		"M_TAm10": 21,
+		"M_EAm10": 4,
+		"M_TAm11": 21,
+		"M_EAm12": 12,
+		"M_EAm15": 3,
+		"M_EAm16": 3,
+		"M_TAm24": 9,
+		"M_TAm25": 9,
+		"M_EAm26": 3,
+		"M_TAm32": 584,
+		"M_RAm32": 39,
+		"M_EAm32": 2519,
+		"M_PAm32": 623,
+		"M_RAm0": 86,
+		"M_EAm999": 110,
+		"M_RAm66": 35,
+		"M_TAm66": 200,
+		"M_EAm66": 545
+	}*/
+
     }
 
     @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_statemente, R.id.fl_menu_login_out})
