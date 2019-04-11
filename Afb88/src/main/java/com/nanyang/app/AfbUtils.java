@@ -76,6 +76,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.ParseException;
@@ -675,6 +676,14 @@ public class AfbUtils {
         initDM(activity);
         int width = metric.widthPixels;
         return width;
+    }
+
+    public static String scientificCountingToString(String scientificCounting) {
+        BigDecimal bd = new BigDecimal(scientificCounting);
+        String s = bd.toPlainString();
+        DecimalFormat df = new DecimalFormat("#,###.00");
+        String format = df.format(Double.parseDouble(s));
+        return format;
     }
 
 }
