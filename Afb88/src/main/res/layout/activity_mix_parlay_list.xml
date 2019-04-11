@@ -11,17 +11,21 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <include layout="@layout/mix_parlay_bet_header"/>
+
+        <include layout="@layout/mix_parlay_bet_header" />
+
         <LinearLayout
             android:id="@+id/ll_bottom_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"/>
-        <include layout="@layout/mix_parlay_footer_bet_bottom"/>
+            android:orientation="vertical" />
+
+        <include layout="@layout/mix_parlay_footer_bet_bottom" />
     </LinearLayout>
 
 

@@ -58,10 +58,10 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     ViewPager ballgamePagerVp;
     @Bind(R.id.ballgame_bottom_ll)
     LinearLayout ballgameBottomLl;
-    @Bind(R.id.tv_mix_parlay_order)
-    TextView tvMixParlayOrder;
-    @Bind(R.id.ll_mix_parlay_order)
-    LinearLayout llMixParlayOrder;
+//    @Bind(R.id.tv_mix_parlay_order)
+//    TextView tvMixParlayOrder;
+//    @Bind(R.id.ll_mix_parlay_order)
+//    LinearLayout llMixParlayOrder;
     @Bind(R.id.tv_title)
     TextView tvTitle;
 
@@ -484,26 +484,26 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         thirdFragmentData(data);
     }
 
-    @OnClick({R.id.tv_back, R.id.tv_not_settled, R.id.tv_settled, R.id.ll_mix_parlay_order, R.id.iv_lift_nav, R.id.iv_right_nav})
+    @OnClick({R.id.tv_back, R.id.tv_not_settled, R.id.tv_settled, /*R.id.ll_mix_parlay_order,*/ R.id.iv_lift_nav, R.id.iv_right_nav})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.tv_back:
                 finish();
                 break;
-            case R.id.ll_mix_parlay_order:
-                if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList() == null || getApp().getBetAfbList().getList().size() < 1)
-                    return;
-                if (getApp().getBetAfbList().getList().size() == 1) {
-                    String refreshOddsUrl = getApp().getRefreshOddsUrl();
-                    helper.getRefreshOdds(refreshOddsUrl);
-                } else if (getApp().getBetAfbList().getList().size() > 1) {
-                    Bundle b = new Bundle();
-                    b.putSerializable(AppConstant.KEY_DATA, type);
-                    skipAct(MixOrderListActivity.class, b);
-                    finish();
-                }
+//            case R.id.ll_mix_parlay_order:
+//                if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList() == null || getApp().getBetAfbList().getList().size() < 1)
+//                    return;
+//                if (getApp().getBetAfbList().getList().size() == 1) {
+//                    String refreshOddsUrl = getApp().getRefreshOddsUrl();
+//                    helper.getRefreshOdds(refreshOddsUrl);
+//                } else if (getApp().getBetAfbList().getList().size() > 1) {
+//                    Bundle b = new Bundle();
+//                    b.putSerializable(AppConstant.KEY_DATA, type);
+//                    skipAct(MixOrderListActivity.class, b);
+//                    finish();
+//                }
 
-                break;
+//                break;
             case R.id.tv_not_settled:
                 Bundle bundle = new Bundle();
                 bundle.putString(AppConstant.KEY_STRING, getString(R.string.stake));
@@ -537,14 +537,14 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     }
 
     private void onBetEnd() {
-        if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
-            tvMixParlayOrder.setText("" + getApp().getBetParList().getList().size());
-            llMixParlayOrder.setVisibility(View.VISIBLE);
-
-        } else {
-            tvMixParlayOrder.setText("0");
-            llMixParlayOrder.setVisibility(View.GONE);
-        }
+//        if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
+//            tvMixParlayOrder.setText("" + getApp().getBetParList().getList().size());
+//            llMixParlayOrder.setVisibility(View.VISIBLE);
+//
+//        } else {
+//            tvMixParlayOrder.setText("0");
+//            llMixParlayOrder.setVisibility(View.GONE);
+//        }
     }
 
     @Override
