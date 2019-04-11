@@ -61,7 +61,7 @@ public class MainPresenter extends BaseRetrofitPresenter<MainActivity> implement
     }
 
     public void loadAllMainData(LoginInfo.LanguageWfBean languageWfBean, final CallBack<String> back) {
-        doRetrofitApiOnDefaultThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 String updateString = AfbUtils.delHTMLTag(data);

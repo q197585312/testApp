@@ -10,6 +10,8 @@ import java.io.Serializable;
  */
 
 public class SportIdBean implements Serializable {
+    private int textColor;
+
     public String getDbid() {
         return dbid;
     }
@@ -53,13 +55,18 @@ public class SportIdBean implements Serializable {
 
     String type;
 
-    public SportIdBean(String g, String dbid, int textRes, String type, Class<SportActivity> cls, BaseSportFragment baseFragment) {
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public SportIdBean(String g, String dbid, int textRes, String type, Class<SportActivity> cls, BaseSportFragment baseFragment, int textColor) {
         this.dbid = dbid;
         this.id = g;
         this.textRes = textRes;
         this.type = type;
         this.cls = cls;
         this.baseFragment = baseFragment;
+        this.textColor = textColor;
     }
 
     public String getId() {

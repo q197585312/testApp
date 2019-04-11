@@ -50,7 +50,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
 
     Handler updateHandler = new Handler();
 
-    void stopUpdate() {
+    public void stopUpdate() {
         if (mCompositeSubscription != null)
             mCompositeSubscription.clear();
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
@@ -58,7 +58,6 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
 
     void startUpdate() {
         stopUpdate();
-        dataUpdateRunnable = new DataRunnable();
         updateHandler.post(dataUpdateRunnable);// 打开定时器，执行操作
     }
 

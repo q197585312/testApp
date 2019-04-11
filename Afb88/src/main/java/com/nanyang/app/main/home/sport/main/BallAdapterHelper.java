@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -882,5 +883,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
     }
 
-
+    public void setRunningItemBg(MyRecyclerViewHolder helper, int position) {
+        View LlMatchContent = helper.getView(R.id.ll_match_content);
+        LlMatchContent.setBackgroundResource((position % 2 == 0) ? R.color.green_content1 : R.color.green_content2);
+        View matchTitleLl = helper.getView(R.id.module_match_title_ll);
+        View viewLine = helper.getView(R.id.view_line);
+        viewLine.setBackgroundColor(ContextCompat.getColor(context, R.color.green_line));
+        matchTitleLl.setBackgroundColor(ContextCompat.getColor(context, R.color.green_title));
+    }
 }

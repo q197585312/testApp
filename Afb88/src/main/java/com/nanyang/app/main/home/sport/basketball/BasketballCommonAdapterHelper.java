@@ -1,16 +1,9 @@
 package com.nanyang.app.main.home.sport.basketball;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
 
-import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.training.ScrollLayout;
-
-import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
  * Created by Administrator on 2017/3/14.
@@ -22,7 +15,7 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
     }
 
 
-    @Override
+/*    @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final BallInfo item) {
 
        if(!item.getEvenOdds().equals(item.getOddOdds())||item.getOddOdds().isEmpty()||item.getEvenOdds().isEmpty()||Float.valueOf(item.getOddOdds())==0f||Float.valueOf(item.getEvenOdds())==0f){
@@ -83,7 +76,7 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
         awayTv.setText(away);
         updateMixBackground(item, sl  , "home", "away", "over", "under", "odd", "even");
 
-    }
+    }*/
 
 
 }
