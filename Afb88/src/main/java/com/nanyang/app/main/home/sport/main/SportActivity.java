@@ -173,6 +173,16 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         getApp().setBetParList(null);
     }
 
+    public void updateMixOrderCount() {
+        if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
+            tvMixCount.setVisibility(View.VISIBLE);
+            tvMixCount.setText("" + getApp().getBetParList().getList().size());
+        } else {
+            tvMixCount.setVisibility(View.GONE);
+            tvMixCount.setText("0");
+        }
+
+    }
 
     @Override
     protected void onDestroy() {

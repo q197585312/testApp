@@ -59,10 +59,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     @Bind(R.id.swipe_target)
     protected RecyclerView rvContent;
 
-    @Bind(R.id.tv_mix_parlay_order)
-    protected TextView tvMixParlayOrder;
-    @Bind(R.id.ll_mix_parlay_order)
-    protected LinearLayout llMixParlayOrder;
+//    @Bind(R.id.tv_mix_parlay_order)
+//    protected TextView tvMixParlayOrder;
+//    @Bind(R.id.ll_mix_parlay_order)
+//    protected LinearLayout llMixParlayOrder;
 
 
     @Bind(R.id.swipeToLoadLayout)
@@ -315,21 +315,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     private void updateMixOrderCount() {
-        if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
-            tvMixParlayOrder.setText("" + getApp().getBetParList().getList().size());
-            llMixParlayOrder.setVisibility(View.VISIBLE);
-            checkMix(true);
-            ((SportActivity) getActivity()).tvMixCount.setVisibility(View.VISIBLE);
-            ((SportActivity) getActivity()).tvMixCount.setText("" + getApp().getBetParList().getList().size());
-
-        } else {
-            tvMixParlayOrder.setText("0");
-            llMixParlayOrder.setVisibility(View.GONE);
-            checkMix(false);
-            ((SportActivity) getActivity()).tvMixCount.setVisibility(View.GONE);
-            ((SportActivity) getActivity()).tvMixCount.setText("0");
-        }
-
+        getBaseActivity().updateMixOrderCount();
     }
 
     public void toolbarRightClick(View v) {
@@ -427,28 +413,30 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
 
-    @OnClick({R.id.ll_mix_parlay_order})
-    public void onClick(View view) {
-        switch (view.getId()) {
-
-            case R.id.ll_mix_parlay_order:
-                clickOrder();
-                break;
-
-        }
-    }
+//    @OnClick({R.id.ll_mix_parlay_order})
+//    public void onClick(View view) {
+//        switch (view.getId()) {
+//
+//            case R.id.ll_mix_parlay_order:
+//                clickOrder();
+//                break;
+//
+//        }
+//    }
 
     public void clickOrder() {
         if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList() == null || getApp().getBetAfbList().getList().size() < 1)
             return;
-        if (getApp().getBetAfbList().getList().size() == 1) {
-            String refreshOddsUrl = getApp().getRefreshOddsUrl();
-            presenter.getStateHelper().getBetHelper().getRefreshOdds(refreshOddsUrl);
-        } else if (getApp().getBetAfbList().getList().size() > 1) {
-            Bundle bundle = new Bundle();
-            bundle.putSerializable(AppConstant.KEY_DATA, presenter.getStateHelper().getStateType());
-            skipAct(MixOrderListActivity.class, bundle);
-        }
+//        if (getApp().getBetAfbList().getList().size() == 1) {
+//            String refreshOddsUrl = getApp().getRefreshOddsUrl();
+//            presenter.getStateHelper().getBetHelper().getRefreshOdds(refreshOddsUrl);
+//        } else if (getApp().getBetAfbList().getList().size() > 1) {
+//            Bundle bundle = new Bundle();
+//            bundle.putSerializable(AppConstant.KEY_DATA, presenter.getStateHelper().getStateType());
+//            skipAct(MixOrderListActivity.class, bundle);
+//        }
+        String refreshOddsUrl = getApp().getRefreshOddsUrl();
+        presenter.getStateHelper().getBetHelper().getRefreshOdds(refreshOddsUrl);
     }
 
     public void clickOddsType(final TextView tvOddsType) {
@@ -500,6 +488,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).onBetSuccess(betResult);
         updateMixOrderCount();
         baseRecyclerAdapter.notifyDataSetChanged();
+        ToastUtils.showShort(betResult);
     }
 
     @Override

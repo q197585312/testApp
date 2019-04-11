@@ -201,7 +201,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                                 @Override
                                 public void run() {
                                     if (baseView.getIBaseContext().getBaseActivity() != null && baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
-                                        baseView.checkMix(isMix());
+//                                        baseView.checkMix(isMix());
                                         initAllData(allData);
                                     }
                                 }

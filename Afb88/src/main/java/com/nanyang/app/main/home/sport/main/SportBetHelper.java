@@ -243,7 +243,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     @Override
     public Disposable bet(String url) {
 
-        url=url+"&_="+System.currentTimeMillis();
+        url = url + "&_=" + System.currentTimeMillis();
         Log.d("betUrl", url);
         Disposable subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -251,7 +251,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     @Override
                     public void accept(String allData) throws Exception {
                         allData = AfbUtils.delHTMLTag(allData);
-                        Log.d("betUrl","betResult:"+allData);
+                        Log.d("betUrl", "betResult:" + allData);
                         String[] split = allData.split("\\|");
                         if (split.length >= 5) {
                             baseView.onBetSuccess(allData);
@@ -286,15 +286,22 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         return subscription;
     }
 
+    BetPop pop;
+
     protected void createBetPop(List<AfbClickBetBean> bean, View v) {
-        BetPop pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
+        if (pop == null) {
+            pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
+        }
         pop.setBetData(bean, this);
-        baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+        if (!pop.isShowing()) {
+            baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+        }
+
     }
 
     @NonNull
     protected Disposable getDisposable(final TextView v, final boolean isHf, String betOddsUrl) {
-        String url = AppConstant.getInstance().URL_ODDS + betOddsUrl ;
+        String url = AppConstant.getInstance().URL_ODDS + betOddsUrl;
         this.v = v;
         Disposable subscribe = getRefreshOdds(url);
         return subscribe;
@@ -303,7 +310,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     @NonNull
     @Override
     public Disposable getRefreshOdds(String url) {
-        url=url+"&_="+System.currentTimeMillis();
+        url = url + "&_=" + System.currentTimeMillis();
         Log.d("betUrl", "getRefreshOdds:" + url);
         Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).map(new Function<String, AfbClickResponseBean>() {
@@ -342,7 +349,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     @Override
                     public void accept(AfbClickResponseBean bean) throws Exception {
                         if (bean == null || bean.getList() == null || bean.getList().size() == 0) {
-                        } else if (bean.getList().size() == 1) {
+                        } else if (bean.getList().size() >= 1) {
                             createBetPop(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
                         }
                         baseView.onUpdateMixSucceed(bean);

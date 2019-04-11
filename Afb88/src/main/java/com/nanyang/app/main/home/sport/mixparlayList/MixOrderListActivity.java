@@ -330,9 +330,6 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
         }
     }
 
-    SpannableStringBuilder style;
-
-
     public void setOddsText(MyRecyclerViewHolder helper, AfbClickBetBean item) {
         String b = new AfbParseHelper<>().getBetTypeFromId(item.getId());
         boolean isHome = item.getBTeam().equalsIgnoreCase("Home");
