@@ -163,6 +163,8 @@ public class BetPop extends BasePopupWindow {
                     odds = Double.parseDouble(list.get(0).getOdds());
                     max = list.get(0).getMaxLimit();
                 }
+
+                amount = amount.replaceAll(",", "");
                 if (Double.parseDouble(amount) > max) {
                     betAmountEdt.removeTextChangedListener(this);
                     betAmountEdt.setText((int) max + "");
