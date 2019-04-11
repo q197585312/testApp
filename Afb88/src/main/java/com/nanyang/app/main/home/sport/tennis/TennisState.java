@@ -11,7 +11,6 @@ import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -61,15 +60,6 @@ public abstract class TennisState extends BasketballCommonState {
     }
 
 
-    @Override
-    protected List<List<String>> initHeaderList() {
-        List<List<String>> texts = new ArrayList<>();
-        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.TO_WIN), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.HANDICAP)));
-        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.O_U), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.ODD_EVEN)));
-        texts.add(items0);
-        texts.add(items1);
-        return texts;
-    }
 
 
     @Override

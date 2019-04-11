@@ -1,14 +1,8 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
-import android.view.View;
 
-import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.training.ScrollLayout;
 
 /**
  * Created by Administrator on 2017/3/14.
@@ -40,7 +34,7 @@ public class OtherDoubleAdapterHelper extends BallAdapterHelper<BallInfo> {
 
     }
 
-    @Override
+   /* @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final BallInfo item) {
         super.onConvert(helper, position, item);
         View tvCollection = helper.getView(R.id.module_match_collection_tv);
@@ -63,16 +57,16 @@ public class OtherDoubleAdapterHelper extends BallAdapterHelper<BallInfo> {
         setUpDownOdds(true, item, false, item.getIsOENew(), item.getHasOE(), "", holder2.viewpagerMatchOuTv, holder2.viewpagerMatchOu2Tv, holder2.viewpagerMatchOveroddsTv, holder2.viewpagerMatchUnderoddsTv
                 , (item.getOEOdds() != null && Double.valueOf(item.getOEOdds()) >= 1 || Double.valueOf(item.getOEOdds()) <= -1) ? item.getOddOdds() : "",
                 (item.getOEOdds() != null && Double.valueOf(item.getOEOdds()) >= 1 || Double.valueOf(item.getOEOdds()) <= -1) ? item.getEvenOdds() : "", "odd", "even");
-        /*scrollChild(sl.getChildAt(1), false, item, item.getIsHomeGive(), item.getHasX12(), "", item.getHasOE(), "", item.getIsX12New(), "", "", "", item.getX12_1Odds(), item.getX12_2Odds(), "1", "2", "", ""
+        *//*scrollChild(sl.getChildAt(1), false, item, item.getIsHomeGive(), item.getHasX12(), "", item.getHasOE(), "", item.getIsX12New(), "", "", "", item.getX12_1Odds(), item.getX12_2Odds(), "1", "2", "", ""
                 , true, false, true, item.getHasOE(), item.getIsOENew(), item.getOddOdds(), item.getEvenOdds(), "odd", "even");
         getBaseRecyclerAdapter().getItem(position).setIsX12New("0");
-        getBaseRecyclerAdapter().getItem(position).setIsOENew("0");*/
+        getBaseRecyclerAdapter().getItem(position).setIsOENew("0");*//*
         BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
         handler.updateAfbMixBackground(item.getSocOddsId(), 0, sl, "1", "2", "home", "away", "NULL", "NULL");
         handler.updateAfbMixBackground(item.getSocOddsId(), 1, sl, "over", "under", "odd", "even", "NULL", "NULL");
 
 
-    }
+    }*/
 
 
 }

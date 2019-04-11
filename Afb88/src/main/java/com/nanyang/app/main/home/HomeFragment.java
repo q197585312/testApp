@@ -74,6 +74,8 @@ public class HomeFragment extends BaseSwitchFragment {
 
 
     private void initViewPager(List<AllBannerImagesBean.BannersBean> lists) {
+        if (lists == null)
+            return;
         ViewPagerAdapter adapter = new ViewPagerAdapter(lists, inLayout, getActivity());
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(viewPager.listener);
@@ -100,15 +102,23 @@ public class HomeFragment extends BaseSwitchFragment {
                 TextView tv_num = holder.getView(R.id.tv_num);
                 holder.setImageByUrl(R.id.iv_pic, item.getImg());
                 SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getG());
-                if (sportIdBean != null && sportIdBean.getTextRes() > 0)
+                if (sportIdBean != null && sportIdBean.getTextRes() > 0) {
                     tv.setText(getString(sportIdBean.getTextRes()));//M_RAm1
-                else
+                    tv.setTextColor(getResources().getColor(sportIdBean.getTextColor()));
+                } else
                     tv.setText("");
-                if (jsonObjectNum != null && !StringUtils.isNull(jsonObjectNum.optString("M_TAm" + item.getDbid()))) {
-                    tv_num.setText(jsonObjectNum.optString("M_TAm" + item.getDbid()));
-                    tv_num.setVisibility(View.VISIBLE);
-                } else {
-                    tv_num.setVisibility(View.GONE);
+                tv_num.setVisibility(View.GONE);
+                if (jsonObjectNum != null) {
+                    if (!StringUtils.isNull(jsonObjectNum.optString("M_RAm" + item.getDbid()))) {
+                        tv_num.setText(jsonObjectNum.optString("M_RAm" + item.getDbid()));
+                        tv_num.setVisibility(View.VISIBLE);
+                    } else if (!StringUtils.isNull(jsonObjectNum.optString("M_TAm" + item.getDbid()))) {
+                        tv_num.setText(jsonObjectNum.optString("M_TAm" + item.getDbid()));
+                        tv_num.setVisibility(View.VISIBLE);
+                    } else if (!StringUtils.isNull(jsonObjectNum.optString("M_EAm" + item.getDbid()))) {
+                        tv_num.setText(jsonObjectNum.optString("M_EAm" + item.getDbid()));
+                        tv_num.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         };

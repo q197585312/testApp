@@ -4,7 +4,9 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -14,7 +16,6 @@ public class BasketballRunningState extends BasketballCommonState {
     public BasketballRunningState(SportContract.View baseView) {
         super(baseView);
     }
-
 
 
     @Override
@@ -47,14 +48,21 @@ public class BasketballRunningState extends BasketballCommonState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Basketball));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Basketball));
     }
 
 
     @Override
     protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
-        return  new BasketballCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
+        return new BasketballCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity()) {
+            @Override
+            public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
+                super.onConvert(helper, position, item);
+                setRunningItemBg(helper, position);
+            }
+        };
     }
+
     @Override
     public IBetHelper onSetBetHelper() {
         return new BasketballRunningBetHelper(getBaseView());

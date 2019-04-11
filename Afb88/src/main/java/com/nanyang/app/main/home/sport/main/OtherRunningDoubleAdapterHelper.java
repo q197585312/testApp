@@ -1,9 +1,7 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
-import android.view.View;
 
-import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -19,6 +17,6 @@ public class OtherRunningDoubleAdapterHelper extends OtherDoubleAdapterHelper {
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
         super.onConvert(helper, position, item);
-        helper.getView(R.id.module_match_time_tv).setVisibility(View.INVISIBLE);
+        setRunningItemBg(helper, position);
     }
 }

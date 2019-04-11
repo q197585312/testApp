@@ -3,7 +3,11 @@ package com.nanyang.app.main.home.sport.handball;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.main.OtherRunningDoubleAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
+import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -44,5 +48,14 @@ public class HandballRunningState extends HandballState {
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Handball));
     }
-
+    @Override
+    public IAdapterHelper<BallInfo> onSetAdapterHelper() {
+        return new OtherRunningDoubleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity()){
+            @Override
+            public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
+                super.onConvert(helper, position, item);
+                setRunningItemBg(helper,position);
+            }
+        };
+    }
 }

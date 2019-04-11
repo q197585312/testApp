@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.financial;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.main.OtherDoubleAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.tennis.TennisState;
@@ -40,13 +41,7 @@ public abstract class FinancialState extends TennisState{
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        return new OtherSingleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
-    }
-    @Override
-    protected List<List<String>> initHeaderList() {
-        List<List<String>> lists = super.initHeaderList();
-        lists.remove(1);
-        return lists;
+        return new OtherDoubleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
 
 }

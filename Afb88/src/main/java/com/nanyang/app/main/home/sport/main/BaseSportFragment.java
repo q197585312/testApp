@@ -520,6 +520,12 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }
     }
 
+    @Override
+    public void onStop() {
+        super.onStop();
+        additionPresenter.stopUpdate();
+    }
+
     public void onAddition(AdditionBean data, int position) {
         if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
