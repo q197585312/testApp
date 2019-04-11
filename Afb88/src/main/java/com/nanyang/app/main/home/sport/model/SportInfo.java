@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.model;
 
+import com.nanyang.app.Utils.StringUtils;
+
 import java.io.Serializable;
 
 /**
@@ -9,9 +11,6 @@ public class SportInfo implements Serializable {
 
 
     private boolean notify;
-
-
-
 
 
     public void setValue(int i, String s) {
@@ -43,9 +42,9 @@ public class SportInfo implements Serializable {
 
     public void setNotify(boolean notify) {
         this.notify = notify;
-        if(notify){
+        if (notify) {
             setIsX12New("1");
-        }else{
+        } else {
             setIsX12New("0");
         }
     }
@@ -168,4 +167,9 @@ public class SportInfo implements Serializable {
     }
 
 
+    public boolean isBigger(String fOld, String fNew) {
+        if (StringUtils.isNull(fOld) || StringUtils.isNull(fNew) || Float.valueOf(fNew) > Float.valueOf(fOld))
+            return true;
+        return false;
+    }
 }

@@ -14,6 +14,7 @@ import cn.finalteam.toolsfinal.StringUtils;
           String moduleId;
           CharSequence ModuleTitle;
           String SocOddsId, Home, IsInetBet, isX12New, HasX12, X12_1Odds, PreSocOddsId;*/
+
 /**
  * ],String[[12683157 ,String12683159 ,String'' ,String0,String'04/06 02:45AM' ,String'Juventus [n]' ,String'Real Madrid' ,String0,String1,String1,String-10,String10,String9,String0,String1,String2.89,String3.13,2.47,1,1,3.5,1.98,3.21,0,0,0,0,0,0,0,0]]],[[;
  */
@@ -25,6 +26,15 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     String isOUNew_FH;
     String tvPathIBC;
     List<BallInfo> repeatRow;
+    public boolean isHomeBigger;
+    public boolean isAwayBigger;
+    public boolean isOverBigger;
+    public boolean isUnderBigger;
+
+    public boolean isHomeBigger_FH;
+    public boolean isAwayBigger_FH;
+    public boolean isOverBigger_FH;
+    public boolean isUnderBigger_FH;
 
     public void setIsHdpNew(String isHdpNew) {
         this.isHdpNew = isHdpNew;
@@ -566,7 +576,6 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     }
 
 
-
     String SocOddsId_FH;
     String Live;
     String IsLastCall;
@@ -781,26 +790,32 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 setOU(s);
                 break;
             case 24:
+                setIsHomeBigger(isBigger(getHOdds(), s));
                 setHOdds(s);
                 setIsHdpNew("1");
                 break;
             case 25:
+                setIsAwayBigger(isBigger(getAOdds(), s));
                 setAOdds(s);
                 setIsHdpNew("1");
                 break;
             case 26:
+                setIsOverBigger(isBigger(getOOdds(), s));
                 setOOdds(s);
                 setIsOUNew("1");
                 break;
             case 27:
+                setIsUnderBigger(isBigger(getUOdds(), s));
                 setUOdds(s);
                 setIsOUNew("1");
                 break;
             case 28:
+
                 setOddOdds(s);
                 setIsOENew("1");
                 break;
             case 29:
+
                 setEvenOdds(s);
                 setIsOENew("1");
                 break;
@@ -841,18 +856,22 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 setOU_FH(s);
                 break;
             case 41:
+                setIsHomeBigger_FH(isBigger(getHOdds_FH(), s));
                 setHOdds_FH(s);
                 setIsHdpNew_FH("1");
                 break;
             case 42:
+                setIsAwayBigger_FH(isBigger(getAOdds_FH(), s));
                 setAOdds_FH(s);
                 setIsHdpNew_FH("1");
                 break;
             case 43:
+                setIsOverBigger_FH(isBigger(getOOdds_FH(), s));
                 setOOdds_FH(s);
                 setIsOUNew_FH("1");
                 break;
             case 44:
+                setIsUnderBigger_FH(isBigger(getUOdds_FH(), s));
                 setUOdds_FH(s);
                 setIsOUNew_FH("1");
                 break;
@@ -945,11 +964,44 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     }
 
     public List<BallInfo> getRepeatRow() {
-            return repeatRow;
+        return repeatRow;
     }
 
     @Override
     public String toString() {
         return super.toString();
+    }
+
+    public void setIsHomeBigger(boolean isHomeBiger) {
+        this.isHomeBigger = isHomeBiger;
+    }
+
+    public void setIsAwayBigger(boolean isAwayBigger) {
+        this.isAwayBigger = isAwayBigger;
+    }
+
+    public void setIsOverBigger(boolean isOverBigger) {
+        this.isOverBigger = isOverBigger;
+    }
+
+    public void setIsUnderBigger(boolean isUnderBigger) {
+        this.isUnderBigger = isUnderBigger;
+    }
+
+
+    public void setIsHomeBigger_FH(boolean isHomeBigger_FH) {
+        this.isHomeBigger_FH = isHomeBigger_FH;
+    }
+
+    public void setIsAwayBigger_FH(boolean isAwayBigger_FH) {
+        this.isAwayBigger_FH = isAwayBigger_FH;
+    }
+
+    public void setIsOverBigger_FH(boolean isOverBigger_FH) {
+        this.isOverBigger_FH = isOverBigger_FH;
+    }
+
+    public void setIsUnderBigger_FH(boolean isUnderBigger_FH) {
+        this.isUnderBigger_FH = isUnderBigger_FH;
     }
 }

@@ -23,12 +23,12 @@
                 android:id="@+id/viewpager_match_home_hdp_tv"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="1.1"
                 android:gravity="center"
                 android:maxLines="1"
                 android:paddingRight="2dp"
                 android:textColor="@color/green_dark"
-                android:textSize="12sp" />
+                android:textSize="9sp" />
 
             <TextView
                 android:id="@+id/viewpager_match_home_hdpodds_tv"
@@ -54,12 +54,12 @@
                 android:id="@+id/viewpager_match_ou_tv"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="1.1"
                 android:gravity="center"
                 android:maxLines="1"
                 android:paddingRight="2dp"
                 android:textColor="@color/green_dark"
-                android:textSize="12sp" />
+                android:textSize="9sp" />
 
             <TextView
                 android:id="@+id/viewpager_match_overodds_tv"
@@ -119,12 +119,12 @@
                 android:id="@+id/viewpager_match_visit_hdp_tv"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="1.1"
                 android:gravity="center"
                 android:maxLines="1"
                 android:paddingRight="2dp"
                 android:textColor="@color/green_dark"
-                android:textSize="12sp" />
+                android:textSize="9sp" />
 
             <TextView
                 android:id="@+id/viewpager_match_visit_hdpodds_tv"
@@ -150,12 +150,12 @@
                 android:id="@+id/viewpager_match_ou2_tv"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1"
+                android:layout_weight="1.1"
                 android:gravity="center"
                 android:maxLines="1"
                 android:paddingRight="2dp"
                 android:textColor="@color/green_dark"
-                android:textSize="12sp" />
+                android:textSize="9sp" />
 
             <TextView
                 android:id="@+id/viewpager_match_underodds_tv"

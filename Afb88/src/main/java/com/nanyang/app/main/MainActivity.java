@@ -62,14 +62,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         ButterKnife.bind(this);
         createPresenter(new MainPresenter(this));
         toolbar.setNavigationIcon(null);
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-        tvToolbarLeft.setVisibility(View.VISIBLE);
-        tvToolbarLeft.setBackgroundResource(R.mipmap.left_logo);
         initUserData();
         afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
         afbDrawerViewHolder.initDefaultFragment(homeFragment);
@@ -78,10 +70,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     private BaseSwitchFragment homeFragment = new HomeFragment();
 
-    @Override
-    public boolean isNeedUpdateTime() {
-        return true;
-    }
+
 
     @Override
     protected void updateBalanceTv(String allData) {
@@ -105,51 +94,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 getApp().setUser(personalInfo);
             }
         });
-
-        /*{
-		"M_TAm36": 76,
-		"M_RAm36": 12,
-		"M_EAm36": 373,
-		"M_TAm1": 200,
-		"M_RAm1": 35,
-		"M_EAm1": 545,
-		"M_TAm2": 55,
-		"M_TAm3": 38,
-		"M_TAm4": 22,
-		"M_EAm4": 104,
-		"M_EAm5": 91,
-		"M_Name33_18": "1D 游戏",
-		"M_TAm33_18": 5,
-		"M_RAm33_18": 0,
-		"M_EAm33_18": 5,
-		"M_Name33_19": "2D 游戏",
-		"M_TAm33_19": 3,
-		"M_RAm33_19": 0,
-		"M_EAm33_19": 3,
-		"M_Name33_20": "3D 游戏",
-		"M_TAm33_20": 4,
-		"M_RAm33_20": 0,
-		"M_EAm33_20": 4,
-		"M_TAm9": 22,
-		"M_TAm10": 21,
-		"M_EAm10": 4,
-		"M_TAm11": 21,
-		"M_EAm12": 12,
-		"M_EAm15": 3,
-		"M_EAm16": 3,
-		"M_TAm24": 9,
-		"M_TAm25": 9,
-		"M_EAm26": 3,
-		"M_TAm32": 584,
-		"M_RAm32": 39,
-		"M_EAm32": 2519,
-		"M_PAm32": 623,
-		"M_RAm0": 86,
-		"M_EAm999": 110,
-		"M_RAm66": 35,
-		"M_TAm66": 200,
-		"M_EAm66": 545
-	}*/
 
     }
 

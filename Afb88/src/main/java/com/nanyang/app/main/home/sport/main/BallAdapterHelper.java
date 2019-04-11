@@ -29,7 +29,6 @@ import com.nanyang.app.main.home.sport.model.TGBean;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.training.ScrollLayout;
 
@@ -668,6 +667,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.5 || Math.abs(Float.valueOf(downOdds)) < 0.5) {
                 hasUpDown = "0";
             }
+            int resUp=R.mipmap.arrow_up_update_green;
+            int resDown=R.mipmap.arrow_up_update_green;
             switch (upType) {
                 case "home":
                 case "mmhome":
@@ -691,7 +692,20 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     }
                     upTextTv.setTextColor(context.getResources().getColor(R.color.red_title));
                     downTextTv.setTextColor(context.getResources().getColor(R.color.red_title));
-                    break;
+
+                    if(isFh){
+                        if (item.isHomeBigger_FH)
+                            resUp=R.mipmap.arrow_up_update_green;
+                        else
+                            resUp=R.mipmap.arrow_down_update_red;
+                    }else{
+                        if (item.isHomeBigger)
+                            resUp=R.mipmap.arrow_up_update_green;
+                        else
+                            resUp=R.mipmap.arrow_down_update_red;
+                    }
+
+                break;
                 case "over":
                 case "mmover":
                     if (upDown.isEmpty() || upDown.equals("0")) {
@@ -704,6 +718,17 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         downTextTv.setTextSize(8);
                         upTextTv.setTextSize(8);
                     }
+                    if(isFh){
+                        if (item.isOverBigger_FH)
+                            resUp=R.mipmap.arrow_up_update_green;
+                        else
+                            resUp=R.mipmap.arrow_down_update_red;
+                    }else{
+                        if (item.isOverBigger)
+                            resUp=R.mipmap.arrow_up_update_green;
+                        else
+                            resUp=R.mipmap.arrow_down_update_red;
+                    }
                     break;
 
                 case "1":
@@ -715,6 +740,36 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     downStr = context.getString(R.string.EVEN);
                     break;
 
+            }
+            switch (downOdds) {
+                case "away":
+                case "mmaway":
+                    if(isFh){
+                        if (item.isAwayBigger_FH)
+                            resDown=R.mipmap.arrow_up_update_green;
+                        else
+                            resDown=R.mipmap.arrow_down_update_red;
+                    }else{
+                        if (item.isAwayBigger)
+                            resDown=R.mipmap.arrow_up_update_green;
+                        else
+                            resDown=R.mipmap.arrow_down_update_red;
+                    }
+                    break;
+                case "under":
+                case "mmunder":
+                    if(isFh){
+                        if (item.isUnderBigger_FH)
+                            resDown=R.mipmap.arrow_up_update_green;
+                        else
+                            resDown=R.mipmap.arrow_down_update_red;
+                    }else{
+                        if (item.isUnderBigger)
+                            resDown=R.mipmap.arrow_up_update_green;
+                        else
+                            resDown=R.mipmap.arrow_down_update_red;
+                    }
+                    break;
             }
 
             if (hasUpDown.equals("0") || hasUpDown.equals("")) {
@@ -729,10 +784,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 if (isNew != null && isNew.equals("1")) {
                     isAnimation = true;
                 }
-                setValue(item, upOddsTv, upOdds, isAnimation, upType, isFh, R.drawable.green_trans_shadow_top, true);
-                setValue(item, upTextTv, upOdds, false, upType, isFh, R.drawable.green_trans_shadow_top, false);
-                setValue(item, downOddsTv, downOdds, isAnimation, downType, isFh, R.drawable.green_trans_shadow_bottom, true);
-                setValue(item, downTextTv, downOdds, false, downType, isFh, R.drawable.green_trans_shadow_bottom, false);
+                setValue(item, upOddsTv, upOdds, false, upType, isFh, R.drawable.green_trans_shadow_top, true,0);
+                setValue(item, upTextTv, upOdds, isAnimation, upType, isFh, R.drawable.green_trans_shadow_top, false,resUp);
+                setValue(item, downOddsTv, downOdds, false, downType, isFh, R.drawable.green_trans_shadow_bottom, true,0);
+                setValue(item, downTextTv, downOdds, isAnimation, downType, isFh, R.drawable.green_trans_shadow_bottom, false,resDown);
             }
         } else {
             upTextTv.setVisibility(View.GONE);
@@ -771,7 +826,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         return ss;
     }
 
-    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg, boolean isShowText) {
+    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg, boolean isShowText, final int resUpdate) {
         String value = f;
         if (f.equals("0")) {
             textView.setText("");
@@ -785,30 +840,29 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     value = AfbUtils.decimalValue(Float.valueOf(f), "0.00");
                 }
                 if (isAnimation) {
-                    Animation animation = new AlphaAnimation(0.0f, 1.0f);
+                    Animation animation = new AlphaAnimation(0.8f, 1.0f);
                     //设置动画时间
-                    animation.setDuration(1000);
+                    animation.setDuration(2000);
                     animation.setRepeatCount(3);
                     animation.setAnimationListener(new Animation.AnimationListener() {
                         @Override
                         public void onAnimationStart(Animation animation) {
-                            ((BaseActivity) context).dynamicAddView(textView, "background", resBg);
-//                            textView.setBackgroundResource(resBg);
+                            textView.setCompoundDrawablesWithIntrinsicBounds(resUpdate,0,0,0);
                         }
 
                         @Override
                         public void onAnimationEnd(Animation animation) {
-                            textView.setBackgroundResource(0);
+                            textView.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
                         }
 
                         @Override
                         public void onAnimationRepeat(Animation animation) {
-                            ((BaseActivity) context).dynamicAddView(textView, "background", resBg);
+                            textView.setCompoundDrawablesWithIntrinsicBounds(resUpdate,0,0,0);
                         }
                     });
                     textView.startAnimation(animation);
                 } else {
-                    textView.setBackgroundResource(0);
+                    textView.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
                 }
 
                 textView.setOnClickListener(new View.OnClickListener() {

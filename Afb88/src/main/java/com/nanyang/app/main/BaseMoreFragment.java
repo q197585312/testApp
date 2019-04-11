@@ -15,7 +15,7 @@ public abstract class BaseMoreFragment<P extends IBasePresenter> extends BaseSwi
 
     public void showContent() {
         baseToolbarActivity.setToolbarVisibility(View.VISIBLE);
-        baseToolbarActivity.tvTime.setVisibility(View.GONE);
+        baseToolbarActivity.llRight.setVisibility(View.GONE);
         baseToolbarActivity.tvToolbarLeft.setVisibility(View.GONE);
         baseToolbarActivity.tvToolbarRight.setVisibility(View.GONE);
         baseToolbarActivity.getTvToolbarTitle().setVisibility(View.GONE);

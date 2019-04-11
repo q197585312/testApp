@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
@@ -10,11 +11,13 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.Utils.TimeUtils;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.load.login.LoginInfo;
@@ -30,6 +33,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+import java.util.Locale;
 
 import butterknife.Bind;
 
@@ -89,6 +93,29 @@ public class HomeFragment extends BaseSwitchFragment {
             viewPager.stopTask();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateTimer();
+        initHomeToolBar();
+    }
+
+    private void initHomeToolBar() {
+        ((BaseToolbarActivity) getBaseActivity()).getToolbar().setNavigationIcon(null);
+        ((BaseToolbarActivity) getBaseActivity()).getToolbar().setTitle(null);
+        ((BaseToolbarActivity) getBaseActivity()).tvToolbarLeft.setVisibility(View.VISIBLE);
+        ((BaseToolbarActivity) getBaseActivity()).tvToolbarRight.setVisibility(View.VISIBLE);
+        ((BaseToolbarActivity) getBaseActivity()).tvToolbarLeft.setBackgroundResource(R.mipmap.left_logo);
+        ((BaseToolbarActivity) getBaseActivity()).llRight.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            initHomeToolBar();
+        }
+    }
 
     private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
@@ -138,4 +165,23 @@ public class HomeFragment extends BaseSwitchFragment {
         });
     }
 
+    void updateTimer() {
+        updateHandler.post(timeUpdateRunnable);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        updateHandler.removeCallbacks(timeUpdateRunnable);
+    }
+
+    Runnable timeUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            String currentTime = "HK: " + TimeUtils.getTime("dd MM月 yyyy hh:mm:ss aa z", Locale.ENGLISH);
+            ((BaseToolbarActivity) getBaseActivity()).tvTime.setText(currentTime);
+            updateHandler.postDelayed(this, 1000);
+        }
+    };
+    Handler updateHandler = new Handler();
 }

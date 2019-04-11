@@ -12,7 +12,6 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nanyang.app.Utils.TimeUtils;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
@@ -27,8 +26,6 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import org.reactivestreams.Subscription;
-
-import java.util.Locale;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
@@ -54,7 +51,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     protected
     Toolbar toolbar;
     @Nullable
-    protected
+    public
     LinearLayout llRight;
 
 
@@ -93,10 +90,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 gameMenus(v);
             }
         });
-        if (isNeedUpdateTime()) {
-            llRight.setVisibility(View.VISIBLE);
-            updateHandler.post(timeUpdateRunnable);
-        }
     }
 
 
@@ -124,18 +117,9 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
     }
 
-    public boolean isNeedUpdateTime() {
-        return false;
-    }
 
-    Runnable timeUpdateRunnable = new Runnable() {
-        @Override
-        public void run() {
-            String currentTime = "HK: " + TimeUtils.getTime("dd MM月 yyyy hh:mm:ss aa z", Locale.ENGLISH);
-            tvTime.setText(currentTime);
-            updateHandler.postDelayed(this, 1000);
-        }
-    };
+
+
 
     Runnable dataUpdateRunnable = new Runnable() {
         @Override
@@ -416,14 +400,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     public void setToolbarVisibility(int b) {
         toolbar.setVisibility(b);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        if (isNeedUpdateTime()) {
-            updateHandler.removeCallbacks(timeUpdateRunnable);
-        }
     }
 
 }

@@ -18,8 +18,8 @@ android {
         versionCode 1
         versionName '1.66'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "HOST_AFB", '"http;//www.afb1188.com"'
-        buildConfigField "String", "HOST_SPORT", '"http://ws.afb1188.com:8888/fnOddsGen"'
+        buildConfigField "String", "HOST_AFB", '"http;//wsapp.afb1188.com"'
+        buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
         signingConfig signingConfigs.config
     }
     buildTypes {
@@ -55,7 +55,8 @@ android {
             ]
             applicationId 'com.nanyang.afb1188'
             versionName '1.12'
-            buildConfigField "String", "HOST_AFB", '"https://www.afb1188.com/"'
+            buildConfigField "String", "HOST_AFB", '"http://wsapp.afb1188.com/"'
+            buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
         }
     }
     lintOptions {
