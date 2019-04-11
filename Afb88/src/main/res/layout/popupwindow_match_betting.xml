@@ -117,6 +117,7 @@
                 android:background="@color/white"
                 android:elevation="3dp"
                 android:gravity="right|center_vertical"
+                android:inputType="number"
                 android:paddingRight="8dp"
                 android:text="0"
                 android:textColor="@color/black"

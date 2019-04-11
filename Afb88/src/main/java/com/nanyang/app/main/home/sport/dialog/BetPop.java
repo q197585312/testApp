@@ -106,13 +106,12 @@ public class BetPop extends BasePopupWindow {
     WebView webView;
     @BindString(R.string.loading)
     String loading;
-    AfbClickBetBean bean;
     @Bind(R.id.bet_pop_parent_top_fl)
     FrameLayout betPopParentTopFl;
 
     private SportBetHelper presenter;
-    private String hdp;
     private IRTMatchInfo rTMatchInfo;
+    private int coupon;
 
     public BetPop(Context context, View v) {
         this(context, v, DeviceUtils.dip2px(context, 350), LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -150,44 +149,41 @@ public class BetPop extends BasePopupWindow {
 
             @Override
             public void afterTextChanged(Editable s) {
-                int min;
-                int max;
+                String amount = s.toString().trim();
+                if (TextUtils.isEmpty(amount)) {
+                    amount = "0";
+                }
+                double max;
                 double odds;
                 if (list.size() > 1) {
                     AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
                     odds = Double.parseDouble(betAfbList.getPayoutOdds());
-                    min = Integer.parseInt(betAfbList.getMinLimit());
-                    max = Integer.parseInt(betAfbList.getMaxLimit());
+                    max = Double.parseDouble(betAfbList.getMaxLimit());
                 } else {
                     odds = Double.parseDouble(list.get(0).getOdds());
-                    min = list.get(0).getMinLimit();
                     max = list.get(0).getMaxLimit();
                 }
-                if (!AfbUtils.touzi_ed_values22.equals(betAmountEdt.getText().toString().trim().replaceAll(",", ""))) {
-                    if (bean != null && !StringUtils.isEmpty(s.toString().trim()) && Integer.valueOf(s.toString().trim().replaceAll(",", "")) > max) {
-                        betAmountEdt.setText(AfbUtils.addComma(max + "", betAmountEdt));
-                    } else {
-                        betAmountEdt.setText(AfbUtils.addComma(betAmountEdt.getText().toString().trim().replaceAll(",", ""), betAmountEdt));
-                    }
-                    double writeMoney;
-                    if (TextUtils.isEmpty(s)) {
-                        writeMoney = 0;
-                    } else {
-                        writeMoney = Double.parseDouble(s.toString());
-                    }
-                    double maxWin;
-                    if (list.size() > 1) {
-                        maxWin = odds * writeMoney;
-                    } else {
-                        maxWin = odds * writeMoney + writeMoney;
-                    }
-                    if (odds < 0) {
-                        maxWin = writeMoney * 2;
-                    }
-                    tvMaxWin.setText(Double.valueOf(maxWin).toString());
-                    betAmountEdt.setSelection(AfbUtils.addComma(betAmountEdt.getText().toString().trim().replaceAll(",", ""), betAmountEdt).length());
+                if (Double.parseDouble(amount) > max) {
+                    betAmountEdt.removeTextChangedListener(this);
+                    betAmountEdt.setText((int) max + "");
+                    betAmountEdt.addTextChangedListener(this);
                 }
-
+                amount = betAmountEdt.getText().toString().toString();
+                if (TextUtils.isEmpty(amount)) {
+                    amount = "0";
+                }
+                double writeMoney = Double.parseDouble(amount);
+                double maxWin;
+                if (list.size() > 1) {
+                    maxWin = odds * writeMoney;
+                } else {
+                    maxWin = odds * writeMoney + writeMoney;
+                }
+                if (odds < 0) {
+                    maxWin = writeMoney * 2;
+                }
+                tvMaxWin.setText(AfbUtils.decimalValue((float) maxWin, "0.00"));
+                betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
             }
         });
         betAmountEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
@@ -222,7 +218,13 @@ public class BetPop extends BasePopupWindow {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<PopChipBean>() {
             @Override
             public void onItemClick(View view, PopChipBean item, int position) {
-                ToastUtils.showShort(item.getBetChip() + "");
+                String s = betAmountEdt.getText().toString();
+                if (TextUtils.isEmpty(s)) {
+                    s = "0";
+                }
+                int betAmount = Integer.parseInt(s);
+                betAmount += item.getBetChip();
+                betAmountEdt.setText(betAmount + "");
             }
         });
     }
@@ -232,32 +234,32 @@ public class BetPop extends BasePopupWindow {
         String s1 = betAmountEdt.getText().toString().trim();
         if (!StringUtils.isEmpty(s1)) {
             String s = s1.replaceAll(",", "");
-            if (bean.getMaxLimit() > 0 && bean.getMinLimit() > 0) {
+            double min = Double.parseDouble(betMaxWinTv.getText().toString());
+            double max = Double.parseDouble(betMaxBetTv.getText().toString());
+            if (min > 0 && max > 0) {
                 int count = Integer.valueOf(s);
-                int max = bean.getMaxLimit();
-                int min = bean.getMinLimit();
                 if (count > max || count < min) {
                     ToastUtils.showShort(R.string.invalid_amount_bet);
                     betAmountEdt.setText("");
                     return;
                 }
-                presenter.bet(AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + bean.getBeturl() + "&amt=" + s);
-                presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
-                    @Override
-                    public void callBack(String odds) {
-                        String betUrl = bean.getBeturl();
-                        String substring1 = betUrl.substring(0, betUrl.indexOf("odds=") + 5);
-                        String sb = betUrl.substring(betUrl.indexOf("odds="));
-                        String substring2 = "";
-                        if (sb.indexOf("&") > 0) {
-                            substring2 = sb.substring(sb.indexOf("&"));
-                        }
-                        bean.setBeturl(substring1 + AfbUtils.decimalValue(Float.valueOf(odds) * 10, "0.00") + substring2);
-//                        betOddsTv.setText(AfbUtils.decimalValue(Float.valueOf(odds), "0.00"));
+                String betUrl;
+                if (list.size() > 1) {
+                    betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + afbApplication.getBetParList().getParUrl() + "&amt=" + s + "&coupon=" + coupon + "&exRate=" + afbApplication.getBetParList().getExRate();
+                    StringBuilder BETIDBuilder = new StringBuilder();
+                    BETIDBuilder.append("&BETID=");
+                    for (AfbClickBetBean afbClickBetBean : afbApplication.getBetParList().getList()) {
+                        BETIDBuilder.append(afbClickBetBean.getId());
+                        BETIDBuilder.append(",");
                     }
-                });
+                    String betId = BETIDBuilder.toString();
+                    betId = betId.substring(0, betId.length() - 1);
+                    betUrl += betId;
+                } else {
+                    betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(0).getBeturl() + "&amt=" + s;
+                }
+                presenter.bet(betUrl);
             }
-
         } else {
             ToastUtils.showShort(R.string.Input_the_amount_of_bets_please);
         }
@@ -316,10 +318,10 @@ public class BetPop extends BasePopupWindow {
             betMaxWinTv.setText(betAfbList.getMinLimit());
             betMaxBetTv.setText(betAfbList.getMaxLimit());
         } else {
-            bean = list.get(0);
-            tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(bean.getMatchLimit() + ""));
-            betMaxWinTv.setText(bean.getMinLimit() + "");
-            betMaxBetTv.setText(bean.getMaxLimit() + "");
+            AfbClickBetBean afbClickBetBean = list.get(0);
+            tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(afbClickBetBean.getMatchLimit() + ""));
+            betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
+            betMaxBetTv.setText(afbClickBetBean.getMaxLimit() + "");
         }
         betSureBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -390,10 +392,7 @@ public class BetPop extends BasePopupWindow {
                     @Override
                     public void onClick(View v) {
                         if (list.size() <= 1) {
-                            list.clear();
-                            SportActivity sportActivity = (SportActivity) context;
-                            sportActivity.updateMixOrderCount();
-                            closePopupWindow();
+                            goCancel();
                         } else {
                             list.remove(position);
                             presenter.getRefreshOdds(afbApplication.getRefreshOddsUrl());
@@ -431,6 +430,7 @@ public class BetPop extends BasePopupWindow {
             clearanceBetAmountBeenList = Arrays.asList(new ClearanceBetAmountBean(1, list.size() + "  X  1"));
         }
         tv1x2.setText(clearanceBetAmountBeenList.get(0).getTitle());
+        coupon = clearanceBetAmountBeenList.get(0).getAmount();
         tv1x2Odds.setText(AfbUtils.decimalValue(Float.parseFloat(afbApplication.getBetAfbList().getPayoutOdds()), "0.00"));
         ll1x2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -499,6 +499,7 @@ public class BetPop extends BasePopupWindow {
                 @Override
                 public void onItemClick(View view, ClearanceBetAmountBean item, int position) {
                     tv1x2.setText(item.getTitle());
+                    coupon = item.getAmount();
                     mixdialog.dismiss();
                 }
             });
