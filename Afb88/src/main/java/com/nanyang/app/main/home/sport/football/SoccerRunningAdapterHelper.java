@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.football;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
 
@@ -75,12 +76,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
                 timeTv.setText("");
             }
         }
-        dateTv.setTextColor(context.getResources().getColor(R.color.red_title));
-        timeTv.setTextColor(context.getResources().getColor(R.color.red_title));
-
-
+        dateTv.setTextColor(Color.RED);
+//        timeTv.setTextColor(context.getResources().getColor(R.color.red_title));
     }
-
-
-
 }
