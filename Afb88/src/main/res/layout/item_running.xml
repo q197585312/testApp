@@ -1,154 +1,382 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
     android:background="@drawable/shape_message"
+    android:orientation="vertical"
     android:paddingLeft="5dp"
-    android:paddingRight="5dp"
-    android:layout_marginTop="5dp">
+    android:paddingRight="5dp">
 
     <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/ll_running_hdp"
         android:layout_width="match_parent"
-        android:orientation="horizontal"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        >
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/running_RefNo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="OU000349084"
-            android:textColor="@color/black" />
-        <TextView
-            android:id="@+id/running_TransDate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="(07/04 9:55:14 am)"
-            android:textColor="@color/black" />
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp">
-        <TextView
-            android:id="@+id/running_ModuleTitle"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:textStyle="bold"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="LEAGUE OF LEGENDS - LEC SPRING"/>
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/running_RefNo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="OU000349084"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/running_TransDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(07/04 9:55:14 am)"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/running_ModuleTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="LEAGUE OF LEGENDS - LEC SPRING"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/running_Home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fnatic"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-VS-"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/running_Away"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Team Vitality"
+                android:textColor="@color/black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/running_BetType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R!OT [地图二]"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
+            android:orientation="horizontal"
+            android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/running_FullTimeId"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(FT)"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/running_Score"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="0-0"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/running_BetType2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(HDP -2.5)"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/running_Odds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="\@0.97"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/running_OddsType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="(HK)"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/running_OldStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/yellow_button"
+                android:text="W"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/running_split"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="/"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/running_Status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/green_black"
+                android:text="A"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/running_Amt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="100"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
+        </LinearLayout>
     </LinearLayout>
+
     <LinearLayout
+        android:id="@+id/ll_running_par"
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="wrap_content"
-        android:layout_marginTop="3dp">
-        <TextView
-            android:id="@+id/running_Home"
-            android:layout_width="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Fnatic"/>
-        <TextView
-            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/running_par_Home"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="一枚啦"
+                android:textColor="@color/grey_dark" />
+
+            <TextView
+                android:id="@+id/running_par_Odds1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="Est./Payout:333.10"
+                android:textColor="@color/grey_dark" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="-VS-"/>
-        <TextView
-            android:id="@+id/running_Away"
-            android:layout_width="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/running_par_Odds2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="Odds:3.331"
+                android:textColor="@color/grey_dark" />
+
+            <TextView
+                android:id="@+id/running_par_CombInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="2X1"
+                android:textColor="@color/grey_dark" />
+
+            <ImageView
+                android:id="@+id/running_par_load"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@mipmap/down_black" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_running_detail_1"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Team Vitality"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp">
-        <TextView
-            android:id="@+id/running_BetType"
-            android:layout_width="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            >
+            <TextView
+                android:id="@+id/par_id"
+                android:text=""
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <TextView
+                android:id="@+id/par_type"
+                android:text=""
+                android:visibility="gone"
+                android:textColor="@color/black"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/grey_background_trans"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rc_par_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:id="@+id/open_detail_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/keno_line"
+                android:paddingTop="3dp"
+                android:paddingBottom="3dp"
+                android:gravity="center"
+                android:text="打开详细列表" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_running_detail_2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="R!OT [地图二]"/>
-    </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="horizontal"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:paddingBottom="10dp">
-        <TextView
-            android:id="@+id/running_FullTimeId"
-            android:layout_width="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:orientation="vertical"
+            android:visibility="gone">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/rc_par_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+            </android.support.v7.widget.RecyclerView>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="3dp"
+                android:background="@color/green_thick_line"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="(FT)"/>
-        <TextView
-            android:id="@+id/running_Score"
-            android:layout_width="wrap_content"
+            android:background="@drawable/shape_running_text"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="5dp"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:text="@string/PARLAY"
+                android:textColor="@color/grey_dark" />
+
+            <TextView
+                android:id="@+id/running_par_Amt"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="ATM:100"
+                android:textColor="@color/grey_dark" />
+            />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="0-0"/>
-        <TextView
-            android:id="@+id/running_BetType2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="(HDP -2.5)"/>
-        <TextView
-            android:id="@+id/running_Odds"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="\@0.97"/>
-        <TextView
-            android:id="@+id/running_OddsType"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="(HK)"/>
-        <TextView
-            android:id="@+id/running_OldStatus"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:background="@color/yellow_button"
-            android:textStyle="bold"
-            android:text="W"/>
-        <TextView
-            android:id="@+id/running_split"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:text="/"/>
-        <TextView
-            android:id="@+id/running_Status"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:textStyle="bold"
-            android:background="@color/green_black"
-            android:text="A"/>
-        <TextView
-            android:id="@+id/running_Amt"
-            android:layout_width="0dp"
-            android:layout_weight="1"
-            android:gravity="right"
-            android:textStyle="bold"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="100"/>
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/running_par_DangerStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/green_black"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:text="A"
+                android:textColor="@color/white"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/running_par_IdAndTransDate"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="4"
+                android:gravity="right"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp"
+                android:text="ID:[PAR000396162]12/04 9:48:47 am"
+                android:textColor="@color/grey_dark" />
+        </LinearLayout>
     </LinearLayout>
 </LinearLayout>
