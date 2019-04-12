@@ -48,8 +48,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     EditText edtLoginPassword;
     @Bind(R.id.btn_login_login)
     Button btnLoginLogin;
-    @Bind(R.id.tv_login_forget)
-    TextView tvLoginForget;
+//    @Bind(R.id.tv_login_forget)
+//    TextView tvLoginForget;
     AfbApplication app;
     @Bind(R.id.cb_login_remember)
     CheckBox cbLoginRemember;
@@ -164,7 +164,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
         btnLoginLogin.setText(getString(R.string.Login));
-        tvLoginForget.setText(getString(R.string.Forget_password));
+//        tvLoginForget.setText(getString(R.string.Forget_password));
         loginLanguage.setText(getString(R.string.language_switch));
         cbLoginRemember.setText(R.string.remember_me);
 
