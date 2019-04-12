@@ -53,7 +53,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
 
                 <ImageView
                     android:id="@+id/iv_home_back"
@@ -67,30 +69,31 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/sport_game_rectangle_green_dark_trans_gradient_line"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="3dp">
+                    android:padding="5dp">
 
                     <EditText
-                        android:layout_marginLeft="10dp"
                         android:id="@+id/edt_match_search_content"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:textSize="12sp"
                         android:background="@null"
                         android:drawableLeft="@mipmap/sport_game_search_green"
-                        android:drawablePadding="5dp" />
+                        android:drawablePadding="5dp"
+                        android:textSize="12sp" />
 
                     <ImageView
-                        android:visibility="gone"
                         android:id="@+id/iv_delete_search"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:onClick="clickDeleteSearch"
-                        android:src="@mipmap/vs_oval_error_white" />
+                        android:src="@mipmap/vs_oval_error_white"
+                        android:visibility="gone" />
 
                 </LinearLayout>
 

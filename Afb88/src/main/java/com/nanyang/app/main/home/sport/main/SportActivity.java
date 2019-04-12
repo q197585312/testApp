@@ -117,7 +117,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.edt_match_search_content)
     EditText edtSearchContent;
     @Bind(R.id.match_collection_iv)
-    TextView collectionIv;
+    ImageView collectionIv;
 
     @Bind(R.id.main_more)
     RecyclerView reContent;
