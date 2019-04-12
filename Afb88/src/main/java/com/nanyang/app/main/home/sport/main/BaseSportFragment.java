@@ -173,7 +173,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     public void searchMatch(boolean isSearch,String s) {
-        presenter.getStateHelper().searchMatch(isSearch,s);
+        presenter.getStateHelper().setSearch(isSearch,s);
     }
 
     private class DigWebViewClient extends WebViewClient {

@@ -51,5 +51,4 @@ public interface IObtainDataState {
 
     void createChoosePop(View view);
 
-    void searchMatch(boolean isSearch, String s);
 }

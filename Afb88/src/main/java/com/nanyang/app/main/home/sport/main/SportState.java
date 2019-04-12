@@ -1052,9 +1052,4 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         localCollectionMap.put(moduleKey, moduleMap);
         baseRecyclerAdapter.notifyDataSetChanged();
     }
-
-    @Override
-    public void searchMatch(boolean isSearch, String s) {
-        setSearch(isSearch, s);
-    }
 }
