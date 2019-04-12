@@ -13,6 +13,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/ll_data1"
             android:layout_width="0dp"
             android:layout_height="25dp"
             android:layout_margin="2dp"
@@ -44,6 +45,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_data2"
             android:layout_width="0dp"
             android:layout_height="25dp"
             android:layout_margin="2dp"
@@ -109,6 +111,7 @@
         android:orientation="horizontal">
 
         <LinearLayout
+            android:id="@+id/ll_data3"
             android:layout_width="0dp"
             android:layout_height="25dp"
             android:layout_margin="2dp"
@@ -140,6 +143,7 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll_data4"
             android:layout_width="0dp"
             android:layout_height="25dp"
             android:layout_margin="2dp"
