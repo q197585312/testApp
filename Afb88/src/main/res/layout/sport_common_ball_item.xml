@@ -3,7 +3,7 @@
     android:id="@+id/content_parent_ll"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/white"
+    android:background="@color/grey_white_bg"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -11,7 +11,7 @@
         android:id="@+id/module_match_head_v"
         android:layout_width="match_parent"
         android:layout_height="10dp"
-        android:background="@color/white"
+        android:background="@color/grey_white_bg"
         android:padding="5dp" />
 
     <LinearLayout
@@ -127,33 +127,33 @@
 
             <ImageView
                 android:id="@+id/iv_hall_btn"
-                android:layout_width="18dp"
-                android:layout_height="14dp"
-                android:scaleType="fitXY"
+                android:layout_width="16dp"
+                android:layout_height="12dp"
+                android:scaleType="center"
                 android:src="@mipmap/soccer_hall"
                 android:visibility="visible" />
 
             <TextView
                 android:id="@+id/hdp_title_tv"
-                android:layout_width="65dp"
+                android:layout_width="54dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="FT.HDP"
                 android:textColor="@color/black_grey"
-                android:textSize="13sp" />
+                android:textSize="9sp" />
 
             <TextView
                 android:id="@+id/ou_title_tv"
-                android:layout_width="75dp"
+                android:layout_width="65dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="FT.OU"
                 android:textColor="@color/black_grey"
-                android:textSize="13sp" />
+                android:textSize="9sp" />
 
         </LinearLayout>
 
@@ -305,7 +305,7 @@
 
                 <com.unkonw.testapp.training.ScrollLayout
                     android:id="@+id/module_center_sl1"
-                    android:layout_width="160dp"
+                    android:layout_width="140dp"
                     android:layout_height="match_parent">
 
                     <include
@@ -473,7 +473,7 @@
 
             <com.unkonw.testapp.training.ScrollLayout
                 android:id="@+id/module_center_sl"
-                android:layout_width="160dp"
+                android:layout_width="140dp"
                 android:layout_height="match_parent">
 
                 <include
@@ -498,8 +498,8 @@
     <View
         android:id="@+id/view_line"
         android:layout_width="match_parent"
-        android:layout_height="0.6dp"
-        android:background="@color/grey_button" />
+        android:layout_height="0.5dp"
+        android:background="@color/grey_thick_line" />
 
     <LinearLayout
         android:id="@+id/common_ball_parent_ll"

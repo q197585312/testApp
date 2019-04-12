@@ -50,4 +50,5 @@ public interface IObtainDataState {
     IBetHelper getBetHelper();
 
     void createChoosePop(View view);
+
 }

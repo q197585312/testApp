@@ -25,6 +25,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
@@ -36,6 +37,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
@@ -91,6 +93,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private String TAG = "SportState";
     private DataUpdateRunnable dataUpdateRunnable;
+    private boolean isSearch = false;
+    private String searchStr = "";
 
     public int getPageSize() {
         return pageSize;
@@ -486,18 +490,100 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         List<TableSportInfo<B>> dateTemp = new ArrayList<>();
         if (allData == null)
             return dateTemp;
-        for (TableSportInfo<B> bTableSportInfo : allData) {
-            if (leagueSelectedMap.get(bTableSportInfo.getLeagueBean().getModuleId()) == null || leagueSelectedMap.get(bTableSportInfo.getLeagueBean().getModuleId())) {
-                dateTemp.add(bTableSportInfo);
+        if (isSearch) {
+            this.filterData = filterSearchData(allData);
+        } else {
+            for (TableSportInfo<B> bTableSportInfo : allData) {
+                if (leagueSelectedMap.get(bTableSportInfo.getLeagueBean().getModuleId()) == null || leagueSelectedMap.get(bTableSportInfo.getLeagueBean().getModuleId())) {
+                    dateTemp.add(bTableSportInfo);
+                }
             }
+            this.filterData = filterChildData(dateTemp);
         }
-        this.filterData = filterChildData(dateTemp);
         if (swipeToLoadLayout != null)
             swipeToLoadLayout.setLoadMoreEnabled(true);
         return filterData;
     }
 
-    protected abstract List<TableSportInfo<B>> filterChildData(List<TableSportInfo<B>> dateTemp);
+    private List<TableSportInfo<B>> filterSearchData(List<TableSportInfo<B>> data) {
+        if (StringUtils.isNull(searchStr))
+            return data;
+        List<TableSportInfo<B>> moduleDate = new ArrayList<>();
+        for (TableSportInfo<B> tableModuleBean : data) {
+            if (tableModuleBean.getLeagueBean().getModuleTitle().contains(searchStr)) {
+                moduleDate.add(tableModuleBean);
+            } else {
+                List<B> moduleCollectionRows = new ArrayList<>();
+                TableSportInfo<B> moduleCollection = new TableSportInfo<B>(tableModuleBean.getLeagueBean(), moduleCollectionRows);
+                for (B matchBean : tableModuleBean.getRows()) {
+                    if ((matchBean.getHome() + matchBean.getAway()).contains(searchStr)) {
+                        moduleCollectionRows.add(matchBean);
+                    }
+                }
+                moduleCollection.setRows(moduleCollectionRows);
+                if (moduleCollectionRows.size() > 0)
+                    moduleDate.add(moduleCollection);
+            }
+        }
+
+        return moduleDate;
+    }
+
+
+    protected List<TableSportInfo<B>> filterChildData(List<TableSportInfo<B>> allData) {
+        if (isCollection())
+            return filterCollection(allData);
+        else
+            return allData;
+    }
+
+    private boolean isCollection;
+
+    public boolean isCollection() {
+        return isCollection;
+    }
+
+    public boolean collection() {
+        isCollection = !isCollection;
+        isSearch = false;
+        initAllData(allData);
+        return isCollection;
+    }
+
+    public void setSearch(boolean isSearch, String searchStr) {
+        isCollection = false;
+        this.isSearch = isSearch;
+        this.searchStr = searchStr;
+        initAllData(allData);
+    }
+
+    private List<TableSportInfo<B>> filterCollection(List<TableSportInfo<B>> data) {
+
+        List<TableSportInfo<B>> moduleDate = new ArrayList<>();
+        for (TableSportInfo<B> tableModuleBean : data) {
+            if (null != localCollectionMap.get(tableModuleBean.getLeagueBean().getModuleTitle())) {
+                List<B> moduleCollectionRows = new ArrayList<>();
+                TableSportInfo<B> moduleCollection = new TableSportInfo<B>(tableModuleBean.getLeagueBean(), moduleCollectionRows);
+                Map<String, Boolean> moduleMap = localCollectionMap.get(tableModuleBean.getLeagueBean().getModuleTitle());
+
+                for (B matchBean : tableModuleBean.getRows()) {
+                    if (moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway()) != null && moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway())) {
+                        moduleCollectionRows.add(matchBean);
+                    }
+                }
+                moduleCollection.setRows(moduleCollectionRows);
+                moduleDate.add(moduleCollection);
+            }
+        }
+        if (moduleDate.size() > 0)
+            return moduleDate;
+        else {
+            isCollection = false;
+            ToastUtils.showShort(R.string.no_records);
+        }
+
+        return moduleDate;
+    }
 
     private List<TableSportInfo<B>> getTableSportInfos(String s) throws JSONException {
         String updateString = Html.fromHtml(s).toString();
