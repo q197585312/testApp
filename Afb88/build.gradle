@@ -77,5 +77,4 @@ dependencies {
     compile project(':baseLibs')
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.carson_ho:SearchLayout:1.0.1'
 }
