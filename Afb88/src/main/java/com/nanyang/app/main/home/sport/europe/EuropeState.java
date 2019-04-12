@@ -274,7 +274,7 @@ public abstract class EuropeState extends BallState {
     }
 
     private void updateMixBackground(MyRecyclerViewHolder helper, BallInfo item) {
-        BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) getBaseView().getIBaseContext());
+        BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity());
         String itemFullSocOddsId = item.getSocOddsId();
         String itemHfSocOddsId = item.getSocOddsId_FH();
         AfbClickBetBean mixItem = handler.getMixItem(itemFullSocOddsId);
