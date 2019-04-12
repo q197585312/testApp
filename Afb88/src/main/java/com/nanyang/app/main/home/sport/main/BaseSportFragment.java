@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -142,9 +143,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void checkMajor(TextView tx) {
         isMajor = !isMajor;
         if (isMajor)
-            tx.setTextColor(getResources().getColor(R.color.yellow_button));
+            tx.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_button));
         else
-            tx.setTextColor(getResources().getColor(R.color.white));
+            tx.setTextColor(ContextCompat.getColor(mContext, R.color.white));
         MenuItemInfo stateType = presenter.getStateHelper().getStateType();
         if (isMajor) {
             switchMajorType(stateType.getType());

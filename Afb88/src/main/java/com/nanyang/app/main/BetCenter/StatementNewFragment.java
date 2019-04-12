@@ -137,6 +137,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             final String[] dateTrue = date.split(" ");
             String dateStr = DateUtils.format(dateTrue[0], "yyyy-MM-dd", "dd/MM/yyyy") + " " +
                     DateUtils.getChinaWeek(DateUtils.format(bean.getIndex1(), "yyyy-MM-dd"));
+            if (bean.getIndex0().equals("1")) {
+                dateStr = getString(R.string.Lastweeksummary);
+            }
             tvDate.setText(dateStr);
             tvCom.setText(getString(R.string.Com) + " " + bean.getIndex5() + " ");
             String wl = bean.getIndex4();

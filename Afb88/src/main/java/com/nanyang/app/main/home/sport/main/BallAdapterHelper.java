@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.view.LayoutInflater;
@@ -44,9 +45,9 @@ import butterknife.ButterKnife;
  */
 
 public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I> {
-    final int red_black = 0XFFad0c11;
+    final int red_black = Color.RED;
 
-    final int black_grey = 0XFF333333;
+    final int black_grey = Color.BLACK;
     protected Context context;
     private AdditionBean additionData;
     private int additionPosition;
@@ -688,8 +689,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         downTextTv.setTextSize(8);
                         upTextTv.setTextSize(8);
                     }
-                    upTextTv.setTextColor(context.getResources().getColor(R.color.red_title));
-                    downTextTv.setTextColor(context.getResources().getColor(R.color.red_title));
+                    upTextTv.setTextColor(Color.RED);
+                    downTextTv.setTextColor(Color.RED);
 
                     if(isFh){
                         if (item.isHomeBigger_FH)
@@ -940,7 +941,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         LlMatchContent.setBackgroundResource((position % 2 == 0) ? R.color.green_content1 : R.color.green_content2);
         View matchTitleLl = helper.getView(R.id.module_match_title_ll);
         View viewLine = helper.getView(R.id.view_line);
+        TextView moduleMatchTimeTv = helper.getView(R.id.module_match_time_tv);
         viewLine.setBackgroundColor(ContextCompat.getColor(context, R.color.green_line));
         matchTitleLl.setBackgroundColor(ContextCompat.getColor(context, R.color.green_title));
+        moduleMatchTimeTv.setTextColor(Color.BLACK);
     }
 }

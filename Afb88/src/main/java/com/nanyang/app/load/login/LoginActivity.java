@@ -48,11 +48,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     EditText edtLoginPassword;
     @Bind(R.id.btn_login_login)
     Button btnLoginLogin;
-//    @Bind(R.id.tv_login_forget)
+    //    @Bind(R.id.tv_login_forget)
 //    TextView tvLoginForget;
     AfbApplication app;
     @Bind(R.id.cb_login_remember)
     CheckBox cbLoginRemember;
+    @Bind(R.id.ll_login_remember)
+    LinearLayout llLoginRemember;
     @Bind(R.id.login_images_vp)
     AutoScrollViewPager loginImagesvp;
     @Bind(R.id.login_indicator_cpi)
@@ -79,6 +81,16 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         } else {
             cbLoginRemember.setChecked(true);
         }
+        llLoginRemember.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cbLoginRemember.isChecked()) {
+                    cbLoginRemember.setChecked(false);
+                } else {
+                    cbLoginRemember.setChecked(true);
+                }
+            }
+        });
         initLanguage();
     }
 
@@ -166,7 +178,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         btnLoginLogin.setText(getString(R.string.Login));
 //        tvLoginForget.setText(getString(R.string.Forget_password));
         loginLanguage.setText(getString(R.string.language_switch));
-        cbLoginRemember.setText(R.string.remember_me);
 
     }
 

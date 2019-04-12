@@ -264,7 +264,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     protected void updateBalanceTv(String allData) {
-        tvBalance.setText(allData);
+        tvBalance.setText(getApp().getUser().getCurCode2() + ": " + allData);
     }
 
     private void loginGD() {

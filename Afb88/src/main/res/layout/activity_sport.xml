@@ -17,24 +17,26 @@
             android:id="@+id/sport_header_ll"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:background="@color/green_dark"
+            android:orientation="vertical"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/green_dark"
                 android:gravity="center"
                 android:orientation="horizontal"
-                android:paddingLeft="10dp"
-                android:paddingRight="10dp">
+                android:paddingBottom="5dp"
+                android:paddingTop="5dp">
 
                 <TextView
                     android:id="@+id/sport_title_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textSize="10sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tv_balance"
@@ -42,26 +44,24 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:gravity="right"
-                    android:textSize="10sp" />
+                    android:textColor="@color/yellow2"
+                    android:textSize="13sp" />
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:background="@color/green_dark"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
-
                     android:id="@+id/iv_home_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@null"
                     android:drawablePadding="5dp"
                     android:onClick="clickBack"
-                    android:padding="5dp"
                     android:src="@mipmap/sport_home_white_24dp" />
 
                 <LinearLayout
@@ -74,6 +74,7 @@
                     android:padding="3dp">
 
                     <EditText
+                        android:layout_marginLeft="10dp"
                         android:id="@+id/edt_match_search_content"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
@@ -98,7 +99,7 @@
                     android:id="@+id/match_cup_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginLeft="10dp"
                     android:onClick="clickCup"
                     android:src="@mipmap/sport_game_cup_white" />
 
@@ -106,44 +107,43 @@
                     android:id="@+id/match_collection_iv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
+                    android:layout_marginLeft="10dp"
                     android:background="@mipmap/sport_game_star_yellow"
                     android:onClick="clickCollectionStar" />
 
             </LinearLayout>
 
             <LinearLayout
-
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/green_dark"
+                android:layout_height="40dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
                 <ImageView
                     android:id="@+id/running_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="5dp"
-                    android:onClick="clickRunning"
-                    android:src="@mipmap/sport_game_run_white" />
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:background="@mipmap/sport_game_run_white"
+                    android:onClick="clickRunning" />
 
                 <TextView
                     android:id="@+id/iv_all_add"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:drawableBottom="@drawable/line_white"
                     android:drawableRight="@mipmap/arrow_down_drop_white"
                     android:gravity="center"
                     android:text="@string/All_Markets"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tv_odds_type"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_marginLeft="10dp"
                     android:layout_weight="1"
                     android:drawablePadding="5dp"
                     android:drawableRight="@mipmap/arrow_down_drop_white"
@@ -152,7 +152,7 @@
                     android:padding="5dp"
                     android:text="@string/MY_ODDS"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
                 <TextView
                     android:id="@+id/tv_league_major"
@@ -166,15 +166,14 @@
                     android:padding="5dp"
                     android:text="@string/league"
                     android:textColor="@color/white"
-                    android:textSize="14sp" />
+                    android:textSize="15sp" />
 
                 <ImageView
-
                     android:id="@+id/iv_add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
                     android:contentDescription="@null"
-                    android:padding="5dp"
                     android:src="@mipmap/sport_game_clock_white" />
             </LinearLayout>
         </LinearLayout>

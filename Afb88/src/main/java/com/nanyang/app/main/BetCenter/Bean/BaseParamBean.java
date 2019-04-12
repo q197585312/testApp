@@ -37,11 +37,19 @@ public class BaseParamBean {
         this.vsn = vsn;
     }
 
-    public BaseParamBean(String ACT, String PT, String type) {
+    public BaseParamBean(String ACT, String PT, String obj,String requestType) {
         this.ACT = ACT;
         this.PT = PT;
-        if(PT.equals("wfRunningH50")){
-            this.Type = type;
+        switch (requestType){
+            case "1":
+                this.Type = obj;
+                break;
+            case "2":
+                this.Id = obj;
+                break;
+            case "3":
+                this.socTransId = obj;
+                break;
         }
         this.pgLable = "";
         this.vsn = "";
