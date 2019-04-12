@@ -30,7 +30,6 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
 
-    <uses-sdk tools:overrideLibrary="com.guoqi.highlightview" />
     <application
         android:largeHeap="true"
         android:name=".AfbApplication"
@@ -61,15 +60,15 @@
         <activity
             android:name=".main.home.huayThai.HuayThaiGamesActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
-        <activity android:name=".main.home.discount.DiscountActivity" />
+
         <activity android:name=".main.home.sport.mixparlayList.MixOrderListActivity" />
-        <activity android:name=".main.center.PersonCenterActivity" />
+
         <activity android:name=".main.home.sport.additional.VsActivity" />
         <activity android:name=".main.home.sport.main.SportActivity" />
-        <activity android:name=".main.center.StatemenStake.StatementStakeActivity" />
-        <activity android:name=".main.center.StatementStakeDetails.StatementDetailsActivity" />
+
         <activity android:name=".main.home.huayThai.HuayThaiActivity" />
         <activity android:name=".main.home.keno.KenoWebActivity" />
+        <activity android:name=".main.home.sport.search.SearchActivity" />
 
         <meta-data
             android:name="UMENG_CHANNEL"

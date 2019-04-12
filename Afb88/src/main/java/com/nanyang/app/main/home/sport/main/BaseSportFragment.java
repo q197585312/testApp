@@ -26,12 +26,10 @@ import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorEarlyState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorRunningState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorTodayState;
-import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
-import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -46,7 +44,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
@@ -174,6 +171,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }
     }
 
+    public void searchMatch(boolean isSearch,String s) {
+        presenter.getStateHelper().searchMatch(isSearch,s);
+    }
+
     private class DigWebViewClient extends WebViewClient {
 
         @Override
@@ -256,7 +257,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         return isMix;
     }
 
-    private void checkBg(View tvMix, boolean isCollection, int sport_oval_u_green, int sport_oval_u_black) {
+    public void checkBg(View tvMix, boolean isCollection, int sport_oval_u_green, int sport_oval_u_black) {
         if (isCollection)
             tvMix.setBackgroundResource(sport_oval_u_green);
         else
@@ -344,7 +345,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
 
     @Override
-    public void switchState(IObtainDataState state) {
+    public void switchState(SportState state) {
         presenter.setStateHelper(state);
         ((SportActivity) getIBaseContext().getBaseActivity()).tvMatchType.setText(state.getStateType().getText());
         ((SportState) presenter.getStateHelper()).initAllOdds(ivAllAdd);

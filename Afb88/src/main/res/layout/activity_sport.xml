@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawer_more"
-    android:background="@color/white"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
@@ -64,14 +64,35 @@
                     android:padding="5dp"
                     android:src="@mipmap/sport_home_white_24dp" />
 
-                <EditText
+                <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="@drawable/sport_game_rectangle_green_dark_trans_gradient_line"
-                    android:drawableLeft="@mipmap/sport_game_search_green"
-                    android:drawablePadding="5dp"
-                    android:padding="3dp" />
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="3dp">
+
+                    <EditText
+                        android:id="@+id/edt_match_search_content"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textSize="12sp"
+                        android:background="@null"
+                        android:drawableLeft="@mipmap/sport_game_search_green"
+                        android:drawablePadding="5dp" />
+
+                    <ImageView
+                        android:visibility="gone"
+                        android:id="@+id/iv_delete_search"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:onClick="clickDeleteSearch"
+                        android:src="@mipmap/vs_oval_error_white" />
+
+                </LinearLayout>
+
 
                 <ImageView
                     android:id="@+id/match_cup_iv"

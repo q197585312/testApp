@@ -9,16 +9,13 @@ import com.nanyang.app.main.home.sport.europe.BallState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.utils.LogUtil;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -27,22 +24,16 @@ import java.util.Map;
 public abstract class SoccerCommonState extends BallState {
 
 
-    private boolean isCollection;
+
 
 
     public SoccerCommonState(SportContract.View baseView) {
         super(baseView);
     }
 
-    public boolean isCollection() {
-        return isCollection;
-    }
 
-    public boolean collection() {
-        isCollection = !isCollection;
-        initAllData(allData);
-        return isCollection;
-    }
+
+
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
@@ -114,41 +105,9 @@ public abstract class SoccerCommonState extends BallState {
     protected abstract SoccerCommonAdapterHelper onSetCommonAdapterHelper();
 
 
-    @Override
-    protected List<TableSportInfo<BallInfo>> filterChildData(List<TableSportInfo<BallInfo>> allData) {
-        if (isCollection())
-            return filterCollection(allData);
-        else
-            return allData;
-    }
 
-    private List<TableSportInfo<BallInfo>> filterCollection(List<TableSportInfo<BallInfo>> data) {
 
-        List<TableSportInfo<BallInfo>> moduleDate = new ArrayList<>();
-        for (TableSportInfo<BallInfo> tableModuleBean : data) {
-            if (null != localCollectionMap.get(tableModuleBean.getLeagueBean().getModuleTitle())) {
-                List<BallInfo> moduleCollectionRows = new ArrayList<>();
-                TableSportInfo<BallInfo> moduleCollection = new TableSportInfo<BallInfo>(tableModuleBean.getLeagueBean(), moduleCollectionRows);
-                Map<String, Boolean> moduleMap = localCollectionMap.get(tableModuleBean.getLeagueBean().getModuleTitle());
 
-                for (BallInfo matchBean : tableModuleBean.getRows()) {
-                    if (moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway()) != null && moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway())) {
-                        moduleCollectionRows.add(matchBean);
-                    }
-                }
-                moduleCollection.setRows(moduleCollectionRows);
-                moduleDate.add(moduleCollection);
-            }
-        }
-        if (moduleDate.size() > 0)
-            return moduleDate;
-        else {
-            isCollection = false;
-            ToastUtils.showShort(R.string.no_records);
-        }
-
-        return moduleDate;
-    }
 
     @Override
     protected List<MenuItemInfo> getTypes() {

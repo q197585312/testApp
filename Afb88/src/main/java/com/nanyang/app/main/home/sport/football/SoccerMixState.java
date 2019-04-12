@@ -11,17 +11,14 @@ import com.nanyang.app.main.home.sport.europe.BallState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -100,41 +97,6 @@ public abstract class SoccerMixState extends BallState {
 */
 
 
-    @Override
-    protected List<TableSportInfo<BallInfo>> filterChildData(List<TableSportInfo<BallInfo>> allData) {
-        if (isCollection())
-            return filterCollection(allData);
-        else
-            return allData;
-    }
-
-    private List<TableSportInfo<BallInfo>> filterCollection(List<TableSportInfo<BallInfo>> data) {
-
-        List<TableSportInfo<BallInfo>> moduleDate = new ArrayList<>();
-        for (TableSportInfo<BallInfo> tableModuleBean : data) {
-            if (null != localCollectionMap.get(tableModuleBean.getLeagueBean().getModuleTitle())) {
-                List<BallInfo> moduleCollectionRows = new ArrayList<>();
-                TableSportInfo<BallInfo> moduleCollection = new TableSportInfo<BallInfo>(tableModuleBean.getLeagueBean(), moduleCollectionRows);
-                Map<String, Boolean> moduleMap = localCollectionMap.get(tableModuleBean.getLeagueBean().getModuleTitle());
-
-                for (BallInfo matchBean : tableModuleBean.getRows()) {
-                    if (moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway()) != null && moduleMap.get(matchBean.getHome() + "+" + matchBean.getAway())) {
-                        moduleCollectionRows.add(matchBean);
-                    }
-                }
-                moduleCollection.setRows(moduleCollectionRows);
-                moduleDate.add(moduleCollection);
-            }
-        }
-        if (moduleDate.size() > 0)
-            return moduleDate;
-        else {
-            isCollection = false;
-            ToastUtils.showShort(R.string.no_records);
-        }
-
-        return moduleDate;
-    }
 
     @Override
     protected List<MenuItemInfo> getTypes() {

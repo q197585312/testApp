@@ -10,11 +10,14 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.Editable;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,6 +33,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
@@ -108,6 +112,13 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     TextView sportTitleTv;
     @Bind(R.id.tv_balance)
     TextView tvBalance;
+    @Bind(R.id.iv_delete_search)
+    ImageView ivDeleteSearch;
+    @Bind(R.id.edt_match_search_content)
+    EditText edtSearchContent;
+    @Bind(R.id.match_collection_iv)
+    TextView collectionIv;
+
     @Bind(R.id.main_more)
     RecyclerView reContent;
 
@@ -143,6 +154,29 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
             }
         });
+        edtSearchContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String s = editable.toString().trim();
+                currentFragment.searchMatch(true, s);
+                if (!StringUtils.isNull(s))
+                    ivDeleteSearch.setVisibility(View.VISIBLE);
+                else
+                    ivDeleteSearch.setVisibility(View.GONE);
+                currentFragment.checkBg(collectionIv, currentFragment.presenter.getStateHelper().isCollection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_yellow);
+
+            }
+        });
     }
 
 
@@ -171,6 +205,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             initFragment(item.getParent());
         }
         getApp().setBetParList(null);
+
     }
 
     public void updateMixOrderCount() {
@@ -537,4 +572,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         return afbDrawerViewHolder.onKeyDown(keyCode, event);
     }
 
+
+    public void clickDeleteSearch(View view) {
+        currentFragment.searchMatch(false, "");
+        edtSearchContent.setText("");
+    }
 }

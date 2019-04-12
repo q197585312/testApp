@@ -6,8 +6,6 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -839,7 +837,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 else {
                     value = AfbUtils.decimalValue(Float.valueOf(f), "0.00");
                 }
-                if (isAnimation) {
+               /* if (isAnimation) {
                     Animation animation = new AlphaAnimation(0.8f, 1.0f);
                     //设置动画时间
                     animation.setDuration(2000);
@@ -863,7 +861,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     textView.startAnimation(animation);
                 } else {
                     textView.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                }
+                }*/
 
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
