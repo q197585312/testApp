@@ -108,10 +108,10 @@
     <string name="Thai_bet_hint">เดิมพันความสำเร็จ. ไปที่การพนันในสถานการณ์บอล. </string>
     <string name="Tennis">เทนนิส </string>
     <string name="Muay_Thai">มวยไทย </string>
-    <string name="HK_ODDS">ดิสก์ฮ่องกง </string>
-    <string name="MY_ODDS">จานมาเลย์ </string>
-    <string name="ID_ODDS">ดิสก์อินโดนีเซีย </string>
-    <string name="EU_ODDS">จานยุโรป </string>
+    <string name="HK_ODDS">HK</string>
+    <string name="MY_ODDS">MY</string>
+    <string name="ID_ODDS">ID</string>
+    <string name="EU_ODDS">EU</string>
     <string name="Financial">ตลาดหุ้น </string>
     <string name="Back">กลับ </string>
     <string name="not_settled">ยังไม่เรียบร้อย </string>
