@@ -82,7 +82,6 @@ public class BetCenterFragment extends BaseMoreFragment {
                         currentIndex = 2;
                         break;
                 }
-                setBackTitle(getString(R.string.TabMyBets));
                 switchFragment();
             }
         });
