@@ -793,14 +793,20 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
 
     @Override
-    public BaseRecyclerAdapter switchTypeAdapter() {
+    public BaseRecyclerAdapter switchTypeAdapter(final TextView textView) {
 
         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), getTypes(), R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
-                tv.setPadding(0, 0, 0, 0);
                 tv.setText(item.getText());
+                if (textView.getText().toString().equals(item.getText())) {
+                    tv.setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
+                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
+                } else {
+                    tv.setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));
+                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+                }
             }
 
         };

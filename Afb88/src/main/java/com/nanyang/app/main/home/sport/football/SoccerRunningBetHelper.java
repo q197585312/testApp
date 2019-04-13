@@ -33,11 +33,16 @@ public class SoccerRunningBetHelper extends SoccerCommonBetHelper {
         return super.getOddsUrl(old, type, odds, params) + "&isRun=true";
     }
     */
+    BetPop pop;
 
     protected void createBetPop(List<AfbClickBetBean> bean, View v) {
-        BetPop pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
+        if (pop == null) {
+            pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
+        }
         pop.setBetData(bean, this);
         pop.setrTMatchInfo(item);
-        baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+        if (!pop.isShowing()) {
+            baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+        }
     }
 }

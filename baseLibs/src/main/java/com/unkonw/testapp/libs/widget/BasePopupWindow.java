@@ -80,12 +80,17 @@ public abstract class BasePopupWindow {
         //在PopupWindow里面就加上下面代码，让键盘弹出时，不会挡住pop窗口。
         popWindow.setInputMethodMode(PopupWindow.INPUT_METHOD_NEEDED);
         popWindow.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
-
         //点击空白处时，隐藏掉pop窗口
         popWindow.setFocusable(true);
         popWindow.setOutsideTouchable(true);
         popWindow.setBackgroundDrawable(new BitmapDrawable());
         popWindow.setOnDismissListener(new popDismissListener());
+    }
+
+    public void setSoftInputMode(int softInputMode) {
+        if (popWindow != null) {
+            popWindow.setSoftInputMode(softInputMode);
+        }
     }
 
     private void setBackgroundAttr(float f) {
@@ -154,7 +159,7 @@ public abstract class BasePopupWindow {
         }
     }
 
-    public void showPopupWindowUpCenter(View view,int popupHeight,int popupWidth) {
+    public void showPopupWindowUpCenter(View view, int popupHeight, int popupWidth) {
         //获取自身的长宽高
 /*        contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         int popupHeight = contentView.getMeasuredHeight();
@@ -163,8 +168,10 @@ public abstract class BasePopupWindow {
         int[] location = new int[2];
         view.getLocationOnScreen(location);
 //在控件上方显示    向上移动y轴是负数
-        popWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight );
+        setBackgroundAttr(trans);
+        popWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight);
     }
+
     public void showPopupWindowUpCenter(View view) {
         //获取自身的长宽高
         contentView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
@@ -174,8 +181,10 @@ public abstract class BasePopupWindow {
         int[] location = new int[2];
         view.getLocationOnScreen(location);
 //在控件上方显示    向上移动y轴是负数
-        popWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight );
+        setBackgroundAttr(trans);
+        popWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight);
     }
+
     /**
      * 关闭popupwindow
      */

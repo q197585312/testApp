@@ -172,8 +172,8 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }
     }
 
-    public void searchMatch(boolean isSearch,String s) {
-        presenter.getStateHelper().setSearch(isSearch,s);
+    public void searchMatch(boolean isSearch, String s) {
+        presenter.getStateHelper().setSearch(isSearch, s);
     }
 
     private class DigWebViewClient extends WebViewClient {
@@ -320,9 +320,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         getBaseActivity().updateMixOrderCount();
     }
 
-    public void toolbarRightClick(View v) {
+    public void toolbarRightClick(View view) {
+        final TextView textView = view.findViewById(R.id.tv_way_run);
         createPopupWindow(
-                new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+                new BasePopupWindow(mContext, textView, AfbUtils.getScreenWidth(getActivity()) / 3, AfbUtils.dp2px(mContext, 120)) {
                     @Override
                     protected int onSetLayoutRes() {
                         return R.layout.popupwindow_choice_ball_type;
@@ -331,17 +332,16 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                     @Override
                     protected void initView(View view) {
                         super.initView(view);
-                        RecyclerView rv_list = (RecyclerView) view.findViewById(R.id.rv_list);
-                        setChooseTypeAdapter(rv_list);
+                        RecyclerView rv_list = view.findViewById(R.id.rv_list);
+                        setChooseTypeAdapter(rv_list, textView);
                     }
                 });
-        popWindow.setTrans(1f);
-        popWindow.showPopupWindowUpCenter(v);
+        popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 120), AfbUtils.getScreenWidth(getActivity()) / 3);
     }
 
-    private void setChooseTypeAdapter(RecyclerView rv_list) {
+    private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
-        rv_list.setAdapter(presenter.getStateHelper().switchTypeAdapter());
+        rv_list.setAdapter(presenter.getStateHelper().switchTypeAdapter(textView));
     }
 
 

@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sportInterface;
 
 import android.view.View;
+import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -25,7 +26,7 @@ public interface IObtainDataState {
 
     void onNext(SwipeToLoadLayout swipeToLoadLayout);
 
-    BaseRecyclerAdapter switchTypeAdapter();
+    BaseRecyclerAdapter switchTypeAdapter(TextView textView);
 
     <I extends IAdapterHelper> I onSetAdapterHelper();
 

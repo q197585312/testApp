@@ -11,24 +11,35 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green_dark"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
         <ImageView
             android:layout_width="20dp"
             android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
             android:background="@mipmap/go_back_left_white" />
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginLeft="8dp"
+            android:layout_weight="3"
             android:gravity="center_vertical"
+            android:padding="8dp"
             android:text="@string/Parlay"
             android:textColor="@color/white"
             android:textSize="13sp"
             android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_delete"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableRight="@mipmap/delete_white"
+            android:paddingRight="8dp" />
     </LinearLayout>
 
     <LinearLayout

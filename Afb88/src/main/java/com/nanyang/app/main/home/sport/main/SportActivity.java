@@ -205,7 +205,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             initFragment(item.getParent());
         }
         getApp().setBetParList(null);
-
+        tvRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                afbDrawerViewHolder.goRecord();
+            }
+        });
     }
 
     public void updateMixOrderCount() {
@@ -523,7 +528,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 });
             }
         });
-        popWindow.setTrans(1f);
         popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 300), AfbUtils.dp2px(mContext, 200));
 
 
