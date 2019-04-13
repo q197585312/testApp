@@ -442,7 +442,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     public void clickOddsType(final TextView tvOddsType) {
-        createPopupWindow(new BasePopupWindow(mContext, tvOddsType, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+        createPopupWindow(new BasePopupWindow(mContext, tvOddsType, tvOddsType.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -451,7 +451,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             @Override
             protected void initView(View view) {
                 super.initView(view);
-                RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
+                RecyclerView rv = view.findViewById(R.id.rv_list);
                 rv.setPadding(0, 0, 0, 0);
                 rv.setLayoutManager(new LinearLayoutManager(mContext));
                 List<MenuItemInfo> list = new ArrayList<>();
@@ -463,9 +463,14 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                         TextView tv = holder.getView(R.id.item_text_tv);
-                        tv.setPadding(0, 0, 0, 0);
                         tv.setText(item.getText());
-                        tv.setBackgroundResource(R.color.black_grey);
+                        if (tvOddsType.getText().toString().equals(item.getText())) {
+                            tv.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
+                            tv.setTextColor(ContextCompat.getColor(context, R.color.blue));
+                        } else {
+                            tv.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                            tv.setTextColor(ContextCompat.getColor(context, R.color.black));
+                        }
                     }
 
                 };

@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.basketball;
 
 import android.content.Context;
 
+import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 
@@ -12,6 +13,8 @@ import com.nanyang.app.main.home.sport.model.BallInfo;
 public class BasketballCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
     public BasketballCommonAdapterHelper(Context context) {
         super(context);
+        titleContentColor = R.color.green_content1;
+        normalContentColor = R.color.green_content2;
     }
 
 

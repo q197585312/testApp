@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
 
+import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -12,11 +13,13 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 public class OtherRunningDoubleAdapterHelper extends OtherDoubleAdapterHelper {
     public OtherRunningDoubleAdapterHelper(Context context) {
         super(context);
+        titleContentColor = R.color.green_content1;
+        normalContentColor = R.color.green_content2;
     }
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
         super.onConvert(helper, position, item);
-        setRunningItemBg(helper, position);
+        setRunningItemBg(helper, item);
     }
 }
