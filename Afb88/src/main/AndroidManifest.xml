@@ -68,7 +68,7 @@
 
         <activity android:name=".main.home.huayThai.HuayThaiActivity" />
         <activity android:name=".main.home.keno.KenoWebActivity" />
-        <!--<activity android:name=".main.home.sport.search.SearchActivity" />-->
+
         <meta-data
             android:name="UMENG_CHANNEL"
             android:value="${UMENG_CHANNEL_VALUE}" />
