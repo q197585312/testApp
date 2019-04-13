@@ -20,7 +20,7 @@
             android:button="@null"
             android:checked="false"
             android:gravity="center"
-            android:text="进行中" />
+            android:text="@string/Running4" />
 
         <RadioButton
             android:id="@+id/rb_statement"

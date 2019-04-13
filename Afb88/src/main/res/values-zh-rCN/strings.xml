@@ -524,4 +524,6 @@
     <string name="Athletics_Outright">竞技 - 优胜冠军</string>
     <string name="E_Sports_Outright">电子竞技 - 优胜冠军</string>
     <string name="Net_Error">Net Error</string>
+    <string name="Running4">进行中</string>
+    <string name="TabMyBets">我的投注</string>
 </resources>

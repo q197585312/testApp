@@ -423,5 +423,6 @@
     <string name="Note">Note</string>
     <string name="Pleasenote2">Please note that the displayed time is based on GMT +8 hours</string>
     <string name="Net_Error">Net Error</string>
-
+    <string name="Running4">RUNNING</string>
+    <string name="TabMyBets">Bahislerim</string>
 </resources>

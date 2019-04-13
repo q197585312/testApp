@@ -66,7 +66,7 @@
                     android:layout_gravity="center"
 
                     android:drawableTop="@mipmap/main_menu_a"
-                    android:text="结余"
+                    android:text="@string/balances"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -104,7 +104,7 @@
                     android:layout_gravity="center"
 
                     android:drawableTop="@mipmap/main_menu_user"
-                    android:text="联系我们"
+                    android:text="@string/contact"
                     android:textColor="@color/black_grey"
 
                     android:textSize="12sp"
@@ -124,7 +124,7 @@
                     android:layout_gravity="center"
 
                     android:drawableTop="@mipmap/main_menu_logout"
-                    android:text="更多"
+                    android:text="@string/more"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
                     android:textStyle="bold" />

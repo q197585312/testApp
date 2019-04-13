@@ -416,4 +416,6 @@
     <string name="Note">주의</string>
     <string name="Pleasenote2">시간이 GMT+8시에 있 음을 주의 해 주세요.</string>
     <string name="Net_Error">Net Error</string>
+    <string name="Running4">진행 중</string>
+    <string name="TabMyBets">나의 투고</string>
 </resources>
