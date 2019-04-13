@@ -410,4 +410,6 @@
     <string name="Note">สนใจ</string>
     <string name="Pleasenote2">โปรดทราบว่าโซนเวลาจะแสดง GMT +8</string>
     <string name="Net_Error">Net Error</string>
+    <string name="Running4">กำลังดำเนินการ</string>
+    <string name="TabMyBets">เดิมพันของฉัน</string>
 </resources>

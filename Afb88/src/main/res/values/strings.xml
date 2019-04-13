@@ -403,11 +403,11 @@
     <string name="basketball">Basketball</string>
     <string name="Snooker">Snooker</string>
     <string name="my_account">My Account</string>
-    <string name="messages">messages</string>
-    <string name="contact">contact</string>
-    <string name="setting">setting</string>
-    <string name="how_to_use">How to use</string>
-    <string name="logout">logout</string>
+    <string name="messages">Messages</string>
+    <string name="contact">Contact Us</string>
+    <string name="setting">Setting</string>
+    <string name="how_to_use">How to Use</string>
+    <string name="logout">Logout</string>
     <string name="more">More</string>
     <string name="last_login_date">Last Login Date</string>
     <string name="nike_name">Nick Name</string>
@@ -526,4 +526,6 @@
     <string name="Athletics_Outright">Athletics - Outright</string>
     <string name="E_Sports_Outright">E-Sports - Outright</string>
     <string name="Net_Error">Net Error</string>
+    <string name="Running4">RUNNING</string>
+    <string name="TabMyBets">My Bets</string>
 </resources>

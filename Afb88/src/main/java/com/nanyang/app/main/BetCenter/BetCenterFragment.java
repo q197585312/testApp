@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.BaseMoreFragment;
@@ -61,24 +62,27 @@ public class BetCenterFragment extends BaseMoreFragment {
     @Override
     public void initView() {
         super.initView();
+        String statement = rbStatement.getText().toString().toUpperCase();
+        String result = rbGrade.getText().toString().toUpperCase();
+        rbStatement.setText(statement);
+        rbGrade.setText(result);
+        setBackTitle(getString(R.string.TabMyBets));
         baseFragmentList = Arrays.asList(unsettledFragment, statementNewFragment, gradeFragment);
         rgBetCenter.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
                 switch (checkedId) {
                     case R.id.rb_unsettled:
-                        setBackTitle("进行中");
                         currentIndex = 0;
                         break;
                     case R.id.rb_statement:
-                        setBackTitle(getString(R.string.statement));
                         currentIndex = 1;
                         break;
                     case R.id.rb_grade:
-                        setBackTitle(getString(R.string.result));
                         currentIndex = 2;
                         break;
                 }
+                setBackTitle(getString(R.string.TabMyBets));
                 switchFragment();
             }
         });
@@ -124,11 +128,10 @@ public class BetCenterFragment extends BaseMoreFragment {
             currentIndex = 0;
         } else if (switchType.equals(statementNew)) {
             currentIndex = 1;
-            setBackTitle(getString(R.string.statement));
         } else {
             currentIndex = 2;
-            setBackTitle(getString(R.string.result));
         }
+        setBackTitle(getString(R.string.TabMyBets));
         switchFragment();
     }
 
