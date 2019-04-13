@@ -115,6 +115,7 @@ public class BetPop extends BasePopupWindow {
         super(mContext, v, width, height);
         this.context = mContext;
         this.v = v;
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
         handler = new Handler();
         activity = (BaseToolbarActivity) context;
         afbApplication = activity.getApp();
