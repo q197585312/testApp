@@ -2,10 +2,9 @@
 <TextView xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/item_text_tv"
     android:layout_width="match_parent"
-    android:layout_height="30dp"
-    android:gravity="center"
+    android:layout_height="40dp"
+    android:background="@color/white"
+    android:gravity="center_vertical"
     android:maxLines="1"
-    android:padding="10dp"
-    android:background="@color/black_grey"
-    android:drawableBottom="@drawable/line_white"
-    android:textColor="@color/white" />
+    android:paddingLeft="10dp"
+    android:textColor="@color/black" />

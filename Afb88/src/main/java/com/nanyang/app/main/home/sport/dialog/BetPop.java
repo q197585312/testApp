@@ -100,8 +100,8 @@ public class BetPop extends BasePopupWindow {
     TextView tv1x2;
     @Bind(R.id.tv_1x2_odds)
     TextView tv1x2Odds;
-    @Bind(R.id.tv_back)
-    TextView tvBack;
+    @Bind(R.id.ll_back)
+    LinearLayout llBack;
     @Bind(R.id.ll_1x2)
     LinearLayout ll1x2;
     @Bind(R.id.bet_pop_parent_web_ll)
@@ -200,7 +200,7 @@ public class BetPop extends BasePopupWindow {
                 }
             }
         });
-        tvBack.setOnClickListener(new View.OnClickListener() {
+        llBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 closePopupWindow();

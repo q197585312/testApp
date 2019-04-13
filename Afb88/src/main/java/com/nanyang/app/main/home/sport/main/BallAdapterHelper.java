@@ -54,6 +54,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     protected Context context;
     private AdditionBean additionData;
     private int additionPosition;
+    private int lastContentColor;
+    public int titleContentColor;
+    public int normalContentColor;
 
 
     public Set<ScrollLayout> getSlFollowers() {
@@ -77,6 +80,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public BallAdapterHelper(Context context) {
         this.context = context;
+        titleContentColor = R.color.white;
+        normalContentColor = R.color.grey_white;
     }
 
     @Override
@@ -179,8 +184,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
 
-        View contentParentLl = helper.getView(R.id.content_parent_ll);
-        contentParentLl.setBackgroundResource((position % 2 == 0) ? R.color.white : R.color.grey_white);
         View matchTitleLl = helper.getView(R.id.module_match_title_ll);
 
         View headV = helper.getView(R.id.module_match_head_v);
@@ -301,12 +304,22 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
         });
         gameSumTv.setText("+ " + item.getGamesSum());
+        View contentParentLl = helper.getView(R.id.ll_match_content);
         if (item.getType() == SportInfo.Type.ITME) {
+            if (lastContentColor == titleContentColor) {
+                contentParentLl.setBackgroundResource(normalContentColor);
+                lastContentColor = normalContentColor;
+            } else {
+                contentParentLl.setBackgroundResource(titleContentColor);
+                lastContentColor = titleContentColor;
+            }
             matchTitleLl.setVisibility(View.GONE);
             headV.setVisibility(View.GONE);
             LeagueCollectionTv.setBackgroundResource(R.mipmap.star_red_not_solid);
 
         } else {
+            contentParentLl.setBackgroundResource(titleContentColor);
+            lastContentColor = titleContentColor;
             LeagueCollectionTv.setBackgroundResource(((BallItemCallBack) back).isLeagueCollection(item) ? R.mipmap.star_red_solid : R.mipmap.star_red_not_solid);
             matchTitleLl.setVisibility(View.VISIBLE);
             headV.setVisibility(View.VISIBLE);
@@ -946,9 +959,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
     }
 
-    public void setRunningItemBg(MyRecyclerViewHolder helper, int position) {
-        View LlMatchContent = helper.getView(R.id.ll_match_content);
-        LlMatchContent.setBackgroundResource((position % 2 == 0) ? R.color.green_content1 : R.color.green_content2);
+    public void setRunningItemBg(MyRecyclerViewHolder helper, BallInfo item) {
         View matchTitleLl = helper.getView(R.id.module_match_title_ll);
         View viewLine = helper.getView(R.id.view_line);
         TextView moduleMatchTimeTv = helper.getView(R.id.module_match_time_tv);

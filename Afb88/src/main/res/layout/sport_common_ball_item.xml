@@ -10,7 +10,7 @@
     <View
         android:id="@+id/module_match_head_v"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="5dp"
         android:background="@color/grey_white_bg"
         android:padding="5dp" />
 
@@ -24,11 +24,11 @@
         android:padding="8dp">
 
         <TextView
-
             android:id="@+id/module_League_collection_tv"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
             android:background="@mipmap/star_red_not_solid"
             android:gravity="center"
             android:textColor="@color/grey_dark_word"
@@ -45,7 +45,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="2dp"
             android:textColor="@color/green"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <View
@@ -65,13 +65,14 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="3dp">
 
             <TextView
                 android:id="@+id/module_match_collection_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dp"
                 android:background="@mipmap/star_red_not_solid"
                 android:gravity="center"
                 android:textColor="@color/grey_dark_word"
@@ -110,7 +111,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:textColor="@color/grey_thick_line"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/module_right_mark_tv"
@@ -122,7 +123,7 @@
                 android:minEms="3"
                 android:text="+16"
                 android:textColor="@color/black_grey"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:visibility="visible" />
 
             <ImageView
@@ -142,7 +143,7 @@
                 android:maxLines="1"
                 android:text="FT.HDP"
                 android:textColor="@color/black_grey"
-                android:textSize="9sp" />
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/ou_title_tv"
@@ -153,7 +154,7 @@
                 android:maxLines="1"
                 android:text="FT.OU"
                 android:textColor="@color/black_grey"
-                android:textSize="9sp" />
+                android:textSize="13sp" />
 
         </LinearLayout>
 
@@ -359,7 +360,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="3dp">
+                android:padding="3dp"
+                android:visibility="gone">
 
 
             </LinearLayout>
@@ -367,15 +369,16 @@
             <LinearLayout
                 android:id="@+id/module_match_left2_ll"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="60dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:padding="2dp">
+                android:paddingLeft="5dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -422,7 +425,10 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
