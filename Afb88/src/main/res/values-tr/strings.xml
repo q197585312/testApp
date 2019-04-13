@@ -111,10 +111,10 @@
     <string name="Thai_bet_hint">Bahis başarılı. Bahsi kontrol etmek için bahis miktarınıza gidiniz.</string>
     <string name="Tennis">Tenis</string>
     <string name="Muay_Thai">MUAY THAI</string>
-    <string name="HK_ODDS">HK ODDS</string>
-    <string name="MY_ODDS">Benim odam</string>
-    <string name="ID_ODDS">KİMLİK ODALARI</string>
-    <string name="EU_ODDS">AB ODDS</string>
+    <string name="HK_ODDS">HK</string>
+    <string name="MY_ODDS">MY</string>
+    <string name="ID_ODDS">ID</string>
+    <string name="EU_ODDS">EU</string>
     <string name="Financial">mali</string>
     <string name="Back">Geri</string>
     <string name="not_settled">Yerleşmemiş</string>
