@@ -98,10 +98,15 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     TextView tvRecord;
     @Bind(R.id.tv_sport_select)
     TextView tvSportSelect;
+    @Bind(R.id.iv_order_top)
+    ImageView ivOrderTop;
     @Bind(R.id.tv_mix)
     TextView tvMix;
+    @Bind(R.id.tv_order_count_top)
+    TextView tvOrderCount;
     @Bind(R.id.tv_mix_count)
     TextView tvMixCount;
+
     @Bind(R.id.tv_way_run)
     public TextView tvMatchType;
     @Bind(R.id.tv_menu)
@@ -216,10 +221,14 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public void updateMixOrderCount() {
         if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
             tvMixCount.setVisibility(View.VISIBLE);
+            tvOrderCount.setVisibility(View.VISIBLE);
             tvMixCount.setText("" + getApp().getBetParList().getList().size());
+            tvOrderCount.setText("" + getApp().getBetParList().getList().size());
         } else {
             tvMixCount.setVisibility(View.GONE);
+            tvOrderCount.setVisibility(View.GONE);
             tvMixCount.setText("0");
+            tvOrderCount.setText("0");
         }
 
     }
@@ -580,5 +589,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public void clickDeleteSearch(View view) {
         currentFragment.searchMatch(false, "");
         edtSearchContent.setText("");
+    }
+
+    public void clickOrderTop(View view) {
+        currentFragment.clickOrder();
     }
 }

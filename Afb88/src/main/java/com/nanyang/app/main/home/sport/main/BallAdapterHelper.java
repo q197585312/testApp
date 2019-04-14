@@ -7,9 +7,6 @@ import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewParent;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -663,8 +660,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 , homeHdpOdds, awayHdpOdds, homeOddsType, awayOddsType);
         setUpDownOdds(ouVisiable, item, isFh, isOUNew, hasOU, ou, holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv, holder.viewpagerMatchUnderoddsTv
                 , overOdds, underOdds, overOddsType, underOddsType);
-        setUpDownOdds(oeVisiable, item, isFh, isOENew, hasOE, "", holder.viewpagerOddLabelTv, holder.viewpagerEvenLabelTv, holder.viewpagerMatchOddTv, holder.viewpagerMatchEvenTv
-                , OddOdds, EvenOdds, OddOddsType, EvenOddsType);
+    /*    setUpDownOdds(oeVisiable, item, isFh, isOENew, hasOE, "", holder.viewpagerOddLabelTv, holder.viewpagerEvenLabelTv, holder.viewpagerMatchOddTv, holder.viewpagerMatchEvenTv
+                , OddOdds, EvenOdds, OddOddsType, EvenOddsType);*/
         return vp;
     }
 
