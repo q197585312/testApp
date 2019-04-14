@@ -111,10 +111,10 @@
     <string name="Thai_bet_hint">Bet successful. Please go to stake placed to check bet.</string>
     <string name="Tennis">Tennis</string>
     <string name="Muay_Thai">MUAY THAI</string>
-    <string name="HK_ODDS">HK ODDS</string>
-    <string name="MY_ODDS">MY ODDS</string>
-    <string name="ID_ODDS">ID ODDS</string>
-    <string name="EU_ODDS">EU ODDS</string>
+    <string name="HK_ODDS">HK</string>
+    <string name="MY_ODDS">MY</string>
+    <string name="ID_ODDS">ID</string>
+    <string name="EU_ODDS">EU</string>
     <string name="Financial">Financial</string>
     <string name="Back">Back</string>
     <string name="not_settled">Not Settled</string>
@@ -403,11 +403,11 @@
     <string name="basketball">Basketball</string>
     <string name="Snooker">Snooker</string>
     <string name="my_account">My Account</string>
-    <string name="messages">messages</string>
-    <string name="contact">contact</string>
-    <string name="setting">setting</string>
-    <string name="how_to_use">How to use</string>
-    <string name="logout">logout</string>
+    <string name="messages">Messages</string>
+    <string name="contact">Contact Us</string>
+    <string name="setting">Setting</string>
+    <string name="how_to_use">How to Use</string>
+    <string name="logout">Logout</string>
     <string name="more">More</string>
     <string name="last_login_date">Last Login Date</string>
     <string name="nike_name">Nick Name</string>
@@ -526,4 +526,6 @@
     <string name="Athletics_Outright">Athletics - Outright</string>
     <string name="E_Sports_Outright">E-Sports - Outright</string>
     <string name="Net_Error">Net Error</string>
+    <string name="Running4">RUNNING</string>
+    <string name="TabMyBets">My Bets</string>
 </resources>

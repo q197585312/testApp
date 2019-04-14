@@ -108,10 +108,10 @@
     <string name="Thai_bet_hint">도박은 성공.请到投注狀況对球.</string>
     <string name="Tennis">테니스</string>
     <string name="Muay_Thai">무에타이</string>
-    <string name="HK_ODDS">홍콩 디스크</string>
-    <string name="MY_ODDS">말레이어 요리</string>
-    <string name="ID_ODDS">인도네시아 디스크</string>
-    <string name="EU_ODDS">유럽 ​​판</string>
+    <string name="HK_ODDS">HK</string>
+    <string name="MY_ODDS">MY</string>
+    <string name="ID_ODDS">ID</string>
+    <string name="EU_ODDS">EU</string>
     <string name="Financial">증권 시장</string>
     <string name="Back">반환</string>
     <string name="not_settled">변하기 쉬운</string>
@@ -416,4 +416,6 @@
     <string name="Note">주의</string>
     <string name="Pleasenote2">시간이 GMT+8시에 있 음을 주의 해 주세요.</string>
     <string name="Net_Error">Net Error</string>
+    <string name="Running4">진행 중</string>
+    <string name="TabMyBets">나의 투고</string>
 </resources>

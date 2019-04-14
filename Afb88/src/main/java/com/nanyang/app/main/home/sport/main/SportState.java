@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -792,14 +793,20 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
 
     @Override
-    public BaseRecyclerAdapter switchTypeAdapter() {
+    public BaseRecyclerAdapter switchTypeAdapter(final TextView textView) {
 
         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), getTypes(), R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
-                tv.setPadding(0, 0, 0, 0);
                 tv.setText(item.getText());
+                if (textView.getText().toString().equals(item.getText())) {
+                    tv.setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
+                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
+                } else {
+                    tv.setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));
+                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+                }
             }
 
         };
@@ -958,7 +965,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private void showAllOdds(final TextView textView) {
 
-        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), textView, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
+        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), textView, textView.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;
@@ -967,7 +974,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             @Override
             protected void initView(View view) {
                 super.initView(view);
-                RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
+                RecyclerView rv = view.findViewById(R.id.rv_list);
                 rv.setPadding(0, 0, 0, 0);
                 rv.setLayoutManager(new LinearLayoutManager(getBaseView().getIBaseContext().getBaseActivity()));
                 List<MenuItemInfo> list = new ArrayList<>();
@@ -979,10 +986,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                         TextView tv = holder.getView(R.id.item_text_tv);
-                        tv.setPadding(0, 0, 0, 0);
                         tv.setText(item.getText());
-                        tv.setBackgroundResource(R.color.black_grey);
-
+                        if (textView.getText().toString().equals(item.getText())) {
+                            tv.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
+                            tv.setTextColor(ContextCompat.getColor(context, R.color.blue));
+                        } else {
+                            tv.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                            tv.setTextColor(ContextCompat.getColor(context, R.color.black));
+                        }
                     }
                 };
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {

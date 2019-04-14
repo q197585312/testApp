@@ -2,18 +2,13 @@ package com.nanyang.app.main.home.sport.dialog;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Color;
-import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.Html;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
@@ -26,8 +21,6 @@ import android.view.WindowManager;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -39,15 +32,11 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.main.AfbParseHelper;
-import com.nanyang.app.main.home.sport.main.BallBetHelper;
-import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
-import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -100,6 +89,10 @@ public class BetPop extends BasePopupWindow {
     TextView tv1x2;
     @Bind(R.id.tv_1x2_odds)
     TextView tv1x2Odds;
+    @Bind(R.id.tv_delete)
+    TextView tvDelete;
+    @Bind(R.id.ll_back)
+    LinearLayout llBack;
     @Bind(R.id.ll_1x2)
     LinearLayout ll1x2;
     @Bind(R.id.bet_pop_parent_web_ll)
@@ -112,6 +105,7 @@ public class BetPop extends BasePopupWindow {
     private SportBetHelper presenter;
     private IRTMatchInfo rTMatchInfo;
     private int coupon;
+    private Handler handler;
 
     public BetPop(Context context, View v) {
         this(context, v, DeviceUtils.dip2px(context, 350), LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -121,6 +115,8 @@ public class BetPop extends BasePopupWindow {
         super(mContext, v, width, height);
         this.context = mContext;
         this.v = v;
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
+        handler = new Handler();
         activity = (BaseToolbarActivity) context;
         afbApplication = activity.getApp();
         betAmountEdt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
@@ -196,6 +192,18 @@ public class BetPop extends BasePopupWindow {
                 } else {
                     betAmountEdt.setBackgroundColor(Color.WHITE);
                 }
+            }
+        });
+        llBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closePopupWindow();
+            }
+        });
+        tvDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goCancel();
             }
         });
         initBetChip();
@@ -341,6 +349,7 @@ public class BetPop extends BasePopupWindow {
         betSureBtn.setEnabled(true);
         betCancelBtn.setEnabled(true);
         ((BaseActivity) context).hideLoadingDialog();
+        showInput();
     }
 
     BaseRecyclerAdapter<AfbClickBetBean> contentAdapter;
@@ -453,6 +462,7 @@ public class BetPop extends BasePopupWindow {
             return;
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
+            setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
             this.rTMatchInfo = rTMatchInfo;
             String lag = AfbUtils.getLanguage(context);
             String l = "eng";
@@ -517,5 +527,20 @@ public class BetPop extends BasePopupWindow {
             wlp.width = v.getWidth();
             window.setAttributes(wlp);
         }
+    }
+
+    public void showInput() {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                activity.showPopInput(betAmountEdt);
+            }
+        }, 500);
+    }
+
+    @Override
+    protected void onClose() {
+        super.onClose();
+        activity.hintPopInput(betAmountEdt);
     }
 }

@@ -424,4 +424,6 @@
     <string name="Note">Chú ý</string>
     <string name="Pleasenote2">Hãy lưu ý rằng thời gian cho thấy thời gian biểu diễn cho thấy sự thay đổi trong thời gian</string>
     <string name="Net_Error">Net Error</string>
+    <string name="Running4">Trong các</string>
+    <string name="TabMyBets">Cược của tôi</string>
 </resources>

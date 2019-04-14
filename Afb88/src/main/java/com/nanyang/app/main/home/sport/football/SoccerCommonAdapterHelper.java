@@ -89,7 +89,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
         awayTv.setText(away);
 
 
-        llLeft1.setVisibility(View.VISIBLE);
+//        llLeft1.setVisibility(View.VISIBLE);
         llLeft2.setVisibility(View.VISIBLE);
         String rcAway = item.getRCAway();
         String rcHome = item.getRCHome();
@@ -111,7 +111,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
         awayTv.setText("");
         homeTv.setText("");
 
-        llLeft1.setVisibility(View.INVISIBLE);
+//        llLeft1.setVisibility(View.INVISIBLE);
         llLeft2.setVisibility(View.INVISIBLE);
 //        item.setHasOE("0");
         repMap.put(position, true);

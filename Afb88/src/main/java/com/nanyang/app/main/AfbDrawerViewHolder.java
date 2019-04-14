@@ -194,4 +194,9 @@ public class AfbDrawerViewHolder implements IDrawerView {
         }
         return back;
     }
+
+    public void goRecord() {
+        statementFragment.setSwitchType(BetCenterFragment.unsettled);
+        switchFragment(statementFragment);
+    }
 }

@@ -16,6 +16,8 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     public SoccerRunningAdapterHelper(Context context) {
         super(context);
+        titleContentColor = R.color.green_content1;
+        normalContentColor = R.color.green_content2;
     }
 
 
@@ -23,7 +25,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     public void onConvert(MyRecyclerViewHolder helper, int position, final BallInfo item) {
 
         super.onConvert(helper, position, item);
-        setRunningItemBg(helper, position);
+        setRunningItemBg(helper, item);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         TextView liveTv = helper.getView(R.id.module_match_live_iv);
         TextView timeTv = helper.getView(R.id.module_match_time_tv);

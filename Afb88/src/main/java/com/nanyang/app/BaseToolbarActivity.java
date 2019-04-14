@@ -1,5 +1,6 @@
 package com.nanyang.app;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -9,6 +10,9 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.Gravity;
 import android.view.View;
+import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -116,9 +120,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             mCompositeSubscription.clear();
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
     }
-
-
-
 
 
     Runnable dataUpdateRunnable = new Runnable() {
@@ -402,4 +403,18 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         toolbar.setVisibility(b);
     }
 
+    public void hintPopInput(View view) {
+        InputMethodManager imm = (InputMethodManager) mContext.getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (imm != null) {
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+    }
+
+    public void showPopInput(EditText editText) {
+        editText.requestFocus();
+        InputMethodManager inputManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.showSoftInput(editText, 0);
+        editText.setSelection(editText.getText().toString().length());
+    }
 }

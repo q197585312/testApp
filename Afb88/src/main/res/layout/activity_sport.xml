@@ -19,8 +19,8 @@
             android:layout_height="wrap_content"
             android:background="@color/green_dark"
             android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp">
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -69,7 +69,7 @@
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/sport_game_rectangle_green_dark_trans_gradient_line"
                     android:gravity="center"
@@ -133,35 +133,33 @@
                     android:id="@+id/iv_all_add"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
+                    android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:drawableBottom="@drawable/line_white"
                     android:drawableRight="@mipmap/arrow_down_drop_white"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:text="@string/All_Markets"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tv_odds_type"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_weight="1"
+                    android:layout_weight="0.6"
                     android:drawablePadding="5dp"
                     android:drawableRight="@mipmap/arrow_down_drop_white"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:onClick="clickOddsType"
                     android:padding="5dp"
                     android:text="@string/MY_ODDS"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/tv_league_major"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
                     android:drawablePadding="5dp"
                     android:drawableRight="@mipmap/sport_game_cup_white"
                     android:gravity="center_vertical|right"
@@ -169,7 +167,7 @@
                     android:padding="5dp"
                     android:text="@string/league"
                     android:textColor="@color/white"
-                    android:textSize="15sp" />
+                    android:textSize="13sp" />
 
                 <ImageView
                     android:id="@+id/iv_add"
@@ -206,7 +204,6 @@
             android:orientation="horizontal">
 
             <TextView
-
                 android:id="@+id/tv_record"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"

@@ -54,7 +54,7 @@ public class HandballRunningState extends HandballState {
             @Override
             public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
                 super.onConvert(helper, position, item);
-                setRunningItemBg(helper,position);
+                setRunningItemBg(helper,item);
             }
         };
     }
