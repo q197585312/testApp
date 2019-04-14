@@ -10,7 +10,6 @@ import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.training.ScrollLayout;
 
 /**
@@ -51,7 +50,6 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
     private View getParentFragment(TextView tv) {
         View parent = (View) tv.getParent();
         while (parent != null && !(parent instanceof FrameLayout)) {
-            LogUtil.d("MixStyle", "parentId;" + parent.getId());
             parent = (View) parent.getParent();
         }
         return parent;
