@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sport.dialog;
 import android.content.Context;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.LinearLayout;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
@@ -39,15 +40,20 @@ public class WebPop extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
-        webView = (WebView) view.findViewById(R.id.web_wv);
-
+        webView = view.findViewById(R.id.web_wv);
+        LinearLayout llBack = view.findViewById(R.id.ll_back);
+        llBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                closePopupWindow();
+            }
+        });
     }
 
 
     public void setUrl(String url) {
-        AfbUtils.synCookies(context,webView,url);
+        AfbUtils.synCookies(context, webView, url);
     }
-
 
 
 }
