@@ -169,9 +169,37 @@
                     android:textColor="@color/white"
                     android:textSize="13sp" />
 
+                <FrameLayout
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center">
+
+                <ImageView
+                    android:id="@+id/iv_order_top"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:contentDescription="@null"
+                    android:onClick="clickOrderTop"
+                    android:src="@mipmap/sport_shopping_top_white" />
+                    <TextView
+                        android:id="@+id/tv_order_count_top"
+                        android:layout_width="18dp"
+                        android:layout_height="18dp"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginLeft="12dp"
+                        android:background="@drawable/oval_red_stroke_black"
+                        android:gravity="center"
+                        android:text="10"
+                        android:textColor="@color/white"
+                        android:textSize="9dp"
+                        android:textStyle="bold"
+                        android:visibility="gone" />
+                </FrameLayout>
                 <ImageView
                     android:id="@+id/iv_add"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_weight="0.5"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:contentDescription="@null"
@@ -239,13 +267,14 @@
                 android:layout_weight="1"
                 android:gravity="center">
 
+
                 <TextView
                     android:id="@+id/tv_mix"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:button="@null"
-                    android:drawableTop="@mipmap/sport_botton_teb_shopping"
+                    android:drawableTop="@mipmap/sport_bottom_teb_shopping"
                     android:gravity="center"
                     android:onClick="clickOrder"
                     android:paddingTop="5dp"
@@ -260,7 +289,7 @@
                     android:layout_height="18dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_marginLeft="10dp"
-                    android:background="@drawable/oval_green_stroke_black"
+                    android:background="@drawable/oval_red_stroke_black"
                     android:gravity="center"
                     android:text="10"
                     android:textColor="@color/white"

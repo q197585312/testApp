@@ -252,7 +252,7 @@
     <string name="gr_content">Live Casino and beautyful Dealers Online Entertainment, Live Baccarat , VIP Hall, International Hall , wish you happy playing!!!GD CASINO</string>
     <string name="Version">Version</string>
     <string name="failed_to_connect">Failed to connect to server , log in again?</string>
-    <string name="All_Markets">All Markets</string>
+    <string name="All_Markets">All</string>
     <string name="Main_Markets">Main Markets</string>
     <string name="Other_Bet_Markets">Other Bet Markets</string>
     <string name="choose_language">Choose Language</string>
@@ -335,7 +335,7 @@
     <string name="Home">HOME</string>
     <string name="Away">AWAY</string>
     <string name="HT">HT</string>
-    <string name="league">League</string>
+    <string name="league">Top</string>
     <string name="winner">Winner</string>
     <string name="OLYMPIC">OLYMPIC</string>
     <string name="Formula1">Formula</string>

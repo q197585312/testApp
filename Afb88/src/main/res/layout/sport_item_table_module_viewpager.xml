@@ -4,79 +4,92 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:paddingBottom="2dp"
-    android:paddingLeft="2dp"
-    android:paddingRight="2dp">
+    android:layout_marginBottom="1dp"
+    >
 
 
     <LinearLayout
+        android:id="@+id/ll_leave_1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/ll_data1"
+        <FrameLayout
+            android:padding="1dp"
+            android:id="@+id/fl_leave_1_left"
             android:layout_width="0dp"
-            android:layout_height="28dp"
-            android:layout_weight="1"
-            android:background="@drawable/match_odds_content_bg">
+            android:layout_height="30dp"
+            android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/viewpager_match_home_hdp_tv"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/ll_leave_1_left"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingRight="2dp"
-                android:textColor="@color/green_dark"
-                android:textSize="9sp" />
+                android:background="@drawable/match_odds_content_bg">
 
-            <TextView
-                android:id="@+id/viewpager_match_home_hdpodds_tv"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingRight="2dp"
-                android:textColor="@color/black_grey"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/viewpager_match_home_hdp_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:textColor="@color/green_dark"
+                    android:textSize="9sp" />
 
-        <LinearLayout
-            android:id="@+id/ll_data2"
+                <TextView
+                    android:id="@+id/viewpager_match_home_hdpodds_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:textColor="@color/black_grey"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:padding="1dp"
+            android:id="@+id/fl_leave_1_right"
             android:layout_width="0dp"
-            android:layout_height="28dp"
-            android:layout_marginLeft="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/match_odds_content_bg">
+            android:layout_height="30dp"
+            android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/viewpager_match_ou_tv"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:id="@+id/ll_leave_1_right"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingRight="2dp"
-                android:textColor="@color/green_dark"
-                android:textSize="9sp" />
+                android:background="@drawable/match_odds_content_bg">
 
-            <TextView
-                android:id="@+id/viewpager_match_overodds_tv"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingRight="2dp"
-                android:textColor="@color/black_grey"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/viewpager_match_ou_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:textColor="@color/green_dark"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/viewpager_match_overodds_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:textColor="@color/black_grey"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
 
         <TextView
             android:id="@+id/viewpager_odd_label_tv"
@@ -89,7 +102,7 @@
             android:text="@string/ODD"
             android:textColor="@color/green_dark"
             android:textSize="12sp"
-            android:visibility="visible" />
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/viewpager_match_odd_tv"
@@ -112,68 +125,77 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/ll_data3"
+        <FrameLayout
+            android:padding="1dp"
             android:layout_width="0dp"
-            android:layout_height="28dp"
-            android:layout_weight="1"
-            android:background="@drawable/match_odds_content_bg">
+            android:layout_height="30dp"
+            android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/viewpager_match_visit_hdp_tv"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingRight="2dp"
-                android:textColor="@color/green_dark"
-                android:textSize="9sp" />
+                android:background="@drawable/match_odds_content_bg">
 
-            <TextView
-                android:id="@+id/viewpager_match_visit_hdpodds_tv"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingRight="2dp"
-                android:textColor="@color/black_grey"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/viewpager_match_visit_hdp_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:textColor="@color/green_dark"
+                    android:textSize="9sp" />
 
-        <LinearLayout
-            android:id="@+id/ll_data4"
+                <TextView
+                    android:id="@+id/viewpager_match_visit_hdpodds_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:textColor="@color/black_grey"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <FrameLayout
+            android:padding="1dp"
             android:layout_width="0dp"
-            android:layout_height="28dp"
-            android:layout_marginLeft="2dp"
-            android:layout_weight="1"
-            android:background="@drawable/match_odds_content_bg">
+            android:layout_height="30dp"
+            android:layout_weight="1">
 
-            <TextView
-                android:id="@+id/viewpager_match_ou2_tv"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_weight="1.1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingRight="2dp"
-                android:textColor="@color/green_dark"
-                android:textSize="9sp" />
+                android:background="@drawable/match_odds_content_bg">
 
-            <TextView
-                android:id="@+id/viewpager_match_underodds_tv"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:maxLines="1"
-                android:paddingRight="2dp"
-                android:textColor="@color/black_grey"
-                android:textSize="12sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/viewpager_match_ou2_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:textColor="@color/green_dark"
+                    android:textSize="9sp" />
+
+                <TextView
+                    android:id="@+id/viewpager_match_underodds_tv"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:maxLines="1"
+                    android:paddingRight="2dp"
+                    android:textColor="@color/black_grey"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+        </FrameLayout>
 
         <TextView
             android:id="@+id/viewpager_even_label_tv"
