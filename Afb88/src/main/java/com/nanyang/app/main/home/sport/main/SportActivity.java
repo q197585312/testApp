@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -492,13 +493,28 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                     listOther.add(iterator1.next());
                 }
 
-                final BaseRecyclerAdapter<SportIdBean> baseRecyclerAdapter = new BaseRecyclerAdapter<SportIdBean>(mContext, new ArrayList<SportIdBean>(), R.layout.text_item) {
+                final BaseRecyclerAdapter<SportIdBean> baseRecyclerAdapter = new BaseRecyclerAdapter<SportIdBean>(mContext, new ArrayList<SportIdBean>(), R.layout.item_sport_switch) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, SportIdBean item) {
-                        TextView tv = holder.getView(R.id.item_text_tv);
-                        tv.setBackgroundResource(R.color.white);
-                        tv.setText(item.getTextRes());
-                        tv.setTextColor(getResources().getColor(R.color.google_green));
+                        LinearLayout llContent = holder.getView(R.id.ll_content);
+                        ImageView imgGamePic = holder.getView(R.id.img_game_pic);
+                        TextView tvGameName = holder.getView(R.id.tv_game_name);
+                        TextView tvGameCount = holder.getView(R.id.tv_game_count);
+                        llContent.setBackgroundColor(Color.WHITE);
+                        imgGamePic.setBackgroundResource(item.getSportPic());
+                        tvGameName.setText(item.getTextRes());
+                        tvGameName.setTextColor(item.getTextColor());
+                        tvGameCount.setText("0");
+                        if (item.getTextColor() != Color.RED) {
+                            if (tvSportSelect.getText().toString().equals(getString(item.getTextRes()))) {
+                                tvGameName.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
+                                llContent.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
+                            }
+                        } else {
+                            if (tvSportSelect.getText().toString().equals(getString(item.getTextRes()))) {
+                                llContent.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
+                            }
+                        }
                     }
                 };
 
@@ -507,6 +523,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
                     @Override
                     public void onItemClick(View view, SportIdBean item, int position) {
+                        tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
+                        tvSportSelect.setText(getString(item.getTextRes()));
                         selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
                         closePopupWindow();
                     }
@@ -538,14 +556,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
         });
         popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 300), AfbUtils.dp2px(mContext, 200));
-
-
     }
 
     public void clickSportWayRun(View view) {
         currentFragment.toolbarRightClick(view);
     }
-
 
     public void clickMoreMenu(View view) {
         drawerLayout.openDrawer(Gravity.RIGHT);
