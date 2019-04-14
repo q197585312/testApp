@@ -3,9 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical"
-    android:layout_marginBottom="1dp"
-    >
+    android:orientation="vertical">
 
 
     <LinearLayout
@@ -16,11 +14,11 @@
         android:orientation="horizontal">
 
         <FrameLayout
-            android:padding="1dp"
             android:id="@+id/fl_leave_1_left"
             android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1">
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:padding="2dp">
 
             <LinearLayout
                 android:id="@+id/ll_leave_1_left"
@@ -54,11 +52,11 @@
         </FrameLayout>
 
         <FrameLayout
-            android:padding="1dp"
             android:id="@+id/fl_leave_1_right"
             android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1">
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:padding="2dp">
 
             <LinearLayout
                 android:id="@+id/ll_leave_1_right"
@@ -121,15 +119,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="2dp"
         android:gravity="center"
         android:orientation="horizontal">
 
         <FrameLayout
-            android:padding="1dp"
             android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1">
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:padding="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -162,10 +159,10 @@
         </FrameLayout>
 
         <FrameLayout
-            android:padding="1dp"
             android:layout_width="0dp"
-            android:layout_height="30dp"
-            android:layout_weight="1">
+            android:layout_height="34dp"
+            android:layout_weight="1"
+            android:padding="2dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
