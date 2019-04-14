@@ -487,7 +487,7 @@ public class AfbUtils {
 
         beanHashMap.put("22", new SportIdBean("22", "17", R.string.Golf, "Golf", SportActivity.class, golfFragment, R.color.black_grey));
         beanHashMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, R.color.black_grey));
-        beanHashMap.put("53", new SportIdBean("53", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, R.color.black_grey));
+        beanHashMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, R.color.black_grey));
         beanHashMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, soccerFragment, R.color.black_grey));
 
 
@@ -517,7 +517,7 @@ public class AfbUtils {
         othersMap.put("108", new SportIdBean("108", "108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, R.color.black_grey));
         othersMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, R.color.black_grey));
         othersMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, R.color.black_grey));
-        othersMap.put("53", new SportIdBean("53", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, R.color.black_grey));
+        othersMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, R.color.black_grey));
 
 
     }

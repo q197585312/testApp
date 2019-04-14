@@ -38,6 +38,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
+import com.unkonw.testapp.libs.utils.TimeUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -48,6 +49,7 @@ import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -794,8 +796,36 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     @Override
     public BaseRecyclerAdapter switchTypeAdapter(final TextView textView) {
-
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), getTypes(), R.layout.text_base_item) {
+        String h12 = TimeUtils.dateFormat(new Date(), "yyyy-MM-dd") + " 12:00:00";
+        String now = TimeUtils.dateFormat(new Date(), "yyyy-MM-dd HH:mm:ss");
+        long dif = TimeUtils.diffTime(now, h12, "yyyy-MM-dd HH:mm:ss");
+        Date firstDate = new Date();
+        if (dif < 0)
+            firstDate = TimeUtils.getAddDayDate(firstDate, -1);
+        String d1 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 1), "yyyy-MM-dd");
+        String d2 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 2), "yyyy-MM-dd");
+        String d3 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 3), "yyyy-MM-dd");
+        String d4 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 4), "yyyy-MM-dd");
+        String d5 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 5), "yyyy-MM-dd");
+        String dv = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
+        String d6 = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.six_day);
+        MenuItemInfo item0 = new MenuItemInfo(2, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.all), "");
+        MenuItemInfo item1 = new MenuItemInfo(0, d1, d1);
+        MenuItemInfo item2 = new MenuItemInfo(0, d2, d2);
+        MenuItemInfo item3 = new MenuItemInfo(0, d3, d3);
+        MenuItemInfo item4 = new MenuItemInfo(0, d4, d4);
+        MenuItemInfo item5 = new MenuItemInfo(0, d5, d5);
+        MenuItemInfo item6 = new MenuItemInfo(1, d6, dv);
+        final List<MenuItemInfo> types = getTypes();
+        types.addAll(Arrays.asList(item0,
+                item1,
+                item2,
+                item3,
+                item4,
+                item5,
+                item6
+        ));
+        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), types, R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
