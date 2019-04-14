@@ -1,15 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/rectangle_green_black_stroke_corner5"
-    android:orientation="vertical"
-    android:padding="2dp">
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/ll_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green_dark"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginLeft="8dp"
+            android:background="@mipmap/go_back_left_white" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="8dp"
+            android:layout_weight="3"
+            android:gravity="center_vertical"
+            android:padding="8dp"
+            android:text="Instant video"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </LinearLayout>
 
     <WebView
-        android:layout_margin="2dp"
         android:id="@+id/web_wv"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 
-</FrameLayout>
+</LinearLayout>
