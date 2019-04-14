@@ -31,10 +31,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/3/10.
  */
-
 public abstract class EuropeState extends BallState {
-
-
     public EuropeState(SportContract.View baseView) {
         super(baseView);
     }
@@ -43,7 +40,6 @@ public abstract class EuropeState extends BallState {
     protected List<TableSportInfo<BallInfo>> filterChildData(List<TableSportInfo<BallInfo>> dateTemp) {
         return dateTemp;
     }
-
 
     @Override
     protected void onTypeClick(MenuItemInfo item) {
@@ -57,7 +53,6 @@ public abstract class EuropeState extends BallState {
             case "Running":
                 getBaseView().switchState(new ESportRunningState(getBaseView()));
                 break;
-
         }
     }
 
@@ -89,7 +84,6 @@ public abstract class EuropeState extends BallState {
         return texts;
     }
 
-
     public boolean isCollection() {
         return false;
     }
@@ -104,7 +98,6 @@ public abstract class EuropeState extends BallState {
         return new SportAdapterHelper<BallInfo>() {
             @Override
             public void onConvert(MyRecyclerViewHolder helper, final int position, final BallInfo item) {
-
                 TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
                 View headV = helper.getView(R.id.module_match_head_v);
                 TextView dateTv = helper.getView(R.id.module_match_date_tv);
@@ -112,21 +105,18 @@ public abstract class EuropeState extends BallState {
                 TextView liveTv = helper.getView(R.id.module_match_live_iv);
                 TextView homeTv = helper.getTextView(R.id.module_match_home_team_tv);
                 TextView awayTv = helper.getTextView(R.id.module_match_away_team_tv);
-
                 TextView full1 = helper.getTextView(R.id.europe_1_full_time_odds_tv);
                 TextView full2 = helper.getTextView(R.id.europe_2_full_time_odds_tv);
                 TextView fullx = helper.getTextView(R.id.europe_x_full_time_odds_tv);
                 TextView half1 = helper.getTextView(R.id.europe_1_half_time_odds_tv);
                 TextView half2 = helper.getTextView(R.id.europe_2_half_time_odds_tv);
                 TextView halfx = helper.getTextView(R.id.europe_x_half_time_odds_tv);
-
                 TextView tvFull1 = helper.getTextView(R.id.europe_1_full_time_tv);
                 TextView tvFull2 = helper.getTextView(R.id.europe_2_full_time_tv);
                 TextView tvFullx = helper.getTextView(R.id.europe_x_full_time_tv);
                 TextView tvHalf1 = helper.getTextView(R.id.europe_1_half_time_tv);
                 TextView tvHalf2 = helper.getTextView(R.id.europe_2_half_time_tv);
                 TextView tvHalfx = helper.getTextView(R.id.europe_x_half_time_tv);
-
                 String timeDate = item.getMatchDate();
                 if (timeDate.length() > 6) {
                     String time = timeDate.substring(timeDate.length() - 7, timeDate.length());
@@ -144,12 +134,9 @@ public abstract class EuropeState extends BallState {
                         String channel = item.getLive();
                         channel = Html.fromHtml(channel).toString();
                         int n = channel.indexOf(" ");
-
-
                         if (channel.length() > 6 && n > 0 && n < channel.length() - 1) {
                             String channel1 = channel.substring(0, n);
                             String channel2 = channel.substring(n + 1, channel.length());
-
                             liveTv.setTextSize(7);
                             if (channel2.length() >= 6)
                                 dateTv.setTextSize(8);
@@ -164,7 +151,6 @@ public abstract class EuropeState extends BallState {
                             if (channel.trim().length() > 6)
                                 dateTv.setTextSize(8);
                             dateTv.setText(channel.trim());
-
                         }
                     }
                 } else {
@@ -175,27 +161,22 @@ public abstract class EuropeState extends BallState {
                         dateTv.setText(item.getMatchDate());
                     }
                 }
-
                 homeTv.setText(item.getHome());
                 awayTv.setText(item.getAway());
                 if (item.getHasX12().equals("1")) {
                     tvFull1.setText("1");
                     tvFull2.setText("2");
                     tvFullx.setText("X");
-
                     full1.setText(item.getX12_1Odds());
                     fullx.setText(item.getX12_XOdds());
                     full2.setText(item.getX12_2Odds());
                     full1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds(), "1", false));
                     fullx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds(), "X", false));
                     full2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds(), "2", false));
-
-
                 } else {
                     tvFull1.setText("");
                     tvFull2.setText("");
                     tvFullx.setText("");
-
                     full1.setText("");
                     full2.setText("");
                     fullx.setText("");
@@ -204,14 +185,12 @@ public abstract class EuropeState extends BallState {
                     tvHalf1.setText("1");
                     tvHalf2.setText("2");
                     tvHalfx.setText("X");
-
                     half1.setText(item.getX12_1Odds_FH());
                     halfx.setText(item.getX12_XOdds_FH());
                     half2.setText(item.getX12_2Odds_FH());
                     half1.setOnClickListener(new itemClick(back, position, item, item.getX12_1Odds_FH(), "1", true));
                     halfx.setOnClickListener(new itemClick(back, position, item, item.getX12_XOdds_FH(), "X", true));
                     half2.setOnClickListener(new itemClick(back, position, item, item.getX12_2Odds_FH(), "2", true));
-
                 } else {
                     tvHalf1.setText("");
                     tvHalf2.setText("");
@@ -220,11 +199,9 @@ public abstract class EuropeState extends BallState {
                     half2.setText("");
                     halfx.setText("");
                 }
-
                 if (item.getType() == SportInfo.Type.ITME) {
                     matchTitleTv.setVisibility(View.GONE);
                     headV.setVisibility(View.GONE);
-
                 } else {
                     matchTitleTv.setVisibility(View.VISIBLE);
                     headV.setVisibility(View.VISIBLE);
@@ -239,13 +216,11 @@ public abstract class EuropeState extends BallState {
                 if (position > 0) {
                     oldHomeName = back.getItem(position - 1).getHome();
                     oldAwayName = back.getItem(position - 1).getAway();
-
                     oldModuleTitle = back.getItem(position - 1).getModuleTitle().toString();
                 }
                 if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway())) {
                     View tvRightMark = helper.getView(R.id.module_right_mark_tv);
                     tvRightMark.setVisibility(View.INVISIBLE);
-
                     onMatchRepeat(helper, item, position, back);
                 } else {
                     View tvRightMark = helper.getView(R.id.module_right_mark_tv);
@@ -256,13 +231,10 @@ public abstract class EuropeState extends BallState {
                             back.clickView(v, item, position);
                         }
                     });
-
                     onMatchNotRepeat(helper, item, position, back);
                 }
                 onChildConvert(helper, position, item);
                 updateMixBackground(helper, item);
-
-
             }
 
             @Override
@@ -392,7 +364,7 @@ public abstract class EuropeState extends BallState {
             }
 
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds,int oid,String sc) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 helper.clickOdds(item, type, odds, v, isHf, "");
@@ -441,7 +413,7 @@ public abstract class EuropeState extends BallState {
         @Override
         public void onClick(View v) {
             if (!odds.equals("") && Float.valueOf(odds) != 0)
-                back.clickOdds((TextView) v, item, type, isHf, odds,Integer.valueOf(isHf?item.getSocOddsId_FH():item.getSocOddsId()),"");
+                back.clickOdds((TextView) v, item, type, isHf, odds, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), "");
         }
     }
 }
