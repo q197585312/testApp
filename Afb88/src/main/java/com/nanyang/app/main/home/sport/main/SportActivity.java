@@ -14,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.Html;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -26,6 +27,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -36,9 +38,12 @@ import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.ILanguageView;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
+import com.nanyang.app.main.MainPresenter;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -47,6 +52,7 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -464,71 +470,98 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 //        skipAct(PersonCenterActivity.class, b);
     }
 
-    public void clickSportSelect(View view) {
-        createPopupWindow(new BasePopupWindow(mContext, view, AfbUtils.dp2px(mContext, 200), AfbUtils.dp2px(mContext, 300)) {
+    public void clickSportSelect(final View view) {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new MainPresenter.CallBack<String>() {
             @Override
-            protected int onSetLayoutRes() {
-                return R.layout.sport_game_switch_bottom_popupwindow;
-            }
-
-            @Override
-            protected void initView(View view) {
-                super.initView(view);
-                RecyclerView rv = view.findViewById(R.id.game_list_rcv);
-
-                RadioGroup games_switch_rg = view.findViewById(R.id.games_switch_rg);
-                final RadioButton sports_selected = view.findViewById(R.id.sports_selected);
-                final RadioButton others_selected = view.findViewById(R.id.others_selected);
-
-
-                rv.setLayoutManager(new LinearLayoutManager(mContext));
-                final List<SportIdBean> listSport = new ArrayList<>();
-                final List<SportIdBean> listOther = new ArrayList<>();
-                Iterator<SportIdBean> iterator = AfbUtils.sportMap.values().iterator();
-                while (iterator.hasNext()) {
-                    listSport.add(iterator.next());
-                }
-                Iterator<SportIdBean> iterator1 = AfbUtils.othersMap.values().iterator();
-                while (iterator1.hasNext()) {
-                    listOther.add(iterator1.next());
-                }
-
-                final BaseRecyclerAdapter<SportIdBean> baseRecyclerAdapter = new BaseRecyclerAdapter<SportIdBean>(mContext, new ArrayList<SportIdBean>(), R.layout.item_sport_switch) {
-                    @Override
-                    public void convert(MyRecyclerViewHolder holder, int position, SportIdBean item) {
-                        LinearLayout llContent = holder.getView(R.id.ll_content);
-                        ImageView imgGamePic = holder.getView(R.id.img_game_pic);
-                        TextView tvGameName = holder.getView(R.id.tv_game_name);
-                        TextView tvGameCount = holder.getView(R.id.tv_game_count);
-                        llContent.setBackgroundColor(Color.WHITE);
-                        imgGamePic.setBackgroundResource(item.getSportPic());
-                        tvGameName.setText(item.getTextRes());
-                        tvGameName.setTextColor(item.getTextColor());
-                        tvGameCount.setText("0");
-                        if (item.getTextColor() != Color.RED) {
-                            if (tvSportSelect.getText().toString().equals(getString(item.getTextRes()))) {
-                                tvGameName.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
-                                llContent.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
-                            }
-                        } else {
-                            if (tvSportSelect.getText().toString().equals(getString(item.getTextRes()))) {
-                                llContent.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
-                            }
+            public void onBack(String data) {
+                PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
+                personalInfo.setPassword(getApp().getUser().getPassword());
+                getApp().setUser(personalInfo);
+                try {
+                    final JSONObject jsonObjectNum = new JSONObject(data);
+                    createPopupWindow(new BasePopupWindow(mContext, view, AfbUtils.dp2px(mContext, 200), AfbUtils.dp2px(mContext, 300)) {
+                        @Override
+                        protected int onSetLayoutRes() {
+                            return R.layout.sport_game_switch_bottom_popupwindow;
                         }
-                    }
-                };
 
-                rv.setAdapter(baseRecyclerAdapter);
-                baseRecyclerAdapter.addAllAndClear(listSport);
-                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
-                    @Override
-                    public void onItemClick(View view, SportIdBean item, int position) {
-                        tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
-                        tvSportSelect.setText(getString(item.getTextRes()));
-                        selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
-                        closePopupWindow();
-                    }
-                });
+                        @Override
+                        protected void initView(View view) {
+                            super.initView(view);
+                            RecyclerView rv = view.findViewById(R.id.game_list_rcv);
+                            RadioGroup games_switch_rg = view.findViewById(R.id.games_switch_rg);
+                            final RadioButton sports_selected = view.findViewById(R.id.sports_selected);
+                            final RadioButton others_selected = view.findViewById(R.id.others_selected);
+                            rv.setLayoutManager(new LinearLayoutManager(mContext));
+                            final List<SportIdBean> listSport = new ArrayList<>();
+                            final List<SportIdBean> listOther = new ArrayList<>();
+                            Iterator<SportIdBean> iterator = AfbUtils.sportMap.values().iterator();
+                            while (iterator.hasNext()) {
+                                listSport.add(iterator.next());
+                            }
+                            Iterator<SportIdBean> iterator1 = AfbUtils.othersMap.values().iterator();
+                            while (iterator1.hasNext()) {
+                                listOther.add(iterator1.next());
+                            }
+                            final BaseRecyclerAdapter<SportIdBean> baseRecyclerAdapter = new BaseRecyclerAdapter<SportIdBean>(mContext, new ArrayList<SportIdBean>(), R.layout.item_sport_switch) {
+                                @Override
+                                public void convert(MyRecyclerViewHolder holder, int position, SportIdBean item) {
+                                    LinearLayout llContent = holder.getView(R.id.ll_content);
+                                    ImageView imgGamePic = holder.getView(R.id.img_game_pic);
+                                    TextView tvGameName = holder.getView(R.id.tv_game_name);
+                                    TextView tvGameCount = holder.getView(R.id.tv_game_count);
+                                    llContent.setBackgroundColor(Color.WHITE);
+                                    imgGamePic.setBackgroundResource(item.getSportPic());
+                                    tvGameName.setText(item.getTextRes());
+                                    tvGameName.setTextColor(item.getTextColor());
+                                    tvGameCount.setText("0");
+                                    MenuItemInfo stateType = currentFragment.getPresenter().getStateHelper().getStateType();
+                                    String type = stateType.getType();
+                                    if (type.equals("Running")) {
+                                        if (jsonObjectNum != null) {
+                                            if (!StringUtils.isNull(jsonObjectNum.optString("M_RAm" + item.getDbid()))) {
+                                                tvGameCount.setText(jsonObjectNum.optString("M_RAm" + item.getDbid()));
+                                            }
+                                        }
+                                    } else if (type.equals("Today")) {
+                                        if (!StringUtils.isNull(jsonObjectNum.optString("M_TAm" + item.getDbid()))) {
+                                            tvGameCount.setText(jsonObjectNum.optString("M_TAm" + item.getDbid()));
+                                        }
+                                    } else {
+                                        if (!StringUtils.isNull(jsonObjectNum.optString("M_EAm" + item.getDbid()))) {
+                                            tvGameCount.setText(jsonObjectNum.optString("M_EAm" + item.getDbid()));
+                                        }
+                                    }
+                                    String trim = tvGameCount.getText().toString().trim();
+                                    if (TextUtils.isEmpty(trim) || Integer.parseInt(trim) < 1) {
+                                        tvGameCount.setVisibility(View.INVISIBLE);
+                                    } else {
+                                        tvGameCount.setVisibility(View.VISIBLE);
+                                    }
+                                    if (item.getTextColor() != Color.RED) {
+                                        if (tvSportSelect.getText().toString().equals(getString(item.getTextRes()))) {
+                                            tvGameName.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
+                                            llContent.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
+                                        }
+                                    } else {
+                                        if (tvSportSelect.getText().toString().equals(getString(item.getTextRes()))) {
+                                            llContent.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
+                                        }
+                                    }
+                                }
+                            };
+
+                            rv.setAdapter(baseRecyclerAdapter);
+                            baseRecyclerAdapter.addAllAndClear(listSport);
+                            baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
+                                @Override
+                                public void onItemClick(View view, SportIdBean item, int position) {
+                                    tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
+                                    tvSportSelect.setText(getString(item.getTextRes()));
+                                    selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
+                                    closePopupWindow();
+                                }
+                            });
       /*          TextView tvJumpCasino = (TextView) view.findViewById(R.id.tv_jump_casino);
                 tvJumpCasino.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -536,26 +569,31 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                         loginGD();
                     }
                 });*/
-                games_switch_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                    @Override
-                    public void onCheckedChanged(RadioGroup radioGroup, @IdRes int id) {
-                        sports_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        others_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        switch (id) {
-                            case R.id.sports_selected:
-                                baseRecyclerAdapter.addAllAndClear(listSport);
-                                sports_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_blue);
-                                break;
-                            case R.id.others_selected:
-                                baseRecyclerAdapter.addAllAndClear(listOther);
-                                others_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_blue);
-                                break;
+                            games_switch_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                                @Override
+                                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int id) {
+                                    sports_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                                    others_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                                    switch (id) {
+                                        case R.id.sports_selected:
+                                            baseRecyclerAdapter.addAllAndClear(listSport);
+                                            sports_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_blue);
+                                            break;
+                                        case R.id.others_selected:
+                                            baseRecyclerAdapter.addAllAndClear(listOther);
+                                            others_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_blue);
+                                            break;
+                                    }
+                                }
+                            });
                         }
-                    }
-                });
+                    });
+                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 300), AfbUtils.dp2px(mContext, 200));
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
-        popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 300), AfbUtils.dp2px(mContext, 200));
     }
 
     public void clickSportWayRun(View view) {
