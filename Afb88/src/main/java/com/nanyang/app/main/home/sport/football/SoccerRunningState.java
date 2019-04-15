@@ -57,7 +57,6 @@ public class SoccerRunningState extends SoccerCommonState {
         return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.football));
     }
 
-
     @Override
     protected SoccerCommonAdapterHelper onSetCommonAdapterHelper() {
         return new SoccerRunningAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());

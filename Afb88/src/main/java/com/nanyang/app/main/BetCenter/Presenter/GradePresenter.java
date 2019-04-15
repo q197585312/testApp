@@ -5,7 +5,6 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.DateUtils;
-import com.nanyang.app.Utils.TimeUtils;
 import com.nanyang.app.main.BetCenter.Bean.BaseParamBean;
 import com.nanyang.app.main.BetCenter.Bean.DataInfoBean;
 import com.nanyang.app.main.BetCenter.Bean.GradeAllMatchBean;
@@ -13,6 +12,7 @@ import com.nanyang.app.main.BetCenter.Bean.GradeOpenDataBean;
 import com.nanyang.app.main.BetCenter.GradeFragment;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
+import com.unkonw.testapp.libs.utils.TimeUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;

@@ -178,4 +178,16 @@ public class TimeUtils {
 
         return null;
     }
+
+    //yyyy-MM-dd-HH:mm
+    public static String getTime(String format) {
+        SimpleDateFormat myFmt = new SimpleDateFormat(format);
+        return myFmt.format(new Date());
+    }
+
+    //yyyy-MM-dd-HH:mm
+    public static String getTime(String format, Locale locale) {
+        SimpleDateFormat myFmt = new SimpleDateFormat(format, locale);
+        return myFmt.format(new Date());
+    }
 }

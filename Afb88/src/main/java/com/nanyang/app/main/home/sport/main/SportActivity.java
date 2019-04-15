@@ -19,6 +19,7 @@ import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -140,6 +141,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private String currentGameType = "";
     public WebSocket webSocket;
     private AfbDrawerViewHolder afbDrawerViewHolder;
+    private int sort;
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
@@ -437,6 +439,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         return allOdds;
     }
 
+    public int getSortType() {
+        return sort;
+    }
+
+
     @Override
     public void againLogin(String gameType) {
         presenter.login(new LoginInfo(app.getUser().getLoginName(), app.getUser().getPassword()), new BaseConsumer<String>(this) {
@@ -597,7 +604,37 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     public void clickSportWayRun(View view) {
-        currentFragment.toolbarRightClick(view);
+        final TextView textView = view.findViewById(R.id.tv_way_run);
+        createPopupWindow(
+                new BasePopupWindow(mContext, textView, AfbUtils.getScreenWidth(mContext) / 3, AfbUtils.dp2px(mContext, 120)) {
+                    @Override
+                    protected int onSetLayoutRes() {
+                        return R.layout.popupwindow_choice_ball_type;
+                    }
+
+                    @Override
+                    protected void initView(View view) {
+                        super.initView(view);
+                        RecyclerView rv_list = view.findViewById(R.id.rv_list);
+                        final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
+                        final View ll_sort = view.findViewById(R.id.ll_sort);
+                        setChooseTypeAdapter(rv_list, textView);
+                        ll_sort.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                sort = 1 - sort;
+                                checkBox.setChecked(sort == 1);
+                                currentFragment.refresh();
+                            }
+                        });
+                    }
+                });
+        popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 240), AfbUtils.getScreenWidth(mContext) / 3);
+    }
+
+    private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView) {
+        rv_list.setLayoutManager(new LinearLayoutManager(mContext));
+        rv_list.setAdapter(currentFragment.presenter.getStateHelper().switchTypeAdapter(textView));
     }
 
     public void clickMoreMenu(View view) {

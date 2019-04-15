@@ -17,7 +17,6 @@ import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.StringUtils;
-import com.nanyang.app.Utils.TimeUtils;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.load.login.LoginInfo;
@@ -28,6 +27,7 @@ import com.nanyang.app.main.MainPresenter;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
+import com.unkonw.testapp.libs.utils.TimeUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
