@@ -32,6 +32,9 @@ import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
+import com.nanyang.app.main.home.sport.winterSport.WinterSportEarlyState;
+import com.nanyang.app.main.home.sport.winterSport.WinterSportOutRightState;
+import com.nanyang.app.main.home.sport.winterSport.WinterSportTodayState;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -273,7 +276,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 + "&tfDate=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate()
                 + "&LangCol=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getLangCol()
                 + "&um=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getUm()
-                + "&delay=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getDelay();
+                + "&delay=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getDelay()
+                + "&Pn=0"
+                + "&tp=0"
+                + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
+
         return url;
     }
 
@@ -808,22 +815,23 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String d4 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 4), "yyyy-MM-dd");
         String d5 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 5), "yyyy-MM-dd");
         String dv = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
-        String d6 = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.six_day);
-        MenuItemInfo item0 = new MenuItemInfo(2, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.all), "");
-        MenuItemInfo item1 = new MenuItemInfo(0, d1, d1);
-        MenuItemInfo item2 = new MenuItemInfo(0, d2, d2);
-        MenuItemInfo item3 = new MenuItemInfo(0, d3, d3);
-        MenuItemInfo item4 = new MenuItemInfo(0, d4, d4);
-        MenuItemInfo item5 = new MenuItemInfo(0, d5, d5);
-        MenuItemInfo item6 = new MenuItemInfo(1, d6, dv);
-        final List<MenuItemInfo> types = getTypes();
-        types.addAll(Arrays.asList(item0,
+
+
+        MenuItemInfo item1 = new MenuItemInfo(R.mipmap.sport_today, d1, d1);
+        MenuItemInfo item2 = new MenuItemInfo(-1, d2, d2);
+        MenuItemInfo item3 = new MenuItemInfo(-1, d3, d3);
+        MenuItemInfo item4 = new MenuItemInfo(-1, d4, d4);
+        MenuItemInfo item5 = new MenuItemInfo(-1, d5, d5);
+        List<MenuItemInfo> types = new ArrayList<>();
+        types.add(new MenuItemInfo());
+        types.addAll(getTypes());
+        types.addAll(Arrays.asList(
                 item1,
                 item2,
                 item3,
                 item4,
-                item5,
-                item6
+                item5
+
         ));
         BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), types, R.layout.text_base_item) {
             @Override
@@ -844,13 +852,27 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             @Override
             public void onItemClick(View view, MenuItemInfo item, int position) {
                 onTypeClick(item);
-
             }
         });
         return baseRecyclerAdapter;
     }
 
-    protected abstract void onTypeClick(MenuItemInfo item);
+    protected void onTypeClick(MenuItemInfo item) {
+        switch (item.getType()) {
+            case "Early":
+                getBaseView().switchState(new WinterSportEarlyState(getBaseView()));
+                break;
+            case "Today":
+                getBaseView().switchState(new WinterSportTodayState(getBaseView()));
+                break;
+            case "Running":
+                getBaseView().switchState(this);
+                break;
+            case "OutRight":
+                getBaseView().switchState(new WinterSportOutRightState(getBaseView()));
+                break;
+        }
+    }
 
     protected abstract List<MenuItemInfo> getTypes();
 

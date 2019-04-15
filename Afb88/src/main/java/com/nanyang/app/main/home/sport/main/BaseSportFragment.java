@@ -321,27 +321,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     public void toolbarRightClick(View view) {
-        final TextView textView = view.findViewById(R.id.tv_way_run);
-        createPopupWindow(
-                new BasePopupWindow(mContext, textView, AfbUtils.getScreenWidth(getActivity()) / 3, AfbUtils.dp2px(mContext, 120)) {
-                    @Override
-                    protected int onSetLayoutRes() {
-                        return R.layout.popupwindow_choice_ball_type;
-                    }
 
-                    @Override
-                    protected void initView(View view) {
-                        super.initView(view);
-                        RecyclerView rv_list = view.findViewById(R.id.rv_list);
-                        setChooseTypeAdapter(rv_list, textView);
-                    }
-                });
-        popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 120), AfbUtils.getScreenWidth(getActivity()) / 3);
-    }
-
-    private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView) {
-        rv_list.setLayoutManager(new LinearLayoutManager(mContext));
-        rv_list.setAdapter(presenter.getStateHelper().switchTypeAdapter(textView));
     }
 
 
