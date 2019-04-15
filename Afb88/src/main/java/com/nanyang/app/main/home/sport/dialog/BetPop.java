@@ -150,16 +150,12 @@ public class BetPop extends BasePopupWindow {
                     amount = "0";
                 }
                 double max;
-                double odds;
                 if (list.size() > 1) {
                     AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
-                    odds = Double.parseDouble(betAfbList.getPayoutOdds());
                     max = Double.parseDouble(betAfbList.getMaxLimit());
                 } else {
-                    odds = Double.parseDouble(list.get(0).getOdds());
                     max = list.get(0).getMaxLimit();
                 }
-
                 amount = amount.replaceAll(",", "");
                 if (Double.parseDouble(amount) > max) {
                     betAmountEdt.removeTextChangedListener(this);
@@ -171,15 +167,7 @@ public class BetPop extends BasePopupWindow {
                     amount = "0";
                 }
                 double writeMoney = Double.parseDouble(amount);
-                double maxWin;
-                if (list.size() > 1) {
-                    maxWin = odds * writeMoney;
-                } else {
-                    maxWin = odds * writeMoney + writeMoney;
-                }
-                if (odds < 0) {
-                    maxWin = writeMoney * 2;
-                }
+                double maxWin = countMaxPayout(writeMoney);
                 tvMaxWin.setText(AfbUtils.decimalValue((float) maxWin, "0.00"));
                 betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
             }
@@ -206,7 +194,39 @@ public class BetPop extends BasePopupWindow {
                 goCancel();
             }
         });
+        betSureBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goBetting();
+
+            }
+        });
+        betCancelBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goCancel();
+            }
+        });
+        betSureBtn.setEnabled(true);
+        betCancelBtn.setEnabled(true);
         initBetChip();
+    }
+
+    private double countMaxPayout(double money) {
+        double maxWin;
+        double odds;
+        if (list.size() > 1) {
+            AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
+            odds = Double.parseDouble(betAfbList.getPayoutOdds());
+            maxWin = odds * money;
+        } else {
+            odds = Double.parseDouble(list.get(0).getOdds());
+            maxWin = odds * money + money;
+        }
+        if (odds < 0) {
+            maxWin = money * 2;
+        }
+        return maxWin;
     }
 
     private void initBetChip() {
@@ -333,23 +353,14 @@ public class BetPop extends BasePopupWindow {
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
             betMaxBetTv.setText(afbClickBetBean.getMaxLimit() + "");
         }
-        betSureBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goBetting();
-
-            }
-        });/*"http://mobilesport.dig88api.com/_bet/JRecPanel.aspx?gt=s&info.getB()="+data.getType()+"&oId=9070924&odds=1",""*/
-        betCancelBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                goCancel();
-            }
-        });
-        betSureBtn.setEnabled(true);
-        betCancelBtn.setEnabled(true);
         ((BaseActivity) context).hideLoadingDialog();
-        showInput();
+//        showInput();
+        String writeMoney = betAmountEdt.getText().toString().trim();
+        if (!TextUtils.isEmpty(writeMoney)) {
+            tvMaxWin.setText(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"));
+        }
+        stopUpdateOdds();
+        updateOdds(4000);
     }
 
     BaseRecyclerAdapter<AfbClickBetBean> contentAdapter;
@@ -364,56 +375,62 @@ public class BetPop extends BasePopupWindow {
             layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             llMix.setVisibility(View.GONE);
         }
-        contentAdapter = new BaseRecyclerAdapter<AfbClickBetBean>(context, list, R.layout.item_bet) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, final int position, AfbClickBetBean item) {
-                TextView tvBetModuleTitle = holder.getView(R.id.bet_module_title_tv);
-                ImageView imgDelete = holder.getView(R.id.img_delete);
-                TextView tvBetHome = holder.getView(R.id.bet_home_tv);
-                TextView tvBetAway = holder.getView(R.id.bet_away_tv);
-                TextView tvBetName = holder.getView(R.id.bet_name_tv);
-                TextView tvBetHdp = holder.getView(R.id.bet_hdp_tv);
-                TextView tvBetOdds = holder.getView(R.id.bet_odds_tv);
-                tvBetModuleTitle.setText(item.getLeague());
-                tvBetHome.setText(item.getHome());
-                tvBetAway.setText(item.getAway());
-                String bTeam = item.getBTeam();
-                if (bTeam.equals("Home")) {
-                    tvBetName.setText(item.getHome() + item.getHdp());
-                } else {
-                    tvBetName.setText(item.getAway() + item.getHdp());
-                }
-                tvBetHdp.setText(item.getBTT());
-                String odds = item.getOdds();
-                tvBetOdds.setText(odds);
-                if (odds.startsWith("-")) {
-                    tvBetOdds.setTextColor(ContextCompat.getColor(mContext, R.color.red));
-                } else {
-                    tvBetOdds.setTextColor(Color.BLACK);
-                }
-                boolean isHome = item.getIsGive() == 1;
-                if (isHome) {
-                    tvBetHome.setTextColor(ContextCompat.getColor(context, R.color.red_title));
-                    tvBetAway.setTextColor(Color.BLACK);
-                } else {
-                    tvBetAway.setTextColor(ContextCompat.getColor(context, R.color.red_title));
-                    tvBetHome.setTextColor(Color.BLACK);
-                }
-                imgDelete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if (list.size() <= 1) {
-                            goCancel();
-                        } else {
-                            list.remove(position);
-                            presenter.getRefreshOdds(afbApplication.getRefreshOddsUrl());
-                        }
+        if (contentAdapter == null) {
+            contentAdapter = new BaseRecyclerAdapter<AfbClickBetBean>(context, list, R.layout.item_bet) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, final int position, AfbClickBetBean item) {
+                    TextView tvBetModuleTitle = holder.getView(R.id.bet_module_title_tv);
+                    ImageView imgDelete = holder.getView(R.id.img_delete);
+                    TextView tvBetHome = holder.getView(R.id.bet_home_tv);
+                    TextView tvBetAway = holder.getView(R.id.bet_away_tv);
+                    TextView tvBetName = holder.getView(R.id.bet_name_tv);
+                    TextView tvBetHdp = holder.getView(R.id.bet_hdp_tv);
+                    TextView tvBetOdds = holder.getView(R.id.bet_odds_tv);
+                    tvBetModuleTitle.setText(item.getLeague());
+                    tvBetHome.setText(item.getHome());
+                    tvBetAway.setText(item.getAway());
+                    String bTeam = item.getBTeam();
+                    if (bTeam.equals("Home")) {
+                        tvBetName.setText(item.getHome() + item.getHdp());
+                    } else {
+                        tvBetName.setText(item.getAway() + item.getHdp());
                     }
-                });
-            }
-        };
-        rcBetContent.setLayoutManager(new LinearLayoutManager(context));
-        rcBetContent.setAdapter(contentAdapter);
+                    tvBetHdp.setText(item.getBTT());
+                    String odds = item.getOdds();
+                    tvBetOdds.setText(odds);
+                    if (odds.startsWith("-")) {
+                        tvBetOdds.setTextColor(ContextCompat.getColor(mContext, R.color.red));
+                    } else {
+                        tvBetOdds.setTextColor(Color.BLACK);
+                    }
+                    boolean isHome = item.getIsGive() == 1;
+                    if (isHome) {
+                        tvBetHome.setTextColor(ContextCompat.getColor(context, R.color.red_title));
+                        tvBetAway.setTextColor(Color.BLACK);
+                    } else {
+                        tvBetAway.setTextColor(ContextCompat.getColor(context, R.color.red_title));
+                        tvBetHome.setTextColor(Color.BLACK);
+                    }
+                    imgDelete.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            if (list.size() <= 1) {
+                                goCancel();
+                            } else {
+                                stopUpdateOdds();
+                                list.remove(position);
+//                                presenter.getRefreshOdds(afbApplication.getRefreshOddsUrl());
+                                updateOdds(0);
+                            }
+                        }
+                    });
+                }
+            };
+            rcBetContent.setLayoutManager(new LinearLayoutManager(context));
+            rcBetContent.setAdapter(contentAdapter);
+        } else {
+            contentAdapter.setData(list);
+        }
     }
 
     private List<ClearanceBetAmountBean> clearanceBetAmountBeenList;
@@ -457,9 +474,12 @@ public class BetPop extends BasePopupWindow {
         ((BetView) presenter.getBaseView()).onUpdateMixSucceed(null);
     }
 
+    private boolean isNeedInitWeb = true;
+
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
-        if (rTMatchInfo == null)
+        if (rTMatchInfo == null || !isNeedInitWeb) {
             return;
+        }
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
             setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
@@ -475,7 +495,7 @@ public class BetPop extends BasePopupWindow {
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + l;
             AfbUtils.synCookies(context, webView, gameUrl);
         }
-
+        isNeedInitWeb = false;
     }
 
     @OnClick(R.id.bet_pop_close_iv)
@@ -541,6 +561,24 @@ public class BetPop extends BasePopupWindow {
     @Override
     protected void onClose() {
         super.onClose();
-        activity.hintPopInput(betAmountEdt);
+//        activity.hintPopInput(betAmountEdt);
+        stopUpdateOdds();
+        isNeedInitWeb = true;
     }
+
+
+    public void updateOdds(long delayedTime) {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                presenter.getRefreshOdds(afbApplication.getRefreshOddsUrl());
+                handler.postDelayed(this, 3000);
+            }
+        }, delayedTime);
+    }
+
+    public void stopUpdateOdds() {
+        handler.removeCallbacksAndMessages(null);
+    }
+
 }

@@ -100,7 +100,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="赔率:"
+                    android:text="@string/odds_keno"
                     android:textColor="@color/black"
                     android:textSize="15sp" />
 
@@ -154,7 +154,7 @@
                 android:layout_weight="0.5"
                 android:background="@drawable/shape_bet_bg3"
                 android:gravity="center"
-                android:text="BET"
+                android:text="@string/bet"
                 android:textColor="@color/yellow2" />
 
             <TextView
@@ -165,7 +165,7 @@
                 android:layout_weight="0.8"
                 android:background="@drawable/shape_bet_bg4"
                 android:gravity="center"
-                android:text="CANCEL"
+                android:text="@string/cancel"
                 android:textColor="@color/yellow2" />
 
         </LinearLayout>
@@ -190,7 +190,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="最大赢得金额:"
+                    android:text="@string/max_win"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -212,7 +212,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="最小注码:"
+                    android:text="@string/min_bet_money"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -241,7 +241,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="最大注码:"
+                    android:text="@string/max_bet_money"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -263,7 +263,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="最高单场注额:"
+                    android:text="@string/max_single_money"
                     android:textColor="@color/black"
                     android:textSize="12sp" />
 
@@ -286,7 +286,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="投注额度:"
+                android:text="@string/max_single_money"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 

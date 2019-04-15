@@ -528,4 +528,9 @@
     <string name="Net_Error">Net Error</string>
     <string name="Running4">RUNNING</string>
     <string name="TabMyBets">My Bets</string>
+    <string name="max_win">Max Payout:</string>
+    <string name="min_bet_money">Min Bet:</string>
+    <string name="max_bet_money">Max Bet:</string>
+    <string name="max_single_money">Max Match:</string>
+    <string name="bet_limit">Bet Credit:</string>
 </resources>

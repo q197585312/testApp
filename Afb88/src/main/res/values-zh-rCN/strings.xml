@@ -526,4 +526,9 @@
     <string name="Net_Error">Net Error</string>
     <string name="Running4">进行中</string>
     <string name="TabMyBets">我的投注</string>
+    <string name="max_win">最大赢得金额:</string>
+    <string name="min_bet_money">最小注码:</string>
+    <string name="max_bet_money">最大注码:</string>
+    <string name="max_single_money">最高单场注额:</string>
+    <string name="bet_limit">投注额度:</string>
 </resources>
