@@ -3,18 +3,22 @@ package com.nanyang.app.common;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
+import com.nanyang.app.main.MainPresenter;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.base.IBaseView;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -188,5 +192,27 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                 return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
             }
         }), consumer);
+    }
+
+    public void loadAllMainData(LoginInfo.LanguageWfBean languageWfBean, final MainPresenter.CallBack<String> back) {
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                String updateString = AfbUtils.delHTMLTag(data);
+                JSONArray jsonArray = new JSONArray(updateString);
+                if (jsonArray.length() > 3) {
+                    JSONArray jsonArrayData = jsonArray.getJSONArray(3);
+                    if (jsonArrayData.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
+                        JSONObject jsonObject = jsonArrayData.getJSONObject(0);
+                        back.onBack(jsonObject.toString());
+                    }
+                }
+            }
+
+            @Override
+            protected void onAccept() {
+//                super.onAccept();
+            }
+        });
     }
 }
