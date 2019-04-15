@@ -4,9 +4,12 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -619,11 +622,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView hf_under_tv = inflate.findViewById(R.id.hf_under_tv);
         TextView hf_under_odd_tv = inflate.findViewById(R.id.hf_under_odd_tv);
 
-        setUpDownOdds(true, (I) ballInfo, false, "0", ballInfo.getHasHdp(), ballInfo.getHdp(), home_tv, away_tv, home_odd_tv, away_odd_tv, ballInfo.getHOdds(), ballInfo.getAOdds(), "home", "away");
-        setUpDownOdds(true, (I) ballInfo, true, "0", ballInfo.getHasHdp_FH(), ballInfo.getHdp_FH(), hf_home_tv, hf_away_tv, hf_home_odd_tv, hf_away_odd_tv, ballInfo.getHOdds_FH(), ballInfo.getAOdds_FH(), "home", "away");
+        setUpDownOdds(true, (I) ballInfo, false, "0", ballInfo.getHasHdp(), ballInfo.getHdp(), home_tv, away_tv, home_odd_tv, away_odd_tv, ballInfo.getHOdds(), ballInfo.getAOdds(), "home", "away", 1, null, null);
+        setUpDownOdds(true, (I) ballInfo, true, "0", ballInfo.getHasHdp_FH(), ballInfo.getHdp_FH(), hf_home_tv, hf_away_tv, hf_home_odd_tv, hf_away_odd_tv, ballInfo.getHOdds_FH(), ballInfo.getAOdds_FH(), "home", "away", 1, null, null);
         //setUpDownOdds(ouVisiable, item, isFh, isOUNew, hasOU, ou, holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv, holder.viewpagerMatchUnderoddsTv, overOdds, underOdds, overOddsType, underOddsType);
-        setUpDownOdds(true, (I) ballInfo, false, "0", ballInfo.getHasOU(), ballInfo.getOU(), over_tv, under_tv, over_odd_tv, under_odd_tv, ballInfo.getOOdds(), ballInfo.getUOdds(), "over", "under");
-        setUpDownOdds(true, (I) ballInfo, true, "0", ballInfo.getHasOU_FH(), ballInfo.getOU_FH(), hf_over_tv, hf_under_tv, hf_over_odd_tv, hf_under_odd_tv, ballInfo.getOOdds_FH(), ballInfo.getUOdds_FH(), "over", "under");
+        setUpDownOdds(true, (I) ballInfo, false, "0", ballInfo.getHasOU(), ballInfo.getOU(), over_tv, under_tv, over_odd_tv, under_odd_tv, ballInfo.getOOdds(), ballInfo.getUOdds(), "over", "under", 1, null, null);
+        setUpDownOdds(true, (I) ballInfo, true, "0", ballInfo.getHasOU_FH(), ballInfo.getOU_FH(), hf_over_tv, hf_under_tv, hf_over_odd_tv, hf_under_odd_tv, ballInfo.getOOdds_FH(), ballInfo.getUOdds_FH(), "over", "under", 1, null, null);
         parent.addView(inflate);
     }
 
@@ -657,15 +660,15 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         vp.setVisibility(View.VISIBLE);
         ViewHolder holder = new ViewHolder(vp);
         setUpDownOdds(hapVisiable, item, isFh, isHdpNew, hasHdp, hdp, holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv, holder.viewpagerMatchVisitHdpoddsTv
-                , homeHdpOdds, awayHdpOdds, homeOddsType, awayOddsType);
+                , homeHdpOdds, awayHdpOdds, homeOddsType, awayOddsType, 0, holder.imgUpDownUp1, holder.imgUpDownDown1);
         setUpDownOdds(ouVisiable, item, isFh, isOUNew, hasOU, ou, holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv, holder.viewpagerMatchUnderoddsTv
-                , overOdds, underOdds, overOddsType, underOddsType);
+                , overOdds, underOdds, overOddsType, underOddsType, 0, holder.imgUpDownUp2, holder.imgUpDownDown2);
     /*    setUpDownOdds(oeVisiable, item, isFh, isOENew, hasOE, "", holder.viewpagerOddLabelTv, holder.viewpagerEvenLabelTv, holder.viewpagerMatchOddTv, holder.viewpagerMatchEvenTv
                 , OddOdds, EvenOdds, OddOddsType, EvenOddsType);*/
         return vp;
     }
 
-    public void setUpDownOdds(boolean visiableUpDown, I item, boolean isFh, String isNew, String hasUpDown, String upDown, TextView upTextTv, TextView downTextTv, TextView upOddsTv, TextView downOddsTv, String upOdds, String downOdds, String upType, String downType) {
+    public void setUpDownOdds(boolean visiableUpDown, I item, boolean isFh, String isNew, String hasUpDown, String upDown, TextView upTextTv, TextView downTextTv, TextView upOddsTv, TextView downOddsTv, String upOdds, String downOdds, String upType, String downType, int visibilityType, ImageView imgUpDown1, ImageView imgUpDown2) {
 
         if (visiableUpDown) {
             upTextTv.setVisibility(View.VISIBLE);
@@ -753,7 +756,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     break;
 
             }
-            switch (downOdds) {
+            switch (downType) {
                 case "away":
                 case "mmaway":
                     if (isFh) {
@@ -790,21 +793,25 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 upOddsTv.setText("");
                 downTextTv.setText("");
                 downOddsTv.setText("");
-                downParent.setVisibility(View.INVISIBLE);
-                upParent.setVisibility(View.INVISIBLE);
+                if (visibilityType == 0) {
+                    downParent.setVisibility(View.INVISIBLE);
+                    upParent.setVisibility(View.INVISIBLE);
+                }
             } else {
-                downParent.setVisibility(View.VISIBLE);
-                upParent.setVisibility(View.VISIBLE);
+                if (visibilityType == 0) {
+                    downParent.setVisibility(View.VISIBLE);
+                    upParent.setVisibility(View.VISIBLE);
+                }
                 upTextTv.setText(upStr);
                 downTextTv.setText(downStr);
                 boolean isAnimation = false;
                 if (isNew != null && isNew.equals("1")) {
                     isAnimation = true;
                 }
-                setValue(item, upOddsTv, upOdds, false, upType, isFh, R.drawable.green_trans_shadow_top, true, 0);
-                setValue(item, upTextTv, upOdds, isAnimation, upType, isFh, R.drawable.green_trans_shadow_top, false, resUp);
-                setValue(item, downOddsTv, downOdds, false, downType, isFh, R.drawable.green_trans_shadow_bottom, true, 0);
-                setValue(item, downTextTv, downOdds, isAnimation, downType, isFh, R.drawable.green_trans_shadow_bottom, false, resDown);
+                setValue(item, upOddsTv, upOdds, false, upType, isFh, R.drawable.green_trans_shadow_top, true, 0, imgUpDown1);
+                setValue(item, upTextTv, upOdds, isAnimation, upType, isFh, R.drawable.green_trans_shadow_top, false, resUp, imgUpDown1);
+                setValue(item, downOddsTv, downOdds, false, downType, isFh, R.drawable.green_trans_shadow_bottom, true, 0, imgUpDown2);
+                setValue(item, downTextTv, downOdds, isAnimation, downType, isFh, R.drawable.green_trans_shadow_bottom, false, resDown, imgUpDown2);
             }
         } else {
             upTextTv.setVisibility(View.GONE);
@@ -843,7 +850,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         return ss;
     }
 
-    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg, boolean isShowText, final int resUpdate) {
+    protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg, boolean isShowText, final int resUpdate, final ImageView imgUpDown) {
         String value = f;
         if (f.equals("0")) {
             textView.setText("");
@@ -856,34 +863,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 else {
                     value = AfbUtils.decimalValue(Float.valueOf(f), "0.00");
                 }
-               /* if (isAnimation) {
-                    Animation animation = new AlphaAnimation(0.8f, 1.0f);
-                    //设置动画时间
-                    animation.setDuration(2000);
-                    animation.setRepeatCount(3);
-                    animation.setAnimationListener(new Animation.AnimationListener() {
-                        @Override
-                        public void onAnimationStart(Animation animation) {
-                            textView.setCompoundDrawablesWithIntrinsicBounds(resUpdate, 0, 0, 0);
-                        }
-
-                        @Override
-                        public void onAnimationEnd(Animation animation) {
-                            textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                        }
-
-                        @Override
-                        public void onAnimationRepeat(Animation animation) {
-                            textView.setCompoundDrawablesWithIntrinsicBounds(resUpdate, 0, 0, 0);
-                        }
-                    });
-                    textView.startAnimation(animation);
-                } else {
-                    textView.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                if (isAnimation && imgUpDown != null) {
+                    imgUpDown.setImageResource(resUpdate);
+                    imgUpDown.setVisibility(View.VISIBLE);
                 }
-                    textView.setCompoundDrawablesWithIntrinsicBounds(0,0,0,0);
-                }*/
-
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -950,6 +933,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         public TextView viewpagerEvenLabelTv;
         @Bind(R.id.viewpager_match_even_tv)
         public TextView viewpagerMatchEvenTv;
+        @Bind(R.id.img_up_down_up1)
+        public ImageView imgUpDownUp1;
+        @Bind(R.id.img_up_down_up2)
+        public ImageView imgUpDownUp2;
+        @Bind(R.id.img_up_down_down1)
+        public ImageView imgUpDownDown1;
+        @Bind(R.id.img_up_down_down2)
+        public ImageView imgUpDownDown2;
 
         public ViewHolder(View view) {
             ButterKnife.bind(this, view);

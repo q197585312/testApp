@@ -136,7 +136,7 @@
 
             <TextView
                 android:id="@+id/hdp_title_tv"
-                android:layout_width="54dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -147,7 +147,7 @@
 
             <TextView
                 android:id="@+id/ou_title_tv"
-                android:layout_width="65dp"
+                android:layout_width="70dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -479,7 +479,7 @@
 
             <com.unkonw.testapp.training.ScrollLayout
                 android:id="@+id/module_center_sl"
-                android:layout_width="140dp"
+                android:layout_width="160dp"
                 android:layout_height="match_parent">
 
                 <include
