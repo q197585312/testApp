@@ -369,7 +369,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-                        getBaseView().getIBaseContext().showLoadingDialog();
+//                        getBaseView().getIBaseContext().showLoadingDialog();
                         subscription.request(Long.MAX_VALUE);
                     }
                 });
