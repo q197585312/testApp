@@ -15,20 +15,20 @@
         android:padding="8dp">
 
         <CheckBox
-            style="@style/Base.Widget.AppCompat.CompoundButton.CheckBox"
-            android:background="@drawable/checkbox_style"
             android:id="@+id/cb_sort_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/checkbox_sort"
+            android:button="@null"
             android:checked="false"
             android:clickable="false" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/black_grey"
             android:layout_marginLeft="5dp"
-            android:text="@string/sort_by_time" />
+            android:text="@string/sort_by_time"
+            android:textColor="@color/black_grey" />
     </LinearLayout>
 
     <View

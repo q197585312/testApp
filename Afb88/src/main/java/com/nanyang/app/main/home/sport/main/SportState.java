@@ -1070,8 +1070,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 }
             });
 
-        } else {
-            ivAllAdd.setVisibility(View.GONE);
         }
     }
 

@@ -28,6 +28,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.TimeUtils;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -156,6 +157,10 @@ public class HomeFragment extends BaseSwitchFragment {
                 SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getG());
                 MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.running));
                 menuItemInfo.setType("Running");
+                if (sportIdBean == null) {
+                    ToastUtils.showShort(R.string.coming_soon);
+                    return;
+                }
                 menuItemInfo.setParent(sportIdBean.getType());
                 Bundle b1 = new Bundle();
                 b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
