@@ -24,7 +24,7 @@ public abstract class FiveMajorState extends EuropeState {
 
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
         getBaseView().switchState(majorStateHashMap.get(item.getType()));
     }
 

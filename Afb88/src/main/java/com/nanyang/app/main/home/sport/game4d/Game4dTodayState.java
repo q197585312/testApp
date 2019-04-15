@@ -21,7 +21,7 @@ public class Game4dTodayState extends Game4dState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
 
         switch (item.getType()) {
             case "Early":

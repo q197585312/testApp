@@ -33,7 +33,7 @@ public class WinterSportOutRightState extends OutRightState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
         switch (item.getType()) {
             case "Today":
                 getBaseView().switchState(new WinterSportTodayState(getBaseView()));

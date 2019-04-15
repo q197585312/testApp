@@ -33,7 +33,8 @@ public class BasketballEarlyMixState extends BasketballMixState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
+
         if (item.getType().equals("Today")) {
             getBaseView().switchState(new BasketballTodayMixState(getBaseView()));
         } else if (item.getType().equals("Early")) {

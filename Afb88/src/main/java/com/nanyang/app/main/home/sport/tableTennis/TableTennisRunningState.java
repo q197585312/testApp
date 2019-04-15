@@ -22,7 +22,7 @@ public class TableTennisRunningState extends TableTennisState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
         switch (item.getType()) {
             case "Early":
                 getBaseView().switchState(new TableTennisEarlyState(getBaseView()));

@@ -42,7 +42,7 @@ public abstract class EuropeState extends BallState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
         switch (item.getType()) {
             case "Early":
                 getBaseView().switchState(this);
@@ -56,14 +56,7 @@ public abstract class EuropeState extends BallState {
         }
     }
 
-    @Override
-    protected List<MenuItemInfo> getTypes() {
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running"));
-        return types;
-    }
+
 
     @Override
     public boolean isMix() {

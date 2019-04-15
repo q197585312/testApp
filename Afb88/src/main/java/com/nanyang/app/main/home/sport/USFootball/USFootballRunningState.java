@@ -26,7 +26,7 @@ public class USFootballRunningState extends BasketballRunningState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
         switch (item.getType()) {
             case "Early":
                 getBaseView().switchState(new USFootballEarlyState(getBaseView()));

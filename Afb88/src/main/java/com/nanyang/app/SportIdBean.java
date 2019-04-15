@@ -110,4 +110,19 @@ public class SportIdBean implements Serializable {
     public void setSportCount(int sportCount) {
         this.sportCount = sportCount;
     }
+
+    @Override
+    public String toString() {
+        return "SportIdBean{" +
+                "textColor=" + textColor +
+                ", dbid='" + dbid + '\'' +
+                ", baseFragment=" + baseFragment +
+                ", cls=" + cls +
+                ", id='" + id + '\'' +
+                ", textRes=" + textRes +
+                ", sportCount=" + sportCount +
+                ", sportPic=" + sportPic +
+                ", type='" + type + '\'' +
+                '}';
+    }
 }

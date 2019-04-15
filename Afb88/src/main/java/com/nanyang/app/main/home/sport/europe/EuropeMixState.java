@@ -5,7 +5,6 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
@@ -46,13 +45,7 @@ public abstract class EuropeMixState extends BallState {
         return new EuropeBetHelper(getBaseView());
     }
 
-    @Override
-    protected List<MenuItemInfo> getTypes() {
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
-        return types;
-    }
+
     @Override
     public boolean mix() {
         clearMix();

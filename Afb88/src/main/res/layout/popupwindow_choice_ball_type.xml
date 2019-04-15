@@ -2,6 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
+
     android:orientation="vertical">
 
     <LinearLayout
@@ -13,16 +15,18 @@
         android:padding="8dp">
 
         <CheckBox
+            style="@style/Base.Widget.AppCompat.CompoundButton.CheckBox"
+            android:background="@drawable/checkbox_style"
             android:id="@+id/cb_sort_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:button="@drawable/checkbox_style"
             android:checked="false"
             android:clickable="false" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="@color/black_grey"
             android:layout_marginLeft="5dp"
             android:text="@string/sort_by_time" />
     </LinearLayout>

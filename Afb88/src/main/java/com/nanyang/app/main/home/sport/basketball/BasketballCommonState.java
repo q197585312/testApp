@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.basketball;
 import android.view.View;
 import android.widget.TextView;
 
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.europe.BallState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
@@ -13,7 +12,6 @@ import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -100,15 +98,7 @@ public abstract class BasketballCommonState extends BallState {
 
 
 
-    @Override
-    protected List<MenuItemInfo> getTypes() {
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running"));
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
-//        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight), "OutRight"));
-        return types;
-    }
+
 
     @Override
     protected List<List<String>> initHeaderList() {

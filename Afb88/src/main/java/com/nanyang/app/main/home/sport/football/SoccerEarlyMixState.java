@@ -32,7 +32,7 @@ public class SoccerEarlyMixState extends SoccerMixState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
         if (item.getType().equals("Today")) {
             getBaseView().switchState(new SoccerTodayMixState(getBaseView()));
         } else if (item.getType().equals("Early")) {

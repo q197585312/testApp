@@ -25,7 +25,8 @@ public class BoxingRunningState extends BoxingState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
+
         switch (item.getType()) {
             case "Early":
                 getBaseView().switchState(new BoxingEarlyState(getBaseView()));

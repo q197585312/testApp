@@ -20,21 +20,20 @@ import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.WritableCallback;
 import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
-import com.nanyang.app.main.home.sport.winterSport.WinterSportEarlyState;
-import com.nanyang.app.main.home.sport.winterSport.WinterSportOutRightState;
-import com.nanyang.app.main.home.sport.winterSport.WinterSportTodayState;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -48,6 +47,7 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
@@ -101,6 +101,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     private DataUpdateRunnable dataUpdateRunnable;
     private boolean isSearch = false;
     private String searchStr = "";
+    private String wd = "";
+
+    public String getWd() {
+        return wd;
+    }
 
     public int getPageSize() {
         return pageSize;
@@ -281,6 +286,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 + "&tp=0"
                 + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
 
+        if (!StringUtils.isNull(wd)) {
+            url = url + "&wd=" + wd;
+        }
         return url;
     }
 
@@ -342,14 +350,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             case "Choose":
                 createChoosePop(view);
                 return;
-//            case "Not settled":
-//                b.putString(AppConstant.KEY_STRING, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.stake));
-//                ((BaseToolbarActivity) baseView.getIBaseContext()).skipAct(PersonCenterActivity.class, b);
-//                break;
-//            case "Settled":
-//                b.putString(AppConstant.KEY_STRING, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.statement));
-//                ((BaseToolbarActivity) baseView.getIBaseContext()).skipAct(PersonCenterActivity.class, b);
-//                break;
         }
     }
 
@@ -800,9 +800,104 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
+    BaseRecyclerAdapter<MenuItemInfo<Integer>> switchTypeAdapter;
 
     @Override
-    public BaseRecyclerAdapter switchTypeAdapter(final TextView textView) {
+    public BaseRecyclerAdapter switchTypeAdapter(final TextView textView, final JSONObject jsonObjectNum) {
+
+        switchTypeAdapter = new BaseRecyclerAdapter<MenuItemInfo<Integer>>(getBaseView().getIBaseContext().getBaseActivity(), getTypes(), R.layout.item_sport_switch) {
+            public String numGame = "";
+
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<Integer> item) {
+                Integer integer = typePositionMap.get(true);
+                if (integer != null && integer == position) {
+                    holder.getImageView(R.id.img_game_pic).setBackgroundResource(item.getParent());
+                    holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
+                    holder.getTextView(R.id.tv_game_name).setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
+
+                } else {
+                    holder.getImageView(R.id.img_game_pic).setBackgroundResource(item.getRes());
+                    holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));
+                    holder.getTextView(R.id.tv_game_name).setTextColor(ContextCompat.getColor(mContext, R.color.black_grey));
+                }
+                TextView tv = holder.getView(R.id.tv_game_name);
+                tv.setText(item.getText());
+                TextView tv_game_count = holder.getView(R.id.tv_game_count);
+                tv_game_count.setVisibility(View.GONE);
+
+                String ballG = ((BallBetHelper) getBetHelper()).getBallG();
+                if (StringUtils.isNull(ballG))
+                    return;
+                SportIdBean sportIdBean = AfbUtils.identificationSportById(ballG);
+                if (sportIdBean == null || StringUtils.isNull(sportIdBean.getDbid()))
+                    return;
+                String type = item.getType();
+                Log.d("getType", "ballG:" + ballG + ",sportIdBean.getDbid()" + sportIdBean.getDbid() + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum + ",sportIdBean:" + sportIdBean);
+
+                if (type.equals("Running")) {
+                    if (jsonObjectNum != null) {
+                        if (!StringUtils.isNull(jsonObjectNum.optString("M_RAm" + sportIdBean.getDbid()))) {
+                            numGame = (jsonObjectNum.optString("M_RAm" + sportIdBean.getDbid()));
+                        }
+                    }
+                } else if (type.equals("Today")) {
+                    if (!StringUtils.isNull(jsonObjectNum.optString("M_TAm" + sportIdBean.getDbid()))) {
+                        numGame = (jsonObjectNum.optString("M_TAm" + sportIdBean.getDbid()));
+                    }
+                } else if (type.equals("Early")) {
+                    if (!StringUtils.isNull(jsonObjectNum.optString("M_EAm" + sportIdBean.getDbid()))) {
+                        numGame = (jsonObjectNum.optString("M_EAm" + sportIdBean.getDbid()));
+                    }
+                } else {
+                    numGame = "";
+                }
+                if (!StringUtils.isNull(numGame)) {
+                    tv_game_count.setVisibility(View.VISIBLE);
+                    tv_game_count.setText(numGame);
+                } else {
+                    tv_game_count.setVisibility(View.GONE);
+                    tv_game_count.setText("");
+                }
+
+
+            }
+
+        };
+        switchTypeAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+            @Override
+            public void onItemClick(View view, MenuItemInfo item, int position) {
+                onTypeWayClick(item, position);
+            }
+        });
+        return switchTypeAdapter;
+    }
+
+    Map<Boolean, Integer> typePositionMap = new HashMap<>();
+
+    protected void onTypeWayClick(MenuItemInfo item, int position) {
+        if (item.getRes() == R.mipmap.date_day_grey) {
+            this.wd = item.getType();
+            onTypeClick(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
+                    , "Early", R.mipmap.date_early_green), position);
+        } else {
+            this.wd = "";
+            onTypeClick(item, position);
+        }
+        Integer integer = typePositionMap.get(true);
+        typePositionMap.put(true, position);
+        if (integer != null)
+            switchTypeAdapter.notifyItemChanged(integer);
+        switchTypeAdapter.notifyItemChanged(position);
+        getBaseView().getIBaseContext().getBaseActivity().stopPopupWindow();
+
+
+    }
+
+    protected abstract void onTypeClick(MenuItemInfo item, int position);
+
+
+    protected List<MenuItemInfo<Integer>> getTypes() {
         String h12 = TimeUtils.dateFormat(new Date(), "yyyy-MM-dd") + " 12:00:00";
         String now = TimeUtils.dateFormat(new Date(), "yyyy-MM-dd HH:mm:ss");
         long dif = TimeUtils.diffTime(now, h12, "yyyy-MM-dd HH:mm:ss");
@@ -814,17 +909,22 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String d3 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 3), "yyyy-MM-dd");
         String d4 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 4), "yyyy-MM-dd");
         String d5 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 5), "yyyy-MM-dd");
-        String dv = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
+//        String dv = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
 
 
-        MenuItemInfo item1 = new MenuItemInfo(R.mipmap.sport_today, d1, d1);
-        MenuItemInfo item2 = new MenuItemInfo(-1, d2, d2);
-        MenuItemInfo item3 = new MenuItemInfo(-1, d3, d3);
-        MenuItemInfo item4 = new MenuItemInfo(-1, d4, d4);
-        MenuItemInfo item5 = new MenuItemInfo(-1, d5, d5);
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo());
-        types.addAll(getTypes());
+        MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, d1, d1, R.mipmap.date_day_green);
+        MenuItemInfo<Integer> item2 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, d2, d2, R.mipmap.date_day_green);
+        MenuItemInfo<Integer> item3 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, d3, d3, R.mipmap.date_day_green);
+        MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, d4, d4, R.mipmap.date_day_green);
+        MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, d5, d5);
+
+        List<MenuItemInfo<Integer>> types = new ArrayList<>();
+        types.add(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
+        types.add(new MenuItemInfo<Integer>(R.mipmap.date_today_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", R.mipmap.date_today_green));
+        types.add(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
+                + "(" + getBaseView().getIBaseContext().getBaseActivity().getString(R.string.all) + ")"
+                , "Early", R.mipmap.date_early_green));
+
         types.addAll(Arrays.asList(
                 item1,
                 item2,
@@ -833,48 +933,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 item5
 
         ));
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), types, R.layout.text_base_item) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                TextView tv = holder.getView(R.id.item_text_tv);
-                tv.setText(item.getText());
-                if (textView.getText().toString().equals(item.getText())) {
-                    tv.setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
-                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
-                } else {
-                    tv.setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));
-                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.black));
-                }
-            }
-
-        };
-        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-            @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                onTypeClick(item);
-            }
-        });
-        return baseRecyclerAdapter;
+        return types;
     }
-
-    protected void onTypeClick(MenuItemInfo item) {
-        switch (item.getType()) {
-            case "Early":
-                getBaseView().switchState(new WinterSportEarlyState(getBaseView()));
-                break;
-            case "Today":
-                getBaseView().switchState(new WinterSportTodayState(getBaseView()));
-                break;
-            case "Running":
-                getBaseView().switchState(this);
-                break;
-            case "OutRight":
-                getBaseView().switchState(new WinterSportOutRightState(getBaseView()));
-                break;
-        }
-    }
-
-    protected abstract List<MenuItemInfo> getTypes();
 
     @Override
     public void notifyDataChanged() {

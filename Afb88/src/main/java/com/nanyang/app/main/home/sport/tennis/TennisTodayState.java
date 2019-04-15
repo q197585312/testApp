@@ -21,7 +21,7 @@ public class TennisTodayState extends TennisState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
 
         switch (item.getType()) {
             case "Early":

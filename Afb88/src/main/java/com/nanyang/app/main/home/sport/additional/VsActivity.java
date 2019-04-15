@@ -19,7 +19,6 @@ import com.nanyang.app.main.home.sport.adapter.MyFragmentPagerAdapter;
 import com.nanyang.app.main.home.sport.football.SoccerCommonBetHelper;
 import com.nanyang.app.main.home.sport.football.SoccerRunningBetHelper;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
-import com.nanyang.app.main.home.sport.mixparlayList.MixOrderListActivity;
 import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;

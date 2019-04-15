@@ -33,7 +33,7 @@ public class SoccerOutRightState extends OutRightState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
         if (item.getType().equals("Today")) {
             getBaseView().switchState(new SoccerTodayState(getBaseView()));
         }else if(item.getType().equals("Early")) {

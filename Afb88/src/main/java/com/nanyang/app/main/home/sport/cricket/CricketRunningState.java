@@ -25,7 +25,7 @@ public class CricketRunningState extends CricketState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
         switch (item.getType()) {
             case "Early":
                 getBaseView().switchState(new CricketEarlyState(getBaseView()));

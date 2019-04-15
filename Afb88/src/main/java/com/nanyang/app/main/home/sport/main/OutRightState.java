@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.main;
 import android.view.View;
 import android.widget.TextView;
 
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -13,7 +12,6 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -96,15 +94,6 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
         return allData;
     }
 
-    @Override
-    protected List<MenuItemInfo> getTypes() {
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running"));
-        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
-//        types.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight), "OutRight"));
-        return types;
-    }
 
 
     @Override

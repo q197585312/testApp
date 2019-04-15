@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.basketball;
 import android.view.View;
 import android.widget.TextView;
 
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.europe.BallState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
@@ -14,7 +13,6 @@ import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -82,13 +80,6 @@ public abstract class BasketballMixState extends BallState {
     }
 
 
-    @Override
-    protected List<MenuItemInfo> getTypes() {
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
-        return types;
-    }
 
     @Override
     public boolean mix() {

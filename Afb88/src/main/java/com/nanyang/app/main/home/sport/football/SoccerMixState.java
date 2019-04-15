@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.europe.BallState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
@@ -16,9 +15,6 @@ import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
 import org.reactivestreams.Subscription;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -95,16 +91,6 @@ public abstract class SoccerMixState extends BallState {
         return new SoccerMixBetHelper(getBaseView());
     }
 */
-
-
-
-    @Override
-    protected List<MenuItemInfo> getTypes() {
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
-        return types;
-    }
 
 
     @Override

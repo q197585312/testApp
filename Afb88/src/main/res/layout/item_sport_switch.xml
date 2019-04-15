@@ -11,8 +11,8 @@
 
     <ImageView
         android:id="@+id/img_game_pic"
-        android:layout_width="30dp"
-        android:layout_height="30dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:background="@mipmap/football" />
 
     <TextView

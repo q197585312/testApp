@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.myanmarOdds;
 import android.view.View;
 import android.widget.TextView;
 
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -16,7 +15,6 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -185,14 +183,6 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
         return allData;
     }
 
-    @Override
-    protected List<MenuItemInfo> getTypes() {
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today"));
-        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early"));
-        types.add(new MenuItemInfo(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running"));
-        return types;
-    }
 
     @Override
     public boolean mix() {

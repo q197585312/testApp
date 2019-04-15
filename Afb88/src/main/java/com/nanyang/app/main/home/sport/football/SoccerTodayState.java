@@ -33,7 +33,7 @@ public class SoccerTodayState extends SoccerCommonState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
         switch (item.getType()) {
             case "Running":
                 getBaseView().switchState(new SoccerRunningState(getBaseView()));

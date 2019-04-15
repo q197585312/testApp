@@ -28,7 +28,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -41,7 +40,6 @@ import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
-import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.nanyang.app.main.MainPresenter;
@@ -210,6 +208,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         super.initData();
         app = (AfbApplication) getApplication();
         item = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
+
         afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
 
         if (item != null) {
@@ -477,13 +476,15 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 //        skipAct(PersonCenterActivity.class, b);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     public void clickSportSelect(final View view) {
         presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
-                PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
-                personalInfo.setPassword(getApp().getUser().getPassword());
-                getApp().setUser(personalInfo);
                 try {
                     final JSONObject jsonObjectNum = new JSONObject(data);
                     createPopupWindow(new BasePopupWindow(mContext, view, AfbUtils.dp2px(mContext, 200), AfbUtils.dp2px(mContext, 300)) {
@@ -603,38 +604,49 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         });
     }
 
-    public void clickSportWayRun(View view) {
+    public void clickSportWayRun(final View view) {
         final TextView textView = view.findViewById(R.id.tv_way_run);
-        createPopupWindow(
-                new BasePopupWindow(mContext, textView, AfbUtils.getScreenWidth(mContext) / 3, AfbUtils.dp2px(mContext, 120)) {
-                    @Override
-                    protected int onSetLayoutRes() {
-                        return R.layout.popupwindow_choice_ball_type;
-                    }
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new MainPresenter.CallBack<String>() {
+            @Override
+            public void onBack(String data) {
+                try {
+                    final JSONObject jsonObjectNum = new JSONObject(data);
+                    createPopupWindow(
+                            new BasePopupWindow(mContext, textView, AfbUtils.getScreenWidth(mContext) / 2, AfbUtils.dp2px(mContext, 240)) {
+                                @Override
+                                protected int onSetLayoutRes() {
+                                    return R.layout.popupwindow_choice_ball_type;
+                                }
 
-                    @Override
-                    protected void initView(View view) {
-                        super.initView(view);
-                        RecyclerView rv_list = view.findViewById(R.id.rv_list);
-                        final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
-                        final View ll_sort = view.findViewById(R.id.ll_sort);
-                        setChooseTypeAdapter(rv_list, textView);
-                        ll_sort.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                sort = 1 - sort;
-                                checkBox.setChecked(sort == 1);
-                                currentFragment.refresh();
-                            }
-                        });
-                    }
-                });
-        popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 240), AfbUtils.getScreenWidth(mContext) / 3);
+                                @Override
+                                protected void initView(View view) {
+                                    super.initView(view);
+                                    RecyclerView rv_list = view.findViewById(R.id.rv_list);
+                                    final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
+                                    final View ll_sort = view.findViewById(R.id.ll_sort);
+                                    setChooseTypeAdapter(rv_list, textView,jsonObjectNum);
+                                    ll_sort.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View view) {
+                                            sort = 1 - sort;
+                                            checkBox.setChecked(sort == 1);
+                                            currentFragment.refresh();
+                                        }
+                                    });
+                                }
+                            });
+                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 240), AfbUtils.getScreenWidth(mContext) / 2);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+        });
     }
 
-    private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView) {
+    private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView, JSONObject jsonObjectNum) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
-        rv_list.setAdapter(currentFragment.presenter.getStateHelper().switchTypeAdapter(textView));
+        rv_list.setAdapter(currentFragment.presenter.getStateHelper().switchTypeAdapter(textView,jsonObjectNum));
     }
 
     public void clickMoreMenu(View view) {

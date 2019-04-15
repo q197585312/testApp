@@ -22,7 +22,7 @@ public class RugbyRunningState extends RugbyState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
         switch (item.getType()) {
             case "Early":
                 getBaseView().switchState(new RugbyEarlyState(getBaseView()));

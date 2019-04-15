@@ -25,7 +25,7 @@ public class FinancialEarlyState extends FinancialState {
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item) {
+    protected void onTypeClick(MenuItemInfo item, int position) {
 
         switch (item.getType()) {
             case "Early":
