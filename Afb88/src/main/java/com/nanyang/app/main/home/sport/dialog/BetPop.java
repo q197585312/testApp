@@ -370,7 +370,7 @@ public class BetPop extends BasePopupWindow {
         if (list.size() > 1) {
             initMix();
             llMix.setVisibility(View.VISIBLE);
-            layoutParams.height = AfbUtils.dp2px(context, 60 * 2);
+            layoutParams.height = AfbUtils.dp2px(context, 55 * 2);
         } else {
             layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             llMix.setVisibility(View.GONE);
@@ -420,6 +420,7 @@ public class BetPop extends BasePopupWindow {
                                 stopUpdateOdds();
                                 list.remove(position);
 //                                presenter.getRefreshOdds(afbApplication.getRefreshOddsUrl());
+                                isNeedInitWeb = true;
                                 updateOdds(0);
                             }
                         }
@@ -477,6 +478,10 @@ public class BetPop extends BasePopupWindow {
     private boolean isNeedInitWeb = true;
 
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
+        if (list.size() > 1) {
+            betPopParentTopFl.setVisibility(View.GONE);
+            return;
+        }
         if (rTMatchInfo == null || !isNeedInitWeb) {
             return;
         }
@@ -496,11 +501,6 @@ public class BetPop extends BasePopupWindow {
             AfbUtils.synCookies(context, webView, gameUrl);
         }
         isNeedInitWeb = false;
-    }
-
-    @OnClick(R.id.bet_pop_close_iv)
-    public void onClick() {
-
     }
 
     MixDialog mixdialog;

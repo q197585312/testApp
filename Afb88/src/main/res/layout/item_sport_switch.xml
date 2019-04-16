@@ -30,7 +30,9 @@
         android:layout_height="wrap_content"
         android:background="@drawable/rectangle_green_dark_all_corners8"
         android:gravity="center"
-        android:padding="2dp"
-        android:text="123"
+        android:paddingBottom="2dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="2dp"
         android:textColor="@color/white" />
 </LinearLayout>

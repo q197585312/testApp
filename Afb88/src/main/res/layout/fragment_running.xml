@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/grey_background">
+    android:background="@color/grey_background"
+    android:orientation="vertical">
 
     <RadioGroup
         android:id="@+id/running_group"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="53dp"
         android:background="@color/white"
         android:orientation="horizontal"
         android:padding="10dp">
@@ -16,81 +16,88 @@
         <RadioButton
             android:id="@+id/running_waiting"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selector_running_select_left"
             android:button="@null"
             android:checked="true"
             android:gravity="center"
-            android:paddingBottom="6dp"
-            android:paddingTop="6dp"
             android:text="@string/WAITING2"
-            android:textColor="@color/color_green" />
+            android:textColor="@color/color_yellow"
+            android:textSize="13sp" />
 
         <RadioButton
             android:id="@+id/running_accepted"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selector_running_select_center"
             android:button="@null"
+            android:drawableBottom="@drawable/shape_line_green"
+            android:drawableTop="@drawable/shape_line_green"
             android:gravity="center"
-            android:paddingBottom="6dp"
-            android:paddingTop="6dp"
             android:text="@string/ACCEPTED2"
-            android:textColor="@color/color_green" />
+            android:textColor="@color/color_green"
+            android:textSize="13sp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/green"></View>
 
         <RadioButton
             android:id="@+id/running_rejected"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selector_running_select_center"
             android:button="@null"
+            android:drawableBottom="@drawable/shape_line_green"
+            android:drawableTop="@drawable/shape_line_green"
             android:gravity="center"
-            android:paddingBottom="6dp"
-            android:paddingTop="6dp"
             android:text="@string/REJECTED2"
-            android:textColor="@color/color_green" />
+            android:textColor="@color/color_red"
+            android:textSize="13sp" />
 
         <RadioButton
             android:id="@+id/running_cancelled"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@drawable/selector_running_select_right"
             android:button="@null"
             android:gravity="center"
-            android:paddingBottom="6dp"
-            android:paddingTop="6dp"
             android:text="@string/CANCELLED2"
-            android:textColor="@color/color_green" />
+            android:textColor="@color/color_red"
+            android:textSize="13sp" />
     </RadioGroup>
 
     <android.support.v7.widget.RecyclerView
+        android:id="@+id/running_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:id="@+id/running_list"
         android:background="@color/grey_background"
         android:paddingLeft="5dp"
         android:paddingRight="5dp">
 
     </android.support.v7.widget.RecyclerView>
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
         android:text="@string/Note"
-        android:textSize="16sp"
-        android:paddingLeft="10dp"
-        android:paddingBottom="10dp"/>
+        android:textColor="@color/black"
+        android:textSize="16sp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        android:text="请注意显示时间为GMT+8时区"
-        android:textSize="16sp"
+        android:paddingBottom="10dp"
         android:paddingLeft="10dp"
-        android:paddingBottom="10dp"/>
+        android:text="请注意显示时间为GMT+8时区"
+        android:textColor="@color/black"
+        android:textSize="16sp" />
 </LinearLayout>

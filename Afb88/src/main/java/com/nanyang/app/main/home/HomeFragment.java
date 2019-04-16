@@ -133,8 +133,9 @@ public class HomeFragment extends BaseSwitchFragment {
                 if (sportIdBean != null && sportIdBean.getTextRes() > 0) {
                     tv.setText(getString(sportIdBean.getTextRes()));//M_RAm1
                     tv.setTextColor(getResources().getColor(sportIdBean.getTextColor()));
-                } else
-                    tv.setText("");
+                } else {
+                    tv.setText("gd88Casino");
+                }
                 tv_num.setVisibility(View.GONE);
                 if (jsonObjectNum != null) {
                     if (!StringUtils.isNull(jsonObjectNum.optString("M_RAm" + item.getDbid()))) {

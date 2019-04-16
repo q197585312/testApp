@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="60dp"
+    android:layout_height="55dp"
     android:background="@color/white"
     android:orientation="vertical">
 
@@ -15,6 +15,7 @@
         <TextView
             android:id="@+id/bet_module_title_tv"
             android:layout_width="0dp"
+            android:singleLine="true"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:textColor="@color/black" />

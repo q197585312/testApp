@@ -29,7 +29,7 @@
     <string name="Recharge">Recharge</string>
     <string name="Withdrawals">Withdrawals</string>
     <string name="My_order">My order</string>
-    <string name="history_record">History record</string>
+    <string name="history_record">My Bets</string>
     <string name="Game_type">Game type</string>
     <string name="Start_time">Start time</string>
     <string name="End_time">End time</string>
@@ -533,4 +533,5 @@
     <string name="max_bet_money">Max Bet:</string>
     <string name="max_single_money">Max Match:</string>
     <string name="bet_limit">Bet Credit:</string>
+    <string name="Select_League">Select League</string>
 </resources>

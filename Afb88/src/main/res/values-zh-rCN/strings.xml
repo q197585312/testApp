@@ -28,7 +28,7 @@
     <string name="Recharge">Recharge</string>
     <string name="Withdrawals">取款</string>
     <string name="My_order">注单</string>
-    <string name="history_record">下注记录</string>
+    <string name="history_record">我的投注</string>
     <string name="Game_type">Game type</string>
     <string name="Start_time">开始时间</string>
     <string name="End_time">End time</string>
@@ -531,4 +531,5 @@
     <string name="max_bet_money">最大注码:</string>
     <string name="max_single_money">最高单场注额:</string>
     <string name="bet_limit">投注额度:</string>
+    <string name="Select_League">选择联赛</string>
 </resources>
