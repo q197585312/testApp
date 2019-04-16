@@ -233,9 +233,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
             tvMixCount.setVisibility(View.VISIBLE);
             tvOrderCount.setVisibility(View.VISIBLE);
+            ivOrderTop.setImageResource(R.mipmap.sport_shopping_top_white);
             tvMixCount.setText("" + getApp().getBetParList().getList().size());
             tvOrderCount.setText("" + getApp().getBetParList().getList().size());
         } else {
+            ivOrderTop.setImageResource(R.mipmap.sport_shopping_top_gray);
             tvMixCount.setVisibility(View.GONE);
             tvOrderCount.setVisibility(View.GONE);
             tvMixCount.setText("0");

@@ -26,12 +26,10 @@ import solid.ren.skinlibrary.loader.SkinManager;
 
 
 public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
-
-
     private Dialog noticeDialog;
     private ProgressBar mProgressBar;
     private AlertDialog downloadDialog;
-    private long totleLength;
+    private long totalLength;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,8 +45,6 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
                 SkinManager.getInstance().loadSkin("skinpurplepackage.skin", null);
                 break;
         }
-
-
         setContentView(R.layout.activity_welcome);
         createPresenter(new WelcomePresenter(this));
         try {
@@ -67,33 +63,28 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
             e.printStackTrace();
             ((BaseActivity) getBaseActivity()).skipAct(LoginActivity.class);
         }
-
     }
-
 
     public void onLoadingApk(final int len, final long contentLength) {
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                totleLength += len;
-                Log.d("LOAD", "contentLength:" + contentLength + "\n" +
-                        "length:" + totleLength);
-                mProgressBar.setProgress((int) (totleLength * 100 / contentLength));
+                totalLength += len;
+                int progress = (int) (totalLength * 100 / contentLength);
+                Log.d("runOnUiThread", "run: " + progress);
+                mProgressBar.setProgress(progress);
             }
         });
-
     }
 
     public void onLoadError(String error) {
         ToastUtils.showShort(error);
     }
 
-
     public void onLoadEnd(File file) {
         downloadDialog.dismiss();
         SystemTool.installApk(mContext, file);
     }
-
 
     public void onGetData(String data) {
         try {
@@ -128,13 +119,13 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         builder.setTitle(R.string.Loading);
         final LayoutInflater inflater = LayoutInflater.from(mContext);
         View v = inflater.inflate(R.layout.download_progress_layout, null);
-        mProgressBar = (ProgressBar) v.findViewById(R.id.updateProgress);
+        mProgressBar = v.findViewById(R.id.updateProgress);
         builder.setView(v);
         downloadDialog = builder.create();
         downloadDialog.setCancelable(false);
         downloadDialog.show();
         presenter.updateVersion(version);
-        totleLength = 0;
+        totalLength = 0;
     }
 
 

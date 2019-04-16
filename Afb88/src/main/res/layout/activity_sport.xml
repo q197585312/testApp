@@ -182,7 +182,7 @@
                         android:layout_gravity="center"
                         android:contentDescription="@null"
                         android:onClick="clickOrderTop"
-                        android:src="@mipmap/sport_shopping_top_white" />
+                        android:src="@mipmap/sport_shopping_top_gray" />
 
                     <TextView
                         android:id="@+id/tv_order_count_top"

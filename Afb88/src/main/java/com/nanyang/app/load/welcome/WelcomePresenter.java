@@ -62,28 +62,25 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         file = new File(path, "afb88.apk");
         file.deleteOnExit();
         Disposable subscription = getService(ApiService.class).updateVersion().observeOn(Schedulers.io()).subscribeOn(Schedulers.io())
-//                mApiWrapper.updateVersion()
                 .subscribe(new Consumer<ResponseBody>() {//onNext
                     @Override
                     public void accept(ResponseBody response) throws Exception {
                         long contentLength;
-
                         InputStream is = response.byteStream();
                         contentLength = response.contentLength();
                         FileOutputStream fos = new FileOutputStream(file);
                         BufferedInputStream bis = new BufferedInputStream(is);
                         byte[] buffer = new byte[1024];
                         int len;
-
                         while ((len = bis.read(buffer)) != -1) {
-                            fos.write(buffer, 0, len);
                             baseContext.onLoadingApk(len, contentLength);
+                            fos.write(buffer, 0, len);
                         }
                         fos.flush();
                         fos.close();
                         bis.close();
                         is.close();
-
+                        Thread.sleep(1500);
                         if (file.exists() && file.length() > 0)
                             baseContext.onLoadEnd(file);
                     }
