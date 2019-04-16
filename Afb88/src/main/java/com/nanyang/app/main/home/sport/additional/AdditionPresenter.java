@@ -4,7 +4,6 @@ package com.nanyang.app.main.home.sport.additional;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
-import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
@@ -14,7 +13,6 @@ import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
-import com.unkonw.testapp.libs.utils.LogUtil;
 
 import org.json.JSONException;
 
@@ -68,13 +66,13 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
 
         @Override
         public void run() {
-            doRetrofitApiOnUiThread(getService(ApiService.class).getData(getUrl()), new BaseConsumer<String>(baseContext) {
+            doRetrofitApiOnUiThread(getService(ApiService.class).getAdditionData(getUrl()), new BaseConsumer<AdditionBean>(baseContext) {
                 @Override
-                protected void onBaseGetData(String data) throws JSONException {
-                    Gson gson = new Gson();
+                protected void onBaseGetData(AdditionBean data) throws JSONException {
+                 /*   Gson gson = new Gson();
                     LogUtil.d("Addition", "-------" + data);
-                    AdditionBean additionBean = gson.fromJson(data, AdditionBean.class);
-                    AdditionPresenter.this.baseContext.onAddition(additionBean, position);
+                    AdditionBean additionBean = gson.fromJson(data, AdditionBean.class);*/
+                    AdditionPresenter.this.baseContext.onAddition(data, position);
                 }
 
                 @Override

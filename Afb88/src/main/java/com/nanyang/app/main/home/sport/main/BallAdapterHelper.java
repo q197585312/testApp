@@ -4,12 +4,9 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.animation.AlphaAnimation;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -73,8 +70,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public synchronized void notifyPositionAddition(AdditionBean data, int position) {
         this.additionData = data;
+        int oldAdditionPosition = additionPosition;
+
         this.additionPosition = position;
         getBaseRecyclerAdapter().notifyItemChanged(position);
+        if (oldAdditionPosition >= 0)
+            getBaseRecyclerAdapter().notifyItemChanged(oldAdditionPosition);
 
     }
 
