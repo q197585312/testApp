@@ -48,7 +48,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         setContentView(R.layout.activity_welcome);
         createPresenter(new WelcomePresenter(this));
         try {
-            presenter.checkVersion(SystemTool.getPackageInfo(getBaseActivity()).versionName, new BaseConsumer<String>(this) {
+            presenter.checkVersion(new BaseConsumer<String>(this) {
                 @Override
                 protected void onBaseGetData(String data) {
                     onGetData(data);
@@ -110,7 +110,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         });
 
         noticeDialog = builder.create();
-        noticeDialog.setCancelable(false);
+        noticeDialog.setCanceledOnTouchOutside(false);
         noticeDialog.show();
     }
 
