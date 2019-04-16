@@ -3,22 +3,20 @@ package com.nanyang.app.common;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
+import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainPresenter;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.base.IBaseView;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -195,6 +193,9 @@ public class LanguagePresenter extends BaseSwitchPresenter {
     }
 
     public void loadAllMainData(LoginInfo.LanguageWfBean languageWfBean, final MainPresenter.CallBack<String> back) {
+        LoadMainDataHelper helper=new LoadMainDataHelper( mApiWrapper,baseContext.getBaseActivity(),mCompositeSubscription);
+        helper.doRetrofitApiOnUiThread(languageWfBean,back);
+/*
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
@@ -211,8 +212,9 @@ public class LanguagePresenter extends BaseSwitchPresenter {
 
             @Override
             protected void onAccept() {
-//                super.onAccept();
+                super.onAccept();
             }
         });
+*/
     }
 }

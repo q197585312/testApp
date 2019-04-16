@@ -1,17 +1,11 @@
 package com.nanyang.app.main;
 
 
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.BuildConfig;
 import com.nanyang.app.load.login.LoginInfo;
-import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
 import org.reactivestreams.Subscription;
 
 import io.reactivex.disposables.Disposable;
@@ -21,7 +15,7 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-public class MainPresenter extends BaseRetrofitPresenter<MainActivity> implements MainContract.Presenter {
+public class MainPresenter extends BaseRetrofitPresenter<MainActivity> {
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     MainPresenter(MainActivity view) {
         super(view);
@@ -61,7 +55,9 @@ public class MainPresenter extends BaseRetrofitPresenter<MainActivity> implement
     }
 
     public void loadAllMainData(LoginInfo.LanguageWfBean languageWfBean, final CallBack<String> back) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
+        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext, mCompositeSubscription);
+        helper.doRetrofitApiOnUiThread(languageWfBean, back);
+      /*  doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 String updateString = AfbUtils.delHTMLTag(data);
@@ -75,6 +71,7 @@ public class MainPresenter extends BaseRetrofitPresenter<MainActivity> implement
                     }
                 }
             }
-        });
+        });*/
     }
+
 }
