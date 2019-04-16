@@ -343,11 +343,13 @@ public class BetPop extends BasePopupWindow {
         tvCurrency.setText(afbApplication.getUser().getCurCode2());
         betBalanceTv.setText(afbApplication.getUser().getBalances());
         if (list.size() > 1) {
+            tvDelete.setVisibility(View.VISIBLE);
             AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(list.get(0).getMatchLimit() + ""));
             betMaxWinTv.setText(betAfbList.getMinLimit());
             betMaxBetTv.setText(betAfbList.getMaxLimit());
         } else {
+            tvDelete.setVisibility(View.GONE);
             AfbClickBetBean afbClickBetBean = list.get(0);
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(afbClickBetBean.getMatchLimit() + ""));
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
@@ -370,7 +372,7 @@ public class BetPop extends BasePopupWindow {
         if (list.size() > 1) {
             initMix();
             llMix.setVisibility(View.VISIBLE);
-            layoutParams.height = AfbUtils.dp2px(context, 55 * 2);
+            layoutParams.height = AfbUtils.dp2px(context, 62 * 2);
         } else {
             layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             llMix.setVisibility(View.GONE);

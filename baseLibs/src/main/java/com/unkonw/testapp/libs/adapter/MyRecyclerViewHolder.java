@@ -141,9 +141,9 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder {
             ImageView img = getView(viewId);
             if (options == null)
                 options = new DisplayImageOptions.Builder()
-                        .showImageOnLoading(R.mipmap.ic_launcher)
-                        .showImageForEmptyUri(R.mipmap.ic_launcher)
-                        .showImageOnFail(R.mipmap.ic_launcher)
+                        .showImageOnLoading(R.mipmap.logo)
+                        .showImageForEmptyUri(R.mipmap.logo)
+                        .showImageOnFail(R.mipmap.logo)
                         .cacheInMemory(true)
                         .cacheOnDisc(true)
                         .displayer(new FadeInBitmapDisplayer(200))// 淡入
