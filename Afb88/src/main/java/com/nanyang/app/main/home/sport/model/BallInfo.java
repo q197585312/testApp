@@ -777,7 +777,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 setRunHomeScore(s);
                 break;
             case 18:
-                setHomeScoreBigger(isScoreBigger(getRunAwayScore(), s));
+                setAwayScoreBigger(isScoreBigger(getRunAwayScore(), s));
                 setRunAwayScore(s);
                 break;
             case 19:
