@@ -11,7 +11,7 @@ public interface MainContract {
     interface Presenter extends IBasePresenter {
         //        void login(Map<String, String> info);
 
-//        void switchLanguage(String lang);
+//        void loadAllMainData(String lang);
 
     }
 }

@@ -28,6 +28,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -40,6 +41,7 @@ import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.nanyang.app.main.MainPresenter;
@@ -224,6 +226,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 afbDrawerViewHolder.goRecord();
             }
         });
+
     }
 
     public void updateMixOrderCount() {

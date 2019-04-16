@@ -13,7 +13,11 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.SwitchLanguage;
+import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
+import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.LoadMainDataHelper;
+import com.nanyang.app.main.MainPresenter;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -132,34 +136,46 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), obj);
         doRetrofitApiOnUiThread(getService(ApiService.class).doPostJson(ckAccUrl, body)
 
-                .flatMap(new Function<String, Flowable<String>>() {
+                        .flatMap(new Function<String, Flowable<String>>() {
+                            @Override
+                            public Flowable<String> apply(String s) throws Exception {
+                                CkAccResponseBean bean = new Gson().fromJson(s, new TypeToken<CkAccResponseBean>() {
+                                }.getType());
+                                if (bean != null && !bean.getError().equals("1")) {
+                                    final String url_login = BuildConfig.HOST_AFB + "Public/validate.aspx?us=" + webId + "s" + us + "&k=" + bean.getToken() + "&device=m&oddsstyle=MY&oddsmode=Double&lang=" + language + "&currencyName=" + currencyName;
+                                    return getService(ApiService.class).getData(url_login);
+                                }
+                                return null;
+                            }
+                        }).flatMap(new Function<String, Flowable<String>>() {
+                            @Override
+                            public Flowable<String> apply(String str) throws Exception {
+                                if (!StringUtils.isEmpty(str) && str.contains("wfMain")) {
+                                    SwitchLanguage switchLanguage = new SwitchLanguage(baseContext);
+                                    AfbApplication app = (AfbApplication) baseContext.getBaseActivity().getApplication();
+                                    app.getUser().setLoginName(us);
+                                    app.getUser().setPassword("");
+                                    return switchLanguage.switchLanguage(new LanguageHelper(baseContext.getBaseActivity()).getLanguage(), "MY");
+                                }
+                                return null;
+                            }
+                        })
+                , new BaseConsumer<String>(baseContext) {
                     @Override
-                    public Flowable<String> apply(String s) throws Exception {
-                        CkAccResponseBean bean = new Gson().fromJson(s, new TypeToken<CkAccResponseBean>() {
-                        }.getType());
-                        if (bean != null && !bean.getError().equals("1")) {
-                            final String url_login = BuildConfig.HOST_AFB + "Public/validate.aspx?us=" + webId + "s" + us + "&k=" + bean.getToken() + "&device=m&oddsstyle=MY&oddsmode=Double&lang=" + language + "&currencyName=" + currencyName;
-                            return getService(ApiService.class).getData(url_login);
-                        }
-                        return null;
+                    protected void onBaseGetData(String data) {
+                        String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
+                        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+                        helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"), new MainPresenter.CallBack<String>() {
+                            @Override
+                            public void onBack(String data) {
+                                PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
+                                personalInfo.setPassword(((AfbApplication) baseContext.getBaseActivity().getApplication()).getUser().getPassword());
+                                ((AfbApplication) baseContext.getBaseActivity().getApplication()).setUser(personalInfo);
+                                WelcomePresenter.this.baseContext.onLanguageSwitchSucceed(data);
+                            }
+                        });
+
                     }
-                }).flatMap(new Function<String, Flowable<String>>() {
-                    @Override
-                    public Flowable<String> apply(String str) throws Exception {
-                        if (!StringUtils.isEmpty(str) && str.contains("wfMain")) {
-                            SwitchLanguage switchLanguage = new SwitchLanguage(baseContext);
-                            AfbApplication app = (AfbApplication) baseContext.getBaseActivity().getApplication();
-                            app.getUser().setLoginName(us);
-                            app.getUser().setPassword("");
-                            return switchLanguage.switchLanguage( new LanguageHelper(baseContext.getBaseActivity()).getLanguage(), "MY");
-                        }
-                        return null;
-                    }
-                }), new BaseConsumer<String>(baseContext) {
-            @Override
-            protected void onBaseGetData(String data) {
-                WelcomePresenter.this.baseContext.onLanguageSwitchSucceed(data);
-            }
-        });
+                });
     }
 }
