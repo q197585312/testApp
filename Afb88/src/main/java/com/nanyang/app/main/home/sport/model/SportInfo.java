@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.model;
 
+import android.text.TextUtils;
+
 import com.nanyang.app.Utils.StringUtils;
 
 import java.io.Serializable;
@@ -170,6 +172,19 @@ public class SportInfo implements Serializable {
     public boolean isBigger(String fOld, String fNew) {
         if (StringUtils.isNull(fOld) || StringUtils.isNull(fNew) || Float.valueOf(fNew) > Float.valueOf(fOld))
             return true;
+        return false;
+    }
+
+    public boolean isScoreBigger(String scoreOld, String scoreNew) {
+        if (TextUtils.isEmpty(scoreOld)) {
+            scoreOld = "0";
+        }
+        if (TextUtils.isEmpty(scoreNew)) {
+            scoreNew = "0";
+        }
+        if (Integer.parseInt(scoreNew) > Integer.parseInt(scoreOld)) {
+            return true;
+        }
         return false;
     }
 }

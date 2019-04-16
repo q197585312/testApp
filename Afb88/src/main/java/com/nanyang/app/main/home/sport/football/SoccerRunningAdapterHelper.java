@@ -38,7 +38,16 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             String sAway = item.getRunAwayScore();
             awayScoreTv.setText(sAway);
             homeScoreTv.setText(sHome);
-
+            if (item.isHomeScoreBigger()) {
+                homeScoreTv.setTextColor(Color.RED);
+            } else {
+                homeScoreTv.setTextColor(Color.BLACK);
+            }
+            if (item.isAwayScoreBigger()) {
+                awayScoreTv.setTextColor(Color.RED);
+            } else {
+                awayScoreTv.setTextColor(Color.BLACK);
+            }
         } else {
             awayScoreTv.setText("");
             homeScoreTv.setText("");

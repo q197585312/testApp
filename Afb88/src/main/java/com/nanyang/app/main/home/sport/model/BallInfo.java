@@ -28,6 +28,8 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     String isOUNew_FH;
     String tvPathIBC;
     List<BallInfo> repeatRow;
+    public boolean isHomeScoreBigger;
+    public boolean isAwayScoreBigger;
     public boolean isHomeBigger;
     public boolean isAwayBigger;
     public boolean isOverBigger;
@@ -771,9 +773,11 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 setAwayRank(s);
                 break;
             case 17:
+                setHomeScoreBigger(isScoreBigger(getRunHomeScore(), s));
                 setRunHomeScore(s);
                 break;
             case 18:
+                setAwayScoreBigger(isScoreBigger(getRunAwayScore(), s));
                 setRunAwayScore(s);
                 break;
             case 19:
@@ -798,7 +802,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 break;
             case 25:
                 setIsAwayBigger(isBigger(getAOdds(), s));
-                Log.d("setIsAwayBigger", "setIsAwayBigger: "+isBigger(getAOdds(), s));
+                Log.d("setIsAwayBigger", "setIsAwayBigger: " + isBigger(getAOdds(), s));
                 setAOdds(s);
                 setIsHdpNew("1");
                 break;
@@ -809,7 +813,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 break;
             case 27:
                 setIsUnderBigger(isBigger(getUOdds(), s));
-                Log.d("setIsAwayBigger", "setIsUnderBigger: "+isBigger(getUOdds(), s));
+                Log.d("setIsAwayBigger", "setIsUnderBigger: " + isBigger(getUOdds(), s));
                 setUOdds(s);
                 setIsOUNew("1");
                 break;
@@ -1007,5 +1011,21 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
 
     public void setIsUnderBigger_FH(boolean isUnderBigger_FH) {
         this.isUnderBigger_FH = isUnderBigger_FH;
+    }
+
+    public boolean isHomeScoreBigger() {
+        return isHomeScoreBigger;
+    }
+
+    public void setHomeScoreBigger(boolean homeScoreBigger) {
+        isHomeScoreBigger = homeScoreBigger;
+    }
+
+    public boolean isAwayScoreBigger() {
+        return isAwayScoreBigger;
+    }
+
+    public void setAwayScoreBigger(boolean awayScoreBigger) {
+        isAwayScoreBigger = awayScoreBigger;
     }
 }
