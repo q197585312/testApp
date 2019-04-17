@@ -39,28 +39,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             String sAway = item.getRunAwayScore();
             awayScoreTv.setText(sAway);
             homeScoreTv.setText(sHome);
-            String isHomeGive = item.getIsHomeGive();
-            int homeTextColor;
-            int awayTextColor;
-            if (isHomeGive.equals("1")) {
-                homeTextColor = Color.RED;
-                awayTextColor = Color.BLACK;
-            } else {
-                homeTextColor = Color.BLACK;
-                awayTextColor = Color.RED;
-            }
-            Activity activity = (Activity) context;
-            if (item.isHomeScoreBigger()) {
-                item.setHomeScoreTextColor(Color.RED);
-                BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
-                item.setHomeScoreBigger(false);
-            }
             homeScoreTv.setTextColor(item.getHomeScoreTextColor());
-            if (item.isAwayScoreBigger()) {
-                item.setAwayScoreTextColor(Color.RED);
-                BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
-                item.setAwayScoreBigger(false);
-            }
             awayScoreTv.setTextColor(item.getAwayScoreTextColor());
         } else {
             awayScoreTv.setText("");

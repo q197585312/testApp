@@ -36,7 +36,6 @@ public class BetGoalWindowUtils {
 
     public static void showGoalWindow(Activity activity, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {
         initLayout(activity);
-        SoundPlayUtils.play(SoundPlayUtils.GOAL);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, AfbUtils.dp2px(activity, 90));
         params.bottomMargin = AfbUtils.dp2px(activity, 10);
         final View view = LayoutInflater.from(activity).inflate(R.layout.item_goal_window, null);
@@ -61,6 +60,10 @@ public class BetGoalWindowUtils {
         }
         view.setLayoutParams(params);
         llContent.addView(view);
+        for (int i = 0; i < llContent.getChildCount(); i++) {
+            llContent.getChildAt(i).measure(0, 0);
+        }
+        SoundPlayUtils.play(SoundPlayUtils.GOAL);
         view.setTag(4);
         handler.post(new Runnable() {
             @Override

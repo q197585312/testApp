@@ -1,6 +1,12 @@
 package com.nanyang.app.main.home.sport.europe;
 
+import android.app.Activity;
+import android.graphics.Color;
+import android.support.v4.app.FragmentActivity;
+
+import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
+import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
 import com.nanyang.app.main.home.sport.model.BallInfo;
@@ -33,6 +39,37 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
         List<TableSportInfo<BallInfo>> noRepeatAllData = handleRepeatData(allData);
         filterData(noRepeatAllData);
         showCurrentData();
+        BaseSportFragment baseSportFragment = (BaseSportFragment) getBaseView().getIBaseContext();
+        Activity activity = baseSportFragment.getActivity();
+        for (int i = 0; i < noRepeatAllData.size(); i++) {
+            TableSportInfo<BallInfo> ballInfoTableSportInfo = noRepeatAllData.get(i);
+            List<BallInfo> rows = ballInfoTableSportInfo.getRows();
+            for (int j = 0; j < rows.size(); j++) {
+                BallInfo item = rows.get(j);
+                int homeTextColor;
+                int awayTextColor;
+                String isHomeGive = item.getIsHomeGive();
+                if (isHomeGive.equals("1")) {
+                    homeTextColor = Color.RED;
+                    awayTextColor = Color.BLACK;
+                } else {
+                    homeTextColor = Color.BLACK;
+                    awayTextColor = Color.RED;
+                }
+                String sHome = item.getRunHomeScore();
+                String sAway = item.getRunAwayScore();
+                if (item.isHomeScoreBigger()) {
+                    item.setHomeScoreTextColor(Color.RED);
+                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
+                    item.setHomeScoreBigger(false);
+                }
+                if (item.isAwayScoreBigger()) {
+                    item.setAwayScoreTextColor(Color.RED);
+                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
+                    item.setAwayScoreBigger(false);
+                }
+            }
+        }
     }
 
     private TableSportInfo<BallInfo> findRepeat(TableSportInfo<BallInfo> bTableSportInfo) {

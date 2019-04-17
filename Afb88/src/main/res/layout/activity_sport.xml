@@ -82,10 +82,10 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
-                        android:hint="@string/Select_League"
                         android:background="@null"
                         android:drawableLeft="@mipmap/sport_game_search_green"
                         android:drawablePadding="5dp"
+                        android:hint="@string/Select_League"
                         android:textSize="13sp" />
 
                     <ImageView
@@ -228,12 +228,12 @@
 
         <LinearLayout
             android:id="@+id/ll_sport_menu_bottom"
-            android:paddingTop="5dp"
-            android:paddingBottom="2dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/grey_dialog_background"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:paddingBottom="2dp"
+            android:paddingTop="5dp">
 
             <TextView
                 android:id="@+id/tv_record"
