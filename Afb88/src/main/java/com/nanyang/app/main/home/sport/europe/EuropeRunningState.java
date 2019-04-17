@@ -7,6 +7,7 @@ import android.widget.TextView;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -117,5 +118,8 @@ public class EuropeRunningState extends EuropeState {
         return false;
     }
 
-
+    @Override
+    public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
+        return new EuropeRunningAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
+    }
 }
