@@ -2,11 +2,9 @@ package com.nanyang.app.main.home.sport.football;
 
 import android.app.Activity;
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
