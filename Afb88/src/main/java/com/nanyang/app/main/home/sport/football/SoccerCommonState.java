@@ -18,18 +18,9 @@ import com.unkonw.testapp.libs.utils.LogUtil;
  */
 
 public abstract class SoccerCommonState extends BallState {
-
-
-
-
-
     public SoccerCommonState(SportContract.View baseView) {
         super(baseView);
     }
-
-
-
-
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {

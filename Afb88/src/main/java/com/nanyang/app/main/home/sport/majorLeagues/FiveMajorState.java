@@ -1,12 +1,11 @@
 package com.nanyang.app.main.home.sport.majorLeagues;
 
 import com.nanyang.app.MenuItemInfo;
-import com.nanyang.app.main.home.sport.europe.EuropeState;
 import com.nanyang.app.main.home.sport.football.SoccerCommonAdapterHelper;
+import com.nanyang.app.main.home.sport.football.SoccerCommonState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 import java.util.HashMap;
 
@@ -14,7 +13,7 @@ import java.util.HashMap;
  * Created by ASUS on 2019/3/26.
  */
 
-public abstract class FiveMajorState extends EuropeState {
+public abstract class FiveMajorState extends SoccerCommonState {
     HashMap<String, FiveMajorState> majorStateHashMap = new HashMap<>();
 
     public FiveMajorState(SportContract.View baseView) {
@@ -33,12 +32,11 @@ public abstract class FiveMajorState extends EuropeState {
         return new SoccerCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
 
+
     @Override
-    protected void onChildConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
-
+    protected SoccerCommonAdapterHelper onSetCommonAdapterHelper() {
+        return new SoccerCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
-
-
 
     @Override
     public boolean mix() {

@@ -10,7 +10,7 @@
     <View
         android:id="@+id/module_match_head_v"
         android:layout_width="match_parent"
-        android:layout_height="10dp"
+        android:layout_height="5dp"
         android:background="@color/grey_white_bg"
         android:padding="5dp" />
 
@@ -24,11 +24,11 @@
         android:padding="8dp">
 
         <TextView
-
             android:id="@+id/module_League_collection_tv"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginLeft="2dp"
             android:background="@mipmap/star_red_not_solid"
             android:gravity="center"
             android:textColor="@color/grey_dark_word"
@@ -45,7 +45,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="2dp"
             android:textColor="@color/green"
-            android:textSize="13sp" />
+            android:textSize="14sp" />
     </LinearLayout>
 
     <View
@@ -65,13 +65,14 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="3dp">
 
             <TextView
                 android:id="@+id/module_match_collection_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="2dp"
                 android:background="@mipmap/star_red_not_solid"
                 android:gravity="center"
                 android:textColor="@color/grey_dark_word"
@@ -110,7 +111,7 @@
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:textColor="@color/grey_thick_line"
-                android:textSize="11sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/module_right_mark_tv"
@@ -122,48 +123,49 @@
                 android:minEms="3"
                 android:text="+16"
                 android:textColor="@color/black_grey"
-                android:textSize="11sp"
+                android:textSize="12sp"
                 android:visibility="visible" />
 
             <ImageView
                 android:id="@+id/iv_hall_btn"
-                android:layout_width="16dp"
-                android:layout_height="12dp"
+                android:layout_width="14dp"
+                android:layout_height="10dp"
                 android:scaleType="center"
                 android:src="@mipmap/soccer_hall"
                 android:visibility="visible" />
 
             <TextView
-
-                android:layout_width="40dp"
+                android:id="@+id/hdp_title_tv"
+                android:layout_width="35dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="FT.1"
                 android:textColor="@color/black_grey"
-                android:textSize="9sp" />
+                android:textSize="13sp" />
 
             <TextView
 
-                android:layout_width="40dp"
+                android:layout_width="43dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="FT.X"
                 android:textColor="@color/black_grey"
-                android:textSize="9sp" />
+                android:textSize="13sp" />
+
             <TextView
-                android:layout_width="40dp"
+                android:id="@+id/ou_title_tv"
+                android:layout_width="42dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="FT.2"
                 android:textColor="@color/black_grey"
-                android:textSize="9sp" />
-
+                android:textSize="13sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -368,7 +370,8 @@
                 android:layout_marginTop="10dp"
                 android:gravity="center"
                 android:orientation="vertical"
-                android:padding="3dp">
+                android:padding="3dp"
+                android:visibility="gone">
 
 
             </LinearLayout>
@@ -376,15 +379,16 @@
             <LinearLayout
                 android:id="@+id/module_match_left2_ll"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:padding="2dp">
+                android:paddingLeft="5dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -396,7 +400,7 @@
                         android:gravity="center"
                         android:paddingLeft="1dp"
                         android:paddingRight="1dp"
-                        android:textColor="@color/black_grey"
+                        android:textColor="@color/black"
                         android:textSize="11sp"
                         android:textStyle="bold"
                         android:visibility="visible" />
@@ -431,7 +435,8 @@
 
                 <LinearLayout
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -444,7 +449,7 @@
                         android:gravity="center"
                         android:paddingLeft="1dp"
                         android:paddingRight="1dp"
-                        android:textColor="@color/black_grey"
+                        android:textColor="@color/black"
                         android:textSize="11sp"
                         android:textStyle="bold"
                         android:visibility="visible" />
@@ -480,24 +485,74 @@
             </LinearLayout>
 
 
-            <com.unkonw.testapp.training.ScrollLayout
+            <LinearLayout
                 android:id="@+id/module_center_sl"
                 android:layout_width="140dp"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
-                <include
-                    layout="@layout/sport_item_table_module_viewpager"
-                    android:visibility="gone" />
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="2dp">
 
-                <include
-                    layout="@layout/sport_item_table_module_viewpager"
-                    android:visibility="gone" />
+                    <TextView
+                        android:id="@+id/europe_1_full_time_odds_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/match_odds_content_bg"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="3dp"
+                        android:text="1.00"
+                        android:textColor="@color/red_title"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
 
-                <include
-                    layout="@layout/sport_item_table_module_viewpager"
-                    android:visibility="gone" />
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="2dp">
 
-            </com.unkonw.testapp.training.ScrollLayout>
+                    <TextView
+                        android:id="@+id/europe_x_full_time_odds_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/match_odds_content_bg"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="3dp"
+                        android:text="0.11"
+                        android:textColor="@color/blue"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="2dp">
+
+                    <TextView
+                        android:id="@+id/europe_2_full_time_odds_tv"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/match_odds_content_bg"
+                        android:gravity="center"
+                        android:maxLines="1"
+                        android:padding="3dp"
+                        android:text="1.00"
+                        android:textColor="@color/black_grey"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </FrameLayout>
+
+            </LinearLayout>
 
 
         </LinearLayout>

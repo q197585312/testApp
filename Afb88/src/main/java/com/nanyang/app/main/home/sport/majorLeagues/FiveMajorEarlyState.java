@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sport.majorLeagues;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.football.SoccerCommonAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 
 /**
@@ -13,6 +14,8 @@ public class FiveMajorEarlyState extends FiveMajorState {
     public FiveMajorEarlyState(SportContract.View baseView) {
         super(baseView);
     }
+
+
 
     @Override
     protected String getRefreshUrl() {

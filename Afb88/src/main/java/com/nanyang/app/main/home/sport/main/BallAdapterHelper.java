@@ -329,11 +329,45 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 //                headV.setVisibility(View.GONE);
 //            }
         }
+        handleOddsContent(helper, item, position);
 
+        String away = item.getAway();
+        String home = item.getHome();
+        homeTv.setText(home);
+        homeTv1.setText(home);
+        awayTv.setText(away);
+        awayTv1.setText(away);
+        if (liveTv.getText().toString().trim().isEmpty()) {
+            liveTv.setVisibility(View.GONE);
+            liveTv1.setVisibility(View.GONE);
+        } else {
+            liveTv.setVisibility(View.GONE);
+            liveTv1.setVisibility(View.VISIBLE);
+        }
+        String oldHomeName = "";
+        String oldAwayName = "";
+        String oldHomeGive = "";
+        String oldModuleTitle = "";
+        if (position > 0) {
+            oldHomeName = back.getItem(position - 1).getHome();
+            oldAwayName = back.getItem(position - 1).getAway();
+            oldHomeGive = back.getItem(position - 1).getIsHomeGive();
+            oldModuleTitle = back.getItem(position - 1).getModuleTitle().toString();
+        }
+        if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getIsHomeGive())) {
+            onMatchRepeat(helper, item, position);
+        } else {
+            onMatchNotRepeat(helper, item, position);
+        }
+
+    }
+
+    public void handleOddsContent(MyRecyclerViewHolder helper, I item, int position) {
         final ScrollLayout sl = helper.getView(R.id.module_center_sl);
         final ScrollLayout sl1 = helper.getView(R.id.module_center_sl1);
         sl1.getChildAt(0).setVisibility(View.VISIBLE);
         sl1.getChildAt(1).setVisibility(View.VISIBLE);
+
         String hasHdp = item.getHasHdp();
         String hdp = item.getHdp();
         String hasOU = item.getHasOU();
@@ -344,13 +378,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         String overOdds = item.getOOdds();
         String homeHdpOdds = item.getHOdds();
         String awayHdpOdds = item.getAOdds();
-        scrollChild(sl.getChildAt(0), false, item, isHomeGive, hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
+        scrollChild(sl.getChildAt(0), false, item, item.getIsHomeGive(), hasHdp, hdp, hasOU, ou, isHdpNew, isOUNew, underOdds, overOdds, homeHdpOdds, awayHdpOdds);
         getBaseRecyclerAdapter().getItem(position).setIsHdpNew("0");
         getBaseRecyclerAdapter().getItem(position).setIsOUNew("0");
-        if (!slFollowers.contains(sl)) {
-            slFollowers.add(sl);
-            slFollowers.add(sl1);
-        }
+
         sl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -382,35 +413,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             sl.setCurrentIndex(slIndex);
         if (sl1.getTargetIndex() != slIndex)
             sl1.setCurrentIndex(slIndex);
-        String away = item.getAway();
-        String home = item.getHome();
-        homeTv.setText(home);
-        homeTv1.setText(home);
-        awayTv.setText(away);
-        awayTv1.setText(away);
-        if (liveTv.getText().toString().trim().isEmpty()) {
-            liveTv.setVisibility(View.GONE);
-            liveTv1.setVisibility(View.GONE);
-        } else {
-            liveTv.setVisibility(View.GONE);
-            liveTv1.setVisibility(View.VISIBLE);
-        }
-        String oldHomeName = "";
-        String oldAwayName = "";
-        String oldHomeGive = "";
-        String oldModuleTitle = "";
-        if (position > 0) {
-            oldHomeName = back.getItem(position - 1).getHome();
-            oldAwayName = back.getItem(position - 1).getAway();
-            oldHomeGive = back.getItem(position - 1).getIsHomeGive();
-            oldModuleTitle = back.getItem(position - 1).getModuleTitle().toString();
-        }
-        if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getIsHomeGive())) {
-            onMatchRepeat(helper, item, position);
-        } else {
-            onMatchNotRepeat(helper, item, position);
-        }
-
     }
     //  /("htft", Arrays.asList(new VsCellBean(getString(R.string.hh), result.getHTFT().getHH(), /*"&sc=" +*/ "11"
     // , result.getHTFT().getOid()), new VsCellBean(getString(R.string.hd), result.getHTFT().getHD(), /*"&sc=" +*/ "10"
