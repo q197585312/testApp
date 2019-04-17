@@ -60,12 +60,12 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 String sAway = item.getRunAwayScore();
                 if (item.isHomeScoreBigger()) {
                     item.setHomeScoreTextColor(Color.RED);
-                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
+                    BetGoalWindowUtils.showGoalWindow(activity, item, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
                     item.setHomeScoreBigger(false);
                 }
                 if (item.isAwayScoreBigger()) {
                     item.setAwayScoreTextColor(Color.RED);
-                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
+                    BetGoalWindowUtils.showGoalWindow(activity, item, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
                     item.setAwayScoreBigger(false);
                 }
             }

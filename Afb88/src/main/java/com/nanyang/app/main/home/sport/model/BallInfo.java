@@ -10,6 +10,7 @@ import android.util.Log;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 
 import java.util.List;
+import java.util.Objects;
 
 import cn.finalteam.toolsfinal.StringUtils;
 
@@ -1047,5 +1048,100 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
 
     public void setAwayScoreBigger(boolean awayScoreBigger) {
         isAwayScoreBigger = awayScoreBigger;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof BallInfo)) return false;
+        BallInfo ballInfo = (BallInfo) o;
+        return isHomeScoreBigger() == ballInfo.isHomeScoreBigger() &&
+                isAwayScoreBigger() == ballInfo.isAwayScoreBigger() &&
+                isHomeBigger == ballInfo.isHomeBigger &&
+                isAwayBigger == ballInfo.isAwayBigger &&
+                isOverBigger == ballInfo.isOverBigger &&
+                isUnderBigger == ballInfo.isUnderBigger &&
+                isHomeBigger_FH == ballInfo.isHomeBigger_FH &&
+                isAwayBigger_FH == ballInfo.isAwayBigger_FH &&
+                isOverBigger_FH == ballInfo.isOverBigger_FH &&
+                isUnderBigger_FH == ballInfo.isUnderBigger_FH &&
+                getHomeScoreTextColor() == ballInfo.getHomeScoreTextColor() &&
+                getAwayScoreTextColor() == ballInfo.getAwayScoreTextColor() &&
+                Objects.equals(getHasHdp_FH(), ballInfo.getHasHdp_FH()) &&
+                Objects.equals(getHasOU_FH(), ballInfo.getHasOU_FH()) &&
+                Objects.equals(getIsHdpNew_FH(), ballInfo.getIsHdpNew_FH()) &&
+                Objects.equals(getIsOUNew_FH(), ballInfo.getIsOUNew_FH()) &&
+                Objects.equals(tvPathIBC, ballInfo.tvPathIBC) &&
+                Objects.equals(getRepeatRow(), ballInfo.getRepeatRow()) &&
+                Objects.equals(getIsHdpNew(), ballInfo.getIsHdpNew()) &&
+                Objects.equals(getHasHdp(), ballInfo.getHasHdp()) &&
+                Objects.equals(getIsOUNew(), ballInfo.getIsOUNew()) &&
+                Objects.equals(getIsOENew(), ballInfo.getIsOENew()) &&
+                Objects.equals(getHasOE(), ballInfo.getHasOE()) &&
+                Objects.equals(getHasOE_FH(), ballInfo.getHasOE_FH()) &&
+                Objects.equals(getIsOENew_FH(), ballInfo.getIsOENew_FH()) &&
+                Objects.equals(getSocOddsId_FH(), ballInfo.getSocOddsId_FH()) &&
+                Objects.equals(getLive(), ballInfo.getLive()) &&
+                Objects.equals(getIsLastCall(), ballInfo.getIsLastCall()) &&
+                Objects.equals(getMatchDate(), ballInfo.getMatchDate()) &&
+                Objects.equals(getStatus(), ballInfo.getStatus()) &&
+                Objects.equals(getCurMinute(), ballInfo.getCurMinute()) &&
+                Objects.equals(getIsInetBet(), ballInfo.getIsInetBet()) &&
+                Objects.equals(getIsHomeGive(), ballInfo.getIsHomeGive()) &&
+                Objects.equals(getRTSMatchId(), ballInfo.getRTSMatchId()) &&
+                Objects.equals(getHomeId(), ballInfo.getHomeId()) &&
+                Objects.equals(getAwayId(), ballInfo.getAwayId()) &&
+                Objects.equals(getHomeRank(), ballInfo.getHomeRank()) &&
+                Objects.equals(getAwayRank(), ballInfo.getAwayRank()) &&
+                Objects.equals(getRunHomeScore(), ballInfo.getRunHomeScore()) &&
+                Objects.equals(getRunAwayScore(), ballInfo.getRunAwayScore()) &&
+                Objects.equals(getRCHome(), ballInfo.getRCHome()) &&
+                Objects.equals(getRCAway(), ballInfo.getRCAway()) &&
+                Objects.equals(getGamesSum(), ballInfo.getGamesSum()) &&
+                Objects.equals(getHdp(), ballInfo.getHdp()) &&
+                Objects.equals(getOU(), ballInfo.getOU()) &&
+                Objects.equals(getHOdds(), ballInfo.getHOdds()) &&
+                Objects.equals(getAOdds(), ballInfo.getAOdds()) &&
+                Objects.equals(getOOdds(), ballInfo.getOOdds()) &&
+                Objects.equals(getUOdds(), ballInfo.getUOdds()) &&
+                Objects.equals(getOddOdds(), ballInfo.getOddOdds()) &&
+                Objects.equals(getEvenOdds(), ballInfo.getEvenOdds()) &&
+                Objects.equals(getX12_1Odds(), ballInfo.getX12_1Odds()) &&
+                Objects.equals(getX12_XOdds(), ballInfo.getX12_XOdds()) &&
+                Objects.equals(getX12_2Odds(), ballInfo.getX12_2Odds()) &&
+                Objects.equals(getHdpOdds(), ballInfo.getHdpOdds()) &&
+                Objects.equals(getOUOdds(), ballInfo.getOUOdds()) &&
+                Objects.equals(getOEOdds(), ballInfo.getOEOdds()) &&
+                Objects.equals(getHasPar(), ballInfo.getHasPar()) &&
+                Objects.equals(getIsInetBet_FH(), ballInfo.getIsInetBet_FH()) &&
+                Objects.equals(getIsHomeGive_FH(), ballInfo.getIsHomeGive_FH()) &&
+                Objects.equals(getHdp_FH(), ballInfo.getHdp_FH()) &&
+                Objects.equals(getOU_FH(), ballInfo.getOU_FH()) &&
+                Objects.equals(getHOdds_FH(), ballInfo.getHOdds_FH()) &&
+                Objects.equals(getAOdds_FH(), ballInfo.getAOdds_FH()) &&
+                Objects.equals(getOOdds_FH(), ballInfo.getOOdds_FH()) &&
+                Objects.equals(getUOdds_FH(), ballInfo.getUOdds_FH()) &&
+                Objects.equals(getOddOdds_FH(), ballInfo.getOddOdds_FH()) &&
+                Objects.equals(getEvenOdds_FH(), ballInfo.getEvenOdds_FH()) &&
+                Objects.equals(getX12_1Odds_FH(), ballInfo.getX12_1Odds_FH()) &&
+                Objects.equals(getX12_XOdds_FH(), ballInfo.getX12_XOdds_FH()) &&
+                Objects.equals(getX12_2Odds_FH(), ballInfo.getX12_2Odds_FH()) &&
+                Objects.equals(getHdpOdds_FH(), ballInfo.getHdpOdds_FH()) &&
+                Objects.equals(getOUOdds_FH(), ballInfo.getOUOdds_FH()) &&
+                Objects.equals(getOEOdds_FH(), ballInfo.getOEOdds_FH()) &&
+                Objects.equals(getStatsId(), ballInfo.getStatsId()) &&
+                Objects.equals(getMExtraTime(), ballInfo.getMExtraTime()) &&
+                Objects.equals(getWorkingDate(), ballInfo.getWorkingDate()) &&
+                Objects.equals(getTodayDate(), ballInfo.getTodayDate()) &&
+                Objects.equals(getModuleOrder(), ballInfo.getModuleOrder()) &&
+                Objects.equals(getMatchCode(), ballInfo.getMatchCode()) &&
+                Objects.equals(getSortNum(), ballInfo.getSortNum()) &&
+                Objects.equals(getGGID(), ballInfo.getGGID()) &&
+                Objects.equals(getHasPar_FH(), ballInfo.getHasPar_FH());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getHasHdp_FH(), getHasOU_FH(), getIsHdpNew_FH(), getIsOUNew_FH(), tvPathIBC, getRepeatRow(), isHomeScoreBigger(), isAwayScoreBigger(), isHomeBigger, isAwayBigger, isOverBigger, isUnderBigger, isHomeBigger_FH, isAwayBigger_FH, isOverBigger_FH, isUnderBigger_FH, getHomeScoreTextColor(), getAwayScoreTextColor(), getIsHdpNew(), getHasHdp(), getIsOUNew(), getIsOENew(), getHasOE(), getHasOE_FH(), getIsOENew_FH(), getSocOddsId_FH(), getLive(), getIsLastCall(), getMatchDate(), getStatus(), getCurMinute(), getIsInetBet(), getIsHomeGive(), getRTSMatchId(), getHomeId(), getAwayId(), getHomeRank(), getAwayRank(), getRunHomeScore(), getRunAwayScore(), getRCHome(), getRCAway(), getGamesSum(), getHdp(), getOU(), getHOdds(), getAOdds(), getOOdds(), getUOdds(), getOddOdds(), getEvenOdds(), getX12_1Odds(), getX12_XOdds(), getX12_2Odds(), getHdpOdds(), getOUOdds(), getOEOdds(), getHasPar(), getIsInetBet_FH(), getIsHomeGive_FH(), getHdp_FH(), getOU_FH(), getHOdds_FH(), getAOdds_FH(), getOOdds_FH(), getUOdds_FH(), getOddOdds_FH(), getEvenOdds_FH(), getX12_1Odds_FH(), getX12_XOdds_FH(), getX12_2Odds_FH(), getHdpOdds_FH(), getOUOdds_FH(), getOEOdds_FH(), getStatsId(), getMExtraTime(), getWorkingDate(), getTodayDate(), getModuleOrder(), getMatchCode(), getSortNum(), getGGID(), getHasPar_FH());
     }
 }

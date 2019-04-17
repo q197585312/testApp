@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 
 /**
  * Created by Administrator on 2019/4/17.
@@ -34,7 +35,15 @@ public class BetGoalWindowUtils {
         }
     }
 
-    public static void showGoalWindow(Activity activity, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {
+    private static BallInfo lastBallInfo;
+
+    public static void showGoalWindow(Activity activity, BallInfo ballInfo, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {
+        if (lastBallInfo != null) {
+            if (lastBallInfo.equals(ballInfo)) {
+                return;
+            }
+        }
+        lastBallInfo = ballInfo;
         initLayout(activity);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, AfbUtils.dp2px(activity, 90));
         params.bottomMargin = AfbUtils.dp2px(activity, 10);
