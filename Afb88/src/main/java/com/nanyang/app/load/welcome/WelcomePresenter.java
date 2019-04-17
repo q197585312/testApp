@@ -52,7 +52,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
     }
 
 
-    public void checkVersion(final String versionName, BaseConsumer<String> baseConsumer) {
+    public void checkVersion(BaseConsumer<String> baseConsumer) {
         doRetrofitApiOnUiThread(getService(ApiService.class).checkVersion(), baseConsumer);
     }
 

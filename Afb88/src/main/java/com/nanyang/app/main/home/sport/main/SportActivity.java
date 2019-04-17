@@ -617,7 +617,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 try {
                     final JSONObject jsonObjectNum = new JSONObject(data);
                     createPopupWindow(
-                            new BasePopupWindow(mContext, textView, AfbUtils.getScreenWidth(mContext) / 2, AfbUtils.dp2px(mContext, 240)) {
+                            new BasePopupWindow(mContext, textView, AfbUtils.getScreenWidth(mContext) / 2, AfbUtils.dp2px(mContext, 356)) {
                                 @Override
                                 protected int onSetLayoutRes() {
                                     return R.layout.popupwindow_choice_ball_type;
@@ -640,7 +640,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                                     });
                                 }
                             });
-                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 240), AfbUtils.getScreenWidth(mContext) / 2);
+                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 356), AfbUtils.getScreenWidth(mContext) / 2);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
