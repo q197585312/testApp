@@ -37,6 +37,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
+import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
@@ -251,6 +252,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         super.onDestroy();
         if (webSocket != null)
             webSocket.close();
+        BetGoalWindowUtils.clear();
     }
 
     private void initFragment(String parentType) {
@@ -629,7 +631,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                                     RecyclerView rv_list = view.findViewById(R.id.rv_list);
                                     final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
                                     final View ll_sort = view.findViewById(R.id.ll_sort);
-                                    setChooseTypeAdapter(rv_list, textView,jsonObjectNum);
+                                    setChooseTypeAdapter(rv_list, textView, jsonObjectNum);
                                     ll_sort.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
@@ -651,7 +653,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView, JSONObject jsonObjectNum) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
-        rv_list.setAdapter(currentFragment.presenter.getStateHelper().switchTypeAdapter(textView,jsonObjectNum));
+        rv_list.setAdapter(currentFragment.presenter.getStateHelper().switchTypeAdapter(textView, jsonObjectNum));
     }
 
     public void clickMoreMenu(View view) {

@@ -19,7 +19,7 @@ import com.nanyang.app.main.home.sport.model.BallInfo;
  */
 
 public class BetGoalWindowUtils {
-    private static Handler handler = new Handler();
+    private static Handler handler;
     private static LinearLayout llContent;
 
     private static void initLayout(Activity activity) {
@@ -32,6 +32,9 @@ public class BetGoalWindowUtils {
             llContent.setPadding(AfbUtils.dp2px(activity, 10), AfbUtils.dp2px(activity, 10), AfbUtils.dp2px(activity, 10), AfbUtils.dp2px(activity, 10));
             view.addView(llContent);
             llContent.setClickable(false);
+        }
+        if (handler == null) {
+            handler = new Handler();
         }
     }
 
@@ -97,5 +100,16 @@ public class BetGoalWindowUtils {
                 view.setTag(tag);
             }
         });
+    }
+
+    public static void clear() {
+        if (llContent != null) {
+            llContent.removeAllViews();
+        }
+        llContent = null;
+        if (handler != null) {
+            handler.removeCallbacksAndMessages(null);
+        }
+        handler = null;
     }
 }
