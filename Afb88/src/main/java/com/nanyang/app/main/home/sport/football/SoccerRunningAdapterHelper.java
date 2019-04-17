@@ -1,11 +1,15 @@
 package com.nanyang.app.main.home.sport.football;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -23,7 +27,6 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final BallInfo item) {
-
         super.onConvert(helper, position, item);
         setRunningItemBg(helper, item);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
@@ -38,16 +41,29 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             String sAway = item.getRunAwayScore();
             awayScoreTv.setText(sAway);
             homeScoreTv.setText(sHome);
+            String isHomeGive = item.getIsHomeGive();
+            int homeTextColor;
+            int awayTextColor;
+            if (isHomeGive.equals("1")) {
+                homeTextColor = Color.RED;
+                awayTextColor = Color.BLACK;
+            } else {
+                homeTextColor = Color.BLACK;
+                awayTextColor = Color.RED;
+            }
+            Activity activity = (Activity) context;
             if (item.isHomeScoreBigger()) {
-                homeScoreTv.setTextColor(Color.RED);
-            } else {
-                homeScoreTv.setTextColor(Color.BLACK);
+                item.setHomeScoreTextColor(Color.RED);
+                BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
+                item.setHomeScoreBigger(false);
             }
+            homeScoreTv.setTextColor(item.getHomeScoreTextColor());
             if (item.isAwayScoreBigger()) {
-                awayScoreTv.setTextColor(Color.RED);
-            } else {
-                awayScoreTv.setTextColor(Color.BLACK);
+                item.setAwayScoreTextColor(Color.RED);
+                BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
+                item.setAwayScoreBigger(false);
             }
+            awayScoreTv.setTextColor(item.getAwayScoreTextColor());
         } else {
             awayScoreTv.setText("");
             homeScoreTv.setText("");

@@ -4,6 +4,7 @@ package com.nanyang.app.main.home.sport.model;
  * Created by Administrator on 2017/3/11.
  */
 
+import android.graphics.Color;
 import android.util.Log;
 
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
@@ -39,6 +40,25 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     public boolean isAwayBigger_FH;
     public boolean isOverBigger_FH;
     public boolean isUnderBigger_FH;
+
+    public int homeScoreTextColor = Color.BLACK;
+    public int awayScoreTextColor = Color.BLACK;
+
+    public int getHomeScoreTextColor() {
+        return homeScoreTextColor;
+    }
+
+    public void setHomeScoreTextColor(int homeScoreTextColor) {
+        this.homeScoreTextColor = homeScoreTextColor;
+    }
+
+    public int getAwayScoreTextColor() {
+        return awayScoreTextColor;
+    }
+
+    public void setAwayScoreTextColor(int awayScoreTextColor) {
+        this.awayScoreTextColor = awayScoreTextColor;
+    }
 
     public void setIsHdpNew(String isHdpNew) {
         this.isHdpNew = isHdpNew;

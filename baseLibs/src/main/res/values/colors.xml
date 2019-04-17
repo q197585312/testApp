@@ -19,7 +19,7 @@
     <color name="grey_background">#E7E9E8</color>
     <color name="grey_white">#FFFAFBFB</color>
     <color name="grey_background_trans">#aae5e5e5</color>
-    <color name="grey_thick_line">#ededed</color>
+    <color name="grey_thick_line">#e4e3e3</color>
 
     <color name="grey_button">#bebebe</color>
     <color name="grey_button_grey">#B0BFBF</color>

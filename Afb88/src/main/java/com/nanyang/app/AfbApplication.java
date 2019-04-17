@@ -1,5 +1,6 @@
 package com.nanyang.app;
 
+import com.nanyang.app.Utils.SoundPlayUtils;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
@@ -49,6 +50,7 @@ public class AfbApplication extends BaseApplication {
         super.onCreate();
 //        SkinAppManager.getInstance().initSkinLoader(this);
 //        KLog.init(BuildConfig.LOG_DEBUG, "AFB");
+        SoundPlayUtils.init(this);
         Logger.setDebug(true);
         closeAndroidPDialog();
         AfbUtils.initAllSprotMap();
@@ -100,6 +102,7 @@ public class AfbApplication extends BaseApplication {
         return AppConstant.getInstance().URL_ODDS + betOddsUrl;
 
     }
+
     private void closeAndroidPDialog() {
         try {
             Class aClass = Class.forName("android.content.pm.PackageParser$Package");
