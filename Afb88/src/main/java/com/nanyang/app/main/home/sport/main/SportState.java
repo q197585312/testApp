@@ -102,6 +102,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     private boolean isSearch = false;
     private String searchStr = "";
     private String wd = "";
+    private boolean isHide = false;
 
     public String getWd() {
         return wd;
@@ -470,7 +471,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     public void initAllData(List<TableSportInfo<B>> allData) {
         page = 0;
-        updateAllDate(allData);
+        if (!isHide)
+            updateAllDate(allData);
     }
 
     protected void updateAllDate(List<TableSportInfo<B>> allData) {
@@ -1172,5 +1174,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
         localCollectionMap.put(moduleKey, moduleMap);
         baseRecyclerAdapter.notifyDataSetChanged();
+    }
+
+    public void setIsHide(boolean isHide) {
+        this.isHide = isHide;
     }
 }
