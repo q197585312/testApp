@@ -400,9 +400,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     @Override
     public void switchState(SportState state) {
         SportState stateHelper = presenter.getStateHelper();
-        stateHelper.setIsHide(true);
-        presenter.setStateHelper(state);
+        if (stateHelper != null)
+            stateHelper.setIsHide(true);
         state.setIsHide(false);
+        presenter.setStateHelper(state);
         ((SportActivity) getIBaseContext().getBaseActivity()).tvMatchType.setText(state.getStateType().getText());
         ((SportState) presenter.getStateHelper()).initAllOdds(ivAllAdd);
         presenter.getStateHelper().refresh();
