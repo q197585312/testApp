@@ -16,8 +16,6 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 public class EuropeRunningAdapterHelper extends EuropeCommonAdapter {
     public EuropeRunningAdapterHelper(Context context) {
         super(context);
-        titleContentColor = R.color.green_content1;
-        normalContentColor = R.color.green_content2;
     }
 
 

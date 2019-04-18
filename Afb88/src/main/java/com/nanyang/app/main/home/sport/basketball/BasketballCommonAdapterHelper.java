@@ -13,8 +13,6 @@ import com.nanyang.app.main.home.sport.model.BallInfo;
 public class BasketballCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
     public BasketballCommonAdapterHelper(Context context) {
         super(context);
-        titleContentColor = R.color.green_content1;
-        normalContentColor = R.color.green_content2;
     }
 
 

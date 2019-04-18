@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.europe;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.view.View;
 import android.widget.TextView;
@@ -121,5 +123,14 @@ public class EuropeRunningState extends EuropeState {
     @Override
     public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new EuropeRunningAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
+    }
+    @Override
+    public int getTitleContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+    }
+
+    @Override
+    public int getNormalContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
     }
 }

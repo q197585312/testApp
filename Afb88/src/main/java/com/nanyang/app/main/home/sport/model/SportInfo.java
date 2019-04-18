@@ -59,6 +59,16 @@ public class SportInfo implements Serializable {
     public String ModuleId;
     public String ModuleTitle;
     public String SocOddsId, Home, IsInetBet, isX12New, HasX12, X12_1Odds, PreSocOddsId;
+    public int contentColor;
+
+    public int getContentColor() {
+        return contentColor;
+    }
+
+    public void setContentColor(int contentColor) {
+        this.contentColor = contentColor;
+    }
+
 
     public String getAway() {
         return Away;

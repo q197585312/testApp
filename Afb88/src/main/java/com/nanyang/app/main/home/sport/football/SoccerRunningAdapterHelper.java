@@ -16,10 +16,9 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
  */
 
 public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
+
     public SoccerRunningAdapterHelper(Context context) {
         super(context);
-        titleContentColor = R.color.green_content1;
-        normalContentColor = R.color.green_content2;
     }
 
 

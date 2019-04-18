@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.football;
 
+import android.content.Context;
+import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.nanyang.app.AppConstant;
@@ -70,5 +72,15 @@ public class SoccerRunningState extends SoccerCommonState {
     protected void clickHallBtn(View v, BallInfo item, int position) {
         int nextNotRepeat = ((SoccerRunningAdapterHelper) getAdapterHelper()).getNextNotRepeat(position);
         getBaseView().onWebShow(nextNotRepeat,position,item,v);
+    }
+
+    @Override
+    public int getTitleContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+    }
+
+    @Override
+    public int getNormalContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
     }
 }

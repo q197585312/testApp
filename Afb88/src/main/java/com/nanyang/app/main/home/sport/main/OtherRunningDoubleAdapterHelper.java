@@ -13,8 +13,6 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 public class OtherRunningDoubleAdapterHelper extends OtherDoubleAdapterHelper {
     public OtherRunningDoubleAdapterHelper(Context context) {
         super(context);
-        titleContentColor = R.color.green_content1;
-        normalContentColor = R.color.green_content2;
     }
 
     @Override

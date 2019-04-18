@@ -1,6 +1,8 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.annotation.TargetApi;
+import android.content.Context;
+import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -383,6 +385,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         baseView.onGetData(listDataAll);
     }
 
+    public int getTitleContentColor() {
+        return Color.WHITE;
+    }
+
+    public int getNormalContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.grey_white);
+    }
+
     private List<B> toMatchList(List<TableSportInfo<B>> pageList) {
         List<B> pageMatch = new ArrayList<>();
 
@@ -392,8 +402,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             for (int j = 0; j < rows.size(); j++) {
                 B cell = rows.get(j);
                 if (j == 0) {
+                    cell.setContentColor(getTitleContentColor());
                     cell.setType(SportInfo.Type.TITLE);
                 } else {
+                    if (rows.get(j - 1).getContentColor() == getTitleContentColor()) {
+                        cell.setContentColor(getNormalContentColor());
+                    } else {
+                        cell.setContentColor(getTitleContentColor());
+                    }
                     cell.setType(SportInfo.Type.ITME);
                 }
                 cell.setModuleId(item.getLeagueBean().getModuleId());
