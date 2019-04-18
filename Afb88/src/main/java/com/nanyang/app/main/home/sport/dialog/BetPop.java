@@ -190,12 +190,14 @@ public class BetPop extends BasePopupWindow {
         llBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopUpdateOdds();
                 closePopupWindow();
             }
         });
         tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopUpdateOdds();
                 goCancel();
             }
         });
@@ -293,6 +295,7 @@ public class BetPop extends BasePopupWindow {
                 } else {
                     betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(0).getBeturl() + "&amt=" + s;
                 }
+                stopUpdateOdds();
                 presenter.bet(betUrl);
                 presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
                     @Override
@@ -435,6 +438,7 @@ public class BetPop extends BasePopupWindow {
                         @Override
                         public void onClick(View v) {
                             if (list.size() <= 1) {
+                                stopUpdateOdds();
                                 goCancel();
                             } else {
                                 stopUpdateOdds();
@@ -583,6 +587,7 @@ public class BetPop extends BasePopupWindow {
         super.onClose();
 //        activity.hintPopInput(betAmountEdt);
         stopUpdateOdds();
+        betAmountEdt.setText("0");
         isNeedInitWeb = true;
     }
 
