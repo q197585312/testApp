@@ -11,9 +11,10 @@
 
     <!-- content -->
     <item
+        android:top="1px"
         android:left="1px"
         android:right="1px"
-        android:bottom="1px"
+        android:bottom="1dp"
         android:drawable="@drawable/bet_odds_bg">
         <shape android:shape="rectangle"></shape>
     </item>
