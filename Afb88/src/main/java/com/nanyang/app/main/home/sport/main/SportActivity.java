@@ -98,7 +98,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.iv_all_add)
     TextView ivAllAdd;
     @Bind(R.id.tv_odds_type)
-    TextView tvOddsType;
+    public TextView tvOddsType;
     @Bind(R.id.tv_league_major)
     TextView tvLeagueMain;
     @Bind(R.id.iv_add)
@@ -651,6 +651,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
         });
     }
+
+    public int dateClickPositon = 0;
 
     private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView, JSONObject jsonObjectNum) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));

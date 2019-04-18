@@ -13,7 +13,11 @@
         android:id="@+id/img_game_pic"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:background="@mipmap/football" />
+        android:background="@mipmap/football"
+        android:gravity="center"
+        android:paddingTop="5dp"
+        android:textColor="#757575"
+        android:textSize="12sp" />
 
     <TextView
         android:id="@+id/tv_game_name"

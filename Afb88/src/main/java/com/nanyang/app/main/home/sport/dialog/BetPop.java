@@ -35,6 +35,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
@@ -300,7 +301,9 @@ public class BetPop extends BasePopupWindow {
                         if (back.contains("||") && back.contains("|")) {
                             String[] split = back.split("\\|");
                             String tidss = split[5];
-                            BetGoalWindowUtils.showBetWindow("MY", tidss, (Activity) context);
+                            SportActivity sportActivity = (SportActivity) context;
+                            String oddsType = sportActivity.tvOddsType.getText().toString().trim();
+                            BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity);
                         }
                     }
                 });

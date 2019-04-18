@@ -729,4 +729,43 @@ public class AfbUtils {
             }
         }
     }
+
+    public static String getLangMonth(Context context, String month) {
+        String language = getLanguage(context);
+        if (month.startsWith("0")) {
+            month = month.substring(1);
+        }
+        if (language.equals("zh")) {
+            return month + "月";
+        } else {
+            switch (month) {
+                case "1":
+                    return "Jan";
+                case "2":
+                    return "Feb";
+                case "3":
+                    return "Mar";
+                case "4":
+                    return "Apr";
+                case "5":
+                    return "May";
+                case "6":
+                    return "Jun";
+                case "7":
+                    return "Jul";
+                case "8":
+                    return "Aug";
+                case "9":
+                    return "Sep";
+                case "10":
+                    return "Oct";
+                case "11":
+                    return "Nov";
+                case "12":
+                    return "Dec";
+                default:
+                    return month;
+            }
+        }
+    }
 }

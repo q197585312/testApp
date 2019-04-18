@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class MenuItemInfo<P> implements Serializable {
     int res;
     String text;
+    String day;
 
     public P getParent() {
         return parent;
@@ -40,6 +41,12 @@ public class MenuItemInfo<P> implements Serializable {
         this.type = type;
         this.parent=parent;
     }
+    public MenuItemInfo(int res,String text, String type, P parent,String day) {
+        this(res, text);
+        this.type = type;
+        this.parent=parent;
+        this.day = day;
+    }
     public String getText() {
         return text;
     }
@@ -59,5 +66,13 @@ public class MenuItemInfo<P> implements Serializable {
 
     public MenuItemInfo() {
         super();
+    }
+
+    public String getDay() {
+        return day;
+    }
+
+    public void setDay(String day) {
+        this.day = day;
     }
 }
