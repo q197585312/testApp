@@ -111,8 +111,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         super.onHiddenChanged(hidden);
         if (hidden) {// 不在最前端界面显示
             presenter.getStateHelper().stopUpdateData();
+            presenter.getStateHelper().setIsHide(true);
         } else {// 重新显示到最前端中
             rememberLastOdds();
+            presenter.getStateHelper().setIsHide(false);
         }
         Log.d(TAG, "onHiddenChanged: " + hidden + "," + getClass().getSimpleName());
     }
@@ -121,13 +123,13 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onResume() {
         super.onResume();
         if (!isFirstIn) {
-
             presenter.getStateHelper().refresh();
             updateMixOrderCount();
         }
         isFirstIn = false;
         getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
         getBaseActivity().toolbar.setVisibility(View.GONE);
+        presenter.getStateHelper().setIsHide(false);
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
     }
 
@@ -135,6 +137,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onPause() {
         super.onPause();
         presenter.getStateHelper().stopUpdateData();
+        presenter.getStateHelper().setIsHide(true);
         Log.d(TAG, "onPause: " + getClass().getSimpleName());
     }
 

@@ -476,7 +476,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected void updateAllDate(List<TableSportInfo<B>> allData) {
-
         filterData(allData);
         showCurrentData();
     }
