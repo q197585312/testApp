@@ -1,10 +1,13 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +57,7 @@ import cn.finalteam.toolsfinal.DeviceUtils;
 public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresenter> implements SportContract.View<SportInfo> {
 
 
+    private static final String TAG = "updateAllDate";
     @Bind(R.id.swipe_target)
     protected RecyclerView rvContent;
 
@@ -72,6 +76,74 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     private boolean isMajor;
     private AdditionPresenter additionPresenter;
 
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        Log.d(TAG, "onAttach: " + getClass().getSimpleName());
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        Log.d(TAG, "onCreate: " + getClass().getSimpleName());
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        Log.d(TAG, "onDestroy: " + getClass().getSimpleName());
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        Log.d(TAG, "onViewCreated: " + getClass().getSimpleName());
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        Log.d(TAG, "onActivityCreated: " + getClass().getSimpleName());
+    }
+
+
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {// 不在最前端界面显示
+            presenter.getStateHelper().stopUpdateData();
+        } else {// 重新显示到最前端中
+            rememberLastOdds();
+        }
+        Log.d(TAG, "onHiddenChanged: " + hidden + "," + getClass().getSimpleName());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isFirstIn) {
+
+            presenter.getStateHelper().refresh();
+            updateMixOrderCount();
+        }
+        isFirstIn = false;
+        getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
+        getBaseActivity().toolbar.setVisibility(View.GONE);
+        Log.d(TAG, "onResume: " + getClass().getSimpleName());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        presenter.getStateHelper().stopUpdateData();
+        Log.d(TAG, "onPause: " + getClass().getSimpleName());
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        additionPresenter.stopUpdate();
+        Log.d(TAG, "onStop: " + getClass().getSimpleName());
+    }
 
     @Override
     public void onWebShow(int nextNotRepeat, int position, IRTMatchInfo item, View view) {
@@ -327,7 +399,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void switchState(SportState state) {
+        SportState stateHelper = presenter.getStateHelper();
+        stateHelper.setIsHide(true);
         presenter.setStateHelper(state);
+        state.setIsHide(false);
         ((SportActivity) getIBaseContext().getBaseActivity()).tvMatchType.setText(state.getStateType().getText());
         ((SportState) presenter.getStateHelper()).initAllOdds(ivAllAdd);
         presenter.getStateHelper().refresh();
@@ -342,37 +417,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
 
-    @Override
-    public void onPause() {
-        super.onPause();
-        presenter.getStateHelper().stopUpdateData();
-    }
-
-    public void onHiddenChanged(boolean hidden) {
-        super.onHiddenChanged(hidden);
-        if (hidden) {// 不在最前端界面显示
-            presenter.getStateHelper().stopUpdateData();
-        } else {// 重新显示到最前端中
-            rememberLastOdds();
-        }
-    }
-
     private void rememberLastOdds() {
         getBaseActivity().rememberLastOdds();
     }
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (!isFirstIn) {
-
-            presenter.getStateHelper().refresh();
-            updateMixOrderCount();
-        }
-        isFirstIn = false;
-        getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
-        getBaseActivity().toolbar.setVisibility(View.GONE);
-    }
 
     public SportActivity getBaseActivity() {
         return (SportActivity) this.getActivity();
@@ -506,12 +554,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.changeAddition(position);
         }
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-        additionPresenter.stopUpdate();
     }
 
     public void onAddition(AdditionBean data, int position) {
