@@ -23,6 +23,9 @@ public class BaseParamBean {
     String Dates;
     String LeagueType;
     String Type;
+    String lang;
+    String accType;
+    String tidss;
 
     public BaseParamBean(String ACT, String PT) {
         this.ACT = ACT;
@@ -37,10 +40,10 @@ public class BaseParamBean {
         this.vsn = vsn;
     }
 
-    public BaseParamBean(String ACT, String PT, String obj,String requestType) {
+    public BaseParamBean(String ACT, String PT, String obj, String requestType) {
         this.ACT = ACT;
         this.PT = PT;
-        switch (requestType){
+        switch (requestType) {
             case "1":
                 this.Type = obj;
                 break;

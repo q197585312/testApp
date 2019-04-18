@@ -829,12 +829,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<Integer> item) {
                 Integer integer = typePositionMap.get(true);
                 if (integer != null && integer == position) {
-                    holder.getImageView(R.id.img_game_pic).setBackgroundResource(item.getParent());
+                    holder.getTextView(R.id.img_game_pic).setBackgroundResource(item.getParent());
                     holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
                     holder.getTextView(R.id.tv_game_name).setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
-
                 } else {
-                    holder.getImageView(R.id.img_game_pic).setBackgroundResource(item.getRes());
+                    holder.getTextView(R.id.img_game_pic).setBackgroundResource(item.getRes());
                     holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));
                     holder.getTextView(R.id.tv_game_name).setTextColor(ContextCompat.getColor(mContext, R.color.black_grey));
                 }
@@ -926,7 +925,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String d3 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 3), "yyyy-MM-dd");
         String d4 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 4), "yyyy-MM-dd");
         String d5 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 5), "yyyy-MM-dd");
-//        String dv = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
+        String dv = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
 
 
         MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, d1, d1, R.mipmap.date_day_green);

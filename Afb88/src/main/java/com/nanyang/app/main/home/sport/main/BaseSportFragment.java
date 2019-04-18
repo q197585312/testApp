@@ -527,7 +527,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).onBetSuccess(betResult);
         updateMixOrderCount();
         baseRecyclerAdapter.notifyDataSetChanged();
-        ToastUtils.showShort(betResult);
+//        ToastUtils.showShort(betResult);
     }
 
     @Override
