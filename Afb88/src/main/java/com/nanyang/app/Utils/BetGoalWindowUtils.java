@@ -41,12 +41,12 @@ public class BetGoalWindowUtils {
     private static BallInfo lastBallInfo;
 
     public static void showGoalWindow(Activity activity, BallInfo ballInfo, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {
-        if (lastBallInfo != null) {
-            if (lastBallInfo.equals(ballInfo)) {
-                return;
-            }
-        }
-        lastBallInfo = ballInfo;
+//        if (lastBallInfo != null) {
+//            if (lastBallInfo.equals(ballInfo)) {
+//                return;
+//            }
+//        }
+//        lastBallInfo = ballInfo;
         initLayout(activity);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, AfbUtils.dp2px(activity, 90));
         params.bottomMargin = AfbUtils.dp2px(activity, 10);

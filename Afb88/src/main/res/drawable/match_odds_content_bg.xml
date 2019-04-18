@@ -10,20 +10,12 @@
     </item>
 
     <!-- content -->
-    <item android:bottom="1dp">
-        <shape android:shape="rectangle">
-            <gradient
-                android:angle="90"
-                android:endColor="@color/grey_light"
-                android:gradientRadius="100%p"
-                android:centerColor="@color/grey_thick_line"
-                android:startColor="@color/white"
-                android:type="linear" />
-            <corners android:radius="2dp" />
-            <stroke
-                android:width="0.5dp"
-                android:color="@color/grey_background" />
-        </shape>
+    <item
+        android:left="1px"
+        android:right="1px"
+        android:bottom="1px"
+        android:drawable="@drawable/bet_odds_bg">
+        <shape android:shape="rectangle"></shape>
     </item>
 
 </layer-list>
