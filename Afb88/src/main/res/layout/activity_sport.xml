@@ -209,13 +209,23 @@
             </LinearLayout>
         </LinearLayout>
 
+        <LinearLayout
+            android:id="@+id/ll_header_sport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
+
         <FrameLayout
             android:id="@+id/fl_main_content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/grey_background" />
-
+        <LinearLayout
+            android:id="@+id/ll_footer_sport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
         <View
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
@@ -276,10 +286,10 @@
                     android:layout_height="match_parent"
                     android:background="@null"
                     android:button="@null"
+                    android:drawablePadding="2dp"
                     android:drawableTop="@mipmap/sport_bottom_teb_shopping"
                     android:gravity="center"
                     android:onClick="clickOrder"
-                    android:drawablePadding="2dp"
                     android:text="@string/ORDER"
                     android:textColor="@color/grey_dark"
                     android:textSize="12sp"
@@ -320,9 +330,9 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawablePadding="2dp"
                 android:drawableTop="@mipmap/sport_botton_teb_more_menu"
                 android:gravity="center"
-                android:drawablePadding="2dp"
                 android:onClick="clickMoreMenu"
                 android:text="@string/more"
                 android:textColor="@color/grey_dark"

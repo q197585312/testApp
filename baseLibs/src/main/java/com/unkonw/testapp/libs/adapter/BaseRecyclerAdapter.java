@@ -2,6 +2,7 @@ package com.unkonw.testapp.libs.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     }
 
     private int getBodySize() {
-        return mDatas==null?0:mDatas.size();
+        return mDatas == null ? 0 : mDatas.size();
     }
 
     private boolean isHead(int position) {
@@ -91,8 +92,11 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
 //            ((BodyViewHolder) holder).body.setText((CharSequence) listData.get());
 
             holder.getHolderView().setTag(position - headers.size());
-            T item = getItem(position -  headers.size());
-            convert(holder, position -  headers.size(), item);
+            T item = getItem(position - headers.size());
+            Log.d(TAG, "onBindViewHolder: BodyViewHolder" + ",position:" + position + "headers.size:" + headers.size() + ",item" + item);
+            if (item == null)
+                return;
+            convert(holder, position - headers.size(), item);
 
         } else if (holder instanceof FootViewHolder) {
 
@@ -110,7 +114,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
 
     public T getItem(int position) {
 
-        return mDatas != null && mDatas.size() > (position )? mDatas.get(position) : null;
+        return mDatas != null && mDatas.size() > (position) ? mDatas.get(position) : null;
     }
 
 
@@ -174,6 +178,12 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
             return true;
         }
         return false;
+    }
+
+    public void removeHeadAndFoot() {
+        headers = new ArrayList<>();
+        footers = new ArrayList<>();
+        notifyDataSetChanged();
     }
 
 

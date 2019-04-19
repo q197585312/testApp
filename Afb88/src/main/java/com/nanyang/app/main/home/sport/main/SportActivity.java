@@ -16,9 +16,12 @@ import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -55,6 +58,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -128,6 +132,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     ImageView ivDeleteSearch;
     @Bind(R.id.edt_match_search_content)
     EditText edtSearchContent;
+
+    @Bind(R.id.ll_header_sport)
+    LinearLayout ll_header_sport;
+    @Bind(R.id.ll_footer_sport)
+    LinearLayout ll_footer_sport;
+
     @Bind(R.id.match_collection_iv)
     ImageView collectionIv;
 
@@ -136,7 +146,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     private MenuItemInfo oddsType;
     private MenuItemInfo allOdds;
-    private MenuItemInfo<String> item;
+    public MenuItemInfo<String> item;
     private String currentGameType = "";
     public WebSocket webSocket;
     private AfbDrawerViewHolder afbDrawerViewHolder;
@@ -274,16 +284,20 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
 
-    private void selectFragmentTag(String tag, BaseSportFragment localCurrentFragment) {
+    public void selectFragmentTag(String tag, BaseSportFragment localCurrentFragment) {
+        ll_footer_sport.removeAllViews();
+        ll_header_sport.removeAllViews();
         afbDrawerViewHolder.switchFragment(localCurrentFragment);
+        currentFragment = localCurrentFragment;
         if (currentTag.isEmpty()) {
-
+            return;
         } else if (!currentTag.equals(tag)) {
             MenuItemInfo stateType = currentFragment.presenter.getStateHelper().getStateType();
             localCurrentFragment.switchParentType(stateType);
             setType(stateType.getType());
+        } else {
+            currentFragment.onResume();
         }
-        currentFragment = localCurrentFragment;
         currentTag = tag;
         tvSportSelect.setText(tag);
         sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);
@@ -572,7 +586,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                                 public void onItemClick(View view, SportIdBean item, int position) {
                                     tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
                                     tvSportSelect.setText(getString(item.getTextRes()));
-                                    selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
+                                    if (item.getId().equals("1,9,21,29,51,182")) {
+                                        initAllRunning("1");
+                                    } else {
+                                        selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
+                                    }
                                     closePopupWindow();
                                 }
                             });
@@ -608,6 +626,55 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 }
             }
         });
+    }
+
+    public void initAllRunning(String allRunningG) {
+        //"1,9,21,29,51,182"
+
+        SportIdBean sportIdBean = AfbUtils.identificationSportFromOtherAndSport(allRunningG);
+        Log.d("initAllRunning", "allRunningG: " + allRunningG + ",sportIdBean:" + sportIdBean);
+        if (sportIdBean == null)
+            return;
+        selectFragmentTag(getString(sportIdBean.getTextRes()), sportIdBean.getBaseFragment());
+        addHeadAndFoot(allRunningG);
+
+    }
+
+    public void addHeadAndFoot(String allRunningG) {
+        List<String> all = Arrays.asList("1", "9", "21", "29", "14", "5");
+        boolean addHead = true;
+        for (int i = 0; i < all.size(); i++) {
+            String s = all.get(i);
+            SportIdBean sportIdIndex = AfbUtils.identificationSportFromOtherAndSport(s);
+            initAddView(addHead, sportIdIndex);
+            if (s.equals(allRunningG)) {
+                addHead = false;
+            }
+        }
+    }
+
+    private void initAddView(boolean addHead, final SportIdBean sportIdBean) {
+        if (sportIdBean == null)
+            return;
+        View inflate = LayoutInflater.from(mContext).inflate(R.layout.sport_selected_layout_base, null);
+        inflate.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        View sportView = inflate.findViewById(R.id.ll_sport);
+        TextView sportName = inflate.findViewById(R.id.tv_sport_name);
+        ImageView sportPic = inflate.findViewById(R.id.iv_sport_picture);
+        sportName.setText(sportIdBean.getTextRes());
+        sportPic.setImageResource(sportIdBean.getSportPic());
+        sportName.setTextColor(sportIdBean.getTextColor());
+
+        sportView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                initAllRunning(sportIdBean.getId());
+            }
+        });
+        if (addHead)
+            ll_header_sport.addView(inflate);
+        else
+            ll_footer_sport.addView(inflate);
     }
 
     public void clickSportWayRun(final View view) {

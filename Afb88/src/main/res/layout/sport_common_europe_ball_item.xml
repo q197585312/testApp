@@ -430,7 +430,7 @@
                         android:textColor="@color/white"
                         android:textSize="11sp"
                         android:textStyle="bold"
-                        android:visibility="visible" />
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -488,7 +488,7 @@
             <LinearLayout
                 android:id="@+id/module_center_sl"
                 android:layout_width="140dp"
-                android:layout_height="match_parent"
+                android:layout_height="30dp"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 

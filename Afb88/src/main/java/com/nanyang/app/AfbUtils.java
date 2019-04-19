@@ -445,6 +445,7 @@ public class AfbUtils {
 
     public static void initAllSprotMap() {
         BaseSportFragment soccerFragment = new SoccerFragment();
+
         BaseSportFragment basketballFragment = new BasketballFragment();
         BaseSportFragment tennisFragment = new TennisFragment();
         BaseSportFragment financialFragment = new FinancialFragment();
@@ -502,7 +503,7 @@ public class AfbUtils {
         beanHashMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, R.color.black_grey));
         beanHashMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, R.color.black_grey));
         beanHashMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, winterSportFragment, R.color.black_grey));
-        beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, soccerFragment, R.color.black_grey));
+        beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.all_running));
         beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, soccerFragment, R.color.black_grey));
 
         sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.all_running));
@@ -535,6 +536,10 @@ public class AfbUtils {
         othersMap.put("108", new SportIdBean("108", "108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.RED, R.mipmap.financial));
 
 
+    }
+
+    public static SportIdBean identificationSportFromOtherAndSport(String id) {
+        return sportMap.get(id) != null ? sportMap.get(id) : othersMap.get(id);
     }
 
     public static SportIdBean identificationSportById(String id) {

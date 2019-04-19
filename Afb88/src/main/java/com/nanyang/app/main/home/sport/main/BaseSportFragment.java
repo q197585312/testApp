@@ -131,6 +131,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         getBaseActivity().toolbar.setVisibility(View.GONE);
         presenter.getStateHelper().setIsHide(false);
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
+
     }
 
     @Override
@@ -250,6 +251,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void searchMatch(boolean isSearch, String s) {
         presenter.getStateHelper().setSearch(isSearch, s);
     }
+
+
+
 
     private class DigWebViewClient extends WebViewClient {
 
