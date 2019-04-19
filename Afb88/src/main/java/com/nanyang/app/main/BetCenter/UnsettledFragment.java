@@ -89,11 +89,13 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     }
 
     public void setRvlist(List<RunningBean> list) {
-        if (type.equals("W") && list.size() > 0) {
-            tvWaiteCount.setText(list.size() + "");
-            tvWaiteCount.setVisibility(View.VISIBLE);
-        } else {
-            tvWaiteCount.setVisibility(View.GONE);
+        if (type.equals("W")) {
+            if (list.size() > 0) {
+                tvWaiteCount.setText(list.size() + "");
+                tvWaiteCount.setVisibility(View.VISIBLE);
+            } else {
+                tvWaiteCount.setVisibility(View.GONE);
+            }
         }
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
         rv.setLayoutManager(llm);
