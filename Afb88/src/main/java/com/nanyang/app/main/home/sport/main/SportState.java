@@ -104,12 +104,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     private DataUpdateRunnable dataUpdateRunnable;
     private boolean isSearch = false;
     private String searchStr = "";
-    private String wd = "";
+
     private boolean isHide = false;
 
-    public String getWd() {
-        return wd;
-    }
 
     public int getPageSize() {
         return pageSize;
@@ -291,10 +288,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 + "&tp=1"
                 + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
 
-        if (StringUtils.isNull(wd)) {
+        if (StringUtils.isNull(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd)) {
             url = url + "&wd=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
         } else {
-            url = url + "&wd=" + wd;
+            url = url + "&wd=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd;
         }
         Log.d("getUrlString", "url: " + url);
         return url;
@@ -904,10 +901,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
 
     protected void onTypeWayClick(MenuItemInfo item, int position) {
-        this.wd = item.getDateParam();
+        ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd = item.getDateParam();
         if (item.getRes() == R.mipmap.date_day_grey) {
             onTypeClick(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
-                    , "Early", R.mipmap.date_early_green), position);
+                    , "Early", R.mipmap.date_early_green, item.getDay(), item.getDateParam()), position);
         } else {
             onTypeClick(item, position);
         }
