@@ -78,8 +78,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
 
     List<View> footers = new ArrayList<>();
 
-    public void addFooter(View header) {
-        footers.add(header);
+    public void addFooter(View footer) {
+        footers.add(footer);
     }
 
     @Override
