@@ -287,8 +287,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 + "&LangCol=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getLangCol()
                 + "&um=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getUm()
                 + "&delay=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getDelay()
-                + "&Pn=0"
-                + "&tp=0"
+                + "&pn=1"
+                + "&tp=1"
                 + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
 
         if (!StringUtils.isNull(wd)) {
@@ -933,12 +933,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String d6 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
 
         Context context = getBaseView().getIBaseContext().getBaseActivity();
-        MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d1.split("-")[1]), AfbUtils.getLangMonth(context, d1.split("-")[1]), R.mipmap.date_day_green, d1.split("-")[2]);
-        MenuItemInfo<Integer> item2 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d2.split("-")[1]), AfbUtils.getLangMonth(context, d2.split("-")[1]), R.mipmap.date_day_green, d2.split("-")[2]);
-        MenuItemInfo<Integer> item3 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d3.split("-")[1]), AfbUtils.getLangMonth(context, d3.split("-")[1]), R.mipmap.date_day_green, d3.split("-")[2]);
-        MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d4.split("-")[1]), AfbUtils.getLangMonth(context, d4.split("-")[1]), R.mipmap.date_day_green, d4.split("-")[2]);
-        MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d5.split("-")[1]), AfbUtils.getLangMonth(context, d5.split("-")[1]), R.mipmap.date_day_green, d5.split("-")[2]);
-        MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d6.split("-")[1]), AfbUtils.getLangMonth(context, d6.split("-")[1]), R.mipmap.date_day_green, d6.split("-")[2]);
+        MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d1.split("-")[1]), AfbUtils.getLangMonth(context, d1.split("-")[1]), R.mipmap.date_day_green, d1.split("-")[2], d1);
+        MenuItemInfo<Integer> item2 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d2.split("-")[1]), AfbUtils.getLangMonth(context, d2.split("-")[1]), R.mipmap.date_day_green, d2.split("-")[2], d2);
+        MenuItemInfo<Integer> item3 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d3.split("-")[1]), AfbUtils.getLangMonth(context, d3.split("-")[1]), R.mipmap.date_day_green, d3.split("-")[2], d3);
+        MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d4.split("-")[1]), AfbUtils.getLangMonth(context, d4.split("-")[1]), R.mipmap.date_day_green, d4.split("-")[2], d4);
+        MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d5.split("-")[1]), AfbUtils.getLangMonth(context, d5.split("-")[1]), R.mipmap.date_day_green, d5.split("-")[2], d5);
+        MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d6.split("-")[1]), AfbUtils.getLangMonth(context, d6.split("-")[1]), R.mipmap.date_day_green, d6.split("-")[2], d6);
 
         List<MenuItemInfo<Integer>> types = new ArrayList<>();
         types.add(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
