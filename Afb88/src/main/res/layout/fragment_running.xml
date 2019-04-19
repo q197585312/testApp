@@ -5,72 +5,124 @@
     android:background="@color/grey_background"
     android:orientation="vertical">
 
-    <RadioGroup
-        android:id="@+id/running_group"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="53dp"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="10dp">
+        android:layout_height="53dp">
 
-        <RadioButton
-            android:id="@+id/running_waiting"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/selector_running_select_left"
-            android:button="@null"
-            android:checked="true"
-            android:gravity="center"
-            android:text="@string/WAITING2"
-            android:textColor="@color/color_yellow"
-            android:textSize="13sp" />
+        <RadioGroup
+            android:id="@+id/running_group"
+            android:layout_width="match_parent"
+            android:layout_height="53dp"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-        <RadioButton
-            android:id="@+id/running_accepted"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/selector_running_select_center"
-            android:button="@null"
-            android:drawableBottom="@drawable/shape_line_green"
-            android:drawableTop="@drawable/shape_line_green"
-            android:gravity="center"
-            android:text="@string/ACCEPTED2"
-            android:textColor="@color/color_green"
-            android:textSize="13sp" />
+            <RadioButton
+                android:id="@+id/running_waiting"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_running_select_left"
+                android:button="@null"
+                android:checked="true"
+                android:gravity="center"
+                android:text="@string/WAITING2"
+                android:textColor="@color/color_yellow"
+                android:textSize="13sp" />
 
-        <View
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:background="@color/green"></View>
+            <RadioButton
+                android:id="@+id/running_accepted"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_running_select_center"
+                android:button="@null"
+                android:drawableBottom="@drawable/shape_line_green"
+                android:drawableTop="@drawable/shape_line_green"
+                android:gravity="center"
+                android:text="@string/ACCEPTED2"
+                android:textColor="@color/color_green"
+                android:textSize="13sp" />
 
-        <RadioButton
-            android:id="@+id/running_rejected"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/selector_running_select_center"
-            android:button="@null"
-            android:drawableBottom="@drawable/shape_line_green"
-            android:drawableTop="@drawable/shape_line_green"
-            android:gravity="center"
-            android:text="@string/REJECTED2"
-            android:textColor="@color/color_red"
-            android:textSize="13sp" />
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/green"></View>
 
-        <RadioButton
-            android:id="@+id/running_cancelled"
-            android:layout_width="0dp"
+            <RadioButton
+                android:id="@+id/running_rejected"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_running_select_center"
+                android:button="@null"
+                android:drawableBottom="@drawable/shape_line_green"
+                android:drawableTop="@drawable/shape_line_green"
+                android:gravity="center"
+                android:text="@string/REJECTED2"
+                android:textColor="@color/color_red"
+                android:textSize="13sp" />
+
+            <RadioButton
+                android:id="@+id/running_cancelled"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/selector_running_select_right"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/CANCELLED2"
+                android:textColor="@color/color_red"
+                android:textSize="13sp" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="@drawable/selector_running_select_right"
-            android:button="@null"
-            android:gravity="center"
-            android:text="@string/CANCELLED2"
-            android:textColor="@color/color_red"
-            android:textSize="13sp" />
-    </RadioGroup>
+            android:clickable="false"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"
+                android:gravity="center_vertical|right">
+
+                <TextView
+                    android:id="@+id/tv_waite_count"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_marginRight="2dp"
+                    android:background="@drawable/oval_red_stroke_black"
+                    android:clickable="false"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="9dp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:clickable="false"></LinearLayout>
+        </LinearLayout>
+
+    </FrameLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/running_list"

@@ -190,4 +190,6 @@ public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFra
         return this;
     }
 
+    public void initWaitData() {
+    }
 }
