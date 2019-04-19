@@ -23,14 +23,7 @@ public class AppConstant {
     public static String KEY_DATA3 = "KEY_DATA3";
 
 
-    /**
-     * http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=r&mt=0&tf=-1&TFStatus=0
-     * RUNING
-     * http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=t&mt=0&tf=-1&TFStatus=0&wd=&ia=0
-     * Today
-     * http://a8197c.a36588.com/_View/RMOddsGen1.ashx?ot=e&mt=0&tf=2&TFStatus=0&update=false&wd=2017-02-16&ia=0
-     * Early
-     */
+
 //    http://a0096f.panda88.org/_View/SocAllGen.ashx?ot=r&mt=0&tf=-1&TFStatus=0&update=false&r=431367264&LID=&_=1488465754049
     //盘口
 //    http://a0096f.panda88.org/Main.aspx?accType=HK
@@ -74,7 +67,6 @@ public class AppConstant {
     public String URL_UPDATE_BALANCE = HOST + "Bet/PanelStakeBalance_App.aspx";//http://103.206.122.65/Bet/BetStake.ashx
     public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
     public String URL_ODDS_TYPE = HOST + "W0/Pub/wfMain0.html?accType=";//http://103.206.122.65/W0/Pub/wfMain0.html?accType=HK
-    //?g=1&ot=t&tf=-1&TFStatus=0&update=false&r=1581083541&wd=2018-11-28&ia=0&accType=MY&LID=&mt=0&FAV=&SL=&_=1543307725540
 
     public String URL_ODDS_AFB1188 = HOST + "Bet/hBetOdds.ashx?";
     //    public String URL_ODDS = HOST + "Bet/JRecPanel_App.aspx?";
@@ -87,11 +79,11 @@ public class AppConstant {
     //https://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&g=1&ot=r&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-25&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&mt=0&FAV=&SL=&LSL=
 
     public String URL_FIVE_MAJOR_RUNNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=200&ot=r&tf=-1&TFStatus=0&FAV=&SL=";
-    public String URL_FIVE_MAJOR_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=200&ot=t&tf=-1&TFStatus=0&wd=&ia=0&FAV=&SL=";
+    public String URL_FIVE_MAJOR_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=200&ot=t&tf=-1&TFStatus=0&ia=0&FAV=&SL=";
     public String URL_FIVE_MAJOR_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=200&ot=e&tf=2&TFStatus=0&update=false&FAV=&SL=";
 
     public String URL_FOOTBALL_RUNNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=1&ot=r&tf=-1&TFStatus=0&FAV=&SL=";
-    public String URL_FOOTBALL_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=1&ot=t&tf=-1&TFStatus=0&wd=&ia=0&FAV=&SL=";
+    public String URL_FOOTBALL_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=1&ot=t&tf=-1&TFStatus=0&ia=0&FAV=&SL=";
     public String URL_FOOTBALL_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=1&ot=e&tf=2&TFStatus=0&update=false&FAV=&SL=";
     public String URL_FOOTBALL_EARLY_Mix = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&&g=4&ot=e4&FAV=&SL=";
     public String URL_FOOTBALL_TODAY_Mix = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=4&ot=t&FAV=&SL=";
@@ -298,7 +290,7 @@ public class AppConstant {
         URL_RESULT = HOST + "_view/Result_App.aspx";
 
         URL_FOOTBALL_RUNNING = HOST + "_View/SocAllGen.ashx?ot=r&tf=-1&TFStatus=0";
-        URL_FOOTBALL_TODAY = HOST + "_View/SocAllGen.ashx?ot=t&tf=-1&TFStatus=0&wd=&ia=0";
+        URL_FOOTBALL_TODAY = HOST + "_View/SocAllGen.ashx?ot=t&tf=-1&TFStatus=0&ia=0";
         URL_FOOTBALL_EARLY = HOST + "_View/SocAllGen.ashx?ot=e&tf=2&TFStatus=0&update=false";
         URL_FOOTBALL_EARLY_Mix = HOST + "_View/SocAllGen.ashx?g=4&ot=e";
         URL_FOOTBALL_TODAY_Mix = HOST + "_View/SocAllGen.ashx?g=4&ot=t";

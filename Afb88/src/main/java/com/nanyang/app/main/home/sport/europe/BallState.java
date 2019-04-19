@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.europe;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.util.Log;
 
 import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
@@ -37,7 +36,7 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
 
     @Override
     protected void updateAllDate(List<TableSportInfo<BallInfo>> allData) {
-        Log.d("updateAllDate", "updateAllDate: " + System.currentTimeMillis() + "  n++:" + n++);
+
 
         List<TableSportInfo<BallInfo>> noRepeatAllData = handleRepeatData(allData);
         filterData(noRepeatAllData);
@@ -62,13 +61,13 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 String sHome = item.getRunHomeScore();
                 String sAway = item.getRunAwayScore();
                 if (item.isHomeScoreBigger()) {
-                    Log.d("updateAllDate", "updateAllDate: "+n+",isHomeScoreBigger");
+
                     item.setHomeScoreTextColor(Color.RED);
                     BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
                     item.setHomeScoreBigger(false);
                 }
                 if (item.isAwayScoreBigger()) {
-                    Log.d("updateAllDate", "updateAllDate: "+n+",isAwayScoreBigger");
+
                     item.setAwayScoreTextColor(Color.RED);
                     BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
                     item.setAwayScoreBigger(false);

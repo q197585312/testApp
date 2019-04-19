@@ -2,7 +2,6 @@ package com.unkonw.testapp.libs.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,16 +86,16 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     public final void onBindViewHolder(MyRecyclerViewHolder holder, int position) {
 
         if (holder instanceof HeadViewHolder) {
-            Log.d(TAG, "onBindViewHolder: HeadViewHolder-"+position);
+
         } else if (holder instanceof BodyViewHolder) {
 //            ((BodyViewHolder) holder).body.setText((CharSequence) listData.get());
-            Log.d(TAG, "onBindViewHolder: BodyViewHolder-"+position);
+
             holder.getHolderView().setTag(position - headers.size());
             T item = getItem(position -  headers.size());
             convert(holder, position -  headers.size(), item);
 
         } else if (holder instanceof FootViewHolder) {
-            Log.d(TAG, "onBindViewHolder: FootViewHolder-"+position);
+
         }
 
     }
@@ -110,7 +109,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     }
 
     public T getItem(int position) {
-        Log.d(TAG, "getItem: -"+position);
+
         return mDatas != null && mDatas.size() > (position )? mDatas.get(position) : null;
     }
 
