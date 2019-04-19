@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.dialog;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -11,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -32,11 +34,14 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.BetGoalWindowUtils;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -185,12 +190,14 @@ public class BetPop extends BasePopupWindow {
         llBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopUpdateOdds();
                 closePopupWindow();
             }
         });
         tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                stopUpdateOdds();
                 goCancel();
             }
         });
@@ -288,7 +295,21 @@ public class BetPop extends BasePopupWindow {
                 } else {
                     betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(0).getBeturl() + "&amt=" + s;
                 }
+                stopUpdateOdds();
                 presenter.bet(betUrl);
+                presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
+                    @Override
+                    public void callBack(String back) {
+//                        Chile (Over) 2 @ 0.745 ||r=467428298|5|100|34941
+                        if (back.contains("||") && back.contains("|")) {
+                            String[] split = back.split("\\|");
+                            String tidss = split[5];
+                            SportActivity sportActivity = (SportActivity) context;
+                            String oddsType = sportActivity.tvOddsType.getText().toString().trim();
+                            BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity);
+                        }
+                    }
+                });
             }
         } else {
             ToastUtils.showShort(R.string.Input_the_amount_of_bets_please);
@@ -417,6 +438,7 @@ public class BetPop extends BasePopupWindow {
                         @Override
                         public void onClick(View v) {
                             if (list.size() <= 1) {
+                                stopUpdateOdds();
                                 goCancel();
                             } else {
                                 stopUpdateOdds();
@@ -565,6 +587,7 @@ public class BetPop extends BasePopupWindow {
         super.onClose();
 //        activity.hintPopInput(betAmountEdt);
         stopUpdateOdds();
+        betAmountEdt.setText("0");
         isNeedInitWeb = true;
     }
 

@@ -16,6 +16,7 @@ import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -59,6 +60,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import butterknife.Bind;
@@ -96,7 +98,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.iv_all_add)
     TextView ivAllAdd;
     @Bind(R.id.tv_odds_type)
-    TextView tvOddsType;
+    public TextView tvOddsType;
     @Bind(R.id.tv_league_major)
     TextView tvLeagueMain;
     @Bind(R.id.iv_add)
@@ -227,7 +229,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 afbDrawerViewHolder.goRecord();
             }
         });
-
     }
 
     public void updateMixOrderCount() {
@@ -522,7 +523,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                                 @Override
                                 public void convert(MyRecyclerViewHolder holder, int position, SportIdBean item) {
                                     LinearLayout llContent = holder.getView(R.id.ll_content);
-                                    ImageView imgGamePic = holder.getView(R.id.img_game_pic);
+                                    TextView imgGamePic = holder.getView(R.id.img_game_pic);
                                     TextView tvGameName = holder.getView(R.id.tv_game_name);
                                     TextView tvGameCount = holder.getView(R.id.tv_game_count);
                                     llContent.setBackgroundColor(Color.WHITE);
@@ -603,7 +604,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                             });
                         }
                     });
-                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 300), AfbUtils.dp2px(mContext, 200));
+                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 300 + 9), AfbUtils.dp2px(mContext, 200));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -642,7 +643,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                                     });
                                 }
                             });
-                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 356), AfbUtils.getScreenWidth(mContext) / 2);
+                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 356 + 9), AfbUtils.getScreenWidth(mContext) / 2);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -650,6 +651,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
         });
     }
+
+    public int dateClickPositon = 0;
 
     private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView, JSONObject jsonObjectNum) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));

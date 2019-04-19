@@ -64,13 +64,13 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 if (item.isHomeScoreBigger()) {
                     Log.d("updateAllDate", "updateAllDate: "+n+",isHomeScoreBigger");
                     item.setHomeScoreTextColor(Color.RED);
-                    BetGoalWindowUtils.showGoalWindow(activity, item, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
+                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
                     item.setHomeScoreBigger(false);
                 }
                 if (item.isAwayScoreBigger()) {
                     Log.d("updateAllDate", "updateAllDate: "+n+",isAwayScoreBigger");
                     item.setAwayScoreTextColor(Color.RED);
-                    BetGoalWindowUtils.showGoalWindow(activity, item, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
+                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
                     item.setAwayScoreBigger(false);
                 }
             }

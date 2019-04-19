@@ -258,9 +258,9 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                             updateFirstStake();
                         } else {
                             baseView.onFailed(allData);
-                            if (back != null && allData.startsWith("CHG")) {
-                                handleOddsUpdate(allData);
-                            }
+                        }
+                        if (back != null /*&& allData.startsWith("CHG")*/) {
+                            back.callBack(allData);
                         }
                     }
                 }, new Consumer<Throwable>() {//错误

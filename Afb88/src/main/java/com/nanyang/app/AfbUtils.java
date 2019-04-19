@@ -23,6 +23,7 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
 import android.webkit.CookieManager;
@@ -67,6 +68,8 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.api.CookieManger;
 import com.unkonw.testapp.libs.utils.SystemTool;
+
+import org.json.JSONObject;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayInputStream;
@@ -698,4 +701,71 @@ public class AfbUtils {
         return format;
     }
 
+    public static String getJsonParam(LinkedHashMap<String, String> map) {
+        JSONObject jsonObject = new JSONObject(map);
+        return jsonObject.toString();
+    }
+
+    public static String getLangParamStr(Context context) {
+        String language = getLanguage(context);
+        if (TextUtils.isEmpty(language)) {
+            return "EN-US";
+        } else {
+            switch (language) {
+                case "zh":
+                    return "ZH-CN";
+                case "en":
+                    return "EN-US";
+                case "th":
+                    return "TH-TH";
+                case "ko":
+                    return "EN-TT";
+                case "vi":
+                    return "EN-IE";
+                case "tr":
+                    return "UR-PK";
+                default:
+                    return "EN-US";
+            }
+        }
+    }
+
+    public static String getLangMonth(Context context, String month) {
+        String language = getLanguage(context);
+        if (month.startsWith("0")) {
+            month = month.substring(1);
+        }
+        if (language.equals("zh")) {
+            return month + "月";
+        } else {
+            switch (month) {
+                case "1":
+                    return "Jan";
+                case "2":
+                    return "Feb";
+                case "3":
+                    return "Mar";
+                case "4":
+                    return "Apr";
+                case "5":
+                    return "May";
+                case "6":
+                    return "Jun";
+                case "7":
+                    return "Jul";
+                case "8":
+                    return "Aug";
+                case "9":
+                    return "Sep";
+                case "10":
+                    return "Oct";
+                case "11":
+                    return "Nov";
+                case "12":
+                    return "Dec";
+                default:
+                    return month;
+            }
+        }
+    }
 }

@@ -220,6 +220,32 @@ public class StatementListDataBean {
         this.index25 = index25;
     }
 
+    public StatementListDataBean(String index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8, String index9, String index10, String index11, String index12, String index13, String index14, String index15, String index16, String index17, String index18, String index19, String index20, String index21, String index22) {
+        this.index0 = index0;
+        this.index1 = index1;
+        this.index2 = index2;
+        this.index3 = index3;
+        this.index4 = index4;
+        this.index5 = index5;
+        this.index6 = index6;
+        this.index7 = index7;
+        this.index8 = index8;
+        this.index9 = index9;
+        this.index10 = index10;
+        this.index11 = index11;
+        this.index12 = index12;
+        this.index13 = index13;
+        this.index14 = index14;
+        this.index15 = index15;
+        this.index16 = index16;
+        this.index17 = index17;
+        this.index18 = index18;
+        this.index19 = index19;
+        this.index20 = index20;
+        this.index21 = index21;
+        this.index22 = index22;
+    }
+
     public String getIndex0() {
         return index0;
     }
