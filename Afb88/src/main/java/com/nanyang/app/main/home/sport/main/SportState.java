@@ -296,6 +296,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         } else {
             url = url + "&wd=" + wd;
         }
+        Log.d("getUrlString", "url: " + url);
         return url;
     }
 
@@ -903,12 +904,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
 
     protected void onTypeWayClick(MenuItemInfo item, int position) {
+        this.wd = item.getDateParam();
         if (item.getRes() == R.mipmap.date_day_grey) {
-            this.wd = item.getType();
             onTypeClick(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
                     , "Early", R.mipmap.date_early_green), position);
         } else {
-            this.wd = "";
             onTypeClick(item, position);
         }
         SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
@@ -933,7 +933,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String d4 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 4), "yyyy-MM-dd");
         String d5 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 5), "yyyy-MM-dd");
         String d6 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
-
         Context context = getBaseView().getIBaseContext().getBaseActivity();
         MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d1.split("-")[1]), AfbUtils.getLangMonth(context, d1.split("-")[1]), R.mipmap.date_day_green, d1.split("-")[2], d1);
         MenuItemInfo<Integer> item2 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d2.split("-")[1]), AfbUtils.getLangMonth(context, d2.split("-")[1]), R.mipmap.date_day_green, d2.split("-")[2], d2);
@@ -941,14 +940,18 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d4.split("-")[1]), AfbUtils.getLangMonth(context, d4.split("-")[1]), R.mipmap.date_day_green, d4.split("-")[2], d4);
         MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d5.split("-")[1]), AfbUtils.getLangMonth(context, d5.split("-")[1]), R.mipmap.date_day_green, d5.split("-")[2], d5);
         MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d6.split("-")[1]), AfbUtils.getLangMonth(context, d6.split("-")[1]), R.mipmap.date_day_green, d6.split("-")[2], d6);
-
-        List<MenuItemInfo<Integer>> types = new ArrayList<>();
-        types.add(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
-        types.add(new MenuItemInfo<Integer>(R.mipmap.date_today_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", R.mipmap.date_today_green));
-        types.add(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
+        MenuItemInfo<Integer> itemRunning = new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green);
+        itemRunning.setDateParam("");
+        MenuItemInfo<Integer> itemToday = new MenuItemInfo<Integer>(R.mipmap.date_today_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", R.mipmap.date_today_green);
+        itemToday.setDateParam("");
+        MenuItemInfo<Integer> itemEarly = new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
                 + "(" + getBaseView().getIBaseContext().getBaseActivity().getString(R.string.all) + ")"
-                , "Early", R.mipmap.date_early_green));
-
+                , "Early", R.mipmap.date_early_green);
+        itemEarly.setDateParam("7");
+        List<MenuItemInfo<Integer>> types = new ArrayList<>();
+        types.add(itemRunning);
+        types.add(itemToday);
+        types.add(itemEarly);
         types.addAll(Arrays.asList(
                 item1,
                 item2,
