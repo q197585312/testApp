@@ -102,6 +102,11 @@ public class BetCenterFragment extends BaseMoreFragment {
             rbGrade.setChecked(true);
         }
         if (lastIndex == currentIndex) {
+            if (currentIndex == 0 && unsettledFragment.isAdded()) {
+                if (unsettledFragment != null) {
+                    unsettledFragment.initWaitData();
+                }
+            }
             return;
         }
         BaseFragment fragment = baseFragmentList.get(currentIndex);
@@ -110,6 +115,11 @@ public class BetCenterFragment extends BaseMoreFragment {
             transaction.add(R.id.fl_betCenter_content, fragment);
         } else {
             transaction.show(fragment);
+            if (fragment.equals(unsettledFragment)) {
+                if (unsettledFragment != null) {
+                    unsettledFragment.initWaitData();
+                }
+            }
         }
         if (lastIndex != -1) {
             transaction.hide(baseFragmentList.get(lastIndex));
@@ -117,8 +127,6 @@ public class BetCenterFragment extends BaseMoreFragment {
         lastIndex = currentIndex;
         transaction.commit();
     }
-
-
 
     @Override
     public void showContent() {
@@ -133,6 +141,5 @@ public class BetCenterFragment extends BaseMoreFragment {
         setBackTitle(getString(R.string.TabMyBets));
         switchFragment();
     }
-
 
 }

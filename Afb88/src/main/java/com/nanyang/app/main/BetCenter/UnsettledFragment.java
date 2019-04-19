@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
@@ -43,6 +44,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     @Bind(R.id.running_group)
     RadioGroup rgType;
     String type = "W";
+    @Bind(R.id.tv_waite_count)
+    TextView tvWaiteCount;
 
     @Override
     public int onSetLayoutId() {
@@ -56,7 +59,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         rgType.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.running_waiting:
                         type = "W";
                         break;
@@ -77,10 +80,26 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
 
     }
 
-    public void setRvlist(List<RunningBean> list){
+    @Override
+    public void initWaitData() {
+        type = "W";
+        RadioButton rb = (RadioButton) rgType.getChildAt(0);
+        rb.setChecked(true);
+        presenter.getRunningList(type);
+    }
+
+    public void setRvlist(List<RunningBean> list) {
+        if (type.equals("W")) {
+            if (list.size() > 0) {
+                tvWaiteCount.setText(list.size() + "");
+                tvWaiteCount.setVisibility(View.VISIBLE);
+            } else {
+                tvWaiteCount.setVisibility(View.GONE);
+            }
+        }
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
         rv.setLayoutManager(llm);
-        BaseRecyclerAdapter<RunningBean> adapter = new BaseRecyclerAdapter<RunningBean>(mContext,list,R.layout.item_running) {
+        BaseRecyclerAdapter<RunningBean> adapter = new BaseRecyclerAdapter<RunningBean>(mContext, list, R.layout.item_running) {
             @Override
             public void convert(final MyRecyclerViewHolder holder, int position, final RunningBean item) {
                 LinearLayout ll1 = holder.getLinearLayout(R.id.ll_running_par);
@@ -89,7 +108,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 LinearLayout l2 = holder.getLinearLayout(R.id.ll_running_detail_2);
                 l.setVisibility(View.GONE);
                 l2.setVisibility(View.GONE);
-                if(item.getBetType18().equals("PAR")){
+                if (item.getBetType18().equals("PAR")) {
                     ll1.setVisibility(View.VISIBLE);
                     ll2.setVisibility(View.GONE);
                     TextView running_par_Home = holder.getTextView(R.id.running_par_Home);
@@ -103,14 +122,14 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     ImageView running_par_load = holder.getImageView(R.id.running_par_load);
                     TextView par_id = holder.getTextView(R.id.par_id);
                     TextView par_type = holder.getTextView(R.id.par_type);
-                    running_par_IdAndTransDate.setText("ID["+item.getRefNo12()+"]"+item.getTransDate0());
+                    running_par_IdAndTransDate.setText("ID[" + item.getRefNo12() + "]" + item.getTransDate0());
                     running_par_DangerStatus.setText(item.getDangerStatus8());
                     String odds = item.getOdds3();
-                    double fodds = Double.parseDouble(odds)*100;
-                    running_par_Odds1.setText("Est./Payout:"+fodds);
-                    running_par_Odds2.setText(getString(R.string.Odds)+ ":"+odds);
+                    double fodds = Double.parseDouble(odds) * 100;
+                    running_par_Odds1.setText("Est./Payout:" + fodds);
+                    running_par_Odds2.setText(getString(R.string.Odds) + ":" + odds);
                     running_par_CombInfo.setText(item.getCombInfo16());
-                    running_par_Amt.setText(getString(R.string.Amt)+":"+item.getAmt9());
+                    running_par_Amt.setText(getString(R.string.Amt) + ":" + item.getAmt9());
                     par_id.setText(item.getSocTransId17());
                     par_type.setText(item.getBetType18());
                     TextView open_detail_list = holder.getTextView(R.id.open_detail_list);
@@ -120,11 +139,11 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                             LinearLayout l = holder.getLinearLayout(R.id.ll_running_detail_1);
                             LinearLayout l2 = holder.getLinearLayout(R.id.ll_running_detail_2);
                             TextView open_detail = holder.getTextView(R.id.open_detail_list);
-                            if(l.getVisibility()==View.VISIBLE) {
+                            if (l.getVisibility() == View.VISIBLE) {
                                 l.setVisibility(View.GONE);
                                 open_detail.setText(getString(R.string.OpenDetail));
                                 l2.setVisibility(View.GONE);
-                            }else{
+                            } else {
                                 l.setVisibility(View.VISIBLE);
                                 open_detail.setText(getString(R.string.OpenDetail));
                                 String id = holder.getTextView(R.id.par_id).getText().toString();
@@ -139,10 +158,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                             RecyclerView rc1 = holder.getView(R.id.rc_par_1);
                                             LinearLayoutManager llm = new LinearLayoutManager(mContext);
                                             rc1.setLayoutManager(llm);
-                                            BaseRecyclerAdapter<StatementOpen2ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen2ListDataBean>(mContext,list,R.layout.item_statement_open2) {
+                                            BaseRecyclerAdapter<StatementOpen2ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen2ListDataBean>(mContext, list, R.layout.item_statement_open2) {
                                                 @Override
                                                 public void convert(MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
-                                                    updateRc1(view,position,bean);
+                                                    updateRc1(view, position, bean);
                                                 }
                                             };
                                             rc1.setAdapter(adapter);
@@ -159,19 +178,19 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                         public void onClick(View view) {
                             LinearLayout l = holder.getLinearLayout(R.id.ll_running_detail_2);
                             TextView open_detail = holder.getTextView(R.id.open_detail_list);
-                            if(l.getVisibility()==View.VISIBLE && open_detail.getText().equals(getString(R.string.CloseDetail))) {
+                            if (l.getVisibility() == View.VISIBLE && open_detail.getText().equals(getString(R.string.CloseDetail))) {
                                 open_detail.setText(getString(R.string.OpenDetail));
                                 l.setVisibility(View.GONE);
-                            }else {
+                            } else {
                                 open_detail.setText(getString(R.string.CloseDetail));
                                 l.setVisibility(View.VISIBLE);
                                 showLoadingDialog();
                                 String id = holder.getTextView(R.id.par_id).getText().toString();
                                 String par_type = holder.getTextView(R.id.par_type).getText().toString();
-                                presenter.getParList2(id,par_type, new BaseConsumer<String>(getIBaseContext()) {
+                                presenter.getParList2(id, par_type, new BaseConsumer<String>(getIBaseContext()) {
                                     @Override
                                     protected void onBaseGetData(String data) throws JSONException {
-                                        Log.i("XUZIWEI", "onBaseGetData: "+data);
+                                        Log.i("XUZIWEI", "onBaseGetData: " + data);
                                         String updateString = data.replace("&nbsp;", " ");
                                         JSONArray jsonArray = new JSONArray(updateString);
                                         if (jsonArray.length() > 3) {
@@ -179,10 +198,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                             RecyclerView rc1 = holder.getView(R.id.rc_par_2);
                                             LinearLayoutManager llm = new LinearLayoutManager(mContext);
                                             rc1.setLayoutManager(llm);
-                                            BaseRecyclerAdapter<StatementOpen3ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen3ListDataBean>(mContext,list,R.layout.item_statement_open2) {
+                                            BaseRecyclerAdapter<StatementOpen3ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen3ListDataBean>(mContext, list, R.layout.item_statement_open2) {
                                                 @Override
                                                 public void convert(MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
-                                                    updateRc2(view,position,bean);
+                                                    updateRc2(view, position, bean);
                                                 }
                                             };
                                             rc1.setAdapter(adapter);
@@ -194,13 +213,13 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                         }
                     });
 
-                }else{
+                } else {
                     ll1.setVisibility(View.GONE);
                     ll2.setVisibility(View.VISIBLE);
                     TextView refNo = holder.getTextView(R.id.running_RefNo);
                     refNo.setText(item.getRefNo12());
                     TextView running_TransDate = holder.getTextView(R.id.running_TransDate);
-                    running_TransDate.setText(" ("+item.getTransDate0()+")");
+                    running_TransDate.setText(" (" + item.getTransDate0() + ")");
                     TextView running_ModuleTitle = holder.getTextView(R.id.running_ModuleTitle);
                     running_ModuleTitle.setText(item.getModuleTitle11());
                     TextView running_Home = holder.getTextView(R.id.running_Home);
@@ -217,24 +236,24 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     betType = AfbUtils.delHTMLTag(betType);
                     running_BetType.setText(betType);
                     TextView running_FullTimeId = holder.getTextView(R.id.running_FullTimeId);
-                    running_FullTimeId.setText(item.getFullTimeId13()+" ");
+                    running_FullTimeId.setText(item.getFullTimeId13() + " ");
                     TextView running_Score = holder.getTextView(R.id.running_Score);
-                    running_Score.setText(item.getScore19()+" ");
+                    running_Score.setText(item.getScore19() + " ");
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
                     String betType2 = item.getBetType221();
                     betType2 = AfbUtils.delHTMLTag(betType2);
-                    running_BetType2.setText(betType2+" ");
+                    running_BetType2.setText(betType2 + " ");
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
                     odds = AfbUtils.delHTMLTag(odds);
-                    running_Odds.setText("@"+odds+" ");
+                    running_Odds.setText("@" + odds + " ");
                     TextView running_OddsType = holder.getTextView(R.id.running_OddsType);
-                    running_OddsType.setText(item.getOddsType15()+" ");
+                    running_OddsType.setText(item.getOddsType15() + " ");
                     TextView running_OldStatus = holder.getTextView(R.id.running_OldStatus);
                     TextView running_split = holder.getTextView(R.id.running_split);
-                    if(TextUtils.isEmpty(item.getOldStatus22())){
+                    if (TextUtils.isEmpty(item.getOldStatus22())) {
                         running_split.setVisibility(View.INVISIBLE);
-                    }else{
+                    } else {
                         running_split.setVisibility(View.VISIBLE);
                     }
                     running_OldStatus.setText(item.getOldStatus22());
@@ -249,7 +268,6 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     }
 
 
-
     @Override
     public void initView() {
         super.initView();
@@ -260,7 +278,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         presenter.getRunningList(type);
     }
 
-    public void updateRc2(MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean){
+    public void updateRc2(MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
         LinearLayout llTitle = view.getLinearLayout(R.id.ll_title);
         TextView tvTotalOdds = view.getTextView(R.id.tv_total_odds);
         TextView tvAmt = view.getTextView(R.id.tv_amt);
@@ -297,14 +315,14 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         }
         tvWL.setText(AfbUtils.delHTMLTag(wlStr));
         tvScore.setText(getString(R.string.Result) + " " + bean.getIndex6() + "-" + bean.getIndex7());
-        if(position==0){
+        if (position == 0) {
             llTitle.setVisibility(View.VISIBLE);
             tvTotalOdds.setText(getString(R.string.TotalOdds) + ":" + bean.getIndex18());
             tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex15());
         }
     }
 
-    public void updateRc1(MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean){
+    public void updateRc1(MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
         TextView tvIdDate = view.getTextView(R.id.tv_id_date);
         TextView tvMatchType = view.getTextView(R.id.tv_match_type);
         TextView tvMatchVs = view.getTextView(R.id.tv_match_vs);

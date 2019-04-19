@@ -10,18 +10,20 @@
     </item>
 
     <!-- content -->
-    <item android:bottom="1dp">
+    <item
+        android:bottom="0.8dp"
+        android:left="0.3dp"
+        android:right="0.3dp"
+        android:top="0.8dp">
         <shape android:shape="rectangle">
             <gradient
                 android:angle="90"
-                android:endColor="@color/grey_button_grey"
+                android:centerColor="#D9E0E0"
+                android:endColor="#B6C5C5"
                 android:gradientRadius="100%p"
-                android:startColor="@color/grey_thick_line"
+                android:startColor="#F9FAFA"
                 android:type="linear" />
             <corners android:radius="2dp" />
-            <stroke
-                android:width="0.5dp"
-                android:color="@color/grey_background" />
         </shape>
     </item>
 

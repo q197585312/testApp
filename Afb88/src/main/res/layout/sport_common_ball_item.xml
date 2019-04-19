@@ -114,13 +114,12 @@
 
             <TextView
                 android:id="@+id/module_right_mark_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="17dp"
+                android:layout_width="35dp"
+                android:layout_height="19dp"
                 android:layout_marginRight="4dp"
                 android:background="@drawable/match_btn_shadow_bottom"
                 android:gravity="center"
-                android:minEms="3"
-                android:text="+16"
+                android:text="+155"
                 android:textColor="@color/black_grey"
                 android:textSize="12sp"
                 android:visibility="visible" />

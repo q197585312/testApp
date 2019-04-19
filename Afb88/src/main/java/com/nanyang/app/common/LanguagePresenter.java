@@ -3,6 +3,7 @@ package com.nanyang.app.common;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BuildConfig;
@@ -11,14 +12,17 @@ import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainPresenter;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.base.IBaseView;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -35,6 +39,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 public class LanguagePresenter extends BaseSwitchPresenter {
     SwitchLanguage switchLanguage;
     ILanguageView changeLanguageFragment;
+    SportActivity sportActivity;
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -45,6 +50,11 @@ public class LanguagePresenter extends BaseSwitchPresenter {
         super(iBaseContext);
         switchLanguage = new SwitchLanguage(iBaseContext);
         changeLanguageFragment = (ILanguageView) iBaseContext;
+        if (iBaseContext instanceof SportActivity) {
+            sportActivity = (SportActivity) iBaseContext;
+        } else {
+            sportActivity = null;
+        }
     }
 
     //    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","lang":"ZH-CN","pgLable":"0.18120996831154568","vsn":"4.0.12","PT":"wfLoginH50"}&_db={}
@@ -192,9 +202,34 @@ public class LanguagePresenter extends BaseSwitchPresenter {
         }), consumer);
     }
 
+    public void refreshMenu(LinkedHashMap<String, String> paramMap) {
+        String p = AfbUtils.getJsonParam(paramMap);
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + p), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                JSONArray jsonArray = new JSONArray(data);
+                if (jsonArray.length() > 3) {
+                    JSONArray jsonArrayData1 = jsonArray.getJSONArray(3);
+                    JSONArray jsonArrayData2 = jsonArrayData1.getJSONArray(3);
+                    JSONArray jsonArrayData3 = jsonArrayData2.getJSONArray(2);
+                    JSONArray jsonArrayData4 = jsonArrayData3.getJSONArray(0);
+                    String waitNumber = jsonArrayData4.getString(1);
+                    if (sportActivity != null) {
+                        sportActivity.onGetRefreshMenu(waitNumber);
+                    }
+                }
+            }
+
+            @Override
+            protected void onAccept() {
+//                super.onAccept();
+            }
+        });
+    }
+
     public void loadAllMainData(LoginInfo.LanguageWfBean languageWfBean, final MainPresenter.CallBack<String> back) {
-        LoadMainDataHelper helper=new LoadMainDataHelper( mApiWrapper,baseContext.getBaseActivity(),mCompositeSubscription);
-        helper.doRetrofitApiOnUiThread(languageWfBean,back);
+        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+        helper.doRetrofitApiOnUiThread(languageWfBean, back);
 /*
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override

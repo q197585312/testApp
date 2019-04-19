@@ -287,12 +287,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 + "&pn=1"
                 + "&tp=1"
                 + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
-
-        if (StringUtils.isNull(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd)) {
-            url = url + "&wd=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
-        } else {
-            url = url + "&wd=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd;
-        }
+        url = url + "&wd=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd;
         Log.d("getUrlString", "url: " + url);
         return url;
     }

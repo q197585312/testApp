@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -46,6 +47,7 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
+import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.MainPresenter;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -61,6 +63,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import butterknife.Bind;
@@ -128,6 +131,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     TextView sportTitleTv;
     @Bind(R.id.tv_balance)
     TextView tvBalance;
+    @Bind(R.id.tv_waite_count)
+    TextView tvWaiteCount;
     @Bind(R.id.iv_delete_search)
     ImageView ivDeleteSearch;
     @Bind(R.id.edt_match_search_content)
@@ -160,6 +165,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private String currentTag = "";
     private HashMap<String, BaseSportFragment> mapFragment;
     public BaseSportFragment currentFragment;
+    private Handler handler = new Handler();
 
     public String wd = "";
 
@@ -237,6 +243,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 afbDrawerViewHolder.goRecord();
             }
         });
+        startRefreshMenu();
     }
 
     public void updateMixOrderCount() {
@@ -262,6 +269,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         if (webSocket != null)
             webSocket.close();
         BetGoalWindowUtils.clear();
+        stopRefreshMenu();
     }
 
     private void initFragment(String parentType) {
@@ -771,4 +779,47 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public void clickOrderTop(View view) {
         currentFragment.clickOrder();
     }
+
+    private void startRefreshMenu() {
+        stopRefreshMenu();
+        handler.postDelayed(refreshMenuRunnable, 1500);
+    }
+
+    private void stopRefreshMenu() {
+        if (handler != null) {
+            handler.removeCallbacks(refreshMenuRunnable);
+            handler.removeCallbacksAndMessages(null);
+        }
+    }
+
+    public void onGetRefreshMenu(String waitNumber) {
+        int i = Integer.parseInt(waitNumber);
+        if (i > 0) {
+            tvWaiteCount.setVisibility(View.VISIBLE);
+            tvWaiteCount.setText(waitNumber);
+        } else {
+            tvWaiteCount.setVisibility(View.GONE);
+        }
+    }
+
+    private Runnable refreshMenuRunnable = new Runnable() {
+        @Override
+        public void run() {
+            LinkedHashMap<String, String> menuParamMap = new LinkedHashMap<>();
+            menuParamMap.put("ACT", "Getmenu");
+            menuParamMap.put("PT", "wfMainH50");
+            String type = currentFragment.presenter.getStateHelper().getStateType().getType();
+            String ot;
+            if (type.equals("Running")) {
+                ot = "r";
+            } else if (type.equals("Today")) {
+                ot = "t";
+            } else {
+                ot = "e";
+            }
+            menuParamMap.put("ot", ot);
+            presenter.refreshMenu(menuParamMap);
+            handler.postDelayed(this, 5000);
+        }
+    };
 }
