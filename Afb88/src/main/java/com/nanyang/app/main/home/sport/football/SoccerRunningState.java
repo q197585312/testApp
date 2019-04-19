@@ -1,10 +1,10 @@
 package com.nanyang.app.main.home.sport.football;
 
-import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -33,7 +33,8 @@ public class SoccerRunningState extends SoccerCommonState {
 
     @Override
     protected String getAllOddsUrl() {
-        return AppConstant.getInstance().HOST+ "_view/OddsPageSetting.aspx?ot=r&ov=0&wd=&tf=-1&isPageSingDouble=RMOdds1&m=save";
+        String tfDate = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
+        return AppConstant.getInstance().HOST+ "_view/OddsPageSetting.aspx?ot=r&ov=0&wd="+tfDate+"&tf=-1&isPageSingDouble=RMOdds1&m=save";
     }
 
     @Override

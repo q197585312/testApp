@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.annotation.TargetApi;
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -289,7 +288,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 + "&tp=0"
                 + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
 
-        if (!StringUtils.isNull(wd)) {
+        if (StringUtils.isNull(wd)) {
+            url = url + "&wd=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
+        } else {
             url = url + "&wd=" + wd;
         }
         return url;
@@ -390,7 +391,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     public int getNormalContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.grey_white);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.grey_white);
     }
 
     private List<B> toMatchList(List<TableSportInfo<B>> pageList) {

@@ -9,6 +9,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -42,12 +43,13 @@ public class SoccerEarlyState extends SoccerCommonState {
     }
     @Override
     protected String getAllOddsUrl() {
-        return AppConstant.getInstance().HOST+"_view/OddsPageSetting.aspx?ot=e&ov=0&wd="+selectedDateInfo.getType()+"&tf=-1&isPageSingDouble=RMOdds1&m=save";
+        String tfDate = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
+        return AppConstant.getInstance().HOST+"_view/OddsPageSetting.aspx?ot=e&ov=0&wd="+tfDate+"&tf=-1&isPageSingDouble=RMOdds1&m=save";
     }
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FOOTBALL_EARLY+"&"+selectedDateInfo.getRes()+"&wd="+selectedDateInfo.getType()+param.getType();
+        return AppConstant.getInstance().URL_FOOTBALL_EARLY;
     }
 
     @Override

@@ -66,8 +66,6 @@ public interface ApiService {
     /*login*/
 
 
-    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=r&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1537757816&LID=a01c99aa6487a0b5&_=1486482785410
-    //http://a8197c.a36588.com/_view/RMOddsGen1.ashx?ot=t&ov=0&mt=0&tf=-1&TFStatus=0&update=false&r=1537757816&wd=&ia=0&LID=a7ebaf34bf9ffc7f&_=1486482785411
 
     //http://www.jan88.net/Default1.aspx?lang=eng
    /* lstLang	Default.aspx?lang=EN-US

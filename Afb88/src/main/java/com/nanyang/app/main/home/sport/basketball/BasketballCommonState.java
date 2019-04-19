@@ -12,8 +12,6 @@ import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 
-import java.util.List;
-
 /**
  * Created by Administrator on 2017/3/10.
  */
@@ -94,18 +92,6 @@ public abstract class BasketballCommonState extends BallState {
     public boolean isItemCollectionCommon(BallInfo item) {
 
         return !(localCollectionMap.get(item.getModuleTitle()) == null || localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()) == null || !localCollectionMap.get(item.getModuleTitle()).get(item.getHome() + "+" + item.getAway()));
-    }
-
-
-
-
-
-    @Override
-    protected List<List<String>> initHeaderList() {
-        List<List<String>> lists = super.initHeaderList();
-        lists.get(0).add(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.FULL_O_E));
-        lists.get(1).add(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.HALF_O_E));
-        return lists;
     }
 
 

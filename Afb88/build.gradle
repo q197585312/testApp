@@ -18,8 +18,8 @@ android {
         versionCode 1
         versionName '1.66'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        buildConfigField "String", "HOST_AFB", '"http;//wsapp.afb1188.com"'
-        buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
+        buildConfigField "String", "HOST_AFB", '"http://www.afb1188.com/"'
+        buildConfigField "String", "HOST_SPORT", '"http://ws.afb1188.com:8888/fnOddsGen"'
         signingConfig signingConfigs.config
     }
     buildTypes {
@@ -54,9 +54,9 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"
             ]
             applicationId 'com.nanyang.afb1188'
-            versionName '1.55'
-            buildConfigField "String", "HOST_AFB", '"http://wsapp.afb1188.com/"'
-            buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
+            versionName '1.60'
+            buildConfigField "String", "HOST_AFB", '"http://www.afb1188.com/"'
+            buildConfigField "String", "HOST_SPORT", '"http://ws.afb1188.com:8888/fnOddsGen"'
         }
     }
 
@@ -87,4 +87,5 @@ dependencies {
     compile project(':baseLibs')
     compile 'com.tencent.bugly:crashreport:latest.release'
     compile 'com.github.bumptech.glide:glide:3.7.0'
+    compile 'com.bartoszlipinski.recyclerviewheader:library:1.2.0'
 }

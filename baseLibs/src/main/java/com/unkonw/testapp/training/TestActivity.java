@@ -4,16 +4,17 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.GestureDetector;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.unkonw.testapp.R;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseActivity;
-import com.unkonw.testapp.libs.utils.AutoUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.Arrays;
@@ -29,7 +30,7 @@ import butterknife.ButterKnife;
 public class TestActivity extends BaseActivity {
     //    @Bind(R.id.btn_test)
     Button btnTest;
-//        @Bind(R.id.ll_parent)
+    //        @Bind(R.id.ll_parent)
     LinearLayout llParent;
     //    @Bind(R.id.btn_test2)
     Button btnTest2;
@@ -37,7 +38,8 @@ public class TestActivity extends BaseActivity {
     private GestureManager manager;
     private ScrollLayout s1;
     private ScrollLayout s2;
-    private Set<ScrollLayout> sls=new HashSet<>();
+    private Set<ScrollLayout> sls = new HashSet<>();
+
     @Override
     public void initView() {
 
@@ -53,27 +55,33 @@ public class TestActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.text_btn);
         ButterKnife.bind(this);
-        testGesture();
+
         RecyclerView rv = (RecyclerView) findViewById(R.id.base_rv);
         rv.setLayoutManager(new LinearLayoutManager(this));
-        rv.setAdapter(new BaseRecyclerAdapter<String>(this,Arrays.asList("","",""),R.layout.text) {
+        BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(this, Arrays.asList("1", "2", "3", "4"
+                , "5", "6", "7", "8"
+                , "9", "10", "11", "12"
+                , "13", "14", "15", "16"
+        ), R.layout.text_base) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, String item) {
-                final ScrollLayout  sl = holder.getView(R.id.sl_2);
-
-                if(!sls.contains(sl))
-                    sls.add(sl);
-                sl.setOnTouchListener(new View.OnTouchListener() {
-                    @Override
-                    public boolean onTouch(View v, MotionEvent event) {
-                        if(sl.getFollowScrolls()==null){
-                            sl.setFollowScrolls(sls);
-                        }
-                        return false;
-                    }
-                });
+                holder.getTextView(R.id.item_text_tv).setText(item);
             }
 
+        };
+        TextView head = (TextView) LayoutInflater.from(mContext).inflate(R.layout.text_base, null);
+        TextView foot = (TextView) LayoutInflater.from(mContext).inflate(R.layout.text_base, null);
+        head.setText("这个是头");
+        foot.setText("这个是脚");
+        baseRecyclerAdapter.addHeader(head);
+        baseRecyclerAdapter.addFooter(foot);
+        rv.setAdapter(baseRecyclerAdapter);
+        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, Object item, int position) {
+                ToastUtils.showShort("点击了" + item + ",position" + position);
+
+            }
         });
     }
 
@@ -117,18 +125,5 @@ public class TestActivity extends BaseActivity {
         }
     }
 
-    //    @OnClick(R.id.btn_test)
-    public void onClick(View v) {
-        llParent.scrollBy(-AutoUtils.getDisplayWidthValue(360), -AutoUtils.getDisplayWidthValue(640));
-    }
 
-
-    //    @OnClick(R.id.btn_test2)
-    public void onClick() {
-        llParent.scrollTo(-AutoUtils.getDisplayWidthValue(360), -AutoUtils.getDisplayWidthValue(640));
-    }
-
-    public void clickB1(View view) {
-        ToastUtils.showShort("B1");
-    }
 }
