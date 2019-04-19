@@ -211,6 +211,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         timeTv1.setText(time);
 
         if (!item.getLive().equals("")) {
+            dateTv.setVisibility(View.VISIBLE);
             if (item.getLive().contains("LIVE")) {
                 dateTv.setText("LIVE");
                 dateTv1.setText("LIVE");
@@ -248,14 +249,15 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
             }
         } else {
-            if (item.getMatchDate().length() > 6) {
-                String date = item.getMatchDate().substring(0, 5);
-                dateTv.setText(date);
-                dateTv1.setText(date);
-            } else {
-                dateTv.setText(item.getMatchDate());
-                dateTv1.setText(item.getMatchDate());
-            }
+            dateTv.setVisibility(View.GONE);
+//            if (item.getMatchDate().length() > 6) {
+//                String date = item.getMatchDate().substring(0, 5);
+//                dateTv.setText(date);
+//                dateTv1.setText(date);
+//            } else {
+//                dateTv.setText(item.getMatchDate());
+//                dateTv1.setText(item.getMatchDate());
+//            }
         }
 
         if (((BallItemCallBack) back).isItemCollection(item))
