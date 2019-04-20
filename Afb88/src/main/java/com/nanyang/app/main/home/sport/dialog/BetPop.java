@@ -306,7 +306,9 @@ public class BetPop extends BasePopupWindow {
                             String tidss = split[5];
                             SportActivity sportActivity = (SportActivity) context;
                             String oddsType = sportActivity.tvOddsType.getText().toString().trim();
-                            BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity);
+                            BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity, false);
+                        } else {
+                            updateOdds(0);
                         }
                     }
                 });

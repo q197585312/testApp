@@ -792,13 +792,29 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         }
     }
 
-    public void onGetRefreshMenu(String waitNumber) {
-        int i = Integer.parseInt(waitNumber);
-        if (i > 0) {
+    private List<String> lastWaitDataBeanList;
+
+    public void onGetRefreshMenu(List<String> beanList) {
+        int waitSize = beanList.size();
+        if (waitSize > 0) {
             tvWaiteCount.setVisibility(View.VISIBLE);
-            tvWaiteCount.setText(waitNumber);
+            tvWaiteCount.setText(waitSize + "");
         } else {
             tvWaiteCount.setVisibility(View.GONE);
+        }
+        if (lastWaitDataBeanList == null) {
+            lastWaitDataBeanList = beanList;
+        } else {
+            for (int i = 0; i < lastWaitDataBeanList.size(); i++) {
+                String waitNum = lastWaitDataBeanList.get(i);
+                Log.d("onGetRefreshMenu", "lastWaitDataBeanList: " + lastWaitDataBeanList.toString());
+                Log.d("onGetRefreshMenu", "beanList: " + beanList.toString());
+                if (!beanList.contains(waitNum)) {
+                    String accType = tvOddsType.getText().toString().trim();
+                    BetGoalWindowUtils.showBetWindow(accType, waitNum, this, true);
+                }
+            }
+            lastWaitDataBeanList = beanList;
         }
     }
 

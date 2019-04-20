@@ -10,6 +10,7 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
+import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
 import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainPresenter;
 import com.nanyang.app.main.home.sport.main.SportActivity;
@@ -21,8 +22,10 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -212,10 +215,16 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                     JSONArray jsonArrayData1 = jsonArray.getJSONArray(3);
                     JSONArray jsonArrayData2 = jsonArrayData1.getJSONArray(3);
                     JSONArray jsonArrayData3 = jsonArrayData2.getJSONArray(2);
-                    JSONArray jsonArrayData4 = jsonArrayData3.getJSONArray(0);
-                    String waitNumber = jsonArrayData4.getString(1);
+                    List<String> beanList = new ArrayList<>();
+                    for (int i = 0; i < jsonArrayData3.length(); i++) {
+                        JSONArray menuWaitDataArray = (JSONArray) jsonArrayData3.get(i);
+                        String waitId = menuWaitDataArray.getString(0);
+                        if (!waitId.equals("0")) {
+                            beanList.add(waitId);
+                        }
+                    }
                     if (sportActivity != null) {
-                        sportActivity.onGetRefreshMenu(waitNumber);
+                        sportActivity.onGetRefreshMenu(beanList);
                     }
                 }
             }
