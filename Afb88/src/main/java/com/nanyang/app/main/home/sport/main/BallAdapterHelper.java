@@ -792,9 +792,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     upParent.setVisibility(View.VISIBLE);
                 }
                 upTextTv.setText(upStr);
-                if (TextUtils.isEmpty(downStr)){
+                if (TextUtils.isEmpty(downStr) && downTextTv.getId() == R.id.viewpager_match_ou2_tv) {
                     downTextTv.setText(upStr);
-                }else {
+                } else {
                     downTextTv.setText(downStr);
                 }
                 boolean isAnimation = false;
