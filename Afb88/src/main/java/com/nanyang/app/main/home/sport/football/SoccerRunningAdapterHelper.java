@@ -48,6 +48,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
         }
         if (item.getLive().contains("HT")) {
             timeTv.setText("HT");
+            timeTv.setTextColor(Color.BLUE);
         } else {
             int min;
             try {
@@ -56,6 +57,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
                 switch (item.getStatus()) {
                     case "0":
                         timeTv.setText("LIVE");
+                        timeTv.setTextColor(Color.RED);
                         break;
                     case "2":
                         min = Integer.valueOf(item.getCurMinute());
