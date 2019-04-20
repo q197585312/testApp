@@ -124,5 +124,241 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
         return new OutRightBetHelper(getBaseView());
     }
 
+/*small wen, [20.04.19 10:53]
+for (int i = 0, len = arrDbIds.Length; i < len; i++)
+            {
+                switch (arrDbIds[i])
+                {
+                    case "1":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf,"1");
+                        break;
+                    case "1_3":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "4");
+                        break;
+                    case "1_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "2") ;
+                        break;
+                    case "2":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "9");
+                        break;
+                    case "2_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "10");
+                        break;
+                    case "2_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "31");
+                        break;
+                    case "3":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "21");
+                        break;
+                    case "3_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "36");
+                        break;
+                    case "4":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "7");
+                        break;
+                    case "5":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "6");
+                        break;
+                    case "33":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "th");
+                        break;
+                    case "35":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "108");
+                        break;
+                    case "34":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "106");
+                        break;
+                    case "34_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "107");
+                        break;
+                    case "7":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "85");
+                        break;
+                    case "7_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "86");
+                        break;
+                    case "8":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "12");
+                        break;
+                    case "8_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "13");
+                        break;
+                    case "8_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "30");
+                        break;
+                    case "9":
+                    case "9_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "29");
+                        break;
+                    case "9_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "39");
+                        break;
+                    case "10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "14");
+                        break;
+                    case "10_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "15");
+                        break;
+                    case "10_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "33");
+                        break;
+                    case "11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "11");
+                        break;
+                    case "11_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "32");
+                        break;
+                    case "12":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "17");
+                        break;
+                    case "12_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "18");
+                        break;
+                    case "12_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "34");
+                        break;
+                    case "13":
 
+small wen, [20.04.19 10:53]
+OddsUrl = OddsUrl + GetParam_H50(ot, tf, "19");
+                        break;
+                    case "13_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "20");
+                        break;
+                    case "13_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "35");
+                        break;
+                    case "14":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "16");
+                        break;
+                    case "14_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "92");
+                        break;
+                    case "15":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "25");
+                        break;
+                    case "15_13":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "26");
+                        break;
+                    case "15_16":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "27");
+                        break;
+                    case "16_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "46");
+                        break;
+                    case "16":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "49");
+                        break;
+                    case "17":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "22");
+                        break;
+                    case "17_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "37");
+                        break;
+                    case "19":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "28");
+                        break;
+                    case "19_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "40");
+                        break;
+                    case "19_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "63");
+                        break;
+                    case "20":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "51");
+                        break;
+                    case "20_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "52");
+                        break;
+                    case "21":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "53");
+                        break;
+                    case "21_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "54");
+                        break;
+                    case "22":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "57");
+                        break;
+                    case "22_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "58");
+                        break;
+                    case "23":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "44");
+                        break;
+                    case "23_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "61");
+                        break;
+                    case "24":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "23");
+                        break;
+                    case "24_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "62");
+                        break;
+                    case "25":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "41");
+                        break;
+                    case "25_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "42");
+                        break;
+                    case "25_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "43");
+                        break;
+                    case "26_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "64");
+                        break;
+                    case "26":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "65");
+                        break;
+                    case "27":
+
+small wen, [20.04.19 10:53]
+OddsUrl = OddsUrl + GetParam_H50(ot, tf, "67");
+                        break;
+                    case "27_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "68");
+                        break;
+                    case "27_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "69");
+                        break;
+                    case "28_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "91");
+                        break;
+                    case "29":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "101");
+                        break;
+                    case "29_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "102");
+                        break;
+                    case "30":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "103");
+                        break;
+                    case "30_11":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "104");
+                        break;
+                    case "31":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "105");
+                        break;
+                    case "32":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "99");
+                        break;
+                    case "36":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "182");
+                        break;
+                    case "36_10":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "183");
+                        break;
+                    case "666":
+                        OddsUrl = OddsUrl + GetParam_H50(ot, tf, "200");
+                        break;
+                    default:
+                        OddsUrl = "";
+                        break;
+                }
+                if (OddsUrl != "")
+                {
+                    OddsUrl = OddsUrl + "&um=" + um;
+                    _dicForm.AddExecJs("LinkWS('" + arrDbIds[i] + "_" + ot + "','" + OddsUrl + "'," + (ot == "e" ? Config.OddsRefresh : Config.RunRefresh) + ");");
+                    OddsUrl = Config.WebSocketUrl + "?";
+                }
+            }*/
 }

@@ -74,7 +74,6 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     }
 
     String isHdpNew;
-    String hasHdp;
     String isOUNew;
     String isOENew;
     String hasOE;
@@ -688,9 +687,14 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
 
     public String getHasHdp() {
         if (StringUtils.isEmpty(getHOdds()) || StringUtils.isEmpty(getAOdds()) || StringUtils.isEmpty(getHdp()) || Math.abs(Float.valueOf(getAOdds())) < 0.3 || Math.abs(Float.valueOf(getHOdds())) < 0.3)
-            return "0";
-        return "1";
+            hasHdp = "0";
+        else
+            hasHdp = "1";
+
+        return hasHdp;
     }
+
+    String hasHdp;
 
     public String getIsOUNew() {
         return isOUNew;

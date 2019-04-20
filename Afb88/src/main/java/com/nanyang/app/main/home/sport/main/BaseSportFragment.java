@@ -23,17 +23,19 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.BaseSwitchFragment;
+import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorEarlyState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorRunningState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorTodayState;
-import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
+import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -251,8 +253,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void searchMatch(boolean isSearch, String s) {
         presenter.getStateHelper().setSearch(isSearch, s);
     }
-
-
 
 
     private class DigWebViewClient extends WebViewClient {
@@ -557,14 +557,22 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void clickItemAdd(View v, SportInfo item, int position) {
-        additionPresenter.addition((BallInfo) item, position);
+        IBetHelper betHelper = presenter.getStateHelper().getBetHelper();
+        String dbid = "1";
+        if (betHelper instanceof BallBetHelper) {
+            String ballG = ((BallBetHelper) betHelper).getBallG();
+            SportIdBean sportIdBean = AfbUtils.identificationSportById(ballG);
+            if (sportIdBean != null)
+                dbid = sportIdBean.getDbid();
+        }
+        additionPresenter.addition((BallInfo) item, position,dbid);
         if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.changeAddition(position);
         }
     }
 
-    public void onAddition(AdditionBean data, int position) {
+    public void onAddition(AddMBean data, int position) {
         if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.notifyPositionAddition(data, position);
