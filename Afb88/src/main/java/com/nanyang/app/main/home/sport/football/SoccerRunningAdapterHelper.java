@@ -3,6 +3,8 @@ package com.nanyang.app.main.home.sport.football;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
+import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -46,34 +48,42 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
         }
         if (item.getLive().contains("HT")) {
             timeTv.setText("HT");
+            timeTv.setTextColor(Color.BLUE);
         } else {
             int min;
             try {
-
+                String mExtraTime = item.getMExtraTime();
+                String timeStr;
                 switch (item.getStatus()) {
                     case "0":
                         timeTv.setText("LIVE");
+                        timeTv.setTextColor(Color.RED);
                         break;
                     case "2":
                         min = Integer.valueOf(item.getCurMinute());
-
                         if (min < 130 && min > 0) {
-                            timeTv.setText("2H " + min + "'");
+                            timeStr = "2H " + min + "'";
+                            if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
+                                timeStr += "+" + mExtraTime;
+                            }
                         } else {
-                            timeTv.setText("");
+                            timeStr = "";
                         }
+                        timeTv.setText(timeStr);
                         break;
                     default:
                         min = Integer.valueOf(item.getCurMinute());
                         if (min < 130 && min > 0) {
-                            timeTv.setText("1H " + min + "'");
+                            timeStr = "1H " + min + "'";
+                            if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
+                                timeStr += "+" + mExtraTime;
+                            }
                         } else {
-                            timeTv.setText("");
+                            timeStr = "";
                         }
+                        timeTv.setText(timeStr);
                         break;
                 }
-
-
             } catch (Exception e) {
                 e.printStackTrace();
                 timeTv.setText("");

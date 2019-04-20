@@ -2,8 +2,10 @@ package com.nanyang.app.main.home;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -132,7 +134,8 @@ public class HomeFragment extends BaseSwitchFragment {
                 SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getG());
                 if (sportIdBean != null && sportIdBean.getTextRes() > 0) {
                     tv.setText(getString(sportIdBean.getTextRes()));//M_RAm1
-                    tv.setTextColor(getResources().getColor(sportIdBean.getTextColor()));
+                    int textColor = sportIdBean.getTextColor();
+                    tv.setTextColor(textColor);
                 } else {
                     tv.setText("gd88Casino");
                 }

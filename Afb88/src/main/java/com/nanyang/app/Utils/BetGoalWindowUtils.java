@@ -3,6 +3,7 @@ package com.nanyang.app.Utils;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Handler;
+import android.text.SpannableStringBuilder;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.api.Api;
 
@@ -60,7 +62,7 @@ public class BetGoalWindowUtils {
         }
     }
 
-    public static void showBetWindow(String accType, String tidss, final Activity activity) {
+    public static void showBetWindow(String accType, String tidss, final Activity activity, final boolean isWA) {
         initLayout(activity);
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
         map.put("ACT", "GetTable");
@@ -111,14 +113,25 @@ public class BetGoalWindowUtils {
                                     tvData4.setText(index3);
                                     tvData5.setText("(" + dataBean.getIndex15() + ")");
                                     String index8 = dataBean.getIndex8();
+                                    Log.d("onGetRefreshMenu", "index8: " + index8);
                                     if (index8.equals("A")) {
-                                        tvData6.setBackgroundColor(Color.GREEN);
+                                        if (isWA) {
+                                            index8 = " W / A ";
+                                            SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(index8, Color.YELLOW, Color.GREEN);
+                                            tvData6.setText(spannableStringBuilder);
+                                        } else {
+                                            tvData6.setBackgroundColor(Color.GREEN);
+                                        }
                                     } else if (index8.equals("W")) {
                                         tvData6.setBackgroundColor(Color.YELLOW);
+                                        SportActivity sportActivity = (SportActivity) activity;
+                                        sportActivity.onAddWaiteCount(1);
                                     } else {
                                         tvData6.setBackgroundColor(Color.RED);
                                     }
-                                    tvData6.setText(index8);
+                                    if (!isWA) {
+                                        tvData6.setText(index8);
+                                    }
                                     tvData7.setText(dataBean.getIndex9());
                                     llContent.addView(view);
                                     for (int i = 0; i < llContent.getChildCount(); i++) {

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -889,7 +890,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     upParent.setVisibility(View.VISIBLE);
                 }
                 upTextTv.setText(upStr);
-                downTextTv.setText(downStr);
+                if (TextUtils.isEmpty(downStr) && downTextTv.getId() == R.id.viewpager_match_ou2_tv) {
+                    downTextTv.setText(upStr);
+                } else {
+                    downTextTv.setText(downStr);
+                }
                 boolean isAnimation = false;
                 if (isNew != null && isNew.equals("1")) {
                     isAnimation = true;

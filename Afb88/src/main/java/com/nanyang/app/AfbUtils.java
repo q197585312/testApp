@@ -24,6 +24,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
+import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
 import android.webkit.CookieManager;
@@ -166,53 +167,6 @@ public class AfbUtils {
         context.startActivity(intent);
     }
 
-    public static Bitmap toRoundBitmap(Bitmap bitmap) {
-        int width = bitmap.getWidth();
-        int height = bitmap.getHeight();
-        float roundPx;
-        float left, top, right, bottom, dst_left, dst_top, dst_right, dst_bottom;
-        if (width <= height) {
-            roundPx = width / 2;
-            top = 0;
-            bottom = width;
-            left = 0;
-            right = width;
-            height = width;
-            dst_left = 0;
-            dst_top = 0;
-            dst_right = width;
-            dst_bottom = width;
-        } else {
-            roundPx = height / 2;
-            float clip = (width - height) / 2;
-            left = clip;
-            right = width - clip;
-            top = 0;
-            bottom = height;
-            width = height;
-            dst_left = 0;
-            dst_top = 0;
-            dst_right = height;
-            dst_bottom = height;
-        }
-        Bitmap output = Bitmap.createBitmap(width,
-                height, Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(output);
-        final int color = 0xff424242;
-        final Paint paint = new Paint();
-        final Rect src = new Rect((int) left, (int) top, (int) right, (int) bottom);
-        final Rect dst = new Rect((int) dst_left, (int) dst_top, (int) dst_right, (int) dst_bottom);
-        final RectF rectF = new RectF(dst);
-        paint.setAntiAlias(true);
-        canvas.drawARGB(0, 0, 0, 0);
-        paint.setColor(color);
-        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
-        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
-        canvas.drawBitmap(bitmap, src, dst, paint);
-        return output;
-    }
-
-
     /**
      * 保存对象到文件
      */
@@ -245,107 +199,12 @@ public class AfbUtils {
         return obj;
     }
 
-    /*
-    图片保存文件
-     */
-    public static void writeBitmapToFile(String filePath, Bitmap b, int quality) {
-        try {
-            File desFile = new File(filePath);
-            if (!desFile.exists()) {
-                desFile.mkdirs();
-            }
-            FileOutputStream fos = new FileOutputStream(desFile + headImgName);
-            BufferedOutputStream bos = new BufferedOutputStream(fos);
-            b.compress(Bitmap.CompressFormat.PNG, quality, bos);
-            bos.flush();
-            bos.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    //获取手机图片
-    public static List<String> getPhoneImg(Context context) {
-        List<String> list = new ArrayList<>();
-        String str[] = {MediaStore.Images.Media.DATA};
-        Cursor cursor = context.getContentResolver().query(
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, str,
-                null, null, null);
-        while (cursor.moveToNext()) {
-            list.add(cursor.getString(0)); // 图片绝对路径
-        }
-        return list;
-    }
-
-    private static int calculateInSampleSize(BitmapFactory.Options options,
-                                             int reqWidth, int reqHeight) {
-        // 源图片的高度和宽度
-        final int height = options.outHeight;
-        final int width = options.outWidth;
-        int inSampleSize = 1;
-        if (height > reqHeight || width > reqWidth) {
-            // 计算出实际宽高和目标宽高的比率
-            final int heightRatio = Math.round((float) height / (float) reqHeight);
-            final int widthRatio = Math.round((float) width / (float) reqWidth);
-            // 选择宽和高中最小的比率作为inSampleSize的值，这样可以保证最终图片的宽和高
-            // 一定都会大于等于目标的宽和高。
-            inSampleSize = heightRatio < widthRatio ? heightRatio : widthRatio;
-        }
-        return inSampleSize;
-    }
-
-    public static Bitmap compressBitmapFromResource(Resources res, int resId, int reqWidth, int reqHeight) {
-        // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeResource(res, resId, options);
-        // 调用上面定义的方法计算inSampleSize值
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-        // 使用获取到的inSampleSize值再次解析图片
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeResource(res, resId, options);
-    }
-
-    public static Bitmap compressBitmapFromFile(String file, int reqWidth, int reqHeight) {
-        // 第一次解析将inJustDecodeBounds设置为true，来获取图片大小
-        final BitmapFactory.Options options = new BitmapFactory.Options();
-        options.inJustDecodeBounds = true;
-        BitmapFactory.decodeFile(file, options);
-        // 调用上面定义的方法计算inSampleSize值
-        options.inSampleSize = calculateInSampleSize(options, reqWidth, reqHeight);
-        // 使用获取到的inSampleSize值再次解析图片
-        options.inJustDecodeBounds = false;
-        return BitmapFactory.decodeFile(file, options);
-    }
-
-    public static Bitmap compressImage(Bitmap image) {
-
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);// 质量压缩方法，这里100表示不压缩，把压缩后的数据存放到baos中
-        int options = 100;
-        while (baos.toByteArray().length / 1024 > 100) {    // 循环判断如果压缩后图片是否大于100kb,大于继续压缩
-            baos.reset();// 重置baos即清空baos
-            options -= 10;// 每次都减少10
-            image.compress(Bitmap.CompressFormat.JPEG, options, baos);// 这里压缩options%，把压缩后的数据存放到baos中
-
-        }
-        ByteArrayInputStream isBm = new ByteArrayInputStream(baos.toByteArray());// 把压缩后的数据baos存放到ByteArrayInputStream中
-        Bitmap bitmap = BitmapFactory.decodeStream(isBm, null, null);// 把ByteArrayInputStream数据生成图片
-        return bitmap;
-    }
-
-    public static SpannableStringBuilder handleStringColor(String str, int color) {
-        int bstart = str.indexOf("VS");
-        int bend = bstart + "VS".length();
+    public static SpannableStringBuilder handleStringColor(String str, int firColor, int sedColor) {
+        int bstart = str.indexOf("/");
+        int bend = bstart + "/".length();
         SpannableStringBuilder style = new SpannableStringBuilder(str);
-        style.setSpan(new ForegroundColorSpan(color), 0, bstart, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        style.setSpan(new ForegroundColorSpan(color), bend, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-        return style;
-    }
-
-    public static SpannableStringBuilder handleStringTextColor(String str, int startIndex, int endIndex, int color) {
-        SpannableStringBuilder style = new SpannableStringBuilder(str);
-        style.setSpan(new ForegroundColorSpan(color), startIndex, endIndex, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        style.setSpan(new BackgroundColorSpan(firColor), 0, bstart, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+        style.setSpan(new BackgroundColorSpan(sedColor), bend, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         return style;
     }
 
@@ -473,38 +332,38 @@ public class AfbUtils {
         //    BaseSportFragment superComboFragment = new SuperComboFragment();
         BaseSportFragment tableTennisFragment = new TableTennisFragment();
         BaseSportFragment formulaFragment = new FormulaFragment();
-        beanHashMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, R.color.black_grey));
-        beanHashMap.put("Cashio", new SportIdBean("Cashio", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, R.color.black_grey));
-        beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, R.color.black_grey));
-        beanHashMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, R.color.black_grey));
-        beanHashMap.put("29", new SportIdBean("29", "9", R.string.Baseball, "Baseball", SportActivity.class, baseballFragment, R.color.black_grey));
-        beanHashMap.put("51", new SportIdBean("51", "20", R.string.Badminton, "Badminton", SportActivity.class, badmintonFragment, R.color.black_grey));
-        beanHashMap.put("106", new SportIdBean("106", "34", R.string.E_Sport, "E_Sport", SportActivity.class, eSportFragment, R.color.red));
-        beanHashMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, R.color.black_grey));
-        beanHashMap.put("44", new SportIdBean("44", "23", R.string.cricket, "Cricket", SportActivity.class, cricketFragment, R.color.black_grey));
+        beanHashMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("Cashio", new SportIdBean("Cashio", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK));
+        beanHashMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, Color.BLACK));
+        beanHashMap.put("29", new SportIdBean("29", "9", R.string.Baseball, "Baseball", SportActivity.class, baseballFragment, Color.BLACK));
+        beanHashMap.put("51", new SportIdBean("51", "20", R.string.Badminton, "Badminton", SportActivity.class, badmintonFragment, Color.BLACK));
+        beanHashMap.put("106", new SportIdBean("106", "34", R.string.E_Sport, "E_Sport", SportActivity.class, eSportFragment, Color.RED));
+        beanHashMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, Color.BLACK));
+        beanHashMap.put("44", new SportIdBean("44", "23", R.string.cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK));
 // '26', g = '65', img = 'https://www.afb1188.com/H50/Img/cycling.jpg'
 
-        beanHashMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, R.color.black_grey));
+        beanHashMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, Color.BLACK));
 
-        beanHashMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, R.color.black_grey));
+        beanHashMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, Color.BLACK));
 
-        beanHashMap.put("25", new SportIdBean("25", "15", R.string.Formula1, "Formula1", SportActivity.class, formulaFragment, R.color.black_grey));
-        beanHashMap.put("28", new SportIdBean("28", "19", R.string.Futsal, "Futsal", SportActivity.class, soccerFragment, R.color.black_grey));
+        beanHashMap.put("25", new SportIdBean("25", "15", R.string.Formula1, "Formula1", SportActivity.class, formulaFragment, Color.BLACK));
+        beanHashMap.put("28", new SportIdBean("28", "19", R.string.Futsal, "Futsal", SportActivity.class, soccerFragment, Color.BLACK));
 
-        beanHashMap.put("22", new SportIdBean("22", "17", R.string.Golf, "Golf", SportActivity.class, golfFragment, R.color.black_grey));
-        beanHashMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, R.color.black_grey));
-        beanHashMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, R.color.black_grey));
-        beanHashMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, soccerFragment, R.color.black_grey));
+        beanHashMap.put("22", new SportIdBean("22", "17", R.string.Golf, "Golf", SportActivity.class, golfFragment, Color.BLACK));
+        beanHashMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, Color.BLACK));
+        beanHashMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, Color.BLACK));
+        beanHashMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, soccerFragment, Color.BLACK));
 
 
-        beanHashMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, R.color.black_grey));
-        beanHashMap.put("11", new SportIdBean("11", "11", R.string.Snooker, "Snooker", SportActivity.class, soccerFragment, R.color.black_grey));
-        beanHashMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, R.color.black_grey));
-        beanHashMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, R.color.black_grey));
-        beanHashMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, R.color.black_grey));
-        beanHashMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, winterSportFragment, R.color.black_grey));
+        beanHashMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK));
+        beanHashMap.put("11", new SportIdBean("11", "11", R.string.Snooker, "Snooker", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, Color.BLACK));
+        beanHashMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK));
+        beanHashMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK));
+        beanHashMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, winterSportFragment, Color.BLACK));
         beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.all_running));
-        beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, soccerFragment, R.color.black_grey));
+        beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, soccerFragment, Color.BLACK));
 
         sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.all_running));
         sportMap.put("5", new SportIdBean("5", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.RED, R.mipmap.football));
@@ -521,7 +380,7 @@ public class AfbUtils {
         othersMap.put("29", new SportIdBean("29", "9", R.string.Baseball, "Baseball", SportActivity.class, baseballFragment, Color.BLACK, R.mipmap.baseball));
         othersMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, Color.BLACK, R.mipmap.ice_hockey));
         othersMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK, R.mipmap.rugby));
-        othersMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, R.color.black_grey, R.mipmap.darts));
+        othersMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, Color.BLACK, R.mipmap.darts));
         othersMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, Color.BLACK, R.mipmap.boxing));
         othersMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.motor_sports));
         othersMap.put("22", new SportIdBean("22", "17", R.string.Golf, "Golf", SportActivity.class, golfFragment, Color.BLACK, R.mipmap.ice_hockey));
