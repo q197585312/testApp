@@ -16,6 +16,7 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.api.Api;
 
@@ -115,6 +116,8 @@ public class BetGoalWindowUtils {
                                         tvData6.setBackgroundColor(Color.GREEN);
                                     } else if (index8.equals("W")) {
                                         tvData6.setBackgroundColor(Color.YELLOW);
+                                        SportActivity sportActivity = (SportActivity) activity;
+                                        sportActivity.onAddWaiteCount(1);
                                     } else {
                                         tvData6.setBackgroundColor(Color.RED);
                                     }

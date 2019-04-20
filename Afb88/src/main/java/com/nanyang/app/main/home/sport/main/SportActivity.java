@@ -802,6 +802,19 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         }
     }
 
+    public void onAddWaiteCount(int waitNumber) {
+        stopRefreshMenu();
+        String s = tvWaiteCount.getText().toString();
+        if (TextUtils.isEmpty(s)) {
+            s = "0";
+        }
+        int parseInt = Integer.parseInt(s);
+        parseInt += waitNumber;
+        tvWaiteCount.setText(parseInt + "");
+        tvWaiteCount.setVisibility(View.VISIBLE);
+        startRefreshMenu();
+    }
+
     private Runnable refreshMenuRunnable = new Runnable() {
         @Override
         public void run() {
