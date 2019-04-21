@@ -91,13 +91,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             int sizeFT = 0;
             int sizeFH = 0;
 
-            if (additionData!=null&&additionData.getFTodds() != null)
+            if (additionData != null && additionData.getFTodds() != null)
                 sizeFT = additionData.getFTodds().size();
-            if (additionData!=null&&additionData.getFHodds() != null)
+            if (additionData != null && additionData.getFHodds() != null)
                 sizeFH = additionData.getFHodds().size();
             int size = sizeFT > sizeFH ? sizeFT : sizeFH;
             for (int i = 0; i < size; i++) {
-                addAdditionView(parent, i <sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item);
+                addAdditionView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item);
             }
 
 
@@ -165,7 +165,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 //                    addAdditionDC(additionData.getFTDC(), false, parent, item);
 
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
-                    addTitle(parent, inflate, context.getString(R.string.full_time) + context.getString(R.string.double_chance));
+                    addTitle(parent, inflate, context.getString(R.string.full_time) + " " + context.getString(R.string.double_chance));
                     addAddition(additionData.getFHD(), additionData.getFHA(), additionData.getFDA(), additionData.getFDB_SocOddsId(), false, parent, item,
                             "1X", "12", "X2", "dc", "dc", "dc", "10", "12", "2", R.layout.addition_1x2_sport_item);
 
@@ -174,7 +174,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 //                    addAdditionDC(additionData.getHTDC(), false, parent, item);
 
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
-                    addTitle(parent, inflate, context.getString(R.string.half_full_time) + context.getString(R.string.double_chance));
+                    addTitle(parent, inflate, context.getString(R.string.half_time) + " " + context.getString(R.string.double_chance));
                     addAddition(additionData.getHHD(), additionData.getHHA(), additionData.getHDA(), additionData.getHDB_SocOddsId(), false, parent, item,
                             "1X", "12", "X2", "dc", "dc", "dc", "10", "12", "2", R.layout.addition_1x2_sport_item);
 
@@ -182,14 +182,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
                 if (!StringUtils.isNull(additionData.getFOE_CNT()) && !additionData.getFOE_CNT().equals("0")) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
-                    addTitle(parent, inflate, context.getString(R.string.full_time) + context.getString(R.string.single_double));
-                    addAddition(additionData.getFOdd(), additionData.getFEven(), additionData.getFOE_SocOddsId(), false, parent, item,
+                    addTitle(parent, inflate, context.getString(R.string.full_time) + context.getString(R.string.odd_even));
+                    addAddition(AfbUtils.changeValueS(additionData.getFOdd()), AfbUtils.changeValueS(additionData.getFEven()), additionData.getFOE_SocOddsId(), false, parent, item,
                             "1X", "12", "dc", "dc", "10", "12", R.layout.addition_1x2_sport_item);
                 }
                 if (!StringUtils.isNull(additionData.getHOE_CNT()) && !additionData.getHOE_CNT().equals("0")) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
-                    addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.single_double));
-                    addAddition(additionData.getHOdd(), additionData.getHEven(), additionData.getHOE_SocOddsId(), true, parent, item,
+                    addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.odd_even));
+                    addAddition(AfbUtils.changeValueS(additionData.getHOdd()), AfbUtils.changeValueS(additionData.getHEven()), additionData.getHOE_SocOddsId(), true, parent, item,
                             "1X", "12", "dc", "dc", "10", "12", R.layout.addition_1x2_sport_item);
                 }
 
@@ -234,9 +234,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
 
                     addTitle(parent, inflate, context.getString(R.string.HOME_TEAM_TOTAL_GOALS));
-                    addAddition(additionData.getFHOOdds(), additionData.getFHUOdds(), additionData.getHTTG_SocOddsId(), false, parent, item,
+                    addAddition(AfbUtils.changeValueS(additionData.getFHOOdds()), AfbUtils.changeValueS(additionData.getFHUOdds()), additionData.getHTTG_SocOddsId(), false, parent, item,
                             "FT.Over " + additionData.getHTTG_OU(), "FT.Under " + additionData.getHTTG_OU(), "over", "under", "", "", R.layout.addition_1x2_sport_item);
-                    addAddition(additionData.getHHOOdds(), additionData.getHHUOdds(), additionData.getHTTG_FHSocOddsId(), true, parent, item,
+                    addAddition(AfbUtils.changeValueS(additionData.getHHOOdds()), AfbUtils.changeValueS(additionData.getHHUOdds()), additionData.getHTTG_FHSocOddsId(), true, parent, item,
                             "FT.Over " + additionData.getHTTG_FHOU(), "FT.Under " + additionData.getHTTG_FHOU(), "over", "under", "", "", R.layout.addition_1x2_sport_item);
                 }
                 if (!StringUtils.isNull(additionData.getATTG_CNT()) && !additionData.getATTG_CNT().equals("0")) {//zhudui
@@ -244,9 +244,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, context.getString(R.string.AWAY_TEAM_TOTAL_GOALS));
 
-                    addAddition(additionData.getFAOOdds(), additionData.getFAUOdds(), additionData.getATTG_SocOddsId(), false, parent, item,
+                    addAddition(AfbUtils.changeValueS(additionData.getFAOOdds()), AfbUtils.changeValueS(additionData.getFAUOdds()), additionData.getATTG_SocOddsId(), false, parent, item,
                             "FT.Over " + additionData.getATTG_OU(), "FT.Under " + additionData.getATTG_OU(), "over", "under", "", "", R.layout.addition_1x2_sport_item);
-                    addAddition(additionData.getHAOOdds(), additionData.getHAUOdds(), additionData.getATTG_FHSocOddsId(), true, parent, item,
+                    addAddition(AfbUtils.changeValueS(additionData.getHAOOdds()), AfbUtils.changeValueS(additionData.getHAUOdds()), additionData.getATTG_FHSocOddsId(), true, parent, item,
                             "FT.Over " + additionData.getATTG_FHOU(), "FT.Under " + additionData.getATTG_FHOU(), "over", "under", "", "", R.layout.addition_1x2_sport_item);
                 }
                 /*"(00:00-15:00)"
@@ -258,26 +258,26 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 //                    addAdditionFT15MINSHANDICAP_OVER_UNDER(additionData.getFT15MINSHANDICAP_OVER_UNDER_0(), context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(00:00-15:00)", parent, item);
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(00:00-15:00)");
-                    addAddition(additionData.getFT15InfoO(), additionData.getFT15InfoU(), additionData.getMG15_SocOddsId(), false, parent, item,
+                    addAddition(AfbUtils.changeValueS(additionData.getFT15InfoO()), AfbUtils.changeValueS(additionData.getFT15InfoU()), additionData.getMG15_SocOddsId(), false, parent, item,
                             context.getString(R.string.O) + additionData.getFT15InfoOU(), context.getString(R.string.U) + additionData.getFT15InfoOU(), "over", "under", "", "", R.layout.addition_htft_sport_item);
                 }
                 if (!StringUtils.isNull(additionData.getMG30_CNT()) && !additionData.getMG30_CNT().equals("0")) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(15:01-30:00)");
-                    addAddition(additionData.getFT30InfoO(), additionData.getFT30InfoU(), additionData.getMG30_SocOddsId(), false, parent, item,
+                    addAddition(AfbUtils.changeValueS(additionData.getFT30InfoO()), AfbUtils.changeValueS(additionData.getFT30InfoU()), additionData.getMG30_SocOddsId(), false, parent, item,
                             context.getString(R.string.O) + additionData.getFT30InfoOU(), context.getString(R.string.U) + additionData.getFT30InfoOU(), "over", "under", "", "", R.layout.addition_htft_sport_item);
                 }
                 if (!StringUtils.isNull(additionData.getMG45_CNT()) && !additionData.getMG45_CNT().equals("0")) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(30:01-45:00)");
-                    addAddition(additionData.getFT45InfoO(), additionData.getFT45InfoU(), additionData.getMG45_SocOddsId(), false, parent, item,
+                    addAddition(AfbUtils.changeValueS(additionData.getFT45InfoO()), AfbUtils.changeValueS(additionData.getFT45InfoU()), additionData.getMG45_SocOddsId(), false, parent, item,
                             context.getString(R.string.O) + additionData.getFT45InfoOU(), context.getString(R.string.U) + additionData.getFT45InfoOU(), "over", "under", "", "", R.layout.addition_htft_sport_item);
                 }
 
                 if (!StringUtils.isNull(additionData.getMG60_CNT()) && !additionData.getMG60_CNT().equals("0")) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(45:01-60:00)");
-                    addAddition(additionData.getFT60InfoO(), additionData.getFT60InfoU(), additionData.getMG60_SocOddsId(), false, parent, item,
+                    addAddition(AfbUtils.changeValueS(additionData.getFT60InfoO()), AfbUtils.changeValueS(additionData.getFT60InfoU()), additionData.getMG60_SocOddsId(), false, parent, item,
                             context.getString(R.string.O) + additionData.getFT60InfoOU(), context.getString(R.string.U) + additionData.getFT60InfoOU(), "over", "under", "", "", R.layout.addition_htft_sport_item);
                 }
              /*   if (additionData.getFT15MINSHANDICAP_OVER_UNDER_60() != null && additionData.getFT15MINSHANDICAP_OVER_UNDER_60().getOid() > 0) {
@@ -286,16 +286,16 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 if (!StringUtils.isNull(additionData.getMG75_CNT()) && !additionData.getMG75_CNT().equals("0")) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, context.getString(R.string.FT15MINSHANDICAP_OVER_UNDER) + "(60:01-75:00)");
-                    addAddition(additionData.getFT75InfoO(), additionData.getFT75InfoU(), additionData.getMG75_SocOddsId(), false, parent, item,
+                    addAddition(AfbUtils.changeValueS(additionData.getFT75InfoO()), AfbUtils.changeValueS(additionData.getFT75InfoU()), additionData.getMG75_SocOddsId(), false, parent, item,
                             context.getString(R.string.O) + additionData.getFT75InfoOU(), context.getString(R.string.U) + additionData.getFT75InfoOU(), "over", "under", "", "", R.layout.addition_htft_sport_item);
                 }
                 if (additionData.getFTMModds() != null && additionData.getFTMModds().size() > 0) {
                     for (AddMBean.MModdsBean mModdsBean : additionData.getFTMModds()) {
                         View inflate = LayoutInflater.from(context).inflate(R.layout.addition_mm_title_ft_item, null);
                         parent.addView(inflate);
-                        addAddition(mModdsBean.getHomeOdds(), mModdsBean.getOverOdds(), mModdsBean.getSocOddsId(), false, parent, item,
+                        addAddition(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), false, parent, item,
                                 "Home " + mModdsBean.getHDPH(), "Over " + mModdsBean.getOU(), "mmhome", "mmover", "", "", R.layout.addition_1x2_sport_item);
-                        addAddition(mModdsBean.getAwayOdds(), mModdsBean.getUnderOdds(), mModdsBean.getSocOddsId(), false, parent, item,
+                        addAddition(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), false, parent, item,
                                 "Away " + mModdsBean.getHDPA(), "Under " + mModdsBean.getOU(), "mmaway", "mmunder", "", "", R.layout.addition_1x2_sport_item);
                     }
                 }
@@ -303,9 +303,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     for (AddMBean.MModdsBean mModdsBean : additionData.getFHMModds()) {
                         View inflate = LayoutInflater.from(context).inflate(R.layout.addition_mm_title_fh_item, null);
                         parent.addView(inflate);
-                        addAddition(mModdsBean.getHomeOdds(), mModdsBean.getOverOdds(), mModdsBean.getSocOddsId(), true, parent, item,
+                        addAddition(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Home " + mModdsBean.getHDPH(), "Over " + mModdsBean.getOU(), "mmhome", "mmover", "", "", R.layout.addition_1x2_sport_item);
-                        addAddition(mModdsBean.getAwayOdds(), mModdsBean.getUnderOdds(), mModdsBean.getSocOddsId(), true, parent, item,
+                        addAddition(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Away " + mModdsBean.getHDPA(), "Under " + mModdsBean.getOU(), "mmaway", "mmunder", "", "", R.layout.addition_1x2_sport_item);
                     }
                 }
@@ -659,7 +659,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         ballInfo.setAway(fTodds.getAway());*/
    /*      ballInfo.setOver(fTodds.getOver());
         ballInfo.setUnder(fTodds.getUnder());*/
-        BallInfo ballInfo = new BallInfo() ;
+        BallInfo ballInfo = new BallInfo();
         ballInfo.setModuleTitle(item.getModuleTitle());
         ballInfo.setModuleId(item.getModuleId());
         ballInfo.setHome(item.getHome());

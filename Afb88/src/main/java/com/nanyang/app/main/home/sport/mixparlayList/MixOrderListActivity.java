@@ -211,8 +211,8 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
                 viewById.setText(clearanceBetAmountBean.getTitle());
                 if (position == selectedMap.get(true)) {
 //                    footerCountTv.setText(clearanceBetAmountBean.getTitle());
-//                    viewById.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.menu_right_hover, 0);
-                    dynamicAddView(viewById, "drawableRight", R.mipmap.menu_right_hover);
+                    viewById.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.menu_right_hover, 0);
+//                    dynamicAddView(viewById, "drawableRight", R.mipmap.menu_right_hover);
                 } else {
                     viewById.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
                 }

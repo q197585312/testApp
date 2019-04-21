@@ -82,8 +82,8 @@
     <string name="over">Over</string>
     <string name="Input_the_amount_of_bets_please">Input the amount of bets please</string>
     <string name="invalid_amount_bet">Invalid amount bet</string>
-    <string name="full_time">Full Time</string>
-    <string name="half_time">First Half</string>
+    <string name="full_time">FT</string>
+    <string name="half_time">FH</string>
     <string name="odd_even">Odd/Even</string>
 
     <string name="bet_amount">Amount</string>

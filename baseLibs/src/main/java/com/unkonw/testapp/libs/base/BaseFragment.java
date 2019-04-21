@@ -4,11 +4,11 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import com.google.gson.Gson;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
@@ -17,10 +17,9 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
-import solid.ren.skinlibrary.base.SkinBaseFragment;
 
 
-public abstract class BaseFragment<T extends IBasePresenter> extends SkinBaseFragment implements IBaseContext {
+public abstract class BaseFragment<T extends IBasePresenter> extends Fragment implements IBaseContext {
     public BaseActivity mContext;
     public View mContentView = null;
     /**
