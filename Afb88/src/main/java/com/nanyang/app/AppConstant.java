@@ -23,7 +23,6 @@ public class AppConstant {
     public static String KEY_DATA3 = "KEY_DATA3";
 
 
-
 //    http://a0096f.panda88.org/_View/SocAllGen.ashx?ot=r&mt=0&tf=-1&TFStatus=0&update=false&r=431367264&LID=&_=1488465754049
     //盘口
 //    http://a0096f.panda88.org/Main.aspx?accType=HK
@@ -31,7 +30,7 @@ public class AppConstant {
     //http://a8197c.a36588.com/Main.aspx?accType=ID
     //http://a8197c.a36588.com/Main.aspx?accType=EU
 
-//    public static String HOST="http://www.doo88.net/";
+    //    public static String HOST="http://www.doo88.net/";
     public String HOST = BuildConfig.HOST_AFB;
     public String WebSocket_HOST = "http://wsapp.afb1188.com:8888/";
     //http://www.afb1188.com/W0/Pub/pcode.axd
@@ -95,10 +94,10 @@ public class AppConstant {
 
 //https://ws.afb1188.com:8887/fnOddsGen?wst=wsSocAllGen&g=9&ot=r&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-04-08&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&mt=0&FAV=&SL=&LSL=undefined
 
-    public String URL_BASKETBALL_RUNNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=9&ot=r&FAV=&SL=";
-    public String URL_BASKETBALL_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=9&ot=t&FAV=&SL=";
+    public String URL_BASKETBALL_RUNNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=9&ot=r&tf=-1&FAV=&SL=";
+    public String URL_BASKETBALL_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=9&ot=t&tf=-1&FAV=&SL=";
     //wss://ws.afb1188.com:8887/                        fnOddsGen?wst=wsSocAllGen&g=9&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-04-11&LangCol=C&accType=EU&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&mt=0&FAV=&SL=&LSL=undefined
-    public String URL_BASKETBALL_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=9&ot=e&FAV=&SL=";
+    public String URL_BASKETBALL_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=9&ot=e&tf=2&FAV=&SL=";
 
     public String URL_BASKETBALL_EARLY_Mix = HOST + "_view/ParGen.ashx?g=10&ot=e&FAV=&SL=";
     public String URL_BASKETBALL_TODAY_Mix = HOST + "_view/ParGen.ashx?g=10&ot=t&FAV=&SL=";
