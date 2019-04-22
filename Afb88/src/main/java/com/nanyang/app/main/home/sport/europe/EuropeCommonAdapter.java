@@ -26,7 +26,24 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
         super.onConvert(helper, position, item);
-
+        TextView awayTv = helper.getView(R.id.module_match_away_team_tv);
+        TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
+        String homeRank = item.getHomeRank();
+        String awayRank = item.getAwayRank();
+        String away = item.getAway();
+        if (awayRank != null && !awayRank.equals("")) {
+            away = "[" + awayRank + "]" + away;
+        }
+        String home = item.getHome();
+        if (homeRank != null && !homeRank.equals("")) {
+            home = "[" + homeRank + "]" + home;
+        }
+        TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
+        TextView moduleMatchCollectionTv = helper.getView(R.id.module_match_collection_tv);
+        LeagueCollectionTv.setVisibility(View.INVISIBLE);
+        moduleMatchCollectionTv.setVisibility(View.INVISIBLE);
+        homeTv.setText(home);
+        awayTv.setText(away);
         updateMixBackground(helper, item);
     }
 

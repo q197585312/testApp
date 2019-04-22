@@ -17,7 +17,6 @@ public class SoccerTodayState extends SoccerCommonState {
     }
 
 
-
     @Override
     public boolean mix() {
         getBaseView().switchState(new SoccerTodayMixState(getBaseView()));
@@ -27,11 +26,12 @@ public class SoccerTodayState extends SoccerCommonState {
     @Override
     protected String getAllOddsUrl() {
         String tfDate = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
-        return AppConstant.getInstance().HOST+"_view/OddsPageSetting.aspx?ot=t&ov=0&wd="+tfDate+"&tf=-1&isPageSingDouble=RMOdds1&m=save";
+        return AppConstant.getInstance().HOST + "_view/OddsPageSetting.aspx?ot=t&ov=0&wd=" + tfDate + "&tf=-1&isPageSingDouble=RMOdds1&m=save";
     }
+
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FOOTBALL_TODAY+param.getType();
+        return AppConstant.getInstance().URL_FOOTBALL_TODAY + param.getType();
     }
 
     @Override
@@ -55,7 +55,7 @@ public class SoccerTodayState extends SoccerCommonState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today),"Today",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.football));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.football));
     }
 
     @Override

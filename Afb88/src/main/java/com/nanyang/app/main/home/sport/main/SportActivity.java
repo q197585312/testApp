@@ -297,6 +297,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         ll_header_sport.removeAllViews();
         afbDrawerViewHolder.switchFragment(localCurrentFragment);
         currentFragment = localCurrentFragment;
+        sportTitleTv.setText(getString(R.string.sport_match) + " > " + tag);
         if (currentTag.isEmpty()) {
             return;
         } else if (!currentTag.equals(tag)) {
@@ -308,7 +309,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         }
         currentTag = tag;
         tvSportSelect.setText(tag);
-        sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);
+//        sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);
 
     }
 
