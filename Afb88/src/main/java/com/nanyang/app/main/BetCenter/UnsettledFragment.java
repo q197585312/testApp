@@ -242,7 +242,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
                     String betType2 = item.getBetType221();
                     betType2 = AfbUtils.delHTMLTag(betType2);
-                    running_BetType2.setText(betType2 + " ");
+                    running_BetType2.setText("("+betType2 + ") ");
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
                     odds = AfbUtils.delHTMLTag(odds);
@@ -258,7 +258,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     }
                     running_OldStatus.setText(item.getOldStatus22());
                     TextView running_Status = holder.getTextView(R.id.running_Status);
-                    running_Status.setText(item.getStatus20());
+                    running_Status.setText(item.getDangerStatus8());
                     TextView running_Amt = holder.getTextView(R.id.running_Amt);
                     running_Amt.setText(item.getAmt9());
                 }
