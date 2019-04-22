@@ -87,7 +87,8 @@ public class AppConstant {
     public String URL_FOOTBALL_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=1&ot=e&tf=2&TFStatus=0&update=false&FAV=&SL=";
     public String URL_FOOTBALL_EARLY_Mix = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&&g=4&ot=e4&FAV=&SL=";
     public String URL_FOOTBALL_TODAY_Mix = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=4&ot=t&FAV=&SL=";
-    public String URL_FOOTBALL_OUT_RIGHT = HOST + "_view/OddsGen50.ashx?FAV=&SL=";
+    public String URL_FOOTBALL_OUT_RIGHT = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&&ot=r&tf=-1&TFStatus=0&FAV=&SL=";
+    //wst=wsSocAllGen&g=31&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-04-20&LangCol=&accType=EU&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=703018&r=1553931820250&_=1553931794406
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=726142&r=1553931973916&_=1553931794436 、、
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=726142&r=1553931976885&_=1553931794437

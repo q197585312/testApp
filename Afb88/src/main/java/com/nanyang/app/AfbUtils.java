@@ -16,6 +16,8 @@ import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.WebChromeClient;
@@ -389,6 +391,96 @@ public class AfbUtils {
         return beanHashMap.get(id);
     }
 
+    public static String getOutRightGById(SportIdBean sportIdBean) {
+        String dbid = sportIdBean.getDbid();
+        String outRightG = "";
+        switch (dbid) {
+            case "1":
+                outRightG = "2";
+                break;
+            case "2":
+                outRightG = "31";
+                break;
+            case "3":
+                outRightG = "36";
+                break;
+
+            case "34":
+                outRightG = "107";
+                break;
+            case "8":
+                outRightG = "30";
+            case "9":
+                outRightG = "39";
+                break;
+            case "10":
+                outRightG = "33";
+                break;
+
+            case "11":
+                outRightG = "32";
+                break;
+            case "12":
+                outRightG = "34";
+            case "13":
+                outRightG = "35";
+                break;
+            case "14":
+                outRightG = "92";
+                break;
+            case "16":
+                outRightG = "46";
+                break;
+
+
+            case "17":
+                outRightG = "37";
+                break;
+            case "19":
+                outRightG = "63";
+                break;
+            case "20":
+                outRightG = "52";
+                break;
+            case "21":
+                outRightG = "54";
+                break;
+
+            case "22":
+                outRightG = "58";
+                break;
+
+            case "23":
+                outRightG = "61";
+                break;
+
+            case "24":
+                outRightG = "62";
+                break;
+
+            case "25":
+                outRightG = "43";
+                break;
+            case "26":
+                outRightG = "64";
+                break;
+            case "27":
+                outRightG = "69";
+                break;
+            case "28":
+                outRightG = "91";
+                break;
+            case "29":
+                outRightG = "102";
+                break;
+            case "30":
+                outRightG = "104";
+
+        }
+        return outRightG;
+
+    }
+
     public static SportIdBean identificationSportByType(String type) {
         Iterator<Map.Entry<String, SportIdBean>> iterator = beanHashMap.entrySet().iterator();
         while (iterator.hasNext()) {
@@ -616,4 +708,12 @@ public class AfbUtils {
             }
         }
     }
+
+    public static void setLayoutParams(View view, int width, int height) {
+        ViewGroup.LayoutParams linearParams = view.getLayoutParams();
+        linearParams.width = width;
+        linearParams.height = height;
+        view.setLayoutParams(linearParams);
+    }
+
 }

@@ -47,7 +47,6 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
-import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.MainPresenter;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -178,7 +177,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         createPresenter(new LanguagePresenter(this));
         toolbar.setVisibility(View.GONE);
         oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
-        allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "&mt=0");
+        allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "0");
         presenter.switchOddsType("MY", new BaseConsumer<String>(this) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
@@ -294,6 +293,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void selectFragmentTag(String tag, BaseSportFragment localCurrentFragment) {
         ll_footer_sport.removeAllViews();
+
         ll_header_sport.removeAllViews();
         afbDrawerViewHolder.switchFragment(localCurrentFragment);
         currentFragment = localCurrentFragment;
@@ -361,40 +361,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         recreate();
         popWindow.closePopupWindow();
     }
-
-//    public void getMoneyMsg(final TransferMoneyBean transferMoneyBean, final String data) {
-//        popWindow.closePopupWindow();
-//        TransferMoneyPop pop = new TransferMoneyPop(mContext, ivAdd) {
-//            @Override
-//            public void initMsgData(TextView tv_balance, TextView tv_casino_balance, EditText edt_amount) {
-//                TransferMoneyBean.DicAllBean bean = transferMoneyBean.getDicAll().get(0);
-//                tv_balance.setText(isStartWithTag(bean.getCredit()));
-//                tv_casino_balance.setText(isStartWithTag(bean.getGdBalance()));
-//            }
-//
-//            @Override
-//            public void setOnCancelListener() {
-//                startApp(data);
-//            }
-//
-//            @Override
-//            public void setOnSureListener(final String money) {
-//                if (!TextUtils.isEmpty(money) && Integer.parseInt(money) != 0) {
-//                    presenter.gamesGDTransferMonet(money, new BaseConsumer<String>(SportActivity.this) {
-//                        @Override
-//                        protected void onBaseGetData(String data) {
-//                            onGetTransferMoneyData(0, money, data);
-//                        }
-//                    });
-//                    closePopupWindow();
-//                } else {
-//                    ToastUtils.showShort(getString(R.string.Input_the_amount_please));
-//                }
-//            }
-//
-//        };
-//        pop.showPopupCenterWindow();
-//    }
 
     public void onGetTransferMoneyData(int type, String getBackStr, String data) {
         if (getBackStr.contains("not allowed")) {
@@ -637,15 +603,22 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     public void initAllRunning(String allRunningG) {
-        //"1,9,21,29,51,182"
-
         SportIdBean sportIdBean = AfbUtils.identificationSportFromOtherAndSport(allRunningG);
         Log.d("initAllRunning", "allRunningG: " + allRunningG + ",sportIdBean:" + sportIdBean);
         if (sportIdBean == null)
             return;
         selectFragmentTag(getString(sportIdBean.getTextRes()), sportIdBean.getBaseFragment());
         addHeadAndFoot(allRunningG);
+    }
 
+    public void initOutRight(SportIdBean sportIdBean) {
+
+//        String sportIdBean = AfbUtils.getOutRightGById(sportIdBean);
+//        Log.d("initAllRunning", "allRunningG: " + outRightId + ",sportIdBean:" + sportIdBean);
+        if (sportIdBean == null)
+            return;
+        selectFragmentTag(getString(sportIdBean.getTextRes()), sportIdBean.getBaseFragment());
+        setType("OutRight");
     }
 
     public void addHeadAndFoot(String allRunningG) {

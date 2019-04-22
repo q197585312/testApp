@@ -4,6 +4,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
 
 /**
@@ -27,7 +28,7 @@ public class MyanmarEarlyState extends MyanmarState {
     @Override
     protected String getRefreshUrl() {
         String tfDate = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
-        return AppConstant.getInstance().URL_SOCCER_MYANMAR_EARLY+"&wd="+ tfDate+param.getType();
+        return AppConstant.getInstance().URL_SOCCER_MYANMAR_EARLY+"&wd="+ tfDate+"&mt="+((SportActivity)getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType().getType();
     }
 
     @Override

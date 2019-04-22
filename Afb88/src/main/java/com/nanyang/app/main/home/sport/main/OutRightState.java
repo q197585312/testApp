@@ -1,18 +1,36 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.koushikdutta.async.callback.CompletedCallback;
+import com.koushikdutta.async.callback.WritableCallback;
+import com.koushikdutta.async.http.AsyncHttpClient;
+import com.koushikdutta.async.http.WebSocket;
+import com.nanyang.app.ApiService;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.NetWorkUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.reactivestreams.Subscription;
 
 import java.util.List;
+
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
+import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -21,8 +39,19 @@ import java.util.List;
 public abstract class OutRightState extends SportState<SportInfo, SportContract.View<SportInfo>> {
 
 
+    private String dbId;
+    private String ot;
+
+    public OutRightState(SportContract.View baseView, String ot, String dbId) {
+        super(baseView);
+        this.ot = ot;
+        this.dbId = dbId;
+    }
+
     public OutRightState(SportContract.View baseView) {
         super(baseView);
+        this.ot = "e";
+        this.dbId = "1";
     }
 
     public boolean isCollection() {
@@ -49,7 +78,7 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
                 markTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        back.clickOdds(markTv, item, "1", false, item.getX12_1Odds(),Integer.valueOf(item.getSocOddsId()),"");
+                        back.clickOdds(markTv, item, "1", false, item.getX12_1Odds(), Integer.valueOf(item.getSocOddsId()), "");
                     }
                 });
                 if (item.getType() == SportInfo.Type.ITME) {
@@ -75,7 +104,134 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
     }
 
     @Override
-    protected SportInfo parseMatch(JSONArray matchArray,boolean notify) throws JSONException {
+    public void refresh() {
+        if (isHide)
+            return;
+        if (!NetWorkUtil.isNetConnected(getBaseView().getIBaseContext().getBaseActivity())) {
+            baseView.reLoginPrompt(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
+                @Override
+                public void clickCancel(View v) {
+                    refresh();
+                }
+            });
+            return;
+        }
+        if (webSocket != null && webSocket.isOpen()) {
+            webSocket.close();
+        }
+        //   https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"LOS","DBID":999,"ot":"t","tf":-1,"OUTDBID":"2_11","timess":"","accType":"EU","ov":0,"mt":0,"pgLable":"0.6073571478712172","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
+//new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50")
+        String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType().getType();
+        String accType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType().getType();
+        int ov = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
+
+        LoginInfo.OutRightWfBean outRightWfBean = new LoginInfo.OutRightWfBean(ot, dbId, accType, mt, ov);
+
+        Disposable subscription = getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + outRightWfBean.toJson()).subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(new Consumer<String>() {//onNext
+                    @Override
+                    public void accept(String s) throws Exception {
+                        //'ws://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&g=31&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-04-20&LangCol=&accType=EU&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080',
+                        String url = s.substring(s.indexOf("ws://"), s.indexOf("',"));
+                        if (StringUtils.isNull(url))
+                            return;
+                        AsyncHttpClient.getDefaultInstance().websocket(url, null, new AsyncHttpClient.WebSocketConnectCallback() {
+                            @Override
+                            public void onCompleted(Exception ex, final WebSocket webSocket) {
+
+                                if (ex != null) {
+                                    Log.e(TAG, "Exception----------------" + ex.getLocalizedMessage());
+                                    ex.printStackTrace();
+                                    return;
+                                }
+                                webSocket.setStringCallback(new WebSocket.StringCallback() {
+                                    @Override
+                                    public void onStringAvailable(String s) {
+                                        Log.d("Socket", "onStringAvailable-----------" + s);
+                                        if (s.equals("3"))
+                                            return;
+                                        try {
+                                            allData = getTableSportInfos(s);
+                                            updateHandler.post(new Runnable() {
+                                                @Override
+                                                public void run() {
+                                                    if (baseView.getIBaseContext().getBaseActivity() != null && baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
+//                                        baseView.checkMix(isMix());
+                                                        initAllData(allData);
+                                                    }
+                                                }
+                                            });
+
+                                        } catch (JSONException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                });
+
+                                webSocket.setClosedCallback(new CompletedCallback() {
+                                    @Override
+                                    public void onCompleted(Exception ex) {
+                                        if (ex != null) {
+                                            Log.d("Socket", "onClosedCallback出错");
+                                            return;
+                                        }
+                                        Log.d("Socket", "onClosedCallback");
+                                        refresh();
+                                    }
+                                });
+
+                                webSocket.setEndCallback(new CompletedCallback() {
+                                    @Override
+                                    public void onCompleted(Exception ex) {
+                                        if (ex != null) {
+                                            Log.d("Socket", "setEndCallback出错");
+                                            return;
+                                        }
+                                        Log.d("Socket", "setEndCallback");
+                                    }
+                                });
+                                OutRightState.this.webSocket = webSocket;
+                                startUpdateData();
+                                webSocket.setWriteableCallback(new WritableCallback() {
+                                    @Override
+                                    public void onWriteable() {
+                                        Log.d("Socket", "WritableCallback");
+
+                                    }
+                                });
+
+                            }
+                        });
+
+
+                    }
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseView.onFailed(throwable.getMessage());
+                        baseView.getIBaseContext().hideLoadingDialog();
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+                        baseView.getIBaseContext().hideLoadingDialog();
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        baseView.getIBaseContext().showLoadingDialog();
+                        subscription.request(Long.MAX_VALUE);
+                    }
+                });
+        if (mCompositeSubscription != null)
+            mCompositeSubscription.add(subscription);
+
+    }
+
+    @Override
+    protected SportInfo parseMatch(JSONArray matchArray, boolean notify) throws JSONException {
         SportInfo info = new SportInfo();
         info.setSocOddsId(matchArray.getString(0));
         info.setHome(matchArray.getString(1));
@@ -95,7 +251,6 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
     }
 
 
-
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new SportAdapterHelper.ItemCallBack<SportInfo>() {
@@ -105,7 +260,7 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
             }
 
             @Override
-            public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds,int oid,String sc) {
+            public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds, int oid, String sc) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 helper.clickOdds(item, type, odds, v, isHf, sc);

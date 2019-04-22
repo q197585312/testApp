@@ -97,15 +97,15 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected CompositeDisposable mCompositeSubscription;
     protected BasePopupWindow popMenu;
     private SwipeToLoadLayout swipeToLoadLayout;
-    protected MenuItemInfo param = null;
+
     protected WebSocket webSocket;
 
-    private String TAG = "SportState";
+    protected String TAG = "SportState";
     private DataUpdateRunnable dataUpdateRunnable;
     private boolean isSearch = false;
     private String searchStr = "";
 
-    private boolean isHide = false;
+    protected boolean isHide = false;
 
 
     public int getPageSize() {
@@ -161,7 +161,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         setBaseView(baseView);
     }
 
-    private V baseView;
+    protected V baseView;
 
     public BaseRecyclerAdapter<B> getBaseRecyclerAdapter() {
         return baseRecyclerAdapter;
@@ -189,12 +189,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         if (webSocket != null && webSocket.isOpen()) {
             webSocket.close();
         }
-
-        if (param == null) {
-            param = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType();
-            setParam(param);
-        }
-
         String url = getUrlString();
         LogUtil.d(getClass().getSimpleName(), "send------" + url);
         AsyncHttpClient.getDefaultInstance().websocket(url, null, new AsyncHttpClient.WebSocketConnectCallback() {
@@ -268,7 +262,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     }
 
-    private String getUrlString() {
+    protected String getUrlString() {
         String url = getRefreshUrl();
         if (BuildConfig.FLAVOR.equals("afb1188")) {
             MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
@@ -286,7 +280,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 + "&delay=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getDelay()
                 + "&pn=1"
                 + "&tp=1"
-                + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
+                + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType()
+                + "&mt=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType().getType();
         url = url + "&wd=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd;
         Log.d("getUrlString", "url: " + url);
         return url;
@@ -609,7 +604,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return moduleDate;
     }
 
-    private List<TableSportInfo<B>> getTableSportInfos(String s) throws JSONException {
+    protected List<TableSportInfo<B>> getTableSportInfos(String s) throws JSONException {
         String updateString = Html.fromHtml(s).toString();
 
         JSONArray jsonArray = new JSONArray(updateString);
@@ -1071,9 +1066,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
-    public void setParam(MenuItemInfo mt) {
-        this.param = mt;
-    }
+
 
 
     protected String getAllOddsUrl() {
@@ -1108,9 +1101,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 rv.setPadding(0, 0, 0, 0);
                 rv.setLayoutManager(new LinearLayoutManager(getBaseView().getIBaseContext().getBaseActivity()));
                 List<MenuItemInfo> list = new ArrayList<>();
-                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.All_Markets), "&mt=0"));//accType=
-                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Main_Markets), "&mt=1"));
-                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Other_Bet_Markets), "&mt=2"));
+                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.All_Markets), "0"));//accType=
+                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Main_Markets), "1"));
+                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Other_Bet_Markets), "2"));
 
                 BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), list, R.layout.text_base_item) {
                     @Override
@@ -1132,7 +1125,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         closePopupWindow();
                         ((SportActivity) baseView.getIBaseContext().getBaseActivity()).setAllOdds(item);
                         textView.setText(item.getText());
-                        setParam(item);
+
                         if (!getAllOddsUrl().isEmpty()) {
                             refresh();
                         }

@@ -32,6 +32,7 @@ public class SoccerOutRightState extends OutRightState {
         return AppConstant.getInstance().URL_FOOTBALL_OUT_RIGHT+"&ot=e";
     }
 
+
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {
         if (item.getType().equals("Today")) {

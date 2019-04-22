@@ -1,6 +1,7 @@
 package com.nanyang.app.load.login;
 
 import com.google.gson.Gson;
+import com.nanyang.app.Utils.StringUtils;
 
 import java.io.Serializable;
 import java.util.HashMap;
@@ -191,8 +192,8 @@ public class LoginInfo {
 
         String accType = "";
         String lang = "";
-/*        String pgLable = "0.6229094620888556";
-        String vsn = "001";*/
+        /*        String pgLable = "0.6229094620888556";
+                String vsn = "001";*/
         String PT = "wfMainH50";
 
         public LanguageWfBean(String ACT, String lang, String PT) {
@@ -206,5 +207,126 @@ public class LoginInfo {
         }
     }
 
+    public static class OutRightWfBean {
+
+        /**
+         * ACT : LOS
+         * DBID : 999
+         * ot : t
+         * tf : -1
+         * OUTDBID : 2_11
+         * timess :
+         * accType : EU
+         * ov : 0
+         * mt : 0
+         * pgLable : 0.6073571478712172
+         * vsn : 4.0.12
+         * PT : wfMainH50
+         */
+
+        private String ACT = "LOS";
+        private int DBID = 999;
+        private String ot;
+        private int tf = -1;
+        private String OUTDBID = "1_11";
+        private String timess = "";
+        private String accType;
+        private int ov = 0;
+        private String mt;
+        private String PT = "wfMainH50";
+
+        public OutRightWfBean(String ot, String OUTDBID, String accType, String mt,int ov) {
+            this.ot = ot;
+            if (!StringUtils.isNull(OUTDBID))
+                this.OUTDBID = OUTDBID;
+            this.accType = accType;
+            this.mt = mt;
+            this.ov = ov;
+        }
+
+        public String toJson() {
+            return new Gson().toJson(this);
+        }
+
+        public String getACT() {
+            return ACT;
+        }
+
+        public void setACT(String ACT) {
+            this.ACT = ACT;
+        }
+
+        public int getDBID() {
+            return DBID;
+        }
+
+        public void setDBID(int DBID) {
+            this.DBID = DBID;
+        }
+
+        public String getOt() {
+            return ot;
+        }
+
+        public void setOt(String ot) {
+            this.ot = ot;
+        }
+
+        public int getTf() {
+            return tf;
+        }
+
+        public void setTf(int tf) {
+            this.tf = tf;
+        }
+
+        public String getOUTDBID() {
+            return OUTDBID;
+        }
+
+        public void setOUTDBID(String OUTDBID) {
+            this.OUTDBID = OUTDBID;
+        }
+
+        public String getTimess() {
+            return timess;
+        }
+
+        public void setTimess(String timess) {
+            this.timess = timess;
+        }
+
+        public String getAccType() {
+            return accType;
+        }
+
+        public void setAccType(String accType) {
+            this.accType = accType;
+        }
+
+        public int getOv() {
+            return ov;
+        }
+
+        public void setOv(int ov) {
+            this.ov = ov;
+        }
+
+        public String getMt() {
+            return mt;
+        }
+
+        public void setMt(String mt) {
+            this.mt = mt;
+        }
+
+        public String getPT() {
+            return PT;
+        }
+
+        public void setPT(String PT) {
+            this.PT = PT;
+        }
+    }
 
 }
