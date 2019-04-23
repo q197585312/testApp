@@ -476,6 +476,7 @@
     <string name="ESports_name">电子竞技</string>
     <string name="Muay_Thai_name">泰拳</string>
     <string name="Parlay">过关</string>
+    <string name="Parlay1">混合过关</string>
     <string name="Amt">数额</string>
     <string name="WL">输/赢</string>
     <string name="Com">佣金</string>

@@ -85,8 +85,8 @@
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textStyle="bold"
                 android:textSize="12sp"
+                android:textStyle="bold"
                 android:visibility="visible" />
 
             <TextView
@@ -94,11 +94,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/grey_thick_line"
                 android:textSize="12sp"
+                android:textStyle="bold"
                 android:visibility="visible" />
 
             <TextView

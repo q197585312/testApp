@@ -56,7 +56,7 @@ import cn.finalteam.toolsfinal.DeviceUtils;
  * Created by Administrator on 2017/3/13.
  */
 
-public abstract class  BaseSportFragment extends BaseSwitchFragment<SportPresenter> implements SportContract.View<SportInfo> {
+public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresenter> implements SportContract.View<SportInfo> {
 
 
     private static final String TAG = "updateAllDate";
@@ -381,7 +381,11 @@ public abstract class  BaseSportFragment extends BaseSwitchFragment<SportPresent
 
     @Override
     public void onGetData(List<SportInfo> data) {
-
+        if (data.size() == 0) {
+            getBaseActivity().tvNoGames.setVisibility(View.VISIBLE);
+        } else {
+            getBaseActivity().tvNoGames.setVisibility(View.GONE);
+        }
     }
 
     public AfbApplication getApp() {

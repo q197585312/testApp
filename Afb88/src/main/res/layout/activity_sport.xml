@@ -216,16 +216,35 @@
             android:orientation="vertical" />
 
         <FrameLayout
-            android:id="@+id/fl_main_content"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:background="@color/grey_background" />
+            android:background="@color/grey_background">
+
+            <FrameLayout
+                android:id="@+id/fl_main_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/grey_background" />
+
+            <TextView
+                android:id="@+id/tv_no_games"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:clickable="false"
+                android:text="No Games"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                android:visibility="gone" />
+        </FrameLayout>
+
         <LinearLayout
             android:id="@+id/ll_footer_sport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
