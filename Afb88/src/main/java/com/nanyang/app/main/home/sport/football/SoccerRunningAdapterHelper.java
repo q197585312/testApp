@@ -46,18 +46,25 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             awayScoreTv.setText("");
             homeScoreTv.setText("");
         }
-        if (item.getLive().contains("HT")) {
-            timeTv.setText("HT");
-            timeTv.setTextColor(Color.BLUE);
+        String live = item.getLive();
+        if (live.contains("HT") || live.contains("PEN") || live.contains("LIVE")) {
+            String replace = live.replace("\n", ",");
+            String[] split = replace.split(",");
+            timeTv.setText(split[1]);
+            if (live.contains("HT")) {
+                timeTv.setTextColor(Color.BLUE);
+            } else {
+                timeTv.setTextColor(Color.RED);
+            }
         } else {
+            String matchDate = item.getMatchDate();
+            timeTv.setText(matchDate);
             int min;
             try {
                 String mExtraTime = item.getMExtraTime();
                 String timeStr;
                 switch (item.getStatus()) {
                     case "0":
-                        timeTv.setText("LIVE");
-                        timeTv.setTextColor(Color.RED);
                         break;
                     case "2":
                         min = Integer.valueOf(item.getCurMinute());
@@ -70,6 +77,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
                             timeStr = "";
                         }
                         timeTv.setText(timeStr);
+                        timeTv.setTextColor(Color.BLACK);
                         break;
                     default:
                         min = Integer.valueOf(item.getCurMinute());
@@ -82,6 +90,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
                             timeStr = "";
                         }
                         timeTv.setText(timeStr);
+                        timeTv.setTextColor(Color.BLACK);
                         break;
                 }
             } catch (Exception e) {
@@ -90,6 +99,5 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             }
         }
         dateTv.setTextColor(Color.RED);
-//        timeTv.setTextColor(context.getResources().getColor(R.color.red_title));
     }
 }

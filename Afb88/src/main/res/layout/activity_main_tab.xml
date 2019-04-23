@@ -64,8 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-
-                    android:drawableTop="@mipmap/main_menu_a"
+                    android:drawableTop="@mipmap/main_balance"
                     android:text="@string/balances"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
@@ -83,8 +82,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-
-                    android:drawableTop="@mipmap/main_menu_order"
+                    android:drawableTop="@mipmap/main_statement"
                     android:text="@string/statement"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
@@ -102,11 +100,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-
-                    android:drawableTop="@mipmap/main_menu_user"
+                    android:drawableTop="@mipmap/main_contactus"
                     android:text="@string/contact"
                     android:textColor="@color/black_grey"
-
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </FrameLayout>
@@ -122,8 +118,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-
-                    android:drawableTop="@mipmap/main_menu_logout"
+                    android:drawableTop="@mipmap/main_more"
                     android:text="@string/more"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"
@@ -139,5 +134,5 @@
             android:background="@color/white" />
     </LinearLayout>
 
-    <include layout="@layout/include_drawer_layout_right"/>
+    <include layout="@layout/include_drawer_layout_right" />
 </android.support.v4.widget.DrawerLayout>

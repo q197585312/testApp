@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.dialog;
 
+import android.animation.ObjectAnimator;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
@@ -20,6 +21,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.view.animation.AnimationSet;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
@@ -51,7 +55,9 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.BindString;
@@ -395,47 +401,78 @@ public class BetPop extends BasePopupWindow {
         if (list.size() > 1) {
             initMix();
             llMix.setVisibility(View.VISIBLE);
-            layoutParams.height = AfbUtils.dp2px(context, 62 * 2);
+            layoutParams.height = AfbUtils.dp2px(context, 62 * 2 + 5);
         } else {
             layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             llMix.setVisibility(View.GONE);
         }
         if (contentAdapter == null) {
+            objectAnimatorMap = new HashMap<>();
             contentAdapter = new BaseRecyclerAdapter<AfbClickBetBean>(context, list, R.layout.item_bet) {
                 @Override
                 public void convert(MyRecyclerViewHolder holder, final int position, AfbClickBetBean item) {
                     TextView tvBetModuleTitle = holder.getView(R.id.bet_module_title_tv);
                     ImageView imgDelete = holder.getView(R.id.img_delete);
                     TextView tvBetHome = holder.getView(R.id.bet_home_tv);
+                    TextView tvScore = holder.getView(R.id.tv_score);
                     TextView tvBetAway = holder.getView(R.id.bet_away_tv);
                     TextView tvBetName = holder.getView(R.id.bet_name_tv);
+                    TextView tvHdp = holder.getView(R.id.tv_hdp);
                     TextView tvBetHdp = holder.getView(R.id.bet_hdp_tv);
                     TextView tvBetOdds = holder.getView(R.id.bet_odds_tv);
+                    TextView tvBetOddsAnimation = holder.getView(R.id.bet_odds_tv_animation);
+                    View vLine = holder.getView(R.id.v_line);
+                    if (position == list.size() - 1) {
+                        vLine.setVisibility(View.GONE);
+                    } else {
+                        vLine.setVisibility(View.VISIBLE);
+                    }
+                    if (isRunning) {
+                        tvScore.setText(item.getScore() + " ");
+                    } else {
+                        tvScore.setText("");
+                    }
                     tvBetModuleTitle.setText(item.getLeague());
                     tvBetHome.setText(item.getHome());
                     tvBetAway.setText(item.getAway());
                     String bTeam = item.getBTeam();
                     if (bTeam.equals("Home")) {
-                        tvBetName.setText(item.getHome() + item.getHdp());
+                        tvBetName.setText(item.getHome());
+                        tvBetName.setTextColor(Color.RED);
                     } else {
-                        tvBetName.setText(item.getAway() + item.getHdp());
+                        tvBetName.setText(item.getAway());
+                        tvBetName.setTextColor(Color.BLACK);
                     }
+                    String hdp = item.getHdp();
+                    if (hdp.contains("-")) {
+                        tvHdp.setTextColor(Color.RED);
+                    } else {
+                        tvHdp.setTextColor(Color.BLACK);
+                    }
+                    tvHdp.setText(hdp);
                     tvBetHdp.setText(item.getBTT());
                     String odds = item.getOdds();
                     tvBetOdds.setText(odds);
+                    tvBetOddsAnimation.setText(odds);
                     if (odds.startsWith("-")) {
-                        tvBetOdds.setTextColor(ContextCompat.getColor(mContext, R.color.red));
+                        tvBetOdds.setTextColor(Color.RED);
                     } else {
                         tvBetOdds.setTextColor(Color.BLACK);
                     }
                     boolean isHome = item.getIsGive() == 1;
                     if (isHome) {
-                        tvBetHome.setTextColor(ContextCompat.getColor(context, R.color.red_title));
+                        tvBetHome.setTextColor(Color.RED);
                         tvBetAway.setTextColor(Color.BLACK);
                     } else {
-                        tvBetAway.setTextColor(ContextCompat.getColor(context, R.color.red_title));
+                        tvBetAway.setTextColor(Color.RED);
                         tvBetHome.setTextColor(Color.BLACK);
                     }
+                    Animation animation = tvBetOddsAnimation.getAnimation();
+                    if (animation != null) {
+                        animation.cancel();
+                    }
+                    ObjectAnimator objectAnimator = startAlphaAnimation(tvBetOddsAnimation);
+                    objectAnimatorMap.put(position, objectAnimator);
                     imgDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -447,6 +484,11 @@ public class BetPop extends BasePopupWindow {
                                 list.remove(position);
 //                                presenter.getRefreshOdds(afbApplication.getRefreshOddsUrl());
                                 isNeedInitWeb = true;
+                                ObjectAnimator objectAnimator1 = objectAnimatorMap.get(position);
+                                if (objectAnimator1 != null) {
+                                    objectAnimator1.cancel();
+                                    objectAnimatorMap.remove(objectAnimator1);
+                                }
                                 updateOdds(0);
                             }
                         }
@@ -591,6 +633,12 @@ public class BetPop extends BasePopupWindow {
         stopUpdateOdds();
         betAmountEdt.setText("0");
         isNeedInitWeb = true;
+        for (ObjectAnimator objectAnimator : objectAnimatorMap.values()) {
+            if (objectAnimator != null) {
+                objectAnimator.cancel();
+            }
+        }
+        objectAnimatorMap.clear();
     }
 
 
@@ -608,4 +656,19 @@ public class BetPop extends BasePopupWindow {
         handler.removeCallbacksAndMessages(null);
     }
 
+    private Map<Integer, ObjectAnimator> objectAnimatorMap;
+
+    public ObjectAnimator startAlphaAnimation(View view) {
+        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "alpha", 1, 0, 1);
+        animator.setRepeatCount(Animation.INFINITE);
+        animator.setDuration(2000);
+        animator.start();
+        return animator;
+    }
+
+    private boolean isRunning;
+
+    public void setIsRunning(boolean isRunning) {
+        this.isRunning = isRunning;
+    }
 }

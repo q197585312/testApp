@@ -2,7 +2,7 @@
     android:id="@+id/bet_pop_parent_ll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FAFAFA"
+    android:background="#F3F6F4"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -34,13 +34,13 @@
             android:textStyle="bold" />
 
         <TextView
-            android:visibility="gone"
             android:id="@+id/tv_delete"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableRight="@mipmap/delete_white"
-            android:paddingRight="8dp" />
+            android:paddingRight="8dp"
+            android:visibility="gone" />
     </LinearLayout>
 
     <LinearLayout
@@ -53,7 +53,9 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rc_bet_content"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"></android.support.v7.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            android:background="@drawable/shape_bet_rc_bg"
+            android:padding="5dp"></android.support.v7.widget.RecyclerView>
 
         <LinearLayout
             android:id="@+id/ll_mix"

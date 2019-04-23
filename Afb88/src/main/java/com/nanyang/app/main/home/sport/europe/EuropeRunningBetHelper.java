@@ -26,6 +26,7 @@ public class EuropeRunningBetHelper extends EuropeBetHelper {
             pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
         }
         pop.setBetData(bean, this);
+        pop.setIsRunning(true);
         pop.setrTMatchInfo(item);
         if (!pop.isShowing()) {
             baseView.onPopupWindowCreated(pop, Gravity.CENTER);
