@@ -56,7 +56,7 @@ import cn.finalteam.toolsfinal.DeviceUtils;
  * Created by Administrator on 2017/3/13.
  */
 
-public abstract class  BaseSportFragment extends BaseSwitchFragment<SportPresenter> implements SportContract.View<SportInfo> {
+public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresenter> implements SportContract.View<SportInfo> {
 
 
     private static final String TAG = "updateAllDate";
@@ -278,18 +278,21 @@ public abstract class  BaseSportFragment extends BaseSwitchFragment<SportPresent
         createPresenter(new SportPresenter(this));
         isInit = true;
         isFirstIn = true;
-        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                presenter.getStateHelper().onPrevious(swipeToLoadLayout);
-            }
-        });
-        swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                presenter.getStateHelper().onNext(swipeToLoadLayout);
-            }
-        });
+        if (swipeToLoadLayout != null) {
+            swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    presenter.getStateHelper().onPrevious(swipeToLoadLayout);
+                }
+            });
+
+            swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+                @Override
+                public void onLoadMore() {
+                    presenter.getStateHelper().onNext(swipeToLoadLayout);
+                }
+            });
+        }
         rememberLastOdds();
         setTitle(getTitle());
         if (AppConstant.getInstance().IS_AGENT) {

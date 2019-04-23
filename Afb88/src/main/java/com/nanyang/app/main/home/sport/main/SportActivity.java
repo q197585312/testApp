@@ -42,6 +42,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.common.IGetRefreshMenu;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
@@ -70,7 +71,7 @@ import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.ApkUtils;
 import cn.finalteam.toolsfinal.logger.Logger;
 
-public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
+public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String>,IGetRefreshMenu {
     private final String GUIDE_KEY = "GUIDE";
 
     BaseSportFragment localCurrentFragment;
@@ -155,7 +156,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public WebSocket webSocket;
     private AfbDrawerViewHolder afbDrawerViewHolder;
     private int sort;
-    private SportIdBean typeItem;
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
@@ -273,7 +273,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     private void initFragment(String parentType) {
-        SportIdBean sportIdBean = AfbUtils.identificationSportByType(parentType);
+        SportIdBean sportIdBean = AfbUtils.getSportByType(parentType);
         currentGameType = parentType;
         Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
         localCurrentFragment = sportIdBean.getBaseFragment();
@@ -566,29 +566,22 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                                     if (item.getId().equals("1,9,21,29,51,182")) {
                                         initAllRunning("1");
                                     } else if (item.getDbid().equals("999")) {
-//                                        initOutRight(item);
-                                    } else {
-                                        if (typeItem.getDbid().equals("999")) {
-                                            String ot = ((OutRightState) typeItem.getBaseFragment().getPresenter().getStateHelper()).getOt();
-                                            if (ot.equals("e"))
-                                                item.getBaseFragment().setSwitchType("Early");
-                                            else
-                                                item.getBaseFragment().setSwitchType("Today");
-                                        }
                                         selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
-
+                                    } else {
+                                    /*    if (typeItem != null && typeItem.getDbid().equals("999")) {
+                                            String ot = ((OutRightState) typeItem.getBaseFragment().getPresenter().getStateHelper()).getOt();
+                                            if (ot != null && ot.equals("e"))
+                                                item.getBaseFragment().switchType("Early");
+                                            else
+                                                item.getBaseFragment().switchType("Today");
+                                        }*/
+                                        selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
                                     }
-                                    SportActivity.this.typeItem = item;
+
                                     closePopupWindow();
                                 }
                             });
-      /*          TextView tvJumpCasino = (TextView) view.findViewById(R.id.tv_jump_casino);
-                tvJumpCasino.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        loginGD();
-                    }
-                });*/
+
                             games_switch_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                                 @Override
                                 public void onCheckedChanged(RadioGroup radioGroup, @IdRes int id) {
@@ -618,22 +611,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void initAllRunning(String allRunningG) {
         SportIdBean sportIdBean = AfbUtils.getSportFromOtherAndSportByG(allRunningG);
-        Log.d("initAllRunning", "allRunningG: " + allRunningG + ",sportIdBean:" + sportIdBean);
+        Log.d("initAllRunning", "allRunningG: " + allRunningG + ",currentIdBean:" + sportIdBean);
         if (sportIdBean == null)
             return;
         selectFragmentTag(getString(sportIdBean.getTextRes()), sportIdBean.getBaseFragment());
         addHeadAndFoot(allRunningG);
-    }
-
-    public void initOutRight(SportIdBean sportIdBean) {
-
-//        String sportIdBean = AfbUtils.getOutRightGById(sportIdBean);
-//        Log.d("initAllRunning", "allRunningG: " + outRightId + ",sportIdBean:" + sportIdBean);
-        if (sportIdBean == null)
-            return;
-        selectFragmentTag(getString(sportIdBean.getTextRes()), sportIdBean.getBaseFragment());
-        setType("OutRight");
-        currentFragment.switchType("OutRight");
     }
 
     public void addHeadAndFoot(String allRunningG) {
@@ -642,6 +624,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         for (int i = 0; i < all.size(); i++) {
             String s = all.get(i);
             SportIdBean sportIdIndex = AfbUtils.getSportFromOtherAndSportByG(s);
+
             initAddView(addHead, sportIdIndex);
             if (s.equals(allRunningG)) {
                 addHead = false;

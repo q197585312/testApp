@@ -489,18 +489,18 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected void showCurrentData() {
-        pageData(filterData);
+        this.pageData = pageData(filterData);
         showData();
     }
 
-    private List<TableSportInfo<B>> pageData(List<TableSportInfo<B>> filterData) {
+    protected List<TableSportInfo<B>> pageData(List<TableSportInfo<B>> filterData) {
         List<TableSportInfo<B>> pageList;
         if (((page + 1) * pageSize) < filterData.size()) {
             pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
         } else {
             pageList = filterData.subList(page * pageSize, filterData.size());
         }
-        this.pageData = pageList;
+
         return pageList;
 
     }
@@ -846,7 +846,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 if (sportIdBean == null || StringUtils.isNull(sportIdBean.getDbid()))
                     return;
                 String type = item.getType();
-                Log.d("getType", "dbid:" + dbid + ",sportIdBean.getDbid()" + sportIdBean.getDbid() + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum + ",sportIdBean:" + sportIdBean);
+                Log.d("getType", "dbid:" + dbid + ",currentIdBean.getDbid()" + sportIdBean.getDbid() + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum + ",currentIdBean:" + sportIdBean);
                 String dBId = sportIdBean.getDbid();
                 String runningStr = "M_RAm" + dBId;
                 String todayStr = "M_TAm" + dBId;
