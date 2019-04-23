@@ -414,6 +414,7 @@ public class BetPop extends BasePopupWindow {
                     TextView tvBetModuleTitle = holder.getView(R.id.bet_module_title_tv);
                     ImageView imgDelete = holder.getView(R.id.img_delete);
                     TextView tvBetHome = holder.getView(R.id.bet_home_tv);
+                    TextView tvScore = holder.getView(R.id.tv_score);
                     TextView tvBetAway = holder.getView(R.id.bet_away_tv);
                     TextView tvBetName = holder.getView(R.id.bet_name_tv);
                     TextView tvHdp = holder.getView(R.id.tv_hdp);
@@ -425,6 +426,11 @@ public class BetPop extends BasePopupWindow {
                         vLine.setVisibility(View.GONE);
                     } else {
                         vLine.setVisibility(View.VISIBLE);
+                    }
+                    if (isRunning) {
+                        tvScore.setText(item.getScore() + " ");
+                    } else {
+                        tvScore.setText("");
                     }
                     tvBetModuleTitle.setText(item.getLeague());
                     tvBetHome.setText(item.getHome());
@@ -658,5 +664,11 @@ public class BetPop extends BasePopupWindow {
         animator.setDuration(2000);
         animator.start();
         return animator;
+    }
+
+    private boolean isRunning;
+
+    public void setIsRunning(boolean isRunning) {
+        this.isRunning = isRunning;
     }
 }

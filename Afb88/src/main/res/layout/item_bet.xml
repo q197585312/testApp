@@ -37,6 +37,13 @@
         android:orientation="horizontal">
 
         <TextView
+            android:id="@+id/tv_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#FE9776"
+            android:textSize="12sp" />
+
+        <TextView
             android:id="@+id/bet_home_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
