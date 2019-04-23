@@ -56,18 +56,18 @@ import cn.finalteam.toolsfinal.DeviceUtils;
  * Created by Administrator on 2017/3/13.
  */
 
-public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresenter> implements SportContract.View<SportInfo> {
+public abstract class  BaseSportFragment extends BaseSwitchFragment<SportPresenter> implements SportContract.View<SportInfo> {
 
 
     private static final String TAG = "updateAllDate";
     @Bind(R.id.swipe_target)
     protected RecyclerView rvContent;
 
-//    @Bind(R.id.tv_mix_parlay_order)
+    //    @Bind(R.id.tv_mix_parlay_order)
 //    protected TextView tvMixParlayOrder;
 //    @Bind(R.id.ll_mix_parlay_order)
 //    protected LinearLayout llMixParlayOrder;
-
+    protected abstract String getBallDbid();
 
     @Bind(R.id.swipeToLoadLayout)
     protected SwipeToLoadLayout swipeToLoadLayout;
@@ -561,11 +561,11 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         String dbid = "1";
         if (betHelper instanceof BallBetHelper) {
             String ballG = ((BallBetHelper) betHelper).getBallG();
-            SportIdBean sportIdBean = AfbUtils.identificationSportById(ballG);
+            SportIdBean sportIdBean = AfbUtils.getSportByG(ballG);
             if (sportIdBean != null)
                 dbid = sportIdBean.getDbid();
         }
-        additionPresenter.addition((BallInfo) item, position,dbid);
+        additionPresenter.addition((BallInfo) item, position, dbid);
         if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.changeAddition(position);

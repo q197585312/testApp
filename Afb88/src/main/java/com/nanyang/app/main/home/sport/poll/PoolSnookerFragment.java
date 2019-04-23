@@ -5,7 +5,12 @@ import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 
 
-public class PoolFragment extends BaseSportFragment {
+public class PoolSnookerFragment extends BaseSportFragment {
+
+    @Override
+    protected String getBallDbid() {
+        return "11";
+    }
 
     @Override
     public void initData() {

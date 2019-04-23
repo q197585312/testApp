@@ -3,13 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:gravity="center"
+
     android:orientation="vertical">
 
     <View
-        android:id="@+id/v_out_right_header_space"
+        android:id="@+id/module_match_head_v"
         android:layout_width="match_parent"
-        android:layout_height="20dp"
-        android:background="@color/green_light_white"
+        android:layout_height="5dp"
+        android:background="@color/grey_white_bg"
         android:padding="5dp" />
 
     <TextView
@@ -17,20 +18,23 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
-        android:background="@color/green_light"
-        android:gravity="center"
+        android:background="@color/grey_background"
+
         android:maxLines="1"
-        android:paddingBottom="2dp"
-        android:paddingLeft="10dp"
-        android:paddingTop="2dp"
+
+        android:paddingBottom="6dp"
+        android:paddingLeft="12dp"
+        android:paddingTop="6dp"
+        android:textStyle="bold"
         android:text="联赛名称"
-        android:textColor="@color/green900"
+        android:textColor="@color/black_grey"
         android:textSize="11sp" />
 
     <LinearLayout
+        android:id="@+id/ll_match_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green_light_white"
+        android:background="@color/grey_white_bg"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -40,36 +44,26 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="3dp"
-            android:gravity="center"
-            android:paddingLeft="1dp"
-            android:paddingRight="1dp"
+            android:paddingTop="3dp"
+            android:paddingBottom="3dp"
+            android:paddingLeft="10dp"
             android:text="@string/aa"
-            android:textColor="@color/red_title"
+            android:textColor="@color/black_grey"
             android:textSize="14sp"
-            android:textStyle="bold"
 
             />
 
 
-        <View
-            android:layout_width="0.6dp"
-            android:layout_height="match_parent"
-            android:background="@color/green_white_thick_line" />
-
-        <View
-            android:layout_width="0.6dp"
-            android:layout_height="match_parent"
-            android:background="@color/grey_dialog_background" />
-
 
         <TextView
             android:id="@+id/out_right_mark_tv"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
+            android:layout_width="60dp"
+            android:layout_margin="1dp"
+            android:layout_height="25dp"
             android:gravity="center"
+            android:paddingLeft="5dp"
             android:paddingRight="5dp"
+            android:background="@drawable/match_odds_content_bg"
             android:text="12"
             android:textColor="@color/black_grey"
             android:textSize="14sp" />
@@ -78,7 +72,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.6dp"
-        android:background="@color/green_white_thick_line" />
+        android:background="@color/grey_button" />
 
     <View
         android:layout_width="match_parent"

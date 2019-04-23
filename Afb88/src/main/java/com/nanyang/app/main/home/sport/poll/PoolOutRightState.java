@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.poll;
 
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -22,9 +21,10 @@ public class PoolOutRightState extends OutRightState {
         return false;
     }
 
+
     @Override
-    public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight),"OutRight",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Pool));
+    protected String getSportName() {
+        return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Pool);
     }
 
     @Override
@@ -32,22 +32,5 @@ public class PoolOutRightState extends OutRightState {
         return AppConstant.getInstance().URL_POOL_OUTRIGHT+"&ot=e";
     }
 
-    @Override
-    protected void onTypeClick(MenuItemInfo item, int position) {
-        switch (item.getType()) {
-            case "Today":
-                getBaseView().switchState(new PoolTodayState(getBaseView()));
-                break;
-            case "Early":
-                getBaseView().switchState(new PoolEarlyState(getBaseView()));
-                break;
-            case "Running":
-                getBaseView().switchState(new PoolRunningState(getBaseView()));
-                break;
-            case "OutRight":
-                getBaseView().switchState(this);
-                break;
-        }
 
-    }
 }

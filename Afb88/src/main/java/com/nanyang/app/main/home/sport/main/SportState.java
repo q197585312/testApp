@@ -839,14 +839,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 TextView tv_game_count = holder.getView(R.id.tv_game_count);
                 tv_game_count.setVisibility(View.GONE);
 
-                String ballG = ((BallBetHelper) getBetHelper()).getBallG();
-                if (StringUtils.isNull(ballG))
+                String dbid = ((BaseSportFragment) baseView).getBallDbid();
+                if (StringUtils.isNull(dbid))
                     return;
-                SportIdBean sportIdBean = AfbUtils.identificationSportById(ballG);
+                SportIdBean sportIdBean = AfbUtils.getSportByDbid(dbid);
                 if (sportIdBean == null || StringUtils.isNull(sportIdBean.getDbid()))
                     return;
                 String type = item.getType();
-                Log.d("getType", "ballG:" + ballG + ",sportIdBean.getDbid()" + sportIdBean.getDbid() + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum + ",sportIdBean:" + sportIdBean);
+                Log.d("getType", "dbid:" + dbid + ",sportIdBean.getDbid()" + sportIdBean.getDbid() + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum + ",sportIdBean:" + sportIdBean);
                 String dBId = sportIdBean.getDbid();
                 String runningStr = "M_RAm" + dBId;
                 String todayStr = "M_TAm" + dBId;
@@ -1065,8 +1065,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             ButterKnife.bind(this, view);
         }
     }
-
-
 
 
     protected String getAllOddsUrl() {

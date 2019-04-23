@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.winterSport;
 
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -23,8 +22,8 @@ public class WinterSportOutRightState extends OutRightState {
     }
 
     @Override
-    public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight),"OutRight",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.WinterSport));
+    protected String getSportName() {
+        return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.WinterSport);
     }
 
     @Override
@@ -32,22 +31,4 @@ public class WinterSportOutRightState extends OutRightState {
         return AppConstant.getInstance().URL_WINTER_SPORT_OUTRIGHT+"&ot=e";
     }
 
-    @Override
-    protected void onTypeClick(MenuItemInfo item, int position) {
-        switch (item.getType()) {
-            case "Today":
-                getBaseView().switchState(new WinterSportTodayState(getBaseView()));
-                break;
-            case "Early":
-                getBaseView().switchState(new WinterSportEarlyState(getBaseView()));
-                break;
-            case "Running":
-                getBaseView().switchState(new WinterSportRunningState(getBaseView()));
-                break;
-            case "OutRight":
-                getBaseView().switchState(this);
-                break;
-        }
-
-    }
 }

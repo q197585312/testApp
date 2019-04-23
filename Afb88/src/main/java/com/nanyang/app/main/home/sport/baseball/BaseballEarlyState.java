@@ -43,9 +43,6 @@ public class BaseballEarlyState extends BaseballState {
             case "Running":
                 getBaseView().switchState(new BaseballRunningState(getBaseView()));
                 break;
-            case "OutRight":
-                getBaseView().switchState(new BaseballOutRightState(getBaseView()));
-                break;
 
         }
     }

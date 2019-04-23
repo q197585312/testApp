@@ -155,6 +155,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public WebSocket webSocket;
     private AfbDrawerViewHolder afbDrawerViewHolder;
     private int sort;
+    private SportIdBean typeItem;
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
@@ -559,13 +560,25 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                             baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
                                 @Override
                                 public void onItemClick(View view, SportIdBean item, int position) {
+
                                     tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
                                     tvSportSelect.setText(getString(item.getTextRes()));
                                     if (item.getId().equals("1,9,21,29,51,182")) {
                                         initAllRunning("1");
+                                    } else if (item.getDbid().equals("999")) {
+//                                        initOutRight(item);
                                     } else {
+                                        if (typeItem.getDbid().equals("999")) {
+                                            String ot = ((OutRightState) typeItem.getBaseFragment().getPresenter().getStateHelper()).getOt();
+                                            if (ot.equals("e"))
+                                                item.getBaseFragment().setSwitchType("Early");
+                                            else
+                                                item.getBaseFragment().setSwitchType("Today");
+                                        }
                                         selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
+
                                     }
+                                    SportActivity.this.typeItem = item;
                                     closePopupWindow();
                                 }
                             });
@@ -604,7 +617,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     public void initAllRunning(String allRunningG) {
-        SportIdBean sportIdBean = AfbUtils.identificationSportFromOtherAndSport(allRunningG);
+        SportIdBean sportIdBean = AfbUtils.getSportFromOtherAndSportByG(allRunningG);
         Log.d("initAllRunning", "allRunningG: " + allRunningG + ",sportIdBean:" + sportIdBean);
         if (sportIdBean == null)
             return;
@@ -620,6 +633,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             return;
         selectFragmentTag(getString(sportIdBean.getTextRes()), sportIdBean.getBaseFragment());
         setType("OutRight");
+        currentFragment.switchType("OutRight");
     }
 
     public void addHeadAndFoot(String allRunningG) {
@@ -627,7 +641,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         boolean addHead = true;
         for (int i = 0; i < all.size(); i++) {
             String s = all.get(i);
-            SportIdBean sportIdIndex = AfbUtils.identificationSportFromOtherAndSport(s);
+            SportIdBean sportIdIndex = AfbUtils.getSportFromOtherAndSportByG(s);
             initAddView(addHead, sportIdIndex);
             if (s.equals(allRunningG)) {
                 addHead = false;

@@ -17,15 +17,8 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
-import com.nanyang.app.main.home.sport.model.AdditionBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sport.model.DCBean;
-import com.nanyang.app.main.home.sport.model.F1x2Bean;
-import com.nanyang.app.main.home.sport.model.FGLGBean;
-import com.nanyang.app.main.home.sport.model.FTOEBean;
-import com.nanyang.app.main.home.sport.model.HTFTBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
-import com.nanyang.app.main.home.sport.model.TGBean;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -81,7 +74,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
         LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
-//        List<BallInfo> repeatRow = item.getRepeatRow();
         if (position == additionPosition && additionMap.get(true) != null && additionMap.get(true) == additionPosition) {
 //            LogUtil.d("Addition", "--------------repeatRow:" + (repeatRow == null ? "null" : repeatRow.size()));
             parent.setVisibility(View.VISIBLE);
@@ -541,40 +533,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             sl.setCurrentIndex(slIndex);
         if (sl1.getTargetIndex() != slIndex)
             sl1.setCurrentIndex(slIndex);
-    }
-
-    private void addAdditionHTFT(HTFTBean htft, LinearLayout parent, I item) {
-
-    }
-
-    private void addAdditionFT15MINSHANDICAP_OVER_UNDER(AdditionBean.FT15MINSHANDICAPOVERUNDERBean tg, String title, LinearLayout parent, I item) {
-
-    }
-
-    private void addAdditionTEAMTG(AdditionBean.TEAMTGBean tg, boolean isAway, LinearLayout parent, I item) {
-
-    }
-
-    private void addAdditionTG(TGBean tg, LinearLayout parent, I item) {
-
-    }
-
-    private void addAdditionFGLG(FGLGBean fglg, LinearLayout parent, I item) {
-
-    }
-
-    private void addAdditionOE(FTOEBean ftoe, boolean isHalf, LinearLayout parent, I item) {
-
-    }
-
-
-    private void addAdditionDC(DCBean ftdc, boolean isHalf, LinearLayout parent, I item) {
-
-    }
-
-
-    private void addAddition1x2(F1x2Bean ft1x2, boolean isHalf, LinearLayout parent, I item) {
-
     }
 
     private void addAddition(String f1, String f2, String oid, boolean isHalf, LinearLayout parent, I item, String up1, String up2, String type1, String type2, String sc1, String sc2, int itemRes) {

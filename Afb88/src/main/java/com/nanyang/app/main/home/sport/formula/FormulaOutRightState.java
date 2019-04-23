@@ -28,26 +28,12 @@ public class FormulaOutRightState extends OutRightState {
     }
 
     @Override
-    protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FORMULA_OUTRIGHT+"&ot=e";
+    protected String getSportName() {
+        return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Formula1);
     }
 
     @Override
-    protected void onTypeClick(MenuItemInfo item, int position) {
-        switch (item.getType()) {
-            case "Today":
-                getBaseView().switchState(new FormulaTodayState(getBaseView()));
-                break;
-            case "Early":
-                getBaseView().switchState(new FormulaEarlyState(getBaseView()));
-                break;
-            case "Running":
-                getBaseView().switchState(new FormulaRunningState(getBaseView()));
-                break;
-            case "OutRight":
-                getBaseView().switchState(this);
-                break;
-        }
-
+    protected String getRefreshUrl() {
+        return AppConstant.getInstance().URL_FORMULA_OUTRIGHT+"&ot=e";
     }
 }

@@ -10,9 +10,11 @@ import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -36,22 +38,42 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class OutRightState extends SportState<SportInfo, SportContract.View<SportInfo>> {
+public abstract class OutRightState extends SportState<BallInfo, SportContract.View<BallInfo>> {
 
 
     private String dbId;
-    private String ot;
 
-    public OutRightState(SportContract.View baseView, String ot, String dbId) {
-        super(baseView);
-        this.ot = ot;
-        this.dbId = dbId;
+    public String getOt() {
+        return ot;
     }
+
+    private String ot;
+    private String text;
 
     public OutRightState(SportContract.View baseView) {
         super(baseView);
-        this.ot = "e";
-        this.dbId = "1";
+        this.dbId = ((BaseSportFragment) baseView).getBallDbid();
+    }
+
+    @Override
+    protected void onTypeClick(MenuItemInfo item, int position) {
+
+        switch (item.getType()) {
+            case "Early":
+                setStateItemOt("e");
+                getBaseView().switchState(this);
+
+                break;
+            case "Today":
+                setStateItemOt("t");
+                getBaseView().switchState(this);
+                break;
+            case "Running":
+                setStateItemOt("t");
+                getBaseView().switchState(this);
+                break;
+
+        }
     }
 
     public boolean isCollection() {
@@ -69,9 +91,10 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
             @Override
             public void onConvert(MyRecyclerViewHolder holder, final int position, final SportInfo item) {
                 TextView matchTitleTv = holder.getView(R.id.out_right_title_tv);
-                View headV = holder.getView(R.id.v_out_right_header_space);
+                View headV = holder.getView(R.id.module_match_head_v);
                 TextView homeTv = holder.getView(R.id.out_right_home_tv);
-
+                View contentParentLl = holder.getView(R.id.ll_match_content);
+                contentParentLl.setBackgroundColor(item.getContentColor());
                 final TextView markTv = holder.getView(R.id.out_right_mark_tv);
                 homeTv.setText(item.getHome());
                 markTv.setText(item.getX12_1Odds());
@@ -125,15 +148,21 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
         String accType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType().getType();
         int ov = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
 
-        LoginInfo.OutRightWfBean outRightWfBean = new LoginInfo.OutRightWfBean(ot, dbId, accType, mt, ov);
+        LoginInfo.OutRightWfBean outRightWfBean = new LoginInfo.OutRightWfBean(ot, dbId + "_11", accType, mt, ov);
 
         Disposable subscription = getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + outRightWfBean.toJson()).subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String s) throws Exception {
+
                         //'ws://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&g=31&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-04-20&LangCol=&accType=EU&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080',
-                        String url = s.substring(s.indexOf("ws://"), s.indexOf("',"));
+
+                        int start = s.indexOf("ws://");
+                        String substring = s.substring(start);
+                        int end2 = substring.indexOf("',");
+                        String url = substring.substring(0, end2);
+                        Log.d(TAG, "accept:ws:: " + url);
                         if (StringUtils.isNull(url))
                             return;
                         AsyncHttpClient.getDefaultInstance().websocket(url, null, new AsyncHttpClient.WebSocketConnectCallback() {
@@ -230,23 +259,18 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
 
     }
 
+    //[623803,
+// 623799,
+// 0,"" ,0,"07/07 10:00PM" ,0,0,1,0,0,12170,12170,"Thailand [w]" ,"Thailand [w]" ,"","",0,0,0,0,3,0,0,0,0,0,0,0,0,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"0","2019/7/7 0:00:00",0,""]
     @Override
-    protected SportInfo parseMatch(JSONArray matchArray, boolean notify) throws JSONException {
-        SportInfo info = new SportInfo();
-        info.setSocOddsId(matchArray.getString(0));
-        info.setHome(matchArray.getString(1));
-        info.setIsInetBet(matchArray.getString(2));
-        info.setIsX12New(matchArray.getString(3));
-        info.setHasX12(matchArray.getString(4));
-        info.setX12_1Odds(matchArray.getString(5));
-        info.setPreSocOddsId(matchArray.getString(6));
-        info.setNotify(notify);
-        return info;
+    protected BallInfo parseMatch(JSONArray matchArray, boolean notify) throws JSONException {
+        BallInfo ballInfo = new AfbParseHelper<>().parseJsonArray(matchArray, notify);
+        return ballInfo;
     }
 
 
     @Override
-    protected List<TableSportInfo<SportInfo>> filterChildData(List<TableSportInfo<SportInfo>> allData) {
+    protected List<TableSportInfo<BallInfo>> filterChildData(List<TableSportInfo<BallInfo>> allData) {
         return allData;
     }
 
@@ -278,6 +302,32 @@ public abstract class OutRightState extends SportState<SportInfo, SportContract.
     public IBetHelper onSetBetHelper() {
         return new OutRightBetHelper(getBaseView());
     }
+
+    @Override
+    public MenuItemInfo getStateType() {
+        if (StringUtils.isNull(text))
+            text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today);
+        return new MenuItemInfo<String>(0, text, "OutRight", getSportName());
+
+    }
+
+    protected abstract String getSportName();
+
+    public void setStateItemOt(String ot) {
+        switch (ot) {
+            case "e":
+                this.text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early);
+                this.ot = "e";
+                break;
+            default:
+                this.text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today);
+                this.ot = "t";
+                break;
+        }
+
+    }
+
+    MenuItemInfo<String> stateItem;
 
 /*small wen, [20.04.19 10:53]
 for (int i = 0, len = arrDbIds.Length; i < len; i++)

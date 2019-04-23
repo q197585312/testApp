@@ -50,7 +50,7 @@ import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportState;
 import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
 import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
-import com.nanyang.app.main.home.sport.poll.PoolFragment;
+import com.nanyang.app.main.home.sport.poll.PoolSnookerFragment;
 import com.nanyang.app.main.home.sport.rugby.RugbyFragment;
 import com.nanyang.app.main.home.sport.tableTennis.TableTennisFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
@@ -290,7 +290,6 @@ public class AfbUtils {
 
     public static void initAllSprotMap() {
         BaseSportFragment soccerFragment = new SoccerFragment();
-
         BaseSportFragment basketballFragment = new BasketballFragment();
         BaseSportFragment tennisFragment = new TennisFragment();
         BaseSportFragment financialFragment = new FinancialFragment();
@@ -303,7 +302,7 @@ public class AfbUtils {
         BaseSportFragment usFootballFragment = new USFootballFragment();
         BaseSportFragment baseballFragment = new BaseballFragment();
         BaseSportFragment iceHockeyFragment = new IceHockeyFragment();
-        BaseSportFragment poolFragment = new PoolFragment();
+        BaseSportFragment poolSnookerFragment = new PoolSnookerFragment();
         BaseSportFragment rugbyFragment = new RugbyFragment();
         BaseSportFragment dartsFragment = new DartsFragment();
         BaseSportFragment boxingFragment = new BoxingFragment();
@@ -318,7 +317,9 @@ public class AfbUtils {
         //    BaseSportFragment superComboFragment = new SuperComboFragment();
         BaseSportFragment tableTennisFragment = new TableTennisFragment();
         BaseSportFragment formulaFragment = new FormulaFragment();
+
         beanHashMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK));
+
         beanHashMap.put("Cashio", new SportIdBean("Cashio", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK));
         beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK));
         beanHashMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, Color.BLACK));
@@ -343,7 +344,7 @@ public class AfbUtils {
         beanHashMap.put("7", new SportIdBean("7", "4", R.string.Financial, "Financial", SportActivity.class, financialFragment, Color.BLACK, R.mipmap.financial));
 
         beanHashMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK));
-        beanHashMap.put("11", new SportIdBean("11", "11", R.string.Snooker, "Snooker", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("11", new SportIdBean("11", "11", R.string.Snooker, "Snooker", SportActivity.class, poolSnookerFragment, Color.BLACK));
         beanHashMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, Color.BLACK));
         beanHashMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK));
         beanHashMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK));
@@ -383,15 +384,36 @@ public class AfbUtils {
 
     }
 
-    public static SportIdBean identificationSportFromOtherAndSport(String id) {
+    public static SportIdBean getSportFromOtherAndSportByG(String id) {
         return sportMap.get(id) != null ? sportMap.get(id) : othersMap.get(id);
     }
 
-    public static SportIdBean identificationSportById(String id) {
+    public static SportIdBean getSportByG(String id) {
         return beanHashMap.get(id);
     }
 
-    public static String getOutRightGById(SportIdBean sportIdBean) {
+    public static SportIdBean getSportByDbid(String dbid) {
+        Iterator<Map.Entry<String, SportIdBean>> iterator = beanHashMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            SportIdBean next = iterator.next().getValue();
+            if (next.getDbid().equals(dbid))
+                return next;
+        }
+        return null;
+
+    }
+
+    public static SportIdBean identificationSportByType(String type) {
+        Iterator<Map.Entry<String, SportIdBean>> iterator = beanHashMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            SportIdBean next = iterator.next().getValue();
+            if (next.getType().equals(type))
+                return next;
+        }
+        return null;
+    }
+
+    public static String getOutRightGByDbid(SportIdBean sportIdBean) {
         String dbid = sportIdBean.getDbid();
         String outRightG = "";
         switch (dbid) {
@@ -479,16 +501,6 @@ public class AfbUtils {
         }
         return outRightG;
 
-    }
-
-    public static SportIdBean identificationSportByType(String type) {
-        Iterator<Map.Entry<String, SportIdBean>> iterator = beanHashMap.entrySet().iterator();
-        while (iterator.hasNext()) {
-            SportIdBean next = iterator.next().getValue();
-            if (next.getType().equals(type))
-                return next;
-        }
-        return null;
     }
 
     @NonNull

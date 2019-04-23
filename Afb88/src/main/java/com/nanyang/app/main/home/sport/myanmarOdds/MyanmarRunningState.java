@@ -28,7 +28,7 @@ public class MyanmarRunningState extends MyanmarState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_SOCCER_MYANMAR_RUNNING + param.getType();
+        return AppConstant.getInstance().URL_SOCCER_MYANMAR_RUNNING ;
     }
 
     @Override

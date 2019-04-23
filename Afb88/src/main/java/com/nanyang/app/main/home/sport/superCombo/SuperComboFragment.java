@@ -8,6 +8,11 @@ import com.nanyang.app.main.home.sport.main.SportActivity;
 public class SuperComboFragment extends BaseSportFragment {
 
     @Override
+    protected String getBallDbid() {
+        return "";
+    }
+
+    @Override
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();

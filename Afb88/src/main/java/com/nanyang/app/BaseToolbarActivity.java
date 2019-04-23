@@ -341,7 +341,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     public void switchSkipAct(String gameType) {
-        SportIdBean sportIdBean = AfbUtils.identificationSportById(gameType);
+        SportIdBean sportIdBean = AfbUtils.getSportByG(gameType);
         switch (gameType) {
             case "SportBook":
             case "Financial":

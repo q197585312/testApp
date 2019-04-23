@@ -2,10 +2,8 @@ package com.nanyang.app.main.home;
 
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -131,7 +129,7 @@ public class HomeFragment extends BaseSwitchFragment {
                 TextView tv = holder.getView(R.id.tv_text);
                 TextView tv_num = holder.getView(R.id.tv_num);
                 holder.setImageByUrl(R.id.iv_pic, item.getImg());
-                SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getG());
+                SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());
                 if (sportIdBean != null && sportIdBean.getTextRes() > 0) {
                     tv.setText(getString(sportIdBean.getTextRes()));//M_RAm1
                     int textColor = sportIdBean.getTextColor();
@@ -158,7 +156,7 @@ public class HomeFragment extends BaseSwitchFragment {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<AllBannerImagesBean.MainBannersBean>() {
             @Override
             public void onItemClick(View view, AllBannerImagesBean.MainBannersBean item, int position) {
-                SportIdBean sportIdBean = AfbUtils.identificationSportById(item.getG());
+                SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());
                 MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.running));
                 menuItemInfo.setType("Running");
                 if (sportIdBean == null) {

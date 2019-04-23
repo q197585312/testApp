@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.e_sport;
 
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportContract;
@@ -22,9 +21,10 @@ public class ESportOutRightState extends OutRightState {
         return false;
     }
 
+
     @Override
-    public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight),"OutRight",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.E_Sport));
+    protected String getSportName() {
+        return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.E_Sport);
     }
 
     @Override
@@ -32,22 +32,4 @@ public class ESportOutRightState extends OutRightState {
         return AppConstant.getInstance().URL_E_SPORT_OUTRIGHT+"&ot=e";
     }
 
-    @Override
-    protected void onTypeClick(MenuItemInfo item, int position) {
-        switch (item.getType()) {
-            case "Today":
-                getBaseView().switchState(new ESportTodayState(getBaseView()));
-                break;
-            case "Early":
-                getBaseView().switchState(new ESportEarlyState(getBaseView()));
-                break;
-            case "Running":
-                getBaseView().switchState(new ESportRunningState(getBaseView()));
-                break;
-            case "OutRight":
-                getBaseView().switchState(this);
-                break;
-        }
-
-    }
 }

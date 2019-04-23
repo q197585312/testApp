@@ -8,6 +8,11 @@ import com.nanyang.app.main.home.sport.main.SportActivity;
 public class GolfFragment extends BaseSportFragment {
 
     @Override
+    protected String getBallDbid() {
+        return "17";
+    }
+
+    @Override
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();

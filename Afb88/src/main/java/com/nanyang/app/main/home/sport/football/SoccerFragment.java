@@ -8,6 +8,10 @@ import com.nanyang.app.main.home.sport.main.SportActivity;
 public class SoccerFragment extends BaseSportFragment {
 
 
+    @Override
+    protected String getBallDbid() {
+        return "1";
+    }
 
     @Override
     public void initData() {
