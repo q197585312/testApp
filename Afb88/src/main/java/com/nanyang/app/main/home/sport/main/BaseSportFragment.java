@@ -62,6 +62,8 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     private static final String TAG = "updateAllDate";
     @Bind(R.id.swipe_target)
     protected RecyclerView rvContent;
+    @Bind(R.id.tv_no_games)
+    protected TextView tvNoGames;
 
     //    @Bind(R.id.tv_mix_parlay_order)
 //    protected TextView tvMixParlayOrder;
@@ -142,6 +144,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         presenter.getStateHelper().stopUpdateData();
         presenter.getStateHelper().setIsHide(true);
         Log.d(TAG, "onPause: " + getClass().getSimpleName());
+        tvNoGames.setVisibility(View.GONE);
     }
 
     @Override
@@ -385,9 +388,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     @Override
     public void onGetData(List<SportInfo> data) {
         if (data.size() == 0) {
-            getBaseActivity().tvNoGames.setVisibility(View.VISIBLE);
+            tvNoGames.setVisibility(View.VISIBLE);
         } else {
-            getBaseActivity().tvNoGames.setVisibility(View.GONE);
+            tvNoGames.setVisibility(View.GONE);
         }
     }
 

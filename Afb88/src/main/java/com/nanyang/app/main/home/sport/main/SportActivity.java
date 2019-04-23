@@ -120,8 +120,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     TextView tvOrderCount;
     @Bind(R.id.tv_mix_count)
     TextView tvMixCount;
-    @Bind(R.id.tv_no_games)
-    public TextView tvNoGames;
 
     @Bind(R.id.tv_way_run)
     public TextView tvMatchType;
