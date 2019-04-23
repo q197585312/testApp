@@ -278,18 +278,21 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         createPresenter(new SportPresenter(this));
         isInit = true;
         isFirstIn = true;
-        swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                presenter.getStateHelper().onPrevious(swipeToLoadLayout);
-            }
-        });
-        swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
-            @Override
-            public void onLoadMore() {
-                presenter.getStateHelper().onNext(swipeToLoadLayout);
-            }
-        });
+        if (swipeToLoadLayout != null) {
+            swipeToLoadLayout.setOnRefreshListener(new OnRefreshListener() {
+                @Override
+                public void onRefresh() {
+                    presenter.getStateHelper().onPrevious(swipeToLoadLayout);
+                }
+            });
+
+            swipeToLoadLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+                @Override
+                public void onLoadMore() {
+                    presenter.getStateHelper().onNext(swipeToLoadLayout);
+                }
+            });
+        }
         rememberLastOdds();
         setTitle(getTitle());
         if (AppConstant.getInstance().IS_AGENT) {

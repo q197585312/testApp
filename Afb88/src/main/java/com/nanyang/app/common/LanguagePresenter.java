@@ -10,10 +10,8 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
-import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
 import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainPresenter;
-import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.base.IBaseView;
@@ -42,7 +40,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 public class LanguagePresenter extends BaseSwitchPresenter {
     SwitchLanguage switchLanguage;
     ILanguageView changeLanguageFragment;
-    SportActivity sportActivity;
+    IGetRefreshMenu iGetRefreshMenu;
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -53,10 +51,10 @@ public class LanguagePresenter extends BaseSwitchPresenter {
         super(iBaseContext);
         switchLanguage = new SwitchLanguage(iBaseContext);
         changeLanguageFragment = (ILanguageView) iBaseContext;
-        if (iBaseContext instanceof SportActivity) {
-            sportActivity = (SportActivity) iBaseContext;
+        if (iBaseContext instanceof IGetRefreshMenu) {
+            iGetRefreshMenu = (IGetRefreshMenu) iBaseContext;
         } else {
-            sportActivity = null;
+            iGetRefreshMenu = null;
         }
     }
 
@@ -223,8 +221,8 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                             beanList.add(waitId);
                         }
                     }
-                    if (sportActivity != null) {
-                        sportActivity.onGetRefreshMenu(beanList);
+                    if (iGetRefreshMenu != null) {
+                        iGetRefreshMenu.onGetRefreshMenu(beanList);
                     }
                 }
             }
