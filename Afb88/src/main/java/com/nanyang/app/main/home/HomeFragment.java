@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -47,7 +48,9 @@ public class HomeFragment extends BaseSwitchFragment {
     @Bind(R.id.in_layout)
     LinearLayout inLayout;
     private JSONObject jsonObjectNum;
+    private String lastAllMainData;
     private BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean> adapter;
+    private String language;
 
     @Override
     public int onSetLayoutId() {
@@ -60,21 +63,7 @@ public class HomeFragment extends BaseSwitchFragment {
         super.initData();
         initViewPager(((AfbApplication) getBaseActivity().getApplication()).getListMainBanners());
         initContent(((AfbApplication) getBaseActivity().getApplication()).getListMainPictures());
-        String language = new LanguageHelper(mContext).getLanguage();
-        ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, "wfMainH50"), new MainPresenter.CallBack<String>() {
-
-            @Override
-            public void onBack(String data) {
-                LogUtil.d("onBack", data);
-                try {
-                    jsonObjectNum = new JSONObject(data);
-                    adapter.notifyDataSetChanged();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
+        language = new LanguageHelper(mContext).getLanguage();
     }
 
 
@@ -121,8 +110,6 @@ public class HomeFragment extends BaseSwitchFragment {
     private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(layoutManager);
-
-
         adapter = new BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean>(mContext, data, R.layout.home_sport_item_image_text) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, AllBannerImagesBean.MainBannersBean item) {
@@ -174,14 +161,45 @@ public class HomeFragment extends BaseSwitchFragment {
 
     void updateTimer() {
         updateHandler.post(timeUpdateRunnable);
+        updateHandler.post(mainAllDataUpdateRunnable);
     }
 
     @Override
     public void onStop() {
         super.onStop();
         updateHandler.removeCallbacks(timeUpdateRunnable);
+        updateHandler.removeCallbacks(mainAllDataUpdateRunnable);
+        updateHandler.removeCallbacksAndMessages(null);
     }
 
+    Runnable mainAllDataUpdateRunnable = new Runnable() {
+        @Override
+        public void run() {
+            ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, "wfMainH50"), new MainPresenter.CallBack<String>() {
+
+                @Override
+                public void onBack(String data) {
+                    LogUtil.d("mainAllDataUpdateRunnable", "得到数据——" + data);
+                    if (!TextUtils.isEmpty(lastAllMainData)) {
+                        if (lastAllMainData.equals(data)) {
+                            LogUtil.d("mainAllDataUpdateRunnable", "相同——停止");
+                            return;
+                        }
+                    }
+                    try {
+                        LogUtil.d("mainAllDataUpdateRunnable", "不同——刷新");
+                        jsonObjectNum = new JSONObject(data);
+                        adapter.notifyDataSetChanged();
+                        lastAllMainData = data;
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            });
+            updateHandler.postDelayed(this, 10000);
+        }
+    };
     Runnable timeUpdateRunnable = new Runnable() {
         @Override
         public void run() {

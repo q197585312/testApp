@@ -1,6 +1,8 @@
 package com.nanyang.app.main.home.sport.mixparlayList;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.Spannable;
@@ -21,6 +23,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
@@ -303,18 +306,26 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             getApp().setBetParList(null);
             finish();
         } else if (result.startsWith("PARCHG")) {
-            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, rvContent) {
+            ToastUtils.showShort(getString(R.string.another_login));
+            new Handler().postDelayed(new Runnable() {
                 @Override
-                protected void clickSure(View v) {
-                    helper.getRefreshOdds(getApp().getRefreshOddsUrl());
-
+                public void run() {
+                    Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
                 }
-            };
-            pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-            pop.getChooseMessage().setText(result + " " + getString(R.string.do_you_bet_again));
-            pop.getChooseSureTv().setText(getString(R.string.sure));
-            pop.getChooseCancelTv().setText(getString(R.string.cancel));
-            pop.showPopupCenterWindow();
+            }, 1000);
+//            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, rvContent) {
+//                @Override
+//                protected void clickSure(View v) {
+//                    helper.getRefreshOdds(getApp().getRefreshOddsUrl());
+//
+//                }
+//            };
+//            pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+//            pop.getChooseMessage().setText(result + " " + getString(R.string.do_you_bet_again));
+//            pop.getChooseSureTv().setText(getString(R.string.sure));
+//            pop.getChooseCancelTv().setText(getString(R.string.cancel));
+//            pop.showPopupCenterWindow();
         } else {
             Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
         }
