@@ -12,6 +12,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
+import com.nanyang.app.main.home.sport.model.SportInfo;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -134,6 +135,11 @@ public class OutRightFragment extends BaseSportFragment {
         initHeadAndFootOutRight(allTopSport, ll_header_sport);
         initHeadAndFootOutRight(allBottomSport, ll_footer_sport);
 
+    }
+
+    @Override
+    public void onGetData(List<SportInfo> data) {
+//        super.onGetData(data);
     }
 
     @Override
