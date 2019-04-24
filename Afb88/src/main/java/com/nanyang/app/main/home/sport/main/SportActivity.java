@@ -294,13 +294,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
 
     public void selectFragmentTag(String tag, BaseSportFragment localCurrentFragment) {
-        afbDrawerViewHolder.initDefaultFragment(localCurrentFragment);
-        deleteHeadAndFoot();
-        afbDrawerViewHolder.switchFragment(localCurrentFragment);
-        currentFragment = localCurrentFragment;
-        sportTitleTv.setText(getString(R.string.sport_match) + " > " + tag);
+
         if (currentTag.isEmpty()) {
-            return;
+
         } else if (!currentTag.equals(tag)) {
             MenuItemInfo stateType = currentFragment.presenter.getStateHelper().getStateType();
             localCurrentFragment.switchParentType(stateType);
@@ -308,6 +304,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         } else {
             currentFragment.onResume();
         }
+        afbDrawerViewHolder.initDefaultFragment(localCurrentFragment);
+        deleteHeadAndFoot();
+        sportTitleTv.setText(getString(R.string.sport_match) + " > " + tag);
+        afbDrawerViewHolder.switchFragment(localCurrentFragment);
+        currentFragment = localCurrentFragment;
         currentTag = tag;
         tvSportSelect.setText(tag);
 //        sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);

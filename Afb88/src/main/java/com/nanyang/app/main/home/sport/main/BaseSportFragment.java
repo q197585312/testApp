@@ -502,7 +502,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 rv.setLayoutManager(new LinearLayoutManager(mContext));
                 List<MenuItemInfo> list = new ArrayList<>();
                 list.add(new MenuItemInfo(0, getString(R.string.HK_ODDS), "HK"));//accType=
-                list.add(new MenuItemInfo(0, getString(R.string.MY_ODDS), "HK"));
+                list.add(new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY"));
                 list.add(new MenuItemInfo(0, getString(R.string.ID_ODDS), "ID"));
                 list.add(new MenuItemInfo(0, getString(R.string.EU_ODDS), "EU"));
                 BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base_item) {
