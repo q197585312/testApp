@@ -54,7 +54,7 @@ public class AfbApplication extends BaseApplication {
         Logger.setDebug(true);
         closeAndroidPDialog();
         AfbUtils.initAllSprotMap();
-        CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", true);
+        CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", false);
     }
 
 

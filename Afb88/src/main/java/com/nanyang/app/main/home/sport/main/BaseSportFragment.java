@@ -130,6 +130,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }
         isFirstIn = false;
         getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
+        getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
         getBaseActivity().toolbar.setVisibility(View.GONE);
         presenter.getStateHelper().setIsHide(false);
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
@@ -336,7 +337,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     public boolean mix(TextView tvMix) {
         boolean isMix = presenter.getStateHelper().mix();
-
         return isMix;
     }
 
@@ -495,7 +495,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 rv.setLayoutManager(new LinearLayoutManager(mContext));
                 List<MenuItemInfo> list = new ArrayList<>();
                 list.add(new MenuItemInfo(0, getString(R.string.HK_ODDS), "HK"));//accType=
-                list.add(new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY"));
+                list.add(new MenuItemInfo(0, getString(R.string.MY_ODDS), "HK"));
                 list.add(new MenuItemInfo(0, getString(R.string.ID_ODDS), "ID"));
                 list.add(new MenuItemInfo(0, getString(R.string.EU_ODDS), "EU"));
                 BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base_item) {
@@ -585,5 +585,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void showContent() {
         getBaseActivity().setToolbarVisibility(View.GONE);
         getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
+        getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
     }
 }

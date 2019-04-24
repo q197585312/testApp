@@ -114,7 +114,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                             @Override
                             public Flowable<String> apply(String s) throws Exception {
                                 SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext);
-                                return switchLanguage.switchLanguage(getLanguage(), "MY");
+                                return switchLanguage.switchLanguage(getLanguage(), "HK");
                             }
 
                         }), baseConsumer);

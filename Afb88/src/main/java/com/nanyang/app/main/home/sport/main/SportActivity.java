@@ -48,7 +48,6 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
-import com.nanyang.app.main.MainPresenter;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -71,7 +70,7 @@ import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.ApkUtils;
 import cn.finalteam.toolsfinal.logger.Logger;
 
-public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String>,IGetRefreshMenu {
+public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String>, IGetRefreshMenu {
     private final String GUIDE_KEY = "GUIDE";
 
     BaseSportFragment localCurrentFragment;
@@ -139,9 +138,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     EditText edtSearchContent;
 
     @Bind(R.id.ll_header_sport)
-    LinearLayout ll_header_sport;
+    public LinearLayout ll_header_sport;
     @Bind(R.id.ll_footer_sport)
-    LinearLayout ll_footer_sport;
+    public LinearLayout ll_footer_sport;
 
     @Bind(R.id.match_collection_iv)
     ImageView collectionIv;
@@ -156,6 +155,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public WebSocket webSocket;
     private AfbDrawerViewHolder afbDrawerViewHolder;
     private int sort;
+    private SportIdBean currentRunningIdBean;
+
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
@@ -175,11 +176,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
-        createPresenter(new LanguagePresenter(this));
         toolbar.setVisibility(View.GONE);
-        oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
+        oddsType = new MenuItemInfo(0, getString(R.string.HK_ODDS), "HK");
         allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "0");
-        presenter.switchOddsType("MY", new BaseConsumer<String>(this) {
+        presenter.switchOddsType("HK", new BaseConsumer<String>(this) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
 
@@ -225,6 +225,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Override
     public void initData() {
         super.initData();
+        createPresenter(new LanguagePresenter(this));
         app = (AfbApplication) getApplication();
         item = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
 
@@ -278,9 +279,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
         localCurrentFragment = sportIdBean.getBaseFragment();
         Logger.getDefaultLogger().d("localCurrentFragment:" + localCurrentFragment);
-        String localCurrentTag = getString(sportIdBean.getTextRes());
-        selectFragmentTag(localCurrentTag, localCurrentFragment);
-        afbDrawerViewHolder.initDefaultFragment(localCurrentFragment);
+
+        initSportFragment(sportIdBean);
+
     }
 
 
@@ -293,9 +294,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
 
     public void selectFragmentTag(String tag, BaseSportFragment localCurrentFragment) {
-        ll_footer_sport.removeAllViews();
-
-        ll_header_sport.removeAllViews();
+        afbDrawerViewHolder.initDefaultFragment(localCurrentFragment);
+        deleteHeadAndFoot();
         afbDrawerViewHolder.switchFragment(localCurrentFragment);
         currentFragment = localCurrentFragment;
         sportTitleTv.setText(getString(R.string.sport_match) + " > " + tag);
@@ -314,12 +314,18 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     }
 
+    private void deleteHeadAndFoot() {
+        ll_footer_sport.removeAllViews();
+        ll_header_sport.removeAllViews();
+    }
+
+
     @Override
     protected void updateBalanceTv(String allData) {
         tvBalance.setText(getApp().getUser().getCurCode2() + ": " + allData);
     }
 
-    private void loginGD() {
+    public void loginGD() {
         if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
             presenter.skipGd88(new BaseView<SportActivity, String>(this) {
                 @Override
@@ -475,10 +481,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Override
     protected void onResume() {
         super.onResume();
+        currentFragment.refresh();
     }
 
     public void clickSportSelect(final View view) {
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new MainPresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {
@@ -560,24 +567,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                             baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
                                 @Override
                                 public void onItemClick(View view, SportIdBean item, int position) {
-
-                                    tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
-                                    tvSportSelect.setText(getString(item.getTextRes()));
-                                    if (item.getId().equals("1,9,21,29,51,182")) {
-                                        initAllRunning("1");
-                                    } else if (item.getDbid().equals("999")) {
-                                        selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
-                                    } else {
-                                    /*    if (typeItem != null && typeItem.getDbid().equals("999")) {
-                                            String ot = ((OutRightState) typeItem.getBaseFragment().getPresenter().getStateHelper()).getOt();
-                                            if (ot != null && ot.equals("e"))
-                                                item.getBaseFragment().switchType("Early");
-                                            else
-                                                item.getBaseFragment().switchType("Today");
-                                        }*/
-                                        selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
-                                    }
-
+                                    initSportFragment(item);
                                     closePopupWindow();
                                 }
                             });
@@ -609,27 +599,52 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         });
     }
 
+    private void initSportFragment(SportIdBean item) {
+        tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
+        tvSportSelect.setText(getString(item.getTextRes()));
+        if (item.getId().equals("1,9,21,29,51,182")) {
+            initAllRunning("1");
+        } else {
+            selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
+        }
+    }
+
     public void initAllRunning(String allRunningG) {
         SportIdBean sportIdBean = AfbUtils.getSportFromOtherAndSportByG(allRunningG);
-        Log.d("initAllRunning", "allRunningG: " + allRunningG + ",currentIdBean:" + sportIdBean);
+        Log.d("initAllRunning", "allRunningG: " + allRunningG + ",currentRunningIdBean:" + sportIdBean);
         if (sportIdBean == null)
             return;
         selectFragmentTag(getString(sportIdBean.getTextRes()), sportIdBean.getBaseFragment());
+
         addHeadAndFoot(allRunningG);
     }
 
-    public void addHeadAndFoot(String allRunningG) {
-        List<String> all = Arrays.asList("1", "9", "21", "29", "14", "5");
-        boolean addHead = true;
-        for (int i = 0; i < all.size(); i++) {
-            String s = all.get(i);
-            SportIdBean sportIdIndex = AfbUtils.getSportFromOtherAndSportByG(s);
+    public void addHeadAndFoot(final String allRunningG) {
 
-            initAddView(addHead, sportIdIndex);
-            if (s.equals(allRunningG)) {
-                addHead = false;
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new LanguagePresenter.CallBack<String>() {
+            @Override
+            public void onBack(String data) {
+                try {
+                    final JSONObject jsonObjectNum = new JSONObject(data);
+                    List<String> all = Arrays.asList("1", "9", "21", "29", "14", "182");
+                    boolean addHead = true;
+                    for (int i = 0; i < all.size(); i++) {
+                        String s = all.get(i);
+                        SportIdBean sportIdIndex = AfbUtils.getSportFromOtherAndSportByG(s);
+                        if (!StringUtils.isNull(jsonObjectNum.optString("M_RAm" + sportIdIndex.getDbid()))) {
+                            initAddView(addHead, sportIdIndex);
+                        }
+                        if (s.equals(allRunningG)) {
+                            addHead = false;
+                        }
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
-        }
+        });
+
     }
 
     private void initAddView(boolean addHead, final SportIdBean sportIdBean) {
@@ -647,7 +662,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         sportView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                initAllRunning(sportIdBean.getId());
+                if (currentRunningIdBean == null || (!currentRunningIdBean.getDbid().equals(sportIdBean.getDbid())))
+                    initAllRunning(sportIdBean.getId());
+                currentRunningIdBean = sportIdBean;
+
             }
         });
         if (addHead)
@@ -658,7 +676,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void clickSportWayRun(final View view) {
         final TextView textView = view.findViewById(R.id.tv_way_run);
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new MainPresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {
@@ -673,8 +691,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                                 @Override
                                 protected void initView(View view) {
                                     super.initView(view);
+
                                     RecyclerView rv_list = view.findViewById(R.id.rv_list);
                                     final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
+                                    checkBox.setChecked(sort == 1);
                                     final View ll_sort = view.findViewById(R.id.ll_sort);
                                     setChooseTypeAdapter(rv_list, textView, jsonObjectNum);
                                     ll_sort.setOnClickListener(new View.OnClickListener() {

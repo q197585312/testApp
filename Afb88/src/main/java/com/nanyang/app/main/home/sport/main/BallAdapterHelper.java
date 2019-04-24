@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -554,7 +553,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         parent.addView(inflate1X2);
     }
 
-    private void addAdditionByColor(String f1, String x, String f2, String oid, boolean isHalf, LinearLayout parent, I item,
+    private void addAdditionByColor(String down1, String down2, String down3, String oid, boolean isHalf, LinearLayout parent, I item,
                                     String up1, String up2, String up3, String type1, String type2, String type3, String sc1, String sc2, String sc3, int itemRes, String colorType) {
 
         View inflate1X2 = LayoutInflater.from(context).inflate(itemRes, null);
@@ -571,22 +570,32 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             down2_tv.setTextColor(Color.BLACK);
         } else if (colorType.equals("2")) {
             up1_tv.setTextColor(Color.RED);
-            down1_tv.setTextColor(Color.BLACK);
+            down1_tv.setTextColor(getValueColor(down1));
             up2_tv.setTextColor(Color.RED);
-            down2_tv.setTextColor(Color.BLACK);
+            down2_tv.setTextColor(getValueColor(down2));
         } else if (colorType.equals("3")) {
             up1_tv.setTextColor(Color.GRAY);
-            down1_tv.setTextColor(Color.RED);
+            down1_tv.setTextColor(getValueColor(down1));
             up2_tv.setTextColor(Color.GRAY);
-            down2_tv.setTextColor(Color.BLACK);
+            down2_tv.setTextColor(getValueColor(down2));
         }
         setTextValue(up1_tv, up1);
         setTextValue(up2_tv, up2);
         setTextValue(up3_tv, up3);
-        setTextValueClick(down1_tv, f1, type1, oid, item, isHalf, sc1);
-        setTextValueClick(down2_tv, x, type2, oid, item, isHalf, sc2);
-        setTextValueClick(down3_tv, f2, type3, oid, item, isHalf, sc3);
+        setTextValueClick(down1_tv, down1, type1, oid, item, isHalf, sc1);
+        setTextValueClick(down2_tv, down2, type2, oid, item, isHalf, sc2);
+        setTextValueClick(down3_tv, down3, type3, oid, item, isHalf, sc3);
         parent.addView(inflate1X2);
+    }
+
+    private int getValueColor(String value) {
+        try {
+            return Float.valueOf(value) < 0 ? Color.RED : Color.BLACK;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return Color.BLACK;
     }
 
 
@@ -650,7 +659,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         ballInfo.setModuleId(item.getModuleId());
         ballInfo.setHome(item.getHome());
         ballInfo.setHomeId(item.getHomeId());
-        ballInfo.setAway(item.getAwayId());
+        ballInfo.setAway(item.getAway());
+        ballInfo.setAwayId(item.getAwayId());
+
         if (fTodds != null) {
             ballInfo.setSocOddsId(fTodds.getSocOddsId());
             ballInfo.setHdp(fTodds.getHDP());
@@ -659,7 +670,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOU(fTodds.getOU());
             ballInfo.setOOdds(fTodds.getOverOdds());
             ballInfo.setUOdds(fTodds.getUnderOdds());
-            ballInfo.setIsHomeGive(fTodds.getIsHomeGive());
+            ballInfo.setIsHomeGive(fTodds.getIsHomeGive().equals("True") ? "1" : "0");
             ballInfo.setHasPar(fTodds.getHasPar());
 
         } else {
@@ -670,7 +681,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOU("");
             ballInfo.setOOdds("");
             ballInfo.setUOdds("");
-            ballInfo.setIsHomeGive("");
             ballInfo.setHasPar("");
         }
         if (fHodds != null) {
@@ -681,9 +691,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOU_FH(fHodds.getOU());
             ballInfo.setOOdds_FH(fHodds.getOverOdds());
             ballInfo.setUOdds_FH(fHodds.getUnderOdds());
-            ballInfo.setIsHomeGive_FH(fHodds.getIsHomeGive());
+            ballInfo.setIsHomeGive_FH(fHodds.getIsHomeGive().equals("True") ? "1" : "0");
             ballInfo.setHasPar_FH(fHodds.getHasPar());
-
         } else {
             ballInfo.setSocOddsId_FH("");
             ballInfo.setHdp_FH("");
@@ -692,7 +701,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOU_FH("");
             ballInfo.setOOdds_FH("");
             ballInfo.setUOdds_FH("");
-            ballInfo.setIsHomeGive_FH("");
             ballInfo.setHasPar_FH("");
         }
         setUpDownOdds(true, (I) ballInfo, false, "0", ballInfo.getHasHdp(), ballInfo.getHdp(), home_tv, away_tv, home_odd_tv, away_odd_tv, ballInfo.getHOdds(), ballInfo.getAOdds(), "home", "away", 1, null, null);
@@ -942,8 +950,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 showOdds = s;
             }
-            Log.d("showOdds", "value: "+value);
-            Log.d("showOdds", "showOdds: " + showOdds);
             textView.setBackgroundResource(0);
             if (!f.equals("") && !f.equals("0")) {
                 if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))

@@ -2,7 +2,6 @@ package com.unkonw.testapp.libs.adapter;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -93,7 +92,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
 
             holder.getHolderView().setTag(position - headers.size());
             T item = getItem(position - headers.size());
-            Log.d(TAG, "onBindViewHolder: BodyViewHolder" + ",position:" + position + "headers.size:" + headers.size() + ",item" + item);
             if (item == null)
                 return;
             convert(holder, position - headers.size(), item);

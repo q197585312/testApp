@@ -20,16 +20,15 @@ import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.common.LanguageHelper;
+import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.MainActivity;
-import com.nanyang.app.main.MainPresenter;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.TimeUtils;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -143,13 +142,14 @@ public class HomeFragment extends BaseSwitchFragment {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<AllBannerImagesBean.MainBannersBean>() {
             @Override
             public void onItemClick(View view, AllBannerImagesBean.MainBannersBean item, int position) {
+                if (item.getG().equals("Casino")) {
+                    ((MainActivity) getBaseActivity()).presenter.skipGd88((MainActivity) getBaseActivity());
+                    return;
+                }
                 SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());
                 MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.running));
                 menuItemInfo.setType("Running");
-                if (sportIdBean == null) {
-                    ToastUtils.showShort(R.string.coming_soon);
-                    return;
-                }
+
                 menuItemInfo.setParent(sportIdBean.getType());
                 Bundle b1 = new Bundle();
                 b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
@@ -175,7 +175,7 @@ public class HomeFragment extends BaseSwitchFragment {
     Runnable mainAllDataUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, "wfMainH50"), new MainPresenter.CallBack<String>() {
+            ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, "wfMainH50"), new LanguagePresenter.CallBack<String>() {
 
                 @Override
                 public void onBack(String data) {
@@ -209,4 +209,5 @@ public class HomeFragment extends BaseSwitchFragment {
         }
     };
     Handler updateHandler = new Handler();
+
 }

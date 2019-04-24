@@ -18,14 +18,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/green_dark"
-            android:orientation="vertical"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp">
+            android:orientation="vertical">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingBottom="5dp"
@@ -52,6 +52,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:orientation="horizontal"
                 android:paddingBottom="5dp"
@@ -120,6 +122,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
                 android:gravity="center"
                 android:orientation="horizontal">
 
@@ -153,7 +157,7 @@
                     android:gravity="center_vertical"
                     android:onClick="clickOddsType"
                     android:padding="5dp"
-                    android:text="@string/MY_ODDS"
+                    android:text="@string/HK_ODDS"
                     android:textColor="@color/white"
                     android:textSize="13sp" />
 
@@ -207,13 +211,14 @@
                     android:contentDescription="@null"
                     android:src="@mipmap/sport_game_clock_white" />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_header_sport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll_header_sport"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
 
         <FrameLayout
             android:id="@+id/fl_main_content"
@@ -221,11 +226,13 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:background="@color/grey_background" />
+
         <LinearLayout
             android:id="@+id/ll_footer_sport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.8dp"

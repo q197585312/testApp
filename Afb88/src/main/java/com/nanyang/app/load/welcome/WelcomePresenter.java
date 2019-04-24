@@ -12,12 +12,12 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.common.LanguageHelper;
+import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.common.SwitchLanguage;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.LoadMainDataHelper;
-import com.nanyang.app.main.MainPresenter;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -152,7 +152,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                                     AfbApplication app = (AfbApplication) baseContext.getBaseActivity().getApplication();
                                     app.getUser().setLoginName(us);
                                     app.getUser().setPassword("");
-                                    return switchLanguage.switchLanguage(new LanguageHelper(baseContext.getBaseActivity()).getLanguage(), "MY");
+                                    return switchLanguage.switchLanguage(new LanguageHelper(baseContext.getBaseActivity()).getLanguage(), "HK");
                                 }
                                 return null;
                             }
@@ -162,7 +162,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                     protected void onBaseGetData(String data) {
                         String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
                         LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
-                        helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"), new MainPresenter.CallBack<String>() {
+                        helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"), new LanguagePresenter.CallBack<String>() {
                             @Override
                             public void onBack(String data) {
                                 PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);

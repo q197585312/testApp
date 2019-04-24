@@ -111,10 +111,10 @@
     <string name="Thai_bet_hint">投注成功.请到投注狀況对球.</string>
     <string name="Tennis">网球</string>
     <string name="Muay_Thai">泰拳</string>
-    <string name="HK_ODDS">香港盘</string>
-    <string name="MY_ODDS">马来盘</string>
-    <string name="ID_ODDS">印尼盘</string>
-    <string name="EU_ODDS">欧洲盘</string>
+    <string name="HK_ODDS">香港</string>
+    <string name="MY_ODDS">马来</string>
+    <string name="ID_ODDS">印尼</string>
+    <string name="EU_ODDS">欧洲</string>
     <string name="Financial">股市</string>
     <string name="Back">返回</string>
     <string name="not_settled">未结算</string>
@@ -398,8 +398,8 @@
     <string name="welcome">WELCOME</string>
     <string name="language_switch">中文(简体)</string>
     <string name="gd88_casino">gd88 casino</string>
-    <string name="basketball">Basketball</string>
-    <string name="Snooker" />
+    <string name="basketball">篮球</string>
+    <string name="Snooker" >撞球/桌球</string>
     <string name="my_account">我的账户</string>
     <string name="messages">信息</string>
     <string name="contact">联系我们</string>

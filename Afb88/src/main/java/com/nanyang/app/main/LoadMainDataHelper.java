@@ -3,6 +3,7 @@ package com.nanyang.app.main;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
+import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
@@ -30,7 +31,7 @@ public class LoadMainDataHelper {
         this.mCompositeSubscription = mCompositeSubscription;
     }
 
-    public void doRetrofitApiOnUiThread(LoginInfo.LanguageWfBean languageWfBean, final MainPresenter.CallBack<String> back) {
+    public void doRetrofitApiOnUiThread(LoginInfo.LanguageWfBean languageWfBean, final LanguagePresenter.CallBack<String> back) {
 
         Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override

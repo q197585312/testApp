@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.dialog;
 
 import android.animation.ObjectAnimator;
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -13,7 +12,6 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -21,9 +19,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.view.animation.AlphaAnimation;
 import android.view.animation.Animation;
-import android.view.animation.AnimationSet;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
@@ -61,7 +57,6 @@ import java.util.Map;
 
 import butterknife.Bind;
 import butterknife.BindString;
-import butterknife.OnClick;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
 
@@ -646,6 +641,11 @@ public class BetPop extends BasePopupWindow {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
+                if (com.nanyang.app.Utils.StringUtils.isNull(afbApplication.getRefreshOddsUrl())) {
+                    stopUpdateOdds();
+                    goCancel();
+                    return;
+                }
                 presenter.getRefreshOdds(afbApplication.getRefreshOddsUrl());
                 handler.postDelayed(this, 3000);
             }

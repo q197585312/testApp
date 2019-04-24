@@ -422,7 +422,8 @@
                         android:textColor="@color/white"
                         android:textSize="11sp"
                         android:textStyle="bold"
-                        android:visibility="visible" />
+                        android:visibility="gone"
+                       />
                 </LinearLayout>
 
                 <LinearLayout

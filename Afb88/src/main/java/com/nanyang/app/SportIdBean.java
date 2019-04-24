@@ -1,7 +1,6 @@
 package com.nanyang.app;
 
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
-import com.nanyang.app.main.home.sport.main.SportActivity;
 
 import java.io.Serializable;
 
@@ -10,6 +9,7 @@ import java.io.Serializable;
  */
 
 public class SportIdBean implements Serializable {
+    private Class<? extends BaseToolbarActivity> cls;
     private int textColor;
 
     public String getDbid() {
@@ -32,15 +32,15 @@ public class SportIdBean implements Serializable {
 
     private BaseSportFragment baseFragment;
 
-    public Class<SportActivity> getCls() {
+    public Class<? extends BaseToolbarActivity> getCls() {
         return cls;
     }
 
-    public void setCls(Class<SportActivity> cls) {
+    public void setCls(Class<BaseToolbarActivity> cls) {
         this.cls = cls;
     }
 
-    private Class<SportActivity> cls;
+
     String id;
     int textRes;
     int sportCount;
@@ -67,7 +67,7 @@ public class SportIdBean implements Serializable {
     public int getTextColor() {
         return textColor;
     }
-    public SportIdBean(String g, String dbid, int textRes, String type, Class<SportActivity> cls, BaseSportFragment baseFragment, int textColor) {
+    public SportIdBean(String g, String dbid, int textRes, String type, Class<? extends BaseToolbarActivity> cls, BaseSportFragment baseFragment, int textColor) {
         this.dbid = dbid;
         this.id = g;
         this.textRes = textRes;
@@ -76,7 +76,7 @@ public class SportIdBean implements Serializable {
         this.baseFragment = baseFragment;
         this.textColor = textColor;
     }
-    public SportIdBean(String g, String dbid, int textRes, String type, Class<SportActivity> cls, BaseSportFragment baseFragment, int textColor,int sportPic) {
+    public SportIdBean(String g, String dbid, int textRes, String type, Class<? extends BaseToolbarActivity> cls, BaseSportFragment baseFragment, int textColor,int sportPic) {
         this.dbid = dbid;
         this.id = g;
         this.textRes = textRes;

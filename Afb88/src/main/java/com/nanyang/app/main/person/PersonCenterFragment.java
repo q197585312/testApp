@@ -6,12 +6,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.load.PersonalInfo;
-import com.nanyang.app.main.BaseSwitchFragment;
-import com.nanyang.app.main.BaseSwitchPresenter;
+import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.BetCenter.Bean.PersonCenter;
-import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -24,11 +23,11 @@ import butterknife.Bind;
  * Created by 47184 on 2019/3/18.
  */
 
-public class PersonCenterFragment extends BaseSwitchFragment {
+public class PersonCenterFragment extends BaseMoreFragment {
 
     @Bind(R.id.person_center_view)
     RecyclerView rcContent;
-    MainActivity aty;
+    BaseToolbarActivity aty;
 
 
     @Override
@@ -40,7 +39,7 @@ public class PersonCenterFragment extends BaseSwitchFragment {
     public void initData() {
         super.initData();
         setBackTitle(getString(R.string.my_account));
-        aty = (MainActivity) getActivity();
+        aty = (BaseToolbarActivity) getActivity();
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
         rcContent.setLayoutManager(llm);
         List<PersonCenter> list = new ArrayList<>();

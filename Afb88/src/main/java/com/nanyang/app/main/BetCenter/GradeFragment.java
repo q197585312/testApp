@@ -18,7 +18,6 @@ import com.nanyang.app.main.BetCenter.Bean.GradeAllMatchBean;
 import com.nanyang.app.main.BetCenter.Bean.GradeOpenDataBean;
 import com.nanyang.app.main.BetCenter.Presenter.GradePresenter;
 import com.nanyang.app.main.BetCenter.pop.PopGradeSwitchType;
-import com.nanyang.app.main.MainContract;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;

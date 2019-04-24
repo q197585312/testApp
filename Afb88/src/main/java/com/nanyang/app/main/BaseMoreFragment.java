@@ -20,7 +20,9 @@ public abstract class BaseMoreFragment<P extends IBasePresenter> extends BaseSwi
         baseToolbarActivity.tvToolbarRight.setVisibility(View.GONE);
         baseToolbarActivity.getTvToolbarTitle().setVisibility(View.GONE);
         baseToolbarActivity.getToolbar().setNavigationIcon(R.mipmap.go_back_left_white);
-        if (baseToolbarActivity instanceof SportActivity)
+        if (baseToolbarActivity instanceof SportActivity) {
             ((SportActivity) baseToolbarActivity).sportHeaderLl.setVisibility(View.GONE);
+            ((SportActivity) baseToolbarActivity).ll_footer_sport.setVisibility(View.GONE);
+        }
     }
 }

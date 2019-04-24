@@ -5,7 +5,6 @@ package com.nanyang.app.main.home.sport.model;
  */
 
 import android.graphics.Color;
-import android.util.Log;
 
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 
@@ -827,7 +826,6 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 break;
             case 25:
                 setIsAwayBigger(isBigger(getAOdds(), s));
-                Log.d("setIsAwayBigger", "setIsAwayBigger: " + isBigger(getAOdds(), s));
                 setAOdds(s);
                 setIsHdpNew("1");
                 break;
@@ -838,7 +836,6 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 break;
             case 27:
                 setIsUnderBigger(isBigger(getUOdds(), s));
-                Log.d("setIsAwayBigger", "setIsUnderBigger: " + isBigger(getUOdds(), s));
                 setUOdds(s);
                 setIsOUNew("1");
                 break;

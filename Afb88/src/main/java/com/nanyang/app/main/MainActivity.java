@@ -18,13 +18,14 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.HomePopItemBeen;
 import com.nanyang.app.Pop.HomePopupWindow;
 import com.nanyang.app.R;
+import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
+import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.home.HomeFragment;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +37,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends BaseToolbarActivity<MainPresenter> implements MainContract.View {
+public class MainActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
     @Bind(R.id.fl_menu_home)
     FrameLayout flMenuHome;
     @Bind(R.id.fl_menu_login_out)
@@ -60,7 +61,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         AfbUtils.switchLanguage(lag, mContext);
         setContentView(R.layout.activity_main_tab);
         ButterKnife.bind(this);
-        createPresenter(new MainPresenter(this));
+        createPresenter(new LanguagePresenter(this));
         toolbar.setNavigationIcon(null);
         initUserData();
         afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
@@ -86,7 +87,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         super.onResume();
         presenter.oddsType();
         String language = new LanguageHelper(mContext).getLanguage();
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"), new MainPresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"), new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
@@ -142,16 +143,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         }
     }
 
-    @Override
-    public void onFailed(String error) {
-        ToastUtils.showShort(error);
-    }
-
-    @Override
-    public void onGetData(String data) {
-        ToastUtils.showShort(data);
-    }
-
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
@@ -182,4 +173,28 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         afbDrawerViewHolder.isBack(false);
     }
 
+    @Override
+    public void onGetData(String data) {
+
+    }
+
+    @Override
+    public void onFailed(String error) {
+
+    }
+
+    @Override
+    public void onLanguageSwitchSucceed(String str) {
+
+    }
+
+    @Override
+    public void onGetTransferMoneyData(int type, String getBackStr, String data) {
+
+    }
+
+    @Override
+    public void onLoginAgainFinish(String gameType) {
+
+    }
 }

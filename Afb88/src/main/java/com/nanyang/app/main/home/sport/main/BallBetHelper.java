@@ -43,11 +43,23 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         OddsClickBean oddsUrlBean = getOddsUrl(oid, type, isHf, odds, sc);
         AfbClickResponseBean betAfbList = ((AfbApplication) AfbApplication.getInstance()).getBetAfbList();
         String betOddsUrl = "";
-        boolean typeHasPar = type.equalsIgnoreCase("over") || type.equalsIgnoreCase("under") || type.equalsIgnoreCase("even") || type.equalsIgnoreCase("odd") || type.equalsIgnoreCase("home")
-                || type.equalsIgnoreCase("away") || type.equalsIgnoreCase("1") || type.equalsIgnoreCase("X") || type.equalsIgnoreCase("2");
-        if (betAfbList == null || betAfbList.getList().size() == 0 || (betAfbList.getList().size() == 1 && (isOneTeamBoolean(item, betAfbList)
+        boolean typeHasPar = type.equalsIgnoreCase("over")
+                || type.equalsIgnoreCase("under")
+                || type.equalsIgnoreCase("even")
+                || type.equalsIgnoreCase("odd")
+                || type.equalsIgnoreCase("home")
+                || type.equalsIgnoreCase("away")
+                || type.equalsIgnoreCase("1")
+                || type.equalsIgnoreCase("X")
+                || type.equalsIgnoreCase("2");
+        if (betAfbList == null
+                || betAfbList.getList().size() == 0
+                || (betAfbList.getList().size() == 1 && (isOneTeamBoolean(item, betAfbList)
+                || betAfbList.getList().get(0).getHasPar() == null
                 || betAfbList.getList().get(0).getHasPar().equals("0")
-                || betAfbList.getList().get(0).getOddsG().equals("50") || betAfbList.getList().get(0).getOddsType().startsWith("mm") || !hasPar))) {
+                || betAfbList.getList().get(0).getOddsG().equals("50")
+                || betAfbList.getList().get(0).getOddsType().startsWith("mm")
+                || !hasPar))) {
             betOddsUrl = "BTMD=S&coupon=0&BETID=" + oddsUrlBean.getBETID();
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
             getBaseView().onFailed(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.can_not_mixparly));
