@@ -29,6 +29,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.TimeUtils;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -143,7 +144,8 @@ public class HomeFragment extends BaseSwitchFragment {
             @Override
             public void onItemClick(View view, AllBannerImagesBean.MainBannersBean item, int position) {
                 if (item.getG().equals("Casino")) {
-                    ((MainActivity) getBaseActivity()).presenter.skipGd88((MainActivity) getBaseActivity());
+//                    ((MainActivity) getBaseActivity()).presenter.skipGd88((MainActivity) getBaseActivity());
+                    ToastUtils.showShort(getString(R.string.coming_soon));
                     return;
                 }
                 SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());

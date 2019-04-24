@@ -893,6 +893,13 @@ public class DateUtils {
         return dataTimeFormat.format(date);
     }
 
+    //yyyy-MM-dd HH:mm:ss
+    public static String getCurrentDateTime(String format) {
+        Date date = new Date();
+        SimpleDateFormat dataTimeFormat = new SimpleDateFormat(format);
+        return dataTimeFormat.format(date);
+    }
+
     /**
      * 功能：获取当前日期 格式:20101010
      *
@@ -902,6 +909,7 @@ public class DateUtils {
         Date date = new Date();
         return dateFormat.format(date);
     }
+
     public static String getCurrentDate(String format) {
         DateFormat df = new SimpleDateFormat(format);
         String date = df.format(new Date());

@@ -31,6 +31,7 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
+import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
@@ -282,7 +283,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 + "&tp=1"
                 + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType()
                 + "&mt=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType().getType();
+        int HH = Integer.parseInt(DateUtils.getCurrentDate("HH"));
+        if (HH >= 11) {
+            url += "&tf=-1";
+        }
         url = url + "&wd=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd;
+        Log.d("getUrlString", "HH: " + HH);
         Log.d("getUrlString", "url: " + url);
         return url;
     }
