@@ -353,15 +353,19 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 String channel = item.getLive();
                 channel = Html.fromHtml(channel).toString();
-                String[] channels = channel.split("\n");
+                String[] channels = channel.replace("\n", ",").split(",");
                 if (channels.length == 1) {
                     liveTv.setVisibility(View.GONE);
                     liveTv1.setVisibility(View.GONE);
-                    dateTv.setText(channel.trim());
-                    dateTv1.setText(channel.trim());
+                    dateTv.setText(channels[0].trim());
+                    dateTv1.setText(channels[0].trim());
+                    if (channels[0].contains("/")) {
+                        dateTv.setVisibility(View.GONE);
+                        dateTv1.setVisibility(View.GONE);
+                    }
                 } else if (channels.length == 2) {
                     liveTv.setVisibility(View.GONE);
-                    liveTv1.setVisibility(View.VISIBLE);
+                    liveTv1.setVisibility(View.GONE);
                     liveTv.setText(channels[0].trim());
                     liveTv1.setText(channels[0].trim());
                     dateTv.setText(channels[1].trim());

@@ -209,5 +209,4 @@ public class HomeFragment extends BaseSwitchFragment {
         }
     };
     Handler updateHandler = new Handler();
-
 }

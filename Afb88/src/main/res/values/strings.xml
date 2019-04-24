@@ -51,7 +51,7 @@
     <string name="Odds_Type">Odds Type</string>
     <string name="AOS">AOS</string>
     <string name="Matchs">Matchs</string>
-    <string name="running">Running</string>
+    <string name="running">Live</string>
     <string name="not_allowed_to_bet">Not allowed to bet</string>
     <string name="no_records">No records</string>
     <string name="ORDER">ORDER</string>
@@ -478,6 +478,7 @@
     <string name="ESports_name">E-Sports</string>
     <string name="Muay_Thai_name">Muay Thai</string>
     <string name="Parlay">PARLAY</string>
+    <string name="Parlay1">Mix Parlay</string>
     <string name="Amt">Amt</string>
     <string name="WL">W/L</string>
     <string name="Com">Com</string>
@@ -534,4 +535,7 @@
     <string name="max_single_money">Max Match:</string>
     <string name="bet_limit">Bet Credit:</string>
     <string name="Select_League">Select League</string>
+    <string name="normal">Normal</string>
+    <string name="FT_HDP">FT.HDP</string>
+    <string name="FT_OU">FT.OU</string>
 </resources>

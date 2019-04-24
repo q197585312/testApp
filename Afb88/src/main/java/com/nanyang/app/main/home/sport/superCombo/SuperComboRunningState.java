@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.superCombo;
 
+import android.support.v4.content.ContextCompat;
+
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -42,5 +44,13 @@ public class SuperComboRunningState extends SuperComboState {
     public MenuItemInfo getStateType() {
         return new MenuItemInfo<String>(1,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.SuperCombo));
     }
+    @Override
+    public int getTitleContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+    }
 
+    @Override
+    public int getNormalContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
+    }
 }

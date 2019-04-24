@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.tennis;
 
+import android.support.v4.content.ContextCompat;
+
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -50,5 +52,13 @@ public class TennisRunningState extends TennisState {
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new OtherRunningDoubleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
+    @Override
+    public int getTitleContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+    }
 
+    @Override
+    public int getNormalContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
+    }
 }
