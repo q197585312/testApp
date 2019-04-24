@@ -47,12 +47,6 @@
             android:textSize="14sp" />
     </LinearLayout>
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="@color/grey_button" />
-
-
     <LinearLayout
         android:id="@+id/ll_match_content"
         android:layout_width="match_parent"
@@ -82,7 +76,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="3dp"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textSize="12sp"
@@ -94,6 +88,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginLeft="3dp"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/grey_thick_line"
@@ -106,7 +101,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="5dp"
+                android:layout_marginLeft="3dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:maxLines="1"
@@ -130,33 +125,34 @@
 
             <ImageView
                 android:id="@+id/iv_hall_btn"
-                android:layout_width="16dp"
-                android:layout_height="12dp"
+                android:layout_width="20dp"
+                android:layout_height="14dp"
+                android:background="@mipmap/soccer_hall"
                 android:scaleType="center"
-                android:src="@mipmap/soccer_hall"
                 android:visibility="visible" />
 
             <TextView
                 android:id="@+id/hdp_title_tv"
-                android:layout_width="75dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="FT.HDP"
+                android:paddingRight="2dp"
+                android:text="@string/FT_HDP"
                 android:textColor="@color/black_grey"
-                android:textSize="13sp" />
+                android:textSize="12.5sp" />
 
             <TextView
                 android:id="@+id/ou_title_tv"
-                android:layout_width="75dp"
+                android:layout_width="72dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="FT.OU"
+                android:text="@string/FT_OU"
                 android:textColor="@color/black_grey"
-                android:textSize="13sp" />
+                android:textSize="12.5sp" />
 
         </LinearLayout>
 
@@ -501,6 +497,11 @@
 
         </LinearLayout>
     </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.1dp"
+        android:background="@color/grey_button" />
 
 
     <View

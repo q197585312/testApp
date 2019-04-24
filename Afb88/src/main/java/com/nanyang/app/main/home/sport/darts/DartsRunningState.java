@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.darts;
 
+import android.support.v4.content.ContextCompat;
+
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -52,5 +54,13 @@ public class DartsRunningState extends BasketballRunningState {
     public IBetHelper onSetBetHelper() {
         return new DartsBetHelper(getBaseView());
     }
+    @Override
+    public int getTitleContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+    }
 
+    @Override
+    public int getNormalContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
+    }
 }

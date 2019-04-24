@@ -148,6 +148,7 @@ public class HomeFragment extends BaseSwitchFragment {
                 menuItemInfo.setType("Running");
                 if (sportIdBean == null) {
                     ToastUtils.showShort(R.string.coming_soon);
+//                    shipGd88();
                     return;
                 }
                 menuItemInfo.setParent(sportIdBean.getType());
@@ -157,6 +158,10 @@ public class HomeFragment extends BaseSwitchFragment {
 
             }
         });
+    }
+
+    private void shipGd88() {
+        ((MainActivity) getBaseActivity()).presenter.getSkipGd88Data();
     }
 
     void updateTimer() {

@@ -1,6 +1,8 @@
 package com.nanyang.app;
 
 
+import android.text.Html;
+
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BetCenter.Bean.Contact;
 import com.nanyang.app.main.home.huayThai.HuayDrawDateInfo;
@@ -20,11 +22,13 @@ import io.reactivex.Flowable;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -66,7 +70,6 @@ public interface ApiService {
     /*login*/
 
 
-
     //http://www.jan88.net/Default1.aspx?lang=eng
    /* lstLang	Default.aspx?lang=EN-US
     txtUserName	demoafbai1
@@ -78,7 +81,7 @@ public interface ApiService {
     @POST
     Flowable<String> doPostMap(@Url String url, @FieldMap Map<String, String> info);
 
-    @Headers({"Content-Type: application/json","Accept: application/json"})//需要添加头
+    @Headers({"Content-Type: application/json", "Accept: application/json"})//需要添加头
     @POST
     Flowable<String> doPostJson(@Url String url, @Body RequestBody info);
 
@@ -88,6 +91,9 @@ public interface ApiService {
 
     @GET
     Flowable<String> getData(@Url String url);
+
+    @GET
+    Flowable<Response<String>> getResponse(@Url String url);
 
     @GET
     Flowable<Contact> getContactData(@Url String url);

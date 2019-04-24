@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.tableTennis;
 
+import android.support.v4.content.ContextCompat;
+
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.OutRightState;
@@ -30,5 +32,14 @@ public class TableTennisOutRightState extends OutRightState {
     @Override
     protected String getSportName() {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Table_Tennis);
+    }
+    @Override
+    public int getTitleContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+    }
+
+    @Override
+    public int getNormalContentColor() {
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
     }
 }

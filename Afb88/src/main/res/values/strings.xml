@@ -535,4 +535,7 @@
     <string name="max_single_money">Max Match:</string>
     <string name="bet_limit">Bet Credit:</string>
     <string name="Select_League">Select League</string>
+    <string name="normal">Normal</string>
+    <string name="FT_HDP">FT.HDP</string>
+    <string name="FT_OU">FT.OU</string>
 </resources>

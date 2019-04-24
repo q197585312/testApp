@@ -533,4 +533,7 @@
     <string name="max_single_money">最高单场注额:</string>
     <string name="bet_limit">投注额度:</string>
     <string name="Select_League">选择联赛</string>
+    <string name="normal">一般</string>
+    <string name="FT_HDP">全场.让球</string>
+    <string name="FT_OU">全场.让球</string>
 </resources>

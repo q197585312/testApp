@@ -47,7 +47,7 @@
             android:button="@null"
             android:checked="true"
             android:gravity="center"
-            android:text="一般"
+            android:text="@string/normal"
             android:textColor="@color/color_green" />
 
         <RadioButton
@@ -59,7 +59,7 @@
             android:background="@drawable/selector_champion"
             android:button="@null"
             android:gravity="center"
-            android:text="优胜冠军"
+            android:text="@string/OutRight"
             android:textColor="@color/color_green" />
     </RadioGroup>
 
