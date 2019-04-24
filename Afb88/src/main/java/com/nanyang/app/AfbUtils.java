@@ -28,7 +28,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-
 import com.nanyang.app.main.home.sport.USFootball.USFootballFragment;
 import com.nanyang.app.main.home.sport.badminton.BadmintonFragment;
 import com.nanyang.app.main.home.sport.baseball.BaseballFragment;
