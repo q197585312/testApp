@@ -17,7 +17,7 @@
         <FrameLayout
             android:id="@+id/fl_leave_1_left"
             android:layout_width="0dp"
-            android:layout_height="32dp"
+            android:layout_height="34dp"
             android:layout_weight="1"
             android:padding="1.5dp">
 
@@ -67,7 +67,7 @@
         <FrameLayout
             android:id="@+id/fl_leave_1_right"
             android:layout_width="0dp"
-            android:layout_height="32dp"
+            android:layout_height="34dp"
             android:layout_weight="1"
             android:padding="1.5dp">
 
@@ -149,7 +149,7 @@
 
         <FrameLayout
             android:layout_width="0dp"
-            android:layout_height="32dp"
+            android:layout_height="34dp"
             android:layout_weight="1"
             android:padding="1.5dp">
 
@@ -197,7 +197,7 @@
 
         <FrameLayout
             android:layout_width="0dp"
-            android:layout_height="32dp"
+            android:layout_height="34dp"
             android:layout_weight="1"
             android:padding="1.5dp">
 
