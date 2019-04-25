@@ -177,9 +177,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
         toolbar.setVisibility(View.GONE);
-        oddsType = new MenuItemInfo(0, getString(R.string.HK_ODDS), "HK");
+        oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
         allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "0");
-        presenter.switchOddsType("HK", new BaseConsumer<String>(this) {
+        presenter.switchOddsType("MY", new BaseConsumer<String>(this) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
 
@@ -299,7 +299,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
         } else if (!currentTag.equals(tag)) {
             MenuItemInfo stateType = currentFragment.presenter.getStateHelper().getStateType();
-            localCurrentFragment.switchParentType(stateType);
             setType(stateType.getType());
         } else {
             currentFragment.onResume();
@@ -482,7 +481,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Override
     protected void onResume() {
         super.onResume();
-        currentFragment.refresh();
+        currentFragment.getPresenter().getStateHelper().refresh();
     }
 
     public void clickSportSelect(final View view) {
@@ -703,7 +702,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                                         public void onClick(View view) {
                                             sort = 1 - sort;
                                             checkBox.setChecked(sort == 1);
-                                            currentFragment.refresh();
+                                            currentFragment.getPresenter().getStateHelper().refresh();
                                         }
                                     });
                                 }

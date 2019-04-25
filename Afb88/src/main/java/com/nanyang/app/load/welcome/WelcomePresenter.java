@@ -152,7 +152,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                                     AfbApplication app = (AfbApplication) baseContext.getBaseActivity().getApplication();
                                     app.getUser().setLoginName(us);
                                     app.getUser().setPassword("");
-                                    return switchLanguage.switchLanguage(new LanguageHelper(baseContext.getBaseActivity()).getLanguage(), "HK");
+                                    return switchLanguage.switchLanguage(new LanguageHelper(baseContext.getBaseActivity()).getLanguage(), "MY");
                                 }
                                 return null;
                             }

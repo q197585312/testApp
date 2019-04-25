@@ -176,6 +176,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 //    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=1&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
     @Override
     public void refresh() {
+        if (webSocket != null && webSocket.isOpen()) {
+            webSocket.close();
+        }
         if (isHide)
             return;
         if (!NetWorkUtil.isNetConnected(getBaseView().getIBaseContext().getBaseActivity())) {
@@ -186,9 +189,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 }
             });
             return;
-        }
-        if (webSocket != null && webSocket.isOpen()) {
-            webSocket.close();
         }
         String url = getUrlString();
         LogUtil.d(getClass().getSimpleName(), "send------" + url);
@@ -234,7 +234,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                             return;
                         }
                         Log.d("Socket", "onClosedCallback");
-                        refresh();
                     }
                 });
 

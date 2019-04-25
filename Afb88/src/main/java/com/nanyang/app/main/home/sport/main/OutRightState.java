@@ -67,7 +67,6 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
             case "Early":
                 setStateItemOt("e");
                 getBaseView().switchState(this);
-
                 break;
             case "Today":
                 setStateItemOt("t");
@@ -212,7 +211,6 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                                             return;
                                         }
                                         Log.d("Socket", "onClosedCallback");
-                                        refresh();
                                     }
                                 });
 

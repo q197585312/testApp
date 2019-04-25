@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -38,6 +39,7 @@ import butterknife.ButterKnife;
  */
 
 public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I> {
+    private static final String TAG = "BallInfo";
     final int red_black = Color.RED;
     final int black_grey = Color.BLACK;
     protected Context context;
@@ -439,7 +441,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 //            }
         }
         handleOddsContent(helper, item, position);
-
         String away = item.getAway();
         String home = item.getHome();
         homeTv.setText(home);
@@ -744,6 +745,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             , boolean hapVisiable, boolean ouVisiable, boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
         vp.setVisibility(View.VISIBLE);
         ViewHolder holder = new ViewHolder(vp);
+        Log.d(TAG, "sid: " + item.getSocOddsId() + ",item.isOverBigger:" + item.isOverBigger + ",item.isHomeBigger:" + item.isHomeBigger + ",item.isAwayBigger:" + item.isAwayBigger + ",item.isUnderBigger:" + item.isUnderBigger);
         setUpDownOdds(hapVisiable, item, isFh, isHdpNew, hasHdp, hdp, holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv, holder.viewpagerMatchVisitHdpoddsTv
                 , homeHdpOdds, awayHdpOdds, homeOddsType, awayOddsType, 0, holder.imgUpDownUp1, holder.imgUpDownDown1);
         setUpDownOdds(ouVisiable, item, isFh, isOUNew, hasOU, ou, holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv, holder.viewpagerMatchUnderoddsTv
@@ -762,8 +764,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             downOddsTv.setVisibility(View.VISIBLE);
             String upStr = "";
             String downStr = "";
-//            downTextTv.setTextSize(12);
-//            upTextTv.setTextSize(12);
             if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.5 || Math.abs(Float.valueOf(downOdds)) < 0.5) {
                 hasUpDown = "0";
             }
@@ -786,23 +786,19 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         upStr = "";
                         downStr = hdpS;
                     }
-                    if (upType.startsWith("mm")) {
-//                        downTextTv.setTextSize(8);
-//                        upTextTv.setTextSize(8);
-                    }
                     upTextTv.setTextColor(Color.RED);
                     downTextTv.setTextColor(Color.RED);
 
                     if (isFh) {
-                        if (item.isHomeBigger_FH)
-                            resUp = R.mipmap.arrow_up_update_green;
-                        else
-                            resUp = R.mipmap.arrow_down_update_red;
+                        resUp = 0;
                     } else {
-                        if (item.isHomeBigger)
+                        if (item.isHomeBigger == 1)
                             resUp = R.mipmap.arrow_up_update_green;
-                        else
+                        else if (item.isHomeBigger == -1)
                             resUp = R.mipmap.arrow_down_update_red;
+                        else {
+                            resUp = 0;
+                        }
                     }
 
                     break;
@@ -814,20 +810,16 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     String ouf = upDown;
                     upStr = ouf;
                     downStr = "";
-//                    if (upType.startsWith("mm")) {
-//                        downTextTv.setTextSize(8);
-//                        upTextTv.setTextSize(8);
-//                    }
                     if (isFh) {
-                        if (item.isOverBigger_FH)
-                            resUp = R.mipmap.arrow_up_update_green;
-                        else
-                            resUp = R.mipmap.arrow_down_update_red;
+                        resUp = 0;
                     } else {
-                        if (item.isOverBigger)
+                        if (item.isOverBigger == 1) {
                             resUp = R.mipmap.arrow_up_update_green;
-                        else
+                        } else if (item.isOverBigger == -1) {
                             resUp = R.mipmap.arrow_down_update_red;
+                        } else {
+                            resUp = 0;
+                        }
                     }
                     break;
 
@@ -845,29 +837,28 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 case "away":
                 case "mmaway":
                     if (isFh) {
-                        if (item.isAwayBigger_FH)
-                            resDown = R.mipmap.arrow_up_update_green;
-                        else
-                            resDown = R.mipmap.arrow_down_update_red;
+                        resDown = 0;
                     } else {
-                        if (item.isAwayBigger)
+                        if (item.isAwayBigger == 1)
                             resDown = R.mipmap.arrow_up_update_green;
-                        else
+                        else if (item.isAwayBigger == -1) {
                             resDown = R.mipmap.arrow_down_update_red;
+                        } else {
+                            resDown = 0;
+                        }
                     }
                     break;
                 case "under":
                 case "mmunder":
                     if (isFh) {
-                        if (item.isUnderBigger_FH)
-                            resDown = R.mipmap.arrow_up_update_green;
-                        else
-                            resDown = R.mipmap.arrow_down_update_red;
+                        resDown = 0;
                     } else {
-                        if (item.isUnderBigger)
+                        if (item.isUnderBigger == 1)
                             resDown = R.mipmap.arrow_up_update_green;
-                        else
+                        else if (item.isUnderBigger == -1)
                             resDown = R.mipmap.arrow_down_update_red;
+                        else
+                            resDown = 0;
                     }
                     break;
             }
@@ -910,6 +901,22 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
     }
 
+    private int getResUp(int isBigger, boolean isFh) {
+        int resUp;
+        if (isFh) {
+            resUp = 0;
+        } else {
+            if (isBigger == 1)
+                resUp = R.mipmap.arrow_up_update_green;
+            else if (isBigger == -1) {
+                resUp = R.mipmap.arrow_down_update_red;
+            } else {
+                resUp = 0;
+            }
+        }
+        return resUp;
+    }
+
 
     private String changeValueF(String f) {
         if (f.equals("") || f.startsWith("-"))
@@ -941,6 +948,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg, boolean isShowText, final int resUpdate, final ImageView imgUpDown) {
         String value = f;
+        if (resUpdate != 0) {
+            Log.d(TAG, "Sid:" + item.getSocOddsId() + "isAnimation: " + isAnimation + ",type: " + type + ",isHf: " + isHf + ",resUpdate: " + resUpdate + ",imgUpDown: " + imgUpDown);
+        }
         if (f.equals("0")) {
             textView.setText("");
         } else {
@@ -962,7 +972,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 else {
                     value = AfbUtils.decimalValue(Float.valueOf(f), "0.00");
                 }
-                if (isAnimation && imgUpDown != null) {
+                if (isAnimation && imgUpDown != null && resUpdate != 0) {
+                    Log.d(TAG, "sid:" + item.getSocOddsId() + ",res: " + resUpdate);
                     imgUpDown.setImageResource(resUpdate);
                     imgUpDown.setVisibility(View.VISIBLE);
                 }

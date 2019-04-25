@@ -5,11 +5,11 @@ package com.nanyang.app.main.home.sport.model;
  */
 
 import android.graphics.Color;
+import android.util.Log;
 
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 
 import java.util.List;
-import java.util.Objects;
 
 import cn.finalteam.toolsfinal.StringUtils;
 
@@ -23,6 +23,7 @@ import cn.finalteam.toolsfinal.StringUtils;
  */
 public class BallInfo extends SportInfo implements IRTMatchInfo {
 
+    private static final String TAG = "BallInfo";
     String hasHdp_FH;
     String hasOU_FH;
     String isHdpNew_FH;
@@ -31,42 +32,41 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     List<BallInfo> repeatRow;
     public boolean isHomeScoreBigger;
     public boolean isAwayScoreBigger;
-    public boolean isHomeBigger;
-    public boolean isAwayBigger;
-    public boolean isOverBigger;
-    public boolean isUnderBigger;
-    public boolean isFt1Bigger;
-    public boolean isFt2Bigger;
-    public boolean isFtXBigger;
+    public int isHomeBigger;
+    public int isAwayBigger;
+    public int isOverBigger;
+    public int isUnderBigger;
+    public int isFt1Bigger;
+    public int isFt2Bigger;
+    public int isFtXBigger;
+    public int isX12_XNew;
+    public int isX12_1New;
+    public int isX12_2New;
 
-    public boolean isFt1Bigger() {
+    public int isFt1Bigger() {
         return isFt1Bigger;
     }
 
-    public void setFt1Bigger(boolean ft1Bigger) {
+    public void setFt1Bigger(int ft1Bigger) {
         isFt1Bigger = ft1Bigger;
     }
 
-    public boolean isFt2Bigger() {
+    public int isFt2Bigger() {
         return isFt2Bigger;
     }
 
-    public void setFt2Bigger(boolean ft2Bigger) {
+    public void setFt2Bigger(int ft2Bigger) {
         isFt2Bigger = ft2Bigger;
     }
 
-    public boolean isFtXBigger() {
+    public int isFtXBigger() {
         return isFtXBigger;
     }
 
-    public void setFtXBigger(boolean ftXBigger) {
+    public void setFtXBigger(int ftXBigger) {
         isFtXBigger = ftXBigger;
     }
 
-    public boolean isHomeBigger_FH;
-    public boolean isAwayBigger_FH;
-    public boolean isOverBigger_FH;
-    public boolean isUnderBigger_FH;
 
     public int homeScoreTextColor = Color.BLACK;
     public int awayScoreTextColor = Color.BLACK;
@@ -847,27 +847,29 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 setOU(s);
                 break;
             case 24:
-                setIsHomeBigger(isBigger(getHOdds(), s));
+                Log.d(TAG, "getHOdds:" + getHOdds() + ",setValue: " + s);
+                this.isHomeBigger = (isBigger(getHOdds(), s));
                 setHOdds(s);
                 setIsHdpNew("1");
                 break;
             case 25:
-                setIsAwayBigger(isBigger(getAOdds(), s));
+                Log.d(TAG, "setAOdds:" + getAOdds() + ",setValue: " + s);
+                this.isAwayBigger = (isBigger(getAOdds(), s));
                 setAOdds(s);
                 setIsHdpNew("1");
                 break;
             case 26:
-                setIsOverBigger(isBigger(getOOdds(), s));
+                this.isOverBigger = (isBigger(getOOdds(), s));
                 setOOdds(s);
                 setIsOUNew("1");
                 break;
             case 27:
-                setIsUnderBigger(isBigger(getUOdds(), s));
+                Log.d(TAG, "getUOdds:" + getUOdds() + ",setValue: " + s);
+                this.isUnderBigger = (isBigger(getUOdds(), s));
                 setUOdds(s);
                 setIsOUNew("1");
                 break;
             case 28:
-
                 setOddOdds(s);
                 setIsOENew("1");
                 break;
@@ -877,18 +879,24 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 setIsOENew("1");
                 break;
             case 30:
+                Log.d(TAG, "X12_1Odds:" + X12_1Odds + ",setValue: " + s);
+                setFt1Bigger(isBigger(X12_1Odds, s));
                 setX12_1Odds(s);
-//                setFt1Bigger(isScoreBigger(getX12_1Odds(), s));
+                setIsX12_1New(1);
                 setIsX12New("1");
                 break;
             case 31:
+                Log.d(TAG, "X12_XOdds:" + X12_XOdds + ",setValue: " + s);
+                setFtXBigger(isBigger(X12_XOdds, s));
                 setX12_XOdds(s);
-//                setFt2Bigger(isScoreBigger(getX12_XOdds(), s));
+                setIsX12_XNew(1);
                 setIsX12New("1");
                 break;
             case 32:
+                Log.d(TAG, "X12_2Odds:" + X12_2Odds + ",setValue: " + s);
+                setFt2Bigger(isBigger(X12_2Odds, s));
                 setX12_2Odds(s);
-//                setFtXBigger(isScoreBigger(getX12_2Odds(), s));
+                setIsX12_2New(1);
                 setIsX12New("1");
                 break;
             case 33:
@@ -916,22 +924,18 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 setOU_FH(s);
                 break;
             case 41:
-                setIsHomeBigger_FH(isBigger(getHOdds_FH(), s));
                 setHOdds_FH(s);
                 setIsHdpNew_FH("1");
                 break;
             case 42:
-                setIsAwayBigger_FH(isBigger(getAOdds_FH(), s));
                 setAOdds_FH(s);
                 setIsHdpNew_FH("1");
                 break;
             case 43:
-                setIsOverBigger_FH(isBigger(getOOdds_FH(), s));
                 setOOdds_FH(s);
                 setIsOUNew_FH("1");
                 break;
             case 44:
-                setIsUnderBigger_FH(isBigger(getUOdds_FH(), s));
                 setUOdds_FH(s);
                 setIsOUNew_FH("1");
                 break;
@@ -1004,6 +1008,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
             setIsHdpNew_FH("1");
             setIsOUNew_FH("1");
             setIsOENew_FH("1");
+            setIsX12New("1");
         } else {
             setIsHdpNew("0");
             setIsOUNew("0");
@@ -1011,6 +1016,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
             setIsHdpNew_FH("0");
             setIsOUNew_FH("0");
             setIsOENew_FH("0");
+            setIsX12New("0");
         }
     }
 
@@ -1032,38 +1038,22 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
         return super.toString();
     }
 
-    public void setIsHomeBigger(boolean isHomeBiger) {
+    public void setIsHomeBigger(int isHomeBiger) {
         this.isHomeBigger = isHomeBiger;
     }
 
-    public void setIsAwayBigger(boolean isAwayBigger) {
+    public void setIsAwayBigger(int isAwayBigger) {
         this.isAwayBigger = isAwayBigger;
     }
 
-    public void setIsOverBigger(boolean isOverBigger) {
+    public void setIsOverBigger(int isOverBigger) {
         this.isOverBigger = isOverBigger;
     }
 
-    public void setIsUnderBigger(boolean isUnderBigger) {
+    public void setIsUnderBigger(int isUnderBigger) {
         this.isUnderBigger = isUnderBigger;
     }
 
-
-    public void setIsHomeBigger_FH(boolean isHomeBigger_FH) {
-        this.isHomeBigger_FH = isHomeBigger_FH;
-    }
-
-    public void setIsAwayBigger_FH(boolean isAwayBigger_FH) {
-        this.isAwayBigger_FH = isAwayBigger_FH;
-    }
-
-    public void setIsOverBigger_FH(boolean isOverBigger_FH) {
-        this.isOverBigger_FH = isOverBigger_FH;
-    }
-
-    public void setIsUnderBigger_FH(boolean isUnderBigger_FH) {
-        this.isUnderBigger_FH = isUnderBigger_FH;
-    }
 
     public boolean isHomeScoreBigger() {
         return isHomeScoreBigger;
@@ -1081,98 +1071,15 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
         isAwayScoreBigger = awayScoreBigger;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof BallInfo)) return false;
-        BallInfo ballInfo = (BallInfo) o;
-        return isHomeScoreBigger() == ballInfo.isHomeScoreBigger() &&
-                isAwayScoreBigger() == ballInfo.isAwayScoreBigger() &&
-                isHomeBigger == ballInfo.isHomeBigger &&
-                isAwayBigger == ballInfo.isAwayBigger &&
-                isOverBigger == ballInfo.isOverBigger &&
-                isUnderBigger == ballInfo.isUnderBigger &&
-                isHomeBigger_FH == ballInfo.isHomeBigger_FH &&
-                isAwayBigger_FH == ballInfo.isAwayBigger_FH &&
-                isOverBigger_FH == ballInfo.isOverBigger_FH &&
-                isUnderBigger_FH == ballInfo.isUnderBigger_FH &&
-                getHomeScoreTextColor() == ballInfo.getHomeScoreTextColor() &&
-                getAwayScoreTextColor() == ballInfo.getAwayScoreTextColor() &&
-                Objects.equals(getHasHdp_FH(), ballInfo.getHasHdp_FH()) &&
-                Objects.equals(getHasOU_FH(), ballInfo.getHasOU_FH()) &&
-                Objects.equals(getIsHdpNew_FH(), ballInfo.getIsHdpNew_FH()) &&
-                Objects.equals(getIsOUNew_FH(), ballInfo.getIsOUNew_FH()) &&
-                Objects.equals(tvPathIBC, ballInfo.tvPathIBC) &&
-                Objects.equals(getRepeatRow(), ballInfo.getRepeatRow()) &&
-                Objects.equals(getIsHdpNew(), ballInfo.getIsHdpNew()) &&
-                Objects.equals(getHasHdp(), ballInfo.getHasHdp()) &&
-                Objects.equals(getIsOUNew(), ballInfo.getIsOUNew()) &&
-                Objects.equals(getIsOENew(), ballInfo.getIsOENew()) &&
-                Objects.equals(getHasOE(), ballInfo.getHasOE()) &&
-                Objects.equals(getHasOE_FH(), ballInfo.getHasOE_FH()) &&
-                Objects.equals(getIsOENew_FH(), ballInfo.getIsOENew_FH()) &&
-                Objects.equals(getSocOddsId_FH(), ballInfo.getSocOddsId_FH()) &&
-                Objects.equals(getLive(), ballInfo.getLive()) &&
-                Objects.equals(getIsLastCall(), ballInfo.getIsLastCall()) &&
-                Objects.equals(getMatchDate(), ballInfo.getMatchDate()) &&
-                Objects.equals(getStatus(), ballInfo.getStatus()) &&
-                Objects.equals(getCurMinute(), ballInfo.getCurMinute()) &&
-                Objects.equals(getIsInetBet(), ballInfo.getIsInetBet()) &&
-                Objects.equals(getIsHomeGive(), ballInfo.getIsHomeGive()) &&
-                Objects.equals(getRTSMatchId(), ballInfo.getRTSMatchId()) &&
-                Objects.equals(getHomeId(), ballInfo.getHomeId()) &&
-                Objects.equals(getAwayId(), ballInfo.getAwayId()) &&
-                Objects.equals(getHomeRank(), ballInfo.getHomeRank()) &&
-                Objects.equals(getAwayRank(), ballInfo.getAwayRank()) &&
-                Objects.equals(getRunHomeScore(), ballInfo.getRunHomeScore()) &&
-                Objects.equals(getRunAwayScore(), ballInfo.getRunAwayScore()) &&
-                Objects.equals(getRCHome(), ballInfo.getRCHome()) &&
-                Objects.equals(getRCAway(), ballInfo.getRCAway()) &&
-                Objects.equals(getGamesSum(), ballInfo.getGamesSum()) &&
-                Objects.equals(getHdp(), ballInfo.getHdp()) &&
-                Objects.equals(getOU(), ballInfo.getOU()) &&
-                Objects.equals(getHOdds(), ballInfo.getHOdds()) &&
-                Objects.equals(getAOdds(), ballInfo.getAOdds()) &&
-                Objects.equals(getOOdds(), ballInfo.getOOdds()) &&
-                Objects.equals(getUOdds(), ballInfo.getUOdds()) &&
-                Objects.equals(getOddOdds(), ballInfo.getOddOdds()) &&
-                Objects.equals(getEvenOdds(), ballInfo.getEvenOdds()) &&
-                Objects.equals(getX12_1Odds(), ballInfo.getX12_1Odds()) &&
-                Objects.equals(getX12_XOdds(), ballInfo.getX12_XOdds()) &&
-                Objects.equals(getX12_2Odds(), ballInfo.getX12_2Odds()) &&
-                Objects.equals(getHdpOdds(), ballInfo.getHdpOdds()) &&
-                Objects.equals(getOUOdds(), ballInfo.getOUOdds()) &&
-                Objects.equals(getOEOdds(), ballInfo.getOEOdds()) &&
-                Objects.equals(getHasPar(), ballInfo.getHasPar()) &&
-                Objects.equals(getIsInetBet_FH(), ballInfo.getIsInetBet_FH()) &&
-                Objects.equals(getIsHomeGive_FH(), ballInfo.getIsHomeGive_FH()) &&
-                Objects.equals(getHdp_FH(), ballInfo.getHdp_FH()) &&
-                Objects.equals(getOU_FH(), ballInfo.getOU_FH()) &&
-                Objects.equals(getHOdds_FH(), ballInfo.getHOdds_FH()) &&
-                Objects.equals(getAOdds_FH(), ballInfo.getAOdds_FH()) &&
-                Objects.equals(getOOdds_FH(), ballInfo.getOOdds_FH()) &&
-                Objects.equals(getUOdds_FH(), ballInfo.getUOdds_FH()) &&
-                Objects.equals(getOddOdds_FH(), ballInfo.getOddOdds_FH()) &&
-                Objects.equals(getEvenOdds_FH(), ballInfo.getEvenOdds_FH()) &&
-                Objects.equals(getX12_1Odds_FH(), ballInfo.getX12_1Odds_FH()) &&
-                Objects.equals(getX12_XOdds_FH(), ballInfo.getX12_XOdds_FH()) &&
-                Objects.equals(getX12_2Odds_FH(), ballInfo.getX12_2Odds_FH()) &&
-                Objects.equals(getHdpOdds_FH(), ballInfo.getHdpOdds_FH()) &&
-                Objects.equals(getOUOdds_FH(), ballInfo.getOUOdds_FH()) &&
-                Objects.equals(getOEOdds_FH(), ballInfo.getOEOdds_FH()) &&
-                Objects.equals(getStatsId(), ballInfo.getStatsId()) &&
-                Objects.equals(getMExtraTime(), ballInfo.getMExtraTime()) &&
-                Objects.equals(getWorkingDate(), ballInfo.getWorkingDate()) &&
-                Objects.equals(getTodayDate(), ballInfo.getTodayDate()) &&
-                Objects.equals(getModuleOrder(), ballInfo.getModuleOrder()) &&
-                Objects.equals(getMatchCode(), ballInfo.getMatchCode()) &&
-                Objects.equals(getSortNum(), ballInfo.getSortNum()) &&
-                Objects.equals(getGGID(), ballInfo.getGGID()) &&
-                Objects.equals(getHasPar_FH(), ballInfo.getHasPar_FH());
+    public void setIsX12_XNew(int isX12_XNew) {
+        this.isX12_XNew = isX12_XNew;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(getHasHdp_FH(), getHasOU_FH(), getIsHdpNew_FH(), getIsOUNew_FH(), tvPathIBC, getRepeatRow(), isHomeScoreBigger(), isAwayScoreBigger(), isHomeBigger, isAwayBigger, isOverBigger, isUnderBigger, isHomeBigger_FH, isAwayBigger_FH, isOverBigger_FH, isUnderBigger_FH, getHomeScoreTextColor(), getAwayScoreTextColor(), getIsHdpNew(), getHasHdp(), getIsOUNew(), getIsOENew(), getHasOE(), getHasOE_FH(), getIsOENew_FH(), getSocOddsId_FH(), getLive(), getIsLastCall(), getMatchDate(), getStatus(), getCurMinute(), getIsInetBet(), getIsHomeGive(), getRTSMatchId(), getHomeId(), getAwayId(), getHomeRank(), getAwayRank(), getRunHomeScore(), getRunAwayScore(), getRCHome(), getRCAway(), getGamesSum(), getHdp(), getOU(), getHOdds(), getAOdds(), getOOdds(), getUOdds(), getOddOdds(), getEvenOdds(), getX12_1Odds(), getX12_XOdds(), getX12_2Odds(), getHdpOdds(), getOUOdds(), getOEOdds(), getHasPar(), getIsInetBet_FH(), getIsHomeGive_FH(), getHdp_FH(), getOU_FH(), getHOdds_FH(), getAOdds_FH(), getOOdds_FH(), getUOdds_FH(), getOddOdds_FH(), getEvenOdds_FH(), getX12_1Odds_FH(), getX12_XOdds_FH(), getX12_2Odds_FH(), getHdpOdds_FH(), getOUOdds_FH(), getOEOdds_FH(), getStatsId(), getMExtraTime(), getWorkingDate(), getTodayDate(), getModuleOrder(), getMatchCode(), getSortNum(), getGGID(), getHasPar_FH());
+    public void setIsX12_1New(int isX12_1New) {
+        this.isX12_1New = isX12_1New;
+    }
+
+    public void setIsX12_2New(int isX12_2New) {
+        this.isX12_2New = isX12_2New;
     }
 }
