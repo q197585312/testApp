@@ -2,6 +2,7 @@ package com.nanyang.app.main.BetCenter;
 
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,10 @@ import butterknife.Bind;
  */
 
 public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
+    @Bind(R.id.ll_note)
+    LinearLayout llNote;
+    @Bind(R.id.nsc_content)
+    NestedScrollView nscContent;
     @Bind(R.id.ll_content)
     LinearLayout llContent;
     private LinearLayout currentLlAddView;
@@ -49,6 +54,13 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
     private List<StatementListDataBean> lastStatementList;
 
     private void setSvContent(final StatementFirstBean statementFirstBean, List<StatementListDataBean> list) {
+        if (list.size() == 0) {
+            nscContent.setVisibility(View.GONE);
+            llNote.setVisibility(View.VISIBLE);
+        } else {
+            llNote.setVisibility(View.GONE);
+            nscContent.setVisibility(View.VISIBLE);
+        }
         if (lastStatementList == null) {
             lastStatementList = list;
         } else {

@@ -76,7 +76,7 @@
                     android:background="@drawable/sport_game_rectangle_green_dark_trans_gradient_line"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:padding="5dp">
+                    android:padding="7dp">
 
                     <EditText
                         android:id="@+id/edt_match_search_content"
@@ -85,9 +85,11 @@
                         android:layout_marginLeft="10dp"
                         android:layout_weight="1"
                         android:background="@null"
+                        android:cursorVisible="false"
                         android:drawableLeft="@mipmap/sport_game_search_green"
                         android:drawablePadding="5dp"
                         android:hint="@string/Select_League"
+                        android:singleLine="true"
                         android:textSize="13sp" />
 
                     <ImageView
@@ -232,6 +234,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.8dp"
@@ -312,10 +315,10 @@
                     android:background="@null"
                     android:button="@null"
                     android:drawablePadding="2dp"
-                    android:drawableTop="@mipmap/sport_bottom_teb_shopping"
+                    android:drawableTop="@mipmap/sport_bottom_teb_shopping_null"
                     android:gravity="center"
                     android:onClick="clickOrder"
-                    android:text="@string/ORDER"
+                    android:text="@string/Bet_Slip"
                     android:textColor="@color/grey_dark"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -342,7 +345,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawablePadding="2dp"
-                android:drawableTop="@mipmap/sport_today"
+                android:drawableTop="@mipmap/date_running_green"
                 android:gravity="center"
                 android:onClick="clickSportWayRun"
                 android:text="@string/running"

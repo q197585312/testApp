@@ -1,16 +1,23 @@
 package com.nanyang.app.common;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.LoadMainDataHelper;
+import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.base.IBaseView;
@@ -28,12 +35,18 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.finalteam.toolsfinal.ApkUtils;
 import io.reactivex.Flowable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Headers;
+import okhttp3.HttpUrl;
+import okhttp3.Request;
+import retrofit2.Response;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -73,33 +86,77 @@ public class LanguagePresenter extends BaseSwitchPresenter {
 
     }
 
-    public void skipGd88(final IBaseView baseView) {
-        BaseConsumer<String> baseConsumer = new BaseConsumer<String>(baseContext) {
+    public void getSkipGd88Data() {
+        Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<Response>() {
+                    @Override
+                    public void accept(Response responseBodyResponse) throws Exception {
+                        baseContext.hideLoadingDialog();
+                        okhttp3.Response response = responseBodyResponse.raw().priorResponse();
+                        if (response != null) {
+                            Request request = response.request();
+                            String url = request.url().toString();
+                            MainActivity mainActivity = (MainActivity) baseContext;
+                            if (ApkUtils.isAvilible(mainActivity, "gaming178.com.baccaratgame")) {
+                                Intent intent = new Intent();
+                                ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
+                                intent.setComponent(comp);
+                                PersonalInfo info = mainActivity.getApp().getUser();
+                                intent.putExtra("username", info.getLoginName());
+                                intent.putExtra("password", info.getPassword());
+                                intent.putExtra("language", "en");
+                                intent.putExtra("web_id", "-1");
+                                intent.putExtra("webUrl", url);
+                                intent.putExtra("gameType", 5);
+                                intent.putExtra("balance", info.getCredit2());
+                                baseContext.getBaseActivity().startActivity(intent);
+                            } else {
+                                downloadGd88();
+                            }
+                        } else {
+                            ToastUtils.showShort("not find agent!");
+                        }
+                    }
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        subscription.request(Long.MAX_VALUE);
+                        baseContext.showLoadingDialog();
+                    }
+                });
+        mCompositeSubscription.add(subscription);
+    }
+
+    public void downloadGd88() {
+        String url = "http://www.appgd88.com/api/gd88AndroidVersion.php?Labelid=48";
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(url), new BaseConsumer<String>(baseContext) {
             @Override
-            protected void onBaseGetData(String Str) {
-                int start = Str.indexOf("TransferBalance");
-                int end = Str.indexOf("\" id=\"form1\"");
-
-                String k = "";
-                if (start > 0 && end > 0 && end > start) {
-//                          http://lapigd.afb333.com/Validate.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325
-                    String url = Str.substring(start, end);
-                    k = url.substring(url.indexOf("k="));
-                    baseView.onGetData(k);
-                } else if (Str.contains("Transaction not tally")) {
-                    ToastUtils.showShort("Transaction not tally");
-                } else if (Str.contains("Session Expired")) {
-                    ToastUtils.showShort("Session Expired");
-                } else if (Str.contains("Account is LOCKED")) {
-                    ToastUtils.showShort("Account is LOCKED! Please contact your agent!");
-                } else {
-                    ToastUtils.showShort("Failed");
-                }
-
+            protected void onBaseGetData(String data) {
+                AppVersionBean appVersionBean = gson.fromJson(data, AppVersionBean.class);
+                String gd88DownloadUrl = appVersionBean.getData().getUrl();
+                Intent intent = new Intent();
+                intent.setAction("android.intent.action.VIEW");
+                Uri content_url = Uri.parse(gd88DownloadUrl);
+                intent.setData(content_url);
+                baseContext.getBaseActivity().startActivity(intent);
             }
-        };
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "_View/LiveDealerGDC.aspx"), baseConsumer);
 
+            @Override
+            protected void onAccept() {
+//                super.onAccept();
+            }
+        });
     }
 
     @NonNull
@@ -242,6 +299,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
         LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
         helper.doRetrofitApiOnUiThread(languageWfBean, back);
     }
+
     public void oddsType() {
         Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + "MY").subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())

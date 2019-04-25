@@ -20,12 +20,12 @@
         android:background="@color/grey_background"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="10dp">
 
         <TextView
             android:id="@+id/module_League_collection_tv"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:layout_gravity="center_vertical"
             android:layout_marginLeft="2dp"
             android:background="@mipmap/star_red_not_solid"
@@ -44,7 +44,7 @@
             android:paddingLeft="10dp"
             android:paddingTop="2dp"
             android:textColor="@color/green2"
-            android:textSize="14sp" />
+            android:textSize="15sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -62,24 +62,23 @@
 
             <TextView
                 android:id="@+id/module_match_collection_tv"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="2dp"
                 android:background="@mipmap/star_red_not_solid"
                 android:gravity="center"
-                android:textColor="@color/grey_dark_word"
-                android:textSize="10sp" />
+                android:textColor="@color/grey_dark_word" />
 
             <TextView
                 android:id="@+id/module_match_live_iv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="2dp"
                 android:gravity="center"
                 android:maxLines="1"
-                android:textSize="12sp"
+                android:textSize="12.5sp"
                 android:textStyle="bold"
                 android:visibility="visible" />
 
@@ -88,11 +87,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="2dp"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/grey_thick_line"
-                android:textSize="12sp"
+                android:textSize="12.5sp"
                 android:textStyle="bold"
                 android:visibility="visible" />
 
@@ -101,26 +100,26 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="3dp"
+                android:layout_marginLeft="2dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:textColor="@color/grey_thick_line"
-                android:textSize="12sp"
+                android:textSize="12.5sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/module_right_mark_tv"
-                android:layout_width="35dp"
+                android:layout_width="32dp"
                 android:layout_height="19dp"
-                android:layout_marginRight="4dp"
+                android:layout_marginRight="2dp"
+                android:paddingLeft="1dp"
                 android:background="@drawable/match_btn_shadow_bottom"
                 android:drawableLeft="@mipmap/crude_add_green"
                 android:gravity="center_vertical"
-                android:paddingLeft="4dp"
                 android:text="155"
                 android:textColor="@color/black_grey"
-                android:textSize="11sp"
+                android:textSize="11.5sp"
                 android:visibility="visible" />
 
             <ImageView
@@ -133,7 +132,7 @@
 
             <TextView
                 android:id="@+id/hdp_title_tv"
-                android:layout_width="72dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -141,18 +140,18 @@
                 android:paddingRight="2dp"
                 android:text="@string/FT_HDP"
                 android:textColor="@color/black_grey"
-                android:textSize="12.5sp" />
+                android:textSize="13.5sp" />
 
             <TextView
                 android:id="@+id/ou_title_tv"
-                android:layout_width="72dp"
+                android:layout_width="80dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
                 android:text="@string/FT_OU"
                 android:textColor="@color/black_grey"
-                android:textSize="12.5sp" />
+                android:textSize="13.5sp" />
 
         </LinearLayout>
 
@@ -389,7 +388,7 @@
                         android:paddingLeft="1dp"
                         android:paddingRight="1dp"
                         android:textColor="@color/black"
-                        android:textSize="11sp"
+                        android:textSize="13sp"
                         android:textStyle="bold"
                         android:visibility="visible" />
 
@@ -418,8 +417,7 @@
                         android:textColor="@color/white"
                         android:textSize="11sp"
                         android:textStyle="bold"
-                        android:visibility="gone"
-                       />
+                        android:visibility="gone" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -441,7 +439,7 @@
                         android:paddingLeft="1dp"
                         android:paddingRight="1dp"
                         android:textColor="@color/black"
-                        android:textSize="11sp"
+                        android:textSize="13sp"
                         android:textStyle="bold"
                         android:visibility="visible" />
 
@@ -478,7 +476,7 @@
 
             <com.unkonw.testapp.training.ScrollLayout
                 android:id="@+id/module_center_sl"
-                android:layout_width="170dp"
+                android:layout_width="185dp"
                 android:layout_height="match_parent">
 
                 <include

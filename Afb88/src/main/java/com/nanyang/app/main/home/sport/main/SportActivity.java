@@ -199,6 +199,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             @Override
             public void afterTextChanged(Editable editable) {
                 String s = editable.toString().trim();
+                if (TextUtils.isEmpty(s)) {
+                    edtSearchContent.setCursorVisible(false);
+                } else {
+                    edtSearchContent.setCursorVisible(true);
+                }
                 currentFragment.searchMatch(true, s);
                 if (!StringUtils.isNull(s))
                     ivDeleteSearch.setVisibility(View.VISIBLE);
@@ -254,7 +259,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             ivOrderTop.setImageResource(R.mipmap.sport_shopping_top_white);
             tvMixCount.setText("" + getApp().getBetParList().getList().size());
             tvOrderCount.setText("" + getApp().getBetParList().getList().size());
+            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping, 0, 0);
         } else {
+            tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping_null, 0, 0);
             ivOrderTop.setImageResource(R.mipmap.sport_shopping_top_gray);
             tvMixCount.setVisibility(View.GONE);
             tvOrderCount.setVisibility(View.GONE);
@@ -325,22 +332,22 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvBalance.setText(getApp().getUser().getCurCode2() + ": " + allData);
     }
 
-    public void loginGD() {
-        if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
-            presenter.skipGd88(new BaseView<SportActivity, String>(this) {
-                @Override
-                public void onGetData(String data) {
-                    SportActivity.this.onGetData(data);
-                }
-            });
-        } else {
-            Intent intent = new Intent();
-            intent.setAction("android.intent.action.VIEW");
-            Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
-            intent.setData(content_url);
-            startActivity(intent);
-        }
-    }
+//    public void loginGD() {
+//        if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
+//            presenter.skipGd88(new BaseView<SportActivity, String>(this) {
+//                @Override
+//                public void onGetData(String data) {
+//                    SportActivity.this.onGetData(data);
+//                }
+//            });
+//        } else {
+//            Intent intent = new Intent();
+//            intent.setAction("android.intent.action.VIEW");
+//            Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
+//            intent.setData(content_url);
+//            startActivity(intent);
+//        }
+//    }
 
 
     @Override

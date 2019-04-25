@@ -3,7 +3,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:paddingRight="1dp">
 
 
     <LinearLayout
@@ -18,7 +19,7 @@
             android:layout_width="0dp"
             android:layout_height="34dp"
             android:layout_weight="1"
-            android:padding="2dp">
+            android:padding="1.5dp">
 
             <LinearLayout
                 android:id="@+id/ll_leave_1_left"
@@ -31,7 +32,8 @@
                     android:id="@+id/img_up_down_up1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
+                    android:layout_marginLeft="1.5dp"
+                    android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
                     android:visibility="invisible" />
 
@@ -40,23 +42,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingRight="2dp"
+                    android:paddingLeft="1.5dp"
                     android:textColor="@color/green_dark"
-                    android:textSize="11sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_home_hdpodds_tv"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingRight="2dp"
                     android:textColor="@color/black_grey"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
+                    android:textSize="13sp" />
             </LinearLayout>
         </FrameLayout>
 
@@ -65,7 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="34dp"
             android:layout_weight="1"
-            android:padding="2dp">
+            android:padding="1.5dp">
 
             <LinearLayout
                 android:id="@+id/ll_leave_1_right"
@@ -78,7 +78,8 @@
                     android:id="@+id/img_up_down_up2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
+                    android:layout_marginLeft="1.5dp"
+                    android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
                     android:visibility="invisible" />
 
@@ -87,23 +88,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingRight="2dp"
-                    android:textColor="@color/green_dark"
-                    android:textSize="11sp" />
+                    android:paddingLeft="1.5dp"
+                    android:textColor="#616161"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_overodds_tv"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingRight="2dp"
                     android:textColor="@color/black_grey"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
+                    android:textSize="13sp" />
             </LinearLayout>
         </FrameLayout>
 
@@ -117,7 +116,7 @@
             android:paddingRight="2dp"
             android:text="@string/ODD"
             android:textColor="@color/green_dark"
-            android:textSize="11sp"
+            android:textSize="13sp"
             android:visibility="gone" />
 
         <TextView
@@ -129,7 +128,7 @@
             android:maxLines="1"
             android:paddingRight="2dp"
             android:textColor="@color/black_grey"
-            android:textSize="11sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             android:visibility="gone" />
     </LinearLayout>
@@ -144,7 +143,7 @@
             android:layout_width="0dp"
             android:layout_height="34dp"
             android:layout_weight="1"
-            android:padding="2dp">
+            android:padding="1.5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -156,7 +155,8 @@
                     android:id="@+id/img_up_down_down1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
+                    android:layout_marginLeft="1.5dp"
+                    android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
                     android:visibility="invisible" />
 
@@ -165,23 +165,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingRight="2dp"
+                    android:paddingLeft="1.5dp"
                     android:textColor="@color/green_dark"
-                    android:textSize="11sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_visit_hdpodds_tv"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingRight="2dp"
                     android:textColor="@color/black_grey"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
+                    android:textSize="13sp" />
             </LinearLayout>
         </FrameLayout>
 
@@ -189,7 +187,7 @@
             android:layout_width="0dp"
             android:layout_height="34dp"
             android:layout_weight="1"
-            android:padding="2dp">
+            android:padding="1.5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -201,7 +199,8 @@
                     android:id="@+id/img_up_down_down2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="1dp"
+                    android:layout_marginLeft="1.5dp"
+                    android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
                     android:visibility="invisible" />
 
@@ -210,23 +209,21 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingRight="2dp"
-                    android:textColor="@color/green_dark"
-                    android:textSize="11sp" />
+                    android:paddingLeft="1.5dp"
+                    android:textColor="#616161"
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_underodds_tv"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center"
+                    android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingRight="2dp"
                     android:textColor="@color/black_grey"
-                    android:textSize="11sp"
-                    android:textStyle="bold" />
+                    android:textSize="13sp" />
             </LinearLayout>
         </FrameLayout>
 
@@ -240,7 +237,7 @@
             android:paddingRight="2dp"
             android:text="@string/EVEN"
             android:textColor="@color/green_dark"
-            android:textSize="11sp"
+            android:textSize="13sp"
             android:visibility="gone" />
 
         <TextView
@@ -252,7 +249,7 @@
             android:maxLines="1"
             android:paddingRight="2dp"
             android:textColor="@color/black_grey"
-            android:textSize="11sp"
+            android:textSize="13sp"
             android:textStyle="bold"
             android:visibility="gone" />
     </LinearLayout>

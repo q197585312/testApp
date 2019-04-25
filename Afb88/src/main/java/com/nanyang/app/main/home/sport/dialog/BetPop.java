@@ -430,14 +430,6 @@ public class BetPop extends BasePopupWindow {
                     tvBetModuleTitle.setText(item.getLeague());
                     tvBetHome.setText(item.getHome());
                     tvBetAway.setText(item.getAway());
-                    String bTeam = item.getBTeam();
-                    if (bTeam.equals("Home")) {
-                        tvBetName.setText(item.getHome());
-                        tvBetName.setTextColor(Color.RED);
-                    } else {
-                        tvBetName.setText(item.getAway());
-                        tvBetName.setTextColor(Color.BLACK);
-                    }
                     String hdp = item.getHdp();
                     if (hdp.contains("-")) {
                         tvHdp.setTextColor(Color.RED);
@@ -454,11 +446,27 @@ public class BetPop extends BasePopupWindow {
                     } else {
                         tvBetOdds.setTextColor(Color.BLACK);
                     }
+                    String bTeam = item.getBTeam();
+                    if (bTeam.equals("Home")) {
+                        tvBetName.setText(item.getHome());
+                    } else {
+                        tvBetName.setText(item.getAway());
+                    }
                     boolean isHome = item.getIsGive() == 1;
                     if (isHome) {
                         tvBetHome.setTextColor(Color.RED);
                         tvBetAway.setTextColor(Color.BLACK);
+                        if (tvBetName.getText().toString().equals(item.getHome())) {
+                            tvBetName.setTextColor(Color.RED);
+                        } else {
+                            tvBetName.setTextColor(Color.BLACK);
+                        }
                     } else {
+                        if (tvBetName.getText().toString().equals(item.getHome())) {
+                            tvBetName.setTextColor(Color.BLACK);
+                        } else {
+                            tvBetName.setTextColor(Color.RED);
+                        }
                         tvBetAway.setTextColor(Color.RED);
                         tvBetHome.setTextColor(Color.BLACK);
                     }
