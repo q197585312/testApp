@@ -49,38 +49,6 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
         updateMixBackground(helper, item);
     }
 
-//    private void setUpDown(BallInfo item, ImageView imgUpDown, int type) {
-//        switch (type) {
-//            case 1:
-//                if (item.isFt1Bigger()) {
-//                    imgUpDown.setImageResource(R.mipmap.arrow_up_update_green);
-//                } else {
-//                    imgUpDown.setImageResource(R.mipmap.arrow_down_update_red);
-//                }
-//                imgUpDown.setVisibility(View.VISIBLE);
-//                item.setFt1Bigger(false);
-//                break;
-//            case 2:
-//                if (item.isFt2Bigger()) {
-//                    imgUpDown.setImageResource(R.mipmap.arrow_up_update_green);
-//                } else {
-//                    imgUpDown.setImageResource(R.mipmap.arrow_down_update_red);
-//                }
-//                imgUpDown.setVisibility(View.VISIBLE);
-//                item.setFt2Bigger(false);
-//                break;
-//            default:
-//                if (item.isFtXBigger()) {
-//                    imgUpDown.setImageResource(R.mipmap.arrow_up_update_green);
-//                } else {
-//                    imgUpDown.setImageResource(R.mipmap.arrow_down_update_red);
-//                }
-//                imgUpDown.setVisibility(View.VISIBLE);
-//                item.setFtXBigger(false);
-//                break;
-//        }
-//    }
-
     @Override
     public void handleOddsContent(MyRecyclerViewHolder helper, BallInfo item, int position) {
         TextView full1 = helper.getTextView(R.id.europe_1_full_time_odds_tv);
@@ -96,16 +64,32 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
             full1.setText(AfbUtils.decimalValue(Float.parseFloat(item.getX12_1Odds()), "0.00"));
             fullx.setText(AfbUtils.decimalValue(Float.parseFloat(item.getX12_XOdds()), "0.00"));
             full2.setText(AfbUtils.decimalValue(Float.parseFloat(item.getX12_2Odds()), "0.00"));
-//            setUpDown(item, imgUpDownFt1, 1);
-//            setUpDown(item, imgUpDownFtX, 2);
-//            setUpDown(item, imgUpDownFt2, 3);
             full1.setOnClickListener(new ItemClick(back, position, item, item.getX12_1Odds(), "1", false));
             fullx.setOnClickListener(new ItemClick(back, position, item, item.getX12_XOdds(), "X", false));
             full2.setOnClickListener(new ItemClick(back, position, item, item.getX12_2Odds(), "2", false));
+            setUpDown(item.isX12New, item.isX12_1New, imgUpDownFt1, item.isFt1Bigger());
+            setUpDown(item.isX12New, item.isX12_XNew, imgUpDownFtX, item.isFtXBigger());
+            setUpDown(item.isX12New, item.isX12_2New, imgUpDownFt2, item.isFt2Bigger());
+
         } else {
             full1.setText("");
             full2.setText("");
             fullx.setText("");
+        }
+    }
+
+    private void setUpDown(String isX12New, int isX12_1New, ImageView imgUpDownFt1, int ft1Bigger) {
+        if (isX12New != null && isX12New.equals("1") && (isX12_1New == 1)) {
+            if (ft1Bigger == 1) {
+                imgUpDownFt1.setImageResource(R.mipmap.arrow_up_update_green);
+                imgUpDownFt1.setVisibility(View.VISIBLE);
+            } else if (ft1Bigger == -1) {
+                imgUpDownFt1.setImageResource(R.mipmap.arrow_down_update_red);
+                imgUpDownFt1.setVisibility(View.VISIBLE);
+            }
+
+        } else {
+            imgUpDownFt1.setVisibility(View.GONE);
         }
     }
 

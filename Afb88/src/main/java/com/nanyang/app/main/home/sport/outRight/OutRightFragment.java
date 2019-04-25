@@ -13,6 +13,7 @@ import com.nanyang.app.SportIdBean;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.SportInfo;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -94,7 +95,8 @@ public class OutRightFragment extends BaseSportFragment {
                         isRefesh = false;
                     initOutRight(sportIdBean);
                     if (isRefesh) {
-                        refresh();
+                        getPresenter().getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().clearItems(true);
+                        getPresenter().getStateHelper().refresh();
                         rvContent.setVisibility(View.VISIBLE);
                     } else
                         rvContent.setVisibility(rvContent.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
@@ -108,6 +110,7 @@ public class OutRightFragment extends BaseSportFragment {
     }
 
     public void initOutRight(SportIdBean sportIdBean) {
+
         if (sportIdBean == null)
             return;
         this.currentIdBean = sportIdBean;
@@ -140,13 +143,15 @@ public class OutRightFragment extends BaseSportFragment {
     @Override
     public void onGetData(List<SportInfo> data) {
 //        super.onGetData(data);
+        if (data == null || data.size() < 1)
+            ToastUtils.showShort("No Games");
     }
 
     @Override
     public void switchType(String type) {
         switch (type) {
             case "Running":
-                switchState(new OutRightTodayState(this));
+                switchState(new OutRightRunningState(this));
                 break;
             case "Today":
                 switchState(new OutRightTodayState(this));

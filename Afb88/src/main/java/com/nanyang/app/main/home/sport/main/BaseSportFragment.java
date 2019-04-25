@@ -327,7 +327,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
 
     public void refresh() {
-        presenter.getStateHelper().refresh();
+
     }
 
     public void collection(View tvCollection) {

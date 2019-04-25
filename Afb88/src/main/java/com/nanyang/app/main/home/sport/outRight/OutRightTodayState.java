@@ -19,7 +19,7 @@ class OutRightTodayState extends OutRightState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "OutRight", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight));
     }
 
 
@@ -35,7 +35,6 @@ class OutRightTodayState extends OutRightState {
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {
-
         switch (item.getType()) {
             case "Early":
                getBaseView().switchState(new OutRightEarlyState(getBaseView()));
@@ -44,9 +43,8 @@ class OutRightTodayState extends OutRightState {
                 getBaseView().switchState(this);
                 break;
             case "Running":
-                getBaseView().switchState(this);
+                getBaseView().switchState(new OutRightRunningState(getBaseView()));
                 break;
-
         }
     }
 }

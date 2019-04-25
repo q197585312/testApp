@@ -179,10 +179,14 @@ public class SportInfo implements Serializable {
     }
 
 
-    public boolean isBigger(String fOld, String fNew) {
-        if (StringUtils.isNull(fOld) || StringUtils.isNull(fNew) || Float.valueOf(fNew) > Float.valueOf(fOld))
-            return true;
-        return false;
+    public int isBigger(String fOld, String fNew) {
+        if (StringUtils.isNull(fOld) || StringUtils.isNull(fNew) || fNew.equals(fOld)) {
+            return 0;
+        } else if (Float.valueOf(fNew) > Float.valueOf(fOld)) {
+            return 1;
+        } else {
+            return -1;
+        }
     }
 
     public boolean isScoreBigger(String scoreOld, String scoreNew) {
