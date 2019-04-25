@@ -35,6 +35,33 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     public boolean isAwayBigger;
     public boolean isOverBigger;
     public boolean isUnderBigger;
+    public boolean isFt1Bigger;
+    public boolean isFt2Bigger;
+    public boolean isFtXBigger;
+
+    public boolean isFt1Bigger() {
+        return isFt1Bigger;
+    }
+
+    public void setFt1Bigger(boolean ft1Bigger) {
+        isFt1Bigger = ft1Bigger;
+    }
+
+    public boolean isFt2Bigger() {
+        return isFt2Bigger;
+    }
+
+    public void setFt2Bigger(boolean ft2Bigger) {
+        isFt2Bigger = ft2Bigger;
+    }
+
+    public boolean isFtXBigger() {
+        return isFtXBigger;
+    }
+
+    public void setFtXBigger(boolean ftXBigger) {
+        isFtXBigger = ftXBigger;
+    }
 
     public boolean isHomeBigger_FH;
     public boolean isAwayBigger_FH;
@@ -851,14 +878,17 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 break;
             case 30:
                 setX12_1Odds(s);
+//                setFt1Bigger(isScoreBigger(getX12_1Odds(), s));
                 setIsX12New("1");
                 break;
             case 31:
                 setX12_XOdds(s);
+//                setFt2Bigger(isScoreBigger(getX12_XOdds(), s));
                 setIsX12New("1");
                 break;
             case 32:
                 setX12_2Odds(s);
+//                setFtXBigger(isScoreBigger(getX12_2Odds(), s));
                 setIsX12New("1");
                 break;
             case 33:

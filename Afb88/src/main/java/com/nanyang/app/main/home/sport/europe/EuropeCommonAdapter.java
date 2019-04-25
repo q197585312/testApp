@@ -2,8 +2,10 @@ package com.nanyang.app.main.home.sport.europe;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
@@ -47,16 +49,56 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
         updateMixBackground(helper, item);
     }
 
+//    private void setUpDown(BallInfo item, ImageView imgUpDown, int type) {
+//        switch (type) {
+//            case 1:
+//                if (item.isFt1Bigger()) {
+//                    imgUpDown.setImageResource(R.mipmap.arrow_up_update_green);
+//                } else {
+//                    imgUpDown.setImageResource(R.mipmap.arrow_down_update_red);
+//                }
+//                imgUpDown.setVisibility(View.VISIBLE);
+//                item.setFt1Bigger(false);
+//                break;
+//            case 2:
+//                if (item.isFt2Bigger()) {
+//                    imgUpDown.setImageResource(R.mipmap.arrow_up_update_green);
+//                } else {
+//                    imgUpDown.setImageResource(R.mipmap.arrow_down_update_red);
+//                }
+//                imgUpDown.setVisibility(View.VISIBLE);
+//                item.setFt2Bigger(false);
+//                break;
+//            default:
+//                if (item.isFtXBigger()) {
+//                    imgUpDown.setImageResource(R.mipmap.arrow_up_update_green);
+//                } else {
+//                    imgUpDown.setImageResource(R.mipmap.arrow_down_update_red);
+//                }
+//                imgUpDown.setVisibility(View.VISIBLE);
+//                item.setFtXBigger(false);
+//                break;
+//        }
+//    }
+
     @Override
     public void handleOddsContent(MyRecyclerViewHolder helper, BallInfo item, int position) {
         TextView full1 = helper.getTextView(R.id.europe_1_full_time_odds_tv);
         TextView full2 = helper.getTextView(R.id.europe_2_full_time_odds_tv);
         TextView fullx = helper.getTextView(R.id.europe_x_full_time_odds_tv);
+        ImageView imgUpDownFt1 = helper.getImageView(R.id.img_up_down_ft_1);
+        ImageView imgUpDownFtX = helper.getImageView(R.id.img_up_down_ft_x);
+        ImageView imgUpDownFt2 = helper.getImageView(R.id.img_up_down_ft_2);
+        imgUpDownFt1.setVisibility(View.INVISIBLE);
+        imgUpDownFtX.setVisibility(View.INVISIBLE);
+        imgUpDownFt2.setVisibility(View.INVISIBLE);
         if (item.getHasX12().equals("1")) {
-
-            full1.setText(item.getX12_1Odds());
-            fullx.setText(item.getX12_XOdds());
-            full2.setText(item.getX12_2Odds());
+            full1.setText(AfbUtils.decimalValue(Float.parseFloat(item.getX12_1Odds()), "0.00"));
+            fullx.setText(AfbUtils.decimalValue(Float.parseFloat(item.getX12_XOdds()), "0.00"));
+            full2.setText(AfbUtils.decimalValue(Float.parseFloat(item.getX12_2Odds()), "0.00"));
+//            setUpDown(item, imgUpDownFt1, 1);
+//            setUpDown(item, imgUpDownFtX, 2);
+//            setUpDown(item, imgUpDownFt2, 3);
             full1.setOnClickListener(new ItemClick(back, position, item, item.getX12_1Odds(), "1", false));
             fullx.setOnClickListener(new ItemClick(back, position, item, item.getX12_XOdds(), "X", false));
             full2.setOnClickListener(new ItemClick(back, position, item, item.getX12_2Odds(), "2", false));
