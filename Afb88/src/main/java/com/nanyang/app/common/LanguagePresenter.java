@@ -92,10 +92,11 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                 .subscribe(new Consumer<Response>() {
                     @Override
                     public void accept(Response responseBodyResponse) throws Exception {
+                        baseContext.hideLoadingDialog();
                         okhttp3.Response response = responseBodyResponse.raw().priorResponse();
-                        Request request = response.request();
-                        String url = request.url().toString();
-                        if (!TextUtils.isEmpty(url) && url.contains("cklogin") && url.contains("txtRandCode")) {
+                        if (response != null) {
+                            Request request = response.request();
+                            String url = request.url().toString();
                             MainActivity mainActivity = (MainActivity) baseContext;
                             if (ApkUtils.isAvilible(mainActivity, "gaming178.com.baccaratgame")) {
                                 Intent intent = new Intent();
@@ -131,6 +132,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                     @Override
                     public void accept(Subscription subscription) throws Exception {
                         subscription.request(Long.MAX_VALUE);
+                        baseContext.showLoadingDialog();
                     }
                 });
         mCompositeSubscription.add(subscription);
