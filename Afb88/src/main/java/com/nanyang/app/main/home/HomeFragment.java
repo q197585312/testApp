@@ -144,8 +144,8 @@ public class HomeFragment extends BaseSwitchFragment {
             @Override
             public void onItemClick(View view, AllBannerImagesBean.MainBannersBean item, int position) {
                 if (item.getG().equals("Casino")) {
-//                    ((MainActivity) getBaseActivity()).presenter.skipGd88((MainActivity) getBaseActivity());
-                    ToastUtils.showShort(getString(R.string.coming_soon));
+                    ((MainActivity) getBaseActivity()).presenter.getSkipGd88Data();
+//                    ToastUtils.showShort(getString(R.string.coming_soon));
                     return;
                 }
                 SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());

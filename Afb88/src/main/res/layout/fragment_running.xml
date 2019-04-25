@@ -142,7 +142,8 @@
         android:paddingLeft="10dp"
         android:text="@string/Note"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:visibility="gone" />
 
     <TextView
         android:layout_width="match_parent"
@@ -151,5 +152,6 @@
         android:paddingLeft="10dp"
         android:text="请注意显示时间为GMT+8时区"
         android:textColor="@color/black"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:visibility="gone" />
 </LinearLayout>

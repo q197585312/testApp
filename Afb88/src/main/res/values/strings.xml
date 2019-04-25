@@ -90,10 +90,10 @@
     <string name="betting_amount">Bet Amount</string>
     <string name="max_bet">Max Bet:</string>
     <string name="min_bet">Min Bet:</string>
-    <string name="bet">Bet</string>
+    <string name="bet">BET</string>
     <string name="betting_terms">Betting terms:</string>
     <string name="delete">Delete</string>
-    <string name="cancel">Cancel</string>
+    <string name="cancel">CANCEL</string>
     <string name="football">Football</string>
     <string name="odds">Odds</string>
     <string name="input_bet_amount_please">Input bet amount please</string>
@@ -538,4 +538,7 @@
     <string name="normal">Normal</string>
     <string name="FT_HDP">FT.HDP</string>
     <string name="FT_OU">FT.OU</string>
+    <string name="Bet_Slip">Bet Slip</string>
+    <string name="Note_">Note:</string>
+    <string name="GMT_8">Please note that the displayed time is based on GMT +8 hours</string>
 </resources>

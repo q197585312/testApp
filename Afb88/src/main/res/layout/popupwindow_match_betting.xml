@@ -129,16 +129,16 @@
                 android:id="@+id/tv_currency"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_weight="1"
+                android:layout_weight="0.35"
                 android:background="@drawable/shape_bet_bg1"
                 android:gravity="center"
+                android:singleLine="true"
                 android:textColor="@color/black" />
 
             <EditText
                 android:id="@+id/bet_amount_edt"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:elevation="3dp"
@@ -153,8 +153,8 @@
                 android:id="@+id/bet_sure_btn"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="0.5"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="0.4"
                 android:background="@drawable/shape_bet_bg3"
                 android:gravity="center"
                 android:text="@string/bet"
@@ -164,8 +164,8 @@
                 android:id="@+id/bet_sure_cancel"
                 android:layout_width="0dp"
                 android:layout_height="30dp"
-                android:layout_marginLeft="5dp"
-                android:layout_weight="0.8"
+                android:layout_marginLeft="4dp"
+                android:layout_weight="0.6"
                 android:background="@drawable/shape_bet_bg4"
                 android:gravity="center"
                 android:text="@string/cancel"
@@ -296,7 +296,7 @@
                 android:id="@+id/bet_balance_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/green"
+                android:textColor="#FFA509"
                 android:textSize="12sp" />
         </LinearLayout>
     </LinearLayout>
