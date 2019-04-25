@@ -126,6 +126,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     @Override
     public void onResume() {
         super.onResume();
+        presenter.getStateHelper().setIsHide(false);
         if (!isFirstIn) {
             presenter.getStateHelper().refresh();
             updateMixOrderCount();
@@ -134,7 +135,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
         getBaseActivity().toolbar.setVisibility(View.GONE);
-        presenter.getStateHelper().setIsHide(false);
+
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
 
     }
