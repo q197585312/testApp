@@ -478,7 +478,7 @@
 
             <com.unkonw.testapp.training.ScrollLayout
                 android:id="@+id/module_center_sl"
-                android:layout_width="173dp"
+                android:layout_width="170dp"
                 android:layout_height="match_parent">
 
                 <include
