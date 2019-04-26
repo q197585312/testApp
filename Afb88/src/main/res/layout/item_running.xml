@@ -9,7 +9,6 @@
     android:paddingRight="5dp">
 
     <LinearLayout
-        android:visibility="gone"
         android:id="@+id/ll_running_hdp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -26,14 +25,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="OU000349084"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="14.5sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/running_TransDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(07/04 9:55:14 am)"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="14.5sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -48,57 +51,68 @@
                 android:layout_height="wrap_content"
                 android:text="LEAGUE OF LEGENDS - LEC SPRING"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:orientation="vertical">
+            android:layout_marginTop="1dp"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/running_Home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Fnatic"
-                android:textColor="@color/black" />
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:singleLine="true"
+                android:text="Fnatic jsdjfjsdfkjskdjfkjsdifsjdifjsidfjidsfsd"
+                android:textColor="@color/black"
+                android:textSize="14.5sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="-VS-"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="14.5sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/running_Away"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Team Vitality"
-                android:textColor="@color/black" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/running_BetType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="R!OT [地图二]"
+                android:ellipsize="end"
+                android:maxEms="10"
+                android:singleLine="true"
+                android:text="Team Vitality sdjfkljwkejkjsdkfjksldjfklsjdkf"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="1dp"
             android:orientation="horizontal"
             android:paddingBottom="10dp">
+
+            <TextView
+                android:id="@+id/running_BetType"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxEms="6"
+                android:singleLine="true"
+                android:text="R!OT [地图二]sdfsdfsdfsdf"
+                android:textColor="@color/black"
+                android:textSize="14.5sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/running_FullTimeId"
@@ -106,6 +120,7 @@
                 android:layout_height="wrap_content"
                 android:text="(FT)"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -114,6 +129,7 @@
                 android:layout_height="wrap_content"
                 android:text="0-0"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -122,6 +138,7 @@
                 android:layout_height="wrap_content"
                 android:text="(HDP -2.5)"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -130,6 +147,7 @@
                 android:layout_height="wrap_content"
                 android:text="\@0.97"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -138,6 +156,7 @@
                 android:layout_height="wrap_content"
                 android:text="(HK)"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -145,8 +164,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/yellow_button"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 android:text="W"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -155,6 +177,7 @@
                 android:layout_height="wrap_content"
                 android:text="/"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -162,8 +185,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/green_black"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 android:text="A"
                 android:textColor="@color/white"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -174,6 +200,7 @@
                 android:gravity="right"
                 android:text="100"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
@@ -200,16 +227,25 @@
                 android:textColor="@color/grey_dark" />
 
             <TextView
-                android:id="@+id/running_par_Odds1"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="20dp"
-                android:layout_weight="1"
                 android:gravity="right"
                 android:paddingRight="10dp"
                 android:paddingTop="5dp"
-                android:text="Est./Payout:333.10"
+                android:text="Est./Payout:"
                 android:textColor="@color/grey_dark" />
+
+            <TextView
+                android:id="@+id/running_par_Odds1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:gravity="left"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp"
+                android:text="333.10"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -226,7 +262,7 @@
                 android:paddingLeft="5dp"
                 android:paddingTop="5dp"
                 android:text="Odds:3.331"
-                android:textColor="@color/grey_dark" />
+                android:textColor="@color/green_thick_line" />
 
             <TextView
                 android:id="@+id/running_par_CombInfo"
@@ -253,24 +289,24 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="5dp"
             android:orientation="vertical"
-            android:visibility="gone"
-            >
+            android:visibility="gone">
+
             <TextView
                 android:id="@+id/par_id"
-                android:text=""
-                android:visibility="gone"
-                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:text=""
+                android:textColor="@color/black"
+                android:visibility="gone" />
+
             <TextView
                 android:id="@+id/par_type"
-                android:text=""
-                android:visibility="gone"
-                android:textColor="@color/black"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                />
+                android:text=""
+                android:textColor="@color/black"
+                android:visibility="gone" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -291,9 +327,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/keno_line"
-                android:paddingTop="3dp"
-                android:paddingBottom="3dp"
                 android:gravity="center"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
                 android:text="打开详细列表" />
         </LinearLayout>
 
@@ -311,6 +347,7 @@
                 android:layout_height="wrap_content">
 
             </android.support.v7.widget.RecyclerView>
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
@@ -332,22 +369,35 @@
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:paddingBottom="5dp"
+                android:layout_weight="2"
+                android:paddingBottom="8dp"
                 android:paddingLeft="5dp"
-                android:paddingTop="5dp"
+                android:paddingTop="8dp"
                 android:text="@string/PARLAY"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/running_Amt_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="8dp"
+                android:paddingTop="8dp"
+                android:text="ATM:"
                 android:textColor="@color/grey_dark" />
 
             <TextView
                 android:id="@+id/running_par_Amt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
-                android:text="ATM:100"
-                android:textColor="@color/grey_dark" />
+                android:text="100"
+                android:textColor="@color/black"
+                android:textStyle="bold" />
             />
         </LinearLayout>
 
@@ -360,9 +410,11 @@
                 android:id="@+id/running_par_DangerStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/green_black"
                 android:layout_gravity="center"
+                android:background="@color/green_black"
                 android:gravity="center"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 android:text="A"
                 android:textColor="@color/white"
                 android:textStyle="bold" />
