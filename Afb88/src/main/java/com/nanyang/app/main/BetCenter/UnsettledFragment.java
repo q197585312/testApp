@@ -264,6 +264,13 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     }
                     running_OldStatus.setText(item.getOldStatus22());
                     TextView running_Status = holder.getTextView(R.id.running_Status);
+                    if(item.getDangerStatus8().equals("A")){
+                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_black));
+                    }else if(item.getDangerStatus8().equals("W")){
+                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
+                    }else{
+                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.red));
+                    }
                     running_Status.setText(item.getDangerStatus8());
                     TextView running_Amt = holder.getTextView(R.id.running_Amt);
                     running_Amt.setText(item.getAmt9());

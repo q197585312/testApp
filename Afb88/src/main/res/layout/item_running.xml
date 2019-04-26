@@ -24,19 +24,19 @@
                 android:id="@+id/running_RefNo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="14.5sp"
                 android:text="OU000349084"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="14.5sp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/running_TransDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:textSize="14.5sp"
                 android:text="(07/04 9:55:14 am)"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="14.5sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
         <LinearLayout
@@ -49,9 +49,9 @@
                 android:id="@+id/running_ModuleTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="14.5sp"
                 android:text="LEAGUE OF LEGENDS - LEC SPRING"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -62,94 +62,101 @@
             android:orientation="horizontal">
 
             <TextView
-                android:textStyle="bold"
                 android:id="@+id/running_Home"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:maxEms="10"
                 android:singleLine="true"
-                android:ellipsize="end"
-                android:textSize="14.5sp"
                 android:text="Fnatic jsdjfjsdfkjskdjfkjsdifsjdifjsidfjidsfsd"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="14.5sp"
+                android:textStyle="bold" />
+
             <TextView
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="-VS-"
+                android:textColor="@color/black"
                 android:textSize="14.5sp"
-                android:textStyle="bold"
-                android:textColor="@color/black" />
+                android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/running_Away"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:maxEms="10"
                 android:singleLine="true"
-                android:ellipsize="end"
-                android:textStyle="bold"
-                android:textSize="14.5sp"
-                android:layout_height="wrap_content"
                 android:text="Team Vitality sdjfkljwkejkjsdkfjksldjfklsjdkf"
-                android:textColor="@color/black" />
+                android:textColor="@color/black"
+                android:textSize="14.5sp"
+                android:textStyle="bold" />
         </LinearLayout>
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:orientation="horizontal"
             android:paddingBottom="10dp">
+
             <TextView
                 android:id="@+id/running_BetType"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:maxEms="6"
                 android:singleLine="true"
-                android:ellipsize="end"
-                android:textSize="14.5sp"
                 android:text="R!OT [地图二]sdfsdfsdfsdf"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/running_FullTimeId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="(FT)"
-                android:textSize="14.5sp"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/running_Score"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14.5sp"
                 android:text="0-0"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
+
             <TextView
                 android:id="@+id/running_BetType2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14.5sp"
                 android:text="(HDP -2.5)"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/running_Odds"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14.5sp"
                 android:text="\@0.97"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/running_OddsType"
                 android:layout_width="wrap_content"
-                android:textSize="14.5sp"
                 android:layout_height="wrap_content"
                 android:text="(HK)"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -157,32 +164,32 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/yellow_button"
-                android:textSize="14.5sp"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="W"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/running_split"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="14.5sp"
                 android:text="/"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/running_Status"
                 android:layout_width="wrap_content"
-                android:textSize="14.5sp"
                 android:layout_height="wrap_content"
                 android:background="@color/green_black"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="A"
                 android:textColor="@color/white"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -190,10 +197,10 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:textSize="14.5sp"
                 android:gravity="right"
                 android:text="100"
                 android:textColor="@color/black"
+                android:textSize="14.5sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
