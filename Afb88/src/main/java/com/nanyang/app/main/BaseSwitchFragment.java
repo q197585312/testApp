@@ -31,10 +31,10 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
     }
 
 
-    public String switchType = "";
+    public String switchTypeIndex = "";
 
-    public void setSwitchType(String switchType) {
-        this.switchType = switchType;
+    public void setSwitchTypeIndex(String switchType) {
+        this.switchTypeIndex = switchType;
     }
 
     public void showContent() {

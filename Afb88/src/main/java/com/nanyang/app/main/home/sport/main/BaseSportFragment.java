@@ -119,6 +119,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         } else {// 重新显示到最前端中
             rememberLastOdds();
             presenter.getStateHelper().setIsHide(false);
+            String type = ((SportActivity) getActivity()).getType();
+            switchType(type);
+//            presenter.getStateHelper().refresh();
         }
         Log.d(TAG, "onHiddenChanged: " + hidden + "," + getClass().getSimpleName());
     }

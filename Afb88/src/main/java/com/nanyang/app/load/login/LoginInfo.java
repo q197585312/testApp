@@ -329,4 +329,86 @@ public class LoginInfo {
         }
     }
 
+
+    public static class AllRunningWfBean {
+
+        /**
+         {"ACT":"LOS","DBID":"36","ot":"r","tf":"-1","timess":"","accType":"EU","pgLable":"0.5393305075227944","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
+         */
+
+        private String ACT = "LOS";
+        private String DBID="1";
+        private String ot;
+        private int tf = -1;
+        private String timess = "";
+        private String accType;
+        private String PT = "wfMainH50";
+
+        public AllRunningWfBean(String ot, String DBID, String accType) {
+            this.ot = ot;
+            if (!StringUtils.isNull(DBID))
+                this.DBID = DBID;
+            this.accType = accType;
+        }
+
+        public String toJson() {
+            return new Gson().toJson(this);
+        }
+
+        public String getACT() {
+            return ACT;
+        }
+
+        public void setACT(String ACT) {
+            this.ACT = ACT;
+        }
+
+        public String getDBID() {
+            return DBID;
+        }
+
+        public void setDBID(String DBID) {
+            this.DBID = DBID;
+        }
+
+        public String getOt() {
+            return ot;
+        }
+
+        public void setOt(String ot) {
+            this.ot = ot;
+        }
+
+        public int getTf() {
+            return tf;
+        }
+
+        public void setTf(int tf) {
+            this.tf = tf;
+        }
+
+        public String getTimess() {
+            return timess;
+        }
+
+        public void setTimess(String timess) {
+            this.timess = timess;
+        }
+
+        public String getAccType() {
+            return accType;
+        }
+
+        public void setAccType(String accType) {
+            this.accType = accType;
+        }
+
+        public String getPT() {
+            return PT;
+        }
+
+        public void setPT(String PT) {
+            this.PT = PT;
+        }
+    }
 }
