@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,6 +42,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
+import com.nanyang.app.Utils.MyGoHomeBroadcastReceiver;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.IGetRefreshMenu;
 import com.nanyang.app.common.ILanguageView;
@@ -167,7 +169,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private HashMap<String, BaseSportFragment> mapFragment;
     public BaseSportFragment currentFragment;
     private Handler handler = new Handler();
-
+    MyGoHomeBroadcastReceiver myGoHomeBroadcastReceiver;
     public String wd = "";
 
     @Override
@@ -213,6 +215,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
             }
         });
+        myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
+        registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
 
@@ -278,6 +282,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             webSocket.close();
         BetGoalWindowUtils.clear();
         stopRefreshMenu();
+        unregisterReceiver(myGoHomeBroadcastReceiver);
     }
 
     private void initFragment(String parentType) {
@@ -484,13 +489,22 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         b.putString(AppConstant.KEY_STRING, getString(R.string.stake));
 //        skipAct(PersonCenterActivity.class, b);
     }
+
     @Override
     protected void onResume() {
         super.onResume();
         currentFragment.getPresenter().getStateHelper().refresh();
-        Log.d("shangpeisheng", "SportActivity: onResume");
-        Log.d("shangpeisheng", "SportActivity--isRunForeground: " + AfbUtils.isRunForeground(getApplicationContext()));
-        Log.d("shangpeisheng", "SportActivity--isRunBackground: " + AfbUtils.isRunBackground(getApplicationContext()));
+        Log.d("shangpeisheng", "isGoHome: " + getApp().isGoHome());
+        if (getApp().isGoHome()) {
+            getApp().setGoHome(false);
+            Log.d("shangpeisheng", "isGoHome: " + getApp().isGoHome());
+            presenter.login(new LoginInfo(getApp().getUser().getLoginName(), getApp().getUser().getPassword()), new BaseConsumer<String>(this) {
+                @Override
+                protected void onBaseGetData(String data) {
+                    onLanguageSwitchSucceed(data);
+                }
+            });
+        }
     }
 
     public void clickSportSelect(final View view) {
