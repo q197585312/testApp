@@ -306,26 +306,26 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             getApp().setBetParList(null);
             finish();
         } else if (result.startsWith("PARCHG")) {
-            ToastUtils.showShort(getString(R.string.another_login));
-            new Handler().postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                    startActivity(intent);
-                }
-            }, 1000);
-//            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, rvContent) {
+//            ToastUtils.showShort(getString(R.string.another_login));
+//            new Handler().postDelayed(new Runnable() {
 //                @Override
-//                protected void clickSure(View v) {
-//                    helper.getRefreshOdds(getApp().getRefreshOddsUrl());
-//
+//                public void run() {
+//                    Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                    startActivity(intent);
 //                }
-//            };
-//            pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-//            pop.getChooseMessage().setText(result + " " + getString(R.string.do_you_bet_again));
-//            pop.getChooseSureTv().setText(getString(R.string.sure));
-//            pop.getChooseCancelTv().setText(getString(R.string.cancel));
-//            pop.showPopupCenterWindow();
+//            }, 1000);
+            BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, rvContent) {
+                @Override
+                protected void clickSure(View v) {
+                    helper.getRefreshOdds(getApp().getRefreshOddsUrl());
+
+                }
+            };
+            pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+            pop.getChooseMessage().setText(result + " " + getString(R.string.do_you_bet_again));
+            pop.getChooseSureTv().setText(getString(R.string.sure));
+            pop.getChooseCancelTv().setText(getString(R.string.cancel));
+            pop.showPopupCenterWindow();
         } else {
             Toast.makeText(mContext, result, Toast.LENGTH_SHORT).show();
         }

@@ -484,11 +484,13 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         b.putString(AppConstant.KEY_STRING, getString(R.string.stake));
 //        skipAct(PersonCenterActivity.class, b);
     }
-
     @Override
     protected void onResume() {
         super.onResume();
         currentFragment.getPresenter().getStateHelper().refresh();
+        Log.d("shangpeisheng", "SportActivity: onResume");
+        Log.d("shangpeisheng", "SportActivity--isRunForeground: " + AfbUtils.isRunForeground(getApplicationContext()));
+        Log.d("shangpeisheng", "SportActivity--isRunBackground: " + AfbUtils.isRunBackground(getApplicationContext()));
     }
 
     public void clickSportSelect(final View view) {

@@ -3,6 +3,7 @@ package com.nanyang.app.main;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -72,7 +73,6 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
     private BaseSwitchFragment homeFragment = new HomeFragment();
 
 
-
     @Override
     protected void updateBalanceTv(String allData) {
         tvToolbarRight.setText(getString(R.string.welcome) + " " + getApp().getUser().getLoginName());
@@ -85,6 +85,9 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
     @Override
     protected void onResume() {
         super.onResume();
+        Log.d("shangpeisheng", "MainActivity: onResume");
+        Log.d("shangpeisheng", "MainActivity--isRunForeground: " + AfbUtils.isRunForeground(getApplicationContext()));
+        Log.d("shangpeisheng", "MainActivity--isRunBackground: " + AfbUtils.isRunBackground(getApplicationContext()));
         presenter.oddsType();
         String language = new LanguageHelper(mContext).getLanguage();
         presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"), new LanguagePresenter.CallBack<String>() {
