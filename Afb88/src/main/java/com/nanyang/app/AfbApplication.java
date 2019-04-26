@@ -23,6 +23,15 @@ public class AfbApplication extends BaseApplication {
 
 
     private AfbClickResponseBean betAfbList;
+    private boolean isGoHome = false;
+
+    public boolean isGoHome() {
+        return isGoHome;
+    }
+
+    public void setGoHome(boolean goHome) {
+        isGoHome = goHome;
+    }
 
     public List<AllBannerImagesBean.MainBannersBean> getListMainPictures() {
         return listMainPictures;

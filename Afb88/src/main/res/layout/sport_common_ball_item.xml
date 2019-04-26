@@ -20,7 +20,7 @@
         android:background="@color/grey_background"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="10dp">
+        android:padding="8dp">
 
         <TextView
             android:id="@+id/module_League_collection_tv"
@@ -58,7 +58,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:orientation="horizontal"
-            android:padding="3dp">
+            android:padding="2dp">
 
             <TextView
                 android:id="@+id/module_match_collection_tv"
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="2dp"
+                android:layout_marginLeft="3dp"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textSize="12.5sp"
@@ -87,7 +87,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="2dp"
+                android:layout_marginLeft="3dp"
                 android:gravity="center"
                 android:maxLines="1"
                 android:textColor="@color/grey_thick_line"
@@ -100,7 +100,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="2dp"
+                android:layout_marginLeft="3dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:maxLines="1"
@@ -112,11 +112,11 @@
                 android:id="@+id/module_right_mark_tv"
                 android:layout_width="32dp"
                 android:layout_height="19dp"
-                android:layout_marginRight="2dp"
-                android:paddingLeft="1dp"
+                android:layout_marginRight="3dp"
                 android:background="@drawable/match_btn_shadow_bottom"
                 android:drawableLeft="@mipmap/crude_add_green"
                 android:gravity="center_vertical"
+                android:paddingLeft="1dp"
                 android:text="155"
                 android:textColor="@color/black_grey"
                 android:textSize="11.5sp"
@@ -132,7 +132,7 @@
 
             <TextView
                 android:id="@+id/hdp_title_tv"
-                android:layout_width="80dp"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -144,7 +144,7 @@
 
             <TextView
                 android:id="@+id/ou_title_tv"
-                android:layout_width="80dp"
+                android:layout_width="75dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="center"
@@ -366,11 +366,11 @@
             <LinearLayout
                 android:id="@+id/module_match_left2_ll"
                 android:layout_width="0dp"
-                android:layout_height="70dp"
+                android:layout_height="72dp"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:orientation="vertical"
-                android:paddingLeft="5dp">
+                android:paddingLeft="4dp">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -388,7 +388,7 @@
                         android:paddingLeft="1dp"
                         android:paddingRight="1dp"
                         android:textColor="@color/black"
-                        android:textSize="13sp"
+                        android:textSize="13.5sp"
                         android:textStyle="bold"
                         android:visibility="visible" />
 
@@ -401,9 +401,10 @@
                         android:drawablePadding="5dp"
                         android:gravity="left"
                         android:maxLines="1"
+                        android:singleLine="true"
                         android:text="zheshiyigeceshi mingz "
                         android:textColor="@color/black_grey"
-                        android:textSize="13sp" />
+                        android:textSize="13.5sp" />
 
                     <TextView
                         android:id="@+id/module_match_home_red_card_tv"
@@ -415,7 +416,7 @@
                         android:paddingLeft="1dp"
                         android:paddingRight="1dp"
                         android:textColor="@color/white"
-                        android:textSize="11sp"
+                        android:textSize="11.5sp"
                         android:textStyle="bold"
                         android:visibility="gone" />
                 </LinearLayout>
@@ -439,7 +440,7 @@
                         android:paddingLeft="1dp"
                         android:paddingRight="1dp"
                         android:textColor="@color/black"
-                        android:textSize="13sp"
+                        android:textSize="13.5sp"
                         android:textStyle="bold"
                         android:visibility="visible" />
 
@@ -453,9 +454,10 @@
                         android:drawablePadding="5dp"
                         android:gravity="left"
                         android:maxLines="1"
+                        android:singleLine="true"
                         android:text="zheshiyigeceshi mingz "
                         android:textColor="@color/black_grey"
-                        android:textSize="13sp" />
+                        android:textSize="13.5sp" />
 
                     <TextView
                         android:id="@+id/module_match_away_red_card_tv"
@@ -467,7 +469,7 @@
                         android:paddingLeft="1dp"
                         android:paddingRight="1dp"
                         android:textColor="@color/white"
-                        android:textSize="11sp"
+                        android:textSize="11.5sp"
                         android:textStyle="bold"
                         android:visibility="visible" />
                 </LinearLayout>
@@ -476,7 +478,7 @@
 
             <com.unkonw.testapp.training.ScrollLayout
                 android:id="@+id/module_center_sl"
-                android:layout_width="185dp"
+                android:layout_width="170dp"
                 android:layout_height="match_parent">
 
                 <include

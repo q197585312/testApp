@@ -1,6 +1,7 @@
 package com.nanyang.app;
 
 import android.app.Activity;
+import android.app.ActivityManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -680,6 +681,56 @@ public class AfbUtils {
         }
     }
 
+    public static String getLangWeek(Context context, int day) {
+        String language = getLanguage(context);
+        switch (day) {
+            case 1:
+                if (language.equals("zh")) {
+                    return "一.";
+                } else {
+                    return "Mon.";
+                }
+            case 2:
+                if (language.equals("zh")) {
+                    return "二.";
+                } else {
+                    return "Tues.";
+                }
+            case 3:
+                if (language.equals("zh")) {
+                    return "三.";
+                } else {
+                    return "Wed.";
+                }
+            case 4:
+                if (language.equals("zh")) {
+                    return "四.";
+                } else {
+                    return "Thur.";
+                }
+            case 5:
+                if (language.equals("zh")) {
+                    return "五.";
+                } else {
+                    return "Fri.";
+                }
+            case 6:
+                if (language.equals("zh")) {
+                    return "六.";
+                } else {
+                    return "Sat.";
+                }
+            case 7:
+                if (language.equals("zh")) {
+                    return "七.";
+                } else {
+                    return "Sun.";
+                }
+            default:
+                return day + ".";
+        }
+    }
+
     public static String getLangMonth(Context context, String month) {
         String language = getLanguage(context);
         if (month.startsWith("0")) {
@@ -726,4 +777,43 @@ public class AfbUtils {
         view.setLayoutParams(linearParams);
     }
 
+    /**
+     * 判断程序是否在前台运行（当前运行的程序）
+     */
+    public static boolean isRunForeground(Context context) {
+        ActivityManager activityManager = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+        String packageName = context.getPackageName();
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager
+                .getRunningAppProcesses();
+        if (appProcesses == null)
+            return false;
+        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+            if (appProcess.processName.equals(packageName)
+                    && appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_FOREGROUND) {
+                return true;// 程序运行在前台
+            }
+        }
+        return false;
+    }
+
+    /**
+     * 判断程序是否在后台运行
+     */
+    public static boolean isRunBackground(Context context) {
+        ActivityManager activityManager = (ActivityManager) context
+                .getSystemService(Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningAppProcessInfo> appProcesses = activityManager
+                .getRunningAppProcesses();
+        for (ActivityManager.RunningAppProcessInfo appProcess : appProcesses) {
+            if (appProcess.processName.equals(context.getPackageName())) {
+                if (appProcess.importance == ActivityManager.RunningAppProcessInfo.IMPORTANCE_BACKGROUND) {
+                    // 表明程序在后台运行
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
+    }
 }

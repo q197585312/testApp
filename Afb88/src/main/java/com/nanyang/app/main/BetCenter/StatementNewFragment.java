@@ -80,8 +80,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvWinLose = view.findViewById(R.id.tv_WinLose);
             TextView tvSettled = view.findViewById(R.id.tv_settled);
             final LinearLayout llAddView = view.findViewById(R.id.ll_addView);
+            int chinaWeekDay = DateUtils.getChinaWeek(DateUtils.format(bean.getIndex1(), "yyyy-MM-dd"));
             String date = DateUtils.format(bean.getIndex1(), "yyyy-MM-dd", "dd/MM/yyyy") + " " +
-                    DateUtils.getChinaWeek(DateUtils.format(bean.getIndex1(), "yyyy-MM-dd"));
+                    AfbUtils.getLangWeek(mContext, chinaWeekDay);
             if (bean.getIndex0().equals("1")) {
                 date = getString(R.string.Lastweeksummary);
                 view.setTag(1);//1是上周数据 2是本周正常数据
@@ -147,8 +148,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             final LinearLayout llAddView = view.findViewById(R.id.ll_addView);
             String date = bean.getIndex1();
             final String[] dateTrue = date.split(" ");
+            int chinaWeekDay = DateUtils.getChinaWeek(DateUtils.format(bean.getIndex1(), "yyyy-MM-dd"));
             String dateStr = DateUtils.format(dateTrue[0], "yyyy-MM-dd", "dd/MM/yyyy") + " " +
-                    DateUtils.getChinaWeek(DateUtils.format(bean.getIndex1(), "yyyy-MM-dd"));
+                    AfbUtils.getLangWeek(mContext, chinaWeekDay);
             if (bean.getIndex0().equals("1")) {
                 dateStr = getString(R.string.Lastweeksummary);
             }
@@ -212,7 +214,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 tvType.setText(bean.getIndex17());
                 tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex9());
                 String winLose = bean.getIndex10();
-                tvWl.setText(winLose);
+                tvWl.setText(" " + winLose);
                 if (winLose.startsWith("-")) {
                     tvWl.setTextColor(Color.RED);
                 } else {
@@ -289,11 +291,11 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvOdds.setTextColor(ContextCompat.getColor(mContext, R.color.black));
                     tvMatchAt3.setTextColor(ContextCompat.getColor(mContext, R.color.black));
                 }
-                tvOdds.setText(odds);
+                tvOdds.setText(" " + odds);
                 tvHandicap.setText("(" + bean.getIndex16() + ")");
                 tvCom.setText(getString(R.string.Com) + " " + bean.getIndex18());
                 String winLose = bean.getIndex10();
-                tvWl.setText(winLose);
+                tvWl.setText(" " + winLose);
                 if (winLose.startsWith("-")) {
                     tvWl.setTextColor(Color.RED);
                 } else {

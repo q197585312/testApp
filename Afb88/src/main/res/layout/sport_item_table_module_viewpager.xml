@@ -21,17 +21,18 @@
             android:layout_weight="1"
             android:padding="1.5dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/ll_leave_1_left"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/match_odds_content_bg"
-                android:gravity="center">
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:id="@+id/img_up_down_up1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="1.5dp"
                     android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
@@ -39,25 +40,28 @@
 
                 <TextView
                     android:id="@+id/viewpager_match_home_hdp_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_toRightOf="@+id/img_up_down_up1"
+                    android:background="@null"
                     android:gravity="center_vertical"
                     android:maxLines="1"
                     android:paddingLeft="1.5dp"
                     android:textColor="@color/green_dark"
-                    android:textSize="13sp" />
+                    android:textSize="13.5sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_home_hdpodds_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="4dp"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
                     android:maxLines="1"
                     android:textColor="@color/black_grey"
-                    android:textSize="13sp" />
-            </LinearLayout>
+                    android:textSize="13.5sp" />
+            </RelativeLayout>
         </FrameLayout>
 
         <FrameLayout
@@ -67,17 +71,18 @@
             android:layout_weight="1"
             android:padding="1.5dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/ll_leave_1_right"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/match_odds_content_bg"
-                android:gravity="center">
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:id="@+id/img_up_down_up2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="1.5dp"
                     android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
@@ -85,25 +90,28 @@
 
                 <TextView
                     android:id="@+id/viewpager_match_ou_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_toRightOf="@+id/img_up_down_up2"
+                    android:background="@null"
                     android:gravity="center_vertical"
                     android:maxLines="1"
                     android:paddingLeft="1.5dp"
                     android:textColor="#616161"
-                    android:textSize="13sp" />
+                    android:textSize="13.5sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_overodds_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="4dp"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
                     android:maxLines="1"
                     android:textColor="@color/black_grey"
-                    android:textSize="13sp" />
-            </LinearLayout>
+                    android:textSize="13.5sp" />
+            </RelativeLayout>
         </FrameLayout>
 
         <TextView
@@ -116,7 +124,7 @@
             android:paddingRight="2dp"
             android:text="@string/ODD"
             android:textColor="@color/green_dark"
-            android:textSize="13sp"
+            android:textSize="13.5sp"
             android:visibility="gone" />
 
         <TextView
@@ -128,7 +136,7 @@
             android:maxLines="1"
             android:paddingRight="2dp"
             android:textColor="@color/black_grey"
-            android:textSize="13sp"
+            android:textSize="13.5sp"
             android:textStyle="bold"
             android:visibility="gone" />
     </LinearLayout>
@@ -145,16 +153,17 @@
             android:layout_weight="1"
             android:padding="1.5dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/match_odds_content_bg"
-                android:gravity="center">
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:id="@+id/img_up_down_down1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="1.5dp"
                     android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
@@ -162,25 +171,28 @@
 
                 <TextView
                     android:id="@+id/viewpager_match_visit_hdp_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_toRightOf="@+id/img_up_down_down1"
+                    android:background="@null"
                     android:gravity="center_vertical"
                     android:maxLines="1"
                     android:paddingLeft="1.5dp"
                     android:textColor="@color/green_dark"
-                    android:textSize="13sp" />
+                    android:textSize="13.5sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_visit_hdpodds_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="4dp"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
                     android:maxLines="1"
                     android:textColor="@color/black_grey"
-                    android:textSize="13sp" />
-            </LinearLayout>
+                    android:textSize="13.5sp" />
+            </RelativeLayout>
         </FrameLayout>
 
         <FrameLayout
@@ -189,16 +201,17 @@
             android:layout_weight="1"
             android:padding="1.5dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/match_odds_content_bg"
-                android:gravity="center">
+                android:gravity="center_vertical">
 
                 <ImageView
                     android:id="@+id/img_up_down_down2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:layout_marginLeft="1.5dp"
                     android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
@@ -206,25 +219,28 @@
 
                 <TextView
                     android:id="@+id/viewpager_match_ou2_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_toRightOf="@+id/img_up_down_down2"
+                    android:background="@null"
                     android:gravity="center_vertical"
                     android:maxLines="1"
                     android:paddingLeft="1.5dp"
                     android:textColor="#616161"
-                    android:textSize="13sp" />
+                    android:textSize="13.5sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_underodds_tv"
-                    android:layout_width="0dp"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="4dp"
+                    android:background="@null"
+                    android:gravity="center_vertical|right"
                     android:maxLines="1"
                     android:textColor="@color/black_grey"
-                    android:textSize="13sp" />
-            </LinearLayout>
+                    android:textSize="13.5sp" />
+            </RelativeLayout>
         </FrameLayout>
 
         <TextView
@@ -237,7 +253,7 @@
             android:paddingRight="2dp"
             android:text="@string/EVEN"
             android:textColor="@color/green_dark"
-            android:textSize="13sp"
+            android:textSize="13.5sp"
             android:visibility="gone" />
 
         <TextView
@@ -249,7 +265,7 @@
             android:maxLines="1"
             android:paddingRight="2dp"
             android:textColor="@color/black_grey"
-            android:textSize="13sp"
+            android:textSize="13.5sp"
             android:textStyle="bold"
             android:visibility="gone" />
     </LinearLayout>

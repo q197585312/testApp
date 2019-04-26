@@ -278,40 +278,40 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
 
     public void reLoginPrompt(String msg, final SportContract.CallBack callBack) {
-        ToastUtils.showShort(getString(R.string.another_login));
-        updateHandler.postDelayed(new Runnable() {
+//        ToastUtils.showShort(getString(R.string.another_login));
+//        updateHandler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+//                startActivity(intent);
+//            }
+//        }, 1000);
+        BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
             @Override
-            public void run() {
-                Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent);
+            protected void clickSure(View v) {
+                if (AppConstant.IS_AGENT) {
+                    finish();
+                } else {
+                    Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                }
             }
-        }, 1000);
-//        BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(mContext, new View(mContext)) {
-//            @Override
-//            protected void clickSure(View v) {
-//                if (AppConstant.IS_AGENT) {
-//                    finish();
-//                } else {
-//                    Intent intent = new Intent(mContext, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-//                    startActivity(intent);
-//                }
-//            }
-//
-//            @Override
-//            protected void clickCancel(View v) {
-//                super.clickCancel(v);
-//                if (callBack != null) {
-//                    callBack.clickCancel(v);
-//                }
-//            }
-//        };
-//        pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
-//        if (msg.isEmpty())
-//            msg = getString(R.string.another_login);
-//        pop.getChooseMessage().setText(msg);
-//        pop.getChooseSureTv().setText(getString(R.string.sure));
-//        pop.getChooseCancelTv().setText(getString(R.string.cancel));
-//        onPopupWindowCreated(pop, Gravity.CENTER);
+
+            @Override
+            protected void clickCancel(View v) {
+                super.clickCancel(v);
+                if (callBack != null) {
+                    callBack.clickCancel(v);
+                }
+            }
+        };
+        pop.getChooseTitleTv().setText(getString(R.string.confirm_or_not));
+        if (msg.isEmpty())
+            msg = getString(R.string.another_login);
+        pop.getChooseMessage().setText(msg);
+        pop.getChooseSureTv().setText(getString(R.string.sure));
+        pop.getChooseCancelTv().setText(getString(R.string.cancel));
+        onPopupWindowCreated(pop, Gravity.CENTER);
     }
 
     protected void gameMenus(View v) {

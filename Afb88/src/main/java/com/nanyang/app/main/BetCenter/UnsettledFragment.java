@@ -29,6 +29,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.w3c.dom.Text;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,11 +126,14 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_par_IdAndTransDate.setText("ID[" + item.getRefNo12() + "]" + item.getTransDate0());
                     running_par_DangerStatus.setText(item.getDangerStatus8());
                     String odds = item.getOdds3();
-                    double fodds = Double.parseDouble(odds) * 100;
-                    running_par_Odds1.setText("Est./Payout:" + fodds);
+                    BigDecimal bd = new BigDecimal(odds);
+                    bd = bd.multiply(new BigDecimal("100"));
+                    running_par_Odds1.setText(bd.setScale(2).toString());
                     running_par_Odds2.setText(getString(R.string.Odds) + ":" + odds);
                     running_par_CombInfo.setText(item.getCombInfo16());
-                    running_par_Amt.setText(getString(R.string.Amt) + ":" + item.getAmt9());
+                    TextView running_Amt_text = holder.getTextView(R.id.running_Amt_text);
+                    running_Amt_text.setText(getString(R.string.Amt) + ":");
+                    running_par_Amt.setText(item.getAmt9());
                     par_id.setText(item.getSocTransId17());
                     par_type.setText(item.getBetType18());
                     TextView open_detail_list = holder.getTextView(R.id.open_detail_list);
@@ -252,12 +256,21 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_OldStatus = holder.getTextView(R.id.running_OldStatus);
                     TextView running_split = holder.getTextView(R.id.running_split);
                     if (TextUtils.isEmpty(item.getOldStatus22())) {
+                        running_OldStatus.setVisibility(View.GONE);
                         running_split.setVisibility(View.INVISIBLE);
                     } else {
+                        running_OldStatus.setVisibility(View.VISIBLE);
                         running_split.setVisibility(View.VISIBLE);
                     }
                     running_OldStatus.setText(item.getOldStatus22());
                     TextView running_Status = holder.getTextView(R.id.running_Status);
+                    if(item.getDangerStatus8().equals("A")){
+                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_black));
+                    }else if(item.getDangerStatus8().equals("W")){
+                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
+                    }else{
+                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.red));
+                    }
                     running_Status.setText(item.getDangerStatus8());
                     TextView running_Amt = holder.getTextView(R.id.running_Amt);
                     running_Amt.setText(item.getAmt9());
@@ -266,7 +279,6 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         };
         rv.setAdapter(adapter);
     }
-
 
     @Override
     public void initView() {

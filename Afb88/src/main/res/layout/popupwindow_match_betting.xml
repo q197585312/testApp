@@ -50,6 +50,33 @@
         android:orientation="vertical"
         android:padding="8dp">
 
+        <LinearLayout
+            android:id="@+id/ll_bet_failed_hint"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:background="#FEE4E5"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_bet_failed_hint"
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="1"
+                android:gravity="center_vertical"
+                android:textColor="@color/black"
+                android:textSize="13sp"></TextView>
+
+            <ImageView
+                android:id="@+id/img_failed"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@mipmap/right_exit_back" />
+        </LinearLayout>
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rc_bet_content"
             android:layout_width="match_parent"

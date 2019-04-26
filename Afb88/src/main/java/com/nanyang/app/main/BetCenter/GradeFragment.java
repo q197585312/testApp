@@ -3,6 +3,7 @@ package com.nanyang.app.main.BetCenter;
 import android.support.annotation.IdRes;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -196,9 +197,41 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
             TextView tvTeamName2 = view.findViewById(R.id.tv_team_name2);
             TextView tvFh2 = view.findViewById(R.id.tv_fh2);
             TextView tvFt2 = view.findViewById(R.id.tv_ft2);
-            String date = DateUtils.format(bean.getIndex6(), "yyyy-MM-dd HH:mm:ss", "dd/MM/yyyy");
-            tvDate.setText(date);
+            TextView tvHomeF = view.findViewById(R.id.tv_home_f);
+            TextView tvHomeL = view.findViewById(R.id.tv_home_l);
+            TextView tvAwayF = view.findViewById(R.id.tv_away_f);
+            TextView tvAwayL = view.findViewById(R.id.tv_away_l);
+            tvDate.setText(bean.getIndex17());
             tvTeamName1.setText(bean.getIndex8());
+            int index14 = bean.getIndex14();
+            String homeFOrL1 = getFOrL(index14, true, true);
+            String homeFOrL2 = getFOrL(index14, true, false);
+            String awayFOrL1 = getFOrL(index14, false, true);
+            String awayFOrL2 = getFOrL(index14, false, false);
+            if (!TextUtils.isEmpty(homeFOrL1)) {
+                tvHomeF.setText(homeFOrL1);
+                tvHomeF.setVisibility(View.VISIBLE);
+            } else {
+                tvHomeF.setVisibility(View.GONE);
+            }
+            if (!TextUtils.isEmpty(homeFOrL2)) {
+                tvHomeL.setText(homeFOrL2);
+                tvHomeL.setVisibility(View.VISIBLE);
+            } else {
+                tvHomeL.setVisibility(View.GONE);
+            }
+            if (!TextUtils.isEmpty(awayFOrL1)) {
+                tvAwayF.setText(awayFOrL1);
+                tvAwayF.setVisibility(View.VISIBLE);
+            } else {
+                tvAwayF.setVisibility(View.GONE);
+            }
+            if (!TextUtils.isEmpty(awayFOrL2)) {
+                tvAwayL.setText(awayFOrL2);
+                tvAwayL.setVisibility(View.VISIBLE);
+            } else {
+                tvAwayL.setVisibility(View.GONE);
+            }
             if (currentRequestType == 1) {
                 tvTeamName2.setText(bean.getIndex10());
                 String index12 = bean.getIndex12();
@@ -232,6 +265,38 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
             }
             llAddView.addView(view);
         }
+    }
+
+    private String getFOrL(int type, boolean isHome, boolean isFG) {
+        String s = "";
+        if (type != 0) {
+            if (type == 11) {
+                if (isHome && isFG) {
+                    s = "F";
+                } else if (isHome && !isFG) {
+                    s = "L";
+                }
+            } else if (type == 12) {
+                if (isHome && isFG) {
+                    s = "F";
+                } else if (!isHome && !isFG) {
+                    s = "L";
+                }
+            } else if (type == 21) {
+                if (!isHome && isFG) {
+                    s = "F";
+                } else if (isHome && !isFG) {
+                    s = "L";
+                }
+            } else if (type == 22) {
+                if (!isHome && isFG) {
+                    s = "F";
+                } else if (!isHome && !isFG) {
+                    s = "L";
+                }
+            }
+        }
+        return s;
     }
 
     private void getAllMatchDataList() {

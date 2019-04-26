@@ -32,7 +32,7 @@ public class LoadMainDataHelper {
     }
 
     public void doRetrofitApiOnUiThread(LoginInfo.LanguageWfBean languageWfBean, final LanguagePresenter.CallBack<String> back) {
-
+        String p = BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
         Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {

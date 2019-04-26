@@ -1,8 +1,11 @@
 package com.nanyang.app.main;
 
+import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -18,6 +21,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.HomePopItemBeen;
 import com.nanyang.app.Pop.HomePopupWindow;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.MyGoHomeBroadcastReceiver;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
@@ -26,6 +30,7 @@ import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.home.HomeFragment;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.base.BaseConsumer;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,11 +72,12 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
         afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
         afbDrawerViewHolder.initDefaultFragment(homeFragment);
         afbDrawerViewHolder.switchFragment(homeFragment);
+        myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
+        registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
     private BaseSwitchFragment homeFragment = new HomeFragment();
-
-
+    MyGoHomeBroadcastReceiver myGoHomeBroadcastReceiver;
 
     @Override
     protected void updateBalanceTv(String allData) {
@@ -80,6 +86,12 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
 
     private void initUserData() {
         ((AfbApplication) mContext.getApplication()).getUser().getBalances();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unregisterReceiver(myGoHomeBroadcastReceiver);
     }
 
     @Override
@@ -95,7 +107,17 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
                 getApp().setUser(personalInfo);
             }
         });
-
+        Log.d("shangpeisheng", "isGoHome: " + getApp().isGoHome());
+        if (getApp().isGoHome()) {
+            getApp().setGoHome(false);
+            Log.d("shangpeisheng", "isGoHome: " + getApp().isGoHome());
+            presenter.login(new LoginInfo(getApp().getUser().getLoginName(), getApp().getUser().getPassword()), new BaseConsumer<String>(this) {
+                @Override
+                protected void onBaseGetData(String data) {
+                    onLanguageSwitchSucceed(data);
+                }
+            });
+        }
     }
 
     @OnClick({R.id.fl_menu_home, R.id.fl_menu_center, R.id.fl_menu_statemente, R.id.fl_menu_login_out})
@@ -149,6 +171,10 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
         return afbDrawerViewHolder.onKeyDown(keyCode, event);
     }
 
+    @Override
+    protected void onUserLeaveHint() {
+        super.onUserLeaveHint();
+    }
 
     private boolean isFinish = true;
 

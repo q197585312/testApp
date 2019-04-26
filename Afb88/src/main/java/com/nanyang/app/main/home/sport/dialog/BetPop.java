@@ -101,6 +101,12 @@ public class BetPop extends BasePopupWindow {
     LinearLayout llBack;
     @Bind(R.id.ll_1x2)
     LinearLayout ll1x2;
+    @Bind(R.id.ll_bet_failed_hint)
+    LinearLayout llBetFailedHint;
+    @Bind(R.id.tv_bet_failed_hint)
+    TextView tvBetFailedHint;
+    @Bind(R.id.img_failed)
+    ImageView imgFailed;
     @Bind(R.id.bet_pop_parent_web_ll)
     WebView webView;
     @BindString(R.string.loading)
@@ -217,6 +223,12 @@ public class BetPop extends BasePopupWindow {
         });
         betSureBtn.setEnabled(true);
         betCancelBtn.setEnabled(true);
+        imgFailed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                llBetFailedHint.setVisibility(View.GONE);
+            }
+        });
         initBetChip();
     }
 
@@ -309,6 +321,8 @@ public class BetPop extends BasePopupWindow {
                             String oddsType = sportActivity.tvOddsType.getText().toString().trim();
                             BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity, false);
                         } else {
+                            tvBetFailedHint.setText(back);
+                            llBetFailedHint.setVisibility(View.VISIBLE);
                             updateOdds(0);
                         }
                     }
@@ -633,6 +647,7 @@ public class BetPop extends BasePopupWindow {
     protected void onClose() {
         super.onClose();
 //        activity.hintPopInput(betAmountEdt);
+        llBetFailedHint.setVisibility(View.GONE);
         stopUpdateOdds();
         betAmountEdt.setText("0");
         isNeedInitWeb = true;

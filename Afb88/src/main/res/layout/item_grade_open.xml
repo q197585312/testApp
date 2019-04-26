@@ -21,6 +21,7 @@
             android:text="fdasfa"
             android:textColor="@color/black" />
 
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -52,13 +53,42 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_team_name1"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="fdasfa"
-            android:textColor="@color/black" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_team_name1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                android:text="fdasfa"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_home_f"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/shape_grade_f"
+                android:gravity="center"
+                android:text="F"
+                android:textColor="@color/black"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_home_l"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/shape_grade_l"
+                android:gravity="center"
+                android:text="L"
+                android:textColor="@color/black"
+                android:visibility="gone" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
@@ -92,13 +122,42 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/tv_team_name2"
+        <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="fdasfa"
-            android:textColor="@color/black" />
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_team_name2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="3dp"
+                android:text="fdasfa"
+                android:textColor="@color/black" />
+
+            <TextView
+                android:id="@+id/tv_away_f"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/shape_grade_f"
+                android:gravity="center"
+                android:text="F"
+                android:textColor="@color/black"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_away_l"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="2dp"
+                android:background="@drawable/shape_grade_l"
+                android:gravity="center"
+                android:text="L"
+                android:textColor="@color/black"
+                android:visibility="gone" />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="0dp"
