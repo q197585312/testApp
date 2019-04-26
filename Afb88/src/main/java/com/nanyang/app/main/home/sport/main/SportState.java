@@ -99,7 +99,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected BasePopupWindow popMenu;
     private SwipeToLoadLayout swipeToLoadLayout;
 
-    protected WebSocket webSocket;
+    protected WebSocket webSocketBase;
 
     protected String TAG = "SportState";
     private DataUpdateRunnable dataUpdateRunnable;
@@ -119,7 +119,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return adapterHelper;
     }
 
-    private SportAdapterHelper<B> adapterHelper;
+    protected SportAdapterHelper<B> adapterHelper;
 
     public V getBaseView() {
         return baseView;
@@ -127,6 +127,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     public void setBaseView(V mBaseView) {
         this.baseView = mBaseView;
+        mCompositeSubscription = new CompositeDisposable();
+    }
+
+    public void handleAdapter() {
         adapterHelper = onSetAdapterHelper();
         baseRecyclerAdapter = new BaseRecyclerAdapter<B>(baseView.getIBaseContext().getBaseActivity(), new ArrayList<B>(), adapterHelper.onSetAdapterItemLayout()) {
             @Override
@@ -135,12 +139,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             }
         };
         adapterHelper.bindAdapter(baseRecyclerAdapter);
-
         adapterHelper.setItemCallBack(onSetItemCallBack());
-
         baseView.setAdapter(baseRecyclerAdapter);
-        mCompositeSubscription = new CompositeDisposable();
-
     }
 
     /**
@@ -160,6 +160,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     public SportState(V baseView) {
         setBaseView(baseView);
+        handleAdapter();
     }
 
     protected V baseView;
@@ -176,8 +177,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 //    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=1&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
     @Override
     public void refresh() {
-        if (webSocket != null && webSocket.isOpen()) {
-            webSocket.close();
+        if (webSocketBase != null && webSocketBase.isOpen()) {
+            webSocketBase.close();
         }
         if (isHide)
             return;
@@ -247,7 +248,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         Log.d("Socket", "setEndCallback");
                     }
                 });
-                SportState.this.webSocket = webSocket;
+                webSocketBase = webSocket;
                 startUpdateData();
                 webSocket.setWriteableCallback(new WritableCallback() {
                     @Override
@@ -652,12 +653,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
 
-    Handler updateHandler = new Handler();
+    public Handler updateHandler = new Handler();
 
     @Override
     public void startUpdateData() {
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
-        dataUpdateRunnable = new DataUpdateRunnable(webSocket);
+        dataUpdateRunnable = new DataUpdateRunnable(webSocketBase);
         updateHandler.post(dataUpdateRunnable);// 打开定时器，执行操作
     }
 
@@ -667,8 +668,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         if (mCompositeSubscription != null)
             mCompositeSubscription.clear();
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
-        if (webSocket != null)
-            webSocket.close();
+        if (webSocketBase != null)
+            webSocketBase.close();
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -815,7 +816,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
-    BaseRecyclerAdapter<MenuItemInfo<Integer>> switchTypeAdapter;
+    public BaseRecyclerAdapter<MenuItemInfo<Integer>> switchTypeAdapter;
 
     @Override
     public BaseRecyclerAdapter switchTypeAdapter(final TextView textView, final JSONObject jsonObjectNum) {
@@ -897,9 +898,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
 
     protected void onTypeWayClick(MenuItemInfo item, int position) {
-        ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).tvMatchType.setText(item.getText());
-        ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).tvMatchType.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
-        ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd = item.getDateParam();
+        runWayItem(item);
         if (item.getRes() == R.mipmap.date_day_grey) {
             onTypeClick(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
                     , "Early", R.mipmap.date_early_green, item.getDay(), item.getDateParam()), position);
@@ -911,6 +910,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         sportActivity.stopPopupWindow();
 
 
+    }
+
+    public void runWayItem(MenuItemInfo item) {
+        ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).runWayItem(item);
     }
 
     protected abstract void onTypeClick(MenuItemInfo item, int position);

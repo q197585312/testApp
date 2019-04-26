@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
 
-import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 

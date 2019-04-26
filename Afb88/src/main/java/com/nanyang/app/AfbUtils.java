@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.nanyang.app.main.home.sport.USFootball.USFootballFragment;
+import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
 import com.nanyang.app.main.home.sport.badminton.BadmintonFragment;
 import com.nanyang.app.main.home.sport.baseball.BaseballFragment;
 import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
@@ -319,6 +320,7 @@ public class AfbUtils {
         BaseSportFragment tableTennisFragment = new TableTennisFragment();
         BaseSportFragment formulaFragment = new FormulaFragment();
         BaseSportFragment outRightFragment = new OutRightFragment();
+        BaseSportFragment allRunningFragment = new AllRunningFragment();
 
         beanHashMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
 
@@ -351,10 +353,10 @@ public class AfbUtils {
         beanHashMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK, R.mipmap.volleyball));
         beanHashMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK, R.mipmap.volleyball));
         beanHashMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, winterSportFragment, Color.BLACK, R.mipmap.water_polo));
-        beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.all_running));
+        beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running));
         beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright));
 
-        sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.all_running));
+        sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running));
         sportMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.RED, R.mipmap.football));
         sportMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
         sportMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball));

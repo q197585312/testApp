@@ -5,7 +5,6 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.BaseMoreFragment;
@@ -131,9 +130,9 @@ public class BetCenterFragment extends BaseMoreFragment {
     @Override
     public void showContent() {
         super.showContent();
-        if (switchType.equals(unsettled)) {
+        if (switchTypeIndex.equals(unsettled)) {
             currentIndex = 0;
-        } else if (switchType.equals(statementNew)) {
+        } else if (switchTypeIndex.equals(statementNew)) {
             currentIndex = 1;
         } else {
             currentIndex = 2;

@@ -134,7 +134,7 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
                 afbDrawerViewHolder.switchFragment(afbDrawerViewHolder.getContactFragment());
                 break;
             case R.id.fl_menu_statemente:
-                afbDrawerViewHolder.getStatementFragment().setSwitchType(BetCenterFragment.statementNew);
+                afbDrawerViewHolder.getStatementFragment().setSwitchTypeIndex(BetCenterFragment.statementNew);
                 afbDrawerViewHolder.switchFragment(afbDrawerViewHolder.getStatementFragment());
                 break;
             case R.id.fl_menu_login_out:

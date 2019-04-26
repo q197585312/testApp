@@ -149,7 +149,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
                         String switchType = item.getSwitchType();
 
                         if (!TextUtils.isEmpty(switchType)) {
-                            fragment.setSwitchType(item.getSwitchType());
+                            fragment.setSwitchTypeIndex(item.getSwitchType());
                         }
                         switchFragment(fragment);
                     }
@@ -196,7 +196,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
     }
 
     public void goRecord() {
-        statementFragment.setSwitchType(BetCenterFragment.unsettled);
+        statementFragment.setSwitchTypeIndex(BetCenterFragment.unsettled);
         switchFragment(statementFragment);
     }
 }
