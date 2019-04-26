@@ -1,6 +1,9 @@
 package com.nanyang.app.main.BetCenter;
 
+import android.annotation.TargetApi;
 import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
 import android.view.LayoutInflater;
@@ -53,6 +56,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
 
     private List<StatementListDataBean> lastStatementList;
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setSvContent(final StatementFirstBean statementFirstBean, List<StatementListDataBean> list) {
         if (list.size() == 0) {
             nscContent.setVisibility(View.GONE);
@@ -72,8 +76,14 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         for (int i = 0; i < list.size(); i++) {
             final StatementListDataBean bean = list.get(i);
             View view = layoutInflater.inflate(R.layout.item_statement_new, null);
+            view.setElevation(7f);
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            if (i == 0) {
+                layoutParams.topMargin = AfbUtils.dp2px(mContext, 8);
+            }
             layoutParams.bottomMargin = AfbUtils.dp2px(mContext, 8);
+            layoutParams.leftMargin = AfbUtils.dp2px(mContext, 8);
+            layoutParams.rightMargin = AfbUtils.dp2px(mContext, 8);
             view.setLayoutParams(layoutParams);
             TextView tvDate = view.findViewById(R.id.tv_date);
             TextView tvCom = view.findViewById(R.id.tv_com);
@@ -130,6 +140,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         }
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     public void onGetStatementData(StatementFirstBean statementFirstBean, List<StatementListDataBean> list) {
         setSvContent(statementFirstBean, list);
     }

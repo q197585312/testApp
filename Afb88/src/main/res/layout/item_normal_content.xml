@@ -3,8 +3,10 @@
     android:id="@+id/ll_content"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="5dp"
-    android:background="@color/white"
+    android:layout_marginBottom="6dp"
+    android:layout_marginLeft="6dp"
+    android:layout_marginRight="6dp"
+    android:elevation="4dp"
     android:gravity="center_vertical"
     android:orientation="vertical">
 
