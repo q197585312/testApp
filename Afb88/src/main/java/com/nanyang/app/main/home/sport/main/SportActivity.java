@@ -479,10 +479,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         currentFragment.collection(view);
     }
 
-    public void clickRunning(View view) {
-
-    }
-
     public void clickBets(View view) {
         Bundle b = new Bundle();
         b.putString(AppConstant.KEY_STRING, getString(R.string.stake));
@@ -619,6 +615,15 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 }
             }
         });
+    }
+
+    public void clickAllRunning(View view) {
+        setType("Running");
+        dateClickPositon = 0;
+        MenuItemInfo<Integer> item = new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green);
+        runWayItem(item);
+        SportIdBean sportIdBean = AfbUtils.sportMap.get("1,9,21,29,51,182");
+        selectFragmentTag(getString(sportIdBean.getTextRes()), sportIdBean.getBaseFragment());
     }
 
     private void initSportFragment(SportIdBean item) {
