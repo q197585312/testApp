@@ -44,6 +44,14 @@ public abstract class BasketballCommonState extends BallState {
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<BallInfo>(baseRecyclerAdapter) {
+            public boolean isItemCollection(BallInfo item) {
+                return isItemCollectionCommon(item);
+            }
+
+            @Override
+            public boolean isLeagueCollection(BallInfo item) {
+                return isLeagueCollectionCommon(item);
+            }
 
             @Override
             public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc) {
