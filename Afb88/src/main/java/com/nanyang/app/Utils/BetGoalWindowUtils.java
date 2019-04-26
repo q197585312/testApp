@@ -3,6 +3,7 @@ package com.nanyang.app.Utils;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Log;
@@ -126,8 +127,9 @@ public class BetGoalWindowUtils {
                                             SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(index8, Color.YELLOW, Color.GREEN);
                                             tvData6.setText(spannableStringBuilder);
                                         } else {
-                                            tvData6.setBackgroundColor(Color.GREEN);
+                                            tvData6.setBackgroundColor(ContextCompat.getColor(activity, R.color.green_black));
                                         }
+                                        tvData6.setTextColor(Color.WHITE);
                                     } else if (index8.equals("W")) {
                                         tvData6.setBackgroundColor(Color.YELLOW);
                                         SportActivity sportActivity = (SportActivity) activity;

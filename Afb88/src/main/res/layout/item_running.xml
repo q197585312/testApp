@@ -26,7 +26,7 @@
                 android:layout_height="wrap_content"
                 android:text="OU000349084"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:text="(07/04 9:55:14 am)"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -51,7 +51,7 @@
                 android:layout_height="wrap_content"
                 android:text="LEAGUE OF LEGENDS - LEC SPRING"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -70,7 +70,7 @@
                 android:singleLine="true"
                 android:text="Fnatic jsdjfjsdfkjskdjfkjsdifsjdifjsidfjidsfsd"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -79,7 +79,7 @@
                 android:gravity="center"
                 android:text="-VS-"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -91,7 +91,7 @@
                 android:singleLine="true"
                 android:text="Team Vitality sdjfkljwkejkjsdkfjksldjfklsjdkf"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -111,7 +111,7 @@
                 android:singleLine="true"
                 android:text="R!OT [地图二]sdfsdfsdfsdf"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:text="(FT)"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -129,7 +129,7 @@
                 android:layout_height="wrap_content"
                 android:text="0-0"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -138,7 +138,7 @@
                 android:layout_height="wrap_content"
                 android:text="(HDP -2.5)"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:text="\@0.97"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -156,7 +156,7 @@
                 android:layout_height="wrap_content"
                 android:text="(HK)"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -168,7 +168,7 @@
                 android:paddingRight="4dp"
                 android:text="W"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -177,7 +177,7 @@
                 android:layout_height="wrap_content"
                 android:text="/"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -189,7 +189,7 @@
                 android:paddingRight="4dp"
                 android:text="A"
                 android:textColor="@color/white"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -200,7 +200,7 @@
                 android:gravity="right"
                 android:text="100"
                 android:textColor="@color/black"
-                android:textSize="14.5sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
