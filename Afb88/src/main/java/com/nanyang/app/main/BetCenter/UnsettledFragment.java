@@ -160,7 +160,12 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                         if (jsonArray.length() > 3) {
                                             List<StatementOpen2ListDataBean> list = presenter.getBeanList2(jsonArray);
                                             RecyclerView rc1 = holder.getView(R.id.rc_par_1);
-                                            LinearLayoutManager llm = new LinearLayoutManager(mContext);
+                                            LinearLayoutManager llm = new LinearLayoutManager(mContext){
+                                                @Override
+                                                public boolean canScrollVertically() {
+                                                    return false;
+                                                }
+                                            };
                                             rc1.setLayoutManager(llm);
                                             BaseRecyclerAdapter<StatementOpen2ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen2ListDataBean>(mContext, list, R.layout.item_statement_open2) {
                                                 @Override
@@ -200,7 +205,12 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                         if (jsonArray.length() > 3) {
                                             List<StatementOpen3ListDataBean> list = presenter.getBeanList3(jsonArray);
                                             RecyclerView rc1 = holder.getView(R.id.rc_par_2);
-                                            LinearLayoutManager llm = new LinearLayoutManager(mContext);
+                                            LinearLayoutManager llm = new LinearLayoutManager(mContext){
+                                                @Override
+                                                public boolean canScrollVertically() {
+                                                    return false;
+                                                }
+                                            };
                                             rc1.setLayoutManager(llm);
                                             BaseRecyclerAdapter<StatementOpen3ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen3ListDataBean>(mContext, list, R.layout.item_statement_open2) {
                                                 @Override

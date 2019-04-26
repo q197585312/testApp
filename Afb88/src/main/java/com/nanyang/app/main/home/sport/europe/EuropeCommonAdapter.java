@@ -1,7 +1,9 @@
 package com.nanyang.app.main.home.sport.europe;
 
 import android.content.Context;
+import android.text.TextUtils;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,6 +52,24 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
     }
 
     @Override
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final BallInfo item, final int position) {//
+        super.onMatchNotRepeat(helper, item, position);
+        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
+        String rtsMatchId = item.getRTSMatchId();
+        if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
+            ivHall.setVisibility(View.VISIBLE);
+            ivHall.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    back.clickView(v, item, position);
+                }
+            });
+        } else {
+            ivHall.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
     public void handleOddsContent(MyRecyclerViewHolder helper, BallInfo item, int position) {
         TextView full1 = helper.getTextView(R.id.europe_1_full_time_odds_tv);
         TextView full2 = helper.getTextView(R.id.europe_2_full_time_odds_tv);
@@ -60,10 +80,31 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
         imgUpDownFt1.setVisibility(View.INVISIBLE);
         imgUpDownFtX.setVisibility(View.INVISIBLE);
         imgUpDownFt2.setVisibility(View.INVISIBLE);
+        View parent1 = (View) full1.getParent();
+        View parent2 = (View) full2.getParent();
+        View parent3 = (View) fullx.getParent();
+        parent1.setVisibility(View.VISIBLE);
+        parent2.setVisibility(View.VISIBLE);
+        parent3.setVisibility(View.VISIBLE);
         if (item.getHasX12().equals("1")) {
-            full1.setText(AfbUtils.decimalValue(Float.parseFloat(item.getX12_1Odds()), "0.00"));
-            fullx.setText(AfbUtils.decimalValue(Float.parseFloat(item.getX12_XOdds()), "0.00"));
-            full2.setText(AfbUtils.decimalValue(Float.parseFloat(item.getX12_2Odds()), "0.00"));
+            String full1Str = AfbUtils.decimalValue(Float.parseFloat(item.getX12_1Odds()), "0.00");
+            if (!full1Str.equals("0.00")) {
+                full1.setText(full1Str);
+            } else {
+                parent1.setVisibility(View.GONE);
+            }
+            String fullxStr = AfbUtils.decimalValue(Float.parseFloat(item.getX12_XOdds()), "0.00");
+            if (!fullxStr.equals("0.00")) {
+                fullx.setText(fullxStr);
+            } else {
+                parent2.setVisibility(View.GONE);
+            }
+            String full2Str = AfbUtils.decimalValue(Float.parseFloat(item.getX12_2Odds()), "0.00");
+            if (!full2Str.equals("0.00")) {
+                full2.setText(full2Str);
+            } else {
+                parent3.setVisibility(View.GONE);
+            }
             full1.setOnClickListener(new ItemClick(back, position, item, item.getX12_1Odds(), "1", false));
             fullx.setOnClickListener(new ItemClick(back, position, item, item.getX12_XOdds(), "X", false));
             full2.setOnClickListener(new ItemClick(back, position, item, item.getX12_2Odds(), "2", false));
@@ -75,6 +116,34 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
             full1.setText("");
             full2.setText("");
             fullx.setText("");
+            parent1.setVisibility(View.GONE);
+            parent2.setVisibility(View.GONE);
+            parent3.setVisibility(View.GONE);
+        }
+        TextView awayRedCardTv = helper.getView(R.id.module_match_away_red_card_tv);
+        TextView homeRedCardTv = helper.getView(R.id.module_match_home_red_card_tv);
+        String rcAway = item.getRCAway();
+        String rcHome = item.getRCHome();
+        checkRedCards(awayRedCardTv, rcAway);
+        checkRedCards(homeRedCardTv, rcHome);
+    }
+
+    private void checkRedCards(TextView awayRedCardTv, String rcAway) {
+        if (rcAway == null || rcAway.equals("0") || rcAway.equals("")) {
+            awayRedCardTv.setVisibility(View.GONE);
+        } else {
+            awayRedCardTv.setVisibility(View.VISIBLE);
+            switch (rcAway) {
+                case "1":
+                    awayRedCardTv.setBackgroundResource(R.mipmap.red_card1);
+                    break;
+                case "2":
+                    awayRedCardTv.setBackgroundResource(R.mipmap.red_card2);
+                    break;
+                default:
+                    awayRedCardTv.setBackgroundResource(R.mipmap.red_card3);
+                    break;
+            }
         }
     }
 
