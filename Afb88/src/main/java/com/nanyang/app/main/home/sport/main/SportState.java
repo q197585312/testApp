@@ -899,13 +899,16 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected void onTypeWayClick(MenuItemInfo item, int position) {
         runWayItem(item);
+        SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
         if (item.getRes() == R.mipmap.date_day_grey) {
+            sportActivity.setType("Early");
             onTypeClick(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
                     , "Early", R.mipmap.date_early_green, item.getDay(), item.getDateParam()), position);
         } else {
+            sportActivity.setType(item.getType());
             onTypeClick(item, position);
         }
-        SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
+
         sportActivity.dateClickPositon = position;
         sportActivity.stopPopupWindow();
 
