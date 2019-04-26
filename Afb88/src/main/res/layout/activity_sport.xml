@@ -137,7 +137,7 @@
                     android:layout_width="22dp"
                     android:layout_height="22dp"
                     android:background="@mipmap/sport_game_run_white"
-                    android:onClick="clickRunning" />
+                    android:onClick="clickAllRunning" />
 
                 <TextView
                     android:id="@+id/iv_all_add"
