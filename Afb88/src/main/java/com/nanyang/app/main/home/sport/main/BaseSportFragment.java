@@ -73,7 +73,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     @Bind(R.id.swipeToLoadLayout)
     protected SwipeToLoadLayout swipeToLoadLayout;
     private boolean isFirstIn;
-    private BaseRecyclerAdapter baseRecyclerAdapter;
+    public BaseRecyclerAdapter baseRecyclerAdapter;
     private boolean isInit = false;
     private TextView ivAllAdd;
     private boolean isMajor;

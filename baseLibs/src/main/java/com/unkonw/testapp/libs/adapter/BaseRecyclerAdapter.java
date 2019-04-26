@@ -1,6 +1,7 @@
 package com.unkonw.testapp.libs.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,33 @@ import java.util.List;
  */
 public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecyclerViewHolder> implements View.OnLongClickListener, View.OnClickListener {
     private static final String TAG = "BaseRecyclerAdapter";
+    public static final int TYPE_HEADER = 0;  //说明是带有Header的
+    public static final int TYPE_FOOTER = 1;  //说明是带有Footer的
+    public static final int TYPE_NORMAL = 2;  //说明是不带有header和footer的
+    private View mHeaderView, mFooterView;
+
+    public View getHeader() {
+        return mHeaderView;
+    }
+
+    public void setHeader(View mHeader) {
+        this.mHeaderView = mHeader;
+        notifyItemInserted(0);
+    }
+
+    public View getFooter() {
+        return mFooterView;
+    }
+
+    public void setFooter(View mFooter) {
+        this.mFooterView = mFooter;
+        if (mHeaderView == null) {
+            notifyItemInserted(mDatas.size());
+        } else {
+            notifyItemInserted(mDatas.size() + 1);
+        }
+    }
+
     protected List<T> mDatas = new ArrayList<T>();
     private int mLayoutId;
     private LayoutInflater mLayoutInflater;
@@ -27,87 +55,102 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
         this.mDatas = mDatas;
     }
 
-    private int getBodySize() {
-        return mDatas == null ? 0 : mDatas.size();
-    }
-
-    private boolean isHead(int position) {
-        return headers.size() > 0 && position < headers.size();
-    }
-
-    private boolean isFoot(int position) {
-        return footers.size() > 0 && (position >= (getBodySize() + footers.size()));
-    }
-
     @Override
     public int getItemViewType(int position) {
-        if (isFoot(position) || isHead(position)) {
-            return position;
+        if (mHeaderView == null) {
+            if (mFooterView == null) {
+                return TYPE_NORMAL;
+            } else {
+                if (position == mDatas.size()) {
+                    return TYPE_FOOTER;
+                } else {
+                    return TYPE_NORMAL;
+                }
+            }
         } else {
-            return -1;
+            if (position == 0) {
+                return TYPE_HEADER;
+            } else {
+                if (mFooterView == null) {
+                    return TYPE_NORMAL;
+                } else {
+                    if (position != mDatas.size() + 1) {
+                        return TYPE_NORMAL;
+                    } else {
+                        return TYPE_FOOTER;
+                    }
+                }
+            }
         }
     }
 
     @Override
     public MyRecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         MyRecyclerViewHolder holder = null;
-        if (viewType == -1) {
-            View view = mLayoutInflater.inflate(mLayoutId, parent, false);
-            holder = new BodyViewHolder(view);
-            if (mOnItemClickListener != null)
-                view.setOnClickListener(this);
-            if (mOnItemLongClickListener != null)
-                view.setOnLongClickListener(this);
-        } else if (isHead(viewType)) {
-            holder = new HeadViewHolder(headers.get(viewType));
-        } else if (isFoot(viewType)) {
-            holder = new FootViewHolder(footers.get(viewType - headers.size() - getBodySize()));
-        } else {
-            holder = null;
+        if (mHeaderView != null && viewType == TYPE_HEADER) {
+            return new MyRecyclerViewHolder(mHeaderView);
+        } else if (mFooterView != null && viewType == TYPE_FOOTER) {
+            return new MyRecyclerViewHolder(mFooterView);
         }
-
+        View view = mLayoutInflater.inflate(mLayoutId, parent, false);
+        holder = new MyRecyclerViewHolder(view);
+        if (mOnItemClickListener != null)
+            view.setOnClickListener(this);
+        if (mOnItemLongClickListener != null)
+            view.setOnLongClickListener(this);
         return holder;
+
     }
 
-
-    List<View> headers = new ArrayList<>();
-
-    public void addHeader(View header) {
-        headers.add(header);
-    }
-
-    List<View> footers = new ArrayList<>();
-
-    public void addFooter(View footer) {
-        footers.add(footer);
-    }
 
     @Override
     public final void onBindViewHolder(MyRecyclerViewHolder holder, int position) {
-
-        if (holder instanceof HeadViewHolder) {
-
-        } else if (holder instanceof BodyViewHolder) {
-//            ((BodyViewHolder) holder).body.setText((CharSequence) listData.get());
-
-            holder.getHolderView().setTag(position - headers.size());
-            T item = getItem(position - headers.size());
-            if (item == null)
-                return;
-            convert(holder, position - headers.size(), item);
-
-        } else if (holder instanceof FootViewHolder) {
-
-        }
+        if (getItemViewType(position)==TYPE_HEADER||getItemViewType(position)==TYPE_FOOTER)
+            return;
+        final int realPosition = getRealPosition(holder);
+        holder.getHolderView().setTag(realPosition);
+        final T item = mDatas.get(realPosition);
+        if (item == null)
+            return;
+        convert(holder, realPosition, item);
 
     }
-
+    private int getRealPosition(RecyclerView.ViewHolder viewHolder){
+        int layoutPosition = viewHolder.getLayoutPosition();
+        return mHeaderView==null?layoutPosition:layoutPosition-1;
+    }
     public abstract void convert(MyRecyclerViewHolder holder, int position, T item);
+    @Override
+    public void onAttachedToRecyclerView(RecyclerView recyclerView) {
+        super.onAttachedToRecyclerView(recyclerView);
+        RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager){
+            final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
+            gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+                @Override
+                public int getSpanSize(int position) {
+                    return getItemViewType(position)==TYPE_HEADER||getItemViewType(position)==TYPE_FOOTER?gridLayoutManager.getSpanCount():1;
+                }
+            });
+        }
+    }
+
 
     @Override
     public int getItemCount() {
-
-        return mDatas == null ? 0 : (headers.size() + getBodySize() + footers.size());
+        if (mHeaderView==null){
+            if (mFooterView==null){
+                return mDatas.size();
+            }else {
+                return mDatas.size()+1;
+            }
+        }else{
+            if (mFooterView==null){
+                return mDatas.size()+1;
+            }else {
+                return mDatas.size()+2;
+            }
+        }
     }
 
     public T getItem(int position) {
@@ -178,11 +221,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
         return false;
     }
 
-    public void removeHeadAndFoot() {
-        headers = new ArrayList<>();
-        footers = new ArrayList<>();
-        notifyDataSetChanged();
-    }
 
 
     public interface OnItemClickListener<T> {
@@ -212,26 +250,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     public void setData(List<T> mDatas) {
         this.mDatas = mDatas;
         notifyDataSetChanged();
-    }
-
-    private static class HeadViewHolder extends MyRecyclerViewHolder {
-
-        public HeadViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
-
-    private static class BodyViewHolder extends MyRecyclerViewHolder {
-        public BodyViewHolder(View itemView) {
-            super(itemView);
-        }
-    }
-
-    private static class FootViewHolder extends MyRecyclerViewHolder {
-
-        public FootViewHolder(View itemView) {
-            super(itemView);
-        }
     }
 
 }

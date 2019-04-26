@@ -73,8 +73,8 @@ public class TestActivity extends BaseActivity {
         TextView foot = (TextView) LayoutInflater.from(mContext).inflate(R.layout.text_base, null);
         head.setText("这个是头");
         foot.setText("这个是脚");
-        baseRecyclerAdapter.addHeader(head);
-        baseRecyclerAdapter.addFooter(foot);
+        baseRecyclerAdapter.setHeader(head);
+        baseRecyclerAdapter.setFooter(foot);
         rv.setAdapter(baseRecyclerAdapter);
         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener() {
             @Override

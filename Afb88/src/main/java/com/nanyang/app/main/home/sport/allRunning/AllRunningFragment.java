@@ -69,8 +69,8 @@ public class AllRunningFragment extends BaseAllFragment {
                             addHead = false;
                         }
                     }
-                    initHeadAndFoot(allTopSport, ll_header_sport);
-                    initHeadAndFoot(allBottomSport, ll_footer_sport);
+                    initHeadAndFoot(allTopSport, true);
+                    initHeadAndFoot(allBottomSport, false);
 
                 } catch (JSONException e) {
                     e.printStackTrace();

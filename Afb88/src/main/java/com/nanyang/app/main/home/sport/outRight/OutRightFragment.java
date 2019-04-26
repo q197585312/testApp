@@ -53,9 +53,10 @@ public class OutRightFragment extends BaseAllFragment {
                 addHead = false;
             }
         }
-        initHeadAndFoot(allTopSport, ll_header_sport);
-        initHeadAndFoot(allBottomSport, ll_footer_sport);
+        initHeadAndFoot(allTopSport, true);
+        initHeadAndFoot(allBottomSport, false);
     }
+
     private List<SportIdBean> getOutRightSports() {
         Iterator<Map.Entry<String, SportIdBean>> iterator = AfbUtils.beanHashMap.entrySet().iterator();
         List<SportIdBean> list = new ArrayList<>();

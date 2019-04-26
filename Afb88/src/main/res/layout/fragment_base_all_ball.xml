@@ -13,53 +13,43 @@
         android:layout_marginLeft="5dp"
         android:layout_marginRight="5dp">
 
-        <android.support.v4.widget.NestedScrollView
-            android:id="@+id/sv_out_right_parent"
+
+        <LinearLayout
+            android:id="@+id/ll_header_sport"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
 
-            <LinearLayout
+
+        <com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout
+            android:id="@+id/swipeToLoadLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:swipe_style="classic">
+
+            <include
+                android:id="@id/swipe_refresh_header"
+                layout="@layout/layout_google_header" />
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@id/swipe_target"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:descendantFocusability="blocksDescendants"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+              />
 
-                <LinearLayout
-                    android:id="@+id/ll_header_sport"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
+            <include
+                android:id="@id/swipe_load_more_footer"
+                layout="@layout/layout_classic_footer" />
 
-                <android.support.v7.widget.RecyclerView
-                    android:id="@id/swipe_target"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content" />
+        </com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout>
 
-                <com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout
-                    android:id="@+id/swipeToLoadLayout"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone"
-                    app:swipe_style="classic">
-
-                    <include
-                        android:id="@id/swipe_refresh_header"
-                        layout="@layout/layout_google_header" />
+        <LinearLayout
+            android:id="@+id/ll_footer_sport"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" />
 
 
-                    <include
-                        android:id="@id/swipe_load_more_footer"
-                        layout="@layout/layout_classic_footer" />
-
-                </com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout>
-
-                <LinearLayout
-                    android:id="@+id/ll_footer_sport"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" />
-            </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
         <TextView
             android:id="@+id/tv_no_games"
             android:layout_width="wrap_content"

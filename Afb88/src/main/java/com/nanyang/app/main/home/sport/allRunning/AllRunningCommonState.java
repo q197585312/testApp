@@ -271,25 +271,6 @@ public class AllRunningCommonState extends OutRightState {
             mCompositeSubscription.add(subscription);
     }
 
- /*   @Override
-    protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
-        return new SportAdapterHelper.ItemCallBack<SportInfo>() {
-            @Override
-            public SportInfo getItem(int position) {
-                return baseRecyclerAdapter.getItem(position);
-            }
-            @Override
-            public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds, int oid, String sc) {
-                IBetHelper helper = getBetHelper();
-                helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf, sc);
-            }
-            @Override
-            public void clickView(View v, SportInfo item, int position) {
-            }
-        };
-    }*/
-
     @Override
     public MenuItemInfo getStateType() {
         if (StringUtils.isNull(text))

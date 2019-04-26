@@ -13,10 +13,7 @@ import com.nanyang.app.SportIdBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.Bind;
 
@@ -42,7 +39,7 @@ public abstract class BaseAllFragment extends BaseSportFragment {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
         initSport(AfbUtils.getSportByG("1"));//默认足球
-        rvContent.setVisibility(View.GONE);
+//        rvContent.setVisibility(View.GONE);
         switchType(type);
 //        setTitle(getString(R.string.OutRight));
 
@@ -53,26 +50,11 @@ public abstract class BaseAllFragment extends BaseSportFragment {
         return R.layout.fragment_base_all_ball;
     }
 
-    private List<SportIdBean> getOutRightSports() {
-        Iterator<Map.Entry<String, SportIdBean>> iterator = AfbUtils.beanHashMap.entrySet().iterator();
-        List<SportIdBean> list = new ArrayList<>();
-        while (iterator.hasNext()) {
-            Map.Entry<String, SportIdBean> next = iterator.next();
-            if (next.getValue().getDbid() != null && !next.getValue().getDbid().equals("") && !next.getValue().getDbid().equals("0")
-                    && !next.getValue().getDbid().equals("999")
-                    && !next.getValue().getDbid().equals("19")
-                    && !next.getValue().getDbid().equals("36")
-                    && !next.getValue().getDbid().equals("15")
-                    && !next.getValue().getDbid().equals("12")
-                    && !next.getValue().getDbid().equals("11")
-                    && !next.getValue().getDbid().equals("4")
-                    )
-                list.add(next.getValue());
-        }
-        return list;
-    }
 
-    protected void initHeadAndFoot(final List<SportIdBean> allTopSport, LinearLayout parentView) {
+    protected void initHeadAndFoot(final List<SportIdBean> allTopSport, boolean ishead) {
+        LinearLayout parentView = new LinearLayout(mContext);
+        parentView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        parentView.setOrientation(LinearLayout.VERTICAL);
         parentView.removeAllViews();
         for (final SportIdBean sportIdBean : allTopSport) {
             View inflate = LayoutInflater.from(mContext).inflate(R.layout.sport_selected_layout_base, null);
@@ -97,14 +79,23 @@ public abstract class BaseAllFragment extends BaseSportFragment {
                         getPresenter().getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().clearItems(true);
                         getPresenter().getStateHelper().handleAdapter();
                         getPresenter().getStateHelper().refresh();
-                        rvContent.setVisibility(View.VISIBLE);
-                    } else
-                        rvContent.setVisibility(rvContent.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
+                        ((OutRightState) getPresenter().getStateHelper()).setItemVisible(View.VISIBLE);
+                    } else {
+                        int itemVisible = ((OutRightState) getPresenter().getStateHelper()).getItemVisible();
+                        ((OutRightState) getPresenter().getStateHelper()).setItemVisible(itemVisible == View.VISIBLE ? View.GONE : View.VISIBLE);
+                        getPresenter().getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().notifyDataSetChanged();
+                    }
 
                 }
             });
 
             parentView.addView(inflate);
+        }
+//        baseRecyclerAdapter.removeHeadAndFoot();
+        if (ishead)
+            baseRecyclerAdapter.setHeader(parentView);
+        else {
+            baseRecyclerAdapter.setFooter(parentView);
         }
 
     }
@@ -118,7 +109,7 @@ public abstract class BaseAllFragment extends BaseSportFragment {
     }
 
 
-    protected abstract void addSportHeadAndFoot(final SportIdBean sportIdBean) ;/*{
+    protected abstract void addSportHeadAndFoot(final SportIdBean sportIdBean);/*{
 
         List<SportIdBean> allOutRightSport = getOutRightSports();
         List<SportIdBean> allTopSport = new ArrayList<>();

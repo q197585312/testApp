@@ -1,6 +1,8 @@
 package com.nanyang.app.main.home.sport.allRunning;
 
 import android.support.v4.content.ContextCompat;
+import android.view.View;
+import android.view.ViewGroup;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -10,6 +12,7 @@ import com.nanyang.app.main.home.sport.football.SoccerRunningAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
  * Created by ASUS on 2019/4/23.
@@ -51,18 +54,38 @@ class AllRunningRunningState extends AllRunningCommonState {
     @Override
     public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
         if (fragment.currentIdBean.getId().equals("182"))
-            return new EuropeRunningAdapterHelper(baseView.getIBaseContext().getBaseActivity());
+            return new EuropeRunningAdapterHelper(baseView.getIBaseContext().getBaseActivity()) {
+                @Override
+                public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
+                    super.onConvert(helper, position, item);
+                    ViewGroup.LayoutParams layoutParams = helper.getHolderView().getLayoutParams();
+                    if (getItemVisible() == View.VISIBLE) {
+                        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    } else
+                        layoutParams.height = 0;
+                }
+            };
         else
-            return new SoccerRunningAdapterHelper(baseView.getIBaseContext().getBaseActivity());
+            return new SoccerRunningAdapterHelper(baseView.getIBaseContext().getBaseActivity()) {
+                @Override
+                public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
+                    super.onConvert(helper, position, item);
+                    ViewGroup.LayoutParams layoutParams = helper.getHolderView().getLayoutParams();
+                    if (getItemVisible() == View.VISIBLE) {
+                        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+                    } else
+                        layoutParams.height = 0;
+                }
+            };
     }
 
     @Override
     public int getTitleContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content1);
     }
 
     @Override
     public int getNormalContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content2);
     }
 }
