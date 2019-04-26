@@ -678,6 +678,56 @@ public class AfbUtils {
         }
     }
 
+    public static String getLangWeek(Context context, int day) {
+        String language = getLanguage(context);
+        switch (day) {
+            case 1:
+                if (language.equals("zh")) {
+                    return "一.";
+                } else {
+                    return "Mon.";
+                }
+            case 2:
+                if (language.equals("zh")) {
+                    return "二.";
+                } else {
+                    return "Tues.";
+                }
+            case 3:
+                if (language.equals("zh")) {
+                    return "三.";
+                } else {
+                    return "Wed.";
+                }
+            case 4:
+                if (language.equals("zh")) {
+                    return "四.";
+                } else {
+                    return "Thur.";
+                }
+            case 5:
+                if (language.equals("zh")) {
+                    return "五.";
+                } else {
+                    return "Fri.";
+                }
+            case 6:
+                if (language.equals("zh")) {
+                    return "六.";
+                } else {
+                    return "Sat.";
+                }
+            case 7:
+                if (language.equals("zh")) {
+                    return "七.";
+                } else {
+                    return "Sun.";
+                }
+            default:
+                return day + ".";
+        }
+    }
+
     public static String getLangMonth(Context context, String month) {
         String language = getLanguage(context);
         if (month.startsWith("0")) {

@@ -372,17 +372,15 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         this.baseRecyclerAdapter = baseRecyclerAdapter;
     }
 
-    Handler handler = new Handler();
-
     @Override
     public void onFailed(final String message) {
 
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                ToastUtils.showShort(message);
-            }
-        });
+//        handler.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                ToastUtils.showShort(message);
+//            }
+//        });
 
     }
 

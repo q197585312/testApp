@@ -37,6 +37,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:singleLine="true"
             android:id="@+id/tv_id_date"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
@@ -54,6 +55,7 @@
     </LinearLayout>
 
     <TextView
+        android:singleLine="true"
         android:id="@+id/tv_match_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -62,6 +64,7 @@
         android:textSize="13sp" />
 
     <TextView
+        android:singleLine="true"
         android:id="@+id/tv_match_vs"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -76,6 +79,7 @@
         android:orientation="horizontal">
 
         <TextView
+            android:singleLine="true"
             android:id="@+id/tv_match_at1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,6 +88,7 @@
             android:textSize="13sp" />
 
         <TextView
+            android:singleLine="true"
             android:id="@+id/tv_match_at2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -92,6 +97,7 @@
             android:textSize="13sp" />
 
         <TextView
+            android:singleLine="true"
             android:id="@+id/tv_match_at3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -100,6 +106,7 @@
             android:textSize="13sp" />
 
         <TextView
+            android:singleLine="true"
             android:id="@+id/tv_match_at4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -136,6 +143,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
+            android:singleLine="true"
             android:text="0fdasfdasfsaf1"
             android:textColor="@color/black"
             android:textSize="13sp" />
@@ -150,7 +158,7 @@
         android:background="@color/green"
         android:gravity="center"
         android:padding="5dp"
-        android:text="打开详细信息"
+        android:text="@string/OpenDetail"
         android:textColor="@color/white"
         android:visibility="gone" />
 

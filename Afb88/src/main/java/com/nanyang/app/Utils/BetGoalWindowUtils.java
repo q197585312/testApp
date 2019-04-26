@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.os.Handler;
 import android.text.SpannableStringBuilder;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -111,7 +112,12 @@ public class BetGoalWindowUtils {
                                         tvData4.setTextColor(Color.RED);
                                     }
                                     tvData4.setText(index3);
-                                    tvData5.setText("(" + dataBean.getIndex15() + ")");
+                                    String index15 = dataBean.getIndex15();
+                                    if (!TextUtils.isEmpty(index15)) {
+                                        tvData5.setText("(" + index15 + ")");
+                                    } else {
+                                        tvData5.setVisibility(View.GONE);
+                                    }
                                     String index8 = dataBean.getIndex8();
                                     Log.d("onGetRefreshMenu", "index8: " + index8);
                                     if (index8.equals("A")) {
@@ -126,8 +132,22 @@ public class BetGoalWindowUtils {
                                         tvData6.setBackgroundColor(Color.YELLOW);
                                         SportActivity sportActivity = (SportActivity) activity;
                                         sportActivity.onAddWaiteCount(1);
+                                    } else if (index8.equals("R")) {
+                                        if (isWA) {
+                                            index8 = " W / R ";
+                                            SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(index8, Color.YELLOW, Color.RED);
+                                            tvData6.setText(spannableStringBuilder);
+                                        } else {
+                                            tvData6.setBackgroundColor(Color.RED);
+                                        }
                                     } else {
-                                        tvData6.setBackgroundColor(Color.RED);
+                                        if (isWA) {
+                                            index8 = " W / C ";
+                                            SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(index8, Color.YELLOW, Color.RED);
+                                            tvData6.setText(spannableStringBuilder);
+                                        } else {
+                                            tvData6.setBackgroundColor(Color.RED);
+                                        }
                                     }
                                     if (!isWA) {
                                         tvData6.setText(index8);
