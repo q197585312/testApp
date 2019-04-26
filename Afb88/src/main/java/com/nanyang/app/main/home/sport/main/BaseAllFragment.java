@@ -38,9 +38,11 @@ public abstract class BaseAllFragment extends BaseSportFragment {
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
+
         initSport(AfbUtils.getSportByG("1"));//默认足球
 //        rvContent.setVisibility(View.GONE);
         switchType(type);
+
 //        setTitle(getString(R.string.OutRight));
 
     }
@@ -82,7 +84,7 @@ public abstract class BaseAllFragment extends BaseSportFragment {
                         ((OutRightState) getPresenter().getStateHelper()).setItemVisible(View.VISIBLE);
                     } else {
                         int itemVisible = ((OutRightState) getPresenter().getStateHelper()).getItemVisible();
-                        ((OutRightState) getPresenter().getStateHelper()).setItemVisible(itemVisible == View.VISIBLE ? View.GONE : View.VISIBLE);
+//                        ((OutRightState) getPresenter().getStateHelper()).setItemVisible(itemVisible == View.VISIBLE ? View.GONE : View.VISIBLE);
                         getPresenter().getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().notifyDataSetChanged();
                     }
 

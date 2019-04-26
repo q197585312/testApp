@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.util.Log;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.koushikdutta.async.callback.CompletedCallback;
@@ -111,11 +110,11 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
         return new SportAdapterHelper<BallInfo>() {
             @Override
             public void onConvert(MyRecyclerViewHolder holder, final int position, final BallInfo item) {
-                ViewGroup.LayoutParams layoutParams = holder.getHolderView().getLayoutParams();
+      /*          ViewGroup.LayoutParams layoutParams = holder.getHolderView().getLayoutParams();
                 if (itemVisible == View.VISIBLE) {
                     layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                 } else
-                    layoutParams.height = 0;
+                    layoutParams.height = 0;*/
 
                 TextView matchTitleTv = holder.getView(R.id.out_right_title_tv);
                 View headV = holder.getView(R.id.module_match_head_v);

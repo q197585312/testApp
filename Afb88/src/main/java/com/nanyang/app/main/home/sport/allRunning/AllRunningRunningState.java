@@ -1,8 +1,6 @@
 package com.nanyang.app.main.home.sport.allRunning;
 
 import android.support.v4.content.ContextCompat;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -58,11 +56,11 @@ class AllRunningRunningState extends AllRunningCommonState {
                 @Override
                 public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
                     super.onConvert(helper, position, item);
-                    ViewGroup.LayoutParams layoutParams = helper.getHolderView().getLayoutParams();
+                   /* ViewGroup.LayoutParams layoutParams = helper.getHolderView().getLayoutParams();
                     if (getItemVisible() == View.VISIBLE) {
                         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                     } else
-                        layoutParams.height = 0;
+                        layoutParams.height = 0;*/
                 }
             };
         else
@@ -70,11 +68,11 @@ class AllRunningRunningState extends AllRunningCommonState {
                 @Override
                 public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
                     super.onConvert(helper, position, item);
-                    ViewGroup.LayoutParams layoutParams = helper.getHolderView().getLayoutParams();
+                 /*   ViewGroup.LayoutParams layoutParams = helper.getHolderView().getLayoutParams();
                     if (getItemVisible() == View.VISIBLE) {
                         layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
                     } else
-                        layoutParams.height = 0;
+                        layoutParams.height = 0;*/
                 }
             };
     }

@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.outRight;
 
+import android.os.Handler;
 import android.widget.LinearLayout;
 
 import com.nanyang.app.AfbUtils;
@@ -37,24 +38,31 @@ public class OutRightFragment extends BaseAllFragment {
     }
 
     @Override
-    protected void addSportHeadAndFoot(SportIdBean sportIdBean) {
-        List<SportIdBean> allOutRightSport = getOutRightSports();
-        List<SportIdBean> allTopSport = new ArrayList<>();
-        List<SportIdBean> allBottomSport = new ArrayList<>();
-        boolean addHead = true;
-        for (int i = 0; i < allOutRightSport.size(); i++) {
-            SportIdBean s = allOutRightSport.get(i);
-            if (addHead) {
-                allTopSport.add(s);
-            } else {
-                allBottomSport.add(s);
+    protected void addSportHeadAndFoot(final SportIdBean sportIdBean) {
+
+        new Handler().post(new Runnable() {
+            @Override
+            public void run() {
+                List<SportIdBean> allOutRightSport = getOutRightSports();
+                final List<SportIdBean> allTopSport = new ArrayList<>();
+                final List<SportIdBean> allBottomSport = new ArrayList<>();
+                boolean addHead = true;
+                for (int i = 0; i < allOutRightSport.size(); i++) {
+                    SportIdBean s = allOutRightSport.get(i);
+                    if (addHead) {
+                        allTopSport.add(s);
+                    } else {
+                        allBottomSport.add(s);
+                    }
+                    if (s.getDbid().equals(sportIdBean.getDbid())) {
+                        addHead = false;
+                    }
+                }
+                initHeadAndFoot(allTopSport, true);
+                initHeadAndFoot(allBottomSport, false);
             }
-            if (s.getDbid().equals(sportIdBean.getDbid())) {
-                addHead = false;
-            }
-        }
-        initHeadAndFoot(allTopSport, true);
-        initHeadAndFoot(allBottomSport, false);
+        });
+
     }
 
     private List<SportIdBean> getOutRightSports() {
