@@ -39,7 +39,6 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
@@ -117,6 +116,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             presenter.getStateHelper().stopUpdateData();
             presenter.getStateHelper().setIsHide(true);
         } else {// 重新显示到最前端中
+            getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
+            getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
+            getBaseActivity().toolbar.setVisibility(View.GONE);
             rememberLastOdds();
             presenter.getStateHelper().setIsHide(false);
             String type = ((SportActivity) getActivity()).getType();
@@ -140,8 +142,8 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         getBaseActivity().toolbar.setVisibility(View.GONE);
 
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
-
     }
+
 
     @Override
     public void onPause() {

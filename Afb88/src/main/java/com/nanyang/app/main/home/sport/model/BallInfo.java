@@ -5,7 +5,6 @@ package com.nanyang.app.main.home.sport.model;
  */
 
 import android.graphics.Color;
-import android.util.Log;
 
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 
@@ -847,13 +846,11 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 setOU(s);
                 break;
             case 24:
-                Log.d(TAG, "getHOdds:" + getHOdds() + ",setValue: " + s);
                 this.isHomeBigger = (isBigger(getHOdds(), s));
                 setHOdds(s);
                 setIsHdpNew("1");
                 break;
             case 25:
-                Log.d(TAG, "setAOdds:" + getAOdds() + ",setValue: " + s);
                 this.isAwayBigger = (isBigger(getAOdds(), s));
                 setAOdds(s);
                 setIsHdpNew("1");
@@ -864,7 +861,6 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 setIsOUNew("1");
                 break;
             case 27:
-                Log.d(TAG, "getUOdds:" + getUOdds() + ",setValue: " + s);
                 this.isUnderBigger = (isBigger(getUOdds(), s));
                 setUOdds(s);
                 setIsOUNew("1");
@@ -879,21 +875,18 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
                 setIsOENew("1");
                 break;
             case 30:
-                Log.d(TAG, "X12_1Odds:" + X12_1Odds + ",setValue: " + s);
                 setFt1Bigger(isBigger(X12_1Odds, s));
                 setX12_1Odds(s);
                 setIsX12_1New(1);
                 setIsX12New("1");
                 break;
             case 31:
-                Log.d(TAG, "X12_XOdds:" + X12_XOdds + ",setValue: " + s);
                 setFtXBigger(isBigger(X12_XOdds, s));
                 setX12_XOdds(s);
                 setIsX12_XNew(1);
                 setIsX12New("1");
                 break;
             case 32:
-                Log.d(TAG, "X12_2Odds:" + X12_2Odds + ",setValue: " + s);
                 setFt2Bigger(isBigger(X12_2Odds, s));
                 setX12_2Odds(s);
                 setIsX12_2New(1);

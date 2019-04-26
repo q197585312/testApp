@@ -745,7 +745,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             , boolean hapVisiable, boolean ouVisiable, boolean oeVisiable, String hasOE, String isOENew, String OddOdds, String EvenOdds, String OddOddsType, String EvenOddsType) {
         vp.setVisibility(View.VISIBLE);
         ViewHolder holder = new ViewHolder(vp);
-        Log.d(TAG, "sid: " + item.getSocOddsId() + ",item.isOverBigger:" + item.isOverBigger + ",item.isHomeBigger:" + item.isHomeBigger + ",item.isAwayBigger:" + item.isAwayBigger + ",item.isUnderBigger:" + item.isUnderBigger);
+//        Log.d(TAG, "sid: " + item.getSocOddsId() + ",item.isOverBigger:" + item.isOverBigger + ",item.isHomeBigger:" + item.isHomeBigger + ",item.isAwayBigger:" + item.isAwayBigger + ",item.isUnderBigger:" + item.isUnderBigger);
         setUpDownOdds(hapVisiable, item, isFh, isHdpNew, hasHdp, hdp, holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv, holder.viewpagerMatchVisitHdpoddsTv
                 , homeHdpOdds, awayHdpOdds, homeOddsType, awayOddsType, 0, holder.imgUpDownUp1, holder.imgUpDownDown1);
         setUpDownOdds(ouVisiable, item, isFh, isOUNew, hasOU, ou, holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv, holder.viewpagerMatchUnderoddsTv
@@ -973,7 +973,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     value = AfbUtils.decimalValue(Float.valueOf(f), "0.00");
                 }
                 if (isAnimation && imgUpDown != null && resUpdate != 0) {
-                    Log.d(TAG, "sid:" + item.getSocOddsId() + ",res: " + resUpdate);
                     imgUpDown.setImageResource(resUpdate);
                     imgUpDown.setVisibility(View.VISIBLE);
                 }

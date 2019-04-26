@@ -56,7 +56,9 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
     @Override
     public void onResume() {
         super.onResume();
-        showContent();
+        if (!isHidden()) {
+            showContent();
+        }
         LogUtil.d("showContent", getClass().getSimpleName() + ",onResume:");
     }
 }

@@ -74,11 +74,14 @@
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
                     android:background="@drawable/sport_game_rectangle_green_dark_trans_gradient_line"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
                     android:gravity="center"
                     android:orientation="horizontal"
                     android:padding="7dp">
 
                     <EditText
+
                         android:id="@+id/edt_match_search_content"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"

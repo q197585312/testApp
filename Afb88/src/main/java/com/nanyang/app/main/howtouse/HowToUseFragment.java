@@ -125,6 +125,7 @@ public class HowToUseFragment extends BaseMoreFragment {
 
     @Override
     public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
         if (!hidden) {
             setToolbarVisibility(View.VISIBLE);
             index = 0;
@@ -204,4 +205,5 @@ public class HowToUseFragment extends BaseMoreFragment {
         htu5.setContent(list5);
         dataList.add(htu5);
     }
+
 }

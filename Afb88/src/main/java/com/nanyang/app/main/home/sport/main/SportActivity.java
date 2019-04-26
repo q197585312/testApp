@@ -202,16 +202,19 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 } else {
                     edtSearchContent.setCursorVisible(true);
                 }
-                currentFragment.searchMatch(true, s);
-                if (!StringUtils.isNull(s))
+                if (!StringUtils.isNull(s)) {
                     ivDeleteSearch.setVisibility(View.VISIBLE);
-                else
+                    currentFragment.searchMatch(true, s);
+                } else
                     ivDeleteSearch.setVisibility(View.GONE);
                 currentFragment.checkBg(collectionIv, currentFragment.presenter.getStateHelper().isCollection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_yellow);
 
             }
         });
-        myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
+        myGoHomeBroadcastReceiver = new
+
+                MyGoHomeBroadcastReceiver(getApp());
+
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
     }
 
@@ -490,7 +493,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     protected void onResume() {
         super.onResume();
         currentFragment.getPresenter().getStateHelper().refresh();
-        Log.d("shangpeisheng", "isGoHome: " + getApp().isGoHome());
+  /*      Log.d("shangpeisheng", "isGoHome: " + getApp().isGoHome());
         if (getApp().isGoHome()) {
             getApp().setGoHome(false);
             Log.d("shangpeisheng", "isGoHome: " + getApp().isGoHome());
@@ -500,7 +503,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                     onLanguageSwitchSucceed(data);
                 }
             });
-        }
+        }*/
     }
 
     public void clickSportSelect(final View view) {
