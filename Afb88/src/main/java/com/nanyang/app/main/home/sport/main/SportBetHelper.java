@@ -1,12 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
-import android.graphics.Color;
 import android.support.annotation.NonNull;
-import android.text.Html;
-import android.text.Spannable;
-import android.text.SpannableStringBuilder;
-import android.text.style.BackgroundColorSpan;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -18,7 +12,6 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
@@ -26,9 +19,7 @@ import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.IBaseView;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -370,7 +361,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
                     public void accept(Subscription subscription) throws Exception {
-//                        getBaseView().getIBaseContext().showLoadingDialog();
+                        getBaseView().getIBaseContext().showLoadingDialog();
                         subscription.request(Long.MAX_VALUE);
                     }
                 });

@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.additional;
 
 import android.os.Handler;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
@@ -54,10 +53,12 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
         if (mCompositeSubscription != null)
             mCompositeSubscription.clear();
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
+        baseContext.hideLoadingDialog();
     }
 
     void startUpdate() {
         stopUpdate();
+        baseContext.showLoadingDialog();
         updateHandler.post(dataUpdateRunnable);// 打开定时器，执行操作
     }
 
@@ -75,6 +76,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
                     LogUtil.d("Addition", "-------" + data);
                     AdditionBean additionBean = gson.fromJson(data, AdditionBean.class);*/
                     AdditionPresenter.this.baseContext.onAddition(data, position);
+                    baseContext.hideLoadingDialog();
                 }
 
                 @Override
