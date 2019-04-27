@@ -47,7 +47,7 @@ public abstract class BaseAllFragment extends BaseSportFragment {
         String type = ((SportActivity) getActivity()).getType();
 
         initSport(AfbUtils.getSportByG("1"));//默认足球
-//        rvContent.setVisibility(View.GONE);
+        rvContent.setVisibility(View.GONE);
         switchType(type);
 
 //        setTitle(getString(R.string.OutRight));
@@ -125,8 +125,7 @@ public abstract class BaseAllFragment extends BaseSportFragment {
         baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
             @Override
             public void onItemClick(View view, SportIdBean item, int position) {
-                rvAll.setVisibility(View.GONE);
-                rvContent.setVisibility(View.VISIBLE);
+                handleSelectItemCLick(item);
 
             }
         });
