@@ -619,7 +619,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         if (StringUtils.isNull(content) || StringUtils.isNull(type) || StringUtils.isNull(oid)) {
             return;
         }
-        textView.setOnClickListener(new View.OnClickListener() {
+        ((View) textView.getParent()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 LogUtil.d("xxxxx", item.toString());

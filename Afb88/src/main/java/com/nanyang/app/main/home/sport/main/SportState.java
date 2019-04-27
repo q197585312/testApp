@@ -193,6 +193,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
         String url = getUrlString();
         LogUtil.d(getClass().getSimpleName(), "send------" + url);
+        baseView.getIBaseContext().showLoadingDialog();
         AsyncHttpClient.getDefaultInstance().websocket(url, null, new AsyncHttpClient.WebSocketConnectCallback() {
             @Override
             public void onCompleted(Exception ex, final WebSocket webSocket) {
@@ -213,6 +214,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                             updateHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
+                                    baseView.getIBaseContext().hideLoadingDialog();
                                     if (baseView.getIBaseContext().getBaseActivity() != null && baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
 //                                        baseView.checkMix(isMix());
                                         initAllData(allData);

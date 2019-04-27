@@ -51,7 +51,6 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
 
     public OutRightState(SportContract.View baseView) {
         super(baseView);
-
     }
 
     @Override
