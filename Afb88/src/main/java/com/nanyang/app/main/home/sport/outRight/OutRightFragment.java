@@ -58,7 +58,7 @@ public class OutRightFragment extends BaseAllFragment {
                 all.addAll(allBottomSport);
                 initDefaultList(all);
             }
-        }, 20);
+        }, 0);
 
     }
 

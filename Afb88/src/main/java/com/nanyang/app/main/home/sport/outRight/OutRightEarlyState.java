@@ -38,18 +38,7 @@ public class OutRightEarlyState extends OutRightState {
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {
-
-        switch (item.getType()) {
-            case "Early":
-                getBaseView().switchState(this);
-                break;
-            case "Today":
-                getBaseView().switchState(new OutRightTodayState(getBaseView()));
-                break;
-            case "Running":
-                getBaseView().switchState(new OutRightRunningState(getBaseView()));
-                break;
-        }
+        getBaseView().switchState(this);
         fragment.addSportHeadAndFoot(fragment.currentIdBean);
     }
 }

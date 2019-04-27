@@ -628,17 +628,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private void initSportFragment(SportIdBean item) {
         tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
         tvSportSelect.setText(getString(item.getTextRes()));
-     /*   if (item.getId().equals("1,9,21,29,51,182")) {
-            initAllRunning("1");
-        } else {
-            selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
-        }*/
 
         if (item.getDbid().equals("0")) {
             setType("Running");
             dateClickPositon = 0;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
-        } else if (item.getDbid().equals("0")) {
+        } else if (item.getDbid().equals("999")) {
             setType("Early");
             dateClickPositon = 3;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseActivity().getString(R.string.Early)
