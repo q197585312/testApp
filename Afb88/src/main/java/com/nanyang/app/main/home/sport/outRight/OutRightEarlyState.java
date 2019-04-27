@@ -49,7 +49,7 @@ public class OutRightEarlyState extends OutRightState {
             case "Running":
                 getBaseView().switchState(new OutRightRunningState(getBaseView()));
                 break;
-
         }
+        fragment.addSportHeadAndFoot(fragment.currentIdBean);
     }
 }

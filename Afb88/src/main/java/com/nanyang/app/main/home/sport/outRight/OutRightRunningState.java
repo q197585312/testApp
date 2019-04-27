@@ -45,7 +45,7 @@ class OutRightRunningState extends OutRightState {
             case "Running":
                 getBaseView().switchState(this);
                 break;
-
         }
+        fragment.addSportHeadAndFoot(fragment.currentIdBean);
     }
 }

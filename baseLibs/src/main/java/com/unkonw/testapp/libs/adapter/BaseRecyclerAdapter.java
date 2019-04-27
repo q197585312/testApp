@@ -25,8 +25,15 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     }
 
     public void setHeader(View mHeader) {
-        this.mHeaderView = mHeader;
-        notifyItemInserted(0);
+
+        if (mHeaderView == null) {
+            this.mHeaderView = mHeader;
+            notifyItemInserted(0);
+        } else {
+            this.mHeaderView = mHeader;
+            notifyDataSetChanged();
+        }
+
     }
 
     public View getFooter() {
@@ -34,12 +41,18 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     }
 
     public void setFooter(View mFooter) {
-        this.mFooterView = mFooter;
-        if (mHeaderView == null) {
-            notifyItemInserted(mDatas.size());
+        if (mFooterView == null) {
+            this.mFooterView = mFooter;
+            if (mHeaderView == null) {
+                notifyItemInserted(mDatas.size());
+            } else {
+                notifyItemInserted(mDatas.size() + 1);
+            }
         } else {
-            notifyItemInserted(mDatas.size() + 1);
+            this.mFooterView = mFooter;
+            notifyDataSetChanged();
         }
+
     }
 
     protected List<T> mDatas = new ArrayList<T>();
@@ -105,7 +118,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
 
     @Override
     public final void onBindViewHolder(MyRecyclerViewHolder holder, int position) {
-        if (getItemViewType(position)==TYPE_HEADER||getItemViewType(position)==TYPE_FOOTER)
+        if (getItemViewType(position) == TYPE_HEADER || getItemViewType(position) == TYPE_FOOTER)
             return;
         final int realPosition = getRealPosition(holder);
         holder.getHolderView().setTag(realPosition);
@@ -115,21 +128,24 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
         convert(holder, realPosition, item);
 
     }
-    private int getRealPosition(RecyclerView.ViewHolder viewHolder){
+
+    private int getRealPosition(RecyclerView.ViewHolder viewHolder) {
         int layoutPosition = viewHolder.getLayoutPosition();
-        return mHeaderView==null?layoutPosition:layoutPosition-1;
+        return mHeaderView == null ? layoutPosition : layoutPosition - 1;
     }
+
     public abstract void convert(MyRecyclerViewHolder holder, int position, T item);
+
     @Override
     public void onAttachedToRecyclerView(RecyclerView recyclerView) {
         super.onAttachedToRecyclerView(recyclerView);
         RecyclerView.LayoutManager layoutManager = recyclerView.getLayoutManager();
-        if (layoutManager instanceof GridLayoutManager){
+        if (layoutManager instanceof GridLayoutManager) {
             final GridLayoutManager gridLayoutManager = (GridLayoutManager) layoutManager;
             gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
                 @Override
                 public int getSpanSize(int position) {
-                    return getItemViewType(position)==TYPE_HEADER||getItemViewType(position)==TYPE_FOOTER?gridLayoutManager.getSpanCount():1;
+                    return getItemViewType(position) == TYPE_HEADER || getItemViewType(position) == TYPE_FOOTER ? gridLayoutManager.getSpanCount() : 1;
                 }
             });
         }
@@ -138,17 +154,17 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
 
     @Override
     public int getItemCount() {
-        if (mHeaderView==null){
-            if (mFooterView==null){
+        if (mHeaderView == null) {
+            if (mFooterView == null) {
                 return mDatas.size();
-            }else {
-                return mDatas.size()+1;
+            } else {
+                return mDatas.size() + 1;
             }
-        }else{
-            if (mFooterView==null){
-                return mDatas.size()+1;
-            }else {
-                return mDatas.size()+2;
+        } else {
+            if (mFooterView == null) {
+                return mDatas.size() + 1;
+            } else {
+                return mDatas.size() + 2;
             }
         }
     }
@@ -220,7 +236,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
         }
         return false;
     }
-
 
 
     public interface OnItemClickListener<T> {

@@ -1,5 +1,7 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +13,8 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
+import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
+import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.List;
@@ -23,6 +27,7 @@ import butterknife.Bind;
 
 public abstract class BaseAllFragment extends BaseSportFragment {
     public SportIdBean currentIdBean;
+    private boolean itemVisible;
 
     @Override
     protected String getBallDbid() {
@@ -33,6 +38,8 @@ public abstract class BaseAllFragment extends BaseSportFragment {
     protected LinearLayout ll_footer_sport;
     @Bind(R.id.ll_header_sport)
     protected LinearLayout ll_header_sport;
+    @Bind(R.id.base_rv)
+    protected RecyclerView rvAll;
 
     @Override
     public void initData() {
@@ -57,37 +64,14 @@ public abstract class BaseAllFragment extends BaseSportFragment {
         LinearLayout parentView = new LinearLayout(mContext);
         parentView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         parentView.setOrientation(LinearLayout.VERTICAL);
-        parentView.removeAllViews();
         for (final SportIdBean sportIdBean : allTopSport) {
             View inflate = LayoutInflater.from(mContext).inflate(R.layout.sport_selected_layout_base, null);
             inflate.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
-            View sportView = inflate.findViewById(R.id.ll_sport);
-            TextView sportName = inflate.findViewById(R.id.tv_sport_name);
-            ImageView sportPic = inflate.findViewById(R.id.iv_sport_picture);
-            sportName.setText(sportIdBean.getTextRes());
-            sportPic.setImageResource(sportIdBean.getSportPic());
-            sportName.setTextColor(sportIdBean.getTextColor());
-
+            View sportView = itemSelectConvert(sportIdBean, inflate);
             sportView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    boolean isRefesh = true;
-                    if (currentIdBean == null || (!currentIdBean.getDbid().equals(sportIdBean.getDbid())))
-                        isRefesh = true;
-                    else
-                        isRefesh = false;
-                    initSport(sportIdBean);
-                    if (isRefesh) {
-                        getPresenter().getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().clearItems(true);
-                        getPresenter().getStateHelper().handleAdapter();
-                        getPresenter().getStateHelper().refresh();
-                        ((OutRightState) getPresenter().getStateHelper()).setItemVisible(View.VISIBLE);
-                    } else {
-                        int itemVisible = ((OutRightState) getPresenter().getStateHelper()).getItemVisible();
-//                        ((OutRightState) getPresenter().getStateHelper()).setItemVisible(itemVisible == View.VISIBLE ? View.GONE : View.VISIBLE);
-                        getPresenter().getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().notifyDataSetChanged();
-                    }
-
+                    handleSelectItemCLick(sportIdBean);
                 }
             });
 
@@ -95,10 +79,58 @@ public abstract class BaseAllFragment extends BaseSportFragment {
         }
 //        baseRecyclerAdapter.removeHeadAndFoot();
         if (ishead)
-            baseRecyclerAdapter.setHeader(parentView);
+            getPresenter().getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().setHeader(parentView);
         else {
-            baseRecyclerAdapter.setFooter(parentView);
+            getPresenter().getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().setFooter(parentView);
         }
+    }
+
+    private void handleSelectItemCLick(SportIdBean sportIdBean) {
+        boolean isRefresh;
+        if (currentIdBean == null || (!currentIdBean.getDbid().equals(sportIdBean.getDbid())))
+            isRefresh = true;
+        else
+            isRefresh = false;
+        initSport(sportIdBean);
+        if (isRefresh) {
+            getPresenter().getStateHelper().getAdapterHelper().getBaseRecyclerAdapter().clearItems(true);
+            getPresenter().getStateHelper().handleAdapter();
+            getPresenter().getStateHelper().refresh();
+            setItemVisible(true);
+        } else {
+            setItemVisible(!getItemVisible());
+        }
+    }
+
+    private View itemSelectConvert(SportIdBean sportIdBean, View inflate) {
+        View sportView = inflate.findViewById(R.id.ll_sport);
+        TextView sportName = inflate.findViewById(R.id.tv_sport_name);
+        ImageView sportPic = inflate.findViewById(R.id.iv_sport_picture);
+        sportName.setText(sportIdBean.getTextRes());
+        sportPic.setImageResource(sportIdBean.getSportPic());
+        sportName.setTextColor(sportIdBean.getTextColor());
+        return sportView;
+    }
+
+    protected void initDefaultList(List<SportIdBean> all) {
+        rvAll.setLayoutManager(new LinearLayoutManager(mContext));
+        BaseRecyclerAdapter<SportIdBean> baseRecyclerAdapter = new BaseRecyclerAdapter<SportIdBean>(mContext, all, R.layout.sport_selected_layout_base) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, SportIdBean sportIdBean) {
+                View inflate = holder.getHolderView();
+                View sportView = itemSelectConvert(sportIdBean, inflate);
+            }
+        };
+        rvAll.setAdapter(baseRecyclerAdapter);
+        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
+            @Override
+            public void onItemClick(View view, SportIdBean item, int position) {
+                rvAll.setVisibility(View.GONE);
+                rvContent.setVisibility(View.VISIBLE);
+
+            }
+        });
+
 
     }
 
@@ -111,33 +143,28 @@ public abstract class BaseAllFragment extends BaseSportFragment {
     }
 
 
-    protected abstract void addSportHeadAndFoot(final SportIdBean sportIdBean);/*{
-
-        List<SportIdBean> allOutRightSport = getOutRightSports();
-        List<SportIdBean> allTopSport = new ArrayList<>();
-        List<SportIdBean> allBottomSport = new ArrayList<>();
-        boolean addHead = true;
-        for (int i = 0; i < allOutRightSport.size(); i++) {
-            SportIdBean s = allOutRightSport.get(i);
-            if (addHead) {
-                allTopSport.add(s);
-            } else {
-                allBottomSport.add(s);
-            }
-            if (s.getDbid().equals(sportIdBean.getDbid())) {
-                addHead = false;
-            }
-        }
-        initHeadAndFootOutRight(allTopSport, ll_header_sport);
-        initHeadAndFootOutRight(allBottomSport, ll_footer_sport);
-
-    }*/
+    public abstract void addSportHeadAndFoot(final SportIdBean sportIdBean);
 
     @Override
     public void onGetData(List<SportInfo> data) {
 //        super.onGetData(data);
         if (data == null || data.size() < 1)
             ToastUtils.showShort("No Games");
+    }
+
+    public void setItemVisible(boolean itemVisible) {
+        this.itemVisible = itemVisible;
+        if (itemVisible) {
+            rvContent.setVisibility(View.VISIBLE);
+            rvAll.setVisibility(View.GONE);
+        } else {
+            rvContent.setVisibility(View.GONE);
+            rvAll.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public boolean getItemVisible() {
+        return itemVisible;
     }
 
   /*  @Override

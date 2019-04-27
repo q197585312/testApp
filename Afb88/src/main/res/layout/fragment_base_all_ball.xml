@@ -20,22 +20,16 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
 
-
         <com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout
             android:id="@+id/swipeToLoadLayout"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
+            android:visibility="gone"
             app:swipe_style="classic">
 
             <include
                 android:id="@id/swipe_refresh_header"
                 layout="@layout/layout_google_header" />
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@id/swipe_target"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-              />
 
             <include
                 android:id="@id/swipe_load_more_footer"
@@ -43,12 +37,18 @@
 
         </com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout>
 
+        <include layout="@layout/layout_base_recycler_view" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@id/swipe_target"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <LinearLayout
             android:id="@+id/ll_footer_sport"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" />
-
 
         <TextView
             android:id="@+id/tv_no_games"

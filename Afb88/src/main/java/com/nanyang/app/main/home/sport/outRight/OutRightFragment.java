@@ -1,7 +1,6 @@
 package com.nanyang.app.main.home.sport.outRight;
 
 import android.os.Handler;
-import android.widget.LinearLayout;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
@@ -13,8 +12,6 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
-
 /**
  * Created by ASUS on 2019/4/23.
  */
@@ -25,10 +22,6 @@ public class OutRightFragment extends BaseAllFragment {
         return "";
     }
 
-    @Bind(R.id.ll_footer_sport)
-    protected LinearLayout ll_footer_sport;
-    @Bind(R.id.ll_header_sport)
-    protected LinearLayout ll_header_sport;
 
     @Override
     public void initData() {
@@ -38,9 +31,9 @@ public class OutRightFragment extends BaseAllFragment {
     }
 
     @Override
-    protected void addSportHeadAndFoot(final SportIdBean sportIdBean) {
+    public void addSportHeadAndFoot(final SportIdBean sportIdBean) {
 
-        new Handler().post(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 List<SportIdBean> allOutRightSport = getOutRightSports();
@@ -60,10 +53,15 @@ public class OutRightFragment extends BaseAllFragment {
                 }
                 initHeadAndFoot(allTopSport, true);
                 initHeadAndFoot(allBottomSport, false);
+                List<SportIdBean> all = new ArrayList<SportIdBean>();
+                all.addAll(allTopSport);
+                all.addAll(allBottomSport);
+                initDefaultList(all);
             }
-        });
+        }, 20);
 
     }
+
 
     private List<SportIdBean> getOutRightSports() {
         Iterator<Map.Entry<String, SportIdBean>> iterator = AfbUtils.beanHashMap.entrySet().iterator();

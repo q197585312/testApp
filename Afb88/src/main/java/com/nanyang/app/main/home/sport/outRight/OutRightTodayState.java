@@ -46,5 +46,6 @@ class OutRightTodayState extends OutRightState {
                 getBaseView().switchState(new OutRightRunningState(getBaseView()));
                 break;
         }
+        fragment.addSportHeadAndFoot(fragment.currentIdBean);
     }
 }

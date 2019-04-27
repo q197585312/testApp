@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home.sport.allRunning;
 
-import android.widget.LinearLayout;
-
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
@@ -18,19 +16,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
-
-/**
- * Created by ASUS on 2019/4/23.
- */
-
 public class AllRunningFragment extends BaseAllFragment {
-
-
-    @Bind(R.id.ll_footer_sport)
-    protected LinearLayout ll_footer_sport;
-    @Bind(R.id.ll_header_sport)
-    protected LinearLayout ll_header_sport;
 
     @Override
     public void initData() {
@@ -41,10 +27,9 @@ public class AllRunningFragment extends BaseAllFragment {
     }
 
     @Override
-    protected void addSportHeadAndFoot(final SportIdBean sportIdBean) {
+    public void addSportHeadAndFoot(final SportIdBean sportIdBean) {
         if (sportIdBean == null)
             return;
-        this.currentIdBean = sportIdBean;
         getBaseActivity().presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
@@ -71,7 +56,10 @@ public class AllRunningFragment extends BaseAllFragment {
                     }
                     initHeadAndFoot(allTopSport, true);
                     initHeadAndFoot(allBottomSport, false);
-
+                    List<SportIdBean> allList=new ArrayList<>();
+                    allList.addAll(allTopSport);
+                    allList.addAll(allBottomSport);
+                    initDefaultList(allList);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }

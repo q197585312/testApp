@@ -95,26 +95,11 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
         return false;
     }
 
-    public int getItemVisible() {
-        return itemVisible;
-    }
-
-    int itemVisible = View.VISIBLE;
-
-    public void setItemVisible(int visible) {
-        this.itemVisible = visible;
-    }
-
     @Override
     public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new SportAdapterHelper<BallInfo>() {
             @Override
             public void onConvert(MyRecyclerViewHolder holder, final int position, final BallInfo item) {
-      /*          ViewGroup.LayoutParams layoutParams = holder.getHolderView().getLayoutParams();
-                if (itemVisible == View.VISIBLE) {
-                    layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                } else
-                    layoutParams.height = 0;*/
 
                 TextView matchTitleTv = holder.getView(R.id.out_right_title_tv);
                 View headV = holder.getView(R.id.module_match_head_v);
@@ -186,9 +171,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String s) throws Exception {
-
                         //'ws://ws.afb1188.com:8888/fnOddsGen?wst=wsSocAllGen&g=31&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-04-20&LangCol=&accType=EU&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080',
-
                         int start = s.indexOf("ws://");
                         String substring = s.substring(start);
                         int end2 = substring.indexOf("',");
@@ -221,14 +204,11 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                                                     }
                                                 }
                                             });
-
                                         } catch (JSONException e) {
                                             e.printStackTrace();
                                         }
-
                                     }
                                 });
-
                                 webSocket.setClosedCallback(new CompletedCallback() {
                                     @Override
                                     public void onCompleted(Exception ex) {
@@ -353,8 +333,8 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
 
     }
 
- /*   @Override
+    @Override
     protected List<TableSportInfo<BallInfo>> pageData(List<TableSportInfo<BallInfo>> filterData) {
         return filterData;
-    }*/
+    }
 }
