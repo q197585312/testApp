@@ -63,8 +63,8 @@
         android:textColor="@color/black"
         android:textSize="13sp" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
+    <com.nanyang.app.Utils.FlowLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
@@ -104,7 +104,7 @@
             android:text="0fdasfdasfsaf1"
             android:textColor="@color/black"
             android:textSize="13sp" />
-    </LinearLayout>
+    </com.nanyang.app.Utils.FlowLayout>
 
     <TextView
         android:id="@+id/tv_match_grade"
