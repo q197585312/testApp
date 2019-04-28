@@ -23,7 +23,6 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     public View getHeader() {
         return mHeaderView;
     }
-
     public void setHeader(View mHeader) {
 
         if (mHeaderView == null) {

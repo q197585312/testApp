@@ -1,9 +1,5 @@
 package com.nanyang.app.main.home.sport.europe;
 
-import android.app.Activity;
-import android.graphics.Color;
-
-import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
@@ -34,7 +30,7 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
 
     int n = 0;
 
-    @Override
+/*    @Override
     protected void updateAllDate(List<TableSportInfo<BallInfo>> allData) {
 
 
@@ -74,7 +70,7 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 }
             }
         }
-    }
+    }*/
 
     private TableSportInfo<BallInfo> findRepeat(TableSportInfo<BallInfo> bTableSportInfo) {
         TableSportInfo<BallInfo> temp = new TableSportInfo<>(bTableSportInfo.getLeagueBean(), new ArrayList<BallInfo>());

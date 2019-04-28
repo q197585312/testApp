@@ -637,7 +637,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             setType("Early");
             dateClickPositon = 3;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseActivity().getString(R.string.Early)
-                    , "Early", R.mipmap.date_early_green));
+                    , "Early", R.mipmap.date_early_green,"","7"));
+
         }
         selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
 

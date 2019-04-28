@@ -44,7 +44,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     final int black_grey = Color.BLACK;
     protected Context context;
     private AddMBean additionData;
-    private int additionPosition;
+    private int additionPosition = -1;
 
     public Set<ScrollLayout> getSlFollowers() {
         return slFollowers;
@@ -61,10 +61,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     public synchronized void notifyPositionAddition(AddMBean data, int position) {
         this.additionData = data;
         int oldAdditionPosition = additionPosition;
-
         this.additionPosition = position;
-        getBaseRecyclerAdapter().notifyItemChanged(position);
-        if (oldAdditionPosition >= 0)
+        if (getBaseRecyclerAdapter().getHeader() != null)//有头部
+            getBaseRecyclerAdapter().notifyItemChanged(position + 1);
+        else
+            getBaseRecyclerAdapter().notifyItemChanged(position);
+        if (getBaseRecyclerAdapter().getHeader() != null && oldAdditionPosition >= 0)
+            getBaseRecyclerAdapter().notifyItemChanged(oldAdditionPosition + 1);
+        else if (getBaseRecyclerAdapter().getHeader() == null && oldAdditionPosition >= 0)
             getBaseRecyclerAdapter().notifyItemChanged(oldAdditionPosition);
 
     }

@@ -949,8 +949,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         itemToday.setDateParam("");
         MenuItemInfo<Integer> itemEarly = new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
                 + "(" + getBaseView().getIBaseContext().getBaseActivity().getString(R.string.all) + ")"
-                , "Early", R.mipmap.date_early_green);
-        itemEarly.setDateParam("7");
+                , "Early", R.mipmap.date_early_green, "", "7");
+
         List<MenuItemInfo<Integer>> types = new ArrayList<>();
         types.add(itemRunning);
         types.add(itemToday);

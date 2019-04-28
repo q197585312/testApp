@@ -31,6 +31,7 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
 
     }
 
+
     public void bindAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter) {
         this.baseRecyclerAdapter=baseRecyclerAdapter;
     }
