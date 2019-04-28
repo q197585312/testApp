@@ -10,21 +10,17 @@ import com.nanyang.app.main.home.sport.main.SportContract;
  * Created by ASUS on 2019/4/23.
  */
 
-public class OutRightEarlyState extends OutRightState {
-    public OutRightEarlyState(SportContract.View baseView) {
+class OutRightRunningState extends OutRightState {
+    public OutRightRunningState(SportContract.View baseView) {
         super(baseView);
-        ot = "e";
+        ot = "t";
     }
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight));
     }
 
-    @Override
-    protected String getSportName() {
-        return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight);
-    }
 
     @Override
     public boolean mix() {
@@ -41,13 +37,13 @@ public class OutRightEarlyState extends OutRightState {
 
         switch (item.getType()) {
             case "Early":
-                getBaseView().switchState(this);
+               getBaseView().switchState(new OutRightEarlyState(getBaseView()));
                 break;
             case "Today":
                 getBaseView().switchState(new OutRightTodayState(getBaseView()));
                 break;
             case "Running":
-                getBaseView().switchState(new OutRightRunningState(getBaseView()));
+                getBaseView().switchState(this);
                 break;
         }
         fragment.addSportHeadAndFoot(fragment.currentIdBean);

@@ -191,18 +191,23 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             });
             return;
         }
-        String url = getUrlString();
-        LogUtil.d(getClass().getSimpleName(), "send------" + url);
-        baseView.getIBaseContext().showLoadingDialog();
+        updateHandler.post(new Runnable() {
+            @Override
+            public void run() {
+                baseView.getIBaseContext().showLoadingDialog();
+            }
+        });
+        final String url = getUrlString();
         AsyncHttpClient.getDefaultInstance().websocket(url, null, new AsyncHttpClient.WebSocketConnectCallback() {
             @Override
             public void onCompleted(Exception ex, final WebSocket webSocket) {
-
+                Log.d("Socket", "onCompleted-----------" + url);
                 if (ex != null) {
                     Log.e(TAG, "Exception----------------" + ex.getLocalizedMessage());
                     ex.printStackTrace();
                     return;
                 }
+
                 webSocket.setStringCallback(new WebSocket.StringCallback() {
                     @Override
                     public void onStringAvailable(String s) {
@@ -228,7 +233,18 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
                     }
                 });
-
+                webSocket.setPingCallback(new WebSocket.PingCallback() {
+                    @Override
+                    public void onPingReceived(String s) {
+                        Log.d("Socket", "onPongCallback" + s);
+                    }
+                });
+                webSocket.setPongCallback(new WebSocket.PongCallback() {
+                    @Override
+                    public void onPongReceived(String s) {
+                        Log.d("Socket", "onPongReceived" + s);
+                    }
+                });
                 webSocket.setClosedCallback(new CompletedCallback() {
                     @Override
                     public void onCompleted(Exception ex) {

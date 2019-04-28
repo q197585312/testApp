@@ -5,6 +5,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,8 +62,8 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
         initView();
         initData();
         return mContentView;
-
     }
+
 
     @Override
     public void onDestroy() {
@@ -106,6 +107,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     }
 
     public void initData() {
+        Log.d(getClass().getSimpleName(), "initData: "+getClass().getSimpleName());
     }
 
     public void showToast(String content) {

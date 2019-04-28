@@ -10,21 +10,18 @@ import com.nanyang.app.main.home.sport.main.SportContract;
  * Created by ASUS on 2019/4/23.
  */
 
-public class OutRightEarlyState extends OutRightState {
-    public OutRightEarlyState(SportContract.View baseView) {
+class OutRightTodayState extends OutRightState {
+    public OutRightTodayState(SportContract.View baseView) {
         super(baseView);
-        ot = "e";
+
+        ot = "t";
     }
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight));
     }
 
-    @Override
-    protected String getSportName() {
-        return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight);
-    }
 
     @Override
     public boolean mix() {
@@ -38,13 +35,12 @@ public class OutRightEarlyState extends OutRightState {
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {
-
         switch (item.getType()) {
             case "Early":
-                getBaseView().switchState(this);
+               getBaseView().switchState(new OutRightEarlyState(getBaseView()));
                 break;
             case "Today":
-                getBaseView().switchState(new OutRightTodayState(getBaseView()));
+                getBaseView().switchState(this);
                 break;
             case "Running":
                 getBaseView().switchState(new OutRightRunningState(getBaseView()));
