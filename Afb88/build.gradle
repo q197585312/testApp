@@ -53,10 +53,10 @@ android {
             ]
             applicationId 'com.nanyang.afb1188'
             versionName '1.67'
-            buildConfigField "String", "HOST_AFB", '"http://wsapp.afb1188.com/"' //app专用服务器
-            buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
-//            buildConfigField "String", "HOST_AFB", '"https://www.afb1188.com/"'//h5正式机
-//            buildConfigField "String", "HOST_SPORT", '"http://ws.afb1188.com:8888/fnOddsGen"'
+//            buildConfigField "String", "HOST_AFB", '"http://wsapp.afb1188.com/"' //app专用服务器
+//            buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
+            buildConfigField "String", "HOST_AFB", '"https://www.afb1188.com/"'//h5正式机
+            buildConfigField "String", "HOST_SPORT", '"http://ws.afb1188.com:8888/fnOddsGen"'
         }
     }
 
