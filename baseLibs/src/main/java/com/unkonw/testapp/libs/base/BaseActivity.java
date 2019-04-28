@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
@@ -96,6 +97,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
+        Log.d(getClass().getSimpleName(), "onAttachedToWindow: " + getClass().getSimpleName());
         hasAttached = true;
     }
 

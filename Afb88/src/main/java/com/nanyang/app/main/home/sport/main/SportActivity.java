@@ -48,6 +48,7 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
+import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -634,10 +635,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             dateClickPositon = 0;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
         } else if (item.getDbid().equals("999")) {
-            setType("Early");
-            dateClickPositon = 3;
-            runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseActivity().getString(R.string.Early)
-                    , "Early", R.mipmap.date_early_green,"","7"));
+//            setType("Early");
+//            dateClickPositon = 3;
+      /*      runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseActivity().getString(R.string.Early)
+                    , "Early", R.mipmap.date_early_green,"","7"));*/
 
         }
         selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
@@ -646,7 +647,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void clickSportWayRun(final View view) {
 
-        if (currentFragment != null && currentFragment instanceof BaseAllFragment) {
+        if (currentFragment != null && currentFragment instanceof AllRunningFragment) {
             return;
         }
 

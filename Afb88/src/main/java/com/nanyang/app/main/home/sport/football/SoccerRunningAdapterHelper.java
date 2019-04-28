@@ -1,15 +1,12 @@
 package com.nanyang.app.main.home.sport.football;
 
-import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -46,6 +43,11 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             awayScoreTv.setText("");
             homeScoreTv.setText("");
         }
+        handleLiveTimeTv(item, timeTv);
+        dateTv.setTextColor(Color.RED);
+    }
+
+    protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
         String live = item.getLive();
         if (live.contains("HT") || live.contains("PEN") || live.contains("LIVE")) {
             String replace = live.replace("\n", ",");
@@ -98,6 +100,5 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
                 timeTv.setText("");
             }
         }
-        dateTv.setTextColor(Color.RED);
     }
 }
