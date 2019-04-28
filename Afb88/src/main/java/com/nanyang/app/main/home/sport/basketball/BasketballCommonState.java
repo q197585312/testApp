@@ -37,7 +37,7 @@ public abstract class BasketballCommonState extends BallState {
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        BasketballCommonAdapterHelper adapterHelper = onSetCommonAdapterHelper();
+        IAdapterHelper<BallInfo> adapterHelper = onSetCommonAdapterHelper();
         return adapterHelper;
     }
 
@@ -92,7 +92,7 @@ public abstract class BasketballCommonState extends BallState {
     //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?gt=s&b=under&oId=12159615&oId_fh=12159616&isFH=true&isRun=true&odds=4.70
 
 
-    protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
+    protected IAdapterHelper<BallInfo> onSetCommonAdapterHelper() {
         return new BasketballCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
 
