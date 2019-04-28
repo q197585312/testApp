@@ -188,9 +188,9 @@ public class AfbUtils {
         return obj;
     }
 
-    public static SpannableStringBuilder handleStringColor(String str, int firColor, int sedColor) {
-        int bstart = str.indexOf("/");
-        int bend = bstart + "/".length();
+    public static SpannableStringBuilder handleStringColor(String str, String splitStr, int firColor, int sedColor) {
+        int bstart = str.indexOf(splitStr);
+        int bend = bstart + splitStr.length();
         SpannableStringBuilder style = new SpannableStringBuilder(str);
         style.setSpan(new BackgroundColorSpan(firColor), 0, bstart, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         style.setSpan(new BackgroundColorSpan(sedColor), bend, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
