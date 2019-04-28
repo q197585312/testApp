@@ -578,6 +578,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             if (sportIdBean != null)
                 dbid = sportIdBean.getDbid();
         }
+        Log.e(TAG, "clickItemAdd: 点击的位置-------"+position);
         additionPresenter.addition((BallInfo) item, position, dbid);
         if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();

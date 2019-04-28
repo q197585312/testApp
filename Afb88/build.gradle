@@ -15,8 +15,6 @@ android {
         applicationId "com.nanyang.app"
         minSdkVersion 19
         targetSdkVersion 19
-        versionCode 1
-        versionName '1.66'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "HOST_AFB", '"http;//wsapp.afb1188.com"'
         buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
@@ -54,7 +52,7 @@ android {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"
             ]
             applicationId 'com.nanyang.afb1188'
-            versionName '1.61'
+            versionName '1.66'
 //            buildConfigField "String", "HOST_AFB", '"http://wsapp.afb1188.com/"' //app专用服务器
 //            buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
             buildConfigField "String", "HOST_AFB", '"https://www.afb1188.com/"'//h5正式机
