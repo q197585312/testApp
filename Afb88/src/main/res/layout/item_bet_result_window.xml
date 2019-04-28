@@ -86,7 +86,7 @@
             android:textSize="12dp" />
     </LinearLayout>
 
-    <LinearLayout
+    <com.nanyang.app.Utils.FlowLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="3dp"
@@ -166,5 +166,5 @@
             android:text="fdasf"
             android:textColor="@color/black"
             android:textSize="12dp" />
-    </LinearLayout>
+    </com.nanyang.app.Utils.FlowLayout>
 </LinearLayout>
