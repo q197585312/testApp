@@ -1,5 +1,9 @@
 package com.nanyang.app.main.home.sport.europe;
 
+import android.app.Activity;
+import android.graphics.Color;
+
+import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
@@ -30,17 +34,18 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
 
     int n = 0;
 
-/*    @Override
+    @Override
     protected void updateAllDate(List<TableSportInfo<BallInfo>> allData) {
 
 
-        List<TableSportInfo<BallInfo>> noRepeatAllData = handleRepeatData(allData);
-        filterData(noRepeatAllData);
+      /*  List<TableSportInfo<BallInfo>> noRepeatAllData = handleRepeatData(allData);
+        filterData(noRepeatAllData);*/
+        filterData(allData);
         showCurrentData();
 
         Activity activity = getBaseView().getIBaseContext().getBaseActivity();
-        for (int i = 0; i < noRepeatAllData.size(); i++) {
-            TableSportInfo<BallInfo> ballInfoTableSportInfo = noRepeatAllData.get(i);
+        for (int i = 0; i < allData.size(); i++) {
+            TableSportInfo<BallInfo> ballInfoTableSportInfo = allData.get(i);
             List<BallInfo> rows = ballInfoTableSportInfo.getRows();
             for (int j = 0; j < rows.size(); j++) {
                 BallInfo item = rows.get(j);
@@ -70,7 +75,7 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 }
             }
         }
-    }*/
+    }
 
     private TableSportInfo<BallInfo> findRepeat(TableSportInfo<BallInfo> bTableSportInfo) {
         TableSportInfo<BallInfo> temp = new TableSportInfo<>(bTableSportInfo.getLeagueBean(), new ArrayList<BallInfo>());
