@@ -26,6 +26,7 @@ public abstract class SoccerCommonState extends BallState {
         SoccerCommonAdapterHelper adapterHelper = onSetCommonAdapterHelper();
         return adapterHelper;
     }
+
     @Override
     protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<BallInfo>(baseRecyclerAdapter) {
@@ -33,16 +34,20 @@ public abstract class SoccerCommonState extends BallState {
             public boolean isItemCollection(BallInfo item) {
                 return isItemCollectionCommon(item);
             }
+
             @Override
             public boolean isLeagueCollection(BallInfo item) {
                 return isLeagueCollectionCommon(item);
             }
+
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc,boolean hasPar) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf, sc);
+//                (B itemData, int oid, String type, String odds, TextView v, boolean isHf, String params ,boolean hasPar);
+                helper.clickOdds(item, oid, type, odds, v, isHf, sc, hasPar);
             }
+
             @Override
             public void clickView(View v, BallInfo item, int position) {
                 switch (v.getId()) {
@@ -63,6 +68,7 @@ public abstract class SoccerCommonState extends BallState {
             }
         };
     }
+
     protected void clickHallBtn(View v, BallInfo item, int position) {
 
     }

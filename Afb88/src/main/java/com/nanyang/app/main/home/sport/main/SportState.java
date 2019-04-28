@@ -191,12 +191,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             });
             return;
         }
-        updateHandler.post(new Runnable() {
+        updateHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 baseView.getIBaseContext().showLoadingDialog();
             }
-        });
+        }, 20);
         final String url = getUrlString();
         AsyncHttpClient.getDefaultInstance().websocket(url, null, new AsyncHttpClient.WebSocketConnectCallback() {
             @Override
@@ -219,7 +219,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                             updateHandler.post(new Runnable() {
                                 @Override
                                 public void run() {
-                                    baseView.getIBaseContext().hideLoadingDialog();
                                     if (baseView.getIBaseContext().getBaseActivity() != null && baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
 //                                        baseView.checkMix(isMix());
                                         initAllData(allData);
@@ -400,6 +399,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         baseRecyclerAdapter.addAllAndClear(listData);
         List<B> listDataAll = toMatchList(filterData);
         baseView.onGetData(listDataAll);
+        Log.d(TAG, "showData: 已经显示数据了");
+        baseView.getIBaseContext().hideLoadingDialog();
     }
 
     public int getTitleContentColor() {

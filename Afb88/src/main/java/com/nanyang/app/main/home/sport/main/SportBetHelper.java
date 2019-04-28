@@ -219,12 +219,12 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
 //    }
 
     @Override
-    public Disposable clickOdds(B itemData, int oid, String type, String value, TextView v, boolean isHf, String params, boolean hasPar) {
+    public abstract Disposable clickOdds(B itemData, int oid, String type, String value, TextView v, boolean isHf, String params, boolean hasPar); /*{
         return clickOdds(itemData, type, value, v, isHf, params);
-    }
+    }*/
 
-    @Override
-    public abstract Disposable clickOdds(B item, String type, String odds, TextView v, boolean isHf, String sc);
+ /*   @Override
+    public abstract Disposable clickOdds(B item, String type, String odds, TextView v, boolean isHf, String sc);*/
 
     protected OddsClickBean getOddsUrl(B item, String type, boolean isHf, String odds, String sc) {
         return null;

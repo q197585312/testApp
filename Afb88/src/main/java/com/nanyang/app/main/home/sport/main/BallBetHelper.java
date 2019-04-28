@@ -10,6 +10,7 @@ import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import cn.finalteam.toolsfinal.StringUtils;
 import io.reactivex.disposables.CompositeDisposable;
@@ -29,10 +30,6 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         super(baseView);
     }
 
-    @Override
-    public Disposable clickOdds(B item, String type, String odds, final TextView v, final boolean isHf, String sc) {
-        return clickOdds(item, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), type, odds, v, isHf, sc, true);
-    }
 
     @Override
     public Disposable clickOdds(B item, int oid, String type, String odds, TextView v, boolean isHf, String sc, boolean hasPar) {
@@ -62,7 +59,8 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 || !hasPar))) {
             betOddsUrl = "BTMD=S&coupon=0&BETID=" + oddsUrlBean.getBETID();
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
-            getBaseView().onFailed(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.can_not_mixparly));
+//            getBaseView().onFailed(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.can_not_mixparly));
+            ToastUtils.showShort(R.string.can_not_mixparly);
             return new CompositeDisposable();
         } else {
             String ids = "";

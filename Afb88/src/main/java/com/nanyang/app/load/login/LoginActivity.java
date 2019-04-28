@@ -205,7 +205,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
                 @Override
                 protected void onError(Throwable throwable) {
                     super.onError(throwable);
-                    ToastUtils.showShort(getString(R.string.Net_Error));
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            ToastUtils.showShort(getString(R.string.Net_Error));
+                        }
+                    });
+
                 }
             });
         } else {

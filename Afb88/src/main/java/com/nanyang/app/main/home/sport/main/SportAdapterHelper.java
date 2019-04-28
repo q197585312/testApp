@@ -48,7 +48,7 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
          * @param isHf 是否是半场
          * @param odds  下注赔率
          */
-        void clickOdds(TextView v, B item, String type, boolean isHf, String odds,int oid,String sc);
+        void clickOdds(TextView v, B item, String type, boolean isHf, String odds,int oid,String sc,boolean hasPar);
 
         void clickView(View v, B item,int position);
 

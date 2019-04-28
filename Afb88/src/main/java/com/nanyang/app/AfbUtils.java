@@ -130,7 +130,7 @@ public class AfbUtils {
             return "";
         String p = "";
         try {
-            if (Float.valueOf(v) == 0) {
+            if (Math.abs(Float.valueOf(v)) < 0.3) {
                 return "";
             }
             p = decimalValue(Float.valueOf(v) / 10, "0.00");
