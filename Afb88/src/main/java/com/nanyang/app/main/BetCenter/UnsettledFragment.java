@@ -160,7 +160,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                         if (jsonArray.length() > 3) {
                                             List<StatementOpen2ListDataBean> list = presenter.getBeanList2(jsonArray);
                                             RecyclerView rc1 = holder.getView(R.id.rc_par_1);
-                                            LinearLayoutManager llm = new LinearLayoutManager(mContext){
+                                            LinearLayoutManager llm = new LinearLayoutManager(mContext) {
                                                 @Override
                                                 public boolean canScrollVertically() {
                                                     return false;
@@ -205,7 +205,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                         if (jsonArray.length() > 3) {
                                             List<StatementOpen3ListDataBean> list = presenter.getBeanList3(jsonArray);
                                             RecyclerView rc1 = holder.getView(R.id.rc_par_2);
-                                            LinearLayoutManager llm = new LinearLayoutManager(mContext){
+                                            LinearLayoutManager llm = new LinearLayoutManager(mContext) {
                                                 @Override
                                                 public boolean canScrollVertically() {
                                                     return false;
@@ -256,7 +256,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
                     String betType2 = item.getBetType221();
                     betType2 = AfbUtils.delHTMLTag(betType2);
-                    running_BetType2.setText("("+betType2 + ") ");
+                    running_BetType2.setText("(" + betType2 + ") ");
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
                     odds = AfbUtils.delHTMLTag(odds);
@@ -274,11 +274,11 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     }
                     running_OldStatus.setText(item.getOldStatus22());
                     TextView running_Status = holder.getTextView(R.id.running_Status);
-                    if(item.getDangerStatus8().equals("A")){
+                    if (item.getDangerStatus8().equals("A")) {
                         running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_black));
-                    }else if(item.getDangerStatus8().equals("W")){
+                    } else if (item.getDangerStatus8().equals("W")) {
                         running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
-                    }else{
+                    } else {
                         running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.red));
                     }
                     running_Status.setText(item.getDangerStatus8());
@@ -378,7 +378,14 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             tvWL.setTextColor(Color.RED);
         }
         tvWL.setText(AfbUtils.delHTMLTag(wlStr));
-        tvScore.setText(getString(R.string.Result) + ":" + bean.getIndex6() + "-" + bean.getIndex7());
+        String index17 = bean.getIndex17();
+        String scoreStr;
+        if (index17.equals("P")) {
+            scoreStr = "-";
+        } else {
+            scoreStr = bean.getIndex6() + "-" + bean.getIndex7();
+        }
+        tvScore.setText(getString(R.string.Result) + ":" + scoreStr);
     }
 
 }
