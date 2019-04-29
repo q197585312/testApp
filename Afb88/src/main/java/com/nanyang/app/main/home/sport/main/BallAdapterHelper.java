@@ -104,7 +104,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, R.string.FULL_1X2);
                     addAddition(additionData.getF1(), additionData.getFX(), additionData.getF2(), additionData.getF1X2_SocOddsId(), false, parent, item,
-                            "1", "X", "2", "1", "x", "2", "", "", "", R.layout.addition_1x2_sport_item
+                            "1", "X", "2", "1", "X", "2", "", "", "", R.layout.addition_1x2_sport_item
                             , additionData.getHasPar().equals("True")
                             , additionData.getHasPar().equals("True")
                             , additionData.getHasPar().equals("True")
@@ -114,7 +114,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, R.string.HALF_1X2);
                     addAddition(additionData.getH1(), additionData.getHX(), additionData.getH2(), additionData.getH1X2_SocOddsId(), false, parent, item,
-                            "1", "X", "2", "1", "x", "2", "", "", "", R.layout.addition_1x2_sport_item
+                            "1", "X", "2", "1", "X", "2", "", "", "", R.layout.addition_1x2_sport_item
                             , additionData.getHHasPar().equals("True")
                             , additionData.getHHasPar().equals("True")
                             , additionData.getHHasPar().equals("True")
@@ -244,7 +244,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, context.getString(R.string.full_time) + context.getString(R.string.odd_even));
                     addAdditionByColor(AfbUtils.changeValueS(additionData.getFOdd()), AfbUtils.changeValueS(additionData.getFEven()), additionData.getFOE_SocOddsId(), false, parent, item,
-                            "ODD", "EVEN", "dc", "dc", "10", "12", R.layout.addition_1x2_sport_item, "1"
+                            "ODD", "EVEN", "odd", "even", "", "", R.layout.addition_1x2_sport_item, "1"
                             , additionData.getHasPar().equals("True")
                             , additionData.getHasPar().equals("True")
                     );
