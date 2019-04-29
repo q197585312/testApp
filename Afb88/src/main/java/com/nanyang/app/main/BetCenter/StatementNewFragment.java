@@ -102,12 +102,13 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             tvDate.setText(date);
             tvCom.setText(getString(R.string.Com) + " " + bean.getIndex5() + " ");
             String wl = bean.getIndex4();
-            tvWinLose.setText(" " + wl + " ");
             if (wl.startsWith("-")) {
+                wl = wl.replace("-", "");
                 tvWinLose.setTextColor(Color.RED);
             } else {
                 tvWinLose.setTextColor(Color.BLUE);
             }
+            tvWinLose.setText(" " + AfbUtils.decimalValue(Float.parseFloat(wl), "0.00") + " ");
             tvSettled.setText(" " + getString(R.string.Settled) + " " + bean.getIndex6());
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -168,12 +169,13 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             tvDate.setText(dateStr);
             tvCom.setText(getString(R.string.Com) + " " + bean.getIndex5() + " ");
             String wl = bean.getIndex4();
-            tvWinLose.setText(" " + wl + " ");
             if (wl.startsWith("-")) {
+                wl = wl.replace("-", "");
                 tvWinLose.setTextColor(Color.RED);
             } else {
                 tvWinLose.setTextColor(Color.BLUE);
             }
+            tvWinLose.setText(" " + AfbUtils.decimalValue(Float.parseFloat(wl), "0.00") + " ");
             tvSettled.setText(" " + getString(R.string.Settled) + " " + bean.getIndex6());
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
