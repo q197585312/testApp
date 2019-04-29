@@ -39,6 +39,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
         tools:ignore="AllowBackup">
+        <meta-data
+            android:name="android.max_aspect"
+            android:value="2.2" />
 
         <activity android:name=".load.login.LoginActivity"></activity>
         <activity android:name=".load.welcome.WelcomeActivity">
@@ -51,10 +54,10 @@
         <activity android:name=".main.home.keno.KenoActivity" />
         <activity android:name=".load.register.RegisterActivity" />
         <activity android:name="com.unkonw.testapp.training.TestActivity">
- <!--           <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            <!--           <intent-filter>
+                           <action android:name="android.intent.action.MAIN" />
+                           <category android:name="android.intent.category.LAUNCHER" />
+                       </intent-filter>-->
         </activity>
         <activity
             android:name=".main.home.huayThai.HuayThaiGamesActivity"
