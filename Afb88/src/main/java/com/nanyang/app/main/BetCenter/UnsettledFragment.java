@@ -255,8 +255,15 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_Score.setText(item.getScore19() + " ");
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
                     String betType2 = item.getBetType221();
+                    if (betType2.contains("red")) {
+                        running_BetType2.setTextColor(Color.RED);
+                    } else if (betType2.contains("blue")) {
+                        running_BetType2.setTextColor(Color.BLUE);
+                    } else {
+                        running_BetType2.setTextColor(Color.BLACK);
+                    }
                     betType2 = AfbUtils.delHTMLTag(betType2);
-                    running_BetType2.setText("(" + betType2 + ") ");
+                    running_BetType2.setText("(" + (betType2.equals("1") ? "Outright" : betType2) + ") ");
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
                     odds = AfbUtils.delHTMLTag(odds);
@@ -274,14 +281,16 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     }
                     running_OldStatus.setText(item.getOldStatus22());
                     TextView running_Status = holder.getTextView(R.id.running_Status);
-                    if (item.getDangerStatus8().equals("A")) {
+                    String dangerStatus8 = item.getDangerStatus8();
+                    dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
+                    if (dangerStatus8.equals("A")) {
                         running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_black));
-                    } else if (item.getDangerStatus8().equals("W")) {
+                    } else if (dangerStatus8.equals("W")) {
                         running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
                     } else {
                         running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.red));
                     }
-                    running_Status.setText(item.getDangerStatus8());
+                    running_Status.setText(dangerStatus8);
                     TextView running_Amt = holder.getTextView(R.id.running_Amt);
                     running_Amt.setText(item.getAmt9());
                 }
@@ -325,18 +334,35 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         } else {
             tvMatchAt1.setTextColor(Color.BLACK);
         }
-        String matchAtStr2 = AfbUtils.delHTMLTag(bean.getIndex23());
+        String index22 = bean.getIndex23();
+        String matchAtStr2 = AfbUtils.delHTMLTag(index22);
         tvMatchAt2.setText("(" + matchAtStr2 + ")");
+        if (index22.contains("red")) {
+            tvMatchAt2.setTextColor(Color.RED);
+        } else if (index22.contains("blue")) {
+            tvMatchAt2.setTextColor(Color.BLUE);
+        } else {
+            tvMatchAt2.setTextColor(Color.BLACK);
+        }
         tvMatchAt3.setText("@");
         tvMatchAt4.setText(bean.getIndex13() + "");
         String wlStr = bean.getIndex8();
         if (wlStr.contains("green")) {
             tvWL.setTextColor(ContextCompat.getColor(mContext, R.color.green900));
-        } else {
+        } else if (wlStr.contains("red")) {
             tvWL.setTextColor(Color.RED);
+        } else {
+            tvWL.setTextColor(Color.BLACK);
         }
         tvWL.setText(AfbUtils.delHTMLTag(wlStr));
-        tvScore.setText(getString(R.string.Result) + " " + bean.getIndex6() + "-" + bean.getIndex7());
+        String index17 = bean.getIndex17();
+        String scoreStr;
+        if (index17.equals("P")) {
+            scoreStr = "-";
+        } else {
+            scoreStr = bean.getIndex6() + "-" + bean.getIndex7();
+        }
+        tvScore.setText(getString(R.string.Result) + " " + scoreStr);
         if (position == 0) {
             llTitle.setVisibility(View.VISIBLE);
             tvTotalOdds.setText(getString(R.string.TotalOdds) + ":" + bean.getIndex18());
@@ -353,7 +379,6 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         TextView tvMatchAt3 = view.getTextView(R.id.tv_match_at3);
         TextView tvMatchAt4 = view.getTextView(R.id.tv_match_at4);
         TextView tvWL = view.getTextView(R.id.tv_wl);
-        final LinearLayout llAddView2 = view.getLinearLayout(R.id.ll_addView2);
         TextView tvScore = view.getTextView(R.id.tv_score);
         tvIdDate.setText(bean.getIndex21() + "(" + bean.getIndex5() + ")");
         tvMatchType.setText(bean.getIndex1());
@@ -367,15 +392,25 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         } else {
             tvMatchAt1.setTextColor(Color.BLACK);
         }
-        String matchAtStr2 = AfbUtils.delHTMLTag(bean.getIndex22());
+        String index22 = bean.getIndex22();
+        String matchAtStr2 = AfbUtils.delHTMLTag(index22);
         tvMatchAt2.setText("(" + matchAtStr2 + ")");
+        if (index22.contains("red")) {
+            tvMatchAt2.setTextColor(Color.RED);
+        } else if (index22.contains("blue")) {
+            tvMatchAt2.setTextColor(Color.BLUE);
+        } else {
+            tvMatchAt2.setTextColor(Color.BLACK);
+        }
         tvMatchAt3.setText("@");
         tvMatchAt4.setText(bean.getIndex13() + "");
         String wlStr = bean.getIndex8();
         if (wlStr.contains("green")) {
             tvWL.setTextColor(ContextCompat.getColor(mContext, R.color.green900));
-        } else {
+        } else if (wlStr.contains("red")) {
             tvWL.setTextColor(Color.RED);
+        } else {
+            tvWL.setTextColor(Color.BLACK);
         }
         tvWL.setText(AfbUtils.delHTMLTag(wlStr));
         String index17 = bean.getIndex17();
