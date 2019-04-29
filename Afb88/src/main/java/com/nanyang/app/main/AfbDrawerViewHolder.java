@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
@@ -110,9 +111,11 @@ public class AfbDrawerViewHolder implements IDrawerView {
         dataList.add(m3);
         dataList.add(m4);
         dataList.add(m5);
-        dataList.add(m6);
+        if (!AppConstant.IS_AGENT)
+            dataList.add(m6);
         dataList.add(m7);
-        dataList.add(m8);
+        if (!AppConstant.IS_AGENT)
+            dataList.add(m8);
         BaseRecyclerAdapter<More> adapter = new BaseRecyclerAdapter<More>(baseToolbarActivity, dataList, R.layout.item_main_more) {
 
             @Override
@@ -179,7 +182,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
         boolean back = false;
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             back = isBack(back);
-        }else if (keyCode == KeyEvent.KEYCODE_HOME){
+        } else if (keyCode == KeyEvent.KEYCODE_HOME) {
             Log.d("shangpeisheng", "KEYCODE_HOME: ");
         }
         return back;

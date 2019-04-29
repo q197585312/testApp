@@ -33,30 +33,6 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
         super(view);
     }
 
-
-   /* @Override
-    public void login(Map<String,String> info) {
-
-
-        Call<String> call = mApiWrapper.getData( info);
-        call.enqueue(new Callback<String>() {//异步请求
-            @Override
-            public void onResponse(Call<String> call, final Response<String> response) {
-                if (response.isSuccessful() ) {
-                    baseContext.onBaseGetData(response.body());
-                } else {
-                    baseContext.onBaseGetData("失败");
-                }
-
-            }
-
-            @Override
-            public void onFailure(Call<String> call, final Throwable t) {
-                baseContext.onBaseGetData(t.getMessage());
-            }
-        });
-    }*/
-
     @NonNull
     private String getLanguage() {
         String lag = AfbUtils.getLanguage((Activity) baseContext);
@@ -100,14 +76,19 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                         .flatMap(new Function<String, Flowable<String>>() {
                             @Override
                             public Flowable<String> apply(String s) throws Exception {
-                                String regex = "window.location";
-                                Pattern p = Pattern.compile(regex);
-                                Matcher m = p.matcher(s);
-                                if (m.find()) {
-                                    return getService(ApiService.class).getData(url_login);
+                                if (s.contains("Maintenance")) {
+                                    Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
+                                    throw exception;
+                                } else {
+                                    String regex = "window.location";
+                                    Pattern p = Pattern.compile(regex);
+                                    Matcher m = p.matcher(s);
+                                    if (m.find()) {
+                                        return getService(ApiService.class).getData(url_login);
+                                    }
+                                    Exception exception1 = new Exception("Server Error");
+                                    throw exception1;
                                 }
-                                Exception exception1 = new Exception("Server Error");
-                                throw exception1;
 
                             }
                         }).flatMap(new Function<String, Flowable<String>>() {
@@ -197,14 +178,15 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
         }
         return true;
     }
+
     public void loadAllImages() {
 //        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
-        doRetrofitApiOnUiThread(getService(ApiService.class).getAllImagesData("http://www.appgd88.com/api/afb1188.php?app=" + BuildConfig.FLAVOR + "&lang=" +  new LanguageHelper(baseContext.getBaseActivity()).getLanguage()), new BaseConsumer<AllBannerImagesBean>(baseContext) {
+        doRetrofitApiOnUiThread(getService(ApiService.class).getAllImagesData("http://www.appgd88.com/api/afb1188.php?app=" + BuildConfig.FLAVOR + "&lang=" + new LanguageHelper(baseContext.getBaseActivity()).getLanguage()), new BaseConsumer<AllBannerImagesBean>(baseContext) {
             @Override
             protected void onBaseGetData(AllBannerImagesBean data) {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
-                LogUtil.d("AllBannerImagesBean",data.toString());
-                    LoginPresenter.this.baseContext.sendImageEvent(data);
+                LogUtil.d("AllBannerImagesBean", data.toString());
+                LoginPresenter.this.baseContext.sendImageEvent(data);
 
             }
         });

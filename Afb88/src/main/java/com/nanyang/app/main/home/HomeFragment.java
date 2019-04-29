@@ -29,7 +29,6 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.TimeUtils;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -181,6 +180,7 @@ public class HomeFragment extends BaseSwitchFragment {
 
                 @Override
                 public void onBack(String data) {
+
                     LogUtil.d("mainAllDataUpdateRunnable", "得到数据——" + data);
                     if (!TextUtils.isEmpty(lastAllMainData)) {
                         if (lastAllMainData.equals(data)) {
