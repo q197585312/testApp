@@ -463,8 +463,10 @@ public class BetPop extends BasePopupWindow {
                     String bTeam = item.getBTeam();
                     if (bTeam.equals("Home")) {
                         tvBetName.setText(item.getHome());
-                    } else {
+                    } else if (bTeam.equals("Away")) {
                         tvBetName.setText(item.getAway());
+                    } else {
+                        tvBetName.setText(bTeam);
                     }
                     boolean isHome = item.getIsGive() == 1;
                     if (isHome) {
