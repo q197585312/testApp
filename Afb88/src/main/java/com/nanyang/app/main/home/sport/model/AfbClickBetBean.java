@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home.sport.model;
 
-import android.text.Html;
-
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 
@@ -85,7 +83,7 @@ public class AfbClickBetBean implements Serializable {
     }
 
     public String getOdds() {
-//        Odds = AfbUtils.delHTMLTag(Odds);
+        Odds= AfbUtils.delHTMLTag(Odds);
         return Odds;
     }
 
@@ -202,7 +200,7 @@ public class AfbClickBetBean implements Serializable {
     }
 
     public void setBTT(String bTT) {
-//        bTT = AfbUtils.delHTMLTag(bTT);
+        bTT=AfbUtils.delHTMLTag(bTT);
         this.bTT = bTT;
     }
 
