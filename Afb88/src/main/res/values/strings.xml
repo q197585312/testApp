@@ -415,7 +415,7 @@
     <!--主页home pop-->
     <string name="home_user_name">User Name</string>
     <string name="home_currency">Currency</string>
-    <string name="home_cash_balance">Case Banlance</string>
+    <string name="home_cash_balance">Cash Balance</string>
     <string name="home_not_standing">Outstanding</string>
     <string name="home_min_bet">Min Bet</string>
     <string name="home_bet_credit">Bet Credit</string>
