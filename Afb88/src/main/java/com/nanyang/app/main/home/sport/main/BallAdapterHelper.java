@@ -301,9 +301,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     for (AddMBean.MModdsBean mModdsBean : additionData.getFHMModds()) {
                         View inflate = LayoutInflater.from(context).inflate(R.layout.addition_mm_title_fh_item, null);
                         parent.addView(inflate);
-                        addAdditionByColor(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), true, parent, item,
-                                "Home " + mModdsBean.getHDPH(), "Over " + mModdsBean.getOU(), "mmhome", "mmover", "", "", R.layout.addition_1x2_sport_item, "3");
-                        addAdditionByColor(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), true, parent, item,
+                        addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), true, parent, item,
+                                "Home ", "Over ", "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU());
+                        addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Away " + mModdsBean.getHDPA(), "Under " + mModdsBean.getOU(), "mmaway", "mmunder", "", "", R.layout.addition_1x2_sport_item, "3");
                     }
                 }
@@ -472,6 +472,77 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             onMatchRepeat(helper, item, position);
         } else {
             onMatchNotRepeat(helper, item, position);
+        }
+
+    }
+
+    private void addAdditionMModds(String oddsUp,
+                                   String oddsDown,
+                                   String socOddsId,
+                                   boolean isHalf,
+                                   LinearLayout parent,
+                                   I item, String hdpShow1, String hdpShow2,
+                                   String mmaway, String mmunder,
+                                   String hdp1, String hdp2
+    ) {
+
+        View inflate1X2 = LayoutInflater.from(context).inflate(R.layout.addition_mmodds_sport_item, null);
+
+        TextView down1_tv = inflate1X2.findViewById(R.id.down1_tv);
+        TextView down2_tv = inflate1X2.findViewById(R.id.down2_tv);
+        subStringsMModds(hdpShow1, hdp1, hdpShow2, hdp2, inflate1X2);
+
+        setTextValueClick(down1_tv, oddsUp, mmaway, socOddsId, item, isHalf, "");
+        setTextValueClick(down2_tv, oddsDown, mmunder, socOddsId, item, isHalf, "");
+        parent.addView(inflate1X2);
+
+    }
+
+    private void subStringsMModds(String hdpShow1, String hdp1, String hdpShow2, String hdp2, View inflate1X2) {
+        TextView up1_left_tv = inflate1X2.findViewById(R.id.up1_left_tv);
+        TextView up2_left_tv = inflate1X2.findViewById(R.id.up2_left_tv);
+        TextView up1_right1_tv = inflate1X2.findViewById(R.id.up1_right1_tv);
+        TextView up1_right2_tv = inflate1X2.findViewById(R.id.up1_right2_tv);
+        TextView up2_right1_tv = inflate1X2.findViewById(R.id.up2_right1_tv);
+        TextView up2_right2_tv = inflate1X2.findViewById(R.id.up2_right2_tv);
+        if (StringUtils.isNull(hdp1) && hdp1.contains("(")) {
+            String hdp = hdp1.substring(hdp1.indexOf("(") + 1, hdp1.indexOf(")"));
+            String pre=hdp1.substring(0,hdp1.indexOf("(") );
+            String last=hdp1.substring(hdp1.indexOf(")")+1 );
+            up1_left_tv.setText(hdpShow1+" "+pre);
+            up1_right2_tv.setText(last);
+            up1_right1_tv.setVisibility(View.VISIBLE);
+            up1_right2_tv.setVisibility(View.VISIBLE);
+            if (Float.valueOf(hdp) < 0) {
+                up1_right1_tv.setTextColor(Color.RED);
+            } else {
+                up1_right1_tv.setTextColor(Color.BLUE);
+            }
+            up1_right1_tv.setText("(" + hdp + ")");
+        }
+        else{
+            up1_left_tv.setText(hdpShow1);
+            up1_right1_tv.setVisibility(View.GONE);
+            up1_right2_tv.setVisibility(View.GONE);
+        }
+        if (StringUtils.isNull(hdp2) && hdp1.contains("(")) {
+            String hdp = hdp2.substring(hdp1.indexOf("(") + 1, hdp1.indexOf(")"));
+            String pre=hdp2.substring(0,hdp1.indexOf("(") );
+            String last=hdp2.substring(hdp1.indexOf(")")+1 );
+            up2_left_tv.setText(hdpShow1+" "+pre);
+            up2_right2_tv.setText(last);
+            up2_right1_tv.setVisibility(View.VISIBLE);
+            up2_right2_tv.setVisibility(View.VISIBLE);
+            if (Float.valueOf(hdp) < 0) {
+                up2_right1_tv.setTextColor(Color.RED);
+            } else {
+                up2_right1_tv.setTextColor(Color.BLUE);
+            }
+            up2_right1_tv.setText("(" + hdp + ")");
+        }else {
+            up2_left_tv.setText(hdpShow1);
+            up2_right1_tv.setVisibility(View.GONE);
+            up2_right2_tv.setVisibility(View.GONE);
         }
 
     }
