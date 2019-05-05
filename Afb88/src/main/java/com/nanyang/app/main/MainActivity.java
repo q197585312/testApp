@@ -2,6 +2,7 @@ package com.nanyang.app.main;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
@@ -129,8 +130,21 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
                     public void initItem(MyRecyclerViewHolder holder, int position, HomePopItemBeen item) {
                         TextView name = holder.getTextView(R.id.tv_type_name);
                         TextView data = holder.getTextView(R.id.tv_type_data);
-                        name.setText(item.getName());
+                        float aFloat = 0;
+                        try {
+                            aFloat = Float.valueOf(item.getData());
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (aFloat < 0) {
+                            data.setTextColor(Color.RED);
+                        } else {
+                            data.setTextColor(Color.BLACK);
+                        }
                         data.setText(item.getData());
+                        name.setText(item.getName());
+
                     }
 
                     @Override
@@ -143,7 +157,7 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
                         dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), info.getTotalCredit()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), AfbUtils.addComma(info.getTotalCredit().trim().replaceAll(",", ""), tvTime)));
                         return dataList;
                     }
                 };

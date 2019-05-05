@@ -8,6 +8,7 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * Created by Administrator on 2016/1/9.
@@ -18,7 +19,7 @@ public class TimeUtils {
      *
      * @return addMonth - 增加多少月
      */
-    public static Date getAddMonthDate(Date date,int addMonth) {
+    public static Date getAddMonthDate(Date date, int addMonth) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.MONTH, addMonth);
@@ -30,7 +31,7 @@ public class TimeUtils {
      *
      * @return addDay - 增加多少天
      */
-    public static Date getAddDayDate(Date date,int addDay) {
+    public static Date getAddDayDate(Date date, int addDay) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.DAY_OF_YEAR, addDay);
@@ -42,7 +43,7 @@ public class TimeUtils {
      *
      * @return addDay - 增加多少小时
      */
-    public static Date getAddHourDate(Date date,int addHour) {
+    public static Date getAddHourDate(Date date, int addHour) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.add(Calendar.HOUR, addHour);
@@ -63,7 +64,6 @@ public class TimeUtils {
 //        }
         return temp;
     }
-
 
 
     /**
@@ -115,30 +115,31 @@ public class TimeUtils {
     }
 
     /**
-     *
      * @param now
      * @param other
      * @param format
      * @return now-other
      */
-    public static long diffTime(String now,String other,String format) {
+    public static long diffTime(String now, String other, String format) {
         if (TextUtils.isEmpty(format)) {
             format = "yyyy-MM-dd HH:mm:ss";
         }
         DateFormat df = new SimpleDateFormat(format);
 
-        Date d1 = null;Date d2=null;
-        long diff=0;
+        Date d1 = null;
+        Date d2 = null;
+        long diff = 0;
         try {
             d1 = df.parse(now);
-            d2=df.parse(other);
+            d2 = df.parse(other);
             diff = d1.getTime() - d2.getTime();
         } catch (ParseException e) {
             e.printStackTrace();
         }
         return diff;
     }
-    public static long diffTime(String s1,String format1,String s2,String format2) {
+
+    public static long diffTime(String s1, String format1, String s2, String format2) {
         //设定时间的模板
 
         SimpleDateFormat sdf1 = new SimpleDateFormat(format1);
@@ -146,7 +147,7 @@ public class TimeUtils {
         //得到指定模范的时间
 
         //比较
-        long diff=0;
+        long diff = 0;
         try {
             Date d1 = sdf1.parse(s1);
             Date d2 = sdf2.parse(s2);
@@ -156,6 +157,7 @@ public class TimeUtils {
         }
         return diff;
     }
+
     /**
      * 是否同一天
      *
@@ -168,7 +170,8 @@ public class TimeUtils {
         long days2 = date2 / (1000 * 60 * 60 * 24);
         return days1 == days2;
     }
-    public static  Date format2Date(String obj,String format){
+
+    public static Date format2Date(String obj, String format) {
         SimpleDateFormat f = new SimpleDateFormat(format);
         try {
             return f.parse(obj);
@@ -188,6 +191,7 @@ public class TimeUtils {
     //yyyy-MM-dd-HH:mm
     public static String getTime(String format, Locale locale) {
         SimpleDateFormat myFmt = new SimpleDateFormat(format, locale);
+        myFmt.setTimeZone(TimeZone.getTimeZone("GMT+08"));
         return myFmt.format(new Date());
     }
 }

@@ -400,14 +400,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     for (AddMBean.MModdsBean mModdsBean : additionData.getFTMModds()) {
                         View inflate = LayoutInflater.from(context).inflate(R.layout.addition_mm_title_ft_item, null);
                         parent.addView(inflate);
-                        addAdditionByColor(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), false, parent, item,
-                                "Home " + mModdsBean.getHDPH(), "Over " + mModdsBean.getOU(), "mmhome", "mmover", "", "", R.layout.addition_1x2_sport_item, "3"
-                                , false
-                                , false);
-                        addAdditionByColor(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), false, parent, item,
-                                "Away " + mModdsBean.getHDPA(), "Under " + mModdsBean.getOU(), "mmaway", "mmunder", "", "", R.layout.addition_1x2_sport_item, "3"
-                                , false
-                                , false);
+                        addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), false, parent, item,
+                                "Home", "Over", "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU());
+                        addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), false, parent, item,
+                                "Away", "Under", "mmaway", "mmunder", mModdsBean.getHDPA(), "");
                     }
                 }
                 if (additionData.getFHMModds() != null && additionData.getFHMModds().size() > 0) {
@@ -417,7 +413,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Home ", "Over ", "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU());
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), true, parent, item,
-                                "Away " + mModdsBean.getHDPA(), "Under " + mModdsBean.getOU(), "mmaway", "mmunder", "", "", R.layout.addition_1x2_sport_item, "3");
+                                "Away ", "Under ", "mmaway", "mmunder", mModdsBean.getHDPA(), "");
                     }
                 }
             }
@@ -589,75 +585,70 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     }
 
-    private void addAdditionMModds(String oddsUp,
-                                   String oddsDown,
+    private void addAdditionMModds(String oddsLeft,
+                                   String oddsRight,
                                    String socOddsId,
                                    boolean isHalf,
                                    LinearLayout parent,
-                                   I item, String hdpShow1, String hdpShow2,
+                                   I item, String hdpShow1, String ouShow2,
                                    String mmaway, String mmunder,
-                                   String hdp1, String hdp2
+                                   String hdp1, String ou2
     ) {
 
         View inflate1X2 = LayoutInflater.from(context).inflate(R.layout.addition_mmodds_sport_item, null);
 
         TextView down1_tv = inflate1X2.findViewById(R.id.down1_tv);
         TextView down2_tv = inflate1X2.findViewById(R.id.down2_tv);
-        subStringsMModds(hdpShow1, hdp1, hdpShow2, hdp2, inflate1X2);
+        subStringsMModds(hdpShow1, hdp1, ouShow2, ou2, inflate1X2);
+        down1_tv.setTextColor(getValueColor(oddsLeft));
+        down2_tv.setTextColor(getValueColor(oddsRight));
 
-        setTextValueClick(down1_tv, oddsUp, mmaway, socOddsId, item, isHalf, "");
-        setTextValueClick(down2_tv, oddsDown, mmunder, socOddsId, item, isHalf, "");
+        setTextValueClick(down1_tv, oddsLeft, mmaway, socOddsId, item, isHalf, "", false);
+        setTextValueClick(down2_tv, oddsRight, mmunder, socOddsId, item, isHalf, "", false);
         parent.addView(inflate1X2);
 
     }
 
-    private void subStringsMModds(String hdpShow1, String hdp1, String hdpShow2, String hdp2, View inflate1X2) {
+    private void subStringsMModds(String hdpTitle, String hdp, String ouTitle, String ou, View inflate1X2) {
         TextView up1_left_tv = inflate1X2.findViewById(R.id.up1_left_tv);
         TextView up2_left_tv = inflate1X2.findViewById(R.id.up2_left_tv);
         TextView up1_right1_tv = inflate1X2.findViewById(R.id.up1_right1_tv);
         TextView up1_right2_tv = inflate1X2.findViewById(R.id.up1_right2_tv);
+        TextView up1_right3_tv = inflate1X2.findViewById(R.id.up1_right3_tv);
         TextView up2_right1_tv = inflate1X2.findViewById(R.id.up2_right1_tv);
         TextView up2_right2_tv = inflate1X2.findViewById(R.id.up2_right2_tv);
-        if (StringUtils.isNull(hdp1) && hdp1.contains("(")) {
-            String hdp = hdp1.substring(hdp1.indexOf("(") + 1, hdp1.indexOf(")"));
-            String pre=hdp1.substring(0,hdp1.indexOf("(") );
-            String last=hdp1.substring(hdp1.indexOf(")")+1 );
-            up1_left_tv.setText(hdpShow1+" "+pre);
-            up1_right2_tv.setText(last);
+        TextView up2_right3_tv = inflate1X2.findViewById(R.id.up2_right3_tv);
+        setMModds(hdpTitle, hdp, up1_left_tv, up1_right1_tv, up1_right2_tv, up1_right3_tv);
+        setMModds(ouTitle, ou, up2_left_tv, up2_right1_tv, up2_right2_tv, up2_right3_tv);
+    }
+
+    private void setMModds(String hdpTitle, String hdp, TextView up1_left_tv, TextView up1_right1_tv, TextView up1_right2_tv, TextView up1_right3_tv) {
+        if (!StringUtils.isNull(hdp) && hdp.contains("(")) {
+            String hdpOdds = hdp.substring(hdp.indexOf("(") + 1, hdp.indexOf(")"));
+            String pre = hdp.substring(0, hdp.indexOf("("));
+            String last = hdp.substring(hdp.indexOf(")") + 1);
+            up1_right1_tv.setText(pre);
+            up1_right3_tv.setText(last);
             up1_right1_tv.setVisibility(View.VISIBLE);
             up1_right2_tv.setVisibility(View.VISIBLE);
-            if (Float.valueOf(hdp) < 0) {
-                up1_right1_tv.setTextColor(Color.RED);
+            up1_right3_tv.setVisibility(View.VISIBLE);
+            if (Float.valueOf(hdpOdds) < 0) {
+                up1_right2_tv.setTextColor(ContextCompat.getColor(context, R.color.red_title));
             } else {
-                up1_right1_tv.setTextColor(Color.BLUE);
+                up1_right2_tv.setTextColor(Color.GRAY);
             }
-            up1_right1_tv.setText("(" + hdp + ")");
-        }
-        else{
-            up1_left_tv.setText(hdpShow1);
+            up1_right2_tv.setText("(" + hdpOdds + ")");
+        } else {
             up1_right1_tv.setVisibility(View.GONE);
             up1_right2_tv.setVisibility(View.GONE);
+            up1_right3_tv.setVisibility(View.GONE);
         }
-        if (StringUtils.isNull(hdp2) && hdp1.contains("(")) {
-            String hdp = hdp2.substring(hdp1.indexOf("(") + 1, hdp1.indexOf(")"));
-            String pre=hdp2.substring(0,hdp1.indexOf("(") );
-            String last=hdp2.substring(hdp1.indexOf(")")+1 );
-            up2_left_tv.setText(hdpShow1+" "+pre);
-            up2_right2_tv.setText(last);
-            up2_right1_tv.setVisibility(View.VISIBLE);
-            up2_right2_tv.setVisibility(View.VISIBLE);
-            if (Float.valueOf(hdp) < 0) {
-                up2_right1_tv.setTextColor(Color.RED);
-            } else {
-                up2_right1_tv.setTextColor(Color.BLUE);
-            }
-            up2_right1_tv.setText("(" + hdp + ")");
-        }else {
-            up2_left_tv.setText(hdpShow1);
-            up2_right1_tv.setVisibility(View.GONE);
-            up2_right2_tv.setVisibility(View.GONE);
+        if (hdpTitle.contains("Home")) {
+            up1_left_tv.setTextColor(Color.RED);
+        } else {
+            up1_left_tv.setTextColor(Color.BLACK);
         }
-
+        up1_left_tv.setText(hdpTitle);
     }
 
     public void handleOddsContent(MyRecyclerViewHolder helper, I item, int position) {

@@ -554,13 +554,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             return data;
         List<TableSportInfo<B>> moduleDate = new ArrayList<>();
         for (TableSportInfo<B> tableModuleBean : data) {
-            if (tableModuleBean.getLeagueBean().getModuleTitle().contains(searchStr)) {
+            if (tableModuleBean.getLeagueBean().getModuleTitle().toLowerCase().contains(searchStr.toLowerCase())) {
                 moduleDate.add(tableModuleBean);
             } else {
                 List<B> moduleCollectionRows = new ArrayList<>();
                 TableSportInfo<B> moduleCollection = new TableSportInfo<B>(tableModuleBean.getLeagueBean(), moduleCollectionRows);
                 for (B matchBean : tableModuleBean.getRows()) {
-                    if ((matchBean.getHome() + matchBean.getAway()).contains(searchStr)) {
+                    if ((matchBean.getHome() + matchBean.getAway().toLowerCase()).contains(searchStr.toLowerCase())) {
                         moduleCollectionRows.add(matchBean);
                     }
                 }

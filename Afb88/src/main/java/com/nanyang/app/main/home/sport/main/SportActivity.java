@@ -100,8 +100,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public TextView tvOddsType;
     @Bind(R.id.tv_league_major)
     TextView tvLeagueMain;
-    @Bind(R.id.iv_add)
-    ImageView ivAdd;
+    @Bind(R.id.iv_sort_time)
+    ImageView ivSortTime;
     @Bind(R.id.fl_main_content)
     FrameLayout flContent;
     @Bind(R.id.tv_record)
@@ -332,7 +332,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     protected void updateBalanceTv(String allData) {
-        tvBalance.setText(getApp().getUser().getCurCode2() + ": " + allData);
+        String s = AfbUtils.addComma(allData, tvBalance);
+        tvBalance.setText(getApp().getUser().getCurCode2() + ": " + s);
     }
 
 //    public void loginGD() {
@@ -420,7 +421,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     private SpannableStringBuilder isStartWithTag(String str) {
         if (str.startsWith("<SPAN")) {
-            String needStr =  AfbUtils.delHTMLTag(str);
+            String needStr = AfbUtils.delHTMLTag(str);
             if (needStr.startsWith("-")) {
                 return AfbUtils.handleStringTextColor(needStr, Color.RED);
             }
@@ -674,9 +675,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                                     ll_sort.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            sort = 1 - sort;
+                                            changeTimeSort();
                                             checkBox.setChecked(sort == 1);
-                                            currentFragment.getPresenter().getStateHelper().refresh();
                                         }
                                     });
                                 }
@@ -688,6 +688,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
 
         });
+    }
+
+    private void changeTimeSort() {
+        sort = 1 - sort;
+        currentFragment.getPresenter().getStateHelper().refresh();
+        ivSortTime.setImageResource(sort == 0 ? R.mipmap.sport_game_clock_white : R.mipmap.sport_game_clock_exit_white);
     }
 
     public int dateClickPositon = 0;
@@ -822,5 +828,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvMatchType.setText(item.getText());
         tvMatchType.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
         wd = item.getDateParam();
+    }
+
+    public void clickSortByTime(View view) {
+        changeTimeSort();
     }
 }

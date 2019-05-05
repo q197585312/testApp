@@ -209,7 +209,8 @@
                 </FrameLayout>
 
                 <ImageView
-                    android:id="@+id/iv_add"
+                    android:id="@+id/iv_sort_time"
+                    android:onClick="clickSortByTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"

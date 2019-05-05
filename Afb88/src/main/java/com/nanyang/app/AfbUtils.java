@@ -588,15 +588,15 @@ public class AfbUtils {
     public static String touzi_ed_values22 = "";
 
     /**
-     * 在数字型字符串千分位加逗号
+     * 在数字型字符串千分位加逗号,删除小数
      *
      * @param str
-     * @param edtext
+     * @param edt
      * @return sb.toString()
      */
-    public static String addComma(String str, TextView edtext) {
+    public static String addComma(String str, TextView edt) {
 
-        touzi_ed_values22 = edtext.getText().toString().trim().replaceAll(",", "");
+        touzi_ed_values22 = edt.getText().toString().trim().replaceAll(",", "");
 
         boolean neg = false;
         if (str.startsWith("-")) {  //处理负数
@@ -617,9 +617,9 @@ public class AfbUtils {
         if (neg) {
             sb.insert(0, '-');
         }
-        if (tail != null) {
+    /*    if (tail != null) {
             sb.append(tail);
-        }
+        }*/
         return sb.toString();
     }
 

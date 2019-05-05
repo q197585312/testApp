@@ -35,33 +35,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
 
     @NonNull
     private String getLanguage() {
-        String lag = AfbUtils.getLanguage((Activity) baseContext);
-        String lang;
-        switch (lag) {
-            case "zh":
-                lang = "ZH-CN";
-                break;
-            case "en":
-                lang = "EN-US";
-                break;
-            case "th":
-                lang = "TH-TH";
-                break;
-            case "ko":
-                lang = "EN-TT";
-                break;
-            case "vi":
-                lang = "EN-IE";
-                break;
-            case "tr":
-                lang = "UR-PK";
-                break;
-
-            default:
-                lang = "EN-US";
-                break;
-        }
-        return lang;
+        return AfbUtils.getLangParamStr(baseContext.getBaseContext());
     }
 
 
