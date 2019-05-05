@@ -1,9 +1,7 @@
 package com.nanyang.app.main.home.sport.europe;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -219,7 +217,7 @@ class ItemClick implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         if (!odds.equals("") && Float.valueOf(odds) != 0)
-            back.clickOdds((TextView) v, item, type, isHf, odds, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), "");
+            back.clickOdds((TextView) v, item, type, isHf, odds, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), "", isHf ? (item.getHasPar_FH() != null && item.getHasPar_FH().equals("1")) : (item.getHasPar() != null && item.getHasPar().equals("1")));
     }
 }
 

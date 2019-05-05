@@ -16,15 +16,26 @@ import java.util.HashMap;
 public abstract class FiveMajorState extends SoccerCommonState {
     HashMap<String, FiveMajorState> majorStateHashMap = new HashMap<>();
 
+
     public FiveMajorState(SportContract.View baseView) {
         super(baseView);
-
+//        majorStateHashMap.put()
     }
 
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {
-        getBaseView().switchState(majorStateHashMap.get(item.getType()));
+        switch (item.getType()) {
+            case "Early":
+                getBaseView().switchState(new FiveMajorEarlyState(getBaseView()));
+                break;
+            case "Today":
+                getBaseView().switchState(new FiveMajorTodayState(getBaseView()));
+                break;
+            case "Running":
+                getBaseView().switchState(new FiveMajorRunningState(getBaseView()));
+                break;
+        }
     }
 
     @Override

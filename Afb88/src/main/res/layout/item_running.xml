@@ -17,7 +17,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="2dp"
             android:orientation="horizontal">
 
             <TextView
@@ -42,7 +42,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="2dp"
             android:orientation="horizontal">
 
             <TextView
@@ -96,8 +96,8 @@
         <com.nanyang.app.Utils.FlowLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="3dp"
-            android:layout_marginTop="1dp"
+            android:layout_marginBottom="2dp"
+            android:layout_marginTop="2dp"
             android:orientation="horizontal">
 
             <TextView
@@ -193,7 +193,7 @@
                 android:id="@+id/running_Amt"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="4dp"
+                android:layout_marginLeft="2dp"
                 android:gravity="right"
                 android:text="100"
                 android:textColor="@color/black"
@@ -218,19 +218,21 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
+                android:paddingLeft="2dp"
+                android:paddingTop="2dp"
                 android:text="一枚啦"
-                android:textColor="@color/grey_dark" />
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="right"
                 android:paddingRight="10dp"
-                android:paddingTop="5dp"
+                android:paddingTop="2dp"
                 android:text="Est./Payout:"
-                android:textColor="@color/grey_dark" />
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/running_par_Odds1"
@@ -239,9 +241,10 @@
                 android:layout_marginRight="20dp"
                 android:gravity="left"
                 android:paddingRight="10dp"
-                android:paddingTop="5dp"
+                android:paddingTop="2dp"
                 android:text="333.10"
                 android:textColor="@color/black"
+                android:textSize="13sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -255,11 +258,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingBottom="5dp"
-                android:paddingLeft="5dp"
-                android:paddingTop="5dp"
+                android:paddingBottom="2dp"
+                android:paddingLeft="2dp"
+                android:paddingTop="2dp"
                 android:text="Odds:3.331"
-                android:textColor="@color/green_thick_line" />
+                android:textColor="@color/green_thick_line"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/running_par_CombInfo"
@@ -267,11 +271,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="right"
-                android:paddingBottom="5dp"
+                android:paddingBottom="2dp"
                 android:paddingRight="10dp"
-                android:paddingTop="5dp"
+                android:paddingTop="2dp"
                 android:text="2X1"
-                android:textColor="@color/grey_dark" />
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
             <ImageView
                 android:id="@+id/running_par_load"
@@ -325,9 +330,10 @@
                 android:layout_height="wrap_content"
                 android:background="@color/keno_line"
                 android:gravity="center"
-                android:paddingBottom="3dp"
-                android:paddingTop="3dp"
-                android:text="打开详细列表" />
+                android:textSize="14sp"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:text="@string/OpenDetail" />
         </LinearLayout>
 
         <LinearLayout
@@ -358,6 +364,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="3dp"
             android:background="@drawable/shape_running_text"
             android:orientation="horizontal"
             android:paddingLeft="5dp"
@@ -367,33 +374,36 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
-                android:paddingBottom="8dp"
+                android:paddingBottom="6dp"
                 android:paddingLeft="5dp"
-                android:paddingTop="8dp"
+                android:paddingTop="6dp"
                 android:text="@string/PARLAY"
                 android:textColor="@color/black"
-                android:textSize="12sp"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/running_Amt_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingBottom="8dp"
-                android:paddingTop="8dp"
+                android:paddingBottom="6dp"
+                android:paddingTop="6dp"
                 android:text="ATM:"
-                android:textColor="@color/grey_dark" />
+                android:textColor="@color/grey_dark"
+                android:textSize="13sp" />
 
             <TextView
                 android:id="@+id/running_par_Amt"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="2dp"
                 android:layout_marginRight="40dp"
                 android:layout_weight="1"
                 android:paddingBottom="5dp"
                 android:paddingTop="5dp"
                 android:text="100"
                 android:textColor="@color/black"
+                android:textSize="13sp"
                 android:textStyle="bold" />
             />
         </LinearLayout>
@@ -414,6 +424,7 @@
                 android:paddingRight="4dp"
                 android:text="A"
                 android:textColor="@color/white"
+                android:textSize="13sp"
                 android:textStyle="bold" />
 
             <TextView
@@ -422,10 +433,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="4"
                 android:gravity="right"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp"
+                android:paddingBottom="3dp"
+                android:paddingTop="3dp"
                 android:text="ID:[PAR000396162]12/04 9:48:47 am"
-                android:textColor="@color/grey_dark" />
+                android:textColor="@color/grey_dark"
+                android:textSize="13sp" />
         </LinearLayout>
     </LinearLayout>
 </LinearLayout>

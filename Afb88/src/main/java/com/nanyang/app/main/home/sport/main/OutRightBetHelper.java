@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sport.main;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
+import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
@@ -20,7 +21,7 @@ public class OutRightBetHelper extends SportBetHelper<SportInfo, BetView> {
         super(baseView);
     }
     @Override
-    public Disposable clickOdds(SportInfo item, String type, String odds, TextView v, boolean isHf, String sc) {
+    public Disposable clickOdds(SportInfo item, int oid,String type, String odds, TextView v, boolean isHf, String sc,boolean hasPar) {
 
         AfbClickResponseBean betAfbList = ((AfbApplication) AfbApplication.getInstance()).getBetAfbList();
         String betOddsUrl = "";
@@ -28,7 +29,7 @@ public class OutRightBetHelper extends SportBetHelper<SportInfo, BetView> {
         if (betAfbList == null || betAfbList.getList().size() == 0 || (betAfbList.getList().size() == 1)) {
             betOddsUrl = "BTMD=S&coupon=0&BETID=" + "|1|50|" + item.getSocOddsId() + "||";
         } else {
-            getBaseView().onFailed("不能点击过关");
+            getBaseView().onFailed(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.can_not_mixparly));
             return new CompositeDisposable();
         }
         //http://www.afb1188.com/Bet/hBetOdds.ashx?BTMD=S&coupon=0&BETID=s|home|1|469195||&_=1543457322841

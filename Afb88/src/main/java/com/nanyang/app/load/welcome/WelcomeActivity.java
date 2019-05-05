@@ -22,8 +22,6 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.io.File;
 
-import solid.ren.skinlibrary.loader.SkinManager;
-
 
 public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
     private Dialog noticeDialog;
@@ -34,7 +32,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        switch (getString(R.string.app_name)) {
+       /* switch (getString(R.string.app_name)) {
             case "Afb88":
                 SkinManager.getInstance().restoreDefaultTheme();
                 break;
@@ -44,7 +42,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
             case "AP889":
                 SkinManager.getInstance().loadSkin("skinpurplepackage.skin", null);
                 break;
-        }
+        }*/
         setContentView(R.layout.activity_welcome);
         createPresenter(new WelcomePresenter(this));
         try {

@@ -14,7 +14,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -421,7 +420,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     private SpannableStringBuilder isStartWithTag(String str) {
         if (str.startsWith("<SPAN")) {
-            String needStr = Html.fromHtml(str).toString();
+            String needStr =  AfbUtils.delHTMLTag(str);
             if (needStr.startsWith("-")) {
                 return AfbUtils.handleStringTextColor(needStr, Color.RED);
             }

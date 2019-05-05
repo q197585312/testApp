@@ -1,10 +1,17 @@
 package com.nanyang.app.main;
 
+import android.content.Intent;
+import android.view.View;
+
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
+import com.nanyang.app.R;
 import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -36,6 +43,16 @@ public class LoadMainDataHelper {
         Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
+                if (data.contains("Maintenance")) {
+                    ((BaseToolbarActivity) baseContext).reLoginPrompt(baseContext.getBaseActivity().getString(R.string.System_maintenance), new SportContract.CallBack() {
+                        @Override
+                        public void clickCancel(View v) {
+                            Intent intent = new Intent(baseContext.getBaseActivity(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            baseContext.getBaseActivity().startActivity(intent);
+                        }
+                    });
+                    return;
+                }
                 String updateString = AfbUtils.delHTMLTag(data);
                 JSONArray jsonArray = new JSONArray(updateString);
                 if (jsonArray.length() > 3) {
