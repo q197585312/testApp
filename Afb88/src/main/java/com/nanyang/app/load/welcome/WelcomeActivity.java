@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.Been.CheckVersionBean;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
@@ -46,10 +47,10 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         setContentView(R.layout.activity_welcome);
         createPresenter(new WelcomePresenter(this));
         try {
-            presenter.checkVersion(new BaseConsumer<String>(this) {
+            presenter.checkVersion(new BaseConsumer<CheckVersionBean>(this) {
                 @Override
-                protected void onBaseGetData(String data) {
-                    onGetData(data);
+                protected void onBaseGetData(CheckVersionBean checkVersionBean) {
+                    onGetData(checkVersionBean);
                 }
 
                 @Override
@@ -85,10 +86,12 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         SystemTool.installApk(mContext, file);
     }
 
-    public void onGetData(String data) {
+    public void onGetData(CheckVersionBean checkVersionBean) {
+        String version = checkVersionBean.getData().getVersion();
+        String url = checkVersionBean.getData().getUrl();
         try {
-            if (Float.valueOf(data) > Float.valueOf(SystemTool.getPackageInfo(mContext).versionName)) {
-                showUpdateDialog(data);
+            if (Float.valueOf(version) > Float.valueOf(SystemTool.getPackageInfo(mContext).versionName)) {
+                showUpdateDialog(url);
                 return;
             }
         } catch (PackageManager.NameNotFoundException e) {
@@ -97,14 +100,14 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         presenter.checkInitCheck(getIntent());
     }
 
-    private void showUpdateDialog(final String version) {
+    private void showUpdateDialog(final String url) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.Base_AlertDialog);
         builder.setTitle(R.string.Update);
         builder.setMessage(R.string.download_now);
         builder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 noticeDialog.dismiss();
-                showDownloadDialog(version);
+                showDownloadDialog(url);
             }
         });
 
@@ -113,7 +116,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         noticeDialog.show();
     }
 
-    private void showDownloadDialog(String version) {
+    private void showDownloadDialog(String url) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.Base_AlertDialog);
         builder.setTitle(R.string.Loading);
         final LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -123,7 +126,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         downloadDialog = builder.create();
         downloadDialog.setCancelable(false);
         downloadDialog.show();
-        presenter.updateVersion(version);
+        presenter.updateVersion(url);
         totalLength = 0;
     }
 

@@ -44,99 +44,35 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
             //http://www.afb1188.com/W0/Pub/pcode.axd
             final String url_login = AppConstant.getInstance().URL_LOGIN;
             Map<String, String> infoWfmain = info.getWfmain("Login", getLanguage());
-            if (BuildConfig.FLAVOR.equals("afb1188")) {
-                doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(url_login, infoWfmain)
+            doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(url_login, infoWfmain)
 
-                        .flatMap(new Function<String, Flowable<String>>() {
-                            @Override
-                            public Flowable<String> apply(String s) throws Exception {
-                                if (s.contains("Maintenance")) {
-                                    Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
-                                    throw exception;
-                                } else {
-                                    String regex = "window.location";
-                                    Pattern p = Pattern.compile(regex);
-                                    Matcher m = p.matcher(s);
-                                    if (m.find()) {
-                                        return getService(ApiService.class).getData(url_login);
-                                    }
-                                    Exception exception1 = new Exception("Server Error");
-                                    throw exception1;
-                                }
-
-                            }
-                        }).flatMap(new Function<String, Flowable<String>>() {
-                            @Override
-                            public Flowable<String> apply(String s) throws Exception {
-                                SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext);
-                                return switchLanguage.switchLanguage(getLanguage(), "MY");
-                            }
-
-                        }), baseConsumer);
-                return;
-            }
-            doRetrofitApiOnUiThread(getService(ApiService.class).getData(url_login)
                     .flatMap(new Function<String, Flowable<String>>() {
                         @Override
                         public Flowable<String> apply(String s) throws Exception {
-                            String substring1 = s.substring(s.indexOf("id=\"__VIEWSTATE\" value=\"") + 24);
-                            String __VIEWSTATE = substring1.substring(0, substring1.indexOf("\""));
-                            String substring2 = s.substring(s.indexOf("id=\"__EVENTVALIDATION\" value=\"") + 30);
-                            String __EVENTVALIDATION = substring2.substring(0, substring2.indexOf("\""));
-
-                            info.set__VIEWSTATE(__VIEWSTATE);
-                            info.set__EVENTVALIDATION(__EVENTVALIDATION);
-
-                            return getService(ApiService.class).doPostMap(url_login, info.getMap());
-
-                        }
-                    })
-                    .flatMap(new Function<String, Flowable<String>>() {
-                        @Override
-                        public Flowable<String> apply(String s) throws Exception {
-                            String regex = ".*<script language='javascript'>window.open\\('(.*?)'.*?";
-                            Pattern p = Pattern.compile(regex);
-                            Matcher m = p.matcher(s);
-                            if (m.find()) {
-
-                                String url = m.group(1);
-                                if (url.contains("Maintenance")) {
-                                    Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
-                                    throw exception;
-                                } else {
-//                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
-                                    String host = url.substring(0, url.indexOf("/", 9));
-                                    AppConstant.getInstance().setHost(host + "/");
-                                    Log.d("OKHttp", url);
-                                    return getService(ApiService.class).getData(url);
+                            if (s.contains("Maintenance")) {
+                                Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
+                                throw exception;
+                            } else {
+                                String regex = "window.location";
+                                Pattern p = Pattern.compile(regex);
+                                Matcher m = p.matcher(s);
+                                if (m.find()) {
+                                    return getService(ApiService.class).getData(url_login);
                                 }
+                                Exception exception1 = new Exception("Server Error");
+                                throw exception1;
                             }
-                            Exception exception1 = new Exception("Server Error");
-                            throw exception1;
-
-                        }
-                    })
-                    //http://main55.afb88.com/_bet/panel.aspx
-                    .flatMap(new Function<String, Flowable<String>>() {
-                        @Override
-                        public Flowable<String> apply(String str) throws Exception {
-                            if (str.contains("window.open(")) {
-                                return getService(ApiService.class).getData(AppConstant.getInstance().URL_PANEL);
-                            }
-                            Exception exception1 = new Exception("Login Failed");
-                            throw exception1;
-
 
                         }
                     }).flatMap(new Function<String, Flowable<String>>() {
                         @Override
-                        public Flowable<String> apply(String str) throws Exception {
-                            String lang = getLanguage();
+                        public Flowable<String> apply(String s) throws Exception {
                             SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext);
-                            return switchLanguage.switchLanguage(lang);
-
+                            return switchLanguage.switchLanguage(getLanguage(), "MY");
                         }
+
                     }), baseConsumer);
+            return;
         }
     }
 
@@ -155,7 +91,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
 
     public void loadAllImages() {
 //        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
-        doRetrofitApiOnUiThread(getService(ApiService.class).getAllImagesData("http://www.appgd88.com/api/afb1188.php?app=" + BuildConfig.FLAVOR + "&lang=" + new LanguageHelper(baseContext.getBaseActivity()).getLanguage()), new BaseConsumer<AllBannerImagesBean>(baseContext) {
+        doRetrofitApiOnUiThread(getService(ApiService.class).getAllImagesData(BuildConfig.ImgConfig_URL + "&lang=" + new LanguageHelper(baseContext.getBaseActivity()).getLanguage()), new BaseConsumer<AllBannerImagesBean>(baseContext) {
             @Override
             protected void onBaseGetData(AllBannerImagesBean data) {
 //                @Subscribe(threadMode = ThreadMode.MainThread)

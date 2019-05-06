@@ -8,8 +8,6 @@ public class AppConstant {
 
 
     public static final String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
-    public static final String CHECK_VERSION = "http://www.appgd88.com/afb1188version.php?app=android";
-    public static final String DOWNLOAD_APP = "http://appgd88.com/afb1188/afb1188.apk";
     public static boolean IS_AGENT = false;
 
 //http://www.afb1188.com/W0/Pub/pcode.axd

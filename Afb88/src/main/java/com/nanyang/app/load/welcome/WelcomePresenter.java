@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.ApiService;
+import com.nanyang.app.Been.CheckVersionBean;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
@@ -45,16 +46,16 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
     }
 
 
-    public void checkVersion(BaseConsumer<String> baseConsumer) {
-        doRetrofitApiOnUiThread(getService(ApiService.class).checkVersion(), baseConsumer);
+    public void checkVersion(BaseConsumer<CheckVersionBean> baseConsumer) {
+        doRetrofitApiOnUiThread(getService(ApiService.class).checkVersion(BuildConfig.CHECK_VERSION), baseConsumer);
     }
 
 
-    public void updateVersion(final String version) {
+    public void updateVersion(final String url) {
         String path = Environment.getExternalStorageDirectory().getPath();
         file = new File(path, "afb88.apk");
         file.deleteOnExit();
-        doRetrofitApiOnDefaultThread(getService(ApiService.class).updateVersion(), new BaseConsumer<ResponseBody>(baseContext) {
+        doRetrofitApiOnDefaultThread(getService(ApiService.class).updateVersion(url), new BaseConsumer<ResponseBody>(baseContext) {
             @Override
             protected void onBaseGetData(ResponseBody response) throws Exception {
                 long contentLength;

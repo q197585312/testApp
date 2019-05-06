@@ -3,6 +3,7 @@ package com.nanyang.app;
 
 import android.text.Html;
 
+import com.nanyang.app.Been.CheckVersionBean;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BetCenter.Bean.Contact;
 import com.nanyang.app.main.home.huayThai.HuayDrawDateInfo;
@@ -52,20 +53,15 @@ public interface ApiService {
     Flowable<String> getUserInfo(@Field("txtLang") String txtLang, @Field("txtAcctid") String txtAcctid, @Field("txtPwd") String txtPwd, @Field("osType") String osType, @Field("osVersion") String osVersion);
 
     @GET
-    Call<ResBaseBean<DataBean>> checkVersion(@Url String url);
+    Flowable<CheckVersionBean> checkVersion(@Url String url);
 
 
     @POST("login.jsp")
     @FormUrlEncoded
     Call<String> getData(@FieldMap Map<String, String> map);
 
-    /*Load模块*/
-    /*welcome*/
-    @GET(AppConstant.CHECK_VERSION)
-    Flowable<String> checkVersion();
-
-    @GET(AppConstant.DOWNLOAD_APP)
-    Flowable<ResponseBody> updateVersion();
+    @GET
+    Flowable<ResponseBody> updateVersion(String url);
 
     /*login*/
 

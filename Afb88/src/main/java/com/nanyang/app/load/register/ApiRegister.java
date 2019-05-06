@@ -31,10 +31,6 @@ public class ApiRegister extends Api {
                 ,mLoginParams.getOsVersion()
         ));
     }
-    public Call<ResBaseBean<DataBean>> checkVersion(String url) {
-        return getService(ApiService.class).checkVersion(url);
-
-    }
     public Call<String> getData(Map<String,String> params) {
         return getService(ApiService.class).getData(params);
 
