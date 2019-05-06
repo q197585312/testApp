@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.basketball;
 
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
@@ -63,7 +64,8 @@ public class BasketballRunningState extends BasketballCommonState {
             @Override
             protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
                 String live = item.getLive();
-                if (live.contains("HT") || live.contains("PEN") || live.contains("LIVE")) {
+                Log.d("Basketball", "handleLiveTimeTv: "+live);
+                if (live.contains("\n")) {
                     String replace = live.replace("\n", ",");
                     String[] split = replace.split(",");
                     timeTv.setText(split[1]);
