@@ -70,6 +70,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
                 totalLength += len;
                 int progress = (int) (totalLength * 100 / contentLength);
                 Log.d("runOnUiThread", "run: " + progress);
+                mProgressBar.setVisibility(View.VISIBLE);
                 mProgressBar.setProgress(progress);
             }
         });

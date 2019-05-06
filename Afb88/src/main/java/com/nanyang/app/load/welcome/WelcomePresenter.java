@@ -4,7 +4,6 @@ package com.nanyang.app.load.welcome;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
-import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
@@ -22,8 +21,6 @@ import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
-import org.reactivestreams.Subscription;
-
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
@@ -33,11 +30,7 @@ import java.util.Map;
 
 import cn.finalteam.toolsfinal.StringUtils;
 import io.reactivex.Flowable;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
-import io.reactivex.schedulers.Schedulers;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 
@@ -61,48 +54,39 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         String path = Environment.getExternalStorageDirectory().getPath();
         file = new File(path, "afb88.apk");
         file.deleteOnExit();
-        Disposable subscription = getService(ApiService.class).updateVersion().observeOn(Schedulers.io()).subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<ResponseBody>() {//onNext
-                    @Override
-                    public void accept(ResponseBody response) throws Exception {
-                        long contentLength;
-                        InputStream is = response.byteStream();
-                        contentLength = response.contentLength();
-                        FileOutputStream fos = new FileOutputStream(file);
-                        BufferedInputStream bis = new BufferedInputStream(is);
-                        byte[] buffer = new byte[1024];
-                        int len;
-                        while ((len = bis.read(buffer)) != -1) {
-                            baseContext.onLoadingApk(len, contentLength);
-                            fos.write(buffer, 0, len);
-                        }
-                        fos.flush();
-                        fos.close();
-                        bis.close();
-                        is.close();
-                        Thread.sleep(1500);
-                        if (file.exists() && file.length() > 0)
-                            baseContext.onLoadEnd(file);
-                    }
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        baseContext.onLoadError(throwable.getMessage());
+        doRetrofitApiOnDefaultThread(getService(ApiService.class).updateVersion(), new BaseConsumer<ResponseBody>(baseContext) {
+            @Override
+            protected void onBaseGetData(ResponseBody response) throws Exception {
+                long contentLength;
+                InputStream is = response.byteStream();
+                contentLength = response.contentLength();
+                FileOutputStream fos = new FileOutputStream(file);
+                BufferedInputStream bis = new BufferedInputStream(is);
+                byte[] buffer = new byte[1024];
+                int len;
+                while ((len = bis.read(buffer)) != -1) {
+                    WelcomePresenter.this.baseContext.onLoadingApk(len, contentLength);
+                    fos.write(buffer, 0, len);
+                }
+                fos.flush();
+                fos.close();
+                bis.close();
+                is.close();
+                Thread.sleep(1500);
+                if (file.exists() && file.length() > 0)
+                    WelcomePresenter.this.baseContext.onLoadEnd(file);
+            }
 
-                    }
-                }, new Action() {//完成
-                    @Override
-                    public void run() throws Exception {
-                        Log.d("LOAD", "wancheng");
-                    }
-                }, new Consumer<Subscription>() {//开始绑定
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
+            @Override
+            protected void onAccept() {
+            }
 
-                        subscription.request(Long.MAX_VALUE);
-                    }
-                });
-        mCompositeSubscription.add(subscription);
+            @Override
+            protected void onError(Throwable throwable) {
+                super.onError(throwable);
+                WelcomePresenter.this.baseContext.onLoadError(throwable.getMessage());
+            }
+        });
 
     }
 
