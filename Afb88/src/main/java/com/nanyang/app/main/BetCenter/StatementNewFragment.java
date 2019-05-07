@@ -6,6 +6,7 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -264,6 +265,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 TextView tvOdds = view.findViewById(R.id.tv_odds);
                 TextView tvHandicap = view.findViewById(R.id.tv_handicap);
                 TextView tvCom = view.findViewById(R.id.tv_com);
+                TextView tvMatchAtFt = view.findViewById(R.id.tv_match_at_ft);
                 TextView tvWl = view.findViewById(R.id.tv_wl);
                 tvIdDate.setText(getString(R.string.ID) + ":[" + bean.getIndex13() + "]" + bean.getIndex0());
                 int number = i + 1;
@@ -271,26 +273,41 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 tvMatchType.setText(bean.getIndex12());
                 tvMatchVs.setText(bean.getIndex1() + "-VS-" + bean.getIndex2());
                 String index24 = bean.getIndex24();
+                String index25 = bean.getIndex25();
                 if (index24.contains("gbGive")) {
                     tvMatchAt1.setTextColor(Color.RED);
-                } else {
+                } else if (index24.contains("gbTake2")) {
                     tvMatchAt1.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
+                if (index25.contains("red")) {
+                    tvMatchAt2.setTextColor(Color.RED);
+                } else if (index25.contains("blue")) {
+                    tvMatchAt2.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
+                }
                 index24 = AfbUtils.delHTMLTag(index24);
+                index25 = AfbUtils.delHTMLTag(index25);
                 String odds = bean.getIndex3();
+                tvMatchAtFt.setText(bean.getIndex14());
+                String index16 = bean.getIndex16();
                 boolean isOutRight = bean.getIndex15().equals("O");
                 if (isOutRight) {
                     tvMatchAt1.setTextColor(ContextCompat.getColor(mContext, R.color.black));
                     tvMatchAt1.setText("Outright");
+                    tvMatchAtFt.setVisibility(View.GONE);
                     tvMatchAt2.setVisibility(View.GONE);
                     tvMatchAt3.setVisibility(View.GONE);
                     tvMatchAt4.setVisibility(View.GONE);
                 } else {
                     tvMatchAt1.setText(index24);
-                    tvMatchAt2.setText(bean.getIndex14() + " (" + index24 + ") @");
+                    tvMatchAt2.setText(index25);
                     odds = AfbUtils.delHTMLTag(odds);
                     tvMatchAt3.setText(odds);
-                    tvMatchAt4.setText("(" + bean.getIndex16() + ")");
+                    if (!TextUtils.isEmpty(index16)) {
+                        tvMatchAt4.setText("(" + bean.getIndex16() + ")");
+                    } else {
+                        tvMatchAt4.setText("");
+                    }
+                    tvMatchAtFt.setVisibility(View.VISIBLE);
                     tvMatchAt2.setVisibility(View.VISIBLE);
                     tvMatchAt3.setVisibility(View.VISIBLE);
                     tvMatchAt4.setVisibility(View.VISIBLE);

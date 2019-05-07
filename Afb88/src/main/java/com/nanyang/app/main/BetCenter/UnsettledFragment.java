@@ -252,7 +252,12 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_FullTimeId = holder.getTextView(R.id.running_FullTimeId);
                     running_FullTimeId.setText(item.getFullTimeId13() + " ");
                     TextView running_Score = holder.getTextView(R.id.running_Score);
-                    running_Score.setText(item.getScore19() + " ");
+                    String isRun5 = item.getIsRun5();
+                    if (isRun5.equals("1")){
+                        running_Score.setText(item.getScore19() + " ");
+                    }else {
+                        running_Score.setVisibility(View.GONE);
+                    }
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
                     String betType2 = item.getBetType221();
                     if (betType2.contains("red")) {
@@ -263,7 +268,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                         running_BetType2.setTextColor(Color.BLACK);
                     }
                     betType2 = AfbUtils.delHTMLTag(betType2);
-                    running_BetType2.setText("(" + (betType2.equals("1") ? "Outright" : betType2) + ") ");
+                    String gameType314 = item.getGameType314();
+                    running_BetType2.setText("(" + (gameType314.equals("O") ? "Outright" : betType2) + ") ");
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
                     odds = AfbUtils.delHTMLTag(odds);
