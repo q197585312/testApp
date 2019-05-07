@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 
-import com.google.gson.Gson;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.BaseToolbarActivity;
@@ -41,7 +40,7 @@ public class LoadMainDataHelper {
     }
 
     public void doRetrofitApiOnUiThread(LoginInfo.LanguageWfBean languageWfBean, final LanguagePresenter.CallBack<String> back) {
-        String p = BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson() + "&db=" + new Gson().toJson(new Object());
+        String p = BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
         Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {

@@ -52,6 +52,12 @@ public class LanguageHelper {
             s = "EN-US";
         return s;
     }
+    public String getLanguage(String lag) {
+        String s = map.get(lag);
+        if (s == null)
+            s = "EN-US";
+        return s;
+    }
     public void switchLanguage(String language){
         AfbUtils.switchLanguage(language, context);
     }

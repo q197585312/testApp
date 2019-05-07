@@ -133,8 +133,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
 
     public void onLanguageSwitchSucceed(String str) {
         //测试哈提交
-        AppConstant.IS_AGENT = true;
-        AppConstant.wfMain = "wfMainH501";
+
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: "+AppConstant.wfMain);
         ToastUtils.showShort(R.string.Login_Success);
         defaultSkip("SportBook");
@@ -143,7 +142,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
 
     public void defaultSkip(String type) {
         MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
-        menuItemInfo.setType("Today");
+        menuItemInfo.setType("Running");
         menuItemInfo.setParent(type);
         Bundle b = new Bundle();
         b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
