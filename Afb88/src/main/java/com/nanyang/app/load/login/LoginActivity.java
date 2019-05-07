@@ -2,6 +2,7 @@ package com.nanyang.app.load.login;
 
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -235,7 +236,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             AppCacheUtils.getInstance(this).put("USER_NAME", "");
         }
 
-        AppConstant.getInstance().IS_AGENT = false;
+        AppConstant.IS_AGENT = false;
+        AppConstant.wfMain = "wfMainH50";
+        Log.d("doRetrofitApiOnUiThread", ": "+AppConstant.wfMain);
         skipAct(MainActivity.class);
         finish();
     }

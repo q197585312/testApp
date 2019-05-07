@@ -9,6 +9,8 @@ public class AppConstant {
 
     public static final String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
     public static boolean IS_AGENT = false;
+    public static String wfMain = "wfMainH50";
+    public static String pcode = "H50/Pub/pcode.axd?_fm=";
 
 //http://www.afb1188.com/W0/Pub/pcode.axd
 

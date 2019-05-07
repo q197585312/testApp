@@ -4,15 +4,12 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
-import android.util.Log;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
-import com.nanyang.app.R;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
@@ -20,7 +17,6 @@ import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
-import com.unkonw.testapp.libs.base.IBaseView;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
@@ -43,8 +39,6 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
 import okhttp3.Request;
 import retrofit2.Response;
 
@@ -185,7 +179,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                     }), baseConsumer);
             return;
         }
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN)
+        /*doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN)
                 .flatMap(new Function<String, Flowable<String>>() {
                     @Override
                     public Flowable<String> apply(String s) throws Exception {
@@ -244,7 +238,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                         SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext.getBaseActivity());
                         return switchLanguage.switchLanguage(helper.getLanguage());
                     }
-                }), baseConsumer);
+                }), baseConsumer)*/;
 
     }
 

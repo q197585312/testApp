@@ -116,6 +116,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         Gson gson = new Gson();
         String obj = gson.toJson(info);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), obj);
+
         doRetrofitApiOnUiThread(getService(ApiService.class).doPostJson(ckAccUrl, body)
 
                         .flatMap(new Function<String, Flowable<String>>() {

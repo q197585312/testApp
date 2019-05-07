@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.HomePopItemBeen;
 import com.nanyang.app.Pop.HomePopupWindow;
@@ -100,7 +101,7 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
         super.onResume();
         presenter.oddsType();
         String language = new LanguageHelper(mContext).getLanguage();
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"), new LanguagePresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);

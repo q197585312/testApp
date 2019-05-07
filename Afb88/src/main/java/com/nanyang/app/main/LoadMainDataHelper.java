@@ -1,8 +1,10 @@
 package com.nanyang.app.main;
 
 import android.content.Intent;
+import android.util.Log;
 import android.view.View;
 
+import com.google.gson.Gson;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.BaseToolbarActivity;
@@ -39,10 +41,13 @@ public class LoadMainDataHelper {
     }
 
     public void doRetrofitApiOnUiThread(LoginInfo.LanguageWfBean languageWfBean, final LanguagePresenter.CallBack<String> back) {
-        String p = BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
-        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson()), new BaseConsumer<String>(baseContext) {
+        String p = BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson() + "&db=" + new Gson().toJson(new Object());
+
+        Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
+        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
+                Log.d("doRetrofitApiOnUiThread", "data: " + data);
                 if (data.contains("Maintenance")) {
                     ((BaseToolbarActivity) baseContext).reLoginPrompt(baseContext.getBaseActivity().getString(R.string.System_maintenance), new SportContract.CallBack() {
                         @Override

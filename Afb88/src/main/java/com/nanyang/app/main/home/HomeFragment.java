@@ -176,7 +176,7 @@ public class HomeFragment extends BaseSwitchFragment {
     Runnable mainAllDataUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, "wfMainH50"), new LanguagePresenter.CallBack<String>() {
+            ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
 
                 @Override
                 public void onBack(String data) {
