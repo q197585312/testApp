@@ -418,4 +418,8 @@
     <string name="Net_Error">Net Error</string>
     <string name="Running4">진행 중</string>
     <string name="TabMyBets">나의 투고</string>
+    <string name="fh_myanmarhdp">FH.MyanmarHDP</string>
+    <string name="fh_myanmarou">FH.MyanmarOU</string>
+    <string name="ft_myanmarhdp">FT.MyanmarHDP</string>
+    <string name="ft_myanmarou">FT.MyanmarOU</string>
 </resources>

@@ -540,4 +540,8 @@
     <string name="Bet_Slip">Bet Slip</string>
     <string name="Note_">Note:</string>
     <string name="GMT_8">Please note that the displayed time is based on GMT +8 hours</string>
+    <string name="fh_myanmarhdp">FH.MyanmarHDP</string>
+    <string name="fh_myanmarou">FH.MyanmarOU</string>
+    <string name="ft_myanmarhdp">FT.MyanmarHDP</string>
+    <string name="ft_myanmarou">FT.MyanmarOU</string>
 </resources>

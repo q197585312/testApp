@@ -539,4 +539,8 @@
     <string name="Bet_Slip">注单</string>
     <string name="Note_">注意:</string>
     <string name="GMT_8">请注意显示时间为GMT+8时区</string>
+    <string name="fh_myanmarhdp">半场缅甸让球</string>
+    <string name="fh_myanmarou">半场缅大小</string>
+    <string name="ft_myanmarhdp">全场缅甸让球</string>
+    <string name="ft_myanmarou">全场缅大小</string>
 </resources>
