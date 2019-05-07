@@ -18,6 +18,9 @@ import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainActivity;
+import com.nanyang.app.main.Setting.SettingAllDataBean;
+import com.nanyang.app.main.Setting.SettingFragment;
+import com.nanyang.app.main.Setting.SettingInfoBean;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.base.IBaseView;
@@ -25,6 +28,7 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
@@ -58,6 +62,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
     SwitchLanguage switchLanguage;
     ILanguageView changeLanguageFragment;
     IGetRefreshMenu iGetRefreshMenu;
+    SettingFragment settingFragment;
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -70,6 +75,8 @@ public class LanguagePresenter extends BaseSwitchPresenter {
         changeLanguageFragment = (ILanguageView) iBaseContext;
         if (iBaseContext instanceof IGetRefreshMenu) {
             iGetRefreshMenu = (IGetRefreshMenu) iBaseContext;
+        } else if (iBaseContext instanceof SettingFragment) {
+            settingFragment = (SettingFragment) iBaseContext;
         } else {
             iGetRefreshMenu = null;
         }
@@ -326,6 +333,71 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                 });
         mCompositeSubscription.add(subscription);
 
+    }
+
+    public void getSettingContentData() {
+        LinkedHashMap<String, String> map = new LinkedHashMap<>();
+        map.put("ACT", "GetTT");
+        map.put("PT", "wfMainH50");
+        map.put("lang", AfbUtils.getLangParamStr(settingFragment.getContext()));
+        map.put("accType", "");
+        map.put("pgLable", "");
+        map.put("vsn", "");
+        String p = AfbUtils.getJsonParam(map);
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + p), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                String updateString = AfbUtils.delHTMLTag(data);
+                JSONArray jsonArray = new JSONArray(updateString);
+                if (jsonArray.length() > 3) {
+                    JSONArray jsonArrayData1 = jsonArray.getJSONArray(3);
+                    JSONObject jsonObject = jsonArrayData1.getJSONObject(0);
+                    SettingAllDataBean settingAllDataBean = gson.fromJson(jsonObject.toString(), SettingAllDataBean.class);
+                    settingFragment.onGetSettingContentData(handleSettingData(settingAllDataBean));
+                }
+            }
+        });
+    }
+
+    private List<SettingInfoBean> handleSettingData(SettingAllDataBean settingAllDataBean) {
+        List<SettingInfoBean> beanList = new ArrayList<>();
+        SettingInfoBean infoBean1 = new SettingInfoBean("1", settingFragment.getString(R.string.login_name), settingAllDataBean.getLoginName(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean2 = new SettingInfoBean("1", settingFragment.getString(R.string.Password), "**********", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean3 = new SettingInfoBean("1", settingFragment.getString(R.string.choose_language), settingFragment.getString(R.string.language_switch), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean4 = new SettingInfoBean("1", settingFragment.getString(R.string.Odds_Type), settingAllDataBean.getAccType2(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean5 = new SettingInfoBean("2", "接受好的赔率", settingAllDataBean.getBetterOdds() + "", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean6 = new SettingInfoBean("1", "快速下注金额", "自定义", 0, 0, 0, 0, 0, 0);
+        infoBean6.setCustomizeAmount(settingAllDataBean.getAccamount() + "");
+        SettingInfoBean infoBean7 = new SettingInfoBean("2", "自动刷新", "1", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean8 = new SettingInfoBean("1", "排序", settingAllDataBean.getAccDefaultSorting(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean9 = new SettingInfoBean("1", "盘口显示", settingAllDataBean.getAccMarketType(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean10 = new SettingInfoBean("1", "进球声音", settingAllDataBean.getAccScoreSound(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean11 = new SettingInfoBean("3", "筹码选择", "", 0, R.mipmap.chip5000, R.mipmap.chip10000, R.mipmap.chip30000, R.mipmap.chip50000, R.mipmap.chip100000);
+        infoBean11.setChipSize2(5000);
+        infoBean11.setChipSize3(10000);
+        infoBean11.setChipSize4(30000);
+        infoBean11.setChipSize5(50000);
+        infoBean11.setChipSize6(100000);
+        SettingInfoBean infoBean12 = new SettingInfoBean("3", "", "", R.mipmap.chip1, R.mipmap.chip10, R.mipmap.chip50, R.mipmap.chip100, R.mipmap.chip500, R.mipmap.chip1000);
+        infoBean12.setChipSize1(1);
+        infoBean12.setChipSize2(10);
+        infoBean12.setChipSize3(50);
+        infoBean12.setChipSize4(100);
+        infoBean12.setChipSize5(500);
+        infoBean12.setChipSize6(1000);
+        beanList.add(infoBean1);
+        beanList.add(infoBean2);
+        beanList.add(infoBean3);
+        beanList.add(infoBean4);
+        beanList.add(infoBean5);
+        beanList.add(infoBean6);
+        beanList.add(infoBean7);
+        beanList.add(infoBean8);
+        beanList.add(infoBean9);
+        beanList.add(infoBean10);
+        beanList.add(infoBean11);
+        beanList.add(infoBean12);
+        return beanList;
     }
 
     public interface CallBack<T> {

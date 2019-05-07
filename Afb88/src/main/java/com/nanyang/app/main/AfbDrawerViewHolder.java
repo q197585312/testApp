@@ -18,6 +18,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.BetCenter.Bean.More;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
+import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.changeLanguage.ChangeLanguageFragment;
 import com.nanyang.app.main.contact.ContactFragment;
 import com.nanyang.app.main.howtouse.HowToUseFragment;
@@ -66,7 +67,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
     private BaseSwitchFragment homeFragment;
     private BaseSwitchFragment statementFragment = new BetCenterFragment();
     private BaseSwitchFragment contactFragment = new ContactFragment();
-    private BaseSwitchFragment changeLanguageFragment = new ChangeLanguageFragment();
+    private BaseSwitchFragment changeLanguageFragment = new SettingFragment();
     private BaseSwitchFragment personFragment = new PersonCenterFragment();
     private BaseSwitchFragment howToUseFragment = new HowToUseFragment();
     private BaseSwitchFragment messageFragment = new MessageFragment();

@@ -263,7 +263,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                         running_BetType2.setTextColor(Color.BLACK);
                     }
                     betType2 = AfbUtils.delHTMLTag(betType2);
-                    running_BetType2.setText("(" + (betType2.equals("1") ? "Outright" : betType2) + ") ");
+                    String gameType314 = item.getGameType314();
+                    running_BetType2.setText("(" + (gameType314.equals("O") ? "Outright" : betType2) + ") ");
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
                     odds = AfbUtils.delHTMLTag(odds);
