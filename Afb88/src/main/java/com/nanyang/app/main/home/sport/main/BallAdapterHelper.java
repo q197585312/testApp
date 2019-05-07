@@ -243,7 +243,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, context.getString(R.string.full_time) + context.getString(R.string.odd_even));
                     addAdditionByColor(AfbUtils.changeValueS(additionData.getFOdd()), AfbUtils.changeValueS(additionData.getFEven()), additionData.getFOE_SocOddsId(), false, parent, item,
-                            "ODD", "EVEN", "odd", "even", "", "", R.layout.addition_1x2_sport_item, "1"
+                            context.getString(R.string.ODD), context.getString(R.string.EVEN), "odd", "even", "", "", R.layout.addition_1x2_sport_item, "1"
                             , additionData.getHasPar().equals("True")
                             , additionData.getHasPar().equals("True")
                     );
@@ -253,7 +253,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.odd_even));
 
                     addAdditionByColor(AfbUtils.changeValueS(additionData.getHOdd()), AfbUtils.changeValueS(additionData.getHEven()), additionData.getHOE_SocOddsId(), true, parent, item,
-                            "ODD", "EVEN", "odd", "even", "", "", R.layout.addition_1x2_sport_item,"1"
+                            context.getString(R.string.ODD), context.getString(R.string.EVEN), "odd", "even", "", "", R.layout.addition_1x2_sport_item,"1"
                             , additionData.getHHasPar().equals("True")
                             , additionData.getHHasPar().equals("True"));
                 }
