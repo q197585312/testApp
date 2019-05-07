@@ -10,6 +10,7 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
+import com.nanyang.app.R;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
