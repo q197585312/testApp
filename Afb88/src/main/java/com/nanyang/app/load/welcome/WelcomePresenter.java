@@ -4,11 +4,13 @@ package com.nanyang.app.load.welcome;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Environment;
+import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.ApiService;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.CheckVersionBean;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.common.LanguageHelper;
@@ -104,11 +106,19 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
             String language = extras.getString("lang");
             String webId = extras.getString("webId");
             String currencyName = extras.getString("currencyName");
-            skipLogin(companyKey, userName, us, language, webId, currencyName);
+            String oddsType = extras.getString("oddsType");
+            if (com.nanyang.app.Utils.StringUtils.isNull(oddsType)) {
+                oddsType = "MY";
+            }
+            Log.d(getClass().getSimpleName(), "checkInitCheck: "+language);
+            LanguageHelper helper=new LanguageHelper(baseContext.getBaseActivity());
+            helper.switchLanguage(language);
+            String language1 = helper.getLanguage();
+            skipLogin(companyKey, userName, us, language1, webId, currencyName, oddsType);
         }
     }
 
-    public void skipLogin(String companyKey, final String userName, final String us, final String language, final String webId, final String currencyName) {
+    public void skipLogin(String companyKey, final String userName, final String us, final String language, final String webId, final String currencyName, final String oddsType) {
 
         String ckAccUrl = BuildConfig.HOST_AFB + "Public/ckAcc.ashx";
         Map<String, String> map = new HashMap<>();
@@ -116,6 +126,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         Gson gson = new Gson();
         String obj = gson.toJson(info);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), obj);
+
         doRetrofitApiOnUiThread(getService(ApiService.class).doPostJson(ckAccUrl, body)
 
                         .flatMap(new Function<String, Flowable<String>>() {
@@ -124,7 +135,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                                 CkAccResponseBean bean = new Gson().fromJson(s, new TypeToken<CkAccResponseBean>() {
                                 }.getType());
                                 if (bean != null && !bean.getError().equals("1")) {
-                                    final String url_login = BuildConfig.HOST_AFB + "Public/validate.aspx?us=" + userName + "&k=" + bean.getToken() + "&device=m&oddsstyle=MY&oddsmode=Double&lang=" + language + "&currencyName=" + currencyName;
+                                    final String url_login = BuildConfig.HOST_AFB + "Public/validate.aspx?us=" + webId+"s"+userName + "&k=" + bean.getToken() + "&device=m&oddsstyle=" + oddsType + "&oddsmode=Double&lang=" + language + "&currencyName=" + currencyName;
                                     return getService(ApiService.class).getData(url_login);
                                 }
                                 return null;
@@ -137,17 +148,20 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                                     AfbApplication app = (AfbApplication) baseContext.getBaseActivity().getApplication();
                                     app.getUser().setLoginName(us);
                                     app.getUser().setPassword("");
-                                    return switchLanguage.switchLanguage(new LanguageHelper(baseContext.getBaseActivity()).getLanguage(), "MY");
+                                    return switchLanguage.switchLanguage(language, oddsType);
                                 }
                                 return null;
                             }
                         })
                 , new BaseConsumer<String>(baseContext) {
                     @Override
-                    protected void onBaseGetData(String data) {
+                    protected void onBaseGetData(final String data) {
+//                        WelcomePresenter.this.baseContext.onLanguageSwitchSucceed(data)
+                        AppConstant.IS_AGENT = true;
+                        AppConstant.wfMain = "wfMainH501";
                         String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
                         LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
-                        helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"), new LanguagePresenter.CallBack<String>() {
+                        helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
                             @Override
                             public void onBack(String data) {
                                 PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);

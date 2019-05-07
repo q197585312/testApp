@@ -9,6 +9,8 @@ public class AppConstant {
 
     public static final String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
     public static boolean IS_AGENT = false;
+    public static String wfMain = "wfMainH50";
+    public static String pcode = "H50/Pub/pcode.axd?_fm=";
 
 //http://www.afb1188.com/W0/Pub/pcode.axd
 
@@ -89,8 +91,6 @@ public class AppConstant {
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=703018&r=1553931820250&_=1553931794406
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=726142&r=1553931973916&_=1553931794436 、、
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=726142&r=1553931976885&_=1553931794437
-
-
 //https://ws.afb1188.com:8887/fnOddsGen?wst=wsSocAllGen&g=9&ot=r&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-04-08&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&mt=0&FAV=&SL=&LSL=undefined
 
     public String URL_BASKETBALL_RUNNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=9&ot=r&FAV=&SL=";
@@ -276,6 +276,7 @@ public class AppConstant {
     static AppConstant instance;
     private String host;
 
+/*
     public void setHost(String host) {
         this.HOST = host;
         URL_MAIN = HOST + "main.aspx";
@@ -450,6 +451,7 @@ public class AppConstant {
         URL_ODDS_AFB1188 = HOST + "Bet/hBetOdds.ashx?";
         URL_ODDS = URL_ODDS_AFB1188;
     }
+*/
 
     public static AppConstant getInstance() {
         if (instance == null)

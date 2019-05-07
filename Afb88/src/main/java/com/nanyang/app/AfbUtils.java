@@ -332,7 +332,7 @@ public class AfbUtils {
         beanHashMap.put("51", new SportIdBean("51", "20", R.string.Badminton, "Badminton", SportActivity.class, badmintonFragment, Color.BLACK, R.mipmap.badminton));
         beanHashMap.put("106", new SportIdBean("106", "34", R.string.E_Sport, "E_Sport", SportActivity.class, eSportFragment, Color.RED, R.mipmap.e_sport));
         beanHashMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, Color.BLACK, R.mipmap.boxing));
-        beanHashMap.put("44", new SportIdBean("44", "23", R.string.cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket));
+        beanHashMap.put("44", new SportIdBean("44", "23", R.string.Cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket));
 // '26', g = '65', img = 'https://www.afb1188.com/H50/Img/cycling.jpg'
 
         beanHashMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, Color.BLACK, R.mipmap.cycling));
@@ -380,7 +380,7 @@ public class AfbUtils {
         othersMap.put("51", new SportIdBean("51", "20", R.string.Badminton, "Badminton", SportActivity.class, badmintonFragment, Color.BLACK, R.mipmap.badminton));
         othersMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, winterSportFragment, Color.BLACK, R.mipmap.water_polo));
         othersMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, Color.BLACK, R.mipmap.table_tennis));
-        othersMap.put("44", new SportIdBean("44", "23", R.string.cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket));
+        othersMap.put("44", new SportIdBean("44", "23", R.string.Cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket));
         othersMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK, R.mipmap.volleyball));
         othersMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, Color.BLACK, R.mipmap.football));
         othersMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, Color.BLACK, R.mipmap.cycling));

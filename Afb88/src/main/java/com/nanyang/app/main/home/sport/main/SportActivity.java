@@ -503,7 +503,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     public void clickSportSelect(final View view) {
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new LanguagePresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {
@@ -651,7 +651,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             return;
         }
 
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new LanguagePresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {
@@ -807,7 +807,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         public void run() {
             LinkedHashMap<String, String> menuParamMap = new LinkedHashMap<>();
             menuParamMap.put("ACT", "Getmenu");
-            menuParamMap.put("PT", "wfMainH50");
+            menuParamMap.put("PT", AppConstant.wfMain);
             String type = currentFragment.presenter.getStateHelper().getStateType().getType();
             String ot;
             if (type.equals("Running")) {

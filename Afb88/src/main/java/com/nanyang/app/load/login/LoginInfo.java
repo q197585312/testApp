@@ -1,6 +1,7 @@
 package com.nanyang.app.load.login;
 
 import com.google.gson.Gson;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.Utils.StringUtils;
 
 import java.io.Serializable;
@@ -192,9 +193,9 @@ public class LoginInfo {
 
         String accType = "";
         String lang = "";
-        /*        String pgLable = "0.6229094620888556";
-                String vsn = "001";*/
-        String PT = "wfMainH50";
+        String pgLable = "0.8565494885673504";
+        String vsn = "4.0.12";
+        String PT = AppConstant.wfMain;
 
         public LanguageWfBean(String ACT, String lang, String PT) {
             this.ACT = ACT;
@@ -233,7 +234,7 @@ public class LoginInfo {
         private String accType;
         private int ov = 0;
         private String mt;
-        private String PT = "wfMainH50";
+        private String PT = AppConstant.wfMain;
 
         public OutRightWfBean(String ot, String OUTDBID, String accType, String mt,int ov) {
             this.ot = ot;
@@ -342,7 +343,7 @@ public class LoginInfo {
         private int tf = -1;
         private String timess = "";
         private String accType;
-        private String PT = "wfMainH50";
+        private String PT = AppConstant.wfMain;
 
         public AllRunningWfBean(String ot, String DBID, String accType) {
             this.ot = ot;
