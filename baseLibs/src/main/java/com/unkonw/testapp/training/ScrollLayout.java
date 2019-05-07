@@ -5,8 +5,6 @@ import android.content.Context;
 import android.os.Build;
 import android.support.v4.view.ViewConfigurationCompat;
 import android.util.AttributeSet;
-import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
@@ -118,7 +116,7 @@ public class ScrollLayout extends ViewGroup {
 
     }
 
-    @Override
+   /* @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
 
         switch (ev.getAction()) {
@@ -149,13 +147,13 @@ public class ScrollLayout extends ViewGroup {
                 break;
         }
         return super.onInterceptTouchEvent(ev);
-    }
+    }*/
 
     public void setTouchAble(boolean able) {
         this.able = able;
     }
 
-    @Override
+/*    @Override
     public boolean onTouchEvent(MotionEvent event) {
         if (!able)
             return super.onInterceptTouchEvent(event);
@@ -195,7 +193,7 @@ public class ScrollLayout extends ViewGroup {
                 break;
         }
         return true;
-    }
+    }*/
 
     public int getMovableChildCount() {
         count = 0;

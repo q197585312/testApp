@@ -251,8 +251,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 if (!StringUtils.isNull(additionData.getHOE_CNT()) && !additionData.getHOE_CNT().equals("0")) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.odd_even));
-                    addAddition(AfbUtils.changeValueS(additionData.getHOdd()), AfbUtils.changeValueS(additionData.getHEven()), additionData.getHOE_SocOddsId(), true, parent, item,
-                            "1X", "12", "dc", "dc", "10", "12", R.layout.addition_1x2_sport_item
+
+                    addAdditionByColor(AfbUtils.changeValueS(additionData.getHOdd()), AfbUtils.changeValueS(additionData.getHEven()), additionData.getHOE_SocOddsId(), true, parent, item,
+                            "ODD", "EVEN", "odd", "even", "", "", R.layout.addition_1x2_sport_item,"1"
                             , additionData.getHHasPar().equals("True")
                             , additionData.getHHasPar().equals("True"));
                 }
@@ -263,14 +264,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
                     addAddition(additionData.getHH(), additionData.getHD(), additionData.getHA(), additionData.getHTFT_SocOddsId(), false, parent, item,
                             context.getString(R.string.hh), context.getString(R.string.hd), context.getString(R.string.ha)
-                            , "additionData", "additionData", "additionData", "11 ", "10", "12", R.layout.addition_htft_sport_item
+                            , "htft", "htft", "htft", "11 ", "10", "12", R.layout.addition_htft_sport_item
                             , false
                             , false
                             , false
                     );
                     addAddition(additionData.getDH(), additionData.getDD(), additionData.getDA(), additionData.getHTFT_SocOddsId(), false, parent, item,
                             context.getString(R.string.dh), context.getString(R.string.dd), context.getString(R.string.da)
-                            , "additionData", "additionData", "additionData", "1 ", "0", "2", R.layout.addition_htft_sport_item
+                            , "htft", "htft", "htft", "1 ", "0", "2", R.layout.addition_htft_sport_item
                             , false
                             , false
                             , false);
@@ -326,7 +327,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                             , false);
 
                     addAdditionByColor(AfbUtils.changeValueS(additionData.getHHOOdds()), AfbUtils.changeValueS(additionData.getHHUOdds()), additionData.getHTTG_FHSocOddsId(), true, parent, item,
-                            "FT.Over " + additionData.getHTTG_FHOU(), "FT.Under " + additionData.getHTTG_FHOU(), "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
+                            "FH.Over " + additionData.getHTTG_FHOU(), "FH.Under " + additionData.getHTTG_FHOU(), "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
                             , false
                             , false);
                 }
@@ -340,7 +341,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                             , false
                             , false);
                     addAdditionByColor(AfbUtils.changeValueS(additionData.getHAOOdds()), AfbUtils.changeValueS(additionData.getHAUOdds()), additionData.getATTG_FHSocOddsId(), true, parent, item,
-                            "FT.Over " + additionData.getATTG_FHOU(), "FT.Under " + additionData.getATTG_FHOU(), "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
+                            "FH.Over " + additionData.getATTG_FHOU(), "FH.Under " + additionData.getATTG_FHOU(), "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
                             , false
                             , false);
                 }
