@@ -659,9 +659,10 @@ public class AfbUtils {
         if (neg) {
             sb.insert(0, '-');
         }
-    /*    if (tail != null) {
-            sb.append(tail);
-        }*/
+        if (AppConstant.IS_AGENT)
+            if (tail != null) {
+                sb.append(tail);
+            }
         return sb.toString();
     }
 

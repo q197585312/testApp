@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.load.PersonalInfo;
@@ -56,10 +57,12 @@ public class PersonCenterFragment extends BaseMoreFragment {
         list.add(pc);
         list.add(pc8);
         list.add(pc1);
-        list.add(pc2);
+        if (!AppConstant.IS_AGENT)
+            list.add(pc2);
         list.add(pc3);
         list.add(pc4);
-        list.add(pc5);
+        if (!AppConstant.IS_AGENT)
+            list.add(pc5);
         list.add(pc6);
         list.add(pc7);
         BaseRecyclerAdapter<PersonCenter> adapter = new BaseRecyclerAdapter<PersonCenter>(mContext, list, R.layout.item_person_center) {

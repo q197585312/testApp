@@ -719,11 +719,28 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void rememberLastOdds() {
         MenuItemInfo oddsType = getOddsType();
-        if (oddsType != null)
-            tvOddsType.setText(oddsType.getText());
+        if (oddsType != null) {
+            if (oddsType.getType().equals("HK")) {
+                tvOddsType.setText(R.string.HK_ODDS);
+            } else if (oddsType.getType().equals("MY")) {
+                tvOddsType.setText(R.string.MY_ODDS);
+            } else if (oddsType.getType().equals("EU")) {
+                tvOddsType.setText(R.string.EU_ODDS);
+            } else if (oddsType.getType().equals("ID")) {
+                tvOddsType.setText(R.string.ID_ODDS);
+            }
+
+        }
         MenuItemInfo allOddsType = getAllOddsType();
         if (allOddsType != null) {
-            ivAllAdd.setText(allOddsType.getText());
+
+            if (allOddsType.getType().equals("0")) {
+                ivAllAdd.setText(R.string.All_Markets);
+            } else if (oddsType.getType().equals("1")) {
+                ivAllAdd.setText(R.string.Main_Markets);
+            } else if (oddsType.getType().equals("2")) {
+                ivAllAdd.setText(R.string.Other_Bet_Markets);
+            }
         }
     }
 

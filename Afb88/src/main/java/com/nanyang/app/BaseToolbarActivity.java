@@ -229,6 +229,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     protected void updateBalanceTv(String allData) {
+
         tvToolbarRight.setText(allData);
     }
 

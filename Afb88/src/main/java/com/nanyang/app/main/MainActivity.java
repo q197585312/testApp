@@ -152,12 +152,15 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
                     public List<HomePopItemBeen> getCurrentData() {
                         PersonalInfo info = getApp().getUser();
                         List<HomePopItemBeen> dataList = new ArrayList<>();
+
                         dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2()));
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), info.getBalances()));
+                        if (!AppConstant.IS_AGENT)
+                            dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), info.getBalances()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
+                        if (!AppConstant.IS_AGENT)
+                            dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), AfbUtils.addComma(info.getTotalCredit().trim().replaceAll(",", ""), tvTime)));
                         return dataList;
                     }
