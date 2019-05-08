@@ -244,8 +244,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     addTitle(parent, inflate, context.getString(R.string.full_time) + context.getString(R.string.odd_even));
                     addAdditionByColor(AfbUtils.changeValueS(additionData.getFOdd()), AfbUtils.changeValueS(additionData.getFEven()), additionData.getFOE_SocOddsId(), false, parent, item,
                             context.getString(R.string.ODD), context.getString(R.string.EVEN), "odd", "even", "", "", R.layout.addition_1x2_sport_item, "1"
-                            , additionData.getHasPar().equals("True")
-                            , additionData.getHasPar().equals("True")
+                            , additionData.getHasPar() != null ? false : additionData.getHasPar().equals("True")
+                            , additionData.getHasPar() != null ? false : additionData.getHasPar().equals("True")
                     );
                 }
                 if (!StringUtils.isNull(additionData.getHOE_CNT()) && !additionData.getHOE_CNT().equals("0")) {
@@ -253,9 +253,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.odd_even));
 
                     addAdditionByColor(AfbUtils.changeValueS(additionData.getHOdd()), AfbUtils.changeValueS(additionData.getHEven()), additionData.getHOE_SocOddsId(), true, parent, item,
-                            context.getString(R.string.ODD), context.getString(R.string.EVEN), "odd", "even", "", "", R.layout.addition_1x2_sport_item,"1"
-                            , additionData.getHHasPar().equals("True")
-                            , additionData.getHHasPar().equals("True"));
+                            context.getString(R.string.ODD), context.getString(R.string.EVEN), "odd", "even", "", "", R.layout.addition_1x2_sport_item, "1"
+                            , additionData.getHHasPar() != null ? false : additionData.getHHasPar().equals("True")
+                            , additionData.getHHasPar() != null ? false : additionData.getHHasPar().equals("True"));
                 }
 
                 if (!StringUtils.isNull(additionData.getHTFT_CNT()) && !additionData.getHTFT_CNT().equals("0")) {//半场全场
