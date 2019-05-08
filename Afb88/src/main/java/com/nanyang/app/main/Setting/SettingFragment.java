@@ -176,35 +176,19 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                         }
                         break;
                     case 7:
-                        if (choiceType.equals("0")) {
-                            tvChoiceType.setText("Normal Sorting");
+                        int sort = ((BaseToolbarActivity) getBaseActivity()).getApp().getSort();
+                        if (sort==0) {
+                            tvChoiceType.setText(R.string.hot_sort);
                         } else {
-                            tvChoiceType.setText("Sort by Time");
+                            tvChoiceType.setText(R.string.sort_by_time);
                         }
                         break;
                     case 8:
-                        if (choiceType.equals("0")) {
-                            tvChoiceType.setText(mContext.getString(R.string.All_Markets));
-                        } else if (choiceType.equals("1")) {
-                            tvChoiceType.setText(mContext.getString(R.string.Main_Markets));
-                        } else {
-                            tvChoiceType.setText(mContext.getString(R.string.Other_Bet_Markets));
-                        }
+                        MenuItemInfo allOdds = ((BaseToolbarActivity) getBaseActivity()).getApp().getAllOdds();
+                        tvChoiceType.setText(allOdds.getText());
                         break;
                     case 9:
-                        if (choiceType.equals("1")) {
-                            tvChoiceType.setText("Sound1");
-                        } else if (choiceType.equals("2")) {
-                            tvChoiceType.setText("Sound2");
-                        } else if (choiceType.equals("3")) {
-                            tvChoiceType.setText("Sound3");
-                        } else if (choiceType.equals("4")) {
-                            tvChoiceType.setText("Sound4");
-                        } else if (choiceType.equals("5")) {
-                            tvChoiceType.setText("Sound5");
-                        } else if (choiceType.equals("6")) {
-                            tvChoiceType.setText("Sound6");
-                        }
+                        tvChoiceType.setText(SoundPlayUtils.getSoundIndex().getText());
                         break;
                 }
             }
@@ -317,7 +301,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                             @Override
                             public void onClickItem(SoundBean item, int position) {
                                 tv.setText(item.getText());
-                                SoundPlayUtils.setSound(item.getSound());
+                                SoundPlayUtils.setSound(item);
                             }
                         };
                         List<SoundBean> sounds = new ArrayList<>();
@@ -328,7 +312,6 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                         sounds.add(new SoundBean(mContext.getString(R.string.sound) + "5", SoundPlayUtils.sound5));
                         sounds.add(new SoundBean(mContext.getString(R.string.sound) + "6", SoundPlayUtils.sound6));
                         sounds.add(new SoundBean(mContext.getString(R.string.sound) + "7", SoundPlayUtils.sound7));
-
                         popSound.setData(sounds, tv.getText().toString());
                         popSound.showPopupDownWindow();
                         break;
