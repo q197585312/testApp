@@ -250,7 +250,7 @@ public class BetGoalWindowUtils {
         for (int i = 0; i < llContent.getChildCount(); i++) {
             llContent.getChildAt(i).measure(0, 0);
         }
-        SoundPlayUtils.play(SoundPlayUtils.sound1);
+        SoundPlayUtils.play();
 
         view.setTag(4);
         handler.post(new Runnable() {

@@ -41,7 +41,7 @@ public abstract class PopSwitch<T extends IString> extends BasePopupWindow {
             public void convert(MyRecyclerViewHolder holder, int position, T item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
                 tv.setText(item.getText());
-                if (choiceStr.equals(item)) {
+                if (choiceStr.equals(item.getText())) {
                     tv.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
                     tv.setTextColor(ContextCompat.getColor(context, R.color.blue));
                 } else {

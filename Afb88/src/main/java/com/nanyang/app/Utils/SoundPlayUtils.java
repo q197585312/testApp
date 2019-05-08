@@ -5,6 +5,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 
 import com.nanyang.app.R;
+import com.nanyang.app.main.Setting.Pop.SoundBean;
 
 
 /**
@@ -18,7 +19,12 @@ public class SoundPlayUtils {
     public static SoundPlayUtils soundPlayUtils;
     // 上下文
     static Context mContext;
-    private static int soundIndex;
+
+    public static SoundBean getSoundIndex() {
+        return soundIndex;
+    }
+
+    private static SoundBean soundIndex;
 
     /**
      * 初始化
@@ -38,7 +44,7 @@ public class SoundPlayUtils {
         sound5 = mSoundPlayer.load(mContext, R.raw.sound5, 1);// 1
         sound6 = mSoundPlayer.load(mContext, R.raw.sound6, 1);// 1
         sound7 = mSoundPlayer.load(mContext, R.raw.sound7, 1);// 1
-        soundIndex = sound1;
+        soundIndex = new SoundBean(mContext.getString(R.string.sound)+"1",sound1);
         return soundPlayUtils;
     }
 
@@ -50,11 +56,11 @@ public class SoundPlayUtils {
     public static int sound6;
     public static int sound7;
 
-    public static void setSound(int sound) {
+    public static void setSound(SoundBean sound) {
         soundIndex = sound;
     }
 
     public static void play() {
-        mSoundPlayer.play(soundIndex, 1, 1, 0, 0, 1);
+        mSoundPlayer.play(soundIndex.getSound(), 1, 1, 0, 0, 1);
     }
 }
