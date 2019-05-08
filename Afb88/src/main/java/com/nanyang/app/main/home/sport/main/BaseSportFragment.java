@@ -183,12 +183,13 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             String lag = AfbUtils.getLanguage(mContext);
             String l = "eng";
             if (lag.equals("zh")) {
-                l = "eng";
+                l = "en";
             } else {
-                l = "EN-US";
+                l = "en";
             }
 
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+            Log.d(TAG, "onWebShow: "+gameUrl);
             pop.setUrl(gameUrl);
             int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
             int y = location[1] + v.getHeight();

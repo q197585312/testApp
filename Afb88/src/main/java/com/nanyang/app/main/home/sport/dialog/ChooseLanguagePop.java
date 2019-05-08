@@ -47,7 +47,9 @@ public class ChooseLanguagePop extends BasePopupWindow {
     }
 
     private void initData() {
-        List<MenuItemInfo<String>> menuItemInfos = new ArrayList<MenuItemInfo<String>>(Arrays.asList(new MenuItemInfo<String>(R.mipmap.lang_zh_flag, "中文", "zh","ZH-CN"), new MenuItemInfo<String>(R.mipmap.lang_en_flag, "English", "en","EN-US"),
+        List<MenuItemInfo<String>> menuItemInfos = new ArrayList<MenuItemInfo<String>>(Arrays.asList(
+                new MenuItemInfo<String>(R.mipmap.lang_zh_flag, "简体中文", "zh","ZH-CN"),
+                new MenuItemInfo<String>(R.mipmap.lang_en_flag, "English", "en","EN-US"),
                 new MenuItemInfo<String>(R.mipmap.lang_th_flag, "ไทย", "th","TH-TH"),
                 new MenuItemInfo<String>(R.mipmap.lang_ko_flag, "한국의", "ko","EN-TT"),
                 new MenuItemInfo<String>(R.mipmap.lang_vi_flag, "tiếng việt", "vi","EN-IE"),

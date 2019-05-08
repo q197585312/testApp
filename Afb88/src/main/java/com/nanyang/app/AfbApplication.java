@@ -25,6 +25,31 @@ public class AfbApplication extends BaseApplication {
     private AfbClickResponseBean betAfbList;
     private boolean isGoHome = false;
 
+    public MenuItemInfo getOddsType() {
+        return oddsType;
+    }
+
+    public void setOddsType(MenuItemInfo oddsType) {
+        this.oddsType = oddsType;
+    }
+
+    public MenuItemInfo getAllOdds() {
+        return allOdds;
+    }
+
+    public void setAllOdds(MenuItemInfo allOdds) {
+        this.allOdds = allOdds;
+    }
+
+    private MenuItemInfo oddsType;
+    private MenuItemInfo allOdds;
+
+    public void setSort(int sort) {
+        this.sort = sort;
+    }
+
+    private int sort;
+
     public boolean isGoHome() {
         return isGoHome;
     }
@@ -54,6 +79,7 @@ public class AfbApplication extends BaseApplication {
 
     private PersonalInfo user = new PersonalInfo();
 
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -64,6 +90,8 @@ public class AfbApplication extends BaseApplication {
         closeAndroidPDialog();
         AfbUtils.initAllSprotMap();
         CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", false);
+        oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
+        allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "0");
     }
 
 
@@ -139,6 +167,10 @@ public class AfbApplication extends BaseApplication {
 
     public void setListMainBanners(List<AllBannerImagesBean.BannersBean> listMainBanners) {
         this.listMainBanners = listMainBanners;
+    }
+
+    public int getSort() {
+        return sort;
     }
 }
 

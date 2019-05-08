@@ -145,13 +145,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.main_more)
     RecyclerView reContent;
 
-    private MenuItemInfo oddsType;
-    private MenuItemInfo allOdds;
+
     public MenuItemInfo<String> item;
     private String currentGameType = "";
     public WebSocket webSocket;
     private AfbDrawerViewHolder afbDrawerViewHolder;
-    private int sort;
     private SportIdBean currentRunningIdBean;
 
 
@@ -174,8 +172,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
         toolbar.setVisibility(View.GONE);
-        oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
-        allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "0");
+
+
         presenter.switchOddsType("MY", new BaseConsumer<String>(this) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
@@ -436,23 +434,23 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     public void setOddsType(MenuItemInfo oddsType) {
-        this.oddsType = oddsType;
+        getApp().setOddsType(oddsType);
     }
 
     public MenuItemInfo getOddsType() {
-        return oddsType;
+        return getApp().getOddsType();
     }
 
     public void setAllOdds(MenuItemInfo allOdds) {
-        this.allOdds = allOdds;
+        getApp().setAllOdds(allOdds);
     }
 
     public MenuItemInfo getAllOddsType() {
-        return allOdds;
+        return getApp().getAllOdds();
     }
 
     public int getSortType() {
-        return sort;
+        return getApp().getSort();
     }
 
 
@@ -619,7 +617,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void clickAllRunning(View view) {
         setType("Running");
-        dateClickPositon = 0;
+        dateClickPosition = 0;
         MenuItemInfo<Integer> item = new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green);
         runWayItem(item);
         SportIdBean sportIdBean = AfbUtils.sportMap.get("1,9,21,29,51,182");
@@ -632,11 +630,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
         if (item.getDbid().equals("0")) {
             setType("Running");
-            dateClickPositon = 0;
+            dateClickPosition = 0;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
         } else if (item.getDbid().equals("999")) {
 //            setType("Early");
-//            dateClickPositon = 3;
+//            dateClickPosition = 3;
       /*      runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseActivity().getString(R.string.Early)
                     , "Early", R.mipmap.date_early_green,"","7"));*/
 
@@ -669,14 +667,14 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
                                     RecyclerView rv_list = view.findViewById(R.id.rv_list);
                                     final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
-                                    checkBox.setChecked(sort == 1);
+                                    checkBox.setChecked(getApp().getSort() == 1);
                                     final View ll_sort = view.findViewById(R.id.ll_sort);
                                     setChooseTypeAdapter(rv_list, tvMatchType, jsonObjectNum);
                                     ll_sort.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
                                             changeTimeSort();
-                                            checkBox.setChecked(sort == 1);
+                                            checkBox.setChecked(getApp().getSort() == 1);
                                         }
                                     });
                                 }
@@ -691,12 +689,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     private void changeTimeSort() {
-        sort = 1 - sort;
+        getApp().setSort(1 - getApp().getSort());
         currentFragment.getPresenter().getStateHelper().refresh();
-        ivSortTime.setImageResource(sort == 0 ? R.mipmap.sport_game_clock_white : R.mipmap.sport_game_clock_exit_white);
+        ivSortTime.setImageResource(getApp().getSort() == 0 ? R.mipmap.sport_game_clock_white : R.mipmap.sport_game_clock_exit_white);
     }
 
-    public int dateClickPositon = 0;
+    public int dateClickPosition = 0;
 
     private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView, JSONObject jsonObjectNum) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
@@ -705,7 +703,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void clickMoreMenu(View view) {
         drawerLayout.openDrawer(Gravity.RIGHT);
-//        currentFragment.menu(view);
     }
 
     public void clickOrder(View view) {

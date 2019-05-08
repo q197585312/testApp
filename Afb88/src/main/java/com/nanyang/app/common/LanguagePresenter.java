@@ -356,18 +356,18 @@ public class LanguagePresenter extends BaseSwitchPresenter {
 
     private List<SettingInfoBean> handleSettingData(SettingAllDataBean settingAllDataBean) {
         List<SettingInfoBean> beanList = new ArrayList<>();
-        SettingInfoBean infoBean1 = new SettingInfoBean("1", settingFragment.getString(R.string.login_name), settingAllDataBean.getLoginName(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean2 = new SettingInfoBean("1", settingFragment.getString(R.string.Password), "**********", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean3 = new SettingInfoBean("1", settingFragment.getString(R.string.choose_language), settingFragment.getString(R.string.language_switch), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean4 = new SettingInfoBean("1", settingFragment.getString(R.string.Odds_Type), settingAllDataBean.getAccType2(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean5 = new SettingInfoBean("2", "接受好的赔率", settingAllDataBean.getBetterOdds() + "", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean6 = new SettingInfoBean("1", "快速下注金额", "自定义", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean1 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.login_name), settingAllDataBean.getLoginName(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean2 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.Password), "**********", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean3 = new SettingInfoBean("1", baseContext.getBaseActivity().getBaseActivity().getString(R.string.choose_language), baseContext.getBaseActivity().getString(R.string.language_switch), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean4 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.Odds_Type), settingAllDataBean.getAccType2(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean5 = new SettingInfoBean("2", baseContext.getBaseActivity().getString(R.string.better_odds), settingAllDataBean.getBetterOdds() + "", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean6 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.quick_bet_amount), baseContext.getBaseActivity().getString(R.string.customise), 0, 0, 0, 0, 0, 0);
         infoBean6.setCustomizeAmount(settingAllDataBean.getAccamount() + "");
-        SettingInfoBean infoBean7 = new SettingInfoBean("2", "自动刷新", "1", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean8 = new SettingInfoBean("1", "排序", settingAllDataBean.getAccDefaultSorting(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean9 = new SettingInfoBean("1", "盘口显示", settingAllDataBean.getAccMarketType(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean10 = new SettingInfoBean("1", "进球声音", settingAllDataBean.getAccScoreSound(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean11 = new SettingInfoBean("3", "筹码选择", "", 0, R.mipmap.chip5000, R.mipmap.chip10000, R.mipmap.chip30000, R.mipmap.chip50000, R.mipmap.chip100000);
+        SettingInfoBean infoBean7 = new SettingInfoBean("2", baseContext.getBaseActivity().getString(R.string.auto_refresh), "1", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean8 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.default_sort), settingAllDataBean.getAccDefaultSorting(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean9 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.market_type), settingAllDataBean.getAccMarketType(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean10 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.score_sound), settingAllDataBean.getAccScoreSound(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean11 = new SettingInfoBean("3", baseContext.getBaseActivity().getString(R.string.chip_set), "", 0, R.mipmap.chip5000, R.mipmap.chip10000, R.mipmap.chip30000, R.mipmap.chip50000, R.mipmap.chip100000);
         infoBean11.setChipSize2(5000);
         infoBean11.setChipSize3(10000);
         infoBean11.setChipSize4(30000);

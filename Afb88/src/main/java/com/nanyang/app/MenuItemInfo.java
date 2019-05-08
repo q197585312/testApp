@@ -1,8 +1,10 @@
 package com.nanyang.app;
 
+import com.nanyang.app.main.Setting.Pop.IString;
+
 import java.io.Serializable;
 
-public class MenuItemInfo<P> implements Serializable {
+public class MenuItemInfo<P> implements Serializable,IString {
     int res;
     String text;
     String day;
@@ -59,7 +61,7 @@ public class MenuItemInfo<P> implements Serializable {
         this.day = day;
         this.dateParam = dateParam;
     }
-
+    @Override
     public String getText() {
         return text;
     }
@@ -91,4 +93,6 @@ public class MenuItemInfo<P> implements Serializable {
     public void setDay(String day) {
         this.day = day;
     }
+
+
 }

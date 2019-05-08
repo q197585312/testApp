@@ -12,12 +12,16 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.SoundPlayUtils;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.MainActivity;
+import com.nanyang.app.main.Setting.Pop.IString;
 import com.nanyang.app.main.Setting.Pop.PopSwitch;
+import com.nanyang.app.main.Setting.Pop.SoundBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -49,7 +53,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
     public void initData() {
         super.initData();
         setBackTitle(getString(R.string.setting));
-        aty = (BaseToolbarActivity) getActivity();
+        aty = (BaseToolbarActivity) getBaseActivity();
         createPresenter(new LanguagePresenter(this));
         chipStatusMap = new HashMap<>();
         chipStatusMap.put(1, false);
@@ -216,53 +220,41 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                     case 1:
                         break;
                     case 2:
-                        PopSwitch popLg = new PopSwitch(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
+                        PopSwitch popLg = new PopSwitch<MenuItemInfo<String>>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
-                            public void onClickItem(String item) {
-                                tv.setText(item);
-                                String lang = "";
-                                String type = "";
-                                switch (item) {
-                                    case "简体中文":
-                                        lang = "ZH-CN";
-                                        type = "zh";
-                                        break;
-                                    case "ENGLISH":
-                                        lang = "EN-US";
-                                        type = "en";
-                                        break;
-                                    case "ภาษาไทย":
-                                        lang = "TH-TH";
-                                        type = "th";
-                                        break;
-                                    case "Tiếng Việt":
-                                        lang = "EN-IE";
-                                        type = "vi";
-                                        break;
-                                    case "KOREAN":
-                                        lang = "EN-TT";
-                                        type = "ko";
-                                        break;
-                                    case "TURKISH":
-                                        lang = "UR-PK";
-                                        type = "tr";
-                                        break;
-                                }
-                                AfbUtils.switchLanguage(type, getActivity());
-                                presenter.switchLanguage(lang);
+                            public void onClickItem(MenuItemInfo<String> item, int position) {
+                                tv.setText(item.getText());
+                                AfbUtils.switchLanguage(item.getType(), getActivity());
+                                presenter.switchLanguage(item.getParent());
                             }
                         };
-                        popLg.setData(Arrays.asList("简体中文", "ENGLISH", "ภาษาไทย", "Tiếng Việt", "KOREAN", "TURKISH"), tv.getText().toString());
+                        List<MenuItemInfo<String>> menuItemInfos = new ArrayList<MenuItemInfo<String>>(Arrays.asList(
+                                new MenuItemInfo<String>(R.mipmap.lang_zh_flag, "简体中文", "zh", "ZH-CN"),
+                                new MenuItemInfo<String>(R.mipmap.lang_en_flag, "English", "en", "EN-US"),
+                                new MenuItemInfo<String>(R.mipmap.lang_th_flag, "ไทย", "th", "TH-TH"),
+                                new MenuItemInfo<String>(R.mipmap.lang_ko_flag, "한국의", "ko", "EN-TT"),
+                                new MenuItemInfo<String>(R.mipmap.lang_vi_flag, "tiếng việt", "vi", "EN-IE"),
+                                new MenuItemInfo<String>(R.mipmap.lang_tr_flag, "Türk dili", "tr", "UR-PK")
+                        )
+                        );
+                        popLg.setData(menuItemInfos, tv.getText().toString());
                         popLg.showPopupDownWindow();
                         break;
                     case 3:
-                        PopSwitch popOddType = new PopSwitch(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
+                        PopSwitch<MenuItemInfo> popOddType = new PopSwitch<MenuItemInfo>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
-                            public void onClickItem(String item) {
-                                tv.setText(item);
+                            public void onClickItem(MenuItemInfo item, int position) {
+                                tv.setText(item.getText());
+                                ((BaseToolbarActivity) getBaseActivity()).getApp().setOddsType(item);
                             }
                         };
-                        popOddType.setData(Arrays.asList("HK", "MY", "ID", "EU"), tv.getText().toString());
+                        List<MenuItemInfo> list = new ArrayList<>();
+                        list.add(new MenuItemInfo(0, getString(R.string.HK_ODDS), "HK"));//accType=
+                        list.add(new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY"));
+                        list.add(new MenuItemInfo(0, getString(R.string.ID_ODDS), "ID"));
+                        list.add(new MenuItemInfo(0, getString(R.string.EU_ODDS), "EU"));
+
+                        popOddType.setData(list, tv.getText().toString());
                         popOddType.showPopupDownWindow();
                         break;
                     case 4:
@@ -282,33 +274,62 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                         }
                         break;
                     case 7:
-                        PopSwitch popSort = new PopSwitch(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
+                        PopSwitch<IString> popSort = new PopSwitch<IString>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
-                            public void onClickItem(String item) {
-                                tv.setText(item);
+                            public void onClickItem(IString item, int position) {
+                                tv.setText(item.getText());
+                                ((BaseToolbarActivity) getBaseActivity()).getApp().setSort(position);
                             }
                         };
-                        popSort.setData(Arrays.asList("Normal Sorting", "Sort by Time"), tv.getText().toString());
+                        List<IString> strings = new ArrayList<>();
+                        strings.add(new IString() {
+                            @Override
+                            public String getText() {
+                                return getString(R.string.hot_sort);
+                            }
+                        });
+                        strings.add(new IString() {
+                            @Override
+                            public String getText() {
+                                return getString(R.string.sort_by_time);
+                            }
+                        });
+                        popSort.setData(strings, tv.getText().toString());
                         popSort.showPopupDownWindow();
                         break;
                     case 8:
-                        PopSwitch popMarket = new PopSwitch(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
+                        PopSwitch<MenuItemInfo> popMarket = new PopSwitch<MenuItemInfo>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
-                            public void onClickItem(String item) {
-                                tv.setText(item);
+                            public void onClickItem(MenuItemInfo item, int position) {
+                                tv.setText(item.getText());
+                                ((BaseToolbarActivity) getBaseActivity()).getApp().setAllOdds(item);
                             }
                         };
-                        popMarket.setData(Arrays.asList(mContext.getString(R.string.All_Markets), mContext.getString(R.string.Main_Markets), mContext.getString(R.string.Other_Bet_Markets)), tv.getText().toString());
+                        List<MenuItemInfo> markets = new ArrayList<>();
+                        markets.add(new MenuItemInfo(0, mContext.getString(R.string.All_Markets), "0"));//accType=
+                        markets.add(new MenuItemInfo(0, mContext.getString(R.string.Main_Markets), "1"));
+                        markets.add(new MenuItemInfo(0, mContext.getString(R.string.Other_Bet_Markets), "2"));
+                        popMarket.setData(markets, tv.getText().toString());
                         popMarket.showPopupDownWindow();
                         break;
                     case 9:
-                        PopSwitch popSound = new PopSwitch(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
+                        PopSwitch<SoundBean> popSound = new PopSwitch<SoundBean>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
-                            public void onClickItem(String item) {
-                                tv.setText(item);
+                            public void onClickItem(SoundBean item, int position) {
+                                tv.setText(item.getText());
+                                SoundPlayUtils.setSound(item.getSound());
                             }
                         };
-                        popSound.setData(Arrays.asList("Sound1", "Sound2", "Sound3", "Sound4", "Sound5", "Sound6"), tv.getText().toString());
+                        List<SoundBean> sounds = new ArrayList<>();
+                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "1", SoundPlayUtils.sound1));//accType=
+                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "2", SoundPlayUtils.sound2));
+                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "3", SoundPlayUtils.sound3));
+                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "4", SoundPlayUtils.sound4));
+                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "5", SoundPlayUtils.sound5));
+                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "6", SoundPlayUtils.sound6));
+                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "7", SoundPlayUtils.sound7));
+
+                        popSound.setData(sounds, tv.getText().toString());
                         popSound.showPopupDownWindow();
                         break;
                 }
@@ -329,6 +350,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
             imageView.setBackgroundResource(0);
         }
     }
+
     @Override
     public void onLanguageSwitchSucceed(String str) {
         Intent intent = new Intent(getActivity(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

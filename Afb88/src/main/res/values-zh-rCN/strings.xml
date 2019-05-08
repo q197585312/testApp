@@ -543,4 +543,13 @@
     <string name="fh_myanmarou">半场缅大小</string>
     <string name="ft_myanmarhdp">全场缅甸让球</string>
     <string name="ft_myanmarou">全场缅大小</string>
+    <string name="better_odds">接收好的赔率</string>
+    <string name="quick_bet_amount">Quick BetAmount</string>
+    <string name="customise">自定义</string>
+    <string name="auto_refresh">自动刷新</string>
+    <string name="default_sort">排序</string>
+    <string name="market_type">盘口显示</string>
+    <string name="score_sound">进球声音</string>
+    <string name="chip_set">筹码选择</string>
+    <string name="sound">Sound</string>
 </resources>

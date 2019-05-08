@@ -62,6 +62,7 @@ import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.api.CookieManger;
+import com.unkonw.testapp.libs.api.PersistentCookieStore;
 import com.unkonw.testapp.libs.utils.SystemTool;
 
 import org.json.JSONObject;
@@ -85,6 +86,8 @@ import java.util.Map;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import okhttp3.Cookie;
 
 /**
  * Created by Administrator on 2017/2/22.
@@ -246,12 +249,51 @@ public class AfbUtils {
         webView.getSettings().setDatabaseEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-        String cookie = "";
-        if (CookieManger.getCookieStore().get(url) != null && CookieManger.getCookieStore().get(url).size() > 0) {
-            cookie = CookieManger.getCookieStore().get(url).get(0).toString();
-            AfbUtils.synCookies(context, url, cookie);
+        StringBuffer sb = new StringBuffer();
+        List<Cookie> cookies = CookieManger.getCookieStore().get(url);
+        if (cookies != null && cookies.size() > 0) {
+            for (Cookie cookie1 : cookies) {
+
+                String cookieName = cookie1.name();
+                String cookieValue = cookie1.value();
+                if (!TextUtils.isEmpty(cookieName)
+                        && !TextUtils.isEmpty(cookieValue)) {
+                    sb.append(cookieName + "=");
+                    sb.append(cookieValue + ";");
+                }
+            }
+//            cookie = cookies.get(0).toString();
         }
+        String[] cookie = sb.toString().split(";");
+        for (int i = 0; i < cookie.length; i++) {
+            AfbUtils.synCookies(context, url, cookie[i]);
+//                cookieManager.setCookie(url, cookie[i]);// cookies是在HttpClient中获得的cookie
+        }
+//            CookieSyncManager.getInstance().sync();
+
         webView.loadUrl(url);
+    }
+
+
+    /**
+     * 给WebView同步Cookie
+     *
+     * @param context 上下文
+     * @param url     可以使用[domain][host]
+     */
+
+    private void syncCookie(Context context, String url) {
+        CookieSyncManager.createInstance(context);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        cookieManager.removeSessionCookie();// 移除旧的[可以省略]
+        List<Cookie> cookies = new PersistentCookieStore(context).getCookies();// 获取Cookie[可以是其他的方式获取]
+        for (int i = 0; i < cookies.size(); i++) {
+            Cookie cookie = cookies.get(i);
+            String value = cookie.name() + "=" + cookie.value();
+            cookieManager.setCookie(url, value);
+        }
+        CookieSyncManager.getInstance().sync();// To get instant sync instead of waiting for the timer to trigger, the host can call this.
     }
 
     /*	"id": "25",

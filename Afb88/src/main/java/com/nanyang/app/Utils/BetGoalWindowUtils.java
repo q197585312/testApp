@@ -20,7 +20,6 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
 import com.nanyang.app.main.home.sport.main.SportActivity;
-import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.api.Api;
 
 import org.json.JSONArray;
@@ -251,7 +250,8 @@ public class BetGoalWindowUtils {
         for (int i = 0; i < llContent.getChildCount(); i++) {
             llContent.getChildAt(i).measure(0, 0);
         }
-        SoundPlayUtils.play(SoundPlayUtils.GOAL);
+        SoundPlayUtils.play(SoundPlayUtils.sound1);
+
         view.setTag(4);
         handler.post(new Runnable() {
             @Override

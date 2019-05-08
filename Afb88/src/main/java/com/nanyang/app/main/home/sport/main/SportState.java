@@ -849,7 +849,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 } else {
                     tv.setText(item.getText());
                 }
-                if (sportActivity.dateClickPositon == position) {
+                if (sportActivity.dateClickPosition == position) {
                     tvGamePic.setBackgroundResource(item.getParent());
                     holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
                     tv.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
@@ -924,7 +924,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             onTypeClick(item, position);
         }
 
-        sportActivity.dateClickPositon = position;
+        sportActivity.dateClickPosition = position;
         sportActivity.stopPopupWindow();
 
 

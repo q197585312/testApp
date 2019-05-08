@@ -19,7 +19,7 @@ import java.util.List;
  * Created by Administrator on 2019/5/7.
  */
 
-public abstract class PopSwitch extends BasePopupWindow {
+public abstract class PopSwitch<T extends IString> extends BasePopupWindow {
     public PopSwitch(Context context, View v, int width, int height) {
         super(context, v, width, height);
     }
@@ -30,17 +30,17 @@ public abstract class PopSwitch extends BasePopupWindow {
     }
 
     RecyclerView recyclerView;
-    BaseRecyclerAdapter<String> adapter;
+    BaseRecyclerAdapter<T> adapter;
 
     @Override
     protected void initView(View view) {
         super.initView(view);
         recyclerView = view.findViewById(R.id.rv_list);
-        adapter = new BaseRecyclerAdapter<String>(context, new ArrayList<String>(), R.layout.text_base_item) {
+        adapter = new BaseRecyclerAdapter<T>(context, new ArrayList<T>(), R.layout.text_base_item) {
             @Override
-            public void convert(MyRecyclerViewHolder holder, int position, String item) {
+            public void convert(MyRecyclerViewHolder holder, int position, T item) {
                 TextView tv = holder.getView(R.id.item_text_tv);
-                tv.setText(item);
+                tv.setText(item.getText());
                 if (choiceStr.equals(item)) {
                     tv.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
                     tv.setTextColor(ContextCompat.getColor(context, R.color.blue));
@@ -50,10 +50,10 @@ public abstract class PopSwitch extends BasePopupWindow {
                 }
             }
         };
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<T>() {
             @Override
-            public void onItemClick(View view, String item, int position) {
-                onClickItem(item);
+            public void onItemClick(View view, T item, int position) {
+                onClickItem(item,position);
                 closePopupWindow();
             }
         });
@@ -63,10 +63,10 @@ public abstract class PopSwitch extends BasePopupWindow {
 
     private String choiceStr;
 
-    public void setData(List<String> dataList, String choiceStr) {
+    public void setData(List<T> dataList, String choiceStr) {
         this.choiceStr = choiceStr;
         adapter.setData(dataList);
     }
 
-    public abstract void onClickItem(String item);
+    public abstract void onClickItem(T item, int position);
 }
