@@ -88,7 +88,7 @@
                 android:layout_weight="1"
                 android:text="0fdasfdasfsaf1"
                 android:singleLine="true"
-                android:textColor="@color/green500"
+                android:textColor="@color/green500_word"
                 android:textSize="13sp" />
 
             <TextView
@@ -116,7 +116,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:background="#B7E5C6"
+        android:background="@color/green3"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">

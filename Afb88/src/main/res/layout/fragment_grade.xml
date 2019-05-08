@@ -53,7 +53,7 @@
                 android:checked="true"
                 android:gravity="center"
                 android:text="@string/normal"
-                android:textColor="@color/color_green" />
+                android:textColor="@color/color_green1" />
 
             <RadioButton
                 android:id="@+id/rb_champion"
@@ -65,7 +65,7 @@
                 android:button="@null"
                 android:gravity="center"
                 android:text="@string/OutRight"
-                android:textColor="@color/color_green" />
+                android:textColor="@color/color_green1" />
         </RadioGroup>
 
         <LinearLayout

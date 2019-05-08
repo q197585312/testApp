@@ -171,7 +171,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected BaseRecyclerAdapter<B> baseRecyclerAdapter;
 
-//    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=200&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
+    //    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=200&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
 //    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=1&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
     @Override
     public void refresh() {
@@ -280,11 +280,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected String getUrlString() {
         String url = getRefreshUrl();
-        if (BuildConfig.FLAVOR.equals("afb1188")) {
-            MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
-            if (oddtype != null)
-                url = url + "&accType=" + oddtype.getType();
-        }
+        MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
+        if (oddtype != null)
+            url = url + "&accType=" + oddtype.getType();
         url = url + "&CTOddsDiff=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getCTOddsDiff()
                 + "&CTSpreadDiff=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getCTSpreadDiff()
                 + "&oddsDiff=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getOddsDiff()

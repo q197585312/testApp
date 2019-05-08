@@ -185,7 +185,8 @@
                 android:background="@drawable/shape_bet_bg3"
                 android:gravity="center"
                 android:text="@string/bet"
-                android:textColor="@color/yellow2" />
+                android:textColor="@color/yellow2"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/bet_sure_cancel"
@@ -196,7 +197,8 @@
                 android:background="@drawable/shape_bet_bg4"
                 android:gravity="center"
                 android:text="@string/cancel"
-                android:textColor="@color/yellow2" />
+                android:textColor="@color/yellow2"
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -228,7 +230,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/green"
+                    android:textColor="@color/green_word"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -250,7 +252,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/green"
+                    android:textColor="@color/green_word"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -279,7 +281,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/green"
+                    android:textColor="@color/green_word"
                     android:textSize="12sp" />
             </LinearLayout>
 
@@ -301,7 +303,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:textColor="@color/green"
+                    android:textColor="@color/green_word"
                     android:textSize="12sp" />
             </LinearLayout>
 

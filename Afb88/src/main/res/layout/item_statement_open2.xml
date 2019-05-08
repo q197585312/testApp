@@ -18,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="fdsafdsaf"
-            android:textColor="@color/green"
+            android:textColor="@color/green500_word"
             android:textSize="15sp" />
 
         <TextView
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="fdsaf"
-            android:textColor="@color/green"
+            android:textColor="@color/green500_word"
             android:textSize="15sp" />
     </LinearLayout>
 

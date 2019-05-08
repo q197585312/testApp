@@ -262,7 +262,7 @@
                 android:paddingLeft="2dp"
                 android:paddingTop="2dp"
                 android:text="Odds:3.331"
-                android:textColor="@color/green_thick_line"
+                android:textColor="@color/green500_word"
                 android:textSize="13sp" />
 
             <TextView
@@ -328,7 +328,7 @@
                 android:id="@+id/open_detail_list"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/keno_line"
+                android:background="@color/green"
                 android:gravity="center"
                 android:textSize="14sp"
                 android:paddingBottom="4dp"

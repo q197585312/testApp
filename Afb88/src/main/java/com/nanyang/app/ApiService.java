@@ -33,6 +33,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 
@@ -60,8 +61,9 @@ public interface ApiService {
     @FormUrlEncoded
     Call<String> getData(@FieldMap Map<String, String> map);
 
-    @GET
-    Flowable<ResponseBody> updateVersion(String url);
+    @Streaming //添加这个注解用来下载大文件
+    @GET()
+    Flowable<ResponseBody> updateVersion(@Url String url);
 
     /*login*/
 

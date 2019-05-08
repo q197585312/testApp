@@ -98,7 +98,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameMenus(v);
+//                gameMenus(v);
             }
         });
     }

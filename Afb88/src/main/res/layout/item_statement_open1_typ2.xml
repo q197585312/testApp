@@ -142,7 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:background="#B7E5C6"
+        android:background="@color/green3"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp">
