@@ -3,4 +3,20 @@
     <color name="green_login_btn">#3282E8</color>
     <color name="green500">#4c89af</color>
     <color name="green900">#1774ae</color>
+    <color name="green_dark">#213D84</color>
+    <color name="green_black_word">#213D84</color>
+    <color name="green_thick_line">#3A59A7</color>
+    <color name="keno_grenn">#1E45A8</color>
+    <color name="green">#3357B2</color>
+    <color name="green1">#B0C6FF</color>
+    <color name="green3">#92AEF6</color>
+    <color name="google_green">#416DDE</color>
+    <color name="green2">#294A9B</color>
+    <color name="grey_background">#F1F4FF</color>
+    <color name="green_title">#A7B3D1</color>
+    <color name="green_content1">#EEF3FF</color>
+    <color name="green_content2">#D6DDEE</color>
+    <color name="green_line">#DEDADA</color>
+    <color name="bet_window_bg">#E3EAFF</color>
+    <color name="bet_rectangle_bg">#3665DD</color>
 </resources>

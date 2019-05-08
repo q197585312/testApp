@@ -91,9 +91,10 @@
                         android:cursorVisible="false"
                         android:drawableLeft="@mipmap/sport_game_search_green"
                         android:drawablePadding="5dp"
+                        android:textColorHint="#e6e6e6"
                         android:hint="@string/Select_League"
                         android:singleLine="true"
-                        android:textSize="13sp" />
+                        android:textSize="13.5sp" />
 
                     <ImageView
                         android:id="@+id/iv_delete_search"

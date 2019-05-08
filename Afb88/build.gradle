@@ -64,7 +64,7 @@ android {
             applicationId 'com.nanyang.i1bet99'
             versionName '1.01'
             buildConfigField "String", "HOST_AFB", '"https://www.i1bet99.com/"'
-            buildConfigField "String", "HOST_SPORT", '"http://ws.afb1188.com:8888/fnOddsGen"'
+            buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/api/i1bet99.php?app=afb1188"'
             buildConfigField "String", "CHECK_VERSION", '"http://www.appgd88.com/api/afbAndroidVersion.php?appName=i1bet99"'
         }

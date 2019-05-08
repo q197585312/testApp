@@ -66,7 +66,7 @@
             android:layout_weight="1"
             android:singleLine="true"
             android:text="0fdasfdasfsaf1"
-            android:textColor="@color/green500"
+            android:textColor="@color/green500_word"
             android:textSize="13sp" />
 
         <TextView
