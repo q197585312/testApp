@@ -183,8 +183,6 @@ public class AfbDrawerViewHolder implements IDrawerView {
         boolean back = false;
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             back = isBack(back);
-        } else if (keyCode == KeyEvent.KEYCODE_HOME) {
-            Log.d("shangpeisheng", "KEYCODE_HOME: ");
         }
         return back;
     }
