@@ -55,7 +55,7 @@ public class HowToUseFragment extends BaseMoreFragment {
     @Override
     public void initView() {
         super.initView();
-        setBackTitle(getString(R.string.setting));
+        setBackTitle(getString(R.string.how_to_use));
         index = 0;
         textList = new ArrayList<>();
         redioList = new ArrayList<>();
