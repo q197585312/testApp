@@ -134,8 +134,8 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
     public void onLanguageSwitchSucceed(String str) {
         //测试哈提交
 
-        Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: "+AppConstant.wfMain);
-        ToastUtils.showShort(R.string.Login_Success);
+        Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + AppConstant.wfMain);
+        ToastUtils.showShort(getString(R.string.Login_Success));
         defaultSkip("SportBook");
         finish();
     }
