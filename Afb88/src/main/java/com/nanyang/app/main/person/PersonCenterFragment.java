@@ -40,7 +40,7 @@ public class PersonCenterFragment extends BaseMoreFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if(!hidden){
+        if (!hidden) {
             adapter.setData(getCurrentData());
         }
     }
@@ -82,20 +82,24 @@ public class PersonCenterFragment extends BaseMoreFragment {
         adapter = new BaseRecyclerAdapter<PersonCenter>(mContext, getCurrentData(), R.layout.item_person_center) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, PersonCenter item) {
+                View view = holder.getView(R.id.person_view_lin);
                 if (item.getName().equals(getString(R.string.nike_name)) || item.getName().equals(getString(R.string.given_credit))) {
-                    View view = holder.getView(R.id.person_view_lin);
                     view.setVisibility(View.VISIBLE);
+                } else {
+                    view.setVisibility(View.GONE);
                 }
                 TextView name = holder.getTextView(R.id.person_name);
                 name.setText(item.getName());
                 TextView value = holder.getTextView(R.id.person_value);
+                value.setText(item.getValue());
+                ImageView iv = holder.getImageView(R.id.person_img);
                 if (item.getName().equals(getString(R.string.nike_name))) {
                     value.setVisibility(View.GONE);
-                    ImageView iv = holder.getImageView(R.id.person_img);
                     iv.setImageResource(R.mipmap.myacount);
                     iv.setVisibility(View.VISIBLE);
                 } else {
-                    value.setText(item.getValue());
+                    iv.setVisibility(View.GONE);
+                    value.setVisibility(View.VISIBLE);
                 }
             }
         };
