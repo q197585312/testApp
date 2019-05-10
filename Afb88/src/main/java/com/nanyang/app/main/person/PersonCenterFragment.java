@@ -40,7 +40,7 @@ public class PersonCenterFragment extends BaseMoreFragment {
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        if (!hidden){
+        if(!hidden){
             adapter.setData(getCurrentData());
         }
     }
