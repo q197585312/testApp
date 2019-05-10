@@ -9,8 +9,8 @@ import android.widget.TextView;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.BaseMoreFragment;
 import com.unkonw.testapp.libs.base.BaseConsumer;
-import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import butterknife.OnClick;
  * Created by Administrator on 2017/2/24.
  */
 
-public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> {
+public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
     @Bind(R.id.tv_grade_date)
     TextView tvGradeDate;
     @Bind(R.id.layout_bet1)
@@ -92,35 +92,29 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> {
 
     public List<HuayThaiIntroduceBean> introduceData = new ArrayList<>();
     public LayoutInflater inflater;
-    HuayThaiGamesActivity huayThaiGamesActivity;
 
     String type;
     MenuItemInfo<String> info;
     private BaseListPopupWindow<HuayDrawDateInfo.DicAllBean> popDate;
     private HuayDrawDateInfo.DicAllBean selectDic;
 
+    public void setInfo(MenuItemInfo<String> info) {
+        this.info = info;
+    }
+
     @Override
     public void initData() {
         super.initData();
-        huayThaiGamesActivity = (HuayThaiGamesActivity) getActivity();
-        info = huayThaiGamesActivity.info;
-        type = info.getText();
         createPresenter(new HuayThaiPresenter(this));
         inflater = LayoutInflater.from(mContext);
         refresh();
         initIntroduceData(type);
     }
 
+
     @Override
     public void refreshData(String gameType) {
         super.refreshData(gameType);
-        if (gameType.equals(getString(R.string.game1d))) {
-            info = new MenuItemInfo<String>(R.mipmap.thai_thousand_1d, getString(R.string.game1d), "_view/nodds1TH_App.aspx", "_view/nodds1TH_Bet_App.aspx");
-        } else if (gameType.equals(getString(R.string.game2d))) {
-            info = new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, getString(R.string.game2d), "_view/nodds2TH_App.aspx", "_view/nodds2TH_Bet_App.aspx");
-        } else {
-            info = new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), "_view/nodds3TH_App.aspx", "_view/nodds3TH_Bet_App.aspx");
-        }
         type = info.getText();
         refresh();
         initIntroduceData(type);
@@ -367,4 +361,6 @@ public class HuayThaiFragment extends BaseFragment<HuayThaiPresenter> {
         popDate.setData(data.getDicAll());
         tvGradeDate.setText(data.getDicAll().get(0).getDesc());
     }
+
+
 }

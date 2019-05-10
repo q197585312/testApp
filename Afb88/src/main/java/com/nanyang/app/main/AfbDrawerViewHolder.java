@@ -19,7 +19,6 @@ import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.BetCenter.Bean.More;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.Setting.SettingFragment;
-import com.nanyang.app.main.changeLanguage.ChangeLanguageFragment;
 import com.nanyang.app.main.contact.ContactFragment;
 import com.nanyang.app.main.howtouse.HowToUseFragment;
 import com.nanyang.app.main.message.MessageFragment;
@@ -152,7 +151,6 @@ public class AfbDrawerViewHolder implements IDrawerView {
                     BaseSwitchFragment fragment = item.getFragment();
                     if (fragment != null) {
                         String switchType = item.getSwitchType();
-
                         if (!TextUtils.isEmpty(switchType)) {
                             fragment.setSwitchTypeIndex(item.getSwitchType());
                         }
@@ -177,6 +175,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
             }
             lastIndexFragment = indexFragment;
         }
+
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

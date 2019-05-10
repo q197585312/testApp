@@ -47,6 +47,7 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
+import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
 import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -70,6 +71,7 @@ import cn.finalteam.toolsfinal.logger.Logger;
 public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String>, IGetRefreshMenu {
     private final String GUIDE_KEY = "GUIDE";
 
+    HuayThaiFragment huayThaiFragment = new HuayThaiFragment();
     BaseSportFragment localCurrentFragment;
     @Bind(R.id.drawer_more)
     DrawerLayout drawerLayout;
@@ -152,11 +154,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private AfbDrawerViewHolder afbDrawerViewHolder;
     private SportIdBean currentRunningIdBean;
 
-
     public TextView getIvAllAdd() {
         return ivAllAdd;
     }
-
 
     private String currentTag = "";
     private HashMap<String, BaseSportFragment> mapFragment;
@@ -167,13 +167,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
         toolbar.setVisibility(View.GONE);
-
-
         presenter.switchOddsType("MY", new BaseConsumer<String>(this) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
@@ -632,12 +629,18 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             setType("Running");
             dateClickPosition = 0;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
-        } else if (item.getDbid().equals("999")) {
-//            setType("Early");
-//            dateClickPosition = 3;
-      /*      runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseActivity().getString(R.string.Early)
-                    , "Early", R.mipmap.date_early_green,"","7"));*/
-
+        } else if (item.getId().equals("33")) {
+            huayThaiFragment.setBackTitle(getString(item.getTextRes()));
+            MenuItemInfo<String> stringMenuItemInfo = new MenuItemInfo<>(R.mipmap.thai_thousand_1d, getString(R.string.game1d), "_view/nodds1TH_App.aspx", "_view/nodds1TH_Bet_App.aspx");
+            if (item.getDbid().equals("33_19")) {
+                stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, getString(R.string.game2d), "_view/nodds2TH_App.aspx", "_view/nodds2TH_Bet_App.aspx");
+            } else if (item.getDbid().equals("33_20")) {
+                stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), "_view/nodds3TH_App.aspx", "_view/nodds3TH_Bet_App.aspx");
+            }
+            huayThaiFragment.setInfo(stringMenuItemInfo);
+            deleteHeadAndFoot();
+            afbDrawerViewHolder.switchFragment(huayThaiFragment);
+            return;
         }
         selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
 
