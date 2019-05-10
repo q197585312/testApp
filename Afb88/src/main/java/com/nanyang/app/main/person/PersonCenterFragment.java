@@ -29,6 +29,7 @@ public class PersonCenterFragment extends BaseMoreFragment {
     @Bind(R.id.person_center_view)
     RecyclerView rcContent;
     BaseToolbarActivity aty;
+    BaseRecyclerAdapter<PersonCenter> adapter;
 
 
     @Override
@@ -37,12 +38,14 @@ public class PersonCenterFragment extends BaseMoreFragment {
     }
 
     @Override
-    public void initData() {
-        super.initData();
-        setBackTitle(getString(R.string.my_account));
-        aty = (BaseToolbarActivity) getActivity();
-        LinearLayoutManager llm = new LinearLayoutManager(mContext);
-        rcContent.setLayoutManager(llm);
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            adapter.setData(getCurrentData());
+        }
+    }
+
+    private List<PersonCenter> getCurrentData() {
         List<PersonCenter> list = new ArrayList<>();
         PersonalInfo person = aty.getApp().getUser();
         PersonCenter pc = new PersonCenter(getString(R.string.login_name), person.getLoginName());
@@ -63,25 +66,40 @@ public class PersonCenterFragment extends BaseMoreFragment {
         list.add(pc4);
         if (!AppConstant.IS_AGENT)
             list.add(pc5);
-        list.add(pc6);
+        if (!AppConstant.IS_AGENT)
+            list.add(pc6);
         list.add(pc7);
-        BaseRecyclerAdapter<PersonCenter> adapter = new BaseRecyclerAdapter<PersonCenter>(mContext, list, R.layout.item_person_center) {
+        return list;
+    }
+
+    @Override
+    public void initData() {
+        super.initData();
+        setBackTitle(getString(R.string.my_account));
+        aty = (BaseToolbarActivity) getActivity();
+        LinearLayoutManager llm = new LinearLayoutManager(mContext);
+        rcContent.setLayoutManager(llm);
+        adapter = new BaseRecyclerAdapter<PersonCenter>(mContext, getCurrentData(), R.layout.item_person_center) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, PersonCenter item) {
+                View view = holder.getView(R.id.person_view_lin);
                 if (item.getName().equals(getString(R.string.nike_name)) || item.getName().equals(getString(R.string.given_credit))) {
-                    View view = holder.getView(R.id.person_view_lin);
                     view.setVisibility(View.VISIBLE);
+                } else {
+                    view.setVisibility(View.GONE);
                 }
                 TextView name = holder.getTextView(R.id.person_name);
                 name.setText(item.getName());
                 TextView value = holder.getTextView(R.id.person_value);
+                value.setText(item.getValue());
+                ImageView iv = holder.getImageView(R.id.person_img);
                 if (item.getName().equals(getString(R.string.nike_name))) {
                     value.setVisibility(View.GONE);
-                    ImageView iv = holder.getImageView(R.id.person_img);
                     iv.setImageResource(R.mipmap.myacount);
                     iv.setVisibility(View.VISIBLE);
                 } else {
-                    value.setText(item.getValue());
+                    iv.setVisibility(View.GONE);
+                    value.setVisibility(View.VISIBLE);
                 }
             }
         };

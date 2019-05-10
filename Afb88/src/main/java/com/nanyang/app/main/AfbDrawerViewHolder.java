@@ -154,6 +154,9 @@ public class AfbDrawerViewHolder implements IDrawerView {
                         if (!TextUtils.isEmpty(switchType)) {
                             fragment.setSwitchTypeIndex(item.getSwitchType());
                         }
+                        if (item.getText().equals(baseToolbarActivity.getString(R.string.my_account))) {
+                            baseToolbarActivity.updateBalance();
+                        }
                         switchFragment(fragment);
                     }
                 }
@@ -182,8 +185,6 @@ public class AfbDrawerViewHolder implements IDrawerView {
         boolean back = false;
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             back = isBack(back);
-        } else if (keyCode == KeyEvent.KEYCODE_HOME) {
-            Log.d("shangpeisheng", "KEYCODE_HOME: ");
         }
         return back;
     }

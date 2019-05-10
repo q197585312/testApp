@@ -19,4 +19,5 @@
     <color name="green_line">#DEDADA</color>
     <color name="bet_window_bg">#E3EAFF</color>
     <color name="bet_rectangle_bg">#3665DD</color>
+    <color name="green_light">#92AEF6</color>
 </resources>

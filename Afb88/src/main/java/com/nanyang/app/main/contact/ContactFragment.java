@@ -47,12 +47,12 @@ public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
     @Override
     public void initView() {
         super.initView();
-        setBackTitle(getString(R.string.contact));
     }
 
     @Override
     public void initData() {
         super.initData();
+        setBackTitle(getString(R.string.contact));
         createPresenter(new BaseSwitchPresenter(this));
         aty = (BaseToolbarActivity) getActivity();
         MyLinearLayoutManager mLayoutManager = new MyLinearLayoutManager(mContext);//设置为一个纵向网格布局
