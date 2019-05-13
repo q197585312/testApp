@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.huayThai;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.EditText;
@@ -103,7 +104,9 @@ public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
         this.type = info.getType();
         if (isAdded()) {
             refresh();
+
         }
+
     }
 
     @Override
@@ -118,6 +121,7 @@ public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
     private void refresh() {
         presenter.refresh(type);
         initIntroduceData(type);
+        setBackTitle(info.getText());
     }
 
 
@@ -184,49 +188,6 @@ public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
         return R.layout.fragment_thai_thousand;
     }
 
-
-    public void onResultData(ResultBean s) {
-        if (s != null && s.getDicAll().size() > 0) {
-            for (int i = 0; i < s.getDicAll().size(); i++) {
-                switch (i) {
-                    case 0:
-                        ((TextView) layoutBet1.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(0).getNumber());
-                        break;
-                    case 1:
-                        ((TextView) layoutBet2.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(1).getNumber());
-                        break;
-                    case 2:
-                        ((TextView) layoutBet3.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(2).getNumber());
-                        break;
-                    case 3:
-                        ((TextView) layoutBet4.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(3).getNumber());
-                        break;
-                    case 4:
-                        ((TextView) layoutBet5.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(4).getNumber());
-                        break;
-                    case 5:
-                        ((TextView) layoutBet6.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(5).getNumber());
-                        break;
-                    case 6:
-                        ((TextView) layoutBet7.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(6).getNumber());
-                        break;
-                    case 7:
-                        ((TextView) layoutBet8.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(7).getNumber());
-                        break;
-                    case 8:
-                        ((TextView) layoutBet9.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(8).getNumber());
-                        break;
-                    case 9:
-                        ((TextView) layoutBet10.findViewById(R.id.item_bet_succeed)).setText(s.getDicAll().get(9).getNumber());
-                        break;
-
-
-                }
-            }
-        }
-    }
-
-
     @OnClick({R.id.tv_grade_date, R.id.tv_refresh, R.id.tv_submit})
     public void onClick(View v) {
         switch (v.getId()) {
@@ -259,6 +220,7 @@ public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
         TextView bet3 = (TextView) layout.findViewById(R.id.item_bet_succeed);
         int le = bet1.getText().toString().trim().length();
         int le2 = bet2.getText().toString().trim().length();
+        bet3.setTextColor(Color.RED);
         if (le > 0) {
             if (type.equals("33_18")) {
                 if (le == 1) {
@@ -269,7 +231,7 @@ public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
                 } else {
                     bet3.setText("Not a valid 1 digit number!");
                 }
-            } else if (type.equals(getString(R.string.game2d))) {
+            } else if (type.equals("33_19")) {
                 if (le == 2) {
                     bet3.setText("");
                     if (le2 > 0) {

@@ -19,7 +19,6 @@ import com.unkonw.testapp.libs.base.BaseConsumer;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -62,8 +61,8 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                 if (jsonArray.length() > 3) {
                     JSONArray jsonArrayData = jsonArray.getJSONArray(3);
                     if (jsonArrayData.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
-                        JSONObject jsonObject = jsonArrayData.getJSONObject(0);
-                        back.onBack(jsonObject.toString());
+//                        JSONObject jsonObject = jsonArrayData.getJSONObject(0);
+                        back.onBack(jsonArrayData.get(0).toString());
 
                     }
                 }

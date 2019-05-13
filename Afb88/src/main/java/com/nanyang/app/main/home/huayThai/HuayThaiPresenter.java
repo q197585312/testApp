@@ -74,11 +74,10 @@ public class HuayThaiPresenter extends BaseRetrofitPresenter<HuayThaiFragment> {
         helper.doRetrofitApiOnUiThread(languageWfBean, new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) throws JSONException {
-                JSONArray jsonArray = new JSONArray(data);
-                if (jsonArray.length() > 0) {
-                    JSONObject jsonArray2 = jsonArray.getJSONObject(0);
+                JSONObject jsonObj = new JSONObject(data);
+                if (jsonObj.length() > 0) {
                     textView.setTextColor(Color.BLUE);
-                    textView.setText(jsonArray2.optString("msg"));
+                    textView.setText(jsonObj.optString("msg"));
                 } else {
                     textView.setTextColor(Color.RED);
                     textView.setText(R.string.bet_failed);

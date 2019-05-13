@@ -25,4 +25,5 @@ public abstract class BaseMoreFragment<P extends IBasePresenter> extends BaseSwi
             ((SportActivity) baseToolbarActivity).ll_footer_sport.setVisibility(View.GONE);
         }
     }
+
 }

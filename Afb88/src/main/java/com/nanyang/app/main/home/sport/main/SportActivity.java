@@ -152,7 +152,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private String currentGameType = "";
     public WebSocket webSocket;
     private AfbDrawerViewHolder afbDrawerViewHolder;
-    private SportIdBean currentRunningIdBean;
+    private SportIdBean currentIdBean;
+    private boolean notClickType=false;
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
@@ -352,6 +353,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Override
     public void onBackCLick(View v) {
         afbDrawerViewHolder.isBack(false);
+        tvSportSelect.setText(currentIdBean.getTextRes());
+        tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, currentIdBean.getSportPic(), 0, 0);
     }
 
 
@@ -624,21 +627,23 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private void initSportFragment(SportIdBean item) {
         tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
         tvSportSelect.setText(getString(item.getTextRes()));
-
+        notClickType=false;
+        if (!item.getDbid().startsWith("33"))
+            currentIdBean = item;
         if (item.getDbid().equals("0")) {
             setType("Running");
             dateClickPosition = 0;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
         } else if (item.getDbid().startsWith("33")) {
-            huayThaiFragment.setBackTitle(getString(item.getTextRes()));
             MenuItemInfo<String> stringMenuItemInfo = new MenuItemInfo<>(R.mipmap.thai_thousand_1d, getString(R.string.game1d), item.getDbid(), "1");
             if (item.getDbid().equals("33_19")) {
                 stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, getString(R.string.game2d), item.getDbid(), "2");
             } else if (item.getDbid().equals("33_20")) {
                 stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), item.getDbid(), "3");
             }
+            notClickType=true;
             huayThaiFragment.setInfo(stringMenuItemInfo);
-            deleteHeadAndFoot();
+//            deleteHeadAndFoot();
             afbDrawerViewHolder.switchFragment(huayThaiFragment);
             return;
         }
@@ -648,7 +653,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void clickSportWayRun(final View view) {
 
-        if (currentFragment != null && currentFragment instanceof AllRunningFragment) {
+        if (currentFragment != null && currentFragment instanceof AllRunningFragment||notClickType) {
             return;
         }
 

@@ -279,8 +279,8 @@
     <string name="game2d">2D Game</string>
     <string name="game3d">3D Game</string>
     <string name="Number_1_digit_">数 (1 数字) :</string>
-    <string name="Number_2_digit_">数 (1 数字) :</string>
-    <string name="Number_3_digit_">数 (1 数字) :</string>
+    <string name="Number_2_digit_">数 (2 数字) :</string>
+    <string name="Number_3_digit_">数 (3 数字) :</string>
     <string name="Top_Prize1D">1D最高奖</string>
     <string name="description_top_1d">赌上1号预测 其中3个号码能在3D内的抽奖。 假如 抽奖是312，那是顾客能赢的奖品.</string>
     <string name="pay3">一付三块</string>
