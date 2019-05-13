@@ -630,7 +630,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             dateClickPosition = 0;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
         } else if (item.getId().equals("33")) {
-            huayThaiFragment.setBackTitle(getString(item.getTextRes()));
+//            huayThaiFragment.setBackTitle(getString(item.getTextRes()));
             MenuItemInfo<String> stringMenuItemInfo = new MenuItemInfo<>(R.mipmap.thai_thousand_1d, getString(R.string.game1d), "_view/nodds1TH_App.aspx", "_view/nodds1TH_Bet_App.aspx");
             if (item.getDbid().equals("33_19")) {
                 stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, getString(R.string.game2d), "_view/nodds2TH_App.aspx", "_view/nodds2TH_Bet_App.aspx");
@@ -638,7 +638,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), "_view/nodds3TH_App.aspx", "_view/nodds3TH_Bet_App.aspx");
             }
             huayThaiFragment.setInfo(stringMenuItemInfo);
-            deleteHeadAndFoot();
+//            deleteHeadAndFoot();
             afbDrawerViewHolder.switchFragment(huayThaiFragment);
             return;
         }

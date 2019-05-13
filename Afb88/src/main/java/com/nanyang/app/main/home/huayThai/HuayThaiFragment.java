@@ -100,6 +100,7 @@ public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
 
     public void setInfo(MenuItemInfo<String> info) {
         this.info = info;
+        type = info.getText();
     }
 
     @Override
@@ -115,7 +116,6 @@ public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
     @Override
     public void refreshData(String gameType) {
         super.refreshData(gameType);
-        type = info.getText();
         refresh();
         initIntroduceData(type);
     }
