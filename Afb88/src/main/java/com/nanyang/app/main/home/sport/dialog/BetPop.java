@@ -289,7 +289,7 @@ public class BetPop extends BasePopupWindow {
             if (min > 0 && max > 0) {
                 int count = Integer.valueOf(s);
                 if (count > max || count < min) {
-                    ToastUtils.showShort(R.string.invalid_amount_bet);
+                    ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
                     betAmountEdt.setText("");
                     return;
                 }
