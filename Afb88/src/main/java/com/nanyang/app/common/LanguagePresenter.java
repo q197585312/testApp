@@ -396,6 +396,6 @@ public class LanguagePresenter extends BaseSwitchPresenter {
     }
 
     public interface CallBack<T> {
-        void onBack(T data);
+        void onBack(T data) throws JSONException;
     }
 }

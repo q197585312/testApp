@@ -28,7 +28,7 @@ import io.reactivex.disposables.Disposable;
  * Created by ASUS on 2019/4/16.
  */
 
-public class LoadMainDataHelper {
+public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
     private CompositeDisposable mCompositeSubscription;
     private BaseActivity baseContext;
     private Api mApiWrapper;
@@ -39,7 +39,7 @@ public class LoadMainDataHelper {
         this.mCompositeSubscription = mCompositeSubscription;
     }
 
-    public void doRetrofitApiOnUiThread(LoginInfo.LanguageWfBean languageWfBean, final LanguagePresenter.CallBack<String> back) {
+    public void doRetrofitApiOnUiThread(T languageWfBean, final LanguagePresenter.CallBack<String> back) {
         String p = BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);

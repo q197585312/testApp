@@ -207,6 +207,48 @@ public class LoginInfo {
             return new Gson().toJson(this);
         }
     }
+    public static class HuayDataWfBean extends LanguageWfBean{
+
+
+        public HuayDataWfBean(String ACT, String lang, String PT) {
+            super(ACT, lang, PT);
+        }
+        String type;
+
+        public void setType(String type) {
+            this.type = type;
+        }
+    }
+    public static class HuayBetWfBean extends LanguageWfBean{
+
+
+        public HuayBetWfBean(String ACT, String lang, String PT) {
+            super(ACT, lang, PT);
+        }
+        String typed;
+        String txtNumber1;
+        String txtAmt;
+
+        public void setTyped(String typed) {
+            this.typed = typed;
+        }
+
+        public void setTxtNumber1(String txtNumber1) {
+            this.txtNumber1 = txtNumber1;
+        }
+
+        public void setTxtAmt(String txtAmt) {
+            this.txtAmt = txtAmt;
+        }
+
+        public void setSocOddsId(String socOddsId) {
+            this.socOddsId = socOddsId;
+        }
+
+        String socOddsId;
+
+
+    }
 
     public static class OutRightWfBean {
 

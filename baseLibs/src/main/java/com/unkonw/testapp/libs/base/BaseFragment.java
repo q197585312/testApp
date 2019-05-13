@@ -107,7 +107,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     }
 
     public void initData() {
-        Log.d(getClass().getSimpleName(), "initData: "+getClass().getSimpleName());
+        Log.d(getClass().getSimpleName(), "initData: " + getClass().getSimpleName());
     }
 
     public void showToast(String content) {
@@ -179,18 +179,19 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
         super.onAttach(context);
     }
 
-    public void refreshData(String type) {
-
-    }
-
-    public void refreshData() {
-
-    }
 
     public IBaseContext getIBaseContext() {
         return this;
     }
 
     public void initWaitData() {
+    }
+
+    public void refreshData() {
+
+    }
+
+    public void refreshData(String item) {
+
     }
 }
