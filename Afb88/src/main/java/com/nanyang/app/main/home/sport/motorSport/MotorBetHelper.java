@@ -1,4 +1,4 @@
-package com.nanyang.app.main.home.sport.formula;
+package com.nanyang.app.main.home.sport.motorSport;
 
 import com.nanyang.app.main.home.sport.tennis.TennisBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
@@ -7,15 +7,15 @@ import com.nanyang.app.main.home.sportInterface.BetView;
  * Created by Administrator on 2017/3/15.
  */
 
-public class FormulaBetHelper extends TennisBetHelper {
+public class MotorBetHelper extends TennisBetHelper {
 
-    public FormulaBetHelper(BetView baseView) {
+    public MotorBetHelper(BetView baseView) {
         super(baseView);
     }
 
     @Override
     protected String getBallG() {
-        return "25";
+        return "49";
     }
 
 

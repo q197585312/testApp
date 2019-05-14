@@ -185,7 +185,15 @@ public class AppConstant {
     public String URL_BOXING_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=16&ot=t&FAV=&SL=";
     public String URL_BOXING_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=16&ot=r&FAV=&SL=";
     public String URL_BOXING_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=16&ot=e&FAV=&SL=";
+
+    public String URL_MOTOR_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=49&ot=t&FAV=&SL=";
+    public String URL_MOTOR_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=49&ot=r&FAV=&SL=";
+    public String URL_MOTOR_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=49&ot=e&FAV=&SL=";
     //
+    public String URL_FUTSAL_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=28&ot=t&FAV=&SL=";
+    public String URL_FUTSAL_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=28&ot=r&FAV=&SL=";
+    public String URL_FUTSAL_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=28&ot=e&FAV=&SL=";
+
     public String URL_GOLF_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=37&FAV=&SL=";
     public String URL_GOLF_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=22&ot=t&FAV=&SL=";
     public String URL_GOLF_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=22&ot=r&FAV=&SL=";

@@ -1,40 +1,39 @@
-package com.nanyang.app.main.home.sport.game4d;
+package com.nanyang.app.main.home.sport.motorSport;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 
 
-public class Game4dFragment extends BaseSportFragment {
+public class MotorFragment extends BaseSportFragment {
 
     @Override
     protected String getBallDbid() {
-        return "5";
+        return "16";
     }
 
     @Override
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
-      switchType(type);
-        setTitle(getString(R.string.Specials_4D));
+        switchType(type);
+        setTitle(getString(R.string.Motor_Sports));
     }
 
     @Override
     public void switchType(String type) {
         switch (type) {
             case "Running":
-                switchState(new Game4dRunningState(this));
+                switchState(new MotorRunningState(this));
                 break;
             case "Today":
-                switchState(new Game4dTodayState(this));
+                switchState(new MotorTodayState(this));
                 break;
             case "Early":
-                switchState(new Game4dEarlyState(this));
+                switchState(new MotorEarlyState(this));
                 break;
-
             default:
-                switchState(new Game4dTodayState(this));
+                switchState(new MotorTodayState(this));
                 break;
         }
     }
@@ -42,9 +41,8 @@ public class Game4dFragment extends BaseSportFragment {
 
     @Override
     public String getTitle() {
-        return getString(R.string.Specials_4D);
+        return getString(R.string.Motor_Sports);
     }
-
 
 
 

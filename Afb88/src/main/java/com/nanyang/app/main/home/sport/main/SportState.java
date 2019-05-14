@@ -27,10 +27,8 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginInfo;
@@ -861,15 +859,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 TextView tv_game_count = holder.getView(R.id.tv_game_count);
                 tv_game_count.setVisibility(View.GONE);
 
-                String dbid = ((BaseSportFragment) baseView).getBallDbid();
-                if (StringUtils.isNull(dbid))
+                String dBId = ((BaseSportFragment) baseView).getBallDbid();
+                if (StringUtils.isNull(dBId))
                     return;
-                SportIdBean sportIdBean = AfbUtils.getSportByDbid(dbid);
+          /*      SportIdBean sportIdBean = AfbUtils.getSportByDbid(dbid);
                 if (sportIdBean == null || StringUtils.isNull(sportIdBean.getDbid()))
-                    return;
+                    return;*/
                 String type = item.getType();
-                Log.d("getType", "dbid:" + dbid + ",currentIdBean.getDbid()" + sportIdBean.getDbid() + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum + ",currentIdBean:" + sportIdBean);
-                String dBId = sportIdBean.getDbid();
+                Log.d("getType", "dbid:" + dBId + ",currentIdBean.getDbid()" + dBId + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum );
                 String runningStr = "M_RAm" + dBId;
                 String todayStr = "M_TAm" + dBId;
                 String earlyStr = "M_EAm" + dBId;
