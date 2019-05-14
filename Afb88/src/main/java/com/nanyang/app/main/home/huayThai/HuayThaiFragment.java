@@ -28,54 +28,34 @@ public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
     TextView tvGradeDate;
     @Bind(R.id.layout_bet1)
     LinearLayout layoutBet1;
-    EditText bet1Itembet1;
-    EditText bet1Itembet2;
-    TextView bet1ItembetSucceed;
+
     @Bind(R.id.layout_bet2)
     LinearLayout layoutBet2;
-    EditText bet2Itembet1;
-    EditText bet2Itembet2;
-    TextView bet2ItembetSucceed;
+
     @Bind(R.id.layout_bet3)
     LinearLayout layoutBet3;
-    EditText bet3Itembet1;
-    EditText bet3Itembet2;
-    TextView bet3ItembetSucceed;
+
     @Bind(R.id.layout_bet4)
     LinearLayout layoutBet4;
-    EditText bet4Itembet1;
-    EditText bet4Itembet2;
-    TextView bet4ItembetSucceed;
+
     @Bind(R.id.layout_bet5)
     LinearLayout layoutBet5;
-    EditText bet5Itembet1;
-    EditText bet5Itembet2;
-    TextView bet5ItembetSucceed;
+
     @Bind(R.id.layout_bet6)
     LinearLayout layoutBet6;
-    EditText bet6Itembet1;
-    EditText bet6Itembet2;
-    TextView bet6ItembetSucceed;
+
     @Bind(R.id.layout_bet7)
     LinearLayout layoutBet7;
-    EditText bet7Itembet1;
-    EditText bet7Itembet2;
-    TextView bet7ItembetSucceed;
+
     @Bind(R.id.layout_bet8)
     LinearLayout layoutBet8;
-    EditText bet8Itembet1;
-    EditText bet8Itembet2;
-    TextView bet8ItembetSucceed;
+
     @Bind(R.id.layout_bet9)
     LinearLayout layoutBet9;
-    EditText bet9Itembet1;
-    EditText bet9Itembet2;
-    TextView bet9ItembetSucceed;
+
     @Bind(R.id.layout_bet10)
     LinearLayout layoutBet10;
-    EditText bet10Itembet1;
-    EditText bet10Itembet2;
-    TextView bet10tembetSucceed;
+
     @Bind(R.id.tv_submit)
     TextView tvSubmit;
     @Bind(R.id.tv_refresh)
@@ -264,6 +244,11 @@ public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
 
             @Override
             protected void convertTv(TextView tv, HuayDrawDateInfo.DicAllBean item) {
+                tv.setText(item.getDesc());
+            }
+
+            @Override
+            protected void clickItem(TextView tv, HuayDrawDateInfo.DicAllBean item) {
                 tv.setText(item.getDesc());
                 selectDic = item;
             }
