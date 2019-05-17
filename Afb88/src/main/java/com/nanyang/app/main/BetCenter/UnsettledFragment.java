@@ -27,10 +27,8 @@ import com.unkonw.testapp.libs.base.BaseFragment;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.w3c.dom.Text;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -253,9 +251,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_FullTimeId.setText(item.getFullTimeId13() + " ");
                     TextView running_Score = holder.getTextView(R.id.running_Score);
                     String isRun5 = item.getIsRun5();
-                    if (isRun5.equals("1")){
+                    if (isRun5.equals("1")) {
                         running_Score.setText(item.getScore19() + " ");
-                    }else {
+                    } else {
                         running_Score.setVisibility(View.GONE);
                     }
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
@@ -303,6 +301,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             }
         };
         rv.setAdapter(adapter);
+        if (list != null && list.size() > 0)
+            rv.setVisibility(View.VISIBLE);
+        else
+            rv.setVisibility(View.GONE);
     }
 
     @Override

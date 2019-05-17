@@ -130,6 +130,7 @@ public abstract class BasePopupWindow {
         closePopupWindow();
 
         setBackgroundAttr(trans);
+
         popWindow.showAsDropDown(v, x, y);
     }
 

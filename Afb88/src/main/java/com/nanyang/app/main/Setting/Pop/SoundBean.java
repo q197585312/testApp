@@ -5,11 +5,21 @@ package com.nanyang.app.main.Setting.Pop;
  */
 
 public class SoundBean implements IString {
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    String type;
     String text;
 
-    public SoundBean(String text, int sound) {
+    public SoundBean(String text, int sound,String type) {
         this.text = text;
         this.sound = sound;
+        this.type = type;
     }
 
     public int getSound() {

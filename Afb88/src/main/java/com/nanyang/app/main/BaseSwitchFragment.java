@@ -61,4 +61,8 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
         }
         LogUtil.d("showContent", getClass().getSimpleName() + ",onResume:");
     }
+
+    public boolean checkCanBack() {
+        return true;
+    }
 }

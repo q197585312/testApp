@@ -10,10 +10,13 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -82,13 +85,19 @@ public class ChooseLanguagePop extends BasePopupWindow {
             @Override
             public void onItemClick(View view, MenuItemInfo<String> item, int position) {
                 String lag = item.getType();
-
                 if(!lag.equals(AfbUtils.getLanguage(context))){
                     AfbUtils.switchLanguage(lag,context);
                     if (tv!=null){
                         tv.setBackgroundResource(item.getRes());
                     }
-                    switchLanguage(item.getParent());
+                    presenter.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+                        @Override
+                        public void onBack(SettingAllDataBean data) throws JSONException {
+
+                        }
+                    });
+//                    presenter.switchLanguage(item.getParent());
+
                 }
             }
         });
@@ -109,9 +118,7 @@ public class ChooseLanguagePop extends BasePopupWindow {
         context.hideLoadingDialog();
     }
 
-    public void switchLanguage(String lang) {
-        presenter.switchLanguage(lang);
-    }
+
     TextView tv;
     public void setShowTv(TextView tv){
         this.tv = tv;

@@ -64,7 +64,7 @@ public class AppConstant {
 
 
     public String URL_UPDATE_BALANCE = HOST + "Bet/PanelStakeBalance_App.aspx";//http://103.206.122.65/Bet/BetStake.ashx
-    public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
+    public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=100";
     public String URL_ODDS_TYPE = HOST + "W0/Pub/wfMain0.html?accType=";//http://103.206.122.65/W0/Pub/wfMain0.html?accType=HK
 
     public String URL_ODDS_AFB1188 = HOST + "Bet/hBetOdds.ashx?";
@@ -180,7 +180,6 @@ public class AppConstant {
     public String URL_DARTS_RUNNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=19&ot=r&FAV=&SL=";
     public String URL_DARTS_EARLY_MIX = HOST + "_view/ParGen.ashx?g=20&ot=e&FAV=&SL=";
     public String URL_DARTS_TODAY_MIX = HOST + "_view/ParGen.ashx?g=20&ot=t&FAV=&SL=";
-    //http://main55.afb88.com/_View/SocAllGen.ashx?g=16&ot=e&r=1018773772&LID=&_=1496914467750
     public String URL_BOXING_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=92&FAV=&SL=";
     public String URL_BOXING_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=16&ot=t&FAV=&SL=";
     public String URL_BOXING_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=16&ot=r&FAV=&SL=";
@@ -230,6 +229,10 @@ public class AppConstant {
     public String URL_WINTER_SPORT_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=103&ot=r&FAV=&SL=";
     public String URL_WINTER_SPORT_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=103&ot=e&FAV=&SL=";
     //103
+    public String URL_WATER_SPORT_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=53&ot=t&FAV=&SL=";
+    public String URL_WATER_SPORT_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=53&ot=r&FAV=&SL=";
+    public String URL_WATER_SPORT_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=53&ot=e&FAV=&SL=";
+
 //    http://main55.afb88.com/_View/SocAllGen.ashx?g=99&ot=e&r=603659260&LID=&_=1497239829685
     public String URL_SUPER_COMBO_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=99&ot=t&FAV=&SL=";
     public String URL_SUPER_COMBO_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=99&ot=r&FAV=&SL=";
@@ -245,6 +248,18 @@ public class AppConstant {
     public String URL_TABLE_TENNIS_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=57&ot=r&FAV=&SL=";
     public String URL_TABLE_TENNIS_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=57&ot=e&FAV=&SL=";
 
+
+    public String URL_SQUASH_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=105&ot=t&FAV=&SL=";
+    public String URL_SQUASH_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=105&ot=r&FAV=&SL=";
+    public String URL_SQUASH_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=105&ot=e&FAV=&SL=";
+
+    public String URL_ATHLETICS_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=101&ot=t&FAV=&SL=";
+    public String URL_ATHLETICS_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=101&ot=r&FAV=&SL=";
+    public String URL_ATHLETICS_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=101&ot=e&FAV=&SL=";
+
+    public String URL_BEACH_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=67&ot=t&FAV=&SL=";
+    public String URL_BEACH_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=67&ot=r&FAV=&SL=";
+    public String URL_BEACH_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=67&ot=e&FAV=&SL=";
 
     /*    public String URL_EUROPE_TODAY;
         public String URL_EUROPE_RUNING;

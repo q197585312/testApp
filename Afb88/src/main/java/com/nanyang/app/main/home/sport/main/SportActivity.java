@@ -124,6 +124,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.tv_menu)
     TextView tvMenu;
     @Bind(R.id.ll_sport_menu_bottom)
+    public
     LinearLayout llSportMenuBottom;
     @Bind(R.id.sport_title_tv)
     TextView sportTitleTv;
@@ -172,12 +173,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
         toolbar.setVisibility(View.GONE);
-        presenter.switchOddsType("MY", new BaseConsumer<String>(this) {
+   /*     presenter.switchOddsType("MY", new BaseConsumer<String>(this) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
 
             }
-        });
+        });*/
         edtSearchContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -351,6 +352,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
 
     @Override
+    protected void onStop() {
+        super.onStop();
+
+    }
+
+    @Override
     public void onBackCLick(View v) {
         afbDrawerViewHolder.isBack(false);
         tvSportSelect.setText(currentIdBean.getTextRes());
@@ -441,12 +448,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         return getApp().getOddsType();
     }
 
-    public void setAllOdds(MenuItemInfo allOdds) {
-        getApp().setAllOdds(allOdds);
+    public void setMarketType(MenuItemInfo allOdds) {
+        getApp().setMarketType(allOdds);
     }
 
-    public MenuItemInfo getAllOddsType() {
-        return getApp().getAllOdds();
+    public MenuItemInfo getMarketType() {
+        return getApp().getMarketType();
     }
 
     public int getSortType() {
@@ -728,7 +735,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public void rememberLastOdds() {
         MenuItemInfo oddsType = getOddsType();
         if (oddsType != null) {
-            if (oddsType.getType().equals("HK")) {
+            tvOddsType.setText(oddsType.getText());
+           /* if (oddsType.getType().equals("HK")) {
                 tvOddsType.setText(R.string.HK_ODDS);
             } else if (oddsType.getType().equals("MY")) {
                 tvOddsType.setText(R.string.MY_ODDS);
@@ -736,19 +744,19 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 tvOddsType.setText(R.string.EU_ODDS);
             } else if (oddsType.getType().equals("ID")) {
                 tvOddsType.setText(R.string.ID_ODDS);
-            }
+            }*/
 
         }
-        MenuItemInfo allOddsType = getAllOddsType();
+        MenuItemInfo allOddsType = getMarketType();
         if (allOddsType != null) {
-
-            if (allOddsType.getType().equals("0")) {
+            ivAllAdd.setText(allOddsType.getText());
+           /* if (allOddsType.getType().equals("0")) {
                 ivAllAdd.setText(R.string.All_Markets);
             } else if (oddsType.getType().equals("1")) {
                 ivAllAdd.setText(R.string.Main_Markets);
             } else if (oddsType.getType().equals("2")) {
                 ivAllAdd.setText(R.string.Other_Bet_Markets);
-            }
+            }*/
         }
     }
 

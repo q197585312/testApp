@@ -23,6 +23,7 @@ public abstract class BaseMoreFragment<P extends IBasePresenter> extends BaseSwi
         if (baseToolbarActivity instanceof SportActivity) {
             ((SportActivity) baseToolbarActivity).sportHeaderLl.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).ll_footer_sport.setVisibility(View.GONE);
+            ((SportActivity) baseToolbarActivity).llSportMenuBottom.setVisibility(View.GONE);
         }
     }
 

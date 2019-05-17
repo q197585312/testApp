@@ -159,7 +159,7 @@ public class AllRunningCommonState extends OutRightState {
     }
 
     protected void webSocketRefresh(String dbId) {
-        String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType().getType();
+        String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
         String accType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType().getType();
         int ov = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
         LoginInfo.AllRunningWfBean allRunningWfBean = new LoginInfo.AllRunningWfBean(ot, dbId, accType);

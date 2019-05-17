@@ -1,8 +1,10 @@
 package com.nanyang.app;
 
 import com.nanyang.app.Utils.SoundPlayUtils;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
+import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -24,25 +26,27 @@ public class AfbApplication extends BaseApplication {
 
     private AfbClickResponseBean betAfbList;
     private boolean isGoHome = false;
+    private SettingAllDataBean settingAllDataBean;
 
     public MenuItemInfo getOddsType() {
-        return oddsType;
+        return AfbUtils.getOddsTypeByType(this, oddsType.getType());
     }
 
     public void setOddsType(MenuItemInfo oddsType) {
         this.oddsType = oddsType;
     }
 
-    public MenuItemInfo getAllOdds() {
-        return allOdds;
+    public MenuItemInfo getMarketType() {
+        return AfbUtils.getMarketByType(this, marketType.getType());
+//        return marketType;
     }
 
-    public void setAllOdds(MenuItemInfo allOdds) {
-        this.allOdds = allOdds;
+    public void setMarketType(MenuItemInfo marketType) {
+        this.marketType = marketType;
     }
 
     private MenuItemInfo oddsType;
-    private MenuItemInfo allOdds;
+    private MenuItemInfo marketType;
 
     public void setSort(int sort) {
         this.sort = sort;
@@ -88,10 +92,8 @@ public class AfbApplication extends BaseApplication {
         SoundPlayUtils.init(this);
         Logger.setDebug(true);
         closeAndroidPDialog();
-        AfbUtils.initAllSprotMap();
         CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", false);
-        oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
-        allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "0");
+
     }
 
 
@@ -171,6 +173,20 @@ public class AfbApplication extends BaseApplication {
 
     public int getSort() {
         return sort;
+    }
+
+    public SettingAllDataBean getSettingAllDataBean() {
+        return settingAllDataBean;
+    }
+
+    public void setSettingAllDataBean(SettingAllDataBean settingAllDataBean) {
+        this.settingAllDataBean = settingAllDataBean;
+        oddsType = AfbUtils.getOddsTypeByType(this, settingAllDataBean.getAccType());
+        marketType = AfbUtils.getMarketByType(this, settingAllDataBean.getAccMarketType());
+        if (!StringUtils.isNull(settingAllDataBean.getAccDefaultSorting()))
+            sort = Integer.valueOf(settingAllDataBean.getAccDefaultSorting());
+        if (!StringUtils.isNull(settingAllDataBean.getAccScoreSound()))
+            SoundPlayUtils.setSound(settingAllDataBean.getAccScoreSound());
     }
 }
 

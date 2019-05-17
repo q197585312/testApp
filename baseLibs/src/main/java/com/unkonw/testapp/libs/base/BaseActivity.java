@@ -76,6 +76,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         mContext = this;
         //Activity管理
         ActivityPageManager.getInstance().addActivity(this);
+        Log.d(getClass().getSimpleName(), "onCreate: ");
 
     }
 

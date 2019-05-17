@@ -3,8 +3,12 @@ package com.nanyang.app.common;
 import android.app.Activity;
 
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.MenuItemInfo;
+import com.nanyang.app.R;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * Created by ASUS on 2019/3/12.
@@ -13,6 +17,7 @@ import java.util.HashMap;
 public class LanguageHelper {
     HashMap<String, String> map = new HashMap<>();
     Activity context;
+    private List<MenuItemInfo<String>> languageItems;
 
     /*  case "zh":
                 lang = "ZH-CN";
@@ -43,6 +48,13 @@ public class LanguageHelper {
         map.put("ko", "EN-TT");
         map.put("vi", "EN-IE");
         map.put("tr", "UR-PK");
+        languageItems = new ArrayList<>();
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_zh_flag, "简体中文", "zh", "ZH-CN"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_en_flag, "English", "en", "EN-US"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_th_flag, "ไทย", "th", "TH-TH"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_ko_flag, "한국의", "ko", "EN-TT"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_vi_flag, "tiếng việt", "vi", "EN-IE"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_tr_flag, "Türk dili", "tr", "UR-PK"));
     }
 
     public String getLanguage() {
@@ -52,14 +64,28 @@ public class LanguageHelper {
             s = "EN-US";
         return s;
     }
+
+    public MenuItemInfo<String> getLanguageItem() {
+        String lag = AfbUtils.getLanguage(context);
+        for (MenuItemInfo<String> languageItem : languageItems) {
+            if (lag.equals(languageItem.getType()))
+                return languageItem;
+        }
+        return new MenuItemInfo<>(R.mipmap.lang_en_flag, "English", "en", "EN-US");
+    }
+
     public String getLanguage(String lag) {
         String s = map.get(lag);
         if (s == null)
             s = "EN-US";
         return s;
     }
-    public void switchLanguage(String language){
+
+    public void switchLanguage(String language) {
         AfbUtils.switchLanguage(language, context);
     }
 
+    public List<MenuItemInfo<String>> getLanguageItems() {
+        return languageItems;
+    }
 }

@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -237,7 +238,20 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(getClass().getSimpleName(), "onStop: ");
         stopUpdateState();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(getClass().getSimpleName(), "onDestroy: ");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(getClass().getSimpleName(), "onRestart: ");
     }
 
     @Nullable

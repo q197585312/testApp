@@ -18,6 +18,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.api.Api;
@@ -68,7 +69,7 @@ public class BetGoalWindowUtils {
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
         map.put("ACT", "GetTable");
         map.put("PT", "wfRunningH50");
-        map.put("lang", AfbUtils.getLangParamStr(activity));
+        map.put("lang", new LanguageHelper(activity).getLanguage());
         map.put("accType", accType);
         map.put("tidss", tidss);
         String jsonParam = AfbUtils.getJsonParam(map);

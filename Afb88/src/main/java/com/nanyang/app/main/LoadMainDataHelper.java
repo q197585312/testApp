@@ -1,18 +1,12 @@
 package com.nanyang.app.main;
 
-import android.content.Intent;
 import android.util.Log;
-import android.view.View;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
-import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
-import com.nanyang.app.R;
 import com.nanyang.app.common.LanguagePresenter;
-import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
-import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -46,7 +40,7 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 Log.d("doRetrofitApiOnUiThread", "data: " + data);
-                if (data.contains("Maintenance")) {
+                /*if (data.contains("Maintenance")) {
                     ((BaseToolbarActivity) baseContext).reLoginPrompt(baseContext.getBaseActivity().getString(R.string.System_maintenance), new SportContract.CallBack() {
                         @Override
                         public void clickCancel(View v) {
@@ -55,7 +49,7 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                         }
                     });
                     return;
-                }
+                }*/
                 String updateString = AfbUtils.delHTMLTag(data);
                 JSONArray jsonArray = new JSONArray(updateString);
                 if (jsonArray.length() > 3) {

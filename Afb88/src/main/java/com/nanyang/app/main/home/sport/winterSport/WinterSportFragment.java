@@ -9,7 +9,7 @@ public class WinterSportFragment extends BaseSportFragment {
 
     @Override
     protected String getBallDbid() {
-        return "21";
+        return "30";
     }
 
     @Override
@@ -30,9 +30,6 @@ public class WinterSportFragment extends BaseSportFragment {
                 break;
             case "Early":
                 switchState(new WinterSportEarlyState(this));
-                break;
-            case "OutRight":
-                switchState(new WinterSportOutRightState(this));
                 break;
             default:
                 switchState(new WinterSportTodayState(this));

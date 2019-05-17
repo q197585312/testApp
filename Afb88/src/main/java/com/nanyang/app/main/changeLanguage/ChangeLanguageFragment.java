@@ -10,14 +10,17 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.MainActivity;
+import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
-import java.util.ArrayList;
+import org.json.JSONException;
+
 import java.util.List;
 
 import butterknife.Bind;
@@ -46,13 +49,7 @@ public class ChangeLanguageFragment extends BaseMoreFragment<LanguagePresenter> 
     private void initRc() {
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(mContext, LinearLayoutManager.VERTICAL, false);//设置为一个3列的纵向网格布局
         rc.setLayoutManager(mLayoutManager);
-        List<MenuItemInfo<String>> dataList = new ArrayList<>();
-        dataList.add(new MenuItemInfo<>(R.mipmap.lang_zh_flag, getString(R.string.chinese), "zh", "ZH-CN"));
-        dataList.add(new MenuItemInfo<>(R.mipmap.lang_en_flag, getString(R.string.english), "en", "EN-US"));
-        dataList.add(new MenuItemInfo<>(R.mipmap.lang_th_flag, getString(R.string.thai), "th", "TH-TH"));
-        dataList.add(new MenuItemInfo<>(R.mipmap.lang_ko_flag, getString(R.string.Korea), "ko", "EN-TT"));
-        dataList.add(new MenuItemInfo<>(R.mipmap.lang_vi_flag, getString(R.string.Vietnam), "vi", "EN-IE"));
-        dataList.add(new MenuItemInfo<>(R.mipmap.lang_tr_flag, getString(R.string.Turkish), "tr", "UR-PK"));
+        List<MenuItemInfo<String>> dataList = new LanguageHelper(getBaseActivity()).getLanguageItems();
         BaseRecyclerAdapter adapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, dataList, R.layout.item_change_language) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
@@ -70,7 +67,12 @@ public class ChangeLanguageFragment extends BaseMoreFragment<LanguagePresenter> 
             @Override
             public void onItemClick(View view, MenuItemInfo<String> item, int position) {
                 AfbUtils.switchLanguage(item.getType(), getActivity());
-                presenter.switchLanguage(item.getParent());
+                presenter.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+                    @Override
+                    public void onBack(SettingAllDataBean data) throws JSONException {
+                        onLanguageSwitchSucceed("");
+                    }
+                });
             }
         });
         rc.setAdapter(adapter);

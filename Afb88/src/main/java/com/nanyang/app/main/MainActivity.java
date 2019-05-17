@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -70,12 +71,23 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
         ButterKnife.bind(this);
         createPresenter(new LanguagePresenter(this));
         toolbar.setNavigationIcon(null);
+
         initUserData();
         afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
         afbDrawerViewHolder.initDefaultFragment(homeFragment);
         afbDrawerViewHolder.switchFragment(homeFragment);
         myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (AppConstant.IS_AGENT) {
+                    defaultSkip("SportBook");
+                    finish();
+                }
+            }
+        }, 100);
+
     }
 
     private BaseSwitchFragment homeFragment = new HomeFragment();

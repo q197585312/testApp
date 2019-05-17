@@ -148,6 +148,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
      */
     protected abstract SportAdapterHelper.ItemCallBack onSetItemCallBack();
 
+    public void closeUpdate() {
+        if (webSocketBase != null && webSocketBase.isOpen()) {
+            webSocketBase.close();
+        }
+    }
 
     @Override
     public void unSubscribe() {
@@ -293,7 +298,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 + "&pn=1"
                 + "&tp=1"
                 + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType()
-                + "&mt=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType().getType();
+                + "&mt=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
         int HH = Integer.parseInt(DateUtils.getCurrentDate("HH"));
         url += "&tf=-1";
 //        if (HH >= 11) {
@@ -678,11 +683,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     @Override
     public void stopUpdateData() {
+        if (webSocketBase != null)
+            webSocketBase.close();
         if (mCompositeSubscription != null)
             mCompositeSubscription.clear();
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
-        if (webSocketBase != null)
-            webSocketBase.close();
+
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
@@ -866,7 +872,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 if (sportIdBean == null || StringUtils.isNull(sportIdBean.getDbid()))
                     return;*/
                 String type = item.getType();
-                Log.d("getType", "dbid:" + dBId + ",currentIdBean.getDbid()" + dBId + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum );
+                Log.d("getType", "dbid:" + dBId + ",currentIdBean.getDbid()" + dBId + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum);
                 String runningStr = "M_RAm" + dBId;
                 String todayStr = "M_TAm" + dBId;
                 String earlyStr = "M_EAm" + dBId;
@@ -1124,10 +1130,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 RecyclerView rv = view.findViewById(R.id.rv_list);
                 rv.setPadding(0, 0, 0, 0);
                 rv.setLayoutManager(new LinearLayoutManager(getBaseView().getIBaseContext().getBaseActivity()));
-                List<MenuItemInfo> list = new ArrayList<>();
-                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.All_Markets), "0"));//accType=
-                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Main_Markets), "1"));
-                list.add(new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Other_Bet_Markets), "2"));
+                List<MenuItemInfo> list = AfbUtils.getMarketsList(baseView.getIBaseContext().getBaseActivity());
+
 
                 BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), list, R.layout.text_base_item) {
                     @Override
@@ -1147,7 +1151,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
                         closePopupWindow();
-                        ((SportActivity) baseView.getIBaseContext().getBaseActivity()).setAllOdds(item);
+                        ((SportActivity) baseView.getIBaseContext().getBaseActivity()).setMarketType(item);
                         textView.setText(item.getText());
 
                         if (!getAllOddsUrl().isEmpty()) {

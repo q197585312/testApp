@@ -5,12 +5,12 @@ import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
-import com.nanyang.app.R;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
@@ -18,14 +18,12 @@ import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.Setting.SettingFragment;
-import com.nanyang.app.main.Setting.SettingInfoBean;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
@@ -54,8 +52,6 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  */
 
 public class LanguagePresenter extends BaseSwitchPresenter {
-    SwitchLanguage switchLanguage;
-    ILanguageView changeLanguageFragment;
     IGetRefreshMenu iGetRefreshMenu;
     SettingFragment settingFragment;
 
@@ -66,8 +62,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
      */
     public LanguagePresenter(IBaseContext iBaseContext) {
         super(iBaseContext);
-        switchLanguage = new SwitchLanguage(iBaseContext);
-        changeLanguageFragment = (ILanguageView) iBaseContext;
+//        changeLanguageFragment = (ILanguageView) iBaseContext;
         if (iBaseContext instanceof IGetRefreshMenu) {
             iGetRefreshMenu = (IGetRefreshMenu) iBaseContext;
         } else if (iBaseContext instanceof SettingFragment) {
@@ -78,15 +73,27 @@ public class LanguagePresenter extends BaseSwitchPresenter {
     }
 
     //    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","lang":"ZH-CN","pgLable":"0.18120996831154568","vsn":"4.0.12","PT":"wfLoginH50"}&_db={}
-    public void switchLanguage(String lang) {
+/*    public void switchLanguage(String lang) {
         doRetrofitApiOnDefaultThread(switchLanguage.switchLanguage(lang), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 changeLanguageFragment.onLanguageSwitchSucceed(data);
             }
         });
+    }*/
 
+    public void getSetting(final CallBack<SettingAllDataBean> back) {
+        LoadMainDataHelper<LoginInfo.LanguageWfBean> dataHelper = new LoadMainDataHelper<>(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+        dataHelper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean(new LanguageHelper(baseContext.getBaseActivity()).getLanguage()), new CallBack<String>() {
+            @Override
+            public void onBack(String data) throws JSONException {
+                SettingAllDataBean settingAllDataBean = gson.fromJson(data, SettingAllDataBean.class);
+                ((AfbApplication) baseContext.getBaseActivity().getApplication()).setSettingAllDataBean(settingAllDataBean);
+                back.onBack(settingAllDataBean);
+            }
+        });
     }
+
 
     public void getSkipGd88Data() {
         Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
@@ -168,25 +175,24 @@ public class LanguagePresenter extends BaseSwitchPresenter {
     }
 
     public void login(final LoginInfo info, final BaseConsumer<String> baseConsumer) {
-        if (BuildConfig.FLAVOR.equals("afb1188")) {
-            doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login", getLanguage()))
 
-                    .flatMap(new Function<String, Flowable<String>>() {
-                        @Override
-                        public Flowable<String> apply(String s) throws Exception {
-                            String regex = "window.location";
-                            Pattern p = Pattern.compile(regex);
-                            Matcher m = p.matcher(s);
-                            if (m.find()) {
-                                return getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN);
-                            }
-                            Exception exception1 = new Exception("Server Error");
-                            throw exception1;
+        doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login", getLanguage()))
 
+                .flatMap(new Function<String, Flowable<String>>() {
+                    @Override
+                    public Flowable<String> apply(String s) throws Exception {
+                        String regex = "window.location";
+                        Pattern p = Pattern.compile(regex);
+                        Matcher m = p.matcher(s);
+                        if (m.find()) {
+                            return getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN);
                         }
-                    }), baseConsumer);
-            return;
-        }
+                        Exception exception1 = new Exception("Server Error");
+                        throw exception1;
+
+                    }
+                }), baseConsumer);
+
         /*doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN)
                 .flatMap(new Function<String, Flowable<String>>() {
                     @Override
@@ -246,15 +252,13 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                         SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext.getBaseActivity());
                         return switchLanguage.switchLanguage(helper.getLanguage());
                     }
-                }), baseConsumer)*/;
+                }), baseConsumer)*/
+        ;
 
     }
 
     public void switchOddsType(final String oddsType, BaseConsumer<String> consumer) {
-
-
         Map<String, String> map = new HashMap<>();
-
         LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean(getLanguage());
         languageWfBean.setAccType(oddsType);
         map.put("_fm", languageWfBean.getJson());
@@ -328,71 +332,6 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                 });
         mCompositeSubscription.add(subscription);
 
-    }
-
-    public void getSettingContentData() {
-        LinkedHashMap<String, String> map = new LinkedHashMap<>();
-        map.put("ACT", "GetTT");
-        map.put("PT", "wfMainH50");
-        map.put("lang", AfbUtils.getLangParamStr(settingFragment.getContext()));
-        map.put("accType", "");
-        map.put("pgLable", "");
-        map.put("vsn", "");
-        String p = AfbUtils.getJsonParam(map);
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + p), new BaseConsumer<String>(baseContext) {
-            @Override
-            protected void onBaseGetData(String data) throws JSONException {
-                String updateString = AfbUtils.delHTMLTag(data);
-                JSONArray jsonArray = new JSONArray(updateString);
-                if (jsonArray.length() > 3) {
-                    JSONArray jsonArrayData1 = jsonArray.getJSONArray(3);
-                    JSONObject jsonObject = jsonArrayData1.getJSONObject(0);
-                    SettingAllDataBean settingAllDataBean = gson.fromJson(jsonObject.toString(), SettingAllDataBean.class);
-                    settingFragment.onGetSettingContentData(handleSettingData(settingAllDataBean));
-                }
-            }
-        });
-    }
-
-    private List<SettingInfoBean> handleSettingData(SettingAllDataBean settingAllDataBean) {
-        List<SettingInfoBean> beanList = new ArrayList<>();
-        SettingInfoBean infoBean1 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.login_name), settingAllDataBean.getLoginName(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean2 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.Password), "**********", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean3 = new SettingInfoBean("1", baseContext.getBaseActivity().getBaseActivity().getString(R.string.choose_language), baseContext.getBaseActivity().getString(R.string.language_switch), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean4 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.Odds_Type), settingAllDataBean.getAccType2(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean5 = new SettingInfoBean("2", baseContext.getBaseActivity().getString(R.string.better_odds), settingAllDataBean.getBetterOdds() + "", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean6 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.quick_bet_amount), baseContext.getBaseActivity().getString(R.string.customise), 0, 0, 0, 0, 0, 0);
-        infoBean6.setCustomizeAmount(settingAllDataBean.getAccamount() + "");
-        SettingInfoBean infoBean7 = new SettingInfoBean("2", baseContext.getBaseActivity().getString(R.string.auto_refresh), "1", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean8 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.default_sort), settingAllDataBean.getAccDefaultSorting(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean9 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.market_type), settingAllDataBean.getAccMarketType(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean10 = new SettingInfoBean("1", baseContext.getBaseActivity().getString(R.string.score_sound), settingAllDataBean.getAccScoreSound(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean11 = new SettingInfoBean("3", baseContext.getBaseActivity().getString(R.string.chip_set), "", 0, R.mipmap.chip5000, R.mipmap.chip10000, R.mipmap.chip30000, R.mipmap.chip50000, R.mipmap.chip100000);
-        infoBean11.setChipSize2(5000);
-        infoBean11.setChipSize3(10000);
-        infoBean11.setChipSize4(30000);
-        infoBean11.setChipSize5(50000);
-        infoBean11.setChipSize6(100000);
-        SettingInfoBean infoBean12 = new SettingInfoBean("3", "", "", R.mipmap.chip1, R.mipmap.chip10, R.mipmap.chip50, R.mipmap.chip100, R.mipmap.chip500, R.mipmap.chip1000);
-        infoBean12.setChipSize1(1);
-        infoBean12.setChipSize2(10);
-        infoBean12.setChipSize3(50);
-        infoBean12.setChipSize4(100);
-        infoBean12.setChipSize5(500);
-        infoBean12.setChipSize6(1000);
-        beanList.add(infoBean1);
-        beanList.add(infoBean2);
-        beanList.add(infoBean3);
-        beanList.add(infoBean4);
-        beanList.add(infoBean5);
-        beanList.add(infoBean6);
-        beanList.add(infoBean7);
-        beanList.add(infoBean8);
-        beanList.add(infoBean9);
-        beanList.add(infoBean10);
-        beanList.add(infoBean11);
-        beanList.add(infoBean12);
-        return beanList;
     }
 
     public interface CallBack<T> {

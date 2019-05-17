@@ -127,8 +127,7 @@
     <android.support.v7.widget.RecyclerView
         android:id="@+id/running_list"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
         android:background="@color/grey_background"
         android:paddingLeft="5dp"
         android:paddingRight="5dp">
@@ -140,18 +139,19 @@
         android:layout_height="wrap_content"
         android:paddingBottom="10dp"
         android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         android:text="@string/Note"
+        android:textStyle="bold"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
         android:paddingLeft="10dp"
-        android:text="请注意显示时间为GMT+8时区"
+        android:text="@string/Pleasenote2"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:visibility="gone" />
+        android:visibility="visible" />
 </LinearLayout>

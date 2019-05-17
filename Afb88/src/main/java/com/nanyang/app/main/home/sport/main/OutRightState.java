@@ -161,7 +161,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
     }
 
     protected void webSocketRefresh(String dbId) {
-        String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType().getType();
+        String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
         String accType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType().getType();
         int ov = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
         LoginInfo.OutRightWfBean allRunningWfBean = new LoginInfo.OutRightWfBean(ot, dbId + "_11", accType, mt, ov);

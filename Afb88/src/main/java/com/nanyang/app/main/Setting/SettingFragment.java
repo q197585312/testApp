@@ -3,6 +3,8 @@ package com.nanyang.app.main.Setting;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
@@ -11,12 +13,16 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.SoundPlayUtils;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.ILanguageView;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.Pop.IString;
@@ -24,10 +30,15 @@ import com.nanyang.app.main.Setting.Pop.PopSwitch;
 import com.nanyang.app.main.Setting.Pop.SoundBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -43,11 +54,13 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
     BaseToolbarActivity aty;
     BaseRecyclerAdapter<SettingInfoBean> adapter;
     Map<Integer, Boolean> chipStatusMap;
+    private String quickAmount;
 
     @Override
     public int onSetLayoutId() {
         return R.layout.fragment_setting;
     }
+
 
     @Override
     public void initData() {
@@ -55,18 +68,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
         setBackTitle(getString(R.string.setting));
         aty = (BaseToolbarActivity) getBaseActivity();
         createPresenter(new LanguagePresenter(this));
-        chipStatusMap = new HashMap<>();
-        chipStatusMap.put(1, false);
-        chipStatusMap.put(10, false);
-        chipStatusMap.put(50, false);
-        chipStatusMap.put(100, false);
-        chipStatusMap.put(500, false);
-        chipStatusMap.put(1000, false);
-        chipStatusMap.put(5000, false);
-        chipStatusMap.put(10000, false);
-        chipStatusMap.put(30000, false);
-        chipStatusMap.put(50000, false);
-        chipStatusMap.put(100000, false);
+
         adapter = new BaseRecyclerAdapter<SettingInfoBean>(mContext, new ArrayList<SettingInfoBean>(), R.layout.item_setting) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, SettingInfoBean item) {
@@ -104,6 +106,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                         imgChip1.setVisibility(View.VISIBLE);
                         imgChip1.setImageResource(item.getchip1());
                         imgChip1.setTag(item.getChipSize1());
+                        setChipsBg(imgChip1, item.getchip1());
                     }
                     imgChip2.setImageResource(item.getchip2());
                     imgChip2.setTag(item.getChipSize2());
@@ -115,6 +118,11 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                     imgChip5.setTag(item.getChipSize5());
                     imgChip6.setImageResource(item.getChip6());
                     imgChip6.setTag(item.getChipSize6());
+                    setChipsBg(imgChip2, item.getChipSize2());
+                    setChipsBg(imgChip3, item.getChipSize3());
+                    setChipsBg(imgChip4, item.getChipSize4());
+                    setChipsBg(imgChip5, item.getChipSize5());
+                    setChipsBg(imgChip6, item.getChipSize6());
                     imgChip1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
@@ -160,31 +168,26 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                 String choiceType = item.getChoiceType();
                 switch (position) {
                     case 2:
-                        String language = AfbUtils.getLanguage(mContext);
-                        if (language.equals("en")) {
-                            tvChoiceType.setText("ENGLISH");
-                        } else if (language.equals("zh")) {
-                            tvChoiceType.setText("简体中文");
-                        } else if (language.equals("th")) {
-                            tvChoiceType.setText("ภาษาไทย");
-                        } else if (language.equals("vi")) {
-                            tvChoiceType.setText("Tiếng Việt");
-                        } else if (language.equals("KOREAN")) {
-                            tvChoiceType.setText("ko");
-                        } else if (language.equals("tr")) {
-                            tvChoiceType.setText("TURKISH");
-                        }
+                        MenuItemInfo<String> language = new LanguageHelper(getBaseActivity()).getLanguageItem();
+                        tvChoiceType.setText(language.getText());
+                        break;
+                    case 3:
+                        MenuItemInfo oddsType = ((BaseToolbarActivity) getBaseActivity()).getApp().getOddsType();
+                        tvChoiceType.setText(oddsType.getText());
+                        break;
+                    case 5:
+                        tvChoiceType.setText(quickAmount);
                         break;
                     case 7:
                         int sort = ((BaseToolbarActivity) getBaseActivity()).getApp().getSort();
-                        if (sort==0) {
+                        if (sort == 0) {
                             tvChoiceType.setText(R.string.hot_sort);
                         } else {
                             tvChoiceType.setText(R.string.sort_by_time);
                         }
                         break;
                     case 8:
-                        MenuItemInfo allOdds = ((BaseToolbarActivity) getBaseActivity()).getApp().getAllOdds();
+                        MenuItemInfo allOdds = ((BaseToolbarActivity) getBaseActivity()).getApp().getMarketType();
                         tvChoiceType.setText(allOdds.getText());
                         break;
                     case 9:
@@ -204,23 +207,23 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                     case 1:
                         break;
                     case 2:
+                        if (AppConstant.IS_AGENT)
+                            return;
                         PopSwitch popLg = new PopSwitch<MenuItemInfo<String>>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
                             public void onClickItem(MenuItemInfo<String> item, int position) {
                                 tv.setText(item.getText());
                                 AfbUtils.switchLanguage(item.getType(), getActivity());
-                                presenter.switchLanguage(item.getParent());
+
+                                presenter.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+                                    @Override
+                                    public void onBack(SettingAllDataBean data) throws JSONException {
+                                        onLanguageSwitchSucceed("");
+                                    }
+                                });
                             }
                         };
-                        List<MenuItemInfo<String>> menuItemInfos = new ArrayList<MenuItemInfo<String>>(Arrays.asList(
-                                new MenuItemInfo<String>(R.mipmap.lang_zh_flag, "简体中文", "zh", "ZH-CN"),
-                                new MenuItemInfo<String>(R.mipmap.lang_en_flag, "English", "en", "EN-US"),
-                                new MenuItemInfo<String>(R.mipmap.lang_th_flag, "ไทย", "th", "TH-TH"),
-                                new MenuItemInfo<String>(R.mipmap.lang_ko_flag, "한국의", "ko", "EN-TT"),
-                                new MenuItemInfo<String>(R.mipmap.lang_vi_flag, "tiếng việt", "vi", "EN-IE"),
-                                new MenuItemInfo<String>(R.mipmap.lang_tr_flag, "Türk dili", "tr", "UR-PK")
-                        )
-                        );
+                        List<MenuItemInfo<String>> menuItemInfos = new LanguageHelper(getBaseActivity()).getLanguageItems();
                         popLg.setData(menuItemInfos, tv.getText().toString());
                         popLg.showPopupDownWindow();
                         break;
@@ -232,13 +235,8 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                                 ((BaseToolbarActivity) getBaseActivity()).getApp().setOddsType(item);
                             }
                         };
-                        List<MenuItemInfo> list = new ArrayList<>();
-                        list.add(new MenuItemInfo(0, getString(R.string.HK_ODDS), "HK"));//accType=
-                        list.add(new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY"));
-                        list.add(new MenuItemInfo(0, getString(R.string.ID_ODDS), "ID"));
-                        list.add(new MenuItemInfo(0, getString(R.string.EU_ODDS), "EU"));
-
-                        popOddType.setData(list, tv.getText().toString());
+                        List<MenuItemInfo> oddsTypeList = AfbUtils.getOddsTypeList(mContext);
+                        popOddType.setData(oddsTypeList, tv.getText().toString());
                         popOddType.showPopupDownWindow();
                         break;
                     case 4:
@@ -249,6 +247,20 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                         }
                         break;
                     case 5:
+                        BaseYseNoChoosePopupWindow baseYseNoChoosePopupWindow = new BaseYseNoChoosePopupWindow(mContext, tv) {
+                            @Override
+                            protected void clickSure(View v) {
+                                quickAmount = getChooseMessage().getText().toString().trim();
+                                tv.setText(quickAmount);
+                            }
+
+                            @Override
+                            protected int onSetLayoutRes() {
+                                return R.layout.popupwindow_content_edit_yes_no;
+                            }
+                        };
+                        baseYseNoChoosePopupWindow.getChooseMessage().setText(tv.getText());
+                        ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreated(baseYseNoChoosePopupWindow, Gravity.CENTER);
                         break;
                     case 6:
                         if (cbChoice.isChecked()) {
@@ -286,13 +298,10 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                             @Override
                             public void onClickItem(MenuItemInfo item, int position) {
                                 tv.setText(item.getText());
-                                ((BaseToolbarActivity) getBaseActivity()).getApp().setAllOdds(item);
+                                ((BaseToolbarActivity) getBaseActivity()).getApp().setMarketType(item);
                             }
                         };
-                        List<MenuItemInfo> markets = new ArrayList<>();
-                        markets.add(new MenuItemInfo(0, mContext.getString(R.string.All_Markets), "0"));//accType=
-                        markets.add(new MenuItemInfo(0, mContext.getString(R.string.Main_Markets), "1"));
-                        markets.add(new MenuItemInfo(0, mContext.getString(R.string.Other_Bet_Markets), "2"));
+                        List<MenuItemInfo> markets = AfbUtils.getMarketsList(mContext);
                         popMarket.setData(markets, tv.getText().toString());
                         popMarket.showPopupDownWindow();
                         break;
@@ -304,21 +313,71 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                                 SoundPlayUtils.setSound(item);
                             }
                         };
-                        List<SoundBean> sounds = new ArrayList<>();
-                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "1", SoundPlayUtils.sound1));//accType=
-                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "2", SoundPlayUtils.sound2));
-                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "3", SoundPlayUtils.sound3));
-                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "4", SoundPlayUtils.sound4));
-                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "5", SoundPlayUtils.sound5));
-                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "6", SoundPlayUtils.sound6));
-                        sounds.add(new SoundBean(mContext.getString(R.string.sound) + "7", SoundPlayUtils.sound7));
+                        List<SoundBean> sounds = SoundPlayUtils.getSoundList();
                         popSound.setData(sounds, tv.getText().toString());
                         popSound.showPopupDownWindow();
                         break;
                 }
             }
         });
-        presenter.getSettingContentData();
+        initSetData();
+
+    }
+
+    private void initSetData() {
+        presenter.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+            @Override
+            public void onBack(SettingAllDataBean data) throws JSONException {
+                onGetSettingContentData(handleSettingData(data));
+            }
+        });
+    }
+
+
+    private List<SettingInfoBean> handleSettingData(SettingAllDataBean data) {
+        LanguageHelper helper = new LanguageHelper(getBaseActivity());
+        setChipsMap(data.getChipSetChoose());
+        quickAmount = data.getAccamount() + "";
+        List<SettingInfoBean> beanList = new ArrayList<>();
+        SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.login_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean2 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Password), "**********", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean3 = new SettingInfoBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), helper.getLanguageItem().getText(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), AfbUtils.getOddsTypeByType(mContext, data.getAccType()).getText(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean5 = new SettingInfoBean("2", getBaseActivity().getString(R.string.better_odds), "1", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean6 = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_bet_amount), data.getAccamount() + "", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean7 = new SettingInfoBean("2", getBaseActivity().getString(R.string.auto_refresh), "1", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean8 = new SettingInfoBean("1", getBaseActivity().getString(R.string.default_sort), data.getAccDefaultSorting()/*((BaseToolbarActivity) getBaseActivity()).getApp().getSort()*/ + "", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean9 = new SettingInfoBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean10 = new SettingInfoBean("1", getBaseActivity().getString(R.string.score_sound), mContext.getString(R.string.sound) + data.getScoreSound(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean11 = new SettingInfoBean("3", getBaseActivity().getString(R.string.chip_set), "", 0, R.mipmap.chip5000, R.mipmap.chip10000, R.mipmap.chip30000, R.mipmap.chip50000, R.mipmap.chip100000);
+        SettingInfoBean infoBean12 = new SettingInfoBean("3", "", "", R.mipmap.chip1, R.mipmap.chip10, R.mipmap.chip50, R.mipmap.chip100, R.mipmap.chip500, R.mipmap.chip1000);
+        infoBean11.setChipSize2(5000);
+        infoBean11.setChipSize3(10000);
+        infoBean11.setChipSize4(30000);
+        infoBean11.setChipSize5(50000);
+        infoBean11.setChipSize6(100000);
+
+        infoBean12.setChipSize1(1);
+        infoBean12.setChipSize2(10);
+        infoBean12.setChipSize3(50);
+        infoBean12.setChipSize4(100);
+        infoBean12.setChipSize5(500);
+        infoBean12.setChipSize6(1000);
+
+        beanList.add(infoBean1);
+        beanList.add(infoBean2);
+        beanList.add(infoBean3);
+        beanList.add(infoBean4);
+        beanList.add(infoBean5);
+        beanList.add(infoBean6);
+        beanList.add(infoBean7);
+        beanList.add(infoBean8);
+        beanList.add(infoBean9);
+        beanList.add(infoBean10);
+        beanList.add(infoBean11);
+        beanList.add(infoBean12);
+
+        return beanList;
     }
 
     private void chipClick(View v) {
@@ -326,8 +385,12 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
         int chipSize = (int) imageView.getTag();
         boolean status = chipStatusMap.get(chipSize);
         chipStatusMap.put(chipSize, !status);
-        boolean finalStatus = chipStatusMap.get(chipSize);
-        if (finalStatus) {
+        setChipsBg(imageView, chipSize);
+    }
+
+    private void setChipsBg(ImageView imageView, int chipSize) {
+        Boolean finalStatus = chipStatusMap.get(chipSize);
+        if (finalStatus != null && finalStatus) {
             imageView.setBackgroundResource(R.drawable.shape_chip);
         } else {
             imageView.setBackgroundResource(0);
@@ -336,8 +399,74 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
 
     @Override
     public void onLanguageSwitchSucceed(String str) {
-        Intent intent = new Intent(getActivity(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+        Intent intent = new Intent(getActivity(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
+        getBaseActivity().finish();
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (hidden) {
+            LoginInfo.SettingWfBean settingWfBean = new LoginInfo.SettingWfBean("Savesort", new LanguageHelper(getBaseActivity()).getLanguage(), "wfSettingH50");
+            settingWfBean.setMarketTyped(((BaseToolbarActivity) getBaseActivity()).getApp().getMarketType().getType());
+            settingWfBean.setDefaultSortingd(((BaseToolbarActivity) getBaseActivity()).getApp().getSort() + "");
+            settingWfBean.setScoreSoundd(SoundPlayUtils.getSoundIndex().getType());
+            settingWfBean.setAccType(((BaseToolbarActivity) getBaseActivity()).getApp().getOddsType().getType());
+            settingWfBean.setAmtS(quickAmount);
+            String ChipsList = getChooseChips();
+            //"ChipsList":"50000,30000,10000,5000,1000,500,10,1"
+            settingWfBean.setChipsList(ChipsList);
+            presenter.loadAllMainData(settingWfBean, new LanguagePresenter.CallBack<String>() {
+                @Override
+                public void onBack(String data) throws JSONException {
+                    Log.d(TAG, "onBack: " + data);
+                }
+            });
+        } else {
+            adapter.notifyDataSetChanged();
+//            initSetData();
+        }
+    }
+
+
+    String TAG = "SettingFragment";
+
+    private String getChooseChips() {
+        Iterator<Map.Entry<Integer, Boolean>> iterator = chipStatusMap.entrySet().iterator();
+        StringBuilder stringBuilder = new StringBuilder();
+        while (iterator.hasNext()) {
+            Map.Entry<Integer, Boolean> next = iterator.next();
+            if (next.getValue()) {
+                stringBuilder.append(next.getKey());
+                stringBuilder.append(",");
+            }
+        }
+        String string = stringBuilder.toString();
+        if (string.length() > 1)
+            return string.substring(0, string.length() - 1);
+        return "";
+    }
+
+    protected void setChipsMap(String chips) {
+        chipStatusMap = new HashMap<>();
+        chipStatusMap.put(1, false);
+        chipStatusMap.put(10, false);
+        chipStatusMap.put(50, false);
+        chipStatusMap.put(100, false);
+        chipStatusMap.put(500, false);
+        chipStatusMap.put(1000, false);
+        chipStatusMap.put(5000, false);
+        chipStatusMap.put(10000, false);
+        chipStatusMap.put(30000, false);
+        chipStatusMap.put(50000, false);
+        chipStatusMap.put(100000, false);
+        if (!StringUtils.isNull(chips)) {
+            String[] split = chips.split(",");
+            for (String s : split) {
+                chipStatusMap.put(Integer.valueOf(s), true);
+            }
+        }
     }
 
     @Override
@@ -362,5 +491,21 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
     @Override
     public void onFailed(String error) {
 
+    }
+
+    public boolean checkCanBack() {
+        if (chipStatusMap != null && !chipStatusMap.isEmpty()) {
+            Collection<Boolean> values = chipStatusMap.values();
+            int n = 0;
+            for (Boolean value : values) {
+                if (value)
+                    n++;
+            }
+            if (n < 5 || n > 8) {
+                ToastUtils.showShort(R.string.no_less_5_no_more_8);
+                return false;
+            }
+        }
+        return true;
     }
 }

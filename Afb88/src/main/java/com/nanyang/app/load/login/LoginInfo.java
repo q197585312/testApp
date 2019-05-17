@@ -246,8 +246,57 @@ public class LoginInfo {
         }
 
         String socOddsId;
+    }
+    /*{"ACT":"Savesort",
+    "PT":"wfSettingH50",
+    "MarketTyped":"0",
+    "DefaultSortingd":"0",
+    "ScoreSoundd":"1",
+    "lang":"EN-US",
+    "accType":"ID",
+    "AmtS":"0",
+    "BetterOdds":"1",
+    "ChipsList":"",
+    "pgLable":"0.5134303879466173","vsn":"4.0.12"}*/
+
+    public static class SettingWfBean extends LanguageWfBean{
 
 
+        public SettingWfBean(String ACT, String lang, String PT) {
+            super(ACT, lang, PT);
+        }
+        String MarketTyped;
+        String DefaultSortingd;
+        String ScoreSoundd;
+
+        String AmtS;
+        String BetterOdds;
+        String ChipsList;
+
+        public void setMarketTyped(String marketTyped) {
+            MarketTyped = marketTyped;
+        }
+
+        public void setDefaultSortingd(String defaultSortingd) {
+            DefaultSortingd = defaultSortingd;
+        }
+
+        public void setScoreSoundd(String scoreSoundd) {
+            ScoreSoundd = scoreSoundd;
+        }
+
+
+        public void setAmtS(String amtS) {
+            AmtS = amtS;
+        }
+
+        public void setBetterOdds(String betterOdds) {
+            BetterOdds = betterOdds;
+        }
+
+        public void setChipsList(String chipsList) {
+            ChipsList = chipsList;
+        }
     }
 
     public static class OutRightWfBean {

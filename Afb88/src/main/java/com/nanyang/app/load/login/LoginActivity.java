@@ -1,5 +1,6 @@
 package com.nanyang.app.load.login;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -19,16 +20,22 @@ import com.nanyang.app.Pop.PopChoiceLanguage;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.ViewPagerAdapter;
+import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
+import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
+import org.json.JSONException;
+
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -199,8 +206,30 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         if (!TextUtils.isEmpty(us) && !TextUtils.isEmpty(k)) {
             presenter.login(new LoginInfo(us, k), new BaseConsumer<String>(this) {
                 @Override
-                protected void onBaseGetData(String data) {
-                    onLanguageSwitchSucceed(data);
+                protected void onBaseGetData(String s) {
+
+                    if (s.contains("Maintenance")) {
+                        Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
+                        onError(exception);
+                    } else {
+                        String regex = "window.location";
+                        Pattern p = Pattern.compile(regex);
+                        Matcher m = p.matcher(s);
+                        if (m.find()) {
+                            LanguagePresenter switchLanguage = new LanguagePresenter(baseContext);
+                            switchLanguage.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+                                                          @Override
+                                                          public void onBack(SettingAllDataBean data) throws JSONException {
+                                                              onLanguageSwitchSucceed(data.getUserName());
+                                                          }
+                                                      }
+                            );
+                        } else {
+                            Exception exception1 = new Exception("Server Error");
+                            onError(exception1);
+                        }
+                    }
+
                 }
 
                 @Override
@@ -238,7 +267,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
 
         AppConstant.IS_AGENT = false;
         AppConstant.wfMain = "wfMainH50";
-        Log.d("doRetrofitApiOnUiThread", ": "+AppConstant.wfMain);
+        AfbUtils.initAllSprotMap();
+        Log.d("doRetrofitApiOnUiThread", ": " + AppConstant.wfMain);
         skipAct(MainActivity.class);
         finish();
     }

@@ -28,7 +28,7 @@ public class MyanmarEarlyState extends MyanmarState {
     @Override
     protected String getRefreshUrl() {
         String tfDate = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
-        return AppConstant.getInstance().URL_SOCCER_MYANMAR_EARLY+"&wd="+ tfDate+"&mt="+((SportActivity)getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType().getType();
+        return AppConstant.getInstance().URL_SOCCER_MYANMAR_EARLY+"&wd="+ tfDate+"&mt="+((SportActivity)getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
     }
 
     @Override

@@ -5,7 +5,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
@@ -111,8 +110,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
         dataList.add(m3);
         dataList.add(m4);
         dataList.add(m5);
-        if (!AppConstant.IS_AGENT)
-            dataList.add(m6);
+        dataList.add(m6);
         dataList.add(m7);
         if (!AppConstant.IS_AGENT)
             dataList.add(m8);
@@ -194,6 +192,8 @@ public class AfbDrawerViewHolder implements IDrawerView {
             drawerLayout.closeDrawer(Gravity.RIGHT);
             back = true;
         }
+        if(!indexFragment.checkCanBack())
+            return back;
         if (indexFragment == homeFragment) {
             baseToolbarActivity.finish();
         } else {
