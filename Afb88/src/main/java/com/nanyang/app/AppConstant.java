@@ -8,9 +8,9 @@ public class AppConstant {
 
 
     public static final String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
-    public static final String CHECK_VERSION = "http://www.appgd88.com/afb1188version.php?app=android";
-    public static final String DOWNLOAD_APP = "http://appgd88.com/afb1188/afb1188.apk";
     public static boolean IS_AGENT = false;
+    public static String wfMain = "wfMainH50";
+    public static String pcode = "H50/Pub/pcode.axd?_fm=";
 
 //http://www.afb1188.com/W0/Pub/pcode.axd
 
@@ -64,7 +64,7 @@ public class AppConstant {
 
 
     public String URL_UPDATE_BALANCE = HOST + "Bet/PanelStakeBalance_App.aspx";//http://103.206.122.65/Bet/BetStake.ashx
-    public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
+    public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=100";
     public String URL_ODDS_TYPE = HOST + "W0/Pub/wfMain0.html?accType=";//http://103.206.122.65/W0/Pub/wfMain0.html?accType=HK
 
     public String URL_ODDS_AFB1188 = HOST + "Bet/hBetOdds.ashx?";
@@ -91,8 +91,6 @@ public class AppConstant {
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=703018&r=1553931820250&_=1553931794406
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=726142&r=1553931973916&_=1553931794436 、、
 //    https://www.afb1188.com/pgajaxS.axd?T=MBH50&dbid=1&oId=726142&r=1553931976885&_=1553931794437
-
-
 //https://ws.afb1188.com:8887/fnOddsGen?wst=wsSocAllGen&g=9&ot=r&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-04-08&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&mt=0&FAV=&SL=&LSL=undefined
 
     public String URL_BASKETBALL_RUNNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=9&ot=r&FAV=&SL=";
@@ -182,12 +180,19 @@ public class AppConstant {
     public String URL_DARTS_RUNNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=19&ot=r&FAV=&SL=";
     public String URL_DARTS_EARLY_MIX = HOST + "_view/ParGen.ashx?g=20&ot=e&FAV=&SL=";
     public String URL_DARTS_TODAY_MIX = HOST + "_view/ParGen.ashx?g=20&ot=t&FAV=&SL=";
-    //http://main55.afb88.com/_View/SocAllGen.ashx?g=16&ot=e&r=1018773772&LID=&_=1496914467750
     public String URL_BOXING_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=92&FAV=&SL=";
     public String URL_BOXING_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=16&ot=t&FAV=&SL=";
     public String URL_BOXING_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=16&ot=r&FAV=&SL=";
     public String URL_BOXING_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=16&ot=e&FAV=&SL=";
+
+    public String URL_MOTOR_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=49&ot=t&FAV=&SL=";
+    public String URL_MOTOR_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=49&ot=r&FAV=&SL=";
+    public String URL_MOTOR_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=49&ot=e&FAV=&SL=";
     //
+    public String URL_FUTSAL_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=28&ot=t&FAV=&SL=";
+    public String URL_FUTSAL_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=28&ot=r&FAV=&SL=";
+    public String URL_FUTSAL_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=28&ot=e&FAV=&SL=";
+
     public String URL_GOLF_OUTRIGHT = HOST + "_view/OddsOutGen.ashx?g=37&FAV=&SL=";
     public String URL_GOLF_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=22&ot=t&FAV=&SL=";
     public String URL_GOLF_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=22&ot=r&FAV=&SL=";
@@ -224,6 +229,10 @@ public class AppConstant {
     public String URL_WINTER_SPORT_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=103&ot=r&FAV=&SL=";
     public String URL_WINTER_SPORT_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=103&ot=e&FAV=&SL=";
     //103
+    public String URL_WATER_SPORT_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=53&ot=t&FAV=&SL=";
+    public String URL_WATER_SPORT_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=53&ot=r&FAV=&SL=";
+    public String URL_WATER_SPORT_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=53&ot=e&FAV=&SL=";
+
 //    http://main55.afb88.com/_View/SocAllGen.ashx?g=99&ot=e&r=603659260&LID=&_=1497239829685
     public String URL_SUPER_COMBO_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=99&ot=t&FAV=&SL=";
     public String URL_SUPER_COMBO_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=99&ot=r&FAV=&SL=";
@@ -239,6 +248,18 @@ public class AppConstant {
     public String URL_TABLE_TENNIS_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=57&ot=r&FAV=&SL=";
     public String URL_TABLE_TENNIS_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=57&ot=e&FAV=&SL=";
 
+
+    public String URL_SQUASH_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=105&ot=t&FAV=&SL=";
+    public String URL_SQUASH_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=105&ot=r&FAV=&SL=";
+    public String URL_SQUASH_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=105&ot=e&FAV=&SL=";
+
+    public String URL_ATHLETICS_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=101&ot=t&FAV=&SL=";
+    public String URL_ATHLETICS_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=101&ot=r&FAV=&SL=";
+    public String URL_ATHLETICS_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=101&ot=e&FAV=&SL=";
+
+    public String URL_BEACH_TODAY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=67&ot=t&FAV=&SL=";
+    public String URL_BEACH_RUNING = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=67&ot=r&FAV=&SL=";
+    public String URL_BEACH_EARLY = BuildConfig.HOST_SPORT + "?wst=wsSocAllGen&g=67&ot=e&FAV=&SL=";
 
     /*    public String URL_EUROPE_TODAY;
         public String URL_EUROPE_RUNING;
@@ -278,6 +299,7 @@ public class AppConstant {
     static AppConstant instance;
     private String host;
 
+/*
     public void setHost(String host) {
         this.HOST = host;
         URL_MAIN = HOST + "main.aspx";
@@ -452,6 +474,7 @@ public class AppConstant {
         URL_ODDS_AFB1188 = HOST + "Bet/hBetOdds.ashx?";
         URL_ODDS = URL_ODDS_AFB1188;
     }
+*/
 
     public static AppConstant getInstance() {
         if (instance == null)

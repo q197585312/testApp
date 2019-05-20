@@ -4,23 +4,22 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.text.TextUtils;
-import android.util.Log;
 
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
-import com.nanyang.app.R;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainActivity;
+import com.nanyang.app.main.Setting.SettingAllDataBean;
+import com.nanyang.app.main.Setting.SettingFragment;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
-import com.unkonw.testapp.libs.base.IBaseView;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
@@ -43,8 +42,6 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
-import okhttp3.Headers;
-import okhttp3.HttpUrl;
 import okhttp3.Request;
 import retrofit2.Response;
 
@@ -55,9 +52,8 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  */
 
 public class LanguagePresenter extends BaseSwitchPresenter {
-    SwitchLanguage switchLanguage;
-    ILanguageView changeLanguageFragment;
     IGetRefreshMenu iGetRefreshMenu;
+    SettingFragment settingFragment;
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -66,24 +62,38 @@ public class LanguagePresenter extends BaseSwitchPresenter {
      */
     public LanguagePresenter(IBaseContext iBaseContext) {
         super(iBaseContext);
-        switchLanguage = new SwitchLanguage(iBaseContext);
-        changeLanguageFragment = (ILanguageView) iBaseContext;
+//        changeLanguageFragment = (ILanguageView) iBaseContext;
         if (iBaseContext instanceof IGetRefreshMenu) {
             iGetRefreshMenu = (IGetRefreshMenu) iBaseContext;
+        } else if (iBaseContext instanceof SettingFragment) {
+            settingFragment = (SettingFragment) iBaseContext;
         } else {
             iGetRefreshMenu = null;
         }
     }
 
     //    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","lang":"ZH-CN","pgLable":"0.18120996831154568","vsn":"4.0.12","PT":"wfLoginH50"}&_db={}
-    public void switchLanguage(String lang) {
+/*    public void switchLanguage(String lang) {
         doRetrofitApiOnDefaultThread(switchLanguage.switchLanguage(lang), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 changeLanguageFragment.onLanguageSwitchSucceed(data);
             }
         });
+    }*/
 
+    public void getSetting(final CallBack<SettingAllDataBean> back) {
+        LoadMainDataHelper<LoginInfo.LanguageWfBean> dataHelper = new LoadMainDataHelper<>(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+        dataHelper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean(new LanguageHelper(baseContext.getBaseActivity()).getLanguage()), new CallBack<String>() {
+            @Override
+            public void onBack(String data) throws JSONException {
+                SettingAllDataBean settingAllDataBean = gson.fromJson(data, SettingAllDataBean.class);
+                ((AfbApplication) baseContext.getBaseActivity().getApplication()).setSettingAllDataBean(settingAllDataBean);
+                ((AfbApplication) baseContext.getBaseActivity().getApplication()).setQuickAmount(settingAllDataBean.getAccamount() + "");
+                AfbUtils.setChipStatusMap(settingAllDataBean.getChipSetChoose());
+                back.onBack(settingAllDataBean);
+            }
+        });
     }
 
     public void getSkipGd88Data() {
@@ -166,26 +176,25 @@ public class LanguagePresenter extends BaseSwitchPresenter {
     }
 
     public void login(final LoginInfo info, final BaseConsumer<String> baseConsumer) {
-        if (BuildConfig.FLAVOR.equals("afb1188")) {
-            doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login", getLanguage()))
 
-                    .flatMap(new Function<String, Flowable<String>>() {
-                        @Override
-                        public Flowable<String> apply(String s) throws Exception {
-                            String regex = "window.location";
-                            Pattern p = Pattern.compile(regex);
-                            Matcher m = p.matcher(s);
-                            if (m.find()) {
-                                return getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN);
-                            }
-                            Exception exception1 = new Exception("Server Error");
-                            throw exception1;
+        doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login", getLanguage()))
 
+                .flatMap(new Function<String, Flowable<String>>() {
+                    @Override
+                    public Flowable<String> apply(String s) throws Exception {
+                        String regex = "window.location";
+                        Pattern p = Pattern.compile(regex);
+                        Matcher m = p.matcher(s);
+                        if (m.find()) {
+                            return getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN);
                         }
-                    }), baseConsumer);
-            return;
-        }
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN)
+                        Exception exception1 = new Exception("Server Error");
+                        throw exception1;
+
+                    }
+                }), baseConsumer);
+
+        /*doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN)
                 .flatMap(new Function<String, Flowable<String>>() {
                     @Override
                     public Flowable<String> apply(String s) throws Exception {
@@ -244,15 +253,13 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                         SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext.getBaseActivity());
                         return switchLanguage.switchLanguage(helper.getLanguage());
                     }
-                }), baseConsumer);
+                }), baseConsumer)*/
+        ;
 
     }
 
     public void switchOddsType(final String oddsType, BaseConsumer<String> consumer) {
-
-
         Map<String, String> map = new HashMap<>();
-
         LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean(getLanguage());
         languageWfBean.setAccType(oddsType);
         map.put("_fm", languageWfBean.getJson());
@@ -329,6 +336,6 @@ public class LanguagePresenter extends BaseSwitchPresenter {
     }
 
     public interface CallBack<T> {
-        void onBack(T data);
+        void onBack(T data) throws JSONException;
     }
 }

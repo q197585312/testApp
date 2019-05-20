@@ -29,11 +29,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.main.BaseMoreFragment;
+import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
 import com.nanyang.app.main.home.sport.USFootball.USFootballFragment;
+import com.nanyang.app.main.home.sport.WaterSport.WaterSportFragment;
 import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
+import com.nanyang.app.main.home.sport.athletics.AthleticsFragment;
 import com.nanyang.app.main.home.sport.badminton.BadmintonFragment;
 import com.nanyang.app.main.home.sport.baseball.BaseballFragment;
 import com.nanyang.app.main.home.sport.basketball.BasketballFragment;
+import com.nanyang.app.main.home.sport.beachSport.BeachSportFragment;
 import com.nanyang.app.main.home.sport.boxing.BoxingFragment;
 import com.nanyang.app.main.home.sport.cricket.CricketFragment;
 import com.nanyang.app.main.home.sport.cycling.CyclingFragment;
@@ -43,6 +49,7 @@ import com.nanyang.app.main.home.sport.europe.EuropeFragment;
 import com.nanyang.app.main.home.sport.financial.FinancialFragment;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
 import com.nanyang.app.main.home.sport.formula.FormulaFragment;
+import com.nanyang.app.main.home.sport.futsal.FutsalFragment;
 import com.nanyang.app.main.home.sport.game4d.Game4dFragment;
 import com.nanyang.app.main.home.sport.golf.GolfFragment;
 import com.nanyang.app.main.home.sport.handball.HandballFragment;
@@ -50,11 +57,13 @@ import com.nanyang.app.main.home.sport.iceHockey.IceHockeyFragment;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportState;
+import com.nanyang.app.main.home.sport.motorSport.MotorFragment;
 import com.nanyang.app.main.home.sport.muayThai.MuayThaiFragment;
 import com.nanyang.app.main.home.sport.myanmarOdds.MyanmarFragment;
 import com.nanyang.app.main.home.sport.outRight.OutRightFragment;
 import com.nanyang.app.main.home.sport.poll.PoolSnookerFragment;
 import com.nanyang.app.main.home.sport.rugby.RugbyFragment;
+import com.nanyang.app.main.home.sport.squash.SquashFragment;
 import com.nanyang.app.main.home.sport.tableTennis.TableTennisFragment;
 import com.nanyang.app.main.home.sport.tennis.TennisFragment;
 import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
@@ -62,6 +71,7 @@ import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.api.CookieManger;
+import com.unkonw.testapp.libs.api.PersistentCookieStore;
 import com.unkonw.testapp.libs.utils.SystemTool;
 
 import org.json.JSONObject;
@@ -86,6 +96,8 @@ import java.util.TimeZone;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import okhttp3.Cookie;
+
 /**
  * Created by Administrator on 2017/2/22.
  */
@@ -106,6 +118,8 @@ public class AfbUtils {
      */
     private static final String REGEX_HTML = "<[^>]+>";
     private static Map<String, SportState> majorStateHashMap = new HashMap<>();
+    private static List<MenuItemInfo> oddsTypeList;
+    private static HashMap<Integer, Boolean> chipStatusMap;
 
     public static String delHTMLTag(String htmlStr) {
         // 过滤script标签
@@ -130,7 +144,7 @@ public class AfbUtils {
             return "";
         String p = "";
         try {
-            if (Float.valueOf(v) == 0) {
+            if (Math.abs(Float.valueOf(v)) < 0.3) {
                 return "";
             }
             p = decimalValue(Float.valueOf(v) / 10, "0.00");
@@ -188,9 +202,9 @@ public class AfbUtils {
         return obj;
     }
 
-    public static SpannableStringBuilder handleStringColor(String str, int firColor, int sedColor) {
-        int bstart = str.indexOf("/");
-        int bend = bstart + "/".length();
+    public static SpannableStringBuilder handleStringColor(String str, String splitStr, int firColor, int sedColor) {
+        int bstart = str.indexOf(splitStr);
+        int bend = bstart + splitStr.length();
         SpannableStringBuilder style = new SpannableStringBuilder(str);
         style.setSpan(new BackgroundColorSpan(firColor), 0, bstart, Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
         style.setSpan(new BackgroundColorSpan(sedColor), bend, str.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
@@ -246,12 +260,51 @@ public class AfbUtils {
         webView.getSettings().setDatabaseEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());
-        String cookie = "";
-        if (CookieManger.getCookieStore().get(url) != null && CookieManger.getCookieStore().get(url).size() > 0) {
-            cookie = CookieManger.getCookieStore().get(url).get(0).toString();
-            AfbUtils.synCookies(context, url, cookie);
+        StringBuffer sb = new StringBuffer();
+        List<Cookie> cookies = CookieManger.getCookieStore().get(url);
+        if (cookies != null && cookies.size() > 0) {
+            for (Cookie cookie1 : cookies) {
+
+                String cookieName = cookie1.name();
+                String cookieValue = cookie1.value();
+                if (!TextUtils.isEmpty(cookieName)
+                        && !TextUtils.isEmpty(cookieValue)) {
+                    sb.append(cookieName + "=");
+                    sb.append(cookieValue + ";");
+                }
+            }
+//            cookie = cookies.get(0).toString();
         }
+        String[] cookie = sb.toString().split(";");
+        for (int i = 0; i < cookie.length; i++) {
+            AfbUtils.synCookies(context, url, cookie[i]);
+//                cookieManager.setCookie(url, cookie[i]);// cookies是在HttpClient中获得的cookie
+        }
+//            CookieSyncManager.getInstance().sync();
+
         webView.loadUrl(url);
+    }
+
+
+    /**
+     * 给WebView同步Cookie
+     *
+     * @param context 上下文
+     * @param url     可以使用[domain][host]
+     */
+
+    private void syncCookie(Context context, String url) {
+        CookieSyncManager.createInstance(context);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        cookieManager.removeSessionCookie();// 移除旧的[可以省略]
+        List<Cookie> cookies = new PersistentCookieStore(context).getCookies();// 获取Cookie[可以是其他的方式获取]
+        for (int i = 0; i < cookies.size(); i++) {
+            Cookie cookie = cookies.get(i);
+            String value = cookie.name() + "=" + cookie.value();
+            cookieManager.setCookie(url, value);
+        }
+        CookieSyncManager.getInstance().sync();// To get instant sync instead of waiting for the timer to trigger, the host can call this.
     }
 
     /*	"id": "25",
@@ -299,6 +352,8 @@ public class AfbUtils {
         BaseSportFragment game4dFragment = new Game4dFragment();
         BaseSportFragment eSportFragment = new ESportFragment();
         BaseSportFragment muayThaiFragment = new MuayThaiFragment();
+        BaseMoreFragment huayThaiFragment = new HuayThaiFragment();
+
 
         BaseSportFragment myanmarFragment = new MyanmarFragment();
         BaseSportFragment europeFragment = new EuropeFragment();
@@ -309,22 +364,31 @@ public class AfbUtils {
         BaseSportFragment rugbyFragment = new RugbyFragment();
         BaseSportFragment dartsFragment = new DartsFragment();
         BaseSportFragment boxingFragment = new BoxingFragment();
+        BaseSportFragment motorFragment = new MotorFragment();
         BaseSportFragment golfFragment = new GolfFragment();
+        BaseSportFragment futsalFragment = new FutsalFragment();
         BaseSportFragment badmintonFragment = new BadmintonFragment();
         BaseSportFragment volleyballFragment = new VolleyballFragment();
         BaseSportFragment cricketFragment = new CricketFragment();
 
         BaseSportFragment handballFragment = new HandballFragment();
         BaseSportFragment cyclingFragment = new CyclingFragment();
+
+        BaseSportFragment beachSoccerFragment = new BeachSportFragment();
+        BaseSportFragment athleticsFragment = new AthleticsFragment();
+        BaseSportFragment squashFragment = new SquashFragment();
+
         BaseSportFragment winterSportFragment = new WinterSportFragment();
+        BaseSportFragment waterSportFragment = new WaterSportFragment();
         //    BaseSportFragment superComboFragment = new SuperComboFragment();
         BaseSportFragment tableTennisFragment = new TableTennisFragment();
         BaseSportFragment formulaFragment = new FormulaFragment();
         BaseSportFragment outRightFragment = new OutRightFragment();
         BaseSportFragment allRunningFragment = new AllRunningFragment();
-
+        beanHashMap = new LinkedHashMap<>();
+        sportMap = new LinkedHashMap<>();
+        othersMap = new LinkedHashMap<>();
         beanHashMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
-
         beanHashMap.put("Cashio", new SportIdBean("Cashio", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK));
         beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball));
         beanHashMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, Color.BLACK, R.mipmap.tennis));
@@ -332,7 +396,7 @@ public class AfbUtils {
         beanHashMap.put("51", new SportIdBean("51", "20", R.string.Badminton, "Badminton", SportActivity.class, badmintonFragment, Color.BLACK, R.mipmap.badminton));
         beanHashMap.put("106", new SportIdBean("106", "34", R.string.E_Sport, "E_Sport", SportActivity.class, eSportFragment, Color.RED, R.mipmap.e_sport));
         beanHashMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, Color.BLACK, R.mipmap.boxing));
-        beanHashMap.put("44", new SportIdBean("44", "23", R.string.cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket));
+        beanHashMap.put("44", new SportIdBean("44", "23", R.string.Cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket));
 // '26', g = '65', img = 'https://www.afb1188.com/H50/Img/cycling.jpg'
 
         beanHashMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, Color.BLACK, R.mipmap.cycling));
@@ -340,12 +404,12 @@ public class AfbUtils {
         beanHashMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, Color.BLACK, R.mipmap.darts));
 
         beanHashMap.put("25", new SportIdBean("25", "15", R.string.Formula1, "Formula1", SportActivity.class, formulaFragment, Color.BLACK, R.mipmap.motor_sports));
-        beanHashMap.put("28", new SportIdBean("28", "19", R.string.Futsal, "Futsal", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
+        beanHashMap.put("28", new SportIdBean("28", "19", R.string.Futsal, "Futsal", SportActivity.class, futsalFragment, Color.BLACK, R.mipmap.football));
         beanHashMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.RED, R.mipmap.football));
         beanHashMap.put("22", new SportIdBean("22", "17", R.string.Golf, "Golf", SportActivity.class, golfFragment, Color.BLACK, R.mipmap.ice_hockey));
         beanHashMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, Color.BLACK, R.mipmap.football));
         beanHashMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, Color.BLACK, R.mipmap.ice_hockey));
-        beanHashMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.motor_sports));
+        beanHashMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, motorFragment, Color.BLACK, R.mipmap.motor_sports));
         beanHashMap.put("7", new SportIdBean("7", "4", R.string.Financial, "Financial", SportActivity.class, financialFragment, Color.BLACK, R.mipmap.financial));
 
         beanHashMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK, R.mipmap.rugby));
@@ -353,7 +417,7 @@ public class AfbUtils {
         beanHashMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, Color.BLACK, R.mipmap.table_tennis));
         beanHashMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK, R.mipmap.volleyball));
         beanHashMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK, R.mipmap.volleyball));
-        beanHashMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, winterSportFragment, Color.BLACK, R.mipmap.water_polo));
+        beanHashMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, waterSportFragment, Color.BLACK, R.mipmap.water_polo));
         beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running));
         beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright));
 
@@ -364,27 +428,40 @@ public class AfbUtils {
         sportMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, Color.BLACK, R.mipmap.tennis));
         sportMap.put("7", new SportIdBean("7", "4", R.string.Financial, "Financial", SportActivity.class, financialFragment, Color.BLACK, R.mipmap.financial));
         sportMap.put("106", new SportIdBean("106", "34", R.string.E_Sport, "E_Sport", SportActivity.class, eSportFragment, Color.RED, R.mipmap.e_sport));
-        sportMap.put("6", new SportIdBean("6", "6", R.string.Specials_4D, "Specials_4D", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.baseball));
+        sportMap.put("6", new SportIdBean("6", "5", R.string.Specials_4D, "Specials_4D", SportActivity.class, game4dFragment, Color.BLACK, R.mipmap.baseball));
         sportMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright));
 
 
         othersMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK, R.mipmap.volleyball));
         othersMap.put("29", new SportIdBean("29", "9", R.string.Baseball, "Baseball", SportActivity.class, baseballFragment, Color.BLACK, R.mipmap.baseball));
         othersMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, Color.BLACK, R.mipmap.ice_hockey));
+        othersMap.put("11", new SportIdBean("11", "11", R.string.Snooker, "Snooker", SportActivity.class, poolSnookerFragment, Color.BLACK, R.mipmap.cricket));
         othersMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK, R.mipmap.rugby));
         othersMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, Color.BLACK, R.mipmap.darts));
         othersMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, Color.BLACK, R.mipmap.boxing));
-        othersMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.motor_sports));
+        // https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"Getmenu","ot":"e","pgLable":"0.1823153803968408","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
+        othersMap.put("49", new SportIdBean("49", "16", R.string.Motor_Sports, "Motor_Sports", SportActivity.class, motorFragment, Color.BLACK, R.mipmap.motor_sports));
+
+        othersMap.put("25", new SportIdBean("25", "15", R.string.Formula1, "Formula1", SportActivity.class, formulaFragment, Color.BLACK, R.mipmap.motor_sports));
         othersMap.put("22", new SportIdBean("22", "17", R.string.Golf, "Golf", SportActivity.class, golfFragment, Color.BLACK, R.mipmap.ice_hockey));
-        othersMap.put("28", new SportIdBean("28", "19", R.string.Futsal, "Futsal", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
+        othersMap.put("28", new SportIdBean("28", "19", R.string.Futsal, "Futsal", SportActivity.class, futsalFragment, Color.BLACK, R.mipmap.football));
         othersMap.put("51", new SportIdBean("51", "20", R.string.Badminton, "Badminton", SportActivity.class, badmintonFragment, Color.BLACK, R.mipmap.badminton));
-        othersMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, winterSportFragment, Color.BLACK, R.mipmap.water_polo));
+        othersMap.put("53", new SportIdBean("53", "21", R.string.Water_Polo, "Water_Polo", SportActivity.class, waterSportFragment, Color.BLACK, R.mipmap.water_polo));
         othersMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, Color.BLACK, R.mipmap.table_tennis));
-        othersMap.put("44", new SportIdBean("44", "23", R.string.cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket));
+        othersMap.put("44", new SportIdBean("44", "23", R.string.Cricket, "Cricket", SportActivity.class, cricketFragment, Color.BLACK, R.mipmap.cricket));
         othersMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK, R.mipmap.volleyball));
         othersMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, Color.BLACK, R.mipmap.football));
         othersMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, Color.BLACK, R.mipmap.cycling));
-        othersMap.put("108", new SportIdBean("108", "108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.RED, R.mipmap.financial));
+        othersMap.put("67", new SportIdBean("67", "27", R.string.Beach_Soccer, "Beach_Soccer", SportActivity.class, beachSoccerFragment, Color.BLACK, R.mipmap.financial));
+        othersMap.put("101", new SportIdBean("101", "29", R.string.Athletics, "Athletics", SportActivity.class, athleticsFragment, Color.BLACK, R.mipmap.financial));
+        othersMap.put("103", new SportIdBean("103", "30", R.string.WinterSport, "WinterSport", SportActivity.class, winterSportFragment, Color.BLACK, R.mipmap.ice_sport));
+        othersMap.put("105", new SportIdBean("105", "31", R.string.Squash, "Squash", SportActivity.class, squashFragment, Color.BLACK, R.mipmap.financial));
+        if (!AppConstant.IS_AGENT) {
+            othersMap.put("33_18", new SportIdBean("33_18", "33_18", R.string.Thai_game1, "Thai_1d", SportActivity.class, soccerFragment, Color.RED, R.mipmap.financial));
+            othersMap.put("33_19", new SportIdBean("33_19", "33_19", R.string.Thai_game2, "Thai_2d", SportActivity.class, soccerFragment, Color.RED, R.mipmap.financial));
+            othersMap.put("33_20", new SportIdBean("33_20", "33_20", R.string.Thai_game3, "Thai_3d", SportActivity.class, soccerFragment, Color.RED, R.mipmap.financial));
+        }
+        othersMap.put("108", new SportIdBean("108", "108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.BLACK, R.mipmap.financial));
 
 
     }
@@ -588,15 +665,15 @@ public class AfbUtils {
     public static String touzi_ed_values22 = "";
 
     /**
-     * 在数字型字符串千分位加逗号
+     * 在数字型字符串千分位加逗号,删除小数
      *
      * @param str
-     * @param edtext
+     * @param edt
      * @return sb.toString()
      */
-    public static String addComma(String str, TextView edtext) {
+    public static String addComma(String str, TextView edt) {
 
-        touzi_ed_values22 = edtext.getText().toString().trim().replaceAll(",", "");
+        touzi_ed_values22 = edt.getText().toString().trim().replaceAll(",", "");
 
         boolean neg = false;
         if (str.startsWith("-")) {  //处理负数
@@ -617,9 +694,10 @@ public class AfbUtils {
         if (neg) {
             sb.insert(0, '-');
         }
-        if (tail != null) {
-            sb.append(tail);
-        }
+        if (AppConstant.IS_AGENT)
+            if (tail != null) {
+                sb.append(tail);
+            }
         return sb.toString();
     }
 
@@ -657,29 +735,6 @@ public class AfbUtils {
         return jsonObject.toString();
     }
 
-    public static String getLangParamStr(Context context) {
-        String language = getLanguage(context);
-        if (TextUtils.isEmpty(language)) {
-            return "EN-US";
-        } else {
-            switch (language) {
-                case "zh":
-                    return "ZH-CN";
-                case "en":
-                    return "EN-US";
-                case "th":
-                    return "TH-TH";
-                case "ko":
-                    return "EN-TT";
-                case "vi":
-                    return "EN-IE";
-                case "tr":
-                    return "UR-PK";
-                default:
-                    return "EN-US";
-            }
-        }
-    }
 
     public static String getLangWeek(Context context, int day) {
         String language = getLanguage(context);
@@ -815,5 +870,65 @@ public class AfbUtils {
             }
         }
         return false;
+    }
+
+    public static List<MenuItemInfo> getMarketsList(Context context) {
+        List<MenuItemInfo> list = new ArrayList<>();
+        list.add(new MenuItemInfo(0, context.getString(R.string.All_Markets), "0"));//accType=
+        list.add(new MenuItemInfo(0, context.getString(R.string.Main_Markets), "1"));
+        list.add(new MenuItemInfo(0, context.getString(R.string.Other_Bet_Markets), "2"));
+        return list;
+    }
+
+    public static MenuItemInfo getMarketByType(Context context, String type) {
+        List<MenuItemInfo> list = getMarketsList(context);
+        for (MenuItemInfo menuItemInfo : list) {
+            if (menuItemInfo.getType().equals(type))
+                return menuItemInfo;
+        }
+        return new MenuItemInfo(0, context.getString(R.string.All_Markets), "0");
+    }
+
+    public static List<MenuItemInfo> getOddsTypeList(Context context) {
+        List<MenuItemInfo> list = new ArrayList<>();
+        list.add(new MenuItemInfo(0, context.getString(R.string.HK_ODDS), "HK"));//accType=
+        list.add(new MenuItemInfo(0, context.getString(R.string.MY_ODDS), "MY"));
+        list.add(new MenuItemInfo(0, context.getString(R.string.ID_ODDS), "ID"));
+        list.add(new MenuItemInfo(0, context.getString(R.string.EU_ODDS), "EU"));
+        return list;
+    }
+
+    public static MenuItemInfo getOddsTypeByType(Context context, String type) {
+        List<MenuItemInfo> list = getOddsTypeList(context);
+        for (MenuItemInfo menuItemInfo : list) {
+            if (menuItemInfo.getType().equals(type))
+                return menuItemInfo;
+        }
+        return new MenuItemInfo(0, context.getString(R.string.MY_ODDS), "MY");
+    }
+
+    public static void setChipStatusMap(String chips) {
+        chipStatusMap = new HashMap<>();
+        chipStatusMap.put(1, false);
+        chipStatusMap.put(10, false);
+        chipStatusMap.put(50, false);
+        chipStatusMap.put(100, false);
+        chipStatusMap.put(500, false);
+        chipStatusMap.put(1000, false);
+        chipStatusMap.put(5000, false);
+        chipStatusMap.put(10000, false);
+        chipStatusMap.put(30000, false);
+        chipStatusMap.put(50000, false);
+        chipStatusMap.put(100000, false);
+        if (!StringUtils.isNull(chips)) {
+            String[] split = chips.split(",");
+            for (String s : split) {
+                chipStatusMap.put(Integer.valueOf(s), true);
+            }
+        }
+    }
+
+    public static HashMap<Integer, Boolean> getChipStatusMap() {
+        return chipStatusMap;
     }
 }

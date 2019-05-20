@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.Been.CheckVersionBean;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
@@ -22,8 +23,6 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.io.File;
 
-import solid.ren.skinlibrary.loader.SkinManager;
-
 
 public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
     private Dialog noticeDialog;
@@ -34,7 +33,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        switch (getString(R.string.app_name)) {
+       /* switch (getString(R.string.app_name)) {
             case "Afb88":
                 SkinManager.getInstance().restoreDefaultTheme();
                 break;
@@ -44,14 +43,14 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
             case "AP889":
                 SkinManager.getInstance().loadSkin("skinpurplepackage.skin", null);
                 break;
-        }
+        }*/
         setContentView(R.layout.activity_welcome);
         createPresenter(new WelcomePresenter(this));
         try {
-            presenter.checkVersion(new BaseConsumer<String>(this) {
+            presenter.checkVersion(new BaseConsumer<CheckVersionBean>(this) {
                 @Override
-                protected void onBaseGetData(String data) {
-                    onGetData(data);
+                protected void onBaseGetData(CheckVersionBean checkVersionBean) {
+                    onGetData(checkVersionBean);
                 }
 
                 @Override
@@ -72,6 +71,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
                 totalLength += len;
                 int progress = (int) (totalLength * 100 / contentLength);
                 Log.d("runOnUiThread", "run: " + progress);
+                mProgressBar.setVisibility(View.VISIBLE);
                 mProgressBar.setProgress(progress);
             }
         });
@@ -86,10 +86,12 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         SystemTool.installApk(mContext, file);
     }
 
-    public void onGetData(String data) {
+    public void onGetData(CheckVersionBean checkVersionBean) {
+        String version = checkVersionBean.getData().getVersion();
+        String url = checkVersionBean.getData().getUrl();
         try {
-            if (Float.valueOf(data) > Float.valueOf(SystemTool.getPackageInfo(mContext).versionName)) {
-                showUpdateDialog(data);
+            if (Float.valueOf(version) > Float.valueOf(SystemTool.getPackageInfo(mContext).versionName)) {
+                showUpdateDialog(url);
                 return;
             }
         } catch (PackageManager.NameNotFoundException e) {
@@ -98,14 +100,14 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         presenter.checkInitCheck(getIntent());
     }
 
-    private void showUpdateDialog(final String version) {
+    private void showUpdateDialog(final String url) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.Base_AlertDialog);
         builder.setTitle(R.string.Update);
         builder.setMessage(R.string.download_now);
         builder.setPositiveButton(R.string.OK, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 noticeDialog.dismiss();
-                showDownloadDialog(version);
+                showDownloadDialog(url);
             }
         });
 
@@ -114,7 +116,7 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         noticeDialog.show();
     }
 
-    private void showDownloadDialog(String version) {
+    private void showDownloadDialog(String url) {
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.Base_AlertDialog);
         builder.setTitle(R.string.Loading);
         final LayoutInflater inflater = LayoutInflater.from(mContext);
@@ -124,22 +126,23 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         downloadDialog = builder.create();
         downloadDialog.setCancelable(false);
         downloadDialog.show();
-        presenter.updateVersion(version);
+        presenter.updateVersion(url);
         totalLength = 0;
     }
 
 
     public void onLanguageSwitchSucceed(String str) {
         //测试哈提交
-        AppConstant.getInstance().IS_AGENT = true;
-        ToastUtils.showShort(R.string.Login_Success);
+
+        Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + AppConstant.wfMain);
+        ToastUtils.showShort(getString(R.string.Login_Success));
         defaultSkip("SportBook");
         finish();
     }
 
     public void defaultSkip(String type) {
         MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
-        menuItemInfo.setType("Today");
+        menuItemInfo.setType("Running");
         menuItemInfo.setParent(type);
         Bundle b = new Bundle();
         b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);

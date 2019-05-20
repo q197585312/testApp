@@ -1,15 +1,18 @@
 package com.nanyang.app.main.home.sport.basketball;
 
-import android.content.Context;
+import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
+import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.football.SoccerRunningAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -56,14 +59,33 @@ public class BasketballRunningState extends BasketballCommonState {
 
 
     @Override
-    protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
-        return new BasketballCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity()) {
+    protected IAdapterHelper<BallInfo> onSetCommonAdapterHelper() {
+        return new SoccerRunningAdapterHelper(getBaseView().getIBaseContext().getBaseActivity()) {
+            @Override
+            protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
+                String live = item.getLive();
+                Log.d("Basketball", "handleLiveTimeTv: "+live);
+                if (live.contains("\n")) {
+                    String replace = live.replace("\n", ",");
+                    String[] split = replace.split(",");
+                    timeTv.setText(split[1]);
+                    if (live.contains("HT")) {
+                        timeTv.setTextColor(Color.BLUE);
+                    } else {
+                        timeTv.setTextColor(Color.RED);
+                    }
+                } else {
+                    timeTv.setText("");
+                }
+            }
+        };
+    /*    return new BasketballCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity()) {
             @Override
             public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
                 super.onConvert(helper, position, item);
                 setRunningItemBg(helper, item);
             }
-        };
+        };*/
     }
 
     @Override

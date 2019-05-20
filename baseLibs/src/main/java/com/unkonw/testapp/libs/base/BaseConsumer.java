@@ -1,14 +1,10 @@
 package com.unkonw.testapp.libs.base;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Created by ASUS on 2019/3/10.
@@ -54,13 +50,12 @@ public abstract class BaseConsumer<T> {
 
     protected void onError(Throwable throwable) {
         baseContext.hideLoadingDialog();
-        Log.d(TAG, "accept: " + throwable.toString());
     }
 
     protected void onAccept() {
         baseContext.showLoadingDialog();
     }
 
-    protected abstract void onBaseGetData(T data) throws JSONException;
+    protected abstract void onBaseGetData(T data) throws JSONException, Exception;
 
 }

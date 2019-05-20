@@ -18,9 +18,9 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
 import com.nanyang.app.main.home.sport.main.SportActivity;
-import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.api.Api;
 
 import org.json.JSONArray;
@@ -69,7 +69,7 @@ public class BetGoalWindowUtils {
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
         map.put("ACT", "GetTable");
         map.put("PT", "wfRunningH50");
-        map.put("lang", AfbUtils.getLangParamStr(activity));
+        map.put("lang", new LanguageHelper(activity).getLanguage());
         map.put("accType", accType);
         map.put("tidss", tidss);
         String jsonParam = AfbUtils.getJsonParam(map);
@@ -80,81 +80,98 @@ public class BetGoalWindowUtils {
                             public void accept(String bean) throws Exception {
                                 StatementListDataBean dataBean = handleData(bean);
                                 if (dataBean != null) {
-                                    final View view = layoutInflater.inflate(R.layout.item_bet_result_window, null);
-                                    LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, AfbUtils.dp2px(activity, 90));
-                                    params.bottomMargin = AfbUtils.dp2px(activity, 10);
-                                    view.setLayoutParams(params);
+                                    final View view;
+                                    String index10 = dataBean.getIndex10();
+                                    if (index10.equals("PAM") || index10.equals("PAR")) {
+                                        view = layoutInflater.inflate(R.layout.item_bet_result_window_par, null);
+                                        TextView tvTitle = view.findViewById(R.id.tv_title);
+                                        TextView tvEstPayout = view.findViewById(R.id.tv_est_payout);
+                                        TextView tvOdds = view.findViewById(R.id.tv_odds);
+                                        TextView tvType = view.findViewById(R.id.tv_type);
+                                        TextView tvAmt = view.findViewById(R.id.tv_amt);
+                                        TextView tvNameEst = view.findViewById(R.id.tv_name_est);
+                                        tvNameEst.setText(dataBean.getIndex1());
+                                        tvTitle.setText("ID:[" + dataBean.getIndex12() + "]" + dataBean.getIndex0());
+                                        tvEstPayout.setText(": " + AfbUtils.decimalValue(Float.parseFloat(dataBean.getIndex3()) * Float.parseFloat(dataBean.getIndex9()), "0.00"));
+                                        tvOdds.setText(activity.getString(R.string.Odds) + ": " + dataBean.getIndex3());
+                                        tvType.setText(dataBean.getIndex16());
+                                        tvAmt.setText(activity.getString(R.string.Amt) + ": " + dataBean.getIndex9());
+                                    } else {
+                                        view = layoutInflater.inflate(R.layout.item_bet_result_window, null);
+                                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, AfbUtils.dp2px(activity, 90));
+                                        params.bottomMargin = AfbUtils.dp2px(activity, 10);
+                                        view.setLayoutParams(params);
+                                        TextView tvTitle = view.findViewById(R.id.tv_title);
+                                        TextView tvMatch = view.findViewById(R.id.tv_match);
+                                        TextView tvHome = view.findViewById(R.id.tv_home);
+                                        TextView tvAway = view.findViewById(R.id.tv_away);
+                                        TextView tvData1 = view.findViewById(R.id.tv_data1);
+                                        TextView tvData2 = view.findViewById(R.id.tv_data2);
+                                        TextView tvData3 = view.findViewById(R.id.tv_data3);
+                                        TextView tvData4 = view.findViewById(R.id.tv_data4);
+                                        TextView tvData5 = view.findViewById(R.id.tv_data5);
+                                        TextView tvData7 = view.findViewById(R.id.tv_data7);
+                                        tvTitle.setText(dataBean.getIndex12() + "(" + dataBean.getIndex0() + ")");
+                                        tvMatch.setText(dataBean.getIndex11());
+                                        tvHome.setText(dataBean.getIndex1());
+                                        tvAway.setText(dataBean.getIndex2());
+                                        tvData1.setText(dataBean.getIndex10() + dataBean.getIndex13());
+                                        tvData2.setText(" " + dataBean.getIndex19() + " (");
+                                        String index21 = dataBean.getIndex21();
+                                        if (index21.contains("red")) {
+                                            tvData3.setTextColor(Color.RED);
+                                        }
+                                        tvData3.setText(AfbUtils.delHTMLTag(index21));
+                                        String index3 = AfbUtils.delHTMLTag(dataBean.getIndex3());
+                                        if (index3.startsWith("-")) {
+                                            tvData4.setTextColor(Color.RED);
+                                        }
+                                        tvData4.setText(index3);
+                                        String index15 = dataBean.getIndex15();
+                                        if (!TextUtils.isEmpty(index15)) {
+                                            tvData5.setText("(" + index15 + ")");
+                                        } else {
+                                            tvData5.setVisibility(View.GONE);
+                                        }
+                                        tvData7.setText(dataBean.getIndex9());
+                                    }
                                     final ImageView imgClose = view.findViewById(R.id.img_close);
                                     final TextView tvCount = view.findViewById(R.id.tv_count);
-                                    TextView tvTitle = view.findViewById(R.id.tv_title);
-                                    TextView tvMatch = view.findViewById(R.id.tv_match);
-                                    TextView tvHome = view.findViewById(R.id.tv_home);
-                                    TextView tvAway = view.findViewById(R.id.tv_away);
-                                    TextView tvData1 = view.findViewById(R.id.tv_data1);
-                                    TextView tvData2 = view.findViewById(R.id.tv_data2);
-                                    TextView tvData3 = view.findViewById(R.id.tv_data3);
-                                    TextView tvData4 = view.findViewById(R.id.tv_data4);
-                                    TextView tvData5 = view.findViewById(R.id.tv_data5);
                                     TextView tvData6 = view.findViewById(R.id.tv_data6);
-                                    TextView tvData7 = view.findViewById(R.id.tv_data7);
-                                    tvTitle.setText(dataBean.getIndex12() + "(" + dataBean.getIndex0() + ")");
-                                    tvMatch.setText(dataBean.getIndex11());
-                                    tvHome.setText(dataBean.getIndex1());
-                                    tvAway.setText(dataBean.getIndex2());
-                                    tvData1.setText(dataBean.getIndex10() + dataBean.getIndex13());
-                                    tvData2.setText(" " + dataBean.getIndex19() + " (");
-                                    String index21 = dataBean.getIndex21();
-                                    if (index21.contains("red")) {
-                                        tvData3.setTextColor(Color.RED);
-                                    }
-                                    tvData3.setText(AfbUtils.delHTMLTag(index21));
-                                    String index3 = AfbUtils.delHTMLTag(dataBean.getIndex3());
-                                    if (index3.startsWith("-")) {
-                                        tvData4.setTextColor(Color.RED);
-                                    }
-                                    tvData4.setText(index3);
-                                    String index15 = dataBean.getIndex15();
-                                    if (!TextUtils.isEmpty(index15)) {
-                                        tvData5.setText("(" + index15 + ")");
-                                    } else {
-                                        tvData5.setVisibility(View.GONE);
-                                    }
                                     String index8 = dataBean.getIndex8();
-                                    Log.d("onGetRefreshMenu", "index8: " + index8);
-                                    if (index8.equals("A")) {
-                                        if (isWA) {
-                                            index8 = " W / A ";
-                                            SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(index8, Color.YELLOW, Color.GREEN);
-                                            tvData6.setText(spannableStringBuilder);
-                                        } else {
-                                            tvData6.setBackgroundColor(ContextCompat.getColor(activity, R.color.green_black));
-                                        }
-                                        tvData6.setTextColor(Color.WHITE);
-                                    } else if (index8.equals("W")) {
-                                        tvData6.setBackgroundColor(Color.YELLOW);
+                                    String index22 = dataBean.getIndex22();
+                                    String showStr;
+                                    if (!TextUtils.isEmpty(index22) && !index22.equals(index8)) {
+                                        showStr = " " + index22 + " / " + index8 + " ";
+                                    } else {
+                                        showStr = index8;
+                                    }
+                                    showStr = showStr.replace("&nbsp;", " ");
+                                    if (showStr.contains("W") && !showStr.contains("/")) {
                                         SportActivity sportActivity = (SportActivity) activity;
                                         sportActivity.onAddWaiteCount(1);
-                                    } else if (index8.equals("R")) {
-                                        if (isWA) {
-                                            index8 = " W / R ";
-                                            SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(index8, Color.YELLOW, Color.RED);
-                                            tvData6.setText(spannableStringBuilder);
+                                    }
+                                    if (showStr.contains("/") && !TextUtils.isEmpty(index22)) {
+                                        int endColor;
+                                        if (showStr.contains("A")) {
+                                            endColor = ContextCompat.getColor(activity, R.color.green_black);
                                         } else {
-                                            tvData6.setBackgroundColor(Color.RED);
+                                            endColor = Color.RED;
                                         }
+                                        SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(showStr, "/", Color.YELLOW, endColor);
+                                        tvData6.setText(spannableStringBuilder);
                                     } else {
-                                        if (isWA) {
-                                            index8 = " W / C ";
-                                            SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(index8, Color.YELLOW, Color.RED);
-                                            tvData6.setText(spannableStringBuilder);
+                                        if (showStr.contains("A")) {
+                                            tvData6.setTextColor(Color.WHITE);
+                                            tvData6.setBackgroundColor(ContextCompat.getColor(activity, R.color.green_black));
+                                        } else if (showStr.contains("W")) {
+                                            tvData6.setBackgroundColor(Color.YELLOW);
                                         } else {
                                             tvData6.setBackgroundColor(Color.RED);
                                         }
+                                        tvData6.setText(showStr);
                                     }
-                                    if (!isWA) {
-                                        tvData6.setText(index8);
-                                    }
-                                    tvData7.setText(dataBean.getIndex9());
+                                    Log.d("onGetRefreshMenu", "showStr: " + showStr);
                                     llContent.addView(view);
                                     for (int i = 0; i < llContent.getChildCount(); i++) {
                                         llContent.getChildAt(i).measure(0, 0);
@@ -164,7 +181,7 @@ public class BetGoalWindowUtils {
                                         @Override
                                         public void run() {
                                             int tag = (int) view.getTag();
-                                            tvCount.setText(tag + "");
+                                            tvCount.setText(tag + "s");
                                             if (tag == 5) {
                                                 imgClose.setOnClickListener(new View.OnClickListener() {
                                                     @Override
@@ -234,13 +251,14 @@ public class BetGoalWindowUtils {
         for (int i = 0; i < llContent.getChildCount(); i++) {
             llContent.getChildAt(i).measure(0, 0);
         }
-        SoundPlayUtils.play(SoundPlayUtils.GOAL);
+        SoundPlayUtils.play();
+
         view.setTag(4);
         handler.post(new Runnable() {
             @Override
             public void run() {
                 int tag = (int) view.getTag();
-                tvCount.setText(tag + "");
+                tvCount.setText(tag + "s");
                 if (tag == 4) {
                     imgClose.setOnClickListener(new View.OnClickListener() {
                         @Override

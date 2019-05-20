@@ -14,7 +14,6 @@ public abstract class BaseMoreFragment<P extends IBasePresenter> extends BaseSwi
 
 
     public void showContent() {
-
         baseToolbarActivity.setToolbarVisibility(View.VISIBLE);
         baseToolbarActivity.llRight.setVisibility(View.GONE);
         baseToolbarActivity.tvToolbarLeft.setVisibility(View.GONE);
@@ -24,6 +23,8 @@ public abstract class BaseMoreFragment<P extends IBasePresenter> extends BaseSwi
         if (baseToolbarActivity instanceof SportActivity) {
             ((SportActivity) baseToolbarActivity).sportHeaderLl.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).ll_footer_sport.setVisibility(View.GONE);
+            ((SportActivity) baseToolbarActivity).llSportMenuBottom.setVisibility(View.GONE);
         }
     }
+
 }

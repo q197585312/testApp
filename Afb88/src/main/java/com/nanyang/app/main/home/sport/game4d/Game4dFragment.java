@@ -9,7 +9,7 @@ public class Game4dFragment extends BaseSportFragment {
 
     @Override
     protected String getBallDbid() {
-        return "";
+        return "5";
     }
 
     @Override

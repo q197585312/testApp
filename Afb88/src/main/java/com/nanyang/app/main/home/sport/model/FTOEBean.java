@@ -1,7 +1,8 @@
 package com.nanyang.app.main.home.sport.model;
 
 import android.support.annotation.NonNull;
-import android.text.Html;
+
+import com.nanyang.app.AfbUtils;
 
 public class FTOEBean {
     @com.google.gson.annotations.SerializedName("oid")
@@ -28,14 +29,14 @@ public class FTOEBean {
     }
 
     public String getODD() {
-        String odd = Html.fromHtml(ODD).toString().trim();
+        String odd = AfbUtils.delHTMLTag(ODD);
         return getOddEven(odd);
     }
 
     @NonNull
     private String getOddEven(String odds) {
-        String odd = Html.fromHtml(ODD).toString().trim();
-        String even = Html.fromHtml(EVEN).toString().trim();
+        String odd =  AfbUtils.delHTMLTag(ODD);
+        String even =  AfbUtils.delHTMLTag(EVEN);
         if (odd.isEmpty() || even.isEmpty() || Float.valueOf(odd) == 0f || Float.valueOf(even) == 0f) {
             odd = "";
             odds = odd;
@@ -44,7 +45,7 @@ public class FTOEBean {
     }
 
     public String getEVEN() {
-        String even = Html.fromHtml(EVEN).toString().trim();
+        String even =  AfbUtils.delHTMLTag(EVEN);
         return getOddEven(even);
     }
 }

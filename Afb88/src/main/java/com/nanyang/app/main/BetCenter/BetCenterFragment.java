@@ -2,6 +2,7 @@ package com.nanyang.app.main.BetCenter;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -48,7 +49,7 @@ public class BetCenterFragment extends BaseMoreFragment {
     public void initData() {
         super.initData();
         createPresenter(new BaseSwitchPresenter(this));
-        swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_green_dark);
+        swipeRefreshLayout.setColorSchemeResources(R.color.green900);
         swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {

@@ -2,7 +2,9 @@ package com.nanyang.app.main;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
@@ -17,6 +19,7 @@ import android.widget.TextView;
 import com.google.gson.Gson;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.HomePopItemBeen;
 import com.nanyang.app.Pop.HomePopupWindow;
@@ -68,12 +71,23 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
         ButterKnife.bind(this);
         createPresenter(new LanguagePresenter(this));
         toolbar.setNavigationIcon(null);
+
         initUserData();
         afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
         afbDrawerViewHolder.initDefaultFragment(homeFragment);
         afbDrawerViewHolder.switchFragment(homeFragment);
         myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (AppConstant.IS_AGENT) {
+                    defaultSkip("SportBook");
+                    finish();
+                }
+            }
+        }, 100);
+
     }
 
     private BaseSwitchFragment homeFragment = new HomeFragment();
@@ -99,7 +113,7 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
         super.onResume();
         presenter.oddsType();
         String language = new LanguageHelper(mContext).getLanguage();
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50"), new LanguagePresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
@@ -129,21 +143,37 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
                     public void initItem(MyRecyclerViewHolder holder, int position, HomePopItemBeen item) {
                         TextView name = holder.getTextView(R.id.tv_type_name);
                         TextView data = holder.getTextView(R.id.tv_type_data);
-                        name.setText(item.getName());
+                        float aFloat = 0;
+                        try {
+                            aFloat = Float.valueOf(item.getData());
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        if (aFloat < 0) {
+                            data.setTextColor(Color.RED);
+                        } else {
+                            data.setTextColor(Color.BLACK);
+                        }
                         data.setText(item.getData());
+                        name.setText(item.getName());
+
                     }
 
                     @Override
                     public List<HomePopItemBeen> getCurrentData() {
                         PersonalInfo info = getApp().getUser();
                         List<HomePopItemBeen> dataList = new ArrayList<>();
+
                         dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2()));
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), info.getBalances()));
+                        if (!AppConstant.IS_AGENT)
+                            dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), info.getBalances()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
-                        dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), info.getTotalCredit()));
+                        if (!AppConstant.IS_AGENT)
+                            dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
+                        dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), AfbUtils.addComma(info.getTotalCredit().trim().replaceAll(",", ""), tvTime)));
                         return dataList;
                     }
                 };

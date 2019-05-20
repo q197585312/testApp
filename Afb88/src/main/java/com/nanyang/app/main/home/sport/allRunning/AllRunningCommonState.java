@@ -57,10 +57,10 @@ public class AllRunningCommonState extends OutRightState {
             }
 
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc,boolean hasPar) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf, sc);
+                helper.clickOdds(item,oid, type, odds, v, isHf, sc,hasPar);
             }
 
             @Override
@@ -152,8 +152,6 @@ public class AllRunningCommonState extends OutRightState {
         if (webSocketBase != null && webSocketBase.isOpen()) {
             webSocketBase.close();
         }
-        //   https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"LOS","DBID":"36","ot":"r","tf":"-1","timess":"","accType":"EU","pgLable":"0.5393305075227944","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
-        //   https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"LOS","DBID":999,"ot":"t","tf":-1,"OUTDBID":"2_11","timess":"","accType":"EU","ov":0,"mt":0,"pgLable":"0.6073571478712172","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
 //new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50")
         String dbId = fragment.currentIdBean.getDbid();
         webSocketRefresh(dbId);
@@ -161,7 +159,7 @@ public class AllRunningCommonState extends OutRightState {
     }
 
     protected void webSocketRefresh(String dbId) {
-        String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType().getType();
+        String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
         String accType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType().getType();
         int ov = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
         LoginInfo.AllRunningWfBean allRunningWfBean = new LoginInfo.AllRunningWfBean(ot, dbId, accType);

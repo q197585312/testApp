@@ -27,7 +27,7 @@ public class OutRightFragment extends BaseAllFragment {
     public void initData() {
         super.initData();
         setTitle(getString(R.string.OutRight));
-        switchType("Early");
+
     }
 
     @Override
@@ -58,7 +58,7 @@ public class OutRightFragment extends BaseAllFragment {
                 all.addAll(allBottomSport);
                 initDefaultList(all);
             }
-        }, 20);
+        }, 0);
 
     }
 
@@ -85,8 +85,7 @@ public class OutRightFragment extends BaseAllFragment {
 
     @Override
     public void switchType(String type) {
-        switchState(new OutRightEarlyState(this));
-        /*switch (type) {
+        switch (type) {
             case "Running":
                 switchState(new OutRightRunningState(this));
                 break;
@@ -94,12 +93,12 @@ public class OutRightFragment extends BaseAllFragment {
                 switchState(new OutRightTodayState(this));
                 break;
             case "Early":
-
+                switchState(new OutRightEarlyState(this));
                 break;
             default:
                 switchState(new OutRightTodayState(this));
                 break;
-        }*/
+        }
     }
 
 

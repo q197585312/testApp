@@ -74,9 +74,24 @@
             android:layout_height="wrap_content"
             android:singleLine="true"
             android:gravity="right"
-            android:text="0fdasfdasfsaf1"
+            android:text="fsd"
             android:textColor="@color/black"
             android:textSize="13sp" />
+        <TextView
+            android:id="@+id/tv_match_at_ft"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:gravity="right"
+            android:text="fsd"
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:text=" ("
+            android:layout_height="wrap_content" />
         <TextView
             android:id="@+id/tv_match_at2"
             android:layout_width="wrap_content"
@@ -86,6 +101,12 @@
             android:text="0fdasfdasfsaf1"
             android:textColor="@color/black"
             android:textSize="13sp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:textSize="13sp"
+            android:textColor="@color/black"
+            android:text=") @"
+            android:layout_height="wrap_content" />
         <TextView
             android:singleLine="true"
             android:id="@+id/tv_match_at3"
@@ -121,7 +142,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
         android:layout_marginTop="8dp"
-        android:background="#B7E5C6"
+        android:background="@color/green3"
         android:gravity="center"
         android:orientation="vertical"
         android:padding="5dp">

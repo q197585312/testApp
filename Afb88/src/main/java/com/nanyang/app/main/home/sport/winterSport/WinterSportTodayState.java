@@ -33,9 +33,6 @@ public class WinterSportTodayState extends WinterSportState {
             case "Running":
                 getBaseView().switchState(new WinterSportRunningState(getBaseView()));
                 break;
-            case "OutRight":
-                getBaseView().switchState(new WinterSportOutRightState(getBaseView()));
-                break;
 
         }
     }

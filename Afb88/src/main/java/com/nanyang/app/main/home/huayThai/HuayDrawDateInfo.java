@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.huayThai;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,7 +15,7 @@ public class HuayDrawDateInfo implements Serializable {
      * Value : 12729669
      */
 
-    private List<DicAllBean> dicAll;
+    private List<DicAllBean> dicAll=new ArrayList<>();
 
     public List<DicAllBean> getDicAll() {
         return dicAll;
@@ -27,6 +28,11 @@ public class HuayDrawDateInfo implements Serializable {
     public static class DicAllBean {
         private String Desc;
         private String Value;
+
+        public DicAllBean(String desc, String value) {
+            Desc = desc;
+            Value = value;
+        }
 
         public String getDesc() {
             return Desc;

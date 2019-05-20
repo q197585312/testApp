@@ -3,6 +3,7 @@ package com.nanyang.app;
 
 import android.text.Html;
 
+import com.nanyang.app.Been.CheckVersionBean;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BetCenter.Bean.Contact;
 import com.nanyang.app.main.home.huayThai.HuayDrawDateInfo;
@@ -32,6 +33,7 @@ import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.Streaming;
 import retrofit2.http.Url;
 
 
@@ -52,20 +54,16 @@ public interface ApiService {
     Flowable<String> getUserInfo(@Field("txtLang") String txtLang, @Field("txtAcctid") String txtAcctid, @Field("txtPwd") String txtPwd, @Field("osType") String osType, @Field("osVersion") String osVersion);
 
     @GET
-    Call<ResBaseBean<DataBean>> checkVersion(@Url String url);
+    Flowable<CheckVersionBean> checkVersion(@Url String url);
 
 
     @POST("login.jsp")
     @FormUrlEncoded
     Call<String> getData(@FieldMap Map<String, String> map);
 
-    /*Load模块*/
-    /*welcome*/
-    @GET(AppConstant.CHECK_VERSION)
-    Flowable<String> checkVersion();
-
-    @GET(AppConstant.DOWNLOAD_APP)
-    Flowable<ResponseBody> updateVersion();
+    @Streaming //添加这个注解用来下载大文件
+    @GET()
+    Flowable<ResponseBody> updateVersion(@Url String url);
 
     /*login*/
 

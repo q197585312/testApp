@@ -1,6 +1,7 @@
 package com.nanyang.app.load.login;
 
 import com.google.gson.Gson;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.Utils.StringUtils;
 
 import java.io.Serializable;
@@ -192,9 +193,9 @@ public class LoginInfo {
 
         String accType = "";
         String lang = "";
-        /*        String pgLable = "0.6229094620888556";
-                String vsn = "001";*/
-        String PT = "wfMainH50";
+        String pgLable = "0.8565494885673504";
+        String vsn = "4.0.12";
+        String PT = AppConstant.wfMain;
 
         public LanguageWfBean(String ACT, String lang, String PT) {
             this.ACT = ACT;
@@ -204,6 +205,97 @@ public class LoginInfo {
 
         public String getJson() {
             return new Gson().toJson(this);
+        }
+    }
+    public static class HuayDataWfBean extends LanguageWfBean{
+
+
+        public HuayDataWfBean(String ACT, String lang, String PT) {
+            super(ACT, lang, PT);
+        }
+        String type;
+
+        public void setType(String type) {
+            this.type = type;
+        }
+    }
+    public static class HuayBetWfBean extends LanguageWfBean{
+
+
+        public HuayBetWfBean(String ACT, String lang, String PT) {
+            super(ACT, lang, PT);
+        }
+        String typed;
+        String txtNumber1;
+        String txtAmt;
+
+        public void setTyped(String typed) {
+            this.typed = typed;
+        }
+
+        public void setTxtNumber1(String txtNumber1) {
+            this.txtNumber1 = txtNumber1;
+        }
+
+        public void setTxtAmt(String txtAmt) {
+            this.txtAmt = txtAmt;
+        }
+
+        public void setSocOddsId(String socOddsId) {
+            this.socOddsId = socOddsId;
+        }
+
+        String socOddsId;
+    }
+    /*{"ACT":"Savesort",
+    "PT":"wfSettingH50",
+    "MarketTyped":"0",
+    "DefaultSortingd":"0",
+    "ScoreSoundd":"1",
+    "lang":"EN-US",
+    "accType":"ID",
+    "AmtS":"0",
+    "BetterOdds":"1",
+    "ChipsList":"",
+    "pgLable":"0.5134303879466173","vsn":"4.0.12"}*/
+
+    public static class SettingWfBean extends LanguageWfBean{
+
+
+        public SettingWfBean(String ACT, String lang, String PT) {
+            super(ACT, lang, PT);
+        }
+        String MarketTyped;
+        String DefaultSortingd;
+        String ScoreSoundd;
+
+        String AmtS;
+        String BetterOdds;
+        String ChipsList;
+
+        public void setMarketTyped(String marketTyped) {
+            MarketTyped = marketTyped;
+        }
+
+        public void setDefaultSortingd(String defaultSortingd) {
+            DefaultSortingd = defaultSortingd;
+        }
+
+        public void setScoreSoundd(String scoreSoundd) {
+            ScoreSoundd = scoreSoundd;
+        }
+
+
+        public void setAmtS(String amtS) {
+            AmtS = amtS;
+        }
+
+        public void setBetterOdds(String betterOdds) {
+            BetterOdds = betterOdds;
+        }
+
+        public void setChipsList(String chipsList) {
+            ChipsList = chipsList;
         }
     }
 
@@ -233,7 +325,7 @@ public class LoginInfo {
         private String accType;
         private int ov = 0;
         private String mt;
-        private String PT = "wfMainH50";
+        private String PT = AppConstant.wfMain;
 
         public OutRightWfBean(String ot, String OUTDBID, String accType, String mt,int ov) {
             this.ot = ot;
@@ -342,7 +434,7 @@ public class LoginInfo {
         private int tf = -1;
         private String timess = "";
         private String accType;
-        private String PT = "wfMainH50";
+        private String PT = AppConstant.wfMain;
 
         public AllRunningWfBean(String ot, String DBID, String accType) {
             this.ot = ot;

@@ -38,13 +38,14 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
     protected void updateAllDate(List<TableSportInfo<BallInfo>> allData) {
 
 
-        List<TableSportInfo<BallInfo>> noRepeatAllData = handleRepeatData(allData);
-        filterData(noRepeatAllData);
+      /*  List<TableSportInfo<BallInfo>> noRepeatAllData = handleRepeatData(allData);
+        filterData(noRepeatAllData);*/
+        filterData(allData);
         showCurrentData();
 
         Activity activity = getBaseView().getIBaseContext().getBaseActivity();
-        for (int i = 0; i < noRepeatAllData.size(); i++) {
-            TableSportInfo<BallInfo> ballInfoTableSportInfo = noRepeatAllData.get(i);
+        for (int i = 0; i < allData.size(); i++) {
+            TableSportInfo<BallInfo> ballInfoTableSportInfo = allData.get(i);
             List<BallInfo> rows = ballInfoTableSportInfo.getRows();
             for (int j = 0; j < rows.size(); j++) {
                 BallInfo item = rows.get(j);

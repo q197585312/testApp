@@ -14,7 +14,6 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.Editable;
-import android.text.Html;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
@@ -48,6 +47,8 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
+import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
+import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -70,6 +71,7 @@ import cn.finalteam.toolsfinal.logger.Logger;
 public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String>, IGetRefreshMenu {
     private final String GUIDE_KEY = "GUIDE";
 
+    HuayThaiFragment huayThaiFragment = new HuayThaiFragment();
     BaseSportFragment localCurrentFragment;
     @Bind(R.id.drawer_more)
     DrawerLayout drawerLayout;
@@ -100,8 +102,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public TextView tvOddsType;
     @Bind(R.id.tv_league_major)
     TextView tvLeagueMain;
-    @Bind(R.id.iv_add)
-    ImageView ivAdd;
+    @Bind(R.id.iv_sort_time)
+    ImageView ivSortTime;
     @Bind(R.id.fl_main_content)
     FrameLayout flContent;
     @Bind(R.id.tv_record)
@@ -122,6 +124,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.tv_menu)
     TextView tvMenu;
     @Bind(R.id.ll_sport_menu_bottom)
+    public
     LinearLayout llSportMenuBottom;
     @Bind(R.id.sport_title_tv)
     TextView sportTitleTv;
@@ -145,20 +148,17 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Bind(R.id.main_more)
     RecyclerView reContent;
 
-    private MenuItemInfo oddsType;
-    private MenuItemInfo allOdds;
+
     public MenuItemInfo<String> item;
     private String currentGameType = "";
     public WebSocket webSocket;
     private AfbDrawerViewHolder afbDrawerViewHolder;
-    private int sort;
-    private SportIdBean currentRunningIdBean;
-
+    private SportIdBean currentIdBean;
+    private boolean notClickType=false;
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
     }
-
 
     private String currentTag = "";
     private HashMap<String, BaseSportFragment> mapFragment;
@@ -169,19 +169,16 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
         toolbar.setVisibility(View.GONE);
-        oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
-        allOdds = new MenuItemInfo(0, getString(R.string.All_Markets), "0");
-        presenter.switchOddsType("MY", new BaseConsumer<String>(this) {
+   /*     presenter.switchOddsType("MY", new BaseConsumer<String>(this) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
 
             }
-        });
+        });*/
         edtSearchContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -332,7 +329,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     protected void updateBalanceTv(String allData) {
-        tvBalance.setText(getApp().getUser().getCurCode2() + ": " + allData);
+        String s = AfbUtils.addComma(allData, tvBalance);
+        tvBalance.setText(getApp().getUser().getCurCode2() + ": " + AfbUtils.decimalValue(Float.parseFloat(s), "0.00"));
     }
 
 //    public void loginGD() {
@@ -354,8 +352,16 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
 
     @Override
+    protected void onStop() {
+        super.onStop();
+
+    }
+
+    @Override
     public void onBackCLick(View v) {
         afbDrawerViewHolder.isBack(false);
+        tvSportSelect.setText(currentIdBean.getTextRes());
+        tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, currentIdBean.getSportPic(), 0, 0);
     }
 
 
@@ -420,7 +426,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     private SpannableStringBuilder isStartWithTag(String str) {
         if (str.startsWith("<SPAN")) {
-            String needStr = Html.fromHtml(str).toString();
+            String needStr = AfbUtils.delHTMLTag(str);
             if (needStr.startsWith("-")) {
                 return AfbUtils.handleStringTextColor(needStr, Color.RED);
             }
@@ -435,23 +441,23 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     public void setOddsType(MenuItemInfo oddsType) {
-        this.oddsType = oddsType;
+        getApp().setOddsType(oddsType);
     }
 
     public MenuItemInfo getOddsType() {
-        return oddsType;
+        return getApp().getOddsType();
     }
 
-    public void setAllOdds(MenuItemInfo allOdds) {
-        this.allOdds = allOdds;
+    public void setMarketType(MenuItemInfo allOdds) {
+        getApp().setMarketType(allOdds);
     }
 
-    public MenuItemInfo getAllOddsType() {
-        return allOdds;
+    public MenuItemInfo getMarketType() {
+        return getApp().getMarketType();
     }
 
     public int getSortType() {
-        return sort;
+        return getApp().getSort();
     }
 
 
@@ -502,7 +508,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     public void clickSportSelect(final View view) {
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new LanguagePresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {
@@ -618,7 +624,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void clickAllRunning(View view) {
         setType("Running");
-        dateClickPositon = 0;
+        dateClickPosition = 0;
         MenuItemInfo<Integer> item = new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green);
         runWayItem(item);
         SportIdBean sportIdBean = AfbUtils.sportMap.get("1,9,21,29,51,182");
@@ -628,21 +634,25 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private void initSportFragment(SportIdBean item) {
         tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
         tvSportSelect.setText(getString(item.getTextRes()));
-     /*   if (item.getId().equals("1,9,21,29,51,182")) {
-            initAllRunning("1");
-        } else {
-            selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
-        }*/
-
+        notClickType=false;
+        if (!item.getDbid().startsWith("33"))
+            currentIdBean = item;
         if (item.getDbid().equals("0")) {
             setType("Running");
-            dateClickPositon = 0;
+            dateClickPosition = 0;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
-        } else if (item.getDbid().equals("0")) {
-            setType("Early");
-            dateClickPositon = 3;
-            runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseActivity().getString(R.string.Early)
-                    , "Early", R.mipmap.date_early_green));
+        } else if (item.getDbid().startsWith("33")) {
+            MenuItemInfo<String> stringMenuItemInfo = new MenuItemInfo<>(R.mipmap.thai_thousand_1d, getString(R.string.game1d), item.getDbid(), "1");
+            if (item.getDbid().equals("33_19")) {
+                stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, getString(R.string.game2d), item.getDbid(), "2");
+            } else if (item.getDbid().equals("33_20")) {
+                stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), item.getDbid(), "3");
+            }
+            notClickType=true;
+            huayThaiFragment.setInfo(stringMenuItemInfo);
+//            deleteHeadAndFoot();
+            afbDrawerViewHolder.switchFragment(huayThaiFragment);
+            return;
         }
         selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
 
@@ -650,11 +660,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void clickSportWayRun(final View view) {
 
-        if (currentFragment != null && currentFragment instanceof BaseAllFragment) {
+        if (currentFragment != null && currentFragment instanceof AllRunningFragment||notClickType) {
             return;
         }
 
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), "wfMainH50"), new LanguagePresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {
@@ -672,15 +682,14 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
                                     RecyclerView rv_list = view.findViewById(R.id.rv_list);
                                     final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
-                                    checkBox.setChecked(sort == 1);
+                                    checkBox.setChecked(getApp().getSort() == 1);
                                     final View ll_sort = view.findViewById(R.id.ll_sort);
                                     setChooseTypeAdapter(rv_list, tvMatchType, jsonObjectNum);
                                     ll_sort.setOnClickListener(new View.OnClickListener() {
                                         @Override
                                         public void onClick(View view) {
-                                            sort = 1 - sort;
-                                            checkBox.setChecked(sort == 1);
-                                            currentFragment.getPresenter().getStateHelper().refresh();
+                                            changeTimeSort();
+                                            checkBox.setChecked(getApp().getSort() == 1);
                                         }
                                     });
                                 }
@@ -694,7 +703,13 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         });
     }
 
-    public int dateClickPositon = 0;
+    private void changeTimeSort() {
+        getApp().setSort(1 - getApp().getSort());
+        currentFragment.getPresenter().getStateHelper().refresh();
+        ivSortTime.setImageResource(getApp().getSort() == 0 ? R.mipmap.sport_game_clock_white : R.mipmap.sport_game_clock_exit_white);
+    }
+
+    public int dateClickPosition = 0;
 
     private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView, JSONObject jsonObjectNum) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
@@ -703,7 +718,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void clickMoreMenu(View view) {
         drawerLayout.openDrawer(Gravity.RIGHT);
-//        currentFragment.menu(view);
     }
 
     public void clickOrder(View view) {
@@ -720,11 +734,29 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void rememberLastOdds() {
         MenuItemInfo oddsType = getOddsType();
-        if (oddsType != null)
+        if (oddsType != null) {
             tvOddsType.setText(oddsType.getText());
-        MenuItemInfo allOddsType = getAllOddsType();
+           /* if (oddsType.getType().equals("HK")) {
+                tvOddsType.setText(R.string.HK_ODDS);
+            } else if (oddsType.getType().equals("MY")) {
+                tvOddsType.setText(R.string.MY_ODDS);
+            } else if (oddsType.getType().equals("EU")) {
+                tvOddsType.setText(R.string.EU_ODDS);
+            } else if (oddsType.getType().equals("ID")) {
+                tvOddsType.setText(R.string.ID_ODDS);
+            }*/
+
+        }
+        MenuItemInfo allOddsType = getMarketType();
         if (allOddsType != null) {
             ivAllAdd.setText(allOddsType.getText());
+           /* if (allOddsType.getType().equals("0")) {
+                ivAllAdd.setText(R.string.All_Markets);
+            } else if (oddsType.getType().equals("1")) {
+                ivAllAdd.setText(R.string.Main_Markets);
+            } else if (oddsType.getType().equals("2")) {
+                ivAllAdd.setText(R.string.Other_Bet_Markets);
+            }*/
         }
     }
 
@@ -805,7 +837,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         public void run() {
             LinkedHashMap<String, String> menuParamMap = new LinkedHashMap<>();
             menuParamMap.put("ACT", "Getmenu");
-            menuParamMap.put("PT", "wfMainH50");
+            menuParamMap.put("PT", AppConstant.wfMain);
             String type = currentFragment.presenter.getStateHelper().getStateType().getType();
             String ot;
             if (type.equals("Running")) {
@@ -826,5 +858,9 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         tvMatchType.setText(item.getText());
         tvMatchType.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
         wd = item.getDateParam();
+    }
+
+    public void clickSortByTime(View view) {
+        changeTimeSort();
     }
 }

@@ -5,19 +5,19 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.BetCenter.Bean.More;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
-import com.nanyang.app.main.changeLanguage.ChangeLanguageFragment;
+import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.contact.ContactFragment;
 import com.nanyang.app.main.howtouse.HowToUseFragment;
 import com.nanyang.app.main.message.MessageFragment;
@@ -65,7 +65,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
     private BaseSwitchFragment homeFragment;
     private BaseSwitchFragment statementFragment = new BetCenterFragment();
     private BaseSwitchFragment contactFragment = new ContactFragment();
-    private BaseSwitchFragment changeLanguageFragment = new ChangeLanguageFragment();
+    private BaseSwitchFragment changeLanguageFragment = new SettingFragment();
     private BaseSwitchFragment personFragment = new PersonCenterFragment();
     private BaseSwitchFragment howToUseFragment = new HowToUseFragment();
     private BaseSwitchFragment messageFragment = new MessageFragment();
@@ -112,7 +112,8 @@ public class AfbDrawerViewHolder implements IDrawerView {
         dataList.add(m5);
         dataList.add(m6);
         dataList.add(m7);
-        dataList.add(m8);
+        if (!AppConstant.IS_AGENT)
+            dataList.add(m8);
         BaseRecyclerAdapter<More> adapter = new BaseRecyclerAdapter<More>(baseToolbarActivity, dataList, R.layout.item_main_more) {
 
             @Override
@@ -148,9 +149,11 @@ public class AfbDrawerViewHolder implements IDrawerView {
                     BaseSwitchFragment fragment = item.getFragment();
                     if (fragment != null) {
                         String switchType = item.getSwitchType();
-
                         if (!TextUtils.isEmpty(switchType)) {
                             fragment.setSwitchTypeIndex(item.getSwitchType());
+                        }
+                        if (item.getText().equals(baseToolbarActivity.getString(R.string.my_account))) {
+                            baseToolbarActivity.updateBalance();
                         }
                         switchFragment(fragment);
                     }
@@ -173,14 +176,13 @@ public class AfbDrawerViewHolder implements IDrawerView {
             }
             lastIndexFragment = indexFragment;
         }
+
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         boolean back = false;
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             back = isBack(back);
-        }else if (keyCode == KeyEvent.KEYCODE_HOME){
-            Log.d("shangpeisheng", "KEYCODE_HOME: ");
         }
         return back;
     }
@@ -190,6 +192,8 @@ public class AfbDrawerViewHolder implements IDrawerView {
             drawerLayout.closeDrawer(Gravity.RIGHT);
             back = true;
         }
+        if(!indexFragment.checkCanBack())
+            return back;
         if (indexFragment == homeFragment) {
             baseToolbarActivity.finish();
         } else {

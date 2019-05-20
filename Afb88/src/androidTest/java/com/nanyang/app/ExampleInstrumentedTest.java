@@ -1,36 +1,5 @@
 package com.nanyang.app;
 
-import android.support.test.runner.AndroidJUnit4;
-import android.text.Html;
-import android.util.Log;
-
-import com.google.gson.Gson;
-import com.google.gson.internal.LinkedTreeMap;
-import com.nanyang.app.main.home.sport.additional.VsActivity;
-import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.nanyang.app.main.home.sport.model.TableSportInfo;
-import com.nanyang.app.main.home.sport.model.VsCellBean;
-import com.nanyang.app.main.home.sport.model.VsTableRowBean;
-import com.unkonw.testapp.libs.utils.LogUtil;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import cn.finalteam.toolsfinal.logger.Logger;
-
-import static android.support.test.InstrumentationRegistry.getContext;
-
 /**
  * Instrumentation test, which will execute on an Android device.
  *
@@ -38,8 +7,8 @@ import static android.support.test.InstrumentationRegistry.getContext;
  */
 
 
-@RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
+/*
 
     private String LID="";
 
@@ -65,6 +34,7 @@ public class ExampleInstrumentedTest {
 
     protected List<TableSportInfo<BallInfo>> updateJsonArray(JSONArray jsonArray) throws JSONException {
 
+*/
 /*
         boolean modified = false;
         boolean deleted = false;
@@ -147,7 +117,8 @@ public class ExampleInstrumentedTest {
             }
 
         }
-*/
+*//*
+
         return new ArrayList<>();
 
 
@@ -173,11 +144,13 @@ public class ExampleInstrumentedTest {
     public void useAppContext() throws Exception {
         // Context of the app under test.
 
- /*       String s="<font color=red>M817</font>";
+ */
+/*       String s="<font color=red>M817</font>";
         String ss= Html.fromHtml(s).toString();
         String[] channels = ss.split("\n");
         channels.toString();
-*/
+*//*
+
 String ul=" http://a8197c.a36588.com/_bet/JRecPanel.aspx?g=2&b=away_par&oId=12219288&odds=19";
        int i= ul.indexOf("&b=");
         String s=ul.substring(i+3);
@@ -194,7 +167,8 @@ String ul=" http://a8197c.a36588.com/_bet/JRecPanel.aspx?g=2&b=away_par&oId=1221
         String odds = substring.substring(0, substring.indexOf("|"));
         Logger.getDefaultLogger().d(odds);
     }
-    /**
+    */
+/**
      * [
      [
      0,
@@ -322,7 +296,8 @@ String ul=" http://a8197c.a36588.com/_bet/JRecPanel.aspx?g=2&b=away_par&oId=1221
      ]
      ]
      ]
-     ]*/
+     ]*//*
+
 
 
     @Test
@@ -532,4 +507,5 @@ String ul=" http://a8197c.a36588.com/_bet/JRecPanel.aspx?g=2&b=away_par&oId=1221
                     new VsCellBean("", "", "", oid)), true));
         }
     }
+*/
 }

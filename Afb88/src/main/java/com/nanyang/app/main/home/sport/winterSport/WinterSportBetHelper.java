@@ -19,16 +19,4 @@ public class WinterSportBetHelper extends TennisBetHelper {
     }
 
 
-/*  @Override
-    protected String getOddsUrl(BasketballMixInfo item, String type, boolean isHf, String odds,String params) {
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(AppConstant.getInstance().URL_ODDS);
-        stringBuilder.append("g=51");
-        stringBuilder.append("&b=" + type);
-        stringBuilder.append("&oId=" + item.getSocOddsId());
-        stringBuilder.append("&odds=" + odds);
-        return stringBuilder.toString();
-    }*/
-
-
 }

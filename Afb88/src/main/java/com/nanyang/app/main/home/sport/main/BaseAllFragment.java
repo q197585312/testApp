@@ -141,6 +141,25 @@ public abstract class BaseAllFragment extends BaseSportFragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (!isHidden()) {
+            rvAll.setVisibility(View.VISIBLE);
+            rvContent.setVisibility(View.GONE);
+        }
+//        addSportHeadAndFoot(currentIdBean);
+    }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        if (!hidden) {
+            rvAll.setVisibility(View.VISIBLE);
+            rvContent.setVisibility(View.GONE);
+        }
+
+    }
 
     public abstract void addSportHeadAndFoot(final SportIdBean sportIdBean);
 

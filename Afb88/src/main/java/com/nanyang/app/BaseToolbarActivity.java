@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.WindowManager;
@@ -16,12 +17,19 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
+import com.nanyang.app.common.LanguageHelper;
+import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
+import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
+import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
@@ -91,7 +99,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarLeft.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gameMenus(v);
+//                gameMenus(v);
             }
         });
     }
@@ -208,24 +216,21 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     public void updateBalance() {
-
-        Disposable updateBalanceSubscribe = getService(ApiService.class).getData(AppConstant.getInstance().URL_UPDATE_BALANCE).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {//onNext
-                               @Override
-                               public void accept(String allData) throws Exception {
-                                   updateBalanceTv(allData);
-                                   getApp().getUser().setBalances(allData);
-                               }
-                           }, new Consumer<Throwable>() {//错误
-                               @Override
-                               public void accept(Throwable throwable) throws Exception {
-                               }
-                           }
-                );
-        mCompositeSubscription.add(updateBalanceSubscribe);
+        String language = new LanguageHelper(getBaseActivity()).getLanguage();
+        LoadMainDataHelper helper = new LoadMainDataHelper(new Api(), getBaseActivity(), mCompositeSubscription);
+        helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
+            @Override
+            public void onBack(String data) {
+                PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
+                personalInfo.setPassword(((AfbApplication) getBaseActivity().getApplication()).getUser().getPassword());
+                ((AfbApplication) getBaseActivity().getApplication()).setUser(personalInfo);
+                updateBalanceTv(personalInfo.getBalances());
+            }
+        });
     }
 
     protected void updateBalanceTv(String allData) {
+
         tvToolbarRight.setText(allData);
     }
 
@@ -233,7 +238,20 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     @Override
     protected void onStop() {
         super.onStop();
+        Log.d(getClass().getSimpleName(), "onStop: ");
         stopUpdateState();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.d(getClass().getSimpleName(), "onDestroy: ");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.d(getClass().getSimpleName(), "onRestart: ");
     }
 
     @Nullable

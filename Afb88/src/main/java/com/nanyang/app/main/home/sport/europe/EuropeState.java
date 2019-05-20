@@ -108,10 +108,10 @@ public abstract class EuropeState extends BallState {
 
 
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc,boolean hasPar) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf, "");
+                helper.clickOdds(item,oid, type, odds, v, isHf, "",hasPar);
             }
 
             @Override

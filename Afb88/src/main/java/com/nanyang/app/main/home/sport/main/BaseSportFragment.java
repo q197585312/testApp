@@ -44,7 +44,6 @@ import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -116,9 +115,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             presenter.getStateHelper().stopUpdateData();
             presenter.getStateHelper().setIsHide(true);
         } else {// 重新显示到最前端中
-            getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
-            getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
-            getBaseActivity().toolbar.setVisibility(View.GONE);
+            showContent();
             rememberLastOdds();
             presenter.getStateHelper().setIsHide(false);
             String type = ((SportActivity) getActivity()).getType();
@@ -137,9 +134,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             updateMixOrderCount();
         }
         isFirstIn = false;
-        getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
-        getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
-        getBaseActivity().toolbar.setVisibility(View.GONE);
+        showContent();
 
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
     }
@@ -183,12 +178,13 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             String lag = AfbUtils.getLanguage(mContext);
             String l = "eng";
             if (lag.equals("zh")) {
-                l = "eng";
+                l = "en";
             } else {
-                l = "EN-US";
+                l = "en";
             }
 
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+            Log.d(TAG, "onWebShow: " + gameUrl);
             pop.setUrl(gameUrl);
             int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
             int y = location[1] + v.getHeight();
@@ -503,11 +499,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 RecyclerView rv = view.findViewById(R.id.rv_list);
                 rv.setPadding(0, 0, 0, 0);
                 rv.setLayoutManager(new LinearLayoutManager(mContext));
-                List<MenuItemInfo> list = new ArrayList<>();
-                list.add(new MenuItemInfo(0, getString(R.string.HK_ODDS), "HK"));//accType=
-                list.add(new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY"));
-                list.add(new MenuItemInfo(0, getString(R.string.ID_ODDS), "ID"));
-                list.add(new MenuItemInfo(0, getString(R.string.EU_ODDS), "EU"));
+                List<MenuItemInfo> list = AfbUtils.getOddsTypeList(mContext);
                 BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base_item) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
@@ -578,6 +570,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             if (sportIdBean != null)
                 dbid = sportIdBean.getDbid();
         }
+        Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
         additionPresenter.addition((BallInfo) item, position, dbid);
         if (((SportState) presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ((SportState) presenter.getStateHelper()).getAdapterHelper();
@@ -596,5 +589,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         getBaseActivity().setToolbarVisibility(View.GONE);
         getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
+        getBaseActivity().llSportMenuBottom.setVisibility(View.VISIBLE);
     }
 }

@@ -111,7 +111,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                 markTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        back.clickOdds(markTv, item, "1", false, item.getX12_1Odds(), Integer.valueOf(item.getSocOddsId()), "");
+                        back.clickOdds(markTv, item, "1", false, item.getX12_1Odds(), Integer.valueOf(item.getSocOddsId()), "", item.getHasPar() != null && item.getHasPar().equals("1"));
                     }
                 });
                 if (item.getType() == SportInfo.Type.ITME) {
@@ -161,7 +161,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
     }
 
     protected void webSocketRefresh(String dbId) {
-        String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getAllOddsType().getType();
+        String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
         String accType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType().getType();
         int ov = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
         LoginInfo.OutRightWfBean allRunningWfBean = new LoginInfo.OutRightWfBean(ot, dbId + "_11", accType, mt, ov);
@@ -291,10 +291,10 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
             }
 
             @Override
-            public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds, int oid, String sc) {
+            public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds, int oid, String sc,boolean hasPar) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf, sc);
+                helper.clickOdds(item, oid,type, odds, v, isHf, sc,hasPar);
             }
 
             @Override

@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.basketball;
 
 import android.content.Context;
 
-import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 
@@ -14,7 +13,6 @@ public class BasketballCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
     public BasketballCommonAdapterHelper(Context context) {
         super(context);
     }
-
 
 /*    @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final BallInfo item) {

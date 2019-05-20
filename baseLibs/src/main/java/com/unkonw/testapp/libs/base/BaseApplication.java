@@ -5,6 +5,7 @@
 
 package com.unkonw.testapp.libs.base;
 
+import android.app.Application;
 import android.content.Context;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
@@ -17,13 +18,11 @@ import com.nostra13.universalimageloader.utils.L;
 import com.unkonw.testapp.R;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 
-import solid.ren.skinlibrary.base.SkinBaseApplication;
-
 
 /**
  * 基础的Application
  **/
-public class BaseApplication extends SkinBaseApplication {
+public class BaseApplication extends Application {
     private final String tag = BaseApplication.class.getSimpleName();
     private static DisplayImageOptions options;
     private static BaseApplication instance;
@@ -55,13 +54,8 @@ public class BaseApplication extends SkinBaseApplication {
      * 初始化
      */
     private void init() {
-
-//        LogUtil.setDebug(!isCompleteProject);
-//        LogUtil.e(tag, "isDebug: " + !isCompleteProject);
         initImageLoader();
-
 //        CrashHandler.create(this);
-
 //        JPushInterface.init(this); // 初始化JPush
 //        JPushInterface.setDebugMode(true);  // 设置日志,发布时请关闭日志
 
@@ -107,8 +101,6 @@ public class BaseApplication extends SkinBaseApplication {
     public void exit() {
         ActivityPageManager.getInstance().exit(this);
     }
-
-
 
 
 }

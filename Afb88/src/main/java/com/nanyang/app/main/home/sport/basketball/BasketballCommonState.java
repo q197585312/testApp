@@ -37,7 +37,7 @@ public abstract class BasketballCommonState extends BallState {
 
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
-        BasketballCommonAdapterHelper adapterHelper = onSetCommonAdapterHelper();
+        IAdapterHelper<BallInfo> adapterHelper = onSetCommonAdapterHelper();
         return adapterHelper;
     }
 
@@ -54,10 +54,10 @@ public abstract class BasketballCommonState extends BallState {
             }
 
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc,boolean hasPar) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, type, odds, v, isHf, "");
+                helper.clickOdds(item,oid, type, odds, v, isHf, "",hasPar);
             }
 
             @Override
@@ -92,7 +92,7 @@ public abstract class BasketballCommonState extends BallState {
     //http://a8197c.a36588.com/_Bet/JRecPanel.aspx?gt=s&b=under&oId=12159615&oId_fh=12159616&isFH=true&isRun=true&odds=4.70
 
 
-    protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
+    protected IAdapterHelper<BallInfo> onSetCommonAdapterHelper() {
         return new BasketballCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
 

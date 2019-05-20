@@ -29,7 +29,6 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.TimeUtils;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -177,10 +176,11 @@ public class HomeFragment extends BaseSwitchFragment {
     Runnable mainAllDataUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, "wfMainH50"), new LanguagePresenter.CallBack<String>() {
+            ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
 
                 @Override
                 public void onBack(String data) {
+
                     LogUtil.d("mainAllDataUpdateRunnable", "得到数据——" + data);
                     if (!TextUtils.isEmpty(lastAllMainData)) {
                         if (lastAllMainData.equals(data)) {
