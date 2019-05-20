@@ -28,6 +28,12 @@ public class AfbApplication extends BaseApplication {
     private boolean isGoHome = false;
     private SettingAllDataBean settingAllDataBean;
 
+    public String getQuickAmount() {
+        return quickAmount;
+    }
+
+    private String quickAmount="";
+
     public MenuItemInfo getOddsType() {
         return AfbUtils.getOddsTypeByType(this, oddsType.getType());
     }
@@ -187,6 +193,10 @@ public class AfbApplication extends BaseApplication {
             sort = Integer.valueOf(settingAllDataBean.getAccDefaultSorting());
         if (!StringUtils.isNull(settingAllDataBean.getAccScoreSound()))
             SoundPlayUtils.setSound(settingAllDataBean.getAccScoreSound());
+    }
+
+    public void setQuickAmount(String quickAmount) {
+        this.quickAmount = quickAmount;
     }
 }
 

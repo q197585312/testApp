@@ -64,6 +64,7 @@ import cn.finalteam.toolsfinal.StringUtils;
  * Created by Administrator on 2015/10/27.
  */
 public class BetPop extends BasePopupWindow {
+    private Handler handler;
     Context context;
     BaseToolbarActivity activity;
     AfbApplication afbApplication;
@@ -117,7 +118,8 @@ public class BetPop extends BasePopupWindow {
     private SportBetHelper presenter;
     private IRTMatchInfo rTMatchInfo;
     private int coupon;
-    private Handler handler;
+    private boolean isRefresh;
+
 
     public BetPop(Context context, View v) {
         this(context, v, DeviceUtils.dip2px(context, 350), LinearLayout.LayoutParams.WRAP_CONTENT);
@@ -128,8 +130,8 @@ public class BetPop extends BasePopupWindow {
         this.context = mContext;
         this.v = v;
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
-        handler = new Handler();
         activity = (BaseToolbarActivity) context;
+        handler = new Handler();
         afbApplication = activity.getApp();
         betAmountEdt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
 
@@ -229,7 +231,6 @@ public class BetPop extends BasePopupWindow {
                 llBetFailedHint.setVisibility(View.GONE);
             }
         });
-        initBetChip();
     }
 
     private double countMaxPayout(double money) {
@@ -250,10 +251,21 @@ public class BetPop extends BasePopupWindow {
     }
 
     private void initBetChip() {
-        List<PopChipBean> beanList = Arrays.asList(new PopChipBean(R.mipmap.chip1, 1), new PopChipBean(R.mipmap.chip10, 10),
+        HashMap<Integer, Boolean> chipStatusMap = AfbUtils.getChipStatusMap();
+        List<PopChipBean> allList = Arrays.asList(new PopChipBean(R.mipmap.chip1, 1), new PopChipBean(R.mipmap.chip10, 10),
                 new PopChipBean(R.mipmap.chip50, 50), new PopChipBean(R.mipmap.chip100, 100), new PopChipBean(R.mipmap.chip500, 500),
                 new PopChipBean(R.mipmap.chip1000, 1000), new PopChipBean(R.mipmap.chip5000, 5000), new PopChipBean(R.mipmap.chip10000, 10000),
                 new PopChipBean(R.mipmap.chip30000, 30000), new PopChipBean(R.mipmap.chip50000, 50000), new PopChipBean(R.mipmap.chip100000, 100000));
+        List<PopChipBean> beanList = new ArrayList<>();
+        for (PopChipBean popChipBean : allList) {
+            if(chipStatusMap.get(popChipBean.getBetChip())){
+                beanList.add(popChipBean);
+            }
+        }
+        if (beanList.size() < 1) {
+            beanList = allList;
+        }
+
         BaseRecyclerAdapter<PopChipBean> adapter = new BaseRecyclerAdapter<PopChipBean>(context, beanList, R.layout.item_bet_chip) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, PopChipBean item) {
@@ -277,6 +289,16 @@ public class BetPop extends BasePopupWindow {
                 betAmountEdt.setText(betAmount + "");
             }
         });
+    }
+
+    private PopChipBean findChip(Integer key, List<PopChipBean> allList) {
+        for (PopChipBean popChipBean : allList) {
+            if (popChipBean.getBetChip() == key) {
+                return popChipBean;
+            }
+        }
+        return null;
+
     }
 
     private void goBetting() {
@@ -342,7 +364,6 @@ public class BetPop extends BasePopupWindow {
     @Override
     protected void initView(View view) {
         super.initView(view);
-
     }
 
 
@@ -378,6 +399,10 @@ public class BetPop extends BasePopupWindow {
         this.list = list;
         this.presenter = mPresenter;
         initRcBetContent();
+        if (!isRefresh) {
+            setEditNum();
+            initBetChip();
+        }
         tvCurrency.setText(afbApplication.getUser().getCurCode2());
         betBalanceTv.setText(afbApplication.getUser().getBalances());
         if (list.size() > 1) {
@@ -401,6 +426,7 @@ public class BetPop extends BasePopupWindow {
         }
         stopUpdateOdds();
         updateOdds(4000);
+      ;
     }
 
     BaseRecyclerAdapter<AfbClickBetBean> contentAdapter;
@@ -521,6 +547,10 @@ public class BetPop extends BasePopupWindow {
         }
     }
 
+    public void setEditNum() {
+        betAmountEdt.setText(afbApplication.getQuickAmount());
+    }
+
     private List<ClearanceBetAmountBean> clearanceBetAmountBeenList;
 
     private void initMix() {
@@ -636,14 +666,6 @@ public class BetPop extends BasePopupWindow {
         }
     }
 
-    public void showInput() {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                activity.showPopInput(betAmountEdt);
-            }
-        }, 500);
-    }
 
     @Override
     protected void onClose() {
@@ -672,6 +694,7 @@ public class BetPop extends BasePopupWindow {
                     return;
                 }
                 presenter.getRefreshOdds(afbApplication.getRefreshOddsUrl());
+                isRefresh = true;
                 handler.postDelayed(this, 3000);
             }
         }, delayedTime);
@@ -679,6 +702,7 @@ public class BetPop extends BasePopupWindow {
 
     public void stopUpdateOdds() {
         handler.removeCallbacksAndMessages(null);
+        isRefresh = false;
     }
 
     private Map<Integer, ObjectAnimator> objectAnimatorMap;

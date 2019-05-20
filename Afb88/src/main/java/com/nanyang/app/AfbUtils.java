@@ -29,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
 import com.nanyang.app.main.home.sport.USFootball.USFootballFragment;
@@ -118,6 +119,7 @@ public class AfbUtils {
     private static final String REGEX_HTML = "<[^>]+>";
     private static Map<String, SportState> majorStateHashMap = new HashMap<>();
     private static List<MenuItemInfo> oddsTypeList;
+    private static HashMap<Integer, Boolean> chipStatusMap;
 
     public static String delHTMLTag(String htmlStr) {
         // 过滤script标签
@@ -903,5 +905,30 @@ public class AfbUtils {
                 return menuItemInfo;
         }
         return new MenuItemInfo(0, context.getString(R.string.MY_ODDS), "MY");
+    }
+
+    public static void setChipStatusMap(String chips) {
+        chipStatusMap = new HashMap<>();
+        chipStatusMap.put(1, false);
+        chipStatusMap.put(10, false);
+        chipStatusMap.put(50, false);
+        chipStatusMap.put(100, false);
+        chipStatusMap.put(500, false);
+        chipStatusMap.put(1000, false);
+        chipStatusMap.put(5000, false);
+        chipStatusMap.put(10000, false);
+        chipStatusMap.put(30000, false);
+        chipStatusMap.put(50000, false);
+        chipStatusMap.put(100000, false);
+        if (!StringUtils.isNull(chips)) {
+            String[] split = chips.split(",");
+            for (String s : split) {
+                chipStatusMap.put(Integer.valueOf(s), true);
+            }
+        }
+    }
+
+    public static HashMap<Integer, Boolean> getChipStatusMap() {
+        return chipStatusMap;
     }
 }

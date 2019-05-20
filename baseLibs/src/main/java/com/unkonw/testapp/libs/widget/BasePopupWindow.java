@@ -39,6 +39,7 @@ public abstract class BasePopupWindow {
     }
 
     public BasePopupWindow(Context context, View v, int width, int height) {
+
         this.context = context;
         this.inflater = LayoutInflater.from(context);
         this.v = v;

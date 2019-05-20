@@ -18,7 +18,6 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.SoundPlayUtils;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
@@ -37,7 +36,6 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -53,7 +51,6 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
     RecyclerView rcContent;
     BaseToolbarActivity aty;
     BaseRecyclerAdapter<SettingInfoBean> adapter;
-    Map<Integer, Boolean> chipStatusMap;
     private String quickAmount;
 
     @Override
@@ -106,7 +103,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                         imgChip1.setVisibility(View.VISIBLE);
                         imgChip1.setImageResource(item.getchip1());
                         imgChip1.setTag(item.getChipSize1());
-                        setChipsBg(imgChip1, item.getchip1());
+                        setChipsBg(imgChip1, item.getChipSize1());
                     }
                     imgChip2.setImageResource(item.getchip2());
                     imgChip2.setTag(item.getChipSize2());
@@ -118,6 +115,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                     imgChip5.setTag(item.getChipSize5());
                     imgChip6.setImageResource(item.getChip6());
                     imgChip6.setTag(item.getChipSize6());
+
                     setChipsBg(imgChip2, item.getChipSize2());
                     setChipsBg(imgChip3, item.getChipSize3());
                     setChipsBg(imgChip4, item.getChipSize4());
@@ -251,6 +249,8 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                             @Override
                             protected void clickSure(View v) {
                                 quickAmount = getChooseMessage().getText().toString().trim();
+                                ((BaseToolbarActivity) getBaseActivity()).getApp().setQuickAmount(quickAmount);
+
                                 tv.setText(quickAmount);
                             }
 
@@ -336,7 +336,6 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
 
     private List<SettingInfoBean> handleSettingData(SettingAllDataBean data) {
         LanguageHelper helper = new LanguageHelper(getBaseActivity());
-        setChipsMap(data.getChipSetChoose());
         quickAmount = data.getAccamount() + "";
         List<SettingInfoBean> beanList = new ArrayList<>();
         SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.login_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName(), 0, 0, 0, 0, 0, 0);
@@ -383,13 +382,13 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
     private void chipClick(View v) {
         ImageView imageView = (ImageView) v;
         int chipSize = (int) imageView.getTag();
-        boolean status = chipStatusMap.get(chipSize);
-        chipStatusMap.put(chipSize, !status);
+        boolean status = AfbUtils.getChipStatusMap().get(chipSize);
+        AfbUtils.getChipStatusMap().put(chipSize, !status);
         setChipsBg(imageView, chipSize);
     }
 
     private void setChipsBg(ImageView imageView, int chipSize) {
-        Boolean finalStatus = chipStatusMap.get(chipSize);
+        Boolean finalStatus = AfbUtils.getChipStatusMap().get(chipSize);
         if (finalStatus != null && finalStatus) {
             imageView.setBackgroundResource(R.drawable.shape_chip);
         } else {
@@ -433,7 +432,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
     String TAG = "SettingFragment";
 
     private String getChooseChips() {
-        Iterator<Map.Entry<Integer, Boolean>> iterator = chipStatusMap.entrySet().iterator();
+        Iterator<Map.Entry<Integer, Boolean>> iterator = AfbUtils.getChipStatusMap().entrySet().iterator();
         StringBuilder stringBuilder = new StringBuilder();
         while (iterator.hasNext()) {
             Map.Entry<Integer, Boolean> next = iterator.next();
@@ -446,27 +445,6 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
         if (string.length() > 1)
             return string.substring(0, string.length() - 1);
         return "";
-    }
-
-    protected void setChipsMap(String chips) {
-        chipStatusMap = new HashMap<>();
-        chipStatusMap.put(1, false);
-        chipStatusMap.put(10, false);
-        chipStatusMap.put(50, false);
-        chipStatusMap.put(100, false);
-        chipStatusMap.put(500, false);
-        chipStatusMap.put(1000, false);
-        chipStatusMap.put(5000, false);
-        chipStatusMap.put(10000, false);
-        chipStatusMap.put(30000, false);
-        chipStatusMap.put(50000, false);
-        chipStatusMap.put(100000, false);
-        if (!StringUtils.isNull(chips)) {
-            String[] split = chips.split(",");
-            for (String s : split) {
-                chipStatusMap.put(Integer.valueOf(s), true);
-            }
-        }
     }
 
     @Override
@@ -494,8 +472,8 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
     }
 
     public boolean checkCanBack() {
-        if (chipStatusMap != null && !chipStatusMap.isEmpty()) {
-            Collection<Boolean> values = chipStatusMap.values();
+        if (AfbUtils.getChipStatusMap() != null && !AfbUtils.getChipStatusMap().isEmpty()) {
+            Collection<Boolean> values = AfbUtils.getChipStatusMap().values();
             int n = 0;
             for (Boolean value : values) {
                 if (value)

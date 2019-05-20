@@ -89,11 +89,12 @@ public class LanguagePresenter extends BaseSwitchPresenter {
             public void onBack(String data) throws JSONException {
                 SettingAllDataBean settingAllDataBean = gson.fromJson(data, SettingAllDataBean.class);
                 ((AfbApplication) baseContext.getBaseActivity().getApplication()).setSettingAllDataBean(settingAllDataBean);
+                ((AfbApplication) baseContext.getBaseActivity().getApplication()).setQuickAmount(settingAllDataBean.getAccamount() + "");
+                AfbUtils.setChipStatusMap(settingAllDataBean.getChipSetChoose());
                 back.onBack(settingAllDataBean);
             }
         });
     }
-
 
     public void getSkipGd88Data() {
         Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
