@@ -427,10 +427,10 @@
     <string name="howtouse_title1_1">选择产品与时间区</string>
     <string name="howtouse_content1_1">1. 先选择运动游戏类别</string>
     <string name="howtouse_content1_2">2. 选择今日/滚球/早盘/日期 的联赛 后列所有场次</string>
-    <string name="howtouse_title2_1">选择联赛</string>
+    <string name="select_league">选择联赛</string>
     <string name="howtouse_content2_1">- 在选定的运动或游戏类别下显示所有联赛</string>
     <string name="howtouse_content2_2">- 选择想看的联赛</string>
-    <string name="howtouse_title3_1">注单</string>
+    <string name="bet_slip">注单</string>
     <string name="howtouse_content3_1">- 进入多注或混合过关的投注清单</string>
     <string name="howtouse_content3_2">- 显示多注或混合过关待投注的数量</string>
     <string name="howtouse_title4_1">我的最愛</string>
@@ -543,14 +543,14 @@
     <string name="fh_myanmarou">半场缅大小</string>
     <string name="ft_myanmarhdp">全场缅甸让球</string>
     <string name="ft_myanmarou">全场缅大小</string>
-    <string name="better_odds">接收好的赔率</string>
-    <string name="quick_bet_amount">快速下注金额</string>
-    <string name="customise">自定义</string>
-    <string name="auto_refresh">自动刷新</string>
-    <string name="default_sort">排序</string>
-    <string name="market_type">盘口显示</string>
-    <string name="score_sound">进球声音</string>
-    <string name="chip_set">筹码选择</string>
-    <string name="sound">Sound</string>
-    <string name="no_less_5_no_more_8">筹码数不能低于5，不能高于8</string>
+    <string name="better_odds"> 接收好的赔率</string>
+    <string name="quick_bet_amount"> 快速下注金额</string>
+    <string name="customise"> 自定义</string>
+    <string name="auto_refresh"> 自动刷新</string>
+    <string name="default_sort"> 排序</string>
+    <string name="market_type"> 盘口显示</string>
+    <string name="score_sound"> 进球声音</string>
+    <string name="chip_set"> 筹码选择</string>
+    <string name="sound"> Sound</string>
+    <string name="no_less_5_no_more_8"> 筹码数不能低于5，不能高于8</string>
 </resources>

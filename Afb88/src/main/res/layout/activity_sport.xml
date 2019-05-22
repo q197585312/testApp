@@ -92,7 +92,7 @@
                         android:drawableLeft="@mipmap/sport_game_search_green"
                         android:drawablePadding="5dp"
                         android:textColorHint="#e6e6e6"
-                        android:hint="@string/Select_League"
+                        android:hint="@string/select_league"
                         android:singleLine="true"
                         android:textSize="13.5sp" />
 
@@ -323,7 +323,7 @@
                     android:drawableTop="@mipmap/sport_bottom_teb_shopping_null"
                     android:gravity="center"
                     android:onClick="clickOrder"
-                    android:text="@string/Bet_Slip"
+                    android:text="@string/bet_slip"
                     android:textColor="@color/grey_dark"
                     android:textSize="12sp"
                     android:textStyle="bold" />

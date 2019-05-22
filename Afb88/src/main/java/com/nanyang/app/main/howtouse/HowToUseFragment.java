@@ -170,7 +170,7 @@ public class HowToUseFragment extends BaseMoreFragment {
         //选择联赛
         HowToUse htu2 = new HowToUse();
         htu2.setImg(R.mipmap.howtouse_step_2);
-        htu2.setTitle(getString(R.string.howtouse_title2_1));
+        htu2.setTitle(getString(R.string.select_league));
         List<String> list2 = new ArrayList<>();
         list2.add(getString(R.string.howtouse_content2_1));
         list2.add(getString(R.string.howtouse_content2_2));
@@ -179,7 +179,7 @@ public class HowToUseFragment extends BaseMoreFragment {
         //注单
         HowToUse htu3 = new HowToUse();
         htu3.setImg(R.mipmap.howtouse_step_3);
-        htu3.setTitle(getString(R.string.howtouse_title3_1));
+        htu3.setTitle(getString(R.string.bet_slip));
         List<String> list3 = new ArrayList<>();
         list3.add(getString(R.string.howtouse_content3_1));
         list3.add(getString(R.string.howtouse_content3_2));

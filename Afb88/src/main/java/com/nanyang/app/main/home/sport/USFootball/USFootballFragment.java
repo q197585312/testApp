@@ -32,9 +32,6 @@ public class USFootballFragment extends BaseSportFragment {
             case "Early":
                 switchState(new USFootballEarlyState(this));
                 break;
-            case "OutRight":
-                switchState(new USFootballOutRightState(this));
-                break;
             default:
                 switchState(new USFootballTodayState(this));
                 break;

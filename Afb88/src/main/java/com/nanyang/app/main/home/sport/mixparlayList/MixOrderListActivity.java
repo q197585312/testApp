@@ -1,8 +1,6 @@
 package com.nanyang.app.main.home.sport.mixparlayList;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.widget.LinearLayoutManager;
 import android.text.Editable;
 import android.text.Spannable;
@@ -23,7 +21,6 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
@@ -355,11 +352,11 @@ public class MixOrderListActivity extends BaseToolbarActivity<MixOrderListPresen
             state = item.getHome() + "(" + mContext.getString(R.string.draw) + ")";
         else if (b.startsWith("even") || b.startsWith("odd")) {
             if (isHome) {
-                state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.odd) + ")";
+                state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.ODD) + ")";
                 style = new SpannableStringBuilder(state);
                 style.setSpan(new ForegroundColorSpan(getResources().getColor(R.color.red_title)), state.indexOf("("), state.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             } else {
-                state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.even) + ")";
+                state = "OE:" + item.getHome() + "(" + mContext.getString(R.string.EVEN) + ")";
             }
 
         } else if (b.startsWith("dc")) {

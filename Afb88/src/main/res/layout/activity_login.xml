@@ -113,6 +113,7 @@
                 android:clickable="false" />
 
             <TextView
+                android:id="@+id/tv_remember_me"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"

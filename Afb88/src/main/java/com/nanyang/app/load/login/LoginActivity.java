@@ -50,6 +50,8 @@ import cn.finalteam.toolsfinal.AppCacheUtils;
 public class LoginActivity extends BaseActivity<LoginPresenter> {
 
 
+    @Bind(R.id.tv_remember_me)
+    TextView tv_remember_me;
     @Bind(R.id.edt_login_username)
     EditText edtLoginUsername;
     @Bind(R.id.edt_login_password)
@@ -184,7 +186,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
         btnLoginLogin.setText(getString(R.string.Login));
-//        tvLoginForget.setText(getString(R.string.Forget_password));
+        tv_remember_me.setText(getString(R.string.remember_me));
         loginLanguage.setText(getString(R.string.language_switch));
 
     }

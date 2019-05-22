@@ -278,10 +278,7 @@ public class AfbUtils {
         String[] cookie = sb.toString().split(";");
         for (int i = 0; i < cookie.length; i++) {
             AfbUtils.synCookies(context, url, cookie[i]);
-//                cookieManager.setCookie(url, cookie[i]);// cookies是在HttpClient中获得的cookie
         }
-//            CookieSyncManager.getInstance().sync();
-
         webView.loadUrl(url);
     }
 
@@ -354,7 +351,6 @@ public class AfbUtils {
         BaseSportFragment muayThaiFragment = new MuayThaiFragment();
         BaseMoreFragment huayThaiFragment = new HuayThaiFragment();
 
-
         BaseSportFragment myanmarFragment = new MyanmarFragment();
         BaseSportFragment europeFragment = new EuropeFragment();
         BaseSportFragment usFootballFragment = new USFootballFragment();
@@ -413,7 +409,7 @@ public class AfbUtils {
         beanHashMap.put("7", new SportIdBean("7", "4", R.string.Financial, "Financial", SportActivity.class, financialFragment, Color.BLACK, R.mipmap.financial));
 
         beanHashMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK, R.mipmap.rugby));
-        beanHashMap.put("11", new SportIdBean("11", "11", R.string.Snooker, "Snooker", SportActivity.class, poolSnookerFragment, Color.BLACK, R.mipmap.cricket));
+        beanHashMap.put("11", new SportIdBean("11", "11", R.string.Pool, "Snooker", SportActivity.class, poolSnookerFragment, Color.BLACK, R.mipmap.cricket));
         beanHashMap.put("57", new SportIdBean("57", "22", R.string.Table_Tennis, "Table_Tennis", SportActivity.class, tableTennisFragment, Color.BLACK, R.mipmap.table_tennis));
         beanHashMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK, R.mipmap.volleyball));
         beanHashMap.put("23", new SportIdBean("23", "24", R.string.Volleyball, "Volleyball", SportActivity.class, volleyballFragment, Color.BLACK, R.mipmap.volleyball));
@@ -435,7 +431,7 @@ public class AfbUtils {
         othersMap.put("12", new SportIdBean("12", "8", R.string.US_Football, "US_Football", SportActivity.class, usFootballFragment, Color.BLACK, R.mipmap.volleyball));
         othersMap.put("29", new SportIdBean("29", "9", R.string.Baseball, "Baseball", SportActivity.class, baseballFragment, Color.BLACK, R.mipmap.baseball));
         othersMap.put("14", new SportIdBean("14", "10", R.string.IceHockey, "IceHockey", SportActivity.class, iceHockeyFragment, Color.BLACK, R.mipmap.ice_hockey));
-        othersMap.put("11", new SportIdBean("11", "11", R.string.Snooker, "Snooker", SportActivity.class, poolSnookerFragment, Color.BLACK, R.mipmap.cricket));
+        othersMap.put("11", new SportIdBean("11", "11", R.string.Pool, "Snooker", SportActivity.class, poolSnookerFragment, Color.BLACK, R.mipmap.cricket));
         othersMap.put("17", new SportIdBean("17", "12", R.string.Rugby, "Rugby", SportActivity.class, rugbyFragment, Color.BLACK, R.mipmap.rugby));
         othersMap.put("19", new SportIdBean("19", "13", R.string.Darts, "Darts", SportActivity.class, dartsFragment, Color.BLACK, R.mipmap.darts));
         othersMap.put("16", new SportIdBean("16", "14", R.string.Boxing, "Boxing", SportActivity.class, boxingFragment, Color.BLACK, R.mipmap.boxing));
@@ -457,9 +453,9 @@ public class AfbUtils {
         othersMap.put("103", new SportIdBean("103", "30", R.string.WinterSport, "WinterSport", SportActivity.class, winterSportFragment, Color.BLACK, R.mipmap.ice_sport));
         othersMap.put("105", new SportIdBean("105", "31", R.string.Squash, "Squash", SportActivity.class, squashFragment, Color.BLACK, R.mipmap.financial));
         if (!AppConstant.IS_AGENT) {
-            othersMap.put("33_18", new SportIdBean("33_18", "33_18", R.string.Thai_game1, "Thai_1d", SportActivity.class, soccerFragment, Color.RED, R.mipmap.financial));
-            othersMap.put("33_19", new SportIdBean("33_19", "33_19", R.string.Thai_game2, "Thai_2d", SportActivity.class, soccerFragment, Color.RED, R.mipmap.financial));
-            othersMap.put("33_20", new SportIdBean("33_20", "33_20", R.string.Thai_game3, "Thai_3d", SportActivity.class, soccerFragment, Color.RED, R.mipmap.financial));
+            othersMap.put("33_18", new SportIdBean("33_18", "33_18", R.string.game1d, "Thai_1d", SportActivity.class, soccerFragment, Color.RED, R.mipmap.financial));
+            othersMap.put("33_19", new SportIdBean("33_19", "33_19", R.string.game2d, "Thai_2d", SportActivity.class, soccerFragment, Color.RED, R.mipmap.financial));
+            othersMap.put("33_20", new SportIdBean("33_20", "33_20", R.string.game3d, "Thai_3d", SportActivity.class, soccerFragment, Color.RED, R.mipmap.financial));
         }
         othersMap.put("108", new SportIdBean("108", "108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.BLACK, R.mipmap.financial));
 
@@ -583,7 +579,6 @@ public class AfbUtils {
 
         }
         return outRightG;
-
     }
 
     @NonNull

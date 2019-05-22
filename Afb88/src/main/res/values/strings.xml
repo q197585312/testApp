@@ -62,7 +62,7 @@
     <string name="loading">Loading</string>
     <string name="win">Win</string>
     <string name="draw">Draw</string>
-    <string name="odd">Odd</string>
+    <string name="odd">@string/ODD</string>
     <string name="even">Even</string>
     <string name="double_chance">Double chance</string>
     <string name="x1">X1</string>
@@ -399,8 +399,7 @@
     <string name="welcome">WELCOME</string>
     <string name="language_switch">ENGLISH</string>
     <string name="gd88_casino">gd88 casino</string>
-    <string name="basketball">Basketball</string>
-    <string name="Snooker">Snooker</string>
+
     <string name="my_account">My Account</string>
     <string name="messages">Messages</string>
     <string name="contact">Contact Us</string>
@@ -428,10 +427,10 @@
     <string name="howtouse_title1_1">Select Product and Market</string>
     <string name="howtouse_content1_1">1. First choose Sports / Game Type</string>
     <string name="howtouse_content1_2">2. Then choose Today / Live / Early / Date to display all leagues.</string>
-    <string name="howtouse_title2_1">Select League</string>
+    <string name="select_league">Select League</string>
     <string name="howtouse_content2_1">- This function lists all the leagues under Sports / Game Type selected</string>
     <string name="howtouse_content2_2">- Tap on one or more leagues you prefer to show the matches and odds</string>
-    <string name="howtouse_title3_1">Bet Slip</string>
+    <string name="bet_slip">Bet Slip</string>
     <string name="howtouse_content3_1">- This function is only enabled when you have Multi Bets or Mix Parlay</string>
     <string name="howtouse_content3_2">- Tap on the icon above to display all the Multi Bet and Mix Parlay bet ticket combinations</string>
     <string name="howtouse_title4_1">MY FAVORITES</string>
@@ -554,4 +553,5 @@
     <string name="chip_set">Chip Set</string>
     <string name="sound">Sound</string>
     <string name="no_less_5_no_more_8">No less than five chips and no more than 8 chips</string>
+    <string name="Select_League1" />
 </resources>

@@ -28,7 +28,6 @@ import java.util.List;
  */
 
 public class SoccerEarlyState extends SoccerCommonState {
-    private MenuItemInfo selectedDateInfo= new MenuItemInfo(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.all), "");;
 
     public SoccerEarlyState(SportContract.View baseView) {
         super(baseView);
@@ -95,38 +94,6 @@ public class SoccerEarlyState extends SoccerCommonState {
         }
     }
 
-    /*@Override
-    protected List<TableSportInfo<SoccerCommonInfo>> filterChildData(List<TableSportInfo<SoccerCommonInfo>> allData) {
-        List<TableSportInfo<SoccerCommonInfo>> tableSportInfos = super.filterChildData(allData);
-        List<TableSportInfo<SoccerCommonInfo>> tableDateInfos =new ArrayList<>();
-        if (selectedDateInfo != null) {//挑选日期
-            if(selectedDateInfo.getRes()==2){//all
-                return tableSportInfos;
-            }
-            Date date = TimeUtils.format2Date(selectedDateInfo.getText(), "yyyy-MM-dd");
-            for (TableSportInfo<SoccerCommonInfo> item : tableSportInfos) {
-                List<SoccerCommonInfo> mb=new ArrayList<>();
-                for (SoccerCommonInfo bean : item.getRows()) {
-                    Date dateMy = TimeUtils.format2Date(bean.getWorkingDate(), "MM/dd/yyyy");
-                    if(dateMy==null)
-                        continue;
-                    if (selectedDateInfo.getRes() == 1) {
-                        if( dateMy.getTime()-date.getTime()>0){
-                            mb.add(bean);
-                        }
-                    }else if(selectedDateInfo.getRes() == 0){
-                        if( dateMy.getTime()==date.getTime()){
-                            mb.add(bean);
-                        }
-                    }
-                }
-                if(mb.size()>0){
-                    tableDateInfos.add(new TableSportInfo<SoccerCommonInfo>(item.getLeagueBean(),mb));
-                }
-            }
-        }
-        return tableDateInfos;
-    }*/
 
     private void showDateChoicePop() {
         BasePopupWindow popChoice = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), new View(getBaseView().getIBaseContext().getBaseActivity()), 800, LinearLayout.LayoutParams.WRAP_CONTENT) {
@@ -192,9 +159,7 @@ public class SoccerEarlyState extends SoccerCommonState {
     }
 
     private void filterDateData(MenuItemInfo item) {
-        //http://main55.afb88.com/_View/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=995449827&wd=2017-04-06&ia=0&LID=&_=1491446332397
-        //http://main55.afb88.com/_View/RMOddsGen1.ashx?ot=e&ov=0&mt=0&tf=2&TFStatus=0&update=false&r=1524118851&wd=2017-04-11&ia=1&LID=&_=1491446733213
-        this.selectedDateInfo=item;
+//        this.selectedDateInfo=item;
         refresh();
 
     }
