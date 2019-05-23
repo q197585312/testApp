@@ -58,8 +58,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="right"
-        android:text="0fdasfdasfsaf1"
         android:singleLine="true"
+        android:text="0fdasfdasfsaf1"
         android:textColor="@color/black"
         android:textSize="13sp" />
 
@@ -72,56 +72,62 @@
             android:id="@+id/tv_match_at1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:singleLine="true"
             android:gravity="right"
+            android:singleLine="true"
             android:text="fsd"
             android:textColor="@color/black"
             android:textSize="13sp" />
+
         <TextView
             android:id="@+id/tv_match_at_ft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:singleLine="true"
             android:gravity="right"
+            android:singleLine="true"
             android:text="fsd"
             android:textColor="@color/black"
             android:textSize="13sp" />
+
         <TextView
+            android:id="@+id/tv_brackets_left"
             android:layout_width="wrap_content"
-            android:textSize="13sp"
-            android:textColor="@color/black"
+            android:layout_height="wrap_content"
             android:text=" ("
-            android:layout_height="wrap_content" />
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
         <TextView
             android:id="@+id/tv_match_at2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:singleLine="true"
-            android:gravity="right"
             android:text="0fdasfdasfsaf1"
             android:textColor="@color/black"
             android:textSize="13sp" />
+
         <TextView
+            android:id="@+id/tv_brackets_right"
             android:layout_width="wrap_content"
-            android:textSize="13sp"
-            android:textColor="@color/black"
+            android:layout_height="wrap_content"
             android:text=") @"
-            android:layout_height="wrap_content" />
+            android:textColor="@color/black"
+            android:textSize="13sp" />
+
         <TextView
-            android:singleLine="true"
             android:id="@+id/tv_match_at3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="right"
+            android:singleLine="true"
             android:text="0fdasfdasfsaf1"
             android:textColor="@color/black"
             android:textSize="13sp" />
+
         <TextView
             android:id="@+id/tv_match_at4"
             android:layout_width="wrap_content"
-            android:singleLine="true"
             android:layout_height="wrap_content"
             android:gravity="right"
+            android:singleLine="true"
             android:text="0fdasfdasfsaf1"
             android:textColor="@color/black"
             android:textSize="13sp" />
@@ -129,10 +135,9 @@
 
     <TextView
         android:id="@+id/tv_match_grade"
-        android:singleLine="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="right"
+        android:singleLine="true"
         android:text="0fdasfdasfsaf1"
         android:textColor="@color/black"
         android:textSize="13sp" />

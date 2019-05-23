@@ -246,6 +246,24 @@ public class AfbUtils {
         return style;
     }
 
+    public static SpannableStringBuilder setColorStyle(String str, int color) {
+        SpannableStringBuilder style = new SpannableStringBuilder(str);
+        String[] split = str.split("\n");
+        String a = "";
+        for (int i = 0; i < split.length; i++) {
+            a += split[i];
+            if (i != split.length - 1) {
+                a += "i" + i;
+            }
+        }
+        int startIndex = a.indexOf("i0");
+        int mindIndex = a.indexOf("i1");
+        int endIndex = a.indexOf("i2");
+        style.setSpan(new ForegroundColorSpan(color), 0, startIndex, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        style.setSpan(new ForegroundColorSpan(color), mindIndex, endIndex - 1, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        return style;
+    }
+
     public static void synCookies(Context context, WebView webView, String url) {
         WebSettings webSettings = webView.getSettings();
         //开启javascript
