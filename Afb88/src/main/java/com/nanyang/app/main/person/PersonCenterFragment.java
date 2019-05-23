@@ -135,7 +135,6 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                                 viewById.setVisibility(View.VISIBLE);
                             } else {
                                 ((BaseToolbarActivity) getBaseActivity()).getApp().setQuickAmount(quickAmount);
-                                value.setText(quickAmount);
                                 viewById.setVisibility(View.GONE);
                                 presenter.saveNickName(quickAmount, new LanguagePresenter.CallBack<String>() {
                                     @Override
@@ -143,6 +142,7 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                                         if (data.contains("ok")) {
                                             ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().setNickNameshow(quickAmount);
                                             closePopupWindow();
+                                            value.setText(quickAmount);
                                         } else {
                                             viewById.setVisibility(View.VISIBLE);
                                             JSONObject jsonObject = new JSONObject(data);
