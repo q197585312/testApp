@@ -258,7 +258,7 @@ public class BetPop extends BasePopupWindow {
                 new PopChipBean(R.mipmap.chip30000, 30000), new PopChipBean(R.mipmap.chip50000, 50000), new PopChipBean(R.mipmap.chip100000, 100000));
         List<PopChipBean> beanList = new ArrayList<>();
         for (PopChipBean popChipBean : allList) {
-            if(chipStatusMap.get(popChipBean.getBetChip())){
+            if (chipStatusMap.get(popChipBean.getBetChip())) {
                 beanList.add(popChipBean);
             }
         }
@@ -426,7 +426,7 @@ public class BetPop extends BasePopupWindow {
         }
         stopUpdateOdds();
         updateOdds(4000);
-      ;
+        ;
     }
 
     BaseRecyclerAdapter<AfbClickBetBean> contentAdapter;
@@ -548,7 +548,13 @@ public class BetPop extends BasePopupWindow {
     }
 
     public void setEditNum() {
-        betAmountEdt.setText(afbApplication.getQuickAmount());
+        String quickAmount = afbApplication.getQuickAmount();
+        if (quickAmount.equals("0"))
+            betAmountEdt.setText("");
+        else {
+            betAmountEdt.setText(quickAmount);
+        }
+
     }
 
     private List<ClearanceBetAmountBean> clearanceBetAmountBeenList;
@@ -673,7 +679,7 @@ public class BetPop extends BasePopupWindow {
 //        activity.hintPopInput(betAmountEdt);
         llBetFailedHint.setVisibility(View.GONE);
         stopUpdateOdds();
-        betAmountEdt.setText("0");
+        betAmountEdt.setText("");
         isNeedInitWeb = true;
         for (ObjectAnimator objectAnimator : objectAnimatorMap.values()) {
             if (objectAnimator != null) {

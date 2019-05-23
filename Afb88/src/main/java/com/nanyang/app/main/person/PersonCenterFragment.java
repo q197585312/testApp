@@ -129,7 +129,7 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
 
                         @Override
                         protected void onClickSure(View v) {
-                            String quickAmount = getChooseMessage().getText().toString().trim();
+                            final String quickAmount = getChooseMessage().getText().toString().trim();
                             if (quickAmount.length() < 5 || quickAmount.length() > 15) {
                                 viewById.setText(R.string.nick_name_check_tips);
                                 viewById.setVisibility(View.VISIBLE);
@@ -140,9 +140,10 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                                 presenter.saveNickName(quickAmount, new LanguagePresenter.CallBack<String>() {
                                     @Override
                                     public void onBack(String data) throws JSONException {
-                                        if(data.contains("ok"))
+                                        if (data.contains("ok")) {
+                                            ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().setNickNameshow(quickAmount);
                                             closePopupWindow();
-                                        else {
+                                        } else {
                                             viewById.setVisibility(View.VISIBLE);
                                             JSONObject jsonObject = new JSONObject(data);
                                             viewById.setText(jsonObject.optString("message"));
