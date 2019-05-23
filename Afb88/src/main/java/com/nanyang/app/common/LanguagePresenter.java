@@ -53,7 +53,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 public class LanguagePresenter extends BaseSwitchPresenter {
     IGetRefreshMenu iGetRefreshMenu;
-    SettingFragment settingFragment;
+
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -66,7 +66,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
         if (iBaseContext instanceof IGetRefreshMenu) {
             iGetRefreshMenu = (IGetRefreshMenu) iBaseContext;
         } else if (iBaseContext instanceof SettingFragment) {
-            settingFragment = (SettingFragment) iBaseContext;
+
         } else {
             iGetRefreshMenu = null;
         }

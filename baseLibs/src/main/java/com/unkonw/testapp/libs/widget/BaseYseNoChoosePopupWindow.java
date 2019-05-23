@@ -38,13 +38,19 @@ public abstract class BaseYseNoChoosePopupWindow extends BasePopupWindow {
         chooseSureTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                clickSure(v);
-                closePopupWindow();
+                onClickSure(v);
             }
         });
     }
 
-    protected abstract void clickSure(View v);
+    protected  void onClickSure(View v){
+        clickSure(v);
+        closePopupWindow();
+    }
+
+    protected void clickSure(View v) {
+
+    }
 
     protected void clickCancel(View v) {
         closePopupWindow();

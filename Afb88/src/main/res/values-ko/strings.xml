@@ -428,4 +428,6 @@
     <string name="chip_set">  칩 선택</string>
     <string name="sound">  소리</string>
     <string name="no_less_5_no_more_8">칩 수는 5보다 작을 수없고 8보다 클 수 없습니다.</string>
+    <string name="nick_name_set_description">* You can set nickname for display and login (5 to 15 alphabets or digits). Please note, you can set this nickname only once. You cannot modify or cancel it once it’s been set.</string>
+    <string name="nick_name_check_tips">*You can set display and login nicknames (5-15 digits or letters)</string>
 </resources>

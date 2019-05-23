@@ -553,4 +553,6 @@
     <string name="chip_set"> 筹码选择</string>
     <string name="sound"> Sound</string>
     <string name="no_less_5_no_more_8"> 筹码数不能低于5，不能高于8</string>
+    <string name="nick_name_set_description">* You can set nickname for display and login (5 to 15 alphabets or digits). Please note, you can set this nickname only once. You cannot modify or cancel it once it’s been set.</string>
+    <string name="nick_name_check_tips">*You can set display and login nicknames (5-15 digits or letters)</string>
 </resources>

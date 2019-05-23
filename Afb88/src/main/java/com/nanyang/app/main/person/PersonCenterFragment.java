@@ -2,6 +2,7 @@ package com.nanyang.app.main.person;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,11 +10,17 @@ import android.widget.TextView;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.BetCenter.Bean.PersonCenter;
+import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +31,7 @@ import butterknife.Bind;
  * Created by 47184 on 2019/3/18.
  */
 
-public class PersonCenterFragment extends BaseMoreFragment {
+public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
 
     @Bind(R.id.person_center_view)
     RecyclerView rcContent;
@@ -48,8 +55,9 @@ public class PersonCenterFragment extends BaseMoreFragment {
     private List<PersonCenter> getCurrentData() {
         List<PersonCenter> list = new ArrayList<>();
         PersonalInfo person = aty.getApp().getUser();
+        SettingAllDataBean data = aty.getApp().getSettingAllDataBean();
         PersonCenter pc = new PersonCenter(getString(R.string.login_name), person.getLoginName());
-        PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name), "");
+        PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name), data.getNickNameshow());
         PersonCenter pc1 = new PersonCenter(getString(R.string.currency), person.getCurCode2());
         PersonCenter pc2 = new PersonCenter(getString(R.string.cash_balance), person.getBalances());
         PersonCenter pc3 = new PersonCenter(getString(R.string.outstanding_txn), person.getEtotalstanding());
@@ -76,13 +84,14 @@ public class PersonCenterFragment extends BaseMoreFragment {
     public void initData() {
         super.initData();
         setBackTitle(getString(R.string.my_account));
+        createPresenter(new PersonPresenter(this));
         aty = (BaseToolbarActivity) getActivity();
         LinearLayoutManager llm = new LinearLayoutManager(mContext);
         rcContent.setLayoutManager(llm);
         adapter = new BaseRecyclerAdapter<PersonCenter>(mContext, getCurrentData(), R.layout.item_person_center) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, PersonCenter item) {
-                View view = holder.getView(R.id.person_view_lin);
+                final View view = holder.getView(R.id.person_view_lin);
                 if (item.getName().equals(getString(R.string.nike_name)) || item.getName().equals(getString(R.string.given_credit))) {
                     view.setVisibility(View.VISIBLE);
                 } else {
@@ -90,19 +99,73 @@ public class PersonCenterFragment extends BaseMoreFragment {
                 }
                 TextView name = holder.getTextView(R.id.person_name);
                 name.setText(item.getName());
-                TextView value = holder.getTextView(R.id.person_value);
+                final TextView value = holder.getTextView(R.id.person_value);
                 value.setText(item.getValue());
                 ImageView iv = holder.getImageView(R.id.person_img);
-                if (item.getName().equals(getString(R.string.nike_name))) {
+             /*   if (item.getName().equals(getString(R.string.nike_name))) {
                     value.setVisibility(View.GONE);
                     iv.setImageResource(R.mipmap.myacount);
                     iv.setVisibility(View.VISIBLE);
                 } else {
-                    iv.setVisibility(View.GONE);
-                    value.setVisibility(View.VISIBLE);
-                }
+
+                }*/
+                iv.setVisibility(View.GONE);
+                value.setVisibility(View.VISIBLE);
             }
         };
+        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<PersonCenter>() {
+            @Override
+            public void onItemClick(View view, PersonCenter item, int position) {
+                if (position == 1) {
+                    final TextView value = view.findViewById(R.id.person_value);
+                    BaseYseNoChoosePopupWindow baseYseNoChoosePopupWindow = new BaseYseNoChoosePopupWindow(mContext, value) {
+                        TextView viewById;
+
+                        @Override
+                        protected void initView(View view) {
+                            super.initView(view);
+                            viewById = view.findViewById(R.id.tv_nick_name_tips);
+                        }
+
+                        @Override
+                        protected void onClickSure(View v) {
+                            String quickAmount = getChooseMessage().getText().toString().trim();
+                            if (quickAmount.length() < 5 || quickAmount.length() > 15) {
+                                viewById.setText(R.string.nick_name_check_tips);
+                                viewById.setVisibility(View.VISIBLE);
+                            } else {
+                                ((BaseToolbarActivity) getBaseActivity()).getApp().setQuickAmount(quickAmount);
+                                value.setText(quickAmount);
+                                viewById.setVisibility(View.GONE);
+                                presenter.saveNickName(quickAmount, new LanguagePresenter.CallBack<String>() {
+                                    @Override
+                                    public void onBack(String data) throws JSONException {
+                                        if(data.contains("ok"))
+                                            closePopupWindow();
+                                        else {
+                                            viewById.setVisibility(View.VISIBLE);
+                                            JSONObject jsonObject = new JSONObject(data);
+                                            viewById.setText(jsonObject.optString("message"));
+                                        }
+                                    }
+                                });
+                            }
+
+
+                        }
+
+                        @Override
+                        protected int onSetLayoutRes() {
+                            return R.layout.popupwindow_nick_name_edit_yes_no;
+                        }
+                    };
+                    baseYseNoChoosePopupWindow.getChooseMessage().setText(value.getText());
+                    ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreated(baseYseNoChoosePopupWindow, Gravity.CENTER);
+                }
+
+            }
+        });
+
         rcContent.setAdapter(adapter);
     }
 }
