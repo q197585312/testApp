@@ -17,7 +17,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
@@ -72,7 +71,6 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
         createPresenter(new LanguagePresenter(this));
         toolbar.setNavigationIcon(null);
 
-        initUserData();
         afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
         afbDrawerViewHolder.initDefaultFragment(homeFragment);
         afbDrawerViewHolder.switchFragment(homeFragment);
@@ -96,10 +94,6 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
     @Override
     protected void updateBalanceTv(String allData) {
         tvToolbarRight.setText(getString(R.string.welcome) + " " + getApp().getUser().getLoginName());
-    }
-
-    private void initUserData() {
-        ((AfbApplication) mContext.getApplication()).getUser().getBalances();
     }
 
     @Override

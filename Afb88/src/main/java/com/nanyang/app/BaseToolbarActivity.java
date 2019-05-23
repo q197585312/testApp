@@ -224,7 +224,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
                 personalInfo.setPassword(((AfbApplication) getBaseActivity().getApplication()).getUser().getPassword());
                 ((AfbApplication) getBaseActivity().getApplication()).setUser(personalInfo);
-                updateBalanceTv(personalInfo.getBalances());
+                updateBalanceTv(personalInfo.getCredit2());
             }
         });
     }
