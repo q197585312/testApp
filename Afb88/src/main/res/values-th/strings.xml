@@ -151,7 +151,7 @@
     <string name="Common_Game"> เกม </string>
     <string name="E_Sport">อิเล็กทรอนิกส์กีฬา </string>
     <string name="Specials_4D">4D เกม </string>
-    <string name="OutRight">ทายผลทีมชนะ </string>
+    <string name="OutRight">ผลชนะเลิศ </string>
     <string name="MixParlay">โปรโมชั่น </string>
     <string name="selected_all">เลือกทั้งหมด </string>
     <string name="reverse_selection">ผกผัน </string>
@@ -420,4 +420,5 @@
     <string name="no_less_5_no_more_8">จำนวนชิปไม่สามารถต่ำกว่า 5 และไม่สามารถสูงกว่า 8</string>
     <string name="nick_name_set_description">* You can set nickname for display and login (5 to 15 alphabets or digits). Please note, you can set this nickname only once. You cannot modify or cancel it once it’s been set.</string>
     <string name="nick_name_check_tips">*You can set display and login nicknames (5-15 digits or letters)</string>
+    <string name="Normal">งั้น ๆ แหละ</string>
 </resources>

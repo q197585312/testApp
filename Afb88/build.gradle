@@ -51,7 +51,7 @@ android {
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '1.76'
+            versionName '1.78'
             buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.com/"' //app专用服务器
             buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
 //            buildConfigField "String", "HOST_AFB", '"https://www.afb1188.com/"'//h5正式机
@@ -62,7 +62,7 @@ android {
         i1bet99 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet99"]
             applicationId 'com.nanyang.i1bet99'
-            versionName '1.03'
+            versionName '1.04'
             buildConfigField "String", "HOST_AFB", '"https://www.i1bet99.com/"'
             buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/i1bet99.php"'

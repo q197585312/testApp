@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_bet_rc_bg"
-            android:padding="5dp"></android.support.v7.widget.RecyclerView>
+            android:padding="5dp"/>
 
         <LinearLayout
             android:id="@+id/ll_mix"

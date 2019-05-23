@@ -52,7 +52,7 @@
                 android:button="@null"
                 android:checked="true"
                 android:gravity="center"
-                android:text="@string/normal"
+                android:text="@string/Normal"
                 android:textColor="@color/color_green1" />
 
             <RadioButton

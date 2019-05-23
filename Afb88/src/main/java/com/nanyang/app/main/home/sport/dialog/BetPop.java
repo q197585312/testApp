@@ -426,7 +426,6 @@ public class BetPop extends BasePopupWindow {
         }
         stopUpdateOdds();
         updateOdds(4000);
-        ;
     }
 
     BaseRecyclerAdapter<AfbClickBetBean> contentAdapter;
