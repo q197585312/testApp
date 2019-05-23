@@ -55,24 +55,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         getStatementData();
     }
 
-    private List<StatementListDataBean> lastStatementList;
-
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void setSvContent(final StatementFirstBean statementFirstBean, List<StatementListDataBean> list) {
-        if (list.size() == 0) {
-            nscContent.setVisibility(View.GONE);
-            llNote.setVisibility(View.VISIBLE);
-        } else {
-            llNote.setVisibility(View.GONE);
-            nscContent.setVisibility(View.VISIBLE);
-        }
-        if (lastStatementList == null) {
-            lastStatementList = list;
-        } else {
-            if (lastStatementList.size() == list.size()) {
-                return;
-            }
-        }
         llContent.removeAllViews();
         for (int i = 0; i < list.size(); i++) {
             final StatementListDataBean bean = list.get(i);
@@ -330,6 +314,29 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvWl.setTextColor(Color.RED);
                 } else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
+                }
+                if (!TextUtils.isEmpty(index24) && (index24.startsWith("G") || index24.startsWith("E") || index24.startsWith("Y"))) {
+                    tvMatchVs.setVisibility(View.GONE);
+                    tvMatchAt1.setVisibility(View.GONE);
+                    tvMatchAtFt.setVisibility(View.GONE);
+                    TextView tvBracketsLeft = view.findViewById(R.id.tv_brackets_left);
+                    tvBracketsLeft.setVisibility(View.GONE);
+                    TextView tvBracketsRight = view.findViewById(R.id.tv_brackets_right);
+                    tvBracketsRight.setVisibility(View.GONE);
+                    tvMatchAt3.setVisibility(View.GONE);
+                    tvMatchAt4.setVisibility(View.GONE);
+                    tvMatchGrade.setVisibility(View.GONE);
+                    String casinoIndex25 = bean.getIndex25();
+                    String[] replace = casinoIndex25.split("</SPAN>");
+                    String a = "";
+                    for (int k = 0; k < replace.length; k++) {
+                        a += replace[k];
+                        if (k != replace.length - 1) {
+                            a += "\n";
+                        }
+                    }
+                    String ta = AfbUtils.delHTMLTag(a);
+                    tvMatchAt2.setText(AfbUtils.setColorStyle(ta, Color.BLUE));
                 }
             }
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
