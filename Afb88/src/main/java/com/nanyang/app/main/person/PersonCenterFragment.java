@@ -140,10 +140,10 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                                 presenter.saveNickName(quickAmount, new LanguagePresenter.CallBack<String>() {
                                     @Override
                                     public void onBack(String data) throws JSONException {
-                                        if(data.contains("ok"))
+                                        if (data.contains("ok")) {
                                             ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().setNickNameshow(quickAmount);
                                             closePopupWindow();
-                                        else {
+                                        } else {
                                             viewById.setVisibility(View.VISIBLE);
                                             JSONObject jsonObject = new JSONObject(data);
                                             viewById.setText(jsonObject.optString("message"));
