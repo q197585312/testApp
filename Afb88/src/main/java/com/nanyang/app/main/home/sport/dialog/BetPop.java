@@ -159,10 +159,11 @@ public class BetPop extends BasePopupWindow {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String amount = s.toString().trim();
+                String amount = s.toString().trim().replaceAll(",", "");
                 if (TextUtils.isEmpty(amount)) {
                     amount = "0";
                 }
+
                 double max;
                 if (list.size() > 1) {
                     AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
@@ -173,16 +174,17 @@ public class BetPop extends BasePopupWindow {
                 amount = amount.replaceAll(",", "");
                 if (Double.parseDouble(amount) > max) {
                     betAmountEdt.removeTextChangedListener(this);
-                    betAmountEdt.setText((int) max + "");
+                    betAmountEdt.setText(AfbUtils.addComma((int) max + "", betAmountEdt));
                     betAmountEdt.addTextChangedListener(this);
+                    amount = max + "";
+                } else if (!AfbUtils.touzi_ed_values22.equals(amount) && !TextUtils.isEmpty(s.toString().trim().replaceAll(",", ""))) {
+                    betAmountEdt.setText(AfbUtils.addComma(amount, betAmountEdt));
                 }
-                amount = betAmountEdt.getText().toString().toString();
-                if (TextUtils.isEmpty(amount)) {
-                    amount = "0";
-                }
+
                 double writeMoney = Double.parseDouble(amount);
                 double maxWin = countMaxPayout(writeMoney);
-                tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) maxWin, "0.00"),tvMaxWin));
+                tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) maxWin, "0.00"), tvMaxWin));
+
                 betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
             }
         });
@@ -418,25 +420,25 @@ public class BetPop extends BasePopupWindow {
             initBetChip();
         }
         tvCurrency.setText(afbApplication.getUser().getCurCode2());
-        betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getBalances(),betBalanceTv));
+        betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getBalances(), betBalanceTv));
         if (list.size() > 1) {
             tvDelete.setVisibility(View.VISIBLE);
             AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(list.get(0).getMatchLimit() + ""));
             betMaxWinTv.setText(betAfbList.getMinLimit());
-            betMaxBetTv.setText(AfbUtils.addComma(betAfbList.getMaxLimit(),betMaxBetTv));
+            betMaxBetTv.setText(AfbUtils.addComma(betAfbList.getMaxLimit(), betMaxBetTv));
         } else {
             tvDelete.setVisibility(View.GONE);
             AfbClickBetBean afbClickBetBean = list.get(0);
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(afbClickBetBean.getMatchLimit() + ""));
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
-            betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit()+"",betMaxBetTv) );
+            betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit() + "", betMaxBetTv));
         }
         ((BaseActivity) context).hideLoadingDialog();
 //        showInput();
         String writeMoney = betAmountEdt.getText().toString().trim();
         if (!TextUtils.isEmpty(writeMoney)) {
-            tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"),tvMaxWin));
+            tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"), tvMaxWin));
         }
         stopUpdateOdds();
         updateOdds(4000);
@@ -447,7 +449,8 @@ public class BetPop extends BasePopupWindow {
     private void initRcBetContent() {
         ViewGroup.LayoutParams layoutParams = rcBetContent.getLayoutParams();
         if (list.size() > 1) {
-            initMix();
+            if (!isRefresh)
+                initMix();
             llMix.setVisibility(View.VISIBLE);
             layoutParams.height = AfbUtils.dp2px(context, 62 * 2 + 5);
         } else {
