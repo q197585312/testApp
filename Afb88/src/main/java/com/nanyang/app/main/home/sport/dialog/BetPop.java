@@ -184,7 +184,6 @@ public class BetPop extends BasePopupWindow {
                 double writeMoney = Double.parseDouble(amount);
                 double maxWin = countMaxPayout(writeMoney);
                 tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) maxWin, "0.00"), tvMaxWin));
-
                 betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
             }
         });
@@ -319,7 +318,7 @@ public class BetPop extends BasePopupWindow {
 
     private void goBetting() {
         //http://www.afb1188.com/Bet/hBetSub.ashx?betType=1&oId=471838&odds=3.6&BTMD=S&amt=11&_=1543457323225
-        String s1 = betAmountEdt.getText().toString().trim();
+        String s1 = betAmountEdt.getText().toString().trim().replace(",","");
         if (!StringUtils.isEmpty(s1)) {
             String s = s1.replaceAll(",", "");
             double min = Double.parseDouble(betMaxWinTv.getText().toString());
@@ -436,7 +435,7 @@ public class BetPop extends BasePopupWindow {
         }
         ((BaseActivity) context).hideLoadingDialog();
 //        showInput();
-        String writeMoney = betAmountEdt.getText().toString().trim();
+        String writeMoney = betAmountEdt.getText().toString().trim().replace(",","");
         if (!TextUtils.isEmpty(writeMoney)) {
             tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"), tvMaxWin));
         }

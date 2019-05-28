@@ -687,6 +687,7 @@ public class AfbUtils {
     public static String addComma(String str, TextView edt) {
 
         touzi_ed_values22 = edt.getText().toString().trim().replaceAll(",", "");
+        str =str.trim().replaceAll(",", "");
 
         boolean neg = false;
         if (str.startsWith("-")) {  //处理负数
@@ -736,6 +737,7 @@ public class AfbUtils {
     }
 
     public static String scientificCountingToString(String scientificCounting) {
+        scientificCounting= scientificCounting.toString().replace(",","");
         BigDecimal bd = new BigDecimal(scientificCounting);
         String s = bd.toPlainString();
         DecimalFormat df = new DecimalFormat("#,###.00");
