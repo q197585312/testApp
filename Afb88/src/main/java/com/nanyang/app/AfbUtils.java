@@ -119,7 +119,7 @@ public class AfbUtils {
     private static final String REGEX_HTML = "<[^>]+>";
     private static Map<String, SportState> majorStateHashMap = new HashMap<>();
     private static List<MenuItemInfo> oddsTypeList;
-    private static HashMap<Integer, Boolean> chipStatusMap;
+    private static HashMap<String, Boolean> chipStatusMap;
 
     public static String delHTMLTag(String htmlStr) {
         // 过滤script标签
@@ -707,7 +707,7 @@ public class AfbUtils {
         if (neg) {
             sb.insert(0, '-');
         }
-        if (AppConstant.IS_AGENT)
+//        if (AppConstant.IS_AGENT)
             if (tail != null) {
                 sb.append(tail);
             }
@@ -922,26 +922,27 @@ public class AfbUtils {
 
     public static void setChipStatusMap(String chips) {
         chipStatusMap = new HashMap<>();
-        chipStatusMap.put(1, false);
-        chipStatusMap.put(10, false);
-        chipStatusMap.put(50, false);
-        chipStatusMap.put(100, false);
-        chipStatusMap.put(500, false);
-        chipStatusMap.put(1000, false);
-        chipStatusMap.put(5000, false);
-        chipStatusMap.put(10000, false);
-        chipStatusMap.put(30000, false);
-        chipStatusMap.put(50000, false);
-        chipStatusMap.put(100000, false);
+        chipStatusMap.put("1", false);
+        chipStatusMap.put("10", false);
+        chipStatusMap.put("50", false);
+        chipStatusMap.put("100", false);
+        chipStatusMap.put("500", false);
+        chipStatusMap.put("1000", false);
+        chipStatusMap.put("5000", false);
+        chipStatusMap.put("10000", false);
+        chipStatusMap.put("30000", false);
+        chipStatusMap.put("50000", false);
+        chipStatusMap.put("100000", false);
+        chipStatusMap.put("max", false);
         if (!StringUtils.isNull(chips)) {
             String[] split = chips.split(",");
             for (String s : split) {
-                chipStatusMap.put(Integer.valueOf(s), true);
+                chipStatusMap.put(s, true);
             }
         }
     }
 
-    public static HashMap<Integer, Boolean> getChipStatusMap() {
+    public static HashMap<String, Boolean> getChipStatusMap() {
         return chipStatusMap;
     }
 }

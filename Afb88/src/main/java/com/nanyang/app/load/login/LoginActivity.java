@@ -15,10 +15,12 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.Pop.PopChoiceLanguage;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
+import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
@@ -50,6 +52,8 @@ import cn.finalteam.toolsfinal.AppCacheUtils;
 public class LoginActivity extends BaseActivity<LoginPresenter> {
 
 
+    @Bind(R.id.tv_all_right)
+    TextView tv_all_right;
     @Bind(R.id.tv_remember_me)
     TextView tv_remember_me;
     @Bind(R.id.edt_login_username)
@@ -81,6 +85,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
 
         ButterKnife.bind(this);
         createPresenter(new LoginPresenter(this));
+        tv_all_right.setText(String.format(getString(R.string.copyright_2018_afb88_all_rights_reserved), DateUtils.getCurrentDate("yyyy"), BuildConfig.FLAVOR));
         edtLoginPassword.setOnKeyListener(onKeyListener);
         String password = AppCacheUtils.getInstance(this).getString("PASS_WORD") != null ? AppCacheUtils.getInstance(this).getString("PASS_WORD") : "";
         String userName = AppCacheUtils.getInstance(this).getString("USER_NAME") != null ? AppCacheUtils.getInstance(this).getString("USER_NAME") : "";

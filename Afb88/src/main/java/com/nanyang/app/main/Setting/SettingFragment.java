@@ -348,13 +348,14 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
         SettingInfoBean infoBean8 = new SettingInfoBean("1", getBaseActivity().getString(R.string.default_sort), data.getAccDefaultSorting()/*((BaseToolbarActivity) getBaseActivity()).getApp().getSort()*/ + "", 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean9 = new SettingInfoBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType(), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean10 = new SettingInfoBean("1", getBaseActivity().getString(R.string.score_sound), mContext.getString(R.string.sound) + data.getScoreSound(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean11 = new SettingInfoBean("3", getBaseActivity().getString(R.string.chip_set), "", 0, R.mipmap.chip5000, R.mipmap.chip10000, R.mipmap.chip30000, R.mipmap.chip50000, R.mipmap.chip100000);
+        SettingInfoBean infoBean11 = new SettingInfoBean("3", getBaseActivity().getString(R.string.chip_set), "",R.mipmap.chip5000, R.mipmap.chip10000, R.mipmap.chip30000, R.mipmap.chip50000, R.mipmap.chip100000,R.mipmap.chip_max);
         SettingInfoBean infoBean12 = new SettingInfoBean("3", "", "", R.mipmap.chip1, R.mipmap.chip10, R.mipmap.chip50, R.mipmap.chip100, R.mipmap.chip500, R.mipmap.chip1000);
-        infoBean11.setChipSize2(5000);
-        infoBean11.setChipSize3(10000);
-        infoBean11.setChipSize4(30000);
-        infoBean11.setChipSize5(50000);
-        infoBean11.setChipSize6(100000);
+        infoBean11.setChipSize1(5000);
+        infoBean11.setChipSize2(10000);
+        infoBean11.setChipSize3(30000);
+        infoBean11.setChipSize4(50000);
+        infoBean11.setChipSize5(100000);
+        infoBean11.setChipSize6(0);
 
         infoBean12.setChipSize1(1);
         infoBean12.setChipSize2(10);
@@ -382,13 +383,21 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
     private void chipClick(View v) {
         ImageView imageView = (ImageView) v;
         int chipSize = (int) imageView.getTag();
-        boolean status = AfbUtils.getChipStatusMap().get(chipSize);
-        AfbUtils.getChipStatusMap().put(chipSize, !status);
+        String chip=chipSize+"";
+        if(chipSize==0){
+            chip="max";
+        }
+        boolean status = AfbUtils.getChipStatusMap().get(chip);
+        AfbUtils.getChipStatusMap().put(chip, !status);
         setChipsBg(imageView, chipSize);
     }
 
     private void setChipsBg(ImageView imageView, int chipSize) {
-        Boolean finalStatus = AfbUtils.getChipStatusMap().get(chipSize);
+        String chip=chipSize+"";
+        if(chipSize==0){
+            chip="max";
+        }
+        Boolean finalStatus = AfbUtils.getChipStatusMap().get(chip);
         if (finalStatus != null && finalStatus) {
             imageView.setBackgroundResource(R.drawable.shape_chip);
         } else {
@@ -432,10 +441,10 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
     String TAG = "SettingFragment";
 
     private String getChooseChips() {
-        Iterator<Map.Entry<Integer, Boolean>> iterator = AfbUtils.getChipStatusMap().entrySet().iterator();
+        Iterator<Map.Entry<String, Boolean>> iterator = AfbUtils.getChipStatusMap().entrySet().iterator();
         StringBuilder stringBuilder = new StringBuilder();
         while (iterator.hasNext()) {
-            Map.Entry<Integer, Boolean> next = iterator.next();
+            Map.Entry<String, Boolean> next = iterator.next();
             if (next.getValue()) {
                 stringBuilder.append(next.getKey());
                 stringBuilder.append(",");

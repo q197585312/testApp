@@ -21,6 +21,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.HomePopItemBeen;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.Pop.HomePopupWindow;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.MyGoHomeBroadcastReceiver;
@@ -47,6 +48,8 @@ import butterknife.OnClick;
 public class MainActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
     @Bind(R.id.fl_menu_home)
     FrameLayout flMenuHome;
+    @Bind(R.id.fl_menu_center)
+    FrameLayout flContact;
     @Bind(R.id.fl_menu_login_out)
     FrameLayout flLoginOut;
     @Bind(R.id.home_pop)
@@ -85,7 +88,9 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
                 }
             }
         }, 100);
-
+        if (!BuildConfig.FLAVOR.equals("afb1188")) {
+            flContact.setVisibility(View.GONE);
+        }
     }
 
     private BaseSwitchFragment homeFragment = new HomeFragment();

@@ -1,12 +1,15 @@
 package com.nanyang.app.main.person;
 
+import android.graphics.Color;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
@@ -33,6 +36,8 @@ import butterknife.Bind;
 
 public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
 
+    @Bind(R.id.edt_text)
+    EditText edt_text;
     @Bind(R.id.person_center_view)
     RecyclerView rcContent;
     BaseToolbarActivity aty;
@@ -59,11 +64,11 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
         PersonCenter pc = new PersonCenter(getString(R.string.login_name), person.getLoginName());
         PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name), data.getNickNameshow());
         PersonCenter pc1 = new PersonCenter(getString(R.string.currency), person.getCurCode2());
-        PersonCenter pc2 = new PersonCenter(getString(R.string.cash_balance), person.getBalances());
-        PersonCenter pc3 = new PersonCenter(getString(R.string.outstanding_txn), person.getEtotalstanding());
+        PersonCenter pc2 = new PersonCenter(getString(R.string.cash_balance), AfbUtils.addComma(person.getBalances(), edt_text));
+        PersonCenter pc3 = new PersonCenter(getString(R.string.outstanding_txn), AfbUtils.addComma(person.getEtotalstanding(), edt_text));
         PersonCenter pc4 = new PersonCenter(getString(R.string.min_bet_m), person.getMinLimit());
-        PersonCenter pc5 = new PersonCenter(getString(R.string.bet_credit), person.getCredit2());
-        PersonCenter pc6 = new PersonCenter(getString(R.string.given_credit), person.getTotalCredit());
+        PersonCenter pc5 = new PersonCenter(getString(R.string.bet_credit), AfbUtils.addComma(person.getCredit2(), edt_text));
+        PersonCenter pc6 = new PersonCenter(getString(R.string.given_credit), AfbUtils.addComma(person.getTotalCredit(), edt_text));
         PersonCenter pc7 = new PersonCenter(getString(R.string.last_login_date), person.getLastLoginDate());
         list.add(pc);
         list.add(pc8);
@@ -101,6 +106,11 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                 name.setText(item.getName());
                 final TextView value = holder.getTextView(R.id.person_value);
                 value.setText(item.getValue());
+                if (item.getValue().startsWith("-")) {
+                    value.setTextColor(Color.RED);
+                } else {
+                    value.setTextColor(Color.BLACK);
+                }
                 ImageView iv = holder.getImageView(R.id.person_img);
              /*   if (item.getName().equals(getString(R.string.nike_name))) {
                     value.setVisibility(View.GONE);

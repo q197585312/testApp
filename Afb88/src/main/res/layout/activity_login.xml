@@ -136,12 +136,13 @@
     </LinearLayout>
 
     <TextView
+        android:id="@+id/tv_all_right"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:gravity="center"
         android:padding="5dp"
-        android:text="© Copyright 2018. AFB88. All Rights Reserved."
+        android:text="@string/copyright_2018_afb88_all_rights_reserved"
         android:textColor="@color/white"
         android:textSize="12sp" />
 

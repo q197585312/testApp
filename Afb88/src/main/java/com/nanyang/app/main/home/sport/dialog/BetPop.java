@@ -182,7 +182,7 @@ public class BetPop extends BasePopupWindow {
                 }
                 double writeMoney = Double.parseDouble(amount);
                 double maxWin = countMaxPayout(writeMoney);
-                tvMaxWin.setText(AfbUtils.decimalValue((float) maxWin, "0.00"));
+                tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) maxWin, "0.00"),tvMaxWin));
                 betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
             }
         });
@@ -251,14 +251,15 @@ public class BetPop extends BasePopupWindow {
     }
 
     private void initBetChip() {
-        HashMap<Integer, Boolean> chipStatusMap = AfbUtils.getChipStatusMap();
-        List<PopChipBean> allList = Arrays.asList(new PopChipBean(R.mipmap.chip1, 1), new PopChipBean(R.mipmap.chip10, 10),
-                new PopChipBean(R.mipmap.chip50, 50), new PopChipBean(R.mipmap.chip100, 100), new PopChipBean(R.mipmap.chip500, 500),
-                new PopChipBean(R.mipmap.chip1000, 1000), new PopChipBean(R.mipmap.chip5000, 5000), new PopChipBean(R.mipmap.chip10000, 10000),
-                new PopChipBean(R.mipmap.chip30000, 30000), new PopChipBean(R.mipmap.chip50000, 50000), new PopChipBean(R.mipmap.chip100000, 100000));
+        HashMap<String, Boolean> chipStatusMap = AfbUtils.getChipStatusMap();
+        List<PopChipBean> allList = Arrays.asList(new PopChipBean(R.mipmap.chip1, 1, "1"), new PopChipBean(R.mipmap.chip10, 10, "10"),
+                new PopChipBean(R.mipmap.chip50, 50, "50"), new PopChipBean(R.mipmap.chip100, 100, "100"), new PopChipBean(R.mipmap.chip500, 500, "500"),
+                new PopChipBean(R.mipmap.chip1000, 1000, "1000"), new PopChipBean(R.mipmap.chip5000, 5000, "5000"), new PopChipBean(R.mipmap.chip10000, 10000, "10000"),
+                new PopChipBean(R.mipmap.chip30000, 30000, "30000"), new PopChipBean(R.mipmap.chip50000, 50000, "50000"), new PopChipBean(R.mipmap.chip100000, 100000, "100000"),
+                new PopChipBean(R.mipmap.chip_max, 0, "max"));
         List<PopChipBean> beanList = new ArrayList<>();
         for (PopChipBean popChipBean : allList) {
-            if (chipStatusMap.get(popChipBean.getBetChip())) {
+            if (chipStatusMap.get(popChipBean.getKey())) {
                 beanList.add(popChipBean);
             }
         }
@@ -285,7 +286,20 @@ public class BetPop extends BasePopupWindow {
                     s = "0";
                 }
                 int betAmount = Integer.parseInt(s);
-                betAmount += item.getBetChip();
+                int betChip = item.getBetChip();
+                if (betChip == 0) {
+                    AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
+                    int maxLimit;
+                    if (list.size() > 1) {
+                        maxLimit = (int) Double.parseDouble(betAfbList.getMaxLimit());
+                    } else {
+                        maxLimit = list.get(0).getMaxLimit();
+                    }
+
+                    betChip = maxLimit;
+                }
+
+                betAmount += betChip;
                 betAmountEdt.setText(betAmount + "");
             }
         });
@@ -404,25 +418,25 @@ public class BetPop extends BasePopupWindow {
             initBetChip();
         }
         tvCurrency.setText(afbApplication.getUser().getCurCode2());
-        betBalanceTv.setText(afbApplication.getUser().getBalances());
+        betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getBalances(),betBalanceTv));
         if (list.size() > 1) {
             tvDelete.setVisibility(View.VISIBLE);
             AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(list.get(0).getMatchLimit() + ""));
             betMaxWinTv.setText(betAfbList.getMinLimit());
-            betMaxBetTv.setText(betAfbList.getMaxLimit());
+            betMaxBetTv.setText(AfbUtils.addComma(betAfbList.getMaxLimit(),betMaxBetTv));
         } else {
             tvDelete.setVisibility(View.GONE);
             AfbClickBetBean afbClickBetBean = list.get(0);
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(afbClickBetBean.getMatchLimit() + ""));
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
-            betMaxBetTv.setText(afbClickBetBean.getMaxLimit() + "");
+            betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit()+"",betMaxBetTv) );
         }
         ((BaseActivity) context).hideLoadingDialog();
 //        showInput();
         String writeMoney = betAmountEdt.getText().toString().trim();
         if (!TextUtils.isEmpty(writeMoney)) {
-            tvMaxWin.setText(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"));
+            tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"),tvMaxWin));
         }
         stopUpdateOdds();
         updateOdds(4000);

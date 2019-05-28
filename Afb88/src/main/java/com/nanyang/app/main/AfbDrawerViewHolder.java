@@ -13,6 +13,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.BetCenter.Bean.More;
@@ -109,7 +110,8 @@ public class AfbDrawerViewHolder implements IDrawerView {
         dataList.add(m2);
         dataList.add(m3);
         dataList.add(m4);
-        dataList.add(m5);
+        if (BuildConfig.FLAVOR.equals("afb1188"))
+            dataList.add(m5);
         dataList.add(m6);
         dataList.add(m7);
         if (!AppConstant.IS_AGENT)
@@ -192,7 +194,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
             drawerLayout.closeDrawer(Gravity.RIGHT);
             back = true;
         }
-        if(!indexFragment.checkCanBack())
+        if (!indexFragment.checkCanBack())
             return back;
         if (indexFragment == homeFragment) {
             baseToolbarActivity.finish();
