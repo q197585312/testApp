@@ -182,7 +182,7 @@ public class BetPop extends BasePopupWindow {
                 }
                 double writeMoney = Double.parseDouble(amount);
                 double maxWin = countMaxPayout(writeMoney);
-                tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) maxWin, "0.00"),tvMaxWin));
+                tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) maxWin, "0.00"), tvMaxWin));
                 betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
             }
         });
@@ -320,8 +320,12 @@ public class BetPop extends BasePopupWindow {
         String s1 = betAmountEdt.getText().toString().trim();
         if (!StringUtils.isEmpty(s1)) {
             String s = s1.replaceAll(",", "");
-            double min = Double.parseDouble(betMaxWinTv.getText().toString());
-            double max = Double.parseDouble(betMaxBetTv.getText().toString());
+            String minStr = betMaxWinTv.getText().toString().trim();
+            minStr = minStr.replaceAll(",", "");
+            String maxStr = betMaxBetTv.getText().toString().trim();
+            maxStr = maxStr.replaceAll(",", "");
+            double min = Double.parseDouble(minStr);
+            double max = Double.parseDouble(maxStr);
             if (min > 0 && max > 0) {
                 int count = Integer.valueOf(s);
                 if (count > max || count < min) {
@@ -418,25 +422,25 @@ public class BetPop extends BasePopupWindow {
             initBetChip();
         }
         tvCurrency.setText(afbApplication.getUser().getCurCode2());
-        betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getBalances(),betBalanceTv));
+        betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getBalances(), betBalanceTv));
         if (list.size() > 1) {
             tvDelete.setVisibility(View.VISIBLE);
             AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(list.get(0).getMatchLimit() + ""));
             betMaxWinTv.setText(betAfbList.getMinLimit());
-            betMaxBetTv.setText(AfbUtils.addComma(betAfbList.getMaxLimit(),betMaxBetTv));
+            betMaxBetTv.setText(AfbUtils.addComma(betAfbList.getMaxLimit(), betMaxBetTv));
         } else {
             tvDelete.setVisibility(View.GONE);
             AfbClickBetBean afbClickBetBean = list.get(0);
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(afbClickBetBean.getMatchLimit() + ""));
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
-            betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit()+"",betMaxBetTv) );
+            betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit() + "", betMaxBetTv));
         }
         ((BaseActivity) context).hideLoadingDialog();
 //        showInput();
         String writeMoney = betAmountEdt.getText().toString().trim();
         if (!TextUtils.isEmpty(writeMoney)) {
-            tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"),tvMaxWin));
+            tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"), tvMaxWin));
         }
         stopUpdateOdds();
         updateOdds(4000);
