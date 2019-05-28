@@ -135,7 +135,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
                                 jsonArrayArr.getInt(10), jsonArrayArr.getInt(11), jsonArrayArr.getString(12), jsonArrayArr.getDouble(13),
                                 jsonArrayArr.getInt(14), jsonArrayArr.getInt(15), jsonArrayArr.getString(16), jsonArrayArr.getString(17),
                                 jsonArrayArr.getString(18), jsonArrayArr.getString(19), jsonArrayArr.getString(20), jsonArrayArr.getString(21),
-                                jsonArrayArr.getString(22));
+                                jsonArrayArr.getString(22), "");
                         list.add(bean);
                     }
                     statementNewFragment.onGetStatementOpen2Data(list, id, transType);
@@ -163,7 +163,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
                                 jsonArrayArr.getInt(10), jsonArrayArr.getInt(11), jsonArrayArr.getString(12), jsonArrayArr.getDouble(13),
                                 jsonArrayArr.getInt(14), jsonArrayArr.getInt(15), jsonArrayArr.getString(16), jsonArrayArr.getString(17),
                                 jsonArrayArr.getDouble(18), jsonArrayArr.getString(19), jsonArrayArr.getString(20), jsonArrayArr.getString(21),
-                                jsonArrayArr.getString(22), jsonArrayArr.getString(23));
+                                jsonArrayArr.getString(22), jsonArrayArr.getString(23),"");
                         list.add(bean);
                     }
                     statementNewFragment.onGetStatementOpen3Data(list);

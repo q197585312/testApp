@@ -123,6 +123,15 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView par_type = holder.getTextView(R.id.par_type);
                     running_par_IdAndTransDate.setText("ID[" + item.getRefNo12() + "]" + item.getTransDate0());
                     running_par_DangerStatus.setText(item.getDangerStatus8());
+                    String dangerStatus8 = item.getDangerStatus8();
+                    dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
+                    if (dangerStatus8.equals("A")) {
+                        running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_black));
+                    } else if (dangerStatus8.equals("W")) {
+                        running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
+                    } else {
+                        running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.red));
+                    }
                     String odds = item.getOdds3();
                     BigDecimal bd = new BigDecimal(odds);
                     bd = bd.multiply(new BigDecimal("100"));
@@ -363,9 +372,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             tvWL.setTextColor(Color.BLACK);
         }
         tvWL.setText(AfbUtils.delHTMLTag(wlStr));
-        String index17 = bean.getIndex17();
+        String index24 = bean.getIndex24();
         String scoreStr;
-        if (index17.equals("P")) {
+        if (index24.equals("False")) {
             scoreStr = "-";
         } else {
             scoreStr = bean.getIndex6() + "-" + bean.getIndex7();
@@ -421,9 +430,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             tvWL.setTextColor(Color.BLACK);
         }
         tvWL.setText(AfbUtils.delHTMLTag(wlStr));
-        String index17 = bean.getIndex17();
+        String index23 = bean.getIndex23();
         String scoreStr;
-        if (index17.equals("P")) {
+        if (index23.equals("False")) {
             scoreStr = "-";
         } else {
             scoreStr = bean.getIndex6() + "-" + bean.getIndex7();

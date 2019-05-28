@@ -28,8 +28,9 @@ public class StatementOpen2ListDataBean {
     private String index20;
     private String index21;
     private String index22;
+    private String index23;
 
-    public StatementOpen2ListDataBean(int index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8, String index9, int index10, int index11, String index12, double index13, int index14, int index15, String index16, String index17, String index18, String index19, String index20, String index21, String index22) {
+    public StatementOpen2ListDataBean(int index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8, String index9, int index10, int index11, String index12, double index13, int index14, int index15, String index16, String index17, String index18, String index19, String index20, String index21, String index22, String index23) {
         this.index0 = index0;
         this.index1 = index1;
         this.index2 = index2;
@@ -53,6 +54,15 @@ public class StatementOpen2ListDataBean {
         this.index20 = index20;
         this.index21 = index21;
         this.index22 = index22;
+        this.index23 = index23;
+    }
+
+    public String getIndex23() {
+        return index23;
+    }
+
+    public void setIndex23(String index23) {
+        this.index23 = index23;
     }
 
     public int getIndex0() {

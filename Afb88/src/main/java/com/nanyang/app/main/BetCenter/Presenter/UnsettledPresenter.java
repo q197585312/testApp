@@ -36,8 +36,8 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
         unsettledFragment = iBaseContext;
     }
 
-    public void getRunningList(String type){
-        BaseParamBean bean = new BaseParamBean("GetTable","wfRunningH50",type,"1");
+    public void getRunningList(String type) {
+        BaseParamBean bean = new BaseParamBean("GetTable", "wfRunningH50", type, "1");
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
@@ -46,10 +46,10 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
                 JSONArray jsonArray1 = jsonData.getJSONArray(0);
                 JSONArray jsonArray2 = jsonArray1.getJSONArray(2);
                 List<RunningBean> dataList = new ArrayList<RunningBean>();
-                for (int i=0;i<jsonArray2.length();i++){
+                for (int i = 0; i < jsonArray2.length(); i++) {
                     JSONArray ja = jsonArray2.getJSONArray(i);
                     String[] str = new String[ja.length()];
-                    for(int j = 0;j<ja.length();j++){
+                    for (int j = 0; j < ja.length(); j++) {
                         str[j] = ja.getString(j);
                     }
                     RunningBean rb = new RunningBean(str);
@@ -61,15 +61,16 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
     }
 
     public void getParList(String id, BaseConsumer<String> baseConsumer) {
-        BaseParamBean bean = new BaseParamBean("GetMatch","wfRunningH50",id,"2");
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
-    }
-    public void getParList2(String socTransId,String type, BaseConsumer<String> baseConsumer) {
-        BaseParamBean bean = new BaseParamBean("GetMatchDetail","wfRunningH50",socTransId,type,"","",0);
+        BaseParamBean bean = new BaseParamBean("GetMatch", "wfRunningH50", id, "2");
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
     }
 
-    public List<StatementOpen2ListDataBean> getBeanList2(JSONArray jsonArray)throws JSONException{
+    public void getParList2(String socTransId, String type, BaseConsumer<String> baseConsumer) {
+        BaseParamBean bean = new BaseParamBean("GetMatchDetail", "wfRunningH50", socTransId, type, "", "", 0);
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
+    }
+
+    public List<StatementOpen2ListDataBean> getBeanList2(JSONArray jsonArray) throws JSONException {
         List<StatementOpen2ListDataBean> list = new ArrayList<>();
         JSONArray jsonArrayData1 = jsonArray.getJSONArray(3);
         JSONArray jsonArrayData2 = jsonArrayData1.getJSONArray(0);
@@ -82,12 +83,13 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
                     jsonArrayArr.getInt(10), jsonArrayArr.getInt(11), jsonArrayArr.getString(12), jsonArrayArr.getDouble(13),
                     jsonArrayArr.getInt(14), jsonArrayArr.getInt(15), jsonArrayArr.getString(16), jsonArrayArr.getString(17),
                     jsonArrayArr.getString(18), jsonArrayArr.getString(19), jsonArrayArr.getString(20), jsonArrayArr.getString(21),
-                    jsonArrayArr.getString(22));
+                    jsonArrayArr.getString(22), jsonArrayArr.getString(23));
             list.add(bean);
         }
         return list;
     }
-    public List<StatementOpen3ListDataBean> getBeanList3(JSONArray jsonArray)throws JSONException{
+
+    public List<StatementOpen3ListDataBean> getBeanList3(JSONArray jsonArray) throws JSONException {
         List<StatementOpen3ListDataBean> list = new ArrayList<>();
         JSONArray jsonArrayData1 = jsonArray.getJSONArray(3);
         JSONArray jsonArrayData2 = jsonArrayData1.getJSONArray(0);
@@ -100,7 +102,7 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
                     jsonArrayArr.getInt(10), jsonArrayArr.getInt(11), jsonArrayArr.getString(12), jsonArrayArr.getDouble(13),
                     jsonArrayArr.getInt(14), jsonArrayArr.getInt(15), jsonArrayArr.getString(16), jsonArrayArr.getString(17),
                     jsonArrayArr.getDouble(18), jsonArrayArr.getString(19), jsonArrayArr.getString(20), jsonArrayArr.getString(21),
-                    jsonArrayArr.getString(22), jsonArrayArr.getString(23));
+                    jsonArrayArr.getString(22), jsonArrayArr.getString(23), jsonArrayArr.getString(24));
             list.add(bean);
         }
         return list;

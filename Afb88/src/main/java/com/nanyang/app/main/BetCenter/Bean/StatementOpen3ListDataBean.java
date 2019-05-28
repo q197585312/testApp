@@ -29,8 +29,9 @@ public class StatementOpen3ListDataBean {
     private String index21;
     private String index22;
     private String index23;
+    private String index24;
 
-    public StatementOpen3ListDataBean(int index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8, String index9, int index10, int index11, String index12, double index13, int index14, int index15, String index16, String index17, double index18, String index19, String index20, String index21, String index22, String index23) {
+    public StatementOpen3ListDataBean(int index0, String index1, String index2, String index3, String index4, String index5, String index6, String index7, String index8, String index9, int index10, int index11, String index12, double index13, int index14, int index15, String index16, String index17, double index18, String index19, String index20, String index21, String index22, String index23, String index24) {
         this.index0 = index0;
         this.index1 = index1;
         this.index2 = index2;
@@ -55,6 +56,15 @@ public class StatementOpen3ListDataBean {
         this.index21 = index21;
         this.index22 = index22;
         this.index23 = index23;
+        this.index24 = index24;
+    }
+
+    public String getIndex24() {
+        return index24;
+    }
+
+    public void setIndex24(String index24) {
+        this.index24 = index24;
     }
 
     public int getIndex0() {
