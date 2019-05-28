@@ -159,10 +159,11 @@ public class BetPop extends BasePopupWindow {
 
             @Override
             public void afterTextChanged(Editable s) {
-                String amount = s.toString().trim();
+                String amount = s.toString().trim().replaceAll(",", "");
                 if (TextUtils.isEmpty(amount)) {
                     amount = "0";
                 }
+
                 double max;
                 if (list.size() > 1) {
                     AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
@@ -173,16 +174,17 @@ public class BetPop extends BasePopupWindow {
                 amount = amount.replaceAll(",", "");
                 if (Double.parseDouble(amount) > max) {
                     betAmountEdt.removeTextChangedListener(this);
-                    betAmountEdt.setText((int) max + "");
+                    betAmountEdt.setText(AfbUtils.addComma((int) max + "", betAmountEdt));
                     betAmountEdt.addTextChangedListener(this);
+                    amount = max + "";
+                } else if (!AfbUtils.touzi_ed_values22.equals(amount) && !TextUtils.isEmpty(s.toString().trim().replaceAll(",", ""))) {
+                    betAmountEdt.setText(AfbUtils.addComma(amount, betAmountEdt));
                 }
-                amount = betAmountEdt.getText().toString().toString();
-                if (TextUtils.isEmpty(amount)) {
-                    amount = "0";
-                }
+
                 double writeMoney = Double.parseDouble(amount);
                 double maxWin = countMaxPayout(writeMoney);
                 tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) maxWin, "0.00"), tvMaxWin));
+
                 betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
             }
         });
@@ -320,12 +322,8 @@ public class BetPop extends BasePopupWindow {
         String s1 = betAmountEdt.getText().toString().trim();
         if (!StringUtils.isEmpty(s1)) {
             String s = s1.replaceAll(",", "");
-            String minStr = betMaxWinTv.getText().toString().trim();
-            minStr = minStr.replaceAll(",", "");
-            String maxStr = betMaxBetTv.getText().toString().trim();
-            maxStr = maxStr.replaceAll(",", "");
-            double min = Double.parseDouble(minStr);
-            double max = Double.parseDouble(maxStr);
+            double min = Double.parseDouble(betMaxWinTv.getText().toString());
+            double max = Double.parseDouble(betMaxBetTv.getText().toString());
             if (min > 0 && max > 0) {
                 int count = Integer.valueOf(s);
                 if (count > max || count < min) {
@@ -451,7 +449,8 @@ public class BetPop extends BasePopupWindow {
     private void initRcBetContent() {
         ViewGroup.LayoutParams layoutParams = rcBetContent.getLayoutParams();
         if (list.size() > 1) {
-            initMix();
+            if (!isRefresh)
+                initMix();
             llMix.setVisibility(View.VISIBLE);
             layoutParams.height = AfbUtils.dp2px(context, 62 * 2 + 5);
         } else {
