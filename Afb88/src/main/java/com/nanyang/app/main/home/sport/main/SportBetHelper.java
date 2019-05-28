@@ -35,6 +35,7 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
+import static android.content.ContentValues.TAG;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
@@ -251,6 +252,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 }).subscribe(new Consumer<AfbClickResponseBean>() {//onNext
                     @Override
                     public void accept(AfbClickResponseBean bean) throws Exception {
+                        Log.d(TAG, "accept: "+bean);
                         if (bean == null || bean.getList() == null || bean.getList().size() == 0) {
                         } else if (bean.getList().size() >= 1) {
                             createBetPop(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
@@ -261,6 +263,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
+                        Log.d(TAG, "throwable:" + throwable.getCause());
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().getIBaseContext().hideLoadingDialog();
                     }

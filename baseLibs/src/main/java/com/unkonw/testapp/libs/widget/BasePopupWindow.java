@@ -3,6 +3,7 @@ package com.unkonw.testapp.libs.widget;
 import android.app.Activity;
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +18,7 @@ import butterknife.ButterKnife;
  *
  */
 public abstract class BasePopupWindow {
+    private static final String TAG = "BasePopupWindow";
     protected Context context;
     private LayoutInflater inflater;
     public PopupWindow popWindow;
@@ -50,8 +52,11 @@ public abstract class BasePopupWindow {
 
     public boolean isShowing() {
         if (popWindow != null) {
+            Log.d(TAG, "!= null,isShowing: "+popWindow.isShowing());
             return popWindow.isShowing();
+
         } else {
+            Log.d(TAG, "== null,isShowing: "+false);
             return false;
         }
     }
