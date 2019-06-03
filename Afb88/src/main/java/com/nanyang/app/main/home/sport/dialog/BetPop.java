@@ -606,7 +606,7 @@ public class BetPop extends BasePopupWindow {
                 mixdialog.show();
             }
         });
-        ValueAnimator anim = ObjectAnimator.ofInt(llMix, "backgroundColor", Color.WHITE,context.getColor(R.color.pink_light_bg));
+        ValueAnimator anim = ObjectAnimator.ofInt(llMix, "backgroundColor", Color.WHITE,ContextCompat.getColor(context,R.color.pink_light_bg));
         //动画持续时间为3秒
         anim.setDuration(1000);
         AfbUtils.startAnimator(anim);

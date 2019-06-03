@@ -6,7 +6,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -206,7 +205,6 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                 presenter.getParList2(id, par_type, new BaseConsumer<String>(getIBaseContext()) {
                                     @Override
                                     protected void onBaseGetData(String data) throws JSONException {
-                                        Log.i("XUZIWEI", "onBaseGetData: " + data);
                                         String updateString = data.replace("&nbsp;", " ");
                                         JSONArray jsonArray = new JSONArray(updateString);
                                         if (jsonArray.length() > 3) {
