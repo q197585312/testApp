@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.dialog;
 
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -569,7 +570,6 @@ public class BetPop extends BasePopupWindow {
         else {
             betAmountEdt.setText(quickAmount);
         }
-
     }
 
     private List<ClearanceBetAmountBean> clearanceBetAmountBeenList;
@@ -606,6 +606,10 @@ public class BetPop extends BasePopupWindow {
                 mixdialog.show();
             }
         });
+        ValueAnimator anim = ObjectAnimator.ofInt(llMix, "backgroundColor", Color.WHITE,context.getColor(R.color.pink_light_bg));
+        //动画持续时间为3秒
+        anim.setDuration(1000);
+        AfbUtils.startAnimator(anim);
     }
 
     private void goCancel() {

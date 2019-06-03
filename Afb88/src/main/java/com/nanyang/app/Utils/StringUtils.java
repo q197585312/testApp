@@ -214,11 +214,11 @@ public final class StringUtils {
         return countMap;
     }
 
-    public static String findGroup0(String str1, String fromat) {
+    public static String findGroup(String str1, String fromat,int i) {
         Pattern pattern2 = Pattern.compile(fromat);
         Matcher matcher2 = pattern2.matcher(str1);
         while (matcher2.find()) {
-            return matcher2.group(0);
+            return matcher2.group(i);
         }
         return "";
     }

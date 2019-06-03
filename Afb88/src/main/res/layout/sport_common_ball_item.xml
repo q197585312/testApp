@@ -20,7 +20,7 @@
         android:background="@color/grey_background"
         android:gravity="center"
         android:orientation="horizontal"
-        android:padding="8dp">
+        android:padding="5dp">
 
         <TextView
             android:id="@+id/module_League_collection_tv"

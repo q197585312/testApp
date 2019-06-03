@@ -21,6 +21,7 @@ import com.nanyang.app.Pop.PopChoiceLanguage;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.DateUtils;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.common.LanguagePresenter;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
@@ -218,7 +219,10 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
                     if (s.contains("Maintenance")) {
                         Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
                         onError(exception);
-                    } else {
+                    } else if(StringUtils.matches(s,"^.*alert\\(\\'(.*)\\'\\);\\$.*?")){
+                        Exception exception = new Exception(StringUtils.findGroup(s,"^.*alert\\(\\'(.*)\\'\\);\\$.*?",1));
+                        onError(exception);
+                    }else {
                         String regex = "window.location";
                         Pattern p = Pattern.compile(regex);
                         Matcher m = p.matcher(s);

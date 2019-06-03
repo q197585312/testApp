@@ -110,7 +110,7 @@
                 android:id="@+id/bet_odds_tv_animation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="#FFB4B4"
+                android:background="@color/pink_light_bg"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
                 android:textColor="#00000000"

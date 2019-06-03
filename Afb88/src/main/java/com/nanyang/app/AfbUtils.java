@@ -1,5 +1,7 @@
 package com.nanyang.app;
 
+import android.animation.ArgbEvaluator;
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.content.ComponentName;
@@ -946,5 +948,30 @@ public class AfbUtils {
 
     public static HashMap<String, Boolean> getChipStatusMap() {
         return chipStatusMap;
+    }
+
+
+    public static void startAnimator(ValueAnimator animator){
+        /*
+         *参数解释：
+         *target：设置属性动画的目标类，此处是当前自定义view所以使用this
+         *propertyName:属性名称。（要对View的那个属性执行动画操作）
+         *values数组：根据时间的推移动画将根据数组的内容进行改变
+         */;
+        /*
+         * ArgbEvaluator：这种评估者可以用来执行类型之间的插值整数值代表ARGB颜色。
+         * FloatEvaluator：这种评估者可以用来执行浮点值之间的插值。
+         * IntEvaluator：这种评估者可以用来执行类型int值之间的插值。
+         * RectEvaluator：这种评估者可以用来执行类型之间的插值矩形值。
+         *
+         * 由于本例是改变View的backgroundColor属性的背景颜色所以此处使用ArgbEvaluator
+         */
+        animator.setEvaluator(new ArgbEvaluator());
+        //设置动画重复次数，此处设置无限重复
+        animator.setRepeatCount(ValueAnimator.INFINITE);
+        //设置重复模式
+        animator.setRepeatMode(ValueAnimator.REVERSE);
+        //开启动画
+        animator.start();
     }
 }
