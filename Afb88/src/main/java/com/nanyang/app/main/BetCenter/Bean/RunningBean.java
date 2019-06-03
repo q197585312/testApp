@@ -28,8 +28,27 @@ public class RunningBean {
     private String Status20;
     private String BetType221;
     private String OldStatus22;
+    private String BetType323;
+    private String BetType424;
 
-    public RunningBean(){}
+    public String getBetType323() {
+        return BetType323;
+    }
+
+    public void setBetType323(String betType323) {
+        BetType323 = betType323;
+    }
+
+    public String getBetType424() {
+        return BetType424;
+    }
+
+    public void setBetType424(String betType424) {
+        BetType424 = betType424;
+    }
+
+    public RunningBean() {
+    }
 
     public RunningBean(String[] str) {
         TransDate0 = str[0];
@@ -55,6 +74,8 @@ public class RunningBean {
         Status20 = str[20];
         BetType221 = str[21];
         OldStatus22 = str[22];
+        BetType323 = str[23];
+        BetType424 = str[24];
     }
 
     public String getTransDate0() {

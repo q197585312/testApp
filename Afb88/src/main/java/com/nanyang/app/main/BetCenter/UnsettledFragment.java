@@ -245,42 +245,70 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_Home.setText(item.getHome1());
                     TextView running_Away = holder.getTextView(R.id.running_Away);
                     running_Away.setText(item.getAway2());
-                    TextView running_BetType = holder.getTextView(R.id.running_BetType);
-                    String betType = item.getBetType18();
-                    if (betType.contains("gbGive")) {
-                        running_BetType.setTextColor(Color.RED);
-                    } else {
-                        running_BetType.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
-                    }
-                    betType = AfbUtils.delHTMLTag(betType);
-                    running_BetType.setText(betType);
                     TextView running_FullTimeId = holder.getTextView(R.id.running_FullTimeId);
-                    running_FullTimeId.setText(item.getFullTimeId13() + " ");
+                    String fullTimeId13 = item.getFullTimeId13().replace("(", "").replace(")", "");
+                    running_FullTimeId.setText(fullTimeId13);
+                    TextView running_BetType = holder.getTextView(R.id.running_BetType);
+                    String transType10 = item.getTransType10();
+                    switch (transType10) {
+                        case "1":
+                        case "2":
+                        case "X":
+                            transType10 = "1X2";
+                            break;
+                        case "HDP":
+                        case "MMH":
+                            transType10 = "HDP";
+                            break;
+                        case "OU":
+                        case "MMO":
+                            transType10 = "O/U";
+                            break;
+                        case "OE":
+                            transType10 = "O/E";
+                            break;
+                        case "DC":
+                            transType10 = "DC";
+                            break;
+                        case "CSR":
+                            transType10 = "CSR";
+                            break;
+                        case "FLG":
+                            transType10 = "FG/LG";
+                            break;
+                        case "TG":
+                            transType10 = "TG";
+                            break;
+                        case "HFT":
+                            transType10 = "HT/FT";
+                            break;
+                    }
+                    running_BetType.setText("." + transType10 + " ");
                     TextView running_Score = holder.getTextView(R.id.running_Score);
                     String isRun5 = item.getIsRun5();
-                    if (isRun5.equals("1")) {
-                        running_Score.setText(item.getScore19() + " ");
-                    } else {
-                        running_Score.setVisibility(View.GONE);
-                    }
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
-                    String betType2 = item.getBetType221();
-                    if (betType2.contains("red")) {
+                    String betType2 = item.getBetType323();
+                    if (betType2.contains("red") || item.getBetType424().contains("gbGive")) {
                         running_BetType2.setTextColor(Color.RED);
-                    } else if (betType2.contains("blue")) {
+                    } else if (betType2.contains("blue") || item.getBetType424().contains("gbTake2")) {
                         running_BetType2.setTextColor(Color.BLUE);
                     } else {
                         running_BetType2.setTextColor(Color.BLACK);
                     }
                     betType2 = AfbUtils.delHTMLTag(betType2);
                     String gameType314 = item.getGameType314();
-                    running_BetType2.setText("(" + (gameType314.equals("O") ? "Outright" : betType2) + ") ");
+                    running_BetType2.setText(AfbUtils.delHTMLTag(item.getBetType424()) + (gameType314.equals("O") ? "Outright" : betType2));
+                    running_Score.setText((isRun5.equals("False") ? "" : item.getScore19()));
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
                     odds = AfbUtils.delHTMLTag(odds);
                     running_Odds.setText("@" + odds + " ");
                     TextView running_OddsType = holder.getTextView(R.id.running_OddsType);
-                    running_OddsType.setText(item.getOddsType15() + " ");
+                    String oddsType15 = item.getOddsType15();
+                    if (!TextUtils.isEmpty(oddsType15)) {
+                        oddsType15 = "(" + oddsType15 + ") ";
+                    }
+                    running_OddsType.setText(oddsType15);
                     TextView running_OldStatus = holder.getTextView(R.id.running_OldStatus);
                     TextView running_split = holder.getTextView(R.id.running_split);
                     if (TextUtils.isEmpty(item.getOldStatus22())) {
