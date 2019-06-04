@@ -106,7 +106,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 LinearLayout l2 = holder.getLinearLayout(R.id.ll_running_detail_2);
                 l.setVisibility(View.GONE);
                 l2.setVisibility(View.GONE);
-                if (item.getBetType18().equals("PAR")) {
+                if (item.getBetType18().equals("PAR") || item.getBetType18().equals("PAM")) {
                     ll1.setVisibility(View.VISIBLE);
                     ll2.setVisibility(View.GONE);
                     TextView running_par_Home = holder.getTextView(R.id.running_par_Home);
