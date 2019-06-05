@@ -19,6 +19,8 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 
@@ -37,24 +39,32 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
 
     private CallBack back;
 
-    public List<T> getList() {
-        return list;
+    public List<T> gettList() {
+        return tList;
     }
 
     public void setList(List<T> list, Map<String, Boolean> leagueSelectedMap) {
-        this.list = list;
+        List<T> l=new ArrayList<>(list);
+        Comparator<T> comparator = new Comparator<T>() {
+            @Override
+            public int compare(T o1, T o2) {
+                return o1.getLeagueBean().getModuleTitle().compareToIgnoreCase(o2.getLeagueBean().getModuleTitle());
+            }
+        };
+        Collections.sort(l, comparator);
+        this.tList = l;
         this.leagueSelectedMap = leagueSelectedMap;
-        contentAdapter.addAllAndClear(list);
+        contentAdapter.addAllAndClear(tList);
     }
 
-    List<T> list;
-/*
-    @Bind(R.id.tv_toolbar_title)
-    TextView tvToolbarTitle;
-    @Bind(R.id.tv_toolbar_right)
-    TextView tvToolbarRight;
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;*/
+    List<T> tList;
+    /*
+        @Bind(R.id.tv_toolbar_title)
+        TextView tvToolbarTitle;
+        @Bind(R.id.tv_toolbar_right)
+        TextView tvToolbarRight;
+        @Bind(R.id.toolbar)
+        Toolbar toolbar;*/
     @Bind(R.id.base_rv)
     RecyclerView baseRv;
     @Bind(R.id.rv_detail_top)
@@ -96,11 +106,11 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
                 if (item.getType().equals("all")) {
                     leagueSelectedMap.clear();
                 } else if (item.getType().equals("reverse")) {
-                    for (T t : list) {
-                        if(leagueSelectedMap.get(t.getLeagueBean().getModuleId())==null){
-                            leagueSelectedMap.put(t.getLeagueBean().getModuleId(),false);
-                        }else{
-                            leagueSelectedMap.put(t.getLeagueBean().getModuleId(),!leagueSelectedMap.get(t.getLeagueBean().getModuleId()));
+                    for (TableSportInfo t : tList) {
+                        if (leagueSelectedMap.get(t.getLeagueBean().getModuleId()) == null) {
+                            leagueSelectedMap.put(t.getLeagueBean().getModuleId(), false);
+                        } else {
+                            leagueSelectedMap.put(t.getLeagueBean().getModuleId(), !leagueSelectedMap.get(t.getLeagueBean().getModuleId()));
                         }
                     }
                 }
@@ -140,23 +150,24 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
                 TextView view = holder.getView(R.id.item_text_tv);
                 view.setBackgroundResource(R.color.transparent);
                 ViewGroup.LayoutParams layoutParams = view.getLayoutParams();
-                layoutParams.width=LinearLayout.LayoutParams.WRAP_CONTENT;
-                layoutParams.height=LinearLayout.LayoutParams.WRAP_CONTENT;
+                layoutParams.width = LinearLayout.LayoutParams.WRAP_CONTENT;
+                layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
                 view.setText(item.getText());
                 view.setTextColor(context.getResources().getColor(R.color.black_grey));
-                view.setCompoundDrawablesWithIntrinsicBounds(0,item.getRes(),  0,0 );
+                view.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
             }
         };
     }
 
     @OnClick(R.id.tv_submit)
     public void onClick() {
-        if(back!=null){
+        if (back != null) {
             back.chooseMap(leagueSelectedMap);
         }
         closePopupWindow();
     }
-    public interface CallBack{
+
+    public interface CallBack {
 
         void chooseMap(Map<String, Boolean> map);
     }

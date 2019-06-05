@@ -88,7 +88,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         boolean onTeam =
                 betAfbList.getList().get(0).getLeague().equalsIgnoreCase(item.getModuleTitle()) &&
                         betAfbList.getList().get(0).getHome().equalsIgnoreCase(item.getHome()) &&
-                        betAfbList.getList().get(0).getAway().equalsIgnoreCase(item.getAway()) /*&& (betAfbList.getList().get(0).getIsGive() + "").equalsIgnoreCase(item.getIsHomeGive())*/;
+                        betAfbList.getList().get(0).getAway().equalsIgnoreCase(item.getAway()) /*&& (betAfbList.gettList().get(0).getIsGive() + "").equalsIgnoreCase(item.getIsHomeGive())*/;
         return onTeam;
     }
 

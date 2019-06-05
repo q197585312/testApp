@@ -474,10 +474,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void clickOrder() {
         if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList() == null || getApp().getBetAfbList().getList().size() < 1)
             return;
-//        if (getApp().getBetAfbList().getList().size() == 1) {
+//        if (getApp().getBetAfbList().gettList().size() == 1) {
 //            String refreshOddsUrl = getApp().getRefreshOddsUrl();
 //            presenter.getStateHelper().getBetHelper().getRefreshOdds(refreshOddsUrl);
-//        } else if (getApp().getBetAfbList().getList().size() > 1) {
+//        } else if (getApp().getBetAfbList().gettList().size() > 1) {
 //            Bundle bundle = new Bundle();
 //            bundle.putSerializable(AppConstant.KEY_DATA, presenter.getStateHelper().getStateType());
 //            skipAct(MixOrderListActivity.class, bundle);

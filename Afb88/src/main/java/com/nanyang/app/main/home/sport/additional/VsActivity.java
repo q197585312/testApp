@@ -490,7 +490,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
                 finish();
                 break;
 //            case R.id.ll_mix_parlay_order:
-//                if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList() == null || getApp().getBetAfbList().getList().size() < 1)
+//                if (getApp().getBetAfbList() == null || getApp().getBetAfbList().gettList() == null || getApp().getBetAfbList().gettList().size() < 1)
 //                    return;
 //                if (getApp().getBetAfbList().getList().size() == 1) {
 //                    String refreshOddsUrl = getApp().getRefreshOddsUrl();
@@ -536,7 +536,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     }
 
     private void onBetEnd() {
-//        if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
+//        if (getApp().getBetParList() != null && getApp().getBetParList().gettList() != null && getApp().getBetParList().gettList().size() > 0) {
 //            tvMixParlayOrder.setText("" + getApp().getBetParList().getList().size());
 //            llMixParlayOrder.setVisibility(View.VISIBLE);
 //
