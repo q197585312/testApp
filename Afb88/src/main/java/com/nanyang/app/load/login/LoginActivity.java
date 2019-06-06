@@ -33,6 +33,7 @@ import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.util.ArrayList;
@@ -215,13 +216,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         if (!TextUtils.isEmpty(us) && !TextUtils.isEmpty(k)) {
             presenter.login(new LoginInfo(us, k), new BaseConsumer<String>(this) {
                 @Override
-                protected void onBaseGetData(String s) {
+                protected void onBaseGetData(String s) throws JSONException {
+                    JSONArray jsonArray=new JSONArray(s);
 
                     if (s.contains("Maintenance")) {
                         Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
                         onError(exception);
-                    } else if(StringUtils.matches(s,"^.*alert\\(\\'(.*)\\'\\);\\$.*?")){
-                        Exception exception = new Exception(StringUtils.findGroup(s,"^.*alert\\(\\'(.*)\\'\\);\\$.*?",1));
+                    } else if(jsonArray.optString(2)!=null&&StringUtils.matches(jsonArray.optString(2),"^.*alert\\(\\'(.*)\\'\\);.*?")){
+                        Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2),"^.*alert\\(\\'(.*)\\'\\);.*?",1));
                         onError(exception);
                     }else {
                         String regex = "window.location";
