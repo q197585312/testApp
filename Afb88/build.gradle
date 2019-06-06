@@ -51,7 +51,7 @@ android {
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '1.83'
+            versionName '1.84'
             buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.com/"' //app专用服务器
             buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
 //            buildConfigField "String", "HOST_AFB", '"https://www.afb1188.com/"'//h5正式机

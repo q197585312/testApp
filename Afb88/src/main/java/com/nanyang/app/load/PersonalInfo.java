@@ -41,6 +41,25 @@ public class PersonalInfo {
     String oddsDiff;
     String spreadDiff;
 
+    public String getXYCredit() {
+        return XYCredit;
+    }
+
+    public void setXYCredit(String XYCredit) {
+        this.XYCredit = XYCredit;
+    }
+
+    public String getISAPI() {
+        return ISAPI;
+    }
+
+    public void setISAPI(String ISAPI) {
+        this.ISAPI = ISAPI;
+    }
+
+    String XYCredit;
+    String ISAPI;
+
     public String getBetable() {
         return betable;
     }
@@ -171,7 +190,7 @@ public class PersonalInfo {
     }
 
     public String getCredit2() {
-        return credit2;
+        return getXYCredit();
     }
 
     public void setCredit2(String credit2) {
