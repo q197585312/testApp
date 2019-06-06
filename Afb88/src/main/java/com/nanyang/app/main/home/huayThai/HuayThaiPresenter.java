@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.huayThai;
 import android.graphics.Color;
 import android.widget.TextView;
 
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.LanguagePresenter;
@@ -37,7 +38,7 @@ public class HuayThaiPresenter extends BaseRetrofitPresenter<HuayThaiFragment> {
     public void refresh(String type) {
         LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
         String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
-        LoginInfo.HuayDataWfBean languageWfBean = new LoginInfo.HuayDataWfBean("BindWorkingDates", language, "wfMainH50");
+        LoginInfo.HuayDataWfBean languageWfBean = new LoginInfo.HuayDataWfBean("BindWorkingDates", language, AppConstant.wfMain);
         languageWfBean.setType(type);
         helper.doRetrofitApiOnUiThread(languageWfBean, new LanguagePresenter.CallBack<String>() {
             @Override
@@ -66,7 +67,7 @@ public class HuayThaiPresenter extends BaseRetrofitPresenter<HuayThaiFragment> {
 
         LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
         String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
-        LoginInfo.HuayBetWfBean languageWfBean = new LoginInfo.HuayBetWfBean("bet", language, "wfMainH50");
+        LoginInfo.HuayBetWfBean languageWfBean = new LoginInfo.HuayBetWfBean("bet", language, AppConstant.wfMain);
         languageWfBean.setTyped(typed);
         languageWfBean.setTxtNumber1(txtNumber1);
         languageWfBean.setTxtAmt(txtAmt);

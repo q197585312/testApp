@@ -60,7 +60,6 @@ public class AppConstant {
     // &LID=
     // &mt=0
     // &FAV=&SL=&LSL=undefined
-//https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"LOS","DBID":"1","ot":"r","tf":"-1","timess":"","accType":"MY","pgLable":"0.6290983573462304","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
 
 
     public String URL_UPDATE_BALANCE = HOST + "Bet/PanelStakeBalance_App.aspx";//http://103.206.122.65/Bet/BetStake.ashx

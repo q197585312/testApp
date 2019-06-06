@@ -152,7 +152,6 @@ public class AllRunningCommonState extends OutRightState {
         if (webSocketBase != null && webSocketBase.isOpen()) {
             webSocketBase.close();
         }
-//new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50")
         String dbId = fragment.currentIdBean.getDbid();
         webSocketRefresh(dbId);
 

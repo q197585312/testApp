@@ -152,9 +152,6 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
         if (webSocketBase != null && webSocketBase.isOpen()) {
             webSocketBase.close();
         }
-        //   https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"LOS","DBID":"36","ot":"r","tf":"-1","timess":"","accType":"EU","pgLable":"0.5393305075227944","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
-        //   https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"LOS","DBID":999,"ot":"t","tf":-1,"OUTDBID":"2_11","timess":"","accType":"EU","ov":0,"mt":0,"pgLable":"0.6073571478712172","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
-//new LoginInfo.LanguageWfBean("AppGetDate", language, "wfMainH50")
         String dbId = fragment.currentIdBean.getDbid();
         webSocketRefresh(dbId);
 

@@ -174,9 +174,6 @@ public class LoginInfo {
 
 
     public static class LanguageWfBean implements Serializable {
-        //{"ACT":"GetTT","PT":"wfMainH50","lang":"ZH-CN","accType":"","pgLable":"0.38311782637122316","vsn":"001"}&_db={}
-        // {"ACT":"GetTT",,"PT":"wfMain0" "lang":"EN-US","accType":"","pgLable":"0.8736397885598416","vsn":"4.0.121"}
-//{"ACT":"GetTT","lang":"","accType":"","IsToday":"1","pgLable":"0.6229094620888556","vsn":"001","PT":"wfMain0"}
         public LanguageWfBean(String lang) {
             this.lang = lang;
         }
