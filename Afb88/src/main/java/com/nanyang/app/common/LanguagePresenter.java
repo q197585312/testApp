@@ -101,7 +101,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Response>() {
                     @Override
-                    public void accept(Response responseBodyResponse) throws Exception {
+                    public void accept(Response responseBodyResponse) throws JSONException {
                         baseContext.hideLoadingDialog();
                         okhttp3.Response response = responseBodyResponse.raw().priorResponse();
                         if (response != null) {
@@ -131,7 +131,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-
+                        throwable.printStackTrace();
                     }
                 }, new Action() {//完成
                     @Override
