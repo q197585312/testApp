@@ -767,20 +767,18 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView down3_tv = inflate1X2.findViewById(R.id.down3_tv);
         if (colorType.equals("1")) {
             up1_tv.setTextColor(Color.BLUE);
-            down1_tv.setTextColor(Color.BLACK);
             up2_tv.setTextColor(Color.RED);
-            down2_tv.setTextColor(Color.BLACK);
+
         } else if (colorType.equals("2")) {
             up1_tv.setTextColor(Color.RED);
-            down1_tv.setTextColor(getValueColor(down1));
             up2_tv.setTextColor(Color.RED);
-            down2_tv.setTextColor(getValueColor(down2));
+
         } else if (colorType.equals("3")) {
             up1_tv.setTextColor(Color.GRAY);
-            down1_tv.setTextColor(getValueColor(down1));
             up2_tv.setTextColor(Color.GRAY);
-            down2_tv.setTextColor(getValueColor(down2));
         }
+        down1_tv.setTextColor(getValueColor(down1));
+        down2_tv.setTextColor(getValueColor(down2));
         setTextValue(up1_tv, up1);
         setTextValue(up2_tv, up2);
         setTextValue(up3_tv, up3);

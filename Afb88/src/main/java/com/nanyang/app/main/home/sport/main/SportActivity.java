@@ -329,7 +329,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     protected void updateBalanceTv(String allData) {
-        String s = AfbUtils.addComma(allData, tvBalance);
+        String s = AfbUtils.addComma(allData, tvBalance,false);
         tvBalance.setText(getApp().getUser().getCurCode2() + ": " +s );
     }
 

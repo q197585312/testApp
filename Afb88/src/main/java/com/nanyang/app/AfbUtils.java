@@ -689,7 +689,7 @@ public class AfbUtils {
     public static String addComma(String str, TextView edt) {
 
         touzi_ed_values22 = edt.getText().toString().trim().replaceAll(",", "");
-        str =str.trim().replaceAll(",", "");
+        str = str.trim().replaceAll(",", "");
 
         boolean neg = false;
         if (str.startsWith("-")) {  //处理负数
@@ -710,7 +710,44 @@ public class AfbUtils {
         if (neg) {
             sb.insert(0, '-');
         }
-//        if (AppConstant.IS_AGENT)
+        if (AppConstant.IS_AGENT)
+            if (tail != null) {
+                sb.append(tail);
+            }
+        return sb.toString();
+    }
+
+    /**
+     * 在数字型字符串千分位加逗号,删除小数
+     *
+     * @param str
+     * @param edt
+     * @return sb.toString()
+     */
+    public static String addComma(String str, TextView edt, boolean showTail) {
+        touzi_ed_values22 = edt.getText().toString().trim().replaceAll(",", "");
+        str = str.trim().replaceAll(",", "");
+
+        boolean neg = false;
+        if (str.startsWith("-")) {  //处理负数
+            str = str.substring(1);
+            neg = true;
+        }
+        String tail = null;
+        if (str.indexOf('.') != -1) { //处理小数点
+            tail = str.substring(str.indexOf('.'));
+            str = str.substring(0, str.indexOf('.'));
+        }
+        StringBuilder sb = new StringBuilder(str);
+        sb.reverse();
+        for (int i = 3; i < sb.length(); i += 4) {
+            sb.insert(i, ',');
+        }
+        sb.reverse();
+        if (neg) {
+            sb.insert(0, '-');
+        }
+        if (showTail)
             if (tail != null) {
                 sb.append(tail);
             }
@@ -739,7 +776,7 @@ public class AfbUtils {
     }
 
     public static String scientificCountingToString(String scientificCounting) {
-        scientificCounting= scientificCounting.toString().replace(",","");
+        scientificCounting = scientificCounting.toString().replace(",", "");
         BigDecimal bd = new BigDecimal(scientificCounting);
         String s = bd.toPlainString();
         DecimalFormat df = new DecimalFormat("#,###.00");
@@ -951,13 +988,14 @@ public class AfbUtils {
     }
 
 
-    public static void startAnimator(ValueAnimator animator){
+    public static void startAnimator(ValueAnimator animator) {
         /*
          *参数解释：
          *target：设置属性动画的目标类，此处是当前自定义view所以使用this
          *propertyName:属性名称。（要对View的那个属性执行动画操作）
          *values数组：根据时间的推移动画将根据数组的内容进行改变
-         */;
+         */
+        ;
         /*
          * ArgbEvaluator：这种评估者可以用来执行类型之间的插值整数值代表ARGB颜色。
          * FloatEvaluator：这种评估者可以用来执行浮点值之间的插值。
