@@ -222,8 +222,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
                     if (s.contains("Maintenance")) {
                         Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
                         onError(exception);
-                    } else if(jsonArray.optString(2)!=null&&StringUtils.matches(jsonArray.optString(2),"^.*alert\\(\\'(.*)\\'\\);.*?")){
-                        Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2),"^.*alert\\(\\'(.*)\\'\\);.*?",1));
+                    } else if(jsonArray.optString(2)!=null&&StringUtils.matches(jsonArray.optString(2),"^.*alert\\(\\'([^\\']+)\\'\\);.*?")){
+                        Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2),"^.*alert\\(\\'([^\\']+)\\'\\);.*?",1));
                         onError(exception);
                     }else {
                         String regex = "window.location";

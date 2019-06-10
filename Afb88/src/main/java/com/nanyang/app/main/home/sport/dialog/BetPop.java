@@ -160,7 +160,7 @@ public class BetPop extends BasePopupWindow {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.toString().startsWith("0") || s.toString().length() > 1) {
+                if (s.toString().startsWith("0") && s.toString().length() > 1) {
                     s.delete(0, 1);
                 }
                 String amount = s.toString().trim().replaceAll(",", "");
