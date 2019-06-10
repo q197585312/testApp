@@ -166,7 +166,8 @@ public class BetGoalWindowUtils {
                                         tvData3.setText(AfbUtils.delHTMLTag(dataBean.getIndex24()) + (gameType314.equals("O") ? "Outright" : betType2));
                                         tvData4.setText((isRun5.equals("False") ? "" : dataBean.getIndex19()));
                                         TextView tv_odds = view.findViewById(R.id.tv_odds);
-                                        tv_odds.setText("@" + dataBean.getIndex3() + " ");
+                                        Log.d("getIndex3", "getIndex3: "+dataBean.getIndex3());
+                                        tv_odds.setText("@" + AfbUtils.delHTMLTag(dataBean.getIndex3()) + " ");
                                         String index15 = dataBean.getIndex15();
                                         if (!TextUtils.isEmpty(index15)) {
                                             tvData5.setText("(" + index15 + ")");
