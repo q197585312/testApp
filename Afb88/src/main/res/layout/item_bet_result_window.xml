@@ -93,6 +93,13 @@
         android:orientation="horizontal">
 
         <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="("
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+
+        <TextView
             android:id="@+id/tv_data1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -122,12 +129,21 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:text=")\@"
+            android:text=")"
             android:textColor="@color/black"
             android:textSize="12dp" />
 
         <TextView
             android:id="@+id/tv_data4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:text="fdsafdasf"
+            android:textColor="@color/black"
+            android:textSize="12dp" />
+
+        <TextView
+            android:id="@+id/tv_odds"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
