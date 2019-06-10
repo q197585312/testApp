@@ -75,7 +75,7 @@
                         android:id="@+id/img_chip_1"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
-                        android:padding="2dp"
+                        android:padding="3.5dp"
                         android:src="@mipmap/chip1" />
 
                     <ImageView
@@ -83,7 +83,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
-                        android:padding="2dp"
+                        android:padding="3.5dp"
                         android:src="@mipmap/chip1" />
 
                     <ImageView
@@ -91,7 +91,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
-                        android:padding="2dp"
+                        android:padding="3.5dp"
                         android:src="@mipmap/chip1" />
 
                     <ImageView
@@ -99,7 +99,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
-                        android:padding="2dp"
+                        android:padding="3.5dp"
                         android:src="@mipmap/chip1" />
 
                     <ImageView
@@ -107,7 +107,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
-                        android:padding="2dp"
+                        android:padding="3.5dp"
                         android:src="@mipmap/chip1" />
 
                     <ImageView
@@ -116,7 +116,7 @@
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
-                        android:padding="2dp"
+                        android:padding="3.5dp"
                         android:src="@mipmap/chip1" />
                 </LinearLayout>
             </RelativeLayout>
