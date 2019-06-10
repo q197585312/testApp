@@ -160,6 +160,9 @@ public class BetPop extends BasePopupWindow {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (s.toString().startsWith("0") || s.toString().length() > 1) {
+                    s.delete(0, 1);
+                }
                 String amount = s.toString().trim().replaceAll(",", "");
                 if (TextUtils.isEmpty(amount)) {
                     amount = "0";
@@ -319,11 +322,11 @@ public class BetPop extends BasePopupWindow {
 
     private void goBetting() {
         //http://www.afb1188.com/Bet/hBetSub.ashx?betType=1&oId=471838&odds=3.6&BTMD=S&amt=11&_=1543457323225
-        String s1 = betAmountEdt.getText().toString().trim().replace(",","");
+        String s1 = betAmountEdt.getText().toString().trim().replace(",", "");
         if (!StringUtils.isEmpty(s1)) {
             String s = s1.replaceAll(",", "");
-            double min = Double.parseDouble(betMaxWinTv.getText().toString().trim().replace(",",""));
-            double max = Double.parseDouble(betMaxBetTv.getText().toString().trim().replace(",",""));
+            double min = Double.parseDouble(betMaxWinTv.getText().toString().trim().replace(",", ""));
+            double max = Double.parseDouble(betMaxBetTv.getText().toString().trim().replace(",", ""));
             if (min > 0 && max > 0) {
                 int count = Integer.valueOf(s);
                 if (count > max || count < min) {
@@ -436,7 +439,7 @@ public class BetPop extends BasePopupWindow {
         }
         ((BaseActivity) context).hideLoadingDialog();
 //        showInput();
-        String writeMoney = betAmountEdt.getText().toString().trim().replace(",","");
+        String writeMoney = betAmountEdt.getText().toString().trim().replace(",", "");
         if (!TextUtils.isEmpty(writeMoney)) {
             tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"), tvMaxWin));
         }
@@ -606,7 +609,7 @@ public class BetPop extends BasePopupWindow {
                 mixdialog.show();
             }
         });
-        ValueAnimator anim = ObjectAnimator.ofInt(llMix, "backgroundColor", Color.WHITE,ContextCompat.getColor(context,R.color.pink_light_bg));
+        ValueAnimator anim = ObjectAnimator.ofInt(llMix, "backgroundColor", Color.WHITE, ContextCompat.getColor(context, R.color.pink_light_bg));
         //动画持续时间为3秒
         anim.setDuration(1000);
         AfbUtils.startAnimator(anim);
