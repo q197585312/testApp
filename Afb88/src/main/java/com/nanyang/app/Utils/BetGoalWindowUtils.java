@@ -115,18 +115,59 @@ public class BetGoalWindowUtils {
                                         tvMatch.setText(dataBean.getIndex11());
                                         tvHome.setText(dataBean.getIndex1());
                                         tvAway.setText(dataBean.getIndex2());
-                                        tvData1.setText(dataBean.getIndex10() + dataBean.getIndex13());
-                                        tvData2.setText(" " + dataBean.getIndex19() + " (");
-                                        String index21 = dataBean.getIndex21();
-                                        if (index21.contains("red")) {
+                                        String index13 = dataBean.getIndex13().replace("(", "").replace(")", "");
+                                        tvData1.setText(index13);
+                                        String transType10 = dataBean.getIndex10();
+                                        switch (transType10) {
+                                            case "1":
+                                            case "2":
+                                            case "X":
+                                                transType10 = "1X2";
+                                                break;
+                                            case "HDP":
+                                            case "MMH":
+                                                transType10 = "HDP";
+                                                break;
+                                            case "OU":
+                                            case "MMO":
+                                                transType10 = "O/U";
+                                                break;
+                                            case "OE":
+                                                transType10 = "O/E";
+                                                break;
+                                            case "DC":
+                                                transType10 = "DC";
+                                                break;
+                                            case "CSR":
+                                                transType10 = "CSR";
+                                                break;
+                                            case "FLG":
+                                                transType10 = "FG/LG";
+                                                break;
+                                            case "TG":
+                                                transType10 = "TG";
+                                                break;
+                                            case "HFT":
+                                                transType10 = "HT/FT";
+                                                break;
+                                        }
+                                        tvData2.setText("." + transType10 + " ");
+                                        String isRun5 = dataBean.getIndex5();
+                                        String betType2 = dataBean.getIndex23();
+                                        if (betType2.contains("red") || dataBean.getIndex24().contains("gbGive")) {
                                             tvData3.setTextColor(Color.RED);
+                                        } else if (betType2.contains("blue") || dataBean.getIndex24().contains("gbTake2")) {
+                                            tvData3.setTextColor(Color.BLUE);
+                                        } else {
+                                            tvData3.setTextColor(Color.BLACK);
                                         }
-                                        tvData3.setText(AfbUtils.delHTMLTag(index21));
-                                        String index3 = AfbUtils.delHTMLTag(dataBean.getIndex3());
-                                        if (index3.startsWith("-")) {
-                                            tvData4.setTextColor(Color.RED);
-                                        }
-                                        tvData4.setText(index3);
+                                        betType2 = AfbUtils.delHTMLTag(betType2);
+                                        String gameType314 = dataBean.getIndex14();
+                                        tvData3.setText(AfbUtils.delHTMLTag(dataBean.getIndex24()) + (gameType314.equals("O") ? "Outright" : betType2));
+                                        tvData4.setText((isRun5.equals("False") ? "" : dataBean.getIndex19()));
+                                        TextView tv_odds = view.findViewById(R.id.tv_odds);
+                                        Log.d("getIndex3", "getIndex3: "+dataBean.getIndex3());
+                                        tv_odds.setText("@" + AfbUtils.delHTMLTag(dataBean.getIndex3()) + " ");
                                         String index15 = dataBean.getIndex15();
                                         if (!TextUtils.isEmpty(index15)) {
                                             tvData5.setText("(" + index15 + ")");
@@ -292,7 +333,7 @@ public class BetGoalWindowUtils {
                     jsonArrayArr.getString(10), jsonArrayArr.getString(11), jsonArrayArr.getString(12), jsonArrayArr.getString(13),
                     jsonArrayArr.getString(14), jsonArrayArr.getString(15), jsonArrayArr.getString(16), jsonArrayArr.getString(17),
                     jsonArrayArr.getString(18), jsonArrayArr.getString(19), jsonArrayArr.getString(20), jsonArrayArr.getString(21),
-                    jsonArrayArr.getString(22));
+                    jsonArrayArr.getString(22), jsonArrayArr.getString(23), jsonArrayArr.getString(24), "");
             return bean;
         } catch (JSONException e) {
             e.printStackTrace();
