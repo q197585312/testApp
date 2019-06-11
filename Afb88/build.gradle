@@ -62,7 +62,7 @@ android {
         i1bet99 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet99"]
             applicationId 'com.nanyang.i1bet99'
-            versionName '1.10'
+            versionName '1.11'
             buildConfigField "String", "HOST_AFB", '"https://www.i1bet99.com/"'
             buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/i1bet99.php"'

@@ -85,10 +85,10 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
     }
 
     private boolean isOneTeamBoolean(B item, AfbClickResponseBean betAfbList) {
-        boolean onTeam =
+        boolean onTeam = betAfbList.getList().get(0).getLeague() != null &&
                 betAfbList.getList().get(0).getLeague().equalsIgnoreCase(item.getModuleTitle()) &&
-                        betAfbList.getList().get(0).getHome().equalsIgnoreCase(item.getHome()) &&
-                        betAfbList.getList().get(0).getAway().equalsIgnoreCase(item.getAway()) /*&& (betAfbList.gettList().get(0).getIsGive() + "").equalsIgnoreCase(item.getIsHomeGive())*/;
+                betAfbList.getList().get(0).getHome().equalsIgnoreCase(item.getHome()) &&
+                betAfbList.getList().get(0).getAway().equalsIgnoreCase(item.getAway()) /*&& (betAfbList.gettList().get(0).getIsGive() + "").equalsIgnoreCase(item.getIsHomeGive())*/;
         return onTeam;
     }
 
