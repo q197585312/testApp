@@ -33,17 +33,6 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       /* switch (getString(R.string.app_name)) {
-            case "Afb88":
-                SkinManager.getInstance().restoreDefaultTheme();
-                break;
-            case "I1bet88":
-                SkinManager.getInstance().loadSkin("skinbluepackage.skin", null);
-                break;
-            case "AP889":
-                SkinManager.getInstance().loadSkin("skinpurplepackage.skin", null);
-                break;
-        }*/
         setContentView(R.layout.activity_welcome);
         createPresenter(new WelcomePresenter(this));
         try {
