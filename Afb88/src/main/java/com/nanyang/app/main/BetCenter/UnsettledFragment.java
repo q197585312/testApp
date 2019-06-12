@@ -298,7 +298,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     betType2 = AfbUtils.delHTMLTag(betType2);
                     String gameType314 = item.getGameType314();
                     running_BetType2.setText(AfbUtils.delHTMLTag(item.getBetType424()) + (gameType314.equals("O") ? "Outright" : betType2));
-                    running_Score.setText((isRun5.equals("False") ? "" : item.getScore19()));
+                    running_Score.setText((isRun5.equals("1") ? item.getScore19() : ""));
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
                     odds = AfbUtils.delHTMLTag(odds);
@@ -363,6 +363,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         TextView tvMatchAt2 = view.getTextView(R.id.tv_match_at2);
         TextView tvMatchAt3 = view.getTextView(R.id.tv_match_at3);
         TextView tvMatchAt4 = view.getTextView(R.id.tv_match_at4);
+        TextView tvMatchScore = view.getTextView(R.id.tv_match_score);
         TextView tvWL = view.getTextView(R.id.tv_wl);
         TextView tvScore = view.getTextView(R.id.tv_score);
         tvIdDate.setText(bean.getIndex22() + "(" + bean.getIndex5() + ")");
@@ -386,6 +387,14 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             tvMatchAt2.setTextColor(Color.BLUE);
         } else {
             tvMatchAt2.setTextColor(Color.BLACK);
+        }
+        String index21 = bean.getIndex21();
+        if (index21.equals("True")) {
+            tvMatchScore.setVisibility(View.VISIBLE);
+            String showStr = " " + bean.getIndex19() + "-" + bean.getIndex20() + " ";
+            tvMatchScore.setText(showStr);
+        } else {
+            tvMatchScore.setVisibility(View.GONE);
         }
         tvMatchAt3.setText("@");
         tvMatchAt4.setText(bean.getIndex13() + "");
@@ -421,6 +430,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         TextView tvMatchAt2 = view.getTextView(R.id.tv_match_at2);
         TextView tvMatchAt3 = view.getTextView(R.id.tv_match_at3);
         TextView tvMatchAt4 = view.getTextView(R.id.tv_match_at4);
+        TextView tvMatchScore = view.getTextView(R.id.tv_match_score);
         TextView tvWL = view.getTextView(R.id.tv_wl);
         TextView tvScore = view.getTextView(R.id.tv_score);
         tvIdDate.setText(bean.getIndex21() + "(" + bean.getIndex5() + ")");
@@ -444,6 +454,14 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             tvMatchAt2.setTextColor(Color.BLUE);
         } else {
             tvMatchAt2.setTextColor(Color.BLACK);
+        }
+        String index20 = bean.getIndex20();
+        if (index20.equals("True")) {
+            tvMatchScore.setVisibility(View.VISIBLE);
+            String showStr = " " + bean.getIndex18() + "-" + bean.getIndex19() + " ";
+            tvMatchScore.setText(showStr);
+        } else {
+            tvMatchScore.setVisibility(View.GONE);
         }
         tvMatchAt3.setText("@");
         tvMatchAt4.setText(bean.getIndex13() + "");

@@ -88,6 +88,16 @@
             android:textSize="13sp" />
 
         <TextView
+            android:id="@+id/tv_match_score"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:singleLine="true"
+            android:text="0fdasfdasfsaf1"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            android:visibility="gone" />
+
+        <TextView
             android:id="@+id/tv_match_at2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
