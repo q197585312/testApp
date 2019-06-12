@@ -391,7 +391,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         String index21 = bean.getIndex21();
         if (index21.equals("True")) {
             tvMatchScore.setVisibility(View.VISIBLE);
-            String showStr = bean.getIndex19() + "-" + bean.getIndex20();
+            String showStr = " " + bean.getIndex19() + "-" + bean.getIndex20() + " ";
             tvMatchScore.setText(showStr);
         } else {
             tvMatchScore.setVisibility(View.GONE);
@@ -458,7 +458,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         String index20 = bean.getIndex20();
         if (index20.equals("True")) {
             tvMatchScore.setVisibility(View.VISIBLE);
-            String showStr = bean.getIndex18() + "-" + bean.getIndex19();
+            String showStr = " " + bean.getIndex18() + "-" + bean.getIndex19() + " ";
             tvMatchScore.setText(showStr);
         } else {
             tvMatchScore.setVisibility(View.GONE);
