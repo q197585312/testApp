@@ -423,7 +423,7 @@ public class BetPop extends BasePopupWindow {
             initBetChip();
         }
         tvCurrency.setText(afbApplication.getUser().getCurCode2());
-        betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getBalances(), betBalanceTv));
+        betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getCredit2(), betBalanceTv));
         if (list.size() > 1) {
             tvDelete.setVisibility(View.VISIBLE);
             AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
