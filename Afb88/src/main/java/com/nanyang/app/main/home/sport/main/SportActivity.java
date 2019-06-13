@@ -212,6 +212,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 MyGoHomeBroadcastReceiver(getApp());
 
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
+        presenter.switchOddsType(getApp().getOddsType().getType(), new BaseConsumer<String>(getBaseActivity()) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException, Exception {
+
+            }
+        });
     }
 
 
