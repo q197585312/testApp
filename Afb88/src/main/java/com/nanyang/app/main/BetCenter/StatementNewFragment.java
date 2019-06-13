@@ -360,6 +360,15 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvWL = view.findViewById(R.id.tv_wl);
             final LinearLayout llAddView2 = view.findViewById(R.id.ll_addView2);
             TextView tvScore = view.findViewById(R.id.tv_score);
+            if (i > 0) {
+                String lastId = list.get(i - 1).getIndex21();
+                String currentId = bean.getIndex21();
+                if (currentId.equals(lastId)) {
+                    tvIdDate.setVisibility(View.INVISIBLE);
+                } else {
+                    tvIdDate.setVisibility(View.VISIBLE);
+                }
+            }
             tvIdDate.setText(bean.getIndex21() + "(" + bean.getIndex5() + ")");
             tvMatchType.setText(bean.getIndex1());
             tvMatchVs.setText(bean.getIndex3() + "-VS-" + bean.getIndex4());
@@ -439,6 +448,15 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvMatchAt4 = view.findViewById(R.id.tv_match_at4);
             TextView tvWL = view.findViewById(R.id.tv_wl);
             TextView tvScore = view.findViewById(R.id.tv_score);
+            if (i > 0) {
+                String lastId = list.get(i - 1).getIndex22();
+                String currentId = bean.getIndex22();
+                if (currentId.equals(lastId)) {
+                    tvIdDate.setVisibility(View.INVISIBLE);
+                } else {
+                    tvIdDate.setVisibility(View.VISIBLE);
+                }
+            }
             tvIdDate.setText(bean.getIndex22() + "(" + bean.getIndex5() + ")");
             tvMatchType.setText(bean.getIndex1());
             tvMatchVs.setText(bean.getIndex3() + "-VS-" + bean.getIndex4());

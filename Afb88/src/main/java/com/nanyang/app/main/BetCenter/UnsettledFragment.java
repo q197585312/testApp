@@ -164,7 +164,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                         String updateString = data.replace("&nbsp;", " ");
                                         JSONArray jsonArray = new JSONArray(updateString);
                                         if (jsonArray.length() > 3) {
-                                            List<StatementOpen2ListDataBean> list = presenter.getBeanList2(jsonArray);
+                                            final List<StatementOpen2ListDataBean> list = presenter.getBeanList2(jsonArray);
                                             RecyclerView rc1 = holder.getView(R.id.rc_par_1);
                                             LinearLayoutManager llm = new LinearLayoutManager(mContext) {
                                                 @Override
@@ -176,7 +176,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                             BaseRecyclerAdapter<StatementOpen2ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen2ListDataBean>(mContext, list, R.layout.item_statement_open2) {
                                                 @Override
                                                 public void convert(MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
-                                                    updateRc1(view, position, bean);
+                                                    updateRc1(list, view, position, bean);
                                                 }
                                             };
                                             rc1.setAdapter(adapter);
@@ -208,7 +208,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                         String updateString = data.replace("&nbsp;", " ");
                                         JSONArray jsonArray = new JSONArray(updateString);
                                         if (jsonArray.length() > 3) {
-                                            List<StatementOpen3ListDataBean> list = presenter.getBeanList3(jsonArray);
+                                            final List<StatementOpen3ListDataBean> list = presenter.getBeanList3(jsonArray);
                                             RecyclerView rc1 = holder.getView(R.id.rc_par_2);
                                             LinearLayoutManager llm = new LinearLayoutManager(mContext) {
                                                 @Override
@@ -220,7 +220,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                             BaseRecyclerAdapter<StatementOpen3ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen3ListDataBean>(mContext, list, R.layout.item_statement_open2) {
                                                 @Override
                                                 public void convert(MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
-                                                    updateRc2(view, position, bean);
+                                                    updateRc2(list,view, position, bean);
                                                 }
                                             };
                                             rc1.setAdapter(adapter);
@@ -352,7 +352,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         presenter.getRunningList(type);
     }
 
-    public void updateRc2(MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
+    public void updateRc2(List<StatementOpen3ListDataBean> list,MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
         LinearLayout llTitle = view.getLinearLayout(R.id.ll_title);
         TextView tvTotalOdds = view.getTextView(R.id.tv_total_odds);
         TextView tvAmt = view.getTextView(R.id.tv_amt);
@@ -366,6 +366,15 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         TextView tvMatchScore = view.getTextView(R.id.tv_match_score);
         TextView tvWL = view.getTextView(R.id.tv_wl);
         TextView tvScore = view.getTextView(R.id.tv_score);
+        if (position > 0) {
+            String lastId = list.get(position - 1).getIndex22();
+            String id = bean.getIndex22();
+            if (id.equals(lastId)) {
+                tvIdDate.setVisibility(View.INVISIBLE);
+            } else {
+                tvIdDate.setVisibility(View.VISIBLE);
+            }
+        }
         tvIdDate.setText(bean.getIndex22() + "(" + bean.getIndex5() + ")");
         tvMatchType.setText(bean.getIndex1());
         tvMatchVs.setText(bean.getIndex3() + "-VS-" + bean.getIndex4());
@@ -422,7 +431,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         }
     }
 
-    public void updateRc1(MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
+
+    public void updateRc1(List<StatementOpen2ListDataBean> list, MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
         TextView tvIdDate = view.getTextView(R.id.tv_id_date);
         TextView tvMatchType = view.getTextView(R.id.tv_match_type);
         TextView tvMatchVs = view.getTextView(R.id.tv_match_vs);
@@ -433,7 +443,17 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         TextView tvMatchScore = view.getTextView(R.id.tv_match_score);
         TextView tvWL = view.getTextView(R.id.tv_wl);
         TextView tvScore = view.getTextView(R.id.tv_score);
-        tvIdDate.setText(bean.getIndex21() + "(" + bean.getIndex5() + ")");
+        if (position > 0) {
+            String lastId = list.get(position - 1).getIndex21();
+            String id = bean.getIndex21();
+            if (id.equals(lastId)) {
+                tvIdDate.setVisibility(View.INVISIBLE);
+            } else {
+                tvIdDate.setVisibility(View.VISIBLE);
+            }
+        }
+        String idDate = bean.getIndex21() + "(" + bean.getIndex5() + ")";
+        tvIdDate.setText(idDate);
         tvMatchType.setText(bean.getIndex1());
         tvMatchVs.setText(bean.getIndex3() + "-VS-" + bean.getIndex4());
         String matchAtStr1 = bean.getIndex16();
