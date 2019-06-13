@@ -59,6 +59,15 @@ public class AfbClickBetBean implements Serializable {
     private String AmtS;
     private String outright;
     private String IsFH;
+    private String AccType;
+
+    public String getAccType() {
+        return AccType;
+    }
+
+    public void setAccType(String accType) {
+        AccType = accType;
+    }
 
     public String getHasPar() {
         return hasPar;

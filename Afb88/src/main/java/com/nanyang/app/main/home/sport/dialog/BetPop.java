@@ -244,13 +244,21 @@ public class BetPop extends BasePopupWindow {
         if (list.size() > 1) {
             AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
             odds = Double.parseDouble(betAfbList.getPayoutOdds());
-            maxWin = odds * money;
+            maxWin = Math.abs(odds) * money;
         } else {
             odds = Double.parseDouble(list.get(0).getOdds());
-            maxWin = odds * money + money;
-        }
-        if (odds < 0) {
-            maxWin = money * 2;
+            String id = list.get(0).getId();
+            String[] split = id.split("\\|");
+            String _b = split[1];
+            if (!_b.equals("home") && !_b.equals("away") && !_b.equals("over") && !_b.equals("under") && !_b.equals("mmhome") && !_b.equals("mmaway") && !_b.equals("mmover") && !_b.equals("mmunder") && !_b.equals("odd") && !_b.equals("even")) {
+                odds = odds - 1;
+            }
+            String accType = list.get(0).getAccType();
+            if (accType.equals("EU") && (_b.equals("home") || _b.equals("away") || _b.equals("over") || _b.equals("under") || _b.equals("odd") || _b.equals("even"))) {
+                odds = odds - 1;
+            }
+            //单注：下注金额*（赔率的绝对值+1）
+            maxWin = money * (Math.abs(odds) + 1);
         }
         return maxWin;
     }
