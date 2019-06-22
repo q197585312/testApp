@@ -831,7 +831,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             swipeToLoadLayout.setLoadingMore(false);
         } else {
             swipeToLoadLayout.setLoadingMore(false);
-            swipeToLoadLayout.setLoadMoreEnabled(false);
+//            swipeToLoadLayout.setLoadMoreEnabled(false);
         }
     }
 
