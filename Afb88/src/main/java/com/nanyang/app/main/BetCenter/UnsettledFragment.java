@@ -297,7 +297,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     }
                     betType2 = AfbUtils.delHTMLTag(betType2);
                     String gameType314 = item.getGameType314();
-                    running_BetType2.setText(AfbUtils.delHTMLTag(item.getBetType424()) + (gameType314.equals("O") ? "Outright" : betType2));
+                    running_BetType2.setText(AfbUtils.delHTMLTag(item.getBetType424()) + " "+(gameType314.equals("O") ? "Outright" : betType2));
                     running_Score.setText((isRun5.equals("1") ? item.getScore19() : ""));
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();

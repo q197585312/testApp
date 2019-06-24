@@ -272,7 +272,7 @@
                     android:drawableTop="@mipmap/sport_botton_teb_statement"
                     android:gravity="center"
                     android:onClick="clickBets"
-                    android:text="@string/history_record"
+                    android:text="@string/TabMyBets"
                     android:textColor="@color/gray_dark"
                     android:textSize="12sp"
                     android:textStyle="bold" />
