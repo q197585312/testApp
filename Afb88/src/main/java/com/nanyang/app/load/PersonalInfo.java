@@ -1,5 +1,7 @@
 package com.nanyang.app.load;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Administrator on 2017/3/27.
  */
@@ -190,7 +192,8 @@ public class PersonalInfo {
     }
 
     public String getCredit2() {
-        return getXYCredit();
+        DecimalFormat df = new DecimalFormat("#.00");
+        return df.format(Double.valueOf(getXYCredit()));
     }
 
     public void setCredit2(String credit2) {

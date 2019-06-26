@@ -154,7 +154,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     public WebSocket webSocket;
     private AfbDrawerViewHolder afbDrawerViewHolder;
     private SportIdBean currentIdBean;
-    private boolean notClickType=false;
+    private boolean notClickType = false;
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
@@ -335,8 +335,8 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     @Override
     protected void updateBalanceTv(String allData) {
-        String s = AfbUtils.addComma(allData, tvBalance,false);
-        tvBalance.setText(getApp().getUser().getCurCode2() + ": " +s );
+        String s = AfbUtils.addComma(allData, tvBalance, AppConstant.IS_AGENT);
+        tvBalance.setText(getApp().getUser().getCurCode2() + ": " + s);
     }
 
 //    public void loginGD() {
@@ -640,7 +640,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     private void initSportFragment(SportIdBean item) {
         tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
         tvSportSelect.setText(getString(item.getTextRes()));
-        notClickType=false;
+        notClickType = false;
         if (!item.getDbid().startsWith("33"))
             currentIdBean = item;
         if (item.getDbid().equals("0")) {
@@ -654,7 +654,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             } else if (item.getDbid().equals("33_20")) {
                 stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), item.getDbid(), "3");
             }
-            notClickType=true;
+            notClickType = true;
             huayThaiFragment.setInfo(stringMenuItemInfo);
 //            deleteHeadAndFoot();
             afbDrawerViewHolder.switchFragment(huayThaiFragment);
@@ -666,7 +666,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void clickSportWayRun(final View view) {
 
-        if (currentFragment != null && currentFragment instanceof AllRunningFragment||notClickType) {
+        if (currentFragment != null && currentFragment instanceof AllRunningFragment || notClickType) {
             return;
         }
 
