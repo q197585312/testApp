@@ -13,7 +13,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.BetCenter.Bean.PersonCenter;
@@ -146,7 +146,7 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                             } else {
                                 ((BaseToolbarActivity) getBaseActivity()).getApp().setQuickAmount(quickAmount);
                                 viewById.setVisibility(View.GONE);
-                                presenter.saveNickName(quickAmount, new LanguagePresenter.CallBack<String>() {
+                                presenter.saveNickName(quickAmount, new MainPresenter.CallBack<String>() {
                                     @Override
                                     public void onBack(String data) throws JSONException {
                                         if (data.contains("ok")) {

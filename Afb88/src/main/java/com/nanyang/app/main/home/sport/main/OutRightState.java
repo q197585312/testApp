@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -26,6 +27,8 @@ import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -149,9 +152,6 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
             });
             return;
         }
-        if (webSocketBase != null && webSocketBase.isOpen()) {
-            webSocketBase.close();
-        }
         String dbId = fragment.currentIdBean.getDbid();
         webSocketRefresh(dbId);
 
@@ -191,8 +191,8 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                                         if (s.equals("3"))
                                             return;
                                         try {
-                                            allData = getTableSportInfos(s);
-                                            updateHandler.post(new Runnable() {
+                                            allData = getTableSportList(s);
+                                            new Handler().post(new Runnable() {
                                                 @Override
                                                 public void run() {
                                                     if (baseView.getIBaseContext().getBaseActivity() != null && baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
@@ -227,7 +227,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                                     }
                                 });
                                 OutRightState.this.webSocketBase = webSocket;
-                                startUpdateData();
+                                startUpdateSport();
                                 webSocket.setWriteableCallback(new WritableCallback() {
                                     @Override
                                     public void onWriteable() {
@@ -263,10 +263,29 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
             mCompositeSubscription.add(subscription);
     }
 
-    //[623803,
-// 623799,
-// 0,"" ,0,"07/07 10:00PM" ,0,0,1,0,0,12170,12170,"Thailand [w]" ,"Thailand [w]" ,"","",0,0,0,0,3,0,0,0,0,0,0,0,0,201,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,"0","2019/7/7 0:00:00",0,""]
-    @Override
+    private void stopUpdateSport() {
+
+    }
+    private Timer timer = new Timer();
+    private TimerTask task;
+
+    public void startUpdateSport() {
+        if (task == null) {
+            task = new TimerTask() {
+                @Override
+                public void run() {
+                    String cmd = "1";
+                    if (webSocketBase != null && webSocketBase.isOpen()) {
+                        webSocketBase.send(cmd);
+                        Log.d("Socket", "发送了：" + cmd);
+                    }
+                }
+            };
+        }
+        timer.schedule(task, 30000, 30000);
+    }
+
+     @Override
     protected BallInfo parseMatch(JSONArray matchArray, boolean notify) throws JSONException {
         BallInfo ballInfo = new AfbParseHelper<>().parseJsonArray(matchArray, notify);
         return ballInfo;
@@ -288,10 +307,10 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
             }
 
             @Override
-            public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds, int oid, String sc,boolean hasPar) {
+            public void clickOdds(TextView v, SportInfo item, String type, boolean isHf, String odds, int oid, String sc, boolean hasPar) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item, oid,type, odds, v, isHf, sc,hasPar);
+                helper.clickOdds(item, oid, type, odds, v, isHf, sc, hasPar);
             }
 
             @Override

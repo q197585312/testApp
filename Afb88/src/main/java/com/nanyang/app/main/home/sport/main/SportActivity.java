@@ -30,6 +30,9 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.koushikdutta.async.callback.CompletedCallback;
+import com.koushikdutta.async.callback.WritableCallback;
+import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -44,7 +47,7 @@ import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.IGetRefreshMenu;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
@@ -52,6 +55,7 @@ import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
@@ -63,12 +67,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.logger.Logger;
 
-public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String>, IGetRefreshMenu {
+public class SportActivity extends BaseToolbarActivity<MainPresenter> implements ILanguageView<String>, IGetRefreshMenu {
     private final String GUIDE_KEY = "GUIDE";
 
     HuayThaiFragment huayThaiFragment = new HuayThaiFragment();
@@ -151,10 +157,11 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public MenuItemInfo<String> item;
     private String currentGameType = "";
-    public WebSocket webSocket;
+
     private AfbDrawerViewHolder afbDrawerViewHolder;
     private SportIdBean currentIdBean;
     private boolean notClickType = false;
+    public WebSocket webSocket;
 
     public TextView getIvAllAdd() {
         return ivAllAdd;
@@ -235,7 +242,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Override
     public void initData() {
         super.initData();
-        createPresenter(new LanguagePresenter(this));
+        createPresenter(new MainPresenter(this));
         app = (AfbApplication) getApplication();
         item = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
 
@@ -255,7 +262,74 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             }
         });
         startRefreshMenu();
+        test();
     }
+
+    private void test() {
+        AsyncHttpClient.getDefaultInstance().websocket("ws://ws.afb1188.com:8888/fnOddsGen", null, new AsyncHttpClient.WebSocketConnectCallback() {
+
+            @Override
+            public void onCompleted(Exception ex, final WebSocket webSocket) {
+                Log.d("Socket", "onCompleted-----------" + webSocket.getSocket().toString());
+                if (ex != null) {
+                    Log.e("Socket", "Exception----------------" + ex.getLocalizedMessage());
+                    ex.printStackTrace();
+                    return;
+                }
+                webSocket.setPingCallback(new WebSocket.PingCallback() {
+                    @Override
+                    public void onPingReceived(String s) {
+                        Log.d("Socket", "onPongCallback" + s);
+                    }
+                });
+                webSocket.setPongCallback(new WebSocket.PongCallback() {
+                    @Override
+                    public void onPongReceived(String s) {
+                        Log.d("Socket", "onPongReceived" + s);
+                    }
+                });
+                webSocket.setClosedCallback(new CompletedCallback() {
+                    @Override
+                    public void onCompleted(Exception ex) {
+                        if (ex != null) {
+                            Log.d("Socket", "onClosedCallback出错");
+                            return;
+                        }
+                        Log.d("Socket", "onClosedCallback");
+                    }
+                });
+                webSocket.setEndCallback(new CompletedCallback() {
+                    @Override
+                    public void onCompleted(Exception ex) {
+                        if (ex != null) {
+                            Log.d("Socket", "setEndCallback出错");
+                            return;
+                        }
+                        Log.d("Socket", "setEndCallback");
+                    }
+                });
+                webSocket.setWriteableCallback(new WritableCallback() {
+                    @Override
+                    public void onWriteable() {
+                        Log.d("Socket", "WritableCallback");
+
+                    }
+                });
+                webSocket.setStringCallback(new WebSocket.StringCallback() {
+                    @Override
+                    public void onStringAvailable(final String s) {
+                        Log.d("Socket", "onStringAvailable-----------" + s);
+                        currentFragment.presenter.getStateHelper().handleData(s);
+
+                    }
+                });
+                SportActivity.this.webSocket = webSocket;
+                currentFragment.presenter.getStateHelper().sendRefreshData();
+                startUpdateData();
+            }
+        });
+    }
+
 
     public void updateMixOrderCount() {
         if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
@@ -279,10 +353,10 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (webSocket != null)
-            webSocket.close();
         BetGoalWindowUtils.clear();
         stopRefreshMenu();
+        stopUpdateData();
+        webSocket.close();
         unregisterReceiver(myGoHomeBroadcastReceiver);
     }
 
@@ -292,7 +366,6 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
         localCurrentFragment = sportIdBean.getBaseFragment();
         Logger.getDefaultLogger().d("localCurrentFragment:" + localCurrentFragment);
-
         initSportFragment(sportIdBean);
 
     }
@@ -360,6 +433,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     @Override
     protected void onStop() {
         super.onStop();
+        webSocket.pause();
 
     }
 
@@ -483,11 +557,15 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     public void clickCup(View view) {
-        currentFragment.presenter.getStateHelper().createChoosePop(view);
+//        currentFragment.presenter.getStateHelper().createChoosePop(view);
+        webSocket.send("1");
     }
 
     public void clickCollectionStar(View view) {
-        currentFragment.collection(view);
+        String s = "01[{\"token\":\"oxwwx0lruea4w0hezjmtymsr\",\"um\":\"\",\"delay\":\"0\",\"pn\":\"1\",\"tf\":-1,\"betable\":false,\"lang\":\"en\",\"LangCol\":\"C\",\"accType\":\"HK\",\"CTOddsDiff\":\"0\",\"CTSpreadDiff\":\"0\",\"oddsDiff\":\"0\",\"spreadDiff\":\"0\",\"ACT\":\"LOS\",\"DBID\":\"1_1_2\",\"ot\":\"t\",\"timess\":null,\"ov\":0,\"mt\":0,\"FAV\":\"\",\"SL\":\"\",\"fh\":false,\"isToday\":false}]";
+        LogUtil.d("Socket", s);
+        webSocket.send(s);
+//        currentFragment.collection(view);
     }
 
     public void clickBets(View view) {
@@ -514,7 +592,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
     }
 
     public void clickSportSelect(final View view) {
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {
@@ -670,7 +748,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             return;
         }
 
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {
@@ -868,5 +946,33 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
     public void clickSortByTime(View view) {
         changeTimeSort();
+    }
+
+    public void stopUpdateData() {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        if (webSocket != null)
+            webSocket.close();
+    }
+
+    private Timer timer = new Timer();
+    private TimerTask task;
+
+    public void startUpdateData() {
+        if (task == null) {
+            task = new TimerTask() {
+                @Override
+                public void run() {
+                    String cmd = "1";
+                    if (webSocket != null && webSocket.isOpen()) {
+                        webSocket.send(cmd);
+                        Log.d("Socket", "发送了：" + cmd);
+                    }
+                }
+            };
+        }
+        timer.schedule(task, 0, 30000);
     }
 }

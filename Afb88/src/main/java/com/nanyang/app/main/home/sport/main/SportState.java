@@ -6,7 +6,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,19 +18,17 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.koushikdutta.async.callback.CompletedCallback;
-import com.koushikdutta.async.callback.WritableCallback;
-import com.koushikdutta.async.http.AsyncHttpClient;
+import com.google.gson.Gson;
 import com.koushikdutta.async.http.WebSocket;
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.Setting.RefreshDataBean;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -100,11 +97,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected WebSocket webSocketBase;
 
     protected String TAG = "SportState";
-    private DataUpdateRunnable dataUpdateRunnable;
+
     private boolean isSearch = false;
     private String searchStr = "";
 
     protected boolean isHide = false;
+    private String dbType;
+    private String dbId;
 
 
     public int getPageSize() {
@@ -148,12 +147,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
      */
     protected abstract SportAdapterHelper.ItemCallBack onSetItemCallBack();
 
-    public void closeUpdate() {
-        if (webSocketBase != null && webSocketBase.isOpen()) {
-            webSocketBase.close();
-        }
-    }
-
     @Override
     public void unSubscribe() {
         if (mCompositeSubscription != null) {
@@ -176,11 +169,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     //    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=200&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
 //    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=1&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
+
+
     @Override
     public void refresh() {
-        if (webSocketBase != null && webSocketBase.isOpen()) {
-            webSocketBase.close();
-        }
         if (isHide)
             return;
         if (!NetWorkUtil.isNetConnected(getBaseView().getIBaseContext().getBaseActivity())) {
@@ -192,100 +184,85 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             });
             return;
         }
-        updateHandler.postDelayed(new Runnable() {
+        new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
                 baseView.getIBaseContext().showLoadingDialog();
             }
         }, 20);
-        final String url = getUrlString();
-        AsyncHttpClient.getDefaultInstance().websocket(url, null, new AsyncHttpClient.WebSocketConnectCallback() {
-            @Override
-            public void onCompleted(Exception ex, final WebSocket webSocket) {
-                Log.d("Socket", "onCompleted-----------" + url);
-                if (ex != null) {
-                    Log.e(TAG, "Exception----------------" + ex.getLocalizedMessage());
-                    ex.printStackTrace();
-                    return;
+
+        if (this.webSocketBase == null || !this.webSocketBase.isOpen()) {
+  /*          baseActivity.presenter.createWebSocket(new MainPresenter.CallBack<WebSocket>() {
+                @Override
+                public void onBack(WebSocket data) throws JSONException {
+                    webSocketBase = data;
+                    sendRefreshData();
                 }
+            });
+        */
+        } else {
+            sendRefreshData();
+        }
 
-                webSocket.setStringCallback(new WebSocket.StringCallback() {
-                    @Override
-                    public void onStringAvailable(String s) {
-                        Log.d("Socket", "onStringAvailable-----------" + s);
-                        if (s.equals("3"))
-                            return;
-                        try {
-                            allData = getTableSportInfos(s);
-                            updateHandler.post(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (baseView.getIBaseContext().getBaseActivity() != null && baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
-//                                        baseView.checkMix(isMix());
-                                        initAllData(allData);
-                                    }
-                                }
-                            });
 
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
+    }
 
-                    }
-                });
-                webSocket.setPingCallback(new WebSocket.PingCallback() {
-                    @Override
-                    public void onPingReceived(String s) {
-                        Log.d("Socket", "onPongCallback" + s);
-                    }
-                });
-                webSocket.setPongCallback(new WebSocket.PongCallback() {
-                    @Override
-                    public void onPongReceived(String s) {
-                        Log.d("Socket", "onPongReceived" + s);
-                    }
-                });
-                webSocket.setClosedCallback(new CompletedCallback() {
-                    @Override
-                    public void onCompleted(Exception ex) {
-                        if (ex != null) {
-                            Log.d("Socket", "onClosedCallback出错");
-                            return;
-                        }
-                        Log.d("Socket", "onClosedCallback");
-                    }
-                });
+    public void sendRefreshData() {
+        AfbApplication application = (AfbApplication) getBaseView().getIBaseContext().getBaseActivity().getApplication();
+        RefreshDataBean refreshDataBean = application.getRefreshDataBean();
+        MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
+        if (oddtype != null)
+            refreshDataBean.setAccType(oddtype.getType());
 
-                webSocket.setEndCallback(new CompletedCallback() {
-                    @Override
-                    public void onCompleted(Exception ex) {
-                        if (ex != null) {
-                            Log.d("Socket", "setEndCallback出错");
-                            return;
-                        }
-                        Log.d("Socket", "setEndCallback");
-                    }
-                });
-                webSocketBase = webSocket;
-                startUpdateData();
-                webSocket.setWriteableCallback(new WritableCallback() {
-                    @Override
-                    public void onWriteable() {
-                        Log.d("Socket", "WritableCallback");
+        String dBId = ((BaseSportFragment) baseView).getBallDbid();
+        if (StringUtils.isNull(dBId))
+            return;
+        refreshDataBean.setDBID(dBId + "_1_1");
+        refreshDataBean.setOt((getStateType().getType().charAt(0) + "").toLowerCase());
+        refreshDataBean.setOv(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType());
+        refreshDataBean.setMt(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType());
+        refreshDataBean.setWd(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd);
 
-                    }
-                });
 
-            }
-        });
+/*            JSONArray array = new JSONArray();
+            JSONObject  jsonObject=new JSONObject();
+            JSONArray put = array.put(jsonObject);*/
+        List<RefreshDataBean> list = new ArrayList<>();
+        list.add(refreshDataBean);
+        String s2 = new Gson().toJson(list);
+        String s = "01" + s2;
+
+        String s1 = "01[{\"token\":\"oxwwx0lruea4w0hezjmtymsr\",\"um\":\"\",\"delay\":\"0\",\"pn\":\"1\",\"tf\":-1,\"betable\":false,\"lang\":\"en\",\"LangCol\":\"C\",\"accType\":\"HK\",\"CTOddsDiff\":\"0\",\"CTSpreadDiff\":\"0\",\"oddsDiff\":\"0\",\"spreadDiff\":\"0\",\"ACT\":\"LOS\",\"DBID\":\"1_1_2\",\"ot\":\"t\",\"timess\":null,\"ov\":0,\"mt\":0,\"FAV\":\"\",\"SL\":\"\",\"fh\":false,\"isToday\":false}]";
+        LogUtil.d("Socket", s);
+
+        SportActivity baseActivity = (SportActivity) baseView.getIBaseContext().getBaseActivity();
+        this.webSocketBase = baseActivity.webSocket;
+        if (webSocketBase != null && webSocketBase.isOpen()) {
+            webSocketBase.send(s);
+            LogUtil.d("Socket", "fasongl:" + s);
+        }
+
 
     }
 
     protected String getUrlString() {
-        String url = getRefreshUrl();
+
+    /*    String url = getRefreshUrl();
+        AfbApplication application = (AfbApplication) getBaseView().getIBaseContext().getBaseActivity().getApplication();
+        RefreshDataBean refreshDataBean = application.getRefreshDataBean();
         MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
         if (oddtype != null)
-            url = url + "&accType=" + oddtype.getType();
+            refreshDataBean.setAccType(oddtype.getType());
+
+        String dBId = ((BaseSportFragment) baseView).getBallDbid();
+        if (StringUtils.isNull(dBId))
+            return;
+
+
+        Log.d("getUrlString", "url: " + url);
+        return url;
+
+          url = url + "&accType=" + oddtype.getType();
         url = url + "&CTOddsDiff=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getCTOddsDiff()
                 + "&CTSpreadDiff=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getCTSpreadDiff()
                 + "&oddsDiff=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getOddsDiff()
@@ -299,15 +276,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 + "&tp=1"
                 + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType()
                 + "&mt=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
-        int HH = Integer.parseInt(DateUtils.getCurrentDate("HH"));
-        url += "&tf=-1";
-//        if (HH >= 11) {
-//            url += "&tf=-1";
-//        }
-        url = url + "&wd=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd;
-        Log.d("getUrlString", "HH: " + HH);
-        Log.d("getUrlString", "url: " + url);
-        return url;
+
+        url = url + "&wd=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd;*/
+        return "";
     }
 
     @Override
@@ -447,26 +418,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return pageMatch;
     }
 
-    @Nullable
-    protected List<TableSportInfo<B>> parseTableModuleBeen(String s) throws JSONException {
-        s = Html.fromHtml(s).toString();
-        if (s.contains("Session Expired")) {
-            baseView.reLoginPrompt("", new SportContract.CallBack() {
-                @Override
-                public void clickCancel(View v) {
-                    refresh();
-                }
-            });
-        } else {
-            JSONArray jsonArray = new JSONArray(s);
-            if (jsonArray.length() > 4) {
-                JSONArray dataListArray = jsonArray.getJSONArray(3);
-                return updateJsonData(dataListArray);
-            }
-        }
-        return new ArrayList<>();
-    }
-
     protected List<TableSportInfo<B>> updateJsonData(JSONArray dataListArray) throws JSONException {
         ArrayList<TableSportInfo<B>> tableModules = new ArrayList<>();
         if (dataListArray.length() > 0) {
@@ -509,6 +460,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected void updateAllDate(List<TableSportInfo<B>> allData) {
+        if (allData == null)
+            return;
         filterData(allData);
         showCurrentData();
     }
@@ -629,74 +582,62 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return moduleDate;
     }
 
-    protected List<TableSportInfo<B>> getTableSportInfos(String s) throws JSONException {
+    protected List<TableSportInfo<B>> getTableSportList(String s) throws JSONException {
+
         String updateString = Html.fromHtml(s).toString();
-
-        JSONArray jsonArray = new JSONArray(updateString);
-        if (jsonArray.length() >= 5) {
-            JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
-            if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
-                synchronized (this) {
-                    LID = jsonArrayLID.getString(1);
+        if (updateString.contains("Session Expired")) {
+            baseView.reLoginPrompt("", new SportContract.CallBack() {
+                @Override
+                public void clickCancel(View v) {
+                    refresh();
                 }
-            } else {
-                LID = "";
-            }//解析 下一个pid
-            if (jsonArrayLID.optInt(0) == 1) {
-                this.allData = parseTableModuleBeen(s);
-            } else {
-                this.allData = updateJsonArray(s);
+            });
+            return new ArrayList<>();
+        } else {
+            JSONObject object = new JSONObject(updateString);
+            dbType = object.optString("dbtype");
+            dbId = object.optString("dbid");
+            JSONArray jsonArray = object.optJSONArray("data");
+            if (jsonArray.length() >= 5) {
+                JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
+                if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
+                    synchronized (this) {
+                        LID = jsonArrayLID.getString(1);
+                    }
+                } else {
+                    LID = "";
+                }//解析 下一个pid
+                if (jsonArrayLID.optInt(0) == 1) {
+                    JSONArray dataListArray = jsonArray.getJSONArray(3);
+                    return updateJsonData(dataListArray);
+                } else {
+                    return updateJsonArray(jsonArray);
+                }
             }
         }
-        return allData;
+        return new ArrayList<>();
     }
 
-
-    class DataUpdateRunnable implements Runnable {
-        public DataUpdateRunnable(WebSocket webSocket) {
-            this.webSocket = webSocket;
+    public void handleData(String s) {
+        try {
+            allData = getTableSportList(s);
+            baseView.getIBaseContext().getBaseActivity().runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if (baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
+                        initAllData(allData);
+                    }
+                }
+            });
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
-
-        WebSocket webSocket;
-
-        @Override
-        public void run() {
-            String cmd = "1";
-            if (webSocket.isOpen()) {
-                webSocket.send(cmd);
-                Log.d("Socket", "发送了：" + cmd);
-            }
-            updateHandler.postDelayed(this, 30000);
-        }
-    }
-
-
-    public Handler updateHandler = new Handler();
-
-    @Override
-    public void startUpdateData() {
-        updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
-        dataUpdateRunnable = new DataUpdateRunnable(webSocketBase);
-        updateHandler.post(dataUpdateRunnable);// 打开定时器，执行操作
-    }
-
-
-    @Override
-    public void stopUpdateData() {
-        if (webSocketBase != null)
-            webSocketBase.close();
-        if (mCompositeSubscription != null)
-            mCompositeSubscription.clear();
-        updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
 
     }
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
-    protected List<TableSportInfo<B>> updateJsonArray(String updateString) throws JSONException {
+    protected List<TableSportInfo<B>> updateJsonArray(JSONArray jsonArray) throws JSONException {
 
-        updateString = Html.fromHtml(updateString).toString();
-        LogUtil.d("UpdateData", updateString);
-        JSONArray jsonArray = new JSONArray(updateString);
         if (jsonArray.length() > 4) {
             JSONArray deleteArray = jsonArray.getJSONArray(2);
             for (int i = 0; i < deleteArray.length(); i++) {
@@ -1218,4 +1159,5 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void setIsHide(boolean isHide) {
         this.isHide = isHide;
     }
+
 }

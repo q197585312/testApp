@@ -27,7 +27,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.Utils.MyGoHomeBroadcastReceiver;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
@@ -45,7 +45,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends BaseToolbarActivity<LanguagePresenter> implements ILanguageView<String> {
+public class MainActivity extends BaseToolbarActivity<MainPresenter> implements ILanguageView<String> {
     @Bind(R.id.fl_menu_home)
     FrameLayout flMenuHome;
     @Bind(R.id.fl_menu_center)
@@ -71,7 +71,7 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
         AfbUtils.switchLanguage(lag, mContext);
         setContentView(R.layout.activity_main_tab);
         ButterKnife.bind(this);
-        createPresenter(new LanguagePresenter(this));
+        createPresenter(new MainPresenter(this));
         toolbar.setNavigationIcon(null);
 
         afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
@@ -112,7 +112,7 @@ public class MainActivity extends BaseToolbarActivity<LanguagePresenter> impleme
         super.onResume();
         presenter.oddsType();
         String language = new LanguageHelper(mContext).getLanguage();
-        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new LanguagePresenter.CallBack<String>() {
+        presenter.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);

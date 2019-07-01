@@ -9,7 +9,7 @@ import android.widget.TextView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -30,17 +30,17 @@ import butterknife.Bind;
 public class ChooseLanguagePop extends BasePopupWindow {
 
 
-    private final LanguagePresenter presenter;
+    private final MainPresenter presenter;
     @Bind(R.id.base_rv)
     RecyclerView baseRv;
 
     SportActivity context;
 
-    public ChooseLanguagePop(SportActivity context, View v, LanguagePresenter presenter) {
+    public ChooseLanguagePop(SportActivity context, View v, MainPresenter presenter) {
         this(context, v, 400, LinearLayout.LayoutParams.WRAP_CONTENT,presenter);
     }
 
-    public ChooseLanguagePop(SportActivity mContext, View v, int width, int height,LanguagePresenter presenter) {
+    public ChooseLanguagePop(SportActivity mContext, View v, int width, int height,MainPresenter presenter) {
         super(mContext, v, width, height);
         this.context = mContext;
         this.v = v;
@@ -90,7 +90,7 @@ public class ChooseLanguagePop extends BasePopupWindow {
                     if (tv!=null){
                         tv.setBackgroundResource(item.getRes());
                     }
-                    presenter.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+                    presenter.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
                         @Override
                         public void onBack(SettingAllDataBean data) throws JSONException {
 

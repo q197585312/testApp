@@ -11,7 +11,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
@@ -29,7 +29,7 @@ import butterknife.Bind;
  * Created by Administrator on 2017/3/28.
  */
 
-public class ChangeLanguageFragment extends BaseMoreFragment<LanguagePresenter> implements ILanguageView<String> {
+public class ChangeLanguageFragment extends BaseMoreFragment<MainPresenter> implements ILanguageView<String> {
     @Bind(R.id.rc)
     RecyclerView rc;
 
@@ -43,7 +43,7 @@ public class ChangeLanguageFragment extends BaseMoreFragment<LanguagePresenter> 
         super.initData();
         setBackTitle(getString(R.string.setting));
         initRc();
-        createPresenter(new LanguagePresenter(this));
+        createPresenter(new MainPresenter(this));
     }
 
     private void initRc() {
@@ -67,7 +67,7 @@ public class ChangeLanguageFragment extends BaseMoreFragment<LanguagePresenter> 
             @Override
             public void onItemClick(View view, MenuItemInfo<String> item, int position) {
                 AfbUtils.switchLanguage(item.getType(), getActivity());
-                presenter.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+                presenter.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
                     @Override
                     public void onBack(SettingAllDataBean data) throws JSONException {
                         onLanguageSwitchSucceed("");

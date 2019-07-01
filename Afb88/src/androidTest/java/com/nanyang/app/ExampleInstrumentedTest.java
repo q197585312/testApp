@@ -1,5 +1,15 @@
 package com.nanyang.app;
 
+import android.util.Log;
+
+import com.koushikdutta.async.callback.CompletedCallback;
+import com.koushikdutta.async.callback.WritableCallback;
+import com.koushikdutta.async.http.AsyncHttpClient;
+import com.koushikdutta.async.http.WebSocket;
+import com.unkonw.testapp.libs.utils.LogUtil;
+
+import org.junit.Test;
+
 /**
  * Instrumentation test, which will execute on an Android device.
  *
@@ -8,6 +18,75 @@ package com.nanyang.app;
 
 
 public class ExampleInstrumentedTest {
+
+    @Test
+    public void test(){
+        AsyncHttpClient.getDefaultInstance().websocket("ws://ws.afb1188.com:8888/fnOddsGen", null, new AsyncHttpClient.WebSocketConnectCallback() {
+            @Override
+            public void onCompleted(Exception ex, final WebSocket webSocket) {
+                Log.d("Socket", "onCompleted-----------" + webSocket.getSocket().toString());
+                if (ex != null) {
+                    Log.e("Socket", "Exception----------------" + ex.getLocalizedMessage());
+                    ex.printStackTrace();
+                    return;
+                }
+
+                webSocket.setPingCallback(new WebSocket.PingCallback() {
+                    @Override
+                    public void onPingReceived(String s) {
+                        Log.d("Socket", "onPongCallback" + s);
+                    }
+                });
+                webSocket.setPongCallback(new WebSocket.PongCallback() {
+                    @Override
+                    public void onPongReceived(String s) {
+                        Log.d("Socket", "onPongReceived" + s);
+                    }
+                });
+                webSocket.setClosedCallback(new CompletedCallback() {
+                    @Override
+                    public void onCompleted(Exception ex) {
+                        if (ex != null) {
+                            Log.d("Socket", "onClosedCallback出错");
+                            return;
+                        }
+                        Log.d("Socket", "onClosedCallback");
+                    }
+                });
+
+                webSocket.setEndCallback(new CompletedCallback() {
+                    @Override
+                    public void onCompleted(Exception ex) {
+                        if (ex != null) {
+                            Log.d("Socket", "setEndCallback出错");
+                            return;
+                        }
+                        Log.d("Socket", "setEndCallback");
+                    }
+                });
+                webSocket.setWriteableCallback(new WritableCallback() {
+                    @Override
+                    public void onWriteable() {
+                        Log.d("Socket", "WritableCallback");
+
+                    }
+                });
+                String s ="01[{\"token\":\"oxwwx0lruea4w0hezjmtymsr\",\"um\":\"\",\"delay\":\"0\",\"pn\":\"1\",\"tf\":-1,\"betable\":false,\"lang\":\"en\",\"LangCol\":\"C\",\"accType\":\"HK\",\"CTOddsDiff\":\"0\",\"CTSpreadDiff\":\"0\",\"oddsDiff\":\"0\",\"spreadDiff\":\"0\",\"ACT\":\"LOS\",\"DBID\":\"1_1_2\",\"ot\":\"t\",\"timess\":null,\"ov\":0,\"mt\":0,\"FAV\":\"\",\"SL\":\"\",\"fh\":false,\"isToday\":false}]";
+                LogUtil.d("Socket", s);
+                webSocket.setStringCallback(new WebSocket.StringCallback() {
+                    @Override
+                    public void onStringAvailable(String s) {
+                        Log.d("Socket", "onStringAvailable-----------" + s);
+                        if (s.equals("3"))
+                            return;
+
+                    }
+                });
+                webSocket.send(s);
+            }
+
+        });
+    }
 /*
 
     private String LID="";

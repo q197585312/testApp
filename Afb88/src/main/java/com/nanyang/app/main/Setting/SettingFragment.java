@@ -20,7 +20,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.Utils.SoundPlayUtils;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.MainActivity;
@@ -46,7 +46,7 @@ import butterknife.Bind;
  * Created by Administrator on 2019/4/25.
  */
 
-public class SettingFragment extends BaseMoreFragment<LanguagePresenter> implements ILanguageView<String> {
+public class SettingFragment extends BaseMoreFragment<MainPresenter> implements ILanguageView<String> {
     @Bind(R.id.person_center_view)
     RecyclerView rcContent;
     BaseToolbarActivity aty;
@@ -64,7 +64,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
         super.initData();
         setBackTitle(getString(R.string.setting));
         aty = (BaseToolbarActivity) getBaseActivity();
-        createPresenter(new LanguagePresenter(this));
+        createPresenter(new MainPresenter(this));
 
         adapter = new BaseRecyclerAdapter<SettingInfoBean>(mContext, new ArrayList<SettingInfoBean>(), R.layout.item_setting) {
             @Override
@@ -213,7 +213,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
                                 tv.setText(item.getText());
                                 AfbUtils.switchLanguage(item.getType(), getActivity());
 
-                                presenter.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+                                presenter.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
                                     @Override
                                     public void onBack(SettingAllDataBean data) throws JSONException {
                                         onLanguageSwitchSucceed("");
@@ -325,7 +325,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
     }
 
     private void initSetData() {
-        presenter.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+        presenter.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
             @Override
             public void onBack(SettingAllDataBean data) throws JSONException {
                 onGetSettingContentData(handleSettingData(data));
@@ -425,7 +425,7 @@ public class SettingFragment extends BaseMoreFragment<LanguagePresenter> impleme
             String ChipsList = getChooseChips();
             //"ChipsList":"50000,30000,10000,5000,1000,500,10,1"
             settingWfBean.setChipsList(ChipsList);
-            presenter.loadAllMainData(settingWfBean, new LanguagePresenter.CallBack<String>() {
+            presenter.loadAllMainData(settingWfBean, new MainPresenter.CallBack<String>() {
                 @Override
                 public void onBack(String data) throws JSONException {
                     Log.d(TAG, "onBack: " + data);

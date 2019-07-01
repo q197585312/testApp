@@ -4,7 +4,12 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
+import com.koushikdutta.async.callback.CompletedCallback;
+import com.koushikdutta.async.callback.WritableCallback;
+import com.koushikdutta.async.http.AsyncHttpClient;
+import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
@@ -51,7 +56,8 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  * Created by Administrator on 2017/4/19.
  */
 
-public class LanguagePresenter extends BaseSwitchPresenter {
+public class MainPresenter extends BaseSwitchPresenter {
+    private static final String TAG = "MainPresenter";
     IGetRefreshMenu iGetRefreshMenu;
 
 
@@ -60,7 +66,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
      *
      * @param iBaseContext
      */
-    public LanguagePresenter(IBaseContext iBaseContext) {
+    public MainPresenter(IBaseContext iBaseContext) {
         super(iBaseContext);
 //        changeLanguageFragment = (ILanguageView) iBaseContext;
         if (iBaseContext instanceof IGetRefreshMenu) {
@@ -93,7 +99,7 @@ public class LanguagePresenter extends BaseSwitchPresenter {
                 AfbUtils.setChipStatusMap(settingAllDataBean.getChipSetChoose());
                 back.onBack(settingAllDataBean);
             }
-        });
+        }, "^.*wsParam=([^;]+);.*?");
     }
 
     public void getSkipGd88Data() {
@@ -193,69 +199,6 @@ public class LanguagePresenter extends BaseSwitchPresenter {
 
                     }
                 }), baseConsumer);
-
-        /*doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().URL_LOGIN)
-                .flatMap(new Function<String, Flowable<String>>() {
-                    @Override
-                    public Flowable<String> apply(String s) throws Exception {
-                        String substring1 = s.substring(s.indexOf("id=\"__VIEWSTATE\" value=\"") + 24);
-                        String __VIEWSTATE = substring1.substring(0, substring1.indexOf("\""));
-                        String substring2 = s.substring(s.indexOf("id=\"__EVENTVALIDATION\" value=\"") + 30);
-                        String __EVENTVALIDATION = substring2.substring(0, substring2.indexOf("\""));
-                        info.set__VIEWSTATE(__VIEWSTATE);
-                        info.set__EVENTVALIDATION(__EVENTVALIDATION);
-
-                        return getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getMap());
-
-                    }
-                })
-                .flatMap(new Function<String, Flowable<String>>() {
-                    @Override
-                    public Flowable<String> apply(String s) throws Exception {
-                        String regex = ".*<script language='javascript'>window.open\\('(.*?)'.*?";
-                        Pattern p = Pattern.compile(regex);
-                        Matcher m = p.matcher(s);
-                        if (m.find()) {
-
-                            String url = m.group(1);
-                            if (url.contains("Maintenance")) {
-                                Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
-                                throw exception;
-                            } else {
-//                                http://a0096f.panda88.org/Public/validate.aspx?us=demoafbai5&k=1a56b037cee84f08acd00cce8be54ca1&r=841903858&lang=EN-US
-                                String host = url.substring(0, url.indexOf("/", 9));
-                                AppConstant.getInstance().setHost(host + "/");
-                                Log.d("OKHttp", url);
-                                return getService(ApiService.class).getData(url);
-                            }
-                        }
-                        Exception exception1 = new Exception("Server Error");
-                        throw exception1;
-
-                    }
-                })
-                //http://main55.afb88.com/_bet/panel.aspx
-                .flatMap(new Function<String, Flowable<String>>() {
-                    @Override
-                    public Flowable<String> apply(String str) throws Exception {
-                        if (str.contains("window.open(")) {
-                            return getService(ApiService.class).getData(AppConstant.getInstance().URL_PANEL);
-                        }
-                        Exception exception1 = new Exception("Login Failed");
-                        throw exception1;
-
-
-                    }
-                }).flatMap(new Function<String, Flowable<String>>() {
-                    @Override
-                    public Flowable<String> apply(String str) throws Exception {
-                        LanguageHelper helper = new LanguageHelper(baseContext.getBaseActivity());
-                        SwitchLanguage switchLanguage = new SwitchLanguage<IBaseContext>(baseContext.getBaseActivity());
-                        return switchLanguage.switchLanguage(helper.getLanguage());
-                    }
-                }), baseConsumer)*/
-        ;
-
     }
 
     public void switchOddsType(final String oddsType, BaseConsumer<String> consumer) {
@@ -335,7 +278,77 @@ public class LanguagePresenter extends BaseSwitchPresenter {
 
     }
 
+    public WebSocket getWebSocketBase() {
+        return webSocketBase;
+    }
+
+    WebSocket webSocketBase;
+    public void createWebSocket(final CallBack<WebSocket> back) {
+        AsyncHttpClient.getDefaultInstance().websocket("ws://ws.afb1188.com:8888/fnOddsGen", null, new AsyncHttpClient.WebSocketConnectCallback() {
+            @Override
+            public void onCompleted(Exception ex, final WebSocket webSocket) {
+                Log.d("Socket", "onCompleted-----------" + webSocket.getSocket().toString());
+                if (ex != null) {
+                    Log.e(TAG, "Exception----------------" + ex.getLocalizedMessage());
+                    ex.printStackTrace();
+                    return;
+                }
+
+                webSocket.setPingCallback(new WebSocket.PingCallback() {
+                    @Override
+                    public void onPingReceived(String s) {
+                        Log.d("Socket", "onPongCallback" + s);
+                    }
+                });
+                webSocket.setPongCallback(new WebSocket.PongCallback() {
+                    @Override
+                    public void onPongReceived(String s) {
+                        Log.d("Socket", "onPongReceived" + s);
+                    }
+                });
+                webSocket.setClosedCallback(new CompletedCallback() {
+                    @Override
+                    public void onCompleted(Exception ex) {
+                        if (ex != null) {
+                            Log.d("Socket", "onClosedCallback出错");
+                            return;
+                        }
+                        Log.d("Socket", "onClosedCallback");
+                    }
+                });
+
+                webSocket.setEndCallback(new CompletedCallback() {
+                    @Override
+                    public void onCompleted(Exception ex) {
+                        if (ex != null) {
+                            Log.d("Socket", "setEndCallback出错");
+                            return;
+                        }
+                        Log.d("Socket", "setEndCallback");
+                    }
+                });
+                webSocket.setWriteableCallback(new WritableCallback() {
+                    @Override
+                    public void onWriteable() {
+                        Log.d("Socket", "WritableCallback");
+
+                    }
+                });
+                webSocketBase = webSocket;
+                try {
+                    back.onBack(webSocketBase);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+
+        });
+    }
+
     public interface CallBack<T> {
         void onBack(T data) throws JSONException;
     }
+
+
 }

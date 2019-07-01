@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.LoadMainDataHelper;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -40,7 +40,7 @@ public class HuayThaiPresenter extends BaseRetrofitPresenter<HuayThaiFragment> {
         String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
         LoginInfo.HuayDataWfBean languageWfBean = new LoginInfo.HuayDataWfBean("BindWorkingDates", language, AppConstant.wfMain);
         languageWfBean.setType(type);
-        helper.doRetrofitApiOnUiThread(languageWfBean, new LanguagePresenter.CallBack<String>() {
+        helper.doRetrofitApiOnUiThread(languageWfBean, new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) throws JSONException {
                 JSONArray jsonArray = new JSONArray(data);
@@ -72,7 +72,7 @@ public class HuayThaiPresenter extends BaseRetrofitPresenter<HuayThaiFragment> {
         languageWfBean.setTxtNumber1(txtNumber1);
         languageWfBean.setTxtAmt(txtAmt);
         languageWfBean.setSocOddsId(socOddsId);
-        helper.doRetrofitApiOnUiThread(languageWfBean, new LanguagePresenter.CallBack<String>() {
+        helper.doRetrofitApiOnUiThread(languageWfBean, new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) throws JSONException {
                 JSONObject jsonObj = new JSONObject(data);

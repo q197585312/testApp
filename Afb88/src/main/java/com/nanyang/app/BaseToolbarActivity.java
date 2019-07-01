@@ -19,7 +19,7 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
@@ -218,7 +218,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public void updateBalance() {
         String language = new LanguageHelper(getBaseActivity()).getLanguage();
         LoadMainDataHelper helper = new LoadMainDataHelper(new Api(), getBaseActivity(), mCompositeSubscription);
-        helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
+        helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);

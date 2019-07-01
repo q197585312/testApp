@@ -1,7 +1,7 @@
 package com.nanyang.app.main.person;
 
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.main.LoadMainDataHelper;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -19,7 +19,7 @@ class PersonPresenter extends BaseRetrofitPresenter<PersonCenterFragment>{
     public PersonPresenter(PersonCenterFragment iBaseContext) {
         super(iBaseContext);
     }
-    public void saveNickName(String name, LanguagePresenter.CallBack back){
+    public void saveNickName(String name, MainPresenter.CallBack back){
         LoadMainDataHelper<SetNameWfBean> helper=new LoadMainDataHelper<>(mApiWrapper,baseContext.getBaseActivity(),mCompositeSubscription);
 
         SetNameWfBean setNameWfBean=new SetNameWfBean("SaveNick", new LanguageHelper(baseContext.getBaseActivity()).getLanguage(),"wfMycountH50");

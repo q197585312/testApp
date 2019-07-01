@@ -4,6 +4,7 @@ import com.nanyang.app.Utils.SoundPlayUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
+import com.nanyang.app.main.Setting.RefreshDataBean;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
@@ -27,6 +28,12 @@ public class AfbApplication extends BaseApplication {
     private AfbClickResponseBean betAfbList;
     private boolean isGoHome = false;
     private SettingAllDataBean settingAllDataBean;
+
+    public RefreshDataBean getRefreshDataBean() {
+        return refreshDataBean;
+    }
+
+    private RefreshDataBean refreshDataBean;
 
     public String getQuickAmount() {
         return quickAmount;
@@ -197,6 +204,10 @@ public class AfbApplication extends BaseApplication {
 
     public void setQuickAmount(String quickAmount) {
         this.quickAmount = quickAmount;
+    }
+
+    public void setRefreshDataBean(RefreshDataBean refreshDataBean) {
+        this.refreshDataBean = refreshDataBean;
     }
 }
 

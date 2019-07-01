@@ -15,7 +15,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.CheckVersionBean;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.load.login.LoginInfo;
@@ -147,16 +147,16 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                             AppConstant.IS_AGENT = true;
                             AppConstant.wfMain = "wfMainH501";
                             AfbUtils.initAllSprotMap();
-                            LanguagePresenter switchLanguage = new LanguagePresenter(baseContext);
+                            MainPresenter switchLanguage = new MainPresenter(baseContext);
                             AfbApplication app = (AfbApplication) baseContext.getBaseActivity().getApplication();
                             app.getUser().setLoginName(us);
                             app.getUser().setPassword("");
-                            switchLanguage.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+                            switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
                                 @Override
                                 public void onBack(SettingAllDataBean data) throws JSONException {
                                     String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
                                     LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
-                                    helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
+                                    helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
                                         @Override
                                         public void onBack(String data) {
                                             PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);

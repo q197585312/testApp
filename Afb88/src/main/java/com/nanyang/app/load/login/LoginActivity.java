@@ -23,7 +23,7 @@ import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.Utils.ViewPagerAdapter;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
@@ -217,21 +217,21 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             presenter.login(new LoginInfo(us, k), new BaseConsumer<String>(this) {
                 @Override
                 protected void onBaseGetData(String s) throws JSONException {
-                    JSONArray jsonArray=new JSONArray(s);
+                    JSONArray jsonArray = new JSONArray(s);
 
                     if (s.contains("Maintenance")) {
                         Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
                         onError(exception);
-                    } else if(jsonArray.optString(2)!=null&&StringUtils.matches(jsonArray.optString(2),"^.*alert\\(\\'([^\\']+)\\'\\);.*?")){
-                        Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2),"^.*alert\\(\\'([^\\']+)\\'\\);.*?",1));
+                    } else if (jsonArray.optString(2) != null && StringUtils.matches(jsonArray.optString(2), "^.*alert\\(\\'([^\\']+)\\'\\);.*?")) {
+                        Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2), "^.*alert\\(\\'([^\\']+)\\'\\);.*?", 1));
                         onError(exception);
-                    }else {
+                    } else {
                         String regex = "window.location";
                         Pattern p = Pattern.compile(regex);
                         Matcher m = p.matcher(s);
                         if (m.find()) {
-                            LanguagePresenter switchLanguage = new LanguagePresenter(baseContext);
-                            switchLanguage.getSetting(new LanguagePresenter.CallBack<SettingAllDataBean>() {
+                            MainPresenter switchLanguage = new MainPresenter(baseContext);
+                            switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
                                                           @Override
                                                           public void onBack(SettingAllDataBean data) throws JSONException {
                                                               onLanguageSwitchSucceed(data.getUserName());

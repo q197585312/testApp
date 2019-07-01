@@ -16,10 +16,6 @@ import org.json.JSONObject;
 public interface IObtainDataState {
     void refresh();
 
-    void startUpdateData();
-
-    void stopUpdateData();
-
     boolean collection();
 
     boolean menu(View tvMenu);

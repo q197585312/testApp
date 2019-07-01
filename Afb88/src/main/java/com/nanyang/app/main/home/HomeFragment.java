@@ -20,7 +20,7 @@ import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BaseSwitchFragment;
@@ -176,7 +176,7 @@ public class HomeFragment extends BaseSwitchFragment {
     Runnable mainAllDataUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
+            ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
 
                 @Override
                 public void onBack(String data) {

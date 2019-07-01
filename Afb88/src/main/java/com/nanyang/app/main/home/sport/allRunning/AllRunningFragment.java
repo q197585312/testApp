@@ -6,7 +6,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.LanguagePresenter;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.home.sport.main.BaseAllFragment;
 
@@ -31,7 +31,7 @@ public class AllRunningFragment extends BaseAllFragment {
     public void addSportHeadAndFoot(final SportIdBean sportIdBean) {
         if (sportIdBean == null)
             return;
-        getBaseActivity().presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new LanguagePresenter.CallBack<String>() {
+        getBaseActivity().presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {

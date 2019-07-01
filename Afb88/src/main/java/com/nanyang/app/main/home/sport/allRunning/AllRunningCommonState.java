@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.allRunning;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
@@ -149,9 +150,6 @@ public class AllRunningCommonState extends OutRightState {
             });
             return;
         }
-        if (webSocketBase != null && webSocketBase.isOpen()) {
-            webSocketBase.close();
-        }
         String dbId = fragment.currentIdBean.getDbid();
         webSocketRefresh(dbId);
 
@@ -193,8 +191,8 @@ public class AllRunningCommonState extends OutRightState {
                                         if (s.equals("3"))
                                             return;
                                         try {
-                                            allData = getTableSportInfos(s);
-                                            updateHandler.post(new Runnable() {
+                                            allData = getTableSportList(s);
+                                            new Handler().post(new Runnable() {
                                                 @Override
                                                 public void run() {
                                                     if (baseView.getIBaseContext().getBaseActivity() != null && baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
@@ -232,7 +230,7 @@ public class AllRunningCommonState extends OutRightState {
                                     }
                                 });
                                 webSocketBase = webSocket;
-                                startUpdateData();
+//                                startUpdateData();
                                 webSocket.setWriteableCallback(new WritableCallback() {
                                     @Override
                                     public void onWriteable() {
