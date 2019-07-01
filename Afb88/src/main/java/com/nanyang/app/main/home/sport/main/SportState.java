@@ -697,11 +697,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             LeagueBean leagueBean = bTableSportInfo.getLeagueBean();
             if (leagueBean != null && leagueBean.getModuleId().equals(match.optJSONArray(0).optString(0))) {
                 for (int j = 0; j < socArray.length(); j++) {
-                    addSoc(i, socArray.optJSONArray(j), true, isNew);
+                    addSoc(i, socArray.optJSONArray(j), true);
                 }
                 return;
             }
         }
+
         for (int i = 0; i < allData.size(); i++) {
             TableSportInfo<B> bTableSportInfo = allData.get(i);
             if (bTableSportInfo.getRows().get(bTableSportInfo.getRows().size() - 1).getSocOddsId().equals(b.getPreSocOddsId())) {
@@ -712,18 +713,20 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         allData.add(n, parseTableSportMatch(match, true));
     }
 
-    private void addSoc(int i, JSONArray soc, boolean notify, boolean isNew) throws JSONException {
+    private void addSoc(int i, JSONArray soc, boolean notify) throws JSONException {
         B b = parseMatch(soc, notify);
         List<B> rows = allData.get(i).getRows();
         for (int i1 = 0; i1 < rows.size(); i1++) {
-            if (isNew) {
-                if (rows.get(i1).getSocOddsId().equals(b.getPreSocOddsId())) {
-                    allData.get(i).getRows().add(i1 + 1, b);
+            if (rows.get(i1).getSocOddsId().equals(b.getSocOddsId())) {
+                allData.get(i).getRows().set(i1, b);
+                return;
+            }
+            if (rows.get(i1).getSocOddsId().equals(b.getPreSocOddsId())) {
+                if (rows.size() > (i1 + 1) && rows.get(i1 + 1).getSocOddsId().equals(b.getSocOddsId())) {
+                    allData.get(i).getRows().set(i1 + 1, b);
                     return;
-                }
-            } else {
-                if (rows.get(i1).getSocOddsId().equals(b.getSocOddsId())) {
-                    allData.get(i).getRows().set(i1, b);
+                } else {
+                    allData.get(i).getRows().add(i1 + 1, b);
                     return;
                 }
             }
