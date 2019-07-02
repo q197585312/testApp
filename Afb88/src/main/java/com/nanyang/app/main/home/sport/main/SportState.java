@@ -29,6 +29,7 @@ import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.Setting.RefreshDataBean;
+import com.nanyang.app.main.home.sport.WebSocketManager;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -55,6 +56,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -94,7 +97,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected BasePopupWindow popMenu;
     private SwipeToLoadLayout swipeToLoadLayout;
 
-    protected WebSocket webSocketBase;
 
     protected String TAG = "SportState";
 
@@ -104,6 +106,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected boolean isHide = false;
     private String dbType;
     private String dbId;
+    public WebSocket webSocketBase;
 
 
     public int getPageSize() {
@@ -190,24 +193,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 baseView.getIBaseContext().showLoadingDialog();
             }
         }, 20);
-
-        if (this.webSocketBase == null || !this.webSocketBase.isOpen()) {
-  /*          baseActivity.presenter.createWebSocket(new MainPresenter.CallBack<WebSocket>() {
-                @Override
-                public void onBack(WebSocket data) throws JSONException {
-                    webSocketBase = data;
-                    sendRefreshData();
-                }
-            });
-        */
-        } else {
-            sendRefreshData();
-        }
-
-
+        sendRefreshData();
     }
 
     public void sendRefreshData() {
+        LogUtil.d("Sockt", getClass().getSimpleName() + "发送数据：");
         AfbApplication application = (AfbApplication) getBaseView().getIBaseContext().getBaseActivity().getApplication();
         RefreshDataBean refreshDataBean = application.getRefreshDataBean();
         MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
@@ -217,30 +207,29 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String dBId = ((BaseSportFragment) baseView).getBallDbid();
         if (StringUtils.isNull(dBId))
             return;
-        refreshDataBean.setDBID(dBId + "_1_1");
-        refreshDataBean.setOt((getStateType().getType().charAt(0) + "").toLowerCase());
+        String t = (getStateType().getType().charAt(0) + "").toLowerCase();
+        String num = "1";
+        switch (t) {
+            case "t":
+                num = "2";
+                break;
+            case "r":
+                num = "1";
+                break;
+            case "e":
+                num = "3";
+                break;
+        }
+        refreshDataBean.setDBID(dBId + "_1_" + num);
+        refreshDataBean.setOt(t);
         refreshDataBean.setOv(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType());
         refreshDataBean.setMt(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType());
         refreshDataBean.setWd(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd);
-
-
-/*            JSONArray array = new JSONArray();
-            JSONObject  jsonObject=new JSONObject();
-            JSONArray put = array.put(jsonObject);*/
         List<RefreshDataBean> list = new ArrayList<>();
         list.add(refreshDataBean);
         String s2 = new Gson().toJson(list);
         String s = "01" + s2;
-
-        String s1 = "01[{\"token\":\"oxwwx0lruea4w0hezjmtymsr\",\"um\":\"\",\"delay\":\"0\",\"pn\":\"1\",\"tf\":-1,\"betable\":false,\"lang\":\"en\",\"LangCol\":\"C\",\"accType\":\"HK\",\"CTOddsDiff\":\"0\",\"CTSpreadDiff\":\"0\",\"oddsDiff\":\"0\",\"spreadDiff\":\"0\",\"ACT\":\"LOS\",\"DBID\":\"1_1_2\",\"ot\":\"t\",\"timess\":null,\"ov\":0,\"mt\":0,\"FAV\":\"\",\"SL\":\"\",\"fh\":false,\"isToday\":false}]";
-        LogUtil.d("Socket", s);
-
-        SportActivity baseActivity = (SportActivity) baseView.getIBaseContext().getBaseActivity();
-        this.webSocketBase = baseActivity.webSocket;
-        if (webSocketBase != null && webSocketBase.isOpen()) {
-            webSocketBase.send(s);
-            LogUtil.d("Socket", "fasongl:" + s);
-        }
+        WebSocketManager.getInstance().send(s);
 
 
     }
@@ -710,7 +699,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 break;
             }
         }
-        allData.add(n, parseTableSportMatch(match, true));
+        TableSportInfo<B> bTableSportInfo = parseTableSportMatch(match, true);
+        if (allData.size() > n && bTableSportInfo.getLeagueBean().getModuleId().equals(allData.get(n).getLeagueBean().getModuleId())) {
+            allData.set(n, bTableSportInfo);
+        } else
+            allData.add(n, bTableSportInfo);
     }
 
     private void addSoc(int i, JSONArray soc, boolean notify) throws JSONException {
@@ -1163,4 +1156,22 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         this.isHide = isHide;
     }
 
+    private Timer timer = new Timer();
+    private TimerTask task;
+
+    public void startUpdateSport() {
+        if (task == null) {
+            task = new TimerTask() {
+                @Override
+                public void run() {
+                    String cmd = "1";
+                    if (webSocketBase != null && webSocketBase.isOpen()) {
+                        webSocketBase.send(cmd);
+                        Log.d("Socket", "发送了：" + cmd);
+                    }
+                }
+            };
+        }
+        timer.schedule(task, 0, 30000);
+    }
 }

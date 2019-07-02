@@ -4,12 +4,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.support.annotation.NonNull;
-import android.util.Log;
 
-import com.koushikdutta.async.callback.CompletedCallback;
-import com.koushikdutta.async.callback.WritableCallback;
-import com.koushikdutta.async.http.AsyncHttpClient;
-import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
@@ -276,74 +271,6 @@ public class MainPresenter extends BaseSwitchPresenter {
                 });
         mCompositeSubscription.add(subscription);
 
-    }
-
-    public WebSocket getWebSocketBase() {
-        return webSocketBase;
-    }
-
-    WebSocket webSocketBase;
-    public void createWebSocket(final CallBack<WebSocket> back) {
-        AsyncHttpClient.getDefaultInstance().websocket("ws://ws.afb1188.com:8888/fnOddsGen", null, new AsyncHttpClient.WebSocketConnectCallback() {
-            @Override
-            public void onCompleted(Exception ex, final WebSocket webSocket) {
-                Log.d("Socket", "onCompleted-----------" + webSocket.getSocket().toString());
-                if (ex != null) {
-                    Log.e(TAG, "Exception----------------" + ex.getLocalizedMessage());
-                    ex.printStackTrace();
-                    return;
-                }
-
-                webSocket.setPingCallback(new WebSocket.PingCallback() {
-                    @Override
-                    public void onPingReceived(String s) {
-                        Log.d("Socket", "onPongCallback" + s);
-                    }
-                });
-                webSocket.setPongCallback(new WebSocket.PongCallback() {
-                    @Override
-                    public void onPongReceived(String s) {
-                        Log.d("Socket", "onPongReceived" + s);
-                    }
-                });
-                webSocket.setClosedCallback(new CompletedCallback() {
-                    @Override
-                    public void onCompleted(Exception ex) {
-                        if (ex != null) {
-                            Log.d("Socket", "onClosedCallback出错");
-                            return;
-                        }
-                        Log.d("Socket", "onClosedCallback");
-                    }
-                });
-
-                webSocket.setEndCallback(new CompletedCallback() {
-                    @Override
-                    public void onCompleted(Exception ex) {
-                        if (ex != null) {
-                            Log.d("Socket", "setEndCallback出错");
-                            return;
-                        }
-                        Log.d("Socket", "setEndCallback");
-                    }
-                });
-                webSocket.setWriteableCallback(new WritableCallback() {
-                    @Override
-                    public void onWriteable() {
-                        Log.d("Socket", "WritableCallback");
-
-                    }
-                });
-                webSocketBase = webSocket;
-                try {
-                    back.onBack(webSocketBase);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-
-        });
     }
 
     public interface CallBack<T> {

@@ -27,8 +27,6 @@ import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
@@ -266,24 +264,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
     private void stopUpdateSport() {
 
     }
-    private Timer timer = new Timer();
-    private TimerTask task;
 
-    public void startUpdateSport() {
-        if (task == null) {
-            task = new TimerTask() {
-                @Override
-                public void run() {
-                    String cmd = "1";
-                    if (webSocketBase != null && webSocketBase.isOpen()) {
-                        webSocketBase.send(cmd);
-                        Log.d("Socket", "发送了：" + cmd);
-                    }
-                }
-            };
-        }
-        timer.schedule(task, 30000, 30000);
-    }
 
      @Override
     protected BallInfo parseMatch(JSONArray matchArray, boolean notify) throws JSONException {

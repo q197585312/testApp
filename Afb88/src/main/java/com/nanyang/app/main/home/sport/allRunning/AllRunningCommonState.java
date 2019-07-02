@@ -41,6 +41,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
  */
 
 public class AllRunningCommonState extends OutRightState {
+
     public AllRunningCommonState(SportContract.View baseView) {
         super(baseView);
     }
@@ -230,7 +231,7 @@ public class AllRunningCommonState extends OutRightState {
                                     }
                                 });
                                 webSocketBase = webSocket;
-//                                startUpdateData();
+                                startUpdateSport();
                                 webSocket.setWriteableCallback(new WritableCallback() {
                                     @Override
                                     public void onWriteable() {

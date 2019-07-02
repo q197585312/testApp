@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport;
 
-import android.support.v7.util.SortedList;
 import android.util.Log;
 
 import com.koushikdutta.async.callback.CompletedCallback;
@@ -11,6 +10,9 @@ import com.nanyang.app.common.MainPresenter;
 
 import org.json.JSONException;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * Created by ASUS on 2019/7/1.
  */
@@ -18,6 +20,7 @@ import org.json.JSONException;
 public class WebSocketManager {
 
     private static WebSocketManager instance;
+    private WebSocket webSocket;
 
     private WebSocketManager() {
 
@@ -32,7 +35,8 @@ public class WebSocketManager {
         }
         return instance;
     }
-    public void createWebSocket(final MainPresenter.CallBack<Void> back, SortedList.Callback<String> stringCallback){
+
+    public void createWebSocket(final MainPresenter.CallBack<String> back, final WebSocket.StringCallback stringCallback) {
         AsyncHttpClient.getDefaultInstance().websocket("ws://ws.afb1188.com:8888/fnOddsGen", null, new AsyncHttpClient.WebSocketConnectCallback() {
 
             @Override
@@ -82,22 +86,53 @@ public class WebSocketManager {
 
                     }
                 });
-                webSocket.setStringCallback(new WebSocket.StringCallback() {
-                    @Override
-                    public void onStringAvailable(final String s) {
-                        Log.d("Socket", "onStringAvailable-----------" + s);
-
-
-
-                    }
-                });
-
+                webSocket.setStringCallback(stringCallback);
+                WebSocketManager.this.webSocket = webSocket;
                 try {
                     back.onBack(null);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                startUpdateData();
             }
         });
+    }
+
+
+    public void stopUpdateData() {
+        if (timer != null) {
+            timer.cancel();
+            timer = null;
+        }
+        if (webSocket != null)
+            webSocket.close();
+    }
+
+    private Timer timer = new Timer();
+    private TimerTask task;
+
+    public void startUpdateData() {
+        if (task == null) {
+            task = new TimerTask() {
+                @Override
+                public void run() {
+                    String cmd = "1";
+                    send(cmd);
+                }
+            };
+        }
+        timer.schedule(task, 0, 30000);
+    }
+
+    public void send(String cmd) {
+        if (webSocket != null && webSocket.isOpen()) {
+            webSocket.send(cmd);
+            Log.d("Socket", "发送了：" + cmd);
+        }
+    }
+
+    public void test() {
+        String s = "01[{\"token\":\"oxwwx0lruea4w0hezjmtymsr\",\"um\":\"\",\"delay\":\"0\",\"pn\":\"1\",\"tf\":-1,\"betable\":false,\"lang\":\"en\",\"LangCol\":\"C\",\"accType\":\"HK\",\"CTOddsDiff\":\"0\",\"CTSpreadDiff\":\"0\",\"oddsDiff\":\"0\",\"spreadDiff\":\"0\",\"ACT\":\"LOS\",\"DBID\":\"1_1_2\",\"ot\":\"t\",\"timess\":null,\"ov\":0,\"mt\":0,\"FAV\":\"\",\"SL\":\"\",\"fh\":false,\"isToday\":false}]";
+        send(s);
     }
 }
