@@ -1,39 +1,21 @@
 package com.nanyang.app.main.home.sport.main;
 
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.koushikdutta.async.callback.CompletedCallback;
-import com.koushikdutta.async.callback.WritableCallback;
-import com.koushikdutta.async.http.AsyncHttpClient;
-import com.koushikdutta.async.http.WebSocket;
-import com.nanyang.app.ApiService;
-import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
-import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.utils.NetWorkUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.reactivestreams.Subscription;
 
 import java.util.List;
-
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-
-import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
  * Created by Administrator on 2017/3/10.
@@ -137,25 +119,10 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
         };
     }
 
-    @Override
-    public void refresh() {
-        if (isHide)
-            return;
-        if (!NetWorkUtil.isNetConnected(getBaseView().getIBaseContext().getBaseActivity())) {
-            baseView.reLoginPrompt(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
-                @Override
-                public void clickCancel(View v) {
-                    refresh();
-                }
-            });
-            return;
-        }
-        String dbId = fragment.currentIdBean.getDbid();
-        webSocketRefresh(dbId);
-
+    public String getDbId() {
+        return fragment.currentIdBean.getDbid();
     }
-
-    protected void webSocketRefresh(String dbId) {
+/*    protected void webSocketRefresh(String dbId) {
         String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
         String accType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType().getType();
         int ov = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
@@ -259,14 +226,10 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                 });
         if (mCompositeSubscription != null)
             mCompositeSubscription.add(subscription);
-    }
-
-    private void stopUpdateSport() {
-
-    }
+    }*/
 
 
-     @Override
+    @Override
     protected BallInfo parseMatch(JSONArray matchArray, boolean notify) throws JSONException {
         BallInfo ballInfo = new AfbParseHelper<>().parseJsonArray(matchArray, notify);
         return ballInfo;

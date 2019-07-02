@@ -19,7 +19,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
@@ -56,8 +55,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -106,8 +103,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected boolean isHide = false;
     private String dbType;
     private String dbId;
-    public WebSocket webSocketBase;
-
 
     public int getPageSize() {
         return pageSize;
@@ -170,7 +165,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected BaseRecyclerAdapter<B> baseRecyclerAdapter;
 
-    //    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=200&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
+//    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=200&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
 //    https://ws.afb1188.com/fnOddsGen?wst=wsSocAllGen&g=1&ot=t&wd=&pn=1&delay=0&tf=-1&betable=1&lang=en&ia=0&tfDate=2019-03-27&LangCol=C&accType=MY&CTOddsDiff=-0.2&CTSpreadDiff=-1&oddsDiff=0&spreadDiff=0&um=1|1317|22080&LID=&ov=0&mt=0&FAV=&SL=&LSL=undefined
 
 
@@ -193,18 +188,23 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 baseView.getIBaseContext().showLoadingDialog();
             }
         }, 20);
-        sendRefreshData();
+        String dBId = getDbId();
+        sendRefreshData(dBId);
     }
 
-    public void sendRefreshData() {
-        LogUtil.d("Sockt", getClass().getSimpleName() + "发送数据：");
+    public String getDbId() {
+        return ((BaseSportFragment) baseView).getBallDbid();
+    }
+
+    public void sendRefreshData(String dBId) {
+        LogUtil.d("Socket", getClass().getSimpleName() + "发送数据：");
         AfbApplication application = (AfbApplication) getBaseView().getIBaseContext().getBaseActivity().getApplication();
         RefreshDataBean refreshDataBean = application.getRefreshDataBean();
-        MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
-        if (oddtype != null)
-            refreshDataBean.setAccType(oddtype.getType());
+        MenuItemInfo oddsType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
+        if (oddsType != null)
+            refreshDataBean.setAccType(oddsType.getType());
 
-        String dBId = ((BaseSportFragment) baseView).getBallDbid();
+
         if (StringUtils.isNull(dBId))
             return;
         String t = (getStateType().getType().charAt(0) + "").toLowerCase();
@@ -802,7 +802,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 TextView tv_game_count = holder.getView(R.id.tv_game_count);
                 tv_game_count.setVisibility(View.GONE);
 
-                String dBId = ((BaseSportFragment) baseView).getBallDbid();
+                String dBId = getDbId();
                 if (StringUtils.isNull(dBId))
                     return;
           /*      SportIdBean sportIdBean = AfbUtils.getSportByDbid(dbid);
@@ -1156,22 +1156,4 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         this.isHide = isHide;
     }
 
-    private Timer timer = new Timer();
-    private TimerTask task;
-
-    public void startUpdateSport() {
-        if (task == null) {
-            task = new TimerTask() {
-                @Override
-                public void run() {
-                    String cmd = "1";
-                    if (webSocketBase != null && webSocketBase.isOpen()) {
-                        webSocketBase.send(cmd);
-                        Log.d("Socket", "发送了：" + cmd);
-                    }
-                }
-            };
-        }
-        timer.schedule(task, 0, 30000);
-    }
 }

@@ -266,7 +266,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             @Override
             public void onBack(String data) throws JSONException {
                 LogUtil.d("Socket", "连接完成，currentFragment：" + currentFragment + "State:" + currentFragment.presenter.getStateHelper());
-                currentFragment.presenter.getStateHelper().sendRefreshData();
+                currentFragment.presenter.getStateHelper().refresh();
             }
         }, new WebSocket.StringCallback() {
             @Override

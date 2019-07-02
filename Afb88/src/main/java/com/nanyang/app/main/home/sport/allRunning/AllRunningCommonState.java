@@ -1,40 +1,19 @@
 package com.nanyang.app.main.home.sport.allRunning;
 
-import android.os.Handler;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.koushikdutta.async.callback.CompletedCallback;
-import com.koushikdutta.async.callback.WritableCallback;
-import com.koushikdutta.async.http.AsyncHttpClient;
-import com.koushikdutta.async.http.WebSocket;
-import com.nanyang.app.ApiService;
-import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
-import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.main.OutRightState;
-import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
-import com.unkonw.testapp.libs.utils.NetWorkUtil;
-
-import org.json.JSONException;
-import org.reactivestreams.Subscription;
-
-import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-import io.reactivex.schedulers.Schedulers;
-
-import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
  * Created by ASUS on 2019/4/26.
@@ -46,7 +25,7 @@ public class AllRunningCommonState extends OutRightState {
         super(baseView);
     }
 
-    protected  SportAdapterHelper.ItemCallBack onSetItemCallBack(){
+    protected SportAdapterHelper.ItemCallBack onSetItemCallBack() {
         return new BallItemCallBack<BallInfo>(baseRecyclerAdapter) {
             @Override
             public boolean isItemCollection(BallInfo item) {
@@ -59,10 +38,10 @@ public class AllRunningCommonState extends OutRightState {
             }
 
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc,boolean hasPar) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc, boolean hasPar) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item,oid, type, odds, v, isHf, sc,hasPar);
+                helper.clickOdds(item, oid, type, odds, v, isHf, sc, hasPar);
             }
 
             @Override
@@ -139,24 +118,10 @@ public class AllRunningCommonState extends OutRightState {
     }
 
     @Override
-    public void refresh() {
-        if (isHide)
-            return;
-        if (!NetWorkUtil.isNetConnected(getBaseView().getIBaseContext().getBaseActivity())) {
-            baseView.reLoginPrompt(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
-                @Override
-                public void clickCancel(View v) {
-                    refresh();
-                }
-            });
-            return;
-        }
-        String dbId = fragment.currentIdBean.getDbid();
-        webSocketRefresh(dbId);
-
+    public String getDbId() {
+        return fragment.currentIdBean.getDbid();
     }
-
-    protected void webSocketRefresh(String dbId) {
+    /*    protected void webSocketRefresh(String dbId) {
         String mt = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
         String accType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType().getType();
         int ov = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType();
@@ -265,7 +230,7 @@ public class AllRunningCommonState extends OutRightState {
                 });
         if (mCompositeSubscription != null)
             mCompositeSubscription.add(subscription);
-    }
+    }*/
 
     @Override
     public MenuItemInfo getStateType() {
@@ -273,6 +238,7 @@ public class AllRunningCommonState extends OutRightState {
             text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today);
         return new MenuItemInfo<String>(0, text, "AllRunning", getSportName());
     }
+
     public void setStateItemOt(String ot) {
         switch (ot) {
             case "e":
