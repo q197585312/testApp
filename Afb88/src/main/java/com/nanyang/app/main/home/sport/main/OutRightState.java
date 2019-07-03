@@ -132,8 +132,17 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
 
     @Override
     protected BallInfo parseMatch(JSONArray matchArray, boolean notify) throws JSONException {
-        BallInfo ballInfo = new AfbParseHelper<>().parseJsonArray(matchArray, notify);
-        return ballInfo;
+
+        BallInfo info = new BallInfo();
+        info.setSocOddsId(matchArray.getString(0));
+        info.setHome(matchArray.getString(1));
+        info.setIsInetBet(matchArray.getString(2));
+        info.setIsX12New(matchArray.getString(3));
+        info.setHasX12(matchArray.getString(4));
+        info.setX12_1Odds(matchArray.getString(5));
+        info.setPreSocOddsId(matchArray.getString(6));
+        info.setNotify(notify);
+        return info;
     }
 
 

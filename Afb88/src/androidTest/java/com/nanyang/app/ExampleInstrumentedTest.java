@@ -22,7 +22,8 @@ public class ExampleInstrumentedTest {
         String Update=openFileString("jsonUpdateTest.txt");
         String Result=openFileString("jsonTableListTest.txt");
         try {
-            updateMatch(Result,Update);
+            updateMatch(Result
+            Update);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -30,7 +31,8 @@ public class ExampleInstrumentedTest {
 
     }
 
-    private void updateMatch(String result, String update) throws JSONException {
+    private void updateMatch(String result
+     String update) throws JSONException {
         update = Html.fromHtml(update).toString();
         LogUtil.d("UpdateData", update);
         JSONArray jsonArray = new JSONArray(update);

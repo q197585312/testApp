@@ -522,8 +522,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected List<TableSportInfo<B>> getTableSportList(JSONArray jsonArray) throws JSONException {
-
-
         if (jsonArray.length() >= 5) {
             JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
             if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
@@ -561,18 +559,20 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             JSONObject object = new JSONObject(updateString);
             dbType = object.optString("dbtype");
             dbId = object.optString("dbid");
-            JSONArray jsonArray = object.optJSONArray("data");
-            if (jsonArray == null || jsonArray.length() < 1)
-                return;
-            allData = getTableSportList(jsonArray);
-            baseView.getIBaseContext().getBaseActivity().runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if (baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
-                        initAllData(allData);
+            if (dbId.startsWith(getDbId()) && dbId.toLowerCase().endsWith((getStateType().getType().charAt(0) + "").toLowerCase())) {
+                JSONArray jsonArray = object.optJSONArray("data");
+                if (jsonArray == null || jsonArray.length() < 1)
+                    return;
+                allData = getTableSportList(jsonArray);
+                baseView.getIBaseContext().getBaseActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        if (baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
+                            initAllData(allData);
+                        }
                     }
-                }
-            });
+                });
+            }
         } catch (JSONException e) {
             e.printStackTrace();
         }
