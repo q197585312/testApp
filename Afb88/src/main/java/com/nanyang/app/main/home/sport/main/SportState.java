@@ -5,7 +5,6 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -171,8 +170,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     @Override
     public void refresh() {
-        if (isHide)
-            return;
+
         if (!NetWorkUtil.isNetConnected(getBaseView().getIBaseContext().getBaseActivity())) {
             baseView.reLoginPrompt(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
                 @Override
@@ -182,12 +180,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             });
             return;
         }
-        new Handler().postDelayed(new Runnable() {
+        baseView.getIBaseContext().getBaseActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
                 baseView.getIBaseContext().showLoadingDialog();
             }
-        }, 20);
+        });
+
         String dBId = getDbId();
         sendRefreshData(dBId);
     }
@@ -208,19 +207,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         if (StringUtils.isNull(dBId))
             return;
         String t = (getStateType().getType().charAt(0) + "").toLowerCase();
-        String num = "1";
-        switch (t) {
-            case "t":
-                num = "2";
-                break;
-            case "r":
-                num = "1";
-                break;
-            case "e":
-                num = "3";
-                break;
-        }
-        refreshDataBean.setDBID(dBId + "_1_" + num);
+        refreshDataBean.setDBID(dBId);
         refreshDataBean.setOt(t);
         refreshDataBean.setOv(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType());
         refreshDataBean.setMt(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType());
@@ -230,45 +217,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String s2 = new Gson().toJson(list);
         String s = "01" + s2;
         WebSocketManager.getInstance().send(s);
-
-
     }
 
-    protected String getUrlString() {
-
-    /*    String url = getRefreshUrl();
-        AfbApplication application = (AfbApplication) getBaseView().getIBaseContext().getBaseActivity().getApplication();
-        RefreshDataBean refreshDataBean = application.getRefreshDataBean();
-        MenuItemInfo oddtype = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
-        if (oddtype != null)
-            refreshDataBean.setAccType(oddtype.getType());
-
-        String dBId = ((BaseSportFragment) baseView).getBallDbid();
-        if (StringUtils.isNull(dBId))
-            return;
-
-
-        Log.d("getUrlString", "url: " + url);
-        return url;
-
-          url = url + "&accType=" + oddtype.getType();
-        url = url + "&CTOddsDiff=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getCTOddsDiff()
-                + "&CTSpreadDiff=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getCTSpreadDiff()
-                + "&oddsDiff=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getOddsDiff()
-                + "&spreadDiff=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getSpreadDiff()
-                + "&betable=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getBetable()
-                + "&tfDate=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate()
-                + "&LangCol=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getLangCol()
-                + "&um=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getUm()
-                + "&delay=" + ((BaseToolbarActivity) baseView.getIBaseContext().getBaseActivity()).getApp().getUser().getDelay()
-                + "&pn=1"
-                + "&tp=1"
-                + "&ov=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType()
-                + "&mt=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
-
-        url = url + "&wd=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd;*/
-        return "";
-    }
 
     @Override
     public boolean menu(View tvMenu) {
@@ -571,45 +521,50 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return moduleDate;
     }
 
-    protected List<TableSportInfo<B>> getTableSportList(String s) throws JSONException {
+    protected List<TableSportInfo<B>> getTableSportList(JSONArray jsonArray) throws JSONException {
 
-        String updateString = Html.fromHtml(s).toString();
-        if (updateString.contains("Session Expired")) {
+
+        if (jsonArray.length() >= 5) {
+            JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
+            if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
+                synchronized (this) {
+                    LID = jsonArrayLID.getString(1);
+                }
+            } else {
+                LID = "";
+            }//解析 下一个pid
+            if (jsonArrayLID.optInt(0) == 1) {
+                JSONArray dataListArray = jsonArray.getJSONArray(3);
+                return updateJsonData(dataListArray);
+            } else {
+                return updateJsonArray(jsonArray);
+            }
+
+        }
+        return new ArrayList<>();
+    }
+
+    public void handleData(String s) {
+        if (isHide)
+            return;
+        if (s.contains("Session Expired")) {
             baseView.reLoginPrompt("", new SportContract.CallBack() {
                 @Override
                 public void clickCancel(View v) {
                     refresh();
                 }
             });
-            return new ArrayList<>();
-        } else {
+            return;
+        }
+        try {
+            String updateString = Html.fromHtml(s).toString();
             JSONObject object = new JSONObject(updateString);
             dbType = object.optString("dbtype");
             dbId = object.optString("dbid");
             JSONArray jsonArray = object.optJSONArray("data");
-            if (jsonArray.length() >= 5) {
-                JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
-                if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
-                    synchronized (this) {
-                        LID = jsonArrayLID.getString(1);
-                    }
-                } else {
-                    LID = "";
-                }//解析 下一个pid
-                if (jsonArrayLID.optInt(0) == 1) {
-                    JSONArray dataListArray = jsonArray.getJSONArray(3);
-                    return updateJsonData(dataListArray);
-                } else {
-                    return updateJsonArray(jsonArray);
-                }
-            }
-        }
-        return new ArrayList<>();
-    }
-
-    public void handleData(String s) {
-        try {
-            allData = getTableSportList(s);
+            if (jsonArray == null || jsonArray.length() < 1)
+                return;
+            allData = getTableSportList(jsonArray);
             baseView.getIBaseContext().getBaseActivity().runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

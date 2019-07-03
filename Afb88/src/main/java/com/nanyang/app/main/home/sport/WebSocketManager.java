@@ -21,6 +21,8 @@ public class WebSocketManager {
 
     private static WebSocketManager instance;
     private WebSocket webSocket;
+    private MainPresenter.CallBack<String> onPingCloseCallBack;
+    private boolean isRunning = false;
 
     private WebSocketManager() {
 
@@ -36,7 +38,8 @@ public class WebSocketManager {
         return instance;
     }
 
-    public void createWebSocket(final MainPresenter.CallBack<String> back, final WebSocket.StringCallback stringCallback) {
+    public void createWebSocket(final MainPresenter.CallBack<String> back, final WebSocket.StringCallback stringCallback, final MainPresenter.CallBack<String> onPingCloseCallBack) {
+        this.onPingCloseCallBack = onPingCloseCallBack;
         AsyncHttpClient.getDefaultInstance().websocket("ws://ws.afb1188.com:8888/fnOddsGen", null, new AsyncHttpClient.WebSocketConnectCallback() {
 
             @Override
@@ -93,7 +96,7 @@ public class WebSocketManager {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                startUpdateData();
+
             }
         });
     }
@@ -103,31 +106,49 @@ public class WebSocketManager {
         if (timer != null) {
             timer.cancel();
             timer = null;
+            task = null;
         }
-        if (webSocket != null)
+        if (webSocket != null) {
+            webSocket.getServer().stop();
             webSocket.close();
+            webSocket = null;
+        }
+        isRunning = false;
     }
 
-    private Timer timer = new Timer();
+    private Timer timer;
     private TimerTask task;
 
     public void startUpdateData() {
-        if (task == null) {
+        if (timer != null && task != null && isRunning)
+            return;
+        if (timer == null) {
+            timer = new Timer();
             task = new TimerTask() {
                 @Override
                 public void run() {
                     String cmd = "1";
                     send(cmd);
+                    if (webSocket == null || !webSocket.isOpen()) {
+                        try {
+                            onPingCloseCallBack.onBack("");
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
             };
         }
         timer.schedule(task, 0, 30000);
+        isRunning = true;
     }
 
     public void send(String cmd) {
         if (webSocket != null && webSocket.isOpen()) {
             webSocket.send(cmd);
             Log.d("Socket", "发送了：" + cmd);
+        } else {
+            Log.d("Socket", "发送失败了：" + cmd);
         }
     }
 

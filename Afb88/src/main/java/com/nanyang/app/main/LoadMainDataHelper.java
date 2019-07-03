@@ -14,7 +14,6 @@ import com.nanyang.app.main.Setting.RefreshDataBean;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -49,19 +48,8 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 Log.d("doRetrofitApiOnUiThread", "data: " + data);
-                /*if (data.contains("Maintenance")) {
-                    ((BaseToolbarActivity) baseContext).reLoginPrompt(baseContext.getBaseActivity().getString(R.string.System_maintenance), new SportContract.CallBack() {
-                        @Override
-                        public void clickCancel(View v) {
-                            Intent intent = new Intent(baseContext.getBaseActivity(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                            baseContext.getBaseActivity().startActivity(intent);
-                        }
-                    });
-                    return;
-                }*/
                 String updateString = AfbUtils.delHTMLTag(data);
                 JSONArray jsonArray = new JSONArray(updateString);
-
                 if (jsonArray.length() > 3) {
                     String s2 = jsonArray.getString(2);
                     if (!StringUtils.isNull(matches)) {
@@ -72,12 +60,11 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                             refreshDataBean.setFAV("");
                             refreshDataBean.setSL("");
                             refreshDataBean.setWd("");
+                            refreshDataBean.setTp("1");
                             refreshDataBean.setFh(false);
                             refreshDataBean.setToday(false);
-
                             ((AfbApplication) baseContext.getBaseActivity().getApplication()).setRefreshDataBean(refreshDataBean);
                         }
-                        ToastUtils.showLong(group);
 
                     }
                     JSONArray jsonArrayData3 = jsonArray.getJSONArray(3);

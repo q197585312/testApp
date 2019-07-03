@@ -360,10 +360,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, noMixRes, 0, 0);
     }
 
-    @Override
-    public void checkMix(boolean isMix) {
-        checkBgTop(((SportActivity) getActivity()).tvMix, isMix, R.mipmap.sport_bottom_teb_shopping, R.mipmap.sport_bottom_teb_shopping_black);
-    }
 
 
     @Override

@@ -27,6 +27,11 @@ public class RefreshDataBean {
     private String delay;
     private String pn;
     private String tf;
+
+    public void setBetable(boolean betable) {
+        this.betable = betable;
+    }
+
     private boolean betable;
     private String lang;
     private String LangCol;
@@ -36,6 +41,12 @@ public class RefreshDataBean {
     private String oddsDiff;
     private String spreadDiff;
     private String wd;
+
+    public void setTp(String tp) {
+        this.tp = tp;
+    }
+
+    private String tp;
 
     public void setACT(String ACT) {
         this.ACT = ACT;

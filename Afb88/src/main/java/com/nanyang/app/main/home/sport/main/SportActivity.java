@@ -176,12 +176,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
         toolbar.setVisibility(View.GONE);
-   /*     presenter.switchOddsType("MY", new BaseConsumer<String>(this) {
-            @Override
-            protected void onBaseGetData(String data) throws JSONException {
-
-            }
-        });*/
         edtSearchContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -217,7 +211,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
         presenter.switchOddsType(getApp().getOddsType().getType(), new BaseConsumer<String>(getBaseActivity()) {
             @Override
-            protected void onBaseGetData(String data) throws JSONException, Exception {
+            protected void onBaseGetData(String data) throws JSONException {
 
             }
         });
@@ -248,7 +242,22 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             type = item.getType();
             assert tvToolbarTitle != null;
             tvToolbarTitle.setText(item.getText());
+
             initFragment(item.getParent());
+            int res = R.mipmap.date_running_green;
+            dateClickPosition = 0;
+            switch (type) {
+                case "Early":
+                    res = R.mipmap.date_early_grey;
+                    dateClickPosition = 2;
+                    break;
+                case "Today":
+                    dateClickPosition = 1;
+                    res = R.mipmap.date_today_grey;
+                    break;
+            }
+            runWayItem(new MenuItemInfo<>(res, item.getText(), type, res));
+
         }
         getApp().setBetParList(null);
         tvRecord.setOnClickListener(new View.OnClickListener() {
@@ -266,7 +275,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             @Override
             public void onBack(String data) throws JSONException {
                 LogUtil.d("Socket", "连接完成，currentFragment：" + currentFragment + "State:" + currentFragment.presenter.getStateHelper());
+                WebSocketManager.getInstance().startUpdateData();
                 currentFragment.presenter.getStateHelper().refresh();
+
             }
         }, new WebSocket.StringCallback() {
             @Override
@@ -275,6 +286,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 if (s.equals("3"))
                     return;
                 currentFragment.presenter.getStateHelper().handleData(s);
+            }
+        }, new MainPresenter.CallBack<String>() {
+            @Override
+            public void onBack(String data) throws JSONException {
+                createWebSocket();
             }
         });
     }
@@ -296,15 +312,14 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvMixCount.setText("0");
             tvOrderCount.setText("0");
         }
-
     }
+
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         BetGoalWindowUtils.clear();
         stopRefreshMenu();
-        WebSocketManager.getInstance().stopUpdateData();
         unregisterReceiver(myGoHomeBroadcastReceiver);
     }
 
@@ -512,9 +527,15 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        currentFragment.getPresenter().getStateHelper().refresh();
+    protected void onRestart() {
+        super.onRestart();
+        WebSocketManager.getInstance().startUpdateData();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        WebSocketManager.getInstance().stopUpdateData();
     }
 
     public void clickSportSelect(final View view) {

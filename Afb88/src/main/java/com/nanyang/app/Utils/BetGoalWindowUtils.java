@@ -284,8 +284,10 @@ public class BetGoalWindowUtils {
         tvAwayScore.setText(awayScore);
         if (type == 0) {//0是主队进球 1是客队进球
             tvHomeScore.setTextColor(Color.RED);
+            tvAwayScore.setTextColor(Color.BLACK);
         } else {
             tvAwayScore.setTextColor(Color.RED);
+            tvHomeScore.setTextColor(Color.BLACK);
         }
         view.setLayoutParams(params);
         llContent.addView(view);
