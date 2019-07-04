@@ -38,16 +38,23 @@ public class WebSocketManager {
         return instance;
     }
 
+    Timer timerRetry = new Timer();
+
     public void createWebSocket(final MainPresenter.CallBack<String> back, final WebSocket.StringCallback stringCallback, final MainPresenter.CallBack<String> onPingCloseCallBack) {
-        this.onPingCloseCallBack = onPingCloseCallBack;
+
         AsyncHttpClient.getDefaultInstance().websocket("ws://ws.afb1188.com:8888/fnOddsGen", null, new AsyncHttpClient.WebSocketConnectCallback() {
 
             @Override
             public void onCompleted(Exception ex, final WebSocket webSocket) {
-                Log.d("Socket", "onCompleted-----------" + webSocket.getSocket().toString());
                 if (ex != null) {
                     Log.e("Socket", "Exception----------------" + ex.getLocalizedMessage());
                     ex.printStackTrace();
+                    timerRetry.schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            createWebSocket(back, stringCallback, onPingCloseCallBack);
+                        }
+                    }, 2000);
                     return;
                 }
                 webSocket.setPingCallback(new WebSocket.PingCallback() {
@@ -99,6 +106,7 @@ public class WebSocketManager {
 
             }
         });
+        this.onPingCloseCallBack = onPingCloseCallBack;
     }
 
 

@@ -40,7 +40,7 @@ public class RefreshDataBean {
     private String CTSpreadDiff;
     private String oddsDiff;
     private String spreadDiff;
-    private String wd;
+
 
     public void setTp(String tp) {
         this.tp = tp;
@@ -202,9 +202,6 @@ public class RefreshDataBean {
         this.spreadDiff = spreadDiff;
     }
 
-    public void setWd(String wd) {
-        this.wd = wd;
-    }
 
     @Override
     public String toString() {
@@ -222,7 +219,6 @@ public class RefreshDataBean {
                 ", CTSpreadDiff='" + CTSpreadDiff + '\'' +
                 ", oddsDiff='" + oddsDiff + '\'' +
                 ", spreadDiff='" + spreadDiff + '\'' +
-                ", wd='" + wd + '\'' +
                 ", ACT='" + ACT + '\'' +
                 ", DBID='" + DBID + '\'' +
                 ", ot='" + ot + '\'' +

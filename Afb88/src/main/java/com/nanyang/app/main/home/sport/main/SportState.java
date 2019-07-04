@@ -211,7 +211,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         refreshDataBean.setOt(t);
         refreshDataBean.setOv(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType());
         refreshDataBean.setMt(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType());
-        refreshDataBean.setWd(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd);
+        refreshDataBean.setTimess(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd);
         List<RefreshDataBean> list = new ArrayList<>();
         list.add(refreshDataBean);
         String s2 = new Gson().toJson(list);

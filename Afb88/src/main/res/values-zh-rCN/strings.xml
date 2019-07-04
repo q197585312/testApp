@@ -535,7 +535,7 @@
     <string name="Select_League">选择联赛</string>
     <string name="normal">一般</string>
     <string name="FT_HDP">全场.让球</string>
-    <string name="FT_OU">全场.让球</string>
+    <string name="FT_OU">全场.大小</string>
     <string name="Bet_Slip">注单</string>
     <string name="Note_">注意:</string>
     <string name="GMT_8">请注意显示时间为GMT+8时区</string>

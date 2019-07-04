@@ -59,7 +59,7 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                             refreshDataBean.setACT("LOS");
                             refreshDataBean.setFAV("");
                             refreshDataBean.setSL("");
-                            refreshDataBean.setWd("");
+
                             refreshDataBean.setTp("1");
                             refreshDataBean.setFh(false);
                             refreshDataBean.setToday(false);
