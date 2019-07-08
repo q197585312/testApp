@@ -128,7 +128,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     }
 
 
-
     @Override
     public abstract Disposable clickOdds(B itemData, int oid, String type, String value, TextView v, boolean isHf, String params, boolean hasPar); /*{
         return clickOdds(itemData, type, value, v, isHf, params);
@@ -238,11 +237,13 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                             List<AfbClickBetBean> list = new Gson().fromJson(dataListArray.toString(), new TypeToken<List<AfbClickBetBean>>() {
                             }.getType());
 //[10000, 3, 4.654056, 10000, 'hBetSub.ashx?BTMD=P&odds=4.654056', 1, 0]
-                            JSONArray dataListArray1 = jsonArray.getJSONArray(1);
+                            if (list != null && list.size() > 0) {
+                                JSONArray dataListArray1 = jsonArray.getJSONArray(1);
 
-                            bean = new AfbClickResponseBean(list, dataListArray1);
-                            bean = initHasPar(bean);
-                            ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(bean);
+                                bean = new AfbClickResponseBean(list, dataListArray1);
+                                bean = initHasPar(bean);
+                                ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(bean);
+                            }
                         }
 
                         return bean;
@@ -252,7 +253,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 }).subscribe(new Consumer<AfbClickResponseBean>() {//onNext
                     @Override
                     public void accept(AfbClickResponseBean bean) throws Exception {
-                        Log.d(TAG, "accept: "+bean);
+                        Log.d(TAG, "accept: " + bean);
                         if (bean == null || bean.getList() == null || bean.getList().size() == 0) {
                         } else if (bean.getList().size() >= 1) {
                             createBetPop(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);

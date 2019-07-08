@@ -990,9 +990,9 @@ function getNumByS(_shtml) {
     if (_shtml == null || _shtml.replace(' ', '') == '' || isNaN(_shtml)) return -99999;
     else return Number(_shtml);
 }
-function addTBL(_dbId, _rL, updAll, _$tb, _$rowMod, pm_S) {
+function addTBL(_dbId, _rL, false, _$tb, _$rowMod, pm_S) {
     var _$tbL = null, _IsNewL = false;
-    if (updAll) { // onclick="refreshDiv(this)" style="float: left;margin-top: 0px;margin-left: 1px;" <img class="divloading" style="position: absolute; top: 23px;left: 378px; display: none;" src="../Img/spinner.gif" border="0" alt="">
+    if (false) { // onclick="refreshDiv(this)" style="float: left;margin-top: 0px;margin-left: 1px;" <img class="divloading" style="position: absolute; top: 23px;left: 378px; display: none;" src="../Img/spinner.gif" border="0" alt="">
         _$tbL = $('<tbody class="gtDbb" soclid="' + _rL[0][0] + '"><tr class="league"  style="cursor:pointer" ><td><b class="bottom"><i class="arrow1 bottom-arrow1"></i><i class="arrow2 bottom-arrow2"></i></b></td><td align="left" nowrap="nowrap" style="border: 0px!important;" colspan="' + (_dicGtT[_dbId][1]) + '" >' + ((_dicGtT[_dbId][0] == 'S1' || _dicGtT[_dbId][0] == 'S2') ? "<span class=\"gticon icon-favorite\">" : "") + '<span ><a href="javascript:;" class="L_NameFav_RMOdds" ><img title="Add All" src="../Img/FavAdd.gif" class="trfavorutes"  border="0" align="absmiddle"></a><div class="leagueName"  style=" width: 800px;"><span style="display: inline - block;float: left;">' + _rL[0][1] + '</span></div></td></tr></tbody> ');
         _$tb.append(_$tbL); _IsNewL = true;
     } else {

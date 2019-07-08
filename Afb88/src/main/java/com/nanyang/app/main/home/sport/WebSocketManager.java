@@ -6,6 +6,7 @@ import com.koushikdutta.async.callback.CompletedCallback;
 import com.koushikdutta.async.callback.WritableCallback;
 import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.common.MainPresenter;
 
 import org.json.JSONException;
@@ -42,19 +43,22 @@ public class WebSocketManager {
 
     public void createWebSocket(final MainPresenter.CallBack<String> back, final WebSocket.StringCallback stringCallback, final MainPresenter.CallBack<String> onPingCloseCallBack) {
 
-        AsyncHttpClient.getDefaultInstance().websocket("ws://ws.afb1188.com:8888/fnOddsGen", null, new AsyncHttpClient.WebSocketConnectCallback() {
+        AsyncHttpClient.getDefaultInstance().websocket(BuildConfig.HOST_SPORT, null, new AsyncHttpClient.WebSocketConnectCallback() {
 
             @Override
             public void onCompleted(Exception ex, final WebSocket webSocket) {
                 if (ex != null) {
-                    Log.e("Socket", "Exception----------------" + ex.getLocalizedMessage());
+                    Log.e("Socket", "Exception----------------" + ex.getMessage());
+                    if (webSocket != null)
+                        webSocket.close();
                     ex.printStackTrace();
-                    timerRetry.schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            createWebSocket(back, stringCallback, onPingCloseCallBack);
-                        }
-                    }, 2000);
+                    if (WebSocketManager.this.webSocket == null || !WebSocketManager.this.webSocket.isOpen())
+                        timerRetry.schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                createWebSocket(back, stringCallback, onPingCloseCallBack);
+                            }
+                        }, 2000);
                     return;
                 }
                 webSocket.setPingCallback(new WebSocket.PingCallback() {

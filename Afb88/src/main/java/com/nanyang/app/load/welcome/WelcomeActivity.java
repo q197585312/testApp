@@ -59,7 +59,6 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
             public void run() {
                 totalLength += len;
                 int progress = (int) (totalLength * 100 / contentLength);
-                Log.d("runOnUiThread", "run: " + progress);
                 mProgressBar.setVisibility(View.VISIBLE);
                 mProgressBar.setProgress(progress);
             }
@@ -122,7 +121,6 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
 
     public void onLanguageSwitchSucceed(String str) {
         //测试哈提交
-
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + AppConstant.wfMain);
         ToastUtils.showShort(getString(R.string.Login_Success));
         defaultSkip("SportBook");
@@ -130,8 +128,8 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
     }
 
     public void defaultSkip(String type) {
-        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.Today));
-        menuItemInfo.setType("Running");
+        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<>(0, getString(R.string.Today));
+        menuItemInfo.setType("Today");
         menuItemInfo.setParent(type);
         Bundle b = new Bundle();
         b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);

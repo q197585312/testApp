@@ -79,7 +79,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
 
 
     /*  @Override
-      protected List<TableSportInfo<MyanmarInfo>> updateJsonData(JSONArray dataListArray) throws JSONException {
+      protected List<TableSportInfo<MyanmarInfo>> updateAllData(JSONArray dataListArray) throws JSONException {
           ArrayList<TableSportInfo<MyanmarInfo>> tableModules = new ArrayList<>();
           if (dataListArray.length() > 0) {
               for (int i = 0; i < dataListArray.length(); i++) {

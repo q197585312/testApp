@@ -121,7 +121,7 @@ public class ExampleInstrumentedTest {
                 }
             }
             if (added || deleted || modified) {
-                return updateJsonData(dataJsonArray);
+                return updateAllData(dataJsonArray);
             }
 
         }

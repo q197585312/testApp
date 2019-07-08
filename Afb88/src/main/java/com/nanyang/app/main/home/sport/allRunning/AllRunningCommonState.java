@@ -6,6 +6,7 @@ import android.widget.TextView;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.main.OutRightState;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
@@ -14,6 +15,9 @@ import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 /**
  * Created by ASUS on 2019/4/26.
@@ -146,6 +150,12 @@ public class AllRunningCommonState extends OutRightState {
         }
 
 
+    }
+
+    @Override
+    protected BallInfo parseMatch(JSONArray matchArray, boolean notify) throws JSONException {
+        AfbParseHelper helper = new AfbParseHelper();
+        return helper.parseJsonArray(matchArray, notify);
     }
 
 }

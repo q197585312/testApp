@@ -880,7 +880,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             }
             menuParamMap.put("ot", ot);
             presenter.refreshMenu(menuParamMap);
-            handler.postDelayed(this, 5000);
+            handler.postDelayed(this, 10000);
         }
     };
 

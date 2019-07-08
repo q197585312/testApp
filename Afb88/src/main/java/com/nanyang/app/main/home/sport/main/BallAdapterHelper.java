@@ -457,7 +457,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         timeTv.setText(time);
         timeTv1.setText(time);
 
-        if (!item.getLive().equals("")) {
+        if (item.getLive()!=null&&!item.getLive().equals("")) {
             dateTv.setVisibility(View.VISIBLE);
             if (item.getLive().contains("LIVE")) {
                 dateTv.setText("LIVE");
