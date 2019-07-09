@@ -1,7 +1,7 @@
 package com.nanyang.app.main.BetCenter.Presenter;
 
 import com.nanyang.app.ApiService;
-import com.nanyang.app.BuildConfig;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.BetCenter.Bean.BaseParamBean;
 import com.nanyang.app.main.BetCenter.Bean.RunningBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementOpen2ListDataBean;
@@ -38,7 +38,7 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
 
     public void getRunningList(String type) {
         BaseParamBean bean = new BaseParamBean("GetTable", "wfRunningH50", type, "1");
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), new BaseConsumer<String>(baseContext) {
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 JSONArray jsonArray = new JSONArray(data);
@@ -62,12 +62,12 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
 
     public void getParList(String id, BaseConsumer<String> baseConsumer) {
         BaseParamBean bean = new BaseParamBean("GetMatch", "wfRunningH50", id, "2");
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
     }
 
     public void getParList2(String socTransId, String type, BaseConsumer<String> baseConsumer) {
         BaseParamBean bean = new BaseParamBean("GetMatchDetail", "wfRunningH50", socTransId, type, "", "", 0);
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
+        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), baseConsumer);
     }
 
     public List<StatementOpen2ListDataBean> getBeanList2(JSONArray jsonArray) throws JSONException {

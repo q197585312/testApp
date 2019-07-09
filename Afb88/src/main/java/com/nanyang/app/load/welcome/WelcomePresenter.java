@@ -120,7 +120,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
 
     public void skipLogin(String companyKey, final String userName, final String us, final String language, final String webId, final String currencyName, final String oddsType) {
 
-        String ckAccUrl = BuildConfig.HOST_AFB + "Public/ckAcc.ashx";
+        String ckAccUrl = AppConstant.getInstance().HOST + "Public/ckAcc.ashx";
         CompanyKeyBean info = new CompanyKeyBean(companyKey, userName);
         Gson gson = new Gson();
         String obj = gson.toJson(info);
@@ -133,7 +133,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                         CkAccResponseBean bean = new Gson().fromJson(data, new TypeToken<CkAccResponseBean>() {
                         }.getType());
                         if (bean != null && !bean.getError().equals("1")) {
-                            final String url_login = BuildConfig.HOST_AFB + "Public/validate.aspx?us=" + webId + "s" + userName + "&k=" + bean.getToken() + "&device=m&oddsstyle=" + oddsType + "&oddsmode=Double&lang=" + language + "&currencyName=" + currencyName;
+                            final String url_login = AppConstant.getInstance().HOST + "Public/validate.aspx?us=" + webId + "s" + userName + "&k=" + bean.getToken() + "&device=m&oddsstyle=" + oddsType + "&oddsmode=Double&lang=" + language + "&currencyName=" + currencyName;
                             skipMain(url_login);
 
                         }

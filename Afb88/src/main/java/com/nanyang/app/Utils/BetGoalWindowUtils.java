@@ -16,7 +16,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
-import com.nanyang.app.BuildConfig;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
@@ -73,7 +73,7 @@ public class BetGoalWindowUtils {
         map.put("accType", accType);
         map.put("tidss", tidss);
         String jsonParam = AfbUtils.getJsonParam(map);
-        Disposable subscribe = Api.getService(ApiService.class).getData(BuildConfig.HOST_AFB + "H50/Pub/pcode.axd?_fm=" + jsonParam).subscribeOn(Schedulers.io())
+        Disposable subscribe = Api.getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + jsonParam).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).
                         subscribe(new Consumer<String>() {//onNext
                             @Override
