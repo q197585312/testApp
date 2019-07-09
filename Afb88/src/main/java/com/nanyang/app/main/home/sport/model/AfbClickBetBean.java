@@ -43,7 +43,7 @@ public class AfbClickBetBean implements Serializable {
     private String League;
     private String Home;
     private String Away;
-    private double Credit;
+    private String Credit;
     private int MaxLimit;
     private int MinLimit;
     private double MatchLimit;
@@ -124,11 +124,11 @@ public class AfbClickBetBean implements Serializable {
         this.Away = Away;
     }
 
-    public double getCredit() {
+    public String getCredit() {
         return Credit;
     }
 
-    public void setCredit(double Credit) {
+    public void setCredit(String Credit) {
         this.Credit = Credit;
     }
 
