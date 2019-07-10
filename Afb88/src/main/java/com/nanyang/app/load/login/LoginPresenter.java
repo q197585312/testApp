@@ -11,8 +11,6 @@ import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.LogUtil;
 
-import java.util.Map;
-
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
@@ -25,10 +23,10 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
         if (checkUserAvailable(info)) {
             //http://www.afb1188.com/W0/Pub/pcode.axd
             final String url_login = AppConstant.getInstance().URL_LOGIN;
-            Map<String, String> infoWfmain = info.getWfmain("Login", new LanguageHelper(baseContext).getLanguage());
-            doRetrofitApiOnUiThread(getService(ApiService.class).doPostMap(url_login, infoWfmain)
+            String infoWfmain = info.getWfmainJson("Login", new LanguageHelper(baseContext).getLanguage());
+            String url = url_login + "?_fm=" + infoWfmain;
+            doRetrofitApiOnUiThread(getService(ApiService.class).getData(url)
                     , baseConsumer);
-            return;
         }
     }
 

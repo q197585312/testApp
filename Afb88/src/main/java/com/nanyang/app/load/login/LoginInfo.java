@@ -129,6 +129,12 @@ public class LoginInfo {
         return map;
     }
 
+    public String getWfmainJson(String ACT, String Lang) {
+
+        return new LoginWfBean(ACT, Lang).getJson();
+
+    }
+
     public Map<String, String> getWfLanguage(String Lang) {
         Map<String, String> map = new HashMap<>();
         map.put("_fm", new LanguageWfBean(Lang).getJson());
@@ -143,7 +149,7 @@ public class LoginInfo {
         return map;
     }
 
-    class LoginWfBean implements Serializable {
+    public class LoginWfBean implements Serializable {
 //        _fm	{"ACT":"Login","ID":"Demoafba0310","PW":"123456aa","lang":"","pgLable":"0.15504609525960888","vsn":"4.0.12","PT":"wfDefault0"}
 
         public LoginWfBean(String ACT, String lang) {
@@ -204,24 +210,28 @@ public class LoginInfo {
             return new Gson().toJson(this);
         }
     }
-    public static class HuayDataWfBean extends LanguageWfBean{
+
+    public static class HuayDataWfBean extends LanguageWfBean {
 
 
         public HuayDataWfBean(String ACT, String lang, String PT) {
             super(ACT, lang, PT);
         }
+
         String type;
 
         public void setType(String type) {
             this.type = type;
         }
     }
-    public static class HuayBetWfBean extends LanguageWfBean{
+
+    public static class HuayBetWfBean extends LanguageWfBean {
 
 
         public HuayBetWfBean(String ACT, String lang, String PT) {
             super(ACT, lang, PT);
         }
+
         String typed;
         String txtNumber1;
         String txtAmt;
@@ -256,12 +266,13 @@ public class LoginInfo {
     "ChipsList":"",
     "pgLable":"0.5134303879466173","vsn":"4.0.12"}*/
 
-    public static class SettingWfBean extends LanguageWfBean{
+    public static class SettingWfBean extends LanguageWfBean {
 
 
         public SettingWfBean(String ACT, String lang, String PT) {
             super(ACT, lang, PT);
         }
+
         String MarketTyped;
         String DefaultSortingd;
         String ScoreSoundd;
@@ -324,7 +335,7 @@ public class LoginInfo {
         private String mt;
         private String PT = AppConstant.wfMain;
 
-        public OutRightWfBean(String ot, String OUTDBID, String accType, String mt,int ov) {
+        public OutRightWfBean(String ot, String OUTDBID, String accType, String mt, int ov) {
             this.ot = ot;
             if (!StringUtils.isNull(OUTDBID))
                 this.OUTDBID = OUTDBID;
@@ -422,11 +433,11 @@ public class LoginInfo {
     public static class AllRunningWfBean {
 
         /**
-         {"ACT":"LOS","DBID":"36","ot":"r","tf":"-1","timess":"","accType":"EU","pgLable":"0.5393305075227944","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
+         * {"ACT":"LOS","DBID":"36","ot":"r","tf":"-1","timess":"","accType":"EU","pgLable":"0.5393305075227944","vsn":"4.0.12","PT":"wfMainH50"}&_db={}
          */
 
         private String ACT = "LOS";
-        private String DBID="1";
+        private String DBID = "1";
         private String ot;
         private int tf = -1;
         private String timess = "";
