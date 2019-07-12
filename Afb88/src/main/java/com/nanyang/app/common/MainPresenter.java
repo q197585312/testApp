@@ -11,6 +11,7 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
+import com.nanyang.app.R;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
@@ -88,6 +89,10 @@ public class MainPresenter extends BaseSwitchPresenter {
         dataHelper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean(new LanguageHelper(baseContext.getBaseActivity()).getLanguage()), new CallBack<String>() {
             @Override
             public void onBack(String data) throws JSONException {
+                if (data.contains("Maintenance")) {
+                    ToastUtils.showLong(R.string.System_maintenance);
+                    return;
+                }
                 SettingAllDataBean settingAllDataBean = gson.fromJson(data, SettingAllDataBean.class);
                 ((AfbApplication) baseContext.getBaseActivity().getApplication()).setSettingAllDataBean(settingAllDataBean);
                 ((AfbApplication) baseContext.getBaseActivity().getApplication()).setQuickAmount(settingAllDataBean.getAccamount() + "");
