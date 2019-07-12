@@ -702,14 +702,28 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                             + "，isNew：" + isNew);
                     return;
                 }
-                allData.get(i).getRows().add(0, b);
-
-                LogUtil.d("SocketAdd", "添加了getSocOddsId:" + b.getSocOddsId()
-                        + ",比赛主队：" + b.getHome()
-                        + ",到第一位"
-                        + "，isNew：" + isNew);
-                refreshData();
-                return;
+            }
+        }
+        if (isNew) {
+            allData.get(i).getRows().add(0, b);
+            LogUtil.d("SocketAdd", "添加了getSocOddsId:" + b.getSocOddsId()
+                    + ",比赛主队：" + b.getHome()
+                    + ",到第一位"
+                    + "，isNew：" + isNew);
+            if (i - 1 >= 0) {
+                List<B> rows1 = allData.get(i - 1).getRows();
+                int size = rows1.size();
+                if (size > 0) {
+                    String socOddsId = rows1.get(size - 1).getSocOddsId();
+                    if (!socOddsId.trim().equals(b.getPreSocOddsId().trim())) {
+                        refreshData();
+                        LogUtil.d("SocketAdd", "=======================开始刷新，当前getPreSocOddsId:" + b.getPreSocOddsId()
+                                + ",比赛主队：" + b.getHome()
+                                + ",上一个getSocOddsId：" + rows1.get(size - 1).getSocOddsId()
+                                + ",上一个比赛主队：" + rows1.get(size - 1).getHome()
+                                + "，isNew：" + isNew);
+                    }
+                }
             }
         }
 

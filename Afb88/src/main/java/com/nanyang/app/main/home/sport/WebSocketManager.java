@@ -8,6 +8,7 @@ import com.koushikdutta.async.http.AsyncHttpClient;
 import com.koushikdutta.async.http.WebSocket;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.common.MainPresenter;
+import com.unkonw.testapp.libs.base.BaseActivity;
 
 import org.json.JSONException;
 
@@ -22,7 +23,6 @@ public class WebSocketManager {
 
     private static WebSocketManager instance;
     private WebSocket webSocket;
-    private MainPresenter.CallBack<String> onPingCloseCallBack;
     private boolean isRunning = false;
 
     private WebSocketManager() {
@@ -41,26 +41,25 @@ public class WebSocketManager {
 
     Timer timerRetry = new Timer();
 
-    public void createWebSocket(final MainPresenter.CallBack<String> back, final WebSocket.StringCallback stringCallback, final MainPresenter.CallBack<String> onPingCloseCallBack) {
-
+    public void createWebSocket(final MainPresenter.CallBack<String> back, final WebSocket.StringCallback stringCallback, final BaseActivity context) {
+        isRunning = true;
         AsyncHttpClient.getDefaultInstance().websocket(BuildConfig.HOST_SPORT, null, new AsyncHttpClient.WebSocketConnectCallback() {
 
             @Override
             public void onCompleted(Exception ex, final WebSocket webSocket) {
                 if (ex != null) {
                     Log.e("Socket", "Exception----------------" + ex.getMessage());
-                    if (webSocket != null)
-                        webSocket.close();
                     ex.printStackTrace();
-                    if (WebSocketManager.this.webSocket == null || !WebSocketManager.this.webSocket.isOpen())
-                        timerRetry.schedule(new TimerTask() {
+                    if (webSocket == null && isRunning)
+                        context.runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
-                                createWebSocket(back, stringCallback, onPingCloseCallBack);
+                                createWebSocket(back, stringCallback, context);
                             }
-                        }, 2000);
-                    return;
+                        });
                 }
+                if (webSocket == null)
+                    return;
                 webSocket.setPingCallback(new WebSocket.PingCallback() {
                     @Override
                     public void onPingReceived(String s) {
@@ -76,6 +75,13 @@ public class WebSocketManager {
                 webSocket.setClosedCallback(new CompletedCallback() {
                     @Override
                     public void onCompleted(Exception ex) {
+                        if (isRunning)
+                            context.runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    createWebSocket(back, stringCallback, context);
+                                }
+                            });
                         if (ex != null) {
                             Log.d("Socket", "onClosedCallback出错");
                             return;
@@ -107,14 +113,14 @@ public class WebSocketManager {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-
             }
         });
-        this.onPingCloseCallBack = onPingCloseCallBack;
+
     }
 
 
     public void stopUpdateData() {
+        isRunning = false;
         if (timer != null) {
             timer.cancel();
             timer = null;
@@ -125,7 +131,7 @@ public class WebSocketManager {
             webSocket.close();
             webSocket = null;
         }
-        isRunning = false;
+
     }
 
     private Timer timer;
@@ -141,18 +147,11 @@ public class WebSocketManager {
                 public void run() {
                     String cmd = "1";
                     send(cmd);
-                    if (webSocket == null || !webSocket.isOpen()) {
-                        try {
-                            onPingCloseCallBack.onBack("");
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
                 }
             };
         }
-        timer.schedule(task, 0, 30000);
-        isRunning = true;
+        timer.schedule(task, 0, 10000);
+
     }
 
     public void send(String cmd) {

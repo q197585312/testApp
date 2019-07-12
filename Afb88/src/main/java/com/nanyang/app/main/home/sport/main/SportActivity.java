@@ -267,7 +267,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             }
         });
         startRefreshMenu();
-        createWebSocket();
+
     }
 
     private void createWebSocket() {
@@ -287,12 +287,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     return;
                 currentFragment.presenter.getStateHelper().handleData(s);
             }
-        }, new MainPresenter.CallBack<String>() {
-            @Override
-            public void onBack(String data) throws JSONException {
-                createWebSocket();
-            }
-        });
+        }, this);
     }
 
 
@@ -526,10 +521,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 //        skipAct(PersonCenterActivity.class, b);
     }
 
+
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        WebSocketManager.getInstance().startUpdateData();
+    protected void onResume() {
+        super.onResume();
+        createWebSocket();
     }
 
     @Override

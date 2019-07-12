@@ -19,7 +19,7 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> implements IBasePresenter {
     private BallInfo bean;
-    private int position;
+
     private String dbid;
 
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
@@ -29,9 +29,8 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
     }
 
 
-    public synchronized void addition(BallInfo item, int position, String dbid) {
+    public synchronized void addition(BallInfo item,  String dbid) {
         this.bean = item;
-        this.position = position;
         this.dbid = dbid;
         startUpdate();
     }
@@ -75,7 +74,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
                  /*   Gson gson = new Gson();
                     LogUtil.d("Addition", "-------" + data);
                     AdditionBean additionBean = gson.fromJson(data, AdditionBean.class);*/
-                    AdditionPresenter.this.baseContext.onAddition(data, position);
+                    AdditionPresenter.this.baseContext.onAddition(data, bean);
                     baseContext.hideLoadingDialog();
                 }
 
@@ -83,7 +82,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
                 protected void onAccept() {
                 }
             });
-            updateHandler.postDelayed(this, 20000);// 50是延时时长
+            updateHandler.postDelayed(this, 6000);// 50是延时时长
         }
     }
 }

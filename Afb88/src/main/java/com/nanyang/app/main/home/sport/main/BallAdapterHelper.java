@@ -43,7 +43,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     final int black_grey = Color.BLACK;
     protected Context context;
     private AddMBean additionData;
-    private int additionPosition = -1;
+
+    private BallInfo additionBallItem;
 
     public Set<ScrollLayout> getSlFollowers() {
         return slFollowers;
@@ -57,18 +58,20 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     private int slIndex = 0;
 
-    public synchronized void notifyPositionAddition(AddMBean data, int position) {
+    public synchronized void notifyPositionAddition(AddMBean data, BallInfo item) {
         this.additionData = data;
-        int oldAdditionPosition = additionPosition;
-        this.additionPosition = position;
-        if (getBaseRecyclerAdapter().getHeader() != null)//有头部
+        this.additionBallItem = item;
+        if (!StringUtils.isNull(additionMap.get(true))) {
+            getBaseRecyclerAdapter().notifyDataSetChanged();
+        }
+       /* if (getBaseRecyclerAdapter().getHeader() != null)//有头部
             getBaseRecyclerAdapter().notifyItemChanged(position + 1);
         else
             getBaseRecyclerAdapter().notifyItemChanged(position);
         if (getBaseRecyclerAdapter().getHeader() != null && oldAdditionPosition >= 0)
             getBaseRecyclerAdapter().notifyItemChanged(oldAdditionPosition + 1);
         else if (getBaseRecyclerAdapter().getHeader() == null && oldAdditionPosition >= 0)
-            getBaseRecyclerAdapter().notifyItemChanged(oldAdditionPosition);
+            getBaseRecyclerAdapter().notifyItemChanged(oldAdditionPosition);*/
 
     }
 
@@ -79,9 +82,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
         LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
-        if (position == additionPosition && additionMap.get(true) != null && additionMap.get(true) == additionPosition) {
+
+        if (additionBallItem!=null&& additionMap.get(true) != null&&item.getSocOddsId().equals(additionBallItem.getSocOddsId())  && additionMap.get(true) .equals(additionBallItem.getSocOddsId())) {
 //            LogUtil.d("Addition", "--------------repeatRow:" + (repeatRow == null ? "null" : repeatRow.size()));
-            parent.setVisibility(View.VISIBLE);
+
             parent.removeAllViews();
             View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
             parent.addView(titleLL);
@@ -93,6 +97,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             if (additionData != null && additionData.getFHodds() != null)
                 sizeFH = additionData.getFHodds().size();
             int size = sizeFT > sizeFH ? sizeFT : sizeFH;
+            if (size > 0)
+                parent.setVisibility(View.VISIBLE);
+            else
+                parent.setVisibility(View.GONE);
             for (int i = 0; i < size; i++) {
                 addAdditionView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item);
             }
@@ -457,7 +465,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         timeTv.setText(time);
         timeTv1.setText(time);
 
-        if (item.getLive()!=null&&!item.getLive().equals("")) {
+        if (item.getLive() != null && !item.getLive().equals("")) {
             dateTv.setVisibility(View.VISIBLE);
             if (item.getLive().contains("LIVE")) {
                 dateTv.setText("LIVE");
@@ -1163,15 +1171,16 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         return R.layout.sport_common_ball_item;
     }
 
-    Map<Boolean, Integer> additionMap = new HashMap<>();
+    Map<Boolean, String> additionMap = new HashMap<>();
 
-    public void changeAddition(int position) {
-        Integer p = additionMap.get(true);
-        if (p != null && p == position) {
-            additionMap.put(true, -1);
+    public void changeAddition(BallInfo item) {
+        String id = additionMap.get(true);
+        if (!StringUtils.isNull(id) && id.trim().equals(item.getSocOddsId().trim())) {
+            additionMap.put(true,"");
         } else {
-            additionMap.put(true, position);
+            additionMap.put(true, item.getSocOddsId().trim());
         }
+        getBaseRecyclerAdapter().notifyDataSetChanged();
     }
 
 

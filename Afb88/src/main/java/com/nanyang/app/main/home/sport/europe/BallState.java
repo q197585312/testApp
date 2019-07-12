@@ -1,9 +1,5 @@
 package com.nanyang.app.main.home.sport.europe;
 
-import android.app.Activity;
-import android.graphics.Color;
-
-import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
@@ -32,50 +28,8 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
         return new AfbParseHelper<>().parseJsonArray(matchArray, notify);
     }
 
-    int n = 0;
-
-    @Override
-    protected void updateAllDate(List<TableSportInfo<BallInfo>> allData) {
 
 
-      /*  List<TableSportInfo<BallInfo>> noRepeatAllData = handleRepeatData(allData);
-        filterData(noRepeatAllData);*/
-        filterData(allData);
-        showCurrentData();
-
-        Activity activity = getBaseView().getIBaseContext().getBaseActivity();
-        for (int i = 0; i < allData.size(); i++) {
-            TableSportInfo<BallInfo> ballInfoTableSportInfo = allData.get(i);
-            List<BallInfo> rows = ballInfoTableSportInfo.getRows();
-            for (int j = 0; j < rows.size(); j++) {
-                BallInfo item = rows.get(j);
-                int homeTextColor;
-                int awayTextColor;
-                String isHomeGive = item.getIsHomeGive();
-                if (isHomeGive.equals("1")) {
-                    homeTextColor = Color.RED;
-                    awayTextColor = Color.BLACK;
-                } else {
-                    homeTextColor = Color.BLACK;
-                    awayTextColor = Color.RED;
-                }
-                String sHome = item.getRunHomeScore();
-                String sAway = item.getRunAwayScore();
-                if (item.isHomeScoreBigger()) {
-
-                    item.setHomeScoreTextColor(Color.RED);
-                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
-                    item.setHomeScoreBigger(false);
-                }
-                if (item.isAwayScoreBigger()) {
-
-                    item.setAwayScoreTextColor(Color.RED);
-                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
-                    item.setAwayScoreBigger(false);
-                }
-            }
-        }
-    }
 
     private TableSportInfo<BallInfo> findRepeat(TableSportInfo<BallInfo> bTableSportInfo) {
         TableSportInfo<BallInfo> temp = new TableSportInfo<>(bTableSportInfo.getLeagueBean(), new ArrayList<BallInfo>());

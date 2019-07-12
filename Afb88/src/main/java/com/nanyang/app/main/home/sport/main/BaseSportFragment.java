@@ -567,18 +567,19 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             if (sportIdBean != null)
                 dbid = sportIdBean.getDbid();
         }
-        Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
-        additionPresenter.addition((BallInfo) item, position, dbid);
+
         if (( presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+            Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
+            additionPresenter.addition((BallInfo) item,  dbid);
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ( presenter.getStateHelper()).getAdapterHelper();
-            adapterHelper.changeAddition(position);
+            adapterHelper.changeAddition((BallInfo) item);
         }
     }
 
-    public void onAddition(AddMBean data, int position) {
+    public void onAddition(AddMBean data, BallInfo item) {
         if (( presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) ( presenter.getStateHelper()).getAdapterHelper();
-            adapterHelper.notifyPositionAddition(data, position);
+            adapterHelper.notifyPositionAddition(data, item);
         }
     }
 

@@ -37,8 +37,17 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             String sAway = item.getRunAwayScore();
             awayScoreTv.setText(sAway);
             homeScoreTv.setText(sHome);
-            homeScoreTv.setTextColor(item.getHomeScoreTextColor());
-            awayScoreTv.setTextColor(item.getAwayScoreTextColor());
+            if (SoccerRunningGoalManager.getInstance().isHomeGoal(item)) {
+                homeScoreTv.setTextColor(Color.RED);
+            } else {
+                homeScoreTv.setTextColor(Color.BLACK);
+            }
+            if (SoccerRunningGoalManager.getInstance().isAwayGoal(item)) {
+                awayScoreTv.setTextColor(Color.RED);
+            } else {
+                awayScoreTv.setTextColor(Color.BLACK);
+            }
+
         } else {
             awayScoreTv.setText("");
             homeScoreTv.setText("");
@@ -49,7 +58,7 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
     protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
         String live = item.getLive();
-        if (live.contains("\n") ||live.contains("HT") || live.contains("PEN") || live.contains("LIVE")) {
+        if (live.contains("\n") || live.contains("HT") || live.contains("PEN") || live.contains("LIVE")) {
             String replace = live.replace("\n", ",");
             String[] split = replace.split(",");
             timeTv.setText(split[1]);
