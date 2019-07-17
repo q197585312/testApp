@@ -126,7 +126,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         String obj = gson.toJson(info);
         RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), obj);
 
-        doRetrofitApiOnDefaultThread(getService(ApiService.class).doPostJson(ckAccUrl, body)
+        doRetrofitApiOnUiThread(getService(ApiService.class).doPostJson(ckAccUrl, body)
                 , new BaseConsumer<String>(baseContext) {
                     @Override
                     protected void onBaseGetData(final String data) {

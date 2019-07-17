@@ -362,6 +362,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected List<TableSportInfo<B>> updateAllData(JSONArray dataListArray) throws JSONException {
+        page = 0;
         ArrayList<TableSportInfo<B>> tableModules = new ArrayList<>();
         if (dataListArray.length() > 0) {
             for (int i = 0; i < dataListArray.length(); i++) {
@@ -397,7 +398,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected abstract String getRefreshUrl();
 
     public void initAllData(List<TableSportInfo<B>> allData) {
-        page = 0;
         if (!isHide)
             updateAllDate(allData);
     }
@@ -416,11 +416,19 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected List<TableSportInfo<B>> pageData(List<TableSportInfo<B>> filterData) {
         List<TableSportInfo<B>> pageList;
+        if (page * pageSize > filterData.size()-1) {
+            if (page > 0)
+                page=0;
+            else
+                return new ArrayList<>();
+        }
+
         if (((page + 1) * pageSize) < filterData.size()) {
             pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
         } else {
             pageList = filterData.subList(page * pageSize, filterData.size());
         }
+        LogUtil.d("current", "page:" + page);
 
         return pageList;
 
