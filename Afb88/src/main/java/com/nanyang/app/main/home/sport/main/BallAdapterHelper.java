@@ -17,6 +17,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
+import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
@@ -589,7 +590,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         } else {
             onMatchNotRepeat(helper, item, position);
         }
-
+        TextView homeScoreTv = helper.getView(R.id.module_match_home_score_tv);
+        TextView awayScoreTv = helper.getView(R.id.module_match_away_score_tv);
+        SoccerRunningGoalManager.getInstance().handleGoalStyle(item, homeScoreTv, awayScoreTv);
     }
 
     private void addAdditionMModds(String oddsLeft,

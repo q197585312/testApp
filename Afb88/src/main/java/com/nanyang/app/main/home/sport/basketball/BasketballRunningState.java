@@ -69,11 +69,7 @@ public class BasketballRunningState extends BasketballCommonState {
                     String replace = live.replace("\n", ",");
                     String[] split = replace.split(",");
                     timeTv.setText(split[1]);
-                    if (live.contains("HT")) {
-                        timeTv.setTextColor(Color.BLUE);
-                    } else {
-                        timeTv.setTextColor(Color.RED);
-                    }
+                    timeTv.setTextColor(Color.RED);
                 } else {
                     timeTv.setText("");
                 }

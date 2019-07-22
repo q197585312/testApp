@@ -39,6 +39,7 @@
     <!--red-->
     <color name="red">#ff0000</color>
     <color name="red_background">#ff4a4a</color>
+
     <color name="orange_dark">#ff3300</color>
     <color name="red_title">#ad0c11</color>
     <color name="pink_light_bg">#FFB4B4</color>
@@ -49,7 +50,8 @@
     <!--orange-->
     <color name="yellow_button">#feca34</color>
     <color name="yellow_gold">#FFF9F385</color>
-
+    <color name="yellow_login">#FFEEFD01</color>
+    <color name="orange_desktop">#FFFD7E01</color>
     <color name="yellow_light_bg">#fdf1b5</color>
 
 

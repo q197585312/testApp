@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home.sport.football;
 
-import android.app.Activity;
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.view.View;
 
@@ -9,7 +7,6 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -92,45 +89,10 @@ public class SoccerRunningState extends SoccerCommonState {
     }
 
     @Override
-    protected void updateAllDate(List<TableSportInfo<BallInfo>> allData) {
+    protected void updateTableDate(List<TableSportInfo<BallInfo>> allData) {
 
-        super.updateAllDate(allData);
-      /*  List<TableSportInfo<BallInfo>> noRepeatAllData = handleRepeatData(allData);
-        filterData(noRepeatAllData);*/
-        Activity activity = getBaseView().getIBaseContext().getBaseActivity();
-        for (int i = 0; i < allData.size(); i++) {
-            TableSportInfo<BallInfo> ballInfoTableSportInfo = allData.get(i);
-            List<BallInfo> rows = ballInfoTableSportInfo.getRows();
-            for (int j = 0; j < rows.size(); j++) {
-                BallInfo item = rows.get(j);
-                int homeTextColor;
-                int awayTextColor;
-                String isHomeGive = item.getIsHomeGive();
-                if (isHomeGive.equals("1")) {
-                    homeTextColor = Color.RED;
-                    awayTextColor = Color.BLACK;
-                } else {
-                    homeTextColor = Color.BLACK;
-                    awayTextColor = Color.RED;
-                }
-                String sHome = item.getRunHomeScore();
-                String sAway = item.getRunAwayScore();
-                if (item.isHomeScoreBigger()) {
-                    SoccerRunningGoalManager.getInstance().putHomeGoal(item, true);
-                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
-                    item.setHomeScoreBigger(false);
+        super.updateTableDate(allData);
 
-
-                }
-                if (item.isAwayScoreBigger()) {
-                    SoccerRunningGoalManager.getInstance().putAwayGoal(item, true);
-
-                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
-                    item.setAwayScoreBigger(false);
-
-                }
-            }
-        }
     }
 
     @Override

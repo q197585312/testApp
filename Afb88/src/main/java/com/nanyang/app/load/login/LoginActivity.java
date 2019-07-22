@@ -1,12 +1,13 @@
 package com.nanyang.app.load.login;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -63,7 +64,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     @Bind(R.id.edt_login_password)
     EditText edtLoginPassword;
     @Bind(R.id.btn_login_login)
-    Button btnLoginLogin;
+    TextView btnLoginLogin;
+    @Bind(R.id.btn_desktop)
+    TextView btn_desktop;
     //    @Bind(R.id.tv_login_forget)
 //    TextView tvLoginForget;
     AfbApplication app;
@@ -194,7 +197,9 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
         btnLoginLogin.setText(getString(R.string.Login));
+        btn_desktop.setText(getString(R.string.desktop));
         tv_remember_me.setText(getString(R.string.remember_me));
+
         loginLanguage.setText(getString(R.string.language_switch));
 
     }
@@ -318,4 +323,12 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
 
+    public void clickDesktop(View view) {
+        //代码实现跳转
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse("https://www.afb1188.com/W0/Pub/wfDefault0.html");//此处填链接
+        intent.setData(content_url);
+        startActivity(intent);
+    }
 }

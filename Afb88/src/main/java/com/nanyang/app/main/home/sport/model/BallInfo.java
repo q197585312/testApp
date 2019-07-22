@@ -40,6 +40,17 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     public int isX12_1New;
     public int isX12_2New;
 
+    public String getShowGoal() {
+        return showGoal;
+    }
+
+    public String getIsHomeGoal() {
+        return isHomeGoal;
+    }
+
+    private String showGoal;
+    private String isHomeGoal;
+
     public int isFt1Bigger() {
         return isFt1Bigger;
     }
@@ -1054,5 +1065,13 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
 
     public void setIsX12_2New(int isX12_2New) {
         this.isX12_2New = isX12_2New;
+    }
+
+    public void setShowGoal(String showGoal) {
+        this.showGoal = showGoal;
+    }
+
+    public void setIsHomeGoal(String isHomeGoal) {
+        this.isHomeGoal = isHomeGoal;
     }
 }

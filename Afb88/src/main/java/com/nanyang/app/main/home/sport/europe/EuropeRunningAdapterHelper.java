@@ -27,21 +27,10 @@ public class EuropeRunningAdapterHelper extends EuropeCommonAdapter {
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         TextView liveTv = helper.getView(R.id.module_match_live_iv);
         TextView timeTv = helper.getView(R.id.module_match_time_tv);
-        TextView homeScoreTv = helper.getView(R.id.module_match_home_score_tv);
-        TextView awayScoreTv = helper.getView(R.id.module_match_away_score_tv);
+
         liveTv.setVisibility(View.GONE);
         dateTv.setVisibility(View.GONE);
-        if (item.getRunHomeScore() != null && item.getRunAwayScore() != null && !item.getRunAwayScore().equals("") && !item.getRunHomeScore().equals("")) {
-            String sHome = item.getRunHomeScore();
-            String sAway = item.getRunAwayScore();
-            awayScoreTv.setText(sAway);
-            homeScoreTv.setText(sHome);
-            homeScoreTv.setTextColor(Color.RED);
-            awayScoreTv.setTextColor(Color.RED);
-        } else {
-            awayScoreTv.setText("");
-            homeScoreTv.setText("");
-        }
+
         if (item.getLive().contains("HT")) {
             timeTv.setText("HT");
         } else {
@@ -78,6 +67,5 @@ public class EuropeRunningAdapterHelper extends EuropeCommonAdapter {
             }
         }
         dateTv.setTextColor(Color.RED);
-//        timeTv.setTextColor(context.getResources().getColor(R.color.red_title));
     }
 }

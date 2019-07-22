@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/login_bg"
+    android:background="@mipmap/login_bg_green"
     android:orientation="vertical"
     tools:ignore="ContentDescription">
 
@@ -11,21 +11,10 @@
         layout="@layout/toolbar_layout"
         android:visibility="gone" />
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.9">
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_gravity="center"
-            android:layout_marginBottom="10dp"
-            android:src="@mipmap/logo" />
-    </RelativeLayout>
 
     <RelativeLayout
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="160dp">
 
@@ -43,20 +32,34 @@
             android:layout_marginBottom="5dp"
             android:orientation="horizontal" />
     </RelativeLayout>
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:layout_weight="0.7">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:src="@mipmap/logo" />
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginLeft="35dp"
-        android:layout_marginRight="35dp"
-        android:layout_marginTop="18dp"
-        android:layout_weight="2"
+        android:layout_gravity="center"
+        android:layout_marginBottom="28dp"
+        android:gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_weight="1"
         android:orientation="vertical">
+
 
         <TextView
             android:id="@+id/login_language"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:background="@color/white"
             android:drawableBottom="@drawable/line_grey"
             android:drawableRight="@mipmap/gary_down"
@@ -70,7 +73,7 @@
         <EditText
             android:id="@+id/edt_login_username"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:background="@color/white"
             android:drawableBottom="@drawable/line_grey"
             android:gravity="center_vertical"
@@ -84,7 +87,7 @@
         <EditText
             android:id="@+id/edt_login_password"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:background="@color/white"
             android:gravity="center_vertical"
             android:hint="@string/Password"
@@ -95,55 +98,88 @@
             android:textColorHint="@color/gary2"
             android:textSize="15sp" />
 
+
+
         <LinearLayout
-            android:id="@+id/ll_login_remember"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:clickable="true"
-            android:gravity="center_vertical"
-            android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/cb_login_remember"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:button="@drawable/checkbox_style"
-                android:checked="false"
-                android:clickable="false" />
-
-            <TextView
-                android:id="@+id/tv_remember_me"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="18dp"
-                android:text="@string/remember_me"
-                android:textColor="@color/white" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_login_login"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/green_login_btn"
-            android:gravity="center"
-            android:text="@string/Login"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="16sp" />
+            android:layout_marginTop="18dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btn_desktop"
+                android:onClick="clickDesktop"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@drawable/layer_btn_desktop_bg"
+                android:gravity="center"
+                android:text="@string/desktop"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                />
+
+            <TextView
+                android:id="@+id/btn_login_login"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:background="@drawable/layer_btn_login_bg"
+                android:gravity="center"
+                android:text="@string/Login"
+                android:textAllCaps="false"
+                android:textColor="@color/green"
+                />
+            <LinearLayout
+                android:id="@+id/ll_login_remember"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:paddingLeft="10dp"
+                android:layout_marginLeft="3dp"
+                android:paddingRight="10dp"
+                android:background="@drawable/layer_btn_remember_bg"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <CheckBox
+                    android:id="@+id/cb_login_remember"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:button="@drawable/checkbox_style"
+                    android:checked="false"
+                    android:clickable="false" />
+
+                <TextView
+                    android:id="@+id/tv_remember_me"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:text="@string/remember_me"
+                    android:textColor="@color/white" />
+            </LinearLayout>
+        </LinearLayout>
+
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/tv_all_right"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:gravity="center"
-        android:padding="5dp"
-        android:text="@string/copyright_2018_afb88_all_rights_reserved"
-        android:textColor="@color/white"
-        android:textSize="12sp" />
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.6">
+        <TextView
+            android:id="@+id/tv_all_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|center_horizontal"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/copyright_2018_afb88_all_rights_reserved"
+            android:textColor="@color/white"
+            android:textSize="12sp" />
+    </FrameLayout>
+
+
 
 </LinearLayout>

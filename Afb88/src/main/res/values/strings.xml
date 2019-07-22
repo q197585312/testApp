@@ -255,7 +255,7 @@
     <string name="Other_Bet_Markets">Other Bet Markets</string>
     <string name="choose_language">Choose Language</string>
     <string name="Bet_Credit">Bet Credit</string>
-    <string name="remember_me">Remember me</string>
+    <string name="remember_me">Remember</string>
     <string name="US_Football">US Football</string>
     <string name="bet_list">Bet List</string>
     <string name="PARLAY">PARLAY</string>
@@ -557,4 +557,5 @@
     <string name="nick_name_check_tips">*You can set display and login nicknames (5-15 digits or letters)</string>
     <string name="Normal">Normal</string>
     <string name="copyright_2018_afb88_all_rights_reserved">© Copyright %1$s. %2$s. All Rights Reserved.</string>
+    <string name="desktop">Desktop</string>
 </resources>

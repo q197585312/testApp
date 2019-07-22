@@ -1,10 +1,15 @@
 package com.nanyang.app.main.home.sport.europe;
 
+import android.graphics.Color;
+
+import com.nanyang.app.Utils.BetGoalWindowUtils;
+import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
+import com.unkonw.testapp.libs.base.BaseActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,6 +101,41 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
         }
         return noRepeatList;
     }
+    @Override
+    protected void updateTableDate(List<TableSportInfo<BallInfo>> allData) {
+        super.updateTableDate(allData);
+        BaseActivity activity = getBaseView().getIBaseContext().getBaseActivity();
+        //        Activity activity = getBaseView().getIBaseContext().getBaseActivity();
+        for (int i = 0; i < allData.size(); i++) {
+            TableSportInfo<BallInfo> ballInfoTableSportInfo = allData.get(i);
+            List<BallInfo> rows = ballInfoTableSportInfo.getRows();
+            for (int j = 0; j < rows.size(); j++) {
+                BallInfo item = rows.get(j);
+                int homeTextColor;
+                int awayTextColor;
+                String isHomeGive = item.getIsHomeGive();
+                if (isHomeGive.equals("1")) {
+                    homeTextColor = Color.RED;
+                    awayTextColor = Color.BLACK;
+                } else {
+                    homeTextColor = Color.BLACK;
+                    awayTextColor = Color.RED;
+                }
+                String sHome = item.getRunHomeScore();
+                String sAway = item.getRunAwayScore();
+                if (item.isHomeScoreBigger()&&item.getShowGoal().equals("1")) {
+                    SoccerRunningGoalManager.getInstance().putHomeGoal(item, true);
+                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
+                    item.setHomeScoreBigger(false);
 
 
+                }
+                if (item.isAwayScoreBigger()&&item.getShowGoal().equals("1")) {
+                    SoccerRunningGoalManager.getInstance().putAwayGoal(item, true);
+                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
+                    item.setAwayScoreBigger(false);
+                }
+            }
+        }
+    }
 }

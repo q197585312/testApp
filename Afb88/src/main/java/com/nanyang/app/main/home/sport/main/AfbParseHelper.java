@@ -74,6 +74,9 @@ public class AfbParseHelper<T extends BallInfo> {
         info.setWorkingDate (matchArray.optString(55));
         info.setHasPar_FH(matchArray.optString(56));
         info.setTvPathIBC(matchArray.optString(57));
+        info.setShowGoal(matchArray.optString(58));
+        info.setIsHomeGoal(matchArray.optString(59));
+
         return (T) info;
     }
 

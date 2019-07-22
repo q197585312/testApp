@@ -28,33 +28,14 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         TextView liveTv = helper.getView(R.id.module_match_live_iv);
         TextView timeTv = helper.getView(R.id.module_match_time_tv);
-        TextView homeScoreTv = helper.getView(R.id.module_match_home_score_tv);
-        TextView awayScoreTv = helper.getView(R.id.module_match_away_score_tv);
+
         liveTv.setVisibility(View.GONE);
         dateTv.setVisibility(View.GONE);
-        if (item.getRunHomeScore() != null && item.getRunAwayScore() != null && !item.getRunAwayScore().equals("") && !item.getRunHomeScore().equals("")) {
-            String sHome = item.getRunHomeScore();
-            String sAway = item.getRunAwayScore();
-            awayScoreTv.setText(sAway);
-            homeScoreTv.setText(sHome);
-            if (SoccerRunningGoalManager.getInstance().isHomeGoal(item)) {
-                homeScoreTv.setTextColor(Color.RED);
-            } else {
-                homeScoreTv.setTextColor(Color.BLACK);
-            }
-            if (SoccerRunningGoalManager.getInstance().isAwayGoal(item)) {
-                awayScoreTv.setTextColor(Color.RED);
-            } else {
-                awayScoreTv.setTextColor(Color.BLACK);
-            }
-
-        } else {
-            awayScoreTv.setText("");
-            homeScoreTv.setText("");
-        }
         handleLiveTimeTv(item, timeTv);
         dateTv.setTextColor(Color.RED);
     }
+
+
 
     protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
         String live = item.getLive();
@@ -62,11 +43,8 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
             String replace = live.replace("\n", ",");
             String[] split = replace.split(",");
             timeTv.setText(split[1]);
-            if (live.contains("HT")) {
-                timeTv.setTextColor(Color.BLUE);
-            } else {
                 timeTv.setTextColor(Color.RED);
-            }
+
         } else {
             String matchDate = item.getMatchDate();
             timeTv.setText(matchDate);

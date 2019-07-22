@@ -4,18 +4,16 @@
     <!-- bottom shadow -->
     <item>
         <shape android:shape="rectangle">
-            <corners android:radius="2dp" />
+            <corners android:radius="3dp" />
             <solid android:color="@color/trans_black_light" />
         </shape>
     </item>
 
     <!-- content -->
     <item
-        android:top="1px"
-        android:left="1px"
-        android:right="1px"
+        android:right="1dp"
         android:bottom="1dp"
-        android:drawable="@drawable/bet_odds_bg">
+        android:drawable="@drawable/rectangle_green_login_btn_bg">
         <shape android:shape="rectangle"/>
     </item>
 

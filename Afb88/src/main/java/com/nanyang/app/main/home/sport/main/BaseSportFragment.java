@@ -57,7 +57,7 @@ import cn.finalteam.toolsfinal.DeviceUtils;
 public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresenter> implements SportContract.View<SportInfo> {
 
 
-    private static final String TAG = "updateAllDate";
+    private static final String TAG = "updateTableDate";
     @Bind(R.id.swipe_target)
     protected RecyclerView rvContent;
     @Bind(R.id.tv_no_games)
