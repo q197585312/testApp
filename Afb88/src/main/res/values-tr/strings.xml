@@ -441,5 +441,5 @@
     <string name="nick_name_set_description">* You can set nickname for display and login (5 to 15 alphabets or digits). Please note, you can set this nickname only once. You cannot modify or cancel it once it’s been set.</string>
     <string name="nick_name_check_tips">*You can set display and login nicknames (5-15 digits or letters)</string>
     <string name="Normal">NORMAL</string>
-    <string name="desktop">Desktop</string>
+    <string name="desktop">masaüstü</string>
 </resources>

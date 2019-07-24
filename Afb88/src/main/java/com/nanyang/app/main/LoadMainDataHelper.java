@@ -59,6 +59,7 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                             refreshDataBean.setACT("LOS");
                             refreshDataBean.setFAV("");
                             refreshDataBean.setSL("");
+                            refreshDataBean.setTf("-1");
 
                             refreshDataBean.setTp("1");
                             refreshDataBean.setFh(false);

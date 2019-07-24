@@ -42,8 +42,8 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
         }
         TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
         TextView moduleMatchCollectionTv = helper.getView(R.id.module_match_collection_tv);
-        LeagueCollectionTv.setVisibility(View.INVISIBLE);
-        moduleMatchCollectionTv.setVisibility(View.INVISIBLE);
+        LeagueCollectionTv.setVisibility(View.GONE);
+        moduleMatchCollectionTv.setVisibility(View.GONE);
         homeTv.setText(home);
         awayTv.setText(away);
         updateMixBackground(helper, item);

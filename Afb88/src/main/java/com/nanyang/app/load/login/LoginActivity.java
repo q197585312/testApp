@@ -90,7 +90,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
 
         ButterKnife.bind(this);
         createPresenter(new LoginPresenter(this));
-        tv_all_right.setText(String.format(getString(R.string.copyright_2018_afb88_all_rights_reserved), DateUtils.getCurrentDate("yyyy"), BuildConfig.FLAVOR));
+        tv_all_right.setText(String.format(getString(R.string.copyright_2018_afb88_all_rights_reserved), DateUtils.getCurrentDate("yyyy"),
+                BuildConfig.FLAVOR.toUpperCase()+" V"+BuildConfig.VERSION_NAME));
         edtLoginPassword.setOnKeyListener(onKeyListener);
         String password = AppCacheUtils.getInstance(this).getString("PASS_WORD") != null ? AppCacheUtils.getInstance(this).getString("PASS_WORD") : "";
         String userName = AppCacheUtils.getInstance(this).getString("USER_NAME") != null ? AppCacheUtils.getInstance(this).getString("USER_NAME") : "";

@@ -84,7 +84,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
         LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
 
-        if (additionBallItem!=null&& additionMap.get(true) != null&&item.getSocOddsId().equals(additionBallItem.getSocOddsId())  && additionMap.get(true) .equals(additionBallItem.getSocOddsId())) {
+        if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
 //            LogUtil.d("Addition", "--------------repeatRow:" + (repeatRow == null ? "null" : repeatRow.size()));
 
             parent.removeAllViews();
@@ -593,6 +593,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView homeScoreTv = helper.getView(R.id.module_match_home_score_tv);
         TextView awayScoreTv = helper.getView(R.id.module_match_away_score_tv);
         SoccerRunningGoalManager.getInstance().handleGoalStyle(item, homeScoreTv, awayScoreTv);
+        SportActivity act = (SportActivity) this.context;
+        if (act != null) {
+            String type = act.currentFragment.presenter.getStateHelper().getStateType().getType();
+            if (!type.toLowerCase().startsWith("r")) {
+                homeScoreTv.setVisibility(View.GONE);
+                awayScoreTv.setVisibility(View.GONE);
+            }
+        }
     }
 
     private void addAdditionMModds(String oddsLeft,
@@ -1179,7 +1187,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     public void changeAddition(BallInfo item) {
         String id = additionMap.get(true);
         if (!StringUtils.isNull(id) && id.trim().equals(item.getSocOddsId().trim())) {
-            additionMap.put(true,"");
+            additionMap.put(true, "");
         } else {
             additionMap.put(true, item.getSocOddsId().trim());
         }
