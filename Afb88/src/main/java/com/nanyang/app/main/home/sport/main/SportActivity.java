@@ -65,6 +65,7 @@ import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
 import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.LogIntervalUtils;
 import com.unkonw.testapp.libs.utils.SharePreferenceUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -618,6 +619,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
 
             @Override
             public void setOnSureLisener(String money) {
+                LogIntervalUtils.logTime("获取钱包成功");
                 if (!TextUtils.isEmpty(money)&&Integer.parseInt(money)!=0){
                     presenter.gamesGDTransferMonet(money,data);
                     closePopupWindow();
@@ -635,6 +637,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
             ToastUtils.showShort(getBackStr);
         }else {
             ToastUtils.showShort(getBackStr);
+            LogIntervalUtils.logTime("兑换钱包成功开始跳转");
             startApp(data);
         }
     }
@@ -657,6 +660,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 if (bundle != null){
                     intent.putExtras(bundle);
                 }
+                LogIntervalUtils.logTime("跳转数据初始化成功，开始启动GD88");
                 startActivityForResult(intent,7);
             } catch (Exception e) {
                 Intent intent = new Intent();

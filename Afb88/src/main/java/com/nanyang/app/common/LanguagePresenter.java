@@ -13,6 +13,7 @@ import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
+import com.unkonw.testapp.libs.utils.LogIntervalUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.reactivestreams.Subscription;
@@ -47,10 +48,12 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
         super(view);
         switchLanguage = new SwitchLanguage(view, mCompositeSubscription);
     }
+
     public void switchLanguage(String lang) {
         switchLanguage.switchLanguage(lang);
     }
     public void skipGd88() {
+        LogIntervalUtils.logTime("开始跳转请求");
         Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().HOST+"_View/LiveDealerGDC.aspx")
 
 
@@ -59,6 +62,7 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String Str) throws Exception {
+                        LogIntervalUtils.logTime("请求完成开始解析数据");
                         int start = Str.indexOf("TransferBalance");
                         int end = Str.indexOf("\" id=\"form1\"");
 
@@ -125,6 +129,7 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
                     public void accept(Subscription subscription) throws Exception {
                         baseView.showLoadingDialog();
                         subscription.request(Integer.MAX_VALUE);
+                        LogIntervalUtils.logTime("对接开始获取跳转钱包数据");
                     }
                 });
         mCompositeSubscription.add(d);
