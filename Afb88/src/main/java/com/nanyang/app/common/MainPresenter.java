@@ -12,6 +12,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.LogIntervalUtils;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.BaseSwitchPresenter;
@@ -103,12 +104,14 @@ public class MainPresenter extends BaseSwitchPresenter {
     }
 
     public void getSkipGd88Data() {
+        LogIntervalUtils.logTime("请求数据"+BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx");
         Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Response>() {
                     @Override
                     public void accept(Response responseBodyResponse) throws JSONException {
                         baseContext.hideLoadingDialog();
+                        LogIntervalUtils.logTime("请求数据完成开始解析");
                         okhttp3.Response response = responseBodyResponse.raw().priorResponse();
                         if (response != null) {
                             Request request = response.request();
@@ -126,6 +129,7 @@ public class MainPresenter extends BaseSwitchPresenter {
                                 intent.putExtra("webUrl", url);
                                 intent.putExtra("gameType", 5);
                                 intent.putExtra("balance", info.getCredit2());
+                                LogIntervalUtils.logTime("请求数据完成开始跳转");
                                 baseContext.getBaseActivity().startActivity(intent);
                             } else {
                                 downloadGd88();

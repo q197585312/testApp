@@ -40,8 +40,8 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
         String live = item.getLive();
         if (live.contains("\n") || live.contains("HT") || live.contains("PEN") || live.contains("LIVE")) {
-            String replace = live.replace("\n", ",");
-            String[] split = replace.split(",");
+            String replace = live.replace("\n", ".");
+            String[] split = replace.split(".");
             timeTv.setText(split[1]);
                 timeTv.setTextColor(Color.RED);
 

@@ -476,7 +476,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 String channel = item.getLive();
                 channel = Html.fromHtml(channel).toString();
-                String[] channels = channel.replace("\n", ",").split(",");
+                String[] channels = channel.replace("\n", ".").split(".");
                 if (channels.length == 1) {
                     liveTv.setVisibility(View.GONE);
                     liveTv1.setVisibility(View.GONE);
@@ -1163,11 +1163,19 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 textView.setOnClickListener(null);
             }
-            if (isShowText) {
-                if (Float.valueOf(value) < 0) {
-                    textView.setTextColor(red_black);
-                } else {
-                    textView.setTextColor(black_grey);
+            if (!StringUtils.isNull(value)) {
+                String replace = value.replaceAll(",", ".");
+                try {
+                    Float aFloat = Float.valueOf(replace);
+                    if (isShowText) {
+                        if (aFloat < 0) {
+                            textView.setTextColor(red_black);
+                        } else {
+                            textView.setTextColor(black_grey);
+                        }
+                    }
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
                 textView.setText(showOdds);
             }

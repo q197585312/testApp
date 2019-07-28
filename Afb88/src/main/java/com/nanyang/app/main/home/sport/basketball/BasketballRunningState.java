@@ -66,8 +66,8 @@ public class BasketballRunningState extends BasketballCommonState {
                 String live = item.getLive();
                 Log.d("Basketball", "handleLiveTimeTv: "+live);
                 if (live.contains("\n")) {
-                    String replace = live.replace("\n", ",");
-                    String[] split = replace.split(",");
+                    String replace = live.replace("\n", ".");
+                    String[] split = replace.split(".");
                     timeTv.setText(split[1]);
                     timeTv.setTextColor(Color.RED);
                 } else {
