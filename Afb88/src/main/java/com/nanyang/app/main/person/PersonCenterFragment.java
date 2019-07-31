@@ -61,8 +61,9 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
         List<PersonCenter> list = new ArrayList<>();
         PersonalInfo person = aty.getApp().getUser();
         SettingAllDataBean data = aty.getApp().getSettingAllDataBean();
+
         PersonCenter pc = new PersonCenter(getString(R.string.login_name), person.getLoginName());
-        PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name), data.getNickNameshow());
+        PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name), data==null?"":data.getNickNameshow());
         PersonCenter pc1 = new PersonCenter(getString(R.string.currency), person.getCurCode2());
         PersonCenter pc2 = new PersonCenter(getString(R.string.cash_balance), AfbUtils.addComma(person.getBalances(), edt_text));
         PersonCenter pc3 = new PersonCenter(getString(R.string.outstanding_txn), AfbUtils.addComma(person.getEtotalstanding(), edt_text));
@@ -139,20 +140,19 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
 
                         @Override
                         protected void onClickSure(View v) {
-                            final String quickAmount = getChooseMessage().getText().toString().trim();
-                            if (quickAmount.length() < 5 || quickAmount.length() > 15) {
+                            final String nickName = getChooseMessage().getText().toString().trim();
+                            if (nickName.length() < 5 || nickName.length() > 15) {
                                 viewById.setText(R.string.nick_name_check_tips);
                                 viewById.setVisibility(View.VISIBLE);
                             } else {
-                                ((BaseToolbarActivity) getBaseActivity()).getApp().setQuickAmount(quickAmount);
                                 viewById.setVisibility(View.GONE);
-                                presenter.saveNickName(quickAmount, new MainPresenter.CallBack<String>() {
+                                presenter.saveNickName(nickName, new MainPresenter.CallBack<String>() {
                                     @Override
                                     public void onBack(String data) throws JSONException {
                                         if (data.contains("ok")) {
-                                            ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().setNickNameshow(quickAmount);
+                                            ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().setNickNameshow(nickName);
                                             closePopupWindow();
-                                            value.setText(quickAmount);
+                                            value.setText(nickName);
                                         } else {
                                             viewById.setVisibility(View.VISIBLE);
                                             JSONObject jsonObject = new JSONObject(data);

@@ -37,7 +37,7 @@ class OutRightRunningState extends OutRightState {
 
         switch (item.getType()) {
             case "Early":
-               getBaseView().switchState(new OutRightEarlyState(getBaseView()));
+                getBaseView().switchState(new OutRightEarlyState(getBaseView()));
                 break;
             case "Today":
                 getBaseView().switchState(new OutRightTodayState(getBaseView()));

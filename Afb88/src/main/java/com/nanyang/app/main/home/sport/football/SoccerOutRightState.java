@@ -15,7 +15,6 @@ public class SoccerOutRightState extends OutRightState {
     }
 
 
-
     @Override
     public boolean mix() {
         return false;
@@ -28,7 +27,7 @@ public class SoccerOutRightState extends OutRightState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FOOTBALL_OUT_RIGHT+"&ot=e";
+        return AppConstant.getInstance().URL_FOOTBALL_OUT_RIGHT + "&ot=e";
     }
 
 }

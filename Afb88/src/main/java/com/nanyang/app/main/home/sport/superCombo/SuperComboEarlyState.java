@@ -18,7 +18,7 @@ public class SuperComboEarlyState extends SuperComboState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.SuperCombo));
+        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.SuperCombo));
     }
 
     @Override
@@ -42,9 +42,10 @@ public class SuperComboEarlyState extends SuperComboState {
 
         }
     }
+
     @Override
     public IBetHelper<BallInfo> onSetBetHelper() {
-        return new SuperComboBetHelper(getBaseView()){
+        return new SuperComboBetHelper(getBaseView()) {
         /*    @Override
             protected String getOddsUrl(BallInfo item, String type, boolean isHf, String odds, String params) {
                 StringBuilder stringBuilder = new StringBuilder();

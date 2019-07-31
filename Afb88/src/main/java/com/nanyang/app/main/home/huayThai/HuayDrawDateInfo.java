@@ -15,7 +15,7 @@ public class HuayDrawDateInfo implements Serializable {
      * Value : 12729669
      */
 
-    private List<DicAllBean> dicAll=new ArrayList<>();
+    private List<DicAllBean> dicAll = new ArrayList<>();
 
     public List<DicAllBean> getDicAll() {
         return dicAll;

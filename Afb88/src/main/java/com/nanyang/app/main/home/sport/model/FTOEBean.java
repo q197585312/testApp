@@ -35,8 +35,8 @@ public class FTOEBean {
 
     @NonNull
     private String getOddEven(String odds) {
-        String odd =  AfbUtils.delHTMLTag(ODD);
-        String even =  AfbUtils.delHTMLTag(EVEN);
+        String odd = AfbUtils.delHTMLTag(ODD);
+        String even = AfbUtils.delHTMLTag(EVEN);
         if (odd.isEmpty() || even.isEmpty() || Float.valueOf(odd) == 0f || Float.valueOf(even) == 0f) {
             odd = "";
             odds = odd;
@@ -45,7 +45,7 @@ public class FTOEBean {
     }
 
     public String getEVEN() {
-        String even =  AfbUtils.delHTMLTag(EVEN);
+        String even = AfbUtils.delHTMLTag(EVEN);
         return getOddEven(even);
     }
 }

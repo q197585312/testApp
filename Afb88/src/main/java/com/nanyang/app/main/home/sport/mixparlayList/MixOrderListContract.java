@@ -10,6 +10,7 @@ import java.util.List;
 public interface MixOrderListContract {
     interface View<T> extends BetView<T> {
         void obtainListData(AfbClickResponseBean betInfo);
+
         void obtainBottomData(List<ClearanceBetAmountBean> clearanceBetAmountBeen);
     }
 

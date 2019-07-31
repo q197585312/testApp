@@ -73,7 +73,7 @@ class VsPresenter extends BaseRetrofitPresenter<VsActivity> implements IBasePres
             isRunning = true;
 
         String url = AppConstant.getInstance().HOST + "_view/MoreBet_App.aspx?oId=" + bean.getSocOddsId() /*+ "&home=" + StringUtils.URLEncode(bean.getHome()) + "&away=" + StringUtils.URLEncode(bean.getAway()) + "&ModuleTitle=" + StringUtils.URLEncode(bean.getModuleTitle().toString()) + "&date=" + StringUtils.URLEncode(bean.getMatchDate()) + "&isRun=" + isRunning*/
-       + "&T=MB2&mt=0";
+                + "&T=MB2&mt=0";
         url = url + "&t=" + System.currentTimeMillis();
         return url;
     }

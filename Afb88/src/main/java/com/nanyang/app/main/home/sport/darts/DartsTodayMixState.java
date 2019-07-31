@@ -21,6 +21,7 @@ class DartsTodayMixState extends BasketballTodayMixState {
         getBaseView().switchState(new DartsTodayState(getBaseView()));
         return super.mix();
     }
+
     @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_DARTS_TODAY_MIX;
@@ -28,6 +29,6 @@ class DartsTodayMixState extends BasketballTodayMixState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today),"Today",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Darts));
+        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Darts));
     }
 }

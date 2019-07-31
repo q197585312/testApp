@@ -7,7 +7,7 @@ import com.nanyang.app.main.home.sport.main.SportContract;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class Game4dState extends FinancialState{
+public abstract class Game4dState extends FinancialState {
 
     public Game4dState(SportContract.View baseView) {
         super(baseView);

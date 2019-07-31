@@ -57,7 +57,7 @@ public class AllRunningFragment extends BaseAllFragment {
                     }
                     initHeadAndFoot(allTopSport, true);
                     initHeadAndFoot(allBottomSport, false);
-                    List<SportIdBean> allList=new ArrayList<>();
+                    List<SportIdBean> allList = new ArrayList<>();
                     allList.addAll(allTopSport);
                     allList.addAll(allBottomSport);
                     initDefaultList(allList);

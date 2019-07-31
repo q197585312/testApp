@@ -21,7 +21,6 @@ public class USFootballRunningState extends BasketballRunningState {
     }
 
 
-
     @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_US_FOOTBALL_RUNNING;
@@ -48,8 +47,9 @@ public class USFootballRunningState extends BasketballRunningState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
     }
+
     @Override
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new BallBetHelper(getBaseView()) {
@@ -59,14 +59,15 @@ public class USFootballRunningState extends BasketballRunningState {
             }
         };
     }
+
     @Override
     public int getTitleContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content1);
     }
 
     @Override
     public int getNormalContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content2);
     }
 
 }

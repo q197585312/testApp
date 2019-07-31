@@ -33,7 +33,7 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
 
 
     public void bindAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter) {
-        this.baseRecyclerAdapter=baseRecyclerAdapter;
+        this.baseRecyclerAdapter = baseRecyclerAdapter;
     }
 
 
@@ -41,16 +41,15 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
         B getItem(int position);
 
         /**
-         *
-         * @param v 点击的view
+         * @param v    点击的view
          * @param item
          * @param type 下注的类型 ou，hdp，over，under，_par
          * @param isHf 是否是半场
-         * @param odds  下注赔率
+         * @param odds 下注赔率
          */
-        void clickOdds(TextView v, B item, String type, boolean isHf, String odds,int oid,String sc,boolean hasPar);
+        void clickOdds(TextView v, B item, String type, boolean isHf, String odds, int oid, String sc, boolean hasPar);
 
-        void clickView(View v, B item,int position);
+        void clickView(View v, B item, int position);
 
     }
 

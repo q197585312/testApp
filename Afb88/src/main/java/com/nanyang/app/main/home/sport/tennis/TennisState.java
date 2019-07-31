@@ -46,8 +46,6 @@ public abstract class TennisState extends BasketballCommonState {
     }
 
 
-
-
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new OtherDoubleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());

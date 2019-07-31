@@ -57,7 +57,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     ViewPager ballgamePagerVp;
     @Bind(R.id.ballgame_bottom_ll)
     LinearLayout ballgameBottomLl;
-//    @Bind(R.id.tv_mix_parlay_order)
+    //    @Bind(R.id.tv_mix_parlay_order)
 //    TextView tvMixParlayOrder;
 //    @Bind(R.id.ll_mix_parlay_order)
 //    LinearLayout llMixParlayOrder;
@@ -113,8 +113,8 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         super.initData();
         item = (BallInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA);
         type = (MenuItemInfo<String>) getIntent().getSerializableExtra(AppConstant.KEY_DATA2);
-        if( getIntent().getSerializableExtra(AppConstant.KEY_DATA3)!=null){
-            oddsType= (MenuItemInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA3);
+        if (getIntent().getSerializableExtra(AppConstant.KEY_DATA3) != null) {
+            oddsType = (MenuItemInfo) getIntent().getSerializableExtra(AppConstant.KEY_DATA3);
         }
         tvToolbarRight.setVisibility(View.GONE);
         matchType = type.getType();
@@ -214,7 +214,6 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
             }
         });
     }
-
 
 
     public SportInfo getItem() {
@@ -460,7 +459,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     protected void onResume() {
         super.onResume();
         if (!isMixParlay)
-            presenter.scale(oddsType!=null?oddsType.getType():"", item, matchType);
+            presenter.scale(oddsType != null ? oddsType.getType() : "", item, matchType);
         onBetEnd();
     }
 
@@ -523,7 +522,6 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
                 break;
         }
     }
-
 
 
     @Override

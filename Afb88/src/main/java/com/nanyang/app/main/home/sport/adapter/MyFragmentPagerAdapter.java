@@ -31,8 +31,6 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
     }
 
 
-
-
     @Override
     public int getCount() {
         return fragmentsList.size();
@@ -45,8 +43,9 @@ public class MyFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getItemPosition(Object object) {
-       return PagerAdapter.POSITION_NONE;
+        return PagerAdapter.POSITION_NONE;
     }
+
     @Override
     public CharSequence getPageTitle(int position) {
         return fragmentsList.get(position).getTitle();

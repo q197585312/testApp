@@ -39,7 +39,7 @@ public class AfbApplication extends BaseApplication {
         return quickAmount;
     }
 
-    private String quickAmount="";
+    private String quickAmount = "";
 
     public MenuItemInfo getOddsType() {
         return AfbUtils.getOddsTypeByType(this, oddsType.getType());

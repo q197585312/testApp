@@ -32,8 +32,9 @@ class DartsEarlyMixState extends BasketballEarlyMixState {
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_DARTS_EARLY_MIX;
     }
+
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early),"Early",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Darts));
+        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Darts));
     }
 }

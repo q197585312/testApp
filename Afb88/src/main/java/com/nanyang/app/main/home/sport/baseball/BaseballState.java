@@ -29,7 +29,6 @@ public abstract class BaseballState extends BasketballCommonState {
     }
 
 
-
     @Override
     protected BasketballCommonAdapterHelper onSetCommonAdapterHelper() {
         return null;

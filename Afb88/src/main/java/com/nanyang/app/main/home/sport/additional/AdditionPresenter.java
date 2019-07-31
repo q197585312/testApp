@@ -29,7 +29,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
     }
 
 
-    public synchronized void addition(BallInfo item,  String dbid) {
+    public synchronized void addition(BallInfo item, String dbid) {
         this.bean = item;
         this.dbid = dbid;
         startUpdate();

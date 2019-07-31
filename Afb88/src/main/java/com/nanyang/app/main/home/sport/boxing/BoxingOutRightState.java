@@ -26,7 +26,6 @@ public class BoxingOutRightState extends OutRightState {
     }
 
 
-
     @Override
 
     protected String getRefreshUrl() {

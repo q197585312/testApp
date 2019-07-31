@@ -16,7 +16,6 @@ public class FormulaOutRightState extends OutRightState {
     }
 
 
-
     @Override
     public boolean mix() {
         return false;
@@ -24,7 +23,7 @@ public class FormulaOutRightState extends OutRightState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight),"OutRight",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Formula1));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.OutRight), "OutRight", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Formula1));
     }
 
     @Override
@@ -34,6 +33,6 @@ public class FormulaOutRightState extends OutRightState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FORMULA_OUTRIGHT+"&ot=e";
+        return AppConstant.getInstance().URL_FORMULA_OUTRIGHT + "&ot=e";
     }
 }

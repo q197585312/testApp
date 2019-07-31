@@ -790,7 +790,7 @@ public class MBean implements Serializable {
     }
 
     public int getFDB_SocOddsId() {
-        return Integer.valueOf(FDB_SocOddsId) ;
+        return Integer.valueOf(FDB_SocOddsId);
     }
 
     public void setFDB_SocOddsId(String FDB_SocOddsId) {
@@ -926,7 +926,7 @@ public class MBean implements Serializable {
     }
 
     public int getH1X2_SocOddsId() {
-        return Integer.valueOf(H1X2_SocOddsId) ;
+        return Integer.valueOf(H1X2_SocOddsId);
     }
 
     public void setH1X2_SocOddsId(String H1X2_SocOddsId) {

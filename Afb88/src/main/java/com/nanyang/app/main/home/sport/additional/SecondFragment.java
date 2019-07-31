@@ -103,7 +103,7 @@ public class SecondFragment extends BaseVsFragment<VsTableRowBean> {
                     @Override
                     public void onClick(View v) {
                         if (item.getRows().get(4).getValue() != null && (!item.getRows().get(4).getValue().equals(""))) {
-                            betHelper.clickOdds(itemData, item.getRows().get(4).getOid(), item.getB().toString().equals("") ? item.getRows().get(4).getB() : item.getB().toString(), item.getRows().get(4).getValue(), (TextView) v, false, item.getRows().get(4).getSc() ,false);
+                            betHelper.clickOdds(itemData, item.getRows().get(4).getOid(), item.getB().toString().equals("") ? item.getRows().get(4).getB() : item.getB().toString(), item.getRows().get(4).getValue(), (TextView) v, false, item.getRows().get(4).getSc(), false);
 
                         }
                     }
@@ -125,7 +125,7 @@ public class SecondFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(0).getValue() != null && (!item.getRows().get(0).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData, item.getRows().get(0).getOid(), item.getB().toString().equals("") ? item.getRows().get(0).getB() : item.getB().toString(), item.getRows().get(0).getValue(), (TextView) v, false, item.getRows().get(0).getSc() ,false);
+                    betHelper.clickOdds(itemData, item.getRows().get(0).getOid(), item.getB().toString().equals("") ? item.getRows().get(0).getB() : item.getB().toString(), item.getRows().get(0).getValue(), (TextView) v, false, item.getRows().get(0).getSc(), false);
 
                 }
             }
@@ -134,7 +134,7 @@ public class SecondFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(1).getValue() != null && (!item.getRows().get(1).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData, item.getRows().get(1).getOid(), item.getB().toString().equals("") ? item.getRows().get(1).getB() : item.getB().toString(), item.getRows().get(1).getValue(), (TextView) v, false, item.getRows().get(1).getSc() ,false);
+                    betHelper.clickOdds(itemData, item.getRows().get(1).getOid(), item.getB().toString().equals("") ? item.getRows().get(1).getB() : item.getB().toString(), item.getRows().get(1).getValue(), (TextView) v, false, item.getRows().get(1).getSc(), false);
 
                 }
             }
@@ -143,7 +143,7 @@ public class SecondFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(2).getValue() != null && (!item.getRows().get(2).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData, item.getRows().get(2).getOid(), item.getB().toString().equals("") ? item.getRows().get(2).getB() : item.getB().toString(), item.getRows().get(2).getValue(), (TextView) v, false, item.getRows().get(2).getSc() ,false);
+                    betHelper.clickOdds(itemData, item.getRows().get(2).getOid(), item.getB().toString().equals("") ? item.getRows().get(2).getB() : item.getB().toString(), item.getRows().get(2).getValue(), (TextView) v, false, item.getRows().get(2).getSc(), false);
 
                 }
             }
@@ -159,7 +159,7 @@ public class SecondFragment extends BaseVsFragment<VsTableRowBean> {
             @Override
             public void onClick(View v) {
                 if (item.getRows().get(3).getValue() != null && (!item.getRows().get(3).getValue().equals(""))) {
-                    betHelper.clickOdds(itemData, item.getRows().get(3).getOid(), item.getB().toString().equals("") ? item.getRows().get(3).getB() : item.getB().toString(), item.getRows().get(3).getValue(), (TextView) v, false, item.getRows().get(3).getSc() ,false);
+                    betHelper.clickOdds(itemData, item.getRows().get(3).getOid(), item.getB().toString().equals("") ? item.getRows().get(3).getB() : item.getB().toString(), item.getRows().get(3).getValue(), (TextView) v, false, item.getRows().get(3).getSc(), false);
 
                 }
             }

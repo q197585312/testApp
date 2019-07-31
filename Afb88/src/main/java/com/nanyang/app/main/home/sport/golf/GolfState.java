@@ -8,7 +8,7 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class GolfState extends FinancialState{
+public abstract class GolfState extends FinancialState {
 
 
     public GolfState(SportContract.View baseView) {
@@ -16,12 +16,10 @@ public abstract class GolfState extends FinancialState{
     }
 
 
-
     @Override
     public IBetHelper onSetBetHelper() {
         return new GolfBetHelper(getBaseView());
     }
-
 
 
 }

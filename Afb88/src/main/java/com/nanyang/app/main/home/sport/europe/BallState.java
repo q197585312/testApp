@@ -34,8 +34,6 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
     }
 
 
-
-
     private TableSportInfo<BallInfo> findRepeat(TableSportInfo<BallInfo> bTableSportInfo) {
         TableSportInfo<BallInfo> temp = new TableSportInfo<>(bTableSportInfo.getLeagueBean(), new ArrayList<BallInfo>());
         List<BallInfo> rows = bTableSportInfo.getRows();
@@ -101,9 +99,12 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
         }
         return noRepeatList;
     }
+
     @Override
     protected void updateTableDate(List<TableSportInfo<BallInfo>> allData) {
         super.updateTableDate(allData);
+        if (allData == null)
+            return;
         BaseActivity activity = getBaseView().getIBaseContext().getBaseActivity();
         //        Activity activity = getBaseView().getIBaseContext().getBaseActivity();
         for (int i = 0; i < allData.size(); i++) {
@@ -123,14 +124,14 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 }
                 String sHome = item.getRunHomeScore();
                 String sAway = item.getRunAwayScore();
-                if (item.isHomeScoreBigger()&&item.getShowGoal().equals("1")) {
+                if (item.isHomeScoreBigger() && item.getShowGoal().equals("1")) {
                     SoccerRunningGoalManager.getInstance().putHomeGoal(item, true);
                     BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
                     item.setHomeScoreBigger(false);
 
 
                 }
-                if (item.isAwayScoreBigger()&&item.getShowGoal().equals("1")) {
+                if (item.isAwayScoreBigger() && item.getShowGoal().equals("1")) {
                     SoccerRunningGoalManager.getInstance().putAwayGoal(item, true);
                     BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
                     item.setAwayScoreBigger(false);

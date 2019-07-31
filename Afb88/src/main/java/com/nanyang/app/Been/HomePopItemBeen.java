@@ -5,8 +5,8 @@ package com.nanyang.app.Been;
  */
 
 public class HomePopItemBeen {
-   private String name;
-   private String data;
+    private String name;
+    private String data;
 
     public HomePopItemBeen(String name, String data) {
         this.name = name;

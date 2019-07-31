@@ -46,6 +46,4 @@ public class MuayThaiFragment extends BaseSportFragment {
     }
 
 
-
-
 }

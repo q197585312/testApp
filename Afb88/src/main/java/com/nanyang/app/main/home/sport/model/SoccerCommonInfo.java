@@ -58,7 +58,7 @@ import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
         ,0
         ,0
         ,1*/
-public class SoccerCommonInfo extends BallInfo  implements IRTMatchInfo {
+public class SoccerCommonInfo extends BallInfo implements IRTMatchInfo {
 
 
 }

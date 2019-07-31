@@ -19,7 +19,8 @@ public class HandicapBean implements Serializable {
     String OverOdds;
     String UnderOdds;
     String isInetBet;
-    String IsHdpNew;String IsOUNew;
+    String IsHdpNew;
+    String IsOUNew;
 
     public HandicapBean() {
     }
@@ -44,12 +45,12 @@ public class HandicapBean implements Serializable {
         this.OU = OU;
         OverOdds = overOdds;
         UnderOdds = underOdds;
-        SocOddsId=socOddsId;
-        isInetBet=IsInetBet;
-        this.IsHdpNew=IsHdpNew;
-        this.IsOUNew=IsOUNew;
-        this.hasHdp=hasHdp;
-        this.hasOu=hasOU;
+        SocOddsId = socOddsId;
+        isInetBet = IsInetBet;
+        this.IsHdpNew = IsHdpNew;
+        this.IsOUNew = IsOUNew;
+        this.hasHdp = hasHdp;
+        this.hasOu = hasOU;
     }
 
     public void setHasOu(String hasOu) {
@@ -99,6 +100,7 @@ public class HandicapBean implements Serializable {
     public void setHdp(String Hdp) {
         this.Hdp = Hdp;
     }
+
     public String getHomeHdpOdds() {
         return HomeHdpOdds;
     }
@@ -118,6 +120,7 @@ public class HandicapBean implements Serializable {
     public String getOU() {
         return OU;
     }
+
     public void setOU(String OU) {
         this.OU = OU;
     }

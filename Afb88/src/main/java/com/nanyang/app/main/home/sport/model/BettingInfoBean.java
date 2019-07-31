@@ -25,8 +25,8 @@ public class BettingInfoBean {
 
     String g;
     int isFH;
-    boolean isRunning=false;
-    boolean isHomeGiven=false;
+    boolean isRunning = false;
+    boolean isHomeGiven = false;
 
     public boolean isHomeGiven() {
         return isHomeGiven;
@@ -133,10 +133,10 @@ public class BettingInfoBean {
     }
 
 
-    public BettingInfoBean(String gt, String b, String sc,String hdp, String odds,String home,String away,   String moduleTitle,  String socOddsId, String socOddsId_FH,int isFH, boolean isRunning,boolean isHomeGiven) {
+    public BettingInfoBean(String gt, String b, String sc, String hdp, String odds, String home, String away, String moduleTitle, String socOddsId, String socOddsId_FH, int isFH, boolean isRunning, boolean isHomeGiven) {
         this.away = away;
         this.b = b;
-        this.Odds=odds;
+        this.Odds = odds;
         this.gt = gt;
         this.hdp = hdp;
         this.home = home;
@@ -146,6 +146,6 @@ public class BettingInfoBean {
         this.sc = sc;
         SocOddsId = socOddsId;
         SocOddsId_FH = socOddsId_FH;
-        this.isHomeGiven=isHomeGiven;
+        this.isHomeGiven = isHomeGiven;
     }
 }

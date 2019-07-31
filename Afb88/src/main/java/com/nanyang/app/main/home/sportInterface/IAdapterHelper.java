@@ -8,5 +8,6 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 public interface IAdapterHelper<I> {
     void onConvert(MyRecyclerViewHolder holder, int position, I item);
+
     int onSetAdapterItemLayout();
 }

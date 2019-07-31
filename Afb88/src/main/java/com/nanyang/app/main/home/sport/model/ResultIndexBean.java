@@ -6,8 +6,8 @@ import java.io.Serializable;
  * Created by Administrator on 2017/3/1.
  */
 
-public class ResultIndexBean implements Serializable{
-   int SocOddsId,
+public class ResultIndexBean implements Serializable {
+    int SocOddsId,
 
     SocOddsId_FH,
 

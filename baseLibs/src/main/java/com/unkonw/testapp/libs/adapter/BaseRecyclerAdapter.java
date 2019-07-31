@@ -23,6 +23,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
     public View getHeader() {
         return mHeaderView;
     }
+
     public void setHeader(View mHeader) {
 
         if (mHeaderView == null) {
@@ -153,6 +154,8 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
 
     @Override
     public int getItemCount() {
+        if (mDatas == null)
+            return 0;
         if (mHeaderView == null) {
             if (mFooterView == null) {
                 return mDatas.size();

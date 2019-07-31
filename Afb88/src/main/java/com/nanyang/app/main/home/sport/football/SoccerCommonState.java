@@ -41,7 +41,7 @@ public abstract class SoccerCommonState extends BallState {
             }
 
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc,boolean hasPar) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc, boolean hasPar) {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
 //                (B itemData, int oid, String type, String odds, TextView v, boolean isHf, String params ,boolean hasPar);

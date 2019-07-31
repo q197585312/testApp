@@ -141,7 +141,6 @@ public class PersonalInfo {
     }
 
 
-
     public String getPassword() {
         return password;
     }

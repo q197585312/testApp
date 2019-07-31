@@ -22,7 +22,8 @@ public final class StringUtils {
         }
         return str;
     }
-    public static JSONObject getJsonStrByQueryUrl(String paramStr){
+
+    public static JSONObject getJsonStrByQueryUrl(String paramStr) {
         //String paramStr = "a=a1&b=b1&c=c1";
         String[] params = paramStr.split("&");
         JSONObject obj = new JSONObject();
@@ -35,7 +36,7 @@ public final class StringUtils {
                     value += "=" + param[j];
                 }
                 try {
-                    obj.put(key,value);
+                    obj.put(key, value);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -239,7 +240,7 @@ public final class StringUtils {
         return countMap;
     }
 
-    public static String findGroup(String str1, String fromat,int i) {
+    public static String findGroup(String str1, String fromat, int i) {
         Pattern pattern2 = Pattern.compile(fromat);
         Matcher matcher2 = pattern2.matcher(str1);
         while (matcher2.find()) {

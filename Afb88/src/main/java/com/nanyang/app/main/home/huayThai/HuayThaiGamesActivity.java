@@ -47,7 +47,6 @@ public class HuayThaiGamesActivity extends BaseToolbarActivity {
     }
 
 
-
     @Override
     public void initView() {
         super.initView();

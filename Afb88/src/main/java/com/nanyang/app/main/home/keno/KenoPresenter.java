@@ -62,7 +62,7 @@ public class KenoPresenter extends BaseRetrofitPresenter<KenoActivity> {
     }
 
     public void KenoBetSuccessMsg(BaseConsumer<String> consumer) {
-        doRetrofitApiOnUiThread(Api.getService(ApiService.class).getData(AppConstant.getInstance().URL_STAKE),consumer);
+        doRetrofitApiOnUiThread(Api.getService(ApiService.class).getData(AppConstant.getInstance().URL_STAKE), consumer);
     }
 
 

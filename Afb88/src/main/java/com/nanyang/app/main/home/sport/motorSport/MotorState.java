@@ -11,12 +11,13 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class MotorState extends TennisState{
+public abstract class MotorState extends TennisState {
 
     public MotorState(SportContract.View baseView) {
         super(baseView);
     }
-   @Override
+
+    @Override
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new MotorBetHelper(getBaseView());
     }

@@ -18,7 +18,7 @@ public class EuropeEarlyState extends EuropeState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early",getParentText());
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getParentText());
     }
 
     @Override
@@ -52,6 +52,7 @@ public class EuropeEarlyState extends EuropeState {
     protected void onChildConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
 
     }
+
     @Override
     public boolean mix() {
         getBaseView().switchState(new EuropeEarlyMixState(getBaseView()));

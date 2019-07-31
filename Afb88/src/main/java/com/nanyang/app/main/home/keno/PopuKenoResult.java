@@ -169,6 +169,6 @@ public class PopuKenoResult extends BasePopupWindow {
     protected void onClose() {
         v.setBackgroundColor(0x00000000);
         tv.setTextColor(Color.WHITE);
-        AfbUtils.GildLoadResForImg(context,img,R.mipmap.keno_result_white);
+        AfbUtils.GildLoadResForImg(context, img, R.mipmap.keno_result_white);
     }
 }

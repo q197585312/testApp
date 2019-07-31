@@ -37,7 +37,7 @@ class OutRightTodayState extends OutRightState {
     protected void onTypeClick(MenuItemInfo item, int position) {
         switch (item.getType()) {
             case "Early":
-               getBaseView().switchState(new OutRightEarlyState(getBaseView()));
+                getBaseView().switchState(new OutRightEarlyState(getBaseView()));
                 break;
             case "Today":
                 getBaseView().switchState(this);

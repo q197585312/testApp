@@ -65,8 +65,14 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         });
     }
 
-    public void onLoadError(String error) {
-        ToastUtils.showShort(error);
+    public void onLoadError(final String error) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                ToastUtils.showShort(error);
+            }
+        });
+
     }
 
     public void onLoadEnd(File file) {

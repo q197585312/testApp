@@ -298,6 +298,7 @@ public class BetPop extends BasePopupWindow {
                 if (TextUtils.isEmpty(s)) {
                     s = "0";
                 }
+                s = s.replaceAll(",", "");
                 int betAmount = Integer.parseInt(s);
                 int betChip = item.getBetChip();
                 if (betChip == 0) {
@@ -498,7 +499,7 @@ public class BetPop extends BasePopupWindow {
                     tvBetHome.setText(item.getHome());
                     tvBetAway.setText(item.getAway());
                     String hdp = item.getHdp();
-                    if (hdp!=null&&hdp.contains("-")) {
+                    if (hdp != null && hdp.contains("-")) {
                         tvHdp.setTextColor(Color.RED);
                     } else {
                         tvHdp.setTextColor(Color.BLACK);

@@ -105,7 +105,7 @@ public abstract class BaseVsFragment<T> extends BaseFragment {
     }
 
     protected void setOddsTextColor(String odds, TextView v) {
-        if (odds!=null&&!odds.trim().isEmpty() && Float.valueOf(odds) < 0) {
+        if (odds != null && !odds.trim().isEmpty() && Float.valueOf(odds) < 0) {
             v.setTextColor(getResources().getColor(R.color.red_title));
         } else {
             v.setTextColor(getResources().getColor(R.color.black_grey));

@@ -17,7 +17,7 @@ public class PopChipBean {
     private int imgRes;
     private int betChip;
 
-    public PopChipBean(int imgRes, int betChip,String key) {
+    public PopChipBean(int imgRes, int betChip, String key) {
         this.imgRes = imgRes;
         this.betChip = betChip;
         this.key = key;

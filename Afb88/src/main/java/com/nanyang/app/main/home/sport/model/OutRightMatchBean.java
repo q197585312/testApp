@@ -6,11 +6,11 @@ import java.io.Serializable;
  * Created by Administrator on 2017/3/9.
  */
 
-public class OutRightMatchBean implements Serializable{
-//[[[486137,'ATP - 巴黎银行公开赛 获胜者',0,0],[[12166180 ,'斯特方.卡佐洛夫' ,1,0,1,501,0],[12166146 ,'J. 汤姆森 ' ,1,0,1,501,12166180],
+public class OutRightMatchBean implements Serializable {
+    //[[[486137,'ATP - 巴黎银行公开赛 获胜者',0,0],[[12166180 ,'斯特方.卡佐洛夫' ,1,0,1,501,0],[12166146 ,'J. 汤姆森 ' ,1,0,1,501,12166180],
     String moduleId;
     String moduleTitle;
-    String SocOddsId,   Home,IsInetBet, isX12New, HasX12, X12_1Odds , PreSocOddsId;
+    String SocOddsId, Home, IsInetBet, isX12New, HasX12, X12_1Odds, PreSocOddsId;
 
     public MatchBean.Type getType() {
         return type;

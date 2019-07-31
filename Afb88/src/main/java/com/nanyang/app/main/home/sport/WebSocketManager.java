@@ -22,6 +22,11 @@ import java.util.TimerTask;
 public class WebSocketManager {
 
     private static WebSocketManager instance;
+
+    public WebSocket getWebSocket() {
+        return webSocket;
+    }
+
     private WebSocket webSocket;
     private boolean isRunning = false;
 
@@ -113,6 +118,7 @@ public class WebSocketManager {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+
             }
         });
 

@@ -17,7 +17,6 @@ public class RugbyRunningState extends RugbyState {
     }
 
 
-
     @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_RUGBY_RUNING;
@@ -44,15 +43,16 @@ public class RugbyRunningState extends RugbyState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Rugby));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Rugby));
     }
+
     @Override
     public int getTitleContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content1);
     }
 
     @Override
     public int getNormalContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content2);
     }
 }

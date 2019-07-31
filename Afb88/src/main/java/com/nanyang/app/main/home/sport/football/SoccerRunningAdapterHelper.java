@@ -36,56 +36,62 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
     }
 
 
-
     protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
         String live = item.getLive();
-        if (live.contains("\n") || live.contains("HT") || live.contains("PEN") || live.contains("LIVE")) {
-            String replace = live.replace("\n", ".");
-            String[] split = replace.split(".");
-            timeTv.setText(split[1]);
-                timeTv.setTextColor(Color.RED);
+        if (live.contains("\n") ) {
+            containsLive(timeTv, live);
 
         } else {
-            String matchDate = item.getMatchDate();
-            timeTv.setText(matchDate);
-            int min;
-            try {
-                String mExtraTime = item.getMExtraTime();
-                String timeStr;
-                switch (item.getStatus()) {
-                    case "0":
-                        break;
-                    case "2":
-                        min = Integer.valueOf(item.getCurMinute());
-                        if (min < 130 && min > 0) {
-                            timeStr = "2H " + min + "'";
-                            if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
-                                timeStr += "+" + mExtraTime;
-                            }
-                        } else {
-                            timeStr = "";
-                        }
-                        timeTv.setText(timeStr);
-                        timeTv.setTextColor(Color.BLACK);
-                        break;
-                    default:
-                        min = Integer.valueOf(item.getCurMinute());
-                        if (min < 130 && min > 0) {
-                            timeStr = "1H " + min + "'";
-                            if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
-                                timeStr += "+" + mExtraTime;
-                            }
-                        } else {
-                            timeStr = "";
-                        }
-                        timeTv.setText(timeStr);
-                        timeTv.setTextColor(Color.BLACK);
-                        break;
-                }
-            } catch (Exception e) {
-                e.printStackTrace();
-                timeTv.setText("");
-            }
+            noContainsLive(item, timeTv);
         }
+    }
+
+    protected void noContainsLive(BallInfo item, TextView timeTv) {
+        String matchDate = item.getMatchDate();
+        timeTv.setText(matchDate);
+        int min;
+        try {
+            String mExtraTime = item.getMExtraTime();
+            String timeStr;
+            switch (item.getStatus()) {
+                case "0":
+                    break;
+                case "2":
+                    min = Integer.valueOf(item.getCurMinute());
+                    if (min < 130 && min > 0) {
+                        timeStr = "2H " + min + "'";
+                        if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
+                            timeStr += "+" + mExtraTime;
+                        }
+                    } else {
+                        timeStr = "";
+                    }
+                    timeTv.setText(timeStr);
+                    timeTv.setTextColor(Color.BLACK);
+                    break;
+                default:
+                    min = Integer.valueOf(item.getCurMinute());
+                    if (min < 130 && min > 0) {
+                        timeStr = "1H " + min + "'";
+                        if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
+                            timeStr += "+" + mExtraTime;
+                        }
+                    } else {
+                        timeStr = "";
+                    }
+                    timeTv.setText(timeStr);
+                    timeTv.setTextColor(Color.BLACK);
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            timeTv.setText("");
+        }
+    }
+
+    protected void containsLive(TextView timeTv, String live) {
+        String[] split = live.split("\\n");
+        timeTv.setText(split[1]);
+        timeTv.setTextColor(Color.RED);
     }
 }

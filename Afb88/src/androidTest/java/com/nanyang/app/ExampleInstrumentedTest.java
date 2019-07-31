@@ -1,6 +1,11 @@
 package com.nanyang.app;
 
+import com.unkonw.testapp.libs.utils.GZipUtil;
+
 import org.junit.Test;
+
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 
 /**
  * Instrumentation test, which will execute on an Android device.
@@ -13,6 +18,25 @@ public class ExampleInstrumentedTest {
 
     @Test
     public void test(){
+        String u="H4sIAAAAAAAEAE2KzQrCQAyE3yXndEmym0Z7FN9iKdL9Ay8i0ouI7270ZCYMM1/yglb2573DAucToLdr88yXx7ds+wZLzoSgUosaaZJi1mv3q3+Qi38+MUK/OWVwAiKjNRvRxqHVFAesmP83M81HFcLMKDOKYUyOCTUYThYiWtDV5/0BrJoRsqEAAAA";
+        String s = GZipUtil.uncompressToString(u.getBytes());
+        s.getBytes();
+    }
+    @Test
+    public void test2() throws IOException {
+        String u="{\"dbtype\":\"DB\",\"dbid\":\"1_r\",\"data\":[[0,\"52cb570542b77ece\",\"r\",0,0,1,0,0,-1,\"en\",\"1\",1,\"22fdd7f37f8dc43f\"],[],[],[],[],[[1069520,[1,26,27,34],[0,5.7,-7.3,7.5]]]]}";
+        String compress = null;
+        boolean s= false;
+        try {
+            s = GZipUtil.isGzip(compress.getBytes("utf-8"));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
+        if(s){
+            String s1 = GZipUtil.uncompressToString(u.getBytes(/*"utf-8"*/));
+        }else{
+
+        }
     }
 /*
 

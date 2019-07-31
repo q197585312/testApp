@@ -104,13 +104,13 @@ public class MainPresenter extends BaseSwitchPresenter {
     }
 
     public void getSkipGd88Data() {
-        LogIntervalUtils.logTime("请求数据"+BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx");
+        LogIntervalUtils.logTime("请求数据" + BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx");
         Disposable subscription = getService(ApiService.class).getResponse(BuildConfig.HOST_AFB + "_View/LiveDealerGDC.aspx").subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<Response>() {
                     @Override
                     public void accept(Response responseBodyResponse) throws JSONException {
-                        baseContext.hideLoadingDialog();
+
                         LogIntervalUtils.logTime("请求数据完成开始解析");
                         okhttp3.Response response = responseBodyResponse.raw().priorResponse();
                         if (response != null) {
@@ -137,6 +137,7 @@ public class MainPresenter extends BaseSwitchPresenter {
                         } else {
                             ToastUtils.showShort("not find agent!");
                         }
+                        baseContext.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override

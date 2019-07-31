@@ -59,18 +59,20 @@ public class VsCellBean implements Serializable {
     }
 
     public VsCellBean(String key, String value, String b, String Sc, int oid) {
-        this(key,value,Sc,oid);
-        this.b=b;
+        this(key, value, Sc, oid);
+        this.b = b;
 
     }
+
     public VsCellBean(String key, String value, String Sc, int oid) {
-        this(key,value,oid);
-        this.Sc=Sc;
+        this(key, value, oid);
+        this.Sc = Sc;
     }
+
     public VsCellBean(CharSequence key, String value, int oid) {
         this.key = key;
         this.value = value;
-        this.oid=oid;
+        this.oid = oid;
     }
 
 }

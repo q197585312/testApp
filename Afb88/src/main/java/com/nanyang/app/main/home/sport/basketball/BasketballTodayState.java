@@ -15,7 +15,6 @@ public class BasketballTodayState extends BasketballCommonState {
     }
 
 
-
     @Override
     public boolean mix() {
         getBaseView().switchState(new BasketballTodayMixState(getBaseView()));
@@ -51,7 +50,7 @@ public class BasketballTodayState extends BasketballCommonState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today),"Today",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Basketball));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Basketball));
     }
 
     @Override

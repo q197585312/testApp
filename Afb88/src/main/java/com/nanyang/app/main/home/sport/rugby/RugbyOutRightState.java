@@ -15,7 +15,6 @@ public class RugbyOutRightState extends OutRightState {
     }
 
 
-
     @Override
     public boolean mix() {
         return false;
@@ -28,7 +27,7 @@ public class RugbyOutRightState extends OutRightState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_RUGBY_OUTRIGHT+"&ot=e";
+        return AppConstant.getInstance().URL_RUGBY_OUTRIGHT + "&ot=e";
     }
 
 }

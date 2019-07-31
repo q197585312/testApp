@@ -53,6 +53,7 @@ import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.utils.GZipUtil;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -282,10 +283,18 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }, new WebSocket.StringCallback() {
             @Override
             public void onStringAvailable(final String s) {
-                Log.d("Socket", "onStringAvailable-----------" + s);
+
+
+                if (StringUtils.isNull(s))
+                    return;
                 if (s.equals("3"))
                     return;
-                currentFragment.presenter.getStateHelper().handleData(s);
+
+                String charset = WebSocketManager.getInstance().getWebSocket().charset();
+                String charsetS = WebSocketManager.getInstance().getWebSocket().getSocket().charset();
+                Log.d("Socket", charset+"---onStringAvailable-----------" + s+" ---"+charsetS);
+                String s1 = GZipUtil.uncompressToString(s.getBytes());
+                currentFragment.presenter.getStateHelper().handleData(s1);
             }
         }, this);
     }
@@ -320,7 +329,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     private void initFragment(String parentType) {
         SportIdBean sportIdBean = AfbUtils.getSportByType(parentType);
-        currentGameType = parentType;
+        if(sportIdBean==null)
+            sportIdBean = AfbUtils.getSportByG("1");
+        currentGameType = sportIdBean.getType();
         Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
         localCurrentFragment = sportIdBean.getBaseFragment();
         Logger.getDefaultLogger().d("localCurrentFragment:" + localCurrentFragment);

@@ -17,7 +17,6 @@ public class Game4dRunningState extends Game4dState {
     }
 
 
-
     @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_4D_SPECIAL_RUNNING;
@@ -41,15 +40,16 @@ public class Game4dRunningState extends Game4dState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Specials_4D));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Specials_4D));
     }
+
     @Override
     public int getTitleContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content1);
     }
 
     @Override
     public int getNormalContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content2);
     }
 }

@@ -23,7 +23,7 @@ public abstract class BaseConsumer<T> {
             @Override
             public void accept(T data) throws Exception {
                 onBaseGetData(data);
-                baseContext.hideLoadingDialog();
+                onHideDialog();
             }
         };
         onError = new Consumer<Throwable>() {
@@ -46,6 +46,10 @@ public abstract class BaseConsumer<T> {
             }
         };
 
+    }
+
+    protected void onHideDialog() {
+        baseContext.hideLoadingDialog();
     }
 
     protected void onError(Throwable throwable) {

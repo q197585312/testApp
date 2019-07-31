@@ -77,7 +77,6 @@ public class HuayThaiActivity extends BaseToolbarActivity {
     }
 
 
-
     @Override
     public void finish() {
         if (AppConstant.getInstance().IS_AGENT) {

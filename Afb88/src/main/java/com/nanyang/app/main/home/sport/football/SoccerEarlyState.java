@@ -40,10 +40,11 @@ public class SoccerEarlyState extends SoccerCommonState {
         getBaseView().switchState(new SoccerEarlyMixState(getBaseView()));
         return true;
     }
+
     @Override
     protected String getAllOddsUrl() {
         String tfDate = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
-        return AppConstant.getInstance().HOST+"_view/OddsPageSetting.aspx?ot=e&ov=0&wd="+tfDate+"&tf=-1&isPageSingDouble=RMOdds1&m=save";
+        return AppConstant.getInstance().HOST + "_view/OddsPageSetting.aspx?ot=e&ov=0&wd=" + tfDate + "&tf=-1&isPageSingDouble=RMOdds1&m=save";
     }
 
     @Override
@@ -101,6 +102,7 @@ public class SoccerEarlyState extends SoccerCommonState {
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice_date;
             }
+
             @Override
             protected void initView(View view) {
                 super.initView(view);
@@ -116,6 +118,7 @@ public class SoccerEarlyState extends SoccerCommonState {
                 });
                 lv.setAdapter(adapter);
             }
+
             @NonNull
             private BaseRecyclerAdapter<MenuItemInfo> getAdapter() {
                 String h12 = TimeUtils.dateFormat(new Date(), "yyyy-MM-dd") + " 12:00:00";
@@ -138,13 +141,13 @@ public class SoccerEarlyState extends SoccerCommonState {
                 MenuItemInfo item4 = new MenuItemInfo(0, d4, d4);
                 MenuItemInfo item5 = new MenuItemInfo(0, d5, d5);
                 MenuItemInfo item6 = new MenuItemInfo(1, d6, dv);
-                return new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(),new ArrayList<>(Arrays.asList(item0, item1, item2, item3, item4, item5, item6)), R.layout.text_base_item) {
+                return new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), new ArrayList<>(Arrays.asList(item0, item1, item2, item3, item4, item5, item6)), R.layout.text_base_item) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                         TextView view1 = holder.getView(R.id.item_text_tv);
                         RecyclerView.LayoutParams layoutParams = (RecyclerView.LayoutParams) view1.getLayoutParams();
-                        layoutParams.height=LinearLayout.LayoutParams.WRAP_CONTENT;
-                        layoutParams.bottomMargin=10;
+                        layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
+                        layoutParams.bottomMargin = 10;
                         view1.setBackgroundResource(R.drawable.rectangle_button_green);
                         view1.setText(item.getText());
                         view1.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);

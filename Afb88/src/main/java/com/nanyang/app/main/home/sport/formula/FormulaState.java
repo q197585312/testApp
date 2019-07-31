@@ -16,7 +16,6 @@ public abstract class FormulaState extends CyclingState {
     }
 
 
-
     @Override
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new FormulaBetHelper(getBaseView());

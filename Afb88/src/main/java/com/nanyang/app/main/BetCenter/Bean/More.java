@@ -29,13 +29,15 @@ public class More {
         this.text = text;
         this.image_right = image_right;
     }
-    public More(int image_left, String text, int image_right,BaseSwitchFragment fragment) {
+
+    public More(int image_left, String text, int image_right, BaseSwitchFragment fragment) {
         this.image_left = image_left;
         this.text = text;
         this.image_right = image_right;
         this.fragment = fragment;
     }
-    public More(int image_left, String text, int image_right,BaseSwitchFragment fragment,String switchType) {
+
+    public More(int image_left, String text, int image_right, BaseSwitchFragment fragment, String switchType) {
         this.image_left = image_left;
         this.text = text;
         this.image_right = image_right;

@@ -1,8 +1,6 @@
 package com.nanyang.app.main.home.sport.basketball;
 
-import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
@@ -62,26 +60,10 @@ public class BasketballRunningState extends BasketballCommonState {
     protected IAdapterHelper<BallInfo> onSetCommonAdapterHelper() {
         return new SoccerRunningAdapterHelper(getBaseView().getIBaseContext().getBaseActivity()) {
             @Override
-            protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
-                String live = item.getLive();
-                Log.d("Basketball", "handleLiveTimeTv: "+live);
-                if (live.contains("\n")) {
-                    String replace = live.replace("\n", ".");
-                    String[] split = replace.split(".");
-                    timeTv.setText(split[1]);
-                    timeTv.setTextColor(Color.RED);
-                } else {
-                    timeTv.setText("");
-                }
+            protected void noContainsLive(BallInfo item, TextView timeTv) {
+                timeTv.setText("");
             }
         };
-    /*    return new BasketballCommonAdapterHelper(getBaseView().getIBaseContext().getBaseActivity()) {
-            @Override
-            public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
-                super.onConvert(helper, position, item);
-                setRunningItemBg(helper, item);
-            }
-        };*/
     }
 
     @Override

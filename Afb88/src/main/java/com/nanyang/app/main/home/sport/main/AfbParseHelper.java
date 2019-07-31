@@ -18,7 +18,7 @@ public class AfbParseHelper<T extends BallInfo> {
         info.setIsLastCall(matchArray.optString(4));
         info.setMatchDate(matchArray.optString(5));
 
-        info.setStatus (matchArray.optString(6));
+        info.setStatus(matchArray.optString(6));
         info.setCurMinute(matchArray.optString(7));
         info.setIsInetBet(matchArray.optString(8));
         info.setIsHomeGive(matchArray.optString(9));
@@ -26,7 +26,7 @@ public class AfbParseHelper<T extends BallInfo> {
         info.setHomeId(matchArray.optString(11));
         info.setAwayId(matchArray.optString(12));
 
-        info.setHome (matchArray.optString(13));
+        info.setHome(matchArray.optString(13));
         info.setAway(matchArray.optString(14));
         info.setHomeRank(matchArray.optString(15));
         info.setAwayRank(matchArray.optString(16));
@@ -35,7 +35,7 @@ public class AfbParseHelper<T extends BallInfo> {
         info.setRCHome(matchArray.optString(19));
         info.setRCAway(matchArray.optString(20));
 
-        info.setGamesSum (matchArray.optString(21));
+        info.setGamesSum(matchArray.optString(21));
         info.setHdp(matchArray.optString(22));
         info.setOU(matchArray.optString(23));
         info.setHOdds(matchArray.optString(24));
@@ -52,7 +52,7 @@ public class AfbParseHelper<T extends BallInfo> {
         info.setOEOdds(matchArray.optString(35));
         info.setHasPar(matchArray.optString(36));
 
-        info.setIsInetBet_FH (matchArray.optString(37));
+        info.setIsInetBet_FH(matchArray.optString(37));
         info.setIsHomeGive_FH(matchArray.optString(38));
         info.setHdp_FH(matchArray.optString(39));
         info.setOU_FH(matchArray.optString(40));
@@ -71,7 +71,7 @@ public class AfbParseHelper<T extends BallInfo> {
         info.setStatsId(matchArray.optString(53));
         info.setMExtraTime(matchArray.optString(54));
 
-        info.setWorkingDate (matchArray.optString(55));
+        info.setWorkingDate(matchArray.optString(55));
         info.setHasPar_FH(matchArray.optString(56));
         info.setTvPathIBC(matchArray.optString(57));
         info.setShowGoal(matchArray.optString(58));

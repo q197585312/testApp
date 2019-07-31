@@ -1,13 +1,16 @@
 package com.nanyang.app.load.login;
 
+import android.animation.ValueAnimator;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Rect;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewTreeObserver;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -63,6 +66,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     EditText edtLoginUsername;
     @Bind(R.id.edt_login_password)
     EditText edtLoginPassword;
+    @Bind(R.id.ll_bottom_btn)
+    View llBottomBtn;
     @Bind(R.id.btn_login_login)
     TextView btnLoginLogin;
     @Bind(R.id.btn_desktop)
@@ -72,6 +77,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     AfbApplication app;
     @Bind(R.id.cb_login_remember)
     CheckBox cbLoginRemember;
+    @Bind(R.id.ll_container)
+    LinearLayout llContainer;
     @Bind(R.id.ll_login_remember)
     LinearLayout llLoginRemember;
     @Bind(R.id.login_images_vp)
@@ -81,6 +88,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     @Bind(R.id.login_language)
     TextView loginLanguage;
     private PopChoiceLanguage popLanguage;
+    private int[] sc;
+    private int scrollHeight;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +100,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         ButterKnife.bind(this);
         createPresenter(new LoginPresenter(this));
         tv_all_right.setText(String.format(getString(R.string.copyright_2018_afb88_all_rights_reserved), DateUtils.getCurrentDate("yyyy"),
-                BuildConfig.FLAVOR.toUpperCase()+" V"+BuildConfig.VERSION_NAME));
+                BuildConfig.FLAVOR.toUpperCase() + " V" + BuildConfig.VERSION_NAME));
         edtLoginPassword.setOnKeyListener(onKeyListener);
         String password = AppCacheUtils.getInstance(this).getString("PASS_WORD") != null ? AppCacheUtils.getInstance(this).getString("PASS_WORD") : "";
         String userName = AppCacheUtils.getInstance(this).getString("USER_NAME") != null ? AppCacheUtils.getInstance(this).getString("USER_NAME") : "";
@@ -114,6 +123,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         });
         initLanguage();
         presenter.loadAllImages();
+        inputMove();
     }
 
     private void initLanguage() {
@@ -221,49 +231,55 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         String k = edtLoginPassword.getText().toString();//"a7c7366ecd6041489d08ecb9ac1f39c9"
         if (!TextUtils.isEmpty(us) && !TextUtils.isEmpty(k)) {
             presenter.login(new LoginInfo(us, k), new BaseConsumer<String>(this) {
-                @Override
-                protected void onBaseGetData(String s) throws JSONException {
-                    JSONArray jsonArray = new JSONArray(s);
+                        @Override
+                        protected void onBaseGetData(String s) throws JSONException {
+                            JSONArray jsonArray = new JSONArray(s);
 
-                    if (s.contains("Maintenance")) {
-                        Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
-                        onError(exception);
-                    } else if (jsonArray.optString(2) != null && StringUtils.matches(jsonArray.optString(2), "^.*alert\\(\\'([^\\']+)\\'\\);.*?")) {
-                        Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2), "^.*alert\\(\\'([^\\']+)\\'\\);.*?", 1));
-                        onError(exception);
-                    } else {
-                        String regex = "window.location";
-                        Pattern p = Pattern.compile(regex);
-                        Matcher m = p.matcher(s);
-                        if (m.find()) {
-                            MainPresenter switchLanguage = new MainPresenter(baseContext);
-                            switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
-                                                          @Override
-                                                          public void onBack(SettingAllDataBean data) throws JSONException {
-                                                              onLanguageSwitchSucceed(data.getUserName());
-                                                          }
-                                                      }
-                            );
-                        } else {
-                            Exception exception1 = new Exception("Server Error");
-                            onError(exception1);
+                            if (s.contains("Maintenance")) {
+                                Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
+                                onError(exception);
+                            } else if (jsonArray.optString(2) != null && StringUtils.matches(jsonArray.optString(2), "^.*alert\\(\\'([^\\']+)\\'\\);.*?")) {
+                                Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2), "^.*alert\\(\\'([^\\']+)\\'\\);.*?", 1));
+                                onError(exception);
+                            } else {
+                                String regex = "window.location";
+                                Pattern p = Pattern.compile(regex);
+                                Matcher m = p.matcher(s);
+                                if (m.find()) {
+                                    MainPresenter switchLanguage = new MainPresenter(baseContext);
+                                    switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
+                                                                  @Override
+                                                                  public void onBack(SettingAllDataBean data) throws JSONException {
+                                                                      onLanguageSwitchSucceed(data.getUserName());
+                                                                  }
+                                                              }
+                                    );
+                                } else {
+                                    Exception exception1 = new Exception("Server Error");
+                                    onError(exception1);
+                                }
+                            }
+
+
+                        }
+
+                        @Override
+                        protected void onHideDialog() {
+                        }
+
+                        @Override
+                        protected void onError(final Throwable throwable) {
+                            super.onError(throwable);
+                            runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    ToastUtils.showShort(throwable.getMessage());
+                                }
+                            });
+
                         }
                     }
-
-                }
-
-                @Override
-                protected void onError(final Throwable throwable) {
-                    super.onError(throwable);
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            ToastUtils.showShort(throwable.getMessage());
-                        }
-                    });
-
-                }
-            });
+            );
         } else {
             ToastUtils.showShort(getString(R.string.enter_username_or_password));
         }
@@ -290,6 +306,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         AfbUtils.initAllSprotMap();
         Log.d("doRetrofitApiOnUiThread", ": " + AppConstant.wfMain);
         skipAct(MainActivity.class);
+//        getBaseActivity().hideLoadingDialog();
         finish();
     }
 
@@ -328,8 +345,51 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         //代码实现跳转
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
-        Uri content_url = Uri.parse("https://www.afb1188.com/W0/Pub/wfDefault0.html");//此处填链接
+        Uri content_url = Uri.parse(AppConstant.getInstance().HOST+"W0/Pub/wfDefault0.html");//此处填链接
         intent.setData(content_url);
         startActivity(intent);
     }
+
+    public void inputMove() {
+        llContainer.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
+            @Override
+            public void onGlobalLayout() {
+                Rect r = new Rect();
+                llContainer.getWindowVisibleDisplayFrame(r);
+                if (sc == null) {
+                    sc = new int[2];
+                    llBottomBtn.getLocationOnScreen(sc);
+                }
+                //r.top 是状态栏高度
+                int screenHeight = llContainer.getRootView().getHeight();
+                int softHeight = screenHeight - r.bottom;
+                if (scrollHeight == 0 && softHeight > 120)
+                    scrollHeight = sc[1] + btnLoginLogin.getHeight() - (screenHeight - softHeight);//可以加个5dp的距离这样，按钮不会挨着输入法
+
+                if (scrollHeight < 1)
+                    return;
+                if (softHeight > 120) {//当输入法高度大于100判定为输入法打开了  设置大点，有虚拟键的会超过100
+                    if (llContainer.getScrollY() != scrollHeight)
+                        scrollToPos(0, scrollHeight);
+                } else {//否则判断为输入法隐藏了
+                    if (llContainer.getScrollY() != 0)
+                        scrollToPos(scrollHeight, 0);
+                }
+            }
+        });
+    }
+
+    private void scrollToPos(int start, int end) {
+        ValueAnimator animator = ValueAnimator.ofInt(start, end);
+        animator.setDuration(250);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                llContainer.scrollTo(0, (Integer) valueAnimator.getAnimatedValue());
+            }
+        });
+        animator.start();
+    }
+
+
 }

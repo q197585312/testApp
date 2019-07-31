@@ -11,14 +11,12 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class FinancialState extends TennisState{
+public abstract class FinancialState extends TennisState {
 
 
     public FinancialState(SportContract.View baseView) {
         super(baseView);
     }
-
-
 
 
     @Override

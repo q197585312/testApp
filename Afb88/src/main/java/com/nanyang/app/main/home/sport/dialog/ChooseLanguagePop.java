@@ -37,26 +37,26 @@ public class ChooseLanguagePop extends BasePopupWindow {
     SportActivity context;
 
     public ChooseLanguagePop(SportActivity context, View v, MainPresenter presenter) {
-        this(context, v, 400, LinearLayout.LayoutParams.WRAP_CONTENT,presenter);
+        this(context, v, 400, LinearLayout.LayoutParams.WRAP_CONTENT, presenter);
     }
 
-    public ChooseLanguagePop(SportActivity mContext, View v, int width, int height,MainPresenter presenter) {
+    public ChooseLanguagePop(SportActivity mContext, View v, int width, int height, MainPresenter presenter) {
         super(mContext, v, width, height);
         this.context = mContext;
         this.v = v;
-        this.presenter=presenter;
+        this.presenter = presenter;
         initData();
 
     }
 
     private void initData() {
         List<MenuItemInfo<String>> menuItemInfos = new ArrayList<MenuItemInfo<String>>(Arrays.asList(
-                new MenuItemInfo<String>(R.mipmap.lang_zh_flag, "简体中文", "zh","ZH-CN"),
-                new MenuItemInfo<String>(R.mipmap.lang_en_flag, "English", "en","EN-US"),
-                new MenuItemInfo<String>(R.mipmap.lang_th_flag, "ไทย", "th","TH-TH"),
-                new MenuItemInfo<String>(R.mipmap.lang_ko_flag, "한국의", "ko","EN-TT"),
-                new MenuItemInfo<String>(R.mipmap.lang_vi_flag, "tiếng việt", "vi","EN-IE"),
-                new MenuItemInfo<String>(R.mipmap.lang_tr_flag, "Türk dili", "tr","UR-PK")
+                new MenuItemInfo<String>(R.mipmap.lang_zh_flag, "简体中文", "zh", "ZH-CN"),
+                new MenuItemInfo<String>(R.mipmap.lang_en_flag, "English", "en", "EN-US"),
+                new MenuItemInfo<String>(R.mipmap.lang_th_flag, "ไทย", "th", "TH-TH"),
+                new MenuItemInfo<String>(R.mipmap.lang_ko_flag, "한국의", "ko", "EN-TT"),
+                new MenuItemInfo<String>(R.mipmap.lang_vi_flag, "tiếng việt", "vi", "EN-IE"),
+                new MenuItemInfo<String>(R.mipmap.lang_tr_flag, "Türk dili", "tr", "UR-PK")
         )
         );
 
@@ -64,7 +64,7 @@ public class ChooseLanguagePop extends BasePopupWindow {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
                 TextView contentTv = holder.getView(R.id.selectable_text_content_tv);
-                View  line = holder.getView(R.id.v_row_line1);
+                View line = holder.getView(R.id.v_row_line1);
                 line.setVisibility(View.GONE);
                 contentTv.setText(item.getText());
                 contentTv.setTextColor(context.getResources().getColor(R.color.white));
@@ -85,9 +85,9 @@ public class ChooseLanguagePop extends BasePopupWindow {
             @Override
             public void onItemClick(View view, MenuItemInfo<String> item, int position) {
                 String lag = item.getType();
-                if(!lag.equals(AfbUtils.getLanguage(context))){
-                    AfbUtils.switchLanguage(lag,context);
-                    if (tv!=null){
+                if (!lag.equals(AfbUtils.getLanguage(context))) {
+                    AfbUtils.switchLanguage(lag, context);
+                    if (tv != null) {
                         tv.setBackgroundResource(item.getRes());
                     }
                     presenter.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
@@ -120,7 +120,8 @@ public class ChooseLanguagePop extends BasePopupWindow {
 
 
     TextView tv;
-    public void setShowTv(TextView tv){
+
+    public void setShowTv(TextView tv) {
         this.tv = tv;
     }
 

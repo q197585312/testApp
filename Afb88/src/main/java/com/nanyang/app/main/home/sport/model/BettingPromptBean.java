@@ -48,31 +48,31 @@ public class BettingPromptBean {
      * "HidOdds": "1.08",
      * "AmtS": "0", "ExRate": "1", "BetterOdds": 1, "MoreBetUrl": "../_View/MoreBet.aspx?oId=12219287&home=AS%e6%91%a9%e7%ba%b3%e5%93%a5&away=%e6%9b%bc%e5%9f%8e&ModuleTitle=%e6%ac%a7%e6%b4%b2%e5%86%a0%e5%86%9b%e8%81%94%e8%b5%9b&date=03%3a45AM&lang=eng", "Test": "testing" }*/
     /**
-     {
-     "BetType": "dc",
-     "GTitle": "双重机会",
-     "ModuleTitle": "澳洲甲组联赛",
-     "FullTimeId": "0",
-     "IsHomeGive": true,
-     "Home": "中岸水手",
-     "Away": "阿德莱德联",
-     "IsRun": false,
-     "IsOddsChange": false,
-     "RunHomeScore": "0",
-     "RunAwayScore": "0",
-     "GameType3": "N",
-     "BetHdp": "主和",
-     "BetOdds": "1.48",
-     "BetUrl": "PanelBet.aspx?betType=dc&oId=12262811&hdp=10&sc=10&odds=1.48",
-     "MinLimit": "10",
-     "MaxLimit": "2000",
-     "HidOdds": "0.48",
-     "AmtS": "0",
-     "ExRate": "1",
-     "BetterOdds": 1,
-     "MoreBetUrl": "../_View/MoreBet.aspx?oId=12262811&home=%e4%b8%ad%e5%b2%b8%e6%b0%b4%e6%89%8b&away=%e9%98%bf%e5%be%b7%e8%8e%b1%e5%be%b7%e8%81%94&ModuleTitle=%e6%be%b3%e6%b4%b2%e7%94%b2%e7%bb%84%e8%81%94%e8%b5%9b&date=&lang=eng",
-     "Test": "testing"
-     }
+     * {
+     * "BetType": "dc",
+     * "GTitle": "双重机会",
+     * "ModuleTitle": "澳洲甲组联赛",
+     * "FullTimeId": "0",
+     * "IsHomeGive": true,
+     * "Home": "中岸水手",
+     * "Away": "阿德莱德联",
+     * "IsRun": false,
+     * "IsOddsChange": false,
+     * "RunHomeScore": "0",
+     * "RunAwayScore": "0",
+     * "GameType3": "N",
+     * "BetHdp": "主和",
+     * "BetOdds": "1.48",
+     * "BetUrl": "PanelBet.aspx?betType=dc&oId=12262811&hdp=10&sc=10&odds=1.48",
+     * "MinLimit": "10",
+     * "MaxLimit": "2000",
+     * "HidOdds": "0.48",
+     * "AmtS": "0",
+     * "ExRate": "1",
+     * "BetterOdds": 1,
+     * "MoreBetUrl": "../_View/MoreBet.aspx?oId=12262811&home=%e4%b8%ad%e5%b2%b8%e6%b0%b4%e6%89%8b&away=%e9%98%bf%e5%be%b7%e8%8e%b1%e5%be%b7%e8%81%94&ModuleTitle=%e6%be%b3%e6%b4%b2%e7%94%b2%e7%bb%84%e8%81%94%e8%b5%9b&date=&lang=eng",
+     * "Test": "testing"
+     * }
      */
     /*{
     "BetType": "1_par",

@@ -15,7 +15,6 @@ public class VolleyballOutRightState extends OutRightState {
     }
 
 
-
     @Override
     public boolean mix() {
         return false;
@@ -28,7 +27,7 @@ public class VolleyballOutRightState extends OutRightState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_VOLLEYBALL_OUTRIGHT+"&ot=e";
+        return AppConstant.getInstance().URL_VOLLEYBALL_OUTRIGHT + "&ot=e";
     }
 
 

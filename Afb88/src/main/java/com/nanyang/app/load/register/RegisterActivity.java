@@ -20,7 +20,7 @@ import butterknife.OnClick;
 /**
  * Created by Administrator on 2017/2/5 0005.
  */
-public class RegisterActivity extends BaseActivity<RegisterPresenter> implements  View.OnFocusChangeListener {
+public class RegisterActivity extends BaseActivity<RegisterPresenter> implements View.OnFocusChangeListener {
 
 
     @Bind(R.id.edt_account)
@@ -63,7 +63,6 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
     EditText edtAccountnumber;
     @Bind(R.id.tv_accountnumber_prompt)
     TextView tvAccountnumberPrompt;
-
 
 
     public void onFailed(String error) {
@@ -137,7 +136,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenter> implements
                     }
 
                 };
-                popupWindow.setData( presenter.bankList);
+                popupWindow.setData(presenter.bankList);
                 popupWindow.showPopupDownWindow();
                 break;
         }

@@ -29,6 +29,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.TimeUtils;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -163,7 +164,10 @@ public class HomeFragment extends BaseSwitchFragment {
                         menuItemInfo.setType("Early");
                     }
                 }
-
+                if (sportIdBean == null) {
+                    ToastUtils.showLong("Server Error, wrong game GId");
+                    return;
+                }
                 menuItemInfo.setParent(sportIdBean.getType());
                 Bundle b1 = new Bundle();
                 b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo);

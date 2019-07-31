@@ -10,7 +10,7 @@ public class MatchBean implements Serializable {
     private String HomeRank;
     private String AwayRank;
     private String Live;
-    Type type= Type.ITME;
+    Type type = Type.ITME;
     String Key;
     String MatchDate;
     String WorkingDate;
@@ -43,28 +43,28 @@ public class MatchBean implements Serializable {
                      VsOtherDataBean otherDataBean,
                      String CurMinute,
                      String RunHomeScore,
-                     String RunAwayScore ,
+                     String RunAwayScore,
                      String Live,
                      String Status) {
-        Key=key;
+        Key = key;
         MatchDate = matchDate;
         WorkingDate = workingDate;
         Away = away;
         Home = home;
-        HomeId=homeId;
-        AwayId=awayId;
+        HomeId = homeId;
+        AwayId = awayId;
         this.handicapBeans = handicapBeans;
-        RCHome=rcHome;
-        RCAway=rcAway;
-        this.otherDataBean=otherDataBean;
+        RCHome = rcHome;
+        RCAway = rcAway;
+        this.otherDataBean = otherDataBean;
 
-        this.CurMinute=CurMinute;
-        this.RunAwayScore=RunAwayScore;
-        this.RunHomeScore=RunHomeScore;
-        this.Live=Live;
-        this.Status=Status;
-        this.HomeRank=homeRank;
-        this.AwayRank=awayRank;
+        this.CurMinute = CurMinute;
+        this.RunAwayScore = RunAwayScore;
+        this.RunHomeScore = RunHomeScore;
+        this.Live = Live;
+        this.Status = Status;
+        this.HomeRank = homeRank;
+        this.AwayRank = awayRank;
     }
 
     public MatchBean() {
@@ -166,9 +166,10 @@ public class MatchBean implements Serializable {
         this.type = type;
     }
 
-    public enum Type{
-        HEAD,TITLE,ITME
+    public enum Type {
+        HEAD, TITLE, ITME
     }
+
     public String getKey() {
         return Key;
     }

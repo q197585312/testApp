@@ -6,8 +6,11 @@ package com.nanyang.app.main.home.sportInterface;
 
 public interface IRTMatchInfo {
     String getRTSMatchId();
+
     String getSocOddsId();
+
     String getHome();
+
     String getAway();
 
 }

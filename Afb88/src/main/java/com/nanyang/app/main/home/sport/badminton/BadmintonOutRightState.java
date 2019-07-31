@@ -16,7 +16,6 @@ public class BadmintonOutRightState extends OutRightState {
     }
 
 
-
     @Override
     public boolean mix() {
         return false;
@@ -30,7 +29,7 @@ public class BadmintonOutRightState extends OutRightState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_BADMINTON_OUTRIGHT+"&ot=e";
+        return AppConstant.getInstance().URL_BADMINTON_OUTRIGHT + "&ot=e";
     }
 
 }

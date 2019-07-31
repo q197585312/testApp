@@ -6,14 +6,14 @@ import com.google.gson.annotations.SerializedName;
  * Created by Administrator on 2015/11/30.
  */
 public class FGLGBean {
-//    "oid":9112329,"HF":"1.42","HL":"1.42","AF":"3","AL":"3","NO GOAL":"15"
+    //    "oid":9112329,"HF":"1.42","HL":"1.42","AF":"3","AL":"3","NO GOAL":"15"
     int oid;
-    String HF="";
-    String HL="";
-    String AF="";
-    String AL="";
+    String HF = "";
+    String HL = "";
+    String AF = "";
+    String AL = "";
     @SerializedName("NO GOAL")
-    String NO_GOAL="";
+    String NO_GOAL = "";
 
     public int getOid() {
         return oid;

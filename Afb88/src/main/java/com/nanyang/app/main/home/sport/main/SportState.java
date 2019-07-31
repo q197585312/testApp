@@ -36,6 +36,7 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
 import com.unkonw.testapp.libs.utils.TimeUtils;
@@ -219,7 +220,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         List<RefreshDataBean> list = new ArrayList<>();
         list.add(refreshDataBean);
         String s2 = new Gson().toJson(list);
-        String s = "01" + s2;
+        String s = "11" + s2;
         WebSocketManager.getInstance().send(s);
     }
 
@@ -416,9 +417,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected List<TableSportInfo<B>> pageData(List<TableSportInfo<B>> filterData) {
         List<TableSportInfo<B>> pageList;
-        if (page * pageSize > filterData.size()-1) {
+        if (page * pageSize > filterData.size() - 1) {
             if (page > 0)
-                page=0;
+                page = 0;
             else
                 return new ArrayList<>();
         }
@@ -567,6 +568,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             return;
         }
         try {
+
             String updateString = Html.fromHtml(s).toString();
             JSONObject object = new JSONObject(updateString);
             dbType = object.optString("dbtype");
@@ -579,7 +581,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 baseView.getIBaseContext().getBaseActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        if (baseView.getIBaseContext().getBaseActivity().isHasAttached()) {
+                        BaseActivity baseActivity = baseView.getIBaseContext().getBaseActivity();
+                        if (baseActivity!=null&&baseActivity.isHasAttached()) {
                             initAllData(allData);
                         }
                     }

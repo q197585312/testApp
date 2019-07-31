@@ -54,6 +54,7 @@ public class USFootballTodayState extends BasketballTodayState {
         getBaseView().switchState(new USFootballTodayMixState(getBaseView()));
         return true;
     }
+
     @Override
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new BallBetHelper(getBaseView()) {

@@ -20,7 +20,6 @@ public class WinterSportRunningState extends WinterSportState {
     }
 
 
-
     @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_WINTER_SPORT_RUNING;
@@ -44,19 +43,21 @@ public class WinterSportRunningState extends WinterSportState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.WinterSport));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.WinterSport));
     }
+
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new OtherRunningDoubleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
+
     @Override
     public int getTitleContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content1);
     }
 
     @Override
     public int getNormalContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content2);
     }
 }

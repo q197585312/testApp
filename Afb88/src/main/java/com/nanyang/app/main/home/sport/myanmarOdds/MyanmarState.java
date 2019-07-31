@@ -52,11 +52,12 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
             public boolean isItemCollection(MyanmarInfo item) {
                 return isItemCollectionCommon(item);
             }
+
             @Override
-            public void clickOdds(TextView v, MyanmarInfo item, String type, boolean isHf, String odds,int oid,String sc,boolean hasPar) {
+            public void clickOdds(TextView v, MyanmarInfo item, String type, boolean isHf, String odds, int oid, String sc, boolean hasPar) {
                 IBetHelper<MyanmarInfo> helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item,oid, type, odds, v, isHf, "",hasPar);
+                helper.clickOdds(item, oid, type, odds, v, isHf, "", hasPar);
             }
 
             @Override
@@ -109,7 +110,7 @@ public abstract class MyanmarState extends SportState<MyanmarInfo, SportContract
           return tableModules;
       }*/
     @Override
-    protected MyanmarInfo parseMatch(JSONArray matchArray,boolean notify) throws JSONException {
+    protected MyanmarInfo parseMatch(JSONArray matchArray, boolean notify) throws JSONException {
         MyanmarInfo info = new MyanmarInfo();
 
         info.setSocOddsId(matchArray.opt(0) == null ? "" : matchArray.optString(0));         //全场ID

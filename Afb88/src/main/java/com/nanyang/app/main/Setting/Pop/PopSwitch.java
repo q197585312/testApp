@@ -53,7 +53,7 @@ public abstract class PopSwitch<T extends IString> extends BasePopupWindow {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<T>() {
             @Override
             public void onItemClick(View view, T item, int position) {
-                onClickItem(item,position);
+                onClickItem(item, position);
                 closePopupWindow();
             }
         });

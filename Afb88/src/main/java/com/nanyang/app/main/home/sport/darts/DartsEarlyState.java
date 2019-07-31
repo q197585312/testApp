@@ -18,7 +18,7 @@ public class DartsEarlyState extends BasketballEarlyState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Darts));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Darts));
     }
 
     @Override
@@ -51,6 +51,7 @@ public class DartsEarlyState extends BasketballEarlyState {
         getBaseView().switchState(new DartsEarlyMixState(getBaseView()));
         return true;
     }
+
     @Override
     public IBetHelper onSetBetHelper() {
         return new DartsBetHelper(getBaseView());

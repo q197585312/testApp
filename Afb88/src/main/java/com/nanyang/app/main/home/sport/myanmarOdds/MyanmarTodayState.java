@@ -16,12 +16,14 @@ public class MyanmarTodayState extends MyanmarState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today),"Today",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Myanmar_Odds));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Myanmar_Odds));
     }
+
     @Override
     protected String getAllOddsUrl() {
-        return AppConstant.getInstance().HOST+"_view/MOddsGen2.ashx?ot=t&update=true&r=1425931029&ov=0&LID=";
+        return AppConstant.getInstance().HOST + "_view/MOddsGen2.ashx?ot=t&update=true&r=1425931029&ov=0&LID=";
     }
+
     @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_SOCCER_MYANMAR_TODAY;

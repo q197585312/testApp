@@ -220,7 +220,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                                             BaseRecyclerAdapter<StatementOpen3ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen3ListDataBean>(mContext, list, R.layout.item_statement_open2) {
                                                 @Override
                                                 public void convert(MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
-                                                    updateRc2(list,view, position, bean);
+                                                    updateRc2(list, view, position, bean);
                                                 }
                                             };
                                             rc1.setAdapter(adapter);
@@ -297,7 +297,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     }
                     betType2 = AfbUtils.delHTMLTag(betType2);
                     String gameType314 = item.getGameType314();
-                    running_BetType2.setText(AfbUtils.delHTMLTag(item.getBetType424()) + " "+(gameType314.equals("O") ? "Outright" : betType2));
+                    running_BetType2.setText(AfbUtils.delHTMLTag(item.getBetType424()) + " " + (gameType314.equals("O") ? "Outright" : betType2));
                     running_Score.setText((isRun5.equals("1") ? item.getScore19() : ""));
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
@@ -352,7 +352,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         presenter.getRunningList(type);
     }
 
-    public void updateRc2(List<StatementOpen3ListDataBean> list,MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
+    public void updateRc2(List<StatementOpen3ListDataBean> list, MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
         LinearLayout llTitle = view.getLinearLayout(R.id.ll_title);
         TextView tvTotalOdds = view.getTextView(R.id.tv_total_odds);
         TextView tvAmt = view.getTextView(R.id.tv_amt);

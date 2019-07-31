@@ -594,7 +594,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView awayScoreTv = helper.getView(R.id.module_match_away_score_tv);
         SoccerRunningGoalManager.getInstance().handleGoalStyle(item, homeScoreTv, awayScoreTv);
         SportActivity act = (SportActivity) this.context;
-        if (act != null) {
+        if (act != null && act.currentFragment.presenter != null && act.currentFragment.presenter.getStateHelper().getStateType() != null) {
             String type = act.currentFragment.presenter.getStateHelper().getStateType().getType();
             if (!type.toLowerCase().startsWith("r")) {
                 homeScoreTv.setVisibility(View.GONE);
@@ -1126,10 +1126,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg, boolean isShowText, final int resUpdate, final ImageView imgUpDown) {
-        String value = f;
-        if (f.equals("0")) {
+
+        if (StringUtils.isNull(f) || f.equals("0")) {
             textView.setText("");
         } else {
+
+            String value = f;
+            value = value.replaceAll(",", ".");
             float odds = Float.parseFloat(value);
             odds = odds / 10;
             String s = AfbUtils.decimalValue(odds, "0.000");
@@ -1163,22 +1166,21 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 textView.setOnClickListener(null);
             }
-            if (!StringUtils.isNull(value)) {
-                String replace = value.replaceAll(",", ".");
-                try {
-                    Float aFloat = Float.valueOf(replace);
-                    if (isShowText) {
-                        if (aFloat < 0) {
-                            textView.setTextColor(red_black);
-                        } else {
-                            textView.setTextColor(black_grey);
-                        }
+
+            try {
+                Float aFloat = Float.valueOf(value);
+                if (isShowText) {
+                    if (aFloat < 0) {
+                        textView.setTextColor(red_black);
+                    } else {
+                        textView.setTextColor(black_grey);
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
                 }
-                textView.setText(showOdds);
+            } catch (Exception e) {
+                e.printStackTrace();
             }
+            textView.setText(showOdds);
+
         }
 
 

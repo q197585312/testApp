@@ -323,7 +323,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     private void moveToIndex(int targetIndex) {
-        ((BallAdapterHelper) ( presenter.getStateHelper()).getAdapterHelper()).setSlIndex(targetIndex);
+        ((BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper()).setSlIndex(targetIndex);
     }
 
 
@@ -359,7 +359,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         else
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, noMixRes, 0, 0);
     }
-
 
 
     @Override
@@ -417,7 +416,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             stateHelper.setIsHide(true);
         state.setIsHide(false);
         presenter.setStateHelper(state);
-        ( presenter.getStateHelper()).initAllOdds(ivAllAdd);
+        (presenter.getStateHelper()).initAllOdds(ivAllAdd);
         presenter.getStateHelper().refresh();
 //        presenter.getStateHelper().startUpdateData();
         if (popWindow != null)
@@ -568,17 +567,17 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 dbid = sportIdBean.getDbid();
         }
 
-        if (( presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+        if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
-            additionPresenter.addition((BallInfo) item,  dbid);
-            BallAdapterHelper adapterHelper = (BallAdapterHelper) ( presenter.getStateHelper()).getAdapterHelper();
+            additionPresenter.addition((BallInfo) item, dbid);
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.changeAddition((BallInfo) item);
         }
     }
 
     public void onAddition(AddMBean data, BallInfo item) {
-        if (( presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
-            BallAdapterHelper adapterHelper = (BallAdapterHelper) ( presenter.getStateHelper()).getAdapterHelper();
+        if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.notifyPositionAddition(data, item);
         }
     }

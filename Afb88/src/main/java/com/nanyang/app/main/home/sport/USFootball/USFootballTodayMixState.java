@@ -21,6 +21,7 @@ class USFootballTodayMixState extends BasketballTodayMixState {
         getBaseView().switchState(new USFootballTodayState(getBaseView()));
         return super.mix();
     }
+
     @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_US_FOOTBALL_TODAY_MIX;
@@ -28,6 +29,6 @@ class USFootballTodayMixState extends BasketballTodayMixState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today),"Today",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
+        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
     }
 }

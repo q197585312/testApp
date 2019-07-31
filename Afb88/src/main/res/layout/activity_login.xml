@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -32,29 +32,24 @@
             android:layout_marginBottom="5dp"
             android:orientation="horizontal" />
     </RelativeLayout>
-    <FrameLayout
+
+
+    <LinearLayout
+        android:id="@+id/ll_container"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_marginTop="20dp"
-        android:layout_weight="0.7">
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginBottom="53dp"
+        android:gravity="center"
+        android:orientation="vertical">
+
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_marginBottom="85dp"
             android:src="@mipmap/logo" />
-    </FrameLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_gravity="center"
-        android:layout_marginBottom="28dp"
-        android:gravity="center"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_weight="1"
-        android:orientation="vertical">
-
 
         <TextView
             android:id="@+id/login_language"
@@ -99,25 +94,24 @@
             android:textSize="15sp" />
 
 
-
         <LinearLayout
+            android:id="@+id/ll_bottom_btn"
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="18dp"
+            android:layout_marginTop="12dp"
             android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/btn_desktop"
-                android:onClick="clickDesktop"
                 android:layout_width="0dp"
-                android:layout_weight="1"
                 android:layout_height="match_parent"
+                android:layout_weight="1"
                 android:background="@drawable/layer_btn_desktop_bg"
                 android:gravity="center"
+                android:onClick="clickDesktop"
                 android:text="@string/desktop"
                 android:textAllCaps="false"
-                android:textColor="@color/white"
-                />
+                android:textColor="@color/white" />
 
             <TextView
                 android:id="@+id/btn_login_login"
@@ -129,19 +123,19 @@
                 android:gravity="center"
                 android:text="@string/Login"
                 android:textAllCaps="false"
-                android:textColor="@color/green"
-                />
+                android:textColor="@color/green" />
+
             <LinearLayout
                 android:id="@+id/ll_login_remember"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:clickable="true"
-                android:paddingLeft="10dp"
                 android:layout_marginLeft="3dp"
-                android:paddingRight="10dp"
                 android:background="@drawable/layer_btn_remember_bg"
+                android:clickable="true"
                 android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp">
 
                 <CheckBox
                     android:id="@+id/cb_login_remember"
@@ -164,22 +158,16 @@
 
     </LinearLayout>
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="0.6">
-        <TextView
-            android:id="@+id/tv_all_right"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom|center_horizontal"
-            android:gravity="center"
-            android:padding="5dp"
-            android:text="@string/copyright_2018_afb88_all_rights_reserved"
-            android:textColor="@color/white"
-            android:textSize="12sp" />
-    </FrameLayout>
 
+    <TextView
+        android:id="@+id/tv_all_right"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:gravity="center"
+        android:padding="5dp"
+        android:text="@string/copyright_2018_afb88_all_rights_reserved"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
 
-
-</LinearLayout>
+</FrameLayout>

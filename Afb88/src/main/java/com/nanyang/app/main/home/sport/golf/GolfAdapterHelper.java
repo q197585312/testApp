@@ -13,7 +13,6 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
  */
 
 
-
 public class GolfAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
 
 
@@ -30,7 +29,6 @@ public class GolfAdapterHelper extends BallAdapterHelper<BasketballMixInfo> {
         markAdd.setVisibility(View.GONE);
         tvCollection.setVisibility(View.GONE);
     }
-
 
 
 }

@@ -76,7 +76,6 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     }
 
 
-
     public void setIsHdpNew(String isHdpNew) {
         this.isHdpNew = isHdpNew;
     }

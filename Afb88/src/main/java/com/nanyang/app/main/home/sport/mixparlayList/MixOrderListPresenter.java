@@ -46,8 +46,7 @@ class MixOrderListPresenter extends BaseRetrofitPresenter<MixOrderListActivity> 
             int size = betPar.size();
             if (size == 2) {
                 baseContext.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "2  X  1"), new ClearanceBetAmountBean(2, "2  X  2"), new ClearanceBetAmountBean(3, "2  X  3")));
-            }
-            else if (size == 3) {
+            } else if (size == 3) {
                 baseContext.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "3  X  1"), new ClearanceBetAmountBean(3, "3  X  3"), new ClearanceBetAmountBean(4, "3  X  4")));
             } else if (size == 4) {
                 baseContext.obtainBottomData(Arrays.asList(new ClearanceBetAmountBean(1, "4  X  1"), new ClearanceBetAmountBean(4, "4  X  4"), new ClearanceBetAmountBean(5, "4  X  5"), new ClearanceBetAmountBean(6, "4  X  6")));

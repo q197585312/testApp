@@ -48,5 +48,4 @@ public class BoxingFragment extends BaseSportFragment {
     }
 
 
-
 }

@@ -21,7 +21,6 @@ public class AllBannerImagesBean implements Serializable {
     }
 
 
-
     private String status;
 
 
@@ -146,7 +145,6 @@ public class AllBannerImagesBean implements Serializable {
         }
 
         private String img;
-
 
 
         public String getImg() {

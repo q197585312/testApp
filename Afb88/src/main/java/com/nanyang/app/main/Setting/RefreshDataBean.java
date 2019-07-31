@@ -64,7 +64,7 @@ public class RefreshDataBean {
         this.SL = SL;
     }
 
-    String ACT="LOS";// "LOS",
+    String ACT = "LOS";// "LOS",
     String DBID;// "1_1_2",
     String ot;// "t",
     String timess;
@@ -78,7 +78,6 @@ public class RefreshDataBean {
     }
 
 
-
     public void setMt(String mt) {
         this.mt = mt;
     }
@@ -90,9 +89,9 @@ public class RefreshDataBean {
     int ov;// 0,
     String mt;// 0,
 
-    String FAV="";// "",
-    String SL="";// "",
-    boolean fh=false;// false,
+    String FAV = "";// "",
+    String SL = "";// "",
+    boolean fh = false;// false,
 
     public void setFh(boolean fh) {
         this.fh = fh;
@@ -102,7 +101,7 @@ public class RefreshDataBean {
         isToday = today;
     }
 
-    boolean isToday=false;// false
+    boolean isToday = false;// false
 
     public String getToken() {
         return token;
@@ -143,7 +142,6 @@ public class RefreshDataBean {
     public void setTf(String tf) {
         this.tf = tf;
     }
-
 
 
     public String getLang() {

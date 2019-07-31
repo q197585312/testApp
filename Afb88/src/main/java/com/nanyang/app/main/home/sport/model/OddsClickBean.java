@@ -15,10 +15,10 @@ public class OddsClickBean implements Serializable {
         this.sc = sc;
     }
 
-    private  String sc="";
+    private String sc = "";
     private String type, g, oid, oid_fh;
 
-    public OddsClickBean(String type, String g, String oid, String oid_fh,String sc) {
+    public OddsClickBean(String type, String g, String oid, String oid_fh, String sc) {
         this.type = type;
         this.g = g;
         this.oid = oid;
@@ -59,11 +59,11 @@ public class OddsClickBean implements Serializable {
     }
 
     public String getBETID() {
-        return "s|" + type + "|" + g + "|" + oid + "|" + oid_fh+"|"+sc;
+        return "s|" + type + "|" + g + "|" + oid + "|" + oid_fh + "|" + sc;
     }
 
     public String getBETID_PAR() {
-        return "s|" + (type.endsWith("_par") ? type : (type + "_par")) + "|" + g + "|" + oid + "|" + oid_fh+"|"+sc;
+        return "s|" + (type.endsWith("_par") ? type : (type + "_par")) + "|" + g + "|" + oid + "|" + oid_fh + "|" + sc;
     }
 //    OddsClickBean(type,"9",item.getSocOddsId(),isHf?item.getSocOddsId_FH():"");
 }

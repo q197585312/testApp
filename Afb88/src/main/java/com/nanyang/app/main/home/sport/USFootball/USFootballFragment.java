@@ -45,5 +45,4 @@ public class USFootballFragment extends BaseSportFragment {
     }
 
 
-
 }

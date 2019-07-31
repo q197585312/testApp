@@ -11,7 +11,7 @@ public class LogIntervalUtils {
     static long currentTime = 0;
 
     public static void logTime(String content) {
-        logCustomTime(currentTime,content);
+        logCustomTime(currentTime, content);
     }
 
     public static void logCustomTime(long ctime, String content) {

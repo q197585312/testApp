@@ -348,7 +348,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         SettingInfoBean infoBean8 = new SettingInfoBean("1", getBaseActivity().getString(R.string.default_sort), data.getAccDefaultSorting()/*((BaseToolbarActivity) getBaseActivity()).getApp().getSort()*/ + "", 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean9 = new SettingInfoBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType(), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean10 = new SettingInfoBean("1", getBaseActivity().getString(R.string.score_sound), mContext.getString(R.string.sound) + data.getScoreSound(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean11 = new SettingInfoBean("3", getBaseActivity().getString(R.string.chip_set), "",R.mipmap.chip5000, R.mipmap.chip10000, R.mipmap.chip30000, R.mipmap.chip50000, R.mipmap.chip100000,R.mipmap.chip_max);
+        SettingInfoBean infoBean11 = new SettingInfoBean("3", getBaseActivity().getString(R.string.chip_set), "", R.mipmap.chip5000, R.mipmap.chip10000, R.mipmap.chip30000, R.mipmap.chip50000, R.mipmap.chip100000, R.mipmap.chip_max);
         SettingInfoBean infoBean12 = new SettingInfoBean("3", "", "", R.mipmap.chip1, R.mipmap.chip10, R.mipmap.chip50, R.mipmap.chip100, R.mipmap.chip500, R.mipmap.chip1000);
         infoBean11.setChipSize1(5000);
         infoBean11.setChipSize2(10000);
@@ -383,9 +383,9 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     private void chipClick(View v) {
         ImageView imageView = (ImageView) v;
         int chipSize = (int) imageView.getTag();
-        String chip=chipSize+"";
-        if(chipSize==0){
-            chip="max";
+        String chip = chipSize + "";
+        if (chipSize == 0) {
+            chip = "max";
         }
         boolean status = AfbUtils.getChipStatusMap().get(chip);
         AfbUtils.getChipStatusMap().put(chip, !status);
@@ -393,9 +393,9 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     }
 
     private void setChipsBg(ImageView imageView, int chipSize) {
-        String chip=chipSize+"";
-        if(chipSize==0){
-            chip="max";
+        String chip = chipSize + "";
+        if (chipSize == 0) {
+            chip = "max";
         }
         Boolean finalStatus = AfbUtils.getChipStatusMap().get(chip);
         if (finalStatus != null && finalStatus) {

@@ -54,13 +54,14 @@ public class BaseballRunningState extends BaseballState {
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new OtherRunningDoubleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
+
     @Override
     public int getTitleContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content1);
     }
 
     @Override
     public int getNormalContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content2);
     }
 }

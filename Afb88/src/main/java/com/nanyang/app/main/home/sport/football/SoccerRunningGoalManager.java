@@ -41,6 +41,7 @@ public class SoccerRunningGoalManager {
             return true;
         return false;
     }
+
     public boolean isAwayGoal(BallInfo item) {
         Boolean isHomeGoal = awayGoal.get(item.ModuleId + "-" + item.getHomeId() + "-" + item.getAwayId());
         if (isHomeGoal != null)

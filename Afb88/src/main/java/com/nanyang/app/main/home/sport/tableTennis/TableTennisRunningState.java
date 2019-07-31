@@ -15,7 +15,6 @@ public class TableTennisRunningState extends TableTennisState {
     }
 
 
-
     @Override
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_TABLE_TENNIS_RUNING;
@@ -42,7 +41,7 @@ public class TableTennisRunningState extends TableTennisState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running),"Running",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Table_Tennis));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Table_Tennis));
     }
 
 }

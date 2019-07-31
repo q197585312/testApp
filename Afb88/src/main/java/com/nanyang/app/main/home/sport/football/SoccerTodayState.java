@@ -31,7 +31,7 @@ public class SoccerTodayState extends SoccerCommonState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_FOOTBALL_TODAY ;
+        return AppConstant.getInstance().URL_FOOTBALL_TODAY;
     }
 
     @Override

@@ -11,13 +11,17 @@ import java.util.List;
 public interface SportContract {
     interface View<B extends SportInfo> extends BetView<List<B>> {
         void setAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter);
+
         void switchState(SportState state);
+
         void clickItemAdd(android.view.View v, B item, int position);
-        void reLoginPrompt(String str,CallBack back);
+
+        void reLoginPrompt(String str, CallBack back);
+
         void onWebShow(int nextNotRepeat, int position, IRTMatchInfo item, android.view.View v);
     }
 
-    interface Presenter extends IBasePresenter  {
+    interface Presenter extends IBasePresenter {
 
     }
 

@@ -18,8 +18,9 @@ public class FiveMajorTodayState extends FiveMajorState {
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_FIVE_MAJOR_TODAY;
     }
+
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Five_Major_Match));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Five_Major_Match));
     }
 }

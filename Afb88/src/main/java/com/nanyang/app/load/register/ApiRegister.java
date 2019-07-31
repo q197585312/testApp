@@ -13,25 +13,27 @@ import io.reactivex.Flowable;
 import retrofit2.Call;
 
 /**
- *  Api类的包装
+ * Api类的包装
  */
 public class ApiRegister extends Api {
-/**
- *    String loginParams = "txtLang=0&txtAcctid="+afbApp.getUser().getName()+"&txtPwd="+afbApp.getUser().getPassword()+"&OsType=Android"+"&OsVersion="+version;
- strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.URL_LOGIN, loginParams);
- * */
+    /**
+     * String loginParams = "txtLang=0&txtAcctid="+afbApp.getUser().getName()+"&txtPwd="+afbApp.getUser().getPassword()+"&OsType=Android"+"&OsVersion="+version;
+     * strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.URL_LOGIN, loginParams);
+     */
     public Flowable<String> getPersonalInfo(UserInfo mLoginParams) {
         return applySchedulers(getService(ApiService.class).getPersonalInfo(mLoginParams.getMap()));
     }
+
     public Flowable<String> getData(UserInfo mLoginParams) {
         return applySchedulers(getService(ApiService.class).getUserInfo(mLoginParams.getTxtLang()
-                ,mLoginParams.getTxtAcctid()
-                ,mLoginParams.getTxtPwd()
-                ,mLoginParams.getOsType()
-                ,mLoginParams.getOsVersion()
+                , mLoginParams.getTxtAcctid()
+                , mLoginParams.getTxtPwd()
+                , mLoginParams.getOsType()
+                , mLoginParams.getOsVersion()
         ));
     }
-    public Call<String> getData(Map<String,String> params) {
+
+    public Call<String> getData(Map<String, String> params) {
         return getService(ApiService.class).getData(params);
 
     }

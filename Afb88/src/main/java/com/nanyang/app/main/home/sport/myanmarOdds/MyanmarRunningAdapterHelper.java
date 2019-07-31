@@ -20,12 +20,12 @@ public class MyanmarRunningAdapterHelper extends MyanmarAdapterHelper {
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, final MyanmarInfo item) {
         super.onConvert(helper, position, item);
-        TextView dateTv=helper.getView(R.id.module_match_date_tv);
-        TextView dateTv1=helper.getView(R.id.module_match_date_tv1);
-        TextView liveTv=helper.getView(R.id.module_match_live_iv);
-        TextView liveTv1=helper.getView(R.id.module_match_live_iv1);
-        TextView timeTv=helper.getView(R.id.module_match_time_tv);
-        TextView timeTv1=helper.getView(R.id.module_match_time_tv1);
+        TextView dateTv = helper.getView(R.id.module_match_date_tv);
+        TextView dateTv1 = helper.getView(R.id.module_match_date_tv1);
+        TextView liveTv = helper.getView(R.id.module_match_live_iv);
+        TextView liveTv1 = helper.getView(R.id.module_match_live_iv1);
+        TextView timeTv = helper.getView(R.id.module_match_time_tv);
+        TextView timeTv1 = helper.getView(R.id.module_match_time_tv1);
         dateTv.setTextAppearance(context, R.style.text_bold);
         dateTv1.setTextAppearance(context, R.style.text_bold);
 
@@ -67,7 +67,7 @@ public class MyanmarRunningAdapterHelper extends MyanmarAdapterHelper {
                     default:
                         min = Integer.valueOf(item.getCurMinute());
                         if (min < 130 && min > 0) {
-                            timeTv.setText("1H "+min + "'");
+                            timeTv.setText("1H " + min + "'");
                         } else {
                             timeTv.setText("");
                         }

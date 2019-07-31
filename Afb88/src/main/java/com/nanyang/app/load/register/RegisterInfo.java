@@ -47,10 +47,11 @@ public class RegisterInfo {
         map.put("lstBank", "KASIKORN BANK");
         return map;
     }
-    public Map<String,String> getRegisterMap(){
-        Map<String,String> map = new HashMap<>();
+
+    public Map<String, String> getRegisterMap() {
+        Map<String, String> map = new HashMap<>();
         map.put("txtUserName", txtUserName);
-        map.put("txtPassword",txtPassword);
+        map.put("txtPassword", txtPassword);
         map.put("txtVerifyPwd", txtVerifyPwd);
         map.put("lstCurrency", lstCurrency);
         map.put("txtContactNum", txtContactNum);

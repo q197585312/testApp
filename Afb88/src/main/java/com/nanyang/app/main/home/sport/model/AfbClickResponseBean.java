@@ -12,11 +12,11 @@ import java.util.List;
 public class AfbClickResponseBean implements Serializable {
 
 
-    private String minLimit="";
+    private String minLimit = "";
     JSONArray dataListArray;
     List<AfbClickBetBean> list;
-    String parUrl="";
-    private String exRate="";
+    String parUrl = "";
+    private String exRate = "";
 
     public String getMinLimit() {
         return minLimit;
@@ -26,8 +26,8 @@ public class AfbClickResponseBean implements Serializable {
         return maxLimit;
     }
 
-    String maxLimit="0";
-    private String payoutOdds="";
+    String maxLimit = "0";
+    private String payoutOdds = "";
 
     public List<AfbClickBetBean> getList() {
         return list;
@@ -39,7 +39,7 @@ public class AfbClickResponseBean implements Serializable {
 
     public AfbClickResponseBean(List<AfbClickBetBean> list, JSONArray dataListArray1) {
         this.list = list;
-        this.dataListArray=dataListArray1;
+        this.dataListArray = dataListArray1;
 
         if (dataListArray1.length() > 4) {
             parUrl = dataListArray1.optString(4);

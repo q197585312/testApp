@@ -62,13 +62,14 @@ public class UserInfo {
         OsType = osType;
         OsVersion = osVersion;
     }
-    public Map<String,String> getMap(){
-        Map<String,String> map=new HashMap<>();
-        map.put("txtLang",txtLang);
-        map.put("txtAcctid",txtAcctid);
-        map.put("txtPwd",txtPwd);
-        map.put("OsType",OsType);
-        map.put("OsVersion",OsVersion);
+
+    public Map<String, String> getMap() {
+        Map<String, String> map = new HashMap<>();
+        map.put("txtLang", txtLang);
+        map.put("txtAcctid", txtAcctid);
+        map.put("txtPwd", txtPwd);
+        map.put("OsType", OsType);
+        map.put("OsVersion", OsVersion);
         return map;
     }
 }

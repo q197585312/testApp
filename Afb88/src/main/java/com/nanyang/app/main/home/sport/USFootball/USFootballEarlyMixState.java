@@ -26,8 +26,9 @@ class USFootballEarlyMixState extends BasketballEarlyMixState {
     protected String getRefreshUrl() {
         return AppConstant.getInstance().URL_US_FOOTBALL_EARLY_MIX;
     }
+
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early),"Early",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
+        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
     }
 }

@@ -9,11 +9,12 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class RugbyState extends TennisState{
+public abstract class RugbyState extends TennisState {
 
     public RugbyState(SportContract.View baseView) {
         super(baseView);
     }
+
     @Override
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new RugbyBetHelper(getBaseView());

@@ -13,7 +13,6 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
  */
 
 
-
 public class OtherSingleAdapterHelper extends BallAdapterHelper<BallInfo> {
 
 
@@ -30,7 +29,6 @@ public class OtherSingleAdapterHelper extends BallAdapterHelper<BallInfo> {
         markAdd.setVisibility(View.GONE);
         tvCollection.setVisibility(View.GONE);
     }
-
 
 
 }

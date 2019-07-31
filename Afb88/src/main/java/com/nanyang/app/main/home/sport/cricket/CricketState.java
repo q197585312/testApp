@@ -11,15 +11,17 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
  * Created by Administrator on 2017/3/10.
  */
 
-public abstract class CricketState extends TennisState{
+public abstract class CricketState extends TennisState {
 
     public CricketState(SportContract.View baseView) {
         super(baseView);
     }
+
     @Override
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new CricketBetHelper(getBaseView());
     }
+
     @Override
     public IAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new OtherDoubleAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());

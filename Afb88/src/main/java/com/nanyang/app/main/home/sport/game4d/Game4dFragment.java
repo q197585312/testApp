@@ -16,7 +16,7 @@ public class Game4dFragment extends BaseSportFragment {
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
-      switchType(type);
+        switchType(type);
         setTitle(getString(R.string.Specials_4D));
     }
 
@@ -44,8 +44,6 @@ public class Game4dFragment extends BaseSportFragment {
     public String getTitle() {
         return getString(R.string.Specials_4D);
     }
-
-
 
 
 }

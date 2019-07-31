@@ -16,7 +16,7 @@ public class ESportFragment extends BaseSportFragment {
     public void initData() {
         super.initData();
         String type = ((SportActivity) getActivity()).getType();
-        switchType( type);
+        switchType(type);
         setTitle(getString(R.string.E_Sport));
     }
 
@@ -46,9 +46,6 @@ public class ESportFragment extends BaseSportFragment {
     public String getTitle() {
         return getString(R.string.E_Sport);
     }
-
-
-
 
 
 }

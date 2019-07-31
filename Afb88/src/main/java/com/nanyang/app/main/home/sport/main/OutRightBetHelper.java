@@ -20,8 +20,9 @@ public class OutRightBetHelper extends SportBetHelper<SportInfo, BetView> {
     public OutRightBetHelper(BetView baseView) {
         super(baseView);
     }
+
     @Override
-    public Disposable clickOdds(SportInfo item, int oid,String type, String odds, TextView v, boolean isHf, String sc,boolean hasPar) {
+    public Disposable clickOdds(SportInfo item, int oid, String type, String odds, TextView v, boolean isHf, String sc, boolean hasPar) {
         AfbClickResponseBean betAfbList = ((AfbApplication) AfbApplication.getInstance()).getBetAfbList();
         String betOddsUrl = "";
         //http://www.afb1188.com/Bet/hBetOdds.ashx?BTMD=S&coupon=0&BETID=|1|50|473355||&_=1543560701987

@@ -62,19 +62,18 @@ public abstract class SoccerMixState extends BallState {
         return new BallItemCallBack<BallInfo>(baseRecyclerAdapter) {
 
 
-
             @Override
-            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds,int oid,String sc,boolean hasPar) {
+            public void clickOdds(TextView v, BallInfo item, String type, boolean isHf, String odds, int oid, String sc, boolean hasPar) {
                 IBetHelper<BallInfo> helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
-                helper.clickOdds(item,oid ,type, odds, v, isHf, "",hasPar);
+                helper.clickOdds(item, oid, type, odds, v, isHf, "", hasPar);
             }
 
             @Override
             public void clickView(View v, BallInfo item, int position) {
                 switch (v.getId()) {
                     case R.id.module_right_mark_tv:
-                        clickAdd(v, item,position);
+                        clickAdd(v, item, position);
                 }
             }
 

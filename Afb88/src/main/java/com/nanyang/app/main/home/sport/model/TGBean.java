@@ -8,7 +8,7 @@ import java.io.Serializable;
  * Created by Administrator on 2015/11/30.
  */
 public class TGBean implements Serializable {
-//    {"oid":9112329,"0~1":"4.15","2~3":"1.86","4~6":"2.62","7 & OVER":"25.00"}
+    //    {"oid":9112329,"0~1":"4.15","2~3":"1.86","4~6":"2.62","7 & OVER":"25.00"}
     int oid;
     @SerializedName("0~1")
     String T0_1;

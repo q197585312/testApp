@@ -26,7 +26,7 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
     /**
      * 记录每一行的最大高度
      */
-    private  List<Integer> mLineHeight = new ArrayList<>();
+    private List<Integer> mLineHeight = new ArrayList<>();
 
 
     /**
@@ -35,7 +35,7 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
     private FlowLayoutListener mFlowLayoutListener;
 
     public FlowLayout(Context context) {
-        super(context , null);
+        super(context, null);
     }
 
     public FlowLayout(Context context, AttributeSet attrs) {
@@ -80,8 +80,7 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
         int cCount = getChildCount();
 
         // 遍历每个子元素
-        for (int i = 0; i < cCount; i++)
-        {
+        for (int i = 0; i < cCount; i++) {
             View child = getChildAt(i);
             // 测量每一个child的宽和高
             measureChild(child, widthMeasureSpec, heightMeasureSpec);
@@ -98,10 +97,9 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
             /**
              * 如果加入当前child，则超出最大宽度，则的到目前最大宽度给width，类加height 然后开启新行
              */
-            if (lineWidth + childWidth > sizeWidth)
-            {
+            if (lineWidth + childWidth > sizeWidth) {
 
-                width = Math.max(lineWidth,width);// 取最大的
+                width = Math.max(lineWidth, width);// 取最大的
 
                 lineWidth = childWidth; // 重新开启新行，开始记录
 
@@ -124,8 +122,7 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
                 lineHeight = Math.max(lineHeight, childHeight);
             }
             // 如果是最后一个，则将当前记录的最大宽度和当前lineWidth做比较
-            if (i == cCount - 1)
-            {
+            if (i == cCount - 1) {
                 width = Math.max(width, lineWidth);
                 height += lineHeight;
                 mAllViews.add(lineView);
@@ -140,10 +137,9 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
     }
 
 
-
-    public void setFlowLayoutListener(FlowLayoutListener flowLayoutListener){
+    public void setFlowLayoutListener(FlowLayoutListener flowLayoutListener) {
         mFlowLayoutListener = flowLayoutListener;
-        for (int i = 0;i<getChildCount();i++){
+        for (int i = 0; i < getChildCount(); i++) {
             getChildAt(i).setOnClickListener(this);
         }
     }
@@ -159,19 +155,16 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
         int top = 0;
         // 得到总行数
         int lineNums = mAllViews.size();
-        for (int i = 0; i < lineNums; i++)
-        {
+        for (int i = 0; i < lineNums; i++) {
             // 每一行的所有的views
             lineViews = mAllViews.get(i);
             // 当前行的最大高度
             lineHeight = mLineHeight.get(i);
 
             // 遍历当前行所有的View
-            for (int j = 0; j < lineViews.size(); j++)
-            {
+            for (int j = 0; j < lineViews.size(); j++) {
                 View child = lineViews.get(j);
-                if (child.getVisibility() == View.GONE)
-                {
+                if (child.getVisibility() == View.GONE) {
                     continue;
                 }
                 MarginLayoutParams lp = (MarginLayoutParams) child
@@ -180,7 +173,7 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
                 //计算childView的left,top,right,bottom
                 int lc = left + lp.leftMargin;
                 int tc = top + lp.topMargin;
-                int rc =lc + child.getMeasuredWidth();
+                int rc = lc + child.getMeasuredWidth();
                 int bc = tc + child.getMeasuredHeight();
 
                 child.layout(lc, tc, rc, bc);
@@ -197,17 +190,17 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
     /**
      * 添加数据
      */
-    public void addData(List<String> datas){
-        for(String data: datas){
+    public void addData(List<String> datas) {
+        for (String data : datas) {
             addTextView(data);
         }
         requestLayout();
     }
 
 
-
     /**
      * 动态添加布局
+     *
      * @param str
      */
     private void addTextView(String str) {
@@ -226,9 +219,9 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        for (int i = 0;i<getChildCount();i++){
-            if(getChildAt(i)==v){
-                mFlowLayoutListener.onItemClick(v,i);
+        for (int i = 0; i < getChildCount(); i++) {
+            if (getChildAt(i) == v) {
+                mFlowLayoutListener.onItemClick(v, i);
                 break;
             }
         }
@@ -237,14 +230,13 @@ public class FlowLayout extends ViewGroup implements View.OnClickListener {
     /**
      * 标签点击的回调
      */
-    public interface  FlowLayoutListener{
+    public interface FlowLayoutListener {
         void onItemClick(View view, int poition);
     }
 
 
     @Override
-    public LayoutParams generateLayoutParams(AttributeSet attrs)
-    {
+    public LayoutParams generateLayoutParams(AttributeSet attrs) {
         return new MarginLayoutParams(getContext(), attrs);
     }
 }

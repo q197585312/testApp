@@ -44,7 +44,7 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
     }
 
     public void setList(List<T> list, Map<String, Boolean> leagueSelectedMap) {
-        List<T> l=new ArrayList<>(list);
+        List<T> l = new ArrayList<>(list);
         Comparator<T> comparator = new Comparator<T>() {
             @Override
             public int compare(T o1, T o2) {

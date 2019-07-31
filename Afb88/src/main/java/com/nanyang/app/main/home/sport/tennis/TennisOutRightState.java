@@ -15,7 +15,6 @@ public class TennisOutRightState extends OutRightState {
     }
 
 
-
     @Override
     public boolean mix() {
         return false;
@@ -29,7 +28,7 @@ public class TennisOutRightState extends OutRightState {
     //http://a8206d.a36588.com/_view/OddsOutGen.ashx?g=36&ot=e&update=true&r=447758500&LID=&_=1490064297392
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_TENNIS_OUTRIGHT+"&ot=e";
+        return AppConstant.getInstance().URL_TENNIS_OUTRIGHT + "&ot=e";
     }
 
 }

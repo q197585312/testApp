@@ -15,7 +15,6 @@ public class HandballOutRightState extends OutRightState {
     }
 
 
-
     @Override
     public boolean mix() {
         return false;
@@ -29,7 +28,7 @@ public class HandballOutRightState extends OutRightState {
 
     @Override
     protected String getRefreshUrl() {
-        return AppConstant.getInstance().URL_HANDBALL_OUTRIGHT+"&ot=e";
+        return AppConstant.getInstance().URL_HANDBALL_OUTRIGHT + "&ot=e";
     }
 
 }

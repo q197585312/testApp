@@ -18,17 +18,19 @@ public class MyanmarEarlyState extends MyanmarState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0,getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early),"Early",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Myanmar_Odds));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Myanmar_Odds));
     }
+
     @Override
     protected String getAllOddsUrl() {
         String tfDate = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
-        return AppConstant.getInstance().HOST+"_view/MOddsGen2.ashx?ot=e&update=true&r=2000335655&wd="+tfDate+"&ia=0&oview=0&ov=0&&LID=";
+        return AppConstant.getInstance().HOST + "_view/MOddsGen2.ashx?ot=e&update=true&r=2000335655&wd=" + tfDate + "&ia=0&oview=0&ov=0&&LID=";
     }
+
     @Override
     protected String getRefreshUrl() {
         String tfDate = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().getUser().getTfDate();
-        return AppConstant.getInstance().URL_SOCCER_MYANMAR_EARLY+"&wd="+ tfDate+"&mt="+((SportActivity)getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
+        return AppConstant.getInstance().URL_SOCCER_MYANMAR_EARLY + "&wd=" + tfDate + "&mt=" + ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType();
     }
 
     @Override

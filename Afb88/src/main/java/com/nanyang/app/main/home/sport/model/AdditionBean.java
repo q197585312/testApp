@@ -7,7 +7,7 @@ import java.io.Serializable;
 /**
  * Created by Administrator on 2015/11/30.
  */
-public class AdditionBean implements Serializable{
+public class AdditionBean implements Serializable {
 
     /**
      * ModuleTitle : AUSTRALIA HYUNDAI A LEAGUE
@@ -114,7 +114,7 @@ public class AdditionBean implements Serializable{
 
     @SerializedName("FGLG")
     private FGLGBean FGLG;
-   private TGBean TG;
+    private TGBean TG;
     @SerializedName("FT_CS")
     private CSBean FTCS;
     @SerializedName("FH_CS")
@@ -145,7 +145,7 @@ public class AdditionBean implements Serializable{
     private TEAMTGBean AWAYTEAMTG;
 
     public CSBean getFTCS() {
-        if(FTCS==null)
+        if (FTCS == null)
             return new CSBean();
         return FTCS;
     }
@@ -155,7 +155,7 @@ public class AdditionBean implements Serializable{
     }
 
     public CSBean getFHCS() {
-        if(FHCS==null)
+        if (FHCS == null)
             return new CSBean();
         return FHCS;
     }
@@ -197,7 +197,7 @@ public class AdditionBean implements Serializable{
     }
 
     public F1x2Bean getFT1x2() {
-        if(FT1x2==null)
+        if (FT1x2 == null)
             return new F1x2Bean();
         return FT1x2;
     }
@@ -207,7 +207,7 @@ public class AdditionBean implements Serializable{
     }
 
     public DCBean getFTDC() {
-        if(FTDC==null)
+        if (FTDC == null)
             return new DCBean();
         return FTDC;
     }
@@ -217,7 +217,7 @@ public class AdditionBean implements Serializable{
     }
 
     public FTOEBean getFTOE() {
-        if(FTOE!=null)
+        if (FTOE != null)
             return FTOE;
         return new FTOEBean();
     }
@@ -227,7 +227,7 @@ public class AdditionBean implements Serializable{
     }
 
     public F1x2Bean getFH1x2() {
-        if(FH1x2==null)
+        if (FH1x2 == null)
             return new F1x2Bean();
         return FH1x2;
     }
@@ -237,8 +237,8 @@ public class AdditionBean implements Serializable{
     }
 
     public DCBean getFHDC() {
-        if(FHDC==null)
-            return  new DCBean();
+        if (FHDC == null)
+            return new DCBean();
         return FHDC;
     }
 
@@ -247,7 +247,7 @@ public class AdditionBean implements Serializable{
     }
 
     public HTFTBean getHTFT() {
-        if(HTFT==null)
+        if (HTFT == null)
             return new HTFTBean();
         return HTFT;
     }
@@ -257,7 +257,7 @@ public class AdditionBean implements Serializable{
     }
 
     public FGLGBean getFGLG() {
-        if(FGLG==null)
+        if (FGLG == null)
             return new FGLGBean();
         return FGLG;
     }
@@ -267,7 +267,7 @@ public class AdditionBean implements Serializable{
     }
 
     public TGBean getTG() {
-        if(TG==null)
+        if (TG == null)
             return new TGBean();
         return TG;
     }
@@ -277,7 +277,7 @@ public class AdditionBean implements Serializable{
     }
 
     public FTOEBean getFHOE() {
-        if(FHOE==null)
+        if (FHOE == null)
             return new FTOEBean();
         return FHOE;
     }
@@ -304,7 +304,7 @@ public class AdditionBean implements Serializable{
 
     private FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_15;
     /**
-     *  :
+     * :
      */
 
     private FT15MINSHANDICAPOVERUNDERBean FT15MINSHANDICAP_OVER_UNDER_30_N;
@@ -421,7 +421,6 @@ public class AdditionBean implements Serializable{
     }
 
 
-
     public static class TEAMTGBean {
         private int oid;
         private int oid_FH;
@@ -449,8 +448,8 @@ public class AdditionBean implements Serializable{
         }
 
         public String getFT_OU() {
-            if(FT_OU.equals("0"))
-                FT_OU="";
+            if (FT_OU.equals("0"))
+                FT_OU = "";
             return FT_OU;
         }
 
@@ -459,8 +458,8 @@ public class AdditionBean implements Serializable{
         }
 
         public String getFT_O() {
-            if(FT_OU.equals("")||FT_OU.equals("0"))
-                FT_O="";
+            if (FT_OU.equals("") || FT_OU.equals("0"))
+                FT_O = "";
             return FT_O;
         }
 
@@ -469,8 +468,8 @@ public class AdditionBean implements Serializable{
         }
 
         public String getFT_U() {
-            if(FT_OU.equals("")||FT_OU.equals("0"))
-                FT_U="";
+            if (FT_OU.equals("") || FT_OU.equals("0"))
+                FT_U = "";
             return FT_U;
         }
 
@@ -479,8 +478,8 @@ public class AdditionBean implements Serializable{
         }
 
         public String getFH_OU() {
-            if(FH_OU.equals("0"))
-                FH_OU="";
+            if (FH_OU.equals("0"))
+                FH_OU = "";
             return FH_OU;
         }
 
@@ -489,8 +488,8 @@ public class AdditionBean implements Serializable{
         }
 
         public String getFH_O() {
-            if(FH_OU.equals("")||FH_OU.equals("0"))
-                FH_O="";
+            if (FH_OU.equals("") || FH_OU.equals("0"))
+                FH_O = "";
             return FH_O;
         }
 
@@ -499,8 +498,8 @@ public class AdditionBean implements Serializable{
         }
 
         public String getFH_U() {
-            if(FH_OU.equals("")||FH_OU.equals("0"))
-                FH_U="";
+            if (FH_OU.equals("") || FH_OU.equals("0"))
+                FH_U = "";
             return FH_U;
         }
 

@@ -20,7 +20,7 @@ public class USFootballEarlyState extends BasketballEarlyState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early",getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
+        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
     }
 
     @Override
@@ -55,6 +55,7 @@ public class USFootballEarlyState extends BasketballEarlyState {
         getBaseView().switchState(new USFootballEarlyMixState(getBaseView()));
         return true;
     }
+
     @Override
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new BallBetHelper(getBaseView()) {

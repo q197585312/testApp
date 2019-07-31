@@ -95,7 +95,7 @@ public class EuropeRunningState extends EuropeState {
                     default:
                         min = Integer.valueOf(item.getCurMinute());
                         if (min < 130 && min > 0) {
-                            timeTv.setText("1H "+min + "'");
+                            timeTv.setText("1H " + min + "'");
                         } else {
                             timeTv.setText("");
                         }
@@ -124,13 +124,14 @@ public class EuropeRunningState extends EuropeState {
     public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
         return new EuropeRunningAdapterHelper(getBaseView().getIBaseContext().getBaseActivity());
     }
+
     @Override
     public int getTitleContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content1);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content1);
     }
 
     @Override
     public int getNormalContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(),R.color.green_content2);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content2);
     }
 }

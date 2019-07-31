@@ -219,9 +219,6 @@ public class MyanmarInfo extends BallInfo {
     }
 
 
-
-
-
     public void setHasHdp(String hasHdp) {
         HasHdp = hasHdp;
     }
@@ -337,9 +334,6 @@ public class MyanmarInfo extends BallInfo {
     }
 
 
-
-
-
     public void setHasOU(String hasOU) {
         HasOU = hasOU;
     }
@@ -401,7 +395,6 @@ public class MyanmarInfo extends BallInfo {
     }
 
 
-
     public void setHasHdp_FH(String hasHdp_FH) {
         HasHdp_FH = hasHdp_FH;
     }
@@ -453,7 +446,6 @@ public class MyanmarInfo extends BallInfo {
     public void setIsInetBet_FH(String isInetBet_FH) {
         IsInetBet_FH = isInetBet_FH;
     }
-
 
 
     public void setHasOU_FH(String hasOU_FH) {
@@ -597,8 +589,6 @@ public class MyanmarInfo extends BallInfo {
     public void setMMOUOdds(String MMOUOdds) {
         this.MMOUOdds = MMOUOdds;
     }
-
-
 
 
     public void setHasX12(String hasX12) {
