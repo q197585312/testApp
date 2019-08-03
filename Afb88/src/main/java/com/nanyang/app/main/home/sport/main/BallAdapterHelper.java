@@ -476,7 +476,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 String channel = item.getLive();
                 channel = Html.fromHtml(channel).toString();
-                String[] channels = channel.replace("\n", ".").split(".");
+                String[] channels = channel.split("\\n");
                 if (channels.length == 1) {
                     liveTv.setVisibility(View.GONE);
                     liveTv1.setVisibility(View.GONE);
@@ -1126,14 +1126,18 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg, boolean isShowText, final int resUpdate, final ImageView imgUpDown) {
-
+        String value = f;
         if (StringUtils.isNull(f) || f.equals("0")) {
             textView.setText("");
         } else {
 
-            String value = f;
             value = value.replaceAll(",", ".");
-            float odds = Float.parseFloat(value);
+            float odds = 0f;
+            try {
+                odds = Float.parseFloat(value);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             odds = odds / 10;
             String s = AfbUtils.decimalValue(odds, "0.000");
             String substring = s.substring(s.length() - 1, s.length());
@@ -1166,21 +1170,19 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 textView.setOnClickListener(null);
             }
-
-            try {
-                Float aFloat = Float.valueOf(value);
-                if (isShowText) {
-                    if (aFloat < 0) {
+            if (isShowText) {
+                try {
+                    if (Float.valueOf(value) < 0) {
                         textView.setTextColor(red_black);
                     } else {
                         textView.setTextColor(black_grey);
                     }
+                    textView.setText(showOdds);
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            textView.setText(showOdds);
 
+            }
         }
 
 
