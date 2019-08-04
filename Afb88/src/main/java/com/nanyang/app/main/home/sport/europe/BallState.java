@@ -126,6 +126,7 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 String sAway = item.getRunAwayScore();
                 if (item.isHomeScoreBigger() && item.getShowGoal().equals("1")) {
                     SoccerRunningGoalManager.getInstance().putHomeGoal(item, true);
+
                     BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
                     item.setHomeScoreBigger(false);
 
@@ -133,6 +134,7 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 }
                 if (item.isAwayScoreBigger() && item.getShowGoal().equals("1")) {
                     SoccerRunningGoalManager.getInstance().putAwayGoal(item, true);
+
                     BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
                     item.setAwayScoreBigger(false);
                 }

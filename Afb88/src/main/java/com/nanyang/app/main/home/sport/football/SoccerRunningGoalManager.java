@@ -30,7 +30,7 @@ public class SoccerRunningGoalManager {
     }
 
     public boolean isHomeGoal(BallInfo item) {
-        Boolean isHomeGoal = homeGoal.get(item.ModuleId + "-" + item.getHomeId() + "-" + item.getAwayId());
+        Boolean isHomeGoal = homeGoal.get(item.getSocOddsId());
         if (isHomeGoal != null)
             return isHomeGoal;
         String runHomeScore = item.getRunHomeScore();
@@ -43,7 +43,7 @@ public class SoccerRunningGoalManager {
     }
 
     public boolean isAwayGoal(BallInfo item) {
-        Boolean isHomeGoal = awayGoal.get(item.ModuleId + "-" + item.getHomeId() + "-" + item.getAwayId());
+        Boolean isHomeGoal = awayGoal.get(item.getSocOddsId());
         if (isHomeGoal != null)
             return isHomeGoal;
         String runHomeScore = item.getRunHomeScore();
@@ -57,16 +57,16 @@ public class SoccerRunningGoalManager {
     }
 
     public void putHomeGoal(BallInfo item, boolean isGoal) {
-        homeGoal.put(item.ModuleId + "-" + item.getHomeId() + "-" + item.getAwayId(), isGoal);
+        homeGoal.put(item.getSocOddsId(), isGoal);
         if (isGoal)
-            awayGoal.put(item.ModuleId + "-" + item.getHomeId() + "-" + item.getAwayId(), false);
+            awayGoal.put(item.getSocOddsId(), false);
 
     }
 
     public void putAwayGoal(BallInfo item, boolean isGoal) {
-        awayGoal.put(item.ModuleId + "-" + item.getHomeId() + "-" + item.getAwayId(), isGoal);
+        awayGoal.put(item.getSocOddsId(), isGoal);
         if (isGoal)
-            homeGoal.put(item.ModuleId + "-" + item.getHomeId() + "-" + item.getAwayId(), false);
+            homeGoal.put(item.getSocOddsId(), false);
 
     }
 
