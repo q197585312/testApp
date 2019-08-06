@@ -686,7 +686,8 @@ public class AfbUtils {
      * @return sb.toString()
      */
     public static String addComma(String str, TextView edt) {
-
+        if (StringUtils.isNull(str))
+            return "";
         touzi_ed_values22 = edt.getText().toString().trim().replaceAll(",", "");
         str = str.trim().replaceAll(",", "");
 

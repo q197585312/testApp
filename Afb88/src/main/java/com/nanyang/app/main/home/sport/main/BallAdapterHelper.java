@@ -830,16 +830,20 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         parent.addView(inflate);
     }
 
-    private void setTextValueClick(final TextView textView, final String content, final String type, final String oid, final I item, final boolean isHalf, final String sc, final boolean hasHar) {
+    private void setTextValueClick(final TextView textView, String content, final String type, final String oid, final I item, final boolean isHalf, final String sc, final boolean hasHar) {
 
-        if (StringUtils.isNull(content) || StringUtils.isNull(type) || StringUtils.isNull(oid) || Float.valueOf(content) == 0) {
+        if (StringUtils.isNull(content) || StringUtils.isNull(type) || StringUtils.isNull(oid)) {
             return;
         }
+        content = content.replaceAll(",", ".");
+        if (Float.valueOf(content) == 0)
+            return;
         textView.setText(content);
+        final String finalContent = content;
         ((View) textView.getParent()).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                back.clickOdds(textView, item, type, isHalf, content, Integer.valueOf(oid), sc, hasHar);
+                back.clickOdds(textView, item, type, isHalf, finalContent, Integer.valueOf(oid), sc, hasHar);
             }
         });
 
