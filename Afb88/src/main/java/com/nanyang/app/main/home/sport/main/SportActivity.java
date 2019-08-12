@@ -55,6 +55,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.GZipUtil;
 import com.unkonw.testapp.libs.utils.LogUtil;
+import com.unkonw.testapp.libs.utils.MyFileUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
@@ -290,13 +291,18 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 if (s.equals("3"))
                     return;
 
-                String charset = WebSocketManager.getInstance().getWebSocket().charset();
-                String charsetS = WebSocketManager.getInstance().getWebSocket().getSocket().charset();
-                Log.d("Socket", charset+"---onStringAvailable-----------" + s+" ---"+charsetS);
+//                Log.d("Socket", "---解密前得数据-----------" + s + " ---");
                 String s1 = GZipUtil.uncompressToString(s.getBytes());
+//                LogUtil.d("Socket", "---解密后得数据-----------" + s1 + " ---");
                 currentFragment.presenter.getStateHelper().handleData(s1);
             }
         }, this);
+    }
+
+    void test() {
+        String s1 = MyFileUtils.readFileFromAssets(mContext, "jsonTableListTest.txt");
+        LogUtil.d("Socket", "---解密后得数据-----------" + s1 + " ---");
+        currentFragment.presenter.getStateHelper().handleData(s1);
     }
 
 
@@ -329,7 +335,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     private void initFragment(String parentType) {
         SportIdBean sportIdBean = AfbUtils.getSportByType(parentType);
-        if(sportIdBean==null)
+        if (sportIdBean == null)
             sportIdBean = AfbUtils.getSportByG("1");
         currentGameType = sportIdBean.getType();
         Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
@@ -520,6 +526,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void clickCup(View view) {
         currentFragment.presenter.getStateHelper().createChoosePop(view);
+//        test();
     }
 
     public void clickCollectionStar(View view) {

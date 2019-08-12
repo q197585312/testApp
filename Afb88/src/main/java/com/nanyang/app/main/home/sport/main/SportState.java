@@ -192,6 +192,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     private void refreshData() {
+        LogUtil.d("Socket", "开始获取数据---------------------");
         String dBId = getDbId();
         sendRefreshData(dBId);
     }
@@ -362,7 +363,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return pageMatch;
     }
 
-    protected List<TableSportInfo<B>> updateAllData(JSONArray dataListArray) throws JSONException {
+    protected List<TableSportInfo<B>> updateFirstData(JSONArray dataListArray) throws JSONException {
+        LogUtil.d("Socket", "第一次更新数据---------------------");
         page = 0;
         ArrayList<TableSportInfo<B>> tableModules = new ArrayList<>();
         if (dataListArray.length() > 0) {
@@ -546,7 +548,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             }//解析 下一个pid
             if (jsonArrayLID.optInt(0) == 1) {
                 JSONArray dataListArray = jsonArray.getJSONArray(3);
-                return updateAllData(dataListArray);
+                return updateFirstData(dataListArray);
             } else {
                 return updateJsonArray(jsonArray);
             }
@@ -583,7 +585,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     public void run() {
                         BaseActivity baseActivity = baseView.getIBaseContext().getBaseActivity();
                         if (baseActivity != null && baseActivity.isHasAttached()) {
+                            LogUtil.d("Socket", "解析完成 开始更新界面---------------------");
                             initAllData(allData);
+                            LogUtil.d("Socket", "更新界面完成---------------------");
                         }
                     }
                 });
@@ -597,7 +601,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     @TargetApi(Build.VERSION_CODES.KITKAT)
     protected List<TableSportInfo<B>> updateJsonArray(JSONArray jsonArray) throws JSONException {
-
+        LogUtil.d("Socket", "增删改更新数据---------------------");
         if (jsonArray.length() > 4) {
             JSONArray deleteArray = jsonArray.getJSONArray(2);
             boolean isDel = false, isAdd = false, isUpdate = false;
@@ -618,7 +622,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             JSONArray updateArray = jsonArray.getJSONArray(4);
             for (int i = 0; i < updateArray.length(); i++) {
                 addMatch(updateArray.getJSONArray(i), false);
-                isUpdate = true;
+                isAdd = true;
             }
             if (jsonArray.length() > 5) {
                 JSONArray modifyArray = jsonArray.getJSONArray(5);
@@ -627,7 +631,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     isUpdate = true;
                 }
             }
-            if (isUpdate || isAdd || isDel) {
+            if (isAdd || isDel) {
                 LogUtil.d("newAdd", "排序前比赛数：" + getCountMatch(allData));
 
                 B indexB = allData.get(0).getRows().get(0);
