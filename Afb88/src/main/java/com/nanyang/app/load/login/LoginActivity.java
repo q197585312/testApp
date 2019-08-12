@@ -345,7 +345,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         //代码实现跳转
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
-        Uri content_url = Uri.parse(AppConstant.getInstance().HOST+"W0/Pub/wfDefault0.html");//此处填链接
+        //https://www.afb1188.com/H50/Pub/wfMainH50.html
+        Uri content_url = Uri.parse(AppConstant.getInstance().HOST+"H50/Pub/wfLoginH50.html");//此处填链接
         intent.setData(content_url);
         startActivity(intent);
     }

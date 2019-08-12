@@ -290,10 +290,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     return;
                 if (s.equals("3"))
                     return;
-
-//                Log.d("Socket", "---解密前得数据-----------" + s + " ---");
                 String s1 = GZipUtil.uncompressToString(s.getBytes());
-//                LogUtil.d("Socket", "---解密后得数据-----------" + s1 + " ---");
                 currentFragment.presenter.getStateHelper().handleData(s1);
             }
         }, this);

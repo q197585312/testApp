@@ -105,7 +105,9 @@ public class AfbApplication extends BaseApplication {
         SoundPlayUtils.init(this);
         Logger.setDebug(true);
         closeAndroidPDialog();
-        CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", false);
+        CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
+        strategy.setAppChannel(BuildConfig.FLAVOR);  //设置渠道
+        CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", false,strategy);
 
     }
 

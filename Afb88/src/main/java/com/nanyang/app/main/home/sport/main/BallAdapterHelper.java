@@ -836,8 +836,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             return;
         }
         content = content.replaceAll(",", ".");
-        if (Float.valueOf(content) == 0)
-            return;
+        try {
+            if (Float.valueOf(content) == 0)
+                return;
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
         textView.setText(content);
         final String finalContent = content;
         ((View) textView.getParent()).setOnClickListener(new View.OnClickListener() {
