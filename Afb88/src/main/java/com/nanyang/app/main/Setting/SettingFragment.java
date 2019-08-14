@@ -456,16 +456,6 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         return "";
     }
 
-    @Override
-    public void onGetTransferMoneyData(int type, String getBackStr, String data) {
-
-    }
-
-    @Override
-    public void onLoginAgainFinish(String gameType) {
-
-    }
-
     public void onGetSettingContentData(List<SettingInfoBean> beanList) {
         adapter.setData(beanList);
     }

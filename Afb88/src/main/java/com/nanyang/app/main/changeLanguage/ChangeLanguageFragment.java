@@ -95,13 +95,4 @@ public class ChangeLanguageFragment extends BaseMoreFragment<MainPresenter> impl
         startActivity(intent);
     }
 
-    @Override
-    public void onGetTransferMoneyData(int type, String getBackStr, String data) {
-
-    }
-
-    @Override
-    public void onLoginAgainFinish(String gameType) {
-
-    }
 }

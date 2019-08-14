@@ -11,11 +11,10 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.CheckVersionBean;
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.load.login.LoginActivity;
-import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.SystemTool;
@@ -24,7 +23,7 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import java.io.File;
 
 
-public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
+public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
     private Dialog noticeDialog;
     private ProgressBar mProgressBar;
     private AlertDialog downloadDialog;
@@ -129,16 +128,17 @@ public class WelcomeActivity extends BaseActivity<WelcomePresenter> {
         //测试哈提交
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + AppConstant.wfMain);
         ToastUtils.showShort(getString(R.string.Login_Success));
+
         defaultSkip("SportBook");
         finish();
     }
 
-    public void defaultSkip(String type) {
+ /*   public void defaultSkip(String type) {
         MenuItemInfo<String> menuItemInfo = new MenuItemInfo<>(0, getString(R.string.Today));
         menuItemInfo.setType("Today");
         menuItemInfo.setParent(type);
         Bundle b = new Bundle();
         b.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
         skipAct(SportActivity.class, b);
-    }
+    }*/
 }

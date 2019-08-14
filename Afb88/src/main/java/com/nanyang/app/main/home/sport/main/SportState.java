@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -85,6 +86,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
      * 显示的所有数据
      */
     protected List<TableSportInfo<B>> allData;
+    private List<TableSportInfo<B>> newAddTableSport;
     /**
      * 所有数据分页后的当前页面数据
      */
@@ -103,6 +105,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected boolean isHide = false;
     private String dbType;
     private String dbId;
+    private String currentOpid;
+    private String oldOpid;
+
 
     public int getPageSize() {
         return pageSize;
@@ -364,8 +369,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected List<TableSportInfo<B>> updateFirstData(JSONArray dataListArray) throws JSONException {
-        LogUtil.d("Socket", "第一次更新数据---------------------");
+        LogUtil.d("Socket", "第一次更新数据---------------------开始json解析成对象");
         page = 0;
+        return parseJson2TableSports(dataListArray);
+    }
+
+    @NonNull
+    private List<TableSportInfo<B>> parseJson2TableSports(JSONArray dataListArray) throws JSONException {
         ArrayList<TableSportInfo<B>> tableModules = new ArrayList<>();
         if (dataListArray.length() > 0) {
             for (int i = 0; i < dataListArray.length(); i++) {
@@ -536,7 +546,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return moduleDate;
     }
 
-    protected List<TableSportInfo<B>> getTableSportList(JSONArray jsonArray) throws JSONException {
+    protected void getTableSportList(JSONArray jsonArray, String currentOpid) throws JSONException {
         if (jsonArray.length() >= 5) {
             JSONArray jsonArrayLID = jsonArray.getJSONArray(0);
             if (jsonArrayLID.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
@@ -548,13 +558,20 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             }//解析 下一个pid
             if (jsonArrayLID.optInt(0) == 1) {
                 JSONArray dataListArray = jsonArray.getJSONArray(3);
-                return updateFirstData(dataListArray);
+                if (oldOpid != null && oldOpid.equals(currentOpid)) {
+                    allData.addAll(parseJson2TableSports(dataListArray));
+                    return;
+                } else {
+                    allData = updateFirstData(dataListArray);
+                    return;
+                }
             } else {
-                return updateJsonArray(jsonArray);
+                allData = updateJsonArray(jsonArray);
+                return;
             }
 
         }
-        return new ArrayList<>();
+        allData = new ArrayList<>();
     }
 
     public void handleData(String s) {
@@ -570,16 +587,20 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             return;
         }
         try {
-
+            LogUtil.d("Socket", "原始数据" + s + ",开始删除html代码");
             String updateString = Html.fromHtml(s).toString();
+            LogUtil.d("Socket", "string 转json---------------------" + updateString);
             JSONObject object = new JSONObject(updateString);
+            LogUtil.d("Socket", "转json完成---------------------");
             dbType = object.optString("dbtype");
             dbId = object.optString("dbid");
+            currentOpid = object.optString("opid");
             if (dbId.startsWith(getDbId()) && dbId.toLowerCase().endsWith((getStateType().getType().charAt(0) + "").toLowerCase())) {
                 JSONArray jsonArray = object.optJSONArray("data");
                 if (jsonArray == null || jsonArray.length() < 1)
                     return;
-                allData = getTableSportList(jsonArray);
+                getTableSportList(jsonArray, currentOpid);
+                oldOpid = currentOpid;
                 baseView.getIBaseContext().getBaseActivity().runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -604,52 +625,78 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         LogUtil.d("Socket", "增删改更新数据---------------------");
         if (jsonArray.length() > 4) {
             JSONArray deleteArray = jsonArray.getJSONArray(2);
-            boolean isDel = false, isAdd = false, isUpdate = false;
+            boolean isAdd = false;
             for (int i = 0; i < deleteArray.length(); i++) {
                 delMatch(deleteArray.getString(i));
-                isDel = true;
             }
             JSONArray addArray = jsonArray.getJSONArray(3);
+            newAddTableSport = new ArrayList<>();
             if (addArray != null && addArray.length() > 0) {
-                LogUtil.d("newAdd", addArray.length() + "个联赛");
+                LogUtil.d("SocketAdd", "需要添加" + addArray.length() + "个联赛");
                 for (int i = 0; i < addArray.length(); i++) {
                     TableSportInfo<B> bTableSportInfo = parseTableSportMatch(addArray.getJSONArray(i), true);
+                    LogUtil.d("SocketAdd", "需要添加的第" + i + "个联赛:" + bTableSportInfo.getLeagueBean().getModuleId() + "," + bTableSportInfo.getLeagueBean().getModuleTitle());
+                    newAddTableSport.add(bTableSportInfo);
+//                    updateIntegralMatch(addArray.getJSONArray(i), true);
+              /*      TableSportInfo<B> bTableSportInfo = parseTableSportMatch(addArray.getJSONArray(i), true);
                     allData.add(bTableSportInfo);
+                    */
                     isAdd = true;
                 }
             }
-
             JSONArray updateArray = jsonArray.getJSONArray(4);
             for (int i = 0; i < updateArray.length(); i++) {
-                addMatch(updateArray.getJSONArray(i), false);
-                isAdd = true;
+                updateIntegralMatch(updateArray.getJSONArray(i));
             }
             if (jsonArray.length() > 5) {
                 JSONArray modifyArray = jsonArray.getJSONArray(5);
                 for (int i = 0; i < modifyArray.length(); i++) {
                     modifyMatch(modifyArray.getJSONArray(i));
-                    isUpdate = true;
                 }
             }
-            if (isAdd || isDel) {
-                LogUtil.d("newAdd", "排序前比赛数：" + getCountMatch(allData));
+            if (isAdd) {
+                for (TableSportInfo<B> bTableSportInfo : newAddTableSport) {
+                    addNewTableSoc(bTableSportInfo);
+                }
 
-                B indexB = allData.get(0).getRows().get(0);
+
+               /* LogUtil.d("SocketAdd", "排序前比赛数：" + getCountMatch(allData));
+                int index = allData.size() / 2;
+                B indexB = allData.get(index).getRows().get(0);
                 sortList = new ArrayList<>();
+                copyAllData = new ArrayList<>();
+                copyAllData.addAll(allData);
                 ArrayList<B> bs = new ArrayList<>();
                 bs.add(indexB);
-
-                sortList.add(new TableSportInfo<B>(allData.get(0).getLeagueBean(), bs));
+                sortList.add(new TableSportInfo<B>(allData.get(index).getLeagueBean(), bs));
+                copyRemoveAddData(indexB);
                 findAndAddHead(sortList);
                 findAndAddFoot(sortList);
                 allData = sortList;
-                LogUtil.d("newAdd", "排序后比赛数：" + getCountMatch(allData));
+                LogUtil.d("SocketAdd", "排序后比赛数：" + getCountMatch(allData));*/
             }
         } else {
             LID = "";
         }
 
         return allData;
+
+    }
+
+    private void copyRemoveAddData(B bTableSportInfo) {
+        for (int i = 0; i < copyAllData.size(); i++) {
+            for (int i1 = 0; i1 < copyAllData.get(i).getRows().size(); i1++) {
+                if (bTableSportInfo.getSocOddsId().equals(copyAllData.get(i).getRows().get(i1).getSocOddsId())) {
+                    if (copyAllData.get(i).getRows().size() <= 1)
+                        copyAllData.remove(i);
+                    else {
+                        copyAllData.get(i).getRows().remove(i1);
+                    }
+                    return;
+                }
+            }
+
+        }
 
     }
 
@@ -669,17 +716,19 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
         String preSocOddsId = indexB.getPreSocOddsId();
         boolean found = false;
-        for (TableSportInfo<B> bTableSportInfo : allData) {
+        for (TableSportInfo<B> bTableSportInfo : copyAllData) {
             for (B b : bTableSportInfo.getRows()) {
                 if (preSocOddsId.equals(b.getSocOddsId())) {
                     found = true;
                     if (indexLeague.getModuleId().equals(bTableSportInfo.getLeagueBean().getModuleId())) {
                         sortList.get(0).getRows().add(0, b);
+                        copyRemoveAddData(b);
                         break;
                     } else {
                         ArrayList<B> bs = new ArrayList<>();
                         bs.add(b);
                         sortList.add(0, new TableSportInfo<B>(bTableSportInfo.getLeagueBean(), bs));
+                        copyRemoveAddData(b);
                         break;
                     }
                 }
@@ -698,7 +747,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         LeagueBean indexLeague = bTableSportInfo1.getLeagueBean();
         String socOddsId = indexB.getSocOddsId();
         boolean found = false;
-        for (TableSportInfo<B> bTableSportInfo : allData) {
+        for (TableSportInfo<B> bTableSportInfo : copyAllData) {
             for (B b : bTableSportInfo.getRows()) {
                 if (socOddsId.equals(b.getPreSocOddsId())) {
                     found = true;
@@ -707,11 +756,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     }
                     if (indexLeague.getModuleId().equals(bTableSportInfo.getLeagueBean().getModuleId())) {
                         sortList.get(sortList.size() - 1).getRows().add(b);
+                        copyRemoveAddData(b);
                         break;
                     } else {
                         ArrayList<B> bs = new ArrayList<>();
                         bs.add(b);
                         sortList.add(new TableSportInfo<B>(bTableSportInfo.getLeagueBean(), bs));
+                        copyRemoveAddData(b);
                         break;
                     }
                 }
@@ -725,6 +776,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     List<TableSportInfo<B>> sortList = new ArrayList<>();
+    List<TableSportInfo<B>> copyAllData = new ArrayList<>();
 
     private void modifyMatch(JSONArray jsonArray) {
         if (allData == null) return;
@@ -734,6 +786,16 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 for (int i1 = 0; i1 < rows.size(); i1++) {
                     if (rows.get(i1).getSocOddsId().equals(jsonArray.optString(0))) {
                         modifySoc(i, i1, jsonArray.optJSONArray(1), jsonArray.optJSONArray(2));
+                        return;
+                    }
+                }
+            }
+            for (int i = 0; i < newAddTableSport.size(); i++) {
+                List<B> rows = newAddTableSport.get(i).getRows();
+                for (int i1 = 0; i1 < rows.size(); i1++) {
+                    if (rows.get(i1).getSocOddsId().equals(jsonArray.optString(0))) {
+                        modifyNewAddTableSoc(i, i1, jsonArray.optJSONArray(1), jsonArray.optJSONArray(2));
+                        return;
                     }
                 }
             }
@@ -743,18 +805,29 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     private void modifySoc(int i, int i1, JSONArray indexArray, JSONArray dataArray) {
         allData.get(i).getRows().get(i1).setNotify(false);
         for (int k = 0; k < indexArray.length(); k++) {
+            if (indexArray.optInt(k) == 0 || indexArray.optInt(k) == 1)
+                LogUtil.d("SocketAdd", "单个属性更新{" + indexArray.optInt(k) + ":" + dataArray.optString(k) + "}");
             allData.get(i).getRows().get(i1).setValue(indexArray.optInt(k), dataArray.optString(k));
         }
     }
 
-    private void addMatch(JSONArray match, boolean isNew) throws JSONException {
+    private void modifyNewAddTableSoc(int i, int i1, JSONArray indexArray, JSONArray dataArray) {
+        newAddTableSport.get(i).getRows().get(i1).setNotify(false);
+        for (int k = 0; k < indexArray.length(); k++) {
+            if (indexArray.optInt(k) == 0 || indexArray.optInt(k) == 1)
+                LogUtil.d("SocketAdd", "需要添加的比赛单个属性更新{" + indexArray.optInt(k) + ":" + dataArray.optString(k) + "}");
+            newAddTableSport.get(i).getRows().get(i1).setValue(indexArray.optInt(k), dataArray.optString(k));
+        }
+    }
+
+    private void updateIntegralMatch(JSONArray match) throws JSONException {
         JSONArray socArray = match.optJSONArray(1);
-        LogUtil.d("SocketAdd", socArray.length() + "个比赛，开始添加isNew：" + isNew);
-        B b = parseMatch(socArray.getJSONArray(0), false);
+        LogUtil.d("SocketAdd", socArray.length() + "个比赛需要全部更新");
+      /*  B b = parseMatch(socArray.getJSONArray(0), false);
         int n = 0;
         if (isNew) {
 
-            /*for (int i = 0; i < allData.size(); i++) {
+            for (int i = 0; i < allData.size(); i++) {
                 TableSportInfo<B> bTableSportInfo = allData.get(i);
                 LeagueBean leagueBean = bTableSportInfo.getLeagueBean();
                 if (leagueBean != null && leagueBean.getModuleId().equals(match.optJSONArray(0).optString(0))) {
@@ -775,19 +848,126 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             }
             TableSportInfo<B> bTableSportInfo = parseTableSportMatch(match, true);
             allData.add(n, bTableSportInfo);
-            LogUtil.d("SocketAdd", "添加了到" + n + "位得联赛，isNew：" + isNew);*/
-        } else {
-            for (int i = 0; i < allData.size(); i++) {
-                TableSportInfo<B> bTableSportInfo = allData.get(i);
-                LeagueBean leagueBean = bTableSportInfo.getLeagueBean();
-                if (leagueBean != null && leagueBean.getModuleId().equals(match.optJSONArray(0).optString(0))) {
-                    for (int j = 0; j < socArray.length(); j++) {
-                        addSoc(i, socArray.optJSONArray(j), true, isNew);
-                        LogUtil.d("SocketAdd", "更新了第" + j + "个比赛，isNew：" + isNew);
-                    }
-                    return;
+            LogUtil.d("SocketAdd", "添加了到" + n + "位得联赛，isNew：" + isNew);
+        } else {*/
+        for (int i = 0; i < allData.size(); i++) {
+            TableSportInfo<B> bTableSportInfo = allData.get(i);
+            LeagueBean leagueBean = bTableSportInfo.getLeagueBean();
+            if (leagueBean != null && leagueBean.getModuleId().equals(match.optJSONArray(0).optString(0))) {
+                for (int j = 0; j < socArray.length(); j++) {
+                    updateSoc(i, socArray.optJSONArray(j), true);
                 }
+                return;
             }
+        }
+        for (int i = 0; i < newAddTableSport.size(); i++) {
+            TableSportInfo<B> bTableSportInfo = newAddTableSport.get(i);
+            LeagueBean leagueBean = bTableSportInfo.getLeagueBean();
+            if (leagueBean != null && leagueBean.getModuleId().equals(match.optJSONArray(0).optString(0))) {
+                for (int j = 0; j < socArray.length(); j++) {
+                    updateNewAddTableSoc(i, socArray.optJSONArray(j), true);
+
+                }
+                return;
+            }
+        }
+
+
+    }
+
+    private void updateSoc(int i, JSONArray soc, boolean notify) throws JSONException {
+        B b = parseMatch(soc, notify);
+        List<B> rows = allData.get(i).getRows();
+        for (int i1 = 0; i1 < rows.size(); i1++) {
+            if (rows.get(i1).getSocOddsId().equals(b.getSocOddsId())) {
+                allData.get(i).getRows().set(i1, b);
+                LogUtil.d("SocketAdd", "更新了getSocOddsId:" + rows.get(i1).getSocOddsId() + ",主队：" + b.getHome()
+                        + ",客队：" + b.getAway());
+                return;
+            }
+        }
+    }
+
+    private void updateNewAddTableSoc(int i, JSONArray soc, boolean notify) throws JSONException {
+        B b = parseMatch(soc, notify);
+        List<B> rows = newAddTableSport.get(i).getRows();
+        for (int i1 = 0; i1 < rows.size(); i1++) {
+            if (rows.get(i1).getSocOddsId().equals(b.getSocOddsId())) {
+                newAddTableSport.get(i).getRows().set(i1, b);
+                LogUtil.d("SocketAdd", "更新了需要新添加的比赛getSocOddsId:" + rows.get(i1).getSocOddsId() + ",主队：" + b.getHome()
+                        + ",客队：" + b.getAway());
+                return;
+            }
+        }
+    }
+
+
+    private void addNewTableSoc(TableSportInfo<B> tables) throws JSONException {
+        B b = tables.getRows().get(0);
+        int n = 0;
+        for (int i = 0; i < allData.size(); i++) {
+            TableSportInfo<B> bTableSportInfo = allData.get(i);
+            LeagueBean leagueBean = bTableSportInfo.getLeagueBean();
+            if (leagueBean != null && leagueBean.getModuleId().equals(tables.getLeagueBean().getModuleId())) {
+                for (int j = 0; j < tables.getRows().size(); j++) {
+                    addNewSingleSoc(i, tables.getRows().get(j));
+                }
+                return;
+            }
+        }
+
+        for (int i = 0; i < allData.size(); i++) {
+            TableSportInfo<B> bTableSportInfo = allData.get(i);
+            if (bTableSportInfo.getRows().get(bTableSportInfo.getRows().size() - 1).getSocOddsId().equals(b.getPreSocOddsId())) {
+                n = i + 1;
+                break;
+            }
+        }
+        allData.add(n, tables);
+        LogUtil.d("SocketAdd", "添加了到" + n + "位得联赛，isNew：");
+
+    }
+
+    private void addNewSingleSoc(int i, B b) throws JSONException {
+
+        List<B> rows = allData.get(i).getRows();
+        for (int i1 = 0; i1 < rows.size(); i1++) {
+
+            if (rows.get(i1).getSocOddsId().equals(b.getPreSocOddsId())) {
+                allData.get(i).getRows().add(i1 + 1, b);
+                LogUtil.d("SocketAdd", "新添加了比赛:"
+                        + ",主队：" + b.getHome()
+                        + ",客队：" + b.getAway()
+                        + ",他的前面得比赛主队：" + rows.get(i1).getHome()
+                        + ",他的前面得比赛客队：" + rows.get(i1).getAway()
+                );
+                return;
+            }
+
+        }
+        boolean needRefresh = false;
+        allData.get(i).getRows().add(0, b);
+        String s = "新添加了比赛:"
+                + ",主队：" + b.getHome()
+                + ",客队：" + b.getAway()
+                + ",他的添加到联赛得第一位："
+                + ",他的PreSocId：" + b.getPreSocOddsId();
+        if (i > 0) {
+            B b1 = allData.get(i - 1).getRows().get(allData.get(i - 1).getRows().size() - 1);
+            String socOddsId = b1.getSocOddsId();
+            s = s + ",他的前面比赛的id：" + socOddsId
+                    + ",他的前面比赛的主队：" + b1.getHome()
+                    + ",他的前面比赛的客队：" + b1.getAway();
+            if (!b.getPreSocOddsId().equals(socOddsId)) {
+                s = s + ",不匹配需要刷新";
+                needRefresh = true;
+            }
+        } else {
+            s = s + ",他是第一位 前面没比赛";
+        }
+        LogUtil.d("SocketAdd", s);
+        if (needRefresh) {
+            refreshData();
         }
 
 

@@ -284,12 +284,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }, new WebSocket.StringCallback() {
             @Override
             public void onStringAvailable(final String s) {
-
-
                 if (StringUtils.isNull(s))
                     return;
                 if (s.equals("3"))
                     return;
+                LogUtil.d("Socket", "---获得服务器返回数据-----------" );
                 String s1 = GZipUtil.uncompressToString(s.getBytes());
                 currentFragment.presenter.getStateHelper().handleData(s1);
             }
@@ -431,14 +430,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         popWindow.closePopupWindow();
     }
 
-    public void onGetTransferMoneyData(int type, String getBackStr, String data) {
-        if (getBackStr.contains("not allowed")) {
-            ToastUtils.showShort(getBackStr);
-        } else {
-            ToastUtils.showShort(getBackStr);
-            startApp(data);
-        }
-    }
 
     private void startApp(String data) {
         if (data.length() > 0) {
@@ -514,11 +505,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 onLanguageSwitchSucceed(data);
             }
         });
-    }
-
-    @Override
-    public void onLoginAgainFinish(String gameType) {
-        switchSkipAct(gameType);
     }
 
     public void clickCup(View view) {

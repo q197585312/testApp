@@ -8,9 +8,6 @@ import com.unkonw.testapp.libs.base.IBaseView;
 
 public interface ILanguageView<T> extends IBaseView<T> {
     void onLanguageSwitchSucceed(String str);
+   // void onGetTransferMoneyData(int type, String getBackStr, String data);
 
-    //    void getMoneyMsg(TransferMoneyBean transferMoneyBean, String data);
-    void onGetTransferMoneyData(int type, String getBackStr, String data);
-
-    void onLoginAgainFinish(String gameType);
 }

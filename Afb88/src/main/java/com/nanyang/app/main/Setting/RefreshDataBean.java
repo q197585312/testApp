@@ -28,6 +28,12 @@ public class RefreshDataBean {
     private String pn;
     private String tf;
 
+    public String getTransMax() {
+        return TransMax;
+    }
+
+    private String TransMax;
+
     public void setBetable(boolean betable) {
         this.betable = betable;
     }
@@ -225,8 +231,14 @@ public class RefreshDataBean {
                 ", mt='" + mt + '\'' +
                 ", FAV='" + FAV + '\'' +
                 ", SL='" + SL + '\'' +
+                ", TransMax='" + TransMax + '\'' +
                 ", fh=" + fh +
                 ", isToday=" + isToday +
+
                 '}';
+    }
+
+    public void setTransMax(String transMax) {
+        this.TransMax = transMax;
     }
 }
