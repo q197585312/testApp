@@ -28,6 +28,12 @@ public class RefreshDataBean {
     private String pn;
     private String tf;
 
+    public int getIa() {
+        return ia;
+    }
+
+    private int ia;
+
     public String getTransMax() {
         return TransMax;
     }
@@ -240,5 +246,9 @@ public class RefreshDataBean {
 
     public void setTransMax(String transMax) {
         this.TransMax = transMax;
+    }
+
+    public void setIa(int ia) {
+        this.ia = ia;
     }
 }
