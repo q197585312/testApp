@@ -575,7 +575,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             liveTv.setVisibility(View.GONE);
             liveTv1.setVisibility(View.VISIBLE);
         }
-      /*    String oldHomeName = "";
+          String oldHomeName = "";
         String oldAwayName = "";
         String oldHomeGive = "";
         String oldModuleTitle = "";
@@ -589,7 +589,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             onMatchRepeat(helper, item, position);
         } else {
             onMatchNotRepeat(helper, item, position);
-        }*/
+        }
         TextView homeScoreTv = helper.getView(R.id.module_match_home_score_tv);
         TextView awayScoreTv = helper.getView(R.id.module_match_away_score_tv);
         SoccerRunningGoalManager.getInstance().handleGoalStyle(item, homeScoreTv, awayScoreTv);

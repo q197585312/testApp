@@ -37,6 +37,9 @@ public class SoccerRunningGoalManager {
         String runAwayScore = item.getRunAwayScore();
         if (runHomeScore.equals("0") && runAwayScore.equals("0"))
             return false;
+        if (runAwayScore.equals("0")) {
+            return true;
+        }
         if (item.getIsHomeGoal().equals("1"))
             return true;
         return false;
@@ -50,6 +53,9 @@ public class SoccerRunningGoalManager {
         String runAwayScore = item.getRunAwayScore();
         if (runHomeScore.equals("0") && runAwayScore.equals("0"))
             return false;
+        if (runHomeScore.equals("0")) {
+            return true;
+        }
         if (item.getIsHomeGoal().equals("0"))
             return true;
         return false;
