@@ -125,7 +125,7 @@
 
 
     <string name="h1">1</string>
-    <string name="dx">x</string>
+    <string name="dx">X</string>
     <string name="a2">2</string>
     <string name="against">Against</string>
     <string name="hh">HH</string>
@@ -535,6 +535,8 @@
     <string name="normal">Normal</string>
     <string name="FT_HDP">FT.HDP</string>
     <string name="FT_OU">FT.OU</string>
+    <string name="HT_HDP">HT.HDP</string>
+    <string name="HT_OU">HT.OU</string>
     <string name="Bet_Slip">Bet Slip</string>
     <string name="Note_">Note:</string>
     <string name="GMT_8">Please note that the displayed time is based on GMT +8 hours</string>

@@ -536,6 +536,8 @@
     <string name="normal">Normal</string>
     <string name="FT_HDP">FT.HDP</string>
     <string name="FT_OU">FT.OU</string>
+    <string name="HT_HDP">HT.HDP</string>
+    <string name="HT_OU">HT.OU</string>
     <string name="Bet_Slip">Bet Slip</string>
     <string name="Note_">Nota:</string>
     <string name="GMT_8">Sila ambil perhatian bahawa masa yang dipaparkan adalah berdasarkan GMT +8 jam</string>

@@ -816,8 +816,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         for (int k = 0; k < indexArray.length(); k++) {
             b.setValue(indexArray.optInt(k), dataArray.optString(k));
             if (indexArray.optInt(k) == 0 || indexArray.optInt(k) == 1) {
-                LogUtil.d("SocketAdd", "单个属性更新{" + indexArray.optInt(k) + ":" + dataArray.optString(k) + "}");
-
 
                 if (i1 == 0 && i > 0) {
                     B preMatch = allData.get(i - 1).getRows().get(allData.get(i - 1).getRows().size() - 1);
@@ -859,7 +857,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         newAddTableSport.get(i).getRows().get(i1).setNotify(false);
         for (int k = 0; k < indexArray.length(); k++) {
             if (indexArray.optInt(k) == 0 || indexArray.optInt(k) == 1)
-                LogUtil.d("SocketAdd", "需要添加的比赛单个属性更新{" + indexArray.optInt(k) + ":" + dataArray.optString(k) + "}");
             newAddTableSport.get(i).getRows().get(i1).setValue(indexArray.optInt(k), dataArray.optString(k));
         }
     }

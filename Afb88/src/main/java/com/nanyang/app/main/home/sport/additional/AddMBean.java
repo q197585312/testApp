@@ -643,6 +643,10 @@ public class AddMBean implements Serializable {
     private String FT45InfoU;
     private String MG45_SocOddsId;
     private String FT45InfoOU;
+    private String HOddIsInetBet;
+    private String HEvenIsInetBet;
+    private String FT45InfoOIsInetBet;
+    private String FT45InfoUIsInetBet;
 
     public String getModuleTitle() {
         return ModuleTitle;
@@ -2910,6 +2914,22 @@ public class AddMBean implements Serializable {
 
     public String getFT45InfoOU() {
         return FT45InfoOU;
+    }
+
+    public String getHOddIsInetBet() {
+        return HOddIsInetBet;
+    }
+
+    public String getHEvenIsInetBet() {
+        return HEvenIsInetBet;
+    }
+
+    public String getFT45InfoOIsInetBet() {
+        return FT45InfoOIsInetBet;
+    }
+
+    public String getFT45InfoUIsInetBet() {
+        return FT45InfoUIsInetBet;
     }
 
     public static class OddsBean {

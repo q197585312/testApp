@@ -36,7 +36,23 @@ public class AllRunningFragment extends BaseAllFragment {
             public void onBack(String data) {
                 try {
                     final JSONObject jsonObjectNum = new JSONObject(data);
-                    List<String> all = Arrays.asList("1", "9", "21", "29", "14", "182");
+                    List<String> all = Arrays.asList("1", "9", "21", "29", "14", "182", "12", "51"
+                            , "106"
+                            , "16"
+                            , "44"
+                            , "65"
+                            , "19"
+                            , "25"
+                            , "28"
+                            , "22"
+                            , "41"
+                            , "49"
+                            , "7"
+                            , "17"
+                            , "11"
+                            , "57"
+                            , "23"
+                            , "53");
                     List<SportIdBean> allTopSport = new ArrayList<>();
                     List<SportIdBean> allBottomSport = new ArrayList<>();
                     boolean addHead = true;

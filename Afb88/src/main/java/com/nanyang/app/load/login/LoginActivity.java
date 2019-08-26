@@ -346,7 +346,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
         //https://www.afb1188.com/H50/Pub/wfMainH50.html
-        Uri content_url = Uri.parse(AppConstant.getInstance().HOST+"H50/Pub/wfLoginH50.html");//此处填链接
+        Uri content_url = Uri.parse(BuildConfig.H5_URL);//此处填链接
         intent.setData(content_url);
         startActivity(intent);
     }

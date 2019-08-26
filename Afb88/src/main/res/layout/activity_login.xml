@@ -72,7 +72,7 @@
             android:background="@color/white"
             android:drawableBottom="@drawable/line_grey"
             android:gravity="center_vertical"
-            android:hint="@string/Account"
+            android:hint="@string/home_user_name"
             android:paddingLeft="10dp"
             android:singleLine="true"
             android:textColor="@color/black"
