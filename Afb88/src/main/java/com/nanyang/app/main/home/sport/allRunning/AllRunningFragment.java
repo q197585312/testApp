@@ -36,7 +36,7 @@ public class AllRunningFragment extends BaseAllFragment {
             public void onBack(String data) {
                 try {
                     final JSONObject jsonObjectNum = new JSONObject(data);
-                    List<String> all = Arrays.asList("1", "9", "21", "29", "14", "182", "12", "51"
+                    List<String> all = Arrays.asList( "182", "1", "9", "21", "29", "14","12", "51"
                             , "106"
                             , "16"
                             , "44"

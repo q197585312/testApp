@@ -206,8 +206,46 @@ public class MainPresenter extends BaseSwitchPresenter {
                 }), baseConsumer);
     }
 
-    public void switchOddsType(final String oddsType, BaseConsumer<String> consumer) {
+    public void switchOddsType(final String oddsType) {
         Map<String, String> map = new HashMap<>();
+
+        LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean("");
+        languageWfBean.setAccType(oddsType);
+        map.put("_fm", languageWfBean.getJson());
+
+        Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .flatMap(new Function<String, Flowable<String>>() {
+                    @Override
+                    public Flowable<String> apply(String s) throws Exception {
+                        return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
+                    }
+                })
+                .subscribe(new Consumer<String>() {//onNext
+                    @Override
+                    public void accept(String str) throws Exception {
+
+                    }
+                }, new Consumer<Throwable>() {//错误
+                    @Override
+                    public void accept(Throwable throwable) throws Exception {
+                        baseContext.hideLoadingDialog();
+                    }
+                }, new Action() {//完成
+                    @Override
+                    public void run() throws Exception {
+                        baseContext.hideLoadingDialog();
+                    }
+                }, new Consumer<Subscription>() {//开始绑定
+                    @Override
+                    public void accept(Subscription subscription) throws Exception {
+                        subscription.request(Long.MAX_VALUE);
+                    }
+                });
+        mCompositeSubscription.add(subscription);
+
+     /*   Map<String, String> map = new HashMap<>();
         LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean(getLanguage());
         languageWfBean.setAccType(oddsType);
         map.put("_fm", languageWfBean.getJson());
@@ -216,7 +254,7 @@ public class MainPresenter extends BaseSwitchPresenter {
             public Flowable<String> apply(String s) throws Exception {
                 return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
             }
-        }), consumer);
+        }), consumer);*/
     }
 
     public void refreshMenu(LinkedHashMap<String, String> paramMap) {

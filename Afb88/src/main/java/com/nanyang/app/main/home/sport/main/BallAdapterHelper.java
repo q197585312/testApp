@@ -295,7 +295,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 if (!StringUtils.isNull(additionData.getFDB_CNT()) && !additionData.getFDB_CNT().equals("0")) {
 
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
-                    addTitle(parent, inflate, context.getString(R.string.full_time) + " " + context.getString(R.string.double_chance));
+                    addTitle(parent, inflate, context.getString(R.string.full_time)  + context.getString(R.string.double_chance));
                     addAddition(additionData.getFHD(), additionData.getFHA(), additionData.getFDA(), additionData.getFDB_SocOddsId(), false, parent, item,
                             "1X", "12", "X2", "dc", "dc", "dc", "10", "12", "2", R.layout.addition_1x2_sport_item
                             , false
@@ -311,7 +311,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 //                    addAdditionDC(additionData.getHTDC(), false, parent, item);
 
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
-                    addTitle(parent, inflate, context.getString(R.string.half_time) + " " + context.getString(R.string.double_chance));
+                    addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.double_chance));
                     addAddition(additionData.getHHD(), additionData.getHHA(), additionData.getHDA(), additionData.getHDB_SocOddsId(), false, parent, item,
                             "1X", "12", "X2", "dc", "dc", "dc", "10", "12", "2", R.layout.addition_1x2_sport_item
                             , false

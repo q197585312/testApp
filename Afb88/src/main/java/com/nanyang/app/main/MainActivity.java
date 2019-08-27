@@ -142,14 +142,8 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                     public void initItem(MyRecyclerViewHolder holder, int position, HomePopItemBeen item) {
                         TextView name = holder.getTextView(R.id.tv_type_name);
                         TextView data = holder.getTextView(R.id.tv_type_data);
-                        float aFloat = 0;
-                        try {
-                            aFloat = Float.valueOf(item.getData());
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
-                        if (aFloat < 0) {
+                        if (item.getData().startsWith("-")) {
                             data.setTextColor(Color.RED);
                         } else {
                             data.setTextColor(Color.BLACK);
@@ -167,11 +161,11 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                         dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2()));
                         if (!AppConstant.IS_AGENT)
-                            dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), info.getBalances()));
+                            dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), AfbUtils.addComma(info.getBalances().trim().replaceAll(",", ""), tvTime)));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
                         if (!AppConstant.IS_AGENT)
-                            dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), info.getCredit2()));
+                            dataList.add(new HomePopItemBeen(getString(R.string.home_bet_credit), AfbUtils.addComma(info.getCredit2().trim().replaceAll(",", ""), tvTime)));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_given_credit), AfbUtils.addComma(info.getTotalCredit().trim().replaceAll(",", ""), tvTime)));
                         return dataList;
                     }

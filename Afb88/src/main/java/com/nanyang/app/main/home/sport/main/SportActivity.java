@@ -211,12 +211,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 MyGoHomeBroadcastReceiver(getApp());
 
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
-        presenter.switchOddsType(getApp().getOddsType().getType(), new BaseConsumer<String>(getBaseActivity()) {
-            @Override
-            protected void onBaseGetData(String data) throws JSONException {
-
-            }
-        });
+//        presenter.getStateHelper().switchOddsType(item.getType());
+        presenter.switchOddsType(getApp().getOddsType().getType());
     }
 
 
@@ -248,17 +244,20 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             initFragment(item.getParent());
             int res = R.mipmap.date_running_green;
             dateClickPosition = 0;
+            String day = "", dateParam = "";
             switch (type) {
                 case "Early":
                     res = R.mipmap.date_early_grey;
                     dateClickPosition = 2;
+                    dateParam = "7";
                     break;
                 case "Today":
                     dateClickPosition = 1;
                     res = R.mipmap.date_today_grey;
                     break;
             }
-            runWayItem(new MenuItemInfo<>(res, item.getText(), type, res));
+            runWayItem(new MenuItemInfo<>(res, item.getText(), type, res, day, dateParam));
+//            currentFragment.presenter.getStateHelper().switchOddsType(getApp().getOddsType().getType());
 
         }
         getApp().setBetParList(null);
@@ -288,7 +287,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     return;
                 if (s.equals("3"))
                     return;
-                LogUtil.d("Socket", "---获得服务器返回数据-----------" );
+                LogUtil.d("Socket", "---获得服务器返回数据-----------");
                 String s1 = GZipUtil.uncompressToString(s.getBytes());
                 currentFragment.presenter.getStateHelper().handleData(s1);
             }
@@ -310,6 +309,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvMixCount.setText("" + getApp().getBetParList().getList().size());
             tvOrderCount.setText("" + getApp().getBetParList().getList().size());
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping, 0, 0);
+            tvMix.setTextColor(ContextCompat.getColor(mContext,R.color.grey_dark));
         } else {
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping_null, 0, 0);
             ivOrderTop.setImageResource(R.mipmap.sport_shopping_top_gray);
@@ -317,6 +317,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvOrderCount.setVisibility(View.GONE);
             tvMixCount.setText("0");
             tvOrderCount.setText("0");
+            tvMix.setTextColor(ContextCompat.getColor(mContext,R.color.grey_light));
         }
     }
 

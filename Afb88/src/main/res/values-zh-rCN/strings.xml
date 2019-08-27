@@ -32,7 +32,7 @@
     <string name="Game_type">Game type</string>
     <string name="Start_time">开始时间</string>
     <string name="End_time">结束时间</string>
-    <string name="Today">今日球赛</string>
+    <string name="Today">今天球赛</string>
     <string name="Ball">球</string>
     <string name="Early">早盘</string>
     <string name="Cancel">取消</string>
@@ -73,8 +73,8 @@
 
     <string name="first_last_goal">最先得分/最后得分</string>
     <string name="total_goals">总入球</string>
-    <string name="correct_full">波胆全场</string>
-    <string name="correct_half">波胆半场</string>
+    <string name="correct_full">全场波胆</string>
+    <string name="correct_half">半场波胆</string>
     <string name="first_goal">最先得分</string>
     <string name="last_goal">最后得分</string>
     <string name="no_goal">无得分</string>
@@ -83,7 +83,7 @@
     <string name="Input_the_amount_of_bets_please">请输入下注金额</string>
     <string name="invalid_amount_bet">下注金额有误</string>
     <string name="full_time">全场</string>
-    <string name="half_time">上半场</string>
+    <string name="half_time">半场</string>
     <string name="odd_even">单/双</string>
 
     <string name="bet_amount">数量</string>
@@ -180,7 +180,7 @@
     <string name="another_login">你已在其他地方登录!</string>
     <string name="date">日期</string>
     <string name="six_day">6 天</string>
-    <string name="all">所有</string>
+    <string name="all">全部</string>
     <!--statement-->
     <string name="statement_stake">投注状况</string>
     <string name="valid_amount">有效数额</string>
@@ -313,11 +313,11 @@
     <string name="description_bottom_3d">2x最后的抽奖总数。顾客可以能买中1个数字在2个数字之内.（3位数）</string>
     <string name="description_roll_3d">随机预测。可能的结果123,132,213,231,312,321共6条结果。掉进最高奖3D将被支付.</string>
     <string name="Draw_Date_">成绩日期:</string>
-    <string name="Pool">撞球</string>
+    <string name="Pool">撞球/桌球</string>
     <string name="Rugby">橄榄球</string>
     <string name="Darts">投镖</string>
-    <string name="Boxing">拳击比赛</string>
-    <string name="Golf">高尔夫</string>
+    <string name="Boxing">拳击</string>
+    <string name="Golf">高尔夫球</string>
     <string name="want_transfer_money">是否确认转账?</string>
     <string name="casino_balance">GD 余额</string>
     <string name="cancel_transfer">取消</string>
@@ -336,7 +336,7 @@
     <string name="league">五大联赛</string>
     <string name="winner">胜利者</string>
     <string name="OLYMPIC">奥运</string>
-    <string name="Formula1">一级方程式 1</string>
+    <string name="Formula1">一级方程式</string>
     <string name="Motor_Sports">汽车运动</string>
     <string name="Futsal">室内足球</string>
     <string name="Water_Polo">水球</string>
@@ -421,7 +421,7 @@
     <string name="sport_match">体育博彩</string>
     <string name="Five_Major_Match">五大联赛</string>
     <string name="others">其他</string>
-    <string name="all_running">所有滚球</string>
+    <string name="all_running">全部滚球</string>
     <string name="cricket">Cricket</string>
     <string name="HALF_1X2">半场 主和客</string>
     <string name="howtouse_title1_1">选择产品与时间区</string>
@@ -492,7 +492,7 @@
     <string name="today_match">今日赛事</string>
     <string name="yesterday_match">昨日赛事</string>
     <string name="sports">体育博彩</string>
-    <string name="all_match">所有赛事</string>
+    <string name="all_match">所有联赛</string>
     <string name="WAITING2">等待中</string>
     <string name="ACCEPTED2">已接受</string>
     <string name="REJECTED2">被拒绝</string>

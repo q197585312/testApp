@@ -1285,6 +1285,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean("");
         languageWfBean.setAccType(oddsType);
         map.put("_fm", languageWfBean.getJson());
+
         Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, map)
 
 

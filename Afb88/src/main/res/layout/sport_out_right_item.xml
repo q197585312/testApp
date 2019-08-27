@@ -57,7 +57,7 @@
 
         <TextView
             android:id="@+id/out_right_mark_tv"
-            android:layout_width="60dp"
+            android:layout_width="70dp"
             android:layout_margin="1dp"
             android:layout_height="25dp"
             android:gravity="center"
