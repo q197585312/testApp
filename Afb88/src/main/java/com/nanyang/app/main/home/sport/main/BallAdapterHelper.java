@@ -12,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
@@ -295,7 +296,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 if (!StringUtils.isNull(additionData.getFDB_CNT()) && !additionData.getFDB_CNT().equals("0")) {
 
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
-                    addTitle(parent, inflate, context.getString(R.string.full_time)  + context.getString(R.string.double_chance));
+                    addTitle(parent, inflate, context.getString(R.string.full_time) + context.getString(R.string.double_chance));
                     addAddition(additionData.getFHD(), additionData.getFHA(), additionData.getFDA(), additionData.getFDB_SocOddsId(), false, parent, item,
                             "1X", "12", "X2", "dc", "dc", "dc", "10", "12", "2", R.layout.addition_1x2_sport_item
                             , false
@@ -545,12 +546,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         View inflate = LayoutInflater.from(context).inflate(R.layout.addition_mm_title_ft_item, null);
                         parent.addView(inflate);
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), false, parent, item,
-                                context.getString(R.string.Home),   context.getString(R.string.over), "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU()
-                                , mModdsBean.getIsInetBet().equals("True")
+                                context.getString(R.string.Home), context.getString(R.string.over), "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU()
+                                , mModdsBean.getHasHdp().equals("True")
+                                , mModdsBean.getHasOU().equals("True")
                         );
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), false, parent, item,
-                                context.getString(R.string.Away),  context.getString(R.string.under), "mmaway", "mmunder", mModdsBean.getHDPA(), ""
-                                , mModdsBean.getIsInetBet().equals("True")
+                                context.getString(R.string.Away), context.getString(R.string.under), "mmaway", "mmunder", mModdsBean.getHDPA(), ""
+                                , mModdsBean.getHasHdp().equals("True")
+                                , mModdsBean.getHasOU().equals("True")
                         );
                     }
                 }
@@ -560,11 +563,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         parent.addView(inflate);
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Home ", "Over ", "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU()
-                                , mModdsBean.getIsInetBet().equals("True")
+                                , mModdsBean.getHasHdp().equals("True")
+                                , mModdsBean.getHasOU().equals("True")
                         );
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Away ", "Under ", "mmaway", "mmunder", mModdsBean.getHDPA(), ""
-                                , mModdsBean.getIsInetBet().equals("True")
+                                , mModdsBean.getHasHdp().equals("True")
+                                , mModdsBean.getHasOU().equals("True")
                         );
                     }
                 }
@@ -583,6 +588,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         View headV = helper.getView(R.id.module_match_head_v);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
+        ImageView lastGif = helper.getView(R.id.iv_last_call_gif);
         TextView dateTv1 = helper.getView(R.id.module_match_date_tv1);
         TextView timeTv = helper.getView(R.id.module_match_time_tv);
         TextView timeTv1 = helper.getView(R.id.module_match_time_tv1);
@@ -609,9 +615,25 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }*/
         timeTv.setText(time);
         timeTv1.setText(time);
+        lastGif.setVisibility(View.GONE);
+        liveTv.setVisibility(View.VISIBLE);
+        liveTv1.setVisibility(View.VISIBLE);
+        timeTv.setVisibility(View.VISIBLE);
+        timeTv1.setVisibility(View.VISIBLE);
+        if (item.getIsLastCall() != null && item.getIsLastCall().equals("1")) {
+            Glide.with(context).load(R.mipmap.lastcall).asGif().into(lastGif);
+            dateTv.setVisibility(View.GONE);
+            dateTv1.setVisibility(View.GONE);
+            liveTv.setVisibility(View.GONE);
+            liveTv1.setVisibility(View.GONE);
+            timeTv.setVisibility(View.INVISIBLE);
+            timeTv1.setVisibility(View.INVISIBLE);
+            lastGif.setVisibility(View.VISIBLE);
 
-        if (item.getLive() != null && !item.getLive().equals("")) {
+        }
+        else if (item.getLive() != null && !item.getLive().equals("")) {
             dateTv.setVisibility(View.VISIBLE);
+            dateTv1.setVisibility(View.VISIBLE);
             if (item.getLive().contains("LIVE")) {
                 dateTv.setText("LIVE");
                 dateTv1.setText("LIVE");
@@ -641,15 +663,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
         } else {
             dateTv.setVisibility(View.GONE);
-//            if (item.getMatchDate().length() > 6) {
-//                String date = item.getMatchDate().substring(0, 5);
-//                dateTv.setText(date);
-//                dateTv1.setText(date);
-//            } else {
-//                dateTv.setText(item.getMatchDate());
-//                dateTv1.setText(item.getMatchDate());
-//            }
+            dateTv1.setVisibility(View.GONE);
         }
+
 
         if (((BallItemCallBack) back).isItemCollection(item))
             tvCollection.setBackgroundResource(R.mipmap.star_red_solid);
@@ -756,7 +772,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                                    String mmaway, String mmunder,
                                    String hdp1, String ou2
             ,
-                                   boolean hasBet
+                                   boolean hasHdp,
+                                   boolean hasOu
     ) {
 
         View inflate1X2 = LayoutInflater.from(context).inflate(R.layout.addition_mmodds_sport_item, null);
@@ -767,8 +784,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         down1_tv.setTextColor(getValueColor(oddsLeft));
         down2_tv.setTextColor(getValueColor(oddsRight));
 
-        setTextValueClick(down1_tv, oddsLeft, mmaway, socOddsId, item, isHalf, "", false,hasBet);
-        setTextValueClick(down2_tv, oddsRight, mmunder, socOddsId, item, isHalf, "", false,hasBet);
+        setTextValueClick(down1_tv, oddsLeft, mmaway, socOddsId, item, isHalf, "", false, hasHdp);
+        setTextValueClick(down2_tv, oddsRight, mmunder, socOddsId, item, isHalf, "", false, hasOu);
         parent.addView(inflate1X2);
 
     }
@@ -896,7 +913,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 , hasBet1
                 , hasBet2
                 , false
-                );
+        );
         View viewById = parent.getChildAt(parent.getChildCount() - 1).findViewById(R.id.content3_ll);
         viewById.setVisibility(View.GONE);
     }
@@ -961,9 +978,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         setTextValue(up1_tv, up1);
         setTextValue(up2_tv, up2);
         setTextValue(up3_tv, up3);
-        setTextValueClick(down1_tv, down1, type1, oid, item, isHalf, sc1, hasPar1,hasBet1);
-        setTextValueClick(down2_tv, down2, type2, oid, item, isHalf, sc2, hasPar2,hasBet2);
-        setTextValueClick(down3_tv, down3, type3, oid, item, isHalf, sc3, hasPar3,hasBet3);
+        setTextValueClick(down1_tv, down1, type1, oid, item, isHalf, sc1, hasPar1, hasBet1);
+        setTextValueClick(down2_tv, down2, type2, oid, item, isHalf, sc2, hasPar2, hasBet2);
+        setTextValueClick(down3_tv, down3, type3, oid, item, isHalf, sc3, hasPar3, hasBet3);
         parent.addView(inflate1X2);
     }
 
@@ -1156,7 +1173,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             downOddsTv.setVisibility(View.VISIBLE);
             String upStr = "";
             String downStr = "";
-            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.5 || Math.abs(Float.valueOf(downOdds)) < 0.5) {
+            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.3 || Math.abs(Float.valueOf(downOdds)) < 0.3) {
                 hasUpDown = "0";
             }
             int resUp = R.mipmap.arrow_up_update_green;

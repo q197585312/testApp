@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.main.home.sport.football.SoccerRunningAdapterHelper;
@@ -25,5 +26,11 @@ public class OtherRunningDoubleAdapterHelper extends SoccerRunningAdapterHelper 
     @Override
     protected void noContainsLive(BallInfo item, TextView timeTv) {
         timeTv.setText("");
+    }
+
+    @Override
+    protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
+        super.handleLiveTimeTv(item, timeTv);
+        timeTv.setVisibility(View.INVISIBLE);
     }
 }

@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sport.main;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -200,8 +201,10 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 if (!StringUtils.isNull(s)) {
                     ivDeleteSearch.setVisibility(View.VISIBLE);
                     currentFragment.searchMatch(true, s);
-                } else
+                } else {
                     ivDeleteSearch.setVisibility(View.GONE);
+                    currentFragment.searchMatch(false, "");
+                }
                 currentFragment.checkBg(collectionIv, currentFragment.presenter.getStateHelper().isCollection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_yellow);
 
             }
@@ -861,6 +864,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         startRefreshMenu();
     }
 
+
+
     private Runnable refreshMenuRunnable = new Runnable() {
         @Override
         public void run() {
@@ -891,5 +896,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void clickSortByTime(View view) {
         changeTimeSort();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        initLanguage();
     }
 }

@@ -8,6 +8,7 @@ import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -117,6 +118,19 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         if (AppConstant.getInstance().IS_AGENT) {
             initAgent();
         }
+    }
+    protected void initLanguage() {
+        String language = AfbUtils.getLanguage(this);
+        if (!TextUtils.isEmpty(language)) {
+            AfbUtils.switchLanguage(language, this);
+        } else {
+            AfbUtils.switchLanguage("en", this);
+            restart();
+        }
+    }
+
+    protected void restart() {
+
     }
 
     public void onBackCLick(View v) {

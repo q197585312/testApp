@@ -432,4 +432,5 @@
     <string name="nick_name_check_tips">*You can set display and login nicknames (5-15 digits or letters)</string>
     <string name="Normal">일반</string>
     <string name="desktop">데스크톱</string>
+    <string name="no_games">No Games</string>
 </resources>

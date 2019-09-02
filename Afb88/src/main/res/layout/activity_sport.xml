@@ -91,9 +91,9 @@
                         android:cursorVisible="false"
                         android:drawableLeft="@mipmap/sport_game_search_green"
                         android:drawablePadding="5dp"
-                        android:textColorHint="#e6e6e6"
                         android:hint="@string/select_league"
                         android:singleLine="true"
+                        android:textColorHint="#e6e6e6"
                         android:textSize="13.5sp" />
 
                     <ImageView
@@ -211,11 +211,11 @@
 
                 <ImageView
                     android:id="@+id/iv_sort_time"
-                    android:onClick="clickSortByTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="3dp"
                     android:contentDescription="@null"
+                    android:onClick="clickSortByTime"
                     android:src="@mipmap/sport_game_clock_white" />
             </LinearLayout>
 
@@ -257,14 +257,16 @@
             android:background="@color/grey_dialog_background"
             android:orientation="horizontal"
             android:paddingBottom="2dp"
-            android:paddingTop="5dp">
+          >
 
             <FrameLayout
+                android:paddingTop="5dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1">
 
                 <TextView
+
                     android:id="@+id/tv_record"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -293,6 +295,7 @@
             </FrameLayout>
 
             <TextView
+                android:paddingTop="5dp"
                 android:id="@+id/tv_sport_select"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -307,6 +310,7 @@
                 android:textStyle="bold" />
 
             <FrameLayout
+                android:paddingTop="5dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -345,6 +349,7 @@
 
 
             <TextView
+                android:paddingTop="5dp"
                 android:id="@+id/tv_way_run"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -358,19 +363,34 @@
                 android:textSize="12sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tv_menu"
+            <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:drawablePadding="2dp"
-                android:drawableTop="@mipmap/sport_botton_teb_more_menu"
-                android:gravity="center"
-                android:onClick="clickMoreMenu"
-                android:text="@string/more"
-                android:textColor="@color/grey_dark"
-                android:textSize="12sp"
-                android:textStyle="bold" />
+                android:gravity="center">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginLeft="12dp"
+                    android:src="@mipmap/message_small" />
+
+                <TextView
+                    android:paddingTop="5dp"
+                    android:id="@+id/tv_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:drawablePadding="2dp"
+                    android:drawableTop="@mipmap/sport_botton_teb_more_menu"
+                    android:gravity="center"
+                    android:onClick="clickMoreMenu"
+                    android:text="@string/more"
+                    android:textColor="@color/grey_dark"
+                    android:textSize="12sp"
+                    android:textStyle="bold" />
+            </FrameLayout>
 
 
         </LinearLayout>

@@ -560,4 +560,8 @@
     <string name="Normal">Normal</string>
     <string name="copyright_2018_afb88_all_rights_reserved">© Copyright %1$s. %2$s All Rights Reserved.</string>
     <string name="desktop">Desktop</string>
+    <string name="no_games">No Games</string>
+    <string name="ft_1">FT.1</string>
+    <string name="ft_x">FT.X</string>
+    <string name="ft_2">FT.2</string>
 </resources>

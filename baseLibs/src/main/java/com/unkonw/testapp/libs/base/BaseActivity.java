@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -92,8 +93,10 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         View view = LayoutInflater.from(this).inflate(layoutResID, null);
         setContentView(view);
 
-
     }
+
+
+
 
     @Override
     public void onAttachedToWindow() {

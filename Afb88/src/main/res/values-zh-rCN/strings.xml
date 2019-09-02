@@ -395,7 +395,7 @@
     <string name="max_get">最大赢得数额:</string>
     <string name="keno">(奇乐)</string>
     <string name="can_not_mixparly">不能下注过关</string>
-    <string name="welcome">WELCOME</string>
+    <string name="welcome">欢迎</string>
     <string name="language_switch">中文(简体)</string>
     <string name="gd88_casino">gd88 casino</string>
     <string name="basketball">篮球</string>
@@ -559,4 +559,8 @@
     <string name="nick_name_check_tips">*You can set display and login nicknames (5-15 digits or letters)</string>
     <string name="Normal">一般</string>
     <string name="desktop">桌面版</string>
+    <string name="no_games">没有比赛</string>
+    <string name="ft_1">全场主</string>
+    <string name="ft_x">全场和</string>
+    <string name="ft_2">全场客</string>
 </resources>

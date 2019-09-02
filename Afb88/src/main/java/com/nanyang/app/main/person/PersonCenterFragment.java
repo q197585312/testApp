@@ -13,6 +13,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.main.BaseMoreFragment;
@@ -63,7 +64,7 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
         SettingAllDataBean data = aty.getApp().getSettingAllDataBean();
 
         PersonCenter pc = new PersonCenter(getString(R.string.login_name), person.getLoginName());
-        PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name), data==null?"":data.getNickNameshow());
+        PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name), data == null ? "" : data.getNickNameshow());
         PersonCenter pc1 = new PersonCenter(getString(R.string.currency), person.getCurCode2());
         PersonCenter pc2 = new PersonCenter(getString(R.string.cash_balance), AfbUtils.addComma(person.getBalances(), edt_text));
         PersonCenter pc3 = new PersonCenter(getString(R.string.outstanding_txn), AfbUtils.addComma(person.getEtotalstanding(), edt_text));
@@ -107,11 +108,15 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                 name.setText(item.getName());
                 final TextView value = holder.getTextView(R.id.person_value);
                 value.setText(item.getValue());
+                if (item.getName().equals(getString(R.string.cash_balance)) && !StringUtils.isNull(item.getValue())) {
+                    value.setText(AfbUtils.scientificCountingToString(item.getValue()));
+                }
                 if (item.getValue().startsWith("-")) {
                     value.setTextColor(Color.RED);
                 } else {
                     value.setTextColor(Color.BLACK);
                 }
+
                 ImageView iv = holder.getImageView(R.id.person_img);
              /*   if (item.getName().equals(getString(R.string.nike_name))) {
                     value.setVisibility(View.GONE);

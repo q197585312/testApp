@@ -77,7 +77,11 @@
                 android:gravity="center"
                 android:textColor="@color/grey_dark_word"
                 android:textSize="10sp" />
-
+            <ImageView
+                android:id="@+id/iv_last_call_gif"
+                android:layout_marginLeft="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/module_match_live_iv"
                 android:layout_width="wrap_content"
@@ -142,9 +146,9 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="FT.1"
+                android:text="@string/ft_1"
                 android:textColor="@color/black_grey"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <TextView
 
@@ -153,9 +157,9 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="FT.X"
+                android:text="@string/ft_x"
                 android:textColor="@color/black_grey"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/ou_title_tv"
@@ -164,9 +168,9 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="FT.2"
+                android:text="@string/ft_2"
                 android:textColor="@color/black_grey"
-                android:textSize="13sp" />
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout

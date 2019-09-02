@@ -45,7 +45,11 @@
             android:gravity="center"
             android:orientation="vertical"
             android:padding="3dp">
-
+            <ImageView
+                android:id="@+id/iv_last_call_gif"
+                android:layout_marginLeft="4dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
             <TextView
                 android:id="@+id/module_match_live_iv"
                 android:layout_width="28dp"

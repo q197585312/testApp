@@ -442,4 +442,5 @@
     <string name="nick_name_check_tips">*You can set display and login nicknames (5-15 digits or letters)</string>
     <string name="Normal">Thông thường</string>
     <string name="desktop">máy tính để bàn</string>
+    <string name="no_games">No Games</string>
 </resources>

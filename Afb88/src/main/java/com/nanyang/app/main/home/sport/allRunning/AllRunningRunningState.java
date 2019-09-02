@@ -7,6 +7,7 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.europe.EuropeRunningAdapterHelper;
 import com.nanyang.app.main.home.sport.football.SoccerRunningAdapterHelper;
+import com.nanyang.app.main.home.sport.main.OtherRunningDoubleAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
@@ -63,18 +64,11 @@ class AllRunningRunningState extends AllRunningCommonState {
                         layoutParams.height = 0;*/
                 }
             };
-        else
-            return new SoccerRunningAdapterHelper(baseView.getIBaseContext().getBaseActivity()) {
-                @Override
-                public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
-                    super.onConvert(helper, position, item);
-                 /*   ViewGroup.LayoutParams layoutParams = helper.getHolderView().getLayoutParams();
-                    if (getItemVisible() == View.VISIBLE) {
-                        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                    } else
-                        layoutParams.height = 0;*/
-                }
-            };
+        else if (fragment.currentIdBean.getId().equals("1")) {
+            return new SoccerRunningAdapterHelper(baseView.getIBaseContext().getBaseActivity());
+        } else {
+            return new OtherRunningDoubleAdapterHelper(baseView.getIBaseContext().getBaseActivity());
+        }
     }
 
     @Override

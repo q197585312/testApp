@@ -35,8 +35,6 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
         super.onConvert(helper, position, item);
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
         scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUOdds_FH(), item.getOOdds_FH(), item.getHOdds_FH(), item.getAOdds_FH());
-//        getBaseRecyclerAdapter().getItem(position).setIsHdpNew_FH("0");
-//        getBaseRecyclerAdapter().getItem(position).setIsOUNew_FH("0");
         updateMixBackground(item, sl, "home", "away", "over", "under", "odd", "even");
     }
 

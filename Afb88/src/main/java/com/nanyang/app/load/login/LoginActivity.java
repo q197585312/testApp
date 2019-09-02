@@ -19,6 +19,7 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.Pop.PopChoiceLanguage;
@@ -32,7 +33,6 @@ import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -55,7 +55,7 @@ import cn.finalteam.toolsfinal.AppCacheUtils;
  * Created by Administrator on 2017/1/10 0010.
  */
 
-public class LoginActivity extends BaseActivity<LoginPresenter> {
+public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
 
 
     @Bind(R.id.tv_all_right)
@@ -126,16 +126,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         inputMove();
     }
 
-    private void initLanguage() {
-        String language = AfbUtils.getLanguage(this);
-        if (!TextUtils.isEmpty(language)) {
-            AfbUtils.switchLanguage(language, this);
-        } else {
-            AfbUtils.switchLanguage("en", this);
-            restart();
-        }
-    }
-
 
     public void onFailed(String error) {
         if (error != null && error.equals(getString(R.string.System_maintenance))) {
@@ -204,13 +194,13 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         }
     }
 
-    private void restart() {
+    protected void restart() {
+        super.restart();
         edtLoginUsername.setHint(getString(R.string.Account));
         edtLoginPassword.setHint(getString(R.string.Password));
         btnLoginLogin.setText(getString(R.string.Login));
         btn_desktop.setText(getString(R.string.desktop));
         tv_remember_me.setText(getString(R.string.remember_me));
-
         loginLanguage.setText(getString(R.string.language_switch));
 
     }

@@ -629,8 +629,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     protected List<TableSportInfo<B>> updateJsonArray(JSONArray jsonArray) throws JSONException {
         LogUtil.d("Socket", "增删改更新数据---------------------");
         if (jsonArray.length() > 4) {
+            boolean needRefresh = false;
             JSONArray deleteArray = jsonArray.getJSONArray(2);
-            boolean isAdd = false;
             for (int i = 0; i < deleteArray.length(); i++) {
                 delMatch(deleteArray.getString(i));
             }
@@ -642,11 +642,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     TableSportInfo<B> bTableSportInfo = parseTableSportMatch(addArray.getJSONArray(i), true);
                     LogUtil.d("SocketAdd", "需要添加的第" + i + "个联赛:" + bTableSportInfo.getLeagueBean().getModuleId() + "," + bTableSportInfo.getLeagueBean().getModuleTitle());
                     newAddTableSport.add(bTableSportInfo);
-//                    updateIntegralMatch(addArray.getJSONArray(i), true);
-              /*      TableSportInfo<B> bTableSportInfo = parseTableSportMatch(addArray.getJSONArray(i), true);
-                    allData.add(bTableSportInfo);
-                    */
-                    isAdd = true;
                 }
             }
 
@@ -660,9 +655,10 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     modifyMatch(modifyArray.getJSONArray(i));
                 }
             }
+
             if (newAddTableSport.size() > 0) {
                 for (TableSportInfo<B> bTableSportInfo : newAddTableSport) {
-                    addNewTableSoc(bTableSportInfo);
+                    needRefresh = needRefresh || addNewTableSoc(bTableSportInfo);
                 }
 
 
@@ -681,6 +677,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 allData = sortList;
                 LogUtil.d("SocketAdd", "排序后比赛数：" + getCountMatch(allData));*/
             }
+
+            if (needRefresh)
+                refreshData();
 
         } else {
             LID = "";
@@ -857,7 +856,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         newAddTableSport.get(i).getRows().get(i1).setNotify(false);
         for (int k = 0; k < indexArray.length(); k++) {
             if (indexArray.optInt(k) == 0 || indexArray.optInt(k) == 1)
-            newAddTableSport.get(i).getRows().get(i1).setValue(indexArray.optInt(k), dataArray.optString(k));
+                newAddTableSport.get(i).getRows().get(i1).setValue(indexArray.optInt(k), dataArray.optString(k));
         }
     }
 
@@ -943,7 +942,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
 
-    private void addNewTableSoc(TableSportInfo<B> tables) throws JSONException {
+    private boolean addNewTableSoc(TableSportInfo<B> tables) throws JSONException {
         B b = tables.getRows().get(0);
         int n = 0;
         for (int i = 0; i < allData.size(); i++) {
@@ -954,9 +953,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 for (int j = 0; j < tables.getRows().size(); j++) {
                     needRefresh = needRefresh || addNewSingleSoc(i, tables.getRows().get(j));
                 }
-                if (needRefresh)
-                    refreshData();
-                return;
+                return needRefresh;
             }
         }
 
@@ -983,11 +980,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
             needRefresh = true;
         }
-        if (needRefresh)
-            refreshData();
+
 
         LogUtil.d("SocketAdd", "添加了到" + n + "位联赛，isNew：");
 
+        return needRefresh;
     }
 
     private boolean addNewSingleSoc(int i, B b) throws JSONException {
@@ -1394,16 +1391,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     public void initAllOdds(TextView ivAllAdd) {
-        if (!getAllOddsUrl().isEmpty()) {
-            ivAllAdd.setVisibility(View.VISIBLE);
-            ivAllAdd.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    showAllOdds((TextView) v);
-                }
-            });
-
-        }
+        ivAllAdd.setVisibility(View.VISIBLE);
+        ivAllAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showAllOdds((TextView) v);
+            }
+        });
     }
 
     private void showAllOdds(final TextView textView) {
