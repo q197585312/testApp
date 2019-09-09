@@ -10,13 +10,13 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.DateUtils;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.BetCenter.Bean.StatementFirstBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementOpen2ListDataBean;
@@ -61,7 +61,12 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         for (int i = 0; i < list.size(); i++) {
             final StatementListDataBean bean = list.get(i);
             View view = layoutInflater.inflate(R.layout.item_statement_new, null);
-            view.setElevation(7f);
+            if(android.os.Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+
+            } else {
+                view.setElevation(7f);
+            }
+
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             if (i == 0) {
                 layoutParams.topMargin = AfbUtils.dp2px(mContext, 8);
@@ -87,14 +92,11 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             tvDate.setText(date);
             tvCom.setText(getString(R.string.Com) + " " + bean.getIndex5() + " ");
             String wl = bean.getIndex4();
-            if (wl.startsWith("-")) {
-                wl = wl.replace("-", "");
-                tvWinLose.setTextColor(Color.RED);
-            } else {
-                tvWinLose.setTextColor(Color.BLUE);
-            }
-            tvWinLose.setText(" " + AfbUtils.decimalValue(Float.parseFloat(wl), "0.00") + " ");
-            tvSettled.setText(" " + getString(R.string.Settled) + " " + bean.getIndex6());
+            setWinLoseText(tvWinLose, wl,"0.00");
+
+
+            setWinLoseText(tvSettled, bean.getIndex6(),"#,###");
+
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -123,6 +125,20 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 }
             });
             llContent.addView(view);
+        }
+    }
+//   String f = "#,###.00";
+    private void setWinLoseText(TextView tvWinLose, String wl,String fmt) {
+        if (wl.startsWith("-")) {
+            wl = wl.replace("-", "");
+            tvWinLose.setTextColor(Color.RED);
+            tvWinLose.setText(" " + AfbUtils.decimalValue(Float.parseFloat(wl), fmt) + " ");
+        } else if (StringUtils.isNull(wl) || wl.trim().equals("0")) {
+            tvWinLose.setTextColor(Color.BLACK);
+            tvWinLose.setText(" " + wl + " ");
+        } else {
+            tvWinLose.setTextColor(Color.BLUE);
+            tvWinLose.setText(" " + AfbUtils.decimalValue(Float.parseFloat(wl), fmt) + " ");
         }
     }
 
@@ -154,14 +170,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             tvDate.setText(dateStr);
             tvCom.setText(getString(R.string.Com) + " " + bean.getIndex5() + " ");
             String wl = bean.getIndex4();
-            if (wl.startsWith("-")) {
-                wl = wl.replace("-", "");
-                tvWinLose.setTextColor(Color.RED);
-            } else {
-                tvWinLose.setTextColor(Color.BLUE);
-            }
-            tvWinLose.setText(" " + AfbUtils.decimalValue(Float.parseFloat(wl), "0.00") + " ");
-            tvSettled.setText(" " + getString(R.string.Settled) + " " + bean.getIndex6());
+            setWinLoseText(tvWinLose,wl,"0.00");
+            setWinLoseText(tvSettled,bean.getIndex6(),"#,###");
             view.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

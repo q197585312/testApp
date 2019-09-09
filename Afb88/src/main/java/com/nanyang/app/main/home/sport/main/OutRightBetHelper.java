@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sport.main;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -33,6 +34,7 @@ public class OutRightBetHelper extends SportBetHelper<SportInfo, BetView> {
             return new CompositeDisposable();
         }
         //http://www.afb1188.com/Bet/hBetOdds.ashx?BTMD=S&coupon=0&BETID=s|home|1|469195||&_=1543457322841
+        ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().setShowBet(true);
         return getDisposable(v, isHf, betOddsUrl);
     }
 }

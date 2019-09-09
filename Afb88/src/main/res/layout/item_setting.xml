@@ -46,7 +46,7 @@
                     android:layout_marginRight="10dp"
                     android:layout_weight="1"
                     android:text="TestSH13"
-                    android:textColor="@color/black"
+                    android:textColor="@color/grey_dark"
                     android:textSize="17sp" />
 
                 <CheckBox
@@ -72,6 +72,7 @@
                     android:visibility="gone">
 
                     <ImageView
+                        android:scaleType="fitXY"
                         android:id="@+id/img_chip_1"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -79,6 +80,7 @@
                         android:src="@mipmap/chip1" />
 
                     <ImageView
+                        android:scaleType="fitXY"
                         android:id="@+id/img_chip_2"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -87,6 +89,7 @@
                         android:src="@mipmap/chip1" />
 
                     <ImageView
+                        android:scaleType="fitXY"
                         android:id="@+id/img_chip_3"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -95,6 +98,7 @@
                         android:src="@mipmap/chip1" />
 
                     <ImageView
+                        android:scaleType="fitXY"
                         android:id="@+id/img_chip_4"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -103,6 +107,7 @@
                         android:src="@mipmap/chip1" />
 
                     <ImageView
+                        android:scaleType="fitXY"
                         android:id="@+id/img_chip_5"
                         android:layout_width="35dp"
                         android:layout_height="35dp"
@@ -111,6 +116,7 @@
                         android:src="@mipmap/chip1" />
 
                     <ImageView
+                        android:scaleType="fitXY"
                         android:id="@+id/img_chip_6"
                         android:layout_width="35dp"
                         android:layout_height="35dp"

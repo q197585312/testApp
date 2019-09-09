@@ -47,7 +47,7 @@
     <string name="not_started">未开始</string>
     <string name="min">m</string>
     <string name="Total">总共</string>
-    <string name="Odds_Type">盘口</string>
+    <string name="Odds_Type">盘口种类</string>
     <string name="AOS">AOS</string>
     <string name="Matchs">比赛</string>
     <string name="running">滚球</string>
@@ -252,10 +252,10 @@
     <string name="gr_content">在线美女荷官真人游戏，百家乐，骰宝，龙虎，番摊，轮盘，色碟游戏，让你玩的尽兴</string>
     <string name="Version">版本</string>
     <string name="failed_to_connect">连接服务器失败是否重新登录?</string>
-    <string name="All_Markets">全部</string>
+    <string name="All_Markets">全部盘口</string>
     <string name="Main_Markets">主要盘口</string>
     <string name="Other_Bet_Markets">更多玩法盘口</string>
-    <string name="choose_language">选择语言</string>
+    <string name="choose_language">语言</string>
     <string name="Bet_Credit">投注余额</string>
     <string name="remember_me">记住我</string>
     <string name="US_Football">美式足球</string>

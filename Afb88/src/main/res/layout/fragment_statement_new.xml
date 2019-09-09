@@ -4,35 +4,6 @@
     android:layout_height="match_parent"
     android:background="#F3F6F4">
 
-    <LinearLayout
-        android:id="@+id/ll_note"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:orientation="vertical"
-        android:padding="8dp"
-        android:paddingLeft="8dp"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingLeft="5dp"
-            android:text="@string/Note_"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:background="@color/white"
-            android:padding="5dp"
-            android:text="@string/GMT_8"
-            android:textColor="@color/black"
-            android:textSize="15sp" />
-    </LinearLayout>
-
     <android.support.v4.widget.NestedScrollView
         android:id="@+id/nsc_content"
         android:layout_width="match_parent"
@@ -41,11 +12,46 @@
         android:visibility="visible">
 
         <LinearLayout
-            android:id="@+id/ll_content"
+
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <LinearLayout
+                android:id="@+id/ll_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <LinearLayout
+                android:id="@+id/ll_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:padding="8dp"
+                android:paddingLeft="8dp"
+                android:visibility="visible">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="5dp"
+                    android:text="@string/Note_"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@color/white"
+                    android:padding="5dp"
+                    android:text="@string/GMT_8"
+                    android:textColor="@color/black"
+                    android:textSize="15sp" />
+            </LinearLayout>
         </LinearLayout>
+
     </android.support.v4.widget.NestedScrollView>
 </RelativeLayout>

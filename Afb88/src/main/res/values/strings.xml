@@ -14,7 +14,7 @@
     <string name="Loading">Loading...</string>
     <string name="Account_empty">Account can\'t be empty!</string>
     <string name="Password_empty">Password can\'t be empty</string>
-    <string name="SportBook">SportsBook</string>
+    <string name="SportBook">SPORTS</string>
     <string name="Live_Casino">Live Casino</string>
     <string name="Games">Games</string>
     <string name="Keno">Keno</string>
@@ -154,7 +154,7 @@
     <string name="cash_out">Cash Out</string>
     <string name="event">Event</string>
     <string name="detail">Detail</string>
-    <string name="other">Others</string>
+    <string name="other">OTHERS</string>
     <string name="Choose">Choose Matches</string>
     <string name="Common_Game">Common Game</string>
     <string name="E_Sport">E-Sports</string>
@@ -262,7 +262,7 @@
     <string name="X1X2">1 X 2</string>
     <string name="Baseball">Baseball</string>
     <string name="IceHockey">IceHockey</string>
-    <string name="Europe_View">Europe View</string>
+    <string name="Europe_View">EUROPE VIEW</string>
     <string name="FT15MINSHANDICAP_OVER_UNDER">FT 15 MINS HANDICAP &amp; OVER/UNDER</string>
     <string name="HOME_TEAM_TOTAL_GOALS">HOME TEAM TOTAL GOALS</string>
     <string name="AWAY_TEAM_TOTAL_GOALS">AWAY TEAM TOTAL GOALS</string>
@@ -330,8 +330,8 @@
     <string name="SuperCombo">SuperCombo</string>
     <string name="hot_sort">Normal Sort</string>
     <string name="result">Result</string>
-    <string name="Home">HOME</string>
-    <string name="Away">AWAY</string>
+    <string name="Home">Home</string>
+    <string name="Away">Away</string>
     <string name="HT">HT</string>
     <string name="league">Top</string>
     <string name="winner">Winner</string>
