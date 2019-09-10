@@ -160,7 +160,7 @@ public class HomeFragment extends BaseSwitchFragment {
                         menuItemInfo = new MenuItemInfo<>(0, getString(R.string.Today));
                         menuItemInfo.setType("Today");
                     } else if (!StringUtils.isNull(jsonObjectNum.optString("M_EAm" + item.getDbid()))) {
-                        menuItemInfo = new MenuItemInfo<>(0, getString(R.string.Early));
+                        menuItemInfo = new MenuItemInfo<>(0, getString(R.string.Early)+ "(" +getString(R.string.all) + ")");
                         menuItemInfo.setType("Early");
                     }
                 }

@@ -390,7 +390,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     public AfbApplication getApp() {
-        return (AfbApplication) getActivity().getApplication();
+        return  getBaseActivity().getApp();
     }
 
     @Override
@@ -480,6 +480,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 //        }
         String refreshOddsUrl = getApp().getRefreshOddsUrl();
         presenter.getStateHelper().getBetHelper().getRefreshOdds(refreshOddsUrl);
+        getApp().setShowBet(true);
     }
 
     public void clickOddsType(final TextView tvOddsType) {

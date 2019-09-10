@@ -377,6 +377,7 @@
                 android:drawableTop="@mipmap/date_running_green"
                 android:gravity="center"
                 android:onClick="clickSportWayRun"
+                android:ellipsize="start"
                 android:text="@string/running"
                 android:textColor="@color/grey_dark"
                 android:textSize="12sp"

@@ -12,6 +12,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
@@ -195,8 +196,11 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         }
         pop.setBetData(bean, this);
         pop.setIsRunning(false);
-        if (!pop.isShowing()) {
-            baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+        boolean showBet = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().isShowBet();
+        if (showBet) {
+            if (!pop.isShowing()) {
+                baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+            }
         }
     }
 

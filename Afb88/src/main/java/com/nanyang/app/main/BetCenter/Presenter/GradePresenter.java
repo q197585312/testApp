@@ -63,7 +63,7 @@ public class GradePresenter extends BaseRetrofitPresenter<GradeFragment> {
             if (i == -1) {
                 name = baseContext.getString(R.string.yesterday_match);
             } else {
-                name = DateUtils.getAddDay(currentDate, i, "MM-dd");
+                name = DateUtils.getAddDay(currentDate, i, "dd/MM");
             }
             list.add(new DataInfoBean(name, DateUtils.getAddDay(currentDate, i, "yyyy-MM-dd")));
         }

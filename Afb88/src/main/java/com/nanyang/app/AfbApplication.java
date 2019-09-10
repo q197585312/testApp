@@ -28,6 +28,7 @@ public class AfbApplication extends BaseApplication {
     private AfbClickResponseBean betAfbList;
     private boolean isGoHome = false;
     private SettingAllDataBean settingAllDataBean;
+    private boolean showBet=true;
 
     public RefreshDataBean getRefreshDataBean() {
         return refreshDataBean;
@@ -210,6 +211,14 @@ public class AfbApplication extends BaseApplication {
 
     public void setRefreshDataBean(RefreshDataBean refreshDataBean) {
         this.refreshDataBean = refreshDataBean;
+    }
+
+    public boolean isShowBet() {
+        return showBet;
+    }
+
+    public void setShowBet(boolean showBet) {
+        this.showBet = showBet;
     }
 }
 
