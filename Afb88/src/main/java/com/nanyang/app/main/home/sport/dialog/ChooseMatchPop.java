@@ -94,7 +94,7 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
             }
         });
         baseRv.setAdapter(contentAdapter);
-        rvDetailTop.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+        bv rvDetailTop.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
         bottomAdapter = bottomAdapter();
         rvDetailTop.setAdapter(bottomAdapter);
         bottomAdapter.addAllAndClear(Arrays.asList(new MenuItemInfo(R.mipmap.icselectcompetitions, context.getString(R.string.selected_all), "all"),

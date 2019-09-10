@@ -6,17 +6,6 @@
     android:orientation="vertical">
 
 
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1">
-
-        <include layout="@layout/layout_base_recycler_view" />
-    </FrameLayout>
-
-    <View style="@style/line_horizontal_grey1" />
-
     <LinearLayout
         style="@style/style_match_wrap"
         android:background="@color/grey_dialog_background"
@@ -43,5 +32,17 @@
             android:textSize="12sp" />
 
     </LinearLayout>
+    <View style="@style/line_horizontal_grey1" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <include layout="@layout/layout_base_recycler_view" />
+    </FrameLayout>
+
+
+
 
 </LinearLayout>

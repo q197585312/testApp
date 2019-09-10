@@ -147,8 +147,10 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Bind(R.id.ll_footer_sport)
     public LinearLayout ll_footer_sport;
 
-    @Bind(R.id.match_collection_iv)
-    ImageView collectionIv;
+    @Bind(R.id.match_collection_num_tv)
+    public TextView collectionNumTv;
+    @Bind(R.id.match_collection_fl)
+    View collectionFl;
 
     @Bind(R.id.main_more)
     RecyclerView reContent;
@@ -205,7 +207,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     ivDeleteSearch.setVisibility(View.GONE);
                     currentFragment.searchMatch(false, "");
                 }
-                currentFragment.checkBg(collectionIv, currentFragment.presenter.getStateHelper().isCollection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_yellow);
+                currentFragment.checkBg(collectionFl, currentFragment.presenter.getStateHelper().isCollection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_yellow);
 
             }
         });

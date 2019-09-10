@@ -1480,6 +1480,19 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             localCollectionMap.get(item.getModuleTitle().toString()).put(s, !isCollection);
         }
         baseRecyclerAdapter.notifyDataSetChanged();
+        notifyCollectionNum();
+    }
+
+    private void notifyCollectionNum() {
+        int n = 0;
+        for (String s : localCollectionMap.keySet()) {
+            for (String s1 : localCollectionMap.get(s).keySet()) {
+                if (localCollectionMap.get(s).get(s1) != null && localCollectionMap.get(s).get(s1)) {
+                    n++;
+                }
+            }
+        }
+        ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).collectionNumTv.setText(""+n);
     }
 
 
@@ -1497,6 +1510,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
         localCollectionMap.put(moduleKey, moduleMap);
         baseRecyclerAdapter.notifyDataSetChanged();
+        notifyCollectionNum();
     }
 
     public void setIsHide(boolean isHide) {

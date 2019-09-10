@@ -115,13 +115,32 @@
                     android:onClick="clickCup"
                     android:src="@mipmap/sport_game_cup_white" />
 
-                <ImageView
-                    android:id="@+id/match_collection_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:background="@mipmap/sport_game_star_yellow"
-                    android:onClick="clickCollectionStar" />
+
+               <FrameLayout
+                   android:id="@+id/match_collection_fl"
+                   android:layout_width="25dp"
+                   android:layout_height="25dp"
+                   android:layout_marginLeft="10dp"
+                   android:background="@mipmap/sport_game_star_yellow"
+                   android:onClick="clickCollectionStar" >
+                   <TextView
+                       android:id="@+id/match_collection_num_tv"
+                       android:layout_width="wrap_content"
+                       android:layout_height="wrap_content"
+                       android:layout_gravity="right"
+                       android:text="0"
+                       android:textSize="9sp"
+                       android:paddingRight="3dp"
+                       android:paddingTop="1dp"
+                       android:paddingBottom="1dp"
+                       android:paddingLeft="3dp"
+                       android:textColor="@color/white"
+                       android:background="@drawable/oval_red_stroke_black"
+                       android:layout_marginLeft="10dp"
+                       android:onClick="clickCollectionStar" />
+
+               </FrameLayout>
+
 
             </LinearLayout>
 
