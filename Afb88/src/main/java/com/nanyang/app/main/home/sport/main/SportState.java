@@ -435,8 +435,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected List<TableSportInfo<B>> pageData(List<TableSportInfo<B>> filterData) {
-        List<TableSportInfo<B>> pageList=filterData;
-      /*  if (page * pageSize > filterData.size() - 1) {
+        List<TableSportInfo<B>> pageList;
+        if (page * pageSize > filterData.size() - 1) {
             if (page > 0)
                 page = 0;
             else
@@ -448,7 +448,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         } else {
             pageList = filterData.subList(page * pageSize, filterData.size());
         }
-        LogUtil.d("current", "page:" + page);*/
+        LogUtil.d("current", "page:" + page);
 
         return pageList;
 

@@ -24,9 +24,6 @@
             android:id="@+id/swipeToLoadLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            app:load_more_enabled="false"
-            app:refresh_enabled="false"
-
             android:visibility="gone"
             app:swipe_style="classic">
 
