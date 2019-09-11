@@ -161,7 +161,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                         dataList.add(new HomePopItemBeen(getString(R.string.home_user_name), info.getLoginName()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_currency), info.getCurCode2()));
                         if (!AppConstant.IS_AGENT)
-                            dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), AfbUtils.addComma(info.getBalances().trim().replaceAll(",", ""), tvTime)));
+                            dataList.add(new HomePopItemBeen(getString(R.string.home_cash_balance), AfbUtils.scientificCountingToString(info.getBalances().trim().replaceAll(",", ""))));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_not_standing), info.getEtotalstanding()));
                         dataList.add(new HomePopItemBeen(getString(R.string.home_min_bet), info.getMinLimit()));
                         if (!AppConstant.IS_AGENT)

@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:src="@mipmap/tennis" />
 
-    <TextView
+    <Button
+        android:background="@null"
         android:id="@+id/tv_sport_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

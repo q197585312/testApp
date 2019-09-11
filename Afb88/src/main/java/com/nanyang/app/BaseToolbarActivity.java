@@ -342,7 +342,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             msg = getString(R.string.another_login);
         pop.getChooseMessage().setText(msg);
         pop.getChooseSureTv().setText(getString(R.string.sure));
-        pop.getChooseCancelTv().setText(getString(R.string.cancel));
+        pop.getChooseCancelTv().setText(getString(R.string.Cancel));
         onPopupWindowCreated(pop, Gravity.CENTER);
     }
 

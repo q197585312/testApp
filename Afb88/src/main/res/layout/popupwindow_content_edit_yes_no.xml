@@ -53,7 +53,7 @@
             android:padding="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/cancel"
+            android:text="@string/Cancel"
             android:textColor="@color/yellow_button"
             android:textSize="15sp" />
 

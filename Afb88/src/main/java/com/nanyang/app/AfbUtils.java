@@ -360,6 +360,7 @@ public class AfbUtils {
     public static LinkedHashMap<String, SportIdBean> beanHashMap = new LinkedHashMap<>();
     public static LinkedHashMap<String, SportIdBean> sportMap = new LinkedHashMap<>();
     public static LinkedHashMap<String, SportIdBean> othersMap = new LinkedHashMap<>();
+    public static LinkedHashMap<String, SportIdBean> outRightMap = new LinkedHashMap<>();
 
     public static void initAllSprotMap() {
         BaseSportFragment soccerFragment = new SoccerFragment();
@@ -404,6 +405,7 @@ public class AfbUtils {
         beanHashMap = new LinkedHashMap<>();
         sportMap = new LinkedHashMap<>();
         othersMap = new LinkedHashMap<>();
+        outRightMap = new LinkedHashMap<>();
         beanHashMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
         beanHashMap.put("Cashio", new SportIdBean("Cashio", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK));
         beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball));
@@ -468,6 +470,7 @@ public class AfbUtils {
         othersMap.put("41", new SportIdBean("41", "25", R.string.Handball, "Handball", SportActivity.class, handballFragment, Color.BLACK, R.mipmap.football));
         othersMap.put("65", new SportIdBean("65", "26", R.string.Cycling, "Cycling", SportActivity.class, cyclingFragment, Color.BLACK, R.mipmap.cycling));
         othersMap.put("67", new SportIdBean("67", "27", R.string.Beach_Soccer, "Beach_Soccer", SportActivity.class, beachSoccerFragment, Color.BLACK, R.mipmap.financial));
+
         othersMap.put("101", new SportIdBean("101", "29", R.string.Athletics, "Athletics", SportActivity.class, athleticsFragment, Color.BLACK, R.mipmap.financial));
         othersMap.put("103", new SportIdBean("103", "30", R.string.WinterSport, "WinterSport", SportActivity.class, winterSportFragment, Color.BLACK, R.mipmap.ice_sport));
         othersMap.put("105", new SportIdBean("105", "31", R.string.Squash, "Squash", SportActivity.class, squashFragment, Color.BLACK, R.mipmap.financial));
@@ -477,6 +480,10 @@ public class AfbUtils {
             othersMap.put("33_20", new SportIdBean("33_20", "33_20", R.string.Thai_game1, "Thai_3d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial));
         }
         othersMap.put("108", new SportIdBean("108", "108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.BLACK, R.mipmap.financial));
+
+
+
+
 
 
     }

@@ -47,7 +47,4 @@ public interface IObtainDataState {
             B ballInfo = afbParseHelper.parseJsonArray(matchArray);
             return ballInfo;*/
     IBetHelper getBetHelper();
-
-    void createChoosePop(View view);
-
 }

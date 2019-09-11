@@ -5,11 +5,9 @@ import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -18,7 +16,6 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -29,9 +26,10 @@ import butterknife.OnClick;
 
 
 public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> extends BasePopupWindow {
+    private String type;
     private Map<String, Boolean> leagueSelectedMap;
     private BaseRecyclerAdapter<T> contentAdapter;
-    private BaseRecyclerAdapter<MenuItemInfo> bottomAdapter;
+
 
     public void setBack(CallBack back) {
         this.back = back;
@@ -67,13 +65,13 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
         Toolbar toolbar;*/
     @Bind(R.id.base_rv)
     RecyclerView baseRv;
-    @Bind(R.id.rv_detail_top)
-    RecyclerView rvDetailTop;
+
     @Bind(R.id.tv_submit)
     TextView tvSubmit;
 
-    public ChooseMatchPop(Context context, View v) {
+    public ChooseMatchPop(Context context, View v, String type) {
         super(context, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        this.type=type;
     }
 
     @Override
@@ -94,34 +92,12 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
             }
         });
         baseRv.setAdapter(contentAdapter);
-        bv rvDetailTop.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-        bottomAdapter = bottomAdapter();
-        rvDetailTop.setAdapter(bottomAdapter);
-        bottomAdapter.addAllAndClear(Arrays.asList(new MenuItemInfo(R.mipmap.icselectcompetitions, context.getString(R.string.selected_all), "all"),
-                new MenuItemInfo(R.mipmap.icselectoddstype, context.getString(R.string.reverse_selection), "reverse")
-        ));
-        bottomAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-            @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                if (item.getType().equals("all")) {
-                    leagueSelectedMap.clear();
-                } else if (item.getType().equals("reverse")) {
-                    for (TableSportInfo t : tList) {
-                        if (leagueSelectedMap.get(t.getLeagueBean().getModuleId()) == null) {
-                            leagueSelectedMap.put(t.getLeagueBean().getModuleId(), false);
-                        } else {
-                            leagueSelectedMap.put(t.getLeagueBean().getModuleId(), !leagueSelectedMap.get(t.getLeagueBean().getModuleId()));
-                        }
-                    }
-                }
-                contentAdapter.notifyDataSetChanged();
-            }
-        });
+
     }
 
     @NonNull
     private BaseRecyclerAdapter<T> contentAdapter() {
-        return new BaseRecyclerAdapter<T>(context, new ArrayList<T>(), R.layout.selected_text_item) {
+        return new BaseRecyclerAdapter<T>(context, new ArrayList<T>(), R.layout.selected_text_item_choose_leagua) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, T item) {
                 if (leagueSelectedMap.get(item.getLeagueBean().getModuleId()) == null) {
@@ -130,19 +106,28 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
                 TextView txt = holder.getView(R.id.selectable_text_content_tv);
                 if (leagueSelectedMap.get(item.getLeagueBean().getModuleId())) {
 
-                    txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.menu_right_hover, 0);
-                    txt.setBackgroundResource(R.color.grey_default_bg);
+                    txt.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.checkbox_pressed,0, 0,  0);
+
                 } else {
-                    txt.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                    txt.setBackgroundResource(R.color.white);
+                    txt.setCompoundDrawablesWithIntrinsicBounds( R.mipmap.checkbox_normal,0, 0, 0);
+                }
+                if(item.getRows()!=null){
+                    holder.getTextView(R.id.selectable_num_tv).setText(item.getRows().size()+"");
+                }else{
+                    holder.getTextView(R.id.selectable_num_tv).setText("0");
                 }
                 txt.setText(item.getLeagueBean().getModuleTitle());
+                if(type!=null&&type.toLowerCase().startsWith("r")){
+                    holder.getView(R.id.selectable_text_parent_ll).setBackgroundResource(R.color.green1);
+                }else{
+                    holder.getView(R.id.selectable_text_parent_ll).setBackgroundResource(R.color.grey_background);
+                }
 
             }
         };
     }
 
-    @NonNull
+   /* @NonNull
     private BaseRecyclerAdapter<MenuItemInfo> bottomAdapter() {
         return new BaseRecyclerAdapter<MenuItemInfo>(context, new ArrayList<MenuItemInfo>(), R.layout.text_base_item) {
             @Override
@@ -157,14 +142,37 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
                 view.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
             }
         };
-    }
+    }*/
 
-    @OnClick(R.id.tv_submit)
-    public void onClick() {
-        if (back != null) {
-            back.chooseMap(leagueSelectedMap);
+    @OnClick({R.id.tv_submit
+            , R.id.tv_all_cancel
+            , R.id.tv_all_select
+            , R.id.tv_back
+    })
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.tv_submit:
+            case R.id.tv_back:
+                if (back != null) {
+                    back.chooseMap(leagueSelectedMap);
+                }
+                closePopupWindow();
+                break;
+            case R.id.tv_all_cancel:
+                for (TableSportInfo t : tList) {
+                    leagueSelectedMap.put(t.getLeagueBean().getModuleId(), false);
+                }
+                contentAdapter.notifyDataSetChanged();
+                break;
+            case R.id.tv_all_select:
+                for (TableSportInfo t : tList) {
+                    leagueSelectedMap.put(t.getLeagueBean().getModuleId(), true);
+                }
+                contentAdapter.notifyDataSetChanged();
+                break;
+
         }
-        closePopupWindow();
+
     }
 
     public interface CallBack {

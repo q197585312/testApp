@@ -99,9 +99,9 @@ public class AfbDrawerViewHolder implements IDrawerView {
         drawerLayoutRightRc = drawerLayout.findViewById(R.id.main_more);
         More m1 = new More(R.mipmap.myacount, baseToolbarActivity.getString(R.string.my_account), 0, personFragment);
         More m2 = new More(R.mipmap.messages, baseToolbarActivity.getString(R.string.messages), R.mipmap.message, messageFragment);
-        More m3 = new More(R.mipmap.statement, baseToolbarActivity.getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
+        More m3 = new More(R.mipmap.main_statement, baseToolbarActivity.getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
         More m4 = new More(R.mipmap.result, baseToolbarActivity.getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
-        More m5 = new More(R.mipmap.phone, baseToolbarActivity.getString(R.string.contact), 0, contactFragment);
+        More m5 = new More(R.mipmap.contactus, baseToolbarActivity.getString(R.string.contact), 0, contactFragment);
         More m6 = new More(R.mipmap.setting, baseToolbarActivity.getString(R.string.setting), 0, changeLanguageFragment);
         More m7 = new More(R.mipmap.setting, baseToolbarActivity.getString(R.string.how_to_use), 0, howToUseFragment);
         More m8 = new More(R.mipmap.logout, baseToolbarActivity.getString(R.string.logout), 0);
@@ -145,7 +145,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
                     pop.getChooseTitleTv().setText(baseToolbarActivity.getString(R.string.confirm_or_not));
                     pop.getChooseMessage().setText(baseToolbarActivity.getString(R.string.login_out));
                     pop.getChooseSureTv().setText(baseToolbarActivity.getString(R.string.sure));
-                    pop.getChooseCancelTv().setText(baseToolbarActivity.getString(R.string.cancel));
+                    pop.getChooseCancelTv().setText(baseToolbarActivity.getString(R.string.Cancel));
                     baseToolbarActivity.onPopupWindowCreated(pop, Gravity.CENTER);
                 } else {
                     BaseSwitchFragment fragment = item.getFragment();

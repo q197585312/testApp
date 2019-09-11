@@ -547,12 +547,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         parent.addView(inflate);
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), false, parent, item,
                                 context.getString(R.string.Home), context.getString(R.string.over), "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU()
-                                , mModdsBean.getHasHdp().equals("True")
+                                , mModdsBean.getHasHdp().equals("True")&&!StringUtils.isNull(mModdsBean.getHDPH())&&!StringUtils.isNull(mModdsBean.getHDPA())
                                 , mModdsBean.getHasOU().equals("True")
                         );
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), false, parent, item,
                                 context.getString(R.string.Away), context.getString(R.string.under), "mmaway", "mmunder", mModdsBean.getHDPA(), ""
-                                , mModdsBean.getHasHdp().equals("True")
+                                , mModdsBean.getHasHdp().equals("True")&&!StringUtils.isNull(mModdsBean.getHDPH())&&!StringUtils.isNull(mModdsBean.getHDPA())
                                 , mModdsBean.getHasOU().equals("True")
                         );
                     }
@@ -563,12 +563,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         parent.addView(inflate);
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Home ", "Over ", "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU()
-                                , mModdsBean.getHasHdp().equals("True")
+                                , mModdsBean.getHasHdp().equals("True")&&!StringUtils.isNull(mModdsBean.getHDPH())&&!StringUtils.isNull(mModdsBean.getHDPA())
                                 , mModdsBean.getHasOU().equals("True")
                         );
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Away ", "Under ", "mmaway", "mmunder", mModdsBean.getHDPA(), ""
-                                , mModdsBean.getHasHdp().equals("True")
+                                , mModdsBean.getHasHdp().equals("True")&&!StringUtils.isNull(mModdsBean.getHDPH())&&!StringUtils.isNull(mModdsBean.getHDPA())
                                 , mModdsBean.getHasOU().equals("True")
                         );
                     }

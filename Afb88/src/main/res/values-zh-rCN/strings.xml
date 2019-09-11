@@ -93,7 +93,7 @@
     <string name="bet">下注</string>
     <string name="betting_terms">下注条目:</string>
     <string name="delete">删除</string>
-    <string name="cancel">取消</string>
+    <string name="cancel">清除</string>
     <string name="football">足球</string>
     <string name="odds">赔率</string>
     <string name="input_bet_amount_please">请输入下注数量</string>
@@ -563,4 +563,5 @@
     <string name="ft_1">全场主</string>
     <string name="ft_x">全场和</string>
     <string name="ft_2">全场客</string>
+    <string name="speed_way">SPEEDWAY</string>
 </resources>

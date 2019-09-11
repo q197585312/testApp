@@ -90,7 +90,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 view.setTag(2);
             }
             tvDate.setText(date);
-            tvCom.setText(getString(R.string.Com) + " " + bean.getIndex5() + " ");
+            tvCom.setText( bean.getIndex5() + " ");
             String wl = bean.getIndex4();
             setWinLoseText(tvWinLose, wl,"0.00");
 
@@ -132,13 +132,13 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         if (wl.startsWith("-")) {
             wl = wl.replace("-", "");
             tvWinLose.setTextColor(Color.RED);
-            tvWinLose.setText(" " + AfbUtils.decimalValue(Float.parseFloat(wl), fmt) + " ");
+            tvWinLose.setText( AfbUtils.decimalValue(Float.parseFloat(wl), fmt) + " ");
         } else if (StringUtils.isNull(wl) || wl.trim().equals("0")) {
             tvWinLose.setTextColor(Color.BLACK);
-            tvWinLose.setText(" " + wl + " ");
+            tvWinLose.setText( wl + " ");
         } else {
             tvWinLose.setTextColor(Color.BLUE);
-            tvWinLose.setText(" " + AfbUtils.decimalValue(Float.parseFloat(wl), fmt) + " ");
+            tvWinLose.setText( AfbUtils.decimalValue(Float.parseFloat(wl), fmt) + " ");
         }
     }
 
@@ -168,7 +168,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 dateStr = getString(R.string.Lastweeksummary);
             }
             tvDate.setText(dateStr);
-            tvCom.setText(getString(R.string.Com) + " " + bean.getIndex5() + " ");
+            tvCom.setText( bean.getIndex5() + " ");
             String wl = bean.getIndex4();
             setWinLoseText(tvWinLose,wl,"0.00");
             setWinLoseText(tvSettled,bean.getIndex6(),"#,###");
@@ -228,7 +228,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 } else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
-                tvCom.setText(getString(R.string.Com) + " " + bean.getIndex18());
+                tvCom.setText( bean.getIndex18());
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -317,7 +317,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 }
                 tvOdds.setText(" " + odds);
                 tvHandicap.setText("(" + bean.getIndex16() + ")");
-                tvCom.setText(getString(R.string.Com) + " " + bean.getIndex18());
+                tvCom.setText( bean.getIndex18());
                 String winLose = bean.getIndex10();
                 tvWl.setText(" " + winLose);
                 if (winLose.startsWith("-")) {

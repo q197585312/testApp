@@ -478,7 +478,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 if (value)
                     n++;
             }
-            if (n < 5 || n > 8) {
+            if (n>0&&(n < 5 || n > 8)) {
                 ToastUtils.showShort(R.string.no_less_5_no_more_8);
                 return false;
             }

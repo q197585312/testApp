@@ -129,14 +129,15 @@
                        android:layout_height="wrap_content"
                        android:layout_gravity="right"
                        android:text="0"
-                       android:textSize="9sp"
+                       android:textSize="8sp"
                        android:paddingRight="3dp"
+                       android:maxLines="1"
+                       android:visibility="gone"
                        android:paddingTop="1dp"
                        android:paddingBottom="1dp"
                        android:paddingLeft="3dp"
                        android:textColor="@color/white"
                        android:background="@drawable/oval_red_stroke_black"
-                       android:layout_marginLeft="10dp"
                        android:onClick="clickCollectionStar" />
 
                </FrameLayout>
@@ -378,6 +379,7 @@
                 android:gravity="center"
                 android:onClick="clickSportWayRun"
                 android:ellipsize="start"
+                android:maxLines="1"
                 android:text="@string/running"
                 android:textColor="@color/grey_dark"
                 android:textSize="12sp"

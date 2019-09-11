@@ -433,4 +433,5 @@
     <string name="Normal">일반</string>
     <string name="desktop">데스크톱</string>
     <string name="no_games">No Games</string>
+    <string name="speed_way">SPEEDWAY</string>
 </resources>

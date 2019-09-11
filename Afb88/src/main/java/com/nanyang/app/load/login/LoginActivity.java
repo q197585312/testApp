@@ -187,6 +187,12 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                     info6.setText("TURKISH");
                     info6.setType("tr");
                     languageList.add(info6);
+
+                    MenuItemInfo info7 = new MenuItemInfo();
+                    info7.setText("INDONESIAN");
+                    info7.setType("my");
+                    languageList.add(info7);
+
                     popLanguage.setData(languageList);
                 }
                 popLanguage.showPopupDownWindow();
@@ -382,5 +388,8 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         animator.start();
     }
 
-
+    @Override
+    public void startUpdateState() {
+//        super.startUpdateState();
+    }
 }

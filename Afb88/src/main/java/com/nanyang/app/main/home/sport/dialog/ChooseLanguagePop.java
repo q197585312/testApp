@@ -64,8 +64,7 @@ public class ChooseLanguagePop extends BasePopupWindow {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
                 TextView contentTv = holder.getView(R.id.selectable_text_content_tv);
-                View line = holder.getView(R.id.v_row_line1);
-                line.setVisibility(View.GONE);
+
                 contentTv.setText(item.getText());
                 contentTv.setTextColor(context.getResources().getColor(R.color.white));
                 contentTv.setPadding(10, 40, 30, 40);

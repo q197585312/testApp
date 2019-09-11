@@ -17,6 +17,8 @@
             android:id="@+id/swipeToLoadLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            app:refresh_enabled="false"
+            app:load_more_enabled="false"
             app:swipe_style="classic">
 
             <include

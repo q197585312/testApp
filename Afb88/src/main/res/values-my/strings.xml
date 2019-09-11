@@ -557,4 +557,5 @@
     <string name="Normal">NORMAL</string>
     <string name="desktop">Desktop</string>
     <string name="no_games">No Games</string>
+    <string name="speed_way">SPEEDWAY</string>
 </resources>

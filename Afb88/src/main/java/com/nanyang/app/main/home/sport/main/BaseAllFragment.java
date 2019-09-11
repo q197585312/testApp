@@ -5,9 +5,9 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
@@ -104,7 +104,7 @@ public abstract class BaseAllFragment extends BaseSportFragment {
 
     private View itemSelectConvert(SportIdBean sportIdBean, View inflate) {
         View sportView = inflate.findViewById(R.id.ll_sport);
-        TextView sportName = inflate.findViewById(R.id.tv_sport_name);
+        Button sportName = inflate.findViewById(R.id.tv_sport_name);
         ImageView sportPic = inflate.findViewById(R.id.iv_sport_picture);
         sportName.setText(sportIdBean.getTextRes());
         sportPic.setImageResource(sportIdBean.getSportPic());

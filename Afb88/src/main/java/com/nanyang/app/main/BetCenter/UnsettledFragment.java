@@ -112,6 +112,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_par_Home = holder.getTextView(R.id.running_par_Home);
                     running_par_Home.setText(item.getHome1());
                     TextView running_par_Odds1 = holder.getTextView(R.id.running_par_Odds1);
+                    TextView running_bet_num = holder.getTextView(R.id.running_bet_num);
                     TextView running_par_Odds2 = holder.getTextView(R.id.running_par_Odds2);
                     TextView running_par_CombInfo = holder.getTextView(R.id.running_par_CombInfo);
                     TextView running_par_Amt = holder.getTextView(R.id.running_par_Amt);
@@ -126,10 +127,16 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
                     if (dangerStatus8.equals("A")) {
                         running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_black));
+
                     } else if (dangerStatus8.equals("W")) {
                         running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
                     } else {
                         running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.red));
+                    }
+                    if (dangerStatus8.equals("A")) {
+                        running_bet_num.setText("" + (getItemCount() - position));
+                    } else {
+                        running_bet_num.setText("");
                     }
                     String odds = item.getOdds3();
                     BigDecimal bd = new BigDecimal(odds);

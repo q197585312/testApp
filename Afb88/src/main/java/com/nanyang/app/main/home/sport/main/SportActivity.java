@@ -178,6 +178,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        initLanguage();
         setContentView(R.layout.activity_sport);
         ButterKnife.bind(this);
         toolbar.setVisibility(View.GONE);
@@ -314,7 +315,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvMixCount.setText("" + getApp().getBetParList().getList().size());
             tvOrderCount.setText("" + getApp().getBetParList().getList().size());
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping, 0, 0);
-            tvMix.setTextColor(ContextCompat.getColor(mContext,R.color.grey_dark));
+            tvMix.setTextColor(ContextCompat.getColor(mContext, R.color.grey_dark));
         } else {
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping_null, 0, 0);
             ivOrderTop.setImageResource(R.mipmap.sport_shopping_top_gray);
@@ -322,7 +323,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvOrderCount.setVisibility(View.GONE);
             tvMixCount.setText("0");
             tvOrderCount.setText("0");
-            tvMix.setTextColor(ContextCompat.getColor(mContext,R.color.grey_light));
+            tvMix.setTextColor(ContextCompat.getColor(mContext, R.color.grey_light));
         }
     }
 
@@ -867,7 +868,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
 
-
     private Runnable refreshMenuRunnable = new Runnable() {
         @Override
         public void run() {
@@ -890,8 +890,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     };
 
     public void runWayItem(MenuItemInfo item) {
-
-        tvMatchType.setText(item.getText());
+        if (item.getRes() == R.mipmap.date_day_grey) {
+            tvMatchType.setText(item.getDay());
+        } else {
+            tvMatchType.setText(item.getText());
+        }
         tvMatchType.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
         wd = item.getDateParam();
     }
@@ -903,6 +906,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        initLanguage();
+
     }
 }

@@ -41,6 +41,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         OddsClickBean oddsUrlBean = getOddsUrl(oid, type, isHf, odds, sc);
         AfbClickResponseBean betAfbList = ((AfbApplication) AfbApplication.getInstance()).getBetAfbList();
         String betOddsUrl = "";
+
         boolean typeHasPar = type.equalsIgnoreCase("over")
                 || type.equalsIgnoreCase("under")
                 || type.equalsIgnoreCase("even")

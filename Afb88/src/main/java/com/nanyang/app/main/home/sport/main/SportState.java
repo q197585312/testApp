@@ -107,6 +107,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     private String dbId;
     private String currentOpid;
     private String oldOpid;
+    private String type;
 
 
     public int getPageSize() {
@@ -303,7 +304,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     public void createChoosePop(View view) {
-        ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getIBaseContext().getBaseActivity(), view);
+
+        ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getIBaseContext().getBaseActivity(), view,getStateType().getType());
         pop.setList(allData, leagueSelectedMap);
         pop.setBack(new ChooseMatchPop.CallBack() {
             @Override
@@ -433,8 +435,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     protected List<TableSportInfo<B>> pageData(List<TableSportInfo<B>> filterData) {
-        List<TableSportInfo<B>> pageList;
-        if (page * pageSize > filterData.size() - 1) {
+        List<TableSportInfo<B>> pageList=filterData;
+      /*  if (page * pageSize > filterData.size() - 1) {
             if (page > 0)
                 page = 0;
             else
@@ -446,7 +448,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         } else {
             pageList = filterData.subList(page * pageSize, filterData.size());
         }
-        LogUtil.d("current", "page:" + page);
+        LogUtil.d("current", "page:" + page);*/
 
         return pageList;
 
@@ -1492,7 +1494,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 }
             }
         }
-        ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).collectionNumTv.setText(""+n);
+        if(n<1){
+            ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).collectionNumTv.setVisibility(View.GONE);
+        }else {
+            ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).collectionNumTv.setVisibility(View.VISIBLE);
+            ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).collectionNumTv.setText("" + n);
+        }
     }
 
 

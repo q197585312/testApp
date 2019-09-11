@@ -423,4 +423,6 @@
     <string name="Normal">งั้น ๆ แหละ</string>
     <string name="desktop">เดสก์ทอป</string>
     <string name="no_games">No Games</string>
+    <string name="A_TIE_B">A-TIE-B</string>
+    <string name="speed_way">SPEEDWAY</string>
 </resources>

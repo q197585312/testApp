@@ -32,6 +32,18 @@
                 android:orientation="horizontal">
 
                 <TextView
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/Com"
+                    android:textColor="@color/black" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@color/black" />
+                <TextView
+                    android:paddingLeft="2dp"
                     android:id="@+id/tv_com"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -39,12 +51,18 @@
                     android:textColor="@color/black" />
 
                 <TextView
+                    android:paddingLeft="2dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/WL"
                     android:textColor="@color/black" />
-
                 <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=":"
+                    android:textColor="@color/black" />
+                <TextView
+                    android:paddingLeft="2dp"
                     android:id="@+id/tv_WinLose"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -57,6 +75,7 @@
                     android:text=" SETTLED:"
                     android:textColor="@color/black" />
                 <TextView
+                    android:paddingLeft="2dp"
                     android:id="@+id/tv_settled"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
