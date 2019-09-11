@@ -159,7 +159,7 @@
     <string name="Common_Game">Common Game</string>
     <string name="E_Sport">E-Sports</string>
     <string name="Specials_4D">4D Specials</string>
-    <string name="OutRight">OutRight</string>
+    <string name="OutRight">OUTRIGHT</string>
     <string name="MixParlay">MixParlay</string>
     <string name="selected_all">Selected All</string>
     <string name="reverse_selection">Reverse Selection</string>
@@ -557,7 +557,7 @@
     <string name="Select_League1" />
     <string name="nick_name_set_description">* You can set nickname for display and login (5 to 15 alphabets or digits). Please note, you can set this nickname only once. You cannot modify or cancel it once it’s been set.</string>
     <string name="nick_name_check_tips">*You can set display and login nicknames (5-15 digits or letters)</string>
-    <string name="Normal">Normal</string>
+    <string name="Normal">NORMAL</string>
     <string name="copyright_2018_afb88_all_rights_reserved">© Copyright %1$s. %2$s All Rights Reserved.</string>
     <string name="desktop">Desktop</string>
     <string name="no_games">No Games</string>

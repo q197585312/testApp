@@ -170,6 +170,6 @@ public interface ApiService {
     Flowable<AllBannerImagesBean> getAllImagesData(@Url String url);
 
     @GET
-    Flowable<AddMBean> getAdditionData(@Url String url);
+    Flowable<String> getAdditionData(@Url String url);
 
 }
