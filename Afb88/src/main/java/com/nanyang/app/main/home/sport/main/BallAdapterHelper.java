@@ -1235,7 +1235,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             downOddsTv.setVisibility(View.VISIBLE);
             String upStr = "";
             String downStr = "";
-            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.3 || Math.abs(Float.valueOf(downOdds)) < 0.3) {
+            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) <0.3 || Math.abs(Float.valueOf(downOdds)) < 0.3) {
                 hasUpDown = "0";
             }
             int resUp = R.mipmap.arrow_up_update_green;
