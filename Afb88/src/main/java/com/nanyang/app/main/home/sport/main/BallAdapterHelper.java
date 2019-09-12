@@ -5,6 +5,7 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -112,7 +113,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 if (additionData.getF1X2_CNT() != null && !additionData.getF1X2_CNT().equals("0")) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, R.string.FULL_1X2);
-                    addAddition(additionData.getF1(), additionData.getFX(), additionData.getF2(), additionData.getF1X2_SocOddsId(), false, parent, item,
+                    addAdditionFor1X2(additionData.getF1(), additionData.getFX(), additionData.getF2(), additionData.getF1X2_SocOddsId(), false, parent, item,
                             "1", context.getString(R.string.dx), "2", "1", context.getString(R.string.dx), "2", "", "", "", R.layout.addition_1x2_sport_item
                             , additionData.getHasPar().equals("True")
                             , additionData.getHasPar().equals("True")
@@ -126,7 +127,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 if (additionData.getH1X2_CNT() != null && !additionData.getH1X2_CNT().equals("0")) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, R.string.HALF_1X2);
-                    addAddition(additionData.getH1(), additionData.getHX(), additionData.getH2(), additionData.getH1X2_SocOddsId(), false, parent, item,
+                    addAdditionFor1X2(additionData.getH1(), additionData.getHX(), additionData.getH2(), additionData.getH1X2_SocOddsId(), false, parent, item,
                             "1", context.getString(R.string.dx), "2", "1", context.getString(R.string.dx), "2", "", "", "", R.layout.addition_1x2_sport_item
                             , additionData.getHHasPar().equals("True")
                             , additionData.getHHasPar().equals("True")
@@ -547,12 +548,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         parent.addView(inflate);
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), false, parent, item,
                                 context.getString(R.string.Home), context.getString(R.string.over), "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU()
-                                , mModdsBean.getHasHdp().equals("True")&&(!StringUtils.isNull(mModdsBean.getHDPH())||!StringUtils.isNull(mModdsBean.getHDPA()))
+                                , mModdsBean.getHasHdp().equals("True") && (!StringUtils.isNull(mModdsBean.getHDPH()) || !StringUtils.isNull(mModdsBean.getHDPA()))
                                 , mModdsBean.getHasOU().equals("True")
                         );
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), false, parent, item,
                                 context.getString(R.string.Away), context.getString(R.string.under), "mmaway", "mmunder", mModdsBean.getHDPA(), ""
-                                , mModdsBean.getHasHdp().equals("True")&&(!StringUtils.isNull(mModdsBean.getHDPH())||!StringUtils.isNull(mModdsBean.getHDPA()))
+                                , mModdsBean.getHasHdp().equals("True") && (!StringUtils.isNull(mModdsBean.getHDPH()) || !StringUtils.isNull(mModdsBean.getHDPA()))
                                 , mModdsBean.getHasOU().equals("True")
                         );
                     }
@@ -563,12 +564,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         parent.addView(inflate);
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Home ", "Over ", "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU()
-                                , mModdsBean.getHasHdp().equals("True")&&(!StringUtils.isNull(mModdsBean.getHDPH())||!StringUtils.isNull(mModdsBean.getHDPA()))
+                                , mModdsBean.getHasHdp().equals("True") && (!StringUtils.isNull(mModdsBean.getHDPH()) || !StringUtils.isNull(mModdsBean.getHDPA()))
                                 , mModdsBean.getHasOU().equals("True")
                         );
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Away ", "Under ", "mmaway", "mmunder", mModdsBean.getHDPA(), ""
-                                , mModdsBean.getHasHdp().equals("True")&&(!StringUtils.isNull(mModdsBean.getHDPH())||!StringUtils.isNull(mModdsBean.getHDPA()))
+                                , mModdsBean.getHasHdp().equals("True") && (!StringUtils.isNull(mModdsBean.getHDPH()) || !StringUtils.isNull(mModdsBean.getHDPA()))
                                 , mModdsBean.getHasOU().equals("True")
                         );
                     }
@@ -630,8 +631,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             timeTv1.setVisibility(View.INVISIBLE);
             lastGif.setVisibility(View.VISIBLE);
 
-        }
-        else if (item.getLive() != null && !item.getLive().equals("")) {
+        } else if (item.getLive() != null && !item.getLive().equals("")) {
             dateTv.setVisibility(View.VISIBLE);
             dateTv1.setVisibility(View.VISIBLE);
             if (item.getLive().contains("LIVE")) {
@@ -686,6 +686,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
         );
         String isHomeGive = item.getIsHomeGive();
+        String hdp = item.getHdp();
         if (isHomeGive.equals("1")) {
             homeTv.setTextColor(red_black);
             homeTv1.setTextColor(red_black);
@@ -697,7 +698,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             awayTv.setTextColor(red_black);
             awayTv1.setTextColor(red_black);
         }
-
+        if (hdp.equals("0")) {
+            homeTv.setTextColor(black_grey);
+            homeTv1.setTextColor(black_grey);
+            awayTv.setTextColor(black_grey);
+            awayTv1.setTextColor(black_grey);
+        }
         gameSumTv.setVisibility(View.GONE);
         gameSumTv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -918,6 +924,44 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         viewById.setVisibility(View.GONE);
     }
 
+    private void addAdditionFor1X2(String f1, String x, String f2, String oid, boolean isHalf, LinearLayout parent, I item,
+                                   String up1, String up2, String up3, String type1, String type2, String type3, String sc1, String sc2, String sc3, int itemRes
+            , boolean hasPar1
+            , boolean hasPar2
+            , boolean hasPar3
+            , boolean hasBet1
+            , boolean hasBet2
+            , boolean hasBet3
+    ) {
+
+        View inflate1X2 = LayoutInflater.from(context).inflate(itemRes, null);
+        TextView up1_tv = inflate1X2.findViewById(R.id.up1_tv);
+        TextView down1_tv = inflate1X2.findViewById(R.id.down1_tv);
+        TextView up2_tv = inflate1X2.findViewById(R.id.up2_tv);
+        TextView down2_tv = inflate1X2.findViewById(R.id.down2_tv);
+        TextView up3_tv = inflate1X2.findViewById(R.id.up3_tv);
+        TextView down3_tv = inflate1X2.findViewById(R.id.down3_tv);
+        String isHomeGive = item.getIsHomeGive();
+        if (isHomeGive.equals("1")) {
+            up1_tv.setTextColor(ContextCompat.getColor(context, R.color.red));
+            down1_tv.setTextColor(ContextCompat.getColor(context, R.color.red));
+            up3_tv.setTextColor(ContextCompat.getColor(context, R.color.black_grey));
+            down3_tv.setTextColor(ContextCompat.getColor(context, R.color.black_grey));
+        } else {
+            up1_tv.setTextColor(ContextCompat.getColor(context, R.color.black_grey));
+            down1_tv.setTextColor(ContextCompat.getColor(context, R.color.black_grey));
+            up3_tv.setTextColor(ContextCompat.getColor(context, R.color.red));
+            down3_tv.setTextColor(ContextCompat.getColor(context, R.color.red));
+        }
+        setTextValue(up1_tv, up1);
+        setTextValue(up2_tv, up2);
+        setTextValue(up3_tv, up3);
+        setTextValueClick(down1_tv, f1, type1, oid, item, isHalf, sc1, hasPar1, hasBet1);
+        setTextValueClick(down2_tv, x, type2, oid, item, isHalf, sc2, hasPar2, hasBet2);
+        setTextValueClick(down3_tv, f2, type3, oid, item, isHalf, sc3, hasPar3, hasBet3);
+        parent.addView(inflate1X2);
+    }
+
     private void addAddition(String f1, String x, String f2, String oid, boolean isHalf, LinearLayout parent, I item,
                              String up1, String up2, String up3, String type1, String type2, String type3, String sc1, String sc2, String sc3, int itemRes
             , boolean hasPar1
@@ -1085,8 +1129,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setUOdds(fTodds.getUnderOdds());
             ballInfo.setIsHomeGive(fTodds.getIsHomeGive().equals("True") ? "1" : "0");
             ballInfo.setHasPar(fTodds.getHasPar() != null && fTodds.getHasPar().equals("True") ? "1" : "0");
-
-
+            ballInfo.setHdpOdds(fTodds.getHdpOdds());
+            ballInfo.setOUOdds(fTodds.getOUOdds());
+            ballInfo.setOU(fTodds.getOU());
+            ballInfo.setRunHomeScore(fTodds.getRunHomeScore());
+            ballInfo.setRunAwayScore(fTodds.getRunAwayScore());
         } else {
             ballInfo.setSocOddsId("");
             ballInfo.setHdp("");
@@ -1096,6 +1143,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOOdds("");
             ballInfo.setUOdds("");
             ballInfo.setHasPar("");
+            ballInfo.setHdpOdds("");
+            ballInfo.setOU("");
+            ballInfo.setOUOdds("");
+            ballInfo.setRunHomeScore("");
+            ballInfo.setRunAwayScore("");
         }
         if (fHodds != null) {
             ballInfo.setSocOddsId_FH(fHodds.getSocOddsId());
@@ -1107,6 +1159,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setUOdds_FH(fHodds.getUnderOdds());
             ballInfo.setIsHomeGive_FH(fHodds.getIsHomeGive().equals("True") ? "1" : "0");
             ballInfo.setHasPar_FH(fHodds.getHasPar() != null && fHodds.getHasPar().equals("True") ? "1" : "0");
+            ballInfo.setHdpOdds_FH(fHodds.getHdpOdds());
+            ballInfo.setOU_FH(fHodds.getOU());
+            ballInfo.setOUOdds_FH(fHodds.getOUOdds());
+            ballInfo.setRunHomeScore_FH(fHodds.getRunHomeScore());
+            ballInfo.setRunAwayScore_FH(fHodds.getRunAwayScore());
         } else {
             ballInfo.setSocOddsId_FH("");
             ballInfo.setHdp_FH("");
@@ -1116,6 +1173,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOOdds_FH("");
             ballInfo.setUOdds_FH("");
             ballInfo.setHasPar_FH("");
+            ballInfo.setHdpOdds_FH("");
+            ballInfo.setOU_FH("");
+            ballInfo.setRunHomeScore_FH("");
+            ballInfo.setRunAwayScore_FH("");
+            ballInfo.setOUOdds_FH("");
         }
         setUpDownOdds(true, (I) ballInfo, false, "0", ballInfo.getHasHdp(), ballInfo.getHdp(), home_tv, away_tv, home_odd_tv, away_odd_tv, ballInfo.getHOdds(), ballInfo.getAOdds(), "home", "away", 1, null, null);
         setUpDownOdds(true, (I) ballInfo, true, "0", ballInfo.getHasHdp_FH(), ballInfo.getHdp_FH(), hf_home_tv, hf_away_tv, hf_home_odd_tv, hf_away_odd_tv, ballInfo.getHOdds_FH(), ballInfo.getAOdds_FH(), "home", "away", 1, null, null);
@@ -1155,16 +1217,16 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         vp.setVisibility(View.VISIBLE);
         ViewHolder holder = new ViewHolder(vp);
 //        Log.d(TAG, "sid: " + item.getSocOddsId() + ",item.isOverBigger:" + item.isOverBigger + ",item.isHomeBigger:" + item.isHomeBigger + ",item.isAwayBigger:" + item.isAwayBigger + ",item.isUnderBigger:" + item.isUnderBigger);
-        setUpDownOdds(hapVisiable, item, isFh, isHdpNew, hasHdp, hdp, holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv, holder.viewpagerMatchVisitHdpoddsTv
+        setUpDownOddsForOut(hapVisiable, item, isFh, isHdpNew, hasHdp, hdp, holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv, holder.viewpagerMatchVisitHdpoddsTv
                 , homeHdpOdds, awayHdpOdds, homeOddsType, awayOddsType, 0, holder.imgUpDownUp1, holder.imgUpDownDown1);
-        setUpDownOdds(ouVisiable, item, isFh, isOUNew, hasOU, ou, holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv, holder.viewpagerMatchUnderoddsTv
+        setUpDownOddsForOut(ouVisiable, item, isFh, isOUNew, hasOU, ou, holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv, holder.viewpagerMatchUnderoddsTv
                 , overOdds, underOdds, overOddsType, underOddsType, 0, holder.imgUpDownUp2, holder.imgUpDownDown2);
     /*    setUpDownOdds(oeVisiable, item, isFh, isOENew, hasOE, "", holder.viewpagerOddLabelTv, holder.viewpagerEvenLabelTv, holder.viewpagerMatchOddTv, holder.viewpagerMatchEvenTv
                 , OddOdds, EvenOdds, OddOddsType, EvenOddsType);*/
         return vp;
     }
 
-    public void setUpDownOdds(boolean visiableUpDown, I item, boolean isFh, String isNew, String hasUpDown, String upDown, TextView upTextTv, TextView downTextTv, TextView upOddsTv, TextView downOddsTv, String upOdds, String downOdds, String upType, String downType, int visibilityType, ImageView imgUpDown1, ImageView imgUpDown2) {
+    public void setUpDownOddsForOut(boolean visiableUpDown, I item, boolean isFh, String isNew, String hasUpDown, String upDown, TextView upTextTv, TextView downTextTv, TextView upOddsTv, TextView downOddsTv, String upOdds, String downOdds, String upType, String downType, int visibilityType, ImageView imgUpDown1, ImageView imgUpDown2) {
 
         if (visiableUpDown) {
             upTextTv.setVisibility(View.VISIBLE);
@@ -1175,6 +1237,214 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             String downStr = "";
             if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.3 || Math.abs(Float.valueOf(downOdds)) < 0.3) {
                 hasUpDown = "0";
+            }
+            int resUp = R.mipmap.arrow_up_update_green;
+            int resDown = R.mipmap.arrow_up_update_green;
+            switch (upType) {
+                case "home":
+                case "mmhome":
+                    if (upDown.isEmpty()) {
+                        hasUpDown = "0";
+                    }
+                    String hdpS = upDown;
+                    if (!upDown.equals("0"))
+                        hdpS = "-" + upDown;
+                    if (item.getIsHomeGive().equals("1")) {
+                        upStr = hdpS;
+                        downStr = "";
+                    } else {
+                        upStr = "";
+                        downStr = hdpS;
+                    }
+                    upTextTv.setTextColor(Color.RED);
+                    resUp = getResUpdate(item.isHomeBigger, isFh);
+
+                    break;
+                case "over":
+                case "mmover":
+                    if (upDown.isEmpty() || upDown.equals("0")) {
+                        hasUpDown = "0";
+                    }
+                    String ouf = upDown;
+                    upStr = ouf;
+                    downStr = "";
+                    upTextTv.setTextColor(Color.GRAY);
+                    resUp = getResUpdate(item.isOverBigger, isFh);
+                    break;
+
+                case "1":
+                    upStr = "1";
+                    downStr = "2";
+                    break;
+                case "odd":
+                    upStr = context.getString(R.string.ODD);
+                    downStr = context.getString(R.string.EVEN);
+                    break;
+
+            }
+            switch (downType) {
+                case "away":
+                case "mmaway":
+                    downTextTv.setTextColor(Color.RED);
+                    resDown = getResUpdate(item.isAwayBigger, isFh);
+                    break;
+                case "under":
+                case "mmunder":
+                    downTextTv.setTextColor(Color.GRAY);
+                    resDown = getResUpdate(item.isUnderBigger, isFh);
+                    break;
+            }
+            View downParent = (View) downOddsTv.getParent();
+            View upParent = (View) upOddsTv.getParent();
+            if (hasUpDown.equals("0") || hasUpDown.equals("")) {
+                upTextTv.setText("");
+                upOddsTv.setText("");
+                downTextTv.setText("");
+                downOddsTv.setText("");
+                if (visibilityType == 0) {
+                    downParent.setVisibility(View.INVISIBLE);
+                    upParent.setVisibility(View.INVISIBLE);
+                }
+            } else {
+                if (visibilityType == 0) {
+                    downParent.setVisibility(View.VISIBLE);
+                    upParent.setVisibility(View.VISIBLE);
+                }
+                upTextTv.setText(upStr);
+                if (TextUtils.isEmpty(downStr) && downType.contains("under")) {
+                    downTextTv.setText(upStr);
+                } else {
+                    downTextTv.setText(downStr);
+                }
+                boolean isAnimation = false;
+                if (isNew != null && isNew.equals("1")) {
+                    isAnimation = true;
+                }
+                setValue(item, upOddsTv, upOdds, false, upType, isFh, R.drawable.green_trans_shadow_top, true, 0, imgUpDown1);
+                setValue(item, upTextTv, upOdds, isAnimation, upType, isFh, R.drawable.green_trans_shadow_top, false, resUp, imgUpDown1);
+                setValue(item, downOddsTv, downOdds, false, downType, isFh, R.drawable.green_trans_shadow_bottom, true, 0, imgUpDown2);
+                setValue(item, downTextTv, downOdds, isAnimation, downType, isFh, R.drawable.green_trans_shadow_bottom, false, resDown, imgUpDown2);
+            }
+        } else {
+            upTextTv.setVisibility(View.GONE);
+            upOddsTv.setVisibility(View.GONE);
+            downTextTv.setVisibility(View.GONE);
+            downOddsTv.setVisibility(View.GONE);
+        }
+    }
+
+    public boolean getAddHDPVisible(String upOdds, String downOdds, String hdpOdds) {
+        boolean b = true;
+        if (TextUtils.isEmpty(upOdds)) {
+            return false;
+        }
+        if (TextUtils.isEmpty(downOdds)) {
+            return false;
+        }
+        String type = ((SportActivity) context).getOddsType().getType();
+        double odds1 = Double.parseDouble(upOdds);
+        double odds2 = Double.parseDouble(downOdds);
+        if (type.equals("EU")) {
+            odds1 = odds1 - 10;
+            odds2 = odds2 - 10;
+        }
+        if (hdpOdds.equals("0")) {
+            b = false;
+        }
+        odds1 = odds1 / 10;
+        odds2 = odds2 / 10;
+        if (odds1 == 0 || odds2 == 0) {
+            b = false;
+        }
+        if (odds1 > 1 || odds1 < -1) {
+            odds1 = -1 / odds1;
+        }
+        if (odds2 > 1 || odds2 < -1) {
+            odds2 = -1 / odds2;
+        }
+        if (odds1 < 0 && odds2 < 0) {
+            b = false;
+        }
+        if (odds1 < 0 && odds2 > 0) {
+            if (Math.abs(odds1) < odds2) {
+                b = false;
+            }
+        } else if (odds2 < 0 && odds1 > 0) {
+            if (Math.abs(odds2) < odds1) {
+                b = false;
+            }
+        }
+        if (odds1 > 0 && odds1 < 0.3) {
+            b = false;
+        }
+        if (odds2 > 0 && odds2 < 0.3) {
+            b = false;
+        }
+        return b;
+    }
+
+    private boolean getAddOUVisible(String ou, String RunHomeScore, String RunAwayScore) {
+        if (TextUtils.isEmpty(ou) || TextUtils.isEmpty(RunAwayScore) || TextUtils.isEmpty(RunHomeScore)) {
+            return false;
+        }
+        double dOu = Double.parseDouble(ou);
+        if (dOu < 0) {
+            return false;
+        } else {
+            return (dOu - (Double.parseDouble(RunHomeScore) + Double.parseDouble(RunAwayScore))) >= 0.5;
+        }
+    }
+
+
+    public void setUpDownOdds(boolean visiableUpDown, I item, boolean isFh, String isNew, String hasUpDown, String upDown, TextView upTextTv, TextView downTextTv, TextView upOddsTv, TextView downOddsTv, String upOdds, String downOdds, String upType, String downType, int visibilityType, ImageView imgUpDown1, ImageView imgUpDown2) {
+
+        if (visiableUpDown) {
+            upTextTv.setVisibility(View.VISIBLE);
+            upOddsTv.setVisibility(View.VISIBLE);
+            downTextTv.setVisibility(View.VISIBLE);
+            downOddsTv.setVisibility(View.VISIBLE);
+            String upStr = "";
+            String downStr = "";
+            if (upType.equals("home") && downType.equals("away")) {
+                String hdpOdds;
+                if (isFh) {
+                    hdpOdds = item.getHdpOdds_FH();
+                } else {
+                    hdpOdds = item.getHdpOdds();
+                }
+                boolean isHDPVisible = getAddHDPVisible(upOdds, downOdds, hdpOdds);
+                if (isHDPVisible) {
+                    hasUpDown = "1";
+                } else {
+                    hasUpDown = "0";
+                }
+            } else if (upType.equals("over") && downType.equals("under")) {
+                String hdpOdds;
+                String ou;
+                String RunHomeScore;
+                String RunAwayScore;
+                if (isFh) {
+                    ou = item.getOU_FH();
+                    hdpOdds = item.getOUOdds_FH();
+                    RunHomeScore = item.getRunHomeScore_FH();
+                    RunAwayScore = item.getRunAwayScore_FH();
+                } else {
+                    ou = item.getOU();
+                    hdpOdds = item.getOUOdds();
+                    RunHomeScore = item.getRunHomeScore();
+                    RunAwayScore = item.getRunAwayScore();
+                }
+                boolean isHDPVisible = getAddHDPVisible(upOdds, downOdds, hdpOdds);
+                boolean isOUVisible = getAddOUVisible(ou, RunHomeScore, RunAwayScore);
+                if (isHDPVisible && isOUVisible) {
+                    hasUpDown = "1";
+                } else {
+                    hasUpDown = "0";
+                }
+            } else {
+                if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.3 || Math.abs(Float.valueOf(downOdds)) < 0.3) {
+                    hasUpDown = "0";
+                }
             }
             int resUp = R.mipmap.arrow_up_update_green;
             int resDown = R.mipmap.arrow_up_update_green;

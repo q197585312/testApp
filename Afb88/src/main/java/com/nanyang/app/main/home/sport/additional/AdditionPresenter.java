@@ -69,13 +69,12 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
 
         @Override
         public void run() {
-            doRetrofitApiOnUiThread(getService(ApiService.class).getAdditionData(getUrl()), new BaseConsumer<AddMBean>(baseContext) {
+            doRetrofitApiOnUiThread(getService(ApiService.class).getAdditionData(getUrl()), new BaseConsumer<String>(baseContext) {
                 @Override
-                protected void onBaseGetData(AddMBean data) throws JSONException {
-                 /*   Gson gson = new Gson();
-                    LogUtil.d("Addition", "-------" + data);
-                    AdditionBean additionBean = gson.fromJson(data, AdditionBean.class);*/
-                    AdditionPresenter.this.baseContext.onAddition(data, bean);
+                protected void onBaseGetData(String data) throws JSONException {
+                    Gson gson = new Gson();
+                    AddMBean addMBean = gson.fromJson(data, AddMBean.class);
+                    AdditionPresenter.this.baseContext.onAddition(addMBean, bean);
                     baseContext.hideLoadingDialog();
                 }
 

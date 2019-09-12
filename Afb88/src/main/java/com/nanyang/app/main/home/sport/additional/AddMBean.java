@@ -2943,12 +2943,48 @@ public class AddMBean implements Serializable {
         private String Over;
         private String Under;
         private String OU;
+        private String OUOdds;
+        private String HdpOdds;
         private String OU_visible;
         private String OverOdds;
         private String UnderOdds;
         private String IsHomeGive;
         private String IsRun;
         private String HasPar;
+        private String RunHomeScore;
+        private String RunAwayScore;
+
+        public String getOUOdds() {
+            return OUOdds;
+        }
+
+        public void setOUOdds(String OUOdds) {
+            this.OUOdds = OUOdds;
+        }
+
+        public String getRunHomeScore() {
+            return RunHomeScore;
+        }
+
+        public void setRunHomeScore(String runHomeScore) {
+            RunHomeScore = runHomeScore;
+        }
+
+        public String getRunAwayScore() {
+            return RunAwayScore;
+        }
+
+        public void setRunAwayScore(String runAwayScore) {
+            RunAwayScore = runAwayScore;
+        }
+
+        public String getHdpOdds() {
+            return HdpOdds;
+        }
+
+        public void setHdpOdds(String hdpOdds) {
+            HdpOdds = hdpOdds;
+        }
 
         public String getSocOddsId() {
             return SocOddsId;
