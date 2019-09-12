@@ -1374,10 +1374,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 b = false;
             }
         }
-        if (odds1 > 0 && odds1 < 0.3) {
+        if (odds1 > 0 && odds1 < 0.03) {
             b = false;
         }
-        if (odds2 > 0 && odds2 < 0.3) {
+        if (odds2 > 0 && odds2 < 0.03) {
             b = false;
         }
         return b;
