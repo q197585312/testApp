@@ -5,7 +5,6 @@ import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -565,12 +564,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Home ", "Over ", "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU()
                                 , mModdsBean.getHasHdp().equals("True") && (!StringUtils.isNull(mModdsBean.getHDPH()) || !StringUtils.isNull(mModdsBean.getHDPA()))
-                                , mModdsBean.getHasOU().equals("True")
+                                , mModdsBean.getHasOU().equals("True") && (!StringUtils.isNull(mModdsBean.getOU()))
                         );
                         addAdditionMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), true, parent, item,
                                 "Away ", "Under ", "mmaway", "mmunder", mModdsBean.getHDPA(), ""
                                 , mModdsBean.getHasHdp().equals("True") && (!StringUtils.isNull(mModdsBean.getHDPH()) || !StringUtils.isNull(mModdsBean.getHDPA()))
-                                , mModdsBean.getHasOU().equals("True")
+                                , mModdsBean.getHasOU().equals("True") && (!StringUtils.isNull( mModdsBean.getOU()))
                         );
                     }
                 }
