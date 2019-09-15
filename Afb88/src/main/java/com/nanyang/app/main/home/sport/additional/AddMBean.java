@@ -312,26 +312,33 @@ public class AddMBean implements Serializable {
     private String HasPar;
     @SerializedName("1IsInetBet")
     private String value1IsInetBet;
+    private String F1_ishowOdds;
     private String F1;
     private String XIsInetBet;
+    private String FX_ishowOdds;
     private String FX;
     @SerializedName("2IsInetBet")
     private String value2IsInetBet;
+    private String F2_ishowOdds;
     private String F2;
     private String FDB_CNT;
     private String FDB_SocOddsId;
     private String FDB_IsRun;
     private String FHDIsInetBet;
+    private String FHD_ishowOdds;
     private String FHD;
     private String FHAIsInetBet;
+    private String FHA_ishowOdds;
     private String FHA;
     private String FDAIsInetBet;
+    private String FDA_ishowOdds;
     private String FDA;
     private String FOE_CNT;
     private String FOE_SocOddsId;
     private String FOE_IsRun;
     private String FOE_HasPar;
     private String FOddIsInetBet;
+    private String FOE_ishowOdds;
     private String FOdd;
     private String FEvenIsInetBet;
     private String FEven;
@@ -340,158 +347,225 @@ public class AddMBean implements Serializable {
     private String H1X2_IsRun;
     private String HHasPar;
     private String H1IsInetBet;
+    private String H1_ishowOdds;
     private String H1;
     private String HXIsInetBet;
+    private String HX_ishowOdds;
     private String HX;
     private String H2IsInetBet;
+    private String H2_ishowOdds;
     private String H2;
     private String HDB_CNT;
     private String HDB_SocOddsId;
     private String HDB_IsRun;
     private String HHDIsInetBet;
+    private String HHD_ishowOdds;
     private String HHD;
     private String HHAIsInetBet;
+    private String HHA_ishowOdds;
     private String HHA;
     private String HDAIsInetBet;
+    private String HDA_ishowOdds;
     private String HDA;
     private String HOE_CNT;
     private String FCS_CNT;
     private String FCS_SocOddsId;
     private String FCS_IsRun;
     private String G11IsInetBet;
+    private String G11_ishowOdds;
     private String G11;
     private String G17IsInetBet;
+    private String G17_ishowOdds;
     private String G17;
     private String G18IsInetBet;
+    private String G18_ishowOdds;
     private String G18;
     private String G20IsInetBet;
+    private String G20_ishowOdds;
     private String G20;
     private String G23IsInetBet;
+    private String G23_ishowOdds;
     private String G23;
     private String G1IsInetBet;
+    private String G1_ishowOdds;
     private String G1;
     private String G12IsInetBet;
+    private String G12_ishowOdds;
     private String G12;
     private String G19IsInetBet;
+    private String G19_ishowOdds;
     private String G19;
     private String G21IsInetBet;
+    private String G21_ishowOdds;
     private String G21;
     private String G24IsInetBet;
+    private String G24_ishowOdds;
     private String G24;
     private String G2IsInetBet;
+    private String G2_ishowOdds;
     private String G2;
     private String G3IsInetBet;
+    private String G3_ishowOdds;
     private String G3;
     private String G13IsInetBet;
+    private String G13_ishowOdds;
     private String G13;
     private String G22IsInetBet;
+    private String G22_ishowOdds;
     private String G22;
     private String G25IsInetBet;
+    private String G25_ishowOdds;
     private String G25;
     private String G4IsInetBet;
+    private String G4_ishowOdds;
     private String G4;
     private String G5IsInetBet;
+    private String G5_ishowOdds;
     private String G5;
     private String G6IsInetBet;
+    private String G6_ishowOdds;
     private String G6;
     private String G14IsInetBet;
+    private String G14_ishowOdds;
     private String G14;
     private String G26IsInetBet;
+    private String G26_ishowOdds;
     private String G26;
     private String G7IsInetBet;
+    private String G7_ishowOdds;
     private String G7;
     private String G8IsInetBet;
+    private String G8_ishowOdds;
     private String G8;
     private String G9IsInetBet;
+    private String G9_ishowOdds;
     private String G9;
     private String G10IsInetBet;
+    private String G10_ishowOdds;
     private String G10;
     private String G15IsInetBet;
+    private String G15_ishowOdds;
     private String G15;
     private String G16IsInetBet;
+    private String G16_ishowOdds;
     private String G16;
     private String HCS_CNT;
     private String HCS_SocOddsId;
     private String HCS_IsRun;
     private String HG11IsInetBet;
+    private String HG11_ishowOdds;
     private String HG11;
     private String HG17IsInetBet;
+    private String HG17_ishowOdds;
     private String HG17;
     private String HG18IsInetBet;
+    private String HG18_ishowOdds;
     private String HG18;
     private String HG20IsInetBet;
+    private String HG20_ishowOdds;
     private String HG20;
     private String HG1IsInetBet;
+    private String HG1_ishowOdds;
     private String HG1;
     private String HG12IsInetBet;
+    private String HG12_ishowOdds;
     private String HG12;
     private String HG19IsInetBet;
+    private String HG19_ishowOdds;
     private String HG19;
     private String HG21IsInetBet;
+    private String HG21_ishowOdds;
     private String HG21;
     private String HG2IsInetBet;
+    private String HG2_ishowOdds;
     private String HG2;
     private String HG3IsInetBet;
+    private String HG3_ishowOdds;
     private String HG3;
     private String HG13IsInetBet;
+    private String HG13_ishowOdds;
     private String HG13;
     private String HG22IsInetBet;
+    private String HG22_ishowOdds;
     private String HG22;
     private String HG4IsInetBet;
+    private String HG4_ishowOdds;
     private String HG4;
     private String HG5IsInetBet;
+    private String HG5_ishowOdds;
     private String HG5;
     private String HG6IsInetBet;
+    private String HG6_ishowOdds;
     private String HG6;
     private String HG14IsInetBet;
+    private String HG14_ishowOdds;
     private String HG14;
     private String HG16IsInetBet;
+    private String HG16_ishowOdds;
     private String HG16;
     private String ISRUN;
     private String HTFT_CNT;
     private String HTFT_SocOddsId;
     private String HTFT_IsRun;
     private String HHIsInetBet;
+    private String HH_ishowOdds;
     private String HH;
     private String HDIsInetBet;
+    private String HD_ishowOdds;
     private String HD;
     private String HAIsInetBet;
+    private String HA_ishowOdds;
     private String HA;
     private String DHIsInetBet;
+    private String DH_ishowOdds;
     private String DH;
     private String DDIsInetBet;
+    private String DD_ishowOdds;
     private String DD;
     private String DAIsInetBet;
+    private String DA_ishowOdds;
     private String DA;
     private String AHIsInetBet;
+    private String AH_ishowOdds;
     private String AH;
     private String ADIsInetBet;
+    private String AD_ishowOdds;
     private String AD;
     private String AAIsInetBet;
+    private String AA_ishowOdds;
     private String AA;
     private String FGLG_CNT;
     private String FGLG_SocOddsId;
     private String FGLG_IsRun;
     private String HFGIsInetBet;
+    private String HFG_ishowOdds;
     private String HFG;
     private String HLGIsInetBet;
+    private String HLG_ishowOdds;
     private String HLG;
     private String AFGIsInetBet;
+    private String AFG_ishowOdds;
     private String AFG;
     private String ALGIsInetBet;
+    private String ALG_ishowOdds;
     private String ALG;
     private String NGIsInetBet;
+    private String NG_ishowOdds;
     private String NG;
     private String TG_CNT;
     private String TG_SocOddsId;
     private String TG_IsRun;
     private String Goal1IsInetBet;
+    private String Goal1_ishowOdds;
     private String Goal1;
     private String Goal2IsInetBet;
+    private String Goal2_ishowOdds;
     private String Goal2;
     private String Goal3IsInetBet;
+    private String Goal3_ishowOdds;
     private String Goal3;
     private String Goal4IsInetBet;
+    private String Goal4_ishowOdds;
     private String Goal4;
     private String HTTG_CNT;
     private String HTTG_SocOddsId;
@@ -504,10 +578,12 @@ public class AddMBean implements Serializable {
     private String HTHDP1;
     private String HTHDP2;
     private String FHOOddsIsInetBet;
+    private String HTTG_ishowFTOdds;
     private String FHOOdds;
     private String HHOOddsIsInetBet;
     private String HHOOdds;
     private String FHUOddsIsInetBet;
+    private String HTTG_ishowFHOdds;
     private String FHUOdds;
     private String HHUOddsIsInetBet;
     private String HHUOdds;
@@ -522,10 +598,12 @@ public class AddMBean implements Serializable {
     private String ATHDP1;
     private String ATHDP2;
     private String FAOOddsIsInetBet;
+    private String ATTG_ishowFTOdds;
     private String FAOOdds;
     private String HAOOddsIsInetBet;
     private String HAOOdds;
     private String FAUOddsIsInetBet;
+    private String ATTG_ishowFHOdds;
     private String FAUOdds;
     private String HAUOddsIsInetBet;
     private String HAUOdds;
@@ -536,6 +614,7 @@ public class AddMBean implements Serializable {
     private String MG15_IsHomeGive;
     private String FT15InfoOU;
     private String FT15InfoOUIsInetBet;
+    private String MG15_ishowOdds;
     private String FT15InfoO;
     private String FT15InfoUIsInetBet;
     private String FT15InfoU;
@@ -546,6 +625,7 @@ public class AddMBean implements Serializable {
     private String MG30_IsHomeGive;
     private String FT30InfoOU;
     private String FT30InfoOIsInetBet;
+    private String MG30_ishowOdds;
     private String FT30InfoO;
     private String FT30InfoUIsInetBet;
     private String FT30InfoU;
@@ -557,6 +637,7 @@ public class AddMBean implements Serializable {
     private String MG60_IsHomeGive;
     private String FT60InfoOU;
     private String FT60InfoOIsInetBet;
+    private String MG60_ishowOdds;
     private String FT60InfoO;
     private String FT60InfoUIsInetBet;
     private String FT60InfoU;
@@ -569,6 +650,7 @@ public class AddMBean implements Serializable {
     private String FT75InfoOIsInetBet;
     private String FT75InfoO;
     private String FT75InfoUIsInetBet;
+    private String MG75_ishowOdds;
     private String FT75InfoU;
     private String _count;
     private String AccType;
@@ -644,9 +726,11 @@ public class AddMBean implements Serializable {
     private String MG45_SocOddsId;
     private String FT45InfoOU;
     private String HOddIsInetBet;
+    private String HOE_ishowOdds;
     private String HEvenIsInetBet;
     private String FT45InfoOIsInetBet;
     private String FT45InfoUIsInetBet;
+    private String MG45_ishowOdds;
 
     public String getModuleTitle() {
         return ModuleTitle;
@@ -2930,6 +3014,678 @@ public class AddMBean implements Serializable {
 
     public String getFT45InfoUIsInetBet() {
         return FT45InfoUIsInetBet;
+    }
+
+    public String getF1_ishowOdds() {
+        return F1_ishowOdds;
+    }
+
+    public void setF1_ishowOdds(String f1_ishowOdds) {
+        F1_ishowOdds = f1_ishowOdds;
+    }
+
+    public String getFX_ishowOdds() {
+        return FX_ishowOdds;
+    }
+
+    public void setFX_ishowOdds(String FX_ishowOdds) {
+        this.FX_ishowOdds = FX_ishowOdds;
+    }
+
+    public String getF2_ishowOdds() {
+        return F2_ishowOdds;
+    }
+
+    public void setF2_ishowOdds(String f2_ishowOdds) {
+        F2_ishowOdds = f2_ishowOdds;
+    }
+
+    public String getH1_ishowOdds() {
+        return H1_ishowOdds;
+    }
+
+    public void setH1_ishowOdds(String h1_ishowOdds) {
+        H1_ishowOdds = h1_ishowOdds;
+    }
+
+    public String getHX_ishowOdds() {
+        return HX_ishowOdds;
+    }
+
+    public void setHX_ishowOdds(String HX_ishowOdds) {
+        this.HX_ishowOdds = HX_ishowOdds;
+    }
+
+    public String getH2_ishowOdds() {
+        return H2_ishowOdds;
+    }
+
+    public void setH2_ishowOdds(String h2_ishowOdds) {
+        H2_ishowOdds = h2_ishowOdds;
+    }
+
+    public String getG11_ishowOdds() {
+        return G11_ishowOdds;
+    }
+
+    public void setG11_ishowOdds(String g11_ishowOdds) {
+        G11_ishowOdds = g11_ishowOdds;
+    }
+
+    public String getG17_ishowOdds() {
+        return G17_ishowOdds;
+    }
+
+    public void setG17_ishowOdds(String g17_ishowOdds) {
+        G17_ishowOdds = g17_ishowOdds;
+    }
+
+    public String getG1_ishowOdds() {
+        return G1_ishowOdds;
+    }
+
+    public void setG1_ishowOdds(String g1_ishowOdds) {
+        G1_ishowOdds = g1_ishowOdds;
+    }
+
+    public String getG18_ishowOdds() {
+        return G18_ishowOdds;
+    }
+
+    public void setG18_ishowOdds(String g18_ishowOdds) {
+        G18_ishowOdds = g18_ishowOdds;
+    }
+
+    public String getG12_ishowOdds() {
+        return G12_ishowOdds;
+    }
+
+    public void setG12_ishowOdds(String g12_ishowOdds) {
+        G12_ishowOdds = g12_ishowOdds;
+    }
+
+    public String getG2_ishowOdds() {
+        return G2_ishowOdds;
+    }
+
+    public void setG2_ishowOdds(String g2_ishowOdds) {
+        G2_ishowOdds = g2_ishowOdds;
+    }
+
+    public String getG19_ishowOdds() {
+        return G19_ishowOdds;
+    }
+
+    public void setG19_ishowOdds(String g19_ishowOdds) {
+        G19_ishowOdds = g19_ishowOdds;
+    }
+
+    public String getG3_ishowOdds() {
+        return G3_ishowOdds;
+    }
+
+    public void setG3_ishowOdds(String g3_ishowOdds) {
+        G3_ishowOdds = g3_ishowOdds;
+    }
+
+    public String getG13_ishowOdds() {
+        return G13_ishowOdds;
+    }
+
+    public void setG13_ishowOdds(String g13_ishowOdds) {
+        G13_ishowOdds = g13_ishowOdds;
+    }
+
+    public String getG20_ishowOdds() {
+        return G20_ishowOdds;
+    }
+
+    public void setG20_ishowOdds(String g20_ishowOdds) {
+        G20_ishowOdds = g20_ishowOdds;
+    }
+
+    public String getG4_ishowOdds() {
+        return G4_ishowOdds;
+    }
+
+    public void setG4_ishowOdds(String g4_ishowOdds) {
+        G4_ishowOdds = g4_ishowOdds;
+    }
+
+    public String getG14_ishowOdds() {
+        return G14_ishowOdds;
+    }
+
+    public void setG14_ishowOdds(String g14_ishowOdds) {
+        G14_ishowOdds = g14_ishowOdds;
+    }
+
+    public String getG21_ishowOdds() {
+        return G21_ishowOdds;
+    }
+
+    public void setG21_ishowOdds(String g21_ishowOdds) {
+        G21_ishowOdds = g21_ishowOdds;
+    }
+
+    public String getG5_ishowOdds() {
+        return G5_ishowOdds;
+    }
+
+    public void setG5_ishowOdds(String g5_ishowOdds) {
+        G5_ishowOdds = g5_ishowOdds;
+    }
+
+    public String getG15_ishowOdds() {
+        return G15_ishowOdds;
+    }
+
+    public void setG15_ishowOdds(String g15_ishowOdds) {
+        G15_ishowOdds = g15_ishowOdds;
+    }
+
+    public String getG22_ishowOdds() {
+        return G22_ishowOdds;
+    }
+
+    public void setG22_ishowOdds(String g22_ishowOdds) {
+        G22_ishowOdds = g22_ishowOdds;
+    }
+
+    public String getG6_ishowOdds() {
+        return G6_ishowOdds;
+    }
+
+    public void setG6_ishowOdds(String g6_ishowOdds) {
+        G6_ishowOdds = g6_ishowOdds;
+    }
+
+    public String getG16_ishowOdds() {
+        return G16_ishowOdds;
+    }
+
+    public void setG16_ishowOdds(String g16_ishowOdds) {
+        G16_ishowOdds = g16_ishowOdds;
+    }
+
+    public String getG23_ishowOdds() {
+        return G23_ishowOdds;
+    }
+
+    public void setG23_ishowOdds(String g23_ishowOdds) {
+        G23_ishowOdds = g23_ishowOdds;
+    }
+
+    public String getG7_ishowOdds() {
+        return G7_ishowOdds;
+    }
+
+    public void setG7_ishowOdds(String g7_ishowOdds) {
+        G7_ishowOdds = g7_ishowOdds;
+    }
+
+    public String getG24_ishowOdds() {
+        return G24_ishowOdds;
+    }
+
+    public void setG24_ishowOdds(String g24_ishowOdds) {
+        G24_ishowOdds = g24_ishowOdds;
+    }
+
+    public String getG8_ishowOdds() {
+        return G8_ishowOdds;
+    }
+
+    public void setG8_ishowOdds(String g8_ishowOdds) {
+        G8_ishowOdds = g8_ishowOdds;
+    }
+
+    public String getG25_ishowOdds() {
+        return G25_ishowOdds;
+    }
+
+    public void setG25_ishowOdds(String g25_ishowOdds) {
+        G25_ishowOdds = g25_ishowOdds;
+    }
+
+    public String getG9_ishowOdds() {
+        return G9_ishowOdds;
+    }
+
+    public void setG9_ishowOdds(String g9_ishowOdds) {
+        G9_ishowOdds = g9_ishowOdds;
+    }
+
+    public String getG26_ishowOdds() {
+        return G26_ishowOdds;
+    }
+
+    public void setG26_ishowOdds(String g26_ishowOdds) {
+        G26_ishowOdds = g26_ishowOdds;
+    }
+
+    public String getG10_ishowOdds() {
+        return G10_ishowOdds;
+    }
+
+    public void setG10_ishowOdds(String g10_ishowOdds) {
+        G10_ishowOdds = g10_ishowOdds;
+    }
+
+    public String getHG11_ishowOdds() {
+        return HG11_ishowOdds;
+    }
+
+    public void setHG11_ishowOdds(String HG11_ishowOdds) {
+        this.HG11_ishowOdds = HG11_ishowOdds;
+    }
+
+    public String getHG17_ishowOdds() {
+        return HG17_ishowOdds;
+    }
+
+    public void setHG17_ishowOdds(String HG17_ishowOdds) {
+        this.HG17_ishowOdds = HG17_ishowOdds;
+    }
+
+    public String getHG1_ishowOdds() {
+        return HG1_ishowOdds;
+    }
+
+    public void setHG1_ishowOdds(String HG1_ishowOdds) {
+        this.HG1_ishowOdds = HG1_ishowOdds;
+    }
+
+    public String getHG18_ishowOdds() {
+        return HG18_ishowOdds;
+    }
+
+    public void setHG18_ishowOdds(String HG18_ishowOdds) {
+        this.HG18_ishowOdds = HG18_ishowOdds;
+    }
+
+    public String getHG12_ishowOdds() {
+        return HG12_ishowOdds;
+    }
+
+    public void setHG12_ishowOdds(String HG12_ishowOdds) {
+        this.HG12_ishowOdds = HG12_ishowOdds;
+    }
+
+    public String getHG2_ishowOdds() {
+        return HG2_ishowOdds;
+    }
+
+    public void setHG2_ishowOdds(String HG2_ishowOdds) {
+        this.HG2_ishowOdds = HG2_ishowOdds;
+    }
+
+    public String getHG19_ishowOdds() {
+        return HG19_ishowOdds;
+    }
+
+    public void setHG19_ishowOdds(String HG19_ishowOdds) {
+        this.HG19_ishowOdds = HG19_ishowOdds;
+    }
+
+    public String getHG3_ishowOdds() {
+        return HG3_ishowOdds;
+    }
+
+    public void setHG3_ishowOdds(String HG3_ishowOdds) {
+        this.HG3_ishowOdds = HG3_ishowOdds;
+    }
+
+    public String getHG13_ishowOdds() {
+        return HG13_ishowOdds;
+    }
+
+    public void setHG13_ishowOdds(String HG13_ishowOdds) {
+        this.HG13_ishowOdds = HG13_ishowOdds;
+    }
+
+    public String getHG20_ishowOdds() {
+        return HG20_ishowOdds;
+    }
+
+    public void setHG20_ishowOdds(String HG20_ishowOdds) {
+        this.HG20_ishowOdds = HG20_ishowOdds;
+    }
+
+    public String getHG4_ishowOdds() {
+        return HG4_ishowOdds;
+    }
+
+    public void setHG4_ishowOdds(String HG4_ishowOdds) {
+        this.HG4_ishowOdds = HG4_ishowOdds;
+    }
+
+    public String getHG14_ishowOdds() {
+        return HG14_ishowOdds;
+    }
+
+    public void setHG14_ishowOdds(String HG14_ishowOdds) {
+        this.HG14_ishowOdds = HG14_ishowOdds;
+    }
+
+    public String getHG21_ishowOdds() {
+        return HG21_ishowOdds;
+    }
+
+    public void setHG21_ishowOdds(String HG21_ishowOdds) {
+        this.HG21_ishowOdds = HG21_ishowOdds;
+    }
+
+    public String getHG5_ishowOdds() {
+        return HG5_ishowOdds;
+    }
+
+    public void setHG5_ishowOdds(String HG5_ishowOdds) {
+        this.HG5_ishowOdds = HG5_ishowOdds;
+    }
+
+    public String getHG16_ishowOdds() {
+        return HG16_ishowOdds;
+    }
+
+    public void setHG16_ishowOdds(String HG16_ishowOdds) {
+        this.HG16_ishowOdds = HG16_ishowOdds;
+    }
+
+    public String getHG22_ishowOdds() {
+        return HG22_ishowOdds;
+    }
+
+    public void setHG22_ishowOdds(String HG22_ishowOdds) {
+        this.HG22_ishowOdds = HG22_ishowOdds;
+    }
+
+    public String getHG6_ishowOdds() {
+        return HG6_ishowOdds;
+    }
+
+    public void setHG6_ishowOdds(String HG6_ishowOdds) {
+        this.HG6_ishowOdds = HG6_ishowOdds;
+    }
+
+    public String getFHD_ishowOdds() {
+        return FHD_ishowOdds;
+    }
+
+    public void setFHD_ishowOdds(String FHD_ishowOdds) {
+        this.FHD_ishowOdds = FHD_ishowOdds;
+    }
+
+    public String getFHA_ishowOdds() {
+        return FHA_ishowOdds;
+    }
+
+    public void setFHA_ishowOdds(String FHA_ishowOdds) {
+        this.FHA_ishowOdds = FHA_ishowOdds;
+    }
+
+    public String getFDA_ishowOdds() {
+        return FDA_ishowOdds;
+    }
+
+    public void setFDA_ishowOdds(String FDA_ishowOdds) {
+        this.FDA_ishowOdds = FDA_ishowOdds;
+    }
+
+    public String getHHD_ishowOdds() {
+        return HHD_ishowOdds;
+    }
+
+    public void setHHD_ishowOdds(String HHD_ishowOdds) {
+        this.HHD_ishowOdds = HHD_ishowOdds;
+    }
+
+    public String getHHA_ishowOdds() {
+        return HHA_ishowOdds;
+    }
+
+    public void setHHA_ishowOdds(String HHA_ishowOdds) {
+        this.HHA_ishowOdds = HHA_ishowOdds;
+    }
+
+    public String getHDA_ishowOdds() {
+        return HDA_ishowOdds;
+    }
+
+    public void setHDA_ishowOdds(String HDA_ishowOdds) {
+        this.HDA_ishowOdds = HDA_ishowOdds;
+    }
+
+    public String getHH_ishowOdds() {
+        return HH_ishowOdds;
+    }
+
+    public void setHH_ishowOdds(String HH_ishowOdds) {
+        this.HH_ishowOdds = HH_ishowOdds;
+    }
+
+    public String getHD_ishowOdds() {
+        return HD_ishowOdds;
+    }
+
+    public void setHD_ishowOdds(String HD_ishowOdds) {
+        this.HD_ishowOdds = HD_ishowOdds;
+    }
+
+    public String getHA_ishowOdds() {
+        return HA_ishowOdds;
+    }
+
+    public void setHA_ishowOdds(String HA_ishowOdds) {
+        this.HA_ishowOdds = HA_ishowOdds;
+    }
+
+    public String getDH_ishowOdds() {
+        return DH_ishowOdds;
+    }
+
+    public void setDH_ishowOdds(String DH_ishowOdds) {
+        this.DH_ishowOdds = DH_ishowOdds;
+    }
+
+    public String getDD_ishowOdds() {
+        return DD_ishowOdds;
+    }
+
+    public void setDD_ishowOdds(String DD_ishowOdds) {
+        this.DD_ishowOdds = DD_ishowOdds;
+    }
+
+    public String getDA_ishowOdds() {
+        return DA_ishowOdds;
+    }
+
+    public void setDA_ishowOdds(String DA_ishowOdds) {
+        this.DA_ishowOdds = DA_ishowOdds;
+    }
+
+    public String getAH_ishowOdds() {
+        return AH_ishowOdds;
+    }
+
+    public void setAH_ishowOdds(String AH_ishowOdds) {
+        this.AH_ishowOdds = AH_ishowOdds;
+    }
+
+    public String getAD_ishowOdds() {
+        return AD_ishowOdds;
+    }
+
+    public void setAD_ishowOdds(String AD_ishowOdds) {
+        this.AD_ishowOdds = AD_ishowOdds;
+    }
+
+    public String getAA_ishowOdds() {
+        return AA_ishowOdds;
+    }
+
+    public void setAA_ishowOdds(String AA_ishowOdds) {
+        this.AA_ishowOdds = AA_ishowOdds;
+    }
+
+    public String getHFG_ishowOdds() {
+        return HFG_ishowOdds;
+    }
+
+    public void setHFG_ishowOdds(String HFG_ishowOdds) {
+        this.HFG_ishowOdds = HFG_ishowOdds;
+    }
+
+    public String getAFG_ishowOdds() {
+        return AFG_ishowOdds;
+    }
+
+    public void setAFG_ishowOdds(String AFG_ishowOdds) {
+        this.AFG_ishowOdds = AFG_ishowOdds;
+    }
+
+    public String getNG_ishowOdds() {
+        return NG_ishowOdds;
+    }
+
+    public void setNG_ishowOdds(String NG_ishowOdds) {
+        this.NG_ishowOdds = NG_ishowOdds;
+    }
+
+    public String getHLG_ishowOdds() {
+        return HLG_ishowOdds;
+    }
+
+    public void setHLG_ishowOdds(String HLG_ishowOdds) {
+        this.HLG_ishowOdds = HLG_ishowOdds;
+    }
+
+    public String getALG_ishowOdds() {
+        return ALG_ishowOdds;
+    }
+
+    public void setALG_ishowOdds(String ALG_ishowOdds) {
+        this.ALG_ishowOdds = ALG_ishowOdds;
+    }
+
+    public String getGoal1_ishowOdds() {
+        return Goal1_ishowOdds;
+    }
+
+    public void setGoal1_ishowOdds(String goal1_ishowOdds) {
+        Goal1_ishowOdds = goal1_ishowOdds;
+    }
+
+    public String getGoal2_ishowOdds() {
+        return Goal2_ishowOdds;
+    }
+
+    public void setGoal2_ishowOdds(String goal2_ishowOdds) {
+        Goal2_ishowOdds = goal2_ishowOdds;
+    }
+
+    public String getGoal3_ishowOdds() {
+        return Goal3_ishowOdds;
+    }
+
+    public void setGoal3_ishowOdds(String goal3_ishowOdds) {
+        Goal3_ishowOdds = goal3_ishowOdds;
+    }
+
+    public String getGoal4_ishowOdds() {
+        return Goal4_ishowOdds;
+    }
+
+    public void setGoal4_ishowOdds(String goal4_ishowOdds) {
+        Goal4_ishowOdds = goal4_ishowOdds;
+    }
+
+    public String getHTTG_ishowFTOdds() {
+        return HTTG_ishowFTOdds;
+    }
+
+    public void setHTTG_ishowFTOdds(String HTTG_ishowFTOdds) {
+        this.HTTG_ishowFTOdds = HTTG_ishowFTOdds;
+    }
+
+    public String getHTTG_ishowFHOdds() {
+        return HTTG_ishowFHOdds;
+    }
+
+    public void setHTTG_ishowFHOdds(String HTTG_ishowFHOdds) {
+        this.HTTG_ishowFHOdds = HTTG_ishowFHOdds;
+    }
+
+    public String getATTG_ishowFTOdds() {
+        return ATTG_ishowFTOdds;
+    }
+
+    public void setATTG_ishowFTOdds(String ATTG_ishowFTOdds) {
+        this.ATTG_ishowFTOdds = ATTG_ishowFTOdds;
+    }
+
+    public String getATTG_ishowFHOdds() {
+        return ATTG_ishowFHOdds;
+    }
+
+    public void setATTG_ishowFHOdds(String ATTG_ishowFHOdds) {
+        this.ATTG_ishowFHOdds = ATTG_ishowFHOdds;
+    }
+
+    public String getMG15_ishowOdds() {
+        return MG15_ishowOdds;
+    }
+
+    public void setMG15_ishowOdds(String MG15_ishowOdds) {
+        this.MG15_ishowOdds = MG15_ishowOdds;
+    }
+
+    public String getMG30_ishowOdds() {
+        return MG30_ishowOdds;
+    }
+
+    public void setMG30_ishowOdds(String MG30_ishowOdds) {
+        this.MG30_ishowOdds = MG30_ishowOdds;
+    }
+
+    public String getMG45_ishowOdds() {
+        return MG45_ishowOdds;
+    }
+
+    public void setMG45_ishowOdds(String MG45_ishowOdds) {
+        this.MG45_ishowOdds = MG45_ishowOdds;
+    }
+
+    public String getMG60_ishowOdds() {
+        return MG60_ishowOdds;
+    }
+
+    public void setMG60_ishowOdds(String MG60_ishowOdds) {
+        this.MG60_ishowOdds = MG60_ishowOdds;
+    }
+
+    public String getMG75_ishowOdds() {
+        return MG75_ishowOdds;
+    }
+
+    public void setMG75_ishowOdds(String MG75_ishowOdds) {
+        this.MG75_ishowOdds = MG75_ishowOdds;
+    }
+
+    public String getFOE_ishowOdds() {
+        return FOE_ishowOdds;
+    }
+
+    public void setFOE_ishowOdds(String FOE_ishowOdds) {
+        this.FOE_ishowOdds = FOE_ishowOdds;
+    }
+
+    public String getHOE_ishowOdds() {
+        return HOE_ishowOdds;
+    }
+
+    public void setHOE_ishowOdds(String HOE_ishowOdds) {
+        this.HOE_ishowOdds = HOE_ishowOdds;
     }
 
     public static class OddsBean {
