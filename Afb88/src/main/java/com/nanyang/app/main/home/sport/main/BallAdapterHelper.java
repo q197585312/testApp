@@ -62,6 +62,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public synchronized void notifyPositionAddition(AddMBean data, BallInfo item) {
         this.additionData = data;
+        LogUtil.d("additionMap", additionData.toString());
         this.additionBallItem = item;
         if (!StringUtils.isNull(additionMap.get(true))) {
             getBaseRecyclerAdapter().notifyDataSetChanged();
@@ -86,7 +87,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
 
         if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
-//            LogUtil.d("Addition", "--------------repeatRow:" + (repeatRow == null ? "null" : repeatRow.size()));
+            LogUtil.d("additionMap", "--------------additionBallItem:" + additionBallItem.toString());
 
             parent.removeAllViews();
             View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
@@ -99,7 +100,23 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             if (additionData != null && additionData.getFHodds() != null)
                 sizeFH = additionData.getFHodds().size();
             int size = sizeFT > sizeFH ? sizeFT : sizeFH;
-            if (size > 0)
+            if (size > 0
+                    || (additionData.getF1X2_CNT() != null && !additionData.getF1X2_CNT().equals("0"))
+                    || (additionData.getH1X2_CNT() != null && !additionData.getH1X2_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getFCS_CNT()) && !additionData.getFCS_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getHCS_CNT()) && !additionData.getHCS_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getFDB_CNT()) && !additionData.getFDB_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getHDB_CNT()) && !additionData.getHDB_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getFOE_CNT()) && !additionData.getFOE_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getHOE_CNT()) && !additionData.getHOE_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getHTFT_CNT()) && !additionData.getHTFT_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getFGLG_CNT()) && !additionData.getFGLG_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getTG_CNT()) && !additionData.getTG_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getHTTG_CNT()) && !additionData.getHTTG_CNT().equals("0"))
+                    || (!StringUtils.isNull(additionData.getATTG_CNT()) && !additionData.getATTG_CNT().equals("0"))
+                    || (additionData.getFTMModds() != null && additionData.getFTMModds().size() > 0)
+                    || (additionData.getFHMModds() != null && additionData.getFHMModds().size() > 0)
+                    )
                 parent.setVisibility(View.VISIBLE);
             else
                 parent.setVisibility(View.GONE);
@@ -110,6 +127,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
             if (additionData != null) {
                 if (additionData.getF1X2_CNT() != null && !additionData.getF1X2_CNT().equals("0")) {
+                    LogUtil.d("additionMap", "--------------getF1X2_CNT:");
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, R.string.FULL_1X2);
                     addAdditionFor1X2(additionData.getF1(), additionData.getFX(), additionData.getF2(), additionData.getF1X2_SocOddsId(), false, parent, item,
@@ -127,6 +145,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     );
                 }
                 if (additionData.getH1X2_CNT() != null && !additionData.getH1X2_CNT().equals("0")) {
+                    LogUtil.d("additionMap", "--------------getH1X2_CNT:");
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, R.string.HALF_1X2);
                     addAdditionFor1X2(additionData.getH1(), additionData.getHX(), additionData.getH2(), additionData.getH1X2_SocOddsId(), false, parent, item,
@@ -368,7 +387,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
                 if (!StringUtils.isNull(additionData.getHDB_CNT()) && !additionData.getHDB_CNT().equals("0")) {
 //                    addAdditionDC(additionData.getHTDC(), false, parent, item);
-
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.double_chance));
                     addAddition(additionData.getHHD(), additionData.getHHA(), additionData.getHDA(), additionData.getHDB_SocOddsId(), false, parent, item,
@@ -383,7 +401,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                             , additionData.getHHA_ishowOdds().equals("True")
                             , additionData.getHDA_ishowOdds().equals("True")
                     );
-
                 }
 
                 if (!StringUtils.isNull(additionData.getFOE_CNT()) && !additionData.getFOE_CNT().equals("0")) {
@@ -1042,7 +1059,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             , boolean isShowBet2
             , boolean isShowBet3
     ) {
-
+        LogUtil.d("additionMap", "--------------addAdditionFor1X2:");
         View inflate1X2 = LayoutInflater.from(context).inflate(itemRes, null);
         TextView up1_tv = inflate1X2.findViewById(R.id.up1_tv);
         TextView down1_tv = inflate1X2.findViewById(R.id.down1_tv);
@@ -1785,8 +1802,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     public void changeAddition(BallInfo item) {
         String id = additionMap.get(true);
         if (!StringUtils.isNull(id) && id.trim().equals(item.getSocOddsId().trim())) {
+            LogUtil.d("additionMap", additionMap.get(true) + ",点击两次关闭");
             additionMap.put(true, "");
         } else {
+            LogUtil.d("additionMap", additionMap.get(true) + ",点击1次打开");
             additionMap.put(true, item.getSocOddsId().trim());
         }
         getBaseRecyclerAdapter().notifyDataSetChanged();
