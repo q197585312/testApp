@@ -1073,4 +1073,22 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     public void setIsHomeGoal(String isHomeGoal) {
         this.isHomeGoal = isHomeGoal;
     }
+    String RunHomeScore_FH;
+    String RunAwayScore_FH;
+
+    public String getRunHomeScore_FH() {
+        return RunHomeScore_FH;
+    }
+
+    public void setRunHomeScore_FH(String runHomeScore_FH) {
+        RunHomeScore_FH = runHomeScore_FH;
+    }
+
+    public String getRunAwayScore_FH() {
+        return RunAwayScore_FH;
+    }
+
+    public void setRunAwayScore_FH(String runAwayScore_FH) {
+        RunAwayScore_FH = runAwayScore_FH;
+    }
 }

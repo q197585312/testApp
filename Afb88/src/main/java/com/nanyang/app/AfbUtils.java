@@ -938,6 +938,7 @@ public class AfbUtils {
     }
 
     public static List<MenuItemInfo> getMarketsList(Context context) {
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(context),context);
         List<MenuItemInfo> list = new ArrayList<>();
         list.add(new MenuItemInfo(0, context.getString(R.string.All_Markets), "0"));//accType=
         list.add(new MenuItemInfo(0, context.getString(R.string.Main_Markets), "1"));
@@ -946,6 +947,7 @@ public class AfbUtils {
     }
 
     public static MenuItemInfo getMarketByType(Context context, String type) {
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(context),context);
         List<MenuItemInfo> list = getMarketsList(context);
         for (MenuItemInfo menuItemInfo : list) {
             if (menuItemInfo.getType().equals(type))

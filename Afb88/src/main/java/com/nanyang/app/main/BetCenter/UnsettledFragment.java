@@ -44,6 +44,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     String type = "W";
     @Bind(R.id.tv_waite_count)
     TextView tvWaiteCount;
+    @Bind(R.id.ll_note)
+    LinearLayout llNote;
 
     @Override
     public int onSetLayoutId() {
@@ -87,6 +89,11 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     }
 
     public void setRvlist(List<RunningBean> list) {
+        if (list != null && list.size() > 0) {
+            llNote.setVisibility(View.VISIBLE);
+        } else {
+            llNote.setVisibility(View.GONE);
+        }
         if (type.equals("W")) {
             if (list.size() > 0) {
                 tvWaiteCount.setText(list.size() + "");
@@ -133,11 +140,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     } else {
                         running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.red));
                     }
-                    if (dangerStatus8.equals("A")) {
-                        running_bet_num.setText("" + (getItemCount() - position));
-                    } else {
-                        running_bet_num.setText("");
-                    }
+                    running_bet_num.setText((getItemCount() - position) + "");
                     String odds = item.getOdds3();
                     BigDecimal bd = new BigDecimal(odds);
                     bd = bd.multiply(new BigDecimal("100"));
@@ -243,6 +246,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     ll1.setVisibility(View.GONE);
                     ll2.setVisibility(View.VISIBLE);
                     TextView refNo = holder.getTextView(R.id.running_RefNo);
+                    TextView running_hdp_bet_num = holder.getTextView(R.id.running_hdp_bet_num);
+                    running_hdp_bet_num.setText((getItemCount() - position) + "");
                     refNo.setText(item.getRefNo12());
                     TextView running_TransDate = holder.getTextView(R.id.running_TransDate);
                     running_TransDate.setText(" (" + item.getTransDate0() + ")");
