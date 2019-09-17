@@ -45,6 +45,7 @@ public class HomeFragment extends BaseSwitchFragment {
     AutoScrollViewPager viewPager;
     @Bind(R.id.rv_content)
     RecyclerView rvContent;
+
     @Bind(R.id.in_layout)
     LinearLayout inLayout;
     private JSONObject jsonObjectNum;
@@ -64,6 +65,7 @@ public class HomeFragment extends BaseSwitchFragment {
         initViewPager(((AfbApplication) getBaseActivity().getApplication()).getListMainBanners());
         initContent(((AfbApplication) getBaseActivity().getApplication()).getListMainPictures());
         language = new LanguageHelper(mContext).getLanguage();
+
     }
 
 

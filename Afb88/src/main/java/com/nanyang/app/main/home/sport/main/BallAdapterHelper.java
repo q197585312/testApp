@@ -100,8 +100,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             if (additionData != null && additionData.getFHodds() != null)
                 sizeFH = additionData.getFHodds().size();
             int size = sizeFT > sizeFH ? sizeFT : sizeFH;
-            if (size > 0
-                    || (additionData.getF1X2_CNT() != null && !additionData.getF1X2_CNT().equals("0"))
+            if (size > 0 || (additionData.getF1X2_CNT() != null && !additionData.getF1X2_CNT().equals("0"))
                     || (additionData.getH1X2_CNT() != null && !additionData.getH1X2_CNT().equals("0"))
                     || (!StringUtils.isNull(additionData.getFCS_CNT()) && !additionData.getFCS_CNT().equals("0"))
                     || (!StringUtils.isNull(additionData.getHCS_CNT()) && !additionData.getHCS_CNT().equals("0"))

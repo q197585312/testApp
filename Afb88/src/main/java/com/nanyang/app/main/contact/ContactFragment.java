@@ -150,7 +150,7 @@ public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
             tv.setTextColor(getResources().getColor(R.color.contact_font));
             switch (item.getIcon_type()) {
                 case "1":
-                    ivRight.setImageResource(R.mipmap.message);
+                    ivRight.setImageResource(R.mipmap.email_msg);
                     break;
                 case "2":
                     ivRight.setImageResource(R.mipmap.phone_msg);

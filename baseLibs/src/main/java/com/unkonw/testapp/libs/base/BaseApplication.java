@@ -9,14 +9,15 @@ import android.app.Application;
 import android.content.Context;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
-import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.utils.L;
 import com.unkonw.testapp.R;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
+import com.unkonw.testapp.libs.common.AuthImageDownloader;
 
 
 /**
@@ -69,6 +70,7 @@ public class BaseApplication extends Application {
         int mCacheSize = maxMemory / 8;
         //给LruCache分配1/8 4M
 
+
         options = new DisplayImageOptions.Builder()
                 .showImageForEmptyUri(R.mipmap.ic_launcher)
                 .showImageOnFail(R.mipmap.ic_launcher)
@@ -78,18 +80,26 @@ public class BaseApplication extends Application {
                 .cacheOnDisk(true)
                 .build();
 
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration
+                .Builder(getApplicationContext())
+                .defaultDisplayImageOptions(options)
+                .threadPriority(Thread.NORM_PRIORITY - 2)
+                .denyCacheImageMultipleSizesInMemory()
+                .diskCacheFileNameGenerator(new Md5FileNameGenerator())
+                .imageDownloader(new AuthImageDownloader(this))
+                .tasksProcessingOrder(QueueProcessingType.LIFO).build();
         //初始化图片下载组件
-        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+     /*   ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(getApplicationContext())
+                .imageDownloader(new AuthImageDownloader(this))
                 .threadPriority(Thread.NORM_PRIORITY - 2)
                 .denyCacheImageMultipleSizesInMemory()
                 .diskCacheSize(100 * 1024 * 1024)
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
                 .memoryCache(new LruMemoryCache(mCacheSize))
                 .defaultDisplayImageOptions(options)
-                .build();
+                .build();*/
 
         ImageLoader.getInstance().init(config);
-        imageLoader = ImageLoader.getInstance();
         //关闭 打开log  imgelog
         L.writeLogs(false);
 
