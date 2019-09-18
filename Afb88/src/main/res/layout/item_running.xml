@@ -144,11 +144,18 @@
                 android:id="@+id/running_BetType2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="(HDP -2.5)"
+                android:text="(HDP "
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:textStyle="bold" />
-
+            <TextView
+                android:id="@+id/running_BetType2_odds"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" -2.5)"
+                android:textColor="@color/black"
+                android:textSize="13sp"
+                android:textStyle="bold" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
