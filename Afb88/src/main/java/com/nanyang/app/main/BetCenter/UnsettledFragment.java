@@ -299,9 +299,11 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_Score = holder.getTextView(R.id.running_Score);
                     String isRun5 = item.getIsRun5();
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
+                    TextView running_BetType2_odds = holder.getTextView(R.id.running_BetType2_odds);
                     String betType2 = item.getBetType323();
                     if (betType2.contains("red") || item.getBetType424().contains("gbGive")) {
                         running_BetType2.setTextColor(Color.RED);
+                        running_BetType2_odds.setTextColor(Color.RED);
                     } else if (betType2.contains("blue") || item.getBetType424().contains("gbTake2")) {
                         running_BetType2.setTextColor(Color.BLUE);
                     } else {
@@ -309,8 +311,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     }
                     betType2 = AfbUtils.delHTMLTag(betType2);
                     String gameType314 = item.getGameType314();
-                    running_BetType2.setText(AfbUtils.delHTMLTag(item.getBetType424()) + " " + (gameType314.equals("O") ? "Outright" : betType2));
-                    running_Score.setText((isRun5.equals("1") ? item.getScore19() : ""));
+                    running_BetType2.setText(AfbUtils.delHTMLTag(item.getBetType424()) + " ");
+                    running_BetType2_odds.setText((gameType314.equals("O") ? "Outright" : betType2));
+                    running_Score.setText((isRun5.equals("True") ? item.getScore19() : ""));
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
                     odds = AfbUtils.delHTMLTag(odds);
@@ -372,7 +375,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         TextView tvMatchType = view.getTextView(R.id.tv_match_type);
         TextView tvMatchVs = view.getTextView(R.id.tv_match_vs);
         TextView tvMatchAt1 = view.getTextView(R.id.tv_match_at1);
-        TextView tvMatchAt2 = view.getTextView(R.id.tv_match_at2);
+        TextView tv_match_at2_1 = view.getTextView(R.id.tv_match_at2_1);
+        TextView tv_match_at2_2 = view.getTextView(R.id.tv_match_at2_2);
         TextView tvMatchAt3 = view.getTextView(R.id.tv_match_at3);
         TextView tvMatchAt4 = view.getTextView(R.id.tv_match_at4);
         TextView tvMatchScore = view.getTextView(R.id.tv_match_score);
@@ -395,19 +399,45 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         if (matchAtStr1.contains("gbGive")) {
             tvMatchAt1.setTextColor(Color.RED);
         } else if (matchAtStr1.contains("gbTake2")) {
-            tvMatchAt1.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
+            tvMatchAt1.setTextColor(Color.BLUE);
         } else {
             tvMatchAt1.setTextColor(Color.BLACK);
         }
         String index22 = bean.getIndex23();
         String matchAtStr2 = AfbUtils.delHTMLTag(index22);
-        tvMatchAt2.setText("(" + matchAtStr2 + ")");
-        if (index22.contains("red")) {
-            tvMatchAt2.setTextColor(Color.RED);
-        } else if (index22.contains("blue")) {
-            tvMatchAt2.setTextColor(Color.BLUE);
+        if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
+            if (index22.contains("red")) {
+                tv_match_at2_1.setTextColor(Color.RED);
+            } else if (index22.contains("blue")) {
+                tv_match_at2_1.setTextColor(Color.BLUE);
+            } else {
+                tv_match_at2_1.setTextColor(Color.BLACK);
+            }
+            tv_match_at2_1.setText(matchAtStr2);
+            tv_match_at2_2.setText("");
         } else {
-            tvMatchAt2.setTextColor(Color.BLACK);
+            if (matchAtStr2.contains(" ")) {
+                String[] split = matchAtStr2.split(" ");
+                tv_match_at2_1.setText(split[0] + " ");
+                tv_match_at2_2.setText(split[1]);
+                if (index22.contains("red")) {
+                    tv_match_at2_2.setTextColor(Color.RED);
+                } else if (index22.contains("blue")) {
+                    tv_match_at2_2.setTextColor(Color.BLUE);
+                } else {
+                    tv_match_at2_2.setTextColor(Color.BLACK);
+                }
+            } else {
+                if (index22.contains("red")) {
+                    tv_match_at2_1.setTextColor(Color.RED);
+                } else if (index22.contains("blue")) {
+                    tv_match_at2_1.setTextColor(Color.BLUE);
+                } else {
+                    tv_match_at2_1.setTextColor(Color.BLACK);
+                }
+                tv_match_at2_1.setText(matchAtStr2);
+                tv_match_at2_2.setText("");
+            }
         }
         String index21 = bean.getIndex21();
         if (index21.equals("True")) {
@@ -449,7 +479,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         TextView tvMatchType = view.getTextView(R.id.tv_match_type);
         TextView tvMatchVs = view.getTextView(R.id.tv_match_vs);
         TextView tvMatchAt1 = view.getTextView(R.id.tv_match_at1);
-        TextView tvMatchAt2 = view.getTextView(R.id.tv_match_at2);
+        TextView tv_match_at2_1 = view.getTextView(R.id.tv_match_at2_1);
+        TextView tv_match_at2_2 = view.getTextView(R.id.tv_match_at2_2);
         TextView tvMatchAt3 = view.getTextView(R.id.tv_match_at3);
         TextView tvMatchAt4 = view.getTextView(R.id.tv_match_at4);
         TextView tvMatchScore = view.getTextView(R.id.tv_match_score);
@@ -473,19 +504,45 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         if (matchAtStr1.contains("gbGive")) {
             tvMatchAt1.setTextColor(Color.RED);
         } else if (matchAtStr1.contains("gbTake2")) {
-            tvMatchAt1.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
+            tvMatchAt1.setTextColor(Color.BLUE);
         } else {
             tvMatchAt1.setTextColor(Color.BLACK);
         }
         String index22 = bean.getIndex22();
         String matchAtStr2 = AfbUtils.delHTMLTag(index22);
-        tvMatchAt2.setText("(" + matchAtStr2 + ")");
-        if (index22.contains("red")) {
-            tvMatchAt2.setTextColor(Color.RED);
-        } else if (index22.contains("blue")) {
-            tvMatchAt2.setTextColor(Color.BLUE);
+        if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
+            if (index22.contains("red")) {
+                tv_match_at2_1.setTextColor(Color.RED);
+            } else if (index22.contains("blue")) {
+                tv_match_at2_1.setTextColor(Color.BLUE);
+            } else {
+                tv_match_at2_1.setTextColor(Color.BLACK);
+            }
+            tv_match_at2_1.setText(matchAtStr2);
+            tv_match_at2_2.setText("");
         } else {
-            tvMatchAt2.setTextColor(Color.BLACK);
+            if (matchAtStr2.contains(" ")) {
+                String[] split = matchAtStr2.split(" ");
+                tv_match_at2_1.setText(split[0] + " ");
+                tv_match_at2_2.setText(split[1]);
+                if (index22.contains("red")) {
+                    tv_match_at2_2.setTextColor(Color.RED);
+                } else if (index22.contains("blue")) {
+                    tv_match_at2_2.setTextColor(Color.BLUE);
+                } else {
+                    tv_match_at2_2.setTextColor(Color.BLACK);
+                }
+            } else {
+                if (index22.contains("red")) {
+                    tv_match_at2_1.setTextColor(Color.RED);
+                } else if (index22.contains("blue")) {
+                    tv_match_at2_1.setTextColor(Color.BLUE);
+                } else {
+                    tv_match_at2_1.setTextColor(Color.BLACK);
+                }
+                tv_match_at2_1.setText(matchAtStr2);
+                tv_match_at2_2.setText("");
+            }
         }
         String index20 = bean.getIndex20();
         if (index20.equals("True")) {
