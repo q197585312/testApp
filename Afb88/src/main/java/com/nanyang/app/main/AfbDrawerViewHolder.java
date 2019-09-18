@@ -134,7 +134,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
             @Override
             public void onItemClick(View view, More item, int position) {
                 drawerLayout.closeDrawer(Gravity.RIGHT);
-                if (baseToolbarActivity.getString(R.string.logout).equals(item.getText())) {
+                if (R.mipmap.logout==(item.getImage_left())) {
                     BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(baseToolbarActivity, drawerLayoutRightRc) {
                         @Override
                         protected void clickSure(View v) {
