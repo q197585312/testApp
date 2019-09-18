@@ -168,11 +168,11 @@
     <string name="Huay_Thai">HUAY THAI</string>
     <string name="Myanmar_Odds">Myanmar Oranları</string>
     <string name="FULL_H_A">FT.HDP</string>
-    <string name="FULL_O_U">FT.O / U</string>
-    <string name="HALF_H_A">HT.HDP</string>
-    <string name="HALF_O_U">HT.O / U</string>
-    <string name="FULL_O_E">FT.O / E</string>
-    <string name="HALF_O_E">HT.O / E</string>
+    <string name="FULL_O_U">FT.OU</string>
+    <string name="HALF_H_A">1H.HDP</string>
+    <string name="HALF_O_U">1H.OU</string>
+    <string name="FULL_O_E">FT.OE</string>
+    <string name="HALF_O_E">1H.OE</string>
     <string name="HANDICAP">HANDİKAP</string>
     <string name="OVER_UNDER">ÜZERİNDE ALTINDA</string>
     <string name="TO_WIN">KAZANMAK</string>
@@ -444,4 +444,5 @@
     <string name="desktop">masaüstü</string>
     <string name="no_games">No Games</string>
     <string name="speed_way">SPEEDWAY</string>
+    <string name="switching_market_failure">切换盘口失败</string>
 </resources>

@@ -33,6 +33,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -206,31 +208,37 @@ public class MainPresenter extends BaseSwitchPresenter {
                 }), baseConsumer);
     }
 
+    int errorOddsType = 0;
+
     public void switchOddsType(final String oddsType) {
         Map<String, String> map = new HashMap<>();
 
         LoginInfo.LanguageWfBean languageWfBean = new LoginInfo.LanguageWfBean("");
         languageWfBean.setAccType(oddsType);
         map.put("_fm", languageWfBean.getJson());
-
         Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .flatMap(new Function<String, Flowable<String>>() {
-                    @Override
-                    public Flowable<String> apply(String s) throws Exception {
-                        return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
-                    }
-                })
+
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String str) throws Exception {
-
+                        errorOddsType = 0;
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         baseContext.hideLoadingDialog();
+                        if (errorOddsType > 5) {
+                            return;
+                        }
+                        errorOddsType++;
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+
+                            }
+                        }, 1000);
                     }
                 }, new Action() {//完成
                     @Override

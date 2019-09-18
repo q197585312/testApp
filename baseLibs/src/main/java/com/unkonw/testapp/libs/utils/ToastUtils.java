@@ -61,8 +61,9 @@ public class ToastUtils {
      * @param message
      */
     public static void showLong(int message) {
-        if (isShow)
+        if (isShow) {
             Toast.makeText(BaseApplication.getInstance(), message, Toast.LENGTH_LONG).show();
+        }
     }
 
     /**

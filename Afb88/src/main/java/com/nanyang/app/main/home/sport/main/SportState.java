@@ -56,16 +56,16 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
-import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
@@ -305,7 +305,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     public void createChoosePop(View view) {
 
-        ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getIBaseContext().getBaseActivity(), view,getStateType().getType());
+        ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getIBaseContext().getBaseActivity(), view, getStateType().getType());
         pop.setList(allData, leagueSelectedMap);
         pop.setBack(new ChooseMatchPop.CallBack() {
             @Override
@@ -1276,6 +1276,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         baseRecyclerAdapter.notifyDataSetChanged();
     }
 
+    int errorOddsType = 0;
+
     @Override
     public void switchOddsType(final String oddsType) {
 
@@ -1286,27 +1288,35 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         map.put("_fm", languageWfBean.getJson());
 
         Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, map)
-
-
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-                .flatMap(new Function<String, Flowable<String>>() {
+           /*     .flatMap(new Function<String, Flowable<String>>() {
                     @Override
                     public Flowable<String> apply(String s) throws Exception {
                         return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
                     }
-                })
+                })*/
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String str) throws Exception {
-
                         refresh();
+                        errorOddsType = 0;
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
                         baseView.onFailed(throwable.getMessage());
                         baseView.getIBaseContext().hideLoadingDialog();
+                        errorOddsType++;
+                        if (errorOddsType > 5) {
+                            return;
+                        }
+                        new Timer().schedule(new TimerTask() {
+                            @Override
+                            public void run() {
+                                switchOddsType(oddsType);
+                            }
+                        }, 1000);
                     }
                 }, new Action() {//完成
                     @Override
@@ -1494,9 +1504,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 }
             }
         }
-        if(n<1){
+        if (n < 1) {
             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).collectionNumTv.setVisibility(View.GONE);
-        }else {
+        } else {
             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).collectionNumTv.setVisibility(View.VISIBLE);
             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).collectionNumTv.setText("" + n);
         }

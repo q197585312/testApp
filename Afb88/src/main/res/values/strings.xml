@@ -167,10 +167,10 @@
     <string name="Myanmar_Odds">Myanmar Odds</string>
     <string name="FULL_H_A">FT.HDP</string>
     <string name="FULL_O_U">FT.O/U</string>
-    <string name="HALF_H_A">HT.HDP</string>
-    <string name="HALF_O_U">HT.O/U</string>
-    <string name="FULL_O_E">FT.O/E</string>
-    <string name="HALF_O_E">HT.O/E</string>
+    <string name="HALF_H_A">1H.HDP</string>
+    <string name="HALF_O_U">1H.OU</string>
+    <string name="FULL_O_E">FT.OE</string>
+    <string name="HALF_O_E">1H.OE</string>
     <string name="HANDICAP">HANDICAP</string>
     <string name="OVER_UNDER">OVER/UNDER</string>
     <string name="TO_WIN">TO WIN</string>
@@ -535,8 +535,8 @@
     <string name="normal">Normal</string>
     <string name="FT_HDP">FT.HDP</string>
     <string name="FT_OU">FT.OU</string>
-    <string name="HT_HDP">HT.HDP</string>
-    <string name="HT_OU">HT.OU</string>
+    <string name="HT_HDP">1H.HDP</string>
+    <string name="HT_OU">1H.OU</string>
     <string name="Bet_Slip">Bet Slip</string>
     <string name="Note_">Note:</string>
     <string name="GMT_8">Please note that the displayed time is based on GMT +8 hours</string>
@@ -565,4 +565,5 @@
     <string name="ft_x">FT.X</string>
     <string name="ft_2">FT.2</string>
     <string name="speed_way">SPEEDWAY</string>
+    <string name="switching_market_failure">切换盘口失败</string>
 </resources>

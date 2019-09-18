@@ -125,7 +125,6 @@
     <string name="half_full_court_single_double">Half_Full_Court / Single_Double</string>
     <string name="correct_score">Correct Score</string>
 
-
     <string name="h1">1</string>
     <string name="dx">x</string>
     <string name="a2">2</string>
@@ -169,10 +168,10 @@
     <string name="Myanmar_Odds">Myanmar Odds</string>
     <string name="FULL_H_A">FT.HDP</string>
     <string name="FULL_O_U">FT.O / U</string>
-    <string name="HALF_H_A">HT.HDP</string>
-    <string name="HALF_O_U">HT.O / U</string>
+    <string name="HALF_H_A">1H.HDP</string>
+    <string name="HALF_O_U">1H.OU</string>
     <string name="FULL_O_E">FT.O / E</string>
-    <string name="HALF_O_E">HT.O / E</string>
+    <string name="HALF_O_E">1H.OE</string>
     <string name="HANDICAP">HANDICAP</string>
     <string name="OVER_UNDER">OVER / UNDER</string>
     <string name="TO_WIN">TO WIN</string>
@@ -214,12 +213,14 @@
     <string name="Login_Success">Login Login</string>
     <string name="home">Home</string>
     <string name="center">Center</string>
+
     <!-- 修改 密码 -->
     <string name="username_m">Nama:</string>
     <string name="old_password">Kata Laluan Lama</string>
     <string name="new_password">Kata Laluan Baru</string>
     <string name="confirm_password">Sahkan Kata Laluan</string>
     <string name="save">Simpan</string>
+
     <!-- 转移 钱 -->
     <string name="login_name">Nama Log masuk</string>
     <string name="currency">Mata Wang</string>
@@ -356,6 +357,7 @@
     <string name="FIRST5_O_U">FIRST5.O / U</string>
     <string name="A_TIE_B">A-TIE-B</string>
     <string name="O_U">O / U</string>
+
     <!-- keno -->
     <string name="china">CHINA</string>
     <string name="canada1">CANADA1</string>
@@ -536,8 +538,8 @@
     <string name="normal">Normal</string>
     <string name="FT_HDP">FT.HDP</string>
     <string name="FT_OU">FT.OU</string>
-    <string name="HT_HDP">HT.HDP</string>
-    <string name="HT_OU">HT.OU</string>
+    <string name="HT_HDP">1H.HDP</string>
+    <string name="HT_OU">1H.OU</string>
     <string name="Bet_Slip">Bet Slip</string>
     <string name="Note_">Nota:</string>
     <string name="GMT_8">Sila ambil perhatian bahawa masa yang dipaparkan adalah berdasarkan GMT +8 jam</string>
@@ -558,4 +560,6 @@
     <string name="desktop">Desktop</string>
     <string name="no_games">No Games</string>
     <string name="speed_way">SPEEDWAY</string>
+    <string name="switching_market_failure">切换盘口失败</string>
+
 </resources>

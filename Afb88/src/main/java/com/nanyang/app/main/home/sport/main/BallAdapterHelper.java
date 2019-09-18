@@ -115,10 +115,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     || (!StringUtils.isNull(additionData.getATTG_CNT()) && !additionData.getATTG_CNT().equals("0"))
                     || (additionData.getFTMModds() != null && additionData.getFTMModds().size() > 0)
                     || (additionData.getFHMModds() != null && additionData.getFHMModds().size() > 0)
-                    )
+                    ) {
                 parent.setVisibility(View.VISIBLE);
-            else
+                if (size <= 0) {
+                    titleLL.setVisibility(View.GONE);
+                }
+            } else {
                 parent.setVisibility(View.GONE);
+            }
             for (int i = 0; i < size; i++) {
                 addAdditionView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item);
             }

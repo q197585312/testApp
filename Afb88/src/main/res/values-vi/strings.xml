@@ -164,11 +164,11 @@
     <string name="Huay_Thai">HUAY THAI</string>
     <string name="Myanmar_Odds">Tỷ lệ Myanmar</string>
     <string name="FULL_H_A">FT.HDP</string>
-    <string name="FULL_O_U">FT.O / U</string>
-    <string name="HALF_H_A">HT.HDP</string>
-    <string name="HALF_O_U">HT.O / U</string>
-    <string name="FULL_O_E">FT.O / E</string>
-    <string name="HALF_O_E">HT.O / E</string>
+    <string name="FULL_O_U">FT.OU</string>
+    <string name="HALF_H_A">1H.HDP</string>
+    <string name="HALF_O_U">1H.OU</string>
+    <string name="FULL_O_E">FT.OE</string>
+    <string name="HALF_O_E">1H.OE</string>
     <string name="HANDICAP">HANDICAP</string>
     <string name="OVER_UNDER">TRÊN DƯỚI</string>
     <string name="TO_WIN">ĐỂ THẮNG</string>
@@ -444,4 +444,5 @@
     <string name="desktop">máy tính để bàn</string>
     <string name="no_games">No Games</string>
     <string name="speed_way">SPEEDWAY</string>
+    <string name="switching_market_failure">切换盘口失败</string>
 </resources>
