@@ -33,6 +33,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
@@ -159,6 +160,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                     .subscribe(new Consumer<String>() {//onNext
                                    @Override
                                    public void accept(String allData) throws Exception {
+                                       LogUtil.d("OkHttp","allData:----"+allData);
                                        if (!allData.trim().equals("100")) {
                                            reLoginPrompt("", new SportContract.CallBack() {
                                                @Override

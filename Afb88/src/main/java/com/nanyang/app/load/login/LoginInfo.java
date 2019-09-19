@@ -171,7 +171,7 @@ public class LoginInfo {
         String lang = "";
         String pgLable = "0.15504609525960888";
         String vsn = "4.0.12";
-        String PT = "wfDefault0";
+        String PT = "wfLoginH50";
 
         String getJson() {
             return new Gson().toJson(this);
