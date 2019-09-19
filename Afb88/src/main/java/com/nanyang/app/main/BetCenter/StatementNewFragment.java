@@ -338,29 +338,36 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 } else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
-                if (!TextUtils.isEmpty(index24) && (index24.startsWith("G") || index24.startsWith("E") || index24.startsWith("Y"))) {
-                    tvMatchVs.setVisibility(View.GONE);
-                    tvMatchAt1.setVisibility(View.GONE);
-                    tvMatchAtFt.setVisibility(View.GONE);
-                    TextView tvBracketsLeft = view.findViewById(R.id.tv_brackets_left);
-                    tvBracketsLeft.setVisibility(View.GONE);
-                    TextView tvBracketsRight = view.findViewById(R.id.tv_brackets_right);
-                    tvBracketsRight.setVisibility(View.GONE);
-                    tvMatchAt3.setVisibility(View.GONE);
-                    tvMatchAt4.setVisibility(View.GONE);
-                    tvMatchGrade.setVisibility(View.GONE);
-                    String casinoIndex25 = bean.getIndex25();
-                    String[] replace = casinoIndex25.split("</SPAN>");
-                    String a = "";
-                    for (int k = 0; k < replace.length; k++) {
-                        a += replace[k];
-                        if (k != replace.length - 1) {
-                            a += "\n";
-                        }
-                    }
-                    String ta = AfbUtils.delHTMLTag(a);
-                    tvMatchAt2.setText(AfbUtils.setColorStyle(ta, Color.BLUE));
-                }
+//                if (!TextUtils.isEmpty(index24) && (index24.startsWith("G") || index24.startsWith("E") || index24.startsWith("Y"))) {
+//                    tvMatchVs.setVisibility(View.GONE);
+//                    tvMatchAt1.setVisibility(View.GONE);
+//                    tvMatchAtFt.setVisibility(View.GONE);
+//                    TextView tvBracketsLeft = view.findViewById(R.id.tv_brackets_left);
+//                    tvBracketsLeft.setVisibility(View.GONE);
+//                    TextView tvBracketsRight = view.findViewById(R.id.tv_brackets_right);
+//                    tvBracketsRight.setVisibility(View.GONE);
+//                    tvMatchAt3.setVisibility(View.GONE);
+//                    tvMatchAt4.setVisibility(View.GONE);
+//                    tvMatchGrade.setVisibility(View.GONE);
+//                    String casinoIndex25 = bean.getIndex25();
+//                    String splitStr = "</SPAN>";
+//                    if (casinoIndex25.contains("</span>")) {
+//                        splitStr = "</span>";
+//                    }
+//                    String[] replace = casinoIndex25.split(splitStr);
+//                    String a = "";
+//                    for (int k = 0; k < replace.length; k++) {
+//                        a += replace[k];
+//                        if (replace.length>1){
+//                            if (k != replace.length - 1) {
+//                                a += "\n";
+//                            }
+//                        }
+//                    }
+//                    String ta = AfbUtils.delHTMLTag(a);
+////                    tvMatchAt2.setText(AfbUtils.setColorStyle(ta, Color.BLUE));
+//                    tvMatchAt2.setText(ta);
+//                }
             }
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.bottomMargin = AfbUtils.dp2px(mContext, 8);
@@ -377,7 +384,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvMatchType = view.findViewById(R.id.tv_match_type);
             TextView tvMatchVs = view.findViewById(R.id.tv_match_vs);
             TextView tvMatchAt1 = view.findViewById(R.id.tv_match_at1);
-            TextView tvMatchAt2 = view.findViewById(R.id.tv_match_at2);
+            TextView tv_match_at2_1 = view.findViewById(R.id.tv_match_at2_1);
+            TextView tv_match_at2_2 = view.findViewById(R.id.tv_match_at2_2);
             TextView tvMatchAt3 = view.findViewById(R.id.tv_match_at3);
             TextView tvMatchAt4 = view.findViewById(R.id.tv_match_at4);
             TextView tvWL = view.findViewById(R.id.tv_wl);
@@ -404,11 +412,42 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             } else {
                 tvMatchAt1.setTextColor(Color.BLACK);
             }
-            String matchAtStr2 = AfbUtils.delHTMLTag(bean.getIndex22());
-//            if (matchAtStr2.startsWith("<span")) {
-//
-//            }
-            tvMatchAt2.setText("(" + matchAtStr2 + ")");
+            String index22 = bean.getIndex22();
+            String matchAtStr2 = AfbUtils.delHTMLTag(index22);
+            if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
+                if (index22.contains("red")) {
+                    tv_match_at2_1.setTextColor(Color.RED);
+                } else if (index22.contains("blue")) {
+                    tv_match_at2_1.setTextColor(Color.BLUE);
+                } else {
+                    tv_match_at2_1.setTextColor(Color.BLACK);
+                }
+                tv_match_at2_1.setText(matchAtStr2);
+                tv_match_at2_2.setText("");
+            } else {
+                if (matchAtStr2.contains(" ")) {
+                    String[] split = matchAtStr2.split(" ");
+                    tv_match_at2_1.setText(split[0] + " ");
+                    tv_match_at2_2.setText(split[1]);
+                    if (index22.contains("red")) {
+                        tv_match_at2_2.setTextColor(Color.RED);
+                    } else if (index22.contains("blue")) {
+                        tv_match_at2_2.setTextColor(Color.BLUE);
+                    } else {
+                        tv_match_at2_2.setTextColor(Color.BLACK);
+                    }
+                } else {
+                    if (index22.contains("red")) {
+                        tv_match_at2_1.setTextColor(Color.RED);
+                    } else if (index22.contains("blue")) {
+                        tv_match_at2_1.setTextColor(Color.BLUE);
+                    } else {
+                        tv_match_at2_1.setTextColor(Color.BLACK);
+                    }
+                    tv_match_at2_1.setText(matchAtStr2);
+                    tv_match_at2_2.setText("");
+                }
+            }
             tvMatchAt3.setText("@");
             tvMatchAt4.setText(bean.getIndex13() + "");
             String wlStr = bean.getIndex8();
@@ -466,7 +505,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvMatchType = view.findViewById(R.id.tv_match_type);
             TextView tvMatchVs = view.findViewById(R.id.tv_match_vs);
             TextView tvMatchAt1 = view.findViewById(R.id.tv_match_at1);
-            TextView tvMatchAt2 = view.findViewById(R.id.tv_match_at2);
+            TextView tv_match_at2_1 = view.findViewById(R.id.tv_match_at2_1);
+            TextView tv_match_at2_2 = view.findViewById(R.id.tv_match_at2_2);
             TextView tvMatchAt3 = view.findViewById(R.id.tv_match_at3);
             TextView tvMatchAt4 = view.findViewById(R.id.tv_match_at4);
             TextView tvWL = view.findViewById(R.id.tv_wl);
@@ -492,8 +532,42 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             } else {
                 tvMatchAt1.setTextColor(Color.BLACK);
             }
-            String matchAtStr2 = AfbUtils.delHTMLTag(bean.getIndex23());
-            tvMatchAt2.setText("(" + matchAtStr2 + ")");
+            String index22 = bean.getIndex23();
+            String matchAtStr2 = AfbUtils.delHTMLTag(index22);
+            if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
+                if (index22.contains("red")) {
+                    tv_match_at2_1.setTextColor(Color.RED);
+                } else if (index22.contains("blue")) {
+                    tv_match_at2_1.setTextColor(Color.BLUE);
+                } else {
+                    tv_match_at2_1.setTextColor(Color.BLACK);
+                }
+                tv_match_at2_1.setText(matchAtStr2);
+                tv_match_at2_2.setText("");
+            } else {
+                if (matchAtStr2.contains(" ")) {
+                    String[] split = matchAtStr2.split(" ");
+                    tv_match_at2_1.setText(split[0] + " ");
+                    tv_match_at2_2.setText(split[1]);
+                    if (index22.contains("red")) {
+                        tv_match_at2_2.setTextColor(Color.RED);
+                    } else if (index22.contains("blue")) {
+                        tv_match_at2_2.setTextColor(Color.BLUE);
+                    } else {
+                        tv_match_at2_2.setTextColor(Color.BLACK);
+                    }
+                } else {
+                    if (index22.contains("red")) {
+                        tv_match_at2_1.setTextColor(Color.RED);
+                    } else if (index22.contains("blue")) {
+                        tv_match_at2_1.setTextColor(Color.BLUE);
+                    } else {
+                        tv_match_at2_1.setTextColor(Color.BLACK);
+                    }
+                    tv_match_at2_1.setText(matchAtStr2);
+                    tv_match_at2_2.setText("");
+                }
+            }
             tvMatchAt3.setText("@");
             tvMatchAt4.setText(bean.getIndex13() + "");
             String wlStr = bean.getIndex8();
