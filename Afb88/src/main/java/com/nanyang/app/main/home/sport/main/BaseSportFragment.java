@@ -135,8 +135,15 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }
         isFirstIn = false;
         showContent();
+        if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
+            if (adapterHelper.getAdditionMap().get(true) != null && !adapterHelper.getAdditionMap().get(true).toString().trim().isEmpty()) {
+                additionPresenter.startUpdate();
+            }
 
+        }
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
+
     }
 
 
@@ -155,6 +162,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         additionPresenter.stopUpdate();
         Log.d(TAG, "onStop: " + getClass().getSimpleName());
     }
+
 
     @Override
     public void onWebShow(int nextNotRepeat, int position, IRTMatchInfo item, View view) {
@@ -390,7 +398,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     public AfbApplication getApp() {
-        return  getBaseActivity().getApp();
+        return getBaseActivity().getApp();
     }
 
     @Override

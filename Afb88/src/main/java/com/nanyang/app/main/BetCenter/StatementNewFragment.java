@@ -243,7 +243,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 } else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
-                tvCom.setText(bean.getIndex18());
+                tvCom.setText(getString(R.string.Com) + " "+bean.getIndex18());
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -336,7 +336,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 }
                 tvOdds.setText(" " + odds);
                 tvHandicap.setText("(" + bean.getIndex16() + ")");
-                tvCom.setText(bean.getIndex18());
+                tvCom.setText(getString(R.string.Com) + " " +bean.getIndex18());
                 String winLose = bean.getIndex10();
                 tvWl.setText(" " + winLose);
                 if (winLose.startsWith("-")) {

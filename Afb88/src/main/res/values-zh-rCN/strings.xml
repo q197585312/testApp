@@ -91,6 +91,7 @@
     <string name="max_bet">最大下注:</string>
     <string name="min_bet">最小下注:</string>
     <string name="bet">下注</string>
+    <string name="bet1">投注</string>
     <string name="betting_terms">下注条目:</string>
     <string name="delete">删除</string>
     <string name="cancel">清除</string>

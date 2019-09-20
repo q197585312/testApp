@@ -1838,6 +1838,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         return R.layout.sport_common_ball_item;
     }
 
+    public Map<Boolean, String> getAdditionMap() {
+        return additionMap;
+    }
+
     Map<Boolean, String> additionMap = new HashMap<>();
 
     public void changeAddition(BallInfo item) {

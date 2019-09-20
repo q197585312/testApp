@@ -56,7 +56,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
         baseContext.hideLoadingDialog();
     }
 
-    void startUpdate() {
+    public void startUpdate() {
         stopUpdate();
         baseContext.showLoadingDialog();
         updateHandler.post(dataUpdateRunnable);// 打开定时器，执行操作

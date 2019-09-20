@@ -91,6 +91,7 @@
     <string name="max_bet">Max Bahis:</string>
     <string name="min_bet">Min Bahis:</string>
     <string name="bet">Bahis</string>
+    <string name="bet1">Bahis</string>
     <string name="betting_terms">Bahis şartları:</string>
     <string name="delete">silmek</string>
     <string name="cancel">İptal etmek</string>

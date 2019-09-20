@@ -186,7 +186,7 @@
                 android:layout_weight="0.4"
                 android:background="@drawable/shape_bet_bg3"
                 android:gravity="center"
-                android:text="@string/bet"
+                android:text="@string/bet1"
                 android:textColor="@color/yellow2"
                 android:textStyle="bold" />
 
