@@ -937,23 +937,23 @@ public class AfbUtils {
         return false;
     }
 
-    public static List<MenuItemInfo> getMarketsList(Context context) {
+    public static List<MenuItemInfo<String>> getMarketsList(Context context) {
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context),context);
-        List<MenuItemInfo> list = new ArrayList<>();
-        list.add(new MenuItemInfo(0, context.getString(R.string.All_Markets), "0"));//accType=
-        list.add(new MenuItemInfo(0, context.getString(R.string.Main_Markets), "1"));
-        list.add(new MenuItemInfo(0, context.getString(R.string.Other_Bet_Markets), "2"));
+        List<MenuItemInfo<String>> list = new ArrayList<>();
+        list.add(new MenuItemInfo<>(0, context.getString(R.string.All_Markets), "0",context.getString(R.string.All_Market)));//accType=
+        list.add(new MenuItemInfo<>(0, context.getString(R.string.Main_Markets), "1", context.getString(R.string.Main_Markets)));
+        list.add(new MenuItemInfo<>(0, context.getString(R.string.Other_Bet_Markets), "2", context.getString(R.string.Main_Markets)));
         return list;
     }
 
-    public static MenuItemInfo getMarketByType(Context context, String type) {
+    public static MenuItemInfo<String> getMarketByType(Context context, String type) {
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context),context);
-        List<MenuItemInfo> list = getMarketsList(context);
-        for (MenuItemInfo menuItemInfo : list) {
+        List<MenuItemInfo<String>> list = getMarketsList(context);
+        for (MenuItemInfo<String> menuItemInfo : list) {
             if (menuItemInfo.getType().equals(type))
                 return menuItemInfo;
         }
-        return new MenuItemInfo(0, context.getString(R.string.All_Markets), "0");
+        return new MenuItemInfo<>(0, context.getString(R.string.All_Markets), "0",context.getString(R.string.All_Market));
     }
 
     public static List<MenuItemInfo> getOddsTypeList(Context context) {

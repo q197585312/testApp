@@ -294,14 +294,14 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         popSort.showPopupDownWindow();
                         break;
                     case 8:
-                        PopSwitch<MenuItemInfo> popMarket = new PopSwitch<MenuItemInfo>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
+                        PopSwitch<MenuItemInfo<String>> popMarket = new PopSwitch<MenuItemInfo<String>>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
-                            public void onClickItem(MenuItemInfo item, int position) {
+                            public void onClickItem(MenuItemInfo<String> item, int position) {
                                 tv.setText(item.getText());
                                 ((BaseToolbarActivity) getBaseActivity()).getApp().setMarketType(item);
                             }
                         };
-                        List<MenuItemInfo> markets = AfbUtils.getMarketsList(mContext);
+                        List<MenuItemInfo<String>> markets = AfbUtils.getMarketsList(mContext);
                         popMarket.setData(markets, tv.getText().toString());
                         popMarket.showPopupDownWindow();
                         break;
@@ -322,6 +322,12 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         });
         initSetData();
 
+    }
+
+    @Override
+    public void showContent() {
+        super.showContent();
+        initSetData();
     }
 
     private void initSetData() {
@@ -478,7 +484,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 if (value)
                     n++;
             }
-            if (n>0&&(n < 5 || n > 8)) {
+            if (n > 0 && (n < 5 || n > 8)) {
                 ToastUtils.showShort(R.string.no_less_5_no_more_8);
                 return false;
             }

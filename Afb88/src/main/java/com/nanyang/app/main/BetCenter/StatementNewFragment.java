@@ -6,6 +6,8 @@ import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.NestedScrollView;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -286,13 +288,14 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 } else if (index24.contains("gbTake2")) {
                     tvMatchAt1.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
-                if (index25.contains("red")) {
+
+               /* if (index25.contains("red")) {
                     tvMatchAt2.setTextColor(Color.RED);
                 } else if (index25.contains("blue")) {
                     tvMatchAt2.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
-                }
-                index24 = AfbUtils.delHTMLTag(index24);
-                index25 = AfbUtils.delHTMLTag(index25);
+                }*/
+//                index24 = AfbUtils.delHTMLTag(index24);
+//                index25 = AfbUtils.delHTMLTag(index25);
                 String odds = bean.getIndex3();
                 tvMatchAtFt.setText(bean.getIndex14());
                 String index16 = bean.getIndex16();
@@ -305,8 +308,11 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvMatchAt3.setVisibility(View.GONE);
                     tvMatchAt4.setVisibility(View.GONE);
                 } else {
-                    tvMatchAt1.setText(index24);
-                    tvMatchAt2.setText(index25);
+//                    tvMatchAt1.setText(index24);
+                    //tvMatchAt2.setText(index25);
+
+                    tvMatchAt1.setText(Html.fromHtml(HtmlTagHandler.spanFont(index24)));
+                    tvMatchAt2.setText(Html.fromHtml(HtmlTagHandler.spanFont(index25)));
                     odds = AfbUtils.delHTMLTag(odds);
                     tvMatchAt3.setText(odds);
                     if (!TextUtils.isEmpty(index16)) {
@@ -412,8 +418,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             } else {
                 tvMatchAt1.setTextColor(Color.BLACK);
             }
+
             String index22 = bean.getIndex22();
-            String matchAtStr2 = AfbUtils.delHTMLTag(index22);
+             /*   String matchAtStr2 = AfbUtils.delHTMLTag(index22);
             if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
                 if (index22.contains("red")) {
                     tv_match_at2_1.setTextColor(Color.RED);
@@ -447,7 +454,10 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tv_match_at2_1.setText(matchAtStr2);
                     tv_match_at2_2.setText("");
                 }
-            }
+            }*/
+            Spanned spanned = Html.fromHtml(HtmlTagHandler.spanFont(index22));
+            tv_match_at2_1.setText(spanned);
+
             tvMatchAt3.setText("@");
             tvMatchAt4.setText(bean.getIndex13() + "");
             String wlStr = bean.getIndex8();
@@ -533,8 +543,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 tvMatchAt1.setTextColor(Color.BLACK);
             }
             String index22 = bean.getIndex23();
-            String matchAtStr2 = AfbUtils.delHTMLTag(index22);
-            if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
+//            String matchAtStr2 = AfbUtils.delHTMLTag(index22);
+           /* if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
                 if (index22.contains("red")) {
                     tv_match_at2_1.setTextColor(Color.RED);
                 } else if (index22.contains("blue")) {
@@ -542,13 +552,18 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 } else {
                     tv_match_at2_1.setTextColor(Color.BLACK);
                 }
-                tv_match_at2_1.setText(matchAtStr2);
+
+//                Spanned spanned = Html.fromHtml(matchAtStr2, null, new HtmlTagHandler("myfont"));
+                tv_match_at2_1.setText(Html.fromHtml(matchAtStr2));
+//                tv_match_at2_1.setText(matchAtStr2);
                 tv_match_at2_2.setText("");
             } else {
                 if (matchAtStr2.contains(" ")) {
                     String[] split = matchAtStr2.split(" ");
                     tv_match_at2_1.setText(split[0] + " ");
                     tv_match_at2_2.setText(split[1]);
+
+
                     if (index22.contains("red")) {
                         tv_match_at2_2.setTextColor(Color.RED);
                     } else if (index22.contains("blue")) {
@@ -567,7 +582,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tv_match_at2_1.setText(matchAtStr2);
                     tv_match_at2_2.setText("");
                 }
-            }
+            }*/
+            tv_match_at2_1.setText(Html.fromHtml(HtmlTagHandler.spanFont(index22)));
+
             tvMatchAt3.setText("@");
             tvMatchAt4.setText(bean.getIndex13() + "");
             String wlStr = bean.getIndex8();

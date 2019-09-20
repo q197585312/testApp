@@ -169,7 +169,7 @@
                     android:drawableBottom="@drawable/line_white"
                     android:drawableRight="@mipmap/arrow_down_drop_white"
                     android:gravity="center_vertical"
-                    android:text="@string/All_Markets"
+                    android:text="@string/All_Market"
                     android:textColor="@color/white"
                     android:textSize="13sp" />
 

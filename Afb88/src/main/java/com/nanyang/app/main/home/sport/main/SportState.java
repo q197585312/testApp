@@ -1426,15 +1426,15 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 RecyclerView rv = view.findViewById(R.id.rv_list);
                 rv.setPadding(0, 0, 0, 0);
                 rv.setLayoutManager(new LinearLayoutManager(getBaseView().getIBaseContext().getBaseActivity()));
-                List<MenuItemInfo> list = AfbUtils.getMarketsList(baseView.getIBaseContext().getBaseActivity());
+                List<MenuItemInfo<String>> list = AfbUtils.getMarketsList(baseView.getIBaseContext().getBaseActivity());
 
 
-                BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(getBaseView().getIBaseContext().getBaseActivity(), list, R.layout.text_base_item) {
+                BaseRecyclerAdapter<MenuItemInfo<String>> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(getBaseView().getIBaseContext().getBaseActivity(), list, R.layout.text_base_item) {
                     @Override
-                    public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
+                    public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
                         TextView tv = holder.getView(R.id.item_text_tv);
-                        tv.setText(item.getText());
-                        if (textView.getText().toString().equals(item.getText())) {
+                        tv.setText(item.getParent());
+                        if (textView.getText().toString().equals(item.getParent())) {
                             tv.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
                             tv.setTextColor(ContextCompat.getColor(context, R.color.blue));
                         } else {
@@ -1443,12 +1443,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                         }
                     }
                 };
-                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {
                     @Override
-                    public void onItemClick(View view, MenuItemInfo item, int position) {
+                    public void onItemClick(View view, MenuItemInfo<String> item, int position) {
                         closePopupWindow();
                         ((SportActivity) baseView.getIBaseContext().getBaseActivity()).setMarketType(item);
-                        textView.setText(item.getText());
+                        textView.setText(item.getParent());
 
                         if (!getAllOddsUrl().isEmpty()) {
                             refresh();

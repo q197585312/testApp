@@ -565,5 +565,6 @@
     <string name="ft_x">FT.X</string>
     <string name="ft_2">FT.2</string>
     <string name="speed_way">SPEEDWAY</string>
-    <string name="switching_market_failure">切换盘口失败</string>
+    <string name="switching_market_failure">Switching market failure</string>
+    <string name="All_Market" >@string/All_Markets</string>
 </resources>

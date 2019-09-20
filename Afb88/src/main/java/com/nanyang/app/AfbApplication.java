@@ -50,7 +50,7 @@ public class AfbApplication extends BaseApplication {
         this.oddsType = oddsType;
     }
 
-    public MenuItemInfo getMarketType() {
+    public MenuItemInfo<String> getMarketType() {
         return AfbUtils.getMarketByType(this, marketType.getType());
 //        return marketType;
     }

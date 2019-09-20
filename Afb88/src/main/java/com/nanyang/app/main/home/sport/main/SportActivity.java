@@ -495,7 +495,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         getApp().setMarketType(allOdds);
     }
 
-    public MenuItemInfo getMarketType() {
+    public MenuItemInfo<String> getMarketType() {
         return getApp().getMarketType();
     }
 
@@ -782,9 +782,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             }*/
 
         }
-        MenuItemInfo allOddsType = getMarketType();
+        MenuItemInfo<String> allOddsType = getMarketType();
         if (allOddsType != null) {
-            ivAllAdd.setText(allOddsType.getText());
+            ivAllAdd.setText(allOddsType.getParent());
            /* if (allOddsType.getType().equals("0")) {
                 ivAllAdd.setText(R.string.All_Markets);
             } else if (oddsType.getType().equals("1")) {

@@ -11,6 +11,7 @@ import com.nanyang.app.main.BetCenter.Bean.StatementOpen3ListDataBean;
 import com.nanyang.app.main.BetCenter.StatementNewFragment;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -92,6 +93,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTableD", "wfStatement2H50", date, "", "").getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
+                LogUtil.d("data----------",data);
                 String updateString = data.replace("&nbsp;", " ");
                 JSONArray jsonArray = new JSONArray(updateString);
                 if (jsonArray.length() > 3) {
@@ -120,6 +122,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetMatch", "wfRunningH50", id, "", "", -1).getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
+                LogUtil.d("data----------",data);
                 String updateString = data.replace("&nbsp;", " ");
                 JSONArray jsonArray = new JSONArray(updateString);
                 if (jsonArray.length() > 3) {
@@ -148,6 +151,7 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetMatchDetail", "wfRunningH50", id, transType, "", "", -1).getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
+                LogUtil.d("data----------",data);
                 String updateString = data.replace("&nbsp;", " ");
                 JSONArray jsonArray = new JSONArray(updateString);
                 if (jsonArray.length() > 3) {

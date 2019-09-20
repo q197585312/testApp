@@ -445,4 +445,5 @@
     <string name="no_games">No Games</string>
     <string name="speed_way">SPEEDWAY</string>
     <string name="switching_market_failure">切换盘口失败</string>
-</resources>
+    <string name="All_Market">@string/All_Markets</string>
+    </resources>

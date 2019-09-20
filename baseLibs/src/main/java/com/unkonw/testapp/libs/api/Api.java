@@ -76,7 +76,7 @@ public class Api {
         if (retrofit == null) {
             // log拦截器  打印所有的log
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
             //设置 请求的缓存
             File cacheFile = new File(BaseApplication.getInstance().getCacheDir(), "cache");
             Cache cache = new Cache(cacheFile, 1024 * 1024 * 10); //10Mb

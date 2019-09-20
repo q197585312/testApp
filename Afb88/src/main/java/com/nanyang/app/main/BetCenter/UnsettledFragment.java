@@ -5,6 +5,8 @@ import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
@@ -404,8 +406,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             tvMatchAt1.setTextColor(Color.BLACK);
         }
         String index22 = bean.getIndex23();
-        String matchAtStr2 = AfbUtils.delHTMLTag(index22);
-        if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
+//        String matchAtStr2 = AfbUtils.delHTMLTag(index22);
+       /* if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
             if (index22.contains("red")) {
                 tv_match_at2_1.setTextColor(Color.RED);
             } else if (index22.contains("blue")) {
@@ -438,7 +440,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 tv_match_at2_1.setText(matchAtStr2);
                 tv_match_at2_2.setText("");
             }
-        }
+        }*/
+        Spanned spanned = Html.fromHtml( HtmlTagHandler.spanFont(matchAtStr1));
+        tv_match_at2_1.setText(spanned);
         String index21 = bean.getIndex21();
         if (index21.equals("True")) {
             tvMatchScore.setVisibility(View.VISIBLE);
@@ -509,7 +513,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             tvMatchAt1.setTextColor(Color.BLACK);
         }
         String index22 = bean.getIndex22();
-        String matchAtStr2 = AfbUtils.delHTMLTag(index22);
+
+      /*  String matchAtStr2 = AfbUtils.delHTMLTag(index22);
         if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
             if (index22.contains("red")) {
                 tv_match_at2_1.setTextColor(Color.RED);
@@ -543,7 +548,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 tv_match_at2_1.setText(matchAtStr2);
                 tv_match_at2_2.setText("");
             }
-        }
+        }*/
+        tv_match_at2_1.setText(Html.fromHtml(HtmlTagHandler.spanFont(index22)));
         String index20 = bean.getIndex20();
         if (index20.equals("True")) {
             tvMatchScore.setVisibility(View.VISIBLE);
@@ -563,6 +569,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             tvWL.setTextColor(Color.BLACK);
         }
         tvWL.setText(AfbUtils.delHTMLTag(wlStr));
+
         String index23 = bean.getIndex23();
         String scoreStr;
         if (index23.equals("False")) {

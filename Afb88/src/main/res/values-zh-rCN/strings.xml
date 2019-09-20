@@ -565,4 +565,5 @@
     <string name="ft_2">全场客</string>
     <string name="speed_way">SPEEDWAY</string>
     <string name="switching_market_failure">切换盘口失败</string>
+    <string name="All_Market">全部</string>
 </resources>
