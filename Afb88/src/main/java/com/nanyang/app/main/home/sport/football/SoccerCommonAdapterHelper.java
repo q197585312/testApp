@@ -106,11 +106,11 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
         TextView homeTv = helper.getView(R.id.module_match_home_team_tv);
         View llLeft1 = helper.getView(R.id.module_match_left1_ll);
         View llLeft2 = helper.getView(R.id.module_match_left2_ll);
-        awayTv.setText("");
-        homeTv.setText("");
+//        awayTv.setText("");
+//        homeTv.setText("");
 
 //        llLeft1.setVisibility(View.INVISIBLE);
-        llLeft2.setVisibility(View.INVISIBLE);
+//        llLeft2.setVisibility(View.INVISIBLE);
 //        item.setHasOE("0");
         repMap.put(position, true);
     }
