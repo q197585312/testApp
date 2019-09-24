@@ -11,6 +11,7 @@ import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import cn.finalteam.toolsfinal.StringUtils;
@@ -60,7 +61,8 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 || betAfbList.getList().get(0).getOddsType().startsWith("mm")
                 || !hasPar))) {
             betOddsUrl = "BTMD=S&coupon=0&BETID=" + oddsUrlBean.getBETID();
-            ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().setShowBet(true);
+            LogUtil.d("typeHasPar","typeHasPar:"+typeHasPar+",hasPar:"+hasPar);
+            ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().setShowBet(true,hasPar&&typeHasPar);
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
 //            getBaseView().onFailed(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.can_not_mixparly));
             ToastUtils.showShort(R.string.can_not_mixparly);
@@ -83,7 +85,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 ids += itemId + ",";
             }
             betOddsUrl = "BTMD=P&coupon=1&BETID=" + ids + oddsUrlBean.getBETID_PAR();
-            ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().setShowBet(false);
+            ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().setShowBet(false, true);
         }
         return getDisposable(v, isHf, betOddsUrl);
     }

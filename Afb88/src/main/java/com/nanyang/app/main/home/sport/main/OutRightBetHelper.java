@@ -34,7 +34,7 @@ public class OutRightBetHelper extends SportBetHelper<SportInfo, BetView> {
             return new CompositeDisposable();
         }
         //http://www.afb1188.com/Bet/hBetOdds.ashx?BTMD=S&coupon=0&BETID=s|home|1|469195||&_=1543457322841
-        ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().setShowBet(true);
+        ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().setShowBet(true,false);
         return getDisposable(v, isHf, betOddsUrl);
     }
 }

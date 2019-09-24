@@ -942,7 +942,7 @@ public class AfbUtils {
         List<MenuItemInfo<String>> list = new ArrayList<>();
         list.add(new MenuItemInfo<>(0, context.getString(R.string.All_Markets), "0",context.getString(R.string.All_Market)));//accType=
         list.add(new MenuItemInfo<>(0, context.getString(R.string.Main_Markets), "1", context.getString(R.string.Main_Markets)));
-        list.add(new MenuItemInfo<>(0, context.getString(R.string.Other_Bet_Markets), "2", context.getString(R.string.Main_Markets)));
+        list.add(new MenuItemInfo<>(0, context.getString(R.string.Other_Bet_Markets), "2", context.getString(R.string.Other_Bet_Markets)));
         return list;
     }
 

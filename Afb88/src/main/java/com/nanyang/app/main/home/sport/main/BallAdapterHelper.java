@@ -914,7 +914,15 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 awayScoreTv.setVisibility(View.GONE);
             }
         }
+    /*    BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
+
+        handler.updateAfbMixBackground(item.getSocOddsId(), 0, sl, "1", "2", "home", "away", "NULL", "NULL");
+        handler.updateAfbMixBackground(item.getSocOddsId(), 1, sl, "over", "under", "odd", "even", "NULL", "NULL");*/
+       updateMixNormalBackground(helper,item);
+
     }
+
+
 
     private void addAdditionMModds(String oddsLeft,
                                    String oddsRight,
@@ -1903,5 +1911,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         viewLine.setBackgroundColor(ContextCompat.getColor(context, R.color.green_line));
         matchTitleLl.setBackgroundColor(ContextCompat.getColor(context, R.color.green_title));
         moduleMatchTimeTv.setTextColor(Color.BLACK);
+    }
+    public void updateMixNormalBackground(MyRecyclerViewHolder helper, I item) {
+
+        ScrollLayout sl = helper.getView(R.id.module_center_sl);
+        updateMixBackground(item, sl, "home", "away", "over", "under", "odd", "even");
     }
 }

@@ -192,7 +192,7 @@
             android:layout_height="match_parent"
             android:background="@color/grey_dialog_background" />
 
-        <LinearLayout
+        <com.unkonw.testapp.training.ScrollLayout
             android:id="@+id/module_center_sl"
             android:layout_width="140dp"
             android:layout_height="match_parent"
@@ -402,7 +402,7 @@
 
             </LinearLayout>
 
-        </LinearLayout>
+        </com.unkonw.testapp.training.ScrollLayout>
 
         <View
             android:layout_width="0.6dp"

@@ -10,6 +10,7 @@ import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.unkonw.testapp.libs.base.BaseApplication;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -29,6 +30,12 @@ public class AfbApplication extends BaseApplication {
     private boolean isGoHome = false;
     private SettingAllDataBean settingAllDataBean;
     private boolean showBet=true;
+
+    public boolean isHasPar() {
+        return hasPar;
+    }
+
+    private boolean hasPar =true;
 
     public RefreshDataBean getRefreshDataBean() {
         return refreshDataBean;
@@ -217,8 +224,10 @@ public class AfbApplication extends BaseApplication {
         return showBet;
     }
 
-    public void setShowBet(boolean showBet) {
+    public void setShowBet(boolean showBet,boolean typeHasPar) {
         this.showBet = showBet;
+        this.hasPar = typeHasPar;
+        LogUtil.d("hasPar","hasPar:"+typeHasPar+",showBet:"+showBet);
     }
 }
 

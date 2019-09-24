@@ -336,9 +336,9 @@ public class BetPop extends BasePopupWindow {
             String s = s1.replaceAll(",", "");
             double min = Double.parseDouble(betMaxWinTv.getText().toString().trim().replace(",", ""));
             double max = Double.parseDouble(betMaxBetTv.getText().toString().trim().replace(",", ""));
-            if (min > 0 && max > 0) {
+            if (min >= 0 && max > 0) {
                 int count = Integer.valueOf(s);
-                if (count > max || count < min) {
+                if (count > max || count < min || count <= 0) {
                     ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
                     betAmountEdt.setText("");
                     return;

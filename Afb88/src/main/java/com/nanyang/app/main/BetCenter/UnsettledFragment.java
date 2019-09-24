@@ -5,7 +5,6 @@ import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
@@ -303,6 +302,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
                     TextView running_BetType2_odds = holder.getTextView(R.id.running_BetType2_odds);
                     String betType2 = item.getBetType323();
+                  /*  HtmlTagHandler.spanFontHtml(betType2);
                     if (betType2.contains("red") || item.getBetType424().contains("gbGive")) {
                         running_BetType2.setTextColor(Color.RED);
                         running_BetType2_odds.setTextColor(Color.RED);
@@ -311,15 +311,16 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     } else {
                         running_BetType2.setTextColor(Color.BLACK);
                     }
-                    betType2 = AfbUtils.delHTMLTag(betType2);
+                    betType2 = AfbUtils.delHTMLTag(betType2);*/
+
                     String gameType314 = item.getGameType314();
-                    running_BetType2.setText(AfbUtils.delHTMLTag(item.getBetType424()) + " ");
-                    running_BetType2_odds.setText((gameType314.equals("O") ? "Outright" : betType2));
+                    running_BetType2.setText(HtmlTagHandler.spanFontHtml(item.getBetType424()));
+                    running_BetType2_odds.setText(HtmlTagHandler.spanFontHtml((gameType314.equals("O") ? "Outright" : betType2)));
                     running_Score.setText((isRun5.equals("True") ? item.getScore19() : ""));
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
                     String odds = item.getOdds3();
-                    odds = AfbUtils.delHTMLTag(odds);
-                    running_Odds.setText("@" + odds + " ");
+//                    odds = AfbUtils.delHTMLTag(odds);
+                    running_Odds.setText(HtmlTagHandler.spanFontHtml("@" + odds + " "));
                     TextView running_OddsType = holder.getTextView(R.id.running_OddsType);
                     String oddsType15 = item.getOddsType15();
                     if (!TextUtils.isEmpty(oddsType15)) {
@@ -397,15 +398,15 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         tvMatchType.setText(bean.getIndex1());
         tvMatchVs.setText(bean.getIndex3() + "-VS-" + bean.getIndex4());
         String matchAtStr1 = bean.getIndex16();
-        tvMatchAt1.setText(AfbUtils.delHTMLTag(matchAtStr1));
-        if (matchAtStr1.contains("gbGive")) {
+        tvMatchAt1.setText(HtmlTagHandler.spanFontHtml(matchAtStr1));
+      /*  if (matchAtStr1.contains("gbGive")) {
             tvMatchAt1.setTextColor(Color.RED);
         } else if (matchAtStr1.contains("gbTake2")) {
             tvMatchAt1.setTextColor(Color.BLUE);
         } else {
             tvMatchAt1.setTextColor(Color.BLACK);
-        }
-        String index22 = bean.getIndex23();
+        }*/
+
 //        String matchAtStr2 = AfbUtils.delHTMLTag(index22);
        /* if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
             if (index22.contains("red")) {
@@ -441,7 +442,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 tv_match_at2_2.setText("");
             }
         }*/
-        Spanned spanned = Html.fromHtml( HtmlTagHandler.spanFont(matchAtStr1));
+        String index22 = bean.getIndex23();
+        Spanned spanned =  HtmlTagHandler.spanFontHtml(index22);
         tv_match_at2_1.setText(spanned);
         String index21 = bean.getIndex21();
         if (index21.equals("True")) {
@@ -504,15 +506,15 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         tvMatchType.setText(bean.getIndex1());
         tvMatchVs.setText(bean.getIndex3() + "-VS-" + bean.getIndex4());
         String matchAtStr1 = bean.getIndex16();
-        tvMatchAt1.setText(AfbUtils.delHTMLTag(matchAtStr1));
-        if (matchAtStr1.contains("gbGive")) {
+        tvMatchAt1.setText(HtmlTagHandler.spanFontHtml(matchAtStr1));
+      /*  if (matchAtStr1.contains("gbGive")) {
             tvMatchAt1.setTextColor(Color.RED);
         } else if (matchAtStr1.contains("gbTake2")) {
             tvMatchAt1.setTextColor(Color.BLUE);
         } else {
             tvMatchAt1.setTextColor(Color.BLACK);
-        }
-        String index22 = bean.getIndex22();
+        }*/
+
 
       /*  String matchAtStr2 = AfbUtils.delHTMLTag(index22);
         if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
@@ -549,7 +551,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 tv_match_at2_2.setText("");
             }
         }*/
-        tv_match_at2_1.setText(Html.fromHtml(HtmlTagHandler.spanFont(index22)));
+        String index22 = bean.getIndex22();
+        tv_match_at2_1.setText(HtmlTagHandler.spanFontHtml(index22));
         String index20 = bean.getIndex20();
         if (index20.equals("True")) {
             tvMatchScore.setVisibility(View.VISIBLE);

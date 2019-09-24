@@ -1,6 +1,5 @@
 package com.nanyang.app.main.BetCenter.Presenter;
 
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.main.BetCenter.Bean.BaseParamBean;
@@ -43,8 +42,8 @@ public class StatementNewPresenter extends BaseRetrofitPresenter<StatementNewFra
         doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + new BaseParamBean("GetTT", "wfStatement2H50").getJson()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
-                String updateString = AfbUtils.delHTMLTag(data);
-                JSONArray jsonArray = new JSONArray(updateString);
+//                String updateString = AfbUtils.delHTMLTag(data);
+                JSONArray jsonArray = new JSONArray(data);
                 if (jsonArray.length() > 3) {
                     JSONArray jsonArrayData1 = jsonArray.getJSONArray(3);
                     JSONArray jsonArrayData2 = jsonArrayData1.getJSONArray(1);

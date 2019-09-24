@@ -212,13 +212,19 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
             }
         });
-        myGoHomeBroadcastReceiver = new
-
-                MyGoHomeBroadcastReceiver(getApp());
-
+        myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 //        presenter.getStateHelper().switchOddsType(item.getType());
-        presenter.switchOddsType(getApp().getOddsType().getType());
+        if (getApp().getOddsType() != null)
+            presenter.switchOddsType(getApp().getOddsType().getType());
+        else {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    presenter.switchOddsType(getApp().getOddsType().getType());
+                }
+            }, 200);
+        }
     }
 
 
@@ -308,7 +314,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void updateMixOrderCount() {
-        if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0) {
+        if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0 && getApp().isHasPar()) {
             tvMixCount.setVisibility(View.VISIBLE);
             tvOrderCount.setVisibility(View.VISIBLE);
             ivOrderTop.setImageResource(R.mipmap.sport_shopping_top_white);
