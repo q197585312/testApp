@@ -225,6 +225,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 }
             }, 200);
         }
+        updateMixOrderCount();
     }
 
 
@@ -272,7 +273,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 //            currentFragment.presenter.getStateHelper().switchOddsType(getApp().getOddsType().getType());
 
         }
-        getApp().setBetParList(null);
+
         tvRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

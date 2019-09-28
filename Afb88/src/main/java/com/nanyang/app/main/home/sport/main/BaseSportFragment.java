@@ -403,8 +403,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void onUpdateMixSucceed(AfbClickResponseBean bean) {
+        if (getBaseActivity() == null)
+            return;
         getApp().setBetParList(bean);
-        if (getBaseActivity() != null && getBaseActivity().isHasAttached()) {
+        if (getBaseActivity().isHasAttached()) {
             updateMixOrderCount();
             baseRecyclerAdapter.notifyDataSetChanged();
         }

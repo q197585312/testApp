@@ -124,6 +124,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         initLanguage();
         presenter.loadAllImages();
         inputMove();
+        getApp().setBetParList(null);
     }
 
 

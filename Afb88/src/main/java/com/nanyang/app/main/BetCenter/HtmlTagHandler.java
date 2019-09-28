@@ -107,7 +107,7 @@ public class HtmlTagHandler implements Html.TagHandler {
                 .replaceAll("MM_blue", "#0000ff")
                 .replaceAll("blue", "#0000ff")
                 .replaceAll("style='color:", "color='")
-                .replaceAll("gbGive", "'#ee2c2c'")
+                .replaceAll("gbGive", "#ee2c2c")
                 .replaceAll("gbTake2", "'#0000ff'")
                 .replaceAll("MM_black", "#000000")
                 .replaceAll("black", "#000000");
