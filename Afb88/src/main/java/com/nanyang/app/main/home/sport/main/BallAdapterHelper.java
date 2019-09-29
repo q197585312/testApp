@@ -134,7 +134,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, R.string.FULL_1X2);
                     addAdditionFor1X2(additionData.getF1(), additionData.getFX(), additionData.getF2(), additionData.getF1X2_SocOddsId(), false, parent, item,
-                            "1", context.getString(R.string.dx), "2", "1", context.getString(R.string.dx), "2", "", "", "", R.layout.addition_1x2_sport_item
+                            "1", context.getString(R.string.dx), "2", "1", "X", "2", "", "", "", R.layout.addition_1x2_sport_item
                             , additionData.getHasPar().equals("True")
                             , additionData.getHasPar().equals("True")
                             , additionData.getHasPar().equals("True")
@@ -152,7 +152,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, R.string.HALF_1X2);
                     addAdditionFor1X2(additionData.getH1(), additionData.getHX(), additionData.getH2(), additionData.getH1X2_SocOddsId(), false, parent, item,
-                            "1", context.getString(R.string.dx), "2", "1", context.getString(R.string.dx), "2", "", "", "", R.layout.addition_1x2_sport_item
+                            "1", context.getString(R.string.dx), "2", "1", "X", "2", "", "", "", R.layout.addition_1x2_sport_item
                             , additionData.getHHasPar().equals("True")
                             , additionData.getHHasPar().equals("True")
                             , additionData.getHHasPar().equals("True")
