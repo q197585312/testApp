@@ -234,7 +234,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 tvEstPayout.setText(getString(R.string.Est_Payout) + " " + AfbUtils.decimalValue(Float.parseFloat(bean.getIndex3()) * Float.parseFloat(bean.getIndex9()), "0.00"));
                 tvOdds.setText(getString(R.string.Odds) + " " + bean.getIndex3());
                 tvType.setText(bean.getIndex17());
-                tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex9());
+                tvAmt.setText(getString(R.string.Amt) + ": " + bean.getIndex9());
                 String winLose = bean.getIndex10();
 
                 if (winLose.startsWith("-")) {
@@ -244,7 +244,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
                 tvWl.setText(" " + winLose.replace("-",""));
-                tvCom.setText(getString(R.string.Com) + " " + bean.getIndex18());
+                tvCom.setText(getString(R.string.Com) + ": " + bean.getIndex18());
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -399,7 +399,6 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvMatchVs = view.findViewById(R.id.tv_match_vs);
             TextView tvMatchAt1 = view.findViewById(R.id.tv_match_at1);
             TextView tv_match_at2_1 = view.findViewById(R.id.tv_match_at2_1);
-            TextView tv_match_at2_2 = view.findViewById(R.id.tv_match_at2_2);
             TextView tvMatchAt3 = view.findViewById(R.id.tv_match_at3);
             TextView tvMatchAt4 = view.findViewById(R.id.tv_match_at4);
             TextView tvWL = view.findViewById(R.id.tv_wl);
