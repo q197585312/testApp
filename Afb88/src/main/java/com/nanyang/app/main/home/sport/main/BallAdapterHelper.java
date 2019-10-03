@@ -134,7 +134,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, R.string.FULL_1X2);
                     addAdditionFor1X2(additionData.getF1(), additionData.getFX(), additionData.getF2(), additionData.getF1X2_SocOddsId(), false, parent, item,
-                            "1", context.getString(R.string.dx), "2", "1", context.getString(R.string.dx), "2", "", "", "", R.layout.addition_1x2_sport_item
+                            "1", context.getString(R.string.dx), "2", "1", "X", "2", "", "", "", R.layout.addition_1x2_sport_item
                             , additionData.getHasPar().equals("True")
                             , additionData.getHasPar().equals("True")
                             , additionData.getHasPar().equals("True")
@@ -152,7 +152,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                     addTitle(parent, inflate, R.string.HALF_1X2);
                     addAdditionFor1X2(additionData.getH1(), additionData.getHX(), additionData.getH2(), additionData.getH1X2_SocOddsId(), false, parent, item,
-                            "1", context.getString(R.string.dx), "2", "1", context.getString(R.string.dx), "2", "", "", "", R.layout.addition_1x2_sport_item
+                            "1", context.getString(R.string.dx), "2", "1", "X", "2", "", "", "", R.layout.addition_1x2_sport_item
                             , additionData.getHHasPar().equals("True")
                             , additionData.getHHasPar().equals("True")
                             , additionData.getHHasPar().equals("True")
@@ -914,7 +914,15 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 awayScoreTv.setVisibility(View.GONE);
             }
         }
+    /*    BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
+
+        handler.updateAfbMixBackground(item.getSocOddsId(), 0, sl, "1", "2", "home", "away", "NULL", "NULL");
+        handler.updateAfbMixBackground(item.getSocOddsId(), 1, sl, "over", "under", "odd", "even", "NULL", "NULL");*/
+       updateMixNormalBackground(helper,item);
+
     }
+
+
 
     private void addAdditionMModds(String oddsLeft,
                                    String oddsRight,
@@ -1384,8 +1392,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     protected void onMatchRepeat(MyRecyclerViewHolder helper, I item, int position) {
-        View tvRightMark = helper.getView(R.id.module_right_mark_tv);
-        tvRightMark.setVisibility(View.INVISIBLE);
+      /*  View tvRightMark = helper.getView(R.id.module_right_mark_tv);
+        tvRightMark.setVisibility(View.INVISIBLE);*/
         View collectionTv = helper.getView(R.id.module_match_collection_tv);
         collectionTv.setVisibility(View.INVISIBLE);
     }
@@ -1903,5 +1911,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         viewLine.setBackgroundColor(ContextCompat.getColor(context, R.color.green_line));
         matchTitleLl.setBackgroundColor(ContextCompat.getColor(context, R.color.green_title));
         moduleMatchTimeTv.setTextColor(Color.BLACK);
+    }
+    public void updateMixNormalBackground(MyRecyclerViewHolder helper, I item) {
+
+        ScrollLayout sl = helper.getView(R.id.module_center_sl);
+        updateMixBackground(item, sl, "home", "away", "over", "under", "odd", "even");
     }
 }

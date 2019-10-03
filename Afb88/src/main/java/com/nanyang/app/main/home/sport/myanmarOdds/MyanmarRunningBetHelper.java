@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sport.myanmarOdds;
 import android.view.Gravity;
 import android.view.View;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
@@ -28,8 +29,13 @@ public class MyanmarRunningBetHelper extends MyanmarBetHelper {
         pop.setBetData(bean, this);
         pop.setIsRunning(true);
         pop.setrTMatchInfo(item);
-        if (!pop.isShowing()) {
-            baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+        boolean showBet = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().isShowBet();
+        if (showBet) {
+            if (!pop.isShowing()) {
+                baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+            }
+        } else {
+            pop.closePopupWindow();
         }
     }
 }

@@ -201,6 +201,8 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             if (!pop.isShowing()) {
                 baseView.onPopupWindowCreated(pop, Gravity.CENTER);
             }
+        } else {
+            pop.closePopupWindow();
         }
     }
 

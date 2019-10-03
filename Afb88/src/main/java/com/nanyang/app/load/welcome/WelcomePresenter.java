@@ -133,12 +133,11 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
                         CkAccResponseBean bean = new Gson().fromJson(data, new TypeToken<CkAccResponseBean>() {
                         }.getType());
                         if (bean != null && !bean.getError().equals("1")) {
-                            final String url_login = AppConstant.getInstance().HOST + "Public/validate.aspx?us=" + webId + "s" + userName + "&k=" + bean.getToken() + "&device=m&oddsstyle=" + oddsType + "&oddsmode=Double&lang=" + language + "&currencyName=" + currencyName;
+                            final String url_login = AppConstant.getInstance().HOST + "Public/validate.aspx?us=" + webId + "s" + userName + "&k=" + bean.getToken() + "&device=m&oddsstyle=" + oddsType + "&oddsmode=Double&lang=" + language + "&currencyName=" + currencyName
+                                    + "&sk=H50";
                             skipMain(url_login);
-
                         }
                     }
-
                 });
     }
 

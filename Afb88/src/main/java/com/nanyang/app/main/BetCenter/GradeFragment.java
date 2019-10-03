@@ -13,7 +13,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.main.BetCenter.Bean.DataInfoBean;
 import com.nanyang.app.main.BetCenter.Bean.GradeAllMatchBean;
 import com.nanyang.app.main.BetCenter.Bean.GradeOpenDataBean;
@@ -239,8 +238,12 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
                     String[] fhArr = index12.split("-");
                     tvFh1.setText(fhArr[0].trim());
                     tvFh2.setText(fhArr[1].trim());
-                } else {
-                    tvFh1.setText("");
+                } else if(index12.contains("Cancel")){
+                    tvFh1.setText("C");
+                    tvFh2.setText("");
+                }
+                else {
+                    tvFh1.setText(index12);
                     tvFh2.setText("");
                 }
                 String index11 = bean.getIndex11();
@@ -248,8 +251,12 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
                     String[] ftArr = index11.split("-");
                     tvFt1.setText(ftArr[0].trim());
                     tvFt2.setText(ftArr[1].trim());
-                } else {
-                    tvFt1.setText("");
+                }else if(index11.contains("Cancel")){
+                    tvFt1.setText("C");
+                    tvFt2.setText("");
+                }
+                else {
+                    tvFt1.setText(index11);
                     tvFt2.setText("");
                 }
             } else {

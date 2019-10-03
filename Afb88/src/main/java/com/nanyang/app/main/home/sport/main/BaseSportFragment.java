@@ -403,9 +403,13 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void onUpdateMixSucceed(AfbClickResponseBean bean) {
+        if (getBaseActivity() == null)
+            return;
         getApp().setBetParList(bean);
-        updateMixOrderCount();
-        baseRecyclerAdapter.notifyDataSetChanged();
+        if (getBaseActivity().isHasAttached()) {
+            updateMixOrderCount();
+            baseRecyclerAdapter.notifyDataSetChanged();
+        }
     }
 
     private void updateMixOrderCount() {
@@ -488,7 +492,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 //        }
         String refreshOddsUrl = getApp().getRefreshOddsUrl();
         presenter.getStateHelper().getBetHelper().getRefreshOdds(refreshOddsUrl);
-        getApp().setShowBet(true);
+        getApp().setShowBet(true, true);
     }
 
     public void clickOddsType(final TextView tvOddsType) {

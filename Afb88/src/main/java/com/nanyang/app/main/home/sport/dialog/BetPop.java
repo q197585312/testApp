@@ -41,7 +41,6 @@ import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
-import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
@@ -336,9 +335,9 @@ public class BetPop extends BasePopupWindow {
             String s = s1.replaceAll(",", "");
             double min = Double.parseDouble(betMaxWinTv.getText().toString().trim().replace(",", ""));
             double max = Double.parseDouble(betMaxBetTv.getText().toString().trim().replace(",", ""));
-            if (min > 0 && max > 0) {
+            if (min >= 0 && max > 0) {
                 int count = Integer.valueOf(s);
-                if (count > max || count < min) {
+                if (count > max || count < min || count <= 0) {
                     ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
                     betAmountEdt.setText("");
                     return;
@@ -626,7 +625,8 @@ public class BetPop extends BasePopupWindow {
 
     private void goCancel() {
         closePopupWindow();
-        ((BetView) presenter.getBaseView()).onUpdateMixSucceed(null);
+        if (((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).currentFragment != null)
+            ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).currentFragment.onUpdateMixSucceed(null);
     }
 
     private boolean isNeedInitWeb = true;
@@ -653,6 +653,8 @@ public class BetPop extends BasePopupWindow {
             betPopParentTopFl.setVisibility(View.VISIBLE);
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + l;
             AfbUtils.synCookies(context, webView, gameUrl);
+        } else {
+            betPopParentTopFl.setVisibility(View.GONE);
         }
         isNeedInitWeb = false;
     }

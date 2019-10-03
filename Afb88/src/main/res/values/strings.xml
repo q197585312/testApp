@@ -63,7 +63,7 @@
     <string name="draw">Draw</string>
     <string name="odd">@string/ODD</string>
     <string name="even">Even</string>
-    <string name="double_chance">Double chance</string>
+    <string name="double_chance">Double Chance</string>
     <string name="x1">X1</string>
     <string name="x2">2X</string>
     <string name="x12">12</string>
@@ -160,7 +160,7 @@
     <string name="Common_Game">Common Game</string>
     <string name="E_Sport">E-Sports</string>
     <string name="Specials_4D">4D Specials</string>
-    <string name="OutRight">OUTRIGHT</string>
+    <string name="OutRight">OutRight</string>
     <string name="MixParlay">MixParlay</string>
     <string name="selected_all">Selected All</string>
     <string name="reverse_selection">Reverse Selection</string>

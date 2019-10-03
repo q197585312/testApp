@@ -890,7 +890,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             }
             TableSportInfo<B> bTableSportInfo = parseTableSportMatch(match, true);
             allData.add(n, bTableSportInfo);
-            LogUtil.d("SocketAdd", "添加了到" + n + "位得联赛，isNew：" + isNew);
+
         } else {*/
         for (int i = 0; i < allData.size(); i++) {
             TableSportInfo<B> bTableSportInfo = allData.get(i);
@@ -982,10 +982,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
             needRefresh = true;
         }
-
-
-        LogUtil.d("SocketAdd", "添加了到" + n + "位联赛，isNew：");
-
         return needRefresh;
     }
 
