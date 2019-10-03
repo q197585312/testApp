@@ -482,10 +482,6 @@ public class AfbUtils {
         othersMap.put("108", new SportIdBean("108", "108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.BLACK, R.mipmap.financial));
 
 
-
-
-
-
     }
 
     //("1", "9", "21", "29", "14", "5");
@@ -728,11 +724,13 @@ public class AfbUtils {
      * 在数字型字符串千分位加逗号,删除小数
      *
      * @param str
-     * @param edt
      * @return sb.toString()
      */
-    public static String addComma(String str, TextView edt, boolean showTail) {
-        touzi_ed_values22 = edt.getText().toString().trim().replaceAll(",", "");
+    public static String addComma(String str,  boolean showTail) {
+
+
+
+       /* touzi_ed_values22 = edt.getText().toString().trim().replaceAll(",", "");
         str = str.trim().replaceAll(",", "");
 
         boolean neg = false;
@@ -753,12 +751,15 @@ public class AfbUtils {
         sb.reverse();
         if (neg) {
             sb.insert(0, '-');
+        }*/
+        if (showTail) {
+            String f = "#,###.00";
+            return scientificCountingToString(str, f);
+
+        } else {
+            String f = "#,###";
+            return scientificCountingToString(str, f);
         }
-        if (showTail)
-            if (tail != null) {
-                sb.append(tail);
-            }
-        return sb.toString();
     }
 
     private static DisplayMetrics metric;
@@ -938,22 +939,22 @@ public class AfbUtils {
     }
 
     public static List<MenuItemInfo<String>> getMarketsList(Context context) {
-        AfbUtils.switchLanguage(AfbUtils.getLanguage(context),context);
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
         List<MenuItemInfo<String>> list = new ArrayList<>();
-        list.add(new MenuItemInfo<>(0, context.getString(R.string.All_Markets), "0",context.getString(R.string.All_Market)));//accType=
+        list.add(new MenuItemInfo<>(0, context.getString(R.string.All_Markets), "0", context.getString(R.string.All_Market)));//accType=
         list.add(new MenuItemInfo<>(0, context.getString(R.string.Main_Markets), "1", context.getString(R.string.Main_Markets)));
         list.add(new MenuItemInfo<>(0, context.getString(R.string.Other_Bet_Markets), "2", context.getString(R.string.Main_Markets)));
         return list;
     }
 
     public static MenuItemInfo<String> getMarketByType(Context context, String type) {
-        AfbUtils.switchLanguage(AfbUtils.getLanguage(context),context);
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
         List<MenuItemInfo<String>> list = getMarketsList(context);
         for (MenuItemInfo<String> menuItemInfo : list) {
             if (menuItemInfo.getType().equals(type))
                 return menuItemInfo;
         }
-        return new MenuItemInfo<>(0, context.getString(R.string.All_Markets), "0",context.getString(R.string.All_Market));
+        return new MenuItemInfo<>(0, context.getString(R.string.All_Markets), "0", context.getString(R.string.All_Market));
     }
 
     public static List<MenuItemInfo> getOddsTypeList(Context context) {

@@ -386,7 +386,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     @Override
     protected void updateBalanceTv(String allData) {
-        String s = AfbUtils.addComma(allData, tvBalance, AppConstant.IS_AGENT);
+        String s = AfbUtils.addComma(allData, AppConstant.IS_AGENT);
         tvBalance.setText(getApp().getUser().getCurCode2() + ": " + s);
     }
 
