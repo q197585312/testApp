@@ -91,7 +91,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                 contentParentLl.setBackgroundColor(item.getContentColor());
                 final TextView markTv = holder.getView(R.id.out_right_mark_tv);
                 homeTv.setText(item.getHome());
-                markTv.setText(AfbUtils.scientificCountingToString(item.getX12_1Odds(),"#.00"));
+                markTv.setText(AfbUtils.scientificCountingToString(item.getX12_1Odds(),"0.00"));
                 markTv.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {

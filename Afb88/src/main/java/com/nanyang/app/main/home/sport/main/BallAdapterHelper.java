@@ -417,8 +417,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                             , additionData.getFEvenIsInetBet().equals("True")
                             , additionData.getFOE_ishowOdds().equals("True")
                             , additionData.getFOE_ishowOdds().equals("True")
-                            ,""
-                            ,""
+                            , ""
+                            , ""
                     );
                 }
                 if (!StringUtils.isNull(additionData.getHOE_CNT()) && !additionData.getHOE_CNT().equals("0")) {
@@ -433,8 +433,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                             , additionData.getHEvenIsInetBet() == null || additionData.getHEvenIsInetBet().equals("True")
                             , additionData.getHOE_ishowOdds() == null || additionData.getHOE_ishowOdds().equals("True")
                             , additionData.getHOE_ishowOdds() == null || additionData.getHOE_ishowOdds().equals("True")
-                            ,""
-                            ,""
+                            , ""
+                            , ""
                     );
                 }
 
@@ -918,10 +918,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         handler.updateAfbMixBackground(item.getSocOddsId(), 0, sl, "1", "2", "home", "away", "NULL", "NULL");
         handler.updateAfbMixBackground(item.getSocOddsId(), 1, sl, "over", "under", "odd", "even", "NULL", "NULL");*/
-       updateMixNormalBackground(helper,item);
+        updateMixNormalBackground(helper, item);
 
     }
-
 
 
     private void addAdditionMModds(String oddsLeft,
@@ -1070,7 +1069,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     ) {
         addAdditionByColor(f1, f2, "", oid, isHalf, parent, item,
-                up1, up2, "", type1, type2, "", sc1, sc2, "",  colorType
+                up1, up2, "", type1, type2, "", sc1, sc2, "", colorType
                 , hasPar1
                 , hasPar2
                 , false
@@ -1169,11 +1168,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             , boolean isShowBet1
             , boolean isShowBet2
             , boolean isShowBet3
-            ,String up11, String up21
+            , String up11, String up21
     ) {
 
 
-        View inflate1X2 = LayoutInflater.from(context).inflate( R.layout.addition_1x2_sport_item,  null);
+        View inflate1X2 = LayoutInflater.from(context).inflate(R.layout.addition_1x2_sport_item, null);
         TextView up1_tv = inflate1X2.findViewById(R.id.up1_tv);
         TextView up11_tv = inflate1X2.findViewById(R.id.up11_tv);
         TextView up21_tv = inflate1X2.findViewById(R.id.up21_tv);
@@ -1791,7 +1790,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 e.printStackTrace();
             }
             odds = odds / 10;
-            String s = AfbUtils.decimalValue(odds, "0.000");
+            String s = AfbUtils.scientificCountingToString(odds + "", "0.000");
             String substring = s.substring(s.length() - 1, s.length());
             String showOdds;
             if (substring.equals("0")) {
@@ -1801,12 +1800,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
             textView.setBackgroundResource(0);
             if (!f.equals("") && !f.equals("0")) {
-                if (!type.equals("1") && !type.equals("2") && !type.equalsIgnoreCase("x"))
-                    value = AfbUtils.changeValueS(f);
-
-                else {
-                    value = AfbUtils.decimalValue(Float.valueOf(f), "0.00");
-                }
                 if (isAnimation && imgUpDown != null && resUpdate != 0) {
                     imgUpDown.setImageResource(resUpdate);
                     imgUpDown.setVisibility(View.VISIBLE);
@@ -1824,7 +1817,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
             if (isShowText) {
                 try {
-                    if (Float.valueOf(value) < 0) {
+                    if (f.startsWith("-")) {
                         textView.setTextColor(red_black);
                     } else {
                         textView.setTextColor(black_grey);
@@ -1912,6 +1905,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         matchTitleLl.setBackgroundColor(ContextCompat.getColor(context, R.color.green_title));
         moduleMatchTimeTv.setTextColor(Color.BLACK);
     }
+
     public void updateMixNormalBackground(MyRecyclerViewHolder helper, I item) {
 
         ScrollLayout sl = helper.getView(R.id.module_center_sl);

@@ -85,6 +85,7 @@ import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -159,6 +160,9 @@ public class AfbUtils {
 
     public static String decimalValue(float v, String format) {
         DecimalFormat decimalFormat = new DecimalFormat(format);//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        dfs.setDecimalSeparator('.');
+        decimalFormat.setDecimalFormatSymbols(dfs);
         return decimalFormat.format(v);//format 返回的是字符串
     }
 
@@ -726,7 +730,7 @@ public class AfbUtils {
      * @param str
      * @return sb.toString()
      */
-    public static String addComma(String str,  boolean showTail) {
+    public static String addComma(String str, boolean showTail) {
 
 
 
@@ -752,14 +756,15 @@ public class AfbUtils {
         if (neg) {
             sb.insert(0, '-');
         }*/
+        String f = "";
         if (showTail) {
-            String f = "#,###.00";
-            return scientificCountingToString(str, f);
-
+            f = "#,###.00";
         } else {
-            String f = "#,###";
-            return scientificCountingToString(str, f);
+            f = "#,###";
         }
+        String s = scientificCountingToString(str, f);
+
+        return s;
     }
 
     private static DisplayMetrics metric;
@@ -789,10 +794,15 @@ public class AfbUtils {
     }
 
     public static String scientificCountingToString(String scientificCounting, String format) {
+
+
         scientificCounting = scientificCounting.toString().replace(",", "");
         BigDecimal bd = new BigDecimal(scientificCounting);
         String s = bd.toPlainString();
         DecimalFormat df = new DecimalFormat(format);
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        dfs.setDecimalSeparator('.');
+        df.setDecimalFormatSymbols(dfs);
         return df.format(Double.parseDouble(s));
     }
 
