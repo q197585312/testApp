@@ -344,7 +344,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         LanguageHelper helper = new LanguageHelper(getBaseActivity());
         quickAmount = data.getAccamount() + "";
         List<SettingInfoBean> beanList = new ArrayList<>();
-        SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.login_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.home_user_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName(), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean2 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Password), "**********", 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean3 = new SettingInfoBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), helper.getLanguageItem().getText(), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), AfbUtils.getOddsTypeByType(mContext, data.getAccType()).getText(), 0, 0, 0, 0, 0, 0);

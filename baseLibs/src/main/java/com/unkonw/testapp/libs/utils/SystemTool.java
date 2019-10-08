@@ -18,6 +18,7 @@ import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
 import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.unkonw.testapp.libs.base.BaseApplication;
@@ -77,11 +78,16 @@ public final class SystemTool {
 	}
 
 	public static void hideKeyBoard(Activity aty) {
-		((InputMethodManager) aty.getSystemService("input_method"))
+		((InputMethodManager) aty.getSystemService(Context.INPUT_METHOD_SERVICE))
 				.hideSoftInputFromWindow(
 						aty.getCurrentFocus().getWindowToken(), 2);
 	}
-
+	public static void showPopInput(EditText editText) {
+		editText.requestFocus();
+		InputMethodManager inputManager = (InputMethodManager) 	editText.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+		inputManager.showSoftInput(editText, 0);
+		editText.setSelection(editText.getText().toString().length());
+	}
 
 	public static boolean isSleeping(Context context) {
 		KeyguardManager kgMgr = (KeyguardManager) context

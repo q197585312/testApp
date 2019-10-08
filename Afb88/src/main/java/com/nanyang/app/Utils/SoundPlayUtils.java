@@ -47,7 +47,8 @@ public class SoundPlayUtils {
         sound5 = mSoundPlayer.load(mContext, R.raw.sound5, 1);// 1
         sound6 = mSoundPlayer.load(mContext, R.raw.sound6, 1);// 1
         sound7 = mSoundPlayer.load(mContext, R.raw.sound7, 1);// 1
-        soundIndex = new SoundBean(mContext.getString(R.string.sound) + "1", sound1, "1");
+        soundNo = 0;// 1
+        soundIndex = new SoundBean(mContext.getString(R.string.disable_sound), soundNo, "0");
         return soundPlayUtils;
     }
 
@@ -58,6 +59,7 @@ public class SoundPlayUtils {
     public static int sound5;
     public static int sound6;
     public static int sound7;
+    public static int soundNo;
 
     public static void setSound(SoundBean sound) {
         soundIndex = sound;
@@ -72,7 +74,8 @@ public class SoundPlayUtils {
     }
 
     public static void play() {
-        mSoundPlayer.play(soundIndex.getSound(), 1, 1, 0, 0, 1);
+        if (soundIndex.getSound() != 0)
+            mSoundPlayer.play(soundIndex.getSound(), 1, 1, 0, 0, 1);
     }
 
     public static List<SoundBean> getSoundList() {
@@ -84,6 +87,7 @@ public class SoundPlayUtils {
         sounds.add(new SoundBean(mContext.getString(R.string.sound) + "5", SoundPlayUtils.sound5, "5"));
         sounds.add(new SoundBean(mContext.getString(R.string.sound) + "6", SoundPlayUtils.sound6, "6"));
         sounds.add(new SoundBean(mContext.getString(R.string.sound) + "7", SoundPlayUtils.sound7, "7"));
+        sounds.add(new SoundBean(mContext.getString(R.string.disable_sound), SoundPlayUtils.soundNo, "0"));
         return sounds;
     }
 }

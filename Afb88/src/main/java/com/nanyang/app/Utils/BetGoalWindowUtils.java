@@ -17,6 +17,7 @@ import android.widget.TextView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
@@ -263,7 +264,9 @@ public class BetGoalWindowUtils {
         mCompositeSubscription.add(subscribe);
     }
 
-    public static void showGoalWindow(Activity activity, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {
+    public static void showGoalWindow(BaseToolbarActivity activity, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {
+        if (activity == null || SoundPlayUtils.getSoundIndex().getSound() == 0)
+            return;
         initLayout(activity);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, AfbUtils.dp2px(activity, 90));
         params.bottomMargin = AfbUtils.dp2px(activity, 10);

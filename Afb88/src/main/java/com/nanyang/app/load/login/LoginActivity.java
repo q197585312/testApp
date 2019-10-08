@@ -35,6 +35,7 @@ import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.LogUtil;
+import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
@@ -125,6 +126,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         presenter.loadAllImages();
         inputMove();
         getApp().setBetParList(null);
+        SystemTool.showPopInput(edtLoginUsername);
     }
 
 

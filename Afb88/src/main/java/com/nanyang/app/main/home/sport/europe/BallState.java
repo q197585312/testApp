@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.europe;
 
 import android.graphics.Color;
 
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
@@ -9,7 +10,6 @@ import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
-import com.unkonw.testapp.libs.base.BaseActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -105,7 +105,7 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
         super.updateTableDate(allData);
         if (allData == null)
             return;
-        BaseActivity activity = getBaseView().getIBaseContext().getBaseActivity();
+        BaseToolbarActivity activity = (BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity();
         //        Activity activity = getBaseView().getIBaseContext().getBaseActivity();
         for (int i = 0; i < allData.size(); i++) {
             TableSportInfo<BallInfo> ballInfoTableSportInfo = allData.get(i);

@@ -254,7 +254,7 @@
     <string name="All_Markets">All</string>
     <string name="Main_Markets">Main Markets</string>
     <string name="Other_Bet_Markets">Other Bet Markets</string>
-    <string name="choose_language">Choose Language</string>
+    <string name="choose_language">Language</string>
     <string name="Bet_Credit">Bet Credit</string>
     <string name="remember_me">Remember</string>
     <string name="US_Football">US Football</string>
@@ -337,7 +337,7 @@
     <string name="league">Top</string>
     <string name="winner">Winner</string>
     <string name="OLYMPIC">OLYMPIC</string>
-    <string name="Formula1">Formula</string>
+    <string name="Formula1">Formula 1</string>
     <string name="Motor_Sports">Motor Sports</string>
     <string name="Futsal">Futsal</string>
     <string name="Water_Polo">Water Polo</string>
@@ -568,4 +568,5 @@
     <string name="speed_way">SPEEDWAY</string>
     <string name="switching_market_failure">Switching market failure</string>
     <string name="All_Market" >@string/All_Markets</string>
+    <string name="disable_sound">Disable Sound</string>
 </resources>

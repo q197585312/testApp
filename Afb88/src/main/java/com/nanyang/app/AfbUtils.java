@@ -480,8 +480,8 @@ public class AfbUtils {
         othersMap.put("105", new SportIdBean("105", "31", R.string.Squash, "Squash", SportActivity.class, squashFragment, Color.BLACK, R.mipmap.financial));
         if (!AppConstant.IS_AGENT) {
             othersMap.put("33_18", new SportIdBean("33_18", "33_18", R.string.Thai_game1, "Thai_1d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial));
-            othersMap.put("33_19", new SportIdBean("33_19", "33_19", R.string.Thai_game1, "Thai_2d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial));
-            othersMap.put("33_20", new SportIdBean("33_20", "33_20", R.string.Thai_game1, "Thai_3d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial));
+            othersMap.put("33_19", new SportIdBean("33_19", "33_19", R.string.Thai_game2, "Thai_2d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial));
+            othersMap.put("33_20", new SportIdBean("33_20", "33_20", R.string.Thai_game3, "Thai_3d", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.financial));
         }
         othersMap.put("108", new SportIdBean("108", "108", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.BLACK, R.mipmap.financial));
 
