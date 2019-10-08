@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
+import android.view.WindowManager;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -35,7 +36,6 @@ import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.LogUtil;
-import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
@@ -124,9 +124,11 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         });
         initLanguage();
         presenter.loadAllImages();
+        edtLoginUsername.requestFocus();
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         inputMove();
         getApp().setBetParList(null);
-        SystemTool.showPopInput(edtLoginUsername);
+
     }
 
 
