@@ -116,7 +116,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             initAgent();
         }
     }
-    protected void initLanguage() {
+    public void initLanguage() {
         String language = AfbUtils.getLanguage(this);
         if (!TextUtils.isEmpty(language)) {
             AfbUtils.switchLanguage(language, this);

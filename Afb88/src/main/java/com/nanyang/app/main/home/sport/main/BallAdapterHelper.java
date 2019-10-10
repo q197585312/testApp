@@ -768,17 +768,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         liveTv1.setVisibility(View.VISIBLE);
         timeTv.setVisibility(View.VISIBLE);
         timeTv1.setVisibility(View.VISIBLE);
-        if (item.getIsLastCall() != null && item.getIsLastCall().equals("1")) {
-            Glide.with(context).load(R.mipmap.lastcall).asGif().into(lastGif);
-            dateTv.setVisibility(View.GONE);
-            dateTv1.setVisibility(View.GONE);
-            liveTv.setVisibility(View.GONE);
-            liveTv1.setVisibility(View.GONE);
-            timeTv.setVisibility(View.INVISIBLE);
-            timeTv1.setVisibility(View.INVISIBLE);
-            lastGif.setVisibility(View.VISIBLE);
 
-        } else if (item.getLive() != null && !item.getLive().equals("")) {
+        if (item.getLive() != null && !item.getLive().equals("")) {
             dateTv.setVisibility(View.VISIBLE);
             dateTv1.setVisibility(View.VISIBLE);
             if (item.getLive().contains("LIVE")) {
@@ -812,6 +803,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             dateTv.setVisibility(View.GONE);
             dateTv1.setVisibility(View.GONE);
         }
+        showLastCall(item, dateTv, lastGif, dateTv1, timeTv, timeTv1, liveTv, liveTv1);
 
 
         if (((BallItemCallBack) back).isItemCollection(item))
@@ -921,6 +913,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         updateMixNormalBackground(helper, item);
 
     }
+
+
 
 
     private void addAdditionMModds(String oddsLeft,
@@ -1910,5 +1904,18 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         ScrollLayout sl = helper.getView(R.id.module_center_sl);
         updateMixBackground(item, sl, "home", "away", "over", "under", "odd", "even");
+    }
+    public void showLastCall(I item, TextView dateTv, ImageView lastGif, TextView dateTv1, TextView timeTv, TextView timeTv1, TextView liveTv, TextView liveTv1) {
+        if (item.getIsLastCall() != null && item.getIsLastCall().equals("1")) {
+            Glide.with(context).load(R.mipmap.lastcall).asGif().into(lastGif);
+            dateTv.setVisibility(View.GONE);
+            dateTv1.setVisibility(View.GONE);
+            liveTv.setVisibility(View.GONE);
+            liveTv1.setVisibility(View.GONE);
+            timeTv.setVisibility(View.INVISIBLE);
+            timeTv1.setVisibility(View.INVISIBLE);
+            lastGif.setVisibility(View.VISIBLE);
+
+        }
     }
 }

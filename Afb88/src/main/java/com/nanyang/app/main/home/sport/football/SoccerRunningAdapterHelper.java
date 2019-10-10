@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Color;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
@@ -93,5 +94,10 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
         String[] split = live.split("\\n");
         timeTv.setText(split[1]);
         timeTv.setTextColor(Color.RED);
+    }
+
+    @Override
+    public void showLastCall(BallInfo item, TextView dateTv, ImageView lastGif, TextView dateTv1, TextView timeTv, TextView timeTv1, TextView liveTv, TextView liveTv1) {
+//        super.showLastCall(item, dateTv, lastGif, dateTv1, timeTv, timeTv1, liveTv, liveTv1);
     }
 }
