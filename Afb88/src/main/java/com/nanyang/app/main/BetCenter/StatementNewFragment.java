@@ -25,6 +25,7 @@ import com.nanyang.app.main.BetCenter.Bean.StatementOpen2ListDataBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementOpen3ListDataBean;
 import com.nanyang.app.main.BetCenter.Presenter.StatementNewPresenter;
 import com.unkonw.testapp.libs.base.BaseFragment;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import java.util.List;
 
@@ -399,6 +400,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvMatchVs = view.findViewById(R.id.tv_match_vs);
             TextView tvMatchAt1 = view.findViewById(R.id.tv_match_at1);
             TextView tv_match_at2_1 = view.findViewById(R.id.tv_match_at2_1);
+            TextView tv_match_score = view.findViewById(R.id.tv_match_score);
             TextView tvMatchAt3 = view.findViewById(R.id.tv_match_at3);
             TextView tvMatchAt4 = view.findViewById(R.id.tv_match_at4);
             TextView tvWL = view.findViewById(R.id.tv_wl);
@@ -466,8 +468,18 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             Spanned spanned = HtmlTagHandler.spanFontHtml(index22);
             tv_match_at2_1.setText(spanned);
 
+            LogUtil.d("index20","index20:"+bean.getIndex20()+","+bean.getIndex18()+"-"+bean.getIndex19());
+            if (bean.getIndex20().equals("True")) {
+                tv_match_score.setVisibility(View.VISIBLE);
+                String showStr = " " + bean.getIndex18() + "-" + bean.getIndex19() + " ";
+                tv_match_score.setText(showStr);
+            } else {
+                tv_match_score.setVisibility(View.GONE);
+            }
+
             tvMatchAt3.setText("@");
             tvMatchAt4.setText(bean.getIndex13() + "");
+
             String wlStr = bean.getIndex8();
             if (wlStr.contains("green")) {
                 tvWL.setTextColor(ContextCompat.getColor(mContext, R.color.green900));
@@ -529,6 +541,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             TextView tvMatchAt4 = view.findViewById(R.id.tv_match_at4);
             TextView tvWL = view.findViewById(R.id.tv_wl);
             TextView tvScore = view.findViewById(R.id.tv_score);
+            TextView tv_match_score = view.findViewById(R.id.tv_match_score);
             if (i > 0) {
                 String lastId = list.get(i - 1).getIndex22();
                 String currentId = bean.getIndex22();
@@ -594,6 +607,14 @@ spanFontHtml()         tv_match_at2_1.setText(matchAtStr2);
                 }
             }*/
             tv_match_at2_1.setText(HtmlTagHandler.spanFontHtml(index22));
+            LogUtil.d("index20","index21:"+bean.getIndex21()+","+bean.getIndex19()+"-"+bean.getIndex20());
+            if (bean.getIndex21().equals("True")) {
+                tv_match_score.setVisibility(View.VISIBLE);
+                String showStr = " " + bean.getIndex19() + "-" + bean.getIndex20() + " ";
+                tv_match_score.setText(showStr);
+            } else {
+                tv_match_score.setVisibility(View.GONE);
+            }
 
             tvMatchAt3.setText("@");
             tvMatchAt4.setText(bean.getIndex13() + "");

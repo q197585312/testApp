@@ -819,43 +819,43 @@ public class AfbUtils {
                 if (language.equals("zh")) {
                     return "一.";
                 } else {
-                    return "Mon.";
+                    return "MON.";
                 }
             case 2:
                 if (language.equals("zh")) {
                     return "二.";
                 } else {
-                    return "Tues.";
+                    return "TUE.";
                 }
             case 3:
                 if (language.equals("zh")) {
                     return "三.";
                 } else {
-                    return "Wed.";
+                    return "WED.";
                 }
             case 4:
                 if (language.equals("zh")) {
                     return "四.";
                 } else {
-                    return "Thur.";
+                    return "THU.";
                 }
             case 5:
                 if (language.equals("zh")) {
                     return "五.";
                 } else {
-                    return "Fri.";
+                    return "FRI.";
                 }
             case 6:
                 if (language.equals("zh")) {
                     return "六.";
                 } else {
-                    return "Sat.";
+                    return "SAT.";
                 }
             case 7:
                 if (language.equals("zh")) {
                     return "七.";
                 } else {
-                    return "Sun.";
+                    return "SUN.";
                 }
             default:
                 return day + ".";

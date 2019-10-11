@@ -24,6 +24,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.BaseFragment;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -554,6 +555,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         String index22 = bean.getIndex22();
         tv_match_at2_1.setText(HtmlTagHandler.spanFontHtml(index22));
         String index20 = bean.getIndex20();
+        LogUtil.d("index20","index20:"+index20+","+bean.getIndex18()+"-"+bean.getIndex19());
         if (index20.equals("True")) {
             tvMatchScore.setVisibility(View.VISIBLE);
             String showStr = " " + bean.getIndex18() + "-" + bean.getIndex19() + " ";
@@ -579,6 +581,11 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             scoreStr = "-";
         } else {
             scoreStr = bean.getIndex6() + "-" + bean.getIndex7();
+        }
+        tvScore.setText(getString(R.string.Result) + ":" + scoreStr);
+        String runScore="";
+        if (index20.equals("True")) {
+            scoreStr = "-";
         }
         tvScore.setText(getString(R.string.Result) + ":" + scoreStr);
     }
