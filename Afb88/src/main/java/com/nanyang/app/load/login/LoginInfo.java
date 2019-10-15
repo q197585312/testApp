@@ -183,6 +183,7 @@ public class LoginInfo {
         public LanguageWfBean(String lang) {
             this.lang = lang;
         }
+        // {"ACT":"selectleague","PT":"wfSportsH50","OT":"r","Timess":"","dbid":"1","dbid2":"1","haspar":"0","pgLable":"0.17478179812837813","vsn":"4.0.12"}
 
         String ACT = "GetTT";
 

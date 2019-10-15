@@ -4,10 +4,8 @@ import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -26,7 +24,10 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.common.LanguageHelper;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.Setting.RefreshDataBean;
 import com.nanyang.app.main.home.sport.WebSocketManager;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
@@ -37,6 +38,7 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IObtainDataState;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.NetWorkUtil;
@@ -80,7 +82,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private int page;
     private List<TableSportInfo<B>> filterData;
-    private Map<String, Boolean> leagueSelectedMap = new HashMap<>();
+    public Map<String, Boolean> leagueSelectedMap = new HashMap<>();
 
     /**
      * 显示的所有数据
@@ -237,84 +239,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
 
-    @Override
-    public boolean menu(View tvMenu) {
-
-        popMenu = new BasePopupWindow(baseView.getIBaseContext().getBaseActivity(), tvMenu, LinearLayout.LayoutParams.MATCH_PARENT, 150) {
-            @Override
-            protected int onSetLayoutRes() {
-                return R.layout.popupwindow_choice_bottom;
-            }
-
-            @Override
-            protected void initView(View view) {
-                super.initView(view);
-                RecyclerView rv_list = (RecyclerView) view.findViewById(R.id.rv_list);
-                setBottomMenuAdapter(rv_list);
-            }
-        };
-        popMenu.setTrans(1f);
-        baseView.onPopupWindowCreated(popMenu, Gravity.BOTTOM);
-        return true;
-    }
-
-    private void setBottomMenuAdapter(RecyclerView rv_list) {
-        rv_list.setLayoutManager(new GridLayoutManager(baseView.getIBaseContext().getBaseActivity(), 4));
-
-        BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(baseView.getIBaseContext().getBaseActivity(), new ArrayList<MenuItemInfo>(), R.layout.text_base_item) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                TextView tv = holder.getView(R.id.item_text_tv);
-                tv.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
-                tv.setTextSize(10);
-                tv.setPadding(0, 0, 0, 0);
-                tv.setText(item.getText());
-            }
-        };
-        List<MenuItemInfo> types = new ArrayList<>();
-        types.add(new MenuItemInfo(R.mipmap.menu_group_oval_white, baseView.getIBaseContext().getBaseActivity().getString(R.string.Choose), "Choose"));
-        types.add(new MenuItemInfo(R.mipmap.menu_error_white, baseView.getIBaseContext().getBaseActivity().getString(R.string.bet_list), "Not settled"));
-        types.add(new MenuItemInfo(R.mipmap.menu_right_oval_white, baseView.getIBaseContext().getBaseActivity().getString(R.string.statement), "Settled"));
-        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-            @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                popMenu.closePopupWindow();
-                popMenuItemClick(view, item);
-
-            }
-        });
-        bindMenuAdapter(baseRecyclerAdapter, types);
-
-
-        rv_list.setAdapter(baseRecyclerAdapter);
-    }
-
-    protected void popMenuItemClick(View view, MenuItemInfo item) {
-        Bundle b = new Bundle();
-        switch (item.getType()) {
-            case "Choose":
-                createChoosePop(view);
-                return;
-        }
-    }
-
     protected void bindMenuAdapter(BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter, List<MenuItemInfo> types) {
         baseRecyclerAdapter.addAllAndClear(types);
 
-    }
-
-    public void createChoosePop(View view) {
-
-        ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getIBaseContext().getBaseActivity(), view, getStateType().getType());
-        pop.setList(allData, leagueSelectedMap);
-        pop.setBack(new ChooseMatchPop.CallBack() {
-            @Override
-            public void chooseMap(Map<String, Boolean> map) {
-                leagueSelectedMap = map;
-                updateTableDate(allData);
-            }
-        });
-        baseView.onPopupWindowCreated(pop, Gravity.CENTER);
     }
 
 
@@ -1378,6 +1305,46 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         return texts;
     }
 
+    public void createChoosePop(Api mApiWrapper, final View view) {
+
+
+        LoadMainDataHelper<SelectedLeagueWfBean> dataHelper = new LoadMainDataHelper<>(mApiWrapper, baseView.getIBaseContext().getBaseActivity(), mCompositeSubscription);
+        SelectedLeagueWfBean bean = new SelectedLeagueWfBean("selectleague", new LanguageHelper(baseView.getIBaseContext().getBaseActivity()).getLanguage(), "wfSportsH50");
+        bean.setDbid(getDbId() + "");
+        bean.setDbid2(getDbId() + "");
+        bean.setHaspar("0");
+        bean.setOT((getStateType().getType().charAt(0) + "").toLowerCase());
+        //
+        dataHelper.doRetrofitApiOnUiThread(bean, new MainPresenter.CallBack<String>() {
+            @Override
+            public void onBack(String data) throws JSONException {
+                JSONArray jsonArray = new JSONArray(data);
+                JSONArray jsonArray1 = jsonArray.optJSONArray(2);
+                HashMap<String, String> numMap = new HashMap<>();
+
+                for (int i = 0; i < jsonArray1.length(); i++) {
+                    JSONArray jsonArray2 = jsonArray1.optJSONArray(i);
+                    numMap.put(jsonArray2.optString(0), jsonArray2.optString(2));
+                }
+
+
+                ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getIBaseContext().getBaseActivity(), view, getStateType().getType());
+                pop.setList(allData, leagueSelectedMap, numMap);
+                pop.setBack(new ChooseMatchPop.CallBack() {
+                    @Override
+                    public void chooseMap(Map<String, Boolean> map) {
+                        leagueSelectedMap = map;
+                        updateTableDate(allData);
+                    }
+                });
+                baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+            }
+        });
+
+
+    }
+
+
     static class ViewHolder {
         @Bind(R.id.tv_head_left)
         TextView tvHeadLeft;
@@ -1529,5 +1496,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     public void setIsHide(boolean isHide) {
         this.isHide = isHide;
     }
+
 
 }

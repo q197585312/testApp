@@ -134,7 +134,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_par_DangerStatus.setText(item.getDangerStatus8());
                     String dangerStatus8 = item.getDangerStatus8();
                     dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
-                    if (dangerStatus8.equals("A")) {
+                    if (dangerStatus8.equals("A") || dangerStatus8.equals("D")) {
                         running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_black));
 
                     } else if (dangerStatus8.equals("W")) {
@@ -341,7 +341,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_Status = holder.getTextView(R.id.running_Status);
                     String dangerStatus8 = item.getDangerStatus8();
                     dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
-                    if (dangerStatus8.equals("A")) {
+                    if (dangerStatus8.equals("A") || dangerStatus8.equals("D")) {
                         running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_black));
                     } else if (dangerStatus8.equals("W")) {
                         running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
@@ -444,7 +444,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             }
         }*/
         String index22 = bean.getIndex23();
-        Spanned spanned =  HtmlTagHandler.spanFontHtml(index22);
+        Spanned spanned = HtmlTagHandler.spanFontHtml(index22);
         tv_match_at2_1.setText(spanned);
         String index21 = bean.getIndex21();
         if (index21.equals("True")) {
@@ -555,7 +555,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         String index22 = bean.getIndex22();
         tv_match_at2_1.setText(HtmlTagHandler.spanFontHtml(index22));
         String index20 = bean.getIndex20();
-        LogUtil.d("index20","index20:"+index20+","+bean.getIndex18()+"-"+bean.getIndex19());
+        LogUtil.d("index20", "index20:" + index20 + "," + bean.getIndex18() + "-" + bean.getIndex19());
         if (index20.equals("True")) {
             tvMatchScore.setVisibility(View.VISIBLE);
             String showStr = " " + bean.getIndex18() + "-" + bean.getIndex19() + " ";
@@ -575,6 +575,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         }
         tvWL.setText(AfbUtils.delHTMLTag(wlStr));
 
+
         String index23 = bean.getIndex23();
         String scoreStr;
         if (index23.equals("False")) {
@@ -583,7 +584,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             scoreStr = bean.getIndex6() + "-" + bean.getIndex7();
         }
         tvScore.setText(getString(R.string.Result) + ":" + scoreStr);
-        String runScore="";
+        String runScore = "";
         if (index20.equals("True")) {
             scoreStr = "-";
         }

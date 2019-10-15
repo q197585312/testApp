@@ -343,11 +343,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         checkBg(tvCollection, presenter.getStateHelper().collection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_yellow);
     }
 
-
-    public void menu(View tvMenu) {
-        presenter.getStateHelper().menu(tvMenu);
-    }
-
     public boolean mix(TextView tvMix) {
         boolean isMix = presenter.getStateHelper().mix();
         return isMix;

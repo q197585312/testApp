@@ -87,13 +87,6 @@ public class SoccerEarlyState extends SoccerCommonState {
         super.bindMenuAdapter(baseRecyclerAdapter, types);
     }
 
-    @Override
-    protected void popMenuItemClick(View view, MenuItemInfo item) {
-        super.popMenuItemClick(view, item);
-        if (item.getType().equals("Date")) {
-            showDateChoicePop();
-        }
-    }
 
 
     private void showDateChoicePop() {

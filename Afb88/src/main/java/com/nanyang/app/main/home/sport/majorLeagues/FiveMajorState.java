@@ -22,6 +22,10 @@ public abstract class FiveMajorState extends SoccerCommonState {
 //        majorStateHashMap.put()
     }
 
+    @Override
+    public String getDbId() {
+        return "666";
+    }
 
     @Override
     protected void onTypeClick(MenuItemInfo item, int position) {

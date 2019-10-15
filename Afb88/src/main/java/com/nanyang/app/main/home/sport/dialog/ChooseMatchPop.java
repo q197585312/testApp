@@ -18,6 +18,7 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,7 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
     private String type;
     private Map<String, Boolean> leagueSelectedMap;
     private BaseRecyclerAdapter<T> contentAdapter;
+    private HashMap<String, String> numMap;
 
 
     public void setBack(CallBack back) {
@@ -41,7 +43,7 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
         return tList;
     }
 
-    public void setList(List<T> list, Map<String, Boolean> leagueSelectedMap) {
+    public void setList(List<T> list, Map<String, Boolean> leagueSelectedMap, HashMap<String, String> numMap) {
         List<T> l = new ArrayList<>(list);
         Comparator<T> comparator = new Comparator<T>() {
             @Override
@@ -51,9 +53,12 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
         };
         Collections.sort(l, comparator);
         this.tList = l;
+        this.numMap = numMap;
         this.leagueSelectedMap = leagueSelectedMap;
         contentAdapter.addAllAndClear(tList);
+
     }
+
 
     List<T> tList;
     /*
@@ -71,7 +76,7 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
 
     public ChooseMatchPop(Context context, View v, String type) {
         super(context, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        this.type=type;
+        this.type = type;
     }
 
     @Override
@@ -106,20 +111,20 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
                 TextView txt = holder.getView(R.id.selectable_text_content_tv);
                 if (leagueSelectedMap.get(item.getLeagueBean().getModuleId())) {
 
-                    txt.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.checkbox_pressed,0, 0,  0);
+                    txt.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.checkbox_pressed, 0, 0, 0);
 
                 } else {
-                    txt.setCompoundDrawablesWithIntrinsicBounds( R.mipmap.checkbox_normal,0, 0, 0);
+                    txt.setCompoundDrawablesWithIntrinsicBounds(R.mipmap.checkbox_normal, 0, 0, 0);
                 }
-                if(item.getRows()!=null){
+                if (numMap.get(item.getLeagueBean().getModuleId()) != null) {
+                    holder.getTextView(R.id.selectable_num_tv).setText(numMap.get(item.getLeagueBean().getModuleId()));
+                } else {
                     holder.getTextView(R.id.selectable_num_tv).setText(item.getRows().size()+"");
-                }else{
-                    holder.getTextView(R.id.selectable_num_tv).setText("0");
                 }
                 txt.setText(item.getLeagueBean().getModuleTitle());
-                if(type!=null&&type.toLowerCase().startsWith("r")){
+                if (type != null && type.toLowerCase().startsWith("r")) {
                     holder.getView(R.id.selectable_text_parent_ll).setBackgroundResource(R.color.green1);
-                }else{
+                } else {
                     holder.getView(R.id.selectable_text_parent_ll).setBackgroundResource(R.color.grey_background);
                 }
 

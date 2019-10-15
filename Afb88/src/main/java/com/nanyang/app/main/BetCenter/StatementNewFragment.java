@@ -244,7 +244,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 } else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
-                tvWl.setText(" " + winLose.replace("-",""));
+                tvWl.setText(" " + winLose.replace("-", ""));
                 tvCom.setText(getString(R.string.Com) + ": " + bean.getIndex18());
                 view.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -352,7 +352,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 } else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
-                tvWl.setText(" " + winLose.replace("-",""));
+                tvWl.setText(" " + winLose.replace("-", ""));
 //                if (!TextUtils.isEmpty(index24) && (index24.startsWith("G") || index24.startsWith("E") || index24.startsWith("Y"))) {
 //                    tvMatchVs.setVisibility(View.GONE);
 //                    tvMatchAt1.setVisibility(View.GONE);
@@ -468,7 +468,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             Spanned spanned = HtmlTagHandler.spanFontHtml(index22);
             tv_match_at2_1.setText(spanned);
 
-            LogUtil.d("index20","index20:"+bean.getIndex20()+","+bean.getIndex18()+"-"+bean.getIndex19());
+            LogUtil.d("index20", "index20:" + bean.getIndex20() + "," + bean.getIndex18() + "-" + bean.getIndex19());
             if (bean.getIndex20().equals("True")) {
                 tv_match_score.setVisibility(View.VISIBLE);
                 String showStr = " " + bean.getIndex18() + "-" + bean.getIndex19() + " ";
@@ -483,8 +483,10 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             String wlStr = bean.getIndex8();
             if (wlStr.contains("green")) {
                 tvWL.setTextColor(ContextCompat.getColor(mContext, R.color.green900));
-            } else {
+            } else if (wlStr.contains("red")) {
                 tvWL.setTextColor(Color.RED);
+            } else {
+                tvWL.setTextColor(Color.BLACK);
             }
             tvWL.setText(AfbUtils.delHTMLTag(wlStr));
             tvScore.setText(getString(R.string.Result) + ":" + bean.getIndex6() + "-" + bean.getIndex7());
@@ -607,7 +609,7 @@ spanFontHtml()         tv_match_at2_1.setText(matchAtStr2);
                 }
             }*/
             tv_match_at2_1.setText(HtmlTagHandler.spanFontHtml(index22));
-            LogUtil.d("index20","index21:"+bean.getIndex21()+","+bean.getIndex19()+"-"+bean.getIndex20());
+            LogUtil.d("index20", "index21:" + bean.getIndex21() + "," + bean.getIndex19() + "-" + bean.getIndex20());
             if (bean.getIndex21().equals("True")) {
                 tv_match_score.setVisibility(View.VISIBLE);
                 String showStr = " " + bean.getIndex19() + "-" + bean.getIndex20() + " ";
@@ -621,8 +623,10 @@ spanFontHtml()         tv_match_at2_1.setText(matchAtStr2);
             String wlStr = bean.getIndex8();
             if (wlStr.contains("green")) {
                 tvWL.setTextColor(ContextCompat.getColor(mContext, R.color.green900));
-            } else {
+            } else if (wlStr.contains("red")) {
                 tvWL.setTextColor(Color.RED);
+            } else {
+                tvWL.setTextColor(Color.BLACK);
             }
             tvWL.setText(AfbUtils.delHTMLTag(wlStr));
             tvScore.setText(getString(R.string.Result) + " " + bean.getIndex6() + "-" + bean.getIndex7());

@@ -436,6 +436,7 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="6dp"
                 android:paddingTop="6dp"
+                android:textAllCaps="true"
                 android:text="ATM:"
                 android:textColor="@color/grey_dark"
                 android:textSize="13sp" />

@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sportInterface;
 
-import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
@@ -17,8 +16,6 @@ public interface IObtainDataState {
     void refresh();
 
     boolean collection();
-
-    boolean menu(View tvMenu);
 
     void onPrevious(SwipeToLoadLayout swipeToLoadLayout);
 

@@ -523,9 +523,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickCup(View view) {
-        currentFragment.presenter.getStateHelper().createChoosePop(view);
+
+        currentFragment.presenter.getStateHelper().createChoosePop( presenter.mApiWrapper, view);
 //        test();
     }
+
 
     public void clickCollectionStar(View view) {
         currentFragment.collection(view);

@@ -13,7 +13,7 @@ public class FiveMojorFragment extends BaseSportFragment {
 
     @Override
     protected String getBallDbid() {
-        return "";
+        return "666";
     }
 
     @Override

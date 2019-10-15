@@ -259,7 +259,7 @@
     <string name="remember_me">Remember</string>
     <string name="US_Football">US Football</string>
     <string name="bet_list">Bet List</string>
-    <string name="PARLAY">PARLAY</string>
+    <string name="PARLAY">Parlay</string>
     <string name="X1X2">1 X 2</string>
     <string name="Baseball">Baseball</string>
     <string name="IceHockey">IceHockey</string>
@@ -475,7 +475,7 @@
     <string name="Athletics_name">Athletics</string>
     <string name="ESports_name">E-Sports</string>
     <string name="Muay_Thai_name">Muay Thai</string>
-    <string name="Parlay">PARLAY</string>
+    <string name="Parlay">Parlay</string>
     <string name="Parlay1">Mix Parlay</string>
     <string name="Amt">Amt</string>
     <string name="WL">W/L</string>

@@ -126,6 +126,8 @@ public class AllRunningCommonState extends OutRightState {
         return fragment.currentIdBean.getDbid();
     }
 
+
+
     @Override
     public MenuItemInfo getStateType() {
         if (StringUtils.isNull(text))
