@@ -73,8 +73,8 @@
 
     <string name="first_last_goal">最先得分/最后得分</string>
     <string name="total_goals">总进球</string>
-    <string name="correct_full">全场波胆</string>
-    <string name="correct_half">半场波胆</string>
+    <string name="correct_full">全场波膽</string>
+    <string name="correct_half">半场波膽</string>
     <string name="first_goal">最先得分</string>
     <string name="last_goal">最后得分</string>
     <string name="no_goal">无得分</string>
@@ -124,7 +124,7 @@
     <!--VsActivity-->
     <string name="scaleplate_asianplate">  标盘/亚盘  </string>
     <string name="half_full_court_single_double">  半场全场/单双  </string>
-    <string name="correct_score">  波胆  </string>
+    <string name="correct_score">  波膽  </string>
 
 
     <string name="h1">主</string>

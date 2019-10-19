@@ -16,8 +16,6 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,15 +42,15 @@ public class ChooseMatchPop<B extends SportInfo, T extends TableSportInfo<B>> ex
     }
 
     public void setList(List<T> list, Map<String, Boolean> leagueSelectedMap, HashMap<String, String> numMap) {
-        List<T> l = new ArrayList<>(list);
+ /*       List<T> l = new ArrayList<>(list);
         Comparator<T> comparator = new Comparator<T>() {
             @Override
             public int compare(T o1, T o2) {
                 return o1.getLeagueBean().getModuleTitle().compareToIgnoreCase(o2.getLeagueBean().getModuleTitle());
             }
         };
-        Collections.sort(l, comparator);
-        this.tList = l;
+        Collections.sort(l, comparator);*/
+        this.tList = list;
         this.numMap = numMap;
         this.leagueSelectedMap = leagueSelectedMap;
         contentAdapter.addAllAndClear(tList);
