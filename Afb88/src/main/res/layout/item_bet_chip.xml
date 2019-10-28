@@ -9,5 +9,5 @@
         android:id="@+id/img_content"
         android:layout_width="36dp"
         android:layout_height="36dp"
-        android:src="@mipmap/chip1" />
+        android:src="@mipmap/chips1" />
 </LinearLayout>

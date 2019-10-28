@@ -1321,15 +1321,22 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 JSONArray jsonArray = new JSONArray(data);
                 JSONArray jsonArray1 = jsonArray.optJSONArray(2);
                 HashMap<String, String> numMap = new HashMap<>();
-
+                List<TableSportInfo<B>> listMap = new ArrayList<>();
                 for (int i = 0; i < jsonArray1.length(); i++) {
                     JSONArray jsonArray2 = jsonArray1.optJSONArray(i);
                     numMap.put(jsonArray2.optString(0), jsonArray2.optString(2));
+                    for (TableSportInfo<B> bTableSportInfo : allData) {
+                        if (bTableSportInfo.getLeagueBean().getModuleId().trim().equals(jsonArray2.optString(0).trim())) {
+                            listMap.add(bTableSportInfo);
+                        }
+                    }
+
                 }
 
 
                 ChooseMatchPop<B, TableSportInfo<B>> pop = new ChooseMatchPop<>(getBaseView().getIBaseContext().getBaseActivity(), view, getStateType().getType());
-                pop.setList(allData, leagueSelectedMap, numMap);
+
+                pop.setList(listMap, leagueSelectedMap, numMap);
                 pop.setBack(new ChooseMatchPop.CallBack() {
                     @Override
                     public void chooseMap(Map<String, Boolean> map) {

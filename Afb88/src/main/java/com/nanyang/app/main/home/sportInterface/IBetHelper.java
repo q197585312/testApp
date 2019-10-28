@@ -13,7 +13,6 @@ import io.reactivex.disposables.Disposable;
 public interface IBetHelper<B> {
     Disposable bet(String url);
 
-    /*    Disposable clickOdds(B item,String type,String odds,TextView v, final boolean isHf,String params);*/
     void setCompositeSubscription(CompositeDisposable compositeSubscription);
 
     void setResultCallBack(ResultCallBack back);

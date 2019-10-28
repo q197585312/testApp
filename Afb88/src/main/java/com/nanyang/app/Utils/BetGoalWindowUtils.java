@@ -196,7 +196,7 @@ public class BetGoalWindowUtils {
                                     if (showStr.contains("/") && !TextUtils.isEmpty(index22)) {
                                         int endColor;
                                         if (showStr.contains("A")) {
-                                            endColor = ContextCompat.getColor(activity, R.color.green_black);
+                                            endColor = ContextCompat.getColor(activity, R.color.green_dark);
                                         } else {
                                             endColor = Color.RED;
                                         }
@@ -205,7 +205,7 @@ public class BetGoalWindowUtils {
                                     } else {
                                         if (showStr.contains("A")) {
                                             tvData6.setTextColor(Color.WHITE);
-                                            tvData6.setBackgroundColor(ContextCompat.getColor(activity, R.color.green_black));
+                                            tvData6.setBackgroundColor(ContextCompat.getColor(activity, R.color.green_dark));
                                         } else if (showStr.contains("W")) {
                                             tvData6.setBackgroundColor(Color.YELLOW);
                                         } else {

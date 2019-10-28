@@ -2,11 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="45dp"
-    android:background="@color/white"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/lin_person"
+        android:background="@color/grey_white_bg"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/white"
+
             android:gravity="center"
             android:orientation="horizontal">
 
@@ -77,7 +77,7 @@
                         android:layout_width="35dp"
                         android:layout_height="35dp"
                         android:padding="3.5dp"
-                        android:src="@mipmap/chip1" />
+                        android:src="@mipmap/chips1" />
 
                     <ImageView
                         android:scaleType="fitXY"
@@ -86,7 +86,7 @@
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
                         android:padding="3.5dp"
-                        android:src="@mipmap/chip1" />
+                        android:src="@mipmap/chips1" />
 
                     <ImageView
                         android:scaleType="fitXY"
@@ -95,7 +95,7 @@
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
                         android:padding="3.5dp"
-                        android:src="@mipmap/chip1" />
+                        android:src="@mipmap/chips1" />
 
                     <ImageView
                         android:scaleType="fitXY"
@@ -104,7 +104,7 @@
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
                         android:padding="3.5dp"
-                        android:src="@mipmap/chip1" />
+                        android:src="@mipmap/chips1" />
 
                     <ImageView
                         android:scaleType="fitXY"
@@ -113,7 +113,7 @@
                         android:layout_height="35dp"
                         android:layout_marginLeft="5dp"
                         android:padding="3.5dp"
-                        android:src="@mipmap/chip1" />
+                        android:src="@mipmap/chips1" />
 
                     <ImageView
                         android:scaleType="fitXY"
@@ -123,7 +123,7 @@
                         android:layout_marginLeft="5dp"
                         android:layout_marginRight="5dp"
                         android:padding="3.5dp"
-                        android:src="@mipmap/chip1" />
+                        android:src="@mipmap/chips1" />
                 </LinearLayout>
             </RelativeLayout>
         </LinearLayout>
@@ -138,6 +138,6 @@
         android:id="@+id/v_line"
         android:layout_width="match_parent"
         android:layout_height="5dp"
-        android:background="@color/contact_back"
+        android:background="@color/transparent"
         android:visibility="visible" />
 </LinearLayout>

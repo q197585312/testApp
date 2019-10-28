@@ -72,6 +72,9 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
         PersonCenter pc5 = new PersonCenter(getString(R.string.bet_credit), AfbUtils.addComma(person.getCredit2(), edt_text));
         PersonCenter pc6 = new PersonCenter(getString(R.string.given_credit), AfbUtils.addComma(person.getTotalCredit(), edt_text));
         PersonCenter pc7 = new PersonCenter(getString(R.string.last_login_date), person.getLastLoginDate());
+        if (data != null) {
+            pc7 = new PersonCenter(getString(R.string.last_login_date), data.getLastTime());
+        }
         list.add(pc);
         list.add(pc8);
         list.add(pc1);

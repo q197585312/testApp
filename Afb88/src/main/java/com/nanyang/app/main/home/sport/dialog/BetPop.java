@@ -264,11 +264,11 @@ public class BetPop extends BasePopupWindow {
 
     private void initBetChip() {
         HashMap<String, Boolean> chipStatusMap = AfbUtils.getChipStatusMap();
-        List<PopChipBean> allList = Arrays.asList(new PopChipBean(R.mipmap.chip1, 1, "1"), new PopChipBean(R.mipmap.chip10, 10, "10"),
-                new PopChipBean(R.mipmap.chip50, 50, "50"), new PopChipBean(R.mipmap.chip100, 100, "100"), new PopChipBean(R.mipmap.chip500, 500, "500"),
-                new PopChipBean(R.mipmap.chip1000, 1000, "1000"), new PopChipBean(R.mipmap.chip5000, 5000, "5000"), new PopChipBean(R.mipmap.chip10000, 10000, "10000"),
-                new PopChipBean(R.mipmap.chip30000, 30000, "30000"), new PopChipBean(R.mipmap.chip50000, 50000, "50000"), new PopChipBean(R.mipmap.chip100000, 100000, "100000"),
-                new PopChipBean(R.mipmap.chip_max, 0, "max"));
+        List<PopChipBean> allList = Arrays.asList(new PopChipBean(R.mipmap.chips1, 1, "1"), new PopChipBean(R.mipmap.chips10, 10, "10"),
+                new PopChipBean(R.mipmap.chips50, 50, "50"), new PopChipBean(R.mipmap.chips100, 100, "100"), new PopChipBean(R.mipmap.chips500, 500, "500"),
+                new PopChipBean(R.mipmap.chips1000, 1000, "1000"), new PopChipBean(R.mipmap.chips5000, 5000, "5000"), new PopChipBean(R.mipmap.chips10000, 10000, "10000"),
+                new PopChipBean(R.mipmap.chips30000, 30000, "30000"), new PopChipBean(R.mipmap.chips50000, 50000, "50000"), new PopChipBean(R.mipmap.chips100000, 100000, "100000"),
+                new PopChipBean(R.mipmap.chips_max, 0, "max"));
         List<PopChipBean> beanList = new ArrayList<>();
         for (PopChipBean popChipBean : allList) {
             if (chipStatusMap.get(popChipBean.getKey())) {

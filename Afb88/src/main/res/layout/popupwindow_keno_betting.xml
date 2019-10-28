@@ -318,7 +318,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:text="最大注码:"
+                    android:text="@string/max_bet_money"
                     android:textColor="@color/black_grey"
                     android:textSize="11sp" />
 

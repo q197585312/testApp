@@ -416,7 +416,7 @@
     <string name="home_currency">货币</string>
     <string name="home_cash_balance">现金余额</string>
     <string name="home_not_standing">未结束投注</string>
-    <string name="home_min_bet">最小注码</string>
+    <string name="home_min_bet">最小注碼</string>
     <string name="home_bet_credit">投注额度</string>
     <string name="home_given_credit">信用额度</string>
     <string name="sport_match">体育博彩</string>
@@ -529,8 +529,8 @@
     <string name="Running4">进行中</string>
     <string name="TabMyBets">我的投注</string>
     <string name="max_win">最大赢得金额:</string>
-    <string name="min_bet_money">最小注码:</string>
-    <string name="max_bet_money">最大注码:</string>
+    <string name="min_bet_money">最小注碼:</string>
+    <string name="max_bet_money">最大注碼:</string>
     <string name="max_single_money">最高单场注额:</string>
     <string name="bet_limit">投注额度:</string>
     <string name="Select_League">选择联赛</string>
@@ -546,7 +546,7 @@
     <string name="fh_myanmarou">半场缅甸大小</string>
     <string name="ft_myanmarhdp">全场缅甸让球</string>
     <string name="ft_myanmarou">全场缅甸大小</string>
-    <string name="better_odds"> 接收好的赔率</string>
+    <string name="better_odds"> 接受较好的赔率</string>
     <string name="quick_bet_amount"> 快速下注金额</string>
     <string name="customise"> 自定义</string>
     <string name="auto_refresh"> 自动刷新</string>

@@ -42,4 +42,6 @@
     <color name="green500_word">#4CAF50</color>
     <color name="bet_window_bg">#ECF7E4</color>
     <color name="bet_rectangle_bg">#4CAF50</color>
+
+    <color name="green_afb">#0d5924</color>
 </resources>

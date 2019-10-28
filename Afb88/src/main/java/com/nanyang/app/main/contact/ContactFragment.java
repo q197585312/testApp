@@ -8,6 +8,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.main.BaseMoreFragment;
 import com.nanyang.app.main.BaseSwitchPresenter;
@@ -59,21 +60,23 @@ public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
         rvContent.setLayoutManager(mLayoutManager);
         MyLinearLayoutManager mLayoutManager1 = new MyLinearLayoutManager(mContext);
         rvContent2.setLayoutManager(mLayoutManager1);
-
-        presenter.getContactData(new BaseConsumer<Contact>(mContext) {
-            @Override
-            protected void onBaseGetData(Contact data) {
-                for (Contact.ContactBean contactBean : data.getContact()) {
-                    if (contactBean.getLayout_type().equals("1")) {
-                        dataList.add(contactBean);
-                    } else {
-                        dataList1.add(contactBean);
+        if (BuildConfig.FLAVOR.equals("afb1188")) {
+            presenter.getContactData(new BaseConsumer<Contact>(mContext) {
+                @Override
+                protected void onBaseGetData(Contact data) {
+                    for (Contact.ContactBean contactBean : data.getContact()) {
+                        if (contactBean.getLayout_type().equals("1")) {
+                            dataList.add(contactBean);
+                        } else {
+                            dataList1.add(contactBean);
+                        }
                     }
+
+                    adapter.setData(dataList);
+                    adapter1.setData(dataList1);
                 }
-                adapter.setData(dataList);
-                adapter1.setData(dataList1);
-            }
-        });
+            });
+        }
         adapter = new BaseRecyclerAdapter<Contact.ContactBean>(mContext, dataList, R.layout.item_contact) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, Contact.ContactBean item) {

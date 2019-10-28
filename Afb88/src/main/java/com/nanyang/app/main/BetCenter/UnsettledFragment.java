@@ -135,7 +135,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     String dangerStatus8 = item.getDangerStatus8();
                     dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
                     if (dangerStatus8.equals("A") || dangerStatus8.equals("D")) {
-                        running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_black));
+                        running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_dark));
 
                     } else if (dangerStatus8.equals("W")) {
                         running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
@@ -342,7 +342,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     String dangerStatus8 = item.getDangerStatus8();
                     dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
                     if (dangerStatus8.equals("A") || dangerStatus8.equals("D")) {
-                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_black));
+                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_dark));
                     } else if (dangerStatus8.equals("W")) {
                         running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
                     } else {
