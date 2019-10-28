@@ -967,17 +967,19 @@ public class AfbUtils {
         return new MenuItemInfo<>(0, context.getString(R.string.All_Markets), "0", context.getString(R.string.All_Market));
     }
 
-    public static List<MenuItemInfo> getOddsTypeList(Context context) {
+    public static List<MenuItemInfo> getOddsTypeList(Context context, String CurCode) {
+
         List<MenuItemInfo> list = new ArrayList<>();
         list.add(new MenuItemInfo(0, context.getString(R.string.HK_ODDS), "HK"));//accType=
         list.add(new MenuItemInfo(0, context.getString(R.string.MY_ODDS), "MY"));
-        list.add(new MenuItemInfo(0, context.getString(R.string.ID_ODDS), "ID"));
+        if (CurCode.equals("IDR") || AppConstant.IS_AGENT)
+            list.add(new MenuItemInfo(0, context.getString(R.string.ID_ODDS), "ID"));
         list.add(new MenuItemInfo(0, context.getString(R.string.EU_ODDS), "EU"));
         return list;
     }
 
-    public static MenuItemInfo getOddsTypeByType(Context context, String type) {
-        List<MenuItemInfo> list = getOddsTypeList(context);
+    public static MenuItemInfo getOddsTypeByType(Context context, String type,String CurCode) {
+        List<MenuItemInfo> list = getOddsTypeList(context,CurCode);
         for (MenuItemInfo menuItemInfo : list) {
             if (menuItemInfo.getType().equals(type))
                 return menuItemInfo;

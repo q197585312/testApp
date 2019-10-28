@@ -233,7 +233,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                                 ((BaseToolbarActivity) getBaseActivity()).getApp().setOddsType(item);
                             }
                         };
-                        List<MenuItemInfo> oddsTypeList = AfbUtils.getOddsTypeList(mContext);
+                        List<MenuItemInfo> oddsTypeList = AfbUtils.getOddsTypeList(mContext,((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode());
                         popOddType.setData(oddsTypeList, tv.getText().toString());
                         popOddType.showPopupDownWindow();
                         break;
@@ -347,7 +347,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.home_user_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName(), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean2 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Password), "**********", 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean3 = new SettingInfoBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), helper.getLanguageItem().getText(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), AfbUtils.getOddsTypeByType(mContext, data.getAccType()).getText(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), AfbUtils.getOddsTypeByType(mContext, data.getAccType(),((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode()).getText(), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean5 = new SettingInfoBean("2", getBaseActivity().getString(R.string.better_odds), "1", 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean6 = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_bet_amount), data.getAccamount() + "", 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean7 = new SettingInfoBean("2", getBaseActivity().getString(R.string.auto_refresh), "1", 0, 0, 0, 0, 0, 0);
