@@ -349,6 +349,16 @@ public class SettingAllDataBean {
     private String Balance;
     private String Currency;
     private String CurCode2;
+
+    public String getCurCode() {
+        return CurCode;
+    }
+
+    public void setCurCode(String curCode) {
+        CurCode = curCode;
+    }
+
+    private String CurCode;
     private String MessagesLog;
     private String CashBalance;
     private String balances;

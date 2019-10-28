@@ -50,7 +50,7 @@ public class AfbApplication extends BaseApplication {
     private String quickAmount = "";
 
     public MenuItemInfo getOddsType() {
-        return AfbUtils.getOddsTypeByType(this, oddsType.getType());
+        return AfbUtils.getOddsTypeByType(this, oddsType.getType(),getSettingAllDataBean().getCurCode());
     }
 
     public void setOddsType(MenuItemInfo oddsType) {
@@ -204,7 +204,7 @@ public class AfbApplication extends BaseApplication {
 
     public void setSettingAllDataBean(SettingAllDataBean settingAllDataBean) {
         this.settingAllDataBean = settingAllDataBean;
-        oddsType = AfbUtils.getOddsTypeByType(this, settingAllDataBean.getAccType());
+        oddsType = AfbUtils.getOddsTypeByType(this, settingAllDataBean.getAccType(),getSettingAllDataBean().getCurCode());
         marketType = AfbUtils.getMarketByType(this, settingAllDataBean.getAccMarketType());
         if (!StringUtils.isNull(settingAllDataBean.getAccDefaultSorting()))
             sort = Integer.valueOf(settingAllDataBean.getAccDefaultSorting());
