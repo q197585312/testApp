@@ -1,5 +1,7 @@
 package com.nanyang.app;
 
+import android.util.Log;
+
 import com.nanyang.app.Utils.SoundPlayUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.PersonalInfo;
@@ -8,6 +10,7 @@ import com.nanyang.app.main.Setting.RefreshDataBean;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
+import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.unkonw.testapp.libs.base.BaseApplication;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -15,6 +18,7 @@ import com.unkonw.testapp.libs.utils.LogUtil;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 import cn.finalteam.toolsfinal.logger.Logger;
@@ -29,13 +33,10 @@ public class AfbApplication extends BaseApplication {
     private AfbClickResponseBean betAfbList;
     private boolean isGoHome = false;
     private SettingAllDataBean settingAllDataBean;
-    private boolean showBet=true;
+    private boolean showBet = true;
+    private List<OddsClickBean> mixBetList = new ArrayList<>();
+    private OddsClickBean currentBet;
 
-    public boolean isHasPar() {
-        return hasPar;
-    }
-
-    private boolean hasPar =true;
 
     public RefreshDataBean getRefreshDataBean() {
         return refreshDataBean;
@@ -50,7 +51,7 @@ public class AfbApplication extends BaseApplication {
     private String quickAmount = "";
 
     public MenuItemInfo getOddsType() {
-        return AfbUtils.getOddsTypeByType(this, oddsType.getType(),getSettingAllDataBean().getCurCode());
+        return AfbUtils.getOddsTypeByType(this, oddsType.getType(), getSettingAllDataBean().getCurCode());
     }
 
     public void setOddsType(MenuItemInfo oddsType) {
@@ -115,7 +116,7 @@ public class AfbApplication extends BaseApplication {
         closeAndroidPDialog();
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
         strategy.setAppChannel(BuildConfig.FLAVOR);  //设置渠道
-        CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", false,strategy);
+        CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", false, strategy);
 
     }
 
@@ -124,8 +125,10 @@ public class AfbApplication extends BaseApplication {
         return getBetAfbList();
     }
 
-    public void setBetParList(AfbClickResponseBean betParList) {
+    public void setBetAfbList(AfbClickResponseBean betParList) {
         this.betAfbList = betParList;
+        if (betParList == null)
+            clearMixBetList();
     }
 
 
@@ -133,11 +136,8 @@ public class AfbApplication extends BaseApplication {
         return betAfbList;
     }
 
-    public void setBetAfbList(AfbClickResponseBean betAfbList) {
-        this.betAfbList = betAfbList;
-    }
 
-    public String getRefreshOddsUrl() {
+    public String getRefreshCurrentOddsUrl() {
 
         if (betAfbList == null || betAfbList.getList() == null || betAfbList.getList().size() == 0)
             return "";
@@ -159,9 +159,42 @@ public class AfbApplication extends BaseApplication {
             ids = ids.substring(0, ids.length() - 1);
             betOddsUrl = "BTMD=P&coupon=1&BETID=" + ids;
         }
-
-
         return AppConstant.getInstance().URL_ODDS + betOddsUrl;
+
+    }
+
+    public String getRefreshMixOddsUrl() {
+
+        if (getMixBetList() == null || getMixBetList().size() == 0)
+            return "";
+        String ids = "";
+        String betOddsUrl = "BTMD=S&coupon=0&BETID=";
+        if (getMixBetList().size() == 1) {
+
+            betOddsUrl = "BTMD=S&coupon=0&BETID=" + getMixBetList().get(0).getBETID();
+        } else {
+            for (OddsClickBean afbClickBetBean : getMixBetList()) {
+                String itemId = afbClickBetBean.getBETID_PAR();
+                ids += itemId + ",";
+            }
+            ids = ids.substring(0, ids.length() - 1);
+            betOddsUrl = "BTMD=P&coupon=1&BETID=" + ids;
+        }
+        return AppConstant.getInstance().URL_ODDS + betOddsUrl;
+
+    }
+
+    public String getRefreshSingleOddsUrl() {
+
+        if (getMixBetList() == null || getMixBetList().size() == 0)
+            return "";
+        String ids = "";
+        String betOddsUrl = "BTMD=S&coupon=0&BETID=";
+        if (getMixBetList().size() >= 1) {
+            betOddsUrl = "BTMD=S&coupon=0&BETID=" + getMixBetList().get(getMixBetList().size() - 1).getBETID();
+            return AppConstant.getInstance().URL_ODDS + betOddsUrl;
+        }
+        return "";
 
     }
 
@@ -204,7 +237,7 @@ public class AfbApplication extends BaseApplication {
 
     public void setSettingAllDataBean(SettingAllDataBean settingAllDataBean) {
         this.settingAllDataBean = settingAllDataBean;
-        oddsType = AfbUtils.getOddsTypeByType(this, settingAllDataBean.getAccType(),getSettingAllDataBean().getCurCode());
+        oddsType = AfbUtils.getOddsTypeByType(this, settingAllDataBean.getAccType(), getSettingAllDataBean().getCurCode());
         marketType = AfbUtils.getMarketByType(this, settingAllDataBean.getAccMarketType());
         if (!StringUtils.isNull(settingAllDataBean.getAccDefaultSorting()))
             sort = Integer.valueOf(settingAllDataBean.getAccDefaultSorting());
@@ -224,10 +257,46 @@ public class AfbApplication extends BaseApplication {
         return showBet;
     }
 
-    public void setShowBet(boolean showBet,boolean typeHasPar) {
+    public void setShowBet(boolean showBet) {
         this.showBet = showBet;
-        this.hasPar = typeHasPar;
-        LogUtil.d("hasPar","hasPar:"+typeHasPar+",showBet:"+showBet);
+
+        LogUtil.d("hasPar", "showBet:" + showBet);
+    }
+
+    public void saveMixBet(OddsClickBean oddsUrlBean) {
+        if (mixBetList == null)
+            mixBetList = new ArrayList<>();
+        int i = 0;
+        for (OddsClickBean mixBetBean : mixBetList) {
+            if (mixBetBean.getItem().getModuleTitle().trim().equalsIgnoreCase(oddsUrlBean.getItem().getModuleTitle().trim())
+                    && mixBetBean.getItem().getHome().trim().equalsIgnoreCase(oddsUrlBean.getItem().getHome().trim())
+                    && mixBetBean.getItem().getAway().equalsIgnoreCase(oddsUrlBean.getItem().getAway().trim())) {
+                mixBetList.remove(i);
+                if (oddsUrlBean.getBETID().equalsIgnoreCase(mixBetBean.getBETID())) {
+                    return;
+                }
+                Log.d("xxx", "hasTeam");
+
+            }
+            i++;
+        }
+        mixBetList.add(oddsUrlBean);
+    }
+
+    public void saveCurrentBet(OddsClickBean oddsClickBean) {
+
+        this.currentBet = oddsClickBean;
+        saveMixBet(oddsClickBean);
+
+
+    }
+
+    public List<OddsClickBean> getMixBetList() {
+        return mixBetList;
+    }
+
+    public void clearMixBetList() {
+        mixBetList = new ArrayList<>();
     }
 }
 

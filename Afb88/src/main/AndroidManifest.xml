@@ -62,9 +62,6 @@
         <activity
             android:name=".main.home.huayThai.HuayThaiGamesActivity"
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
-
-        <activity android:name=".main.home.sport.mixparlayList.MixOrderListActivity" />
-
         <activity android:name=".main.home.sport.additional.VsActivity" />
         <activity
             android:name=".main.home.sport.main.SportActivity"

@@ -51,6 +51,7 @@ import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
 import com.nanyang.app.main.home.sport.WebSocketManager;
 import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
+import com.nanyang.app.main.home.sport.football.SoccerFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -315,12 +316,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void updateMixOrderCount() {
-        if (getApp().getBetParList() != null && getApp().getBetParList().getList() != null && getApp().getBetParList().getList().size() > 0 && getApp().isHasPar()) {
+        if (getApp().getMixBetList() != null && getApp().getMixBetList().size() > 0) {
             tvMixCount.setVisibility(View.VISIBLE);
             tvOrderCount.setVisibility(View.VISIBLE);
             ivOrderTop.setImageResource(R.mipmap.sport_shopping_top_white);
-            tvMixCount.setText("" + getApp().getBetParList().getList().size());
-            tvOrderCount.setText("" + getApp().getBetParList().getList().size());
+            tvMixCount.setText("" + getApp().getMixBetList().size());
+            tvOrderCount.setText("" + getApp().getMixBetList().size());
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping, 0, 0);
             tvMix.setTextColor(ContextCompat.getColor(mContext, R.color.grey_dark));
         } else {
@@ -347,6 +348,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         SportIdBean sportIdBean = AfbUtils.getSportByType(parentType);
         if (sportIdBean == null)
             sportIdBean = AfbUtils.getSportByG("1");
+        if (sportIdBean == null)
+            sportIdBean = new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, new SoccerFragment(), Color.BLACK, R.mipmap.football);
         currentGameType = sportIdBean.getType();
         Logger.getDefaultLogger().d("currentGameType:" + currentGameType);
         localCurrentFragment = sportIdBean.getBaseFragment();
@@ -524,7 +527,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void clickCup(View view) {
 
-        currentFragment.presenter.getStateHelper().createChoosePop( presenter.mApiWrapper, view);
+        currentFragment.presenter.getStateHelper().createChoosePop(presenter.mApiWrapper, view);
 //        test();
     }
 

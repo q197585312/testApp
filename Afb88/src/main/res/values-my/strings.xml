@@ -563,5 +563,6 @@
     <string name="speed_way">SPEEDWAY</string>
     <string name="switching_market_failure">切换盘口失败</string>
     <string name="All_Market" >@string/All_Markets</string>
+    <string name="single_bet" >TARUHAN TUNGGAL</string>
 
 </resources>

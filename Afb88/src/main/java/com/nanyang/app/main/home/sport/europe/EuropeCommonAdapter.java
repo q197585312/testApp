@@ -8,11 +8,10 @@ import android.widget.TextView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
-import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
@@ -30,11 +29,12 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
 
         updateMixBackground(helper, item);
     }
+
     protected void updateMixBackground(MyRecyclerViewHolder helper, BallInfo item) {
         BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
         String itemFullSocOddsId = item.getSocOddsId();
 
-        AfbClickBetBean mixItem = handler.getMixItem(itemFullSocOddsId);
+        OddsClickBean mixItem = handler.getMixItem(itemFullSocOddsId);
 
 
         TextView fullTv1 = (TextView) helper.getView(R.id.europe_1_full_time_odds_tv);
@@ -44,10 +44,10 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
         TextView fullTv2 = (TextView) helper.getView(R.id.europe_2_full_time_odds_tv);
         handler.setCommonBackground(fullTv2);
         if (mixItem != null) {
-            String transType = new AfbParseHelper().getBetTypeFromId(mixItem.getId());
+            String transType = mixItem.getType();
             if (transType.startsWith("1")) {
                 setMixBackground(handler, fullTv1);
-            } else if (transType.startsWith("X")) {
+            } else if (transType.toLowerCase().startsWith("x")) {
                 setMixBackground(handler, fullTvX);
             } else if (transType.startsWith("2")) {
                 setMixBackground(handler, fullTv2);
@@ -60,6 +60,7 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
     private void setMixBackground(BaseMixStyleHandler handler, TextView fullTv) {
         handler.setMixBackground(fullTv);
     }
+
     @Override
     public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
         super.onConvert(helper, position, item);
@@ -200,7 +201,6 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
     }
 
 
-
 }
 
 class ItemClick implements View.OnClickListener {
@@ -224,6 +224,7 @@ class ItemClick implements View.OnClickListener {
     public void onClick(View v) {
         if (!odds.equals("") && Float.valueOf(odds) != 0)
             back.clickOdds((TextView) v, item, type, isHf, odds, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), "", isHf ? (item.getHasPar_FH() != null && item.getHasPar_FH().equals("1")) : (item.getHasPar() != null && item.getHasPar().equals("1")));
+
     }
 
 

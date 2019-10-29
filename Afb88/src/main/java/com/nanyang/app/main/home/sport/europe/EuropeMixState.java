@@ -6,11 +6,10 @@ import android.widget.TextView;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -224,31 +223,19 @@ public abstract class EuropeMixState extends BallState {
 
                 String itemFullSocOddsId = item.getSocOddsId();
 
-                AfbClickBetBean mixItem = handler.getMixItem(itemFullSocOddsId);
-                AfbParseHelper helper1 = new AfbParseHelper();
+                OddsClickBean mixItem = handler.getMixItem(itemFullSocOddsId);
 
                 if (mixItem != null) {
-                    if (helper1.getBetTypeFromId(mixItem.getId()).startsWith("1"))
+                    if (mixItem.getType().startsWith("1"))
                         handler.setMixBackground(full1);
-                    else if (helper1.getBetTypeFromId(mixItem.getId()).startsWith("x") || helper1.getBetTypeFromId(mixItem.getId()).startsWith("X")) {
+                    else if (mixItem.getType().toLowerCase().startsWith("x") ) {
                         handler.setMixBackground(fullx);
                     } else {
                         handler.setMixBackground(full2);
                     }
                 }
 
-                String itemHalfSocOddsId = item.getSocOddsId_FH();
-                AfbClickBetBean mixItemHalf = handler.getMixItem(itemHalfSocOddsId);
 
-                if (mixItemHalf != null) {
-                    if (helper1.getBetTypeFromId(mixItem.getId()).startsWith("1"))
-                        handler.setMixBackground(half1);
-                    else if (helper1.getBetTypeFromId(mixItem.getId()).startsWith("x") || helper1.getBetTypeFromId(mixItem.getId()).startsWith("X")) {
-                        handler.setMixBackground(halfx);
-                    } else {
-                        handler.setMixBackground(half2);
-                    }
-                }
                 onChildConvert(helper, position, item);
             }
 
@@ -303,6 +290,7 @@ public abstract class EuropeMixState extends BallState {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 helper.clickOdds(item, oid, type, odds, v, isHf, sc, hasPar);
+                getBaseRecyclerAdapter().notifyDataSetChanged();
             }
 
             @Override

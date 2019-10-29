@@ -166,6 +166,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 helper.clickOdds(item, oid, type, odds, v, isHf, sc, hasPar);
+                getBaseRecyclerAdapter().notifyDataSetChanged();
             }
 
             @Override

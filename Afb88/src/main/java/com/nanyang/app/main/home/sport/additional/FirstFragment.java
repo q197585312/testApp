@@ -6,8 +6,8 @@ import android.widget.TextView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sport.model.VsCellBean;
 import com.nanyang.app.main.home.sport.model.VsTableRowBean;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
@@ -95,9 +95,9 @@ public class FirstFragment extends BaseVsFragment<VsTableRowBean> {
         if (item.getB().toString().equals("1") || item.getB().toString().equals("X") || item.getB().toString().equals("2")
                 || item.getB().toString().equals("odd") || item.getB().toString().equals("even")) {
             int itemFullSocOddsId = item.getRows().get(1).getOid();
-            AfbClickBetBean mixItem = baseMixStyleHandler.getMixItem(itemFullSocOddsId + "");
+            OddsClickBean mixItem = baseMixStyleHandler.getMixItem(itemFullSocOddsId + "");
             if (mixItem != null) {
-                if (mixItem.getOddsType().startsWith(item.getB().toString()))
+                if (mixItem.getType().toLowerCase().startsWith(item.getB().toString().toLowerCase()))
                     baseMixStyleHandler.setMixBackground(helper.getTextView(R.id.vs_row_content_tv22));
             }
         }
@@ -107,9 +107,9 @@ public class FirstFragment extends BaseVsFragment<VsTableRowBean> {
         if (item.getB().toString().equals("1") || item.getB().toString().equals("X") || item.getB().toString().equals("2")) {
             int itemFullSocOddsId = item.getRows().get(2).getOid();
 
-            AfbClickBetBean mixItem = baseMixStyleHandler.getMixItem(itemFullSocOddsId + "");
+            OddsClickBean mixItem = baseMixStyleHandler.getMixItem(itemFullSocOddsId + "");
             if (mixItem != null) {
-                if (mixItem.getOddsType().startsWith(item.getB().toString()))
+                if (mixItem.getType().toLowerCase().startsWith(item.getB().toString().toLowerCase()))
                     baseMixStyleHandler.setMixBackground(helper.getTextView(R.id.vs_row_content_tv32));
             }
         }

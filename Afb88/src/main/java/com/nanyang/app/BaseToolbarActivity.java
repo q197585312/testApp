@@ -301,7 +301,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public void onBetSuccess(String betResult) {
         if (popWindow != null)
             popWindow.closePopupWindow();
-        getApp().setBetParList(null);
+        getApp().setBetAfbList(null);
         updateBalance();
 
     }

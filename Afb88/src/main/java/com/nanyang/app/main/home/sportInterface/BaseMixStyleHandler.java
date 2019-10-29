@@ -7,9 +7,8 @@ import android.widget.TextView;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.main.AfbParseHelper;
-import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.unkonw.testapp.training.ScrollLayout;
 
 /**
@@ -24,12 +23,10 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
     BaseToolbarActivity act;
 
     @Override
-    public AfbClickBetBean getMixItem(String itemId) {
-        if (act.getApp().getBetParList() != null && act.getApp().getBetParList().getList().size() > 0)
-            for (AfbClickBetBean betParBean : act.getApp().getBetParList().getList()) {
-
-                String parSocOddsId = new AfbParseHelper<>().getSocOddsIdFromId(betParBean.getId());
-                if (itemId.equals(parSocOddsId)) {
+    public OddsClickBean getMixItem(String itemId) {
+        if (act.getApp().getMixBetList() != null && act.getApp().getMixBetList().size() > 0)
+            for (OddsClickBean betParBean : act.getApp().getMixBetList()) {
+                if (itemId.equals(betParBean.getOid())) {
                     return betParBean;
                 }
             }
@@ -81,11 +78,10 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
     }
 
 
-    public void parseMixBackground(AfbClickBetBean par, int i, ScrollLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
-        String transType = new AfbParseHelper().getBetTypeFromId(par.getId());
+    public void parseMixBackground(OddsClickBean par, int i, ScrollLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
+        String transType = par.getType();
 
 
-        boolean isHome = par.getBTeam().equalsIgnoreCase("Home");
         TextView overTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_overodds_tv);
         setCommonBackground(overTv);
         TextView underTv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_underodds_tv);
@@ -98,37 +94,28 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
         setCommonBackground(even_tv);
         TextView odd_tv = (TextView) sl.getChildAt(i).findViewById(R.id.viewpager_match_odd_tv);
         setCommonBackground(odd_tv);
-        if (transType.startsWith(type01) || transType.startsWith(type02)) {
-            if (isHome) {
-                setMixBackground(homeTv);
-            } else {
-                setMixBackground(awayTv);
-            }
-        } else if (transType.startsWith(type11) || transType.startsWith(type12)) {
-            if (isHome) {
-                setMixBackground(overTv);
-            } else {
-                setMixBackground(underTv);
-            }
-        } else if (transType.startsWith(type21) || transType.startsWith(type22)) {
-            if (isHome) {
-                setMixBackground(odd_tv);
-            } else {
-                setMixBackground(even_tv);
-            }
+        if (transType.startsWith(type01)) {
+            setMixBackground(homeTv);
+        } else if (transType.startsWith(type02)) {
+            setMixBackground(awayTv);
+        } else if (transType.startsWith(type11)) {
+            setMixBackground(overTv);
+        } else if (transType.startsWith(type12)) {
+            setMixBackground(underTv);
+        } else if (transType.startsWith(type21)) {
+            setMixBackground(odd_tv);
+        } else if (transType.startsWith(type22)) {
+            setMixBackground(even_tv);
         }
 
     }
 
     public void updateMixBackground(BallInfo item, ScrollLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
         String itemFullSocOddsId = item.getSocOddsId();
-        String itemHfSocOddsId = item.getSocOddsId_FH();
-        AfbClickBetBean mixItem = getMixItem(itemFullSocOddsId);
+
+        OddsClickBean mixItem = getMixItem(itemFullSocOddsId);
         int index = 0;
-        if (mixItem == null) {
-            mixItem = getMixItem(itemHfSocOddsId);
-            index = 1;
-        }
+
         if (mixItem != null) {
             parseMixBackground(mixItem, index, sl, type01, type02, type11, type12, type21, type22);
         } else {
@@ -136,14 +123,4 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
             parseCommonBackground(1, sl);
         }
     }
-
-    public void updateAfbMixBackground(String OddsId, int index, ScrollLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
-        AfbClickBetBean mixItem = getMixItem(OddsId);
-        if (mixItem != null) {
-            parseMixBackground(mixItem, index, sl, type01, type02, type11, type12, type21, type22);
-        } else {
-            parseCommonBackground(index, sl);
-        }
-    }
-
 }

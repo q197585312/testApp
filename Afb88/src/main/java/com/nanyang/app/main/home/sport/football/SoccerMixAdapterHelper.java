@@ -6,8 +6,8 @@ import android.view.View;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
-import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.training.ScrollLayout;
@@ -53,16 +53,13 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<BallInfo> {
         getBaseRecyclerAdapter().getItem(position).setIsHdpNew_FH("0");
         getBaseRecyclerAdapter().getItem(position).setIsOUNew_FH("0");
         String itemFullSocOddsId = item.getSocOddsId();
-        String itemHfSocOddsId = item.getSocOddsId_FH();
 
         BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
-        AfbClickBetBean mixItem = handler.getMixItem(itemFullSocOddsId);
+        OddsClickBean mixItem = handler.getMixItem(itemFullSocOddsId);
+
         int index = 0;
-        if (mixItem == null) {
-            mixItem = handler.getMixItem(itemHfSocOddsId);
-            index = 1;
-        }
-        if (mixItem != null) {
+
+        if (mixItem != null ) {
             handler.parseMixBackground(mixItem, index, sl, "home", "away", "over", "under", "odd", "even");
         } else {
             handler.parseCommonBackground(0, sl);

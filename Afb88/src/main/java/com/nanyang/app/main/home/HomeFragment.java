@@ -62,10 +62,7 @@ public class HomeFragment extends BaseSwitchFragment {
     @Override
     public void initData() {
         super.initData();
-        initViewPager(((AfbApplication) getBaseActivity().getApplication()).getListMainBanners());
-        initContent(((AfbApplication) getBaseActivity().getApplication()).getListMainPictures());
         language = new LanguageHelper(mContext).getLanguage();
-
     }
 
 
@@ -88,8 +85,11 @@ public class HomeFragment extends BaseSwitchFragment {
     @Override
     public void onResume() {
         super.onResume();
+        initViewPager(((AfbApplication) getBaseActivity().getApplication()).getListMainBanners());
+        initContent(((AfbApplication) getBaseActivity().getApplication()).getListMainPictures());
         updateTimer();
         initHomeToolBar();
+
     }
 
     private void initHomeToolBar() {

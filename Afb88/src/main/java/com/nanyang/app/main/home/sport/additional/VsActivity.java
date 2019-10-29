@@ -492,7 +492,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
 //                if (getApp().getBetAfbList() == null || getApp().getBetAfbList().gettList() == null || getApp().getBetAfbList().gettList().size() < 1)
 //                    return;
 //                if (getApp().getBetAfbList().getList().size() == 1) {
-//                    String refreshOddsUrl = getApp().getRefreshOddsUrl();
+//                    String refreshOddsUrl = getApp().getRefreshCurrentOddsUrl();
 //                    helper.getRefreshOdds(refreshOddsUrl);
 //                } else if (getApp().getBetAfbList().getList().size() > 1) {
 //                    Bundle b = new Bundle();
@@ -528,7 +528,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     public void onUpdateMixSucceed(AfbClickResponseBean bean) {
         BaseVsFragment<VsTableRowBean> baseVsFragment = fragmentsList.get(currentIndex);
         baseVsFragment.getAdapter().notifyDataSetChanged();
-        getApp().setBetParList(bean);
+        getApp().setBetAfbList(bean);
         onBetEnd();
 
     }

@@ -400,7 +400,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onUpdateMixSucceed(AfbClickResponseBean bean) {
         if (getBaseActivity() == null)
             return;
-        getApp().setBetParList(bean);
+        getApp().setBetAfbList(bean);
         if (getBaseActivity().isHasAttached()) {
             updateMixOrderCount();
             baseRecyclerAdapter.notifyDataSetChanged();
@@ -475,19 +475,11 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 //    }
 
     public void clickOrder() {
-        if (getApp().getBetAfbList() == null || getApp().getBetAfbList().getList() == null || getApp().getBetAfbList().getList().size() < 1)
+        if (getApp().getMixBetList() == null || getApp().getMixBetList().size() < 1)
             return;
-//        if (getApp().getBetAfbList().gettList().size() == 1) {
-//            String refreshOddsUrl = getApp().getRefreshOddsUrl();
-//            presenter.getStateHelper().getBetHelper().getRefreshOdds(refreshOddsUrl);
-//        } else if (getApp().getBetAfbList().gettList().size() > 1) {
-//            Bundle bundle = new Bundle();
-//            bundle.putSerializable(AppConstant.KEY_DATA, presenter.getStateHelper().getStateType());
-//            skipAct(MixOrderListActivity.class, bundle);
-//        }
-        String refreshOddsUrl = getApp().getRefreshOddsUrl();
+        String refreshOddsUrl = getApp().getRefreshMixOddsUrl();
         presenter.getStateHelper().getBetHelper().getRefreshOdds(refreshOddsUrl);
-        getApp().setShowBet(true, true);
+        getApp().setShowBet( true);
     }
 
     public void clickOddsType(final TextView tvOddsType) {

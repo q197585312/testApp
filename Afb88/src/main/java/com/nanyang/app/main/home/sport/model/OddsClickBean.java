@@ -6,7 +6,11 @@ import java.io.Serializable;
  * Created by Administrator on 2018/11/26.
  */
 
-public class OddsClickBean implements Serializable {
+public class OddsClickBean<B extends BallInfo> implements Serializable {
+
+
+    private B item;
+
     public String getSc() {
         return sc;
     }
@@ -18,12 +22,17 @@ public class OddsClickBean implements Serializable {
     private String sc = "";
     private String type, g, oid, oid_fh;
 
-    public OddsClickBean(String type, String g, String oid, String oid_fh, String sc) {
+    public B getItem() {
+        return item;
+    }
+
+    public OddsClickBean(String type, String g, String oid, String oid_fh, String sc, B item) {
         this.type = type;
         this.g = g;
         this.oid = oid;
         this.oid_fh = oid_fh;
         this.sc = sc;
+        this.item = item;
     }
 
     public String getType() {

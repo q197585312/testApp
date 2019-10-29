@@ -1259,6 +1259,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             @Override
             public void onClick(View view) {
                 back.clickOdds(textView, item, type, isHalf, finalContent, Integer.valueOf(oid), sc, hasHar);
+                getBaseRecyclerAdapter().notifyDataSetChanged();
             }
         });
 
@@ -1803,7 +1804,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     public void onClick(View v) {
                         LogUtil.d("xxxxx", item.toString());
                         back.clickOdds((TextView) v, item, type, isHf, f, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), "", isHf ? item.getHasPar_FH().equals("1") : item.getHasPar().equals("1"));
-
+                        getBaseRecyclerAdapter().notifyDataSetChanged();
                     }
                 });
             } else {

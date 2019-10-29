@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/ll_back"
+
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green_dark"
@@ -15,21 +15,43 @@
         android:orientation="horizontal">
 
         <ImageView
+            android:id="@+id/ll_back"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="8dp"
             android:background="@mipmap/go_back_left_white" />
 
         <TextView
-            android:layout_width="0dp"
+            android:id="@+id/tv_single_bet"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/single_bet"
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="/"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tv_mix_bet"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="3"
             android:gravity="center_vertical"
-            android:padding="8dp"
+            android:padding="5dp"
             android:text="@string/Parlay1"
-            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textColor="@color/grey_light"
             android:textSize="13sp"
             android:textStyle="bold" />
 
@@ -39,7 +61,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:drawableRight="@mipmap/delete_white"
-            android:paddingRight="8dp"
+            android:paddingRight="5dp"
             android:visibility="gone" />
     </LinearLayout>
 
@@ -68,7 +90,7 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:textColor="@color/black"
-                android:textSize="13sp"></TextView>
+                android:textSize="13sp" />
 
             <ImageView
                 android:id="@+id/img_failed"
@@ -82,7 +104,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/shape_bet_rc_bg"
-            android:padding="5dp"/>
+            android:padding="5dp" />
 
         <LinearLayout
             android:id="@+id/ll_mix"
@@ -119,7 +141,7 @@
                 android:layout_height="30dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
-                android:background="@color/gary"/>
+                android:background="@color/gary" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -156,11 +178,11 @@
                 android:id="@+id/tv_currency"
                 android:layout_width="wrap_content"
                 android:layout_height="30dp"
-                android:paddingLeft="5dp"
-                android:paddingRight="5dp"
-
                 android:background="@drawable/shape_bet_bg1"
                 android:gravity="center"
+
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
                 android:singleLine="true"
                 android:textColor="@color/black" />
 
@@ -207,7 +229,7 @@
         <android.support.v7.widget.RecyclerView
             android:id="@+id/rc_bet_chip"
             android:layout_width="match_parent"
-            android:layout_height="40dp"/>
+            android:layout_height="40dp" />
 
         <LinearLayout
             android:layout_width="match_parent"

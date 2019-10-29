@@ -567,4 +567,5 @@
     <string name="speed_way">SPEEDWAY</string>
     <string name="switching_market_failure">切换盘口失败</string>
     <string name="All_Market">全部</string>
+    <string name="single_bet" >单注</string>
 </resources>

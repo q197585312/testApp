@@ -239,7 +239,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
 //[10000, 3, 4.654056, 10000, 'hBetSub.ashx?BTMD=P&odds=4.654056', 1, 0]
                             if (list != null && list.size() > 0 && list.get(0).getId() != null) {
                                 JSONArray dataListArray1 = jsonArray.getJSONArray(1);
-
                                 bean = new AfbClickResponseBean(list, dataListArray1);
                                 bean = initHasPar(bean);
                                 ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(bean);
@@ -258,7 +257,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         } else if (bean.getList().size() >= 1) {
                             createBetPop(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
                         }
-                        baseView.onUpdateMixSucceed(bean);
+
 
                     }
                 }, new Consumer<Throwable>() {//错误

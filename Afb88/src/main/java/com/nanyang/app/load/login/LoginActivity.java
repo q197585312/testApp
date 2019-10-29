@@ -127,7 +127,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         edtLoginUsername.requestFocus();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         inputMove();
-        getApp().setBetParList(null);
+        getApp().setBetAfbList(null);
 
     }
 

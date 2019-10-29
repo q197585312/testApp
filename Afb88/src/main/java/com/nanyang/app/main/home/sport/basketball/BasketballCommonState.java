@@ -58,6 +58,7 @@ public abstract class BasketballCommonState extends BallState {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 helper.clickOdds(item, oid, type, odds, v, isHf, sc, hasPar);
+                baseRecyclerAdapter.notifyDataSetChanged();
             }
 
             @Override
