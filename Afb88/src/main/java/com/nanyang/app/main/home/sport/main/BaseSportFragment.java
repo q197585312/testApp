@@ -479,7 +479,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             return;
         String refreshOddsUrl = getApp().getRefreshMixOddsUrl();
         presenter.getStateHelper().getBetHelper().getRefreshOdds(refreshOddsUrl);
-        getApp().setShowBet( true);
     }
 
     public void clickOddsType(final TextView tvOddsType) {
@@ -495,7 +494,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 RecyclerView rv = view.findViewById(R.id.rv_list);
                 rv.setPadding(0, 0, 0, 0);
                 rv.setLayoutManager(new LinearLayoutManager(mContext));
-                List<MenuItemInfo> list = AfbUtils.getOddsTypeList(mContext,getApp().getSettingAllDataBean().getCurCode());
+                List<MenuItemInfo> list = AfbUtils.getOddsTypeList(mContext, getApp().getSettingAllDataBean().getCurCode());
                 BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base_item) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {

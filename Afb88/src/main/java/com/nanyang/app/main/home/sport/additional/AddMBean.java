@@ -618,6 +618,9 @@ public class AddMBean implements Serializable {
     private String FT15InfoO;
     private String FT15InfoUIsInetBet;
     private String FT15InfoU;
+
+
+
     private String MG30_CNT;
     private String MG30_SocOddsId;
     private String MG30_IsRun;
@@ -641,6 +644,7 @@ public class AddMBean implements Serializable {
     private String FT60InfoO;
     private String FT60InfoUIsInetBet;
     private String FT60InfoU;
+
     private String MG75_CNT;
     private String MG75_SocOddsId;
     private String MG75_IsRun;
@@ -652,6 +656,406 @@ public class AddMBean implements Serializable {
     private String FT75InfoUIsInetBet;
     private String MG75_ishowOdds;
     private String FT75InfoU;
+
+    private String MG90_CNT;
+    private String MG90_SocOddsId;
+    private String MG90_IsRun;
+    private String MG90_OU;
+    private String MG90_IsHomeGive;
+    private String FT90InfoOU;
+    private String FT90InfoOIsInetBet;
+    private String FT90InfoO;
+    private String FT90InfoUIsInetBet;
+    private String MG90_ishowOdds;
+
+
+    private String FT15InfoHome;
+    private String FT15InfoAway;
+    private String FT15InfoHDP;
+
+
+    private String FT30InfoHome;
+    private String FT30InfoAway;
+    private String FT30InfoHDP;
+
+
+    private String FT45InfoHome;
+    private String FT45InfoAway;
+    private String FT45InfoHDP;
+
+
+    private String FT60InfoHome;
+    private String FT60InfoAway;
+    private String FT60InfoHDP;
+
+
+
+    private String FT75InfoHome;
+    private String FT75InfoAway;
+    private String FT75InfoHDP;
+
+
+    private String FT90InfoHome;
+    private String FT90InfoAway;
+    private String FT90InfoHDP;
+    private String MG45_IsHomeGive;
+
+    public String getMG15_ishowHDPOdds() {
+        return MG15_ishowHDPOdds;
+    }
+
+    public void setMG15_ishowHDPOdds(String MG15_ishowHDPOdds) {
+        this.MG15_ishowHDPOdds = MG15_ishowHDPOdds;
+    }
+
+    public String getMG15_ishowHDPIsInetBet() {
+        return MG15_ishowHDPIsInetBet;
+    }
+
+    public void setMG15_ishowHDPIsInetBet(String MG15_ishowHDPIsInetBet) {
+        this.MG15_ishowHDPIsInetBet = MG15_ishowHDPIsInetBet;
+    }
+
+    public String getMG30_ishowHDPOdds() {
+        return MG30_ishowHDPOdds;
+    }
+
+    public void setMG30_ishowHDPOdds(String MG30_ishowHDPOdds) {
+        this.MG30_ishowHDPOdds = MG30_ishowHDPOdds;
+    }
+
+    public String getMG30_ishowHDPIsInetBet() {
+        return MG30_ishowHDPIsInetBet;
+    }
+
+    public void setMG30_ishowHDPIsInetBet(String MG30_ishowHDPIsInetBet) {
+        this.MG30_ishowHDPIsInetBet = MG30_ishowHDPIsInetBet;
+    }
+
+    public String getMG45_ishowHDPOdds() {
+        return MG45_ishowHDPOdds;
+    }
+
+    public void setMG45_ishowHDPOdds(String MG45_ishowHDPOdds) {
+        this.MG45_ishowHDPOdds = MG45_ishowHDPOdds;
+    }
+
+    public String getMG45_ishowHDPIsInetBet() {
+        return MG45_ishowHDPIsInetBet;
+    }
+
+    public void setMG45_ishowHDPIsInetBet(String MG45_ishowHDPIsInetBet) {
+        this.MG45_ishowHDPIsInetBet = MG45_ishowHDPIsInetBet;
+    }
+
+    public String getMG60_ishowHDPOdds() {
+        return MG60_ishowHDPOdds;
+    }
+
+    public void setMG60_ishowHDPOdds(String MG60_ishowHDPOdds) {
+        this.MG60_ishowHDPOdds = MG60_ishowHDPOdds;
+    }
+
+    public String getMG60_ishowHDPIsInetBet() {
+        return MG60_ishowHDPIsInetBet;
+    }
+
+    public void setMG60_ishowHDPIsInetBet(String MG60_ishowHDPIsInetBet) {
+        this.MG60_ishowHDPIsInetBet = MG60_ishowHDPIsInetBet;
+    }
+
+    public String getMG75_ishowHDPOdds() {
+        return MG75_ishowHDPOdds;
+    }
+
+    public void setMG75_ishowHDPOdds(String MG75_ishowHDPOdds) {
+        this.MG75_ishowHDPOdds = MG75_ishowHDPOdds;
+    }
+
+    public String getMG75_ishowHDPIsInetBet() {
+        return MG75_ishowHDPIsInetBet;
+    }
+
+    public void setMG75_ishowHDPIsInetBet(String MG75_ishowHDPIsInetBet) {
+        this.MG75_ishowHDPIsInetBet = MG75_ishowHDPIsInetBet;
+    }
+
+    public String getMG90_ishowHDPOdds() {
+        return MG90_ishowHDPOdds;
+    }
+
+    public void setMG90_ishowHDPOdds(String MG90_ishowHDPOdds) {
+        this.MG90_ishowHDPOdds = MG90_ishowHDPOdds;
+    }
+
+    public String getMG90_ishowHDPIsInetBet() {
+        return MG90_ishowHDPIsInetBet;
+    }
+
+    public void setMG90_ishowHDPIsInetBet(String MG90_ishowHDPIsInetBet) {
+        this.MG90_ishowHDPIsInetBet = MG90_ishowHDPIsInetBet;
+    }
+
+    private String MG15_ishowHDPOdds;
+    private String MG15_ishowHDPIsInetBet;
+
+    private String MG30_ishowHDPOdds;
+    private String MG30_ishowHDPIsInetBet;
+
+    private String MG45_ishowHDPOdds;
+    private String MG45_ishowHDPIsInetBet;
+    private String MG60_ishowHDPOdds;
+    private String MG60_ishowHDPIsInetBet;
+    private String MG75_ishowHDPOdds;
+    private String MG75_ishowHDPIsInetBet;
+
+    private String MG90_ishowHDPOdds;
+    private String MG90_ishowHDPIsInetBet;
+
+
+
+    public String getFT15InfoHome() {
+        return FT15InfoHome;
+    }
+
+    public void setFT15InfoHome(String FT15InfoHome) {
+        this.FT15InfoHome = FT15InfoHome;
+    }
+
+    public String getFT15InfoAway() {
+        return FT15InfoAway;
+    }
+
+    public void setFT15InfoAway(String FT15InfoAway) {
+        this.FT15InfoAway = FT15InfoAway;
+    }
+
+    public String getFT15InfoHDP() {
+        return FT15InfoHDP;
+    }
+
+    public void setFT15InfoHDP(String FT15InfoHDP) {
+        this.FT15InfoHDP = FT15InfoHDP;
+    }
+
+
+    public String getFT30InfoHome() {
+        return FT30InfoHome;
+    }
+
+    public void setFT30InfoHome(String FT30InfoHome) {
+        this.FT30InfoHome = FT30InfoHome;
+    }
+
+    public String getFT30InfoAway() {
+        return FT30InfoAway;
+    }
+
+    public void setFT30InfoAway(String FT30InfoAway) {
+        this.FT30InfoAway = FT30InfoAway;
+    }
+
+    public String getFT30InfoHDP() {
+        return FT30InfoHDP;
+    }
+
+    public void setFT30InfoHDP(String FT30InfoHDP) {
+        this.FT30InfoHDP = FT30InfoHDP;
+    }
+
+
+
+    public String getFT45InfoHome() {
+        return FT45InfoHome;
+    }
+
+    public void setFT45InfoHome(String FT45InfoHome) {
+        this.FT45InfoHome = FT45InfoHome;
+    }
+
+    public String getFT45InfoAway() {
+        return FT45InfoAway;
+    }
+
+    public void setFT45InfoAway(String FT45InfoAway) {
+        this.FT45InfoAway = FT45InfoAway;
+    }
+
+    public String getFT45InfoHDP() {
+        return FT45InfoHDP;
+    }
+
+    public void setFT45InfoHDP(String FT45InfoHDP) {
+        this.FT45InfoHDP = FT45InfoHDP;
+    }
+
+
+
+    public String getFT60InfoHome() {
+        return FT60InfoHome;
+    }
+
+    public void setFT60InfoHome(String FT60InfoHome) {
+        this.FT60InfoHome = FT60InfoHome;
+    }
+
+    public String getFT60InfoAway() {
+        return FT60InfoAway;
+    }
+
+    public void setFT60InfoAway(String FT60InfoAway) {
+        this.FT60InfoAway = FT60InfoAway;
+    }
+
+    public String getFT60InfoHDP() {
+        return FT60InfoHDP;
+    }
+
+    public void setFT60InfoHDP(String FT60InfoHDP) {
+        this.FT60InfoHDP = FT60InfoHDP;
+    }
+
+
+    public String getFT75InfoHome() {
+        return FT75InfoHome;
+    }
+
+    public void setFT75InfoHome(String FT75InfoHome) {
+        this.FT75InfoHome = FT75InfoHome;
+    }
+
+    public String getFT75InfoAway() {
+        return FT75InfoAway;
+    }
+
+    public void setFT75InfoAway(String FT75InfoAway) {
+        this.FT75InfoAway = FT75InfoAway;
+    }
+
+    public String getFT75InfoHDP() {
+        return FT75InfoHDP;
+    }
+
+    public void setFT75InfoHDP(String FT75InfoHDP) {
+        this.FT75InfoHDP = FT75InfoHDP;
+    }
+
+
+
+    public String getFT90InfoHome() {
+        return FT90InfoHome;
+    }
+
+    public void setFT90InfoHome(String FT90InfoHome) {
+        this.FT90InfoHome = FT90InfoHome;
+    }
+
+    public String getFT90InfoAway() {
+        return FT90InfoAway;
+    }
+
+    public void setFT90InfoAway(String FT90InfoAway) {
+        this.FT90InfoAway = FT90InfoAway;
+    }
+
+    public String getFT90InfoHDP() {
+        return FT90InfoHDP;
+    }
+
+    public void setFT90InfoHDP(String FT90InfoHDP) {
+        this.FT90InfoHDP = FT90InfoHDP;
+    }
+
+    public String getMG90_CNT() {
+        return MG90_CNT;
+    }
+
+    public void setMG90_CNT(String MG90_CNT) {
+        this.MG90_CNT = MG90_CNT;
+    }
+
+    public String getMG90_SocOddsId() {
+        return MG90_SocOddsId;
+    }
+
+    public void setMG90_SocOddsId(String MG90_SocOddsId) {
+        this.MG90_SocOddsId = MG90_SocOddsId;
+    }
+
+    public String getMG90_IsRun() {
+        return MG90_IsRun;
+    }
+
+    public void setMG90_IsRun(String MG90_IsRun) {
+        this.MG90_IsRun = MG90_IsRun;
+    }
+
+    public String getMG90_OU() {
+        return MG90_OU;
+    }
+
+    public void setMG90_OU(String MG90_OU) {
+        this.MG90_OU = MG90_OU;
+    }
+
+    public String getMG90_IsHomeGive() {
+        return MG90_IsHomeGive;
+    }
+
+    public void setMG90_IsHomeGive(String MG90_IsHomeGive) {
+        this.MG90_IsHomeGive = MG90_IsHomeGive;
+    }
+
+    public String getFT90InfoOU() {
+        return FT90InfoOU;
+    }
+
+    public void setFT90InfoOU(String FT90InfoOU) {
+        this.FT90InfoOU = FT90InfoOU;
+    }
+
+    public String getFT90InfoOIsInetBet() {
+        return FT90InfoOIsInetBet;
+    }
+
+    public void setFT90InfoOIsInetBet(String FT90InfoOIsInetBet) {
+        this.FT90InfoOIsInetBet = FT90InfoOIsInetBet;
+    }
+
+    public String getFT90InfoO() {
+        return FT90InfoO;
+    }
+
+    public void setFT90InfoO(String FT90InfoO) {
+        this.FT90InfoO = FT90InfoO;
+    }
+
+    public String getFT90InfoUIsInetBet() {
+        return FT90InfoUIsInetBet;
+    }
+
+    public void setFT90InfoUIsInetBet(String FT90InfoUIsInetBet) {
+        this.FT90InfoUIsInetBet = FT90InfoUIsInetBet;
+    }
+
+    public String getMG90_ishowOdds() {
+        return MG90_ishowOdds;
+    }
+
+    public void setMG90_ishowOdds(String MG90_ishowOdds) {
+        this.MG90_ishowOdds = MG90_ishowOdds;
+    }
+
+    public String getFT90InfoU() {
+        return FT90InfoU;
+    }
+
+    public void setFT90InfoU(String FT90InfoU) {
+        this.FT90InfoU = FT90InfoU;
+    }
+
+    private String FT90InfoU;
+
     private String _count;
     private String AccType;
     /**
@@ -3686,6 +4090,10 @@ public class AddMBean implements Serializable {
 
     public void setHOE_ishowOdds(String HOE_ishowOdds) {
         this.HOE_ishowOdds = HOE_ishowOdds;
+    }
+
+    public String getMG45_IsHomeGive() {
+        return MG45_IsHomeGive;
     }
 
     public static class OddsBean {

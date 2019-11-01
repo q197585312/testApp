@@ -11,8 +11,6 @@ import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
-import com.nanyang.app.AppConstant;
-import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
@@ -129,8 +127,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     }
 
 
-
-
     protected OddsClickBean getOddsUrl(B item, String type, boolean isHf, String odds, String sc) {
         return null;
     }
@@ -190,22 +186,18 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         }
         pop.setBetData(bean, this);
         pop.setIsRunning(false);
-        boolean showBet = ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().isShowBet();
-        if (showBet) {
-            if (!pop.isShowing()) {
-                baseView.onPopupWindowCreated(pop, Gravity.CENTER);
-            }
-        } else {
-            pop.closePopupWindow();
+        if (!pop.isShowing()) {
+            baseView.onPopupWindowCreated(pop, Gravity.CENTER);
         }
     }
 
+
     @NonNull
     protected Disposable getDisposable(final TextView v, final boolean isHf, String betOddsUrl) {
-        String url = AppConstant.getInstance().URL_ODDS + betOddsUrl;
+
         this.v = v;
         baseView.getIBaseContext().showLoadingDialog();
-        Disposable subscribe = getRefreshOdds(url);
+        Disposable subscribe = getRefreshOdds(betOddsUrl);
         return subscribe;
     }
 

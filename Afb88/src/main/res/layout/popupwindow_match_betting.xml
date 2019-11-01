@@ -20,28 +20,6 @@
             android:layout_height="20dp"
             android:layout_marginLeft="8dp"
             android:background="@mipmap/go_back_left_white" />
-
-        <TextView
-            android:id="@+id/tv_single_bet"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_marginLeft="8dp"
-            android:gravity="center_vertical"
-            android:padding="5dp"
-            android:text="@string/single_bet"
-            android:textAllCaps="true"
-            android:textColor="@color/white"
-            android:textSize="13sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:text="/"
-            android:textColor="@color/white"
-            android:textStyle="bold" />
-
         <TextView
             android:id="@+id/tv_mix_bet"
             android:layout_width="wrap_content"
@@ -52,6 +30,29 @@
             android:text="@string/Parlay1"
             android:textAllCaps="true"
             android:textColor="@color/grey_light"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="/"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
+
+
+        <TextView
+            android:id="@+id/tv_single_bet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:gravity="center_vertical"
+            android:padding="5dp"
+            android:text="@string/single_bet"
+            android:textAllCaps="true"
+            android:textColor="@android:color/holo_orange_light"
             android:textSize="13sp"
             android:textStyle="bold" />
 

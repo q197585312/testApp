@@ -13,7 +13,6 @@ import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.unkonw.testapp.libs.base.BaseApplication;
-import com.unkonw.testapp.libs.utils.LogUtil;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -33,7 +32,7 @@ public class AfbApplication extends BaseApplication {
     private AfbClickResponseBean betAfbList;
     private boolean isGoHome = false;
     private SettingAllDataBean settingAllDataBean;
-    private boolean showBet = true;
+
     private List<OddsClickBean> mixBetList = new ArrayList<>();
     private OddsClickBean currentBet;
 
@@ -251,16 +250,6 @@ public class AfbApplication extends BaseApplication {
 
     public void setRefreshDataBean(RefreshDataBean refreshDataBean) {
         this.refreshDataBean = refreshDataBean;
-    }
-
-    public boolean isShowBet() {
-        return showBet;
-    }
-
-    public void setShowBet(boolean showBet) {
-        this.showBet = showBet;
-
-        LogUtil.d("hasPar", "showBet:" + showBet);
     }
 
     public void saveMixBet(OddsClickBean oddsUrlBean) {

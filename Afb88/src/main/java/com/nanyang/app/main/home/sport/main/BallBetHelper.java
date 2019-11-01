@@ -3,7 +3,7 @@ package com.nanyang.app.main.home.sport.main;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
-import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
@@ -41,7 +41,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         this.isHf = isHf;
 
         OddsClickBean oddsUrlBean = getOddsUrl(oid, type, isHf, odds, sc, item);
-        List<OddsClickBean> betAfbList = ((AfbApplication) AfbApplication.getInstance()).getMixBetList();
+
 
         String betOddsUrl = "";
 
@@ -54,47 +54,28 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 || type.equalsIgnoreCase("1")
                 || type.equalsIgnoreCase("X")
                 || type.equalsIgnoreCase("2");
-        if (betAfbList == null
-                || betAfbList.size() == 0
-                || (betAfbList.size() == 1 && (isOneTeamBoolean(item, betAfbList)
+        if (((AfbApplication) AfbApplication.getInstance()).getMixBetList() == null
+                || ((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 0
+                || (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1 && (isOneTeamBoolean(item, ((AfbApplication) AfbApplication.getInstance()).getMixBetList())
                 || !hasPar))) {
             if (!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
-                betOddsUrl = "BTMD=S&coupon=0&BETID=" + oddsUrlBean.getBETID();
+                betOddsUrl = AppConstant.getInstance().URL_ODDS + "BTMD=S&coupon=0&BETID=" + oddsUrlBean.getBETID();
                 LogUtil.d("typeHasPar", "typeHasPar:" + typeHasPar + ",hasPar:" + hasPar);
-                ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().setShowBet(true);
                 if (hasPar && typeHasPar)
                     ((AfbApplication) AfbApplication.getInstance()).saveCurrentBet(oddsUrlBean);
                 ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).updateMixOrderCount();
-                return getDisposable(v, isHf, betOddsUrl);
+
             }
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
             ToastUtils.showShort(R.string.can_not_mixparly);
+            return new CompositeDisposable();
         } else {
-            String ids = "";
             ((AfbApplication) AfbApplication.getInstance()).saveCurrentBet(oddsUrlBean);
             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).updateMixOrderCount();
-            /*for (AfbClickBetBean afbClickBetBean : betAfbList.getList()) {
-                String itemId = afbClickBetBean.getId();
-                String typeOdds = afbClickBetBean.getOddsType();
-                Log.d("xxx", "点击的Item：" + item.toString());
-                if (afbClickBetBean.getLeague().trim().equalsIgnoreCase(item.getModuleTitle().trim()) &&
-                        afbClickBetBean.getHome().trim().equalsIgnoreCase(item.getHome().trim()) && afbClickBetBean.getAway().equalsIgnoreCase(item.getAway().trim())) {
-                    Log.d("xxx", "hasTeam");
-                    continue;
-                }
-                if (!StringUtils.isEmpty(typeOdds) && !typeOdds.endsWith("_par")) {
-                    String replace = itemId.replaceFirst(typeOdds, typeOdds + "_par");
-                    itemId = replace;
-                }
-                ids += itemId + ",";
-            }
-
-            betOddsUrl = "BTMD=P&coupon=1&BETID=" + ids + oddsUrlBean.getBETID_PAR();
-            ((BaseToolbarActivity) getBaseView().getIBaseContext().getBaseActivity()).getApp().setShowBet(false, true);*/
+            betOddsUrl = ((AfbApplication) AfbApplication.getInstance()).getRefreshMixOddsUrl();
         }
+        return getDisposable(v, isHf, betOddsUrl);
 
-
-        return new CompositeDisposable();
     }
 
     private boolean isOneTeamBoolean(B item, List<OddsClickBean> betAfbList) {

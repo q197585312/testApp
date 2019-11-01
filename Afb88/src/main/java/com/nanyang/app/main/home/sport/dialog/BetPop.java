@@ -193,7 +193,7 @@ public class BetPop extends BasePopupWindow {
 
                 double writeMoney = Double.parseDouble(amount);
                 double maxWin = countMaxPayout(writeMoney);
-                tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) maxWin, "0.00"), tvMaxWin));
+                tvMaxWin.setText(AfbUtils.scientificCountingToString(AfbUtils.decimalValue((float) maxWin, "0.00")));
                 betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
             }
         });
@@ -225,13 +225,16 @@ public class BetPop extends BasePopupWindow {
             @Override
             public void onClick(View v) {
                 goChooseBet(true);
+                webView.reload();
             }
         });
         tvMixBet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (afbApplication.getMixBetList().size() > 1)
+                if (afbApplication.getMixBetList().size() > 1) {
                     goChooseBet(false);
+                    webView.stopLoading();
+                }
             }
         });
         betSureBtn.setOnClickListener(new View.OnClickListener() {
@@ -261,13 +264,13 @@ public class BetPop extends BasePopupWindow {
 
         String refreshOddsUrl = "";
         if (isSingle) {
-            tvSingleBet.setTextColor(Color.WHITE);
+            tvSingleBet.setTextColor(Color.YELLOW);
             tvMixBet.setTextColor(Color.GRAY);
             refreshOddsUrl = afbApplication.getRefreshSingleOddsUrl();
 
         } else {
             tvSingleBet.setTextColor(Color.GRAY);
-            tvMixBet.setTextColor(Color.WHITE);
+            tvMixBet.setTextColor(Color.YELLOW);
             refreshOddsUrl = afbApplication.getRefreshMixOddsUrl();
         }
         presenter.getRefreshOdds(refreshOddsUrl);
@@ -498,7 +501,7 @@ public class BetPop extends BasePopupWindow {
         ViewGroup.LayoutParams layoutParams = rcBetContent.getLayoutParams();
         if (list.size() > 1) {
             tvSingleBet.setTextColor(Color.GRAY);
-            tvMixBet.setTextColor(Color.WHITE);
+            tvMixBet.setTextColor(Color.YELLOW);
             if (!isRefresh)
                 initMix();
             llMix.setVisibility(View.VISIBLE);
@@ -506,7 +509,7 @@ public class BetPop extends BasePopupWindow {
         } else {
             layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             llMix.setVisibility(View.GONE);
-            tvSingleBet.setTextColor(Color.WHITE);
+            tvSingleBet.setTextColor(Color.YELLOW);
             tvMixBet.setTextColor(Color.GRAY);
         }
         if (contentAdapter == null) {
@@ -603,7 +606,7 @@ public class BetPop extends BasePopupWindow {
                                             || socOddsId.equals(oddsClickBean.getOid())
                                             || socOddsId.equals(oddsClickBean.getOid_fh())) {
                                         afbApplication.getMixBetList().remove(i);
-                                        if (((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()) != null) {
+                                        if ((presenter.getBaseView().getIBaseContext().getBaseActivity()) != null) {
                                             ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).updateMixOrderCount();
                                             SportPresenter sportPresenter = ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).currentFragment.presenter;
                                             if ((sportPresenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
