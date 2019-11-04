@@ -1,7 +1,7 @@
 package com.nanyang.app;
 
 import android.util.Log;
-
+import cn.finalteam.toolsfinal.logger.Logger;
 import com.nanyang.app.Utils.SoundPlayUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.PersonalInfo;
@@ -19,8 +19,6 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
-
-import cn.finalteam.toolsfinal.logger.Logger;
 
 /**
  * Created by Administrator on 2017/2/20.
@@ -273,7 +271,8 @@ public class AfbApplication extends BaseApplication {
     }
 
     public void saveCurrentBet(OddsClickBean oddsClickBean) {
-
+        if (mixBetList != null && mixBetList.size() > 9)
+            return;
         this.currentBet = oddsClickBean;
         saveMixBet(oddsClickBean);
 
