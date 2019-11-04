@@ -70,11 +70,12 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
 
                     }
                     JSONArray jsonArrayData3 = jsonArray.getJSONArray(3);
-                    if (jsonArrayData3.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
+                    back.onBack(jsonArrayData3.get(0).toString());
+                  /*  if (jsonArrayData3.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
 //                        JSONObject jsonObject = jsonArrayData3.getJSONObject(0);
                         back.onBack(jsonArrayData3.get(0).toString());
 
-                    }
+                    }*/
                 }
             }
 

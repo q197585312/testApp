@@ -97,10 +97,15 @@ public class MainPresenter extends BaseSwitchPresenter {
                     return;
                 }
                 SettingAllDataBean settingAllDataBean = gson.fromJson(data, SettingAllDataBean.class);
-                ((AfbApplication) baseContext.getBaseActivity().getApplication()).setSettingAllDataBean(settingAllDataBean);
-                ((AfbApplication) baseContext.getBaseActivity().getApplication()).setQuickAmount(settingAllDataBean.getAccamount() + "");
-                AfbUtils.setChipStatusMap(settingAllDataBean.getChipSetChoose());
-                back.onBack(settingAllDataBean);
+                if (settingAllDataBean == null) {
+                    AppConstant.IS_AGENT = true;
+                    getSetting(back);
+                } else {
+                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).setSettingAllDataBean(settingAllDataBean);
+                    ((AfbApplication) baseContext.getBaseActivity().getApplication()).setQuickAmount(settingAllDataBean.getAccamount() + "");
+                    AfbUtils.setChipStatusMap(settingAllDataBean.getChipSetChoose());
+                    back.onBack(settingAllDataBean);
+                }
             }
         }, "^.*wsParam=([^;]+);.*?");
     }
