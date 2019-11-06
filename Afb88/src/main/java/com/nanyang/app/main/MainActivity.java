@@ -21,7 +21,6 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.HomePopItemBeen;
-import com.nanyang.app.BuildConfig;
 import com.nanyang.app.Pop.HomePopupWindow;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.MyGoHomeBroadcastReceiver;
@@ -88,9 +87,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 }
             }
         }, 100);
-        if (!BuildConfig.FLAVOR.equals("afb1188")) {
-            flContact.setVisibility(View.GONE);
-        }
+
     }
 
     private BaseSwitchFragment homeFragment = new HomeFragment();

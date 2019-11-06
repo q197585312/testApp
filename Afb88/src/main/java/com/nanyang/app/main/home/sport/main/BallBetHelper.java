@@ -39,6 +39,9 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         this.hasPar = hasPar;
         this.item = item;
         this.isHf = isHf;
+        List<OddsClickBean> mixBetList = ((AfbApplication) AfbApplication.getInstance()).getMixBetList();
+        if (mixBetList != null && mixBetList.size() > 9)
+            return new CompositeDisposable();
 
         OddsClickBean oddsUrlBean = getOddsUrl(oid, type, isHf, odds, sc, item);
 

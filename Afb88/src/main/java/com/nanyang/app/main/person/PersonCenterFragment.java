@@ -121,23 +121,23 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                 }
 
                 ImageView iv = holder.getImageView(R.id.person_img);
-             /*   if (item.getName().equals(getString(R.string.nike_name))) {
-                    value.setVisibility(View.GONE);
-                    iv.setImageResource(R.mipmap.myacount);
-                    iv.setVisibility(View.VISIBLE);
-                } else {
-
-                }*/
                 iv.setVisibility(View.GONE);
                 value.setVisibility(View.VISIBLE);
+                if (item.getName().equals(getString(R.string.nike_name))) {
+                    setNickName(iv, value, item.getValue());
+                }
+
             }
         };
+
+
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<PersonCenter>() {
             @Override
             public void onItemClick(View view, PersonCenter item, int position) {
                 if (position == 1) {
-                    final TextView value = view.findViewById(R.id.person_value);
-                    BaseYseNoChoosePopupWindow baseYseNoChoosePopupWindow = new BaseYseNoChoosePopupWindow(mContext, value) {
+                    final TextView person_value = view.findViewById(R.id.person_value);
+                    final ImageView person_img = view.findViewById(R.id.person_img);
+                    BaseYseNoChoosePopupWindow baseYseNoChoosePopupWindow = new BaseYseNoChoosePopupWindow(mContext, person_value) {
                         TextView viewById;
 
                         @Override
@@ -160,7 +160,7 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                                         if (data.contains("ok")) {
                                             ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().setNickNameshow(nickName);
                                             closePopupWindow();
-                                            value.setText(nickName);
+                                            setNickName(person_img, person_value, nickName);
                                         } else {
                                             viewById.setVisibility(View.VISIBLE);
                                             JSONObject jsonObject = new JSONObject(data);
@@ -178,7 +178,7 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                             return R.layout.popupwindow_nick_name_edit_yes_no;
                         }
                     };
-                    baseYseNoChoosePopupWindow.getChooseMessage().setText(value.getText());
+                    baseYseNoChoosePopupWindow.getChooseMessage().setText(person_value.getText());
                     ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreated(baseYseNoChoosePopupWindow, Gravity.CENTER);
                 }
 
@@ -186,5 +186,18 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
         });
 
         rcContent.setAdapter(adapter);
+    }
+
+    private void setNickName(ImageView img, TextView textView, String nameNick) {
+        if (StringUtils.isNull(nameNick)) {
+            textView.setVisibility(View.GONE);
+            img.setImageResource(R.mipmap.myacount);
+            img.setVisibility(View.VISIBLE);
+
+        } else {
+            textView.setVisibility(View.VISIBLE);
+            textView.setText(nameNick);
+            img.setVisibility(View.GONE);
+        }
     }
 }

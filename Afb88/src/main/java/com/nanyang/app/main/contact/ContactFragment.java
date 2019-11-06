@@ -28,6 +28,8 @@ import butterknife.Bind;
 
 public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
     private static final String TAG = "ContactFragment";
+    @Bind(R.id.ll_parent_content)
+    View ll_parent_content;
     @Bind(R.id.contact_list)
     RecyclerView rvContent;
     @Bind(R.id.contact_list_2)
@@ -60,7 +62,9 @@ public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
         rvContent.setLayoutManager(mLayoutManager);
         MyLinearLayoutManager mLayoutManager1 = new MyLinearLayoutManager(mContext);
         rvContent2.setLayoutManager(mLayoutManager1);
+        ll_parent_content.setVisibility(View.GONE);
         if (BuildConfig.FLAVOR.equals("afb1188")) {
+            ll_parent_content.setVisibility(View.VISIBLE);
             presenter.getContactData(new BaseConsumer<Contact>(mContext) {
                 @Override
                 protected void onBaseGetData(Contact data) {
