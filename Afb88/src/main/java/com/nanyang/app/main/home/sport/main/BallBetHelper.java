@@ -67,18 +67,20 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 if (hasPar && typeHasPar)
                     ((AfbApplication) AfbApplication.getInstance()).saveCurrentBet(oddsUrlBean);
                 ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).updateMixOrderCount();
-
+                return getDisposable(v, isHf, betOddsUrl);
             }
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
             ToastUtils.showShort(R.string.can_not_mixparly);
-            return new CompositeDisposable();
         } else {
             ((AfbApplication) AfbApplication.getInstance()).saveCurrentBet(oddsUrlBean);
             ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).updateMixOrderCount();
             betOddsUrl = ((AfbApplication) AfbApplication.getInstance()).getRefreshMixOddsUrl();
+            if (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1) {
+                return getDisposable(v, isHf, betOddsUrl);
+            }
         }
-        return getDisposable(v, isHf, betOddsUrl);
 
+        return new CompositeDisposable();
     }
 
     private boolean isOneTeamBoolean(B item, List<OddsClickBean> betAfbList) {

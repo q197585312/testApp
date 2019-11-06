@@ -140,7 +140,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             if (adapterHelper.getAdditionMap().get(true) != null && !adapterHelper.getAdditionMap().get(true).toString().trim().isEmpty()) {
                 additionPresenter.startUpdate();
             }
-
         }
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
 
@@ -154,6 +153,12 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         presenter.getStateHelper().setIsHide(true);
         Log.d(TAG, "onPause: " + getClass().getSimpleName());
         tvNoGames.setVisibility(View.GONE);
+        if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
+            if (adapterHelper.getAdditionMap().get(true) != null && !adapterHelper.getAdditionMap().get(true).toString().trim().isEmpty()) {
+                additionPresenter.stopUpdate();
+            }
+        }
     }
 
     @Override

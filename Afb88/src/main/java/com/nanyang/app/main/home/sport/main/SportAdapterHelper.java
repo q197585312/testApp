@@ -8,11 +8,15 @@ import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
+import java.util.Map;
+
 /**
  * Created by Administrator on 2017/3/15.
  */
 
 public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapterHelper<B> {
+
+    protected Map<Boolean, String> additionMap;
 
     public BaseRecyclerAdapter<B> getBaseRecyclerAdapter() {
         return baseRecyclerAdapter;
@@ -55,5 +59,8 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
 
     public <I extends ItemCallBack<B>> void setItemCallBack(I back) {
         this.back = back;
+    }
+    public void setAdditionMap(Map<Boolean, String> additionMap){
+        this.additionMap=additionMap;
     }
 }

@@ -134,15 +134,19 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     public void handleAdapter() {
+        LogUtil.d("additionMap", "onSetAdapterHelper,handleAdapter");
         adapterHelper = onSetAdapterHelper();
+        adapterHelper.onSetAdapterItemLayout();
         baseRecyclerAdapter = new BaseRecyclerAdapter<B>(baseView.getIBaseContext().getBaseActivity(), new ArrayList<B>(), adapterHelper.onSetAdapterItemLayout()) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, B item) {
                 adapterHelper.onConvert(holder, position, item);
             }
         };
+        Map<Boolean, String> additionMap = ((SportActivity) baseView.getIBaseContext().getBaseActivity()).getAdditionMap();
         adapterHelper.bindAdapter(baseRecyclerAdapter);
         adapterHelper.setItemCallBack(onSetItemCallBack());
+        adapterHelper.setAdditionMap(additionMap);
         baseView.setAdapter(baseRecyclerAdapter);
     }
 

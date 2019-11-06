@@ -9,7 +9,6 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,6 +25,9 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.DialogLoading;
 
 import org.greenrobot.eventbus.Subscribe;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import butterknife.ButterKnife;
 
@@ -59,6 +61,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
      */
     protected DialogLoading loading;
     protected BasePopupWindow popWindow;
+    private Map<Boolean, String>  additionMap=new HashMap<>();
 
     public boolean isHasAttached() {
         return hasAttached;
@@ -336,4 +339,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
             LogUtil.d(getLocalClassName() + "接收消息----------------->" + obj.toString());
     }
 
+    public Map<Boolean, String>  getAdditionMap() {
+        return additionMap;
+    }
 }
