@@ -7,9 +7,9 @@ package com.nanyang.app;
 public class AppConstant {
 
 
-    public static final String DownLoadDig88AppUrl = "http://appgd88.com/gd88/download/android/gd88.apk";
+    public static final String DownLoadDig88AppUrl = "http://www.appgd88.com/androidDownload/gd88.apk";
     public static final String CHECK_VERSION = "http://www.appgd88.com/ap889version.php?app=android";
-    public static final String DOWNLOAD_APP = "http://appgd88.com/ap889/download/android/ap889.apk";
+    public static final String DOWNLOAD_APP = "http://www.appgd88.com/ap889/download/android/ap889.apk";
 
 
     public static String APP_HOST = "http://main55.afb88.com/";
