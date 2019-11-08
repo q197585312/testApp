@@ -568,4 +568,5 @@
     <string name="switching_market_failure">切换盘口失败</string>
     <string name="All_Market">全部</string>
     <string name="single_bet" >单注</string>
+    <string name="can_not_more_than_10">过关注单不能超过10</string>
 </resources>

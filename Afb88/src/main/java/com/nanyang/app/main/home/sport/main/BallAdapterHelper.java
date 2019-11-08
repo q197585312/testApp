@@ -62,7 +62,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     synchronized void notifyPositionAddition(AddMBean data, BallInfo item) {
         this.additionData = data;
         LogUtil.d("additionMap", additionData.toString());
-        LogUtil.d("additionMap", "-------------->"+additionMap.get(true));
+        LogUtil.d("additionMap", "-------------->" + additionMap.get(true));
         this.additionBallItem = item;
         if (!StringUtils.isNull(additionMap.get(true))) {
             getBaseRecyclerAdapter().notifyDataSetChanged();
@@ -1345,12 +1345,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         parent.addView(inflate);
     }
 
-    private void setTextValueClick(final TextView textView, String content, final String type, final String oid, final I item, final boolean isHalf, final String sc, final boolean hasHar, final boolean hasbet, boolean isShowBet) {
+    private void setTextValueClick(final TextView textView, String content, final String type, final String oid, final I item, final boolean isHalf, final String sc, final boolean hasHar, final boolean hasBet, boolean isShowBet) {
 
         if (StringUtils.isNull(content) || StringUtils.isNull(type) || StringUtils.isNull(oid)) {
             return;
         }
-        if (!hasbet) {
+        if (!hasBet) {
             if (isShowBet) {
                 content = content.replaceAll(",", ".");
                 try {
@@ -1363,26 +1363,27 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             } else {
                 textView.setText("");
             }
-            return;
-        }
-        content = content.replaceAll(",", ".");
-        try {
-            if (Float.valueOf(content) == 0)
-                return;
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-        }
+            ((View) textView.getParent()).setOnClickListener(null);
 
-        textView.setText(content);
-        final String finalContent = content;
-        ((View) textView.getParent()).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                back.clickOdds(textView, item, type, isHalf, finalContent, Integer.valueOf(oid), sc, hasHar);
-                getBaseRecyclerAdapter().notifyDataSetChanged();
+        } else {
+            content = content.replaceAll(",", ".");
+            try {
+                if (Float.valueOf(content) == 0)
+                    return;
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
             }
-        });
 
+            textView.setText(content);
+            final String finalContent = content;
+            ((View) textView.getParent()).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    back.clickOdds(textView, item, type, isHalf, finalContent, Integer.valueOf(oid), sc, hasHar);
+                    getBaseRecyclerAdapter().notifyDataSetChanged();
+                }
+            });
+        }
     }
 
     private void setTextValue(TextView tv, String s) {
@@ -1440,6 +1441,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOU(fTodds.getOU());
             ballInfo.setRunHomeScore(fTodds.getRunHomeScore());
             ballInfo.setRunAwayScore(fTodds.getRunAwayScore());
+
+            ballInfo.setIsInetBet((fTodds.getHdp_visible().equals("True") || fTodds.getOU_visible().equals("True")) ? "1" : "0");
         } else {
             ballInfo.setSocOddsId("");
             ballInfo.setHdp("");
@@ -1470,6 +1473,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOUOdds_FH(fHodds.getOUOdds());
             ballInfo.setRunHomeScore_FH(fHodds.getRunHomeScore());
             ballInfo.setRunAwayScore_FH(fHodds.getRunAwayScore());
+            ballInfo.setIsInetBet_FH((fHodds.getHdp_visible().equals("True") || fHodds.getOU_visible().equals("True")) ? "1" : "0");
         } else {
             ballInfo.setSocOddsId_FH("");
             ballInfo.setHdp_FH("");
@@ -1919,10 +1923,18 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     imgUpDown.setImageResource(resUpdate);
                     imgUpDown.setVisibility(View.VISIBLE);
                 }
+
                 textView.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         LogUtil.d("xxxxx", item.toString());
+                        if (isHf) {
+                            if (item.getIsInetBet_FH() == null || !item.getIsInetBet_FH().equals("1"))
+                                return;
+                        } else {
+                            if (item.getIsInetBet() == null || !item.getIsInetBet().equals("1"))
+                                return;
+                        }
                         back.clickOdds((TextView) v, item, type, isHf, f, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), "", isHf ? item.getHasPar_FH().equals("1") : item.getHasPar().equals("1"));
                         getBaseRecyclerAdapter().notifyDataSetChanged();
                     }

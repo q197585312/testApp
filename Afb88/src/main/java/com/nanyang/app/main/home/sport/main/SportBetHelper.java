@@ -11,6 +11,7 @@ import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
@@ -24,6 +25,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.reactivestreams.Subscription;
 
+import java.util.Iterator;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -203,13 +205,12 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
 
     @NonNull
     @Override
-    public Disposable getRefreshOdds(String url) {
-        url = url + "&_=" + System.currentTimeMillis();
+    public Disposable getRefreshOdds(final String urlBet) {
+        final String url = urlBet + "&_=" + System.currentTimeMillis();
         Log.d("betUrl", "getRefreshOdds:" + url);
+
         Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).map(new Function<String, AfbClickResponseBean>() {
-
-
                     @Override
                     public AfbClickResponseBean apply(String s) throws Exception {
                         AfbClickResponseBean bean = null;
@@ -228,7 +229,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                             JSONArray dataListArray = jsonArray.getJSONArray(0);
                             List<AfbClickBetBean> list = new Gson().fromJson(dataListArray.toString(), new TypeToken<List<AfbClickBetBean>>() {
                             }.getType());
-//[10000, 3, 4.654056, 10000, 'hBetSub.ashx?BTMD=P&odds=4.654056', 1, 0]
+
                             if (list != null && list.size() > 0 && list.get(0).getId() != null) {
                                 JSONArray dataListArray1 = jsonArray.getJSONArray(1);
                                 bean = new AfbClickResponseBean(list, dataListArray1);
@@ -246,11 +247,11 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     public void accept(AfbClickResponseBean bean) throws Exception {
                         Log.d(TAG, "accept: " + bean);
                         if (bean == null || bean.getList() == null || bean.getList().size() == 0) {
+
                         } else if (bean.getList().size() >= 1) {
                             createBetPop(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
                         }
-
-
+                        updateMixList(url);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -274,6 +275,51 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         if (compositeSubscription != null)
             compositeSubscription.add(subscribe);
         return subscribe;
+    }
+
+    public void updateMixList(String url) {
+        if (!StringUtils.isNull(url) && url.contains("_par")) {
+            AfbClickResponseBean betAfbList = ((AfbApplication) AfbApplication.getInstance()).getBetAfbList();
+            List<OddsClickBean> mixBetList = ((AfbApplication) AfbApplication.getInstance()).getMixBetList();
+            if (betAfbList == null || betAfbList.getList() == null || betAfbList.getList().size() <1) {
+                ((AfbApplication) AfbApplication.getInstance()).clearMixBetList();
+                updateMixListText();
+            } else if (betAfbList.getList().size() < mixBetList.size()) {
+                Iterator<OddsClickBean> iterator = mixBetList.iterator();
+                boolean deleted = false;
+                while (iterator.hasNext()) {
+                    OddsClickBean next = iterator.next();
+                    boolean hasFound = findInBetList(next, betAfbList.getList());
+                    if (!hasFound)
+                        iterator.remove();
+                    deleted = deleted || !hasFound;
+                }
+                if (deleted)
+                    updateMixListText();
+            }
+        }
+    }
+
+    public void updateMixListText() {
+        if ((getBaseView().getIBaseContext().getBaseActivity()) != null) {
+            ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
+        }
+    }
+
+    private boolean findInBetList(OddsClickBean next, List<AfbClickBetBean> betAfbList) {
+
+        for (int i = 0; i < betAfbList.size(); i++) {
+            String socOddsId = betAfbList.get(i).getSocOddsId();
+            String parId = betAfbList.get(i).getId();
+            OddsClickBean oddsClickBean = next;
+            if (oddsClickBean.getBETID().equals(parId)
+                    || oddsClickBean.getBETID_PAR().equals(parId)
+                    || socOddsId.equals(oddsClickBean.getOid())
+                    || socOddsId.equals(oddsClickBean.getOid_fh())) {
+                return true;
+            }
+        }
+        return false;
     }
 
     protected AfbClickResponseBean initHasPar(AfbClickResponseBean bean) {

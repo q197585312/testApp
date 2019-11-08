@@ -30,6 +30,7 @@ import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.Setting.RefreshDataBean;
 import com.nanyang.app.main.home.sport.WebSocketManager;
+import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -1504,8 +1505,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         notifyCollectionNum();
     }
 
-    public void setIsHide(boolean isHide) {
+    public void setIsHide(boolean isHide, AdditionPresenter additionPresenter) {
         this.isHide = isHide;
+        if (isHide && additionPresenter != null)
+            additionPresenter.stopUpdate();
+        else if (!isHide && additionPresenter != null) {
+            additionPresenter.startUpdate();
+        }
     }
 
 

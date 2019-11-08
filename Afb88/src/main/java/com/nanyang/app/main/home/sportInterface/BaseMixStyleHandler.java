@@ -3,6 +3,7 @@ package com.nanyang.app.main.home.sportInterface;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.FrameLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.BaseToolbarActivity;
@@ -36,10 +37,10 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
     @Override
     public void setCommonBackground(TextView tv) {
 
-        View parent = getParentFragment(tv);
+        View parent = getParentRelativeLayout(tv);
         if (parent == null)
             return;
-        parent.setBackgroundResource(0);
+        parent.setBackgroundResource(R.drawable.match_odds_content_bg);
 //        tv.setTextColor(act.getResources().getColor(R.color.black_grey));
     }
 
@@ -52,12 +53,22 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
         return parent;
     }
 
+    @Nullable
+    private View getParentRelativeLayout(TextView tv) {
+        View parent = (View) tv.getParent();
+        while (parent != null && !(parent instanceof RelativeLayout)) {
+            parent = (View) parent.getParent();
+        }
+        return parent;
+    }
+
+
     @Override
     public void setMixBackground(TextView tv) {
-        View parent = getParentFragment(tv);
+        View parent = getParentRelativeLayout(tv);
         if (parent == null)
             return;
-        parent.setBackgroundResource(R.drawable.sport_mix_parlay_bet_green_bg);
+        parent.setBackgroundResource(R.drawable.sport_mix_parlay_bet_green_content_bg);
 
     }
 

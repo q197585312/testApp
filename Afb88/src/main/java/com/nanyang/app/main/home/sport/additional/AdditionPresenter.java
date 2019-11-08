@@ -7,6 +7,7 @@ import android.support.annotation.NonNull;
 import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.BallInfo;
@@ -58,6 +59,8 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
 
     public void startUpdate() {
         stopUpdate();
+        if (bean == null || StringUtils.isNull(dbid) || dbid.equals("0"))
+            return;
         baseContext.showLoadingDialog();
         updateHandler.post(dataUpdateRunnable);// 打开定时器，执行操作
     }
@@ -69,6 +72,8 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
 
         @Override
         public void run() {
+            if (bean == null || StringUtils.isNull(dbid) || dbid.equals("0"))
+                return;
             doRetrofitApiOnUiThread(getService(ApiService.class).getAdditionData(getUrl()), new BaseConsumer<String>(baseContext) {
                 @Override
                 protected void onBaseGetData(String data) throws JSONException {

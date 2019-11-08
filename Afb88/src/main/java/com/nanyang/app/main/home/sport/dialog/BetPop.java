@@ -36,10 +36,8 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
-import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
-import com.nanyang.app.main.home.sport.main.SportPresenter;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
@@ -49,12 +47,14 @@ import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseActivity;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -231,10 +231,8 @@ public class BetPop extends BasePopupWindow {
         tvMixBet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (afbApplication.getMixBetList().size() > 1) {
-                    goChooseBet(false);
-                    webView.stopLoading();
-                }
+                stopUpdateOdds();
+                closePopupWindow();
             }
         });
         betSureBtn.setOnClickListener(new View.OnClickListener() {
@@ -264,13 +262,13 @@ public class BetPop extends BasePopupWindow {
 
         String refreshOddsUrl = "";
         if (isSingle) {
-            tvSingleBet.setTextColor(Color.YELLOW);
-            tvMixBet.setTextColor(Color.GRAY);
+            tvSingleBet.setTextColor(context.getResources().getColor(R.color.orange_desktop));
+            tvMixBet.setTextColor(Color.WHITE);
             refreshOddsUrl = afbApplication.getRefreshSingleOddsUrl();
 
         } else {
-            tvSingleBet.setTextColor(Color.GRAY);
-            tvMixBet.setTextColor(Color.YELLOW);
+            tvSingleBet.setTextColor(Color.WHITE);
+            tvMixBet.setTextColor(context.getResources().getColor(R.color.orange_desktop));
             refreshOddsUrl = afbApplication.getRefreshMixOddsUrl();
         }
         presenter.getRefreshOdds(refreshOddsUrl);
@@ -500,8 +498,8 @@ public class BetPop extends BasePopupWindow {
     private void initRcBetContent() {
         ViewGroup.LayoutParams layoutParams = rcBetContent.getLayoutParams();
         if (list.size() > 1) {
-            tvSingleBet.setTextColor(Color.GRAY);
-            tvMixBet.setTextColor(Color.YELLOW);
+            tvSingleBet.setTextColor(Color.WHITE);
+            tvMixBet.setTextColor(context.getResources().getColor(R.color.orange_desktop));
             if (!isRefresh)
                 initMix();
             llMix.setVisibility(View.VISIBLE);
@@ -509,8 +507,8 @@ public class BetPop extends BasePopupWindow {
         } else {
             layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             llMix.setVisibility(View.GONE);
-            tvSingleBet.setTextColor(Color.YELLOW);
-            tvMixBet.setTextColor(Color.GRAY);
+            tvSingleBet.setTextColor(context.getResources().getColor(R.color.orange_desktop));
+            tvMixBet.setTextColor(Color.WHITE);
         }
         if (contentAdapter == null) {
             objectAnimatorMap = new HashMap<>();
@@ -599,20 +597,17 @@ public class BetPop extends BasePopupWindow {
                                 stopUpdateOdds();
                                 list.remove(position);
                                 String socOddsId = list.get(position).getSocOddsId();
-                                for (int i = 0; i < afbApplication.getMixBetList().size(); i++) {
-                                    OddsClickBean oddsClickBean = afbApplication.getMixBetList().get(i);
+                                List<OddsClickBean> mixBetList = afbApplication.getMixBetList();
+                                Iterator<OddsClickBean> iterator = mixBetList.iterator();
+                                while (iterator.hasNext()) {
+                                    OddsClickBean oddsClickBean = iterator.next();
                                     if (oddsClickBean.getBETID().equals(list.get(position).getId())
                                             || oddsClickBean.getBETID_PAR().equals(list.get(position).getId())
                                             || socOddsId.equals(oddsClickBean.getOid())
                                             || socOddsId.equals(oddsClickBean.getOid_fh())) {
-                                        afbApplication.getMixBetList().remove(i);
+                                        iterator.remove();
                                         if ((presenter.getBaseView().getIBaseContext().getBaseActivity()) != null) {
-                                            ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).updateMixOrderCount();
-                                            SportPresenter sportPresenter = ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).currentFragment.presenter;
-                                            if ((sportPresenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
-                                                BallAdapterHelper adapterHelper = (BallAdapterHelper) (sportPresenter.getStateHelper()).getAdapterHelper();
-                                                adapterHelper.getBaseRecyclerAdapter().notifyDataSetChanged();
-                                            }
+                                            ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
                                         }
                                     }
                                 }
@@ -717,6 +712,7 @@ public class BetPop extends BasePopupWindow {
             betPopParentTopFl.setVisibility(View.VISIBLE);
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + l;
             AfbUtils.synCookies(context, webView, gameUrl);
+            LogUtil.d("gameUrl", gameUrl);
         } else {
             betPopParentTopFl.setVisibility(View.GONE);
         }
@@ -784,6 +780,9 @@ public class BetPop extends BasePopupWindow {
             }
         }
         objectAnimatorMap.clear();
+        webView.stopLoading();
+        webView.clearFormData();
+        webView.clearDisappearingChildren();
     }
 
 

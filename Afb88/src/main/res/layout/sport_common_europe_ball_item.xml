@@ -77,11 +77,13 @@
                 android:gravity="center"
                 android:textColor="@color/grey_dark_word"
                 android:textSize="10sp" />
+
             <ImageView
                 android:id="@+id/iv_last_call_gif"
-                android:layout_marginLeft="4dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4dp" />
+
             <TextView
                 android:id="@+id/module_match_live_iv"
                 android:layout_width="wrap_content"
@@ -135,8 +137,8 @@
                 android:id="@+id/iv_hall_btn"
                 android:layout_width="18dp"
                 android:layout_height="12dp"
-                android:scaleType="center"
                 android:background="@mipmap/soccer_hall"
+                android:scaleType="center"
                 android:visibility="visible" />
 
             <TextView
@@ -503,27 +505,68 @@
                     android:layout_weight="1"
                     android:padding="2dp">
 
-                    <TextView
-                        android:id="@+id/europe_1_full_time_odds_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <RelativeLayout
                         android:background="@drawable/match_odds_content_bg"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:padding="3dp"
-                        android:text="1.00"
-                        android:textColor="@color/red"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/img_up_down_ft_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="1dp"
-                        android:src="@mipmap/arrow_down_update_red"
-                        android:visibility="invisible" />
+                        <TextView
+                            android:id="@+id/europe_1_full_time_odds_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:padding="3dp"
+                            android:text="1.00"
+                            android:textColor="@color/red"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/img_up_down_ft_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="1dp"
+                            android:src="@mipmap/arrow_down_update_red"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
+                </FrameLayout>
+
+                <FrameLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="2dp">
+
+                    <RelativeLayout
+                        android:background="@drawable/match_odds_content_bg"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/europe_x_full_time_odds_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:padding="3dp"
+                            android:text="0.11"
+                            android:textColor="@color/blue"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:id="@+id/img_up_down_ft_x"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="1dp"
+                            android:src="@mipmap/arrow_down_update_red"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
 
                 </FrameLayout>
 
@@ -533,58 +576,33 @@
                     android:layout_weight="1"
                     android:padding="2dp">
 
-                    <TextView
-                        android:id="@+id/europe_x_full_time_odds_tv"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
+                    <RelativeLayout
                         android:background="@drawable/match_odds_content_bg"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:padding="3dp"
-                        android:text="0.11"
-                        android:textColor="@color/blue"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
-
-                    <ImageView
-                        android:id="@+id/img_up_down_ft_x"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="1dp"
-                        android:src="@mipmap/arrow_down_update_red"
-                        android:visibility="invisible" />
-
-                </FrameLayout>
-
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:padding="2dp">
-
-                    <TextView
-                        android:id="@+id/europe_2_full_time_odds_tv"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/match_odds_content_bg"
-                        android:gravity="center"
-                        android:maxLines="1"
-                        android:padding="3dp"
-                        android:text="1.00"
-                        android:textColor="@color/black"
-                        android:textSize="12sp"
-                        android:textStyle="bold" />
+                        android:layout_height="match_parent">
 
-                    <ImageView
-                        android:id="@+id/img_up_down_ft_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_vertical"
-                        android:layout_marginLeft="1dp"
-                        android:src="@mipmap/arrow_down_update_red"
-                        android:visibility="invisible" />
+                        <TextView
+                            android:id="@+id/europe_2_full_time_odds_tv"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:gravity="center"
+                            android:maxLines="1"
+                            android:padding="3dp"
+                            android:text="1.00"
+                            android:textColor="@color/black"
+                            android:textSize="12sp"
+                            android:textStyle="bold" />
 
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:id="@+id/img_up_down_ft_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="1dp"
+                            android:src="@mipmap/arrow_down_update_red"
+                            android:visibility="invisible" />
+                    </RelativeLayout>
                 </FrameLayout>
 
             </LinearLayout>

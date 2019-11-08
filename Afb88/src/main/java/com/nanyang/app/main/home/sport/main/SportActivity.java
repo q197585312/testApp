@@ -315,7 +315,16 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
 
-    public void updateMixOrderCount() {
+    public void updateMixOrder() {
+        updateMixOrderCount();
+        SportPresenter sportPresenter = currentFragment.presenter;
+        if ((sportPresenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) (sportPresenter.getStateHelper()).getAdapterHelper();
+            adapterHelper.getBaseRecyclerAdapter().notifyDataSetChanged();
+        }
+    }
+
+    private void updateMixOrderCount() {
         if (getApp().getMixBetList() != null && getApp().getMixBetList().size() > 0) {
             tvMixCount.setVisibility(View.VISIBLE);
             tvOrderCount.setVisibility(View.VISIBLE);

@@ -113,11 +113,11 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         super.onHiddenChanged(hidden);
         if (hidden) {// 不在最前端界面显示
 //            presenter.getStateHelper().stopUpdateData();
-            presenter.getStateHelper().setIsHide(true);
+            presenter.getStateHelper().setIsHide(true,additionPresenter);
         } else {// 重新显示到最前端中
             showContent();
             rememberLastOdds();
-            presenter.getStateHelper().setIsHide(false);
+            presenter.getStateHelper().setIsHide(false, additionPresenter);
             String type = ((SportActivity) getActivity()).getType();
             switchType(type);
 //            presenter.getStateHelper().refresh();
@@ -128,19 +128,14 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     @Override
     public void onResume() {
         super.onResume();
-        presenter.getStateHelper().setIsHide(false);
+        presenter.getStateHelper().setIsHide(false, additionPresenter);
         if (!isFirstIn) {
             presenter.getStateHelper().refresh();
             updateMixOrderCount();
         }
         isFirstIn = false;
         showContent();
-        if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
-            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
-            if (adapterHelper.getAdditionMap().get(true) != null && !adapterHelper.getAdditionMap().get(true).toString().trim().isEmpty()) {
-                additionPresenter.startUpdate();
-            }
-        }
+
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
 
     }
@@ -150,21 +145,15 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onPause() {
         super.onPause();
 //        presenter.getStateHelper().stopUpdateData();
-        presenter.getStateHelper().setIsHide(true);
+        presenter.getStateHelper().setIsHide(true, additionPresenter);
         Log.d(TAG, "onPause: " + getClass().getSimpleName());
         tvNoGames.setVisibility(View.GONE);
-        if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
-            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
-            if (adapterHelper.getAdditionMap().get(true) != null && !adapterHelper.getAdditionMap().get(true).toString().trim().isEmpty()) {
-                additionPresenter.stopUpdate();
-            }
-        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        additionPresenter.stopUpdate();
+
         Log.d(TAG, "onStop: " + getClass().getSimpleName());
     }
 
@@ -413,7 +402,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     private void updateMixOrderCount() {
-        getBaseActivity().updateMixOrderCount();
+        getBaseActivity().updateMixOrder();
     }
 
     public void toolbarRightClick(View view) {
@@ -425,8 +414,8 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void switchState(SportState state) {
         SportState stateHelper = presenter.getStateHelper();
         if (stateHelper != null)
-            stateHelper.setIsHide(true);
-        state.setIsHide(false);
+            stateHelper.setIsHide(true, additionPresenter);
+        state.setIsHide(false, additionPresenter);
         presenter.setStateHelper(state);
         (presenter.getStateHelper()).initAllOdds(ivAllAdd);
         presenter.getStateHelper().refresh();

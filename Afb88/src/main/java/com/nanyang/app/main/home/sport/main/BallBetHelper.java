@@ -39,9 +39,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         this.hasPar = hasPar;
         this.item = item;
         this.isHf = isHf;
-        List<OddsClickBean> mixBetList = ((AfbApplication) AfbApplication.getInstance()).getMixBetList();
-        if (mixBetList != null && mixBetList.size() > 9)
-            return new CompositeDisposable();
+
 
         OddsClickBean oddsUrlBean = getOddsUrl(oid, type, isHf, odds, sc, item);
 
@@ -64,23 +62,29 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
             if (!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
                 betOddsUrl = AppConstant.getInstance().URL_ODDS + "BTMD=S&coupon=0&BETID=" + oddsUrlBean.getBETID();
                 LogUtil.d("typeHasPar", "typeHasPar:" + typeHasPar + ",hasPar:" + hasPar);
-                if (hasPar && typeHasPar)
-                    ((AfbApplication) AfbApplication.getInstance()).saveCurrentBet(oddsUrlBean);
-                ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).updateMixOrderCount();
+                if (hasPar && typeHasPar) {
+                    saveCurrentBet(oddsUrlBean);
+                }
                 return getDisposable(v, isHf, betOddsUrl);
             }
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
             ToastUtils.showShort(R.string.can_not_mixparly);
         } else {
-            ((AfbApplication) AfbApplication.getInstance()).saveCurrentBet(oddsUrlBean);
-            ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).updateMixOrderCount();
+
+            saveCurrentBet(oddsUrlBean);
             betOddsUrl = ((AfbApplication) AfbApplication.getInstance()).getRefreshMixOddsUrl();
-            if (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1) {
+            if (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1 || ((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() > 9) {
                 return getDisposable(v, isHf, betOddsUrl);
             }
         }
 
         return new CompositeDisposable();
+    }
+
+    private void saveCurrentBet(OddsClickBean oddsUrlBean) {
+        boolean listHasChanged = ((AfbApplication) AfbApplication.getInstance()).saveCurrentBet(oddsUrlBean);
+        if (listHasChanged)
+            ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
     }
 
     private boolean isOneTeamBoolean(B item, List<OddsClickBean> betAfbList) {

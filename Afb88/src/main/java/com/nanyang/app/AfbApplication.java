@@ -1,7 +1,5 @@
 package com.nanyang.app;
 
-import android.util.Log;
-import cn.finalteam.toolsfinal.logger.Logger;
 import com.nanyang.app.Utils.SoundPlayUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.PersonalInfo;
@@ -13,12 +11,16 @@ import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.unkonw.testapp.libs.base.BaseApplication;
+import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
+
+import cn.finalteam.toolsfinal.logger.Logger;
 
 /**
  * Created by Administrator on 2017/2/20.
@@ -32,7 +34,6 @@ public class AfbApplication extends BaseApplication {
     private SettingAllDataBean settingAllDataBean;
 
     private List<OddsClickBean> mixBetList = new ArrayList<>();
-    private OddsClickBean currentBet;
 
 
     public RefreshDataBean getRefreshDataBean() {
@@ -250,32 +251,31 @@ public class AfbApplication extends BaseApplication {
         this.refreshDataBean = refreshDataBean;
     }
 
-    public void saveMixBet(OddsClickBean oddsUrlBean) {
+
+    public synchronized boolean saveCurrentBet(OddsClickBean oddsUrlBean) {
+
         if (mixBetList == null)
             mixBetList = new ArrayList<>();
-        int i = 0;
-        for (OddsClickBean mixBetBean : mixBetList) {
+        Iterator<OddsClickBean> iterator = mixBetList.iterator();
+        while (iterator.hasNext()) {
+            OddsClickBean mixBetBean = iterator.next();
             if (mixBetBean.getItem().getModuleTitle().trim().equalsIgnoreCase(oddsUrlBean.getItem().getModuleTitle().trim())
                     && mixBetBean.getItem().getHome().trim().equalsIgnoreCase(oddsUrlBean.getItem().getHome().trim())
                     && mixBetBean.getItem().getAway().equalsIgnoreCase(oddsUrlBean.getItem().getAway().trim())) {
-                mixBetList.remove(i);
+                iterator.remove();
                 if (oddsUrlBean.getBETID().equalsIgnoreCase(mixBetBean.getBETID())) {
-                    return;
+                    return true;
                 }
-                Log.d("xxx", "hasTeam");
 
             }
-            i++;
         }
-        mixBetList.add(oddsUrlBean);
-    }
-
-    public void saveCurrentBet(OddsClickBean oddsClickBean) {
-        if (mixBetList != null && mixBetList.size() > 9)
-            return;
-        this.currentBet = oddsClickBean;
-        saveMixBet(oddsClickBean);
-
+        if (mixBetList.size() > 9) {
+            ToastUtils.showShort(R.string.can_not_more_than_10);
+            return false;
+        } else {
+            mixBetList.add(oddsUrlBean);
+            return true;
+        }
 
     }
 

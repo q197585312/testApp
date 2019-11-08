@@ -170,6 +170,7 @@ public class ActivityPageManager {
 			webview.setWebChromeClient(null);
 			webview.setWebViewClient(null);
 			webview.destroyDrawingCache();
+
 			webview.destroy();
 			webview = null;
 		}

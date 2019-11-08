@@ -621,7 +621,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     String MatchDate;
     String Status;
     String CurMinute;
-    String IsInetBet;
+
     String IsHomeGive;
     String RTSMatchId;
     String HomeId;
@@ -642,7 +642,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     String UOdds;
     String OddOdds;
     String EvenOdds;
-    String X12_1Odds;
+
     String X12_XOdds;
     String X12_2Odds;
     String HdpOdds;
