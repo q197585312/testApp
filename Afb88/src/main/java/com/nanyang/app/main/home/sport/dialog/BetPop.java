@@ -218,7 +218,12 @@ public class BetPop extends BasePopupWindow {
             @Override
             public void onClick(View v) {
                 stopUpdateOdds();
-                goCancel();
+                if (list.size() > 1) {
+                    goCancel();
+                } else if (list.size() == 1) {
+                    closePopupWindow();
+                    deletedOne(list.get(0));
+                }
             }
         });
         tvSingleBet.setOnClickListener(new View.OnClickListener() {
@@ -590,28 +595,12 @@ public class BetPop extends BasePopupWindow {
                     imgDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            if (list.size() <= 1) {
-                                stopUpdateOdds();
-                                goCancel();
-                            } else {
-                                stopUpdateOdds();
-                                list.remove(position);
-                                String socOddsId = list.get(position).getSocOddsId();
-                                List<OddsClickBean> mixBetList = afbApplication.getMixBetList();
-                                Iterator<OddsClickBean> iterator = mixBetList.iterator();
-                                while (iterator.hasNext()) {
-                                    OddsClickBean oddsClickBean = iterator.next();
-                                    if (oddsClickBean.getBETID().equals(list.get(position).getId())
-                                            || oddsClickBean.getBETID_PAR().equals(list.get(position).getId())
-                                            || socOddsId.equals(oddsClickBean.getOid())
-                                            || socOddsId.equals(oddsClickBean.getOid_fh())) {
-                                        iterator.remove();
-                                        if ((presenter.getBaseView().getIBaseContext().getBaseActivity()) != null) {
-                                            ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
-                                        }
-                                    }
-                                }
+                            stopUpdateOdds();
 
+                            AfbClickBetBean afbClickBetBean = list.get(position);
+                            BetPop.this.deletedOne(afbClickBetBean);
+                            if (list.size() > 1) {
+                                list.remove(position);
 //                                presenter.getRefreshOdds(afbApplication.getRefreshCurrentOddsUrl());
                                 isNeedInitWeb = true;
                                 ObjectAnimator objectAnimator1 = objectAnimatorMap.get(position);
@@ -620,8 +609,11 @@ public class BetPop extends BasePopupWindow {
                                     objectAnimatorMap.remove(objectAnimator1);
                                 }
                                 updateOdds(0);
+                            } else {
+                                closePopupWindow();
                             }
                         }
+
                     });
                 }
             };
@@ -629,6 +621,25 @@ public class BetPop extends BasePopupWindow {
             rcBetContent.setAdapter(contentAdapter);
         } else {
             contentAdapter.setData(list);
+        }
+    }
+
+    private void deletedOne(AfbClickBetBean afbClickBetBean) {
+        String socOddsId = afbClickBetBean.getSocOddsId();
+        String id = afbClickBetBean.getId();
+        List<OddsClickBean> mixBetList = afbApplication.getMixBetList();
+        Iterator<OddsClickBean> iterator = mixBetList.iterator();
+        while (iterator.hasNext()) {
+            OddsClickBean oddsClickBean = iterator.next();
+            if (oddsClickBean.getBETID().equals(id)
+                    || oddsClickBean.getBETID_PAR().equals(id)
+                    || socOddsId.equals(oddsClickBean.getOid())
+                    || socOddsId.equals(oddsClickBean.getOid_fh())) {
+                iterator.remove();
+                if ((presenter.getBaseView().getIBaseContext().getBaseActivity()) != null) {
+                    ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
+                }
+            }
         }
     }
 
