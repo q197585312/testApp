@@ -88,7 +88,6 @@ public class Api {
                     .cache(cache)
                     .build();*/
             OkHttpClient client = new OkHttpClient.Builder()
-                    .followRedirects(false)  //禁制OkHttp的重定向操作，我们自己处理重定向
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .writeTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)

@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.main;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -563,11 +562,7 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
         if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
             presenter.skipGd88();
         } else {
-            Intent intent = new Intent();
-            intent.setAction("android.intent.action.VIEW");
-            Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
-            intent.setData(content_url);
-            startActivity(intent);
+            downLoadGd88();
         }
     }
     @Override
@@ -663,14 +658,12 @@ public class SportActivity extends BaseToolbarActivity<LanguagePresenter> implem
                 LogIntervalUtils.logTime("跳转数据初始化成功，开始启动GD88");
                 startActivityForResult(intent,7);
             } catch (Exception e) {
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
-                intent.setData(content_url);
-                startActivity(intent);
+                downLoadGd88();
             }
         }
     }
+
+
     private SpannableStringBuilder isStartWithTag(String str) {
         if (str.startsWith("<SPAN")) {
             String needStr = Html.fromHtml(str).toString();

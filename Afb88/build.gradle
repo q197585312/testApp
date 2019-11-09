@@ -5,7 +5,7 @@ android {
         config {
             keyAlias 'nykj'
             keyPassword '123456'
-            storeFile file('F:/keystore/afb88.keystore.jks')
+            storeFile file('./afb88.keystore.jks')
             storePassword '123456'
         }
     }
@@ -51,7 +51,7 @@ android {
         ap889 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ap889"]
             applicationId 'com.nanyang.app_ap889'
-            versionName '1.12'
+            versionName '1.13'
         }
         wfmain{
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wfmain"]

@@ -19,6 +19,7 @@ import java.util.Map;
 import io.reactivex.Flowable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.Response;
 import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -82,7 +83,8 @@ public interface ApiService {
 
     @GET
     Flowable<String> getData(@Url String url);
-
+    @GET
+    Flowable<Response<String>> getResponse(@Url String url);
     @GET
     Flowable<String> postData(@Url String url);
 

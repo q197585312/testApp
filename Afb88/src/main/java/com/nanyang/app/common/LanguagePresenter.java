@@ -1,14 +1,18 @@
 package com.nanyang.app.common;
 
 import android.app.Activity;
+import android.content.ComponentName;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.unkonw.testapp.libs.api.Api;
@@ -21,6 +25,7 @@ import org.reactivestreams.Subscription;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.finalteam.toolsfinal.ApkUtils;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -28,6 +33,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.Request;
 import retrofit2.Response;
 
 import static android.content.ContentValues.TAG;
@@ -56,7 +62,7 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
 
     public void skipGd88() {
         LogIntervalUtils.logTime("开始跳转请求");
-        Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().HOST + "_View/LiveDealerGDC.aspx?gt=gd")
+        Disposable subscription = getService(ApiService.class).getResponse(AppConstant.getInstance().HOST + "_View/LiveDealerGDC.aspx")
 
 
                 .subscribeOn(Schedulers.io())
@@ -67,28 +73,40 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
                         LogIntervalUtils.logTime("请求数据完成开始解析");
                         okhttp3.Response response = responseBodyResponse.raw().priorResponse();
                         if (response != null) {
-                            String Str = response.body().string();
-                            LogIntervalUtils.logTime("请求完成开始解析数据");
-                            int start = Str.indexOf("TransferBalance");
-                            int end = Str.indexOf("\" id=\"form1\"");
-
-                            String k = "";
-                            if (start > 0 && end > 0 && end > start) {
+    /*
 //                          http://lapigd.afb333.com/Validate.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325
-                                String url = Str.substring(start, end);
-                                k = url.substring(url.indexOf("k="));
+                            String k = findUrlK(response);
+//                            String k = url.substring(url.indexOf("k="));
+                       if (!StringUtils.isNull(k))
                                 baseView.onGetData(k);
-                            } else if (Str.contains("Transaction not tally")) {
-                                ToastUtils.showShort("Transaction not tally");
-                            } else if (Str.contains("Session Expired")) {
-                                ToastUtils.showShort("Session Expired");
-                            } else if (Str.contains("Account is LOCKED")) {
-                                ToastUtils.showShort("Account is LOCKED! Please contact your agent!");
+                            else {
+                                ToastUtils.showShort("not find k!");
+                            }*/
+                            Request request = response.request();
+                            String url = request.url().toString();
+                            if (ApkUtils.isAvilible(baseView.getContextActivity(), "gaming178.com.baccaratgame")) {
+                                Intent intent = new Intent();
+                                ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
+                                intent.setComponent(comp);
+                                PersonalInfo info = ((BaseToolbarActivity) baseView.getContextActivity()).getApp().getUser();
+                                intent.putExtra("username", info.getUserName());
+                                intent.putExtra("password", info.getPassword());
+                                intent.putExtra("language", "en");
+                                intent.putExtra("web_id", "-1");
+                                intent.putExtra("webUrl", url);
+                                intent.putExtra("gameType", 3);
+                                intent.putExtra("homeColor",((BaseToolbarActivity) baseView.getContextActivity()).getHomeColor());
+                                intent.putExtra("balance", info.getBalance());
+                                baseView.getContextActivity().startActivity(intent);
                             } else {
-                                ToastUtils.showShort("Failed");
+                                ((BaseToolbarActivity) baseView.getContextActivity()).downLoadGd88();
                             }
-
+                        } else {
+                            ToastUtils.showShort("not find agent!");
                         }
+                        baseView.hideLoadingDialog();
+
+
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -110,6 +128,21 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
                 });
         mCompositeSubscription.add(subscription);
 
+    }
+
+    private String findUrlK(okhttp3.Response response) {
+        if (response != null && response.request() != null) {
+            Request request = response.request();
+            String url = request.url().toString();
+
+            if (url.contains("&k=")) {
+                String k = url.substring(url.indexOf("k=") + 2);
+                return k;
+            } else {
+                return findUrlK(response.priorResponse());
+            }
+        }
+        return "";
     }
 
     public void getTransferMoneyData(final String data) {

@@ -2,6 +2,7 @@ package com.nanyang.app;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -371,5 +372,13 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 return 0xff300F2D;
         }
         return 0xff0d5924;
+    }
+
+    public void downLoadGd88() {
+        Intent intent = new Intent();
+        intent.setAction("android.intent.action.VIEW");
+        Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
+        intent.setData(content_url);
+        startActivity(intent);
     }
 }
