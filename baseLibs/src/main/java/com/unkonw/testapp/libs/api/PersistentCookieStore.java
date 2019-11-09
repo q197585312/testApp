@@ -17,6 +17,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentMap;
 
 import okhttp3.Cookie;
 import okhttp3.HttpUrl;
@@ -28,7 +29,7 @@ public class PersistentCookieStore {
     private static final String LOG_TAG = "PersistentCookieStore";
     private static final String COOKIE_PREFS = "Cookies_Prefs";
 
-    private final Map<String, ConcurrentHashMap<String, Cookie>> cookies;
+    private final Map<String, ConcurrentMap<String, Cookie>> cookies;
     private final SharedPreferences cookiePrefs;
 
 
@@ -67,16 +68,20 @@ public class PersistentCookieStore {
             if (!cookies.containsKey(url.host())) {
                 cookies.put(url.host(), new ConcurrentHashMap<String, Cookie>());
             }
-            cookies.get(url.host()).put(name, cookie);
+            ConcurrentMap<String, Cookie> stringCookieConcurrentMap = cookies.get(url.host());
+            stringCookieConcurrentMap.put(name, cookie);
         } else {
             if (cookies.containsKey(url.host())) {
-                cookies.get(url.host()).remove(name);
+                ConcurrentMap<String, Cookie> stringCookieConcurrentMap = cookies.get(url.host());
+                stringCookieConcurrentMap.remove(name);
             }
         }
 
         //将cookies持久化到本地
         SharedPreferences.Editor prefsWriter = cookiePrefs.edit();
-        prefsWriter.putString(url.host(), TextUtils.join(",", cookies.get(url.host()).keySet()));
+        ConcurrentMap<String, Cookie> stringCookieConcurrentMap = cookies.get(url.host());
+        if (stringCookieConcurrentMap != null)
+            prefsWriter.putString(url.host(), TextUtils.join(",", stringCookieConcurrentMap.keySet()));
         prefsWriter.putString(name, encodeCookie(new OkHttpCookies(cookie)));
         prefsWriter.apply();
     }

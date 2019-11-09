@@ -47,7 +47,7 @@ public class Api {
     private static Retrofit retrofit;
     private static Object service;
 
-    public static  <T> T getService(Class<T> cls) {
+    public static <T> T getService(Class<T> cls) {
         if (service == null) {
             service = getRetrofit().create(cls);
         }
@@ -57,7 +57,7 @@ public class Api {
     /**
      * 拦截器  给所有的请求添加消息头
      */
-    private static Interceptor mInterceptor = new Interceptor(){
+    private static Interceptor mInterceptor = new Interceptor() {
         @Override
         public okhttp3.Response intercept(Chain chain) throws IOException {
             Request request = chain.request()
@@ -74,7 +74,7 @@ public class Api {
         if (retrofit == null) {
             // log拦截器  打印所有的log
             HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
             //设置 请求的缓存
             File cacheFile = new File(BaseApplication.getInstance().getCacheDir(), "cache");
             Cache cache = new Cache(cacheFile, 1024 * 1024 * 10); //10Mb
@@ -87,10 +87,11 @@ public class Api {
 //                    .addInterceptor(mInterceptor)
                     .cache(cache)
                     .build();*/
-            OkHttpClient client=new OkHttpClient.Builder()
-                    .connectTimeout(10, TimeUnit.SECONDS)
-                    .writeTimeout(15, TimeUnit.SECONDS)
-                    .readTimeout(15, TimeUnit.SECONDS)
+            OkHttpClient client = new OkHttpClient.Builder()
+                    .followRedirects(false)  //禁制OkHttp的重定向操作，我们自己处理重定向
+                    .connectTimeout(30, TimeUnit.SECONDS)
+                    .writeTimeout(30, TimeUnit.SECONDS)
+                    .readTimeout(30, TimeUnit.SECONDS)
                     .retryOnConnectionFailure(true)
                     .addNetworkInterceptor(
                             interceptor)
@@ -114,11 +115,12 @@ public class Api {
 
     /**
      * 对 Observable<T> 做统一的处理，处理了线程调度、分割返回结果等操作组合了起来
+     *
      * @param responseObservable
      * @param <T>
      * @return
      */
-    public  <T > Flowable<T> applySchedulers(Flowable<T> responseObservable) {
+    public <T> Flowable<T> applySchedulers(Flowable<T> responseObservable) {
         return responseObservable.subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .flatMap(new Function<T, Flowable<T>>() {
@@ -133,10 +135,11 @@ public class Api {
 
     /**
      * 对网络接口返回的Response进行分割操作 对于jasn 解析错误以及返回的 响应实体为空的情况
+     *
      * @param response
      * @return
      */
-    public < T > Flowable<T> flatResponse(final T response) {
+    public <T> Flowable<T> flatResponse(final T response) {
         return Flowable.create(new FlowableOnSubscribe<T>() {
             @Override
             public void subscribe(FlowableEmitter<T> subscriber) throws Exception {
@@ -154,7 +157,7 @@ public class Api {
                     subscriber.onComplete();
                 }
             }
-        },BackpressureStrategy.BUFFER);
+        }, BackpressureStrategy.BUFFER);
 
     }
 

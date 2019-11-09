@@ -54,7 +54,7 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
     }
     public void skipGd88() {
         LogIntervalUtils.logTime("开始跳转请求");
-        Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().HOST+"_View/LiveDealerGDC.aspx")
+        Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().HOST+"_View/LiveDealerGDC.aspx?gt=gd")
 
 
                 .subscribeOn(Schedulers.io())
