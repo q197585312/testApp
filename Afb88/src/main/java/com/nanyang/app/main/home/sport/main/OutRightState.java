@@ -83,7 +83,6 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
         return new SportAdapterHelper<BallInfo>() {
             @Override
             public void onConvert(MyRecyclerViewHolder holder, final int position, final BallInfo item) {
-
                 TextView matchTitleTv = holder.getView(R.id.out_right_title_tv);
                 View headV = holder.getView(R.id.module_match_head_v);
                 TextView homeTv = holder.getView(R.id.out_right_home_tv);
