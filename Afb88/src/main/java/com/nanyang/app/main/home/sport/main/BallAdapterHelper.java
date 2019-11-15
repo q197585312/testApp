@@ -1963,7 +1963,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     @Override
     public int onSetAdapterItemLayout() {
-        return R.layout.sport_common_ball_leagua_item;
+        return R.layout.sport_common_ball_item;
     }
 
     public Map<Boolean, String> getAdditionMap() {

@@ -279,6 +279,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     }
 
     public void updateMixList(String url) {
+        LogUtil.d("updateMixListText","url:"+url);
         if (!StringUtils.isNull(url) && url.contains("_par")) {
             AfbClickResponseBean betAfbList = ((AfbApplication) AfbApplication.getInstance()).getBetAfbList();
             List<OddsClickBean> mixBetList = ((AfbApplication) AfbApplication.getInstance()).getMixBetList();
@@ -292,7 +293,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 while (iterator.hasNext()) {
                     OddsClickBean next = iterator.next();
                     boolean hasFound = findInBetList(next, betAfbList.getList());
-                    LogUtil.d("updateMixListText","hasFound:"+next.getItem().getModuleTitle()+"---"+mixBetList.size());
+                    LogUtil.d("updateMixListText","hasFound:"+hasFound+",item:"+next.getItem().getModuleTitle()+"---"+next.getItem().getHome()+"-----"+next.getItem().getAway());
                     if (!hasFound)
                         iterator.remove();
                     deleted = deleted || !hasFound;
