@@ -20,6 +20,7 @@ import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.base.IBaseView;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -285,11 +286,13 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 ((AfbApplication) AfbApplication.getInstance()).clearMixBetList();
                 updateMixListText();
             } else if (betAfbList.getList().size() < mixBetList.size()) {
+                LogUtil.d("updateMixListText",betAfbList.getList().size()+"---"+mixBetList.size());
                 Iterator<OddsClickBean> iterator = mixBetList.iterator();
                 boolean deleted = false;
                 while (iterator.hasNext()) {
                     OddsClickBean next = iterator.next();
                     boolean hasFound = findInBetList(next, betAfbList.getList());
+                    LogUtil.d("updateMixListText","hasFound:"+next.getItem().getModuleTitle()+"---"+mixBetList.size());
                     if (!hasFound)
                         iterator.remove();
                     deleted = deleted || !hasFound;

@@ -596,7 +596,10 @@ public class BetPop extends BasePopupWindow {
                         @Override
                         public void onClick(View v) {
                             stopUpdateOdds();
-
+                            if(position>=list.size()) {
+                                closePopupWindow();
+                                return;
+                            }
                             AfbClickBetBean afbClickBetBean = list.get(position);
                             BetPop.this.deletedOne(afbClickBetBean);
                             if (list.size() > 1) {
