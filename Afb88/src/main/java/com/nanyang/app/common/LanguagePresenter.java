@@ -7,14 +7,15 @@ import android.util.Log;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.center.model.TransferMoneyBean;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.LogIntervalUtils;
-import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.reactivestreams.Subscription;
 
@@ -28,6 +29,7 @@ import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Response;
 
 import static android.content.ContentValues.TAG;
 import static com.unkonw.testapp.libs.api.Api.getService;
@@ -52,64 +54,76 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
     public void switchLanguage(String lang) {
         switchLanguage.switchLanguage(lang);
     }
+
     public void skipGd88() {
         LogIntervalUtils.logTime("开始跳转请求");
-        Disposable subscription = getService(ApiService.class).getData(AppConstant.getInstance().HOST+"_View/LiveDealerGDC.aspx?gt=gd")
+        Gd88Consumer<Response> responseGd88Consumer = new Gd88Consumer<>(baseView);
+        Gd88Consumer<String> stringGd88Consumer = new Gd88Consumer<>(baseView);
+        Gd88Consumer consumer;
+        String balance = ((BaseToolbarActivity) baseView.getContextActivity()).getApp().getUser().getBalance();
+        Disposable subscription;
+        if (StringUtils.isNull(balance) || Float.valueOf(balance) == 0f) {
+            consumer = responseGd88Consumer;
+            subscription = getService(ApiService.class).getResponse(AppConstant.getInstance().HOST + "_View/LiveDealerGDC.aspx?gt=gd")
 
 
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {//onNext
-                    @Override
-                    public void accept(String Str) throws Exception {
-                        LogIntervalUtils.logTime("请求完成开始解析数据");
-                        int start = Str.indexOf("TransferBalance");
-                        int end = Str.indexOf("\" id=\"form1\"");
-
-                        String k = "";
-                        if (start > 0 && end > 0 && end > start) {
-//                          http://lapigd.afb333.com/Validate.aspx?us=demoafbai5&k=5a91f23cd1b34f4295ea0860d6cac325
-                            String url = Str.substring(start, end);
-                            k = url.substring(url.indexOf("k="));
-                            baseView.onGetData(k);
-                        } else if (Str.contains("Transaction not tally")) {
-                            ToastUtils.showShort("Transaction not tally");
-                        } else if (Str.contains("Session Expired")) {
-                            ToastUtils.showShort("Session Expired");
-                        } else if (Str.contains("Account is LOCKED")) {
-                            ToastUtils.showShort("Account is LOCKED! Please contact your agent!");
-                        } else {
-                            ToastUtils.showShort("Failed");
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(consumer, new Consumer<Throwable>() {//错误
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            baseView.onFailed(throwable.getMessage());
+                            baseView.hideLoadingDialog();
                         }
+                    }, new Action() {//完成
+                        @Override
+                        public void run() throws Exception {
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Consumer<Subscription>() {//开始绑定
+                        @Override
+                        public void accept(Subscription subscription) throws Exception {
+                            baseView.showLoadingDialog();
+                            subscription.request(Long.MAX_VALUE);
+                        }
+                    });
+        } else {
+            consumer = stringGd88Consumer;
+            subscription = getService(ApiService.class).getData(AppConstant.getInstance().HOST + "_View/LiveDealerGDC.aspx?gt=gd")
 
-                    }
-                }, new Consumer<Throwable>() {//错误
-                    @Override
-                    public void accept(Throwable throwable) throws Exception {
-                        baseView.onFailed(throwable.getMessage());
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Action() {//完成
-                    @Override
-                    public void run() throws Exception {
-                        baseView.hideLoadingDialog();
-                    }
-                }, new Consumer<Subscription>() {//开始绑定
-                    @Override
-                    public void accept(Subscription subscription) throws Exception {
-                        baseView.showLoadingDialog();
-                        subscription.request(Long.MAX_VALUE);
-                    }
-                });
+
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(consumer, new Consumer<Throwable>() {//错误
+                        @Override
+                        public void accept(Throwable throwable) throws Exception {
+                            baseView.onFailed(throwable.getMessage());
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Action() {//完成
+                        @Override
+                        public void run() throws Exception {
+                            baseView.hideLoadingDialog();
+                        }
+                    }, new Consumer<Subscription>() {//开始绑定
+                        @Override
+                        public void accept(Subscription subscription) throws Exception {
+                            baseView.showLoadingDialog();
+                            subscription.request(Long.MAX_VALUE);
+                        }
+                    });
+
+        }
         mCompositeSubscription.add(subscription);
 
     }
+
     public void getTransferMoneyData(final String data) {
         Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).getTransferMoneyData(AppConstant.getInstance().URL_TRANSFER_MONEY_DATA))
                 .subscribe(new Consumer<TransferMoneyBean>() {
                     @Override
                     public void accept(TransferMoneyBean transferMoneyBean) throws Exception {
-                        baseView.getMoneyMsg(transferMoneyBean,data);
+                        baseView.getMoneyMsg(transferMoneyBean, data);
                         baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
@@ -134,18 +148,19 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
                 });
         mCompositeSubscription.add(d);
     }
+
     public void gamesGDTransferMonet(String egLimit, final String data) {
         Disposable d = mApiWrapper.applySchedulers(Api.getService(ApiService.class).gamesGDTransferMoney(AppConstant.getInstance().URL_TRANSFER_MONEY_GD_GAMES, egLimit))
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
-                        baseView.onGetTransferMoneyData(0,s,data);
+                        baseView.onGetTransferMoneyData(0, s, data);
                         baseView.hideLoadingDialog();
                     }
                 }, new Consumer<Throwable>() {
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        baseView.onGetTransferMoneyData(-1,throwable.toString(),data);
+                        baseView.onGetTransferMoneyData(-1, throwable.toString(), data);
                         baseView.hideLoadingDialog();
                     }
                 }, new Action() {
@@ -162,6 +177,7 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
                 });
         mCompositeSubscription.add(d);
     }
+
     @NonNull
     private String getLanguage() {
         String lag = AfbUtils.getLanguage((Activity) baseView);
@@ -192,9 +208,10 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
         }
         return lang;
     }
+
     public void login(final LoginInfo info, final String gameType) {
-        if(BuildConfig.FLAVOR.equals("wfmain")){
-            Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login",getLanguage()))
+        if (BuildConfig.FLAVOR.equals("wfmain")) {
+            Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, info.getWfmain("Login", getLanguage()))
 
                     .flatMap(new Function<String, Flowable<String>>() {
                         @Override
