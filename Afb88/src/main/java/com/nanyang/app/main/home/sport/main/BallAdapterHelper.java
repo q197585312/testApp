@@ -800,6 +800,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         ImageView lastGif = helper.getView(R.id.iv_last_call_gif);
         TextView dateTv1 = helper.getView(R.id.module_match_date_tv1);
         TextView timeTv = helper.getView(R.id.module_match_time_tv);
+        TextView hasPTv = helper.getView(R.id.module_match_has_p_tv);
         TextView timeTv1 = helper.getView(R.id.module_match_time_tv1);
         TextView liveTv = helper.getView(R.id.module_match_live_iv);
         TextView liveTv1 = helper.getView(R.id.module_match_live_iv1);
@@ -829,7 +830,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         liveTv1.setVisibility(View.VISIBLE);
         timeTv.setVisibility(View.VISIBLE);
         timeTv1.setVisibility(View.VISIBLE);
-
+        hasPTv.setVisibility(View.GONE);
+        if(!StringUtils.isNull(item.getHasPar())&&item.getHasPar().equals("1")){
+            hasPTv.setVisibility(View.VISIBLE);
+        }
         if (item.getLive() != null && !item.getLive().equals("")) {
             dateTv.setVisibility(View.VISIBLE);
             dateTv1.setVisibility(View.VISIBLE);

@@ -80,6 +80,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         tvToolbarRight1 = (TextView) findViewById(R.id.tv_toolbar_right1);
         tvTime = (TextView) findViewById(R.id.tv_time);
         tvToolbarTitle = (TextView) findViewById(R.id.tv_toolbar_title);
+
         tvToolbarLeft = (TextView) findViewById(R.id.tv_toolbar_left);
         llRight = (LinearLayout) findViewById(R.id.ll_right);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);

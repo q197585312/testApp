@@ -169,7 +169,7 @@ public class AfbApplication extends BaseApplication {
         String betOddsUrl = "BTMD=S&coupon=0&BETID=";
         if (getMixBetList().size() == 1) {
 
-            betOddsUrl = "BTMD=S&coupon=0&BETID=" + getMixBetList().get(0).getBETID();
+            betOddsUrl = "BTMD=S&coupon=0&BETID=" + getMixBetList().get(0).getBETID()+"&_par=";;
         } else {
             for (OddsClickBean afbClickBetBean : getMixBetList()) {
                 String itemId = afbClickBetBean.getBETID_PAR();

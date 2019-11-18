@@ -166,6 +166,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginLeft="5dp"
                     android:layout_weight="1"
+                    android:textAllCaps="true"
                     android:drawableBottom="@drawable/line_white"
                     android:drawableRight="@mipmap/arrow_down_drop_white"
                     android:gravity="center_vertical"
@@ -179,6 +180,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.6"
                     android:drawablePadding="5dp"
+                    android:textAllCaps="true"
                     android:drawableRight="@mipmap/arrow_down_drop_white"
                     android:gravity="center_vertical"
                     android:onClick="clickOddsType"
@@ -192,6 +194,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:drawablePadding="5dp"
+                    android:textAllCaps="true"
                     android:drawableRight="@mipmap/sport_game_cup_white"
                     android:gravity="center_vertical|right"
                     android:onClick="clickMajor"
@@ -294,6 +297,7 @@
                     android:drawableTop="@mipmap/sport_botton_teb_statement"
                     android:gravity="center"
                     android:onClick="clickBets"
+                    android:textAllCaps="true"
                     android:text="@string/TabMyBets"
                     android:textColor="@color/gray_dark"
                     android:textSize="12sp"
@@ -327,6 +331,7 @@
                 android:text="@string/Soccer"
                 android:textColor="@color/gray_dark"
                 android:textSize="12sp"
+                android:textAllCaps="true"
                 android:textStyle="bold" />
 
             <FrameLayout
@@ -350,6 +355,7 @@
                     android:text="@string/bet_slip"
                     android:textColor="@color/grey_light"
                     android:textSize="12sp"
+                    android:textAllCaps="true"
                     android:textStyle="bold" />
 
                 <TextView
@@ -375,6 +381,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawablePadding="2dp"
+                android:textAllCaps="true"
                 android:drawableTop="@mipmap/date_running_green"
                 android:gravity="center"
                 android:onClick="clickSportWayRun"
@@ -403,7 +410,7 @@
                     android:id="@+id/tv_menu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:textAllCaps="true"
                     android:drawablePadding="2dp"
                     android:drawableTop="@mipmap/sport_botton_teb_more_menu"
                     android:gravity="center"

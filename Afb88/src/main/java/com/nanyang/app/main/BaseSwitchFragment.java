@@ -1,6 +1,7 @@
 package com.nanyang.app.main;
 
 import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.Utils.StringUtils;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -27,7 +28,8 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
 
 
     public void setBackTitle(String title) {
-        baseToolbarActivity.getToolbar().setTitle(title);
+
+        baseToolbarActivity.getToolbar().setTitle(StringUtils.isNull(title)?"":title.toUpperCase());
     }
 
 

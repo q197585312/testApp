@@ -126,20 +126,21 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:textAllCaps="true"
             android:text="@string/Parlay"
             android:textColor="@color/blue2"
             android:textSize="14sp" />
 
-            <TextView
-                android:id="@+id/tv_amt"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:text="@string/Amt"
-                android:textAllCaps="true"
-                android:textColor="@color/black"
-                android:textSize="14sp" />
+        <TextView
+            android:id="@+id/tv_amt"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="@string/Amt"
+            android:textAllCaps="true"
+            android:textColor="@color/black"
+            android:textSize="14sp" />
 
 
         <LinearLayout
@@ -150,6 +151,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:textAllCaps="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -173,6 +175,7 @@
         </LinearLayout>
 
         <TextView
+
             android:id="@+id/tv_com"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

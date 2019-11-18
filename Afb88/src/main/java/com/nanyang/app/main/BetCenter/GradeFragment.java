@@ -21,6 +21,7 @@ import com.nanyang.app.main.BetCenter.pop.PopGradeSwitchType;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseFragment;
+import com.unkonw.testapp.libs.utils.TimeUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -200,6 +201,8 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
             TextView tvHomeL = view.findViewById(R.id.tv_home_l);
             TextView tvAwayF = view.findViewById(R.id.tv_away_f);
             TextView tvAwayL = view.findViewById(R.id.tv_away_l);
+                //  dataFormat = ;
+            TimeUtils.dateFormat(bean.getIndex17(),"dd/MM/yyyy hh:mm");
             tvDate.setText(bean.getIndex17());
             tvTeamName1.setText(bean.getIndex8());
             int index14 = bean.getIndex14();

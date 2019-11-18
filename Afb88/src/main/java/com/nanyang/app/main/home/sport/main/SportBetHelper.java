@@ -252,7 +252,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         } else if (bean.getList().size() >= 1) {
                             createBetPop(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
                         }
-                        updateMixList(url);
+//                        updateMixList(url);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -265,6 +265,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     @Override
                     public void run() throws Exception {
                         getBaseView().getIBaseContext().hideLoadingDialog();
+                        updateMixList(url);
                     }
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
