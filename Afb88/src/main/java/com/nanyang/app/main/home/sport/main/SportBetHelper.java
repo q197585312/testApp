@@ -234,11 +234,9 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                             if (list != null && list.size() > 0 && list.get(0).getId() != null) {
                                 JSONArray dataListArray1 = jsonArray.getJSONArray(1);
                                 bean = new AfbClickResponseBean(list, dataListArray1);
-                                bean = initHasPar(bean);
                                 ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(bean);
                             }
                         }
-
                         return bean;
 
 
@@ -252,7 +250,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         } else if (bean.getList().size() >= 1) {
                             createBetPop(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
                         }
-//                        updateMixList(url);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
@@ -260,6 +257,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         Log.d(TAG, "throwable:" + throwable.getCause());
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().getIBaseContext().hideLoadingDialog();
+                        updateMixList(url);
                     }
                 }, new Action() {//完成
                     @Override
@@ -280,21 +278,21 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     }
 
     public void updateMixList(String url) {
-        LogUtil.d("updateMixListText","url:"+url);
+        LogUtil.d("updateMixListText", "url:" + url);
         if (!StringUtils.isNull(url) && url.contains("_par")) {
             AfbClickResponseBean betAfbList = ((AfbApplication) AfbApplication.getInstance()).getBetAfbList();
             List<OddsClickBean> mixBetList = ((AfbApplication) AfbApplication.getInstance()).getMixBetList();
-            if (betAfbList == null || betAfbList.getList() == null || betAfbList.getList().size() <1) {
+            if (betAfbList == null || betAfbList.getList() == null || betAfbList.getList().size() < 1) {
                 ((AfbApplication) AfbApplication.getInstance()).clearMixBetList();
                 updateMixListText();
             } else if (betAfbList.getList().size() < mixBetList.size()) {
-                LogUtil.d("updateMixListText",betAfbList.getList().size()+"---"+mixBetList.size());
+                LogUtil.d("updateMixListText", betAfbList.getList().size() + "---" + mixBetList.size());
                 Iterator<OddsClickBean> iterator = mixBetList.iterator();
                 boolean deleted = false;
                 while (iterator.hasNext()) {
                     OddsClickBean next = iterator.next();
                     boolean hasFound = findInBetList(next, betAfbList.getList());
-                    LogUtil.d("updateMixListText","hasFound:"+hasFound+",item:"+next.getItem().getModuleTitle()+"---"+next.getItem().getHome()+"-----"+next.getItem().getAway());
+                    LogUtil.d("updateMixListText", "hasFound:" + hasFound + ",item:" + next.getItem().getModuleTitle() + "---" + next.getItem().getHome() + "-----" + next.getItem().getAway());
                     if (!hasFound)
                         iterator.remove();
                     deleted = deleted || !hasFound;
@@ -325,9 +323,5 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             }
         }
         return false;
-    }
-
-    protected AfbClickResponseBean initHasPar(AfbClickResponseBean bean) {
-        return bean;
     }
 }
