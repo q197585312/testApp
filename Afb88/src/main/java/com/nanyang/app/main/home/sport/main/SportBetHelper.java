@@ -257,6 +257,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         Log.d(TAG, "throwable:" + throwable.getCause());
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().getIBaseContext().hideLoadingDialog();
+                        ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(null);
                         updateMixList(url);
                     }
                 }, new Action() {//完成

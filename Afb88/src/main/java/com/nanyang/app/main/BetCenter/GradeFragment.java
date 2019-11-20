@@ -26,6 +26,7 @@ import com.unkonw.testapp.libs.utils.TimeUtils;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 import butterknife.Bind;
@@ -202,8 +203,8 @@ public class GradeFragment extends BaseFragment<GradePresenter> {
             TextView tvAwayF = view.findViewById(R.id.tv_away_f);
             TextView tvAwayL = view.findViewById(R.id.tv_away_l);
                 //  dataFormat = ;
-            TimeUtils.dateFormat(bean.getIndex17(),"dd/MM/yyyy hh:mm");
-            tvDate.setText(bean.getIndex17());
+            String dataFormat = TimeUtils.dateFormatChange(bean.getIndex17(), "yyyy/MM/dd hh:mm:ss a",  "dd/MM/yyyy hh:mm a", Locale.US);
+            tvDate.setText(dataFormat);
             tvTeamName1.setText(bean.getIndex8());
             int index14 = bean.getIndex14();
             String homeFOrL1 = getFOrL(index14, true, true);

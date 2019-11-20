@@ -51,6 +51,7 @@ import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
 import com.nanyang.app.main.home.sport.WebSocketManager;
 import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
+import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -163,6 +164,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private AfbDrawerViewHolder afbDrawerViewHolder;
     private SportIdBean currentIdBean;
     private boolean notClickType = false;
+    private boolean stopCloseWindow;
 
 
     public TextView getIvAllAdd() {
@@ -281,7 +283,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 afbDrawerViewHolder.goRecord();
             }
         });
-        startRefreshMenu();
 
     }
 
@@ -349,7 +350,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     protected void onDestroy() {
         super.onDestroy();
         BetGoalWindowUtils.clear();
-        stopRefreshMenu();
+
         unregisterReceiver(myGoHomeBroadcastReceiver);
     }
 
@@ -396,6 +397,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 //        sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);
 
     }
+
 
     private void deleteHeadAndFoot() {
         ll_footer_sport.removeAllViews();
@@ -556,12 +558,22 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     protected void onResume() {
         super.onResume();
         createWebSocket();
+        startRefreshMenu();
+        if (popWindow instanceof BetPop && popWindow.isShowing()) {
+            ((BetPop) popWindow).updateOdds(0);
+        }
     }
 
     @Override
     protected void onStop() {
+        setStopCloseWindow(false);
         super.onStop();
+        if (popWindow instanceof BetPop && popWindow.isShowing()) {
+            ((BetPop) popWindow).stopUpdateOdds();
+        }
+        stopRefreshMenu();
         WebSocketManager.getInstance().stopUpdateData();
+
     }
 
     public void clickSportSelect(final View view) {
@@ -912,6 +924,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     };
 
     public void runWayItem(MenuItemInfo item) {
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext), mContext);
         if (item.getRes() == R.mipmap.date_day_grey) {
             tvMatchType.setText(item.getDay());
         } else {
@@ -930,4 +943,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         super.onConfigurationChanged(newConfig);
 
     }
+
+
 }

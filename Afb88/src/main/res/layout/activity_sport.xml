@@ -93,7 +93,7 @@
                         android:drawablePadding="5dp"
                         android:hint="@string/select_league"
                         android:singleLine="true"
-                        android:textColorHint="#e6e6e6"
+                        android:textColorHint="@color/trans_white"
                         android:textSize="13.5sp" />
 
                     <ImageView

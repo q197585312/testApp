@@ -140,12 +140,6 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        mContext.stopPopupWindow();
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         ButterKnife.unbind(this);

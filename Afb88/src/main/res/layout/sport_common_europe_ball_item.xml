@@ -109,16 +109,35 @@
 
             <TextView
                 android:id="@+id/module_match_time_tv"
-                android:layout_width="0dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
-                android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:maxLines="1"
                 android:textColor="@color/grey_thick_line"
                 android:textSize="12sp" />
-
+            <TextView
+                android:id="@+id/module_match_has_p_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="4dp"
+                android:gravity="center_vertical"
+                android:maxLines="1"
+                android:textAllCaps="true"
+                android:text="P"
+                android:paddingLeft="3dp"
+                android:visibility="gone"
+                android:paddingRight="3dp"
+                android:background="@drawable/rectangle_green_stroke_green_corner2"
+                android:textColor="@color/green500_word"
+                android:textStyle="bold" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1"
+                />
             <TextView
                 android:id="@+id/module_right_mark_tv"
                 android:layout_width="35dp"

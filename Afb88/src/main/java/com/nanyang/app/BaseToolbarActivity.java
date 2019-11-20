@@ -135,7 +135,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         finish();
     }
 
-    void stopUpdateState() {
+    protected void stopUpdateState() {
         if (mCompositeSubscription != null)
             mCompositeSubscription.clear();
         updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理

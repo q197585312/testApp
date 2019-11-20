@@ -61,7 +61,8 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
      */
     protected DialogLoading loading;
     protected BasePopupWindow popWindow;
-    private Map<Boolean, String>  additionMap=new HashMap<>();
+    private Map<Boolean, String> additionMap = new HashMap<>();
+    private boolean stopCloseWindow = true;
 
     public boolean isHasAttached() {
         return hasAttached;
@@ -97,8 +98,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         setContentView(view);
 
     }
-
-
 
 
     @Override
@@ -185,12 +184,19 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     @Override
     protected void onStop() {
         super.onStop();
-        stopPopupWindow();
+        if (stopCloseWindow)
+            stopPopupWindow();
+    }
+
+
+    public void setStopCloseWindow(boolean stopCloseWindow) {
+        this.stopCloseWindow = stopCloseWindow;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        stopPopupWindow();
         //Acitvity 释放子view资源
         ActivityPageManager.unbindReferences(mContentView);
         ActivityPageManager.getInstance().removeActivity(this);
@@ -339,7 +345,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
             LogUtil.d(getLocalClassName() + "接收消息----------------->" + obj.toString());
     }
 
-    public Map<Boolean, String>  getAdditionMap() {
+    public Map<Boolean, String> getAdditionMap() {
         return additionMap;
     }
 }

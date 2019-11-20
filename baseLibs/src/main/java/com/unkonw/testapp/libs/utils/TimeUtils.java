@@ -103,7 +103,7 @@ public class TimeUtils {
 
         DateFormat formatter = new SimpleDateFormat(formFormat, locale);
 
-        DateFormat dt = new SimpleDateFormat(toFormat);
+        DateFormat dt = new SimpleDateFormat(toFormat,locale);
 
         try {
             return dt.format(formatter.parse(time));
@@ -171,8 +171,8 @@ public class TimeUtils {
         return days1 == days2;
     }
 
-    public static Date format2Date(String obj, String format) {
-        SimpleDateFormat f = new SimpleDateFormat(format);
+    public static Date format2Date(String obj, String format,Locale locale) {
+        SimpleDateFormat f = new SimpleDateFormat(format,locale);
         try {
             return f.parse(obj);
         } catch (ParseException e) {

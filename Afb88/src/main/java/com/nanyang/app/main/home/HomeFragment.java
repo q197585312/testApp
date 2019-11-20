@@ -187,6 +187,11 @@ public class HomeFragment extends BaseSwitchFragment {
     @Override
     public void onStop() {
         super.onStop();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
         updateHandler.removeCallbacks(timeUpdateRunnable);
         updateHandler.removeCallbacks(mainAllDataUpdateRunnable);
         updateHandler.removeCallbacksAndMessages(null);

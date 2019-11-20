@@ -830,9 +830,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         liveTv1.setVisibility(View.VISIBLE);
         timeTv.setVisibility(View.VISIBLE);
         timeTv1.setVisibility(View.VISIBLE);
-        hasPTv.setVisibility(View.GONE);
-        if(!StringUtils.isNull(item.getHasPar())&&item.getHasPar().equals("1")){
-            hasPTv.setVisibility(View.VISIBLE);
+        if (hasPTv != null) {
+            hasPTv.setVisibility(View.GONE);
+            if (!StringUtils.isNull(item.getHasPar()) && item.getHasPar().equals("1")) {
+                hasPTv.setVisibility(View.VISIBLE);
+            }
         }
         if (item.getLive() != null && !item.getLive().equals("")) {
             dateTv.setVisibility(View.VISIBLE);
