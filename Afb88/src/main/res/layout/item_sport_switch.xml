@@ -20,6 +20,7 @@
         android:textSize="12sp" />
 
     <TextView
+        android:textAllCaps="true"
         android:id="@+id/tv_game_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

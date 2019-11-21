@@ -427,7 +427,7 @@
     <string name="howtouse_title1_1">Select Product and Market</string>
     <string name="howtouse_content1_1">1. First choose Sports / Game Type</string>
     <string name="howtouse_content1_2">2. Then choose Today / Live / Early / Date to display all leagues.</string>
-    <string name="select_league">Select League</string>
+    <string name="select_league">SELECT LEAGUE</string>
     <string name="howtouse_content2_1">- This function lists all the leagues under Sports / Game Type selected</string>
     <string name="howtouse_content2_2">- Tap on one or more leagues you prefer to show the matches and odds</string>
     <string name="bet_slip">Bet Slip</string>

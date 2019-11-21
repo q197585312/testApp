@@ -1409,6 +1409,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
                         TextView tv = holder.getView(R.id.item_text_tv);
                         tv.setText(item.getParent());
+                        tv.setAllCaps(true);
                         if (textView.getText().toString().equals(item.getParent())) {
                             tv.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
                             tv.setTextColor(ContextCompat.getColor(context, R.color.blue));

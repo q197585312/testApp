@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:button="@null"
             android:text="@string/SportBook"
+            android:textAllCaps="true"
             android:textColor="@color/gray_blue_txt_selector" />
 
         <RadioButton
@@ -33,7 +34,8 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:button="@null"
-            android:text="@string/other"
+            android:text="@string/others"
+            android:textAllCaps="true"
             android:textColor="@color/gray_blue_txt_selector" />
     </RadioGroup>
 

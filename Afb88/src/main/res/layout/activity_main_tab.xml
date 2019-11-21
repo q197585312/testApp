@@ -69,6 +69,7 @@
                     android:drawableTop="@mipmap/main_balance"
                     android:text="@string/balances"
                     android:textColor="@color/black_grey"
+                    android:textAllCaps="true"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </FrameLayout>
@@ -88,6 +89,7 @@
                     android:drawableTop="@mipmap/main_statement"
                     android:text="@string/statement"
                     android:textColor="@color/black_grey"
+                    android:textAllCaps="true"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </FrameLayout>
@@ -107,6 +109,7 @@
                     android:drawableTop="@mipmap/main_contactus"
                     android:text="@string/contact"
                     android:textColor="@color/black_grey"
+                    android:textAllCaps="true"
                     android:textSize="12sp"
                     android:textStyle="bold" />
             </FrameLayout>
@@ -131,6 +134,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:drawableTop="@mipmap/main_more"
+                    android:textAllCaps="true"
                     android:text="@string/more"
                     android:textColor="@color/black_grey"
                     android:textSize="12sp"

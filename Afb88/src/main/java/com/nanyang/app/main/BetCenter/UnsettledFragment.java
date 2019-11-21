@@ -574,19 +574,12 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             tvWL.setTextColor(Color.BLACK);
         }
         tvWL.setText(AfbUtils.delHTMLTag(wlStr));
-
-
         String index23 = bean.getIndex23();
         String scoreStr;
         if (index23.equals("False")) {
             scoreStr = "-";
         } else {
             scoreStr = bean.getIndex6() + "-" + bean.getIndex7();
-        }
-        tvScore.setText(getString(R.string.Result) + ":" + scoreStr);
-        String runScore = "";
-        if (index20.equals("True")) {
-            scoreStr = "-";
         }
         tvScore.setText(getString(R.string.Result) + ":" + scoreStr);
     }
