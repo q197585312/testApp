@@ -226,7 +226,7 @@
     <string name="login_name">Nama Log masuk</string>
     <string name="currency">Mata Wang</string>
     <string name="cash_balance">Imbangan Tunai</string>
-    <string name="outstanding_txn">Outstanding Txn</string>
+    <string name="outstanding">Outstanding Txn</string>
     <string name="given_credit">Given Credit</string>
     <string name="bet_credit">Kredit Bet</string>
     <string name="min_bet_m">Min Bet</string>

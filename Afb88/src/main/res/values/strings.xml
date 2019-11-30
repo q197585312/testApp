@@ -224,7 +224,7 @@
     <string name="login_name">Login Name</string>
     <string name="currency">Currency</string>
     <string name="cash_balance">Cash Balance</string>
-    <string name="outstanding_txn">Outstanding Txn</string>
+    <string name="outstanding">Outstanding</string>
     <string name="given_credit">Given Credit</string>
     <string name="bet_credit">Bet Credit</string>
     <string name="min_bet_m">Min Bet</string>
@@ -251,7 +251,7 @@
     <string name="gr_content">Live Casino and beautyful Dealers Online Entertainment, Live Baccarat , VIP Hall, International Hall , wish you happy playing!!!GD CASINO</string>
     <string name="Version">Version</string>
     <string name="failed_to_connect">Failed to connect to server , log in again?</string>
-    <string name="All_Markets">All</string>
+    <string name="All_Markets">All Markets</string>
     <string name="Main_Markets">Main Markets</string>
     <string name="Other_Bet_Markets">Other Bet Markets</string>
     <string name="choose_language">Language</string>
@@ -406,7 +406,7 @@
     <string name="setting">Setting</string>
     <string name="how_to_use">How to Use</string>
     <string name="logout">Logout</string>
-    <string name="more">More</string>
+    <string name="more">MORE</string>
     <string name="last_login_date">Last Login Date</string>
     <string name="nike_name">Nick Name</string>
 

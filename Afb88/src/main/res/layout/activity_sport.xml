@@ -35,10 +35,17 @@
                     android:id="@+id/sport_title_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:textColor="@color/trans_white"
                     android:textAllCaps="true"
                     android:textSize="13sp" />
-
+                <TextView
+                    android:id="@+id/sports_selected_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAllCaps="true"
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
                 <TextView
                     android:id="@+id/tv_balance"
                     android:layout_width="wrap_content"

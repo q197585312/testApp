@@ -5,6 +5,7 @@
     android:layout_height="40dp"
     android:background="@color/white"
     android:gravity="center_vertical"
+    android:textAllCaps="true"
     android:maxLines="1"
     android:paddingLeft="10dp"
     android:textColor="@color/black" />

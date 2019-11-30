@@ -40,7 +40,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
@@ -69,7 +68,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         String lag = AfbUtils.getLanguage(mContext);
         AfbUtils.switchLanguage(lag, mContext);
         setContentView(R.layout.activity_main_tab);
-        ButterKnife.bind(this);
         createPresenter(new MainPresenter(this));
         toolbar.setNavigationIcon(null);
 

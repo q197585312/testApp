@@ -40,10 +40,10 @@ public abstract class PopGradeSwitchType extends BasePopupWindow {
     protected void initView(View view) {
         super.initView(view);
         ButterKnife.bind(this, view);
-        adapter = new BaseRecyclerAdapter<DataInfoBean>(context, new ArrayList<DataInfoBean>(), R.layout.item_text) {
+        adapter = new BaseRecyclerAdapter<DataInfoBean>(context, new ArrayList<DataInfoBean>(), R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, DataInfoBean item) {
-                TextView tvContent = holder.getView(R.id.tv_content);
+                TextView tvContent = holder.getView(R.id.item_text_tv);
                 tvContent.setText(item.getName());
             }
         };

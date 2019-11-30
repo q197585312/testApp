@@ -72,7 +72,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.logger.Logger;
 
 public class SportActivity extends BaseToolbarActivity<MainPresenter> implements ILanguageView<String>, IGetRefreshMenu {
@@ -133,6 +132,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Bind(R.id.ll_sport_menu_bottom)
     public
     LinearLayout llSportMenuBottom;
+    @Bind(R.id.sports_selected_tv)
+    TextView getTvSportSelect;
     @Bind(R.id.sport_title_tv)
     TextView sportTitleTv;
     @Bind(R.id.tv_balance)
@@ -183,7 +184,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         super.onCreate(savedInstanceState);
         initLanguage();
         setContentView(R.layout.activity_sport);
-        ButterKnife.bind(this);
         toolbar.setVisibility(View.GONE);
         edtSearchContent.addTextChangedListener(new TextWatcher() {
             @Override
@@ -389,7 +389,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }
         afbDrawerViewHolder.initDefaultFragment(localCurrentFragment);
         deleteHeadAndFoot();
-        sportTitleTv.setText(getString(R.string.sport_match) + " > " + tag);
+        sportTitleTv.setText(getString(R.string.sport_match) + " > " );
+        getTvSportSelect.setText(tag);
         afbDrawerViewHolder.switchFragment(localCurrentFragment);
         currentFragment = localCurrentFragment;
         currentTag = tag;

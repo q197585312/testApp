@@ -226,7 +226,7 @@
     <string name="login_name">登入名称</string>
     <string name="currency">货币</string>
     <string name="cash_balance">现金余额</string>
-    <string name="outstanding_txn">未结束投注</string>
+    <string name="outstanding">未结束投注</string>
     <string name="given_credit">信用额度</string>
     <string name="bet_credit">投注额度</string>
     <string name="min_bet_m">最小注碼</string>

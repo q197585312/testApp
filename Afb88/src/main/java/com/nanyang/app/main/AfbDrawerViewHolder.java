@@ -11,9 +11,11 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.load.login.LoginActivity;
 import com.nanyang.app.main.BetCenter.Bean.More;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
@@ -134,7 +136,14 @@ public class AfbDrawerViewHolder implements IDrawerView {
             public void onItemClick(View view, More item, int position) {
                 drawerLayout.closeDrawer(Gravity.RIGHT);
                 if (R.mipmap.logout == (item.getImage_left())) {
+
                     BaseYseNoChoosePopupWindow pop = new BaseYseNoChoosePopupWindow(baseToolbarActivity, drawerLayoutRightRc) {
+                        @Override
+                        protected void initView(View view) {
+                            new LanguageHelper(baseToolbarActivity).switchLanguage(AfbUtils.getLanguage(baseToolbarActivity));
+                            super.initView(view);
+                        }
+
                         @Override
                         protected void clickSure(View v) {
                             Intent intent = new Intent(context, LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);

@@ -218,7 +218,7 @@
     <string name="login_name">로그인 이름</string>
     <string name="currency">통화</string>
     <string name="cash_balance">현금 잔액</string>
-    <string name="outstanding_txn">도박은 끝이 아니다</string>
+    <string name="outstanding">도박은 끝이 아니다</string>
     <string name="given_credit">신용</string>
     <string name="bet_credit">베팅 라인</string>
     <string name="min_bet_m">최소 베팅</string>

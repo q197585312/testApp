@@ -299,7 +299,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 }*/
 //                index24 = AfbUtils.delHTMLTag(index24);
 //                index25 = AfbUtils.delHTMLTag(index25);
-                String odds = bean.getIndex3();
+
+
+
                 tvMatchAtFt.setText(bean.getIndex14());
                 String index16 = bean.getIndex16();
                 boolean isOutRight = bean.getIndex15().equals("O");
@@ -317,7 +319,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvMatchAt1.setText(HtmlTagHandler.spanFontHtml(index24));
                     tvMatchAt2.setText(HtmlTagHandler.spanFontHtml(index25));
 //                    odds = AfbUtils.delHTMLTag(odds);
-                    tvMatchAt3.setText(HtmlTagHandler.spanFontHtml(odds));
+
+                    tvMatchAt3.setText(HtmlTagHandler.spanFontHtml(bean.getIndex3()));
                     if (!TextUtils.isEmpty(index16.trim())) {
                         tvMatchAt4.setText("(" + bean.getIndex16() + ")");
                         tvMatchAt4.setVisibility(View.VISIBLE);
@@ -332,6 +335,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 }
                 tvMatchGrade.setText(bean.getIndex5() + " " + bean.getIndex20());
                 tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex9());
+
+                String odds =AfbUtils.delHTMLTag(bean.getIndex3());
                 if (odds.startsWith("-")) {
                     tvOdds.setTextColor(Color.RED);
 

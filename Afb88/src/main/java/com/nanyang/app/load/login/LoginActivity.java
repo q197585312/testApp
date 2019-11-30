@@ -47,7 +47,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import butterknife.Bind;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
 
@@ -97,8 +96,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
-
-        ButterKnife.bind(this);
         createPresenter(new LoginPresenter(this));
         tv_all_right.setText(String.format(getString(R.string.copyright_2018_afb88_all_rights_reserved), DateUtils.getCurrentDate("yyyy"),
                 BuildConfig.FLAVOR.toUpperCase() + " V" + BuildConfig.VERSION_NAME));

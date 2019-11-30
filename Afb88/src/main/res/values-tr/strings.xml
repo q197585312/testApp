@@ -226,7 +226,7 @@
     <string name="login_name">Kullanıcı adı</string>
     <string name="currency">Para birimi</string>
     <string name="cash_balance">Nakit dengesi</string>
-    <string name="outstanding_txn">Üstün Txn</string>
+    <string name="outstanding">Üstün Txn</string>
     <string name="given_credit">Verilen kredi</string>
     <string name="bet_credit">Bahis Kredisi</string>
     <string name="min_bet_m">Min Bahis</string>

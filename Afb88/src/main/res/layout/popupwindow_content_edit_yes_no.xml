@@ -53,9 +53,10 @@
             android:padding="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/Cancel"
-            android:textColor="@color/yellow_button"
-            android:textSize="15sp" />
+            android:text="@string/Back"
+            android:layout_margin="5dp"
+            android:background="@color/yellow_button"
+            android:textColor="@color/white" />
 
         <View
             android:layout_width="0.5dp"
@@ -69,9 +70,10 @@
             android:padding="5dp"
             android:layout_weight="1"
             android:gravity="center"
-            android:text="@string/sure"
-            android:textColor="@color/green_light_bg"
-            android:textSize="15sp" />
+            android:text="@string/OK"
+            android:layout_margin="5dp"
+            android:background="@color/green_light_bg"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 </LinearLayout>

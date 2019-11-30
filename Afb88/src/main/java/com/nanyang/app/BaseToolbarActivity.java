@@ -1,5 +1,6 @@
 package com.nanyang.app;
 
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
@@ -117,6 +118,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             initAgent();
         }
     }
+
     public void initLanguage() {
         String language = AfbUtils.getLanguage(this);
         if (!TextUtils.isEmpty(language)) {
@@ -157,7 +159,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                     .subscribe(new Consumer<String>() {//onNext
                                    @Override
                                    public void accept(String allData) throws Exception {
-                                       LogUtil.d("OkHttp","allData:----"+allData);
+                                       LogUtil.d("OkHttp", "allData:----" + allData);
                                        if (!allData.trim().equals("100")) {
                                            reLoginPrompt("", new SportContract.CallBack() {
                                                @Override
@@ -258,6 +260,11 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        FragmentManager fragmentManager = getFragmentManager();
+        int count = fragmentManager.getBackStackEntryCount();
+        for (int i = 0; i < count; ++i) {
+            fragmentManager.popBackStack();
+        }
         Log.d(getClass().getSimpleName(), "onDestroy: ");
     }
 

@@ -562,8 +562,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                             , additionData.getFHUOddsIsInetBet().equals("True")
                             , additionData.getHTTG_ishowFTOdds().equals("True")
                             , additionData.getHTTG_ishowFTOdds().equals("True")
-                            , additionData.getHTTG_OU()
-                            , additionData.getHTTG_OU()
+                            , changeValueF(additionData.getHTTG_OU())
+                            , changeValueF(additionData.getHTTG_OU())
                     );
 
                     addAdditionByColor(AfbUtils.changeValueS(additionData.getHHOOdds()), AfbUtils.changeValueS(additionData.getHHUOdds()), additionData.getHTTG_FHSocOddsId(), true, parent, item,
@@ -574,8 +574,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                             , additionData.getHHUOddsIsInetBet().equals("True")
                             , additionData.getHTTG_ishowFHOdds().equals("True")
                             , additionData.getHTTG_ishowFHOdds().equals("True")
-                            , additionData.getHTTG_FHOU()
-                            , additionData.getHTTG_FHOU()
+                            , changeValueF(additionData.getHTTG_FHOU())
+                            , changeValueF(additionData.getHTTG_FHOU())
                     );
                 }
                 if (!StringUtils.isNull(additionData.getATTG_CNT()) && !additionData.getATTG_CNT().equals("0")) {//zhudui
@@ -591,8 +591,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                             , additionData.getFAUOddsIsInetBet().equals("True")
                             , additionData.getATTG_ishowFTOdds().equals("True")
                             , additionData.getATTG_ishowFTOdds().equals("True")
-                            , additionData.getATTG_OU()
-                            , additionData.getATTG_OU()
+                            , changeValueF(additionData.getATTG_OU())
+                            , changeValueF(additionData.getATTG_OU())
                     );
                     addAdditionByColor(AfbUtils.changeValueS(additionData.getHAOOdds()), AfbUtils.changeValueS(additionData.getHAUOdds()), additionData.getATTG_FHSocOddsId(), true, parent, item,
                             "FH.Over ", "FH.Under ", "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
@@ -602,8 +602,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                             , additionData.getHAUOddsIsInetBet().equals("True")
                             , additionData.getATTG_ishowFHOdds().equals("True")
                             , additionData.getATTG_ishowFHOdds().equals("True")
-                            , additionData.getATTG_FHOU()
-                            , additionData.getATTG_FHOU()
+                            , changeValueF(additionData.getATTG_FHOU())
+                            , changeValueF(additionData.getATTG_FHOU())
                     );
                 }
                 /*"(00:00-15:00)"
@@ -1313,10 +1313,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         home_odds_tv.setTextColor(getValueColor(homeOdds));
         away_odds_tv.setTextColor(getValueColor(awayOdds));
 
-        setTextValue(over_tv, ou);
+        setTextValue(over_tv, changeValueF(ou));
         setTextValue(under_tv, "");
 
-        setTextValue(home_tv, hdp);
+        setTextValue(home_tv, changeValueF(hdp));
         setTextValue(away_tv, "");
 
         setTextValueClick(over_odds_tv, overOdds, "over", oid, item, isHalf, "", false, hasBetOver, isShowBetOu);

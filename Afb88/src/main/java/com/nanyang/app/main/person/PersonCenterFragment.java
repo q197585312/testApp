@@ -63,11 +63,11 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
         PersonalInfo person = aty.getApp().getUser();
         SettingAllDataBean data = aty.getApp().getSettingAllDataBean();
 
-        PersonCenter pc = new PersonCenter(getString(R.string.login_name), person.getLoginName());
+        PersonCenter pc = new PersonCenter(getString(R.string.home_user_name), person.getLoginName());
         PersonCenter pc8 = new PersonCenter(getString(R.string.nike_name), data == null ? "" : data.getNickNameshow());
         PersonCenter pc1 = new PersonCenter(getString(R.string.currency), person.getCurCode2());
         PersonCenter pc2 = new PersonCenter(getString(R.string.cash_balance), AfbUtils.addComma(person.getBalances(), edt_text));
-        PersonCenter pc3 = new PersonCenter(getString(R.string.outstanding_txn), AfbUtils.addComma(person.getEtotalstanding(), edt_text));
+        PersonCenter pc3 = new PersonCenter(getString(R.string.outstanding), AfbUtils.addComma(person.getEtotalstanding(), edt_text));
         PersonCenter pc4 = new PersonCenter(getString(R.string.min_bet_m), person.getMinLimit());
         PersonCenter pc5 = new PersonCenter(getString(R.string.bet_credit), AfbUtils.addComma(person.getCredit2(), edt_text));
         PersonCenter pc6 = new PersonCenter(getString(R.string.given_credit), AfbUtils.addComma(person.getTotalCredit(), edt_text));

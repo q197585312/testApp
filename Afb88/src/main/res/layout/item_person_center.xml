@@ -25,6 +25,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
                 android:layout_weight="1"
+                android:textAllCaps="true"
                 android:gravity="left|center_vertical"
                 android:text="User Name"
                 android:textColor="@color/black"

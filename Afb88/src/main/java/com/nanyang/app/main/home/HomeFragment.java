@@ -229,8 +229,8 @@ public class HomeFragment extends BaseSwitchFragment {
     Runnable timeUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            String currentTime = "HK: " + TimeUtils.getTime("dd MM yyyy hh:mm:ss aa z", Locale.ENGLISH);
-            ((BaseToolbarActivity) getBaseActivity()).tvTime.setText(currentTime);
+            String currentTime = "HK: " + TimeUtils.getTime("dd MMM yyyy hh:mm:ss aa", Locale.ENGLISH);
+            ((BaseToolbarActivity) getBaseActivity()).tvTime.setText(currentTime+" GMT+8");
             updateHandler.postDelayed(this, 1000);
         }
     };

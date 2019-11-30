@@ -29,6 +29,7 @@ import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
 import com.nanyang.app.main.home.sport.dialog.WebPop;
+import com.nanyang.app.main.home.sport.live.LiveWebActivity;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorEarlyState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorRunningState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorTodayState;
@@ -165,6 +166,28 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             v = view;
         }
 
+//        showWebLivePop(position, item, view, v);
+        showWebLiveActivity(item);
+
+    }
+
+    private void showWebLiveActivity( IRTMatchInfo item) {
+        String lag = AfbUtils.getLanguage(mContext);
+        String l = "eng";
+        if (lag.equals("zh")) {
+            l = "en";
+        } else {
+            l = "en";
+        }
+
+        String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+        Log.d(TAG, "onWebShow: " + gameUrl);
+        Bundle bundle=new Bundle();
+        bundle.putString(AppConstant.KEY_DATA,gameUrl);
+        getBaseActivity().skipAct(LiveWebActivity.class,bundle);
+    }
+
+    private void showWebLivePop(int position, IRTMatchInfo item, View view, View v) {
         showLoadingDialog();
         int heightPixels = DeviceUtils.getScreenPix(mContext).heightPixels;
         int[] location = new int[2];
@@ -223,7 +246,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 hideLoadingDialog();
             }
         }, 5000);
-
     }
 
     public void checkMajor(TextView tx) {

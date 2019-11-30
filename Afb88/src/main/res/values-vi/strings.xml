@@ -222,7 +222,7 @@
     <string name="login_name">Tên đăng nhập</string>
     <string name="currency">Tiền tệ</string>
     <string name="cash_balance">Số dư tiền mặt</string>
-    <string name="outstanding_txn">Txn nổi bật</string>
+    <string name="outstanding">Txn nổi bật</string>
     <string name="given_credit">Tín dụng</string>
     <string name="bet_credit">Tín dụng cược</string>
     <string name="min_bet_m">Min Bet</string>
