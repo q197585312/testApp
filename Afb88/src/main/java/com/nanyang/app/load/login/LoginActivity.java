@@ -1,6 +1,5 @@
 package com.nanyang.app.load.login;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
@@ -284,40 +283,6 @@ public class LoginActivity extends BaseActivity<LoginPresenter> implements Login
                 SkinManager.getInstance().loadSkin("skinbluepackage.skin",null);
                 break;
         }
-
-             /*   if() {
-                    SkinManager.getInstance().loadSkin("theme_style.skin",
-                            new SkinLoaderListener() {
-                                @Override
-                                public void onStart() {
-
-                                    showLoadingDialog();
-                                }
-
-                                @Override
-                                public void onSuccess() {
-
-                                    hideLoadingDialog();
-                                }
-
-                                @Override
-                                public void onFailed(String errMsg) {
-
-                                    hideLoadingDialog();
-                                }
-
-                                @Override
-                                public void onProgress(int progress) {
-
-
-                                }
-                            }
-
-                    );
-                }else{
-
-                }*/
-
 
     }
 }
