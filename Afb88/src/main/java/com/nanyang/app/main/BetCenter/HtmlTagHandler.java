@@ -101,16 +101,20 @@ public class HtmlTagHandler implements Html.TagHandler {
         String font = span.replaceAll("span", "font")
                 .replaceAll("<font>", "</font>")
                 .replaceAll("class", "color")
+                .replaceAll("style='color:", "color='")
+
+                .replaceAll("color='red'", "color='#ff0000'")
+                .replaceAll("color='blue'", "color='#0000ff'")
+                .replaceAll("color='black'", "color'#000000'")
                 .replaceAll("MM_red", "#ff0000")
-                .replaceAll("red", "#ff0000")
                 .replaceAll("Negative", "#ff0000")
                 .replaceAll("MM_blue", "#0000ff")
-                .replaceAll("blue", "#0000ff")
-                .replaceAll("style='color:", "color='")
+
                 .replaceAll("gbGive", "#ee2c2c")
                 .replaceAll("gbTake2", "'#0000ff'")
                 .replaceAll("MM_black", "#000000")
-                .replaceAll("black", "#000000");
+                ;
+
         LogUtil.d("font", "font:" + font + ",span:" + span);
         return font;
     }

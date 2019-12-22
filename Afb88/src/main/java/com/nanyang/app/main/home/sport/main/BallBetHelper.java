@@ -73,7 +73,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
 
             saveCurrentBet(oddsUrlBean);
             betOddsUrl = ((AfbApplication) AfbApplication.getInstance()).getRefreshMixOddsUrl();
-            if (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1 || ((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() > 9) {
+            if (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1 || ((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() > 14) {
                 return getDisposable(v, isHf, betOddsUrl);
             }
         }

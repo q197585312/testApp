@@ -9,7 +9,7 @@ public class MuayThaiFragment extends BaseSportFragment {
 
     @Override
     protected String getBallDbid() {
-        return "";
+        return "35";
     }
 
     @Override

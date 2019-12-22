@@ -174,7 +174,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         tvChoiceType.setText(oddsType.getText());
                         break;
                     case 5:
-                        tvChoiceType.setText(quickAmount);
+//                        tvChoiceType.setText(quickAmount);
                         break;
                     case 7:
                         int sort = ((BaseToolbarActivity) getBaseActivity()).getApp().getSort();
@@ -251,7 +251,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                                 quickAmount = getChooseMessage().getText().toString().trim();
                                 ((BaseToolbarActivity) getBaseActivity()).getApp().setQuickAmount(quickAmount);
 
-                                tv.setText(quickAmount);
+//                                tv.setText(quickAmount);
                             }
 
                             @Override
@@ -259,7 +259,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                                 return R.layout.popupwindow_content_edit_yes_no;
                             }
                         };
-                        baseYseNoChoosePopupWindow.getChooseMessage().setText(tv.getText());
+                        baseYseNoChoosePopupWindow.getChooseMessage().setText(quickAmount);
                         ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreated(baseYseNoChoosePopupWindow, Gravity.CENTER);
                         break;
                     case 6:
@@ -349,7 +349,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         SettingInfoBean infoBean3 = new SettingInfoBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), helper.getLanguageItem().getText(), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), AfbUtils.getOddsTypeByType(mContext, data.getAccType(),((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode()).getText(), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean5 = new SettingInfoBean("2", getBaseActivity().getString(R.string.better_odds), "1", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean6 = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_bet_amount), data.getAccamount() + "", 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean6 = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_bet_amount), getString(R.string.customise), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean7 = new SettingInfoBean("2", getBaseActivity().getString(R.string.auto_refresh), "1", 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean8 = new SettingInfoBean("1", getBaseActivity().getString(R.string.default_sort), data.getAccDefaultSorting()/*((BaseToolbarActivity) getBaseActivity()).getApp().getSort()*/ + "", 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean9 = new SettingInfoBean("1", getBaseActivity().getString(R.string.market_type), data.getAccMarketType(), 0, 0, 0, 0, 0, 0);
