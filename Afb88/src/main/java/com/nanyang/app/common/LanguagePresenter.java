@@ -64,7 +64,7 @@ public class LanguagePresenter extends BaseRetrofitPresenter<String, ILanguageVi
         Disposable subscription;
         if (StringUtils.isNull(balance) || Float.valueOf(balance) == 0f) {
             consumer = responseGd88Consumer;
-            subscription = getService(ApiService.class).getResponse(AppConstant.getInstance().HOST + "_View/LiveDealerGDC.aspx?gt=gd")
+            subscription = getService(ApiService.class).getResponse(AppConstant.getInstance().HOST + "_View/LiveDealerGDC.aspx?")
 
 
                     .subscribeOn(Schedulers.io())

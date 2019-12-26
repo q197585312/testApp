@@ -41,12 +41,12 @@ android {
         afb88 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb88"]
             applicationId 'com.nanyang.app'
-            versionName '1.89'
+            versionName '1.90'
         }
         i1bet88 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet88"]
             applicationId 'com.nanyang.app_i1bet88'
-            versionName '1.13'
+            versionName '1.90'
         }
         ap889 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ap889"]
