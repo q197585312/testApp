@@ -196,11 +196,18 @@
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
+
+        </com.nanyang.app.Utils.FlowLayout>
+
+        <LinearLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
             <TextView
                 android:id="@+id/running_OldStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/yellow_button"
                 android:paddingLeft="4dp"
                 android:paddingRight="4dp"
                 android:text="W"
@@ -212,17 +219,10 @@
                 android:id="@+id/running_split"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="/"
+                android:text="->"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:textStyle="bold" />
-        </com.nanyang.app.Utils.FlowLayout>
-
-        <LinearLayout
-            android:padding="5dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/running_Status"

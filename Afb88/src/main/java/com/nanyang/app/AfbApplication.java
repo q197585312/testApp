@@ -269,7 +269,7 @@ public class AfbApplication extends BaseApplication {
 
             }
         }
-        if (mixBetList.size() > 9) {
+        if (mixBetList.size() > 14) {
             ToastUtils.showShort(R.string.can_not_more_than_10);
             return false;
         } else {
