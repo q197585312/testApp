@@ -154,7 +154,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
                     pop.getChooseMessage().setText(baseToolbarActivity.getString(R.string.login_out));
                     pop.getChooseSureTv().setText(baseToolbarActivity.getString(R.string.sure));
                     pop.getChooseCancelTv().setText(baseToolbarActivity.getString(R.string.Cancel));
-                    baseToolbarActivity.onPopupWindowCreated(pop, Gravity.CENTER);
+                    baseToolbarActivity.onPopupWindowCreatedAndShow(pop, Gravity.CENTER);
                 } else {
                     BaseSwitchFragment fragment = item.getFragment();
                     if (fragment != null) {

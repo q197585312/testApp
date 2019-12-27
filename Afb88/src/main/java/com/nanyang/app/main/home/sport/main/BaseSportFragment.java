@@ -8,6 +8,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,8 +29,7 @@ import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
-import com.nanyang.app.main.home.sport.dialog.WebPop;
-import com.nanyang.app.main.home.sport.live.LiveWebActivity;
+import com.nanyang.app.main.home.sport.live.LiveWebPop;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorEarlyState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorRunningState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorTodayState;
@@ -49,7 +49,6 @@ import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
-import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
  * Created by Administrator on 2017/3/13.
@@ -114,7 +113,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         super.onHiddenChanged(hidden);
         if (hidden) {// 不在最前端界面显示
 //            presenter.getStateHelper().stopUpdateData();
-            presenter.getStateHelper().setIsHide(true,additionPresenter);
+            presenter.getStateHelper().setIsHide(true, additionPresenter);
         } else {// 重新显示到最前端中
             showContent();
             rememberLastOdds();
@@ -167,29 +166,18 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }
 
 //        showWebLivePop(position, item, view, v);
-        showWebLiveActivity(item);
+        clickLivePop(v, (BallInfo) item, position);
+
 
     }
 
-    private void showWebLiveActivity( IRTMatchInfo item) {
-        String lag = AfbUtils.getLanguage(mContext);
-        String l = "eng";
-        if (lag.equals("zh")) {
-            l = "en";
-        } else {
-            l = "en";
-        }
+    LiveWebPop LiveWebPop;
 
-        String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
-        Log.d(TAG, "onWebShow: " + gameUrl);
-        Bundle bundle=new Bundle();
-        bundle.putString(AppConstant.KEY_DATA,gameUrl);
-        getBaseActivity().skipAct(LiveWebActivity.class,bundle);
-    }
+
 
     private void showWebLivePop(int position, IRTMatchInfo item, View view, View v) {
         showLoadingDialog();
-        int heightPixels = DeviceUtils.getScreenPix(mContext).heightPixels;
+     /*   int heightPixels = DeviceUtils.getScreenPix(mContext).heightPixels;
         int[] location = new int[2];
 
         v.getLocationOnScreen(location);
@@ -239,7 +227,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
             int y = 0;
             pop.showPopupAtLocation(x, y);
-        }
+        }*/
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -552,7 +540,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
-        ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).onPopupWindowCreated(pop, center);
+        ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).onPopupWindowCreatedAndShow(pop, center);
     }
 
     public void switchParentType(MenuItemInfo stateType) {
@@ -573,6 +561,41 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void clickItemAdd(View v, SportInfo item, int position) {
+        String dbid = getSportDbid();
+
+        if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+            Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
+            additionPresenter.addition((BallInfo) item, dbid);
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
+            adapterHelper.changeAdded((BallInfo) item);
+        }
+    }
+
+
+    public void clickLivePop(View v, BallInfo item, int position) {
+        String lag = AfbUtils.getLanguage(mContext);
+        String l = "eng";
+        if (lag.equals("zh")) {
+            l = "en";
+        } else {
+            l = "en";
+        }
+        String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+        Log.d(TAG, "onWebShow: " + gameUrl);
+        if (LiveWebPop == null)
+            LiveWebPop = new LiveWebPop(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        LiveWebPop.setUrl(gameUrl);
+        getBaseActivity().onPopupWindowCreatedAndShow(LiveWebPop, Gravity.CENTER);
+
+        String dbid = getSportDbid();
+        if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+            Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
+            additionPresenter.addition((BallInfo) item, dbid);
+            additionPresenter.setIsLiveOpen(true);
+        }
+    }
+
+    private String getSportDbid() {
         IBetHelper betHelper = presenter.getStateHelper().getBetHelper();
         String dbid = "1";
         if (betHelper instanceof BallBetHelper) {
@@ -581,19 +604,18 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             if (sportIdBean != null)
                 dbid = sportIdBean.getDbid();
         }
-
-        if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
-            Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
-            additionPresenter.addition((BallInfo) item, dbid);
-            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
-            adapterHelper.changeAddition((BallInfo) item);
-        }
+        return dbid;
     }
 
     public void onAddition(AddMBean data, BallInfo item) {
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
-            adapterHelper.notifyPositionAddition(data, item);
+            if (LiveWebPop != null && additionPresenter.isLiveOpen) {
+                adapterHelper.closeAllAdded();
+                LiveWebPop.setAdditionData(data,adapterHelper,item);
+            } else {
+                adapterHelper.notifyPositionAdded(data, item);
+            }
         }
     }
 

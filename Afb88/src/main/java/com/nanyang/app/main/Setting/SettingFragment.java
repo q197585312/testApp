@@ -260,7 +260,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                             }
                         };
                         baseYseNoChoosePopupWindow.getChooseMessage().setText(quickAmount);
-                        ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreated(baseYseNoChoosePopupWindow, Gravity.CENTER);
+                        ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreatedAndShow(baseYseNoChoosePopupWindow, Gravity.CENTER);
                         break;
                     case 6:
                         if (cbChoice.isChecked()) {

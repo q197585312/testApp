@@ -293,7 +293,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         return (AfbApplication) getApplication();
     }
 
-    public void onPopupWindowCreated(BasePopupWindow pop, int center) {
+    public void onPopupWindowCreatedAndShow(BasePopupWindow pop, int center) {
         createPopupWindow(pop);
         if (center == -2) {
             popWindow.showPopupDownWindow();
@@ -301,7 +301,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             popWindow.showPopupGravityWindow(center, 0, 0);
     }
 
-    public void onPopupWindowCreated(BasePopupWindow pop, int center, int x, int y) {
+    public void onPopupWindowCreatedAndShow(BasePopupWindow pop, int center, int x, int y) {
         createPopupWindow(pop);
         popWindow.showPopupGravityWindow(center, x, y);
     }
@@ -349,7 +349,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         pop.getChooseMessage().setText(msg);
         pop.getChooseSureTv().setText(getString(R.string.sure));
         pop.getChooseCancelTv().setText(getString(R.string.Cancel));
-        onPopupWindowCreated(pop, Gravity.CENTER);
+        onPopupWindowCreatedAndShow(pop, Gravity.CENTER);
     }
 
     protected void gameMenus(View v) {

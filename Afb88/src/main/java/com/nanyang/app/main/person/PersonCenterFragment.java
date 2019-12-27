@@ -179,7 +179,7 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
                         }
                     };
                     baseYseNoChoosePopupWindow.getChooseMessage().setText(person_value.getText());
-                    ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreated(baseYseNoChoosePopupWindow, Gravity.CENTER);
+                    ((BaseToolbarActivity) getBaseActivity()).onPopupWindowCreatedAndShow(baseYseNoChoosePopupWindow, Gravity.CENTER);
                 }
 
             }
