@@ -43,4 +43,7 @@ dependencies {
     compile 'com.github.zhaokaiqiang.klog:library:1.5.0'
     compile 'com.koushikdutta.async:androidasync:2.+'
     compile 'org.greenrobot:eventbus:3.0.0'
+
+    compile 'tv.danmaku.ijk.media:ijkplayer-java:0.8.8'
+    compile 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.8'
 }

@@ -23,7 +23,6 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
     private BallInfo bean;
 
     private String dbid;
-    public boolean isLiveOpen;
 
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
     public AdditionPresenter(BaseSportFragment view) {
@@ -68,9 +67,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
 
     Runnable dataUpdateRunnable;
 
-    public void setIsLiveOpen(boolean b) {
-        this.isLiveOpen=b;
-    }
+
 
     public class DataRunnable implements Runnable {
 

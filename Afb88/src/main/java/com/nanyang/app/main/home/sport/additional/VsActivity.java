@@ -29,6 +29,7 @@ import com.nanyang.app.main.home.sport.superCombo.SuperComboBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -530,6 +531,11 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         baseVsFragment.getAdapter().notifyDataSetChanged();
         getApp().setBetAfbList(bean);
         onBetEnd();
+
+    }
+
+    @Override
+    public void onPopupWindowCreated(BasePopupWindow pop, int center) {
 
     }
 

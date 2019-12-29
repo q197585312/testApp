@@ -430,4 +430,6 @@
     <string name="All_Market" >@string/All_Markets</string>
     <string name="single_bet" >โน้ตตัวเดียว</string>
     <string name="can_not_more_than_10">Mix parlay can not more than 15</string>
+    <string name="live_stream">live stream</string>
+    <string name="live_center">live center</string>
 </resources>

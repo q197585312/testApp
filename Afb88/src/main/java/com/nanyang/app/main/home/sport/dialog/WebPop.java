@@ -21,7 +21,7 @@ public class WebPop extends BasePopupWindow {
         return webView;
     }
 
-    private WebView webView;
+    protected WebView webView;
 
     public WebPop(Context context, View v) {
         this(context, v, DeviceUtils.dip2px(context, 360), DeviceUtils.dip2px(context, 370));

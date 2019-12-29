@@ -51,6 +51,34 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     private String showGoal;
     private String isHomeGoal;
 
+    public String getMainModuleId() {
+        return MainModuleId;
+    }
+
+    public void setMainModuleId(String mainModuleId) {
+        MainModuleId = mainModuleId;
+    }
+
+    public String getMainHomeId() {
+        return MainHomeId;
+    }
+
+    public void setMainHomeId(String mainHomeId) {
+        MainHomeId = mainHomeId;
+    }
+
+    public String getMainAwayId() {
+        return MainAwayId;
+    }
+
+    public void setMainAwayId(String mainAwayId) {
+        MainAwayId = mainAwayId;
+    }
+
+    String MainModuleId;
+    String MainHomeId;
+    String MainAwayId;
+
     public int isFt1Bigger() {
         return isFt1Bigger;
     }
@@ -1073,6 +1101,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     public void setIsHomeGoal(String isHomeGoal) {
         this.isHomeGoal = isHomeGoal;
     }
+
     String RunHomeScore_FH;
     String RunAwayScore_FH;
 

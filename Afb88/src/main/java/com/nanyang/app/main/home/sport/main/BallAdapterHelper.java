@@ -46,6 +46,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     private AddMBean additionData;
 
     private BallInfo additionBallItem;
+    public boolean isLiveOpen;
+
+    public void setIsLiveOpen(boolean b) {
+        this.isLiveOpen = b;
+    }
 
     public Set<ScrollLayout> getSlFollowers() {
         return slFollowers;
@@ -87,7 +92,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
 
         if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
-            createAddedData(item, parent,additionData);
+            createAddedData(item, parent, additionData);
         } else {
             parent.setVisibility(View.GONE);
 
@@ -286,9 +291,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     }
 
-    public void createAddedData(I item, LinearLayout parent,AddMBean additionData) {
+    public void createAddedData(I item, LinearLayout parent, AddMBean additionData) {
 
-        LogUtil.d("additionMap", "--------------additionBallItem:" + additionBallItem.toString());
+        LogUtil.d("additionMap", "--------------additionBallItem:" + item);
 
         parent.removeAllViews();
         View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
@@ -1996,7 +2001,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public void closeAllAdded() {
         additionMap.put(true, "");
-
     }
 
 

@@ -8,7 +8,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -172,7 +171,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     LiveWebPop LiveWebPop;
-
 
 
     private void showWebLivePop(int position, IRTMatchInfo item, View view, View v) {
@@ -568,6 +566,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             additionPresenter.addition((BallInfo) item, dbid);
             BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.changeAdded((BallInfo) item);
+            adapterHelper.setIsLiveOpen(false);
         }
     }
 
@@ -585,13 +584,14 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         if (LiveWebPop == null)
             LiveWebPop = new LiveWebPop(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
         LiveWebPop.setUrl(gameUrl);
-        getBaseActivity().onPopupWindowCreatedAndShow(LiveWebPop, Gravity.CENTER);
-
+        LiveWebPop.showPopupCenterWindow();
+        LiveWebPop.setLivePlayUrl(gameUrl);
         String dbid = getSportDbid();
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
-            additionPresenter.addition((BallInfo) item, dbid);
-            additionPresenter.setIsLiveOpen(true);
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
+            adapterHelper.setIsLiveOpen(true);
+            additionPresenter.addition( item, dbid);
         }
     }
 
@@ -610,9 +610,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onAddition(AddMBean data, BallInfo item) {
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
-            if (LiveWebPop != null && additionPresenter.isLiveOpen) {
+
+            if (LiveWebPop != null && adapterHelper.isLiveOpen) {
                 adapterHelper.closeAllAdded();
-                LiveWebPop.setAdditionData(data,adapterHelper,item);
+                LiveWebPop.setAdditionData(data, adapterHelper, item);
             } else {
                 adapterHelper.notifyPositionAdded(data, item);
             }
