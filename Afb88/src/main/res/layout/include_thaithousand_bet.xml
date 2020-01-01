@@ -11,10 +11,10 @@
         android:id="@+id/item_bet1"
         android:layout_width="0dp"
         android:layout_height="25dp"
-        android:focusable="true"
         android:layout_gravity="center"
         android:layout_weight="1"
         android:background="@drawable/rectangle_edt_white"
+        android:focusable="true"
         android:inputType="number"
         android:textColor="@color/green_thai_thousand_wrol"
         android:textSize="12sp" />

@@ -25,6 +25,11 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     String hasOU_FH;
     String isHdpNew_FH;
     String isOUNew_FH;
+
+    public String getTvPathIBC() {
+        return tvPathIBC;
+    }
+
     String tvPathIBC;
     List<BallInfo> repeatRow;
     public boolean isHomeScoreBigger;

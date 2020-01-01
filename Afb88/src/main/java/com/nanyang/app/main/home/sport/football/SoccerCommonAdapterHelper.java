@@ -6,6 +6,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -62,7 +63,8 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
         View llLeft2 = helper.getView(R.id.module_match_left2_ll);
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         String rtsMatchId = item.getRTSMatchId();
-        if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
+        String tvIBC = item.getTvPathIBC();
+        if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0") || (!StringUtils.isNull(tvIBC) && !tvIBC.equals("0"))) {
             ivHall.setVisibility(View.VISIBLE);
             ivHall.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -70,6 +72,10 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
                     back.clickView(v, item, position);
                 }
             });
+            ivHall.setImageResource(R.mipmap.soccer_hall);
+            if ((!StringUtils.isNull(tvIBC) && !tvIBC.equals("0"))) {
+                ivHall.setImageResource(R.mipmap.tv_play);
+            }
         } else {
             ivHall.setVisibility(View.INVISIBLE);
         }

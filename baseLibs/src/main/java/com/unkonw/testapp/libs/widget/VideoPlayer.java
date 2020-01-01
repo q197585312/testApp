@@ -166,7 +166,6 @@ public class VideoPlayer extends FrameLayout {
         setListener(mMediaPlayer);
         mMediaPlayer.setDisplay(mSurfaceView.getHolder());
         mMediaPlayer.setDataSource(mContext, Uri.parse(mPath),mHeader);
-
         mMediaPlayer.prepareAsync();
     }
 
@@ -240,7 +239,6 @@ public class VideoPlayer extends FrameLayout {
         return false;
     }
 
-    //------------------  各种listener 赋值 ---------------------//
 
     private IMediaPlayer.OnPreparedListener mPreparedListener = new IMediaPlayer.OnPreparedListener(){
 

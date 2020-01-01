@@ -133,11 +133,15 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             updateMixOrderCount();
         }
         isFirstIn = false;
+        if(liveWebPop!=null){
+            liveWebPop.onResume();
+        }
         showContent();
 
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
 
     }
+
 
 
     @Override
@@ -147,14 +151,17 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         presenter.getStateHelper().setIsHide(true, additionPresenter);
         Log.d(TAG, "onPause: " + getClass().getSimpleName());
         tvNoGames.setVisibility(View.GONE);
+        if(liveWebPop!=null){
+            liveWebPop.onPause();
+        }
     }
 
     @Override
     public void onStop() {
         super.onStop();
-
         Log.d(TAG, "onStop: " + getClass().getSimpleName());
     }
+
 
 
     @Override
@@ -170,7 +177,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     }
 
-    LiveWebPop LiveWebPop;
+    LiveWebPop liveWebPop;
 
 
     private void showWebLivePop(int position, IRTMatchInfo item, View view, View v) {
@@ -452,6 +459,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onDestroyView() {
         super.onDestroyView();
 //        presenter.getStateHelper().stopUpdateData();
+        if(liveWebPop!=null){
+            liveWebPop.onStop();
+        }
         ButterKnife.unbind(this);
         isInit = false;
     }
@@ -581,11 +591,12 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }
         String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
         Log.d(TAG, "onWebShow: " + gameUrl);
-        if (LiveWebPop == null)
-            LiveWebPop = new LiveWebPop(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        LiveWebPop.setUrl(gameUrl);
-        LiveWebPop.showPopupCenterWindow();
-        LiveWebPop.setLivePlayUrl(gameUrl);
+        if (liveWebPop == null)
+            liveWebPop = new LiveWebPop(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+        liveWebPop.setUrl(gameUrl);
+        liveWebPop.showPopupCenterWindow();
+        liveWebPop.setLivePlayUrl(item.getTvPathIBC());
+
         String dbid = getSportDbid();
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
@@ -611,9 +622,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
 
-            if (LiveWebPop != null && adapterHelper.isLiveOpen) {
+            if (liveWebPop != null && adapterHelper.isLiveOpen) {
                 adapterHelper.closeAllAdded();
-                LiveWebPop.setAdditionData(data, adapterHelper, item);
+                liveWebPop.setAdditionData(data, adapterHelper, item);
             } else {
                 adapterHelper.notifyPositionAdded(data, item);
             }
