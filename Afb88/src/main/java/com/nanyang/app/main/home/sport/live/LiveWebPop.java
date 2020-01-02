@@ -241,6 +241,12 @@ public class LiveWebPop extends WebPop {
             return;
         } else {
             path = "rtmp://pull.afb1188.com/live/" + livePlayUrl;
+            if(livePlayUrl.startsWith("1")){
+                path = "rtmp://27.124.35.15:8080/live/" + livePlayUrl;
+            }else if(livePlayUrl.startsWith("9")){
+                path = "rtmp://27.124.13.234:8080/live/" + livePlayUrl;
+            }
+
             visibleLive(tv_title_live_stream, videoPlayer, true);
         }
         videoPlayer.setPath(path);

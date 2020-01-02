@@ -186,13 +186,13 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         int[] location = new int[2];
 
         v.getLocationOnScreen(location);
-        WebPop pop;
+        WebPop betPop;
         if (location[1] < heightPixels / 2) {
             int popWidth = DeviceUtils.dip2px(mContext, 350);
             int popHeight = heightPixels - location[1] - v.getHeight();
-            pop = new WebPop(mContext, v, popWidth, popHeight);
-            pop.getWebView().setWebViewClient(new DigWebViewClient());
-            pop.setTrans(1);
+            betPop = new WebPop(mContext, v, popWidth, popHeight);
+            betPop.getWebView().setWebViewClient(new DigWebViewClient());
+            betPop.setTrans(1);
             String lag = AfbUtils.getLanguage(mContext);
             String l = "eng";
             if (lag.equals("zh")) {
@@ -203,10 +203,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
             Log.d(TAG, "onWebShow: " + gameUrl);
-            pop.setUrl(gameUrl);
+            betPop.setUrl(gameUrl);
             int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
             int y = location[1] + v.getHeight();
-            pop.showPopupAtLocation(x, y);
+            betPop.showPopupAtLocation(x, y);
 
         } else {
             v = rvContent.getChildAt(position);
@@ -216,9 +216,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             v.getLocationOnScreen(location);
             int popWidth = DeviceUtils.dip2px(mContext, 350);
             int popHeight = location[1];
-            pop = new WebPop(mContext, v, popWidth, popHeight);
-            pop.getWebView().setWebViewClient(new DigWebViewClient());
-            pop.setTrans(1);
+            betPop = new WebPop(mContext, v, popWidth, popHeight);
+            betPop.getWebView().setWebViewClient(new DigWebViewClient());
+            betPop.setTrans(1);
             String lag = AfbUtils.getLanguage(mContext);
             String l = "eng";
             if (lag.equals("zh")) {
@@ -228,10 +228,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             }
 
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
-            pop.setUrl(gameUrl);
+            betPop.setUrl(gameUrl);
             int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
             int y = 0;
-            pop.showPopupAtLocation(x, y);
+            betPop.showPopupAtLocation(x, y);
         }*/
         new Handler().postDelayed(new Runnable() {
             @Override

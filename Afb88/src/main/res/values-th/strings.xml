@@ -251,7 +251,7 @@
     <string name="Baseball">เบสบอล </string>
     <string name="IceHockey">ฮอกกี้น้ำแข็ง </string>
     <string name="Europe_View">ยุโรป </string>
-    <string name="FT15MINSHANDICAP_OVER_UNDER">FT 15 MINS HANDICAP &amp; OVER/UNDER</string>
+    <string name="FT15MINSHANDICAP_OVER_UNDER">FT 15 MINS HDP &amp; O/U</string>
     <string name="HOME_TEAM_TOTAL_GOALS">HOME TEAM TOTAL GOALS</string>
     <string name="AWAY_TEAM_TOTAL_GOALS">AWAY TEAM TOTAL GOALS</string>
     <string name="amount_">จำนวน: </string>

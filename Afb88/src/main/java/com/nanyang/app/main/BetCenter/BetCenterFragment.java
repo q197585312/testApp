@@ -2,7 +2,6 @@ package com.nanyang.app.main.BetCenter;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -66,7 +65,6 @@ public class BetCenterFragment extends BaseMoreFragment {
         String result = rbGrade.getText().toString().toUpperCase();
         rbStatement.setText(statement);
         rbGrade.setText(result);
-        setBackTitle(getString(R.string.TabMyBets));
         baseFragmentList = Arrays.asList(unsettledFragment, statementNewFragment, gradeFragment);
         rgBetCenter.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override

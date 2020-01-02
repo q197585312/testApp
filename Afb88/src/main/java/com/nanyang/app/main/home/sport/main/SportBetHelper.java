@@ -150,6 +150,8 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         String[] split = allData.split("\\|");
                         if (split.length >= 5) {
                             baseView.onBetSuccess(allData);
+                            if(betPop!=null)
+                                betPop.clearSingleHashMap();
                             updateFirstStake();
                         } else {
                             baseView.onFailed(allData);
@@ -181,16 +183,16 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         return subscription;
     }
 
-    BetPop pop;
+    BetPop betPop;
 
     protected void createBetPop(List<AfbClickBetBean> bean, View v) {
-        if (pop == null) {
-            pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
+        if (betPop == null) {
+            betPop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
         }
-        pop.setBetData(bean, this);
-        pop.setIsRunning(false);
-        if (!pop.isShowing()) {
-            baseView.onPopupWindowCreated(pop, Gravity.CENTER);
+        betPop.setBetData(bean, this);
+        betPop.setIsRunning(false);
+        if (!betPop.isShowing()) {
+            baseView.onPopupWindowCreated(betPop, Gravity.CENTER);
         }
     }
 
