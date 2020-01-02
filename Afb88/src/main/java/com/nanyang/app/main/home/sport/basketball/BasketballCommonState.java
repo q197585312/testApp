@@ -73,6 +73,9 @@ public abstract class BasketballCommonState extends BallState {
                     case R.id.module_right_mark_tv:
                         clickAdd(v, item, position);
                         break;
+                    case R.id.iv_hall_btn:
+                        clickHallBtn(v, item, position);
+                        break;
                 }
 
             }

@@ -67,6 +67,8 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
 
     Runnable dataUpdateRunnable;
 
+
+
     public class DataRunnable implements Runnable {
 
 

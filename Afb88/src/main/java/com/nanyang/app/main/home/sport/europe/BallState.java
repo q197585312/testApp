@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.europe;
 
 import android.graphics.Color;
+import android.view.View;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
@@ -140,5 +141,9 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 }
             }
         }
+    }
+
+    protected void clickHallBtn(View v, BallInfo item, int position) {
+
     }
 }

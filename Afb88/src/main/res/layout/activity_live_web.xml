@@ -4,8 +4,7 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:orientation="vertical">
-    <include layout="@layout/toolbar_layout"
-        android:visibility="gone"/>
+
     <LinearLayout
         android:id="@+id/ll_back"
         android:layout_width="match_parent"
@@ -22,29 +21,80 @@
             android:background="@mipmap/arrow_white_back" />
 
         <TextView
-            android:id="@+id/tv_title_match"
+            android:id="@+id/tv_title_live_stream"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginLeft="8dp"
-            android:layout_weight="3"
-            android:gravity="center_vertical"
-            android:padding="8dp"
-            android:text="Instant video"
+            android:layout_marginLeft="30dp"
+            android:layout_weight="1"
+            android:drawableBottom="@drawable/line_yellow"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:padding="5dp"
+            android:text="@string/live_stream"
+            android:textAllCaps="true"
             android:textColor="@color/white"
-            android:textSize="13sp"
             android:textStyle="bold" />
-        <ImageView
-            android:id="@+id/iv_live_play"
-            android:layout_marginRight="10dp"
-            android:src="@mipmap/live_play_white"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/tv_title_live_center"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginRight="30dp"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:gravity="center"
+            android:drawableBottom="@drawable/line_trans"
+            android:padding="5dp"
+            android:text="@string/live_center"
+
+            android:textAllCaps="true"
+            android:textColor="@color/white"
+            android:textStyle="bold" />
     </LinearLayout>
 
-    <WebView
-        android:id="@+id/web_wv"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="170dp" />
+        android:layout_height="200dp">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="NO DATA" />
+        <WebView
+            android:id="@+id/web_wv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone" />
+
+
+
+        <com.unkonw.testapp.libs.widget.VideoPlayer
+            android:id="@+id/video_player_stream"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
+
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_title_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green_light_title" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/common_ball_parent_ll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" />
+
+    </ScrollView>
 
 </LinearLayout>

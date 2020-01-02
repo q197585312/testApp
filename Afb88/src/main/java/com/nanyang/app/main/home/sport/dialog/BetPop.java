@@ -266,6 +266,7 @@ public class BetPop extends BasePopupWindow {
     private void goChooseBet(boolean isSingle) {
 
         String refreshOddsUrl = "";
+        hashMap = new HashMap<>();
         if (isSingle) {
             tvSingleBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
             tvMixBet.setTextColor(Color.WHITE);
@@ -373,56 +374,95 @@ public class BetPop extends BasePopupWindow {
 
     private void goBetting() {
         //http://www.afb1188.com/Bet/hBetSub.ashx?betType=1&oId=471838&odds=3.6&BTMD=S&amt=11&_=1543457323225
+
+        boolean isValid = amountValid();
+        if (!isValid)
+            return;
         String s1 = betAmountEdt.getText().toString().trim().replace(",", "");
-        if (!StringUtils.isEmpty(s1)) {
-            String s = s1.replaceAll(",", "");
-            double min = Double.parseDouble(betMaxWinTv.getText().toString().trim().replace(",", ""));
-            double max = Double.parseDouble(betMaxBetTv.getText().toString().trim().replace(",", ""));
-            if (min >= 0 && max > 0) {
-                int count = Integer.valueOf(s);
-                if (count > max || count < min || count <= 0) {
-                    ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
-                    betAmountEdt.setText("");
-                    return;
-                }
-                String betUrl;
-                if (list.size() > 1) {
-                    betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + afbApplication.getBetParList().getParUrl() + "&amt=" + s + "&coupon=" + coupon + "&exRate=" + afbApplication.getBetParList().getExRate();
-                    StringBuilder BETIDBuilder = new StringBuilder();
-                    BETIDBuilder.append("&BETID=");
-                    for (AfbClickBetBean afbClickBetBean : afbApplication.getBetParList().getList()) {
-                        BETIDBuilder.append(afbClickBetBean.getId());
-                        BETIDBuilder.append(",");
-                    }
-                    String betId = BETIDBuilder.toString();
-                    betId = betId.substring(0, betId.length() - 1);
-                    betUrl += betId;
-                } else {
-                    betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(0).getBeturl() + "&amt=" + s;
-                }
-                stopUpdateOdds();
-                presenter.bet(betUrl);
-                presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
-                    @Override
-                    public void callBack(String back) {
-//                        Chile (Over) 2 @ 0.745 ||r=467428298|5|100|34941
-                        if (back.contains("||") && back.contains("|")) {
-                            String[] split = back.split("\\|");
-                            String tidss = split[5];
-                            SportActivity sportActivity = (SportActivity) context;
-                            String oddsType = sportActivity.tvOddsType.getText().toString().trim();
-                            BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity, false);
-                        } else {
-                            tvBetFailedHint.setText(back);
-                            llBetFailedHint.setVisibility(View.VISIBLE);
-                            updateOdds(0);
-                        }
-                    }
-                });
+        String s = s1.replaceAll(",", "");
+        String betUrl;
+        if (list.size() > 1) {
+            betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + afbApplication.getBetParList().getParUrl() + "&amt=" + s + "&coupon=" + coupon + "&exRate=" + afbApplication.getBetParList().getExRate();
+            StringBuilder BETIDBuilder = new StringBuilder();
+            BETIDBuilder.append("&BETID=");
+            for (AfbClickBetBean afbClickBetBean : afbApplication.getBetParList().getList()) {
+                BETIDBuilder.append(afbClickBetBean.getId());
+                BETIDBuilder.append(",");
             }
+            String betId = BETIDBuilder.toString();
+            betId = betId.substring(0, betId.length() - 1);
+            betUrl += betId;
         } else {
-            ToastUtils.showShort(R.string.Input_the_amount_of_bets_please);
+            betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(0).getBeturl() + "&amt=" + s;
         }
+        stopUpdateOdds();
+        presenter.bet(betUrl);
+
+        if (list != null && list.size() > 1) {
+            for (int i = 0; i < list.size(); i++) {
+                if (!StringUtils.isEmpty(hashMap.get(list.get(i).getSocOddsId()))) {
+                    String ss = hashMap.get(list.get(i).getSocOddsId());
+                    betUrl = AppConstant.getInstance().HOST + AppConstant.getInstance()._BET + list.get(i).getBeturl() + "&amt=" + ss.trim();
+                    presenter.bet(betUrl);
+                }
+            }
+        }
+        presenter.setResultCallBack(new IBetHelper.ResultCallBack() {
+            @Override
+            public void callBack(String back) {
+//                        Chile (Over) 2 @ 0.745 ||r=467428298|5|100|34941
+                if (back.contains("||") && back.contains("|")) {
+                    String[] split = back.split("\\|");
+                    String tidss = split[5];
+                    SportActivity sportActivity = (SportActivity) context;
+                    String oddsType = sportActivity.tvOddsType.getText().toString().trim();
+                    BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity, false);
+                } else {
+                    tvBetFailedHint.setText(back);
+                    llBetFailedHint.setVisibility(View.VISIBLE);
+                    updateOdds(0);
+                }
+            }
+        });
+    }
+
+    private boolean amountValid() {
+
+        String s1 = betAmountEdt.getText().toString().trim().replace(",", "");
+        String s = s1.replaceAll(",", "");
+        if (StringUtils.isEmpty(s)) {
+            ToastUtils.showShort(R.string.Input_the_amount_of_bets_please);
+            return false;
+        }
+
+        double min = Double.parseDouble(betMaxWinTv.getText().toString().trim().replace(",", ""));
+        double max = Double.parseDouble(betMaxBetTv.getText().toString().trim().replace(",", ""));
+        if (min >= 0 && max > 0) {
+            int count = Integer.valueOf(s);
+            if (count > max || count < min || count <= 0) {
+                ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
+                betAmountEdt.setText("");
+                return false;
+            }
+        }
+        if (list != null && list.size() > 1) {
+            boolean isValid = true;
+            for (int i = 0; i < list.size(); i++) {
+                if (!StringUtils.isEmpty(hashMap.get(list.get(i).getSocOddsId()))) {
+                    double count = Double.parseDouble(hashMap.get(list.get(i).getSocOddsId()).trim().replace(",", ""));
+                    int max1 = list.get(i).getMaxLimit();
+                    int min1 = list.get(i).getMinLimit();
+                    if (count > max1 || count < min1 || count <= 0) {
+                        isValid = false;
+                    }
+                }
+            }
+            if (!isValid)
+                ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
+            return isValid;
+
+        }
+        return true;
     }
 
     @Override
@@ -499,6 +539,7 @@ public class BetPop extends BasePopupWindow {
     }
 
     BaseRecyclerAdapter<AfbClickBetBean> contentAdapter;
+    HashMap<String, String> hashMap = new HashMap();
 
     private void initRcBetContent() {
         ViewGroup.LayoutParams layoutParams = rcBetContent.getLayoutParams();
@@ -518,9 +559,18 @@ public class BetPop extends BasePopupWindow {
         if (contentAdapter == null) {
             objectAnimatorMap = new HashMap<>();
             contentAdapter = new BaseRecyclerAdapter<AfbClickBetBean>(context, list, R.layout.item_bet) {
+
                 @Override
-                public void convert(MyRecyclerViewHolder holder, final int position, AfbClickBetBean item) {
+                public void onBindViewHolder(MyRecyclerViewHolder holder, int position, List<Object> payloads) {
+                    super.onBindViewHolder(holder, position, payloads);
+                    holder.setIsRecyclable(false);
+                }
+
+                @Override
+                public void convert(final MyRecyclerViewHolder holder, final int position, final AfbClickBetBean item) {
                     TextView tvBetModuleTitle = holder.getView(R.id.bet_module_title_tv);
+                    final EditText edt_single_bet = holder.getView(R.id.edt_single_bet);
+
                     ImageView imgDelete = holder.getView(R.id.img_delete);
                     TextView tvBetHome = holder.getView(R.id.bet_home_tv);
                     TextView tvScore = holder.getView(R.id.tv_score);
@@ -531,6 +581,38 @@ public class BetPop extends BasePopupWindow {
                     TextView tvBetOdds = holder.getView(R.id.bet_odds_tv);
                     TextView tvBetOddsAnimation = holder.getView(R.id.bet_odds_tv_animation);
                     View vLine = holder.getView(R.id.v_line);
+                    if (list.size() < 2) {
+                        edt_single_bet.setVisibility(View.GONE);
+
+                    } else {
+                        edt_single_bet.setVisibility(View.VISIBLE);
+                        edt_single_bet.addTextChangedListener(new TextWatcher() {
+                            @Override
+                            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                            }
+
+                            @Override
+                            public void beforeTextChanged(CharSequence s, int start,
+                                                          int count, int after) {
+
+                            }
+
+                            @Override
+                            public void afterTextChanged(Editable s) {
+                                //将editText中改变的值设置的HashMap中
+                                hashMap.put(item.getSocOddsId(), s.toString());
+                            }
+                        });
+
+                        //如果hashMap不为空，就设置的editText
+
+                    }
+                    if (hashMap.get(item.getSocOddsId()) != null) {
+                        edt_single_bet.setText(hashMap.get(item.getSocOddsId()));
+                    } else {
+                        edt_single_bet.setText("");
+                    }
                     if (position == list.size() - 1) {
                         vLine.setVisibility(View.GONE);
                     } else {
@@ -596,7 +678,7 @@ public class BetPop extends BasePopupWindow {
                         @Override
                         public void onClick(View v) {
                             stopUpdateOdds();
-                            if(position>=list.size()) {
+                            if (position >= list.size()) {
                                 closePopupWindow();
                                 return;
                             }
@@ -615,6 +697,7 @@ public class BetPop extends BasePopupWindow {
                             } else {
                                 closePopupWindow();
                             }
+                            hashMap.put(item.getSocOddsId(), "");
                         }
 
                     });
@@ -626,6 +709,7 @@ public class BetPop extends BasePopupWindow {
             contentAdapter.setData(list);
         }
     }
+
 
     private void deletedOne(AfbClickBetBean afbClickBetBean) {
         String socOddsId = afbClickBetBean.getSocOddsId();

@@ -76,6 +76,10 @@ public class AfbParseHelper<T extends BallInfo> {
         info.setTvPathIBC(matchArray.optString(57));
         info.setShowGoal(matchArray.optString(58));
         info.setIsHomeGoal(matchArray.optString(59));
+        //61代表的是MainModuleId    62代表MainHomeId  63代表 MainAwayId
+        info.setMainModuleId(matchArray.optString(60));
+        info.setMainHomeId(matchArray.optString(61));
+        info.setMainAwayId(matchArray.optString(62));
 
         return (T) info;
     }

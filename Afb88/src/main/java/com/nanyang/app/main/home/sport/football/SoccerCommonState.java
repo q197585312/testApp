@@ -69,9 +69,7 @@ public abstract class SoccerCommonState extends BallState {
         };
     }
 
-    protected void clickHallBtn(View v, BallInfo item, int position) {
 
-    }
 
     private void clickAdd(View v, BallInfo item, int position) {
         getBaseView().clickItemAdd(v, item, position);

@@ -259,9 +259,9 @@ public class AfbApplication extends BaseApplication {
         Iterator<OddsClickBean> iterator = mixBetList.iterator();
         while (iterator.hasNext()) {
             OddsClickBean mixBetBean = iterator.next();
-            if (mixBetBean.getItem().getModuleTitle().trim().equalsIgnoreCase(oddsUrlBean.getItem().getModuleTitle().trim())
-                    && mixBetBean.getItem().getHome().trim().equalsIgnoreCase(oddsUrlBean.getItem().getHome().trim())
-                    && mixBetBean.getItem().getAway().equalsIgnoreCase(oddsUrlBean.getItem().getAway().trim())) {
+            if (mixBetBean.getItem().getMainModuleId().trim().equalsIgnoreCase(oddsUrlBean.getItem().getMainModuleId().trim())
+                    && mixBetBean.getItem().getMainHomeId().trim().equalsIgnoreCase(oddsUrlBean.getItem().getMainHomeId().trim())
+                    && mixBetBean.getItem().getMainAwayId().equalsIgnoreCase(oddsUrlBean.getItem().getMainAwayId().trim())) {
                 iterator.remove();
                 if (oddsUrlBean.getBETID().equalsIgnoreCase(mixBetBean.getBETID())) {
                     return true;
