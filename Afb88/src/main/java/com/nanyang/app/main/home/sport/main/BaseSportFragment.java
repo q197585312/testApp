@@ -171,7 +171,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     }
 
-    private void showWebLiveActivity( IRTMatchInfo item) {
+    private void showWebLiveActivity(IRTMatchInfo item) {
         String lag = AfbUtils.getLanguage(mContext);
         String l = "eng";
         if (lag.equals("zh")) {
@@ -182,9 +182,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
         String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
         Log.d(TAG, "onWebShow: " + gameUrl);
-        Bundle bundle=new Bundle();
-        bundle.putString(AppConstant.KEY_DATA,gameUrl);
-        getBaseActivity().skipAct(LiveWebActivity.class,bundle);
+        Bundle bundle = new Bundle();
+        bundle.putString(AppConstant.KEY_DATA, gameUrl);
+        getBaseActivity().skipAct(LiveWebActivity.class, bundle);
     }
 
     private void showWebLivePop(int position, IRTMatchInfo item, View view, View v) {

@@ -1,8 +1,8 @@
 package com.nanyang.app.main;
 
-import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.common.LanguageHelper;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -18,7 +18,7 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
 
     @Override
     public void initView() {
-        AfbUtils.switchLanguage(AfbUtils.getLanguage(getBaseActivity()),getBaseActivity());
+
         super.initView();
         baseToolbarActivity = (BaseToolbarActivity) getBaseActivity();
     }
@@ -60,6 +60,8 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
 
     @Override
     public void onResume() {
+        LanguageHelper helper = new LanguageHelper(mContext);
+        helper.switchLanguage(helper.getLanguage());
         super.onResume();
         if (!isHidden()) {
             showContent();
