@@ -215,11 +215,11 @@
                 android:textSize="13sp"
                 android:textStyle="bold" />
 
-            <TextView
+            <ImageView
                 android:id="@+id/running_split"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="->"
+                android:src="@mipmap/arrow_right_black"
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:textStyle="bold" />

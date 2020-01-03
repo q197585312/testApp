@@ -140,7 +140,7 @@ public class LiveWebPop extends WebPop {
                 textView.setTextColor(ContextCompat.getColor(context, R.color.black_grey));
                 textView.setText(item.getRes());
                 if (liveSelectedHelper.isPositionSelected(position)) {
-                    textView.setTextColor(ContextCompat.getColor(context, R.color.yellow_gold));
+                    textView.setTextColor(ContextCompat.getColor(context, R.color.yellow1));
                 }
             }
         };
@@ -160,13 +160,13 @@ public class LiveWebPop extends WebPop {
         this.isPlay = isPlay;
         tv_title_live_center.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
         tv_title_live_stream.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
-        tv_title_live_center.setTextColor(ContextCompat.getColor(context,R.color.white));
-        tv_title_live_stream.setTextColor(ContextCompat.getColor(context,R.color.white));
+        tv_title_live_center.setTextColor(ContextCompat.getColor(context, R.color.white));
+        tv_title_live_stream.setTextColor(ContextCompat.getColor(context, R.color.white));
         webView.setVisibility(View.GONE);
         videoPlayer.setVisibility(View.GONE);
         liveView.setVisibility(View.VISIBLE);
         liveTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_yellow);
-        liveTv.setTextColor(ContextCompat.getColor(context,R.color.yellow1));
+        liveTv.setTextColor(ContextCompat.getColor(context, R.color.yellow1));
         int marWidth = AfbUtils.getScreenWidth((Activity) context);
 
         ViewGroup.LayoutParams params = parentLl.getLayoutParams();
@@ -193,11 +193,7 @@ public class LiveWebPop extends WebPop {
 
     public void onResume() {
 
-        if (videoPlayer != null) {
-            Log.d("ijk", "onResume");
-            if (isPlay)
-                videoPlayer.start();
-        }
+        playVideo();
     }
 
     public void onPause() {
@@ -241,17 +237,23 @@ public class LiveWebPop extends WebPop {
             return;
         } else {
             path = "rtmp://pull.afb1188.com/live/" + livePlayUrl;
-            if(livePlayUrl.startsWith("1")){
+            if (livePlayUrl.startsWith("1")) {
                 path = "rtmp://27.124.35.15:8080/live/" + livePlayUrl;
-            }else if(livePlayUrl.startsWith("9")){
+            } else if (livePlayUrl.startsWith("9")) {
                 path = "rtmp://27.124.13.234:8080/live/" + livePlayUrl;
             }
 
             visibleLive(tv_title_live_stream, videoPlayer, true);
         }
         videoPlayer.setPath(path);
+
+        playVideo();
+    }
+
+    private void playVideo() {
         try {
-            videoPlayer.load();
+            if (videoPlayer != null && videoPlayer.getmPath() != null && isShowing())
+                videoPlayer.load();
         } catch (IOException e) {
             e.printStackTrace();
         }

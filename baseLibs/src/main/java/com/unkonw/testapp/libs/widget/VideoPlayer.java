@@ -103,7 +103,7 @@ public class VideoPlayer extends FrameLayout {
     //创建一个新的player
     private IMediaPlayer createPlayer() {
         IjkMediaPlayer ijkMediaPlayer = new IjkMediaPlayer();
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "opensles", 1);
+        /*ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "opensles", 1);
 
         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "overlay-format", IjkMediaPlayer.SDL_FCC_RV32);
         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "framedrop", 1);
@@ -113,10 +113,21 @@ public class VideoPlayer extends FrameLayout {
 
         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 48);
         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "min-frames", 100);
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "enable-accurate-seek", 1);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "enable-accurate-seek", 1);*/
 
-        ijkMediaPlayer.setVolume(1.0f, 1.0f);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER, "start-on-prepared", 0);
 
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "http-detect-range-support", 0);
+
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 48);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 8);
+
+        ijkMediaPlayer.setOption(1, "analyzemaxduration", 100L);
+        ijkMediaPlayer.setOption(1, "probesize", 10240L);
+        ijkMediaPlayer.setOption(1, "flush_packets", 1L);
+        ijkMediaPlayer.setOption(4, "packet-buffering", 0L);
+
+        ijkMediaPlayer.setVolume(1.0f, 2.0f);
         setEnableMediaCodec(ijkMediaPlayer,mEnableMediaCodec);
         return ijkMediaPlayer;
     }
@@ -151,7 +162,11 @@ public class VideoPlayer extends FrameLayout {
         setPath(path,null);
     }
 
-    public void setPath(String path,Map<String,String> header){
+    public String getmPath() {
+        return mPath;
+    }
+
+    public void setPath(String path, Map<String,String> header){
         mPath = path;
         mHeader = header;
     }

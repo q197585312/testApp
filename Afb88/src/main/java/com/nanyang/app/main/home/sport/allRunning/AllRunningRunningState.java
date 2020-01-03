@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.allRunning;
 
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
@@ -79,5 +80,9 @@ class AllRunningRunningState extends AllRunningCommonState {
     @Override
     public int getNormalContentColor() {
         return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content2);
+    }
+    protected void clickHallBtn(View v, BallInfo item, int position) {
+        int nextNotRepeat = ((SoccerRunningAdapterHelper) getAdapterHelper()).getNextNotRepeat(position);
+        getBaseView().onWebShow(nextNotRepeat, position, item, v);
     }
 }
