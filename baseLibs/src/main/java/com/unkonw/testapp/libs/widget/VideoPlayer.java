@@ -29,6 +29,10 @@ import tv.danmaku.ijk.media.player.IjkMediaPlayer;
  */
 public class VideoPlayer extends FrameLayout {
 
+    public IMediaPlayer getmMediaPlayer() {
+        return mMediaPlayer;
+    }
+
     /**
      * 由ijkplayer提供，用于播放视频，需要给他传入一个surfaceView
      */
@@ -119,15 +123,20 @@ public class VideoPlayer extends FrameLayout {
 
         ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT, "http-detect-range-support", 0);
 
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 48);
-        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 8);
+//        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC, "skip_loop_filter", 0);
+
 
         ijkMediaPlayer.setOption(1, "analyzemaxduration", 100L);
         ijkMediaPlayer.setOption(1, "probesize", 10240L);
         ijkMediaPlayer.setOption(1, "flush_packets", 1L);
         ijkMediaPlayer.setOption(4, "packet-buffering", 0L);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_CODEC,"skip_loop_filter",48L);//0 开销大
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT,"analyzeduration",1);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_FORMAT,"probesize",1024*2);
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,"packet-buffering",1);//预缓冲
+        ijkMediaPlayer.setOption(IjkMediaPlayer.OPT_CATEGORY_PLAYER,"framedrop",5);
 
-        ijkMediaPlayer.setVolume(1.0f, 2.0f);
+        ijkMediaPlayer.setVolume(1.0f, 1.0f);
         setEnableMediaCodec(ijkMediaPlayer,mEnableMediaCodec);
         return ijkMediaPlayer;
     }
@@ -183,6 +192,7 @@ public class VideoPlayer extends FrameLayout {
         mMediaPlayer.setDataSource(mContext, Uri.parse(mPath),mHeader);
         mMediaPlayer.prepareAsync();
     }
+
 
     public void start() {
         if (mMediaPlayer != null) {

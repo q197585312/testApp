@@ -24,7 +24,7 @@ public abstract class TennisState extends BasketballCommonState {
     public IBetHelper onSetBetHelper() {
         return new BallBetHelper(getBaseView()) {
             @Override
-            protected String getBallG() {
+            public String getBallG() {
                 return "21";
             }
         };

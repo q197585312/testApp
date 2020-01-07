@@ -28,6 +28,7 @@ import com.nanyang.app.main.home.sport.model.VsTableRowBean;
 import com.nanyang.app.main.home.sport.superCombo.SuperComboBetHelper;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
@@ -169,7 +170,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
         if (isMixParlay) {
             helper = new BallBetHelper(this) {
                 @Override
-                protected String getBallG() {
+                public String getBallG() {
                     return "1";
                 }
             };
@@ -529,6 +530,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     public void onUpdateMixSucceed(AfbClickResponseBean bean) {
         BaseVsFragment<VsTableRowBean> baseVsFragment = fragmentsList.get(currentIndex);
         baseVsFragment.getAdapter().notifyDataSetChanged();
+        LogUtil.d("BetPop","setBetAfbList:onUpdateMixSucceed:"+bean);
         getApp().setBetAfbList(bean);
         onBetEnd();
 

@@ -14,7 +14,7 @@ public class MuayThaiBetHelper extends TennisBetHelper {
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "108";
     }
 //  http://a8206d.a36588.com/_Bet/JRecPanel.aspx?g=108&b=away&oId=12271261&odds=8

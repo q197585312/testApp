@@ -420,6 +420,7 @@ public class BetPop extends BasePopupWindow {
                 } else {
                     tvBetFailedHint.setText(back);
                     llBetFailedHint.setVisibility(View.VISIBLE);
+                    LogUtil.d("BetPop", "updateOdds");
                     updateOdds(0);
                 }
             }
@@ -508,6 +509,7 @@ public class BetPop extends BasePopupWindow {
     public void setBetData(List<AfbClickBetBean> list, SportBetHelper mPresenter) {
         this.list = list;
         this.presenter = mPresenter;
+//        afbApplication.setBetAfbList()
         initRcBetContent();
         if (!isRefresh) {
             setEditNum();
@@ -536,6 +538,7 @@ public class BetPop extends BasePopupWindow {
         }
         setListLayoutParams();
         stopUpdateOdds();
+        LogUtil.d("BetPop", "updateOdds4000");
         updateOdds(4000);
     }
 
@@ -711,6 +714,7 @@ public class BetPop extends BasePopupWindow {
                                     objectAnimator1.cancel();
                                     objectAnimatorMap.remove(objectAnimator1);
                                 }
+                                LogUtil.d("BetPop", "updateOdds00");
                                 updateOdds(0);
                             } else {
                                 closePopupWindow();
@@ -807,6 +811,15 @@ public class BetPop extends BasePopupWindow {
     private boolean isNeedInitWeb = true;
 
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
+
+        if (activity == null)
+            return;
+        LogUtil.d("BetPop", "setrTMatchInfo----noShowRts:" + activity.getApp().isNoShowRts());
+        if (activity.getApp().isNoShowRts()) {
+            betPopParentTopFl.setVisibility(View.GONE);
+            return;
+        }
+        betPopParentTopFl.setVisibility(View.VISIBLE);
         if (list.size() > 1) {
             betPopParentTopFl.setVisibility(View.GONE);
             return;
@@ -840,6 +853,7 @@ public class BetPop extends BasePopupWindow {
     public void clearSingleHashMap() {
         hashMap = new HashMap<>();
     }
+
 
     public class MixDialog extends Dialog {
 
@@ -907,6 +921,7 @@ public class BetPop extends BasePopupWindow {
 
 
     public void updateOdds(long delayedTime) {
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

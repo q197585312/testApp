@@ -19,7 +19,6 @@ import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.AutoUtils;
 import com.unkonw.testapp.libs.utils.LogUtil;
-import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.DialogLoading;
@@ -115,7 +114,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
 
     @Override
     public void setContentView(View view) {
-        SystemTool.switchLanguage(SystemTool.getLanguage(mContext), mContext);
         super.setContentView(view);
         mContentView = view;
         //初始化页面

@@ -61,6 +61,7 @@ public class AllRunningCommonState extends OutRightState {
                         getBaseView().clickItemAdd(v, item, position);
                         break;
                     case R.id.iv_hall_btn:
+                        clickHallBtn(v, item, position);
                         break;
                 }
 
@@ -115,7 +116,7 @@ public class AllRunningCommonState extends OutRightState {
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new BallBetHelper<BallInfo, BetView>(getBaseView()) {
             @Override
-            protected String getBallG() {
+            public String getBallG() {
                 return fragment.currentIdBean.getId();
             }
         };

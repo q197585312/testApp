@@ -44,4 +44,5 @@ public class TableTennisRunningState extends TableTennisState {
         return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Table_Tennis));
     }
 
+
 }

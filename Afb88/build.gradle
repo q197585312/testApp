@@ -13,8 +13,8 @@ android {
     buildToolsVersion "27.0.3"
     defaultConfig {
         applicationId "com.nanyang.app"
-        minSdkVersion 19
-        targetSdkVersion 19
+        minSdkVersion 21
+        targetSdkVersion 21
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "HOST_AFB", '"http;//wsapp.afb1188.com"'
         buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'

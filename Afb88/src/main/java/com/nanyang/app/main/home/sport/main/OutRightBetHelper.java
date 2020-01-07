@@ -36,4 +36,9 @@ public class OutRightBetHelper extends SportBetHelper<SportInfo, BetView> {
         //http://www.afb1188.com/Bet/hBetOdds.ashx?BTMD=S&coupon=0&BETID=s|home|1|469195||&_=1543457322841
         return getDisposable(v, isHf, betOddsUrl);
     }
+
+    @Override
+    public String getBallG() {
+        return "";
+    }
 }

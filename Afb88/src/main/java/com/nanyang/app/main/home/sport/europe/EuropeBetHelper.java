@@ -15,7 +15,7 @@ public class EuropeBetHelper extends BallBetHelper<BallInfo, BetView> {
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "182";
     }
 

@@ -12,7 +12,7 @@ public class BasketballRunningBetHelper extends BasketballCommonBetHelper {
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "9";
     }
 }

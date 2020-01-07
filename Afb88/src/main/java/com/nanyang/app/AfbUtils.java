@@ -224,7 +224,8 @@ public class AfbUtils {
     }
 
     public static void switchLanguage(String lag, Context context) {
-        SystemTool.switchLanguage(lag, context);
+        if (!StringUtils.isNull(lag))
+            SystemTool.switchLanguage(lag, context);
 
     }
 
@@ -790,7 +791,7 @@ public class AfbUtils {
     }
 
     public static String scientificCountingToString(String scientificCounting) {
-      String  ff = scientificCounting.toString().replace(",", "");
+        String ff = scientificCounting.toString().replace(",", "");
         if (Float.valueOf(ff) == 0) {
             return "0.00";
         }
@@ -983,8 +984,8 @@ public class AfbUtils {
         return list;
     }
 
-    public static MenuItemInfo getOddsTypeByType(Context context, String type,String CurCode) {
-        List<MenuItemInfo> list = getOddsTypeList(context,CurCode);
+    public static MenuItemInfo getOddsTypeByType(Context context, String type, String CurCode) {
+        List<MenuItemInfo> list = getOddsTypeList(context, CurCode);
         for (MenuItemInfo menuItemInfo : list) {
             if (menuItemInfo.getType().equals(type))
                 return menuItemInfo;

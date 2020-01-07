@@ -29,7 +29,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-
+    <!-- <uses-sdk tools:overrideLibrary="tv.danmaku.ijk.media.player_x86_64,tv.danmaku.ijk.media.player_arm64"/>-->
     <application
         android:name=".AfbApplication"
         android:allowBackup="true"
@@ -38,6 +38,7 @@
         android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar"
+
         tools:ignore="AllowBackup">
         <meta-data
             android:name="android.max_aspect"
@@ -70,7 +71,10 @@
 
         <activity android:name=".main.home.huayThai.HuayThaiActivity" />
         <activity android:name=".main.home.keno.KenoWebActivity" />
-        <activity android:name=".main.home.sport.live.LiveWebActivity" />
+        <activity android:name=".main.home.sport.live.LivePlayActivity" />
+        <activity
+            android:name=".main.home.sport.live.LiveWebActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize" />
 
         <meta-data
             android:name="UMENG_CHANNEL"

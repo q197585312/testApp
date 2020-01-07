@@ -48,4 +48,9 @@
 -keep public class * extends android.app.Fragment
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.examples.android.model.** { *; }
+#ijkplayer
+-keep class tv.danmaku.ijk.media.player.** {*;}
+-keep class tv.danmaku.ijk.media.player.IjkMediaPlayer{*;}
+-keep class tv.danmaku.ijk.media.player.ffmpeg.FFmpegApi{*;}
+
 

@@ -66,7 +66,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     LinearLayout llRight;
 
 
-    private CompositeDisposable mCompositeSubscription;
+    public CompositeDisposable mCompositeSubscription;
     int errorCount = 0;
     public TextView tvToolbarRight1;
     public TextView tvToolbarLeft;
@@ -123,9 +123,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         String language = AfbUtils.getLanguage(this);
         if (!TextUtils.isEmpty(language)) {
             AfbUtils.switchLanguage(language, this);
-        } else {
-            AfbUtils.switchLanguage("en", this);
-            restart();
         }
     }
 
@@ -309,6 +306,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public void onBetSuccess(String betResult) {
         if (popWindow != null)
             popWindow.closePopupWindow();
+        LogUtil.d("BetPop","setBetAfbList:onBetSuccess:"+null);
         getApp().setBetAfbList(null);
 
         updateBalance();

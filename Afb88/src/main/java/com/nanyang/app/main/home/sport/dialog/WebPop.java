@@ -33,7 +33,7 @@ public class WebPop extends BasePopupWindow {
 
     @Override
     protected int onSetLayoutRes() {
-        return R.layout.activity_live_web;
+        return R.layout.popwindow_live_web;
     }
 
 

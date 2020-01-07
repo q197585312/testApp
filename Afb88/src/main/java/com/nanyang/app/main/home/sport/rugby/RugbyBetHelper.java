@@ -14,7 +14,7 @@ public class RugbyBetHelper extends TennisBetHelper {
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "17";
     }
 //http://main55.afb88.com/_bet/JRecPanel.aspx?g=17&b=home&oId=12875124&odds=8

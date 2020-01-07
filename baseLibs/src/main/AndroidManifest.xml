@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
 
     package="com.unkonw.testapp">
 
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.INTERNET"/>
-
+    <uses-sdk tools:overrideLibrary="tv.danmaku.ijk.media.player_x86_64,tv.danmaku.ijk.media.player_arm64"/>
     <application>
 
     </application>

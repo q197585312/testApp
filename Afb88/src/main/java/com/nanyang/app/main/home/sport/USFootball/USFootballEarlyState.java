@@ -60,7 +60,7 @@ public class USFootballEarlyState extends BasketballEarlyState {
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new BallBetHelper(getBaseView()) {
             @Override
-            protected String getBallG() {
+            public String getBallG() {
                 return "12";
             }
         };

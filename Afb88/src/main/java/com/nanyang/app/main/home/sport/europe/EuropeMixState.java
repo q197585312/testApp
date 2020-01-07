@@ -290,6 +290,7 @@ public abstract class EuropeMixState extends BallState {
                 IBetHelper helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 helper.clickOdds(item, oid, type, odds, v, isHf, sc, hasPar);
+
                 getBaseRecyclerAdapter().notifyDataSetChanged();
             }
 
@@ -310,9 +311,6 @@ public abstract class EuropeMixState extends BallState {
     }
 
 
-    protected void clickHallBtn(View v, final BallInfo item, int position) {
-
-    }
 
     public String getParentText() {
         return getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Europe_View);

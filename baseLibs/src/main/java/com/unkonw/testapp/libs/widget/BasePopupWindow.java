@@ -11,6 +11,8 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 
+import com.unkonw.testapp.libs.utils.LogUtil;
+
 import butterknife.ButterKnife;
 
 /**
@@ -52,11 +54,11 @@ public abstract class BasePopupWindow {
 
     public boolean isShowing() {
         if (popWindow != null) {
-            Log.d(TAG, "!= null,isShowing: "+popWindow.isShowing());
+            Log.d(TAG, "!= null,isShowing: " + popWindow.isShowing());
             return popWindow.isShowing();
 
         } else {
-            Log.d(TAG, "== null,isShowing: "+false);
+            Log.d(TAG, "== null,isShowing: " + false);
             return false;
         }
     }
@@ -159,7 +161,6 @@ public abstract class BasePopupWindow {
     }
 
     public void showPopupCenterWindow() {
-        closePopupWindow();
         setBackgroundAttr(trans);
         if (context != null && !((Activity) context).isFinishing()) {
             popWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
@@ -196,9 +197,11 @@ public abstract class BasePopupWindow {
      * 关闭popupwindow
      */
     public void closePopupWindow() {
-        if (popWindow != null && popWindow.isShowing()) {
-            ButterKnife.unbind(contentView);
+        LogUtil.d("BetPop", "closePopupWindow----noShowRts:true");
+        if ((context != null) && popWindow != null && popWindow.isShowing()) {
             popWindow.dismiss();
+            ButterKnife.unbind(contentView);
+
         }
     }
 

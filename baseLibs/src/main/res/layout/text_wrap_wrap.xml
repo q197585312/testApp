@@ -7,6 +7,7 @@
     android:maxLines="1"
     android:paddingTop="8dp"
     android:paddingBottom="8dp"
-    android:paddingLeft="18dp"
-    android:paddingRight="18dp"
+    android:textStyle="bold"
+    android:paddingLeft="25dp"
+    android:paddingRight="25dp"
     android:textColor="@color/white" />

@@ -14,7 +14,7 @@ public class BoxingBetHelper extends TennisBetHelper {
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "16";
     }
 

@@ -1,39 +1,44 @@
 package com.nanyang.app.main.home.sport.additional;
 
 
-import android.os.Handler;
 import android.support.annotation.NonNull;
 
 import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Utils.StringUtils;
-import com.nanyang.app.main.home.sport.main.BaseSportFragment;
-import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 
 import org.json.JSONException;
 
+import java.util.Timer;
+import java.util.TimerTask;
+
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> implements IBasePresenter {
+public class AdditionPresenter extends BaseRetrofitPresenter<IBaseContext> implements IBasePresenter {
     private BallInfo bean;
 
     private String dbid;
+    private String oddsType;
+    private IAdded iAdded;
 
     //构造 （activity implements v, 然后LoginPresenter(this)构造出来）
-    public AdditionPresenter(BaseSportFragment view) {
+    public AdditionPresenter(IBaseContext view) {
         super(view);
-        dataUpdateRunnable = new DataRunnable();
     }
 
 
-    public synchronized void addition(BallInfo item, String dbid) {
-        this.bean = item;
-        this.dbid = dbid;
+    public synchronized void addition(AddedParamsInfo info, IAdded iAdded) {
+
+        this.bean = info.getBean();
+        this.dbid = info.getDbid();
+        this.oddsType = info.getOddsType();
+        this.iAdded = iAdded;
         startUpdate();
     }
 
@@ -41,19 +46,16 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
     private String getUrl() {
 //        https://www.afb1188.com/pgajaxS.axd?T=MB2&dbid=1&oId=770823&isMobile=1
 
-        String url = AppConstant.getInstance().HOST + "/pgajaxS.axd?T=MB2&dbid=" + dbid + "&oId=" + bean.getSocOddsId() + "&isMobile=1&accType=" +
-                ((SportActivity) baseContext.getIBaseContext().getBaseActivity()).getOddsType().getType();
-
+        String url = AppConstant.getInstance().HOST + "/pgajaxS.axd?T=MB2&dbid=" + dbid + "&oId=" + bean.getSocOddsId() + "&isMobile=1&accType=" + oddsType;
         return url;
     }
 
 
-    Handler updateHandler = new Handler();
-
     public void stopUpdate() {
         if (mCompositeSubscription != null)
             mCompositeSubscription.clear();
-        updateHandler.removeCallbacks(dataUpdateRunnable);// 关闭定时器处理
+        if (task != null)
+            task.cancel();
         baseContext.hideLoadingDialog();
     }
 
@@ -62,34 +64,39 @@ public class AdditionPresenter extends BaseRetrofitPresenter<BaseSportFragment> 
         if (bean == null || StringUtils.isNull(dbid) || dbid.equals("0"))
             return;
         baseContext.showLoadingDialog();
-        updateHandler.post(dataUpdateRunnable);// 打开定时器，执行操作
+        getAddedData();// 打开定时器，执行操作
     }
 
-    Runnable dataUpdateRunnable;
 
-
-
-    public class DataRunnable implements Runnable {
-
-
-        @Override
-        public void run() {
-            if (bean == null || StringUtils.isNull(dbid) || dbid.equals("0"))
-                return;
-            doRetrofitApiOnUiThread(getService(ApiService.class).getAdditionData(getUrl()), new BaseConsumer<String>(baseContext) {
+    public void getAddedData() {
+        if (task == null) {
+            task = new TimerTask() {
                 @Override
-                protected void onBaseGetData(String data) throws JSONException {
-                    Gson gson = new Gson();
-                    AddMBean addMBean = gson.fromJson(data, AddMBean.class);
-                    AdditionPresenter.this.baseContext.onAddition(addMBean, bean);
-                    baseContext.hideLoadingDialog();
-                }
+                public void run() {
+                    if (bean == null || StringUtils.isNull(dbid) || dbid.equals("0"))
+                        return;
+                    doRetrofitApiOnUiThread(getService(ApiService.class).getAdditionData(getUrl()), new BaseConsumer<String>(baseContext) {
+                        @Override
+                        protected void onBaseGetData(String data) throws JSONException {
+                            Gson gson = new Gson();
+                            AddMBean addMBean = gson.fromJson(data, AddMBean.class);
+                            if (iAdded != null)
+                                iAdded.onAdded (addMBean, bean);
+                            baseContext.hideLoadingDialog();
+                        }
 
-                @Override
-                protected void onAccept() {
+                        @Override
+                        protected void onAccept() {
+                        }
+                    });
+
                 }
-            });
-            updateHandler.postDelayed(this, 6000);// 50是延时时长
+            };
+            timer.schedule(task, 0, 6000);
         }
     }
+
+    private Timer timer = new Timer();
+    private TimerTask task;
+
 }
