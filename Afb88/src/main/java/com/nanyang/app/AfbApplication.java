@@ -11,6 +11,7 @@ import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.tencent.bugly.crashreport.CrashReport;
 import com.unkonw.testapp.libs.base.BaseApplication;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.lang.reflect.Constructor;
@@ -35,6 +36,12 @@ public class AfbApplication extends BaseApplication {
 
     private List<OddsClickBean> mixBetList = new ArrayList<>();
 
+    public boolean isNoShowRts() {
+        return noShowRts;
+    }
+
+    private boolean noShowRts;
+
 
     public RefreshDataBean getRefreshDataBean() {
         return refreshDataBean;
@@ -49,7 +56,9 @@ public class AfbApplication extends BaseApplication {
     private String quickAmount = "";
 
     public MenuItemInfo getOddsType() {
-        return AfbUtils.getOddsTypeByType(this, oddsType.getType(), getSettingAllDataBean().getCurCode());
+        if (oddsType != null && getSettingAllDataBean() != null)
+            return AfbUtils.getOddsTypeByType(this, oddsType.getType(), getSettingAllDataBean().getCurCode());
+        return null;
     }
 
     public void setOddsType(MenuItemInfo oddsType) {
@@ -124,6 +133,7 @@ public class AfbApplication extends BaseApplication {
     }
 
     public void setBetAfbList(AfbClickResponseBean betParList) {
+        LogUtil.d("BetPop","setBetAfbList:"+betParList);
         this.betAfbList = betParList;
         if (betParList == null)
             clearMixBetList();
@@ -144,7 +154,7 @@ public class AfbApplication extends BaseApplication {
         if (betAfbList.getList().size() == 1) {
             String typeOdds = betAfbList.getList().get(0).getOddsType();
             String itemId = betAfbList.getList().get(0).getId();
-            if (!cn.finalteam.toolsfinal.StringUtils.isEmpty(typeOdds) && typeOdds.endsWith("_par")) {
+            if (!StringUtils.isNull(typeOdds) && typeOdds.endsWith("_par")) {
                 String replace = itemId.replaceFirst(typeOdds, typeOdds.substring(0, typeOdds.indexOf("_par")));
                 itemId = replace;
             }
@@ -169,7 +179,8 @@ public class AfbApplication extends BaseApplication {
         String betOddsUrl = "BTMD=S&coupon=0&BETID=";
         if (getMixBetList().size() == 1) {
 
-            betOddsUrl = "BTMD=S&coupon=0&BETID=" + getMixBetList().get(0).getBETID()+"&_par=";;
+            betOddsUrl = "BTMD=S&coupon=0&BETID=" + getMixBetList().get(0).getBETID() + "&_par=";
+            ;
         } else {
             for (OddsClickBean afbClickBetBean : getMixBetList()) {
                 String itemId = afbClickBetBean.getBETID_PAR();
@@ -285,6 +296,10 @@ public class AfbApplication extends BaseApplication {
 
     public void clearMixBetList() {
         mixBetList = new ArrayList<>();
+    }
+
+    public synchronized void  setNoShowRts(boolean noShowRts) {
+        this.noShowRts = noShowRts;
     }
 }
 

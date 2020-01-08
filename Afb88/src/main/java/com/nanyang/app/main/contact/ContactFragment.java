@@ -53,9 +53,14 @@ public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
     }
 
     @Override
+    public void showContent() {
+        super.showContent();
+        setBackTitle(getString(R.string.contact));
+    }
+
+    @Override
     public void initData() {
         super.initData();
-        setBackTitle(getString(R.string.contact));
         createPresenter(new BaseSwitchPresenter(this));
         aty = (BaseToolbarActivity) getActivity();
         MyLinearLayoutManager mLayoutManager = new MyLinearLayoutManager(mContext);//设置为一个纵向网格布局
@@ -157,7 +162,7 @@ public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
             tv.setTextColor(getResources().getColor(R.color.contact_font));
             switch (item.getIcon_type()) {
                 case "1":
-                    ivRight.setImageResource(R.mipmap.email_msg);
+                    ivRight.setImageResource(R.mipmap.message);
                     break;
                 case "2":
                     ivRight.setImageResource(R.mipmap.phone_msg);

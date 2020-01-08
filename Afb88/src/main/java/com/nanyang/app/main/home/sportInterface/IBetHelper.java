@@ -22,6 +22,8 @@ public interface IBetHelper<B> {
     @NonNull
     Disposable getRefreshOdds(String url);
 
+    String getBallG();
+
 
     interface ResultCallBack {
         void callBack(String back);

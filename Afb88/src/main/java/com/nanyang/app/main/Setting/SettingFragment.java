@@ -62,7 +62,6 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     @Override
     public void initData() {
         super.initData();
-        setBackTitle(getString(R.string.setting));
         aty = (BaseToolbarActivity) getBaseActivity();
         createPresenter(new MainPresenter(this));
 
@@ -328,6 +327,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
     public void showContent() {
         super.showContent();
         initSetData();
+        setBackTitle(getString(R.string.setting));
     }
 
     private void initSetData() {

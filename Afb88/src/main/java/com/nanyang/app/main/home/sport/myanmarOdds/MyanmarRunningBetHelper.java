@@ -29,6 +29,7 @@ public class MyanmarRunningBetHelper extends MyanmarBetHelper {
         pop.setIsRunning(true);
         pop.setrTMatchInfo(item);
         if (!pop.isShowing()) {
+//            pop.showPopupCenterWindow();
             baseView.onPopupWindowCreated(pop, Gravity.CENTER);
         }
 

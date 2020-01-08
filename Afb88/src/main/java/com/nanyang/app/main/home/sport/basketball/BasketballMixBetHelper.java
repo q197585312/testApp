@@ -15,7 +15,7 @@ public class BasketballMixBetHelper extends BallBetHelper<BasketballMixInfo, Bet
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "9";
     }
 

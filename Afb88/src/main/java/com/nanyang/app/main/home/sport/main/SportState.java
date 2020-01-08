@@ -32,6 +32,7 @@ import com.nanyang.app.main.Setting.RefreshDataBean;
 import com.nanyang.app.main.home.sport.WebSocketManager;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
 import com.nanyang.app.main.home.sport.dialog.ChooseMatchPop;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.LeagueBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -1515,5 +1516,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
-
+    protected void clickHallBtn(View v, BallInfo item, int position) {
+        getBaseView().onWebShow(0, position, item, v);
+    }
 }

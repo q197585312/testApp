@@ -33,6 +33,12 @@ public class MessageFragment extends BaseMoreFragment<MessagePresenter> {
     }
 
     @Override
+    public void showContent() {
+        super.showContent();
+        setBackTitle(getString(R.string.messages));
+    }
+
+    @Override
     public void initData() {
         super.initData();
         createPresenter(new MessagePresenter(this));
@@ -47,7 +53,6 @@ public class MessageFragment extends BaseMoreFragment<MessagePresenter> {
             }
         };
         rv.setAdapter(adapter);
-        setBackTitle(getString(R.string.messages));
         presenter.getMessages(new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) throws JSONException {

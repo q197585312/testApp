@@ -14,7 +14,7 @@ public class FinancialBetHelper extends TennisBetHelper {
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "7";
     }
 //http://a8206d.a36588.com/_bet/JRecPanel.aspx?g=7&b=over&oId=12264569&odds=9.5

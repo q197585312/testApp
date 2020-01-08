@@ -19,7 +19,7 @@ public class SoccerRunningBetHelper extends SoccerCommonBetHelper {
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "1";
     }
 
@@ -33,6 +33,7 @@ public class SoccerRunningBetHelper extends SoccerCommonBetHelper {
         pop.setIsRunning(true);
         pop.setrTMatchInfo(item);
         if (!pop.isShowing()) {
+//            pop.showPopupCenterWindow();
             baseView.onPopupWindowCreated(pop, Gravity.CENTER);
         }
 

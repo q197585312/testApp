@@ -80,6 +80,7 @@ public class OutRightFragment extends BaseAllFragment {
                     && !next.getValue().getDbid().equals("36")
 
                     && !next.getValue().getDbid().equals("4")
+                    && !next.getValue().getDbid().equals("35")
                     )
                 list.add(next.getValue());
         }

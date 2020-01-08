@@ -572,7 +572,7 @@
     <string name="live_stream">live streaming</string>
     <string name="live_center">live center</string>
     <string name="HDP_OU" >HDP/OU</string>
-    <string name="OE">OE</string>
+    <string name="OE">O/E</string>
     <string name="DC">DC</string>
     <string name="CS">CS</string>
     <string name="TG">TG</string>
@@ -580,5 +580,5 @@
     <string name="FGLG">FGLG</string>
     <string name="MM_HDP_OU">MM HDP/OU</string>
     <string name="Home_Away_TG">Home/Away Team TG</string>
-    <string name="FT15" />
+    <string name="FT15" >FT15</string>
 </resources>

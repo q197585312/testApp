@@ -17,7 +17,7 @@ public class BasketballCommonBetHelper extends BallBetHelper<BallInfo, BetView> 
 
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "9";
     }
 

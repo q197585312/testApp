@@ -14,7 +14,7 @@ public class DartsBetHelper extends TennisBetHelper {
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "19";
     }
     //   http://a8206d.a36588.com/_Bet/JRecPanel.aspx?g=106&b=1&oId=12269721&odds=1.53

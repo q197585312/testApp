@@ -10,6 +10,7 @@ import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
+import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -83,8 +84,12 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
 
     private void saveCurrentBet(OddsClickBean oddsUrlBean) {
         boolean listHasChanged = ((AfbApplication) AfbApplication.getInstance()).saveCurrentBet(oddsUrlBean);
-        if (listHasChanged)
-            ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
+        if (listHasChanged) {
+            BaseActivity baseActivity = getBaseView().getIBaseContext().getBaseActivity();
+            if (baseActivity != null && baseActivity instanceof SportActivity) {
+                ((SportActivity) baseActivity).updateMixOrder();
+            }
+        }
     }
 
     private boolean isOneTeamBoolean(B item, List<OddsClickBean> betAfbList) {
@@ -123,8 +128,5 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         }
         return bean;
     }
-
-    protected abstract String getBallG();
-
 
 }

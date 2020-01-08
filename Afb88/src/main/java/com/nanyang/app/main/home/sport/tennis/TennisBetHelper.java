@@ -15,7 +15,7 @@ public class TennisBetHelper extends BallBetHelper<BallInfo, BetView> {
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "21";
     }
 

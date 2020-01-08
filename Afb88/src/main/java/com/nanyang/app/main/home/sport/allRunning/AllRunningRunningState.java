@@ -80,4 +80,5 @@ class AllRunningRunningState extends AllRunningCommonState {
     public int getNormalContentColor() {
         return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.green_content2);
     }
+
 }

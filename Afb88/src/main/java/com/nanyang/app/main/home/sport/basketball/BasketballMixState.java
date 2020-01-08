@@ -69,6 +69,7 @@ public abstract class BasketballMixState extends BallState {
                 IBetHelper<BallInfo> helper = getBetHelper();
                 helper.setCompositeSubscription(mCompositeSubscription);
                 helper.clickOdds(item, oid, type, odds, v, isHf, sc, hasPar);
+
             }
 
             @Override

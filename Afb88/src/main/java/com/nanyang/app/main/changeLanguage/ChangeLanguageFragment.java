@@ -41,9 +41,15 @@ public class ChangeLanguageFragment extends BaseMoreFragment<MainPresenter> impl
     @Override
     public void initData() {
         super.initData();
-        setBackTitle(getString(R.string.setting));
+
         initRc();
         createPresenter(new MainPresenter(this));
+    }
+
+    @Override
+    public void showContent() {
+        super.showContent();
+        setBackTitle(getString(R.string.setting));
     }
 
     private void initRc() {

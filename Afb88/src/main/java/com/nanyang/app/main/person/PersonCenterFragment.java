@@ -91,9 +91,15 @@ public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
     }
 
     @Override
+    public void showContent() {
+        super.showContent();
+        setBackTitle(getString(R.string.my_account));
+    }
+
+    @Override
     public void initData() {
         super.initData();
-        setBackTitle(getString(R.string.my_account));
+
         createPresenter(new PersonPresenter(this));
         aty = (BaseToolbarActivity) getActivity();
         LinearLayoutManager llm = new LinearLayoutManager(mContext);

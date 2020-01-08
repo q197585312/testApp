@@ -329,7 +329,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     }
                     running_OddsType.setText(oddsType15);
                     TextView running_OldStatus = holder.getTextView(R.id.running_OldStatus);
-                    TextView running_split = holder.getTextView(R.id.running_split);
+                    View running_split = holder.getImageView(R.id.running_split);
                     if (TextUtils.isEmpty(item.getOldStatus22())) {
                         running_OldStatus.setVisibility(View.GONE);
                         running_split.setVisibility(View.INVISIBLE);

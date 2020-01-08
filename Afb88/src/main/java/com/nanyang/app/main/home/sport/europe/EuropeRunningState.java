@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.europe;
 
-import android.content.Context;
 import android.support.v4.content.ContextCompat;
 import android.text.Html;
 import android.view.View;
@@ -52,14 +51,14 @@ public class EuropeRunningState extends EuropeState {
     }
 
 
-    @Override
+/*    @Override
     protected void clickHallBtn(View v, BallInfo item, int position) {
         super.clickHallBtn(v, item, position);
         int nextNotRepeat = getNextNotRepeat(position);
         getBaseView().onWebShow(nextNotRepeat, position, item, v);
 
 
-    }
+    }*/
 
 
     @Override

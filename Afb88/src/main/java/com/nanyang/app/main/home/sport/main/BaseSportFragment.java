@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.Nullable;
@@ -27,8 +28,11 @@ import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
+import com.nanyang.app.main.home.sport.additional.AddedParamsInfo;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
-import com.nanyang.app.main.home.sport.live.LiveWebPop;
+import com.nanyang.app.main.home.sport.additional.IAdded;
+import com.nanyang.app.main.home.sport.live.LiveParamsInfo;
+import com.nanyang.app.main.home.sport.live.LiveWebActivity;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorEarlyState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorRunningState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorTodayState;
@@ -39,6 +43,7 @@ import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
@@ -133,15 +138,12 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             updateMixOrderCount();
         }
         isFirstIn = false;
-        if(liveWebPop!=null){
-            liveWebPop.onResume();
-        }
+
         showContent();
 
         Log.d(TAG, "onResume: " + getClass().getSimpleName());
 
     }
-
 
 
     @Override
@@ -151,9 +153,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         presenter.getStateHelper().setIsHide(true, additionPresenter);
         Log.d(TAG, "onPause: " + getClass().getSimpleName());
         tvNoGames.setVisibility(View.GONE);
-        if(liveWebPop!=null){
-            liveWebPop.onPause();
-        }
     }
 
     @Override
@@ -161,7 +160,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         super.onStop();
         Log.d(TAG, "onStop: " + getClass().getSimpleName());
     }
-
 
 
     @Override
@@ -177,8 +175,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     }
 
-    LiveWebPop liveWebPop;
-
 
     private void showWebLivePop(int position, IRTMatchInfo item, View view, View v) {
         showLoadingDialog();
@@ -186,13 +182,13 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         int[] location = new int[2];
 
         v.getLocationOnScreen(location);
-        WebPop pop;
+        WebPop betPop;
         if (location[1] < heightPixels / 2) {
             int popWidth = DeviceUtils.dip2px(mContext, 350);
             int popHeight = heightPixels - location[1] - v.getHeight();
-            pop = new WebPop(mContext, v, popWidth, popHeight);
-            pop.getWebView().setWebViewClient(new DigWebViewClient());
-            pop.setTrans(1);
+            betPop = new WebPop(mContext, v, popWidth, popHeight);
+            betPop.getWebView().setWebViewClient(new DigWebViewClient());
+            betPop.setTrans(1);
             String lag = AfbUtils.getLanguage(mContext);
             String l = "eng";
             if (lag.equals("zh")) {
@@ -203,10 +199,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
             Log.d(TAG, "onWebShow: " + gameUrl);
-            pop.setUrl(gameUrl);
+            betPop.setUrl(gameUrl);
             int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
             int y = location[1] + v.getHeight();
-            pop.showPopupAtLocation(x, y);
+            betPop.showPopupAtLocation(x, y);
 
         } else {
             v = rvContent.getChildAt(position);
@@ -216,9 +212,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             v.getLocationOnScreen(location);
             int popWidth = DeviceUtils.dip2px(mContext, 350);
             int popHeight = location[1];
-            pop = new WebPop(mContext, v, popWidth, popHeight);
-            pop.getWebView().setWebViewClient(new DigWebViewClient());
-            pop.setTrans(1);
+            betPop = new WebPop(mContext, v, popWidth, popHeight);
+            betPop.getWebView().setWebViewClient(new DigWebViewClient());
+            betPop.setTrans(1);
             String lag = AfbUtils.getLanguage(mContext);
             String l = "eng";
             if (lag.equals("zh")) {
@@ -228,10 +224,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             }
 
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
-            pop.setUrl(gameUrl);
+            betPop.setUrl(gameUrl);
             int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
             int y = 0;
-            pop.showPopupAtLocation(x, y);
+            betPop.showPopupAtLocation(x, y);
         }*/
         new Handler().postDelayed(new Runnable() {
             @Override
@@ -409,6 +405,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onUpdateMixSucceed(AfbClickResponseBean bean) {
         if (getBaseActivity() == null)
             return;
+        LogUtil.d("BetPop", "setBetAfbList:onUpdateMixSucceed:" + bean);
         getApp().setBetAfbList(bean);
         if (getBaseActivity().isHasAttached()) {
             updateMixOrderCount();
@@ -459,9 +456,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onDestroyView() {
         super.onDestroyView();
 //        presenter.getStateHelper().stopUpdateData();
-        if(liveWebPop!=null){
-            liveWebPop.onStop();
-        }
         ButterKnife.unbind(this);
         isInit = false;
     }
@@ -525,7 +519,8 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
                     @Override
                     public void onItemClick(View view, MenuItemInfo item, int position) {
-                        ((SportActivity) getIBaseContext().getBaseActivity()).setOddsType(item);
+
+                        getBaseActivity().setOddsType(item);
                         presenter.getStateHelper().switchOddsType(item.getType());
                         closePopupWindow();
                         tvOddsType.setText(item.getText());
@@ -540,7 +535,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void onBetSuccess(String betResult) {
-        ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).onBetSuccess(betResult);
+        getBaseActivity().onBetSuccess(betResult);
         updateMixOrderCount();
         baseRecyclerAdapter.notifyDataSetChanged();
 //        ToastUtils.showShort(betResult);
@@ -548,7 +543,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
-        ((BaseToolbarActivity) getIBaseContext().getBaseActivity()).onPopupWindowCreatedAndShow(pop, center);
+        getBaseActivity().onPopupWindowCreatedAndShow(pop, center);
     }
 
     public void switchParentType(MenuItemInfo stateType) {
@@ -573,15 +568,26 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
-            additionPresenter.addition((BallInfo) item, dbid);
+            String type = getBaseActivity().getOddsType().getType();
+            AddedParamsInfo info = new AddedParamsInfo((BallInfo) item, dbid, type);
+            additionPresenter.addition(info, new IAdded() {
+                @Override
+                public void onAdded(AddMBean addMBean, BallInfo ballInfo) {
+                    onAddition(addMBean, ballInfo);
+                }
+            });
             BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.changeAdded((BallInfo) item);
-            adapterHelper.setIsLiveOpen(false);
+
         }
     }
 
 
     public void clickLivePop(View v, BallInfo item, int position) {
+        MenuItemInfo stateType = getPresenter().getStateHelper().getStateType();
+        LogUtil.d("clickLivePop", "stateType:" + stateType.getType() + "item.getRTSMatchId():" + item.getRTSMatchId() + ",item.getTvPathIBC():" + item.getTvPathIBC());
+        if (!stateType.getType().equals("Running") || (item.getRTSMatchId().equals("0") && StringUtils.isNull(item.getTvPathIBC())))
+            return;
         String lag = AfbUtils.getLanguage(mContext);
         String l = "eng";
         if (lag.equals("zh")) {
@@ -589,28 +595,33 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         } else {
             l = "en";
         }
-        String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+        String gameUrl = "";
+        if (!StringUtils.isNull(item.getRTSMatchId()))
+            gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
         Log.d(TAG, "onWebShow: " + gameUrl);
-        if (liveWebPop == null)
-            liveWebPop = new LiveWebPop(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-        liveWebPop.setUrl(gameUrl);
-        liveWebPop.showPopupCenterWindow();
-        liveWebPop.setLivePlayUrl(item.getTvPathIBC());
-
         String dbid = getSportDbid();
-        if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
-            Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
-            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
-            adapterHelper.setIsLiveOpen(true);
-            additionPresenter.addition( item, dbid);
-        }
+        String type = getBaseActivity().getOddsType().getType();
+        LiveParamsInfo info = new LiveParamsInfo(item, dbid, type);
+        info.setGameUrl(gameUrl);
+        info.setLivePlayUrlId(item.getTvPathIBC());
+        info.setBallG(presenter.getStateHelper().getBetHelper().getBallG());
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(AppConstant.KEY_DATA, info);
+        getBaseActivity().skipAct(LiveWebActivity.class, bundle);
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext), mContext);
+        super.onConfigurationChanged(newConfig);
+
     }
 
     private String getSportDbid() {
         IBetHelper betHelper = presenter.getStateHelper().getBetHelper();
         String dbid = "1";
         if (betHelper instanceof BallBetHelper) {
-            String ballG = ((BallBetHelper) betHelper).getBallG();
+            String ballG = (betHelper).getBallG();
             SportIdBean sportIdBean = AfbUtils.getSportByG(ballG);
             if (sportIdBean != null)
                 dbid = sportIdBean.getDbid();
@@ -621,17 +632,12 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onAddition(AddMBean data, BallInfo item) {
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
-
-            if (liveWebPop != null && adapterHelper.isLiveOpen) {
-                adapterHelper.closeAllAdded();
-                liveWebPop.setAdditionData(data, adapterHelper, item);
-            } else {
-                adapterHelper.notifyPositionAdded(data, item);
-            }
+            adapterHelper.notifyPositionAdded(data, item);
         }
     }
 
     public void showContent() {
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext),mContext);
         getBaseActivity().setToolbarVisibility(View.GONE);
         getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);

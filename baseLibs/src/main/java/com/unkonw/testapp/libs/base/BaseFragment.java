@@ -13,7 +13,6 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
-import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import butterknife.ButterKnife;
@@ -52,7 +51,6 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        SystemTool.switchLanguage(SystemTool.getLanguage(mContext), mContext);
         mContentView = inflater
                 .inflate(onSetLayoutId(), container, false);
         ButterKnife.bind(this, mContentView);

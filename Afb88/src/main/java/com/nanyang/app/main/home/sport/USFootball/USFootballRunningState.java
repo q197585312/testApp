@@ -54,7 +54,7 @@ public class USFootballRunningState extends BasketballRunningState {
     public IBetHelper<BallInfo> onSetBetHelper() {
         return new BallBetHelper(getBaseView()) {
             @Override
-            protected String getBallG() {
+            public String getBallG() {
                 return "12";
             }
         };

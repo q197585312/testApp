@@ -74,6 +74,7 @@ import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.api.CookieManger;
 import com.unkonw.testapp.libs.api.PersistentCookieStore;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.SystemTool;
 
 import org.json.JSONObject;
@@ -224,12 +225,16 @@ public class AfbUtils {
     }
 
     public static void switchLanguage(String lag, Context context) {
-        SystemTool.switchLanguage(lag, context);
+        LogUtil.d("getLanguage","switchLanguage:"+lag);
+        if (!StringUtils.isNull(lag))
+            SystemTool.switchLanguage(lag, context);
 
     }
 
     public static String getLanguage(Context context) {
-        return SystemTool.getLanguage(context);
+        String language = SystemTool.getLanguage(context);
+        LogUtil.d("getLanguage",language);
+        return language;
     }
 
     public static void synCookies(Context context, String url, String cookies) {
@@ -790,7 +795,7 @@ public class AfbUtils {
     }
 
     public static String scientificCountingToString(String scientificCounting) {
-      String  ff = scientificCounting.toString().replace(",", "");
+        String ff = scientificCounting.toString().replace(",", "");
         if (Float.valueOf(ff) == 0) {
             return "0.00";
         }
@@ -983,8 +988,8 @@ public class AfbUtils {
         return list;
     }
 
-    public static MenuItemInfo getOddsTypeByType(Context context, String type,String CurCode) {
-        List<MenuItemInfo> list = getOddsTypeList(context,CurCode);
+    public static MenuItemInfo getOddsTypeByType(Context context, String type, String CurCode) {
+        List<MenuItemInfo> list = getOddsTypeList(context, CurCode);
         for (MenuItemInfo menuItemInfo : list) {
             if (menuItemInfo.getType().equals(type))
                 return menuItemInfo;

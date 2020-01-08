@@ -5,6 +5,10 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+    <include
+        layout="@layout/toolbar_layout"
+        android:visibility="gone" />
+
     <LinearLayout
         android:id="@+id/ll_back"
         android:layout_width="match_parent"
@@ -18,7 +22,8 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@mipmap/arrow_white_back" />
+            android:background="@mipmap/go_back_left_white"
+            android:onClick="onBackCLick" />
 
         <TextView
             android:id="@+id/tv_title_live_stream"
@@ -43,9 +48,9 @@
             android:layout_gravity="center"
             android:layout_marginRight="30dp"
             android:layout_weight="1"
+            android:drawableBottom="@drawable/line_trans"
             android:drawablePadding="5dp"
             android:gravity="center"
-            android:drawableBottom="@drawable/line_trans"
             android:padding="5dp"
             android:text="@string/live_center"
 
@@ -55,6 +60,7 @@
     </LinearLayout>
 
     <FrameLayout
+        android:id="@+id/fl_top_content"
         android:layout_width="match_parent"
         android:layout_height="200dp">
 
@@ -64,6 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="NO DATA" />
+
         <WebView
             android:id="@+id/web_wv"
             android:layout_width="match_parent"
@@ -71,11 +78,54 @@
             android:visibility="gone" />
 
 
-
         <com.unkonw.testapp.libs.widget.VideoPlayer
             android:id="@+id/video_player_stream"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_status"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@color/grey_trans"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="5dp">
+
+            <ImageView
+                android:id="@+id/iv_play_status"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="8dp"
+                android:src="@mipmap/play_pause_white" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="0:00"
+                android:textSize="18sp" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <ImageView
+                android:id="@+id/iv_voice"
+                android:layout_width="27dp"
+                android:layout_height="27dp"
+                android:src="@mipmap/play_mute_white" />
+
+            <ImageView
+                android:id="@+id/iv_full_screen"
+                android:layout_width="22dp"
+                android:layout_height="22dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="10dp"
+                android:src="@mipmap/play_full_white" />
+        </LinearLayout>
     </FrameLayout>
 
 
@@ -86,8 +136,9 @@
         android:background="@color/green_light_title" />
 
     <ScrollView
+        android:id="@+id/sv_bottom_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <LinearLayout
             android:id="@+id/common_ball_parent_ll"

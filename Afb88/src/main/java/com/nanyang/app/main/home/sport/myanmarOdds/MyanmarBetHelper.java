@@ -15,7 +15,7 @@ public class MyanmarBetHelper extends BallBetHelper<MyanmarInfo, BetView> {
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "1";
     }
 

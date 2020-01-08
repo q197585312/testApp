@@ -182,7 +182,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initLanguage();
+
         setContentView(R.layout.activity_sport);
         toolbar.setVisibility(View.GONE);
         edtSearchContent.addTextChangedListener(new TextWatcher() {
@@ -218,18 +218,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 //        presenter.getStateHelper().switchOddsType(item.getType());
-        if (getApp().getOddsType() != null)
-            presenter.switchOddsType(getApp().getOddsType().getType());
-        else {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    presenter.switchOddsType(getApp().getOddsType().getType());
-                }
-            }, 200);
-        }
         updateMixOrderCount();
     }
+
 
 
     public String getType() {
@@ -558,9 +549,20 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Override
     protected void onResume() {
         super.onResume();
+        if (getApp().getOddsType() != null)
+            presenter.switchOddsType(getApp().getOddsType().getType());
+        else {
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    presenter.switchOddsType(getApp().getOddsType().getType());
+                }
+            }, 200);
+        }
         createWebSocket();
         startRefreshMenu();
         if (popWindow instanceof BetPop && popWindow.isShowing()) {
+            LogUtil.d("BetPop","updateOdds50");
             ((BetPop) popWindow).updateOdds(0);
         }
     }
@@ -803,6 +805,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void rememberLastOdds() {
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext),mContext);
         MenuItemInfo oddsType = getOddsType();
         if (oddsType != null) {
             tvOddsType.setText(oddsType.getText());

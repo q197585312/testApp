@@ -136,6 +136,10 @@ public class BetPop extends BasePopupWindow {
         super(mContext, v, width, height);
         this.context = mContext;
         this.v = v;
+
+        popWindow.setOutsideTouchable(true);
+        popWindow.setFocusable(true);
+        popWindow.setBackgroundDrawable(null);
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
         activity = (BaseToolbarActivity) context;
         handler = new Handler();
@@ -420,6 +424,7 @@ public class BetPop extends BasePopupWindow {
                 } else {
                     tvBetFailedHint.setText(back);
                     llBetFailedHint.setVisibility(View.VISIBLE);
+                    LogUtil.d("BetPop", "updateOdds");
                     updateOdds(0);
                 }
             }
@@ -508,6 +513,7 @@ public class BetPop extends BasePopupWindow {
     public void setBetData(List<AfbClickBetBean> list, SportBetHelper mPresenter) {
         this.list = list;
         this.presenter = mPresenter;
+//        afbApplication.setBetAfbList()
         initRcBetContent();
         if (!isRefresh) {
             setEditNum();
@@ -534,24 +540,43 @@ public class BetPop extends BasePopupWindow {
         if (!TextUtils.isEmpty(writeMoney)) {
             tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"), tvMaxWin));
         }
+        setListLayoutParams();
         stopUpdateOdds();
+        LogUtil.d("BetPop", "updateOdds4000");
         updateOdds(4000);
     }
 
+    private void setListLayoutParams() {
+
+        ViewGroup.LayoutParams layoutParams = rcBetContent.getLayoutParams();
+        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
+        if (list.size() > 1) {
+            int height = 70;
+            layoutParams.height = AfbUtils.dp2px(context, height * 2 + 5);
+            if (list.size() > 2) {
+                layoutParams.height = AfbUtils.dp2px(context, height * 3 + 5);
+            }
+        }
+        rcBetContent.setLayoutParams(layoutParams);
+    }
+
     BaseRecyclerAdapter<AfbClickBetBean> contentAdapter;
+
+    public HashMap<String, String> getSingleHashMap() {
+        return hashMap;
+    }
+
     HashMap<String, String> hashMap = new HashMap();
 
     private void initRcBetContent() {
-        ViewGroup.LayoutParams layoutParams = rcBetContent.getLayoutParams();
         if (list.size() > 1) {
             tvSingleBet.setTextColor(Color.WHITE);
             tvMixBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
             if (!isRefresh)
                 initMix();
             llMix.setVisibility(View.VISIBLE);
-            layoutParams.height = AfbUtils.dp2px(context, 62 * 2 + 5);
+
         } else {
-            layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
             llMix.setVisibility(View.GONE);
             tvSingleBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
             tvMixBet.setTextColor(Color.WHITE);
@@ -693,6 +718,7 @@ public class BetPop extends BasePopupWindow {
                                     objectAnimator1.cancel();
                                     objectAnimatorMap.remove(objectAnimator1);
                                 }
+                                LogUtil.d("BetPop", "updateOdds00");
                                 updateOdds(0);
                             } else {
                                 closePopupWindow();
@@ -789,11 +815,21 @@ public class BetPop extends BasePopupWindow {
     private boolean isNeedInitWeb = true;
 
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
+
+        if (activity == null)
+            return;
+        LogUtil.d("BetPop", "setrTMatchInfo----noShowRts:" + activity.getApp().isNoShowRts());
+        if (activity.getApp().isNoShowRts()) {
+            betPopParentTopFl.setVisibility(View.GONE);
+            return;
+        }
+        betPopParentTopFl.setVisibility(View.VISIBLE);
         if (list.size() > 1) {
             betPopParentTopFl.setVisibility(View.GONE);
             return;
         }
         if (rTMatchInfo == null || !isNeedInitWeb) {
+            betPopParentTopFl.setVisibility(View.GONE);
             return;
         }
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
@@ -818,6 +854,11 @@ public class BetPop extends BasePopupWindow {
     }
 
     MixDialog mixdialog;
+
+    public void clearSingleHashMap() {
+        hashMap = new HashMap<>();
+    }
+
 
     public class MixDialog extends Dialog {
 
@@ -885,6 +926,7 @@ public class BetPop extends BasePopupWindow {
 
 
     public void updateOdds(long delayedTime) {
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

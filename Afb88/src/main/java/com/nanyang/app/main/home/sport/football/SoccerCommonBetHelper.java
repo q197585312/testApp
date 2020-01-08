@@ -16,7 +16,7 @@ public class SoccerCommonBetHelper extends BallBetHelper<SoccerCommonInfo, BetVi
     }
 
     @Override
-    protected String getBallG() {
+    public String getBallG() {
         return "1";
     }
 
