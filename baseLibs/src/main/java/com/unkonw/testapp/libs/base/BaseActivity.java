@@ -74,6 +74,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         //全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         super.onCreate(savedInstanceState);
         // 设置不能横屏
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);

@@ -55,7 +55,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
 
     public void setIsLiveOpen(boolean b) {
-        this.isLiveOpen = b;
+//        this.isLiveOpen = b;
     }
 
     public Set<ScrollLayout> getSlFollowers() {
@@ -1338,9 +1338,15 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         setTextValue(over_tv, changeValueF(ou));
         setTextValue(under_tv, "");
-
-        setTextValue(home_tv, changeValueF(hdp));
-        setTextValue(away_tv, "");
+        String homeHdp = "";
+        String awayHdp = "";
+        if (isHomeGive) {
+            homeHdp = changeValueF(hdp);
+        } else {
+            awayHdp = changeValueF(hdp);
+        }
+        setTextValue(home_tv, homeHdp);
+        setTextValue(away_tv, awayHdp);
 
         setTextValueClick(over_odds_tv, overOdds, "over", oid, item, isHalf, "", false, hasBetOver, isShowBetOu);
         setTextValueClick(under_odds_tv, underOdds, "under", oid, item, isHalf, "", false, hasBetUnder, isShowBetOu);
@@ -1422,6 +1428,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     private void addAddedView(LinearLayout parent, AddMBean.OddsBean fTodds, AddMBean.OddsBean fHodds, I item) {
         View inflate = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_sport_item, null);
         TextView home_tv = inflate.findViewById(R.id.home_tv);
+
         TextView home_odd_tv = inflate.findViewById(R.id.home_odd_tv);
         TextView away_tv = inflate.findViewById(R.id.away_tv);
         TextView away_odd_tv = inflate.findViewById(R.id.away_odd_tv);
@@ -1430,6 +1437,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView hf_home_odd_tv = inflate.findViewById(R.id.hf_home_odd_tv);
         TextView hf_away_tv = inflate.findViewById(R.id.hf_away_tv);
         TextView hf_away_odd_tv = inflate.findViewById(R.id.hf_away_odd_tv);
+
+        TextView home_title_tv = inflate.findViewById(R.id.home_title_tv);
+        TextView away_title_tv = inflate.findViewById(R.id.away_title_tv);
+        TextView hf_home_title_tv = inflate.findViewById(R.id.hf_home_title_tv);
+        TextView hf_away_title_tv = inflate.findViewById(R.id.hf_away_title_tv);
 
         TextView over_tv = inflate.findViewById(R.id.over_tv);
         TextView over_odd_tv = inflate.findViewById(R.id.over_odd_tv);
@@ -1467,14 +1479,21 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOOdds(fTodds.getOverOdds());
             ballInfo.setUOdds(fTodds.getUnderOdds());
             ballInfo.setIsHomeGive(fTodds.getIsHomeGive().equals("True") ? "1" : "0");
+            if (StringUtils.isNull(fTodds.getIsHomeGive()) || fTodds.getIsHomeGive().equals("True")) {
+                home_title_tv.setTextColor(red_black);
+                away_title_tv.setTextColor(black_grey);
+            } else {
+                home_title_tv.setTextColor(black_grey);
+                away_title_tv.setTextColor(red_black);
+            }
             ballInfo.setHasPar(fTodds.getHasPar() != null && fTodds.getHasPar().equals("True") ? "1" : "0");
             ballInfo.setHdpOdds(fTodds.getHdpOdds());
             ballInfo.setOUOdds(fTodds.getOUOdds());
             ballInfo.setOU(fTodds.getOU());
             ballInfo.setRunHomeScore(fTodds.getRunHomeScore());
             ballInfo.setRunAwayScore(fTodds.getRunAwayScore());
-
             ballInfo.setIsInetBet((fTodds.getHdp_visible().equals("True") || fTodds.getOU_visible().equals("True")) ? "1" : "0");
+
         } else {
             ballInfo.setSocOddsId("");
             ballInfo.setHdp("");
@@ -1499,7 +1518,16 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOOdds_FH(fHodds.getOverOdds());
             ballInfo.setUOdds_FH(fHodds.getUnderOdds());
             ballInfo.setIsHomeGive_FH(fHodds.getIsHomeGive().equals("True") ? "1" : "0");
+            if (StringUtils.isNull(fHodds.getIsHomeGive()) || fHodds.getIsHomeGive().equals("True")) {
+                hf_home_title_tv.setTextColor(red_black);
+                hf_away_title_tv.setTextColor(black_grey);
+            } else {
+                hf_home_title_tv.setTextColor(black_grey);
+                hf_away_title_tv.setTextColor(red_black);
+            }
+
             ballInfo.setHasPar_FH(fHodds.getHasPar() != null && fHodds.getHasPar().equals("True") ? "1" : "0");
+
             ballInfo.setHdpOdds_FH(fHodds.getHdpOdds());
             ballInfo.setOU_FH(fHodds.getOU());
             ballInfo.setOUOdds_FH(fHodds.getOUOdds());
@@ -1520,6 +1548,15 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setRunHomeScore_FH("");
             ballInfo.setRunAwayScore_FH("");
             ballInfo.setOUOdds_FH("");
+            if (fTodds != null) {
+                if (fTodds.getIsHomeGive().equals("True")) {
+                    hf_home_title_tv.setTextColor(red_black);
+                    hf_away_title_tv.setTextColor(black_grey);
+                } else {
+                    hf_home_title_tv.setTextColor(black_grey);
+                    hf_away_title_tv.setTextColor(red_black);
+                }
+            }
         }
         setUpDownOdds(true, (I) ballInfo, false, "0", ballInfo.getHasHdp(), ballInfo.getHdp(), home_tv, away_tv, home_odd_tv, away_odd_tv, ballInfo.getHOdds(), ballInfo.getAOdds(), "home", "away", 1, null, null);
         setUpDownOdds(true, (I) ballInfo, true, "0", ballInfo.getHasHdp_FH(), ballInfo.getHdp_FH(), hf_home_tv, hf_away_tv, hf_home_odd_tv, hf_away_odd_tv, ballInfo.getHOdds_FH(), ballInfo.getAOdds_FH(), "home", "away", 1, null, null);

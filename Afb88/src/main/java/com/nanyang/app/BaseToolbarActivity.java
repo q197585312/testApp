@@ -72,9 +72,15 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public TextView tvToolbarLeft;
 
     @Override
+    public void init() {
+
+        super.init();
+        initLanguage();
+    }
+
+    @Override
     public void initData() {
         super.initData();
-
         mCompositeSubscription = new CompositeDisposable();
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         tvToolbarRight = (TextView) findViewById(R.id.tv_toolbar_right);

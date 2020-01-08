@@ -22,7 +22,7 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="8dp"
-            android:background="@mipmap/arrow_white_back"
+            android:background="@mipmap/go_back_left_white"
             android:onClick="onBackCLick" />
 
         <TextView

@@ -136,6 +136,10 @@ public class BetPop extends BasePopupWindow {
         super(mContext, v, width, height);
         this.context = mContext;
         this.v = v;
+
+        popWindow.setOutsideTouchable(true);
+        popWindow.setFocusable(true);
+        popWindow.setBackgroundDrawable(null);
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
         activity = (BaseToolbarActivity) context;
         handler = new Handler();
@@ -825,6 +829,7 @@ public class BetPop extends BasePopupWindow {
             return;
         }
         if (rTMatchInfo == null || !isNeedInitWeb) {
+            betPopParentTopFl.setVisibility(View.GONE);
             return;
         }
         String rtsMatchId = rTMatchInfo.getRTSMatchId();

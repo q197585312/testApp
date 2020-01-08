@@ -578,7 +578,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             });
             BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.changeAdded((BallInfo) item);
-            adapterHelper.setIsLiveOpen(false);
+
         }
     }
 
@@ -595,8 +595,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         } else {
             l = "en";
         }
-
-        String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
+        String gameUrl = "";
+        if (!StringUtils.isNull(item.getRTSMatchId()))
+            gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
         Log.d(TAG, "onWebShow: " + gameUrl);
         String dbid = getSportDbid();
         String type = getBaseActivity().getOddsType().getType();
@@ -620,7 +621,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         IBetHelper betHelper = presenter.getStateHelper().getBetHelper();
         String dbid = "1";
         if (betHelper instanceof BallBetHelper) {
-            String ballG = ( betHelper).getBallG();
+            String ballG = (betHelper).getBallG();
             SportIdBean sportIdBean = AfbUtils.getSportByG(ballG);
             if (sportIdBean != null)
                 dbid = sportIdBean.getDbid();
@@ -636,6 +637,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     public void showContent() {
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext),mContext);
         getBaseActivity().setToolbarVisibility(View.GONE);
         getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);

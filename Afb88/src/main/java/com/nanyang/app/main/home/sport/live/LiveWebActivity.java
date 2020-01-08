@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.live;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -45,7 +46,7 @@ import tv.danmaku.ijk.media.player.IMediaPlayer;
  * Created by Administrator on 2020/1/3.
  */
 
-public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> implements BetView<BallInfo>{
+public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> implements BetView<BallInfo> {
     @Bind(R.id.iv_play_status)
     ImageView ivPlayStatus;
     @Bind(R.id.iv_voice)
@@ -78,6 +79,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     private BallInfo item;
     private AddMBean additionData;
     private String ballG;
+    private String gameUrl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +98,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
             return;
         }
         LiveParamsInfo o1 = (LiveParamsInfo) o;
-        ballG=o1.getBallG();
+        ballG = o1.getBallG();
         rv_title_list = (RecyclerView) findViewById(R.id.rv_title_list);
         videoPlayer = (VideoPlayer) findViewById(R.id.video_player_stream);
 
@@ -135,8 +137,8 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         });
 
         initRv();
+        initWeb(o1.getGameUrl());
         initPlay(o1.getLivePlayUrlId());
-        AfbUtils.synCookies(mContext, webView, o1.getGameUrl());
         createPresenter(new AdditionPresenter(this));
         presenter.addition(o1, new IAdded() {
             @Override
@@ -148,6 +150,12 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         });
     }
 
+    private void initWeb(String gameUrl) {
+        this.gameUrl = gameUrl;
+        if (isNotEnable(tv_title_live_center, gameUrl)) return;
+        AfbUtils.synCookies(mContext, webView, gameUrl);
+    }
+
     @Override
     public void updateBalance() {
 //        super.updateBalanceTv(allData);
@@ -156,7 +164,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     public void setLivePlayUrlId(String BID) {
 
         Log.d("ijk", "BID:" + BID);
-        String path ;
+        String path;
         if (StringUtils.isNull(BID) || BID.equals("0")) {
             return;
         } else {
@@ -166,7 +174,6 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
             } else if (BID.startsWith("9")) {
                 path = "rtmp://27.124.13.234:8080/live/" + BID;
             }
-
             visibleLive(tv_title_live_stream, videoPlayer, true);
         }
         videoPlayer.setPath(path);
@@ -220,8 +227,8 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
-        AfbUtils.switchLanguage(AfbUtils.getLanguage(this), this);
         super.onConfigurationChanged(newConfig);
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(this), this);
         //重新获取屏幕宽高
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fl_top_content.getLayoutParams();
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {//切换为横屏
@@ -246,6 +253,15 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
 
     private void initPlay(String livePlayUrlId) {
         this.livePlayUrl = livePlayUrlId;
+
+        if (isNotEnable(tv_title_live_stream, livePlayUrl)) {
+            enableView(tv_title_live_center, webView);
+            llStatus.setVisibility(View.GONE);
+            return;
+        }else{
+            enableView(tv_title_live_stream, videoPlayer);
+            llStatus.setVisibility(View.VISIBLE);
+        }
         videoPlayer.setVideoListener(new VideoListener() {
             @Override
             public void onBufferingUpdate(IMediaPlayer iMediaPlayer, int i) {
@@ -289,17 +305,31 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         setLivePlayUrlId(livePlayUrlId);
     }
 
+    private boolean isNotEnable(TextView tv_title_live_stream, String livePlayUrl) {
+        tv_title_live_stream.setCompoundDrawablesWithIntrinsicBounds(0,0,0,R.drawable.line_trans);
+        if (StringUtils.isNull(livePlayUrl)) {
+            tv_title_live_stream.setEnabled(false);
+            tv_title_live_stream.setTextColor(Color.GRAY);
+            return true;
+        } else {
+            tv_title_live_stream.setEnabled(true);
+            tv_title_live_stream.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+
+        }
+        return false;
+    }
+
+
     private void visibleLive(TextView liveTv, View liveView, boolean isPlay) {
         this.isPlay = isPlay;
-        tv_title_live_center.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
+/*        tv_title_live_center.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
         tv_title_live_stream.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
+
         tv_title_live_center.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-        tv_title_live_stream.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-        webView.setVisibility(View.GONE);
-        videoPlayer.setVisibility(View.GONE);
-        liveView.setVisibility(View.VISIBLE);
-        liveTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_yellow);
-        liveTv.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_center_user));
+        tv_title_live_stream.setTextColor(ContextCompat.getColor(mContext, R.color.white));*/
+        isNotEnable(tv_title_live_center, gameUrl);
+        isNotEnable(tv_title_live_stream, livePlayUrl);
+        enableView(liveTv, liveView);
         int marWidth = AfbUtils.getScreenWidth(mContext);
 
         ViewGroup.LayoutParams params = fl_top_content.getLayoutParams();
@@ -320,6 +350,14 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         }
         params.height = mHeight;
         fl_top_content.setLayoutParams(params);
+    }
+
+    private void enableView(TextView liveTv, View liveView) {
+        webView.setVisibility(View.GONE);
+        videoPlayer.setVisibility(View.GONE);
+        liveView.setVisibility(View.VISIBLE);
+        liveTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_yellow);
+        liveTv.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_center_user));
     }
 
     @Override
@@ -423,7 +461,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
 
     @Override
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
-        onPopupWindowCreatedAndShow(pop,center);
+        onPopupWindowCreatedAndShow(pop, center);
     }
 
     public String getBallG() {

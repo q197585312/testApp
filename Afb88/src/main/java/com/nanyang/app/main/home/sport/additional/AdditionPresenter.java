@@ -33,7 +33,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<IBaseContext> imple
     }
 
 
-    public synchronized void addition(AddedParamsInfo info, IAdded iAdded) {
+    public void addition(AddedParamsInfo info, IAdded iAdded) {
 
         this.bean = info.getBean();
         this.dbid = info.getDbid();
@@ -54,8 +54,11 @@ public class AdditionPresenter extends BaseRetrofitPresenter<IBaseContext> imple
     public void stopUpdate() {
         if (mCompositeSubscription != null)
             mCompositeSubscription.clear();
-        if (task != null)
+        if (task != null) {
             task.cancel();
+            task = null;
+        }
+
         baseContext.hideLoadingDialog();
     }
 
@@ -81,7 +84,7 @@ public class AdditionPresenter extends BaseRetrofitPresenter<IBaseContext> imple
                             Gson gson = new Gson();
                             AddMBean addMBean = gson.fromJson(data, AddMBean.class);
                             if (iAdded != null)
-                                iAdded.onAdded (addMBean, bean);
+                                iAdded.onAdded(addMBean, bean);
                             baseContext.hideLoadingDialog();
                         }
 

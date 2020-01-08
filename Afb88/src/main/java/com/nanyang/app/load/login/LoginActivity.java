@@ -29,6 +29,7 @@ import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.Utils.ViewPagerAdapter;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
@@ -119,7 +120,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                 }
             }
         });
-        initLanguage();
         presenter.loadAllImages();
         edtLoginUsername.requestFocus();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
@@ -128,6 +128,18 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
 
     }
 
+    @Override
+    public void initLanguage() {
+        super.initLanguage();
+        String language = AfbUtils.getLanguage(this);
+        if (TextUtils.isEmpty(language)) {
+            AfbUtils.switchLanguage("en", this);
+            LanguageHelper helper = new LanguageHelper(mContext);
+            MenuItemInfo<String> languageItem = helper.getLanguageItem();
+            loginLanguage.setText(languageItem.getText());
+        }
+        restart();
+    }
 
     public void onFailed(String error) {
         if (error != null && error.equals(getString(R.string.System_maintenance))) {

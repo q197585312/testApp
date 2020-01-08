@@ -182,7 +182,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        initLanguage();
+
         setContentView(R.layout.activity_sport);
         toolbar.setVisibility(View.GONE);
         edtSearchContent.addTextChangedListener(new TextWatcher() {
