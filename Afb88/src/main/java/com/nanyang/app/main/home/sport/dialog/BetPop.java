@@ -635,8 +635,8 @@ public class BetPop extends BasePopupWindow {
                             @Override
                             public void onFocusChange(View v, boolean hasFocus) {
                                 if (hasFocus) {
-                                    LogUtil.d("onFocusChange",position);
-                                    cursorMap.put(true,item.getSocOddsId());
+                                    LogUtil.d("onFocusChange", position);
+                                    cursorMap.put(true, item.getSocOddsId());
                                 } else {
                                     // 此处为失去焦点时的处理内容
                                 }
@@ -650,7 +650,7 @@ public class BetPop extends BasePopupWindow {
                     } else {
                         edt_single_bet.setText("");
                     }
-                    if(cursorMap.get(true)!=null&&cursorMap.get(true).equals(item.getSocOddsId())){
+                    if (cursorMap.get(true) != null && cursorMap.get(true).equals(item.getSocOddsId())) {
                         edt_single_bet.setCursorVisible(true);//显示光标
                         edt_single_bet.requestFocus();
                         edt_single_bet.setSelection(edt_single_bet.getText().length());
@@ -847,10 +847,12 @@ public class BetPop extends BasePopupWindow {
             betPopParentTopFl.setVisibility(View.GONE);
             return;
         }
-        if (rTMatchInfo == null || !isNeedInitWeb) {
+        if (rTMatchInfo == null) {
             betPopParentTopFl.setVisibility(View.GONE);
             return;
         }
+        if (!isNeedInitWeb)
+            return;
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
             setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);

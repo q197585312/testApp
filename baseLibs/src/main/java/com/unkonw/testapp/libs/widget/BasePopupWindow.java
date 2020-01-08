@@ -197,7 +197,7 @@ public abstract class BasePopupWindow {
      * 关闭popupwindow
      */
     public void closePopupWindow() {
-        LogUtil.d("BetPop", "closePopupWindow----noShowRts:true");
+        LogUtil.d("BetPop", "closePopupWindow----noShowRts:");
         if ((context != null) && popWindow != null && popWindow.isShowing()) {
             popWindow.dismiss();
             ButterKnife.unbind(contentView);
