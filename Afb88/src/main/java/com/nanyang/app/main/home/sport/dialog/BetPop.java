@@ -567,6 +567,7 @@ public class BetPop extends BasePopupWindow {
     }
 
     HashMap<String, String> hashMap = new HashMap();
+    HashMap<Boolean, String> cursorMap = new HashMap();
 
     private void initRcBetContent() {
         if (list.size() > 1) {
@@ -627,9 +628,20 @@ public class BetPop extends BasePopupWindow {
                             public void afterTextChanged(Editable s) {
                                 //将editText中改变的值设置的HashMap中
                                 hashMap.put(item.getSocOddsId(), s.toString());
+
                             }
                         });
-
+                        edt_single_bet.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                            @Override
+                            public void onFocusChange(View v, boolean hasFocus) {
+                                if (hasFocus) {
+                                    LogUtil.d("onFocusChange",position);
+                                    cursorMap.put(true,item.getSocOddsId());
+                                } else {
+                                    // 此处为失去焦点时的处理内容
+                                }
+                            }
+                        });
                         //如果hashMap不为空，就设置的editText
 
                     }
@@ -637,6 +649,13 @@ public class BetPop extends BasePopupWindow {
                         edt_single_bet.setText(hashMap.get(item.getSocOddsId()));
                     } else {
                         edt_single_bet.setText("");
+                    }
+                    if(cursorMap.get(true)!=null&&cursorMap.get(true).equals(item.getSocOddsId())){
+                        edt_single_bet.setCursorVisible(true);//显示光标
+                        edt_single_bet.requestFocus();
+                        edt_single_bet.setSelection(edt_single_bet.getText().length());
+                    } else {
+                        edt_single_bet.clearFocus();
                     }
                     if (position == list.size() - 1) {
                         vLine.setVisibility(View.GONE);
