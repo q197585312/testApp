@@ -1414,8 +1414,24 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ((View) textView.getParent()).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    back.clickOdds(textView, item, type, isHalf, finalContent, Integer.valueOf(oid), sc, hasHar);
-                    getBaseRecyclerAdapter().notifyDataSetChanged();
+                    if (back != null) {
+                        back.clickOdds(textView, item, type, isHalf, finalContent, Integer.valueOf(oid), sc, hasHar);
+                        getBaseRecyclerAdapter().notifyDataSetChanged();
+                    }else{
+                        final LiveWebActivity liveWebActivity = (LiveWebActivity) context;
+                        BallBetHelper helper = new BallBetHelper(liveWebActivity) {
+                            @Override
+                            public String getBallG() {
+                                return liveWebActivity.getBallG();
+                            }
+
+                        };
+                        helper.setCompositeSubscription(liveWebActivity.mCompositeSubscription);
+                      /*  clickOdds(TextView v, B item, String type, boolean isHf, String odds, int oid, String sc, boolean hasPar);
+                        (B item, int oid, String type, String odds, TextView v, boolean isHf, String sc, boolean hasPar) {*/
+                        helper.clickOdds(item, Integer.valueOf(oid), type, finalContent, (TextView) textView, isHalf, sc, hasHar);
+
+                    }
                 }
             });
         }

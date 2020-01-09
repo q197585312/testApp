@@ -74,7 +74,7 @@ public class LanguageHelper {
             if (lag.equals(languageItem.getType()))
                 return languageItem;
         }
-        return new MenuItemInfo<>(R.mipmap.lang_en_flag, "English", "en", "EN-US");
+        return  new MenuItemInfo<>(R.mipmap.lang_zh_flag, "简体中文", "zh", "ZH-CN");
     }
 
     public String getLanguage(String lag) {

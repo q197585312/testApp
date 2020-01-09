@@ -66,6 +66,8 @@ public class AfbApplication extends BaseApplication {
     }
 
     public MenuItemInfo<String> getMarketType() {
+        if (marketType == null)
+            marketType = new MenuItemInfo<>(0, getString(R.string.All_Markets), "0", getString(R.string.All_Market));
         return AfbUtils.getMarketByType(this, marketType.getType());
 //        return marketType;
     }
@@ -133,7 +135,7 @@ public class AfbApplication extends BaseApplication {
     }
 
     public void setBetAfbList(AfbClickResponseBean betParList) {
-        LogUtil.d("BetPop","setBetAfbList:"+betParList);
+        LogUtil.d("BetPop", "setBetAfbList:" + betParList);
         this.betAfbList = betParList;
         if (betParList == null)
             clearMixBetList();
@@ -298,7 +300,7 @@ public class AfbApplication extends BaseApplication {
         mixBetList = new ArrayList<>();
     }
 
-    public synchronized void  setNoShowRts(boolean noShowRts) {
+    public synchronized void setNoShowRts(boolean noShowRts) {
         this.noShowRts = noShowRts;
     }
 }

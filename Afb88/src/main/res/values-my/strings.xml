@@ -567,5 +567,7 @@
     <string name="can_not_more_than_10">Mix parlay can not more than 15</string>
     <string name="live_stream">live streaming</string>
     <string name="live_center">live center</string>
+    <string name="stake_is_more_than_max_limit">Stake is more than max limit</string>
+    <string name="stake_is_less_than_min_limit">Stake is less than min limit</string>
 
 </resources>

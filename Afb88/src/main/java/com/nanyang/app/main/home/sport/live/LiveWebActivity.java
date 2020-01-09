@@ -258,7 +258,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
             enableView(tv_title_live_center, webView);
             llStatus.setVisibility(View.GONE);
             return;
-        }else{
+        } else {
             enableView(tv_title_live_stream, videoPlayer);
             llStatus.setVisibility(View.VISIBLE);
         }
@@ -306,7 +306,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     }
 
     private boolean isNotEnable(TextView tv_title_live_stream, String livePlayUrl) {
-        tv_title_live_stream.setCompoundDrawablesWithIntrinsicBounds(0,0,0,R.drawable.line_trans);
+        tv_title_live_stream.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
         if (StringUtils.isNull(livePlayUrl)) {
             tv_title_live_stream.setEnabled(false);
             tv_title_live_stream.setTextColor(Color.GRAY);
@@ -461,7 +461,9 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
 
     @Override
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
-        onPopupWindowCreatedAndShow(pop, center);
+        pop.setV(fl_top_content);
+        pop.setWidth(AfbUtils.getScreenWidth(this));
+        onPopupWindowCreatedAndShow(pop, -2);
     }
 
     public String getBallG() {

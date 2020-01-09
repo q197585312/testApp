@@ -205,6 +205,7 @@ public class BetPop extends BasePopupWindow {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
+                    cursorMap.put(true,"");
                     betAmountEdt.setBackgroundResource(R.drawable.shape_bet_bg2);
                 } else {
                     betAmountEdt.setBackgroundColor(Color.WHITE);
@@ -444,8 +445,17 @@ public class BetPop extends BasePopupWindow {
         double max = Double.parseDouble(betMaxBetTv.getText().toString().trim().replace(",", ""));
         if (min >= 0 && max > 0) {
             int count = Integer.valueOf(s);
-            if (count > max || count < min || count <= 0) {
+
+            if ( count <= 0) {
                 ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
+                betAmountEdt.setText("");
+                return false;
+            }else if(count > max ){
+                ToastUtils.showShort(context.getString(R.string.stake_is_more_than_max_limit));
+                betAmountEdt.setText("");
+                return false;
+            }else  if(count < min ){
+                ToastUtils.showShort(context.getString(R.string.stake_is_less_than_min_limit));
                 betAmountEdt.setText("");
                 return false;
             }
@@ -457,13 +467,14 @@ public class BetPop extends BasePopupWindow {
                     double count = Double.parseDouble(hashMap.get(list.get(i).getSocOddsId()).trim().replace(",", ""));
                     int max1 = list.get(i).getMaxLimit();
                     int min1 = list.get(i).getMinLimit();
+
                     if (count > max1 || count < min1 || count <= 0) {
                         isValid = false;
                     }
                 }
             }
             if (!isValid)
-                ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
+                ToastUtils.showShort(context.getString(R.string.stake_is_less_than_min_limit));
             return isValid;
 
         }
@@ -544,6 +555,12 @@ public class BetPop extends BasePopupWindow {
         stopUpdateOdds();
         LogUtil.d("BetPop", "updateOdds4000");
         updateOdds(4000);
+        if(StringUtils.isEmpty(cursorMap.get(true))) {
+            betAmountEdt.setCursorVisible(true);//显示光标
+            betAmountEdt.requestFocus();
+            betAmountEdt.setSelection(betAmountEdt.getText().length());
+        }
+
     }
 
     private void setListLayoutParams() {
@@ -768,7 +785,7 @@ public class BetPop extends BasePopupWindow {
                     || socOddsId.equals(oddsClickBean.getOid())
                     || socOddsId.equals(oddsClickBean.getOid_fh())) {
                 iterator.remove();
-                if ((presenter.getBaseView().getIBaseContext().getBaseActivity()) != null) {
+                if ((presenter.getBaseView().getIBaseContext().getBaseActivity()) != null&&presenter.getBaseView().getIBaseContext().getBaseActivity() instanceof SportActivity) {
                     ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
                 }
             }
@@ -847,14 +864,14 @@ public class BetPop extends BasePopupWindow {
             betPopParentTopFl.setVisibility(View.GONE);
             return;
         }
-        if (rTMatchInfo == null) {
+        if (rTMatchInfo == null||StringUtils.isEmpty(rTMatchInfo.getRTSMatchId())) {
             betPopParentTopFl.setVisibility(View.GONE);
             return;
         }
         if (!isNeedInitWeb)
             return;
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
-        if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
+        if (rtsMatchId != null && !rtsMatchId.isEmpty() ) {
             setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
             this.rTMatchInfo = rTMatchInfo;
             String lag = AfbUtils.getLanguage(context);

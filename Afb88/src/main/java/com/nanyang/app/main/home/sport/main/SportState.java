@@ -219,6 +219,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         LogUtil.d("Socket", getClass().getSimpleName() + "发送数据：");
         AfbApplication application = (AfbApplication) getBaseView().getIBaseContext().getBaseActivity().getApplication();
         RefreshDataBean refreshDataBean = application.getRefreshDataBean();
+        if(refreshDataBean==null)
+            return;
         MenuItemInfo oddsType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
         if (oddsType != null)
             refreshDataBean.setAccType(oddsType.getType());

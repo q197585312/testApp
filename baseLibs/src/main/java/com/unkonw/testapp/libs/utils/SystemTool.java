@@ -177,7 +177,7 @@ public final class SystemTool {
 		if (!TextUtils.isEmpty(lag)) {
 			SharePreferenceUtil.setValue(context, "language", lag);
 		} else {
-			SharePreferenceUtil.setValue(context, "language", "en");
+			SharePreferenceUtil.setValue(context, "language", "zh");
 		}
 	}
 

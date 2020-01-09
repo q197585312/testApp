@@ -24,8 +24,17 @@ public abstract class BasePopupWindow {
     protected Context context;
     private LayoutInflater inflater;
     public PopupWindow popWindow;
+
+    public void setWidth(int width) {
+        this.width = width;
+    }
+
     protected int width;
     protected int height;
+
+    public void setV(View v) {
+        this.v = v;
+    }
 
     protected View v;
     protected View contentView;
@@ -40,6 +49,10 @@ public abstract class BasePopupWindow {
     public BasePopupWindow(Context context, View v) {
         this(context, v, LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
+    }
+
+    public int getWidth() {
+        return width;
     }
 
     public BasePopupWindow(Context context, View v, int width, int height) {
