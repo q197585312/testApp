@@ -35,7 +35,6 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
@@ -101,6 +100,13 @@ public class BetPop extends BasePopupWindow {
     TextView tv1x2Odds;
     @Bind(R.id.tv_single_bet)
     TextView tvSingleBet;
+
+    public View getLlSingleMix() {
+        return llSingleMix;
+    }
+
+    @Bind(R.id.ll_single_mix)
+    View llSingleMix;
     @Bind(R.id.tv_mix_bet)
     TextView tvMixBet;
     @Bind(R.id.tv_delete)
@@ -179,8 +185,9 @@ public class BetPop extends BasePopupWindow {
                 }
 
                 double max;
-                if (list.size() > 1) {
-                    AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
+                AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
+                if (list.size() > 1 && StringUtils.isEmpty(betAfbList.getMaxLimit())) {
+
                     max = Double.parseDouble(betAfbList.getMaxLimit());
                 } else {
                     max = list.get(0).getMaxLimit();
@@ -205,7 +212,8 @@ public class BetPop extends BasePopupWindow {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    cursorMap.put(true,"");
+                    CursorEditView cursorEditView = new CursorEditView("", betAmountEdt);
+                    cursorMap.put(true, cursorEditView);
                     betAmountEdt.setBackgroundResource(R.drawable.shape_bet_bg2);
                 } else {
                     betAmountEdt.setBackgroundColor(Color.WHITE);
@@ -342,7 +350,13 @@ public class BetPop extends BasePopupWindow {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<PopChipBean>() {
             @Override
             public void onItemClick(View view, PopChipBean item, int position) {
-                String s = betAmountEdt.getText().toString();
+
+                EditText edt = betAmountEdt;
+                CursorEditView cursorEditView = cursorMap.get(true);
+                if (cursorEditView != null && cursorEditView.getEditView() != null) {
+                    edt = cursorEditView.getEditView();
+                }
+                String s = edt.getText().toString();
                 if (TextUtils.isEmpty(s)) {
                     s = "0";
                 }
@@ -350,21 +364,37 @@ public class BetPop extends BasePopupWindow {
                 int betAmount = Integer.parseInt(s);
                 int betChip = item.getBetChip();
                 if (betChip == 0) {
-                    AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
-                    int maxLimit;
-                    if (list.size() > 1) {
-                        maxLimit = (int) Double.parseDouble(betAfbList.getMaxLimit());
-                    } else {
-                        maxLimit = list.get(0).getMaxLimit();
-                    }
-
+                    int maxLimit = getMaxLimit();
                     betChip = maxLimit;
                 }
 
                 betAmount += betChip;
-                betAmountEdt.setText(betAmount + "");
+
+                edt.setText(betAmount + "");
+                edt.setCursorVisible(true);//显示光标
+                edt.requestFocus();
+                edt.setSelection(edt.getText().length());
             }
         });
+    }
+
+    private int getMaxLimit() {
+        int maxLimit = (int) Double.parseDouble(afbApplication.getBetAfbList().getMaxLimit());
+        if (cursorMap.get(true) == null || StringUtils.isEmpty(cursorMap.get(true).getItemSocId())) {
+            if (list.size() > 1) {
+                maxLimit = (int) Double.parseDouble(afbApplication.getBetAfbList().getMaxLimit());
+            } else {
+                maxLimit = list.get(0).getMaxLimit();
+            }
+        } else {
+            for (AfbClickBetBean afbClickBetBean : list) {
+                if (afbClickBetBean.getSocOddsId().equals(cursorMap.get(true).getItemSocId())) {
+                    return afbClickBetBean.getMaxLimit();
+                }
+            }
+        }
+
+        return maxLimit;
     }
 
     private PopChipBean findChip(Integer key, List<PopChipBean> allList) {
@@ -419,9 +449,9 @@ public class BetPop extends BasePopupWindow {
                 if (back.contains("||") && back.contains("|")) {
                     String[] split = back.split("\\|");
                     String tidss = split[5];
-                    SportActivity sportActivity = (SportActivity) context;
-                    String oddsType = sportActivity.tvOddsType.getText().toString().trim();
-                    BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity, false);
+                    BaseToolbarActivity sportActivity = (BaseToolbarActivity) context;
+                    String oddsType = sportActivity.getOtType();
+                    sportActivity.BetGoalWindowUtils.showBetWindow(oddsType, tidss, sportActivity, false);
                 } else {
                     tvBetFailedHint.setText(back);
                     llBetFailedHint.setVisibility(View.VISIBLE);
@@ -446,15 +476,15 @@ public class BetPop extends BasePopupWindow {
         if (min >= 0 && max > 0) {
             int count = Integer.valueOf(s);
 
-            if ( count <= 0) {
+            if (count <= 0) {
                 ToastUtils.showShort(context.getString(R.string.invalid_amount_bet));
                 betAmountEdt.setText("");
                 return false;
-            }else if(count > max ){
+            } else if (count > max) {
                 ToastUtils.showShort(context.getString(R.string.stake_is_more_than_max_limit));
                 betAmountEdt.setText("");
                 return false;
-            }else  if(count < min ){
+            } else if (count < min) {
                 ToastUtils.showShort(context.getString(R.string.stake_is_less_than_min_limit));
                 betAmountEdt.setText("");
                 return false;
@@ -530,6 +560,7 @@ public class BetPop extends BasePopupWindow {
             setEditNum();
             initBetChip();
         }
+
         tvCurrency.setText(afbApplication.getUser().getCurCode2());
         betBalanceTv.setText(AfbUtils.addComma(afbApplication.getUser().getCredit2(), betBalanceTv));
         if (list.size() > 1) {
@@ -549,13 +580,15 @@ public class BetPop extends BasePopupWindow {
 //        showInput();
         String writeMoney = betAmountEdt.getText().toString().trim().replace(",", "");
         if (!TextUtils.isEmpty(writeMoney)) {
-            tvMaxWin.setText(AfbUtils.addComma(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00"), tvMaxWin));
+            tvMaxWin.setText(AfbUtils.scientificCountingToString(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00")));
         }
         setListLayoutParams();
+        if (!StringUtils.isEmpty(afbApplication.getBetAfbList().getPayoutOdds()))
+            tv1x2Odds.setText(AfbUtils.decimalValue(Float.parseFloat(afbApplication.getBetAfbList().getPayoutOdds()), "0.00"));
         stopUpdateOdds();
         LogUtil.d("BetPop", "updateOdds4000");
         updateOdds(4000);
-        if(StringUtils.isEmpty(cursorMap.get(true))) {
+        if (cursorMap.get(true) == null || StringUtils.isEmpty(cursorMap.get(true).getItemSocId())) {
             betAmountEdt.setCursorVisible(true);//显示光标
             betAmountEdt.requestFocus();
             betAmountEdt.setSelection(betAmountEdt.getText().length());
@@ -584,7 +617,7 @@ public class BetPop extends BasePopupWindow {
     }
 
     HashMap<String, String> hashMap = new HashMap();
-    HashMap<Boolean, String> cursorMap = new HashMap();
+    HashMap<Boolean, CursorEditView> cursorMap = new HashMap();
 
     private void initRcBetContent() {
         if (list.size() > 1) {
@@ -653,7 +686,8 @@ public class BetPop extends BasePopupWindow {
                             public void onFocusChange(View v, boolean hasFocus) {
                                 if (hasFocus) {
                                     LogUtil.d("onFocusChange", position);
-                                    cursorMap.put(true, item.getSocOddsId());
+                                    CursorEditView cursorEditView = new CursorEditView(item.getSocOddsId(), edt_single_bet);
+                                    cursorMap.put(true, cursorEditView);
                                 } else {
                                     // 此处为失去焦点时的处理内容
                                 }
@@ -667,7 +701,7 @@ public class BetPop extends BasePopupWindow {
                     } else {
                         edt_single_bet.setText("");
                     }
-                    if (cursorMap.get(true) != null && cursorMap.get(true).equals(item.getSocOddsId())) {
+                    if (cursorMap.get(true) != null && !StringUtils.isEmpty(cursorMap.get(true).getItemSocId()) && cursorMap.get(true).getItemSocId().equals(item.getSocOddsId())) {
                         edt_single_bet.setCursorVisible(true);//显示光标
                         edt_single_bet.requestFocus();
                         edt_single_bet.setSelection(edt_single_bet.getText().length());
@@ -695,7 +729,7 @@ public class BetPop extends BasePopupWindow {
                     }
                     tvHdp.setText(hdp);
                     tvBetHdp.setText(item.getBTT());
-                    String odds = item.getOdds();
+                    String odds = item.getNOddsOLD();
                     tvBetOdds.setText(odds);
                     tvBetOddsAnimation.setText(odds);
                     if (odds.startsWith("-")) {
@@ -785,7 +819,7 @@ public class BetPop extends BasePopupWindow {
                     || socOddsId.equals(oddsClickBean.getOid())
                     || socOddsId.equals(oddsClickBean.getOid_fh())) {
                 iterator.remove();
-                if ((presenter.getBaseView().getIBaseContext().getBaseActivity()) != null&&presenter.getBaseView().getIBaseContext().getBaseActivity() instanceof SportActivity) {
+                if ((presenter.getBaseView().getIBaseContext().getBaseActivity()) != null && presenter.getBaseView().getIBaseContext().getBaseActivity() instanceof SportActivity) {
                     ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).updateMixOrder();
                 }
             }
@@ -843,8 +877,13 @@ public class BetPop extends BasePopupWindow {
 
     private void goCancel() {
         closePopupWindow();
-        if (((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).currentFragment != null) {
-            ((SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity()).currentFragment.onUpdateMixSucceed(null);
+        if (presenter.getBaseView().getIBaseContext().getBaseActivity() instanceof SportActivity) {
+            SportActivity baseActivity = (SportActivity) presenter.getBaseView().getIBaseContext().getBaseActivity();
+            if (baseActivity.currentFragment != null) {
+                baseActivity.currentFragment.onUpdateMixSucceed(null);
+            }
+        } else {
+            activity.getApp().setBetAfbList(null);
         }
     }
 
@@ -864,14 +903,14 @@ public class BetPop extends BasePopupWindow {
             betPopParentTopFl.setVisibility(View.GONE);
             return;
         }
-        if (rTMatchInfo == null||StringUtils.isEmpty(rTMatchInfo.getRTSMatchId())) {
+        if (rTMatchInfo == null || StringUtils.isEmpty(rTMatchInfo.getRTSMatchId()) || rTMatchInfo.getRTSMatchId().equals("0")) {
             betPopParentTopFl.setVisibility(View.GONE);
             return;
         }
         if (!isNeedInitWeb)
             return;
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
-        if (rtsMatchId != null && !rtsMatchId.isEmpty() ) {
+        if (rtsMatchId != null && !rtsMatchId.isEmpty()) {
             setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
             this.rTMatchInfo = rTMatchInfo;
             String lag = AfbUtils.getLanguage(context);

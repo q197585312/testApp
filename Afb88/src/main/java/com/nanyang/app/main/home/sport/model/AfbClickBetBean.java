@@ -35,6 +35,7 @@ public class AfbClickBetBean implements Serializable {
      * AmtS : 0
      * outright : false
      * IsFH : 上半场
+     * NOddsOLD : -1.11
      */
 
     private String id;
@@ -60,6 +61,17 @@ public class AfbClickBetBean implements Serializable {
     private String outright;
     private String IsFH;
     private String AccType;
+
+    public String getNOddsOLD() {
+        NOddsOLD = AfbUtils.delHTMLTag(NOddsOLD);
+        return NOddsOLD;
+    }
+
+    public void setNOddsOLD(String NOddsOLD) {
+        this.NOddsOLD = NOddsOLD;
+    }
+
+    private String NOddsOLD;
 
     public String getAccType() {
         return AccType;

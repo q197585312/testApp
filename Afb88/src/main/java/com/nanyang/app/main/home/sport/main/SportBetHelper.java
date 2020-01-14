@@ -19,6 +19,7 @@ import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
+import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.IBaseView;
 import com.unkonw.testapp.libs.utils.LogUtil;
 
@@ -150,7 +151,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         String[] split = allData.split("\\|");
                         if (split.length >= 5) {
                             baseView.onBetSuccess(allData);
-                            if(betPop!=null)
+                            if (betPop != null)
                                 betPop.clearSingleHashMap();
                             updateFirstStake();
                         } else {
@@ -186,11 +187,19 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     BetPop betPop;
 
     protected void createBetPop(List<AfbClickBetBean> bean, View v) {
+        BaseActivity baseActivity = baseView.getIBaseContext().getBaseActivity();
         if (betPop == null) {
-            betPop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
+            betPop = new BetPop(baseActivity, v);
+        }
+        if (baseActivity instanceof SportActivity) {
+            String type = ((SportActivity) baseActivity).getOtType();
+            if (type.toLowerCase().startsWith("r")) {
+                betPop.setIsRunning(true);
+            } else {
+                betPop.setIsRunning(false);
+            }
         }
         betPop.setBetData(bean, this);
-        betPop.setIsRunning(false);
         if (!betPop.isShowing()) {
 //            betPop.showPopupCenterWindow();
             baseView.onPopupWindowCreated(betPop, Gravity.CENTER);
@@ -237,7 +246,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                             if (list != null && list.size() > 0 && list.get(0).getId() != null) {
                                 JSONArray dataListArray1 = jsonArray.getJSONArray(1);
                                 bean = new AfbClickResponseBean(list, dataListArray1);
-                                LogUtil.d("BetPop","setBetAfbList:getRefreshOdds:"+bean);
+                                LogUtil.d("BetPop", "setBetAfbList:getRefreshOdds:" + bean);
                                 ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(bean);
                             }
                         }
@@ -261,7 +270,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         Log.d(TAG, "throwable:" + throwable.getCause());
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().getIBaseContext().hideLoadingDialog();
-                        LogUtil.d("BetPop","setBetAfbList:getRefreshOdds错误:"+null);
+                        LogUtil.d("BetPop", "setBetAfbList:getRefreshOdds错误:" + null);
                         ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(null);
                         updateMixList(url);
                     }
@@ -330,7 +339,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         }
         return false;
     }
-
 
 
 }

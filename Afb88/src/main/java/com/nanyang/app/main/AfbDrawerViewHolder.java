@@ -175,6 +175,10 @@ public class AfbDrawerViewHolder implements IDrawerView {
 
     }
 
+    public BaseSwitchFragment getIndexFragment() {
+        return indexFragment;
+    }
+
     public void switchFragment(BaseSwitchFragment fragment) {
 
         if (fragment != indexFragment || lastIndexFragment == null) {

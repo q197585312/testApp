@@ -39,20 +39,22 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
-import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.Utils.MyGoHomeBroadcastReceiver;
 import com.nanyang.app.Utils.StringUtils;
-import com.nanyang.app.common.IGetRefreshMenu;
 import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.main.AfbDrawerViewHolder;
+import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
 import com.nanyang.app.main.home.sport.WebSocketManager;
 import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
+import com.nanyang.app.main.home.sport.live.LivePlayHelper;
+import com.nanyang.app.main.home.sport.live.ViewHolder;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -68,13 +70,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import butterknife.Bind;
 import cn.finalteam.toolsfinal.logger.Logger;
 
-public class SportActivity extends BaseToolbarActivity<MainPresenter> implements ILanguageView<String>, IGetRefreshMenu {
+public class SportActivity extends BaseToolbarActivity<MainPresenter> implements ILanguageView<String> {
     private final String GUIDE_KEY = "GUIDE";
 
     HuayThaiFragment huayThaiFragment = new HuayThaiFragment();
@@ -83,8 +84,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     DrawerLayout drawerLayout;
 
     @Bind(R.id.sport_header_ll)
-    public
-    View sportHeaderLl;
+    public View sportHeaderLl;
+    @Bind(R.id.fl_top_content)
+    View fl_top_content;
     @Bind(R.id.tv_toolbar_left)
     TextView tvToolbarLeft;
     @Bind(R.id.tv_toolbar_title)
@@ -166,6 +168,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private SportIdBean currentIdBean;
     private boolean notClickType = false;
     private boolean stopCloseWindow;
+    private LivePlayHelper helper;
 
 
     public TextView getIvAllAdd() {
@@ -219,8 +222,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 //        presenter.getStateHelper().switchOddsType(item.getType());
         updateMixOrderCount();
-    }
 
+    }
 
 
     public String getType() {
@@ -265,7 +268,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             }
             runWayItem(new MenuItemInfo<>(res, item.getText(), type, res, day, dateParam));
 //            currentFragment.presenter.getStateHelper().switchOddsType(getApp().getOddsType().getType());
-
+            final ViewHolder viewHolder = new ViewHolder(fl_top_content);
+            helper = new LivePlayHelper(viewHolder, this);
         }
 
         tvRecord.setOnClickListener(new View.OnClickListener() {
@@ -341,8 +345,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     protected void onDestroy() {
         super.onDestroy();
         BetGoalWindowUtils.clear();
-
+        helper.onDestroy();
         unregisterReceiver(myGoHomeBroadcastReceiver);
+
     }
 
     private void initFragment(String parentType) {
@@ -380,7 +385,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }
         afbDrawerViewHolder.initDefaultFragment(localCurrentFragment);
         deleteHeadAndFoot();
-        sportTitleTv.setText(getString(R.string.sport_match) + " > " );
+        sportTitleTv.setText(getString(R.string.sport_match) + " > ");
         getTvSportSelect.setText(tag);
         afbDrawerViewHolder.switchFragment(localCurrentFragment);
         currentFragment = localCurrentFragment;
@@ -555,16 +560,28 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    presenter.switchOddsType(getApp().getOddsType().getType());
+                    MenuItemInfo oddsType = getApp().getOddsType();
+                    if (oddsType == null)
+                        oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
+                    presenter.switchOddsType(oddsType.getType());
                 }
-            }, 200);
+            }, 1000);
         }
         createWebSocket();
+
         startRefreshMenu();
         if (popWindow instanceof BetPop && popWindow.isShowing()) {
-            LogUtil.d("BetPop","updateOdds50");
+            LogUtil.d("BetPop", "updateOdds50");
             ((BetPop) popWindow).updateOdds(0);
         }
+
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (helper != null)
+            helper.onPausePlay();
     }
 
     @Override
@@ -576,6 +593,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }
         stopRefreshMenu();
         WebSocketManager.getInstance().stopUpdateData();
+        closeTv(fl_top_content);
 
     }
 
@@ -805,7 +823,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void rememberLastOdds() {
-        AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext),mContext);
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext), mContext);
         MenuItemInfo oddsType = getOddsType();
         if (oddsType != null) {
             tvOddsType.setText(oddsType.getText());
@@ -854,19 +872,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         currentFragment.clickOrder();
     }
 
-    private void startRefreshMenu() {
+    public void startRefreshMenu() {
         stopRefreshMenu();
-        handler.postDelayed(refreshMenuRunnable, 1500);
+        super.startRefreshMenu();
     }
 
-    private void stopRefreshMenu() {
-        if (handler != null) {
-            handler.removeCallbacks(refreshMenuRunnable);
-            handler.removeCallbacksAndMessages(null);
-        }
-    }
-
-    private List<String> lastWaitDataBeanList;
 
     public void onGetRefreshMenu(List<String> beanList) {
         int waitSize = beanList.size();
@@ -876,6 +886,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         } else {
             tvWaiteCount.setVisibility(View.GONE);
         }
+
         if (lastWaitDataBeanList == null) {
             lastWaitDataBeanList = beanList;
         } else {
@@ -893,6 +904,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void onAddWaiteCount(int waitNumber) {
+        LogUtil.d("waitNumber", "waitNumber" + waitNumber);
         stopRefreshMenu();
         String s = tvWaiteCount.getText().toString();
         if (TextUtils.isEmpty(s)) {
@@ -902,30 +914,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         parseInt += waitNumber;
         tvWaiteCount.setText(parseInt + "");
         tvWaiteCount.setVisibility(View.VISIBLE);
+        BaseSwitchFragment indexFragment = afbDrawerViewHolder.getIndexFragment();
+        if (indexFragment != null) {
+            indexFragment.initWaitData();
+        }
         startRefreshMenu();
     }
 
-
-    private Runnable refreshMenuRunnable = new Runnable() {
-        @Override
-        public void run() {
-            LinkedHashMap<String, String> menuParamMap = new LinkedHashMap<>();
-            menuParamMap.put("ACT", "Getmenu");
-            menuParamMap.put("PT", AppConstant.wfMain);
-            String type = currentFragment.presenter.getStateHelper().getStateType().getType();
-            String ot;
-            if (type.equals("Running")) {
-                ot = "r";
-            } else if (type.equals("Today")) {
-                ot = "t";
-            } else {
-                ot = "e";
-            }
-            menuParamMap.put("ot", ot);
-            presenter.refreshMenu(menuParamMap);
-            handler.postDelayed(this, 10000);
-        }
-    };
 
     public void runWayItem(MenuItemInfo item) {
         AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext), mContext);
@@ -948,5 +943,43 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     }
 
+    @Override
+    public String getOtType() {
+        String ot = "Running";
+        if (isHasAttached()) {
+            String type = currentFragment.presenter.getStateHelper().getStateType().getType();
+            if (!StringUtils.isNull(type))
+                ot = type;
+        }
+        return ot;
+    }
 
+
+    public void closeTv(View view) {
+        fl_top_content.setVisibility(View.GONE);
+        helper.onStopPlay();
+        helper.onDestroy();
+        if (currentFragment instanceof BaseSportFragment && !currentFragment.isHidden())
+            sportHeaderLl.setVisibility(View.VISIBLE);
+    }
+
+    public void chooseSingle(BallInfo itemBall) {
+
+        fl_top_content.setVisibility(View.VISIBLE);
+        sportHeaderLl.setVisibility(View.GONE);
+        if (!StringUtils.isNull(itemBall.getTvPathIBC()) && !itemBall.getTvPathIBC().equals("0")) {
+            helper.initPlayer(itemBall.getTvPathIBC());
+            helper.onResumePlay();
+        }
+    }
+
+    public void onPopupWindowCreatedAndShow(BasePopupWindow pop, int center) {
+        if (pop instanceof BetPop && fl_top_content.getVisibility() == View.VISIBLE) {
+            pop.setV(fl_top_content);
+            createPopupWindow(pop);
+            popWindow.showAtLocation(Gravity.TOP, AfbUtils.dp2px(mContext, 2), AfbUtils.dp2px(mContext, 200));
+        } else {
+            super.onPopupWindowCreatedAndShow(pop, center);
+        }
+    }
 }

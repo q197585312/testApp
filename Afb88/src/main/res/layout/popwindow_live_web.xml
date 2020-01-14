@@ -133,14 +133,16 @@
         android:id="@+id/rv_title_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/green_light_title" />
+        android:background="@color/google_green" />
 
     <ScrollView
+        android:background="@color/green_light_white"
         android:id="@+id/sv_bottom_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <LinearLayout
+            android:background="@color/green_light_white_low"
             android:id="@+id/common_ball_parent_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

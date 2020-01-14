@@ -2,9 +2,12 @@ package com.unkonw.testapp.libs.widget;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.PixelFormat;
 import android.graphics.drawable.BitmapDrawable;
+import android.os.IBinder;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -21,9 +24,11 @@ import butterknife.ButterKnife;
  */
 public abstract class BasePopupWindow {
     private static final String TAG = "BasePopupWindow";
+    private final WindowManager windowManager;
     protected Context context;
     private LayoutInflater inflater;
     public PopupWindow popWindow;
+    private View maskView;
 
     public void setWidth(int width) {
         this.width = width;
@@ -62,6 +67,7 @@ public abstract class BasePopupWindow {
         this.v = v;
         this.width = width;
         this.height = height;
+        windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
         initPop();
     }
 
@@ -115,9 +121,47 @@ public abstract class BasePopupWindow {
     }
 
     private void setBackgroundAttr(float f) {
-        WindowManager.LayoutParams params = ((Activity) context).getWindow().getAttributes();
+        if(f<1f) {
+            addMask(v.getWindowToken());
+        }else {
+            removeMask();
+        }
+   /*     WindowManager.LayoutParams params = ((Activity) context).getWindow().getAttributes();
         params.alpha = f;
-        ((Activity) context).getWindow().setAttributes(params);
+        ((Activity) context).getWindow().setAttributes(params);*/
+    }
+    private void addMask(IBinder token) {
+        WindowManager.LayoutParams wl = new WindowManager.LayoutParams();
+        wl.width = WindowManager.LayoutParams.MATCH_PARENT;
+        wl.height = WindowManager.LayoutParams.MATCH_PARENT;
+        wl.format = PixelFormat.TRANSLUCENT;//不设置这个弹出框的透明遮罩显示为黑色
+        wl.type = WindowManager.LayoutParams.TYPE_APPLICATION_PANEL;//该Type描述的是形成的窗口的层级关系
+        wl.token = token;//获取当前Activity中的View中的token,来依附Activity
+        maskView = new View(context);
+        maskView.setBackgroundColor(0x7f000000);
+        maskView.setFitsSystemWindows(false);
+        maskView.setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    removeMask();
+                    return true;
+                }
+                return false;
+            }
+        });
+        /**
+         * 通过WindowManager的addView方法创建View，产生出来的View根据WindowManager.LayoutParams属性不同，效果也就不同了。
+         * 比如创建系统顶级窗口，实现悬浮窗口效果！
+         */
+        windowManager.addView(maskView, wl);
+    }
+
+    private void removeMask() {
+        if (null != maskView) {
+            windowManager.removeViewImmediate(maskView);
+            maskView = null;
+        }
     }
 
     protected void initView(View view) {

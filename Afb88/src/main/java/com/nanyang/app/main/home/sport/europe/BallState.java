@@ -3,13 +3,13 @@ package com.nanyang.app.main.home.sport.europe;
 import android.graphics.Color;
 
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.main.SportState;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
+import com.unkonw.testapp.libs.base.BaseActivity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -26,6 +26,7 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
 
     public BallState(SportContract.View<BallInfo> baseView) {
         super(baseView);
+
     }
 
     @Override
@@ -126,16 +127,18 @@ public abstract class BallState extends SportState<BallInfo, SportContract.View<
                 String sAway = item.getRunAwayScore();
                 if (item.isHomeScoreBigger() && item.getShowGoal().equals("1")) {
                     SoccerRunningGoalManager.getInstance().putHomeGoal(item, true);
-
-                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
+                    BaseActivity baseActivity = getBaseView().getIBaseContext().getBaseActivity();
+                    if (baseActivity instanceof BaseToolbarActivity)
+                        ((BaseToolbarActivity) baseActivity).BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 0);
                     item.setHomeScoreBigger(false);
 
 
                 }
                 if (item.isAwayScoreBigger() && item.getShowGoal().equals("1")) {
                     SoccerRunningGoalManager.getInstance().putAwayGoal(item, true);
-
-                    BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
+                    BaseActivity baseActivity = getBaseView().getIBaseContext().getBaseActivity();
+                    if (baseActivity instanceof BaseToolbarActivity)
+                        ((BaseToolbarActivity) baseActivity).BetGoalWindowUtils.showGoalWindow(activity, item.getModuleTitle(), item.getHome(), homeTextColor, item.getAway(), awayTextColor, sHome, sAway, 1);
                     item.setAwayScoreBigger(false);
                 }
             }

@@ -16,6 +16,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.nanyang.app.Utils.BetGoalWindowUtils;
+import com.nanyang.app.common.IGetRefreshMenu;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.PersonalInfo;
@@ -38,6 +40,9 @@ import com.unkonw.testapp.libs.widget.BaseYseNoChoosePopupWindow;
 
 import org.reactivestreams.Subscription;
 
+import java.util.LinkedHashMap;
+import java.util.List;
+
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -48,7 +53,8 @@ import io.reactivex.schedulers.Schedulers;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
-public abstract class BaseToolbarActivity<T extends IBasePresenter> extends BaseActivity<T> {
+public abstract class BaseToolbarActivity<T extends IBasePresenter> extends BaseActivity<T> implements IGetRefreshMenu {
+    public BetGoalWindowUtils    BetGoalWindowUtils =new BetGoalWindowUtils();
     @Nullable
     public
     TextView tvToolbarTitle;
@@ -66,6 +72,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     LinearLayout llRight;
 
 
+    protected List<String> lastWaitDataBeanList;
     public CompositeDisposable mCompositeSubscription;
     int errorCount = 0;
     public TextView tvToolbarRight1;
@@ -73,7 +80,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     @Override
     public void init() {
-
         super.init();
         initLanguage();
     }
@@ -312,7 +318,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     public void onBetSuccess(String betResult) {
         if (popWindow != null)
             popWindow.closePopupWindow();
-        LogUtil.d("BetPop","setBetAfbList:onBetSuccess:"+null);
+        LogUtil.d("BetPop", "setBetAfbList:onBetSuccess:" + null);
         getApp().setBetAfbList(null);
 
         updateBalance();
@@ -454,4 +460,56 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         toolbar.setVisibility(b);
     }
 
+    private Runnable refreshMenuRunnable = new Runnable() {
+        MainPresenter switchLanguage = new MainPresenter(getBaseActivity());
+
+        @Override
+        public void run() {
+            if (!isHasAttached()) {
+                return;
+            }
+            LinkedHashMap<String, String> menuParamMap = new LinkedHashMap<>();
+            menuParamMap.put("ACT", "Getmenu");
+            menuParamMap.put("PT", AppConstant.wfMain);
+            menuParamMap.put("ot", String.valueOf(getOtType().charAt(0)).toLowerCase());
+            switchLanguage.refreshMenu(menuParamMap);
+            updateHandler.postDelayed(this, 10000);
+        }
+    };
+
+    public void startRefreshMenu() {
+        updateHandler.postDelayed(refreshMenuRunnable, 1500);
+    }
+
+    public void stopRefreshMenu() {
+        if (updateHandler != null) {
+            updateHandler.removeCallbacks(refreshMenuRunnable);
+        }
+    }
+
+    public String getOtType() {
+        return "Running";
+    }
+
+    public void onGetRefreshMenu(List<String> beanList) {
+        if (lastWaitDataBeanList == null) {
+            lastWaitDataBeanList = beanList;
+        } else {
+            for (int i = 0; i < lastWaitDataBeanList.size(); i++) {
+                String waitNum = lastWaitDataBeanList.get(i);
+                Log.d("onGetRefreshMenu", "lastWaitDataBeanList: " + lastWaitDataBeanList.toString());
+                Log.d("onGetRefreshMenu", "beanList: " + beanList.toString());
+                if (!beanList.contains(waitNum)) {
+                    String accType =getOtType();
+                    BetGoalWindowUtils.showBetWindow(accType, waitNum, this, true);
+                }
+            }
+            lastWaitDataBeanList = beanList;
+        }
+    }
+
+    public void onAddWaiteCount(int waitNumber) {
+        stopRefreshMenu();
+        startRefreshMenu();
+    }
 }

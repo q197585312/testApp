@@ -13,6 +13,7 @@ import android.widget.ImageView;
 
 import com.google.gson.Gson;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import butterknife.ButterKnife;
@@ -177,6 +178,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
     }
 
     public void initWaitData() {
+        LogUtil.d("waitNumber",getClass().getSimpleName()+":initWaitData");
     }
 
     public void refreshData() {

@@ -796,7 +796,7 @@ public class AfbUtils {
 
     public static String scientificCountingToString(String scientificCounting) {
         String ff = scientificCounting.toString().replace(",", "");
-        if (Float.valueOf(ff) == 0) {
+        if (StringUtils.isNull(ff)||Float.valueOf(ff) == 0) {
             return "0.00";
         }
         String f = "#,###.00";

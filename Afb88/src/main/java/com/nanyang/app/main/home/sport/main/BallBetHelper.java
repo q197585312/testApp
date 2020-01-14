@@ -66,7 +66,8 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 if (hasPar && typeHasPar) {
                     saveCurrentBet(oddsUrlBean);
                 }
-                return getDisposable(v, isHf, betOddsUrl);
+                if (!hasPar || ((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1)
+                    return getDisposable(v, isHf, betOddsUrl);
             }
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
             ToastUtils.showShort(R.string.can_not_mixparly);

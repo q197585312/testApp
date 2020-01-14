@@ -19,12 +19,19 @@
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginBottom="3dp"
+            android:layout_marginTop="3dp"
             android:background="@mipmap/go_back_left_white" />
-
+        <LinearLayout
+            android:id="@+id/ll_single_mix"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
         <TextView
             android:id="@+id/tv_mix_bet"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_marginBottom="2dp"
             android:layout_marginRight="2dp"
@@ -64,7 +71,7 @@
             android:textColor="@color/yellow_gold"
             android:textSize="13sp"
             android:textStyle="bold" />
-
+</LinearLayout>
         <TextView
             android:id="@+id/tv_delete"
             android:layout_width="0dp"

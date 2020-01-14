@@ -26,6 +26,12 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     String isHdpNew_FH;
     String isOUNew_FH;
 
+    public String getIsLast() {
+        return isLast;
+    }
+
+    private String isLast;
+
     public String getTvPathIBC() {
         return tvPathIBC;
     }
@@ -1124,5 +1130,9 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
 
     public void setRunAwayScore_FH(String runAwayScore_FH) {
         RunAwayScore_FH = runAwayScore_FH;
+    }
+
+    public void setIsLast(String isLast) {
+        this.isLast = isLast;
     }
 }

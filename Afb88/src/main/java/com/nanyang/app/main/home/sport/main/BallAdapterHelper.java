@@ -339,9 +339,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         int res = selectedMap.get(true).getRes();
         boolean isAll = (res == R.string.all);
         if (size > 0 && (isAll || res == R.string.HDP_OU)) {
-            View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
-            parent.addView(titleLL);
+
             for (int i = 0; i < size; i++) {
+                View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
+                parent.addView(titleLL);
                 addAddedView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item);
             }
         }
@@ -1417,7 +1418,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     if (back != null) {
                         back.clickOdds(textView, item, type, isHalf, finalContent, Integer.valueOf(oid), sc, hasHar);
                         getBaseRecyclerAdapter().notifyDataSetChanged();
-                    }else{
+                    } else {
                         final LiveWebActivity liveWebActivity = (LiveWebActivity) context;
                         BallBetHelper helper = new BallBetHelper(liveWebActivity) {
                             @Override

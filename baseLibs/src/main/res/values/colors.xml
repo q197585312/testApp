@@ -79,6 +79,7 @@
     <color name="green_light_content">#FF78EE9F</color>
     <color name="green_grey">#bce2c8</color>
     <color name="green_light_white">#FFC9EBD5</color>
+    <color name="green_light_white_low">#FFF3FDF6</color>
     <color name="green_login_btn">#289F45</color>
 
     <!--other-->

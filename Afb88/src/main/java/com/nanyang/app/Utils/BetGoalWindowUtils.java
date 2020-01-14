@@ -21,7 +21,6 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
-import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.api.Api;
 
 import org.json.JSONArray;
@@ -42,11 +41,11 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class BetGoalWindowUtils {
-    private static Handler handler;
-    private static LinearLayout llContent;
-    private static LayoutInflater layoutInflater;
+    private  Handler handler;
+    private  LinearLayout llContent;
+    private  LayoutInflater layoutInflater;
 
-    private static void initLayout(Activity activity) {
+    private  void initLayout(Activity activity) {
         if (llContent == null) {
             FrameLayout view = (FrameLayout) activity.getWindow().getDecorView();
             llContent = new LinearLayout(activity);
@@ -65,7 +64,7 @@ public class BetGoalWindowUtils {
         }
     }
 
-    public static void showBetWindow(String accType, String tidss, final Activity activity, final boolean isWA) {
+    public  void showBetWindow(String accType, String tidss, final Activity activity, final boolean isWA) {
         initLayout(activity);
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
         map.put("ACT", "GetTable");
@@ -190,10 +189,16 @@ public class BetGoalWindowUtils {
                                     }
                                     showStr = showStr.replace("&nbsp;", " ");
                                     if (showStr.contains("W") && !showStr.contains("/")) {
-                                        SportActivity sportActivity = (SportActivity) activity;
-                                        sportActivity.onAddWaiteCount(1);
+                                        if (activity instanceof BaseToolbarActivity) {
+                                            BaseToolbarActivity sportActivity = (BaseToolbarActivity) activity;
+                                            sportActivity.onAddWaiteCount(1);
+                                        }
                                     }
                                     if (showStr.contains("/") && !TextUtils.isEmpty(index22)) {
+                                        if (activity instanceof BaseToolbarActivity) {
+                                            BaseToolbarActivity sportActivity = (BaseToolbarActivity) activity;
+                                            sportActivity.onAddWaiteCount(0);
+                                        }
                                         int endColor;
                                         if (showStr.contains("A")) {
                                             endColor = ContextCompat.getColor(activity, R.color.green_dark);
@@ -214,6 +219,7 @@ public class BetGoalWindowUtils {
                                         tvData6.setText(showStr);
                                     }
                                     Log.d("onGetRefreshMenu", "showStr: " + showStr);
+
                                     llContent.addView(view);
                                     for (int i = 0; i < llContent.getChildCount(); i++) {
                                         llContent.getChildAt(i).measure(0, 0);
@@ -264,7 +270,7 @@ public class BetGoalWindowUtils {
         mCompositeSubscription.add(subscribe);
     }
 
-    public static void showGoalWindow(BaseToolbarActivity activity, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {
+    public  void showGoalWindow(BaseToolbarActivity activity, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {
         if (activity == null || SoundPlayUtils.getSoundIndex().getSound() == 0)
             return;
         initLayout(activity);
@@ -325,7 +331,7 @@ public class BetGoalWindowUtils {
         });
     }
 
-    private static StatementListDataBean handleData(String data) {
+    private  StatementListDataBean handleData(String data) {
         try {
             JSONArray jsonArray = new JSONArray(data);
             JSONArray jsonArray1 = jsonArray.getJSONArray(3);
@@ -346,7 +352,7 @@ public class BetGoalWindowUtils {
         }
     }
 
-    public static void clear() {
+    public  void clear() {
         if (llContent != null) {
             llContent.removeAllViews();
         }

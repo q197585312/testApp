@@ -192,5 +192,6 @@ public class LivePlayActivity extends BaseToolbarActivity {
             Log.d("ijk", "onDestroy");
             videoPlayer.release();
         }
+        BetGoalWindowUtils.clear();
     }
 }

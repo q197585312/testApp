@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
@@ -26,6 +25,7 @@ import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
 import com.nanyang.app.main.home.sport.additional.IAdded;
+import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
@@ -35,12 +35,8 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.VideoPlayer;
-import com.unkonw.testapp.libs.widget.listener.VideoListener;
-
-import java.io.IOException;
 
 import butterknife.Bind;
-import tv.danmaku.ijk.media.player.IMediaPlayer;
 
 /**
  * Created by Administrator on 2020/1/3.
@@ -74,12 +70,11 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     private RecyclerView rv_title_list;
     LiveSelectedHelper liveSelectedHelper;
 
-    boolean playing = true;
-    boolean voiceOpen = true;
     private BallInfo item;
     private AddMBean additionData;
     private String ballG;
     private String gameUrl;
+    private LiveParamsInfo liveParamsInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +82,8 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         setContentView(R.layout.popwindow_live_web);
 
     }
+
+    LivePlayHelper helper;
 
     @Override
     public void initData() {
@@ -97,13 +94,15 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
             finish();
             return;
         }
-        LiveParamsInfo o1 = (LiveParamsInfo) o;
-        ballG = o1.getBallG();
+        this.liveParamsInfo = (LiveParamsInfo) o;
+        ballG = liveParamsInfo.getBallG();
         rv_title_list = (RecyclerView) findViewById(R.id.rv_title_list);
         videoPlayer = (VideoPlayer) findViewById(R.id.video_player_stream);
 
         tv_title_live_stream = (TextView) findViewById(R.id.tv_title_live_stream);
         tv_title_live_center = (TextView) findViewById(R.id.tv_title_live_center);
+        final ViewHolder viewHolder = new ViewHolder(fl_top_content);
+        helper = new LivePlayHelper(viewHolder, this);
         tv_title_live_center.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -113,22 +112,11 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         tv_title_live_stream.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                visibleLive(tv_title_live_stream, videoPlayer, true);
-            }
-        });
-        ivVoice.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                turnVoice();
+                visibleLive(tv_title_live_stream, viewHolder.videoPlayerStream, true);
             }
         });
 
-        ivPlayStatus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                turnPause();
-            }
-        });
+
         ivFullScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -137,10 +125,10 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         });
 
         initRv();
-        initWeb(o1.getGameUrl());
-        initPlay(o1.getLivePlayUrlId());
+        initWeb(liveParamsInfo.getGameUrl());
+        initPlay(liveParamsInfo.getLivePlayUrlId());
         createPresenter(new AdditionPresenter(this));
-        presenter.addition(o1, new IAdded() {
+        presenter.addition(liveParamsInfo, new IAdded() {
             @Override
             public void onAdded(AddMBean addMBean, BallInfo ballInfo) {
                 LiveWebActivity.this.item = ballInfo;
@@ -161,23 +149,6 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
 //        super.updateBalanceTv(allData);
     }
 
-    public void setLivePlayUrlId(String BID) {
-
-        Log.d("ijk", "BID:" + BID);
-        String path;
-        if (StringUtils.isNull(BID) || BID.equals("0")) {
-            return;
-        } else {
-            path = "rtmp://pull.afb1188.com/live/" + BID;
-            if (BID.startsWith("1")) {
-                path = "rtmp://27.124.35.15:8080/live/" + BID;
-            } else if (BID.startsWith("9")) {
-                path = "rtmp://27.124.13.234:8080/live/" + BID;
-            }
-            visibleLive(tv_title_live_stream, videoPlayer, true);
-        }
-        videoPlayer.setPath(path);
-    }
 
     private void initRv() {
         liveSelectedHelper = new LiveSelectedHelper();
@@ -262,48 +233,13 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
             enableView(tv_title_live_stream, videoPlayer);
             llStatus.setVisibility(View.VISIBLE);
         }
-        videoPlayer.setVideoListener(new VideoListener() {
-            @Override
-            public void onBufferingUpdate(IMediaPlayer iMediaPlayer, int i) {
-                Log.d("ijk", "onBufferingUpdate");
-            }
 
-            @Override
-            public void onCompletion(IMediaPlayer iMediaPlayer) {
-                Log.d("ijk", "onCompletion");
-            }
-
-            @Override
-            public boolean onError(IMediaPlayer iMediaPlayer, int i, int i1) {
-                Log.d("ijk", "onError");
-                return false;
-
-            }
-
-            @Override
-            public boolean onInfo(IMediaPlayer iMediaPlayer, int i, int i1) {
-                Log.d("ijk", "onInfo");
-                return false;
-            }
-
-            @Override
-            public void onPrepared(IMediaPlayer iMediaPlayer) {
-                onStartPlay();
-                Log.d("ijk", "onPrepared");
-            }
-
-            @Override
-            public void onSeekComplete(IMediaPlayer iMediaPlayer) {
-                Log.d("ijk", "onSeekComplete");
-            }
-
-            @Override
-            public void onVideoSizeChanged(IMediaPlayer iMediaPlayer, int i, int i1, int i2, int i3) {
-                Log.d("ijk", "onVideoSizeChanged");
-            }
-        });
-        setLivePlayUrlId(livePlayUrlId);
+        if (!StringUtils.isNull(livePlayUrlId) && !livePlayUrlId.equals("0")) {
+            helper.initPlayer(livePlayUrlId);
+            visibleLive(tv_title_live_stream, videoPlayer, true);
+        }
     }
+
 
     private boolean isNotEnable(TextView tv_title_live_stream, String livePlayUrl) {
         tv_title_live_stream.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
@@ -341,12 +277,13 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
             } else {
                 llStatus.setVisibility(View.VISIBLE);
             }
-            mHeight = (marWidth * 9 / 16);
-            playVideo();
+            mHeight = AfbUtils.dp2px(mContext, 200);
+            helper.onResumePlay();
+
         } else {
             llStatus.setVisibility(View.GONE);
             mHeight = AfbUtils.dp2px(mContext, 200);
-            onPausePlay();
+            helper.onPausePlay();
         }
         params.height = mHeight;
         fl_top_content.setLayoutParams(params);
@@ -363,82 +300,31 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     @Override
     protected void onResume() {
         super.onResume();
-        playVideo();
+        startRefreshMenu();
+        helper.onResumePlay();
         getApp().setNoShowRts(true);
     }
 
-    public void onStartPlay() {
-        if (videoPlayer != null) {
-            Log.d("ijk", "onPause");
-            videoPlayer.start();
-            playing = true;
-            ivPlayStatus.setImageResource(R.mipmap.play_pause_white);
-        }
-    }
-
-    public void onPausePlay() {
-        if (videoPlayer != null) {
-            Log.d("ijk", "onPause");
-            videoPlayer.pause();
-            playing = false;
-            ivPlayStatus.setImageResource(R.mipmap.play_start_white);
-        }
-    }
-
-    private void playVideo() {
-        try {
-            if (videoPlayer != null && videoPlayer.getmPath() != null)
-                videoPlayer.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void turnVoice() {
-        voiceOpen = !voiceOpen;
-        if (voiceOpen) {
-            videoPlayer.getmMediaPlayer().setVolume(1.0f, 1.0f);
-            ivVoice.setImageResource(R.mipmap.play_mute_white);
-        } else {
-            videoPlayer.getmMediaPlayer().setVolume(0.0f, 0.0f);
-            ivVoice.setImageResource(R.mipmap.play_voice_white);
-        }
-    }
-
-    public void turnPause() {
-        playing = !playing;
-        if (playing) {
-            onStart();
-        } else {
-            onPausePlay();
-        }
-    }
 
     @Override
     protected void onPause() {
         super.onPause();
-        onPausePlay();
+        helper.onPausePlay();
     }
 
     @Override
     protected void onStop() {
         super.onStop();
         getApp().setNoShowRts(false);
-        if (videoPlayer != null) {
-            Log.d("ijk", "stop");
-            videoPlayer.stop();
-            playing = false;
-        }
+        helper.onStopPlay();
+        stopRefreshMenu();
+
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (videoPlayer != null) {
-            Log.d("ijk", "onDestroy");
-            videoPlayer.release();
-        }
-
+        helper.onDestroy();
     }
 
     @Override
@@ -463,10 +349,24 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
         pop.setV(fl_top_content);
         pop.setWidth(AfbUtils.getScreenWidth(this));
+        if (pop instanceof BetPop)
+            ((BetPop) pop).getLlSingleMix().setVisibility(View.GONE);
         onPopupWindowCreatedAndShow(pop, -2);
     }
 
     public String getBallG() {
         return ballG;
     }
+
+    public String getOtType() {
+        String ot = "Running";
+        if (isHasAttached()) {
+            String type = liveParamsInfo.getOddsType();
+            if (!StringUtils.isNull(type))
+                ot=type;
+        }
+        return ot;
+    }
+
+
 }

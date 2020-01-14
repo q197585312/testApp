@@ -34,19 +34,21 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
 
     }
 
-    public BaseListPopupWindow(Context context, View v) {
+    public BaseListPopupWindow(Context context, View v, int wrapContent, int content) {
         super(context, v);
 
     }
 
-    public abstract int getRecyclerViewId();
+    public int getRecyclerViewId() {
+        return R.id.base_rv;
+    }
 
     public void setData(List<T> data) {
         this.data = data;
         adapter.addAllAndClear(data);
     }
 
-    public int getItemLayoutId() {
+    public int getItemLayoutRes() {
         return R.layout.register_base_test;
 
     }
@@ -56,28 +58,30 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
         convertTv(tv, item);
     }
 
+    public RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
+
     @Override
     protected void initView(View view) {
         super.initView(view);
         recyclerView = (RecyclerView) view.findViewById(getRecyclerViewId());
         LinearLayoutManager mLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(mLayoutManager);
-        adapter = new BaseRecyclerAdapter<T>(context, new ArrayList<T>(), getItemLayoutId()) {
+        adapter = new BaseRecyclerAdapter<T>(context, new ArrayList<T>(), getItemLayoutRes()) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, T item) {
                 onConvert(holder, position, item);
             }
-
-
         };
+
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<T>() {
             @Override
             public void onItemClick(View view, T item, int position) {
                 if (tv1 != null) {
                     tv1.setText("OK");
                     tv1.setVisibility(View.VISIBLE);
-                }
-                if (tv != null) {
+                }else{
                     clickItem(tv, item);
                 }
                 closePopupWindow();
@@ -88,7 +92,6 @@ public abstract class BaseListPopupWindow<T> extends BasePopupWindow {
     }
 
     protected void clickItem(TextView tv, T item) {
-        convertTv(tv, item);
     }
 
     protected void convertTv(TextView tv, T item) {
