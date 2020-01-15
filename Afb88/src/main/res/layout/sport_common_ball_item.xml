@@ -17,7 +17,7 @@
         android:id="@+id/module_match_title_ll"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/grey_background"
+        android:background="@color/grey_thick_line"
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp">
@@ -150,9 +150,11 @@
 
             <ImageView
                 android:id="@+id/iv_hall_btn"
-                android:layout_width="20dp"
-                android:layout_height="14dp"
-                android:scaleType="center"
+                android:layout_width="21dp"
+                android:layout_height="16dp"
+
+
+                android:scaleType="fitXY"
                 android:visibility="visible" />
 
             <TextView

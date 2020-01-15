@@ -20,6 +20,8 @@
     <color name="grey_white">#FFFAFBFB</color>
     <color name="grey_background_trans">#aae5e5e5</color>
     <color name="grey_thick_line">#e4e3e3</color>
+    <color name="grey_thick_white">#f2f2f2</color>
+
 
     <color name="grey_button">#bebebe</color>
     <color name="grey_button_grey">#B0BFBF</color>

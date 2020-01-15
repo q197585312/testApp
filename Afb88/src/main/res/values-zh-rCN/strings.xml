@@ -583,4 +583,5 @@
     <string name="FT15" >FT15</string>
     <string name="stake_is_more_than_max_limit">金额应小于最大注码</string>
     <string name="stake_is_less_than_min_limit">金额应大于最小注码</string>
+    <string name="all_host" >@string/all</string>
 </resources>

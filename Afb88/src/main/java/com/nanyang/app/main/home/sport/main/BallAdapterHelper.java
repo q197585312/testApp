@@ -337,7 +337,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             parent.setVisibility(View.GONE);
         }
         int res = selectedMap.get(true).getRes();
-        boolean isAll = (res == R.string.all);
+        boolean isAll = (res == R.string.all_host);
         if (size > 0 && (isAll || res == R.string.HDP_OU)) {
 
             for (int i = 0; i < size; i++) {

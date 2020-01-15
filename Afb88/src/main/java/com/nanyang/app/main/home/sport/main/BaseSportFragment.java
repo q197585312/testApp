@@ -182,7 +182,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             BaseListPopupWindow<MenuItemInfo> popu = new BaseListPopupWindow<MenuItemInfo>(mContext, v, AfbUtils.dp2px(mContext, 100), AfbUtils.dp2px(mContext, 60)) {
                 @Override
                 protected void convertTv(TextView tv, MenuItemInfo item) {
-                    tv.setText(item.getText());
+                    tv.setText(item.getText().toUpperCase());
                 }
 
                 @Override

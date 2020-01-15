@@ -28,7 +28,7 @@ public class LiveSelectedHelper {
     public LiveSelectedHelper() {
         list = new ArrayList<>();
         linkMap = new HashMap<>();
-        list.add(new MenuItemInfo(R.string.all, AfbApplication.getInstance().getString(R.string.all)));
+        list.add(new MenuItemInfo(R.string.all_host, AfbApplication.getInstance().getString(R.string.all_host)));
         list.add(new MenuItemInfo(R.string.HDP_OU, AfbApplication.getInstance().getString(R.string.HDP_OU)));
         list.add(new MenuItemInfo(R.string.X1X2, AfbApplication.getInstance().getString(R.string.X1X2)));
         list.add(new MenuItemInfo(R.string.OE, AfbApplication.getInstance().getString(R.string.OE)));

@@ -585,4 +585,5 @@
     <string name="FT15" >FT15</string>
     <string name="stake_is_more_than_max_limit">Stake is more than max limit</string>
     <string name="stake_is_less_than_min_limit">Stake is less than min limit</string>
+    <string name="all_host" >@string/all</string>
 </resources>

@@ -270,7 +270,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     public int getNormalContentColor() {
-        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.grey_white);
+        return ContextCompat.getColor(getBaseView().getIBaseContext().getBaseActivity(), R.color.grey_thick_white);
     }
 
     private List<B> toMatchList(List<TableSportInfo<B>> pageList) {

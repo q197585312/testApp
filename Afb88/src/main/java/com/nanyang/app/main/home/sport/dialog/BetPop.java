@@ -176,37 +176,19 @@ public class BetPop extends BasePopupWindow {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.toString().startsWith("0") && s.toString().length() > 1) {
-                    s.delete(0, 1);
-                }
-                String amount = s.toString().trim().replaceAll(",", "");
-                if (TextUtils.isEmpty(amount)) {
-                    amount = "0";
-                }
-
-                double max;
                 AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
+                double max;
                 if (list.size() > 1 && StringUtils.isEmpty(betAfbList.getMaxLimit())) {
 
                     max = Double.parseDouble(betAfbList.getMaxLimit());
                 } else {
                     max = list.get(0).getMaxLimit();
                 }
-                amount = amount.replaceAll(",", "");
-                if (Double.parseDouble(amount) > max) {
-                    betAmountEdt.removeTextChangedListener(this);
-                    betAmountEdt.setText(AfbUtils.addComma((int) max + "", betAmountEdt));
-                    betAmountEdt.addTextChangedListener(this);
-                    amount = max + "";
-                } else if (!AfbUtils.touzi_ed_values22.equals(amount) && !TextUtils.isEmpty(s.toString().trim().replaceAll(",", ""))) {
-                    betAmountEdt.setText(AfbUtils.addComma(amount, betAmountEdt));
-                }
+                afterChange(s, max, betAmountEdt, this, true);
 
-                double writeMoney = Double.parseDouble(amount);
-                double maxWin = countMaxPayout(writeMoney);
-                tvMaxWin.setText(AfbUtils.scientificCountingToString(AfbUtils.decimalValue((float) maxWin, "0.00")));
-                betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
             }
+
+
         });
         betAmountEdt.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -274,6 +256,34 @@ public class BetPop extends BasePopupWindow {
                 llBetFailedHint.setVisibility(View.GONE);
             }
         });
+    }
+
+    private String afterChange(Editable s, double max, EditText betAmountEdt, TextWatcher textWatcher, boolean hasWin) {
+        if (s.toString().startsWith("0") && s.toString().length() > 1) {
+            s.delete(0, 1);
+        }
+        String amount = s.toString().trim().replaceAll(",", "");
+        if (TextUtils.isEmpty(amount)) {
+            amount = "0";
+        }
+
+
+        amount = amount.replaceAll(",", "");
+        if (Double.parseDouble(amount) > max) {
+            betAmountEdt.removeTextChangedListener(textWatcher);
+            betAmountEdt.setText(AfbUtils.addComma((int) max + "", betAmountEdt));
+            betAmountEdt.addTextChangedListener(textWatcher);
+            amount = max + "";
+        } else if (!AfbUtils.touzi_ed_values22.equals(amount) && !TextUtils.isEmpty(s.toString().trim().replaceAll(",", ""))) {
+            betAmountEdt.setText(AfbUtils.addComma(amount, betAmountEdt));
+        }
+        if (hasWin) {
+            double writeMoney = Double.parseDouble(amount);
+            double maxWin = countMaxPayout(writeMoney);
+            tvMaxWin.setText(AfbUtils.scientificCountingToString(AfbUtils.decimalValue((float) maxWin, "0.00")));
+        }
+        betAmountEdt.setSelection(betAmountEdt.getText().toString().trim().length());
+        return amount;
     }
 
     private void goChooseBet(boolean isSingle) {
@@ -497,16 +507,16 @@ public class BetPop extends BasePopupWindow {
                     double count = Double.parseDouble(hashMap.get(list.get(i).getSocOddsId()).trim().replace(",", ""));
                     int max1 = list.get(i).getMaxLimit();
                     int min1 = list.get(i).getMinLimit();
-
-                    if (count > max1 || count < min1 || count <= 0) {
-                        isValid = false;
+                    if (count > max1) {
+                        ToastUtils.showShort(context.getString(R.string.stake_is_more_than_max_limit));
+                        return false;
+                    } else if (count < min1) {
+                        ToastUtils.showShort(context.getString(R.string.stake_is_less_than_min_limit));
+                        return false;
                     }
                 }
             }
-            if (!isValid)
-                ToastUtils.showShort(context.getString(R.string.stake_is_less_than_min_limit));
             return isValid;
-
         }
         return true;
     }
@@ -659,9 +669,21 @@ public class BetPop extends BasePopupWindow {
                     View vLine = holder.getView(R.id.v_line);
                     if (list.size() < 2) {
                         edt_single_bet.setVisibility(View.GONE);
-
                     } else {
                         edt_single_bet.setVisibility(View.VISIBLE);
+                        edt_single_bet.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+                            @Override
+                            public void onFocusChange(View v, boolean hasFocus) {
+                                if (hasFocus) {
+                                    LogUtil.d("onFocusChange", position);
+                                    CursorEditView cursorEditView = new CursorEditView(item.getSocOddsId(), edt_single_bet);
+                                    cursorMap.put(true, cursorEditView);
+                                } else {
+                                    // 此处为失去焦点时的处理内容
+                                }
+                            }
+                        });
+                        //如果hashMap不为空，就设置的editText
                         edt_single_bet.addTextChangedListener(new TextWatcher() {
                             @Override
                             public void onTextChanged(CharSequence s, int start, int before, int count) {
@@ -677,26 +699,25 @@ public class BetPop extends BasePopupWindow {
                             @Override
                             public void afterTextChanged(Editable s) {
                                 //将editText中改变的值设置的HashMap中
-                                hashMap.put(item.getSocOddsId(), s.toString());
-
-                            }
-                        });
-                        edt_single_bet.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-                            @Override
-                            public void onFocusChange(View v, boolean hasFocus) {
-                                if (hasFocus) {
-                                    LogUtil.d("onFocusChange", position);
-                                    CursorEditView cursorEditView = new CursorEditView(item.getSocOddsId(), edt_single_bet);
-                                    cursorMap.put(true, cursorEditView);
-                                } else {
-                                    // 此处为失去焦点时的处理内容
+                                int max = item.getMaxLimit();
+                                if (s.toString().startsWith("0") && s.toString().length() > 1) {
+                                    s.delete(0, 1);
                                 }
+                                String amount = s.toString().trim().replaceAll(",", "");
+                                if (TextUtils.isEmpty(amount)) {
+                                    amount = "0";
+                                }
+                                amount = amount.replaceAll(",", "");
+                                if (Double.parseDouble(amount) > max) {
+                                    amount = max + "";
+                                }
+                                hashMap.put(item.getSocOddsId(), amount);
+
                             }
                         });
-                        //如果hashMap不为空，就设置的editText
-
                     }
-                    if (hashMap.get(item.getSocOddsId()) != null) {
+
+                    if (hashMap.get(item.getSocOddsId()) != null && !edt_single_bet.getText().toString().equals(hashMap.get(item.getSocOddsId()))&&!hashMap.get(item.getSocOddsId()) .equals("0")) {
                         edt_single_bet.setText(hashMap.get(item.getSocOddsId()));
                     } else {
                         edt_single_bet.setText("");
