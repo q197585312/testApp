@@ -13,28 +13,17 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.Gravity;
-import android.view.KeyEvent;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.view.Window;
-import android.view.WindowManager;
+import android.view.*;
 import android.view.animation.Animation;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
-import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
-import com.nanyang.app.AfbApplication;
-import com.nanyang.app.AfbUtils;
-import com.nanyang.app.AppConstant;
-import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.R;
+import android.widget.*;
+import butterknife.Bind;
+import butterknife.BindString;
+import cn.finalteam.toolsfinal.DeviceUtils;
+import cn.finalteam.toolsfinal.StringUtils;
+import com.nanyang.app.*;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
@@ -50,17 +39,7 @@ import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-
-import butterknife.Bind;
-import butterknife.BindString;
-import cn.finalteam.toolsfinal.DeviceUtils;
-import cn.finalteam.toolsfinal.StringUtils;
+import java.util.*;
 
 /**
  * Created by Administrator on 2015/10/27.
@@ -711,13 +690,14 @@ public class BetPop extends BasePopupWindow {
                                 if (Double.parseDouble(amount) > max) {
                                     amount = max + "";
                                 }
-                                hashMap.put(item.getSocOddsId(), amount);
+                                if (!amount.equals("0"))
+                                    hashMap.put(item.getSocOddsId(), amount);
 
                             }
                         });
                     }
 
-                    if (hashMap.get(item.getSocOddsId()) != null && !edt_single_bet.getText().toString().equals(hashMap.get(item.getSocOddsId()))&&!hashMap.get(item.getSocOddsId()) .equals("0")) {
+                    if (hashMap.get(item.getSocOddsId()) != null && !edt_single_bet.getText().toString().equals(hashMap.get(item.getSocOddsId())) && !hashMap.get(item.getSocOddsId()).equals("0")) {
                         edt_single_bet.setText(hashMap.get(item.getSocOddsId()));
                     } else {
                         edt_single_bet.setText("");

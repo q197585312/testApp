@@ -38,7 +38,6 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Function;
 import io.reactivex.schedulers.Schedulers;
 
-import static android.content.ContentValues.TAG;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 /**
@@ -220,7 +219,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     @Override
     public Disposable getRefreshOdds(final String urlBet) {
         final String url = urlBet + "&_=" + System.currentTimeMillis();
-        Log.d("betUrl", "getRefreshOdds:" + url);
+        Log.d("updateMixListText", "betUrl:" + url);
 
         Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).map(new Function<String, AfbClickResponseBean>() {
@@ -229,7 +228,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         AfbClickResponseBean bean = null;
                         JSONArray jsonArray = null;
                         try {
-                            Log.d("betUrl", "getRefreshResult:" + s);
+                            Log.d("updateMixListText", "getRefreshResult:" + s);
                             s = AfbUtils.delHTMLTag(s);
                             Log.d("betUrl", "delHTMLTag:" + s);
                             jsonArray = new JSONArray(s);
@@ -246,7 +245,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                             if (list != null && list.size() > 0 && list.get(0).getId() != null) {
                                 JSONArray dataListArray1 = jsonArray.getJSONArray(1);
                                 bean = new AfbClickResponseBean(list, dataListArray1);
-                                LogUtil.d("BetPop", "setBetAfbList:getRefreshOdds:" + bean);
+                                LogUtil.d("updateMixListText", "setBetAfbList:getRefreshOdds:" + bean);
                                 ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(bean);
                             }
                         }
@@ -257,17 +256,21 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 }).subscribe(new Consumer<AfbClickResponseBean>() {//onNext
                     @Override
                     public void accept(AfbClickResponseBean bean) throws Exception {
-                        Log.d(TAG, "accept: " + bean);
+                        if (bean.getList() != null)
+                            Log.d("updateMixListText", "accept: " + bean.getList().size());
+                        else
+                            Log.d("updateMixListText", "accept:getList: 为空");
                         if (bean == null || bean.getList() == null || bean.getList().size() == 0) {
 
                         } else if (bean.getList().size() >= 1) {
                             createBetPop(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
                         }
+                        updateMixList(url);
                     }
                 }, new Consumer<Throwable>() {//错误
                     @Override
                     public void accept(Throwable throwable) throws Exception {
-                        Log.d(TAG, "throwable:" + throwable.getCause());
+                        Log.d("updateMixListText", "throwable:" + throwable.getCause());
                         getBaseView().onFailed(throwable.getMessage());
                         getBaseView().getIBaseContext().hideLoadingDialog();
                         LogUtil.d("BetPop", "setBetAfbList:getRefreshOdds错误:" + null);
@@ -278,7 +281,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     @Override
                     public void run() throws Exception {
                         getBaseView().getIBaseContext().hideLoadingDialog();
-                        updateMixList(url);
+
                     }
                 }, new Consumer<Subscription>() {//开始绑定
                     @Override
