@@ -295,7 +295,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
         }
     /*    BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
-
         handler.updateAfbMixBackground(item.getSocOddsId(), 0, sl, "1", "2", "home", "away", "NULL", "NULL");
         handler.updateAfbMixBackground(item.getSocOddsId(), 1, sl, "over", "under", "odd", "even", "NULL", "NULL");*/
         updateMixNormalBackground(helper, item);
@@ -341,9 +340,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         if (size > 0 && (isAll || res == R.string.HDP_OU)) {
 
             for (int i = 0; i < size; i++) {
-                View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
-                parent.addView(titleLL);
-                addAddedView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item);
+                if(i==0) {
+                    View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
+                    parent.addView(titleLL);
+                }else {
+                    View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item_space, null);
+                    parent.addView(titleLL);
+                }
+                addAddedView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item,i%2==0?R.layout.addition_hdp_ou_sport_item:R.layout.addition_hdp_ou_sport_item_green);
             }
         }
 
@@ -1442,8 +1446,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         tv.setText(s);
     }
 
-    private void addAddedView(LinearLayout parent, AddMBean.OddsBean fTodds, AddMBean.OddsBean fHodds, I item) {
-        View inflate = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_sport_item, null);
+    private void addAddedView(LinearLayout parent, AddMBean.OddsBean fTodds, AddMBean.OddsBean fHodds, I item,int res) {
+        View inflate = LayoutInflater.from(context).inflate(res, null);
         TextView home_tv = inflate.findViewById(R.id.home_tv);
 
         TextView home_odd_tv = inflate.findViewById(R.id.home_odd_tv);

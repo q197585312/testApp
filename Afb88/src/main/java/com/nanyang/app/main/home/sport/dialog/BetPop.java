@@ -13,17 +13,28 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.view.*;
+import android.view.Gravity;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.WebView;
-import android.widget.*;
-import butterknife.Bind;
-import butterknife.BindString;
-import cn.finalteam.toolsfinal.DeviceUtils;
-import cn.finalteam.toolsfinal.StringUtils;
-import com.nanyang.app.*;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+
+import com.nanyang.app.AfbApplication;
+import com.nanyang.app.AfbUtils;
+import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
+import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
@@ -39,7 +50,17 @@ import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+
+import butterknife.Bind;
+import butterknife.BindString;
+import cn.finalteam.toolsfinal.DeviceUtils;
+import cn.finalteam.toolsfinal.StringUtils;
 
 /**
  * Created by Administrator on 2015/10/27.
@@ -714,7 +735,7 @@ public class BetPop extends BasePopupWindow {
                     } else {
                         vLine.setVisibility(View.VISIBLE);
                     }
-                    if (isRunning) {
+                    if (item.getIsRun() == 1) {
                         tvScore.setText(item.getScore() + " ");
                     } else {
                         tvScore.setText("");
@@ -723,7 +744,7 @@ public class BetPop extends BasePopupWindow {
                     tvBetHome.setText(item.getHome());
                     tvBetAway.setText(item.getAway());
                     String hdp = item.getHdp();
-                    if (hdp != null && hdp.contains("-")) {
+                    if (hdp != null && hdp.trim().startsWith("-")) {
                         tvHdp.setTextColor(Color.RED);
                     } else {
                         tvHdp.setTextColor(Color.BLACK);
@@ -1035,9 +1056,5 @@ public class BetPop extends BasePopupWindow {
         return animator;
     }
 
-    private boolean isRunning;
 
-    public void setIsRunning(boolean isRunning) {
-        this.isRunning = isRunning;
-    }
 }

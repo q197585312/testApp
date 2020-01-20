@@ -15,6 +15,7 @@ import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
@@ -190,14 +191,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         if (betPop == null) {
             betPop = new BetPop(baseActivity, v);
         }
-        if (baseActivity instanceof SportActivity) {
-            String type = ((SportActivity) baseActivity).getOtType();
-            if (type.toLowerCase().startsWith("r")) {
-                betPop.setIsRunning(true);
-            } else {
-                betPop.setIsRunning(false);
-            }
-        }
         betPop.setBetData(bean, this);
         if (!betPop.isShowing()) {
 //            betPop.showPopupCenterWindow();
@@ -337,8 +330,37 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     || oddsClickBean.getBETID_PAR().equals(parId)
                     || socOddsId.equals(oddsClickBean.getOid())
                     || socOddsId.equals(oddsClickBean.getOid_fh())) {
+                if (betAfbList.get(i).getIsRun() == 1) {
+                    boolean isSame = isScoreSame(next.getItem(), betAfbList.get(i));
+                    return isSame;
+                }
                 return true;
             }
+        }
+        return false;
+    }
+
+    private boolean isScoreSame(BallInfo item, AfbClickBetBean afbClickBetBean) {
+        if (!afbClickBetBean.getScore().contains("-"))
+            return false;
+        if (afbClickBetBean.getBeturl().contains("isFH=True")) {
+            String runAwayScore_fh = item.getRunAwayScore_FH();
+            String runHomeScore_fh = item.getRunHomeScore_FH();
+            return checkSameScore(afbClickBetBean, runAwayScore_fh, runHomeScore_fh);
+        } else {
+            String runAwayScore_fh = item.getRunAwayScore();
+            String runHomeScore_fh = item.getRunHomeScore();
+            return checkSameScore(afbClickBetBean, runAwayScore_fh, runHomeScore_fh);
+        }
+    }
+
+    private boolean checkSameScore(AfbClickBetBean afbClickBetBean, String runAwayScore_fh, String runHomeScore_fh) {
+        String[] split = afbClickBetBean.getScore().split("-");
+        if (split.length < 2)
+            return true;
+        if (split[0].trim().equals(runHomeScore_fh) && split[1].trim().equals(runAwayScore_fh)
+                || split[0].trim().equals(runAwayScore_fh) && split[1].trim().equals(runHomeScore_fh)) {
+            return true;
         }
         return false;
     }
