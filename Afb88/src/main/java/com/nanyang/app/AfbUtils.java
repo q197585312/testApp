@@ -19,6 +19,7 @@ import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
@@ -84,6 +85,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
@@ -768,7 +770,7 @@ public class AfbUtils {
         } else {
             f = "#,###";
         }
-        String s = scientificCountingToString(str, f);
+        String s = scientificCountingToStringNoT(str, f);
 
         return s;
     }
@@ -810,6 +812,19 @@ public class AfbUtils {
         BigDecimal bd = new BigDecimal(scientificCounting);
         String s = bd.toPlainString();
         DecimalFormat df = new DecimalFormat(format);
+        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        dfs.setDecimalSeparator('.');
+        df.setDecimalFormatSymbols(dfs);
+        return df.format(Double.parseDouble(s));
+    }
+    public static String scientificCountingToStringNoT(String scientificCounting, String format) {
+
+
+        scientificCounting = scientificCounting.toString().replace(",", "");
+        BigDecimal bd = new BigDecimal(scientificCounting);
+        String s = bd.toPlainString();
+        DecimalFormat df = new DecimalFormat(format);
+        df.setRoundingMode(RoundingMode.FLOOR);
         DecimalFormatSymbols dfs = new DecimalFormatSymbols();
         dfs.setDecimalSeparator('.');
         df.setDecimalFormatSymbols(dfs);
@@ -1047,5 +1062,20 @@ public class AfbUtils {
         animator.setRepeatMode(ValueAnimator.REVERSE);
         //开启动画
         animator.start();
+    }
+
+    public static String getPayout(String index3, String index9, String end17) {
+        int nn = 1;
+        if (!StringUtils.isNull(end17) && !end17.endsWith("0")) {
+            String c = String.valueOf(end17.charAt(end17.length() - 1));
+            try {
+                nn = Integer.valueOf(c);
+            } catch (NumberFormatException e) {
+                e.printStackTrace();
+            }
+
+        }
+        Log.d("end17","end17:"+end17+","+nn );
+        return AfbUtils.decimalValue(Float.parseFloat(index3) * Float.parseFloat(index9) / nn, "0.00");
     }
 }

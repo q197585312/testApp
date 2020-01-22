@@ -1,5 +1,6 @@
 package com.nanyang.app.load;
 
+import java.math.RoundingMode;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 
@@ -194,6 +195,7 @@ public class PersonalInfo {
     public String getCredit2() {
         DecimalFormat df = new DecimalFormat("#.00");
         DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        df.setRoundingMode(RoundingMode.FLOOR);
         dfs.setDecimalSeparator('.');
         df.setDecimalFormatSymbols(dfs);
         return df.format(Double.valueOf(getXYCredit()));

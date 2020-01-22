@@ -4,6 +4,7 @@
     <color name="green500">#4c89af</color>
     <color name="green900">#1774ae</color>
     <color name="green_dark">#213D84</color>
+    <color name="green_light_content">#7899ee</color>
     <color name="green_black_word">#213D84</color>
     <color name="green_thick_line">#3A59A7</color>
     <color name="keno_grenn">#1E45A8</color>
@@ -20,4 +21,5 @@
     <color name="bet_window_bg">#E3EAFF</color>
     <color name="bet_rectangle_bg">#3665DD</color>
     <color name="green_light">#92AEF6</color>
+    <color name="green_word">#133a7d</color>
 </resources>

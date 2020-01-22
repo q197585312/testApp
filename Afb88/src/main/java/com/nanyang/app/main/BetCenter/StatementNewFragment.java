@@ -216,6 +216,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             final StatementListDataBean bean = list.get(i);
             final String index11 = bean.getIndex11();
             View view;
+            String index3 = bean.getIndex3();
+            String index9 = bean.getIndex9();
             if (index11.equals("PAR") || index11.equals("PAM")) {
                 view = layoutInflater.inflate(R.layout.item_statement_open1_typ1, null);
                 TextView tvIdDate = view.findViewById(R.id.tv_id_date);
@@ -232,10 +234,12 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 int number = i + 1;
                 tvNumber.setText(number < 10 ? ("0" + number) : "" + number);
                 tvMatchType.setText(bean.getIndex1());
-                tvEstPayout.setText(getString(R.string.Est_Payout) + " " + AfbUtils.decimalValue(Float.parseFloat(bean.getIndex3()) * Float.parseFloat(bean.getIndex9()), "0.00"));
-                tvOdds.setText(getString(R.string.Odds) + " " + bean.getIndex3());
+                String end17 = bean.getIndex17();
+                String s = AfbUtils.getPayout(index3, index9, end17);
+                tvEstPayout.setText(getString(R.string.Est_Payout) + " " +s);
+                tvOdds.setText(getString(R.string.Odds) + " " + index3);
                 tvType.setText(bean.getIndex17());
-                tvAmt.setText(getString(R.string.Amt) + ": " + bean.getIndex9());
+                tvAmt.setText(getString(R.string.Amt) + ": " + index9);
                 String winLose = bean.getIndex10();
 
                 if (winLose.startsWith("-")) {
@@ -301,7 +305,6 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
 //                index25 = AfbUtils.delHTMLTag(index25);
 
 
-
                 tvMatchAtFt.setText(bean.getIndex14());
                 String index16 = bean.getIndex16();
                 boolean isOutRight = bean.getIndex15().equals("O");
@@ -320,7 +323,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvMatchAt2.setText(HtmlTagHandler.spanFontHtml(index25));
 //                    odds = AfbUtils.delHTMLTag(odds);
 
-                    tvMatchAt3.setText(HtmlTagHandler.spanFontHtml(bean.getIndex3()));
+                    tvMatchAt3.setText(HtmlTagHandler.spanFontHtml(index3));
                     if (!TextUtils.isEmpty(index16.trim())) {
                         tvMatchAt4.setText("(" + bean.getIndex16() + ")");
                         tvMatchAt4.setVisibility(View.VISIBLE);
@@ -334,9 +337,9 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
 
                 }
                 tvMatchGrade.setText(bean.getIndex5() + " " + bean.getIndex20());
-                tvAmt.setText(getString(R.string.Amt) + " " + bean.getIndex9());
+                tvAmt.setText(getString(R.string.Amt) + " " + index9);
 
-                String odds =AfbUtils.delHTMLTag(bean.getIndex3());
+                String odds = AfbUtils.delHTMLTag(index3);
                 if (odds.startsWith("-")) {
                     tvOdds.setTextColor(Color.RED);
 
@@ -395,6 +398,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
             currentLlAddView.addView(view);
         }
     }
+
+
 
     public void onGetStatementOpen2Data(List<StatementOpen2ListDataBean> list, final String id, final String transType) {
         for (int i = 0; i < list.size(); i++) {

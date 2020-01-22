@@ -50,7 +50,7 @@
     <string name="Odds_Type">แฮนดิแค็ </string>
     <string name="AOS">AOS </string>
     <string name="Matchs">เกม </string>
-    <string name="running">บอล </string>
+    <string name="running">กำลังแข่งสด </string>
     <string name="not_allowed_to_bet">คุณไม่สามารถเดิมพัน </string>
     <string name="no_records">ไม่มีประวัติการ </string>
     <string name="ORDER">หมายเหตุเดี่ยว </string>
@@ -349,7 +349,7 @@
     <string name="how_to_use">วิธีใช้</string>
     <string name="logout">ออกจากระบบ</string>
     <string name="more">ขึ้น</string>
-    <string name="last_login_date">เวลาเข้าระบบ</string>
+    <string name="last_login_date">วันที่เข้าสู่ระบบครั้งสุดท้าย</string>
     <string name="nike_name">ชื่อเล่น</string>
 
     <!--主页home pop-->
@@ -362,7 +362,7 @@
     <string name="home_given_credit">วงเงิน</string>
     <string name="sport_match">กีฬา</string>
     <string name="Five_Major_Match">ลีกายอดนิยม</string>
-    <string name="all_running">ทั้งหมด แข่งสด</string>
+    <string name="all_running">ทั้งหมด กำลังแข่งสด</string>
     <string name="cricket">Cricket</string>
     <string name="howtouse_title1_1">เลือกผลิตภัณฑ์และเขตเวลา</string>
     <string name="howtouse_content1_1">1. เลือกหมวดเกมกีฬาก่อน</string>
@@ -403,7 +403,7 @@
     <string name="Note">สนใจ</string>
     <string name="Pleasenote2">โปรดทราบว่าโซนเวลาจะแสดง GMT +8</string>
     <string name="Net_Error">Net Error</string>
-    <string name="Running4">กำลังดำเนินการ</string>
+    <string name="Running4">กำลังแข่งสด</string>
     <string name="TabMyBets">เดิมพันของฉัน</string>
     <string name="fh_myanmarhdp">FH.MyanmarHDP</string>
     <string name="fh_myanmarou">FH.MyanmarOU</string>
@@ -417,16 +417,15 @@
     <string name="market_type">แสดงแฮนดิแคป</string>
     <string name="score_sound">เสียงเป้าหมาย</string>
     <string name="chip_set">การเลือกชิป</string>
-    <string name="sound">Sound</string>
     <string name="no_less_5_no_more_8">จำนวนชิปไม่สามารถต่ำกว่า 5 และไม่สามารถสูงกว่า 8</string>
     <string name="nick_name_set_description">* You can set nickname for display and login (5 to 15 alphabets or digits). Please note, you can set this nickname only once. You cannot modify or cancel it once it’s been set.</string>
     <string name="nick_name_check_tips">*You can set display and login nicknames (5-15 digits or letters)</string>
     <string name="Normal">งั้น ๆ แหละ</string>
     <string name="desktop">เดสก์ทอป</string>
-    <string name="no_games">No Games</string>
+    <string name="no_games">ไม่มีรายการ</string>
     <string name="A_TIE_B">A-TIE-B</string>
     <string name="speed_way">SPEEDWAY</string>
-    <string name="switching_market_failure">切换盘口失败</string>
+    <string name="switching_market_failure">Failed to switch markets</string>
     <string name="All_Market" >@string/All_Markets</string>
     <string name="single_bet" >โน้ตตัวเดียว</string>
     <string name="can_not_more_than_10">Mix parlay can not more than 15</string>
@@ -435,4 +434,11 @@
     <string name="stake_is_more_than_max_limit">Stake is more than max limit</string>
     <string name="stake_is_less_than_min_limit">Stake is less than min limit</string>
     <string name="all_host" >เจ้าบ้าน</string>
+    <string name="ft_1">เต็มเวลา.1</string>
+    <string name="ft_x">เต็มเวลา.X</string>
+    <string name="ft_2">เต็มเวลา.2</string>
+    <string name="OVER_7"><![CDATA[7&OVER]]></string>
+    <string name="OVER">มากกว่า</string>
+    <string name="sound">เสียง</string>
+
 </resources>

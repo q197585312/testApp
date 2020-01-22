@@ -146,8 +146,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     String odds = item.getOdds3();
                     BigDecimal bd = new BigDecimal(odds);
                     bd = bd.multiply(new BigDecimal("100"));
-                    running_par_Odds1.setText(bd.setScale(2).toString());
+                    String s = AfbUtils.getPayout(item.getOdds3(), item.getAmt9(), item.getCombInfo16());
+                    running_par_Odds1.setText(s);
                     running_par_Odds2.setText(getString(R.string.Odds) + ":" + odds);
+
                     running_par_CombInfo.setText(item.getCombInfo16());
                     TextView running_Amt_text = holder.getTextView(R.id.running_Amt_text);
                     running_Amt_text.setText(getString(R.string.Amt) + ":");

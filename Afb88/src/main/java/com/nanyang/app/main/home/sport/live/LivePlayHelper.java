@@ -165,9 +165,9 @@ public class LivePlayHelper {
         } else {
             path = "rtmp://pull.afb1188.com/live/" + BID;
             if (BID.startsWith("1")) {
-                path = "rtmp://27.124.35.15:8080/live/" + BID;
-            } else if (BID.startsWith("9")) {
-                path = "rtmp://27.124.13.234:8080/live/" + BID;
+                path = "rtmp://pull3.afb1188.com/live/" + BID;
+            } else if (BID.startsWith("8")) {
+                path = "rtmp://pull2.afb1188.com/live/" + BID;
             }
 
         }

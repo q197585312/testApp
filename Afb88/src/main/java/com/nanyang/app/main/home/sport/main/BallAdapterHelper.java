@@ -757,7 +757,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
                 );
                 addAddedByColor(additionData.getGoal3(), additionData.getGoal4(), additionData.getTG_SocOddsId(), false, parent, item,
-                        "4~6", "7&OVER", "tg", "tg", "46", "70", R.layout.addition_1x2_sport_item, "2"
+                        "4~6", "7&"+context.getString(R.string.OVER), "tg", "tg", "46", "70", R.layout.addition_1x2_sport_item, "2"
                         , false
                         , false
                         , additionData.getGoal3IsInetBet().equals("True")
