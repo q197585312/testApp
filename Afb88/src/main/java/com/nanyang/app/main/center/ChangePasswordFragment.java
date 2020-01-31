@@ -106,20 +106,21 @@ public class ChangePasswordFragment extends BaseFragment {
 
     private void changePassword() {
         ChangePasswordBean bean = new ChangePasswordBean(oldPasswrod, newPasswrod, surePasswrod);
-        String url= AppConstant.getInstance().HOST+"_view/ChgPwd.aspx";
-        Disposable d = Api.getService(ApiService.class).changePasswrod(url,bean.getMap())
+        String url = AppConstant.getInstance().HOST + "_view/ChgPwd2.aspx";
+        Disposable d = Api.getService(ApiService.class).changePasswrod(url, bean.getMap())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {
                         hideLoadingDialog();
-                        ToastUtils.showShort(isPasswordChangeSucceed(s));
-                        et_newPassword.setText("");
-                        et_oldPassword.setText("");
-                        et_surePasswrod.setText("");
-                        Intent intent = new Intent(getActivity(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
+                        if (isPasswordChangeSucceed(s)) {
+                            et_newPassword.setText("");
+                            et_oldPassword.setText("");
+                            et_surePasswrod.setText("");
+                            Intent intent = new Intent(getActivity(), LoginActivity.class).setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK | Intent.FLAG_ACTIVITY_NEW_TASK);
+                            startActivity(intent);
+                        }
                     }
                 }, new Consumer<Throwable>() {
                     @Override
@@ -146,11 +147,11 @@ public class ChangePasswordFragment extends BaseFragment {
         compositeDisposable.add(d);
     }
 
-    private String isPasswordChangeSucceed(String password) {
+    private boolean isPasswordChangeSucceed(String password) {
         String sign = "<span id=\"lblStatus\" class=\"";
         int firstIndex = password.indexOf(sign) + sign.length();
         int lastIndex = -1;
-        for (int i = firstIndex; i < password.length(); i++) {
+        for (int i = firstIndex; i < password.length() - 1; i++) {
             String first = password.charAt(i) + "";
             String next = password.charAt(i + 1) + "";
             if (first.equals("<") && next.equals("/")) {
@@ -158,17 +159,23 @@ public class ChangePasswordFragment extends BaseFragment {
                 break;
             }
         }
-        String msg = password.substring(firstIndex, lastIndex);
-        int trueIndex = -1;
-        for (int i = 0; i < msg.length(); i++) {
-            String first = msg.charAt(i) + "";
-            String next = msg.charAt(i + 1) + "";
-            if (first.equals("\"") && next.equals(">")) {
-                trueIndex = i + 2;
-                break;
+        if (lastIndex > firstIndex && firstIndex > -1) {
+            String msg = password.substring(firstIndex, lastIndex);
+            int trueIndex = -1;
+            for (int i = 0; i < msg.length() - 1; i++) {
+                String first = msg.charAt(i) + "";
+                String next = msg.charAt(i + 1) + "";
+                if (first.equals("\"") && next.equals(">")) {
+                    trueIndex = i + 2;
+                    break;
+                }
             }
+            String trueMsg = msg.substring(trueIndex);
+            ToastUtils.showShort(trueMsg);
+            return true;
+        } else {
+            ToastUtils.showShort("Server Error!");
+            return false;
         }
-        String trueMsg = msg.substring(trueIndex);
-        return trueMsg;
     }
 }
