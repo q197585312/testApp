@@ -104,7 +104,7 @@
                 android:gravity="center"
                 android:maxLines="1"
                 android:paddingRight="2dp"
-                android:text="@string/FT_HDP"
+                android:text="@string/FULL_H_A"
                 android:textColor="@color/black_grey"
                 android:textSize="13.5sp" />
 
@@ -115,7 +115,7 @@
                 android:layout_gravity="center"
                 android:gravity="center"
                 android:maxLines="1"
-                android:text="@string/FT_OU"
+                android:text="@string/FULL_O_U"
                 android:textColor="@color/black_grey"
                 android:textSize="13.5sp" />
 
