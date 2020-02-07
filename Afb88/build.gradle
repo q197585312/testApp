@@ -51,7 +51,7 @@ android {
         ap889 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "ap889"]
             applicationId 'com.nanyang.app_ap889'
-            versionName '1.4'
+            versionName '1.15'
         }
         wfmain{
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "wfmain"]

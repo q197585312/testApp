@@ -18,7 +18,6 @@ import com.google.gson.Gson;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
-import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.main.center.model.StakeListBean;
 import com.nanyang.app.main.center.model.StakeListBean2;
@@ -406,15 +405,17 @@ public class StakeFragment extends BaseFragment<StakePresenter> implements Stake
             webSettings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
             //http://main55.afb88.com/_norm/PamTrans.aspx?userName=demoafbpk&id=140565088
             String url = "";
-            if (BuildConfig.FLAVOR.equals("wfmain")) {
+          /*  if (BuildConfig.FLAVOR.equals("wfmain")) {
 //            /W0/Pub/_norm/wfPamTrans0.html?
 //                url = AppConstant.getInstance().HOST + "W0/Pub/wfBetSlip0.html?id=" + item.getSocTransId()+"&transType="+item.getTransType();
-                url = AppConstant.getInstance().HOST + "_Norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
+                url = AppConstant.getInstance().HOST + "_Norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName()+ "&id=" + item.getSocTransId();
 
             } else {
                 url = AppConstant.getInstance().HOST + "_norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName() + "&id=" + item.getSocTransId();
 
-            }
+            }*/
+            url = AppConstant.getInstance().HOST + "_Norm/PamTrans.aspx?userName=" + ((BaseToolbarActivity) getActivity()).getApp().getUser().getUserName().toLowerCase()+ "&id=" + item.getSocTransId();
+
             pop.setUrl(url);
             pop.showPopupCenterWindow();
         }
