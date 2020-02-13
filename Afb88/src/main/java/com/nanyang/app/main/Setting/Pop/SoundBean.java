@@ -14,9 +14,9 @@ public class SoundBean implements IString {
     }
 
     String type;
-    String text;
+    int text;
 
-    public SoundBean(String text, int sound, String type) {
+    public SoundBean(int text, int sound, String type) {
         this.text = text;
         this.sound = sound;
         this.type = type;
@@ -29,7 +29,7 @@ public class SoundBean implements IString {
     int sound;
 
     @Override
-    public String getText() {
+    public int getText() {
         return text;
     }
 }

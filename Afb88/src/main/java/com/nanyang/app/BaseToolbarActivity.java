@@ -388,7 +388,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     public void defaultSkip(String type) {
-        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.running));
+        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, (R.string.running));
         menuItemInfo.setType("Running");
         menuItemInfo.setParent(type);
         Bundle b = new Bundle();

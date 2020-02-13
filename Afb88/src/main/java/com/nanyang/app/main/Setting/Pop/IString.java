@@ -5,5 +5,5 @@ package com.nanyang.app.main.Setting.Pop;
  */
 
 public interface IString {
-    String getText();
+    int getText();
 }

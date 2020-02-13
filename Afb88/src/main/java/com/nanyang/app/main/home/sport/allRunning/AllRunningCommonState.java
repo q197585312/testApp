@@ -5,7 +5,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.main.AfbParseHelper;
 import com.nanyang.app.main.home.sport.main.BallBetHelper;
 import com.nanyang.app.main.home.sport.main.OutRightState;
@@ -131,23 +130,23 @@ public class AllRunningCommonState extends OutRightState {
 
     @Override
     public MenuItemInfo getStateType() {
-        if (StringUtils.isNull(text))
-            text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today);
+        if (0==(text))
+            text = (R.string.Today);
         return new MenuItemInfo<String>(0, text, "AllRunning", getSportName());
     }
 
     public void setStateItemOt(String ot) {
         switch (ot) {
             case "e":
-                this.text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early);
+                this.text = (R.string.Early);
                 this.ot = "e";
                 break;
             case "r":
-                this.text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running);
+                this.text = (R.string.running);
                 this.ot = "r";
                 break;
             default:
-                this.text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today);
+                this.text = (R.string.Today);
                 this.ot = "t";
                 break;
         }

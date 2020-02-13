@@ -67,7 +67,7 @@ public class AfbApplication extends BaseApplication {
 
     public MenuItemInfo<String> getMarketType() {
         if (marketType == null)
-            marketType = new MenuItemInfo<>(0, getString(R.string.All_Markets), "0", getString(R.string.All_Market));
+            marketType = new MenuItemInfo<>(0, (R.string.All_Markets), "0", getString(R.string.All_Market));
         return AfbUtils.getMarketByType(this, marketType.getType());
 //        return marketType;
     }

@@ -1,26 +1,12 @@
 package com.nanyang.app.main.home.sport.football;
 
-import android.support.annotation.NonNull;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.utils.TimeUtils;
-import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -73,7 +59,7 @@ public class SoccerEarlyState extends SoccerCommonState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.football));
+        return new MenuItemInfo<String>(0, (R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.football));
     }
 
     @Override
@@ -83,13 +69,13 @@ public class SoccerEarlyState extends SoccerCommonState {
 
     @Override
     protected void bindMenuAdapter(BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter, List<MenuItemInfo> types) {
-        types.add(new MenuItemInfo(R.mipmap.menu_date_white, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.date), "Date"));
+        types.add(new MenuItemInfo(R.mipmap.menu_date_white, (R.string.date), "Date"));
         super.bindMenuAdapter(baseRecyclerAdapter, types);
     }
 
 
 
-    private void showDateChoicePop() {
+    /*private void showDateChoicePop() {
         BasePopupWindow popChoice = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), new View(getBaseView().getIBaseContext().getBaseActivity()), 800, LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
@@ -152,7 +138,7 @@ public class SoccerEarlyState extends SoccerCommonState {
 
         getBaseView().onPopupWindowCreated(popChoice, Gravity.CENTER);
 
-    }
+    }*/
 
     private void filterDateData(MenuItemInfo item) {
 //        this.selectedDateInfo=item;

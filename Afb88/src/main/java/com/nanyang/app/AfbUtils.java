@@ -227,7 +227,7 @@ public class AfbUtils {
     }
 
     public static void switchLanguage(String lag, Context context) {
-        LogUtil.d("getLanguage","switchLanguage:"+lag);
+        LogUtil.d("getLanguage", "switchLanguage:" + lag);
         if (!StringUtils.isNull(lag))
             SystemTool.switchLanguage(lag, context);
 
@@ -235,7 +235,7 @@ public class AfbUtils {
 
     public static String getLanguage(Context context) {
         String language = SystemTool.getLanguage(context);
-        LogUtil.d("getLanguage",language);
+        LogUtil.d("getLanguage", language);
         return language;
     }
 
@@ -620,16 +620,16 @@ public class AfbUtils {
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
         rvContent.setLayoutManager(layoutManager);
         List<MenuItemInfo> dataList = new ArrayList<>();
-        dataList.add(new MenuItemInfo(R.mipmap.home_sports, mContext.getString(R.string.SportBook), "SportBook"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_sports, mContext.getString(R.string.Europe_View), "Europe"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_keno2, mContext.getString(R.string.Myanmar_Odds), "Myanmar_Odds"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_financials, mContext.getString(R.string.Financial), "Financial"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_sports, (R.string.SportBook), "SportBook"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_sports, (R.string.Europe_View), "Europe"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_keno2, (R.string.Myanmar_Odds), "Myanmar_Odds"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_financials, (R.string.Financial), "Financial"));
 
-        dataList.add(new MenuItemInfo(R.mipmap.home_games, mContext.getString(R.string.E_Sport), "E_Sport"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_live, mContext.getString(R.string.Live_Casino), "Live_Casino"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_specals4d, mContext.getString(R.string.Specials_4D), "Specials_4D"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_huay_thai, mContext.getString(R.string.Huay_Thai), "Huay_Thai"));
-        dataList.add(new MenuItemInfo(R.mipmap.home_muay_thai, mContext.getString(R.string.Muay_Thai), "Muay_Thai"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_games, (R.string.E_Sport), "E_Sport"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_live, (R.string.Live_Casino), "Live_Casino"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_specals4d, (R.string.Specials_4D), "Specials_4D"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_huay_thai, (R.string.Huay_Thai), "Huay_Thai"));
+        dataList.add(new MenuItemInfo(R.mipmap.home_muay_thai, (R.string.Muay_Thai), "Muay_Thai"));
 
         BaseRecyclerAdapter<MenuItemInfo> adapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, dataList, R.layout.home_item_image_text) {
             @Override
@@ -798,7 +798,7 @@ public class AfbUtils {
 
     public static String scientificCountingToString(String scientificCounting) {
         String ff = scientificCounting.toString().replace(",", "");
-        if (StringUtils.isNull(ff)||Float.valueOf(ff) == 0) {
+        if (StringUtils.isNull(ff) || Float.valueOf(ff) == 0) {
             return "0.00";
         }
         String f = "#,###.00";
@@ -817,6 +817,7 @@ public class AfbUtils {
         df.setDecimalFormatSymbols(dfs);
         return df.format(Double.parseDouble(s));
     }
+
     public static String scientificCountingToStringNoT(String scientificCounting, String format) {
 
 
@@ -887,42 +888,38 @@ public class AfbUtils {
         }
     }
 
-    public static String getLangMonth(Context context, String month) {
-        String language = getLanguage(context);
+    public static int getLangMonth( String month) {
         if (month.startsWith("0")) {
             month = month.substring(1);
         }
-        if (language.equals("zh")) {
-            return month + "月";
-        } else {
-            switch (month) {
-                case "1":
-                    return "Jan";
-                case "2":
-                    return "Feb";
-                case "3":
-                    return "Mar";
-                case "4":
-                    return "Apr";
-                case "5":
-                    return "May";
-                case "6":
-                    return "Jun";
-                case "7":
-                    return "Jul";
-                case "8":
-                    return "Aug";
-                case "9":
-                    return "Sep";
-                case "10":
-                    return "Oct";
-                case "11":
-                    return "Nov";
-                case "12":
-                    return "Dec";
-                default:
-                    return month;
-            }
+        switch (month) {
+            case "1":
+                return (R.string.Jan);
+            case "2":
+                return (R.string.Feb);
+            case "3":
+                return (R.string.Mar);
+            case "4":
+                return (R.string.Apr);
+            case "5":
+                return (R.string.May);
+            case "6":
+                return (R.string.Jun);
+            case "7":
+                return (R.string.Jul);
+            case "8":
+                return (R.string.Aug);
+            case "9":
+                return (R.string.Sep);
+            case "10":
+                return (R.string.Oct);
+            case "11":
+                return (R.string.Nov);
+            case "12":
+                return (R.string.Dec);
+            default:
+                return (R.string.Jan);
+
         }
     }
 
@@ -976,9 +973,9 @@ public class AfbUtils {
     public static List<MenuItemInfo<String>> getMarketsList(Context context) {
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
         List<MenuItemInfo<String>> list = new ArrayList<>();
-        list.add(new MenuItemInfo<>(0, context.getString(R.string.All_Markets), "0", context.getString(R.string.All_Market)));//accType=
-        list.add(new MenuItemInfo<>(0, context.getString(R.string.Main_Markets), "1", context.getString(R.string.Main_Markets)));
-        list.add(new MenuItemInfo<>(0, context.getString(R.string.Other_Bet_Markets), "2", context.getString(R.string.Other_Bet_Markets)));
+        list.add(new MenuItemInfo<>(0, (R.string.All_Markets), "0", context.getString(R.string.All_Market)));//accType=
+        list.add(new MenuItemInfo<>(0, (R.string.Main_Markets), "1", context.getString(R.string.Main_Markets)));
+        list.add(new MenuItemInfo<>(0, (R.string.Other_Bet_Markets), "2", context.getString(R.string.Other_Bet_Markets)));
         return list;
     }
 
@@ -989,17 +986,17 @@ public class AfbUtils {
             if (menuItemInfo.getType().equals(type))
                 return menuItemInfo;
         }
-        return new MenuItemInfo<>(0, context.getString(R.string.All_Markets), "0", context.getString(R.string.All_Market));
+        return new MenuItemInfo<>(0, (R.string.All_Markets), "0", context.getString(R.string.All_Market));
     }
 
     public static List<MenuItemInfo> getOddsTypeList(Context context, String CurCode) {
 
         List<MenuItemInfo> list = new ArrayList<>();
-        list.add(new MenuItemInfo(0, context.getString(R.string.HK_ODDS), "HK"));//accType=
-        list.add(new MenuItemInfo(0, context.getString(R.string.MY_ODDS), "MY"));
+        list.add(new MenuItemInfo(0, (R.string.HK_ODDS), "HK"));//accType=
+        list.add(new MenuItemInfo(0, (R.string.MY_ODDS), "MY"));
         if (CurCode.equals("IDR") || AppConstant.IS_AGENT)
-            list.add(new MenuItemInfo(0, context.getString(R.string.ID_ODDS), "ID"));
-        list.add(new MenuItemInfo(0, context.getString(R.string.EU_ODDS), "EU"));
+            list.add(new MenuItemInfo(0, (R.string.ID_ODDS), "ID"));
+        list.add(new MenuItemInfo(0, (R.string.EU_ODDS), "EU"));
         return list;
     }
 
@@ -1009,7 +1006,7 @@ public class AfbUtils {
             if (menuItemInfo.getType().equals(type))
                 return menuItemInfo;
         }
-        return new MenuItemInfo(0, context.getString(R.string.MY_ODDS), "MY");
+        return new MenuItemInfo(0, (R.string.MY_ODDS), "MY");
     }
 
     public static void setChipStatusMap(String chips) {
@@ -1075,7 +1072,7 @@ public class AfbUtils {
             }
 
         }
-        Log.d("end17","end17:"+end17+","+nn );
+        Log.d("end17", "end17:" + end17 + "," + nn);
         return AfbUtils.decimalValue(Float.parseFloat(index3) * Float.parseFloat(index9) / nn, "0.00");
     }
 }

@@ -1,7 +1,5 @@
 package com.nanyang.app.main.home.sport.speedWay;
 
-import android.view.View;
-
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -40,7 +38,7 @@ public class SpeedWayTodayState extends SpeedWayState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", "SPEEDWAY");
+        return new MenuItemInfo<String>(0, (R.string.Today), "Today", "SPEEDWAY");
     }
 
 

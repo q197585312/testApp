@@ -101,6 +101,7 @@ public class BetPop extends BasePopupWindow {
     @Bind(R.id.tv_single_bet)
     TextView tvSingleBet;
 
+
     public View getLlSingleMix() {
         return llSingleMix;
     }
@@ -291,11 +292,13 @@ public class BetPop extends BasePopupWindow {
         String refreshOddsUrl = "";
         hashMap = new HashMap<>();
         if (isSingle) {
+            startAlphaAnimation(tvSingleBet, tvMixBet);
             tvSingleBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
             tvMixBet.setTextColor(Color.WHITE);
             refreshOddsUrl = afbApplication.getRefreshSingleOddsUrl();
 
         } else {
+            startAlphaAnimation(tvMixBet, tvSingleBet);
             tvSingleBet.setTextColor(Color.WHITE);
             tvMixBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
             refreshOddsUrl = afbApplication.getRefreshMixOddsUrl();
@@ -630,9 +633,11 @@ public class BetPop extends BasePopupWindow {
     HashMap<Boolean, CursorEditView> cursorMap = new HashMap();
 
     private void initRcBetContent() {
+
         if (list.size() > 1) {
             tvSingleBet.setTextColor(Color.WHITE);
             tvMixBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
+            startAlphaAnimation(tvMixBet, tvSingleBet);
             if (!isRefresh)
                 initMix();
             llMix.setVisibility(View.VISIBLE);
@@ -640,6 +645,7 @@ public class BetPop extends BasePopupWindow {
         } else {
             llMix.setVisibility(View.GONE);
             tvSingleBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
+            startAlphaAnimation(tvSingleBet, tvMixBet);
             tvMixBet.setTextColor(Color.WHITE);
         }
         if (contentAdapter == null) {
@@ -1054,6 +1060,21 @@ public class BetPop extends BasePopupWindow {
         animator.setDuration(2000);
         animator.start();
         return animator;
+    }
+
+    public void startAlphaAnimation(View start, View stop) {
+        stop.clearAnimation();
+        if (stop.getAnimation() != null)
+            stop.getAnimation().cancel();
+        start.clearAnimation();
+        if (start.getAnimation() != null)
+            start.getAnimation().cancel();
+        ObjectAnimator startAnimator = ObjectAnimator.ofFloat(start, "alpha", 1, 0, 1);
+
+
+        startAnimator.setRepeatCount(1);
+        startAnimator.setDuration(2000);
+        startAnimator.start();
     }
 
 

@@ -29,6 +29,6 @@ class USFootballEarlyMixState extends BasketballEarlyMixState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
+        return new MenuItemInfo<String>(1, (R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.US_Football));
     }
 }

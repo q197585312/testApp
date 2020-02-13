@@ -104,7 +104,7 @@ public class VsActivity extends BaseToolbarActivity<VsPresenter> implements BetV
     String paramT = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_vs);
         ButterKnife.bind(this);

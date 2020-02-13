@@ -16,7 +16,7 @@ public class GolfEarlyState extends GolfState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Golf));
+        return new MenuItemInfo<String>(0, (R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Golf));
     }
 
     @Override

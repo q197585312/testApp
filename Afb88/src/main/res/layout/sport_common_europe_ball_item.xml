@@ -157,7 +157,7 @@
                 android:id="@+id/iv_hall_btn"
                 android:layout_width="18dp"
                 android:layout_height="12dp"
-                android:background="@mipmap/soccer_hall"
+                android:src="@mipmap/soccer_hall"
                 android:scaleType="center"
                 android:visibility="visible" />
 

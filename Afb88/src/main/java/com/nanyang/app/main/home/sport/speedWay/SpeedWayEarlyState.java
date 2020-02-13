@@ -16,7 +16,7 @@ public class SpeedWayEarlyState extends SpeedWayState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", "SPEEDWAY");
+        return new MenuItemInfo<String>(0, (R.string.Early), "Early", "SPEEDWAY");
     }
 
     @Override

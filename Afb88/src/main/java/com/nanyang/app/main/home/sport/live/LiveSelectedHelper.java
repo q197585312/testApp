@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.live;
 
-import com.nanyang.app.AfbApplication;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 
@@ -28,18 +27,18 @@ public class LiveSelectedHelper {
     public LiveSelectedHelper() {
         list = new ArrayList<>();
         linkMap = new HashMap<>();
-        list.add(new MenuItemInfo(R.string.all_host, AfbApplication.getInstance().getString(R.string.all_host)));
-        list.add(new MenuItemInfo(R.string.HDP_OU, AfbApplication.getInstance().getString(R.string.HDP_OU)));
-        list.add(new MenuItemInfo(R.string.X1X2, AfbApplication.getInstance().getString(R.string.X1X2)));
-        list.add(new MenuItemInfo(R.string.OE, AfbApplication.getInstance().getString(R.string.OE)));
-        list.add(new MenuItemInfo(R.string.DC, AfbApplication.getInstance().getString(R.string.DC)));
-        list.add(new MenuItemInfo(R.string.CS, AfbApplication.getInstance().getString(R.string.CS)));
-        list.add(new MenuItemInfo(R.string.TG, AfbApplication.getInstance().getString(R.string.TG)));
-        list.add(new MenuItemInfo(R.string.HTFT, AfbApplication.getInstance().getString(R.string.HTFT)));
-        list.add(new MenuItemInfo(R.string.FGLG, AfbApplication.getInstance().getString(R.string.FGLG)));
-        list.add(new MenuItemInfo(R.string.MM_HDP_OU, AfbApplication.getInstance().getString(R.string.MM_HDP_OU)));
-        list.add(new MenuItemInfo(R.string.Home_Away_TG, AfbApplication.getInstance().getString(R.string.Home_Away_TG)));
-        list.add(new MenuItemInfo(R.string.FT15, AfbApplication.getInstance().getString(R.string.FT15)));
+        list.add(new MenuItemInfo(R.string.all_host, (R.string.all_host)));
+        list.add(new MenuItemInfo(R.string.HDP_OU, (R.string.HDP_OU)));
+        list.add(new MenuItemInfo(R.string.X1X2, (R.string.X1X2)));
+        list.add(new MenuItemInfo(R.string.OE, (R.string.OE)));
+        list.add(new MenuItemInfo(R.string.DC, (R.string.DC)));
+        list.add(new MenuItemInfo(R.string.CS, (R.string.CS)));
+        list.add(new MenuItemInfo(R.string.TG, (R.string.TG)));
+        list.add(new MenuItemInfo(R.string.HTFT, (R.string.HTFT)));
+        list.add(new MenuItemInfo(R.string.FGLG, (R.string.FGLG)));
+        list.add(new MenuItemInfo(R.string.MM_HDP_OU, (R.string.MM_HDP_OU)));
+        list.add(new MenuItemInfo(R.string.Home_Away_TG, (R.string.Home_Away_TG)));
+        list.add(new MenuItemInfo(R.string.FT15, (R.string.FT15)));
         linkMap.put(true, list.get(0));
     }
 

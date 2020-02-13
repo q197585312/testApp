@@ -9,7 +9,6 @@ import android.webkit.WebViewClient;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
-import com.nanyang.app.main.BaseSwitchFragment;
 
 /**
  * Created by Administrator on 2017/11/24.
@@ -19,7 +18,7 @@ public class KenoWebActivity extends BaseToolbarActivity {
     WebView webView;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
         webView = (WebView) findViewById(R.id.web_wv);

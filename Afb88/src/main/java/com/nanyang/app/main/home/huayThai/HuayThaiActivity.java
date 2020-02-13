@@ -31,7 +31,7 @@ public class HuayThaiActivity extends BaseToolbarActivity {
     private List<MenuItemInfo<String>> data;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_thai_thousand);
     }
@@ -69,9 +69,9 @@ public class HuayThaiActivity extends BaseToolbarActivity {
     public void initData() {
         super.initData();
         data = new ArrayList<>();
-        data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_1d, getString(R.string.game1d), "_view/nodds1TH_App.aspx", "_view/nodds1TH_Bet_App.aspx"));
-        data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, getString(R.string.game2d), "_view/nodds2TH_App.aspx", "_view/nodds2TH_Bet_App.aspx"));
-        data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), "_view/nodds3TH_App.aspx", "_view/nodds3TH_Bet_App.aspx"));
+        data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_1d, (R.string.game1d), "_view/nodds1TH_App.aspx", "_view/nodds1TH_Bet_App.aspx"));
+        data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, (R.string.game2d), "_view/nodds2TH_App.aspx", "_view/nodds2TH_Bet_App.aspx"));
+        data.add(new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, (R.string.game3d), "_view/nodds3TH_App.aspx", "_view/nodds3TH_Bet_App.aspx"));
         initRc();
         tvToolbarLeft.setVisibility(View.VISIBLE);
     }

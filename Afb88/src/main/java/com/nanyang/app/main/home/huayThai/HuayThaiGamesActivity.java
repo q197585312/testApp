@@ -35,7 +35,7 @@ public class HuayThaiGamesActivity extends BaseToolbarActivity {
     private BaseFragment<HuayThaiPresenter> thaiThousandFragment;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_games);
         tvToolbarRight.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.sport_list_layer, 0);
@@ -57,7 +57,7 @@ public class HuayThaiGamesActivity extends BaseToolbarActivity {
     public void initData() {
         super.initData();
         info = (MenuItemInfo<String>) getIntent().getSerializableExtra("thai_thousand");
-        String thaiType = info.getText();
+        String thaiType = getString(info.getText());
         setTitle(thaiType);
         thaiThousandFragment = new HuayThaiFragment();
         mapFragment = new HashMap<>();

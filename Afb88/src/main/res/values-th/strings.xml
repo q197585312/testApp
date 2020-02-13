@@ -441,5 +441,6 @@
     <string name="OVER_7"><![CDATA[7&OVER]]></string>
     <string name="OVER">มากกว่า</string>
     <string name="sound">เสียง</string>
+    <string name="Early_All" >เช้า(ทั้งหมด)</string>
 
 </resources>

@@ -405,6 +405,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         for (int i = 0; i < list.size(); i++) {
             final StatementOpen2ListDataBean bean = list.get(i);
             View view = layoutInflater.inflate(R.layout.item_statement_open2, null);
+            view.setBackgroundResource(R.color.white);
             TextView tvIdDate = view.findViewById(R.id.tv_id_date);
             TextView tvMatchType = view.findViewById(R.id.tv_match_type);
             TextView tvMatchVs = view.findViewById(R.id.tv_match_vs);

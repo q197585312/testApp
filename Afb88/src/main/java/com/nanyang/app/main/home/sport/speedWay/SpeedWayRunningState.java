@@ -43,7 +43,7 @@ public class SpeedWayRunningState extends SpeedWayState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", "SPEEDWAY");
+        return new MenuItemInfo<String>(0, (R.string.running), "Running", "SPEEDWAY");
     }
 
     @Override

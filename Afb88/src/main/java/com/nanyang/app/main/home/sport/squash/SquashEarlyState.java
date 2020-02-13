@@ -16,7 +16,7 @@ public class SquashEarlyState extends SquashState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Squash));
+        return new MenuItemInfo<String>(0,(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Squash));
     }
 
     @Override
