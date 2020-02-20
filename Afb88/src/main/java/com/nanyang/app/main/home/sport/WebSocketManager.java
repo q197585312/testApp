@@ -80,7 +80,7 @@ public class WebSocketManager {
                 webSocket.setClosedCallback(new CompletedCallback() {
                     @Override
                     public void onCompleted(Exception ex) {
-                        if (isRunning)
+                        if (isRunning && !webSocket.isOpen())
                             context.runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
@@ -155,7 +155,7 @@ public class WebSocketManager {
                 }
             };
         }
-        timer.schedule(task, 0, 10000);
+        timer.schedule(task, 0, 30000);
 
     }
 

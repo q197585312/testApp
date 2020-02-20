@@ -110,7 +110,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         BaseRecyclerAdapter<RunningBean> adapter = new BaseRecyclerAdapter<RunningBean>(mContext, list, R.layout.item_running) {
             @Override
             public void convert(final MyRecyclerViewHolder holder, int position, final RunningBean item) {
-                if(!StringUtils.isNull(type)&&type.equals("W")) {
+                String isRun5 = item.getIsRun5();
+                if(!StringUtils.isNull(isRun5)&&isRun5.equals("True")) {
                     holder.getHolderView().setBackgroundResource(R.color.green_content1);
                 }else {
                     holder.getHolderView().setBackgroundResource(R.color.white);
@@ -308,7 +309,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     }
                     running_BetType.setText("." + transType10 + " ");
                     TextView running_Score = holder.getTextView(R.id.running_Score);
-                    String isRun5 = item.getIsRun5();
+
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
                     TextView running_BetType2_odds = holder.getTextView(R.id.running_BetType2_odds);
                     String betType2 = item.getBetType323();
