@@ -105,7 +105,8 @@ public class HtmlTagHandler implements Html.TagHandler {
 
                 .replaceAll("color='red'", "color='#ff0000'")
                 .replaceAll("color='blue'", "color='#0000ff'")
-                .replaceAll("color='black'", "color'#000000'")
+                .replaceAll("color='black'", "color='#000000'")
+                .replaceAll("color='Error'", "color='#ff0000'")
                 .replaceAll("MM_red", "#ff0000")
                 .replaceAll("Negative", "#ff0000")
                 .replaceAll("MM_blue", "#0000ff")
