@@ -2,9 +2,11 @@ package com.nanyang.app;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -51,10 +53,11 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 public abstract class BaseToolbarActivity<T extends IBasePresenter> extends BaseActivity<T> implements IGetRefreshMenu {
-    public BetGoalWindowUtils    BetGoalWindowUtils =new BetGoalWindowUtils();
+    public BetGoalWindowUtils BetGoalWindowUtils = new BetGoalWindowUtils();
     @Nullable
     public
     TextView tvToolbarTitle;
@@ -499,7 +502,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 Log.d("onGetRefreshMenu", "lastWaitDataBeanList: " + lastWaitDataBeanList.toString());
                 Log.d("onGetRefreshMenu", "beanList: " + beanList.toString());
                 if (!beanList.contains(waitNum)) {
-                    String accType =getOtType();
+                    String accType = getOtType();
                     BetGoalWindowUtils.showBetWindow(accType, waitNum, this, true);
                 }
             }
@@ -511,4 +514,26 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         stopRefreshMenu();
         startRefreshMenu();
     }
+
+    public boolean requestPermission(String[] PERMISSIONS, int PERMISSIONS_CODE) {
+        boolean isGranted = true;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+            for (String s : PERMISSIONS) {
+                if (this.checkSelfPermission(s) != PERMISSION_GRANTED) {
+                    //如果没有写sd卡权限
+                    isGranted = false;
+                }
+            }
+            if (!isGranted) {
+                requestPermissions(
+                        PERMISSIONS,
+                        PERMISSIONS_CODE);
+            }
+        }
+        return isGranted;
+    }
+
+
 }

@@ -719,6 +719,9 @@ public class BetPop extends BasePopupWindow {
                                 }
                                 if (!amount.equals("0"))
                                     hashMap.put(item.getSocOddsId(), amount);
+                                else{
+                                    hashMap.put(item.getSocOddsId(), "");
+                                }
 
                             }
                         });

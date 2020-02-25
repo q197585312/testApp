@@ -610,4 +610,6 @@
     <string name="Nov">Nov</string>
     <string name="Dec">Dec</string>
     <string name="Early_All" >Early(All)</string>
+    <string name="no_permission">Without this permission, this feature cannot be turned on, please turn on permissions!</string>
+    <string name="open_install">Please open installation permissions for afb1188</string>
 </resources>

@@ -3,9 +3,6 @@
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
-        <compositeConfiguration>
-          <compositeBuild compositeDefinitionSource="SCRIPT" />
-        </compositeConfiguration>
         <option name="distributionType" value="DEFAULT_WRAPPED" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="modules">
@@ -14,13 +11,9 @@
             <option value="$PROJECT_DIR$/Afb88" />
             <option value="$PROJECT_DIR$/baseLibs" />
             <option value="$PROJECT_DIR$/dongnao" />
-            <option value="$PROJECT_DIR$/skinbluepackage" />
-            <option value="$PROJECT_DIR$/skinlibrary" />
-            <option value="$PROJECT_DIR$/skinpackage" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
-        <option name="testRunner" value="PLATFORM" />
       </GradleProjectSettings>
     </option>
   </component>

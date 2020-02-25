@@ -167,12 +167,13 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void onWebShow(int nextNotRepeat, int position, IRTMatchInfo item, View view) {
-        View v = rvContent.getChildAt(nextNotRepeat);
-        if (v == null) {
-            v = view;
+        if (presenter.getStateHelper().getStateType().getType().toLowerCase().startsWith("r")) {
+            View v = rvContent.getChildAt(nextNotRepeat);
+            if (v == null) {
+                v = view;
+            }
+            showLiveSelect(v, (BallInfo) item, position);
         }
-
-        showLiveSelect(v, (BallInfo) item, position);
 
 
     }
