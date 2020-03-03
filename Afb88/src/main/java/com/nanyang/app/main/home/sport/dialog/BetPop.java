@@ -100,6 +100,7 @@ public class BetPop extends BasePopupWindow {
     TextView tv1x2Odds;
     @Bind(R.id.tv_single_bet)
     TextView tvSingleBet;
+    private int listSize;
 
 
     public View getLlSingleMix() {
@@ -132,7 +133,7 @@ public class BetPop extends BasePopupWindow {
     private SportBetHelper presenter;
     private IRTMatchInfo rTMatchInfo;
     private int coupon;
-    private boolean isRefresh;
+    private boolean isRefreshEd;
 
 
     public BetPop(Context context, View v) {
@@ -565,11 +566,16 @@ public class BetPop extends BasePopupWindow {
     List<AfbClickBetBean> list;
 
     public void setBetData(List<AfbClickBetBean> list, SportBetHelper mPresenter) {
+
         this.list = list;
+        if (list != null && listSize != list.size()) {
+            this.listSize = list.size();
+            isRefreshEd = false;
+        }
         this.presenter = mPresenter;
 //        afbApplication.setBetAfbList()
         initRcBetContent();
-        if (!isRefresh) {
+        if (!isRefreshEd) {
             setEditNum();
             initBetChip();
         }
@@ -638,7 +644,7 @@ public class BetPop extends BasePopupWindow {
             tvSingleBet.setTextColor(Color.WHITE);
             tvMixBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
             startAlphaAnimation(tvMixBet, tvSingleBet);
-            if (!isRefresh)
+            if (!isRefreshEd)
                 initMix();
             llMix.setVisibility(View.VISIBLE);
 
@@ -672,6 +678,8 @@ public class BetPop extends BasePopupWindow {
                     TextView tvBetHdp = holder.getView(R.id.bet_hdp_tv);
                     TextView tvBetOdds = holder.getView(R.id.bet_odds_tv);
                     TextView tvBetOddsAnimation = holder.getView(R.id.bet_odds_tv_animation);
+                    int color = position % 2 == 0 ? R.color.transparent : R.color.grey_thick_white;
+                    holder.getHolderView().setBackgroundResource(color);
                     View vLine = holder.getView(R.id.v_line);
                     if (list.size() < 2) {
                         edt_single_bet.setVisibility(View.GONE);
@@ -719,7 +727,7 @@ public class BetPop extends BasePopupWindow {
                                 }
                                 if (!amount.equals("0"))
                                     hashMap.put(item.getSocOddsId(), amount);
-                                else{
+                                else {
                                     hashMap.put(item.getSocOddsId(), "");
                                 }
 
@@ -753,7 +761,7 @@ public class BetPop extends BasePopupWindow {
                     tvBetHome.setText(item.getHome());
                     tvBetAway.setText(item.getAway());
                     String hdp = item.getHdp();
-                    if (hdp != null && hdp.trim().startsWith("-")) {
+                    if (list.size() < 2 && hdp != null && hdp.trim().contains("-")) {
                         tvHdp.setTextColor(Color.RED);
                     } else {
                         tvHdp.setTextColor(Color.BLACK);
@@ -1044,7 +1052,7 @@ public class BetPop extends BasePopupWindow {
                     return;
                 }
                 presenter.getRefreshOdds(afbApplication.getRefreshCurrentOddsUrl());
-                isRefresh = true;
+                isRefreshEd = true;
                 handler.postDelayed(this, 3000);
             }
         }, delayedTime);
@@ -1052,7 +1060,7 @@ public class BetPop extends BasePopupWindow {
 
     public void stopUpdateOdds() {
         handler.removeCallbacksAndMessages(null);
-        isRefresh = false;
+        isRefreshEd = false;
     }
 
     private Map<Integer, ObjectAnimator> objectAnimatorMap;

@@ -168,10 +168,10 @@
     <string name="reverse_selection">反选</string>
     <string name="Huay_Thai">泰式千字</string>
     <string name="Myanmar_Odds">缅甸赔率</string>
-    <string name="FULL_H_A">全场亚洲盘</string>
-    <string name="FULL_O_U">全场大小</string>
-    <string name="HALF_H_A">半场亚洲盘</string>
-    <string name="HALF_O_U">半场 大/小</string>
+    <string name="FULL_H_A">全场.让球</string>
+    <string name="FULL_O_U">全场.大小</string>
+    <string name="HALF_H_A">半场.让球</string>
+    <string name="HALF_O_U">半场.大小</string>
     <string name="FULL_O_E">全场 单/双</string>
     <string name="HALF_O_E">半场 单/双</string>
     <string name="HANDICAP">亚州盤</string>
@@ -273,7 +273,7 @@
     <string name="U">小</string>
     <string name="O">大</string>
     <string name="AFB_FT_OU">AFB全场大小</string>
-    <string name="AFB_FT_HDP">AFB全场亚洲</string>
+    <string name="AFB_FT_HDP">AFB全场让球</string>
     <string name="Status_">状态:</string>
     <string name="System_maintenance">系统正在维护</string>
     <string name="game1d">1D Game</string>
@@ -566,7 +566,7 @@
     <string name="ft_2">全场客</string>
     <string name="speed_way">SPEEDWAY</string>
     <string name="switching_market_failure">切换盘口失败</string>
-    <string name="All_Market">全部</string>
+    <string name="All_Market">全部盘口</string>
     <string name="single_bet" >单注</string>
     <string name="can_not_more_than_10">过关注单不能超过10</string>
     <string name="live_stream">live streaming</string>

@@ -151,18 +151,18 @@ public class HomeFragment extends BaseSwitchFragment {
                     return;
                 }
                 SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());
-                MenuItemInfo<String> menuItemInfo = new MenuItemInfo<>(0,(R.string.running));
+                MenuItemInfo<String> menuItemInfo = new MenuItemInfo<>(0, (R.string.running));
                 menuItemInfo.setType("Running");
 
                 if (jsonObjectNum != null) {
                     if (!StringUtils.isNull(jsonObjectNum.optString("M_RAm" + item.getDbid()))) {
-                        menuItemInfo = new MenuItemInfo<>(0,(R.string.running));
+                        menuItemInfo = new MenuItemInfo<>(0, (R.string.running));
                         menuItemInfo.setType("Running");
                     } else if (!StringUtils.isNull(jsonObjectNum.optString("M_TAm" + item.getDbid()))) {
-                        menuItemInfo = new MenuItemInfo<>(0,(R.string.Today));
+                        menuItemInfo = new MenuItemInfo<>(0, (R.string.Today));
                         menuItemInfo.setType("Today");
                     } else if (!StringUtils.isNull(jsonObjectNum.optString("M_EAm" + item.getDbid()))) {
-                        menuItemInfo = new MenuItemInfo<>(0,(R.string.Early_All));
+                        menuItemInfo = new MenuItemInfo<>(0, (R.string.Early_All));
                         menuItemInfo.setType("Early");
                     }
                 }

@@ -137,14 +137,6 @@ public class AfbApplication extends BaseApplication {
     public void setBetAfbList(AfbClickResponseBean betParList) {
         LogUtil.d("BetPop", "setBetAfbList:" + betParList);
         if (betParList != null && betParList.getList() != null && betParList.getList().size() > 0) {
-
-            Iterator<AfbClickBetBean> iterator = betParList.getList().iterator();
-            while (iterator.hasNext()) {
-                AfbClickBetBean next = iterator.next();
-                if (StringUtils.isNull(next.getNOddsOLD()) || Float.valueOf(next.getNOddsOLD()) == 0f) {
-                    iterator.remove();
-                }
-            }
             if (betParList.getList() == null || betParList.getList().size() < 1) {
                 this.betAfbList = null;
             }

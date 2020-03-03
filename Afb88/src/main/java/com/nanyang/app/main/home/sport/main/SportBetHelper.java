@@ -296,7 +296,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             if (betAfbList == null || betAfbList.getList() == null || betAfbList.getList().size() < 1) {
                 ((AfbApplication) AfbApplication.getInstance()).clearMixBetList();
                 updateMixListText();
-            } else if (betAfbList.getList().size() < mixBetList.size()) {
+            } else if (betAfbList.getList().size() >0&& mixBetList.size()>0) {
                 LogUtil.d("updateMixListText", betAfbList.getList().size() + "---" + mixBetList.size());
                 Iterator<OddsClickBean> iterator = mixBetList.iterator();
                 boolean deleted = false;

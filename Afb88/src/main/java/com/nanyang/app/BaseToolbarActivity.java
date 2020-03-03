@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -521,7 +522,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
             for (String s : PERMISSIONS) {
-                if (this.checkSelfPermission(s) != PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(this,s) != PERMISSION_GRANTED) {
                     //如果没有写sd卡权限
                     isGranted = false;
                 }
