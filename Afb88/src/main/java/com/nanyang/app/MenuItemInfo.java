@@ -6,9 +6,11 @@ import java.io.Serializable;
 
 public class MenuItemInfo<P> implements Serializable, IString {
     int res;
-    String text;
+    int text;
     String day;
     String dateParam;
+
+
 
     public String getDateParam() {
         return dateParam;
@@ -38,23 +40,23 @@ public class MenuItemInfo<P> implements Serializable, IString {
 
     String type;
 
-    public MenuItemInfo(int res, String text) {
+    public MenuItemInfo(int res, int text) {
         this.res = res;
         this.text = text;
     }
 
-    public MenuItemInfo(int res, String text, String type) {
+    public MenuItemInfo(int res, int text, String type) {
         this(res, text);
         this.type = type;
     }
 
-    public MenuItemInfo(int res, String text, String type, P parent) {
+    public MenuItemInfo(int res, int text, String type, P parent) {
         this(res, text);
         this.type = type;
         this.parent = parent;
     }
 
-    public MenuItemInfo(int res, String text, String type, P parent, String day, String dateParam) {
+    public MenuItemInfo(int res, int text, String type, P parent, String day, String dateParam) {
         this(res, text);
         this.type = type;
         this.parent = parent;
@@ -63,11 +65,11 @@ public class MenuItemInfo<P> implements Serializable, IString {
     }
 
     @Override
-    public String getText() {
+    public int getText() {
         return text;
     }
 
-    public void setText(String text) {
+    public void setText(int text) {
         this.text = text;
     }
 

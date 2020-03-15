@@ -50,13 +50,13 @@ public class LanguageHelper {
         map.put("tr", "UR-PK");
         map.put("my", "EN-AU");
         languageItems = new ArrayList<>();
-        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_zh_flag, "简体中文", "zh", "ZH-CN"));
-        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_en_flag, "English", "en", "EN-US"));
-        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_th_flag, "ภาษาไทย", "th", "TH-TH"));
-        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_ko_flag, "KOREAN", "ko", "EN-TT"));
-        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_vi_flag, "Tiếng Việt", "vi", "EN-IE"));
-        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_tr_flag, "TURKISH", "tr", "UR-PK"));
-        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_tr_flag, "INDONESIAN", "my", "EN-AU"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_zh_flag, (R.string.language_zh), "zh", "ZH-CN"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_en_flag, (R.string.language_en), "en", "EN-US"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_th_flag, (R.string.language_th), "th", "TH-TH"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_ko_flag, (R.string.language_ko), "ko", "EN-TT"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_vi_flag, (R.string.language_vi), "vi", "EN-IE"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_tr_flag, (R.string.language_tr), "tr", "UR-PK"));
+        languageItems.add(new MenuItemInfo<>(R.mipmap.lang_tr_flag, (R.string.language_my), "my", "EN-AU"));
 
     }
 
@@ -74,7 +74,7 @@ public class LanguageHelper {
             if (lag.equals(languageItem.getType()))
                 return languageItem;
         }
-        return  new MenuItemInfo<>(R.mipmap.lang_zh_flag, "简体中文", "zh", "ZH-CN");
+        return  new MenuItemInfo<>(R.mipmap.lang_zh_flag, R.string.language_zh, "zh", "ZH-CN");
     }
 
     public String getLanguage(String lag) {

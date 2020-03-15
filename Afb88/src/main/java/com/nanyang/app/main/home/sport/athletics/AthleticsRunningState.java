@@ -44,7 +44,7 @@ public class AthleticsRunningState extends AthleticsState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Athletics));
+        return new MenuItemInfo<String>(0,(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Athletics));
     }
 
     @Override

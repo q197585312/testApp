@@ -169,6 +169,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private boolean notClickType = false;
     private boolean stopCloseWindow;
     private LivePlayHelper helper;
+    private Bundle savedInstanceState;
 
 
     public TextView getIvAllAdd() {
@@ -183,8 +184,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public String wd = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        this.savedInstanceState = savedInstanceState;
 
         setContentView(R.layout.activity_sport);
         toolbar.setVisibility(View.GONE);
@@ -562,7 +564,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 public void run() {
                     MenuItemInfo oddsType = getApp().getOddsType();
                     if (oddsType == null)
-                        oddsType = new MenuItemInfo(0, getString(R.string.MY_ODDS), "MY");
+                        oddsType = new MenuItemInfo(0, (R.string.MY_ODDS), "MY");
                     presenter.switchOddsType(oddsType.getType());
                 }
             }, 1000);
@@ -715,7 +717,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void clickAllRunning(View view) {
         setType("Running");
         dateClickPosition = 0;
-        MenuItemInfo<Integer> item = new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green);
+        MenuItemInfo<Integer> item = new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
         runWayItem(item);
         SportIdBean sportIdBean = AfbUtils.sportMap.get("1,9,21,29,51,182");
         selectFragmentTag(getString(sportIdBean.getTextRes()), sportIdBean.getBaseFragment());
@@ -730,13 +732,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (item.getDbid().equals("0")) {
             setType("Running");
             dateClickPosition = 0;
-            runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green));
+            runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green));
         } else if (item.getDbid().startsWith("33")) {
-            MenuItemInfo<String> stringMenuItemInfo = new MenuItemInfo<>(R.mipmap.thai_thousand_1d, getString(R.string.game1d), item.getDbid(), "1");
+            MenuItemInfo<String> stringMenuItemInfo = new MenuItemInfo<>(R.mipmap.thai_thousand_1d, (R.string.game1d), item.getDbid(), "1");
             if (item.getDbid().equals("33_19")) {
-                stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, getString(R.string.game2d), item.getDbid(), "2");
+                stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_2d, (R.string.game2d), item.getDbid(), "2");
             } else if (item.getDbid().equals("33_20")) {
-                stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, getString(R.string.game3d), item.getDbid(), "3");
+                stringMenuItemInfo = new MenuItemInfo<String>(R.mipmap.thai_thousand_3d, (R.string.game3d), item.getDbid(), "3");
             }
             notClickType = true;
             huayThaiFragment.setInfo(stringMenuItemInfo);
@@ -925,10 +927,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void runWayItem(MenuItemInfo item) {
         AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext), mContext);
         if (item.getRes() == R.mipmap.date_day_grey) {
+            LogUtil.d("tvMatchType", item.getDay());
             tvMatchType.setText(item.getDay());
         } else {
+            LogUtil.d("tvMatchType", item.getText());
             tvMatchType.setText(item.getText());
         }
+
         tvMatchType.setCompoundDrawablesWithIntrinsicBounds(0, item.getRes(), 0, 0);
         wd = item.getDateParam();
     }
@@ -981,5 +986,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         } else {
             super.onPopupWindowCreatedAndShow(pop, center);
         }
+    }
+
+    @Override
+    public void recreate() {
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext), mContext);
+        super.recreate();
+        super.recreate();
+
     }
 }

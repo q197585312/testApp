@@ -284,7 +284,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoPresenter> {
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_keno);
         createPresenter(new KenoPresenter(this));

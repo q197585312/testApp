@@ -1,11 +1,17 @@
 package com.nanyang.app.load.welcome;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.provider.Settings;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,9 +21,11 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.CheckVersionBean;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginActivity;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.SystemTool;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -29,9 +37,11 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
     private ProgressBar mProgressBar;
     private AlertDialog downloadDialog;
     private long totalLength;
+    private File loadFile;
+    private String downloadUrl = "";
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if ((getIntent().getFlags() & Intent.FLAG_ACTIVITY_BROUGHT_TO_FRONT) != 0) {
             finish();
@@ -82,15 +92,45 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
 
     public void onLoadEnd(File file) {
         downloadDialog.dismiss();
-        SystemTool.installApk(mContext, file);
+        this.loadFile = file;
+        checkIsAndroidO();
     }
+
+    public void checkIsAndroidO() {
+        if (Build.VERSION.SDK_INT >= 26) {
+            boolean b = getPackageManager().canRequestPackageInstalls();
+            if (b) {
+                SystemTool.installApk(mContext, loadFile, "com.nanyang.app");
+            } else {
+                //请求安装未知应用来源的权限
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES}, INSTALL_CODE);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES},
+                        INSTALL_CODE);
+
+            }
+        } else {
+            SystemTool.installApk(mContext, loadFile, "com.nanyang.app");
+        }
+    }
+
+    final int READ_CODE = 101;
+    final int INSTALL_CODE = 102;
+    final int INSTALL_AFB_CODE = 109;
 
     public void onGetData(CheckVersionBean checkVersionBean) {
         String version = checkVersionBean.getData().getVersion();
         String url = checkVersionBean.getData().getUrl();
         try {
             if (Float.valueOf(version) > Float.valueOf(SystemTool.getPackageInfo(mContext).versionName)) {
-                showUpdateDialog(url);
+                String[] PERMISSIONS_STORAGE = {
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                        Manifest.permission.READ_EXTERNAL_STORAGE
+
+                };
+                this.downloadUrl = url;
+                if (requestPermission(PERMISSIONS_STORAGE, READ_CODE)) {
+                    showUpdateDialog();
+                }
                 return;
             }
         } catch (PackageManager.NameNotFoundException e) {
@@ -99,7 +139,54 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
         presenter.checkInitCheck(getIntent());
     }
 
-    private void showUpdateDialog(final String url) {
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        LogUtil.d("onRequestPermissionsResult","权限code："+requestCode);
+
+        switch (requestCode) {
+            case READ_CODE:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    showUpdateDialog();
+                } else {
+                    ToastUtils.showLong(getString(R.string.no_permission));
+                    //  引导用户手动开启安装权限
+                }
+                break;
+            case INSTALL_CODE:
+                SystemTool.installApk(mContext, loadFile, "com.nanyang.app");
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    SystemTool.installApk(mContext, loadFile, "com.nanyang.app");
+                } else {
+                    ToastUtils.showLong(getString(R.string.open_install));
+                    //  引导用户手动开启安装权限
+                    Intent intent = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES);
+                    startActivityForResult(intent, INSTALL_CODE);
+                    Uri packageURI = Uri.parse("package:com.nanyang.app");//设置包名，可直接跳转当前软件的设置页面
+                    Intent ii = new Intent(Settings.ACTION_MANAGE_UNKNOWN_APP_SOURCES, packageURI);
+                    startActivityForResult(ii, INSTALL_AFB_CODE);
+                }
+                break;
+            default:
+                break;
+
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        switch (requestCode){
+            case INSTALL_AFB_CODE:
+                SystemTool.installApk(mContext, loadFile, "com.nanyang.app");
+                break;
+        }
+    }
+
+    private void showUpdateDialog() {
+        if (StringUtils.isNull(downloadUrl))
+            return;
+        final String url = downloadUrl;
         AlertDialog.Builder builder = new AlertDialog.Builder(mContext, R.style.Base_AlertDialog);
         builder.setTitle(R.string.Update);
         builder.setMessage(R.string.download_now);

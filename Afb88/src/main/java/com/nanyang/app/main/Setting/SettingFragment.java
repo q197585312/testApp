@@ -1,6 +1,7 @@
 package com.nanyang.app.main.Setting;
 
 import android.content.Intent;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -162,7 +163,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 } else {
                     vLine.setVisibility(View.GONE);
                 }
-                String choiceType = item.getChoiceType();
+
                 switch (position) {
                     case 2:
                         MenuItemInfo<String> language = new LanguageHelper(getBaseActivity()).getLanguageItem();
@@ -188,7 +189,12 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         tvChoiceType.setText(allOdds.getText());
                         break;
                     case 9:
-                        tvChoiceType.setText(SoundPlayUtils.getSoundIndex().getText());
+
+                        if (SoundPlayUtils.getSoundIndex().getType().equals("0"))
+                            tvChoiceType.setText(SoundPlayUtils.getSoundIndex().getText());
+                        else {
+                            tvChoiceType.setText(getString(SoundPlayUtils.getSoundIndex().getText()) + SoundPlayUtils.getSoundIndex().getType());
+                        }
                         break;
                 }
             }
@@ -204,8 +210,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                     case 1:
                         break;
                     case 2:
-                        if (AppConstant.IS_AGENT)
-                            return;
+
                         PopSwitch popLg = new PopSwitch<MenuItemInfo<String>>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
                             public void onClickItem(MenuItemInfo<String> item, int position) {
@@ -232,7 +237,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                                 ((BaseToolbarActivity) getBaseActivity()).getApp().setOddsType(item);
                             }
                         };
-                        List<MenuItemInfo> oddsTypeList = AfbUtils.getOddsTypeList(mContext,((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode());
+                        List<MenuItemInfo> oddsTypeList = AfbUtils.getOddsTypeList(mContext, ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode());
                         popOddType.setData(oddsTypeList, tv.getText().toString());
                         popOddType.showPopupDownWindow();
                         break;
@@ -279,14 +284,14 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         List<IString> strings = new ArrayList<>();
                         strings.add(new IString() {
                             @Override
-                            public String getText() {
-                                return getString(R.string.hot_sort);
+                            public int getText() {
+                                return (R.string.hot_sort);
                             }
                         });
                         strings.add(new IString() {
                             @Override
-                            public String getText() {
-                                return getString(R.string.sort_by_time);
+                            public int getText() {
+                                return (R.string.sort_by_time);
                             }
                         });
                         popSort.setData(strings, tv.getText().toString());
@@ -308,8 +313,31 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                         PopSwitch<SoundBean> popSound = new PopSwitch<SoundBean>(mContext, tv, AfbUtils.dp2px(mContext, 130), ViewGroup.LayoutParams.WRAP_CONTENT) {
                             @Override
                             public void onClickItem(SoundBean item, int position) {
-                                tv.setText(item.getText());
+                                if (item.getType().equals("0"))
+                                    tv.setText(item.getText());
+                                else {
+                                    tv.setText(getString(item.getText()) + item.getType());
+                                }
+
                                 SoundPlayUtils.setSound(item);
+                            }
+
+                            @Override
+                            public void onConvert(MyRecyclerViewHolder holder, int position, SoundBean item) {
+
+                                TextView tv = holder.getView(R.id.item_text_tv);
+                                if (item.getType().equals("0"))
+                                    tv.setText(item.getText());
+                                else {
+                                    tv.setText(getString(item.getText()) + item.getType());
+                                }
+                                if (getChoiceStr().equals(tv.getText())) {
+                                    tv.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
+                                    tv.setTextColor(ContextCompat.getColor(context, R.color.blue));
+                                } else {
+                                    tv.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+                                    tv.setTextColor(ContextCompat.getColor(context, R.color.black));
+                                }
                             }
                         };
                         List<SoundBean> sounds = SoundPlayUtils.getSoundList();
@@ -346,8 +374,8 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
         List<SettingInfoBean> beanList = new ArrayList<>();
         SettingInfoBean infoBean1 = new SettingInfoBean("1", getBaseActivity().getString(R.string.home_user_name), ((BaseToolbarActivity) getBaseActivity()).getApp().getUser().getLoginName(), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean2 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Password), "**********", 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean3 = new SettingInfoBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), helper.getLanguageItem().getText(), 0, 0, 0, 0, 0, 0);
-        SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), AfbUtils.getOddsTypeByType(mContext, data.getAccType(),((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode()).getText(), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean3 = new SettingInfoBean("1", getBaseActivity().getBaseActivity().getString(R.string.choose_language), getString(helper.getLanguageItem().getText()), 0, 0, 0, 0, 0, 0);
+        SettingInfoBean infoBean4 = new SettingInfoBean("1", getBaseActivity().getString(R.string.Odds_Type), getString(AfbUtils.getOddsTypeByType(mContext, data.getAccType(), ((BaseToolbarActivity) getBaseActivity()).getApp().getSettingAllDataBean().getCurCode()).getText()), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean5 = new SettingInfoBean("2", getBaseActivity().getString(R.string.better_odds), "1", 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean6 = new SettingInfoBean("1", getBaseActivity().getString(R.string.quick_bet_amount), getString(R.string.customise), 0, 0, 0, 0, 0, 0);
         SettingInfoBean infoBean7 = new SettingInfoBean("2", getBaseActivity().getString(R.string.auto_refresh), "1", 0, 0, 0, 0, 0, 0);
@@ -413,9 +441,13 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
 
     @Override
     public void onLanguageSwitchSucceed(String str) {
-        Intent intent = new Intent(getActivity(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(intent);
-        getBaseActivity().finish();
+        if (!AppConstant.IS_AGENT) {
+            Intent intent = new Intent(getActivity(), MainActivity.class).setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            getBaseActivity().finish();
+        } else {
+            getBaseActivity().recreate();
+        }
     }
 
     @Override

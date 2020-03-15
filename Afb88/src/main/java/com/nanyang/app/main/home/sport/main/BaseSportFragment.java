@@ -167,12 +167,13 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void onWebShow(int nextNotRepeat, int position, IRTMatchInfo item, View view) {
-        View v = rvContent.getChildAt(nextNotRepeat);
-        if (v == null) {
-            v = view;
+        if (presenter.getStateHelper().getStateType().getType().toLowerCase().startsWith("r")) {
+            View v = rvContent.getChildAt(nextNotRepeat);
+            if (v == null) {
+                v = view;
+            }
+            showLiveSelect(v, (BallInfo) item, position);
         }
-
-        showLiveSelect(v, (BallInfo) item, position);
 
 
     }
@@ -182,7 +183,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             BaseListPopupWindow<MenuItemInfo> popu = new BaseListPopupWindow<MenuItemInfo>(mContext, v, AfbUtils.dp2px(mContext, 100), AfbUtils.dp2px(mContext, 60)) {
                 @Override
                 protected void convertTv(TextView tv, MenuItemInfo item) {
-                    tv.setText(item.getText().toUpperCase());
+                    tv.setText(item.getText());
                 }
 
                 @Override
@@ -216,8 +217,8 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 }
             };
             ArrayList<MenuItemInfo> menuItemInfos = new ArrayList<>();
-            menuItemInfos.add(new MenuItemInfo(R.mipmap.tv_play, "Single TV", "Single"));
-            menuItemInfos.add(new MenuItemInfo(R.mipmap.tv_play, "Match & TV", "Match"));
+            menuItemInfos.add(new MenuItemInfo(R.mipmap.tv_play, (R.string.Single_TV), "Single"));
+            menuItemInfos.add(new MenuItemInfo(R.mipmap.tv_play, (R.string.MATCH_TV), "Match"));
             popu.setData(menuItemInfos);
             popu.showPopupCenterWindow();
         } else {
@@ -557,7 +558,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
                         TextView tv = holder.getView(R.id.item_text_tv);
                         tv.setText(item.getText());
-                        if (tvOddsType.getText().toString().equals(item.getText())) {
+                        if (getBaseActivity().getOddsType().getType().equals(item.getType())) {
                             tv.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
                             tv.setTextColor(ContextCompat.getColor(context, R.color.blue));
                         } else {
@@ -645,7 +646,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             l = "en";
         }
         String gameUrl = "";
-        if (!StringUtils.isNull(item.getRTSMatchId())&&!item.getRTSMatchId().equals("0"))
+        if (!StringUtils.isNull(item.getRTSMatchId()) && !item.getRTSMatchId().equals("0"))
             gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
         Log.d(TAG, "onWebShow: " + gameUrl);
         String dbid = getSportDbid();

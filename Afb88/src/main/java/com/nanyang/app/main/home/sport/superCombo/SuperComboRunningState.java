@@ -41,7 +41,7 @@ public class SuperComboRunningState extends SuperComboState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.SuperCombo));
+        return new MenuItemInfo<String>(1,(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.SuperCombo));
     }
 
     @Override

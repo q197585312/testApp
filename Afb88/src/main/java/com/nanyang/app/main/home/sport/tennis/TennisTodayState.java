@@ -41,7 +41,7 @@ public class TennisTodayState extends TennisState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Tennis));
+        return new MenuItemInfo<String>(1,(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Tennis));
     }
 
 

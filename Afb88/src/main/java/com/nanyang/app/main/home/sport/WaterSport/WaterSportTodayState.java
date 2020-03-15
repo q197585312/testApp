@@ -38,7 +38,7 @@ public class WaterSportTodayState extends WaterSportState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Water_Polo));
+        return new MenuItemInfo<String>(0,(R.string.Today), "Today", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Water_Polo));
     }
 
 

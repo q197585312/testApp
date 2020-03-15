@@ -6,7 +6,6 @@ import android.widget.TextView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sport.model.TableSportInfo;
@@ -31,7 +30,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
     }
 
     protected String ot;
-    protected String text;
+    protected int text;
 
     public OutRightState(SportContract.View baseView) {
         super(baseView);
@@ -183,8 +182,8 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
 
     @Override
     public MenuItemInfo getStateType() {
-        if (StringUtils.isNull(text))
-            text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today);
+        if (text==0)
+            text = (R.string.Today);
         return new MenuItemInfo<String>(0, text, "OutRight", getSportName());
 
     }
@@ -192,11 +191,11 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
     public void setStateItemOt(String ot) {
         switch (ot) {
             case "e":
-                this.text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early);
+                this.text = (R.string.Early);
                 this.ot = "e";
                 break;
             default:
-                this.text = getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today);
+                this.text = (R.string.Today);
                 this.ot = "t";
                 break;
         }

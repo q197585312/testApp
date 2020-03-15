@@ -70,7 +70,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     private boolean hasAttached = false;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);//去掉标题栏
         //全屏
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

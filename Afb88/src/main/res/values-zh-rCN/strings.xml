@@ -168,10 +168,10 @@
     <string name="reverse_selection">反选</string>
     <string name="Huay_Thai">泰式千字</string>
     <string name="Myanmar_Odds">缅甸赔率</string>
-    <string name="FULL_H_A">全场亚洲盘</string>
-    <string name="FULL_O_U">全场大小</string>
-    <string name="HALF_H_A">半场亚洲盘</string>
-    <string name="HALF_O_U">半场 大/小</string>
+    <string name="FULL_H_A">全场.让球</string>
+    <string name="FULL_O_U">全场.大小</string>
+    <string name="HALF_H_A">半场.让球</string>
+    <string name="HALF_O_U">半场.大小</string>
     <string name="FULL_O_E">全场 单/双</string>
     <string name="HALF_O_E">半场 单/双</string>
     <string name="HANDICAP">亚州盤</string>
@@ -273,7 +273,7 @@
     <string name="U">小</string>
     <string name="O">大</string>
     <string name="AFB_FT_OU">AFB全场大小</string>
-    <string name="AFB_FT_HDP">AFB全场亚洲</string>
+    <string name="AFB_FT_HDP">AFB全场让球</string>
     <string name="Status_">状态:</string>
     <string name="System_maintenance">系统正在维护</string>
     <string name="game1d">1D Game</string>
@@ -478,13 +478,14 @@
     <string name="Muay_Thai_name">泰拳</string>
     <string name="Parlay">过关</string>
     <string name="Parlay1">混合过关</string>
-    <string name="Amt">数额</string>
-    <string name="WL">输/赢</string>
-    <string name="Com">佣金</string>
+
+    <string name="Amt">Amt</string>
+    <string name="WL">W/L</string>
+    <string name="Com">Com</string>
     <string name="Lastweeksummary">本周旧帐</string>
     <string name="Settled">清帐</string>
     <string name="Est_Payout">估计赢得数额</string>
-    <string name="Odds">赔率</string>
+    <string name="Odds">ODDS</string>
     <string name="ID">编号</string>
     <string name="Result">比数</string>
     <string name="CloseDetail">关闭详细信息</string>
@@ -566,7 +567,7 @@
     <string name="ft_2">全场客</string>
     <string name="speed_way">SPEEDWAY</string>
     <string name="switching_market_failure">切换盘口失败</string>
-    <string name="All_Market">全部</string>
+    <string name="All_Market">全部盘口</string>
     <string name="single_bet" >单注</string>
     <string name="can_not_more_than_10">过关注单不能超过10</string>
     <string name="live_stream">live streaming</string>
@@ -584,4 +585,17 @@
     <string name="stake_is_more_than_max_limit">金额应小于最大注码</string>
     <string name="stake_is_less_than_min_limit">金额应大于最小注码</string>
     <string name="all_host" >@string/all</string>
+    <string name="Jan">1月</string>
+    <string name="Feb">2月</string>
+    <string name="Mar">3月</string>
+    <string name="Apr">4月</string>
+    <string name="May">5月</string>
+    <string name="Jun">6月</string>
+    <string name="Jul">7月</string>
+    <string name="Aug">8月</string>
+    <string name="Sep">9月</string>
+    <string name="Oct">10月</string>
+    <string name="Nov">11月</string>
+    <string name="Dec">12月</string>
+    <string name="Early_All" >早盘(全部)</string>
 </resources>

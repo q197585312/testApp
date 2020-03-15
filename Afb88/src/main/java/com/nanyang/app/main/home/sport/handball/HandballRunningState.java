@@ -47,7 +47,7 @@ public class HandballRunningState extends HandballState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(0, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Handball));
+        return new MenuItemInfo<String>(0,(R.string.running), "Running", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Handball));
     }
 
     @Override

@@ -39,15 +39,8 @@ public abstract class PopSwitch<T extends IString> extends BasePopupWindow {
         adapter = new BaseRecyclerAdapter<T>(context, new ArrayList<T>(), R.layout.text_base_item) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, T item) {
-                TextView tv = holder.getView(R.id.item_text_tv);
-                tv.setText(item.getText());
-                if (choiceStr.equals(item.getText())) {
-                    tv.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
-                    tv.setTextColor(ContextCompat.getColor(context, R.color.blue));
-                } else {
-                    tv.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
-                    tv.setTextColor(ContextCompat.getColor(context, R.color.black));
-                }
+
+                onConvert(holder,position,item);
             }
         };
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<T>() {
@@ -59,6 +52,22 @@ public abstract class PopSwitch<T extends IString> extends BasePopupWindow {
         });
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
         recyclerView.setAdapter(adapter);
+    }
+
+    public void onConvert(MyRecyclerViewHolder holder, int position, T item) {
+        TextView tv = holder.getView(R.id.item_text_tv);
+        tv.setText(item.getText());
+        if (choiceStr.equals(context.getString(item.getText()))) {
+            tv.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
+            tv.setTextColor(ContextCompat.getColor(context, R.color.blue));
+        } else {
+            tv.setBackgroundColor(ContextCompat.getColor(context, R.color.white));
+            tv.setTextColor(ContextCompat.getColor(context, R.color.black));
+        }
+    }
+
+    public String getChoiceStr() {
+        return choiceStr;
     }
 
     private String choiceStr;

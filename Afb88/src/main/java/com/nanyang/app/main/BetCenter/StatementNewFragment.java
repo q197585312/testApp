@@ -215,6 +215,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         for (int i = 0; i < list.size(); i++) {
             final StatementListDataBean bean = list.get(i);
             final String index11 = bean.getIndex11();
+            final String index8 = bean.getIndex8();
             View view;
             String index3 = bean.getIndex3();
             String index9 = bean.getIndex9();
@@ -336,7 +337,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvMatchAt3.setVisibility(View.VISIBLE);
 
                 }
-                tvMatchGrade.setText(bean.getIndex5() + " " + bean.getIndex20());
+                tvMatchGrade.setText(HtmlTagHandler.spanFontHtml(bean.getIndex5() + bean.getIndex8()+ " " + bean.getIndex20()));
+//                tvMatchGrade.setText(bean.getIndex5() + " " + bean.getIndex20());
                 tvAmt.setText(getString(R.string.Amt) + " " + index9);
 
                 String odds = AfbUtils.delHTMLTag(index3);
@@ -405,6 +407,7 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
         for (int i = 0; i < list.size(); i++) {
             final StatementOpen2ListDataBean bean = list.get(i);
             View view = layoutInflater.inflate(R.layout.item_statement_open2, null);
+            view.setBackgroundResource(R.color.white);
             TextView tvIdDate = view.findViewById(R.id.tv_id_date);
             TextView tvMatchType = view.findViewById(R.id.tv_match_type);
             TextView tvMatchVs = view.findViewById(R.id.tv_match_vs);

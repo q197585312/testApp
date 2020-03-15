@@ -111,6 +111,7 @@ public class HomeFragment extends BaseSwitchFragment {
 
     private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
+//        data.add(new AllBannerImagesBean.MainBannersBean())
         rvContent.setLayoutManager(layoutManager);
         adapter = new BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean>(mContext, data, R.layout.home_sport_item_image_text) {
             @Override
@@ -151,18 +152,18 @@ public class HomeFragment extends BaseSwitchFragment {
                     return;
                 }
                 SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());
-                MenuItemInfo<String> menuItemInfo = new MenuItemInfo<>(0, getString(R.string.running));
+                MenuItemInfo<String> menuItemInfo = new MenuItemInfo<>(0, (R.string.running));
                 menuItemInfo.setType("Running");
 
                 if (jsonObjectNum != null) {
                     if (!StringUtils.isNull(jsonObjectNum.optString("M_RAm" + item.getDbid()))) {
-                        menuItemInfo = new MenuItemInfo<>(0, getString(R.string.running));
+                        menuItemInfo = new MenuItemInfo<>(0, (R.string.running));
                         menuItemInfo.setType("Running");
                     } else if (!StringUtils.isNull(jsonObjectNum.optString("M_TAm" + item.getDbid()))) {
-                        menuItemInfo = new MenuItemInfo<>(0, getString(R.string.Today));
+                        menuItemInfo = new MenuItemInfo<>(0, (R.string.Today));
                         menuItemInfo.setType("Today");
                     } else if (!StringUtils.isNull(jsonObjectNum.optString("M_EAm" + item.getDbid()))) {
-                        menuItemInfo = new MenuItemInfo<>(0, getString(R.string.Early)+ "(" +getString(R.string.all) + ")");
+                        menuItemInfo = new MenuItemInfo<>(0, (R.string.Early_All));
                         menuItemInfo.setType("Early");
                     }
                 }

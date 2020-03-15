@@ -158,6 +158,7 @@
     <string name="reverse_selection">ผกผัน </string>
     <string name="Huay_Thai">ไทยพันคำ </string>
     <string name="Myanmar_Odds">พม่าราคาต่อรอง </string>
+
     <string name="FULL_H_A">ผู้ชมในเอเชีย </string>
     <string name="FULL_O_U">ขนาดโดยรวม </string>
     <string name="HALF_H_A">ครึ่งเอเชียแฮนดิแค็ </string>
@@ -251,9 +252,9 @@
     <string name="Baseball">เบสบอล </string>
     <string name="IceHockey">ฮอกกี้น้ำแข็ง </string>
     <string name="Europe_View">ยุโรป </string>
-    <string name="FT15MINSHANDICAP_OVER_UNDER">FT 15 MINS HDP &amp; O/U</string>
-    <string name="HOME_TEAM_TOTAL_GOALS">HOME TEAM TOTAL GOALS</string>
-    <string name="AWAY_TEAM_TOTAL_GOALS">AWAY TEAM TOTAL GOALS</string>
+    <string name="FT15MINSHANDICAP_OVER_UNDER">เต็มเวลา 15 นาที แต้มต่อ &amp; สูง/ต่ำ </string>
+    <string name="HOME_TEAM_TOTAL_GOALS">เจ้าบ้านประตูรวม</string>
+    <string name="AWAY_TEAM_TOTAL_GOALS">ทีมเยือนประตูรวม</string>
     <string name="amount_">จำนวน: </string>
     <string name="U">ขนาดเล็ก </string>
     <string name="O">ขนาดใหญ่ </string>
@@ -440,5 +441,6 @@
     <string name="OVER_7"><![CDATA[7&OVER]]></string>
     <string name="OVER">มากกว่า</string>
     <string name="sound">เสียง</string>
+    <string name="Early_All" >เช้า(ทั้งหมด)</string>
 
 </resources>

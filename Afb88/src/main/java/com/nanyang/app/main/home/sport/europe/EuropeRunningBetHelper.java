@@ -1,6 +1,5 @@
 package com.nanyang.app.main.home.sport.europe;
 
-import android.view.Gravity;
 import android.view.View;
 
 import com.nanyang.app.main.home.sport.dialog.BetPop;
@@ -22,16 +21,8 @@ public class EuropeRunningBetHelper extends EuropeBetHelper {
 
     @Override
     protected void createBetPop(List<AfbClickBetBean> bean, View v) {
-        if (pop == null) {
-            pop = new BetPop(baseView.getIBaseContext().getBaseActivity(), v);
-        }
-        pop.setBetData(bean, this);
+        super.createBetPop(bean,v);
         pop.setrTMatchInfo(item);
-
-        if (!pop.isShowing()) {
-//            pop.showPopupCenterWindow();
-            baseView.onPopupWindowCreated(pop, Gravity.CENTER);
-        }
 
     }
 }

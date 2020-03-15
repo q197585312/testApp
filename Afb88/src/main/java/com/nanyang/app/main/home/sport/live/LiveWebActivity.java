@@ -77,7 +77,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     private LiveParamsInfo liveParamsInfo;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.popwindow_live_web);
 

@@ -1068,7 +1068,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 String day = item.getDay();
                 if (!TextUtils.isEmpty(day)) {
                     tvGamePic.setText(item.getDay());
-                    tv.setText(item.getText() + " " + item.getDay());
+                    tv.setText(item.getText() );
+                    tv.setText(tv.getText()+ " " + item.getDay());
                 } else {
                     tv.setText(item.getText());
                 }
@@ -1139,7 +1140,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
         if (item.getRes() == R.mipmap.date_day_grey) {
             sportActivity.setType("Early");
-            onTypeClick(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
+            onTypeClick(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, (R.string.Early)
                     , "Early", R.mipmap.date_early_green, item.getDay(), item.getDateParam()), position);
         } else {
             sportActivity.setType(item.getType());
@@ -1172,18 +1173,22 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String d5 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 5), "yyyy-MM-dd");
         String d6 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
         Context context = getBaseView().getIBaseContext().getBaseActivity();
-        MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d1.split("-")[1]), AfbUtils.getLangMonth(context, d1.split("-")[1]), R.mipmap.date_day_green, d1.split("-")[2], d1);
-        MenuItemInfo<Integer> item2 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d2.split("-")[1]), AfbUtils.getLangMonth(context, d2.split("-")[1]), R.mipmap.date_day_green, d2.split("-")[2], d2);
-        MenuItemInfo<Integer> item3 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d3.split("-")[1]), AfbUtils.getLangMonth(context, d3.split("-")[1]), R.mipmap.date_day_green, d3.split("-")[2], d3);
-        MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d4.split("-")[1]), AfbUtils.getLangMonth(context, d4.split("-")[1]), R.mipmap.date_day_green, d4.split("-")[2], d4);
-        MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d5.split("-")[1]), AfbUtils.getLangMonth(context, d5.split("-")[1]), R.mipmap.date_day_green, d5.split("-")[2], d5);
-        MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(context, d6.split("-")[1]), AfbUtils.getLangMonth(context, d6.split("-")[1]), R.mipmap.date_day_green, d6.split("-")[2], d6);
-        MenuItemInfo<Integer> itemRunning = new MenuItemInfo<Integer>(R.mipmap.date_running_green, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.running), "Running", R.mipmap.date_running_green);
+        MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d1.split("-")[1]), context.getString(AfbUtils.getLangMonth( d1.split("-")[1])), R.mipmap.date_day_green, d1.split("-")[2], d1);
+        MenuItemInfo<Integer> item2 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d2.split("-")[1]),context.getString( AfbUtils.getLangMonth( d2.split("-")[1])), R.mipmap.date_day_green, d2.split("-")[2], d2);
+        MenuItemInfo<Integer> item3 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d3.split("-")[1]),context.getString( AfbUtils.getLangMonth( d3.split("-")[1])), R.mipmap.date_day_green, d3.split("-")[2], d3);
+        MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d4.split("-")[1]),context.getString( AfbUtils.getLangMonth( d4.split("-")[1])), R.mipmap.date_day_green, d4.split("-")[2], d4);
+        MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d5.split("-")[1]),context.getString( AfbUtils.getLangMonth( d5.split("-")[1])), R.mipmap.date_day_green, d5.split("-")[2], d5);
+        MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d6.split("-")[1]),context.getString( AfbUtils.getLangMonth( d6.split("-")[1])), R.mipmap.date_day_green, d6.split("-")[2], d6);
+        MenuItemInfo<Integer> itemRunning = new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
         itemRunning.setDateParam("");
-        MenuItemInfo<Integer> itemToday = new MenuItemInfo<Integer>(R.mipmap.date_today_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", R.mipmap.date_today_green);
+        MenuItemInfo<Integer> itemToday = new MenuItemInfo<Integer>(R.mipmap.date_today_grey, (R.string.Today), "Today", R.mipmap.date_today_green);
         itemToday.setDateParam("");
-        MenuItemInfo<Integer> itemEarly = new MenuItemInfo<Integer>(R.mipmap.date_early_grey, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
-                + "(" + getBaseView().getIBaseContext().getBaseActivity().getString(R.string.all) + ")"
+        TextView tv = new TextView(context);
+
+        MenuItemInfo<Integer> itemEarly = new MenuItemInfo<Integer>(R.mipmap.date_early_grey,
+                R.string.Early_All
+              /*  getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
+                + "(" + getBaseView().getIBaseContext().getBaseActivity().getString(R.string.all) + ")"*/
                 , "Early", R.mipmap.date_early_green, "", "7");
 
         List<MenuItemInfo<Integer>> types = new ArrayList<>();
@@ -1306,8 +1311,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected List<List<String>> initHeaderList() {
         List<List<String>> texts = new ArrayList<>();
-        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.FULL_H_A), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.FULL_O_U)));
-        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.HALF_H_A), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.HALF_O_U)));
+        List<String> items0 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.FT_HDP), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.FT_OU)));
+        List<String> items1 = new ArrayList<>(Arrays.asList(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.HT_HDP), getBaseView().getIBaseContext().getBaseActivity().getString(R.string.HT_OU)));
         texts.add(items0);
         texts.add(items1);
         return texts;

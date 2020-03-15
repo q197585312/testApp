@@ -18,7 +18,7 @@ public class SuperComboEarlyState extends SuperComboState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.SuperCombo));
+        return new MenuItemInfo<String>(1, (R.string.Early), "Early", getBaseView().getIBaseContext().getBaseActivity().getString(R.string.SuperCombo));
     }
 
     @Override

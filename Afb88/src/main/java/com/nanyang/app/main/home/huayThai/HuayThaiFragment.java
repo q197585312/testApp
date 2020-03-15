@@ -101,7 +101,7 @@ public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
     private void refresh() {
         presenter.refresh(type);
         initIntroduceData(type);
-        setBackTitle(info.getText());
+        setBackTitle(getString(info.getText()));
     }
 
 

@@ -2,10 +2,13 @@ package com.nanyang.app;
 
 import android.app.FragmentManager;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.os.StrictMode;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -51,10 +54,11 @@ import io.reactivex.functions.Consumer;
 import io.reactivex.functions.Predicate;
 import io.reactivex.schedulers.Schedulers;
 
+import static android.content.pm.PackageManager.PERMISSION_GRANTED;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 public abstract class BaseToolbarActivity<T extends IBasePresenter> extends BaseActivity<T> implements IGetRefreshMenu {
-    public BetGoalWindowUtils    BetGoalWindowUtils =new BetGoalWindowUtils();
+    public BetGoalWindowUtils BetGoalWindowUtils = new BetGoalWindowUtils();
     @Nullable
     public
     TextView tvToolbarTitle;
@@ -309,10 +313,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             popWindow.showPopupGravityWindow(center, 0, 0);
     }
 
-    public void onPopupWindowCreatedAndShow(BasePopupWindow pop, int center, int x, int y) {
-        createPopupWindow(pop);
-        popWindow.showPopupGravityWindow(center, x, y);
-    }
 
     public void onBetSuccess(String betResult) {
         if (popWindow != null)
@@ -388,7 +388,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     public void defaultSkip(String type) {
-        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, getString(R.string.running));
+        MenuItemInfo<String> menuItemInfo = new MenuItemInfo<String>(0, (R.string.running));
         menuItemInfo.setType("Running");
         menuItemInfo.setParent(type);
         Bundle b = new Bundle();
@@ -499,7 +499,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 Log.d("onGetRefreshMenu", "lastWaitDataBeanList: " + lastWaitDataBeanList.toString());
                 Log.d("onGetRefreshMenu", "beanList: " + beanList.toString());
                 if (!beanList.contains(waitNum)) {
-                    String accType =getOtType();
+                    String accType = getOtType();
                     BetGoalWindowUtils.showBetWindow(accType, waitNum, this, true);
                 }
             }
@@ -511,4 +511,26 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         stopRefreshMenu();
         startRefreshMenu();
     }
+
+    public boolean requestPermission(String[] PERMISSIONS, int PERMISSIONS_CODE) {
+        boolean isGranted = true;
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
+            StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
+            StrictMode.setVmPolicy(builder.build());
+            for (String s : PERMISSIONS) {
+                if (ActivityCompat.checkSelfPermission(this,s) != PERMISSION_GRANTED) {
+                    //如果没有写sd卡权限
+                    isGranted = false;
+                }
+            }
+            if (!isGranted) {
+                requestPermissions(
+                        PERMISSIONS,
+                        PERMISSIONS_CODE);
+            }
+        }
+        return isGranted;
+    }
+
+
 }

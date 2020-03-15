@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.BetCenter.Bean.RunningBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementOpen2ListDataBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementOpen3ListDataBean;
@@ -109,6 +110,12 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         BaseRecyclerAdapter<RunningBean> adapter = new BaseRecyclerAdapter<RunningBean>(mContext, list, R.layout.item_running) {
             @Override
             public void convert(final MyRecyclerViewHolder holder, int position, final RunningBean item) {
+                String isRun5 = item.getIsRun5();
+                if(!StringUtils.isNull(isRun5)&&isRun5.equals("True")) {
+                    holder.getHolderView().setBackgroundResource(R.color.green_content1);
+                }else {
+                    holder.getHolderView().setBackgroundResource(R.color.white);
+                }
                 LinearLayout ll1 = holder.getLinearLayout(R.id.ll_running_par);
                 LinearLayout ll2 = holder.getLinearLayout(R.id.ll_running_hdp);
                 LinearLayout l = holder.getLinearLayout(R.id.ll_running_detail_1);
@@ -116,6 +123,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 l.setVisibility(View.GONE);
                 l2.setVisibility(View.GONE);
                 if (item.getBetType18().equals("PAR") || item.getBetType18().equals("PAM")) {
+                    holder.getHolderView().setBackgroundResource(R.color.white);
                     ll1.setVisibility(View.VISIBLE);
                     ll2.setVisibility(View.GONE);
                     TextView running_par_Home = holder.getTextView(R.id.running_par_Home);
@@ -301,7 +309,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     }
                     running_BetType.setText("." + transType10 + " ");
                     TextView running_Score = holder.getTextView(R.id.running_Score);
-                    String isRun5 = item.getIsRun5();
+
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
                     TextView running_BetType2_odds = holder.getTextView(R.id.running_BetType2_odds);
                     String betType2 = item.getBetType323();
@@ -484,6 +492,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
 
 
     public void updateRc1(List<StatementOpen2ListDataBean> list, MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
+
         TextView tvIdDate = view.getTextView(R.id.tv_id_date);
         TextView tvMatchType = view.getTextView(R.id.tv_match_type);
         TextView tvMatchVs = view.getTextView(R.id.tv_match_vs);

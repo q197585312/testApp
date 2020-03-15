@@ -93,7 +93,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     private int scrollHeight;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_login);
@@ -178,32 +178,32 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                     };
                     List<MenuItemInfo> languageList = new ArrayList<>();
                     MenuItemInfo info = new MenuItemInfo();
-                    info.setText("ENGLISH");
+                    info.setText(R.string.language_en);
                     info.setType("en");
                     languageList.add(info);
                     MenuItemInfo info1 = new MenuItemInfo();
-                    info1.setText("中文(简体)");
+                    info1.setText(R.string.language_zh);
                     info1.setType("zh");
                     languageList.add(info1);
                     MenuItemInfo info3 = new MenuItemInfo();
-                    info3.setText("ภาษาไทย");
+                    info3.setText(R.string.language_th);
                     info3.setType("th");
                     languageList.add(info3);
                     MenuItemInfo info4 = new MenuItemInfo();
-                    info4.setText("Tiếng Việt");
+                    info4.setText(R.string.language_vi);
                     info4.setType("vi");
                     languageList.add(info4);
                     MenuItemInfo info5 = new MenuItemInfo();
-                    info5.setText("KOREAN");
+                    info5.setText(R.string.language_ko);
                     info5.setType("ko");
                     languageList.add(info5);
                     MenuItemInfo info6 = new MenuItemInfo();
-                    info6.setText("TURKISH");
+                    info6.setText(R.string.language_tr);
                     info6.setType("tr");
                     languageList.add(info6);
 
                     MenuItemInfo info7 = new MenuItemInfo();
-                    info7.setText("INDONESIAN");
+                    info7.setText(R.string.language_my);
                     info7.setType("my");
                     languageList.add(info7);
 

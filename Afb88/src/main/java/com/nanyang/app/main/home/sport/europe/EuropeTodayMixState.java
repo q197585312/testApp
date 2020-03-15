@@ -39,7 +39,7 @@ public class EuropeTodayMixState extends EuropeMixState {
 
     @Override
     public MenuItemInfo getStateType() {
-        return new MenuItemInfo<String>(1, getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Today), "Today", getParentText());
+        return new MenuItemInfo<String>(1,(R.string.Today), "Today", getParentText());
     }
 
     @Override

@@ -63,7 +63,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
     @Nullable
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         String lag = AfbUtils.getLanguage(mContext);
         AfbUtils.switchLanguage(lag, mContext);

@@ -108,6 +108,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.INVISIBLE);
+        onConvertHall(item,ivHall,position);
 
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
@@ -299,6 +300,27 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         handler.updateAfbMixBackground(item.getSocOddsId(), 1, sl, "over", "under", "odd", "even", "NULL", "NULL");*/
         updateMixNormalBackground(helper, item);
 
+    }
+
+    private void onConvertHall(final I item, ImageView ivHall, final int position) {
+
+        String rtsMatchId = item.getRTSMatchId();
+        String tvIBC = item.getTvPathIBC();
+        if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0") || (!StringUtils.isNull(tvIBC) && !tvIBC.equals("0"))) {
+            ivHall.setVisibility(View.VISIBLE);
+            ivHall.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    back.clickView(v, item, position);
+                }
+            });
+            ivHall.setImageResource(R.mipmap.soccer_hall);
+            if ((!StringUtils.isNull(tvIBC) && !tvIBC.equals("0"))) {
+                ivHall.setImageResource(R.mipmap.tv_play);
+            }
+        } else {
+            ivHall.setVisibility(View.INVISIBLE);
+        }
     }
 
     public void createAddedData(I item, LinearLayout parent, AddMBean additionData, HashMap<Boolean, MenuItemInfo> selectedMap) {
