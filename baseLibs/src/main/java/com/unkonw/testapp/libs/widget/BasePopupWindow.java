@@ -121,15 +121,16 @@ public abstract class BasePopupWindow {
     }
 
     private void setBackgroundAttr(float f) {
-        if(f<1f) {
+        if (f < 1f) {
             addMask(v.getWindowToken());
-        }else {
+        } else {
             removeMask();
         }
    /*     WindowManager.LayoutParams params = ((Activity) context).getWindow().getAttributes();
         params.alpha = f;
         ((Activity) context).getWindow().setAttributes(params);*/
     }
+
     private void addMask(IBinder token) {
         WindowManager.LayoutParams wl = new WindowManager.LayoutParams();
         wl.width = WindowManager.LayoutParams.MATCH_PARENT;
@@ -193,15 +194,24 @@ public abstract class BasePopupWindow {
 
     public void showPopupDownWindow(int x, int y) {
         closePopupWindow();
-
         setBackgroundAttr(trans);
+//        popWindow.showAsDropDown(v, x, y);
 
-        popWindow.showAsDropDown(v, x, y);
+        int[] location = new int[2];
+        v.getLocationOnScreen(location);
+        int y1 = location[1]+y;
+        popWindow.showAtLocation(v, Gravity.NO_GRAVITY, x, y1 + v.getHeight());
+
+
     }
 
     public void showPopupDownWindowWihte(int x, int y) {
         closePopupWindow();
-        popWindow.showAsDropDown(v, x, y);
+//        popWindow.showAsDropDown(v, x, y);
+        int[] location = new int[2];
+        v.getLocationOnScreen(location);
+        int y1 = location[1]+y;
+        popWindow.showAtLocation(v, Gravity.NO_GRAVITY, x, y1 + v.getHeight());
     }
 
     public void showPopupGravityWindow(int gravity, int offsetX, int offsetY) {

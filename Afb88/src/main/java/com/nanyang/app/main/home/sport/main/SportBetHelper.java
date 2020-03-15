@@ -184,7 +184,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         return subscription;
     }
 
-    BetPop betPop;
+    public BetPop betPop;
 
     protected void createBetPop(List<AfbClickBetBean> bean, View v) {
         BaseActivity baseActivity = baseView.getIBaseContext().getBaseActivity();
@@ -193,7 +193,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         }
         betPop.setBetData(bean, this);
         if (!betPop.isShowing()) {
-//            betPop.showPopupCenterWindow();
             baseView.onPopupWindowCreated(betPop, Gravity.CENTER);
         }
     }
@@ -296,7 +295,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             if (betAfbList == null || betAfbList.getList() == null || betAfbList.getList().size() < 1) {
                 ((AfbApplication) AfbApplication.getInstance()).clearMixBetList();
                 updateMixListText();
-            } else if (betAfbList.getList().size() >0&& mixBetList.size()>0) {
+            } else if (betAfbList.getList().size() > 0 && mixBetList.size() > 0) {
                 LogUtil.d("updateMixListText", betAfbList.getList().size() + "---" + mixBetList.size());
                 Iterator<OddsClickBean> iterator = mixBetList.iterator();
                 boolean deleted = false;
@@ -331,6 +330,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     || socOddsId.equals(oddsClickBean.getOid())
                     || socOddsId.equals(oddsClickBean.getOid_fh())) {
                 if (betAfbList.get(i).getIsRun() == 1) {
+                    LogUtil.d("updateMixListText", betAfbList.get(i).getHome() + "---" + betAfbList.get(i).getAway() + "isRun:1");
                     boolean isSame = isScoreSame(next.getItem(), betAfbList.get(i));
                     return isSame;
                 }

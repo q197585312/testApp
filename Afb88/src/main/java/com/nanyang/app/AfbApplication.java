@@ -6,7 +6,6 @@ import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.Setting.RefreshDataBean;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
-import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.tencent.bugly.crashreport.CrashReport;
@@ -157,7 +156,7 @@ public class AfbApplication extends BaseApplication {
         if (betAfbList == null || betAfbList.getList() == null || betAfbList.getList().size() == 0)
             return "";
         String ids = "";
-        String betOddsUrl = "BTMD=S&coupon=0&BETID=";
+        String betOddsUrl;
         if (betAfbList.getList().size() == 1) {
             String typeOdds = betAfbList.getList().get(0).getOddsType();
             String itemId = betAfbList.getList().get(0).getId();
@@ -166,15 +165,10 @@ public class AfbApplication extends BaseApplication {
                 itemId = replace;
             }
             betOddsUrl = "BTMD=S&coupon=0&BETID=" + itemId;
+            return AppConstant.getInstance().URL_ODDS + betOddsUrl;
         } else {
-            for (AfbClickBetBean afbClickBetBean : betAfbList.getList()) {
-                String itemId = afbClickBetBean.getId();
-                ids += itemId + ",";
-            }
-            ids = ids.substring(0, ids.length() - 1);
-            betOddsUrl = "BTMD=P&coupon=1&BETID=" + ids;
+            return getRefreshMixOddsUrl();
         }
-        return AppConstant.getInstance().URL_ODDS + betOddsUrl;
 
     }
 

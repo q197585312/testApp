@@ -111,6 +111,7 @@ public class HomeFragment extends BaseSwitchFragment {
 
     private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
+//        data.add(new AllBannerImagesBean.MainBannersBean())
         rvContent.setLayoutManager(layoutManager);
         adapter = new BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean>(mContext, data, R.layout.home_sport_item_image_text) {
             @Override

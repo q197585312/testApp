@@ -39,6 +39,7 @@ import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.ClearanceBetAmountBean;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
@@ -131,8 +132,8 @@ public class BetPop extends BasePopupWindow {
     FrameLayout betPopParentTopFl;
 
     private SportBetHelper presenter;
-    private IRTMatchInfo rTMatchInfo;
     private int coupon;
+
     private boolean isRefreshEd;
 
 
@@ -180,7 +181,7 @@ public class BetPop extends BasePopupWindow {
             public void afterTextChanged(Editable s) {
                 AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
                 double max;
-                if (list.size() > 1 && StringUtils.isEmpty(betAfbList.getMaxLimit())) {
+                if (betAfbList != null && list.size() > 1 && StringUtils.isEmpty(betAfbList.getMaxLimit())) {
 
                     max = Double.parseDouble(betAfbList.getMaxLimit());
                 } else {
@@ -594,6 +595,11 @@ public class BetPop extends BasePopupWindow {
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(afbClickBetBean.getMatchLimit() + ""));
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
             betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit() + "", betMaxBetTv));
+            if (!isRefreshEd && list.size() == 1 && afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() == 1) {
+                OddsClickBean oddsClickBean = afbApplication.getMixBetList().get(0);
+                BallInfo item = oddsClickBean.getItem();
+                setrTMatchInfo(item);
+            }
         }
         ((BaseActivity) context).hideLoadingDialog();
 //        showInput();
@@ -718,6 +724,9 @@ public class BetPop extends BasePopupWindow {
                                     s.delete(0, 1);
                                 }
                                 String amount = s.toString().trim().replaceAll(",", "");
+                                if (!TextUtils.isDigitsOnly(amount)) {
+                                    amount = "0";
+                                }
                                 if (TextUtils.isEmpty(amount)) {
                                     amount = "0";
                                 }
@@ -951,7 +960,6 @@ public class BetPop extends BasePopupWindow {
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty()) {
             setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
-            this.rTMatchInfo = rTMatchInfo;
             String lag = AfbUtils.getLanguage(context);
             String l = "eng";
             if (lag.equals("zh")) {
