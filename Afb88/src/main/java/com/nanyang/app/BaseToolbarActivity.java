@@ -309,8 +309,10 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         createPopupWindow(pop);
         if (center == -2) {
             popWindow.showPopupDownWindow();
-        } else
-            popWindow.showPopupGravityWindow(center, 0, 0);
+        } else {
+//            popWindow.showPopupGravityWindow(center, 0, 0);
+            popWindow.showAtLocation(Gravity.TOP, AfbUtils.dp2px(mContext, 2), AfbUtils.dp2px(mContext, 200));//默认 显示在视频下面 不然不会被输入法挤上去
+        }
     }
 
 
@@ -360,31 +362,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         pop.getChooseSureTv().setText(getString(R.string.sure));
         pop.getChooseCancelTv().setText(getString(R.string.Cancel));
         onPopupWindowCreatedAndShow(pop, Gravity.CENTER);
-    }
-
-    protected void gameMenus(View v) {
-        popWindow = new BasePopupWindow(mContext, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT) {
-            @Override
-            protected int onSetLayoutRes() {
-                return R.layout.popupwindow_all_game;
-            }
-
-            @Override
-            protected void initView(View view) {
-                super.initView(view);
-                RecyclerView rv = (RecyclerView) view.findViewById(R.id.rv_list);
-                BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext, rv);
-                adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-                    @Override
-                    public void onItemClick(View view, MenuItemInfo item, int position) {
-                        switchSkipAct(item.getType());
-                        closePopupWindow();
-
-                    }
-                });
-            }
-        };
-        popWindow.showPopupCenterWindow();
     }
 
     public void defaultSkip(String type) {
@@ -518,7 +495,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
             StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder();
             StrictMode.setVmPolicy(builder.build());
             for (String s : PERMISSIONS) {
-                if (ActivityCompat.checkSelfPermission(this,s) != PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(this, s) != PERMISSION_GRANTED) {
                     //如果没有写sd卡权限
                     isGranted = false;
                 }

@@ -59,6 +59,7 @@
         <TextView
             android:id="@+id/bet_home_tv"
             android:layout_width="wrap_content"
+            android:maxLines="1"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:textSize="12sp" />
@@ -73,6 +74,7 @@
             android:textSize="12sp" />
 
         <TextView
+            android:maxLines="1"
             android:id="@+id/bet_away_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -89,6 +91,7 @@
         android:paddingTop="1dp">
 
         <TextView
+            android:maxLines="1"
             android:id="@+id/bet_name_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,6 +99,7 @@
             android:textSize="14sp" />
 
         <TextView
+            android:maxLines="1"
             android:id="@+id/tv_hdp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

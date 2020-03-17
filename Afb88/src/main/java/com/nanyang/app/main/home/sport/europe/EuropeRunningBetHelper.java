@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.europe;
 
 import android.view.View;
 
-import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
@@ -17,12 +16,12 @@ public class EuropeRunningBetHelper extends EuropeBetHelper {
         super(baseView);
     }
 
-    BetPop pop;
+
 
     @Override
     protected void createBetPop(List<AfbClickBetBean> bean, View v) {
         super.createBetPop(bean,v);
-        pop.setrTMatchInfo(item);
+        betPop.setrTMatchInfo(item);
 
     }
 }

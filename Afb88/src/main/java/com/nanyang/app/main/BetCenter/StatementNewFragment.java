@@ -287,24 +287,10 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 int number = i + 1;
                 tvNumber.setText(number < 10 ? ("0" + number) : "" + number);
                 tvMatchType.setText(bean.getIndex12());
+
                 tvMatchVs.setText(bean.getIndex1() + "-VS-" + bean.getIndex2());
                 String index24 = bean.getIndex24();
                 String index25 = bean.getIndex25();
-
-       /*         if (index24.contains("gbGive")) {
-                    tvMatchAt1.setTextColor(Color.RED);
-                } else if (index24.contains("gbTake2")) {
-                    tvMatchAt1.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
-                }*/
-
-               /* if (index25.contains("red")) {
-                    tvMatchAt2.setTextColor(Color.RED);
-                } else if (index25.contains("blue")) {
-                    tvMatchAt2.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
-                }*/
-//                index24 = AfbUtils.delHTMLTag(index24);
-//                index25 = AfbUtils.delHTMLTag(index25);
-
 
                 tvMatchAtFt.setText(bean.getIndex14());
                 String index16 = bean.getIndex16();
@@ -317,13 +303,8 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvMatchAt3.setVisibility(View.GONE);
                     tvMatchAt4.setVisibility(View.GONE);
                 } else {
-//                    tvMatchAt1.setText(index24);
-                    //tvMatchAt2.setText(index25);
-
                     tvMatchAt1.setText(HtmlTagHandler.spanFontHtml(index24));
                     tvMatchAt2.setText(HtmlTagHandler.spanFontHtml(index25));
-//                    odds = AfbUtils.delHTMLTag(odds);
-
                     tvMatchAt3.setText(HtmlTagHandler.spanFontHtml(index3));
                     if (!TextUtils.isEmpty(index16.trim())) {
                         tvMatchAt4.setText("(" + bean.getIndex16() + ")");
@@ -338,7 +319,6 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
 
                 }
                 tvMatchGrade.setText(HtmlTagHandler.spanFontHtml(bean.getIndex5() + bean.getIndex8()+ " " + bean.getIndex20()));
-//                tvMatchGrade.setText(bean.getIndex5() + " " + bean.getIndex20());
                 tvAmt.setText(getString(R.string.Amt) + " " + index9);
 
                 String odds = AfbUtils.delHTMLTag(index3);
@@ -363,36 +343,13 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
                 tvWl.setText(" " + winLose.replace("-", ""));
-//                if (!TextUtils.isEmpty(index24) && (index24.startsWith("G") || index24.startsWith("E") || index24.startsWith("Y"))) {
-//                    tvMatchVs.setVisibility(View.GONE);
-//                    tvMatchAt1.setVisibility(View.GONE);
-//                    tvMatchAtFt.setVisibility(View.GONE);
-//                    TextView tvBracketsLeft = view.findViewById(R.id.tv_brackets_left);
-//                    tvBracketsLeft.setVisibility(View.GONE);
-//                    TextView tvBracketsRight = view.findViewById(R.id.tv_brackets_right);
-//                    tvBracketsRight.setVisibility(View.GONE);
-//                    tvMatchAt3.setVisibility(View.GONE);
-//                    tvMatchAt4.setVisibility(View.GONE);
-//                    tvMatchGrade.setVisibility(View.GONE);
-//                    String casinoIndex25 = bean.getIndex25();
-//                    String splitStr = "</SPAN>";
-//                    if (casinoIndex25.contains("</span>")) {
-//                        splitStr = "</span>";
-//                    }
-//                    String[] replace = casinoIndex25.split(splitStr);
-//                    String a = "";
-//                    for (int k = 0; k < replace.length; k++) {
-//                        a += replace[k];
-//                        if (replace.length>1){
-//                            if (k != replace.length - 1) {
-//                                a += "\n";
-//                            }
-//                        }
-//                    }
-//                    String ta = AfbUtils.delHTMLTag(a);
-////                    tvMatchAt2.setText(AfbUtils.setColorStyle(ta, Color.BLUE));
-//                    tvMatchAt2.setText(ta);
-//                }
+
+                if(index11.startsWith("G")){
+                    tvMatchVs.setVisibility(View.GONE);
+                    view.findViewById(R.id.flow_layout).setVisibility(View.GONE);
+                    tvMatchGrade.setText(HtmlTagHandler.spanFontHtml(bean.getIndex25()));
+
+                }
             }
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.bottomMargin = AfbUtils.dp2px(mContext, 8);

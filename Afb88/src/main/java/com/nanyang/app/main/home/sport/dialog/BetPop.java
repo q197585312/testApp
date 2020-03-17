@@ -35,6 +35,8 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.common.MainPresenter;
+import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
@@ -101,7 +103,10 @@ public class BetPop extends BasePopupWindow {
     TextView tv1x2Odds;
     @Bind(R.id.tv_single_bet)
     TextView tvSingleBet;
+
+
     private int listSize;
+    private MainPresenter.CallBack<String> mybetsCallBack;
 
 
     public View getLlSingleMix() {
@@ -130,7 +135,8 @@ public class BetPop extends BasePopupWindow {
     String loading;
     @Bind(R.id.bet_pop_parent_top_fl)
     FrameLayout betPopParentTopFl;
-
+    @Bind(R.id.my_bets)
+    TextView my_bets;
     private SportBetHelper presenter;
     private int coupon;
 
@@ -212,6 +218,13 @@ public class BetPop extends BasePopupWindow {
                 closePopupWindow();
             }
         });
+
+        my_bets.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showMyBets(view);
+            }
+        });
         tvDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -259,6 +272,15 @@ public class BetPop extends BasePopupWindow {
                 llBetFailedHint.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void showMyBets(View view) {
+        closePopupWindow();
+        if (activity != null && activity instanceof SportActivity && ((SportActivity) activity).afbDrawerViewHolder != null) {
+            AfbDrawerViewHolder afbDrawerViewHolder = ((SportActivity) activity).afbDrawerViewHolder;
+            afbDrawerViewHolder.goRecord();
+
+        }
     }
 
     private String afterChange(Editable s, double max, EditText betAmountEdt, TextWatcher textWatcher, boolean hasWin) {
@@ -1081,19 +1103,9 @@ public class BetPop extends BasePopupWindow {
         return animator;
     }
 
-    public void startAlphaAnimation(View start, View stop) {
-        stop.clearAnimation();
-        if (stop.getAnimation() != null)
-            stop.getAnimation().cancel();
-        start.clearAnimation();
-        if (start.getAnimation() != null)
-            start.getAnimation().cancel();
-        ObjectAnimator startAnimator = ObjectAnimator.ofFloat(start, "alpha", 1, 0, 1);
-
-
-        startAnimator.setRepeatCount(1);
-        startAnimator.setDuration(2000);
-        startAnimator.start();
+    public void startAlphaAnimation(TextView start, TextView stop) {
+        stop.setShadowLayer(0, 0, 0, 0);
+        start.setShadowLayer(12, 0, 0, ContextCompat.getColor(context, R.color.yellow_gold));
     }
 
 

@@ -164,7 +164,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public MenuItemInfo<String> item;
     private String currentGameType = "";
 
-    private AfbDrawerViewHolder afbDrawerViewHolder;
+    public AfbDrawerViewHolder afbDrawerViewHolder;
     private SportIdBean currentIdBean;
     private boolean notClickType = false;
     private boolean stopCloseWindow;

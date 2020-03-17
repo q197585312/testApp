@@ -96,24 +96,31 @@ public class HtmlTagHandler implements Html.TagHandler {
 
         }
     }
-
+/*<SPAN class='gb'>Bet on: </SPAN><SPAN class='Normal2'>Player:<B>4.0</B></SPAN>
+<BR><SPAN class='gb'>Result: </SPAN><SPAN class='Normal2'>Player Win,B Pair@</SPAN>*/
     public static String spanFont(String span) {
-        String font = span.replaceAll("span", "font")
-                .replaceAll("<font>", "</font>")
-                .replaceAll("class", "color")
-                .replaceAll("style='color:", "color='")
+        String font = span.replaceAll("(?i)span", "font")
+                .replaceAll("(?i)<font>", "</font>")
+                .replaceAll("<BR>", "<br>")
+                .replaceAll("(?i)class", "color")
+                .replaceAll("(?i)style='color:", "color='")
 
-                .replaceAll("color='red'", "color='#ff0000'")
-                .replaceAll("color='blue'", "color='#0000ff'")
-                .replaceAll("color='black'", "color='#000000'")
-                .replaceAll("color='Error'", "color='#ff0000'")
-                .replaceAll("MM_red", "#ff0000")
-                .replaceAll("Negative", "#ff0000")
-                .replaceAll("MM_blue", "#0000ff")
+                .replaceAll("(?i)color='red'", "color='#ff0000'")
+                .replaceAll("(?i)color='blue'", "color='#0000ff'")
+                .replaceAll("(?i)color='black'", "color='#000000'")
+                .replaceAll("(?i)color='Error'", "color='#ff0000'")
 
-                .replaceAll("gbGive", "#ee2c2c")
-                .replaceAll("gbTake2", "'#0000ff'")
-                .replaceAll("MM_black", "#000000")
+                .replaceAll("(?i)color='gb'", "color='#0000ff'")
+
+                .replaceAll("(?i)Normal2", "#000000")
+
+                .replaceAll("(?i)MM_red", "#ff0000")
+                .replaceAll("(?i)Negative", "#ff0000")
+                .replaceAll("(?i)MM_blue", "#0000ff")
+
+                .replaceAll("(?i)gbGive", "#ee2c2c")
+                .replaceAll("(?i)gbTake2", "'#0000ff'")
+                .replaceAll("(?i)MM_black", "#000000")
                 ;
 
         LogUtil.d("font", "font:" + font + ",span:" + span);
