@@ -20,6 +20,7 @@ import android.widget.ProgressBar;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.CheckVersionBean;
+import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginActivity;
@@ -100,7 +101,7 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
         if (Build.VERSION.SDK_INT >= 26) {
             boolean b = getPackageManager().canRequestPackageInstalls();
             if (b) {
-                SystemTool.installApk(mContext, loadFile, "com.nanyang.app");
+                SystemTool.installApk(mContext, loadFile, BuildConfig.APPLICATION_ID);
             } else {
                 //请求安装未知应用来源的权限
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.REQUEST_INSTALL_PACKAGES}, INSTALL_CODE);
@@ -109,7 +110,7 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
 
             }
         } else {
-            SystemTool.installApk(mContext, loadFile, "com.nanyang.app");
+            SystemTool.installApk(mContext, loadFile, BuildConfig.APPLICATION_ID);
         }
     }
 
@@ -154,9 +155,9 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
                 }
                 break;
             case INSTALL_CODE:
-                SystemTool.installApk(mContext, loadFile, "com.nanyang.app");
+                SystemTool.installApk(mContext, loadFile, BuildConfig.APPLICATION_ID);
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                    SystemTool.installApk(mContext, loadFile, "com.nanyang.app");
+                    SystemTool.installApk(mContext, loadFile, BuildConfig.APPLICATION_ID);
                 } else {
                     ToastUtils.showLong(getString(R.string.open_install));
                     //  引导用户手动开启安装权限
@@ -178,7 +179,7 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
         super.onActivityResult(requestCode, resultCode, data);
         switch (requestCode){
             case INSTALL_AFB_CODE:
-                SystemTool.installApk(mContext, loadFile, "com.nanyang.app");
+                SystemTool.installApk(mContext, loadFile, BuildConfig.APPLICATION_ID);
                 break;
         }
     }

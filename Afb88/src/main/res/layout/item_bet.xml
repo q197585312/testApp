@@ -36,9 +36,10 @@
 
         <ImageView
             android:id="@+id/img_delete"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:background="@mipmap/right_exit_back" />
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_margin="5dp"
+            android:background="@mipmap/exit_delete_red" />
     </LinearLayout>
 
     <LinearLayout
