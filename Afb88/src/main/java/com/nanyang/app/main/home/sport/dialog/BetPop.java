@@ -334,8 +334,8 @@ public class BetPop extends BasePopupWindow {
     private double countMaxPayout(double money) {
         double maxWin;
         double odds;
-        if (list.size() > 1) {
-            AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
+        AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
+        if (list.size() > 1 && !StringUtils.isEmpty(betAfbList.getPayoutOdds())) {
             odds = Double.parseDouble(betAfbList.getPayoutOdds());
             maxWin = Math.abs(odds) * money;
         } else {
@@ -617,7 +617,8 @@ public class BetPop extends BasePopupWindow {
             tvSingleMaxBet.setText(AfbUtils.scientificCountingToString(afbClickBetBean.getMatchLimit() + ""));
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
             betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit() + "", betMaxBetTv));
-            if (!isRefreshEd && list.size() == 1 && afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() == 1) {
+
+            if (!isRefreshEd && list.size() == 1 && afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() == 1&&activity!=null&&activity.getOtType().toLowerCase().startsWith("r")) {
                 OddsClickBean oddsClickBean = afbApplication.getMixBetList().get(0);
                 BallInfo item = oddsClickBean.getItem();
                 setrTMatchInfo(item);
@@ -640,7 +641,9 @@ public class BetPop extends BasePopupWindow {
             betAmountEdt.requestFocus();
             betAmountEdt.setSelection(betAmountEdt.getText().length());
         }
-
+        if (list.size() > 1) {
+            betPopParentTopFl.setVisibility(View.GONE);
+        }
     }
 
     private void setListLayoutParams() {

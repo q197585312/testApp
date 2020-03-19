@@ -3,7 +3,9 @@ package com.nanyang.app.common;
 import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.View;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -20,6 +22,7 @@ import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.Setting.SettingFragment;
+import com.nanyang.app.main.home.keno.KenoWebActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -331,6 +334,37 @@ public class MainPresenter extends BaseSwitchPresenter {
                     }
                 });
         mCompositeSubscription.add(subscription);
+
+    }
+
+
+    public void skipPRGCashio(final View view) {
+
+        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+        helper.doRetrofitApiOnUiThreadAllBack(new LoginInfo.LanguageWfBean("GetTT", "", "wfPragmatic"), new CallBack<String>() {
+            @Override
+            public void onBack(String data) throws JSONException {
+                String url = AppConstant.getInstance().HOST + data;
+                Bundle bundle = new Bundle();
+                bundle.putString("url", url);
+                baseContext.getBaseActivity().skipAct(KenoWebActivity.class, bundle);
+            }
+        }, "^.*^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+
+    }
+
+    public void skipPGCashio(View view) {
+        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+        helper.doRetrofitApiOnUiThreadAllBack(new LoginInfo.LanguageWfBean("GetTT", "", "wfPGHome"), new CallBack<String>() {
+            @Override
+            public void onBack(String data) throws JSONException {
+                String url = data;
+
+                Bundle bundle = new Bundle();
+                bundle.putString("url", url);
+                baseContext.getBaseActivity().skipAct(KenoWebActivity.class, bundle);
+            }
+        }, "^.*(http[^\"]+)\"\\}.*$");
 
     }
 

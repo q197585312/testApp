@@ -306,10 +306,12 @@ public class AfbUtils {
             }
 //            cookie = cookies.get(0).toString();
         }
+        LogUtil.d("url---","cookie-------:"+sb.toString());
         String[] cookie = sb.toString().split(";");
         for (int i = 0; i < cookie.length; i++) {
             AfbUtils.synCookies(context, url, cookie[i]);
         }
+
         webView.loadUrl(url);
     }
 
@@ -419,6 +421,12 @@ public class AfbUtils {
         outRightMap = new LinkedHashMap<>();
         beanHashMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
         beanHashMap.put("Cashio", new SportIdBean("Cashio", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK));
+/*2 = {AllBannerImagesBean$MainBannersBean@5230} "MainBannersBean{dbid='', g='PG CASINO', img='https://wsapp.afb1188.com/H50/Img/PGSymbol-Median.png'}"
+3 = {AllBannerImagesBean$MainBannersBean@5231} "MainBannersBean{dbid='', g='PRAGMATIC CASINO', img='https://wsapp.afb1188.com/H50/Img/PRG.png'}"*/
+
+        beanHashMap.put("PG CASINO", new SportIdBean("PG CASINO", "", R.string.PGCashio, "PG CASINO", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK));
+
         beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball));
         beanHashMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, Color.BLACK, R.mipmap.tennis));
         beanHashMap.put("29", new SportIdBean("29", "9", R.string.Baseball, "Baseball", SportActivity.class, baseballFragment, Color.BLACK, R.mipmap.baseball));
@@ -505,16 +513,6 @@ public class AfbUtils {
         return beanHashMap.get(id);
     }
 
-    public static SportIdBean getSportByDbid(String dbid) {
-        Iterator<Map.Entry<String, SportIdBean>> iterator = beanHashMap.entrySet().iterator();
-        while (iterator.hasNext()) {
-            SportIdBean next = iterator.next().getValue();
-            if (next.getDbid().equals(dbid))
-                return next;
-        }
-        return null;
-
-    }
 
     public static SportIdBean getSportByType(String type) {
         Iterator<Map.Entry<String, SportIdBean>> iterator = beanHashMap.entrySet().iterator();

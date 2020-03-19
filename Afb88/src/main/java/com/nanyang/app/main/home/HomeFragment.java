@@ -108,8 +108,8 @@ public class HomeFragment extends BaseSwitchFragment {
             initHomeToolBar();
         }
     }
-
     private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
+
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
 //        data.add(new AllBannerImagesBean.MainBannersBean())
         rvContent.setLayoutManager(layoutManager);
@@ -148,7 +148,14 @@ public class HomeFragment extends BaseSwitchFragment {
             public void onItemClick(View view, AllBannerImagesBean.MainBannersBean item, int position) {
                 if (item.getG().equals("Casino")) {
                     ((MainActivity) getBaseActivity()).presenter.getSkipGd88Data();
-//                    ToastUtils.showShort(getString(R.string.coming_soon));
+                    return;
+                }
+                else if (item.getG().equals("PRAGMATIC CASINO")){
+                    ((MainActivity) getBaseActivity()).presenter.skipPRGCashio(view);
+                    return;
+                }
+                else if (item.getG().equals("PG CASINO")){
+                    ((MainActivity) getBaseActivity()).presenter.skipPGCashio(view);
                     return;
                 }
                 SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());

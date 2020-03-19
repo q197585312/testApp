@@ -33,7 +33,7 @@ public class WebPop extends BasePopupWindow {
 
     @Override
     protected int onSetLayoutRes() {
-        return R.layout.popwindow_live_web;
+        return R.layout.popupwindow_web_layout;
     }
 
 
@@ -54,6 +54,7 @@ public class WebPop extends BasePopupWindow {
     public void setUrl(String url) {
         AfbUtils.synCookies(context, webView, url);
     }
+
 
 
 }

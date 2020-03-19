@@ -10,7 +10,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.URI;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -100,6 +100,7 @@ public class PersistentCookieStore {
         return ret;
     }
 
+    //https://wsapp.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","PT":"wfPragmatic","accType":"","lang":"","pgLable":"0.8565494885673504","vsn":"4.0.12"}
     private static String getHost(String url) {
         if (!(url.startsWith("http://") || url
                 .startsWith("https://"))) {
@@ -107,13 +108,11 @@ public class PersistentCookieStore {
         }
         String returnVal = "";
         try {
-            URI uri = new URI(url);
-            returnVal = uri.getHost();
+//            URI uri = new URI(url);
+            URL uu = new URL(url);
+            returnVal = uu.getHost();
         } catch (Exception e) {
-        }
-        if ((url.endsWith(".html") || url
-                .endsWith(".htm"))) {
-            returnVal = "";
+            e.printStackTrace();
         }
         return returnVal;
     }
