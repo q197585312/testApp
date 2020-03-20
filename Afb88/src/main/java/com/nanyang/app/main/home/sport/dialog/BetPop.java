@@ -642,8 +642,19 @@ public class BetPop extends BasePopupWindow {
             betAmountEdt.setSelection(betAmountEdt.getText().length());
         }
         if (list.size() > 1) {
-            betPopParentTopFl.setVisibility(View.GONE);
+            webViewPause();
         }
+    }
+
+    private void webViewPause() {
+        betPopParentTopFl.setVisibility(View.GONE);
+        webView.onPause();
+        webView.pauseTimers();
+    }
+    private void webViewResume() {
+        betPopParentTopFl.setVisibility(View.VISIBLE);
+        webView.resumeTimers();
+        webView.onResume();
     }
 
     private void setListLayoutParams() {
@@ -968,16 +979,15 @@ public class BetPop extends BasePopupWindow {
             return;
         LogUtil.d("BetPop", "setrTMatchInfo----noShowRts:" + activity.getApp().isNoShowRts());
         if (activity.getApp().isNoShowRts()) {
-            betPopParentTopFl.setVisibility(View.GONE);
+            webViewPause();
             return;
         }
-        betPopParentTopFl.setVisibility(View.VISIBLE);
         if (list.size() > 1) {
-            betPopParentTopFl.setVisibility(View.GONE);
+            webViewPause();
             return;
         }
         if (rTMatchInfo == null || StringUtils.isEmpty(rTMatchInfo.getRTSMatchId()) || rTMatchInfo.getRTSMatchId().equals("0")) {
-            betPopParentTopFl.setVisibility(View.GONE);
+            webViewPause();
             return;
         }
         if (!isNeedInitWeb)
@@ -992,12 +1002,12 @@ public class BetPop extends BasePopupWindow {
             } else {
                 l = "EN-US";
             }
-            betPopParentTopFl.setVisibility(View.VISIBLE);
+            webViewResume();
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + l;
             AfbUtils.synCookies(context, webView, gameUrl);
             LogUtil.d("gameUrl", gameUrl);
         } else {
-            betPopParentTopFl.setVisibility(View.GONE);
+            webViewPause();
         }
         isNeedInitWeb = false;
     }

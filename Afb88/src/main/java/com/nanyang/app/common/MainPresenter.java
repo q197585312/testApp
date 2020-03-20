@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.view.View;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -14,6 +13,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
+import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.LogIntervalUtils;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
@@ -22,7 +22,7 @@ import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.Setting.SettingFragment;
-import com.nanyang.app.main.home.keno.KenoWebActivity;
+import com.nanyang.app.main.home.keno.WebActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -338,39 +338,38 @@ public class MainPresenter extends BaseSwitchPresenter {
     }
 
 
-    public void skipPRGCashio(final View view) {
+    public void skipPCashio(final String itemG, String ACT, String PT, final String host, String matchs) {
+
 
         LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
-        helper.doRetrofitApiOnUiThreadAllBack(new LoginInfo.LanguageWfBean("GetTT", "", "wfPragmatic"), new CallBack<String>() {
+        helper.doRetrofitApiOnUiThreadAllBack(new LoginInfo.LanguageWfBean(ACT, "", PT), new CallBackError<String>() {
             @Override
             public void onBack(String data) throws JSONException {
-                String url = AppConstant.getInstance().HOST + data;
+                final SportIdBean sportIdBean = AfbUtils.getSportByG(itemG);
+                String url = host + data;
                 Bundle bundle = new Bundle();
                 bundle.putString("url", url);
-                baseContext.getBaseActivity().skipAct(KenoWebActivity.class, bundle);
+                bundle.putString(AppConstant.KEY_STRING,baseContext.getBaseActivity().getString(sportIdBean.getTextRes()));
+                baseContext.getBaseActivity().skipAct(WebActivity.class, bundle);
             }
-        }, "^.*^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+
+            @Override
+            public void onError(String data) throws JSONException {
+                ToastUtils.showLong(data);
+            }
+        }, matchs);
 
     }
 
-    public void skipPGCashio(View view) {
-        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
-        helper.doRetrofitApiOnUiThreadAllBack(new LoginInfo.LanguageWfBean("GetTT", "", "wfPGHome"), new CallBack<String>() {
-            @Override
-            public void onBack(String data) throws JSONException {
-                String url = data;
-
-                Bundle bundle = new Bundle();
-                bundle.putString("url", url);
-                baseContext.getBaseActivity().skipAct(KenoWebActivity.class, bundle);
-            }
-        }, "^.*(http[^\"]+)\"\\}.*$");
-
-    }
 
     public interface CallBack<T> {
         void onBack(T data) throws JSONException;
     }
 
+    public interface CallBackError<T> {
+        void onBack(T data) throws JSONException;
+
+        void onError(String data) throws JSONException;
+    }
 
 }

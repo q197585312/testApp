@@ -71,7 +71,7 @@
             android:windowSoftInputMode="stateHidden|stateUnchanged" />
 
         <activity android:name=".main.home.huayThai.HuayThaiActivity" />
-        <activity android:name=".main.home.keno.KenoWebActivity" />
+        <activity android:name=".main.home.keno.WebActivity" />
         <activity android:name=".main.home.sport.live.LivePlayActivity" />
         <activity
             android:name=".main.home.sport.live.LiveWebActivity"

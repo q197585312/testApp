@@ -151,11 +151,12 @@ public class HomeFragment extends BaseSwitchFragment {
                     return;
                 }
                 else if (item.getG().equals("PRAGMATIC CASINO")){
-                    ((MainActivity) getBaseActivity()).presenter.skipPRGCashio(view);
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio(item.getG(),"GetTT", "wfPragmatic",AppConstant.getInstance().HOST,"^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
                     return;
                 }
                 else if (item.getG().equals("PG CASINO")){
-                    ((MainActivity) getBaseActivity()).presenter.skipPGCashio(view);
+
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio(item.getG(),"GetTT",  "wfPGHome","","^.*(http[^\"]+)\"\\}.*$");
                     return;
                 }
                 SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());

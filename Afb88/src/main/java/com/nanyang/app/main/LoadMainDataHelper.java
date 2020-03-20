@@ -87,7 +87,7 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
         mCompositeSubscription.add(disposable);
     }
 
-    public void doRetrofitApiOnUiThreadAllBack(T languageWfBean, final MainPresenter.CallBack<String> back, final String matches) {
+    public void doRetrofitApiOnUiThreadAllBack(T languageWfBean, final MainPresenter.CallBackError<String> back, final String matches) {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
         Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
@@ -95,16 +95,14 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
             protected void onBaseGetData(String data) throws JSONException {
                 Log.d("doRetrofitApiOnUiThread", "data: " + data);
                 String updateString = AfbUtils.delHTMLTag(data);
-                    if (!StringUtils.isNull(matches)) {
-                        String group = StringUtils.findGroup(updateString, matches, 1);
-                        if (!StringUtils.isNull(group)) {
-                            back.onBack(group);
-                            return;
-                        }
+                if (!StringUtils.isNull(matches)) {
+                    String group = StringUtils.findGroup(updateString, matches, 1);
+                    if (!StringUtils.isNull(group)) {
+                        back.onBack(group);
+                        return;
                     }
-                    back.onBack(updateString);
-
-
+                }
+                back.onError(updateString);
             }
 
             @Override

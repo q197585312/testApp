@@ -808,7 +808,7 @@ public class KenoActivity extends BaseToolbarActivity<KenoPresenter> {
                 }
                 break;
             case R.id.img_website:
-                Intent i = new Intent(mContext, KenoWebActivity.class);
+                Intent i = new Intent(mContext, WebActivity.class);
                 i.putExtra("url", getCurrentTypeData().getWeburl_value());
                 startActivity(i);
                 break;
