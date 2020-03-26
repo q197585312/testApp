@@ -109,6 +109,18 @@ public class HomeFragment extends BaseSwitchFragment {
         }
     }
     private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
+        /*   beanHashMap.put("PS GAMING", new SportIdBean("PS GAMING", "", R.string.PRGCashio, "PS GAMING", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("SEXY CASINO", new SportIdBean("SEXY CASINO", "", R.string.PRGCashio, "SEXY CASINO", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("SA CASINO", new SportIdBean("SA CASINO", "", R.string.PRGCashio, "SA CASINO", SportActivity.class, soccerFragment, Color.BLACK));
+*/
+/*        ArrayList<AllBannerImagesBean.MainBannersBean> mainBannersBeen = new ArrayList<>();
+        mainBannersBeen.addAll(new ArrayList<>(Arrays.asList(
+                new AllBannerImagesBean.MainBannersBean("","PS GAMING","http://13.112.86.40/H50/Img/PSGaming.png"),
+                new AllBannerImagesBean.MainBannersBean("","SEXY CASINO","http://13.112.86.40/H50/Img/SGGaming.png"),
+                new AllBannerImagesBean.MainBannersBean("","SA CASINO","http://13.112.86.40/H50/Img/SAGaming.png")
+        )));
+        mainBannersBeen.addAll(data);*/
+
 
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
 //        data.add(new AllBannerImagesBean.MainBannersBean())
@@ -151,12 +163,24 @@ public class HomeFragment extends BaseSwitchFragment {
                     return;
                 }
                 else if (item.getG().equals("PRAGMATIC CASINO")){
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio(item.getG(),"GetTT", "wfPragmatic",AppConstant.getInstance().HOST,"^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get","",item.getG(),new LoginInfo.LanguageWfBean("GetTT","", "wfPragmatic"),AppConstant.getInstance().HOST,"^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
                     return;
                 }
                 else if (item.getG().equals("PG CASINO")){
-
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio(item.getG(),"GetTT",  "wfPGHome","","^.*(http[^\"]+)\"\\}.*$");
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get","",item.getG(),new LoginInfo.LanguageWfBean("GetTT", "", "wfPGHome"),"","^.*(http[^\"]+)\"\\}.*$");
+                    return;
+                }
+                else if (item.getG().equals("PS GAMING")){
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get","",item.getG(),new LoginInfo.LanguageWfBean("GetTT","",  "wfPSLogin"),AppConstant.getInstance().HOST,"^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+                    return;
+                }
+                else if (item.getG().equals("SEXY CASINO")){
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("post",AppConstant.getInstance().HOST+"api/SGCheckonline",item.getG(),new SaCasinoWfBean("","","SGCheckonline"),"","^.*\"(http[^\"]+)\",.*$");
+//                    ((MainActivity) getBaseActivity()).presenter.skipPCashio(item.getG(),"GetTT",  "wfPGHome","","^.*(http[^\"]+)\"\\}.*$");
+                    return;
+                }
+                else if (item.getG().equals("SA CASINO")){
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("post",AppConstant.getInstance().HOST+"api/SACheckonline",item.getG(),new SaCasinoWfBean("","","SACheckonline"),"","^.*\"(http[^\"]+)\",.*$");
                     return;
                 }
                 SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());

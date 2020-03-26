@@ -1,6 +1,7 @@
 package com.nanyang.app.load.login;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Utils.StringUtils;
 
@@ -210,6 +211,11 @@ public class LoginInfo {
         public String getJson() {
             return new Gson().toJson(this);
         }
+        public HashMap<String,String> getMap() {
+            return new Gson().fromJson(getJson(), new TypeToken<HashMap<String,String>>(){}.getType());
+        }
+
+
     }
 
     public static class HuayDataWfBean extends LanguageWfBean {

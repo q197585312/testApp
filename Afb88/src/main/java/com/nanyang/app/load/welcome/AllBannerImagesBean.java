@@ -125,6 +125,15 @@ public class AllBannerImagesBean implements Serializable {
                    "g": "1",
                    "img": "https:\/\/www.afb1188.com\/H50\/Img\/soccer.jpg"
        }, {*/
+
+        public MainBannersBean(String dbid, String g, String img) {
+            this.dbid = dbid;
+            this.g = g;
+            this.img = img;
+        }
+
+
+
         private String dbid;
         private String g;
 

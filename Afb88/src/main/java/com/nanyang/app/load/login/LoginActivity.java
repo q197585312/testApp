@@ -248,8 +248,8 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                             if (s.contains("Maintenance")) {
                                 Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
                                 onError(exception);
-                            } else if (jsonArray.optString(2) != null && StringUtils.matches(jsonArray.optString(2), "^.*alert\\(\\'([^\\']+)\\'\\);.*?")) {
-                                Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2), "^.*alert\\(\\'([^\\']+)\\'\\);.*?", 1));
+                            } else if (jsonArray.optString(2) != null && StringUtils.matches(jsonArray.optString(2), "^.*\\(\\'([^\\']+)\\'\\);.*?")) {
+                                Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2), "^.*\\(\\'([^\\']+)\\'\\);.*?", 1));
                                 onError(exception);
                             } else {
                                 String regex = "window.location";
@@ -265,7 +265,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                                                               }
                                     );
                                 } else {
-                                    Exception exception1 = new Exception("Server Error");
+                                    Exception exception1 = new Exception(s);
                                     onError(exception1);
                                 }
                             }
@@ -366,6 +366,8 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
             @Override
             public void onGlobalLayout() {
                 Rect r = new Rect();
+                if(llContainer==null)
+                    return;
                 llContainer.getWindowVisibleDisplayFrame(r);
                 if (sc == null) {
                     sc = new int[2];
@@ -396,6 +398,9 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                if(llContainer==null){
+                    return;
+                }
                 llContainer.scrollTo(0, (Integer) valueAnimator.getAnimatedValue());
             }
         });

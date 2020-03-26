@@ -9,7 +9,6 @@ import android.os.Message;
 import android.os.StrictMode;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
@@ -31,7 +30,6 @@ import com.nanyang.app.main.home.huayThai.HuayThaiActivity;
 import com.nanyang.app.main.home.keno.KenoActivity;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportContract;
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.api.Api;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
@@ -306,12 +304,15 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
     }
 
     public void onPopupWindowCreatedAndShow(BasePopupWindow pop, int center) {
+
         createPopupWindow(pop);
         if (center == -2) {
-            popWindow.showPopupDownWindow();
+            if (isHasAttached())
+                popWindow.showPopupDownWindow();
         } else {
 //            popWindow.showPopupGravityWindow(center, 0, 0);
-            popWindow.showAtLocation(Gravity.TOP, AfbUtils.dp2px(mContext, 2), AfbUtils.dp2px(mContext, 200));//默认 显示在视频下面 不然不会被输入法挤上去
+            if (isHasAttached())
+                popWindow.showAtLocation(Gravity.TOP, AfbUtils.dp2px(mContext, 2), AfbUtils.dp2px(mContext, 200));//默认 显示在视频下面 不然不会被输入法挤上去
         }
     }
 

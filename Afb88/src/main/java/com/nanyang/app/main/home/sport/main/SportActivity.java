@@ -706,7 +706,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                             });
                         }
                     });
-                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 300 + 9), AfbUtils.dp2px(mContext, 200));
+                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 300 +15), AfbUtils.dp2px(mContext, 200));
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -786,7 +786,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                                     });
                                 }
                             });
-                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 356 + 9), AfbUtils.getScreenWidth(mContext) / 2);
+                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 356 +15), AfbUtils.getScreenWidth(mContext) / 2);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

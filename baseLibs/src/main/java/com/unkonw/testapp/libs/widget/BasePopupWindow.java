@@ -195,23 +195,23 @@ public abstract class BasePopupWindow {
     public void showPopupDownWindow(int x, int y) {
         closePopupWindow();
         setBackgroundAttr(trans);
-//        popWindow.showAsDropDown(v, x, y);
-
+        popWindow.showAsDropDown(v, x, y);
+/*
         int[] location = new int[2];
         v.getLocationOnScreen(location);
         int y1 = location[1]+y;
-        popWindow.showAtLocation(v, Gravity.NO_GRAVITY, x, y1 + v.getHeight());
+        popWindow.showAtLocation(v, Gravity.NO_GRAVITY, x, y1 + v.getHeight());*/
 
 
     }
 
     public void showPopupDownWindowWihte(int x, int y) {
         closePopupWindow();
-//        popWindow.showAsDropDown(v, x, y);
-        int[] location = new int[2];
+        popWindow.showAsDropDown(v, x, y);
+       /* int[] location = new int[2];
         v.getLocationOnScreen(location);
         int y1 = location[1]+y;
-        popWindow.showAtLocation(v, Gravity.NO_GRAVITY, x, y1 + v.getHeight());
+        popWindow.showAtLocation(v, Gravity.NO_GRAVITY, x, y1 + v.getHeight());*/
     }
 
     public void showPopupGravityWindow(int gravity, int offsetX, int offsetY) {
@@ -244,7 +244,7 @@ public abstract class BasePopupWindow {
         view.getLocationOnScreen(location);
 //在控件上方显示    向上移动y轴是负数
         setBackgroundAttr(trans);
-        popWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight);
+        popWindow.showAtLocation(view, Gravity.NO_GRAVITY, (location[0] + view.getWidth() / 2) - popupWidth / 2, location[1] - popupHeight );
     }
 
     public void showPopupWindowUpCenter(View view) {

@@ -1,5 +1,6 @@
 package com.nanyang.app.main;
 
+import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Utils.StringUtils;
 import com.unkonw.testapp.libs.base.BaseFragment;
@@ -30,7 +31,7 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
 
     public void setBackTitle(String title) {
 
-        baseToolbarActivity.getToolbar().setTitle(StringUtils.isNull(title)?"":title.toUpperCase());
+        baseToolbarActivity.getToolbar().setTitle(StringUtils.isNull(title) ? "" : title.toUpperCase());
     }
 
 
@@ -41,7 +42,7 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
     }
 
     public void showContent() {
-
+        AfbUtils.switchLanguage(AfbUtils.getLanguage(baseToolbarActivity), baseToolbarActivity);
     }
 
     public void setHolder(AfbDrawerViewHolder holder) {
@@ -69,5 +70,7 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
     public boolean checkCanBack() {
         return true;
     }
-    public void switchFragment(){}
+
+    public void switchFragment() {
+    }
 }

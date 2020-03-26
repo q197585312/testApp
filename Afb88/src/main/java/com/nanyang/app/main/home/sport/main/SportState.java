@@ -219,7 +219,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         LogUtil.d("Socket", getClass().getSimpleName() + "发送数据：");
         AfbApplication application = (AfbApplication) getBaseView().getIBaseContext().getBaseActivity().getApplication();
         RefreshDataBean refreshDataBean = application.getRefreshDataBean();
-        if(refreshDataBean==null)
+        if (refreshDataBean == null)
             return;
         MenuItemInfo oddsType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
         if (oddsType != null)
@@ -233,11 +233,27 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         refreshDataBean.setOt(t);
         refreshDataBean.setOv(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType());
         refreshDataBean.setMt(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType());
-        refreshDataBean.setTimess(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd);
-        if (((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd != null && ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd.equals("7"))
+        String h12 = TimeUtils.dateFormat(new Date(), "yyyy-MM-dd") + " 12:00:00";
+        String now = TimeUtils.dateFormat(new Date(), "yyyy-MM-dd HH:mm:ss");
+        long dif = TimeUtils.diffTime(now, h12, "yyyy-MM-dd HH:mm:ss");
+        Date firstDate = new Date();
+        String d1 = TimeUtils.dateFormat(firstDate, "yyyy-MM-dd");
+        if (dif > 0)
+            d1 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 1), "yyyy-MM-dd");
+        if (t.equals("t") && StringUtils.isNull(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd)) {
+
+            refreshDataBean.setTimess(d1);
             refreshDataBean.setIa(1);
-        else {
-            refreshDataBean.setIa(0);
+            refreshDataBean.setBetable(true);
+        } else {
+            refreshDataBean.setTimess(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd);
+        }
+        if (t.equals("e")) {
+            if (((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd != null && ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd.equals("7"))
+                refreshDataBean.setIa(1);
+            else {
+                refreshDataBean.setIa(0);
+            }
         }
         List<RefreshDataBean> list = new ArrayList<>();
         list.add(refreshDataBean);
@@ -880,9 +896,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
 
     private boolean addNewTableSoc(TableSportInfo<B> tables) throws JSONException {
-        B b = tables.getRows().get(0);
-        int n = 0;
-        for (int i = 0; i < allData.size(); i++) {
+  /*      B b = tables.getRows().get(0);
+        int n = 0;*/
+        boolean needRefresh = false;
+        for (B b : tables.getRows()) {
+            needRefresh = needRefresh || addNewSingleSoc(b,tables.getLeagueBean());
+        }
+        /*for (int i = 0; i < allData.size(); i++) {
             TableSportInfo<B> bTableSportInfo = allData.get(i);
             LeagueBean leagueBean = bTableSportInfo.getLeagueBean();
             if (leagueBean != null && leagueBean.getModuleId().equals(tables.getLeagueBean().getModuleId())) {
@@ -916,8 +936,54 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             );
 
             needRefresh = true;
+        }*/
+        return needRefresh;
+    }
+
+    private boolean addNewSingleSoc(B b, LeagueBean leagueBean) throws JSONException {
+        for (int i = 0; i < allData.size(); i++) {
+            List<B> rows = allData.get(i).getRows();
+            for (int i1 = 0; i1 < rows.size(); i1++) {
+
+                if (rows.get(i1).getSocOddsId().equals(b.getPreSocOddsId())) {
+
+                    if (leagueBean.getModuleId().equals(allData.get(i).getLeagueBean().getModuleId())) {
+                        allData.get(i).getRows().add(i1 + 1, b);
+                    } else if ( allData.size()>(i + 1)&&allData.get(i + 1).getLeagueBean().getModuleId().equals(leagueBean.getModuleId())&&allData.get(i).getRows().size() == i1 + 1 ) {
+                        allData.get(i + 1).getRows().add(0, b);
+                    } else {
+                        allData.add(i + 1, new TableSportInfo<>(leagueBean, new ArrayList<>(Arrays.asList(b))));
+                    }
+                    LogUtil.d("SocketAdd", "新添加了比赛:"
+                            + ",主队：" + b.getHome()
+                            + ",客队：" + b.getAway()
+                            + ",他的前面得比赛主队：" + rows.get(i1).getHome()
+                            + ",他的前面得比赛客队：" + rows.get(i1).getAway()
+                    );
+                    return false;
+                }
+
+            }
+        }
+        boolean needRefresh = false;
+        B b2 = allData.get(0).getRows().get(0);
+        if (allData.get(0).getLeagueBean().getModuleId().equals(leagueBean.getModuleId())) {
+            if (b2.getPreSocOddsId().equals(b.getSocOddsId()))
+                allData.get(0).getRows().add(0, b);
+            else {
+                needRefresh = true;
+            }
+
+        } else {
+            if (b2.getPreSocOddsId().equals(b.getSocOddsId())) {
+                allData.add(0, new TableSportInfo<>(leagueBean, new ArrayList<>(Arrays.asList(b))));
+            } else {
+                needRefresh = true;
+            }
         }
         return needRefresh;
+
+
     }
 
     private boolean addNewSingleSoc(int i, B b) throws JSONException {
@@ -1068,8 +1134,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 String day = item.getDay();
                 if (!TextUtils.isEmpty(day)) {
                     tvGamePic.setText(item.getDay());
-                    tv.setText(item.getText() );
-                    tv.setText(tv.getText()+ " " + item.getDay());
+                    tv.setText(item.getText());
+                    tv.setText(tv.getText() + " " + item.getDay());
                 } else {
                     tv.setText(item.getText());
                 }
@@ -1173,12 +1239,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         String d5 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 5), "yyyy-MM-dd");
         String d6 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 6), "yyyy-MM-dd");
         Context context = getBaseView().getIBaseContext().getBaseActivity();
-        MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d1.split("-")[1]), context.getString(AfbUtils.getLangMonth( d1.split("-")[1])), R.mipmap.date_day_green, d1.split("-")[2], d1);
-        MenuItemInfo<Integer> item2 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d2.split("-")[1]),context.getString( AfbUtils.getLangMonth( d2.split("-")[1])), R.mipmap.date_day_green, d2.split("-")[2], d2);
-        MenuItemInfo<Integer> item3 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d3.split("-")[1]),context.getString( AfbUtils.getLangMonth( d3.split("-")[1])), R.mipmap.date_day_green, d3.split("-")[2], d3);
-        MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d4.split("-")[1]),context.getString( AfbUtils.getLangMonth( d4.split("-")[1])), R.mipmap.date_day_green, d4.split("-")[2], d4);
-        MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d5.split("-")[1]),context.getString( AfbUtils.getLangMonth( d5.split("-")[1])), R.mipmap.date_day_green, d5.split("-")[2], d5);
-        MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth( d6.split("-")[1]),context.getString( AfbUtils.getLangMonth( d6.split("-")[1])), R.mipmap.date_day_green, d6.split("-")[2], d6);
+        MenuItemInfo<Integer> item1 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d1.split("-")[1]), context.getString(AfbUtils.getLangMonth(d1.split("-")[1])), R.mipmap.date_day_green, d1.split("-")[2], d1);
+        MenuItemInfo<Integer> item2 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d2.split("-")[1]), context.getString(AfbUtils.getLangMonth(d2.split("-")[1])), R.mipmap.date_day_green, d2.split("-")[2], d2);
+        MenuItemInfo<Integer> item3 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d3.split("-")[1]), context.getString(AfbUtils.getLangMonth(d3.split("-")[1])), R.mipmap.date_day_green, d3.split("-")[2], d3);
+        MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d4.split("-")[1]), context.getString(AfbUtils.getLangMonth(d4.split("-")[1])), R.mipmap.date_day_green, d4.split("-")[2], d4);
+        MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d5.split("-")[1]), context.getString(AfbUtils.getLangMonth(d5.split("-")[1])), R.mipmap.date_day_green, d5.split("-")[2], d5);
+        MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d6.split("-")[1]), context.getString(AfbUtils.getLangMonth(d6.split("-")[1])), R.mipmap.date_day_green, d6.split("-")[2], d6);
         MenuItemInfo<Integer> itemRunning = new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
         itemRunning.setDateParam("");
         MenuItemInfo<Integer> itemToday = new MenuItemInfo<Integer>(R.mipmap.date_today_grey, (R.string.Today), "Today", R.mipmap.date_today_green);

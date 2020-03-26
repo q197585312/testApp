@@ -687,7 +687,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     public void showContent() {
-        AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext), mContext);
+        super.showContent();
         getBaseActivity().setToolbarVisibility(View.GONE);
         getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);

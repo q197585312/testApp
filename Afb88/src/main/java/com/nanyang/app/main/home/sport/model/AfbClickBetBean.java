@@ -62,6 +62,17 @@ public class AfbClickBetBean implements Serializable {
     private String IsFH;
     private String AccType;
 
+    private String SlingMaxLimit;
+
+    public String getSlingMaxLimit() {
+        return SlingMaxLimit;
+    }
+
+    public void setSlingMaxLimit(String slingMaxLimit) {
+        SlingMaxLimit = slingMaxLimit;
+    }
+
+
     public String getNOddsOLD() {
         NOddsOLD = AfbUtils.delHTMLTag(NOddsOLD);
         return NOddsOLD;

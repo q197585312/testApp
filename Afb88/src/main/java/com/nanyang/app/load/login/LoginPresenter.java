@@ -9,7 +9,6 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
-import com.unkonw.testapp.libs.utils.LogUtil;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -49,7 +48,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
             @Override
             protected void onBaseGetData(AllBannerImagesBean data) {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
-                LogUtil.d("AllBannerImagesBean", data.toString());
+
                 LoginPresenter.this.baseContext.sendImageEvent(data);
 
             }

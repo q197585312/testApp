@@ -426,7 +426,14 @@ public class BetPop extends BasePopupWindow {
         } else {
             for (AfbClickBetBean afbClickBetBean : list) {
                 if (afbClickBetBean.getSocOddsId().equals(cursorMap.get(true).getItemSocId())) {
-                    return afbClickBetBean.getMaxLimit();
+                    try {
+                        float max = Float.valueOf(afbClickBetBean.getSlingMaxLimit());
+                        return (int) max;
+                    } catch (NumberFormatException e) {
+                        e.printStackTrace();
+                        return afbClickBetBean.getMaxLimit();
+                    }
+
                 }
             }
         }
@@ -532,7 +539,14 @@ public class BetPop extends BasePopupWindow {
             for (int i = 0; i < list.size(); i++) {
                 if (!StringUtils.isEmpty(hashMap.get(list.get(i).getSocOddsId()))) {
                     double count = Double.parseDouble(hashMap.get(list.get(i).getSocOddsId()).trim().replace(",", ""));
-                    int max1 = list.get(i).getMaxLimit();
+                    int max1=list.get(i).getMaxLimit();
+                    try {
+                        float maxaa = (Float.valueOf(list.get(i).getSlingMaxLimit()));
+                        max1= (int) maxaa;
+                    }catch (NumberFormatException e){
+                        e.printStackTrace();
+                    }
+
                     int min1 = list.get(i).getMinLimit();
                     if (count > max1) {
                         ToastUtils.showShort(context.getString(R.string.stake_is_more_than_max_limit));
@@ -618,7 +632,7 @@ public class BetPop extends BasePopupWindow {
             betMaxWinTv.setText(afbClickBetBean.getMinLimit() + "");
             betMaxBetTv.setText(AfbUtils.addComma(afbClickBetBean.getMaxLimit() + "", betMaxBetTv));
 
-            if (!isRefreshEd && list.size() == 1 && afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() == 1&&activity!=null&&activity.getOtType().toLowerCase().startsWith("r")) {
+            if (!isRefreshEd && list.size() == 1 && afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() == 1 && activity != null && activity.getOtType().toLowerCase().startsWith("r")) {
                 OddsClickBean oddsClickBean = afbApplication.getMixBetList().get(0);
                 BallInfo item = oddsClickBean.getItem();
                 setrTMatchInfo(item);
@@ -651,6 +665,7 @@ public class BetPop extends BasePopupWindow {
         webView.onPause();
         webView.pauseTimers();
     }
+
     private void webViewResume() {
         betPopParentTopFl.setVisibility(View.VISIBLE);
         webView.resumeTimers();
@@ -755,7 +770,7 @@ public class BetPop extends BasePopupWindow {
                             @Override
                             public void afterTextChanged(Editable s) {
                                 //将editText中改变的值设置的HashMap中
-                                int max = item.getMaxLimit();
+                                String max = item.getSlingMaxLimit();
                                 if (s.toString().startsWith("0") && s.toString().length() > 1) {
                                     s.delete(0, 1);
                                 }
@@ -766,9 +781,15 @@ public class BetPop extends BasePopupWindow {
                                 if (TextUtils.isEmpty(amount)) {
                                     amount = "0";
                                 }
+
                                 amount = amount.replaceAll(",", "");
-                                if (Double.parseDouble(amount) > max) {
-                                    amount = max + "";
+                                try {
+                                    if (Double.parseDouble(amount) > Double.parseDouble(max)) {
+                                        amount = max + "";
+                                    }
+                                } catch (NumberFormatException e) {
+                                    e.printStackTrace();
+                                    amount = "0";
                                 }
                                 if (!amount.equals("0"))
                                     hashMap.put(item.getSocOddsId(), amount);
@@ -816,7 +837,7 @@ public class BetPop extends BasePopupWindow {
                     String odds = item.getNOddsOLD();
                     tvBetOdds.setText(odds);
                     tvBetOddsAnimation.setText(odds);
-                    if (odds.startsWith("-")) {
+                    if (odds.trim().equals("0")||odds.startsWith("-")) {
                         tvBetOdds.setTextColor(Color.RED);
                     } else {
                         tvBetOdds.setTextColor(Color.BLACK);

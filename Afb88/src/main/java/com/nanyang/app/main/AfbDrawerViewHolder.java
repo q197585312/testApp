@@ -205,6 +205,8 @@ public class AfbDrawerViewHolder implements IDrawerView {
             drawerLayout.closeDrawer(Gravity.RIGHT);
             back = true;
         }
+        if (indexFragment == null)
+            return back;
         if (!indexFragment.checkCanBack())
             return back;
         if (indexFragment == homeFragment) {

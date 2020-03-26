@@ -22,6 +22,7 @@ import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.Setting.SettingFragment;
+import com.nanyang.app.main.home.LoadPCasinoDataHelper;
 import com.nanyang.app.main.home.keno.WebActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
@@ -337,30 +338,49 @@ public class MainPresenter extends BaseSwitchPresenter {
 
     }
 
+    //
+    public void skipPCashio(String Method, String url, final String itemG, LoginInfo.LanguageWfBean wfBean, final String host, String matchs) {
 
-    public void skipPCashio(final String itemG, String ACT, String PT, final String host, String matchs) {
+
+        LoadPCasinoDataHelper<LoginInfo.LanguageWfBean> helper = new LoadPCasinoDataHelper<>(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+        if (Method.equals("get")) {
+            helper.doRetrofitApiOnUiThreadBackGet(url, wfBean, new CallBackError<String>() {
+                @Override
+                public void onBack(String data) throws JSONException {
+                    goPCasino(data, itemG, host);
+                }
+
+                @Override
+                public void onError(String data) throws JSONException {
+                    ToastUtils.showLong(data);
+                }
+            }, matchs);
+        } else {
+
+            helper.doRetrofitApiOnUiThreadBackPost(url, wfBean, new CallBackError<String>() {
+                @Override
+                public void onBack(String data) throws JSONException {
+                    goPCasino(data, itemG, host);
+                }
+
+                @Override
+                public void onError(String data) throws JSONException {
+                    ToastUtils.showLong(data);
+                }
+            }, matchs);
 
 
-        LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
-        helper.doRetrofitApiOnUiThreadAllBack(new LoginInfo.LanguageWfBean(ACT, "", PT), new CallBackError<String>() {
-            @Override
-            public void onBack(String data) throws JSONException {
-                final SportIdBean sportIdBean = AfbUtils.getSportByG(itemG);
-                String url = host + data;
-                Bundle bundle = new Bundle();
-                bundle.putString("url", url);
-                bundle.putString(AppConstant.KEY_STRING,baseContext.getBaseActivity().getString(sportIdBean.getTextRes()));
-                baseContext.getBaseActivity().skipAct(WebActivity.class, bundle);
-            }
-
-            @Override
-            public void onError(String data) throws JSONException {
-                ToastUtils.showLong(data);
-            }
-        }, matchs);
-
+        }
     }
 
+    private void goPCasino(String data, String itemG, String host) {
+        final SportIdBean sportIdBean = AfbUtils.getSportByG(itemG);
+        String url = host + data;
+        Bundle bundle = new Bundle();
+        bundle.putString("url", url);
+        bundle.putString(AppConstant.KEY_STRING, baseContext.getBaseActivity().getString(sportIdBean.getTextRes()));
+        baseContext.getBaseActivity().skipAct(WebActivity.class, bundle);
+    }
 
     public interface CallBack<T> {
         void onBack(T data) throws JSONException;

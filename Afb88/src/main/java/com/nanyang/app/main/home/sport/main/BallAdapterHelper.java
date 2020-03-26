@@ -47,6 +47,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     final int red_black = Color.RED;
     final int black_grey = Color.BLACK;
     private final BaseToolbarActivity act;
+    private String curCode="";
     protected Context context;
     private AddMBean additionData;
 
@@ -92,6 +93,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     public BallAdapterHelper(Context context) {
         this.context = context;
         act = (BaseToolbarActivity) this.context;
+        curCode = act.getApp().getSettingAllDataBean().getCurCode();
     }
 
     @Override
@@ -996,7 +998,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         , additionData.getMG90_IsHomeGive().equals("True")
                 );
             }
-            if (additionData.getFTMModds() != null && additionData.getFTMModds().size() > 0 && (isAll || res == R.string.MM_HDP_OU)) {
+            if (!StringUtils.isNull(curCode)&&curCode.toUpperCase().equals("MMK")&&additionData.getFTMModds() != null && additionData.getFTMModds().size() > 0 && (isAll || res == R.string.MM_HDP_OU)) {
                 for (AddMBean.MModdsBean mModdsBean : additionData.getFTMModds()) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_mm_title_ft_item, null);
                     parent.addView(inflate);
