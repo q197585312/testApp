@@ -30,6 +30,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <uses-permission android:name="android.permission.READ_LOGS" />
     <!-- <uses-sdk tools:overrideLibrary="tv.danmaku.ijk.media.player_x86_64,tv.danmaku.ijk.media.player_arm64"/>-->
     <application
         android:name=".AfbApplication"

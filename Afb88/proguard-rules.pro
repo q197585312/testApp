@@ -34,6 +34,8 @@
 -verbose
 -ignorewarnings
 -dontwarn android.support.v4.**
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
 -keep class android.support.v4.**{*;}
 -keep public class * extends android.app.Activity
 -keep public class * extends android.app.Application
@@ -52,5 +54,6 @@
 -keep class tv.danmaku.ijk.media.player.** {*;}
 -keep class tv.danmaku.ijk.media.player.IjkMediaPlayer{*;}
 -keep class tv.danmaku.ijk.media.player.ffmpeg.FFmpegApi{*;}
+
 
 

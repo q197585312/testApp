@@ -125,7 +125,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         inputMove();
         getApp().setBetAfbList(null);
-
     }
 
     @Override

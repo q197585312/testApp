@@ -124,8 +124,10 @@ public class AfbApplication extends BaseApplication {
         closeAndroidPDialog();
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
         strategy.setAppChannel(BuildConfig.FLAVOR);  //设置渠道
-        CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", false, strategy);
+        CrashReport.initCrashReport(getApplicationContext(), "ec1874f442", true, strategy);
+/*        CrashReport.initCrashReport(getApplicationContext(),你后台的ID, true);//true表示异常立刻上报，建议打开
 
+        CrashReport.setUserId(你自己的标识码);*/
     }
 
 
