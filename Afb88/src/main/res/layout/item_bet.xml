@@ -23,7 +23,7 @@
             android:layout_weight="1"
             android:singleLine="true"
             android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:textSize="13sp" />
 
         <EditText
             android:id="@+id/edt_single_bet"
@@ -60,8 +60,8 @@
         <TextView
             android:id="@+id/bet_home_tv"
             android:layout_width="wrap_content"
-            android:maxLines="1"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="12sp" />
 
@@ -75,10 +75,10 @@
             android:textSize="12sp" />
 
         <TextView
-            android:maxLines="1"
             android:id="@+id/bet_away_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:maxLines="1"
             android:textColor="@color/black"
             android:textSize="12sp" />
     </LinearLayout>
@@ -91,35 +91,42 @@
         android:paddingBottom="1dp"
         android:paddingTop="1dp">
 
-        <TextView
-            android:maxLines="1"
-            android:id="@+id/bet_name_tv"
+        <LinearLayout
             android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            android:orientation="horizontal"
+            >
 
-        <TextView
-            android:maxLines="1"
-            android:id="@+id/tv_hdp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
-            android:textColor="@color/black"
-            android:textSize="14sp" />
+            <TextView
+                android:id="@+id/bet_name_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
-        <View
-            android:layout_width="0dp"
-            android:layout_height="1dp"
-            android:layout_weight="1" />
+            <TextView
+                android:id="@+id/tv_hdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:maxLines="1"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
 
-        <TextView
-            android:id="@+id/bet_hdp_tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="13sp" />
+            <View
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:id="@+id/bet_hdp_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:textSize="13sp" />
+        </LinearLayout>
 
         <RelativeLayout
             android:layout_width="wrap_content"

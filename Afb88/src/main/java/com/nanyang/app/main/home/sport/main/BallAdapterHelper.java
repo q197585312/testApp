@@ -47,7 +47,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     final int red_black = Color.RED;
     final int black_grey = Color.BLACK;
     private final BaseToolbarActivity act;
-    private String curCode="";
+    private String curCode = "";
     protected Context context;
     private AddMBean additionData;
 
@@ -110,7 +110,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.INVISIBLE);
-        onConvertHall(item,ivHall,position);
+        onConvertHall(item, ivHall, position);
 
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
@@ -364,14 +364,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         if (size > 0 && (isAll || res == R.string.HDP_OU)) {
 
             for (int i = 0; i < size; i++) {
-                if(i==0) {
+                if (i == 0) {
                     View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
                     parent.addView(titleLL);
-                }else {
+                } else {
                     View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item_space, null);
                     parent.addView(titleLL);
                 }
-                addAddedView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item,i%2==0?R.layout.addition_hdp_ou_sport_item:R.layout.addition_hdp_ou_sport_item_green);
+                addAddedView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item, i % 2 == 0 ? R.layout.addition_hdp_ou_sport_item : R.layout.addition_hdp_ou_sport_item_green);
             }
         }
 
@@ -781,7 +781,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
                 );
                 addAddedByColor(additionData.getGoal3(), additionData.getGoal4(), additionData.getTG_SocOddsId(), false, parent, item,
-                        "4~6", "7&"+context.getString(R.string.OVER), "tg", "tg", "46", "70", R.layout.addition_1x2_sport_item, "2"
+                        "4~6", "7&" + context.getString(R.string.OVER), "tg", "tg", "46", "70", R.layout.addition_1x2_sport_item, "2"
                         , false
                         , false
                         , additionData.getGoal3IsInetBet().equals("True")
@@ -998,7 +998,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         , additionData.getMG90_IsHomeGive().equals("True")
                 );
             }
-            if (!StringUtils.isNull(curCode)&&curCode.toUpperCase().equals("MMK")&&additionData.getFTMModds() != null && additionData.getFTMModds().size() > 0 && (isAll || res == R.string.MM_HDP_OU)) {
+            if (!StringUtils.isNull(curCode) && curCode.toUpperCase().equals("MMK") && additionData.getFTMModds() != null && additionData.getFTMModds().size() > 0 && (isAll || res == R.string.MM_HDP_OU)) {
                 for (AddMBean.MModdsBean mModdsBean : additionData.getFTMModds()) {
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_mm_title_ft_item, null);
                     parent.addView(inflate);
@@ -1470,7 +1470,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         tv.setText(s);
     }
 
-    private void addAddedView(LinearLayout parent, AddMBean.OddsBean fTodds, AddMBean.OddsBean fHodds, I item,int res) {
+    private void addAddedView(LinearLayout parent, AddMBean.OddsBean fTodds, AddMBean.OddsBean fHodds, I item, int res) {
         View inflate = LayoutInflater.from(context).inflate(res, null);
         TextView home_tv = inflate.findViewById(R.id.home_tv);
 
@@ -2158,10 +2158,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public void setRunningItemBg(MyRecyclerViewHolder helper, BallInfo item) {
         View matchTitleLl = helper.getView(R.id.module_match_title_ll);
+        TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         View viewLine = helper.getView(R.id.view_line);
         TextView moduleMatchTimeTv = helper.getView(R.id.module_match_time_tv);
         viewLine.setBackgroundColor(ContextCompat.getColor(context, R.color.green_line));
         matchTitleLl.setBackgroundColor(ContextCompat.getColor(context, R.color.green_title));
+        matchTitleTv.setTextColor(ContextCompat.getColor(context, R.color.green));
         moduleMatchTimeTv.setTextColor(Color.BLACK);
     }
 

@@ -187,7 +187,7 @@ public class BetPop extends BasePopupWindow {
             public void afterTextChanged(Editable s) {
                 AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
                 double max;
-                if (betAfbList != null && list.size() > 1 && StringUtils.isEmpty(betAfbList.getMaxLimit())) {
+                if (betAfbList != null && list.size() > 1 && !StringUtils.isEmpty(betAfbList.getMaxLimit())) {
 
                     max = Double.parseDouble(betAfbList.getMaxLimit());
                 } else {
@@ -539,11 +539,11 @@ public class BetPop extends BasePopupWindow {
             for (int i = 0; i < list.size(); i++) {
                 if (!StringUtils.isEmpty(hashMap.get(list.get(i).getSocOddsId()))) {
                     double count = Double.parseDouble(hashMap.get(list.get(i).getSocOddsId()).trim().replace(",", ""));
-                    int max1=list.get(i).getMaxLimit();
+                    int max1 = list.get(i).getMaxLimit();
                     try {
                         float maxaa = (Float.valueOf(list.get(i).getSlingMaxLimit()));
-                        max1= (int) maxaa;
-                    }catch (NumberFormatException e){
+                        max1 = (int) maxaa;
+                    } catch (NumberFormatException e) {
                         e.printStackTrace();
                     }
 
@@ -837,7 +837,7 @@ public class BetPop extends BasePopupWindow {
                     String odds = item.getNOddsOLD();
                     tvBetOdds.setText(odds);
                     tvBetOddsAnimation.setText(odds);
-                    if (odds.trim().equals("0")||odds.startsWith("-")) {
+                    if (odds.trim().equals("0") || odds.startsWith("-")) {
                         tvBetOdds.setTextColor(Color.RED);
                     } else {
                         tvBetOdds.setTextColor(Color.BLACK);
