@@ -28,15 +28,12 @@ import com.nanyang.app.R;
 import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.Utils.StringUtils;
-import com.nanyang.app.Utils.ViewPagerAdapter;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
-import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
-import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
@@ -92,6 +89,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     private int[] sc;
     private int scrollHeight;
 
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -120,7 +118,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                 }
             }
         });
-        presenter.loadAllImages();
         edtLoginUsername.requestFocus();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         inputMove();
@@ -315,7 +312,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         AfbUtils.initAllSprotMap();
         Log.d("doRetrofitApiOnUiThread", ": " + AppConstant.wfMain);
         skipAct(MainActivity.class);
-//        getBaseActivity().hideLoadingDialog();
         finish();
     }
 
@@ -334,22 +330,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
             loginImagesvp.stopTask();
     }
 
-    public void sendImageEvent(AllBannerImagesBean data) {
-        LogUtil.d(getClass().getSimpleName(), "sendEvent--------------->" + data.toString());
-//        EventBus.getDefault().postSticky(new ListMainPictures());
-//        EventBus.getDefault().postSticky(new ListMainBanners(data.getMainBanners()));
-        ((AfbApplication) getApplication()).setListMainPictures(data.getMain());
-        ((AfbApplication) getApplication()).setListMainBanners(data.getMainBanners());
-        initViewPager(data.getLoginBanners());
-    }
-
-    private void initViewPager(List<AllBannerImagesBean.BannersBean> list) {
-        ViewPagerAdapter adapter = new ViewPagerAdapter(list, loginIndicatorCpi, mContext);
-        loginImagesvp.setAdapter(adapter);
-        loginImagesvp.addOnPageChangeListener(loginImagesvp.listener);
-    }
-
-
     public void clickDesktop(View view) {
         //代码实现跳转
         Intent intent = new Intent();
@@ -365,7 +345,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
             @Override
             public void onGlobalLayout() {
                 Rect r = new Rect();
-                if(llContainer==null)
+                if (llContainer == null)
                     return;
                 llContainer.getWindowVisibleDisplayFrame(r);
                 if (sc == null) {
@@ -397,7 +377,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                if(llContainer==null){
+                if (llContainer == null) {
                     return;
                 }
                 llContainer.scrollTo(0, (Integer) valueAnimator.getAnimatedValue());

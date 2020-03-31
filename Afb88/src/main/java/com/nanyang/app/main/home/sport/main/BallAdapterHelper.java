@@ -93,7 +93,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     public BallAdapterHelper(Context context) {
         this.context = context;
         act = (BaseToolbarActivity) this.context;
-        curCode = act.getApp().getSettingAllDataBean().getCurCode();
+        if (act!=null&&act.getApp().getSettingAllDataBean() != null)
+            curCode = act.getApp().getSettingAllDataBean().getCurCode();
     }
 
     @Override

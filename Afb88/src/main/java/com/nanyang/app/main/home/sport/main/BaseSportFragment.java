@@ -552,7 +552,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 RecyclerView rv = view.findViewById(R.id.rv_list);
                 rv.setPadding(0, 0, 0, 0);
                 rv.setLayoutManager(new LinearLayoutManager(mContext));
-                List<MenuItemInfo> list = AfbUtils.getOddsTypeList(mContext, getApp().getSettingAllDataBean().getCurCode());
+                String curCode = "";
+                if (getApp().getSettingAllDataBean() != null)
+                    curCode = getApp().getSettingAllDataBean().getCurCode();
+                List<MenuItemInfo> list = AfbUtils.getOddsTypeList(mContext, curCode);
                 BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, list, R.layout.text_base_item) {
                     @Override
                     public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {

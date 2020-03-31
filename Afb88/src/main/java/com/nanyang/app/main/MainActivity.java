@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
+import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
@@ -29,10 +30,14 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.home.HomeFragment;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
+import com.unkonw.testapp.libs.utils.LogUtil;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -85,6 +90,7 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 }
             }
         }, 100);
+
 
     }
 

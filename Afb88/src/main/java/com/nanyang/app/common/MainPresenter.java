@@ -17,6 +17,7 @@ import com.nanyang.app.SportIdBean;
 import com.nanyang.app.Utils.LogIntervalUtils;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
+import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.LoadMainDataHelper;
 import com.nanyang.app.main.MainActivity;
@@ -308,6 +309,17 @@ public class MainPresenter extends BaseSwitchPresenter {
     public void loadAllMainData(LoginInfo.LanguageWfBean languageWfBean, final CallBack<String> back) {
         LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
         helper.doRetrofitApiOnUiThread(languageWfBean, back);
+    }
+    public void loadAllImages(final CallBack<AllBannerImagesBean> back) {
+//        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
+        doRetrofitApiOnUiThread(getService(ApiService.class).getAllImagesData(BuildConfig.ImgConfig_URL), new BaseConsumer<AllBannerImagesBean>(baseContext) {
+            @Override
+            protected void onBaseGetData(AllBannerImagesBean data) throws JSONException {
+//                @Subscribe(threadMode = ThreadMode.MainThread)
+                back.onBack(data);
+
+            }
+        });
     }
 
     public void oddsType() {

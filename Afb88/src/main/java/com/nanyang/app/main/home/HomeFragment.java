@@ -63,6 +63,20 @@ public class HomeFragment extends BaseSwitchFragment {
     public void initData() {
         super.initData();
         language = new LanguageHelper(mContext).getLanguage();
+        loadingPics();
+    }
+
+    private void loadingPics() {
+        ((MainActivity) getBaseActivity()).presenter.loadAllImages(new MainPresenter.CallBack<AllBannerImagesBean>() {
+            @Override
+            public void onBack(AllBannerImagesBean data) throws JSONException {
+
+                LogUtil.d(getClass().getSimpleName(), "sendEvent--------------->" + data.toString());
+                ((MainActivity) getBaseActivity()).getApp().setListMainPictures(data.getMain());
+                ((MainActivity) getBaseActivity()).getApp().setListMainBanners(data.getMainBanners());
+                loadUi();
+            }
+        });
     }
 
 
@@ -82,14 +96,23 @@ public class HomeFragment extends BaseSwitchFragment {
             viewPager.stopTask();
     }
 
+
     @Override
     public void onResume() {
         super.onResume();
-        initViewPager(((AfbApplication) getBaseActivity().getApplication()).getListMainBanners());
-        initContent(((AfbApplication) getBaseActivity().getApplication()).getListMainPictures());
+        if (((AfbApplication) getBaseActivity().getApplication()).getListMainBanners() != null)
+            loadUi();
+        else {
+            loadingPics();
+        }
         updateTimer();
         initHomeToolBar();
 
+    }
+
+    private void loadUi() {
+        initViewPager(((AfbApplication) getBaseActivity().getApplication()).getListMainBanners());
+        initContent(((AfbApplication) getBaseActivity().getApplication()).getListMainPictures());
     }
 
     private void initHomeToolBar() {
@@ -108,6 +131,7 @@ public class HomeFragment extends BaseSwitchFragment {
             initHomeToolBar();
         }
     }
+
     private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
         /*   beanHashMap.put("PS GAMING", new SportIdBean("PS GAMING", "", R.string.PRGCashio, "PS GAMING", SportActivity.class, soccerFragment, Color.BLACK));
         beanHashMap.put("SEXY CASINO", new SportIdBean("SEXY CASINO", "", R.string.PRGCashio, "SEXY CASINO", SportActivity.class, soccerFragment, Color.BLACK));
@@ -161,26 +185,21 @@ public class HomeFragment extends BaseSwitchFragment {
                 if (item.getG().equals("Casino")) {
                     ((MainActivity) getBaseActivity()).presenter.getSkipGd88Data();
                     return;
-                }
-                else if (item.getG().equals("PRAGMATIC CASINO")){
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get","",item.getG(),new LoginInfo.LanguageWfBean("GetTT","", "wfPragmatic"),AppConstant.getInstance().HOST,"^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+                } else if (item.getG().equals("PRAGMATIC CASINO")) {
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("GetTT", "", "wfPragmatic"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
                     return;
-                }
-                else if (item.getG().equals("PG CASINO")){
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get","",item.getG(),new LoginInfo.LanguageWfBean("GetTT", "", "wfPGHome"),"","^.*(http[^\"]+)\"\\}.*$");
+                } else if (item.getG().equals("PG CASINO")) {
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("GetTT", "", "wfPGHome"), "", "^.*(http[^\"]+)\"\\}.*$");
                     return;
-                }
-                else if (item.getG().equals("PS GAMING")){
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get","",item.getG(),new LoginInfo.LanguageWfBean("GetTT","",  "wfPSLogin"),AppConstant.getInstance().HOST,"^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+                } else if (item.getG().equals("PS GAMING")) {
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("GetTT", "", "wfPSLogin"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
                     return;
-                }
-                else if (item.getG().equals("SEXY CASINO")){
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("post",AppConstant.getInstance().HOST+"api/SGCheckonline",item.getG(),new SaCasinoWfBean("","","SGCheckonline"),"","^.*\"(http[^\"]+)\",.*$");
+                } else if (item.getG().equals("SEXY CASINO")) {
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("post", AppConstant.getInstance().HOST + "api/SGCheckonline", item.getG(), new SaCasinoWfBean("", "", "SGCheckonline"), "", "^.*\"(http[^\"]+)\",.*$");
 //                    ((MainActivity) getBaseActivity()).presenter.skipPCashio(item.getG(),"GetTT",  "wfPGHome","","^.*(http[^\"]+)\"\\}.*$");
                     return;
-                }
-                else if (item.getG().equals("SA CASINO")){
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("post",AppConstant.getInstance().HOST+"api/SACheckonline",item.getG(),new SaCasinoWfBean("","","SACheckonline"),"","^.*\"(http[^\"]+)\",.*$");
+                } else if (item.getG().equals("SA CASINO")) {
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("post", AppConstant.getInstance().HOST + "api/SACheckonline", item.getG(), new SaCasinoWfBean("", "", "SACheckonline"), "", "^.*\"(http[^\"]+)\",.*$");
                     return;
                 }
                 SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());
@@ -263,7 +282,7 @@ public class HomeFragment extends BaseSwitchFragment {
         @Override
         public void run() {
             String currentTime = "HK: " + TimeUtils.getTime("dd MMM yyyy hh:mm:ss aa", Locale.ENGLISH);
-            ((BaseToolbarActivity) getBaseActivity()).tvTime.setText(currentTime+" GMT+8");
+            ((BaseToolbarActivity) getBaseActivity()).tvTime.setText(currentTime + " GMT+8");
             updateHandler.postDelayed(this, 1000);
         }
     };

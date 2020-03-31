@@ -3,10 +3,8 @@ package com.nanyang.app.load.login;
 
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
-import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 
@@ -42,16 +40,4 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
         return true;
     }
 
-    public void loadAllImages() {
-//        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
-        doRetrofitApiOnUiThread(getService(ApiService.class).getAllImagesData(BuildConfig.ImgConfig_URL), new BaseConsumer<AllBannerImagesBean>(baseContext) {
-            @Override
-            protected void onBaseGetData(AllBannerImagesBean data) {
-//                @Subscribe(threadMode = ThreadMode.MainThread)
-
-                LoginPresenter.this.baseContext.sendImageEvent(data);
-
-            }
-        });
-    }
 }
