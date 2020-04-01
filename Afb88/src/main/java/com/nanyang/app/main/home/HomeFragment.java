@@ -34,8 +34,11 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
+import java.util.Map;
 
 import butterknife.Bind;
 
@@ -132,23 +135,50 @@ public class HomeFragment extends BaseSwitchFragment {
         }
     }
 
+    Map<String, String> enableMap = new HashMap<>();
+
     private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
-        /*   beanHashMap.put("PS GAMING", new SportIdBean("PS GAMING", "", R.string.PRGCashio, "PS GAMING", SportActivity.class, soccerFragment, Color.BLACK));
-        beanHashMap.put("SEXY CASINO", new SportIdBean("SEXY CASINO", "", R.string.PRGCashio, "SEXY CASINO", SportActivity.class, soccerFragment, Color.BLACK));
-        beanHashMap.put("SA CASINO", new SportIdBean("SA CASINO", "", R.string.PRGCashio, "SA CASINO", SportActivity.class, soccerFragment, Color.BLACK));
-*/
 /*        ArrayList<AllBannerImagesBean.MainBannersBean> mainBannersBeen = new ArrayList<>();
         mainBannersBeen.addAll(new ArrayList<>(Arrays.asList(
+           beanHashMap.put("PG CASINO", new SportIdBean("PG CASINO", "", R.string.PGCashio, "PG CASINO", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK));
+
                 new AllBannerImagesBean.MainBannersBean("","PS GAMING","http://13.112.86.40/H50/Img/PSGaming.png"),
                 new AllBannerImagesBean.MainBannersBean("","SEXY CASINO","http://13.112.86.40/H50/Img/SGGaming.png"),
                 new AllBannerImagesBean.MainBannersBean("","SA CASINO","http://13.112.86.40/H50/Img/SAGaming.png")
+                  beanHashMap.put("Casino", new SportIdBean("Casino", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK));c
         )));
         mainBannersBeen.addAll(data);*/
+
+        String isLDEnabled = ((MainActivity) getBaseActivity()).getApp().getUser().getIsLDEnabled();
+        enableMap.put("Casino", isLDEnabled);
+        String isEnabledPG = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledPG();
+        enableMap.put("PG CASINO", isEnabledPG);
+        String isEnabledPRG = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledPRG();
+        enableMap.put("PRAGMATIC CASINO", isEnabledPRG);
+        String isEnabledPS = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledPS();
+        enableMap.put("PS GAMING", isEnabledPS);
+        String isEnabledSA = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledSA();
+        enableMap.put("SEXY CASINO", isEnabledSA);
+        String isEnabledSG = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledSG();
+        enableMap.put("SA CASINO", isEnabledSG);
+        String isEnabledEV = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledEV();
+        enableMap.put("EV CASINO", isEnabledEV);
+        String isEnabledDG = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledDG();
+        enableMap.put("DG CASINO", isEnabledDG);
 
 
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
 //        data.add(new AllBannerImagesBean.MainBannersBean())
         rvContent.setLayoutManager(layoutManager);
+        Iterator<AllBannerImagesBean.MainBannersBean> iterator = data.iterator();
+        while (iterator.hasNext()) {
+            AllBannerImagesBean.MainBannersBean next = iterator.next();
+            String enable = enableMap.get(next.getG());
+            if (enable != null && enable.equals("False")) {
+                iterator.remove();
+            }
+        }
         adapter = new BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean>(mContext, data, R.layout.home_sport_item_image_text) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, AllBannerImagesBean.MainBannersBean item) {
