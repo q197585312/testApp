@@ -45,6 +45,81 @@ public class PersonalInfo {
     String oddsDiff;
     String spreadDiff;
 
+    String IsLDEnabled;
+    String IsEnabledPG;
+    String IsEnabledPRG;
+    String IsEnabledPS;
+    String IsEnabledSG;
+    String IsEnabledSA;
+    String IsEnabledEV;
+    String IsEnabledDG;
+
+    public String getIsLDEnabled() {
+        return IsLDEnabled;
+    }
+
+    public void setIsLDEnabled(String isLDEnabled) {
+        IsLDEnabled = isLDEnabled;
+    }
+
+    public String getIsEnabledPG() {
+        return IsEnabledPG;
+    }
+
+    public void setIsEnabledPG(String isEnabledPG) {
+        IsEnabledPG = isEnabledPG;
+    }
+
+    public String getIsEnabledPRG() {
+        return IsEnabledPRG;
+    }
+
+    public void setIsEnabledPRG(String isEnabledPRG) {
+        IsEnabledPRG = isEnabledPRG;
+    }
+
+    public String getIsEnabledPS() {
+        return IsEnabledPS;
+    }
+
+    public void setIsEnabledPS(String isEnabledPS) {
+        IsEnabledPS = isEnabledPS;
+    }
+
+    public String getIsEnabledSG() {
+        return IsEnabledSG;
+    }
+
+    public void setIsEnabledSG(String isEnabledSG) {
+        IsEnabledSG = isEnabledSG;
+    }
+
+    public String getIsEnabledSA() {
+        return IsEnabledSA;
+    }
+
+    public void setIsEnabledSA(String isEnabledSA) {
+        IsEnabledSA = isEnabledSA;
+    }
+
+    public String getIsEnabledEV() {
+        return IsEnabledEV;
+    }
+
+    public void setIsEnabledEV(String isEnabledEV) {
+        IsEnabledEV = isEnabledEV;
+    }
+
+    public String getIsEnabledDG() {
+        return IsEnabledDG;
+    }
+
+    public void setIsEnabledDG(String isEnabledDG) {
+        IsEnabledDG = isEnabledDG;
+    }
+
+
+
     public String getXYCredit() {
         return XYCredit;
     }
