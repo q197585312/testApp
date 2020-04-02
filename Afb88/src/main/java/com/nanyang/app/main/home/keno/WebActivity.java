@@ -76,6 +76,7 @@ public class WebActivity extends BaseToolbarActivity {
                 return true;
             }
         }
+        finish();
         return super.onKeyDown(keyCode, event);
     }
 
@@ -85,6 +86,7 @@ public class WebActivity extends BaseToolbarActivity {
         if (webView.canGoBack()) {
             webView.goBack();//返回上一页面
         } else {
+            finish();
             super.onBackCLick(v);
         }
     }

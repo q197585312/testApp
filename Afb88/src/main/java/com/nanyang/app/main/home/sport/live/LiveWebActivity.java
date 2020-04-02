@@ -5,7 +5,6 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +21,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
 import com.nanyang.app.main.home.sport.additional.IAdded;
@@ -30,11 +30,11 @@ import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
-import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.VideoPlayer;
+
+import org.json.JSONException;
 
 import butterknife.Bind;
 
@@ -123,8 +123,13 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
                 fullChangeScreen();
             }
         });
-
-        initRv();
+        final LiveSelectedHelper liveSelectedHelper = new LiveSelectedHelper();
+        liveSelectedHelper.iniSelectedHelper(rv_title_list, this, new MainPresenter.CallBack<MenuItemInfo>() {
+            @Override
+            public void onBack(MenuItemInfo data) throws JSONException {
+                refreshAddedData();
+            }
+        });
         initWeb(liveParamsInfo.getGameUrl());
         initPlay(liveParamsInfo.getLivePlayUrlId());
         createPresenter(new AdditionPresenter(this));
@@ -150,34 +155,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     }
 
 
-    private void initRv() {
-        liveSelectedHelper = new LiveSelectedHelper();
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
 
-        rv_title_list.setLayoutManager(layoutManager);
-        final BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, liveSelectedHelper.getList(), R.layout.text_wrap_wrap) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                TextView textView = holder.getTextView(R.id.item_text_tv);
-                textView.setTextColor(ContextCompat.getColor(mContext, R.color.black_grey));
-                textView.setText(item.getRes());
-                if (liveSelectedHelper.isPositionSelected(position)) {
-                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.yellow1));
-                }
-            }
-        };
-        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-            @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                liveSelectedHelper.putIndex(position);
-                baseRecyclerAdapter.notifyDataSetChanged();
-                refreshAddedData();
-            }
-        });
-        rv_title_list.setAdapter(baseRecyclerAdapter);
-
-    }
 
     private void refreshAddedData() {
         if (adapterHelper == null)
@@ -363,7 +341,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         if (isHasAttached()) {
             String type = liveParamsInfo.getOddsType();
             if (!StringUtils.isNull(type))
-                ot=type;
+                ot = type;
         }
         return ot;
     }

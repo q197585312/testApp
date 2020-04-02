@@ -8,6 +8,7 @@ import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.http.SslError;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -15,7 +16,6 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
-import android.text.TextUtils;
 import android.text.style.BackgroundColorSpan;
 import android.text.style.ForegroundColorSpan;
 import android.util.DisplayMetrics;
@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
+import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -280,17 +281,34 @@ public class AfbUtils {
     public static void synCookies(Context context, WebView webView, String url) {
         WebSettings webSettings = webView.getSettings();
         //开启javascript
-        webSettings.setJavaScriptEnabled(true);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        webView.getSettings().setAllowFileAccess(true);// 设置允许访问文件数据
-        webView.getSettings().setSupportZoom(false);
-        webView.getSettings().setBuiltInZoomControls(true);
-        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
-        webView.getSettings().setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        webView.getSettings().setJavaScriptEnabled(true);
         webView.getSettings().setDomStorageEnabled(true);
-        webView.getSettings().setDatabaseEnabled(true);
-        webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
+        webView.getSettings().setJavaScriptEnabled(true);//是否允许执行js，默认为false。设置true时，会提醒可能造成XSS漏洞
+        webView.getSettings().setSupportZoom(false);//是否可以缩放，默认true
+        webView.getSettings().setBuiltInZoomControls(false);//是否显示缩放按钮，默认false
+        webView.getSettings().setDisplayZoomControls(false);
+
+        webView.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
+        webView.getSettings().setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
+        webView.getSettings().setAppCacheEnabled(true);//是否使用缓存
+        webView.getSettings().setDomStorageEnabled(true);//DOM Storage
         webView.setWebChromeClient(new WebChromeClient());
+        webView.setWebViewClient(new WebViewClient() {
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                //handler.cancel(); 默认的处理方式，WebView变成空白页
+                handler.proceed();//接受证书
+//                dismissBlockDialog();
+                //handleMessage(Message msg); 其他处理
+            }
+        });
         StringBuffer sb = new StringBuffer();
         List<Cookie> cookies = CookieManger.getCookieStore().get(url);
         if (cookies != null && cookies.size() > 0) {
@@ -298,21 +316,23 @@ public class AfbUtils {
 
                 String cookieName = cookie1.name();
                 String cookieValue = cookie1.value();
-                if (!TextUtils.isEmpty(cookieName)
-                        && !TextUtils.isEmpty(cookieValue)) {
+                if (!StringUtils.isNull(cookieName)
+                        && !StringUtils.isNull(cookieValue)) {
                     sb.append(cookieName + "=");
                     sb.append(cookieValue + ";");
                 }
             }
 //            cookie = cookies.get(0).toString();
         }
-        LogUtil.d("url---","cookie-------:"+sb.toString());
+        LogUtil.d("url---", "cookie-------:" + sb.toString());
         String[] cookie = sb.toString().split(";");
         for (int i = 0; i < cookie.length; i++) {
             AfbUtils.synCookies(context, url, cookie[i]);
         }
 
         webView.loadUrl(url);
+
+//        webView.loadUrl(url);
     }
 
 
@@ -430,6 +450,8 @@ public class AfbUtils {
         beanHashMap.put("PS GAMING", new SportIdBean("PS GAMING", "", R.string.PS_GAMING, "PS GAMING", SportActivity.class, soccerFragment, Color.BLACK));
         beanHashMap.put("SEXY CASINO", new SportIdBean("SEXY CASINO", "", R.string.SEXY_CASINO, "SEXY CASINO", SportActivity.class, soccerFragment, Color.BLACK));
         beanHashMap.put("SA CASINO", new SportIdBean("SA CASINO", "", R.string.SA_CASINO, "SA CASINO", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("EV CASINO", new SportIdBean("EV CASINO", "", R.string.EV_Cashio, "EV CASINO", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("DG CASINO", new SportIdBean("DG CASINO", "", R.string.DG_Cashio, "DG CASINO", SportActivity.class, soccerFragment, Color.BLACK));
 
         beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball));
         beanHashMap.put("21", new SportIdBean("21", "3", R.string.Tennis, "Tennis", SportActivity.class, tennisFragment, Color.BLACK, R.mipmap.tennis));
@@ -890,7 +912,7 @@ public class AfbUtils {
         }
     }
 
-    public static int getLangMonth( String month) {
+    public static int getLangMonth(String month) {
         if (month.startsWith("0")) {
             month = month.substring(1);
         }

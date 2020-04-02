@@ -5,6 +5,7 @@ package com.nanyang.app.main.home.sport.model;
  */
 
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import java.util.List;
 
@@ -1043,6 +1044,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     }
 
     public void setTvPathIBC(String tvPathIBC) {
+        LogUtil.d("setTvPathIBC","------"+tvPathIBC);
         this.tvPathIBC = tvPathIBC;
     }
 

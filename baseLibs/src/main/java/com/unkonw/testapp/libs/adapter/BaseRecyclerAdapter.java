@@ -241,7 +241,7 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
 
 
     public interface OnItemClickListener<T> {
-        void onItemClick(View view, T item, int position);
+        void onItemClick(View view, T item, int position) ;
     }
 
     public interface OnItemLongClickListener<T> {

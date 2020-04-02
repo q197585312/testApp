@@ -66,10 +66,10 @@ public class HomeFragment extends BaseSwitchFragment {
     public void initData() {
         super.initData();
         language = new LanguageHelper(mContext).getLanguage();
-        loadingPics();
+        loadingUrlPics();
     }
 
-    private void loadingPics() {
+    private void loadingUrlPics() {
         ((MainActivity) getBaseActivity()).presenter.loadAllImages(new MainPresenter.CallBack<AllBannerImagesBean>() {
             @Override
             public void onBack(AllBannerImagesBean data) throws JSONException {
@@ -106,7 +106,7 @@ public class HomeFragment extends BaseSwitchFragment {
         if (((AfbApplication) getBaseActivity().getApplication()).getListMainBanners() != null)
             loadUi();
         else {
-            loadingPics();
+            loadingUrlPics();
         }
         updateTimer();
         initHomeToolBar();
@@ -163,9 +163,9 @@ public class HomeFragment extends BaseSwitchFragment {
         String isEnabledSG = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledSG();
         enableMap.put("SA CASINO", isEnabledSG);
         String isEnabledEV = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledEV();
-        enableMap.put("EV CASINO", isEnabledEV);
+        enableMap.put("EVCashio", isEnabledEV);
         String isEnabledDG = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledDG();
-        enableMap.put("DG CASINO", isEnabledDG);
+        enableMap.put("DGCashio", isEnabledDG);
 
 
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
@@ -230,6 +230,12 @@ public class HomeFragment extends BaseSwitchFragment {
                     return;
                 } else if (item.getG().equals("SA CASINO")) {
                     ((MainActivity) getBaseActivity()).presenter.skipPCashio("post", AppConstant.getInstance().HOST + "api/SACheckonline", item.getG(), new SaCasinoWfBean("", "", "SACheckonline"), "", "^.*\"(http[^\"]+)\",.*$");
+                    return;
+                } else if (item.getG().equals("EV CASINO")) {
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("GetTT", "", "wfEVLogin"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+                    return;
+                } else if (item.getG().equals("DG CASINO")) {
+                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("OpenDGGamee", "", "wfDGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
                     return;
                 }
                 SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());

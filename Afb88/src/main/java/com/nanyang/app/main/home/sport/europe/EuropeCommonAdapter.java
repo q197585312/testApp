@@ -85,23 +85,6 @@ public class EuropeCommonAdapter extends BallAdapterHelper<BallInfo> {
 
     }
 
-    @Override
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final BallInfo item, final int position) {//
-        super.onMatchNotRepeat(helper, item, position);
-        ImageView ivHall = helper.getView(R.id.iv_hall_btn);
-        String rtsMatchId = item.getRTSMatchId();
-        if (rtsMatchId != null && !rtsMatchId.isEmpty() && !rtsMatchId.equals("0")) {
-            ivHall.setVisibility(View.VISIBLE);
-            ivHall.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    back.clickView(v, item, position);
-                }
-            });
-        } else {
-            ivHall.setVisibility(View.INVISIBLE);
-        }
-    }
 
     @Override
     public void handleOddsContent(MyRecyclerViewHolder helper, BallInfo item, int position) {

@@ -233,27 +233,11 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         refreshDataBean.setOt(t);
         refreshDataBean.setOv(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getSortType());
         refreshDataBean.setMt(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getMarketType().getType());
-        String h12 = TimeUtils.dateFormat(new Date(), "yyyy-MM-dd") + " 12:00:00";
-        String now = TimeUtils.dateFormat(new Date(), "yyyy-MM-dd HH:mm:ss");
-        long dif = TimeUtils.diffTime(now, h12, "yyyy-MM-dd HH:mm:ss");
-        Date firstDate = new Date();
-        String d1 = TimeUtils.dateFormat(firstDate, "yyyy-MM-dd");
-        if (dif > 0)
-            d1 = TimeUtils.dateFormat(TimeUtils.getAddDayDate(firstDate, 1), "yyyy-MM-dd");
-        if (t.equals("t") && StringUtils.isNull(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd)) {
-
-            refreshDataBean.setTimess(d1);
+        refreshDataBean.setTimess(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd);
+        if (((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd != null && ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd.equals("7"))
             refreshDataBean.setIa(1);
-            refreshDataBean.setBetable(true);
-        } else {
-            refreshDataBean.setTimess(((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd);
-        }
-        if (t.equals("e")) {
-            if (((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd != null && ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).wd.equals("7"))
-                refreshDataBean.setIa(1);
-            else {
-                refreshDataBean.setIa(0);
-            }
+        else {
+            refreshDataBean.setIa(0);
         }
         List<RefreshDataBean> list = new ArrayList<>();
         list.add(refreshDataBean);
@@ -900,7 +884,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         int n = 0;*/
         boolean needRefresh = false;
         for (B b : tables.getRows()) {
-            needRefresh = needRefresh || addNewSingleSoc(b,tables.getLeagueBean());
+            needRefresh = needRefresh || addNewSingleSoc(b, tables.getLeagueBean());
         }
         /*for (int i = 0; i < allData.size(); i++) {
             TableSportInfo<B> bTableSportInfo = allData.get(i);
@@ -941,26 +925,50 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
     private boolean addNewSingleSoc(B b, LeagueBean leagueBean) throws JSONException {
+
         for (int i = 0; i < allData.size(); i++) {
             List<B> rows = allData.get(i).getRows();
+
             for (int i1 = 0; i1 < rows.size(); i1++) {
 
                 if (rows.get(i1).getSocOddsId().equals(b.getPreSocOddsId())) {
 
                     if (leagueBean.getModuleId().equals(allData.get(i).getLeagueBean().getModuleId())) {
+
                         allData.get(i).getRows().add(i1 + 1, b);
-                    } else if ( allData.size()>(i + 1)&&allData.get(i + 1).getLeagueBean().getModuleId().equals(leagueBean.getModuleId())&&allData.get(i).getRows().size() == i1 + 1 ) {
+                        LogUtil.d("SocketAdd", "新添加了比赛:同一个联赛：" + leagueBean.getModuleTitle()
+                                + ",主队：" + b.getHome()
+                                + ",客队：" + b.getAway()
+                                + ",他的前面得比赛主队：" + rows.get(i1).getHome()
+                                + ",他的前面得比赛客队：" + rows.get(i1).getAway());
+                        return false;
+                    } else if (allData.size() > (i + 1) && allData.get(i + 1).getLeagueBean().getModuleId().equals(leagueBean.getModuleId()) && allData.get(i).getRows().size() == i1 + 1) {
+
                         allData.get(i + 1).getRows().add(0, b);
-                    } else {
+                        LogUtil.d("SocketAdd", "新添加了比赛:最后一个新加个联赛：" + leagueBean.getModuleTitle()
+                                + ",主队：" + b.getHome()
+                                + ",客队：" + b.getAway()
+                                + ",他的前面得比赛主队：" + rows.get(i1).getHome()
+                                + ",他的前面得比赛客队：" + rows.get(i1).getAway());
+                        return false;
+                    } else if (allData.get(i).getRows().size() == i1 + 1) {
                         allData.add(i + 1, new TableSportInfo<>(leagueBean, new ArrayList<>(Arrays.asList(b))));
+                        LogUtil.d("SocketAdd", "新添加了比赛:联赛：" + allData.get(i).getLeagueBean().getModuleTitle() + "最后一个的后面新联赛" + leagueBean.getModuleTitle()
+                                + ",主队：" + b.getHome()
+                                + ",客队：" + b.getAway()
+                                + ",他的前面得比赛主队：" + rows.get(i1).getHome()
+                                + ",他的前面得比赛客队：" + rows.get(i1).getAway());
+                        return false;
+                    } else {
+                        LogUtil.d("SocketAdd", "新添加了比赛:错误直接更新：" + leagueBean.getModuleTitle()
+                                + ",主队：" + b.getHome()
+                                + ",客队：" + b.getAway()
+                                + ",他的前面得比赛主队：" + rows.get(i1).getHome()
+                                + ",他的前面得比赛客队：" + rows.get(i1).getAway()
+                                + ",他的前面得联赛：" + allData.get(i).getLeagueBean().getModuleTitle());
+                        return true;
                     }
-                    LogUtil.d("SocketAdd", "新添加了比赛:"
-                            + ",主队：" + b.getHome()
-                            + ",客队：" + b.getAway()
-                            + ",他的前面得比赛主队：" + rows.get(i1).getHome()
-                            + ",他的前面得比赛客队：" + rows.get(i1).getAway()
-                    );
-                    return false;
+
                 }
 
             }
@@ -968,17 +976,30 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         boolean needRefresh = false;
         B b2 = allData.get(0).getRows().get(0);
         if (allData.get(0).getLeagueBean().getModuleId().equals(leagueBean.getModuleId())) {
-            if (b2.getPreSocOddsId().equals(b.getSocOddsId()))
+            if (b2.getPreSocOddsId().equals(b.getSocOddsId())) {
                 allData.get(0).getRows().add(0, b);
-            else {
+                LogUtil.d("SocketAdd", "新添加了比赛:第一个联赛得头一个：" + leagueBean.getModuleTitle()
+                        + ",主队：" + b.getHome()
+                        + ",客队：" + b.getAway());
+            } else {
                 needRefresh = true;
+                LogUtil.d("SocketAdd", "新添加了比赛:错误第一个联赛没对齐：" + leagueBean.getModuleTitle()
+                        + ",主队：" + b.getHome()
+                        + ",客队：" + b.getAway());
             }
 
         } else {
             if (b2.getPreSocOddsId().equals(b.getSocOddsId())) {
+
                 allData.add(0, new TableSportInfo<>(leagueBean, new ArrayList<>(Arrays.asList(b))));
+                LogUtil.d("SocketAdd", "新添加了比赛:新加的一个联赛得头一个：" + leagueBean.getModuleTitle()
+                        + ",主队：" + b.getHome()
+                        + ",客队：" + b.getAway());
             } else {
                 needRefresh = true;
+                LogUtil.d("SocketAdd", "新添加了比赛:错误新联赛没对齐：" + leagueBean.getModuleTitle()
+                        + ",主队：" + b.getHome()
+                        + ",客队：" + b.getAway());
             }
         }
         return needRefresh;

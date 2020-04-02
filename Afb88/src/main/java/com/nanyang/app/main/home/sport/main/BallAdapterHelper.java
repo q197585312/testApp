@@ -3,6 +3,8 @@ package com.nanyang.app.main.home.sport.main;
 import android.content.Context;
 import android.graphics.Color;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
 import com.nanyang.app.main.home.sport.live.LiveSelectedHelper;
@@ -29,6 +32,8 @@ import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.training.ScrollLayout;
+
+import org.json.JSONException;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -52,7 +57,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     private AddMBean additionData;
 
     private BallInfo additionBallItem;
-    public boolean isLiveOpen;
 
 
     public void setIsLiveOpen(boolean b) {
@@ -70,6 +74,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     private int slIndex = 0;
+    final LiveSelectedHelper liveSelectedHelper = new LiveSelectedHelper();
 
     synchronized void notifyPositionAdded(AddMBean data, BallInfo item) {
         this.additionData = data;
@@ -93,21 +98,53 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     public BallAdapterHelper(Context context) {
         this.context = context;
         act = (BaseToolbarActivity) this.context;
-        if (act!=null&&act.getApp().getSettingAllDataBean() != null)
+        if (act != null && act.getApp().getSettingAllDataBean() != null)
             curCode = act.getApp().getSettingAllDataBean().getCurCode();
+    }
+
+    /**
+     * RecyclerView 移动到当前位置，
+     *
+     * @param manager       设置RecyclerView对应的manager
+     * @param mRecyclerView 当前的RecyclerView
+     * @param n             要跳转的位置
+     */
+    public static void MoveToPosition(LinearLayoutManager manager, RecyclerView mRecyclerView, int n) {
+
+
+        int firstItem = manager.findFirstVisibleItemPosition();
+        int lastItem = manager.findLastVisibleItemPosition();
+        if (n <= firstItem) {
+            mRecyclerView.scrollToPosition(n);
+        } else if (n <= lastItem) {
+            int top = mRecyclerView.getChildAt(n - firstItem).getTop();
+            mRecyclerView.scrollBy(0, top);
+        } else {
+            mRecyclerView.scrollToPosition(n);
+        }
     }
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
-        LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
+        final LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
+        RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
 
         if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
-            LiveSelectedHelper liveSelectedHelper = new LiveSelectedHelper();
-            HashMap<Boolean, MenuItemInfo> linkMap = liveSelectedHelper.getLinkMap();
-            createAddedData(item, parent, additionData, linkMap);
+            rv_title_list.setVisibility(View.VISIBLE);
+
+            liveSelectedHelper.iniSelectedHelper(rv_title_list, context, new MainPresenter.CallBack<MenuItemInfo>() {
+                @Override
+                public void onBack(MenuItemInfo data) throws JSONException {
+                    createAddedData(item, parent, additionData, liveSelectedHelper.getLinkMap());
+                }
+            });
+
+            createAddedData(item, parent, additionData, liveSelectedHelper.getLinkMap());
+
+            MoveToPosition((LinearLayoutManager) rv_title_list.getLayoutManager(), rv_title_list, liveSelectedHelper.getPositionSelected());
         } else {
             parent.setVisibility(View.GONE);
-
+            rv_title_list.setVisibility(View.GONE);
         }
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.INVISIBLE);
