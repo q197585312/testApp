@@ -198,7 +198,57 @@
 
 
         </com.nanyang.app.Utils.FlowLayout>
+        <LinearLayout
+            android:id="@+id/ll_live_parent"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
+                android:text="@string/live_score"
+                android:textColor="@color/blue1"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:paddingLeft="3dp"
+                android:id="@+id/tv_running_score_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_grey"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - "
+                android:textColor="@color/black_grey"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_running_score_away"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_grey"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:paddingLeft="4dp"
+                android:id="@+id/tv_running_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginLeft="2dp"
+                android:gravity="right"
+                android:textColor="@color/red"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
         <LinearLayout
             android:padding="5dp"
             android:layout_width="match_parent"

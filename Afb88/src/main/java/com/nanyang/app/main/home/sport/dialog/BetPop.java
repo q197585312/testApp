@@ -1015,7 +1015,6 @@ public class BetPop extends BasePopupWindow {
             return;
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty()) {
-            setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_NOTHING);
             String lag = AfbUtils.getLanguage(context);
             String l = "eng";
             if (lag.equals("zh")) {

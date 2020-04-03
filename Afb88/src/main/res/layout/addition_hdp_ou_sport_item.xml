@@ -36,7 +36,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:padding="1dp"
-                        android:text="@string/Home"
+                        android:text="@string/h"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
 
@@ -81,7 +81,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:padding="1dp"
-                        android:text="@string/Away"
+                        android:text="@string/a"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
@@ -132,7 +132,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:padding="1dp"
-                        android:text="@string/over"
+                        android:text="@string/o"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
@@ -176,7 +176,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:padding="1dp"
-                        android:text="@string/under"
+                        android:text="@string/u"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
@@ -227,7 +227,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:padding="1dp"
-                        android:text="@string/Home"
+                        android:text="@string/h"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
 
@@ -271,7 +271,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:padding="1dp"
-                        android:text="@string/Away"
+                        android:text="@string/a"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
@@ -323,7 +323,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:padding="1dp"
-                        android:text="@string/over"
+                        android:text="@string/o"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
@@ -367,7 +367,7 @@
                         android:layout_height="wrap_content"
                         android:gravity="right"
                         android:padding="1dp"
-                        android:text="@string/under"
+                        android:text="@string/u"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 

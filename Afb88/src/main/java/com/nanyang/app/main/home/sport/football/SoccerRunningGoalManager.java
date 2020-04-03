@@ -30,7 +30,7 @@ public class SoccerRunningGoalManager {
     }
 
     public boolean isHomeGoal(BallInfo item) {
-        Boolean isHomeGoal = homeGoal.get(item.getSocOddsId());
+      /*  Boolean isHomeGoal = homeGoal.get(item.getSocOddsId());
         if (isHomeGoal != null)
             return isHomeGoal;
         String runHomeScore = item.getRunHomeScore();
@@ -42,11 +42,26 @@ public class SoccerRunningGoalManager {
         }
         if (item.getIsHomeGoal().equals("1"))
             return true;
+        return false;*/
+       return isHomeGoal(item.getSocOddsId(),item.getRunHomeScore(),item.getRunAwayScore(),item.getIsHomeGoal());
+    }
+    public boolean isHomeGoal(String sid,String runHomeScore,String runAwayScore,String HomeGoal) {
+        Boolean isHomeGoal = homeGoal.get(sid);
+        if (isHomeGoal != null)
+            return isHomeGoal;
+
+        if (runHomeScore.equals("0") && runAwayScore.equals("0"))
+            return false;
+        if (runAwayScore.equals("0")) {
+            return true;
+        }
+        if (HomeGoal.equals("1")||HomeGoal.equals("True"))
+            return true;
         return false;
     }
 
     public boolean isAwayGoal(BallInfo item) {
-        Boolean isHomeGoal = awayGoal.get(item.getSocOddsId());
+     /*   Boolean isHomeGoal = awayGoal.get(item.getSocOddsId());
         if (isHomeGoal != null)
             return isHomeGoal;
         String runHomeScore = item.getRunHomeScore();
@@ -58,8 +73,22 @@ public class SoccerRunningGoalManager {
         }
         if (item.getIsHomeGoal().equals("0"))
             return true;
-        return false;
+        return false;*/
+        return isAwayGoal(item.getSocOddsId(),item.getRunHomeScore(),item.getRunAwayScore(),item.getIsHomeGoal());
+    }
+    public boolean isAwayGoal(String sid,String runHomeScore,String runAwayScore,String HomeGoal) {
+        Boolean isHomeGoal = awayGoal.get(sid);
+        if (isHomeGoal != null)
+            return isHomeGoal;
 
+        if (runHomeScore.equals("0") && runAwayScore.equals("0"))
+            return false;
+        if (runHomeScore.equals("0")) {
+            return true;
+        }
+        if (HomeGoal.equals("0")||HomeGoal.equals("False"))
+            return true;
+        return false;
     }
 
     public void putHomeGoal(BallInfo item, boolean isGoal) {

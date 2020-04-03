@@ -619,4 +619,10 @@
     <string name="SA_CASINO">SA CASINO</string>
     <string name="EV_Cashio">EVOPLAY</string>
     <string name="DG_Cashio">DG CASINO</string>
+    <string name="h">H</string>
+    <string name="o">O</string>
+    <string name="a">A</string>
+    <string name="u">U</string>
+    <string name="e">E</string>
+    <string name="live_score">LIVE SCORE:</string>
 </resources>

@@ -5,6 +5,79 @@ package com.nanyang.app.main.BetCenter.Bean;
  */
 
 public class RunningBean {
+    String HomeScore25;
+    String AwayScore26;
+    String TeamIsRun27;
+    String TeamStatus28;
+    String CurMinute29;
+    String MExtraTime30;
+    String Live31;
+    String IsHomeGoal32;
+    public String getHomeScore25() {
+        return HomeScore25;
+    }
+
+    public void setHomeScore25(String homeScore25) {
+        HomeScore25 = homeScore25;
+    }
+
+    public String getAwayScore26() {
+        return AwayScore26;
+    }
+
+    public void setAwayScore26(String awayScore26) {
+        AwayScore26 = awayScore26;
+    }
+
+    public String getTeamIsRun27() {
+        return TeamIsRun27;
+    }
+
+    public void setTeamIsRun27(String teamIsRun27) {
+        TeamIsRun27 = teamIsRun27;
+    }
+
+    public String getTeamStatus28() {
+        return TeamStatus28;
+    }
+
+    public void setTeamStatus28(String teamStatus28) {
+        TeamStatus28 = teamStatus28;
+    }
+
+    public String getCurMinute29() {
+        return CurMinute29;
+    }
+
+    public void setCurMinute29(String curMinute29) {
+        CurMinute29 = curMinute29;
+    }
+
+    public String getMExtraTime30() {
+        return MExtraTime30;
+    }
+
+    public void setMExtraTime30(String MExtraTime30) {
+        this.MExtraTime30 = MExtraTime30;
+    }
+
+    public String getLive31() {
+        return Live31;
+    }
+
+    public void setLive31(String live31) {
+        Live31 = live31;
+    }
+
+    public String getIsHomeGoal32() {
+        return IsHomeGoal32;
+    }
+
+    public void setIsHomeGoal32(String isHomeGoal32) {
+        IsHomeGoal32 = isHomeGoal32;
+    }
+
+
     private String TransDate0;
     private String Home1;
     private String Away2;
@@ -76,6 +149,15 @@ public class RunningBean {
         OldStatus22 = str[22];
         BetType323 = str[23];
         BetType424 = str[24];
+
+        HomeScore25 = str[25];
+        AwayScore26 = str[26];
+        TeamIsRun27 = str[27];
+        TeamStatus28 = str[28];
+        CurMinute29 = str[29];
+        MExtraTime30 = str[30];
+        Live31 = str[31];
+        IsHomeGoal32 = str[32];
     }
 
     public String getTransDate0() {

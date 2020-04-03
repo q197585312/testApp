@@ -349,8 +349,6 @@ public class LiveWebPop extends WebPop {
         if (context != null) {
             LogUtil.d("BetPop", "showPopupCenterWindow----noShowRts:false");
             ((SportActivity) context).getApp().setNoShowRts(false);
-            if (adapterHelper != null)
-                adapterHelper.setIsLiveOpen(false);
             onStop();
         }
 

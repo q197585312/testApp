@@ -641,7 +641,7 @@
         android:id="@+id/rv_title_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/google_green"
+        android:background="@color/green_light_button"
         android:visibility="gone" />
     <LinearLayout
         android:id="@+id/common_ball_parent_ll"

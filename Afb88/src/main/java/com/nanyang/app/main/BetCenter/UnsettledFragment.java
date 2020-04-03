@@ -5,6 +5,7 @@ import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
@@ -21,6 +22,7 @@ import com.nanyang.app.main.BetCenter.Bean.RunningBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementOpen2ListDataBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementOpen3ListDataBean;
 import com.nanyang.app.main.BetCenter.Presenter.UnsettledPresenter;
+import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -111,9 +113,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             @Override
             public void convert(final MyRecyclerViewHolder holder, int position, final RunningBean item) {
                 String isRun5 = item.getIsRun5();
-                if(!StringUtils.isNull(isRun5)&&isRun5.equals("True")) {
+                if (!StringUtils.isNull(isRun5) && isRun5.equals("True")) {
                     holder.getHolderView().setBackgroundResource(R.color.green_content1);
-                }else {
+                } else {
                     holder.getHolderView().setBackgroundResource(R.color.white);
                 }
                 LinearLayout ll1 = holder.getLinearLayout(R.id.ll_running_par);
@@ -313,16 +315,6 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
                     TextView running_BetType2_odds = holder.getTextView(R.id.running_BetType2_odds);
                     String betType2 = item.getBetType323();
-                  /*  HtmlTagHandler.spanFontHtml(betType2);
-                    if (betType2.contains("red") || item.getBetType424().contains("gbGive")) {
-                        running_BetType2.setTextColor(Color.RED);
-                        running_BetType2_odds.setTextColor(Color.RED);
-                    } else if (betType2.contains("blue") || item.getBetType424().contains("gbTake2")) {
-                        running_BetType2.setTextColor(Color.BLUE);
-                    } else {
-                        running_BetType2.setTextColor(Color.BLACK);
-                    }
-                    betType2 = AfbUtils.delHTMLTag(betType2);*/
 
                     String gameType314 = item.getGameType314();
                     running_BetType2.setText(HtmlTagHandler.spanFontHtml(item.getBetType424()));
@@ -361,6 +353,34 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_Status.setText(dangerStatus8);
                     TextView running_Amt = holder.getTextView(R.id.running_Amt);
                     running_Amt.setText(item.getAmt9());
+                    View view = holder.getView(R.id.ll_live_parent);
+                    TextView tv_running_status = holder.getView(R.id.tv_running_status);
+                    TextView tv_running_score_home = holder.getView(R.id.tv_running_score_home);
+                    TextView tv_running_score_away = holder.getView(R.id.tv_running_score_away);
+
+                    if (item.getTeamIsRun27().equals("True")) {
+                        if (SoccerRunningGoalManager.getInstance().isHomeGoal(item.getSocTransId17(), item.getHomeScore25(), item.getAwayScore26(), item.getIsHomeGoal32())) {
+                            tv_running_score_home.setTextColor(Color.RED);
+                        } else {
+                            tv_running_score_home.setTextColor(Color.BLACK);
+                        }
+                        if (SoccerRunningGoalManager.getInstance().isAwayGoal(item.getSocTransId17(), item.getHomeScore25(), item.getAwayScore26(), item.getIsHomeGoal32())) {
+                            tv_running_score_away.setTextColor(Color.RED);
+                        } else {
+                            tv_running_score_away.setTextColor(Color.BLACK);
+                        }
+                        tv_running_score_home.setText(item.getHomeScore25());
+                        tv_running_score_away.setText(item.getAwayScore26());
+                        view.setVisibility(View.VISIBLE);
+                        String spanned = Html.fromHtml(item.getLive31()).toString();
+                        if (spanned.contains("\n")) {
+                            String[] split = spanned.split("\\n");
+                            tv_running_status.setText(split[1]);
+                        } else
+                            noContainsLive(item, tv_running_status);
+                    } else {
+                        view.setVisibility(View.VISIBLE);
+                    }
                 }
             }
         };
@@ -369,6 +389,55 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             rv.setVisibility(View.VISIBLE);
         else
             rv.setVisibility(View.GONE);
+    }
+
+    protected void noContainsLive(RunningBean item, TextView timeTv) {
+        /*    String HomeScore25;
+    String AwayScore26;
+    String TeamIsRun27;
+    String TeamStatus28;
+    String CurMinute29;
+    String MExtraTime30;
+    String Live31;
+    String IsHomeGoal32;*/
+        String matchDate = item.getTransDate0();
+        timeTv.setText(matchDate);
+        int min;
+        try {
+            String mExtraTime = item.getMExtraTime30();
+            String timeStr;
+            switch (item.getTeamStatus28()) {
+                case "0":
+                    break;
+                case "2":
+                    min = Integer.valueOf(item.getCurMinute29());
+                    if (min < 130 && min > 0) {
+                        timeStr = "2H " + min + "'";
+                        if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
+                            timeStr += "+" + mExtraTime;
+                        }
+                    } else {
+                        timeStr = "";
+                    }
+                    timeTv.setText(timeStr);
+                    break;
+                default:
+                    min = Integer.valueOf(item.getCurMinute29());
+                    if (min < 130 && min > 0) {
+                        timeStr = "1H " + min + "'";
+                        if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
+                            timeStr += "+" + mExtraTime;
+                        }
+                    } else {
+                        timeStr = "";
+                    }
+                    timeTv.setText(timeStr);
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            timeTv.setText("");
+        }
     }
 
     @Override

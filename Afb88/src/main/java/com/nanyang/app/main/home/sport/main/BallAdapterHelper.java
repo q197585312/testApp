@@ -59,9 +59,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     private BallInfo additionBallItem;
 
 
-    public void setIsLiveOpen(boolean b) {
-//        this.isLiveOpen = b;
-    }
 
     public Set<ScrollLayout> getSlFollowers() {
         return slFollowers;
@@ -140,8 +137,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             });
 
             createAddedData(item, parent, additionData, liveSelectedHelper.getLinkMap());
-
-            MoveToPosition((LinearLayoutManager) rv_title_list.getLayoutManager(), rv_title_list, liveSelectedHelper.getPositionSelected());
+            int ps = liveSelectedHelper.getPositionSelected() - 2;
+            if (ps < 0)
+                ps = 0;
+            MoveToPosition((LinearLayoutManager) rv_title_list.getLayoutManager(), rv_title_list, ps);
         } else {
             parent.setVisibility(View.GONE);
             rv_title_list.setVisibility(View.GONE);
@@ -696,7 +695,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 View inflate = LayoutInflater.from(context).inflate(R.layout.addition_ft_1x2_title_item, null);
                 addTitle(parent, inflate, context.getString(R.string.full_time) + context.getString(R.string.odd_even));
                 addAddedByColor(AfbUtils.changeValueS(additionData.getFOdd()), AfbUtils.changeValueS(additionData.getFEven()), additionData.getFOE_SocOddsId(), false, parent, item,
-                        context.getString(R.string.ODD), context.getString(R.string.EVEN), "odd", "even", "", "", R.layout.addition_1x2_sport_item, "1"
+                        context.getString(R.string.o), context.getString(R.string.e), "odd", "even", "", "", R.layout.addition_1x2_sport_item, "1"
                         , additionData.getHasPar() != null && additionData.getHasPar().equals("True")
                         , additionData.getHasPar() != null && additionData.getHasPar().equals("True")
                         , additionData.getFOddIsInetBet().equals("True")
@@ -712,7 +711,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 addTitle(parent, inflate, context.getString(R.string.half_time) + context.getString(R.string.odd_even));
 
                 addAddedByColor(AfbUtils.changeValueS(additionData.getHOdd()), AfbUtils.changeValueS(additionData.getHEven()), additionData.getHOE_SocOddsId(), true, parent, item,
-                        context.getString(R.string.ODD), context.getString(R.string.EVEN), "odd", "even", "", "", R.layout.addition_1x2_sport_item, "1"
+                        context.getString(R.string.o), context.getString(R.string.e), "odd", "even", "", "", R.layout.addition_1x2_sport_item, "1"
                         , additionData.getHHasPar() != null && additionData.getHHasPar().equals("True")
                         , additionData.getHHasPar() != null && additionData.getHHasPar().equals("True")
                         , additionData.getHOddIsInetBet() == null || additionData.getHOddIsInetBet().equals("True")
@@ -841,7 +840,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         AfbUtils.changeValueS(additionData.getFHOOdds()),
                         AfbUtils.changeValueS(additionData.getFHUOdds()),
                         additionData.getHTTG_SocOddsId(), false, parent, item,
-                        "FT.Over ", "FT.Under ", "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
+                        "FT.O ", "FT.U ", "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
                         , false
                         , false
                         , additionData.getFHOOddsIsInetBet().equals("True")
@@ -853,7 +852,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 );
 
                 addAddedByColor(AfbUtils.changeValueS(additionData.getHHOOdds()), AfbUtils.changeValueS(additionData.getHHUOdds()), additionData.getHTTG_FHSocOddsId(), true, parent, item,
-                        "FH.Over ", "FH.Under ", "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
+                        "FH.O ", "FH.U ", "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
                         , false
                         , false
                         , additionData.getHHOOddsIsInetBet().equals("True")
@@ -870,7 +869,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 addTitle(parent, inflate, context.getString(R.string.AWAY_TEAM_TOTAL_GOALS));
 
                 addAddedByColor(AfbUtils.changeValueS(additionData.getFAOOdds()), AfbUtils.changeValueS(additionData.getFAUOdds()), additionData.getATTG_SocOddsId(), false, parent, item,
-                        "FT.Over ", "FT.Under ", "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
+                        "FT.O ", "FT.U ", "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
                         , false
                         , false
                         , additionData.getFAOOddsIsInetBet().equals("True")
@@ -881,7 +880,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         , changeValueF(additionData.getATTG_OU())
                 );
                 addAddedByColor(AfbUtils.changeValueS(additionData.getHAOOdds()), AfbUtils.changeValueS(additionData.getHAUOdds()), additionData.getATTG_FHSocOddsId(), true, parent, item,
-                        "FH.Over ", "FH.Under ", "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
+                        "FH.O ", "FH.U ", "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
                         , false
                         , false
                         , additionData.getHAOOddsIsInetBet().equals("True")
@@ -1041,12 +1040,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View inflate = LayoutInflater.from(context).inflate(R.layout.addition_mm_title_ft_item, null);
                     parent.addView(inflate);
                     addAddedMModds(AfbUtils.changeValueS(mModdsBean.getHomeOdds()), AfbUtils.changeValueS(mModdsBean.getOverOdds()), mModdsBean.getSocOddsId(), false, parent, item,
-                            context.getString(R.string.Home), context.getString(R.string.over), "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU()
+                            context.getString(R.string.h), context.getString(R.string.o), "mmhome", "mmover", mModdsBean.getHDPH(), mModdsBean.getOU()
                             , mModdsBean.getHasHdp().equals("True") && (!StringUtils.isNull(mModdsBean.getHDPH()) || !StringUtils.isNull(mModdsBean.getHDPA()))
                             , mModdsBean.getHasOU().equals("True") && (!StringUtils.isNull(mModdsBean.getOU()))
                     );
                     addAddedMModds(AfbUtils.changeValueS(mModdsBean.getAwayOdds()), AfbUtils.changeValueS(mModdsBean.getUnderOdds()), mModdsBean.getSocOddsId(), false, parent, item,
-                            context.getString(R.string.Away), context.getString(R.string.under), "mmaway", "mmunder", mModdsBean.getHDPA(), ""
+                            context.getString(R.string.a), context.getString(R.string.u), "mmaway", "mmunder", mModdsBean.getHDPA(), ""
                             , mModdsBean.getHasHdp().equals("True") && (!StringUtils.isNull(mModdsBean.getHDPH()) || !StringUtils.isNull(mModdsBean.getHDPA()))
                             , mModdsBean.getHasOU().equals("True") && (!StringUtils.isNull(mModdsBean.getOU()))
                     );
@@ -1135,7 +1134,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             up1_right2_tv.setVisibility(View.GONE);
             up1_right3_tv.setVisibility(View.GONE);
         }
-        if (hdpTitle.equals(context.getString(R.string.Home))) {
+        if (hdpTitle.equals(context.getString(R.string.h))) {
             up1_left_tv.setTextColor(Color.RED);
         } else {
             up1_left_tv.setTextColor(Color.BLACK);
@@ -2144,9 +2143,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             LogUtil.d("additionMap", additionMap.get(true) + ",点击两次关闭");
             additionMap.put(true, "");
         } else {
+            liveSelectedHelper.putIndex(0);
             LogUtil.d("additionMap", additionMap.get(true) + ",点击1次打开");
             additionMap.put(true, item.getSocOddsId().trim());
         }
+
         getBaseRecyclerAdapter().notifyDataSetChanged();
     }
 

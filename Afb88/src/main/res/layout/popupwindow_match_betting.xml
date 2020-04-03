@@ -402,7 +402,7 @@
         <WebView
             android:id="@+id/bet_pop_parent_web_ll"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="175dp"
             android:background="@color/black_grey" />
     </FrameLayout>
 
