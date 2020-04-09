@@ -22,4 +22,5 @@
     <color name="bet_rectangle_bg">#3665DD</color>
     <color name="green_light">#92AEF6</color>
     <color name="green_word">#133a7d</color>
+    <color name="green_light_button">#a5bcfd</color>
 </resources>

@@ -231,7 +231,7 @@ public class HomeFragment extends BaseSwitchFragment {
                 } else if (item.getG().equals("SA CASINO")) {
                     ((MainActivity) getBaseActivity()).presenter.skipPCashio("post", AppConstant.getInstance().HOST + "api/SACheckonline", item.getG(), new SaCasinoWfBean("", "", "SACheckonline"), "", "^.*\"(http[^\"]+)\",.*$");
                     return;
-                } else if (item.getG().equals("EV CASINO")) {
+                } else if (item.getG().equals("EVOPLAY")) {
                     ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("GetTT", "", "wfEVLogin"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
                     return;
                 } else if (item.getG().equals("DG CASINO")) {

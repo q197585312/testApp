@@ -15,6 +15,8 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import static com.unkonw.testapp.libs.api.Api.getService;
 
@@ -25,6 +27,9 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment> {
 
     private UnsettledFragment unsettledFragment;
+    private Timer timer = new Timer();
+    TimerTask task;
+    String type = "W";
 
     /**
      * 使用CompositeSubscription来持有所有的Subscriptions
@@ -36,28 +41,59 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
         unsettledFragment = iBaseContext;
     }
 
+    public void stopUpdate() {
+        if (mCompositeSubscription != null)
+            mCompositeSubscription.clear();
+        if (task != null) {
+            task.cancel();
+            task = null;
+        }
+
+        baseContext.hideLoadingDialog();
+    }
+
+    public void startUpdate() {
+        stopUpdate();
+        getNewData();
+
+    }
+
     public void getRunningList(String type) {
-        BaseParamBean bean = new BaseParamBean("GetTable", "wfRunningH50", type, "1");
-        doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), new BaseConsumer<String>(baseContext) {
-            @Override
-            protected void onBaseGetData(String data) throws JSONException {
-                JSONArray jsonArray = new JSONArray(data);
-                JSONArray jsonData = jsonArray.getJSONArray(3);
-                JSONArray jsonArray1 = jsonData.getJSONArray(0);
-                JSONArray jsonArray2 = jsonArray1.getJSONArray(2);
-                List<RunningBean> dataList = new ArrayList<RunningBean>();
-                for (int i = 0; i < jsonArray2.length(); i++) {
-                    JSONArray ja = jsonArray2.getJSONArray(i);
-                    String[] str = new String[ja.length()];
-                    for (int j = 0; j < ja.length(); j++) {
-                        str[j] = ja.getString(j);
-                    }
-                    RunningBean rb = new RunningBean(str);
-                    dataList.add(rb);
+        this.type = type;
+        startUpdate();
+    }
+
+    private void getNewData() {
+        if (task == null) {
+            task = new TimerTask() {
+                @Override
+                public void run() {
+                    BaseParamBean bean = new BaseParamBean("GetTable", "wfRunningH50", type, "1");
+                    doRetrofitApiOnUiThread(getService(ApiService.class).getData(AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + bean.getJson()), new BaseConsumer<String>(baseContext) {
+                        @Override
+                        protected void onBaseGetData(String data) throws JSONException {
+                            JSONArray jsonArray = new JSONArray(data);
+                            JSONArray jsonData = jsonArray.getJSONArray(3);
+                            JSONArray jsonArray1 = jsonData.getJSONArray(0);
+                            JSONArray jsonArray2 = jsonArray1.getJSONArray(2);
+                            List<RunningBean> dataList = new ArrayList<RunningBean>();
+                            for (int i = 0; i < jsonArray2.length(); i++) {
+                                JSONArray ja = jsonArray2.getJSONArray(i);
+                                String[] str = new String[ja.length()];
+                                for (int j = 0; j < ja.length(); j++) {
+                                    str[j] = ja.getString(j);
+                                }
+                                RunningBean rb = new RunningBean(str);
+                                dataList.add(rb);
+                            }
+                            unsettledFragment.setRvlist(dataList);
+                        }
+                    });
                 }
-                unsettledFragment.setRvlist(dataList);
-            }
-        });
+            };
+            timer.schedule(task, 0, 6000);
+        }
+
     }
 
     public void getParList(String id, BaseConsumer<String> baseConsumer) {

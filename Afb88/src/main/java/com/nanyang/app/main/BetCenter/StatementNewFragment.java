@@ -246,7 +246,10 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 if (winLose.startsWith("-")) {
 
                     tvWl.setTextColor(Color.RED);
-                } else {
+                }else if(winLose.equals("0")){
+                    tvWl.setTextColor(Color.BLACK);
+                }
+                else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
                 tvWl.setText(" " + winLose.replace("-", ""));
@@ -339,7 +342,10 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
 
                 if (winLose.startsWith("-")) {
                     tvWl.setTextColor(Color.RED);
-                } else {
+                }else if(winLose.equals("0")){
+                    tvWl.setTextColor(Color.BLACK);
+                }
+                else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
                 tvWl.setText(" " + winLose.replace("-", ""));

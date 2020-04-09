@@ -123,7 +123,8 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
                 fullChangeScreen();
             }
         });
-        final LiveSelectedHelper liveSelectedHelper = new LiveSelectedHelper();
+
+        liveSelectedHelper = new LiveSelectedHelper();
         liveSelectedHelper.iniSelectedHelper(rv_title_list, this, new MainPresenter.CallBack<MenuItemInfo>() {
             @Override
             public void onBack(MenuItemInfo data) throws JSONException {

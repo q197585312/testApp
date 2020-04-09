@@ -54,7 +54,7 @@
             android:id="@+id/tv_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="#FE9776"
+            android:textColor="@color/black_grey"
             android:textSize="12sp" />
 
         <TextView

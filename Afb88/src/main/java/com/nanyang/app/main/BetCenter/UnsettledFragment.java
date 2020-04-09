@@ -58,6 +58,12 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+        presenter.stopUpdate();
+    }
+
+    @Override
     public void initData() {
         super.initData();
         createPresenter(new UnsettledPresenter(this));
@@ -401,7 +407,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     String Live31;
     String IsHomeGoal32;*/
         String matchDate = item.getTransDate0();
-        timeTv.setText(matchDate);
+        timeTv.setText("");
         int min;
         try {
             String mExtraTime = item.getMExtraTime30();

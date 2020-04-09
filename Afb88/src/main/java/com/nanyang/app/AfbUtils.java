@@ -450,7 +450,7 @@ public class AfbUtils {
         beanHashMap.put("PS GAMING", new SportIdBean("PS GAMING", "", R.string.PS_GAMING, "PS GAMING", SportActivity.class, soccerFragment, Color.BLACK));
         beanHashMap.put("SEXY CASINO", new SportIdBean("SEXY CASINO", "", R.string.SEXY_CASINO, "SEXY CASINO", SportActivity.class, soccerFragment, Color.BLACK));
         beanHashMap.put("SA CASINO", new SportIdBean("SA CASINO", "", R.string.SA_CASINO, "SA CASINO", SportActivity.class, soccerFragment, Color.BLACK));
-        beanHashMap.put("EV CASINO", new SportIdBean("EV CASINO", "", R.string.EV_Cashio, "EV CASINO", SportActivity.class, soccerFragment, Color.BLACK));
+        beanHashMap.put("EVOPLAY", new SportIdBean("EVOPLAY", "", R.string.EV_Cashio, "EVOPLAY", SportActivity.class, soccerFragment, Color.BLACK));
         beanHashMap.put("DG CASINO", new SportIdBean("DG CASINO", "", R.string.DG_Cashio, "DG CASINO", SportActivity.class, soccerFragment, Color.BLACK));
 
         beanHashMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball));
