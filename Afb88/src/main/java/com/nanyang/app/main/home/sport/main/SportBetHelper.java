@@ -3,7 +3,9 @@ package com.nanyang.app.main.home.sport.main;
 import android.support.annotation.NonNull;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -11,6 +13,7 @@ import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
+import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
@@ -197,6 +200,18 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         }
     }
 
+    private void test(View  v) {
+        final PopupWindow popupWindow = new PopupWindow(v,
+                300, 300, false);
+        View inflate = LayoutInflater.from(getBaseView().getIBaseContext().getBaseActivity()).inflate(R.layout.item_bet, null);
+        popupWindow.setContentView(inflate);
+        popupWindow.setTouchable(true);
+        popupWindow.setBackgroundDrawable(null);
+        popupWindow.setOutsideTouchable(true);
+
+        popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
+    }
+
 
     @NonNull
     protected Disposable getDisposable(final TextView v, final boolean isHf, String betOddsUrl) {
@@ -221,8 +236,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         JSONArray jsonArray = null;
                         try {
                             Log.d("updateMixListText", "getRefreshResult:" + s);
-                            s = AfbUtils.delHTMLTag(s);
-                            Log.d("betUrl", "delHTMLTag:" + s);
+//                            s = AfbUtils.delHTMLTag(s);
                             jsonArray = new JSONArray(s);
                         } catch (JSONException e) {
                             getBaseView().onFailed(s);

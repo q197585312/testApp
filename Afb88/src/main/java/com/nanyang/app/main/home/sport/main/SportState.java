@@ -943,7 +943,17 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                                 + ",他的前面得比赛客队：" + rows.get(i1).getAway());
                         return false;
                     } else if (allData.size() > (i + 1) && allData.get(i + 1).getLeagueBean().getModuleId().equals(leagueBean.getModuleId()) && allData.get(i).getRows().size() == i1 + 1) {
-
+                        if (allData.get(i + 1).getRows().size() > 0) {
+                            String socOddsId = b.getSocOddsId();
+                            String preSocOddsId = allData.get(i + 1).getRows().get(0).getPreSocOddsId();
+                            if (!socOddsId.equals(preSocOddsId)) {
+                                LogUtil.d("SocketAdd", "新添加了比赛:联赛第一位的preSocOddsId错误直接更新：" + leagueBean.getModuleTitle()
+                                        + ",主队：" + b.getHome()
+                                        + ",客队：" + b.getAway()
+                                       );
+                                return true;
+                            }
+                        }
                         allData.get(i + 1).getRows().add(0, b);
                         LogUtil.d("SocketAdd", "新添加了比赛:最后一个新加个联赛：" + leagueBean.getModuleTitle()
                                 + ",主队：" + b.getHome()

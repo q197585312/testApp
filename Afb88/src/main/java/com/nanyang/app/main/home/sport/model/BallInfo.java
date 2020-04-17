@@ -717,7 +717,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     String HasPar_FH;
 
     public String getHasHdp_FH() {
-        if (StringUtils.isEmpty(getHOdds_FH()) || StringUtils.isEmpty(getAOdds_FH()) || StringUtils.isEmpty(getHdp_FH()) || Math.abs(Float.valueOf(getAOdds_FH())) < 0.3 || Math.abs(Float.valueOf(getHOdds_FH())) < 0.3)
+        if (StringUtils.isEmpty(getHOdds_FH()) || StringUtils.isEmpty(getAOdds_FH()) || StringUtils.isEmpty(getHdp_FH()) || Math.abs(Float.valueOf(getAOdds_FH())) <= 0.3 || Math.abs(Float.valueOf(getHOdds_FH())) <= 0.3)
             return "0";
         return "1";
     }
@@ -741,7 +741,7 @@ public class BallInfo extends SportInfo implements IRTMatchInfo {
     }
 
     public String getHasHdp() {
-        if (StringUtils.isEmpty(getHOdds()) || StringUtils.isEmpty(getAOdds()) || StringUtils.isEmpty(getHdp()) || Math.abs(Float.valueOf(getAOdds())) < 0.3 || Math.abs(Float.valueOf(getHOdds())) < 0.3)
+        if (StringUtils.isEmpty(getHOdds()) || StringUtils.isEmpty(getAOdds()) || StringUtils.isEmpty(getHdp()) || Math.abs(Float.valueOf(getAOdds())) <= 0.3 || Math.abs(Float.valueOf(getHOdds())) <= 0.3)
             hasHdp = "0";
         else
             hasHdp = "1";

@@ -128,24 +128,44 @@
         </LinearLayout>
     </FrameLayout>
 
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_title_list"
+    <LinearLayout
+        android:id="@+id/ll_title_list"
+        android:background="@color/green_light_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/google_green" />
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_left_green_double" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_title_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+           />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right_green_double" />
+    </LinearLayout>
+
 
     <ScrollView
-        android:background="@color/green_light_white"
         android:id="@+id/sv_bottom_content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/green_light_white">
 
         <LinearLayout
-            android:background="@color/green_light_white_low"
             android:id="@+id/common_ball_parent_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/green_light_white_low"
             android:orientation="vertical" />
 
     </ScrollView>

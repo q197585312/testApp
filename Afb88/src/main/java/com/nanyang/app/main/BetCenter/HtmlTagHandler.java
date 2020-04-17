@@ -109,6 +109,7 @@ public class HtmlTagHandler implements Html.TagHandler {
                 .replaceAll("(?i)color='blue'", "color='#0000ff'")
                 .replaceAll("(?i)color='black'", "color='#000000'")
                 .replaceAll("(?i)color='Error'", "color='#ff0000'")
+                .replaceAll("(?i)color=\"orange\"", "color='#FBBC05'")
 
                 .replaceAll("(?i)color='gb'", "color='#0000ff'")
 
@@ -119,6 +120,7 @@ public class HtmlTagHandler implements Html.TagHandler {
                 .replaceAll("(?i)MM_blue", "#0000ff")
 
                 .replaceAll("(?i)gbGive", "#ee2c2c")
+                .replaceAll("(?i)Give", "#ee2c2c")
                 .replaceAll("(?i)gbTake2", "'#0000ff'")
                 .replaceAll("(?i)MM_black", "#000000")
                 ;
@@ -130,4 +132,7 @@ public class HtmlTagHandler implements Html.TagHandler {
         return Html.fromHtml(spanFont(span));
 
     }
+
+
+
 }

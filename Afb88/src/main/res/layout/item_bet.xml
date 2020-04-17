@@ -141,10 +141,12 @@
                 android:background="@color/pink_light_bg"
                 android:paddingLeft="2dp"
                 android:paddingRight="2dp"
-                android:textColor="#00000000"
+                android:textColor="@color/black"
                 android:textSize="13sp" />
 
             <TextView
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
                 android:id="@+id/bet_odds_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

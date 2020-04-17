@@ -168,10 +168,10 @@
     <string name="Myanmar_Odds">Myanmar Odds</string>
     <string name="FULL_H_A">FT.HDP</string>
     <string name="FULL_O_U">FT.O/U</string>
-    <string name="HALF_H_A">1H.HDP</string>
-    <string name="HALF_O_U">1H.OU</string>
+    <string name="HALF_H_A">FH.HDP</string>
+    <string name="HALF_O_U">FH.OU</string>
     <string name="FULL_O_E">FT.OE</string>
-    <string name="HALF_O_E">1H.OE</string>
+    <string name="HALF_O_E">FH.OE</string>
     <string name="HANDICAP">HDP</string>
     <string name="OVER_UNDER">O/U</string>
     <string name="TO_WIN">TO WIN</string>
@@ -526,7 +526,7 @@
     <string name="E_Sports_Outright">E-Sports - Outright</string>
     <string name="Net_Error">Net Error</string>
     <string name="Running4">RUNNING</string>
-    <string name="TabMyBets">My Bets</string>
+    <string name="TabMyBets">Bet list</string>
     <string name="max_win">Max Payout:</string>
     <string name="min_bet_money">Min Bet:</string>
     <string name="max_bet_money">Max Bet:</string>
@@ -536,8 +536,8 @@
     <string name="normal">Normal</string>
     <string name="FT_HDP">FT.HDP</string>
     <string name="FT_OU">FT.OU</string>
-    <string name="HT_HDP">1H.HDP</string>
-    <string name="HT_OU">1H.OU</string>
+    <string name="HT_HDP">FH.HDP</string>
+    <string name="HT_OU">FH.OU</string>
     <string name="Bet_Slip">Bet Slip</string>
     <string name="Note_">Note:</string>
     <string name="GMT_8">Please note that the displayed time is based on GMT +8 hours</string>
@@ -625,4 +625,5 @@
     <string name="u">U</string>
     <string name="e">E</string>
     <string name="live_score">LIVE SCORE:</string>
+    <string name="All">ALL</string>
 </resources>

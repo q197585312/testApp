@@ -11,6 +11,7 @@
     <color name="blue1">#5a96dd</color>
     <color name="blue_300">#42c6ff</color>
     <color name="white">@android:color/white</color>
+
     <!--black-grey-->
     <color name="black">@android:color/black</color>
     <color name="black_grey">#333333</color>
@@ -56,6 +57,7 @@
     <color name="yellow_login">#FFEEFD01</color>
     <color name="orange_desktop">#FFFD7E01</color>
     <color name="yellow_light_bg">#fdf1b5</color>
+    <color name="yellow_white_bg">#F3F2E3</color>
 
 
     <!--green-->

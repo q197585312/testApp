@@ -11,7 +11,6 @@ import com.nanyang.app.main.home.sport.main.OtherRunningDoubleAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportAdapterHelper;
 import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.BallInfo;
-import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 
 /**
  * Created by ASUS on 2019/4/23.
@@ -53,17 +52,7 @@ class AllRunningRunningState extends AllRunningCommonState {
     @Override
     public SportAdapterHelper<BallInfo> onSetAdapterHelper() {
         if (fragment.currentIdBean.getId().equals("182"))
-            return new EuropeRunningAdapterHelper(baseView.getIBaseContext().getBaseActivity()) {
-                @Override
-                public void onConvert(MyRecyclerViewHolder helper, int position, BallInfo item) {
-                    super.onConvert(helper, position, item);
-                   /* ViewGroup.LayoutParams layoutParams = helper.getHolderView().getLayoutParams();
-                    if (getItemVisible() == View.VISIBLE) {
-                        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-                    } else
-                        layoutParams.height = 0;*/
-                }
-            };
+            return new EuropeRunningAdapterHelper(baseView.getIBaseContext().getBaseActivity());
         else if (fragment.currentIdBean.getId().equals("1")) {
             return new SoccerRunningAdapterHelper(baseView.getIBaseContext().getBaseActivity());
         } else {

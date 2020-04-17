@@ -33,7 +33,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 
@@ -51,17 +53,13 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     TextView tvWaiteCount;
     @Bind(R.id.ll_note)
     LinearLayout llNote;
+    Map<String, Boolean> showDetailMap = new HashMap<>();
 
     @Override
     public int onSetLayoutId() {
         return R.layout.fragment_running;
     }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        presenter.stopUpdate();
-    }
 
     @Override
     public void initData() {
@@ -87,7 +85,6 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 presenter.getRunningList(type);
             }
         });
-        presenter.getRunningList(type);
 
     }
 
@@ -117,7 +114,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         rv.setLayoutManager(llm);
         BaseRecyclerAdapter<RunningBean> adapter = new BaseRecyclerAdapter<RunningBean>(mContext, list, R.layout.item_running) {
             @Override
-            public void convert(final MyRecyclerViewHolder holder, int position, final RunningBean item) {
+            public void convert(final MyRecyclerViewHolder holder, final int position, final RunningBean item) {
                 String isRun5 = item.getIsRun5();
                 if (!StringUtils.isNull(isRun5) && isRun5.equals("True")) {
                     holder.getHolderView().setBackgroundResource(R.color.green_content1);
@@ -130,6 +127,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 LinearLayout l2 = holder.getLinearLayout(R.id.ll_running_detail_2);
                 l.setVisibility(View.GONE);
                 l2.setVisibility(View.GONE);
+
                 if (item.getBetType18().equals("PAR") || item.getBetType18().equals("PAM")) {
                     holder.getHolderView().setBackgroundResource(R.color.white);
                     ll1.setVisibility(View.VISIBLE);
@@ -261,10 +259,22 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                             }
                         }
                     });
+                    View view = holder.getView(R.id.ll_live_parent1);
+                    TextView tv_running_status = holder.getView(R.id.tv_running_status1);
+                    TextView tv_running_score_home = holder.getView(R.id.tv_running_score_home1);
+                    TextView tv_running_score_away = holder.getView(R.id.tv_running_score_away1);
 
+                    setLiveView(item, view, tv_running_status, tv_running_score_home, tv_running_score_away);
                 } else {
+                    View view = holder.getView(R.id.ll_live_parent);
+                    TextView tv_running_status = holder.getView(R.id.tv_running_status);
+                    TextView tv_running_score_home = holder.getView(R.id.tv_running_score_home);
+                    TextView tv_running_score_away = holder.getView(R.id.tv_running_score_away);
+
+                    setLiveView(item, view, tv_running_status, tv_running_score_home, tv_running_score_away);
                     ll1.setVisibility(View.GONE);
                     ll2.setVisibility(View.VISIBLE);
+
                     TextView refNo = holder.getTextView(R.id.running_RefNo);
                     TextView running_hdp_bet_num = holder.getTextView(R.id.running_hdp_bet_num);
                     running_hdp_bet_num.setText((getItemCount() - position) + "");
@@ -278,10 +288,16 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_Away = holder.getTextView(R.id.running_Away);
                     running_Away.setText(item.getAway2());
                     TextView running_FullTimeId = holder.getTextView(R.id.running_FullTimeId);
-                    String fullTimeId13 = item.getFullTimeId13().replace("(", "").replace(")", "");
-                    running_FullTimeId.setText(fullTimeId13);
+                    String fullTimeId13 = item.getFullTimeId13();
+                    if (fullTimeId13.toUpperCase().contains("HT")||fullTimeId13.toUpperCase().contains("HF")) {
+                        running_FullTimeId.setVisibility(View.VISIBLE);
+                        running_FullTimeId.setText("HF.");
+                    } else {
+                        running_FullTimeId.setVisibility(View.GONE);
+                    }
                     TextView running_BetType = holder.getTextView(R.id.running_BetType);
                     String transType10 = item.getTransType10();
+                    boolean isOu = false;
                     switch (transType10) {
                         case "1":
                         case "2":
@@ -290,14 +306,15 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                             break;
                         case "HDP":
                         case "MMH":
-                            transType10 = "HDP";
+//                            transType10 = "HDP";
                             break;
                         case "OU":
                         case "MMO":
-                            transType10 = "O/U";
+                            isOu = true;
+//                            transType10 = "O/U";
                             break;
                         case "OE":
-                            transType10 = "O/E";
+//                            transType10 = "O/E";
                             break;
                         case "DC":
                             transType10 = "DC";
@@ -315,7 +332,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                             transType10 = "HT/FT";
                             break;
                     }
-                    running_BetType.setText("." + transType10 + " ");
+                    running_BetType.setText(transType10 + " ");
                     TextView running_Score = holder.getTextView(R.id.running_Score);
 
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
@@ -323,7 +340,13 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     String betType2 = item.getBetType323();
 
                     String gameType314 = item.getGameType314();
-                    running_BetType2.setText(HtmlTagHandler.spanFontHtml(item.getBetType424()));
+                    if (StringUtils.isNull(item.getBetType424())) {
+                        running_BetType2.setVisibility(View.GONE);
+                    } else {
+                        running_BetType2.setVisibility(View.VISIBLE);
+                        running_BetType2.setText(HtmlTagHandler.spanFontHtml(item.getBetType424()));
+                    }
+
                     running_BetType2_odds.setText(HtmlTagHandler.spanFontHtml((gameType314.equals("O") ? "Outright" : betType2)));
                     running_Score.setText((isRun5.equals("True") ? item.getScore19() : ""));
                     TextView running_Odds = holder.getTextView(R.id.running_Odds);
@@ -350,7 +373,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     String dangerStatus8 = item.getDangerStatus8();
                     dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
                     if (dangerStatus8.equals("A") || dangerStatus8.equals("D")) {
-                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_dark));
+                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.transparent));
+                        running_Status.setTextColor(ContextCompat.getColor(mContext, R.color.green500));
                     } else if (dangerStatus8.equals("W")) {
                         running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
                     } else {
@@ -359,34 +383,21 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_Status.setText(dangerStatus8);
                     TextView running_Amt = holder.getTextView(R.id.running_Amt);
                     running_Amt.setText(item.getAmt9());
-                    View view = holder.getView(R.id.ll_live_parent);
-                    TextView tv_running_status = holder.getView(R.id.tv_running_status);
-                    TextView tv_running_score_home = holder.getView(R.id.tv_running_score_home);
-                    TextView tv_running_score_away = holder.getView(R.id.tv_running_score_away);
+                    View view2 = holder.getView(R.id.ll_content_3);
 
-                    if (item.getTeamIsRun27().equals("True")) {
-                        if (SoccerRunningGoalManager.getInstance().isHomeGoal(item.getSocTransId17(), item.getHomeScore25(), item.getAwayScore26(), item.getIsHomeGoal32())) {
-                            tv_running_score_home.setTextColor(Color.RED);
-                        } else {
-                            tv_running_score_home.setTextColor(Color.BLACK);
+                    ll2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Boolean aBoolean1 = showDetailMap.get(item.getSocTransId17());
+                            if (aBoolean1 == null) {
+                                showDetailMap.put(item.getSocTransId17(), true);
+                            } else {
+                                showDetailMap.put(item.getSocTransId17(), !showDetailMap.get(item.getSocTransId17()));
+                            }
+                            notifyItemChanged(position);
                         }
-                        if (SoccerRunningGoalManager.getInstance().isAwayGoal(item.getSocTransId17(), item.getHomeScore25(), item.getAwayScore26(), item.getIsHomeGoal32())) {
-                            tv_running_score_away.setTextColor(Color.RED);
-                        } else {
-                            tv_running_score_away.setTextColor(Color.BLACK);
-                        }
-                        tv_running_score_home.setText(item.getHomeScore25());
-                        tv_running_score_away.setText(item.getAwayScore26());
-                        view.setVisibility(View.VISIBLE);
-                        String spanned = Html.fromHtml(item.getLive31()).toString();
-                        if (spanned.contains("\n")) {
-                            String[] split = spanned.split("\\n");
-                            tv_running_status.setText(split[1]);
-                        } else
-                            noContainsLive(item, tv_running_status);
-                    } else {
-                        view.setVisibility(View.VISIBLE);
-                    }
+                    });
+                    showDetail(item, refNo, running_TransDate, running_ModuleTitle, running_OddsType, isOu, view2);
                 }
             }
         };
@@ -395,6 +406,55 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             rv.setVisibility(View.VISIBLE);
         else
             rv.setVisibility(View.GONE);
+    }
+
+    private void showDetail(RunningBean item, TextView refNo, TextView running_transDate, TextView running_moduleTitle, TextView running_oddsType, boolean isOu, View view2) {
+
+        if (showDetailMap.get(item.getSocTransId17()) == null || !showDetailMap.get(item.getSocTransId17())) {
+            refNo.setVisibility(View.GONE);
+            running_transDate.setVisibility(View.GONE);
+            running_moduleTitle.setVisibility(View.GONE);
+            running_oddsType.setVisibility(View.GONE);
+            if (isOu) {
+                view2.setVisibility(View.VISIBLE);
+            } else {
+                view2.setVisibility(View.GONE);
+            }
+        } else {
+            refNo.setVisibility(View.VISIBLE);
+            running_transDate.setVisibility(View.VISIBLE);
+            running_moduleTitle.setVisibility(View.VISIBLE);
+            running_oddsType.setVisibility(View.VISIBLE);
+            view2.setVisibility(View.VISIBLE);
+        }
+
+    }
+
+
+    private void setLiveView(RunningBean item, View view, TextView tv_running_status, TextView tv_running_score_home, TextView tv_running_score_away) {
+        if (item.getTeamIsRun27().equals("True")) {
+            if (SoccerRunningGoalManager.getInstance().isHomeGoal(item.getSocTransId17(), item.getHomeScore25(), item.getAwayScore26(), item.getIsHomeGoal32())) {
+                tv_running_score_home.setTextColor(Color.RED);
+            } else {
+                tv_running_score_home.setTextColor(Color.BLACK);
+            }
+            if (SoccerRunningGoalManager.getInstance().isAwayGoal(item.getSocTransId17(), item.getHomeScore25(), item.getAwayScore26(), item.getIsHomeGoal32())) {
+                tv_running_score_away.setTextColor(Color.RED);
+            } else {
+                tv_running_score_away.setTextColor(Color.BLACK);
+            }
+            tv_running_score_home.setText(item.getHomeScore25());
+            tv_running_score_away.setText(item.getAwayScore26());
+            view.setVisibility(View.VISIBLE);
+            String spanned = Html.fromHtml(item.getLive31()).toString();
+            if (spanned.contains("\n")) {
+                String[] split = spanned.split("\\n");
+                tv_running_status.setText(split[1]);
+            } else
+                noContainsLive(item, tv_running_status);
+        } else {
+            view.setVisibility(View.GONE);
+        }
     }
 
     protected void noContainsLive(RunningBean item, TextView timeTv) {

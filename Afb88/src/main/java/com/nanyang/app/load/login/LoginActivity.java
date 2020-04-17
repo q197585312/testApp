@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.google.gson.Gson;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
@@ -30,6 +31,7 @@ import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
+import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -121,7 +123,14 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         edtLoginUsername.requestFocus();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         inputMove();
+
+
+    }
+
+    private void initAppNullData() {
         getApp().setBetAfbList(null);
+        getApp().setListMainPictures(null);
+        getApp().setListMainBanners(null);
     }
 
     @Override
@@ -233,6 +242,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     };
 
     private void login() {
+        initAppNullData();
         String us = edtLoginUsername.getText().toString();
         String k = edtLoginPassword.getText().toString();//"a7c7366ecd6041489d08ecb9ac1f39c9"
         if (!TextUtils.isEmpty(us) && !TextUtils.isEmpty(k)) {
@@ -252,11 +262,11 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                                 Pattern p = Pattern.compile(regex);
                                 Matcher m = p.matcher(s);
                                 if (m.find()) {
-                                    MainPresenter switchLanguage = new MainPresenter(baseContext);
+                                    final MainPresenter switchLanguage = new MainPresenter(baseContext);
                                     switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
                                                                   @Override
                                                                   public void onBack(SettingAllDataBean data) throws JSONException {
-                                                                      onLanguageSwitchSucceed(data.getUserName());
+                                                                      onAppGetData(switchLanguage);
                                                                   }
                                                               }
                                     );
@@ -289,6 +299,19 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         } else {
             ToastUtils.showShort(getString(R.string.enter_username_or_password));
         }
+    }
+
+    private void onAppGetData(MainPresenter switchLanguage) {
+        String language = new LanguageHelper(mContext).getLanguage();
+        switchLanguage.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new MainPresenter.CallBack<String>() {
+            @Override
+            public void onBack(String data) {
+                PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
+                personalInfo.setPassword(getApp().getUser().getPassword());
+                getApp().setUser(personalInfo);
+                onLanguageSwitchSucceed(personalInfo.getLoginName());
+            }
+        });
     }
 
 

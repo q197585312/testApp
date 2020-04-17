@@ -7,58 +7,47 @@
     android:orientation="vertical"
     android:paddingLeft="5dp"
     android:paddingRight="5dp">
-
-    <LinearLayout
-        android:id="@+id/ll_running_hdp"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="wrap_content">
 
         <LinearLayout
+            android:id="@+id/ll_running_hdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <TextView
-                android:id="@+id/running_RefNo"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="OU000349084"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/running_RefNo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="OU000349084"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/running_TransDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(07/04 9:55:14 am)"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+
 
             <TextView
-                android:id="@+id/running_TransDate"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="(07/04 9:55:14 am)"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/running_hdp_bet_num"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:paddingRight="4dp"
-                android:paddingTop="2dp"
-                android:text="1"
-                android:textColor="@color/red"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:orientation="horizontal">
-
-            <TextView
+                android:layout_marginTop="2dp"
                 android:id="@+id/running_ModuleTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -66,246 +55,258 @@
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:textStyle="bold" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/running_Home"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:id="@+id/ll_content_3"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="Fnatic jsdjfjsdfkjskdjfkjsdifsjdifjsidfjidsfsd"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:layout_marginTop="1dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="-VS-"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/running_Home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Fnatic jsdjfjsdfkjskdjfkjsdifsjdifjsidfjidsfsd"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/running_Away"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="Team Vitafdgsgfdsgdfsgdfsg"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-        </LinearLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="-VS-"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
-        <com.nanyang.app.Utils.FlowLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="2dp"
-            android:layout_marginTop="2dp"
-            android:orientation="horizontal">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="("
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/running_FullTimeId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="(FT)"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/running_BetType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="R!OT [地图二]sdfsdfsdfsdf"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
+                <TextView
+                    android:id="@+id/running_Away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="Team Vitafdgsgfdsgdfsgdfsg"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
             <TextView
                 android:id="@+id/running_BetType2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:text="(HDP "
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/running_BetType2_odds"
-                android:layout_width="wrap_content"
+            <com.nanyang.app.Utils.FlowLayout
+                android:id="@+id/fl_content_4"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=" -2.5)"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp"
+                android:orientation="horizontal">
 
-            <TextView
-                android:layout_width="wrap_content"
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="("
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/running_FullTimeId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(FT)"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/running_BetType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:ellipsize="end"
+                    android:singleLine="true"
+                    android:text="R!OT [地图二]sdfsdfsdfsdf"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+
+
+                <TextView
+                    android:id="@+id/running_BetType2_odds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" -2.5)"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=") "
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/running_Score"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0-0"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+
+                <TextView
+                    android:id="@+id/running_Odds"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\@0.97"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/running_OddsType"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="(HK)"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+
+            </com.nanyang.app.Utils.FlowLayout>
+            <LinearLayout
+                android:id="@+id/ll_live_parent"
+                android:visibility="gone"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=") "
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+                <TextView
+                    android:paddingLeft="4dp"
+                    android:id="@+id/tv_running_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="right"
+                    android:textColor="@color/black_grey"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:paddingLeft="3dp"
+                    android:id="@+id/tv_running_score_home"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_grey"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+                <TextView
 
-            <TextView
-                android:id="@+id/running_Score"
-                android:layout_width="wrap_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" - "
+                    android:textColor="@color/black_grey"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/tv_running_score_away"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black_grey"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="0-0"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/running_OldStatus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:text="W"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/running_split"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@mipmap/arrow_right_black"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/running_Status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@color/green_dark"
+                    android:paddingLeft="4dp"
+                    android:paddingRight="4dp"
+                    android:text="A"
+
+                    android:textColor="@color/white"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
 
 
-            <TextView
-                android:id="@+id/running_Odds"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="\@0.97"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                <View
+                    android:layout_width="0dp"
+                    android:layout_height="1dp"
+                    android:layout_weight="1" />
 
-            <TextView
-                android:id="@+id/running_OddsType"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="(HK)"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+                <TextView
+                    android:id="@+id/running_Amt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginLeft="2dp"
+                    android:gravity="right"
+                    android:text="100"
+                    android:textColor="@color/black"
+                    android:textSize="13sp"
+                    android:textStyle="bold" />
+                <ImageView
+                    android:layout_marginLeft="4dp"
+                    android:src="@mipmap/detail_bet_menu"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp" />
+            </LinearLayout>
 
-
-        </com.nanyang.app.Utils.FlowLayout>
-        <LinearLayout
-            android:id="@+id/ll_live_parent"
-            android:visibility="gone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-
-                android:text="@string/live_score"
-                android:textColor="@color/blue1"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:paddingLeft="3dp"
-                android:id="@+id/tv_running_score_home"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black_grey"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-            <TextView
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" - "
-                android:textColor="@color/black_grey"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-            <TextView
-                android:id="@+id/tv_running_score_away"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black_grey"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <TextView
-                android:paddingLeft="4dp"
-                android:id="@+id/tv_running_status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginLeft="2dp"
-                android:gravity="right"
-                android:textColor="@color/red"
-                android:textSize="13sp"
-                android:textStyle="bold" />
         </LinearLayout>
-        <LinearLayout
-            android:padding="5dp"
-            android:layout_width="match_parent"
+        <TextView
+            android:layout_gravity="right"
+            android:id="@+id/running_hdp_bet_num"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
-            <TextView
-                android:id="@+id/running_OldStatus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:text="W"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
+            android:gravity="right"
+            android:paddingRight="4dp"
+            android:paddingTop="2dp"
+            android:text="1"
+            android:textColor="@color/red"
+            android:textSize="13sp"
+            android:textStyle="bold" />
+    </FrameLayout>
 
-            <ImageView
-                android:id="@+id/running_split"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@mipmap/arrow_right_black"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/running_Status"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/green_dark"
-                android:paddingLeft="4dp"
-                android:paddingRight="4dp"
-                android:text="A"
-
-                android:textColor="@color/white"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/running_Amt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="right"
-                android:layout_marginLeft="2dp"
-                android:gravity="right"
-                android:text="100"
-                android:textColor="@color/black"
-                android:textSize="13sp"
-                android:textStyle="bold" />
-        </LinearLayout>
-
-    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/ll_running_par"
@@ -523,9 +524,58 @@
                 android:textColor="@color/black"
                 android:textSize="13sp"
                 android:textStyle="bold" />
-            />
-        </LinearLayout>
 
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/ll_live_parent1"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/live_score"
+                android:textColor="@color/blue1"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:paddingLeft="3dp"
+                android:id="@+id/tv_running_score_home1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_grey"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+            <TextView
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=" - "
+                android:textColor="@color/black_grey"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/tv_running_score_away1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black_grey"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:paddingLeft="4dp"
+                android:id="@+id/tv_running_status1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginLeft="2dp"
+                android:gravity="right"
+                android:textColor="@color/red"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
         <LinearLayout
             android:padding="5dp"
             android:layout_width="match_parent"

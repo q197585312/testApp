@@ -2,7 +2,7 @@
     android:id="@+id/bet_pop_parent_ll"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F3F6F4"
+    android:background="@color/yellow_white_bg"
     android:gravity="center"
     android:orientation="vertical">
 
@@ -142,7 +142,7 @@
             android:id="@+id/rc_bet_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/shape_bet_rc_bg"
+
             android:padding="5dp" />
 
         <LinearLayout
@@ -150,7 +150,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="5dp"
-            android:background="@color/white"
+
             android:gravity="center"
             android:orientation="horizontal">
 

@@ -91,6 +91,7 @@
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
+                android:textStyle="bold"
                 android:maxLines="1"
                 android:textSize="7sp"
                 android:visibility="visible" />
@@ -100,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textStyle="bold"
                 android:layout_marginLeft="5dp"
                 android:gravity="center"
                 android:maxLines="1"
@@ -111,6 +113,7 @@
                 android:id="@+id/module_match_time_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textStyle="bold"
                 android:layout_gravity="center"
                 android:layout_marginLeft="5dp"
                 android:gravity="center_vertical"
@@ -124,21 +127,22 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="4dp"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/rectangle_green_stroke_green_corner2"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:textAllCaps="true"
-                android:text="P"
                 android:paddingLeft="3dp"
-                android:layout_marginRight="5dp"
                 android:paddingRight="3dp"
-                android:background="@drawable/rectangle_green_stroke_green_corner2"
+                android:text="P"
+                android:textAllCaps="true"
                 android:textColor="@color/green"
                 android:textStyle="bold" />
+
             <View
                 android:layout_width="0dp"
                 android:layout_height="1dp"
-                android:layout_weight="1"
-                />
+                android:layout_weight="1" />
+
             <TextView
                 android:id="@+id/module_right_mark_tv"
                 android:layout_width="35dp"
@@ -157,8 +161,8 @@
                 android:id="@+id/iv_hall_btn"
                 android:layout_width="18dp"
                 android:layout_height="12dp"
-                android:src="@mipmap/soccer_hall"
                 android:scaleType="center"
+                android:src="@mipmap/soccer_hall"
                 android:visibility="visible" />
 
             <TextView
@@ -526,9 +530,9 @@
                     android:padding="2dp">
 
                     <RelativeLayout
-                        android:background="@drawable/match_odds_content_bg"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="@drawable/match_odds_content_bg">
 
                         <TextView
                             android:id="@+id/europe_1_full_time_odds_tv"
@@ -561,9 +565,9 @@
                     android:padding="2dp">
 
                     <RelativeLayout
-                        android:background="@drawable/match_odds_content_bg"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="@drawable/match_odds_content_bg">
 
                         <TextView
                             android:id="@+id/europe_x_full_time_odds_tv"
@@ -597,9 +601,9 @@
                     android:padding="2dp">
 
                     <RelativeLayout
-                        android:background="@drawable/match_odds_content_bg"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:background="@drawable/match_odds_content_bg">
 
                         <TextView
                             android:id="@+id/europe_2_full_time_odds_tv"
@@ -614,10 +618,10 @@
                             android:textStyle="bold" />
 
                         <ImageView
-                            android:layout_centerVertical="true"
                             android:id="@+id/img_up_down_ft_2"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
                             android:layout_gravity="center_vertical"
                             android:layout_marginLeft="1dp"
                             android:src="@mipmap/arrow_down_update_red"
@@ -637,12 +641,33 @@
         android:layout_width="match_parent"
         android:layout_height="0.5dp"
         android:background="@color/grey_thick_line" />
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv_title_list"
+
+    <LinearLayout
+        android:id="@+id/ll_title_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green_light_button"
-        android:visibility="gone" />
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_left_green_double" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_title_list"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/arrow_right_green_double" />
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/common_ball_parent_ll"
         android:layout_width="match_parent"

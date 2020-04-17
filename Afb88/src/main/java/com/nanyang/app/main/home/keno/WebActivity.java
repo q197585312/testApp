@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.keno;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 
@@ -69,15 +68,17 @@ public class WebActivity extends BaseToolbarActivity {
     }
 
 
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
+  /*  public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (webView.canGoBack()) {
                 webView.goBack();//返回上一页面
                 return true;
+            }else{
+                finish();
+                return true;
             }
         }
-        finish();
-        return super.onKeyDown(keyCode, event);
+        return false;
     }
 
     @Override
@@ -89,5 +90,5 @@ public class WebActivity extends BaseToolbarActivity {
             finish();
             super.onBackCLick(v);
         }
-    }
+    }*/
 }

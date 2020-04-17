@@ -11,8 +11,12 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -37,6 +41,8 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.main.AfbDrawerViewHolder;
+import com.nanyang.app.main.BetCenter.HtmlTagHandler;
+import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
 import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.nanyang.app.main.home.sport.main.SportBetHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
@@ -291,8 +297,6 @@ public class BetPop extends BasePopupWindow {
         if (TextUtils.isEmpty(amount)) {
             amount = "0";
         }
-
-
         amount = amount.replaceAll(",", "");
         if (Double.parseDouble(amount) > max) {
             betAmountEdt.removeTextChangedListener(textWatcher);
@@ -819,7 +823,22 @@ public class BetPop extends BasePopupWindow {
                         vLine.setVisibility(View.VISIBLE);
                     }
                     if (item.getIsRun() == 1) {
-                        tvScore.setText(item.getScore() + " ");
+                        if (!StringUtils.isEmpty(item.getHScore()) && !StringUtils.isEmpty(item.getAScore())) {
+                            SpannableString spanString = new SpannableString(item.getHScore() + " - " + item.getAScore() + " ");
+                            //构造一个改变字体颜色的Span
+                            ForegroundColorSpan span = new ForegroundColorSpan(Color.RED);
+                            if (SoccerRunningGoalManager.getInstance().isHomeGoal(item.getSocOddsId(), item.getHScore(), item.getAScore(), item.getIsHomeGoal())) {
+                                spanString.setSpan(span, 0, item.getHScore().length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                            }else if (SoccerRunningGoalManager.getInstance().isAwayGoal(item.getSocOddsId(), item.getHScore(), item.getAScore(), item.getIsHomeGoal())) {
+                                spanString.setSpan(span, item.getHScore().length() + 3, spanString.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                            }
+                            else {
+                                tvScore.setText(spanString);
+                            }
+
+                        } else {
+                            tvScore.setText(item.getScore() + " ");
+                        }
                     } else {
                         tvScore.setText("");
                     }
@@ -827,21 +846,14 @@ public class BetPop extends BasePopupWindow {
                     tvBetHome.setText(item.getHome());
                     tvBetAway.setText(item.getAway());
                     String hdp = item.getHdp();
-                    if (list.size() < 2 && hdp != null && hdp.trim().contains("-")) {
-                        tvHdp.setTextColor(Color.RED);
-                    } else {
-                        tvHdp.setTextColor(Color.BLACK);
-                    }
-                    tvHdp.setText(hdp);
-                    tvBetHdp.setText(item.getBTT());
+
+                    tvHdp.setText(HtmlTagHandler.spanFontHtml(hdp));
+                    tvBetHdp.setText(HtmlTagHandler.spanFontHtml(item.getBTT()));
                     String odds = item.getNOddsOLD();
-                    tvBetOdds.setText(odds);
-                    tvBetOddsAnimation.setText(odds);
-                    if (odds.trim().equals("0") || odds.startsWith("-")) {
-                        tvBetOdds.setTextColor(Color.RED);
-                    } else {
-                        tvBetOdds.setTextColor(Color.BLACK);
-                    }
+                    Spanned spanned = HtmlTagHandler.spanFontHtml(odds);
+                    tvBetOdds.setText(spanned);
+                    tvBetOddsAnimation.setText(spanned);
+
                     String bTeam = item.getBTeam();
                     if (bTeam.equals("Home")) {
                         tvBetName.setText(item.getHome());
@@ -872,7 +884,7 @@ public class BetPop extends BasePopupWindow {
                     if (animation != null) {
                         animation.cancel();
                     }
-                    ObjectAnimator objectAnimator = startAlphaAnimation(tvBetOddsAnimation);
+                    ValueAnimator objectAnimator = startAlphaAnimation(tvBetOddsAnimation);
                     objectAnimatorMap.put(position, objectAnimator);
                     imgDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -888,7 +900,7 @@ public class BetPop extends BasePopupWindow {
                                 list.remove(position);
 //                                presenter.getRefreshOdds(afbApplication.getRefreshCurrentOddsUrl());
                                 isNeedInitWeb = true;
-                                ObjectAnimator objectAnimator1 = objectAnimatorMap.get(position);
+                                ValueAnimator objectAnimator1 = objectAnimatorMap.get(position);
                                 if (objectAnimator1 != null) {
                                     objectAnimator1.cancel();
                                     objectAnimatorMap.remove(objectAnimator1);
@@ -1092,7 +1104,7 @@ public class BetPop extends BasePopupWindow {
         stopUpdateOdds();
         betAmountEdt.setText("");
         isNeedInitWeb = true;
-        for (ObjectAnimator objectAnimator : objectAnimatorMap.values()) {
+        for (ValueAnimator objectAnimator : objectAnimatorMap.values()) {
             if (objectAnimator != null) {
                 objectAnimator.cancel();
             }
@@ -1126,13 +1138,20 @@ public class BetPop extends BasePopupWindow {
         isRefreshEd = false;
     }
 
-    private Map<Integer, ObjectAnimator> objectAnimatorMap;
+    private Map<Integer, ValueAnimator> objectAnimatorMap;
 
-    public ObjectAnimator startAlphaAnimation(View view) {
-        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "alpha", 1, 0, 1);
+    public ValueAnimator startAlphaAnimation(final View view) {
+        ValueAnimator animator = ValueAnimator.ofArgb(ContextCompat.getColor(context, R.color.pink_light_bg), Color.WHITE);
+
         animator.setRepeatCount(Animation.INFINITE);
         animator.setDuration(2000);
         animator.start();
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                view.setBackgroundColor((Integer) animation.getAnimatedValue());
+            }
+        });
         return animator;
     }
 

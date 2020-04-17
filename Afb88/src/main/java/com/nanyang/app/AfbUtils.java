@@ -151,7 +151,7 @@ public class AfbUtils {
             return "";
         String p = "";
         try {
-            if (Math.abs(Float.valueOf(v)) < 0.3) {
+            if (Math.abs(Float.valueOf(v)) <= 0.3) {
                 return "";
             }
             p = decimalValue(Float.valueOf(v) / 10, "0.00");
@@ -298,7 +298,7 @@ public class AfbUtils {
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
-                return true;
+                return super.shouldOverrideUrlLoading(view, url);
             }
 
             @Override

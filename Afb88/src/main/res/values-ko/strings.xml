@@ -393,7 +393,7 @@
     <string name="howtouse_btn">버킷</string>
     <string name="howtouse_btn2">스타트</string>
     <string name="announcements">발표</string>
-    <string name="HALF_1X2">1H.1X2</string>
+    <string name="HALF_1X2">FH.1X2</string>
     <string name="Parlay">Parlay</string>
     <string name="Amt">금액</string>
     <string name="WL">승/패</string>
@@ -414,7 +414,7 @@
     <string name="Pleasenote2">시간이 GMT+8시에 있 음을 주의 해 주세요.</string>
     <string name="Net_Error">Net Error</string>
     <string name="Running4">진행 중</string>
-    <string name="TabMyBets">나의 투고</string>
+
     <string name="fh_myanmarhdp">FH.MyanmarHDP</string>
     <string name="fh_myanmarou">FH.MyanmarOU</string>
     <string name="ft_myanmarhdp">FT.MyanmarHDP</string>

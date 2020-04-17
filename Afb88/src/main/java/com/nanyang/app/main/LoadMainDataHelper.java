@@ -71,11 +71,6 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
                     }
                     JSONArray jsonArrayData3 = jsonArray.getJSONArray(3);
                     back.onBack(jsonArrayData3.get(0).toString());
-                  /*  if (jsonArrayData3.length() > 0) {//  [1,'c0d90d91d4ca5b3d','t',0,0,1,0,1,-1,'eng']
-//                        JSONObject jsonObject = jsonArrayData3.getJSONObject(0);
-                        back.onBack(jsonArrayData3.get(0).toString());
-
-                    }*/
                 }
             }
 
@@ -86,5 +81,26 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
         });
         mCompositeSubscription.add(disposable);
     }
+    public void doRetrofitApiOnUiThreadHTML(T languageWfBean, final MainPresenter.CallBack<String> back) {
+        String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
+        Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
+        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).getData(p), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                Log.d("doRetrofitApiOnUiThread", "data: " + data);
+                JSONArray jsonArray = new JSONArray(data);
+                if (jsonArray.length() > 3) {
+                    JSONArray jsonArrayData3 = jsonArray.getJSONArray(3);
+                    back.onBack(jsonArrayData3.get(0).toString());
+                }
+            }
+
+            @Override
+            protected void onAccept() {
+//                super.onAccept();
+            }
+        });
+        mCompositeSubscription.add(disposable);
+    }
 }

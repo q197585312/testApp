@@ -64,7 +64,9 @@ public abstract class BaseAllFragment extends BaseSportFragment {
         LinearLayout parentView = new LinearLayout(mContext);
         parentView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         parentView.setOrientation(LinearLayout.VERTICAL);
-        for (final SportIdBean sportIdBean : allTopSport) {
+
+        for (int i = 0; i < allTopSport.size(); i++) {
+            final SportIdBean sportIdBean = allTopSport.get(i);
             View inflate = LayoutInflater.from(mContext).inflate(R.layout.sport_selected_layout_base, null);
             inflate.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             View sportView = itemSelectConvert(sportIdBean, inflate);
@@ -74,7 +76,10 @@ public abstract class BaseAllFragment extends BaseSportFragment {
                     handleSelectItemCLick(sportIdBean);
                 }
             });
-
+            if(ishead&&i==allTopSport.size()-1){
+                ImageView viewById = inflate.findViewById(R.id.sport_delete_iv);
+                viewById.setImageResource(R.mipmap.add_green);
+            }
             parentView.addView(inflate);
         }
 //        baseRecyclerAdapter.removeHeadAndFoot();

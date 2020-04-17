@@ -168,10 +168,7 @@
     <string name="reverse_selection">反选</string>
     <string name="Huay_Thai">泰式千字</string>
     <string name="Myanmar_Odds">缅甸赔率</string>
-    <string name="FULL_H_A">全场.让球</string>
-    <string name="FULL_O_U">全场.大小</string>
-    <string name="HALF_H_A">半场.让球</string>
-    <string name="HALF_O_U">半场.大小</string>
+
     <string name="FULL_O_E">全场 单/双</string>
     <string name="HALF_O_E">半场 单/双</string>
     <string name="HANDICAP">亚州盤</string>
@@ -528,7 +525,7 @@
     <string name="E_Sports_Outright">电子竞技 - 优胜冠军</string>
     <string name="Net_Error">Net Error</string>
     <string name="Running4">进行中</string>
-    <string name="TabMyBets">我的投注</string>
+    <string name="TabMyBets">投注历史</string>
     <string name="max_win">最大赢得金额:</string>
     <string name="min_bet_money">最小注碼:</string>
     <string name="max_bet_money">最大注碼:</string>
@@ -536,10 +533,7 @@
     <string name="bet_limit">投注额度:</string>
     <string name="Select_League">选择联赛</string>
     <string name="normal">一般</string>
-    <string name="FT_HDP">全场.让球</string>
-    <string name="FT_OU">全场.大小</string>
-    <string name="HT_HDP">半场.让球</string>
-    <string name="HT_OU">半场.大小</string>
+
     <string name="Bet_Slip">注单</string>
     <string name="Note_">注意:</string>
     <string name="GMT_8">请注意显示时间为GMT+8时区</string>

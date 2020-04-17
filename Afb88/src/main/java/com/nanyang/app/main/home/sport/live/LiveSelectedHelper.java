@@ -39,7 +39,7 @@ public class LiveSelectedHelper {
     public LiveSelectedHelper() {
         list = new ArrayList<>();
         linkMap = new HashMap<>();
-        list.add(new MenuItemInfo(R.string.all_host, (R.string.all_host)));
+        list.add(new MenuItemInfo(R.string.All, (R.string.All)));
         list.add(new MenuItemInfo(R.string.HDP_OU, (R.string.HDP_OU)));
         list.add(new MenuItemInfo(R.string.X1X2, (R.string.X1X2)));
         list.add(new MenuItemInfo(R.string.OE, (R.string.OE)));

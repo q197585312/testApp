@@ -75,6 +75,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     private String ballG;
     private String gameUrl;
     private LiveParamsInfo liveParamsInfo;
+    private View ll_title_list;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -97,6 +98,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         this.liveParamsInfo = (LiveParamsInfo) o;
         ballG = liveParamsInfo.getBallG();
         rv_title_list = (RecyclerView) findViewById(R.id.rv_title_list);
+        ll_title_list =  findViewById(R.id.ll_title_list);
         videoPlayer = (VideoPlayer) findViewById(R.id.video_player_stream);
 
         tv_title_live_stream = (TextView) findViewById(R.id.tv_title_live_stream);
@@ -197,7 +199,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
 
     private void otherVisible(int visible) {
         sv_bottom_content.setVisibility(visible);
-        rv_title_list.setVisibility(visible);
+        ll_title_list.setVisibility(visible);
         ll_back.setVisibility(visible);
     }
 

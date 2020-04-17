@@ -58,6 +58,7 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
 
     }
 
+
     public void getRunningList(String type) {
         this.type = type;
         startUpdate();
@@ -91,7 +92,7 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
                     });
                 }
             };
-            timer.schedule(task, 0, 6000);
+            timer.schedule(task, 0, 2000);
         }
 
     }

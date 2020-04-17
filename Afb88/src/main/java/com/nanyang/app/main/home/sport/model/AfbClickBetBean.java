@@ -64,6 +64,34 @@ public class AfbClickBetBean implements Serializable {
 
     private String SlingMaxLimit;
 
+    public String getHScore() {
+        return HScore;
+    }
+
+    public void setHScore(String HScore) {
+        this.HScore = HScore;
+    }
+
+    public String getAScore() {
+        return AScore;
+    }
+
+    public void setAScore(String AScore) {
+        this.AScore = AScore;
+    }
+
+    public String getIsHomeGoal() {
+        return IsHomeGoal;
+    }
+
+    public void setIsHomeGoal(String isHomeGoal) {
+        IsHomeGoal = isHomeGoal;
+    }
+
+    private String HScore;
+    private String AScore;
+    private String IsHomeGoal;
+
     public String getSlingMaxLimit() {
         return SlingMaxLimit;
     }
@@ -74,7 +102,6 @@ public class AfbClickBetBean implements Serializable {
 
 
     public String getNOddsOLD() {
-        NOddsOLD = AfbUtils.delHTMLTag(NOddsOLD);
         return NOddsOLD;
     }
 
@@ -232,7 +259,6 @@ public class AfbClickBetBean implements Serializable {
     }
 
     public void setBTT(String bTT) {
-        bTT = AfbUtils.delHTMLTag(bTT);
         this.bTT = bTT;
     }
 

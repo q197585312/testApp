@@ -166,10 +166,10 @@
     <string name="Myanmar_Odds">Tỷ lệ Myanmar</string>
     <string name="FULL_H_A">FT.HDP</string>
     <string name="FULL_O_U">FT.OU</string>
-    <string name="HALF_H_A">1H.HDP</string>
-    <string name="HALF_O_U">1H.OU</string>
+    <string name="HALF_H_A">FH.HDP</string>
+    <string name="HALF_O_U">FH.OU</string>
     <string name="FULL_O_E">FT.OE</string>
-    <string name="HALF_O_E">1H.OE</string>
+    <string name="HALF_O_E">FH.OE</string>
     <string name="HANDICAP">HANDICAP</string>
     <string name="OVER_UNDER">TRÊN DƯỚI</string>
     <string name="TO_WIN">ĐỂ THẮNG</string>
@@ -423,7 +423,7 @@
     <string name="Pleasenote2">Hãy lưu ý rằng thời gian cho thấy thời gian biểu diễn cho thấy sự thay đổi trong thời gian</string>
     <string name="Net_Error">Net Error</string>
     <string name="Running4">Trong các</string>
-    <string name="TabMyBets">Cược của tôi</string>
+
     <string name="fh_myanmarhdp">FH.MyanmarHDP</string>
     <string name="fh_myanmarou">FH.MyanmarOU</string>
     <string name="ft_myanmarhdp">FT.MyanmarHDP</string>

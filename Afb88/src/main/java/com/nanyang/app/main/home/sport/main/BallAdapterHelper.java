@@ -59,7 +59,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     private BallInfo additionBallItem;
 
 
-
     public Set<ScrollLayout> getSlFollowers() {
         return slFollowers;
     }
@@ -125,9 +124,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
         final LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
+        View ll_title_list = helper.getView(R.id.ll_title_list);
 
         if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
-            rv_title_list.setVisibility(View.VISIBLE);
+            ll_title_list.setVisibility(View.VISIBLE);
 
             liveSelectedHelper.iniSelectedHelper(rv_title_list, context, new MainPresenter.CallBack<MenuItemInfo>() {
                 @Override
@@ -143,7 +143,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             MoveToPosition((LinearLayoutManager) rv_title_list.getLayoutManager(), rv_title_list, ps);
         } else {
             parent.setVisibility(View.GONE);
-            rv_title_list.setVisibility(View.GONE);
+            ll_title_list.setVisibility(View.GONE);
         }
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.INVISIBLE);
@@ -397,15 +397,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             parent.setVisibility(View.GONE);
         }
         int res = selectedMap.get(true).getRes();
-        boolean isAll = (res == R.string.all_host);
+        boolean isAll = (res == R.string.All);
         if (size > 0 && (isAll || res == R.string.HDP_OU)) {
 
             for (int i = 0; i < size; i++) {
                 if (i == 0) {
                     View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
-                    parent.addView(titleLL);
-                } else {
-                    View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item_space, null);
                     parent.addView(titleLL);
                 }
                 addAddedView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item, i % 2 == 0 ? R.layout.addition_hdp_ou_sport_item : R.layout.addition_hdp_ou_sport_item_green);
@@ -1125,7 +1122,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 up1_right2_tv.setTextColor(ContextCompat.getColor(context, R.color.red_title));
 
             } else {
-                up1_right2_tv.setTextColor(Color.GRAY);
+                up1_right2_tv.setTextColor(Color.BLACK);
             }
 
             up1_right2_tv.setText("(" + Integer.valueOf(hdpOdds) / 5 * 5 + ")");
@@ -1696,7 +1693,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             downOddsTv.setVisibility(View.VISIBLE);
             String upStr = "";
             String downStr = "";
-            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.3 || Math.abs(Float.valueOf(downOdds)) < 0.3) {
+            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) <=0.3 || Math.abs(Float.valueOf(downOdds)) <=0.3) {
                 hasUpDown = "0";
             }
             int resUp = R.mipmap.arrow_up_update_green;
@@ -1729,7 +1726,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     String ouf = upDown;
                     upStr = ouf;
                     downStr = "";
-                    upTextTv.setTextColor(Color.GRAY);
+                    upTextTv.setTextColor(Color.BLACK);
                     resUp = getResUpdate(item.isOverBigger, isFh);
                     break;
 
@@ -1751,7 +1748,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     break;
                 case "under":
                 case "mmunder":
-                    downTextTv.setTextColor(Color.GRAY);
+                    downTextTv.setTextColor(Color.BLACK);
                     resDown = getResUpdate(item.isUnderBigger, isFh);
                     break;
             }
@@ -1903,7 +1900,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     hasUpDown = "0";
                 }
             } else {
-                if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) < 0.3 || Math.abs(Float.valueOf(downOdds)) < 0.3) {
+                if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) <= 0.3 || Math.abs(Float.valueOf(downOdds)) <= 0.3) {
                     hasUpDown = "0";
                 }
             }
@@ -1937,7 +1934,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     String ouf = upDown;
                     upStr = ouf;
                     downStr = "";
-                    upTextTv.setTextColor(Color.GRAY);
+                    upTextTv.setTextColor(Color.BLACK);
                     resUp = getResUpdate(item.isOverBigger, isFh);
                     break;
 
@@ -1959,7 +1956,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     break;
                 case "under":
                 case "mmunder":
-                    downTextTv.setTextColor(Color.GRAY);
+                    downTextTv.setTextColor(Color.BLACK);
                     resDown = getResUpdate(item.isUnderBigger, isFh);
                     break;
             }
@@ -2019,9 +2016,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
     private String changeValueF(String f) {
-        if (f.equals("") || f.startsWith("-"))
-            return "";
-
+//        "0-0.5"
+        if (f.contains("-"))
+            return f;
         try {
             float v = Float.valueOf(f);
             int i;
@@ -2197,12 +2194,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public void setRunningItemBg(MyRecyclerViewHolder helper, BallInfo item) {
         View matchTitleLl = helper.getView(R.id.module_match_title_ll);
-        TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
         View viewLine = helper.getView(R.id.view_line);
         TextView moduleMatchTimeTv = helper.getView(R.id.module_match_time_tv);
         viewLine.setBackgroundColor(ContextCompat.getColor(context, R.color.green_line));
         matchTitleLl.setBackgroundColor(ContextCompat.getColor(context, R.color.green_title));
-        matchTitleTv.setTextColor(ContextCompat.getColor(context, R.color.green));
         moduleMatchTimeTv.setTextColor(Color.BLACK);
     }
 
