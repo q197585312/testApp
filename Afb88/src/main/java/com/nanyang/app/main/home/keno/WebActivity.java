@@ -39,6 +39,8 @@ public class WebActivity extends BaseToolbarActivity {
 
     private void loadWebView(String url) {
         LogUtil.d("url---", "-------" + url);
+        webView.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
+        webView.getSettings().setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
         AfbUtils.synCookies(this, webView, url);
     }
 

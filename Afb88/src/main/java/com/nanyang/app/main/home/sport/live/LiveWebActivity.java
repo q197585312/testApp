@@ -2,9 +2,7 @@ package com.nanyang.app.main.home.sport.live;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +11,6 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
@@ -25,6 +22,7 @@ import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
 import com.nanyang.app.main.home.sport.additional.IAdded;
+import com.nanyang.app.main.home.sport.betOrder.IBetOrderView;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
@@ -37,12 +35,15 @@ import com.unkonw.testapp.libs.widget.VideoPlayer;
 import org.json.JSONException;
 
 import butterknife.Bind;
+import cn.finalteam.toolsfinal.DeviceUtils;
 
 /**
  * Created by Administrator on 2020/1/3.
  */
 
-public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> implements BetView<BallInfo> {
+public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> implements BetView<BallInfo>, IBetOrderView {
+    @Bind(R.id.bet_pop_parent_ll)
+    View bet_pop_parent_ll;
     @Bind(R.id.iv_play_status)
     ImageView ivPlayStatus;
     @Bind(R.id.iv_voice)
@@ -62,8 +63,8 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     @Bind(R.id.common_ball_parent_ll)
     LinearLayout parentLl;
     private BallAdapterHelper adapterHelper;
-    private TextView tv_title_live_stream;
-    private TextView tv_title_live_center;
+    private ImageView tv_title_live_stream;
+    private ImageView tv_title_live_center;
     public VideoPlayer videoPlayer;
     public boolean isPlay = true;
     private String livePlayUrl;
@@ -81,7 +82,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.popwindow_live_web);
-
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_USER);
     }
 
     LivePlayHelper helper;
@@ -98,11 +99,11 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         this.liveParamsInfo = (LiveParamsInfo) o;
         ballG = liveParamsInfo.getBallG();
         rv_title_list = (RecyclerView) findViewById(R.id.rv_title_list);
-        ll_title_list =  findViewById(R.id.ll_title_list);
+        ll_title_list = findViewById(R.id.ll_title_list);
         videoPlayer = (VideoPlayer) findViewById(R.id.video_player_stream);
 
-        tv_title_live_stream = (TextView) findViewById(R.id.tv_title_live_stream);
-        tv_title_live_center = (TextView) findViewById(R.id.tv_title_live_center);
+        tv_title_live_stream = (ImageView) findViewById(R.id.tv_title_live_stream);
+        tv_title_live_center = (ImageView) findViewById(R.id.tv_title_live_center);
         final ViewHolder viewHolder = new ViewHolder(fl_top_content);
         helper = new LivePlayHelper(viewHolder, this);
         tv_title_live_center.setOnClickListener(new View.OnClickListener() {
@@ -149,6 +150,8 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     private void initWeb(String gameUrl) {
         this.gameUrl = gameUrl;
         if (isNotEnable(tv_title_live_center, gameUrl)) return;
+        webView.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
+        webView.getSettings().setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
         AfbUtils.synCookies(mContext, webView, gameUrl);
     }
 
@@ -156,8 +159,6 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     public void updateBalance() {
 //        super.updateBalanceTv(allData);
     }
-
-
 
 
     private void refreshAddedData() {
@@ -182,6 +183,10 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         super.onConfigurationChanged(newConfig);
         AfbUtils.switchLanguage(AfbUtils.getLanguage(this), this);
         //重新获取屏幕宽高
+        configurationChanged(newConfig);
+    }
+
+    private void configurationChanged(Configuration newConfig) {
         LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fl_top_content.getLayoutParams();
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {//切换为横屏
             ivFullScreen.setImageResource(R.mipmap.play_close_full_white);
@@ -191,7 +196,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
 
         } else {
             ivFullScreen.setImageResource(R.mipmap.play_full_white);
-            lp.height = AfbUtils.getScreenWidth(this) * 9 / 16;
+            lp.height = DeviceUtils.getScreenPix(mContext).widthPixels * 9 / 16;
             fl_top_content.setLayoutParams(lp);
             otherVisible(View.VISIBLE);
         }
@@ -222,22 +227,22 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     }
 
 
-    private boolean isNotEnable(TextView tv_title_live_stream, String livePlayUrl) {
-        tv_title_live_stream.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
+    private boolean isNotEnable(ImageView tv_title_live_stream, String livePlayUrl) {
+
         if (StringUtils.isNull(livePlayUrl)) {
             tv_title_live_stream.setEnabled(false);
-            tv_title_live_stream.setTextColor(Color.GRAY);
+
             return true;
         } else {
             tv_title_live_stream.setEnabled(true);
-            tv_title_live_stream.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+
 
         }
         return false;
     }
 
 
-    private void visibleLive(TextView liveTv, View liveView, boolean isPlay) {
+    private void visibleLive(ImageView liveTv, View liveView, boolean isPlay) {
         this.isPlay = isPlay;
 /*        tv_title_live_center.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
         tv_title_live_stream.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
@@ -270,12 +275,11 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         fl_top_content.setLayoutParams(params);
     }
 
-    private void enableView(TextView liveTv, View liveView) {
+    private void enableView(ImageView liveTv, View liveView) {
         webView.setVisibility(View.GONE);
         videoPlayer.setVisibility(View.GONE);
         liveView.setVisibility(View.VISIBLE);
-        liveTv.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_yellow);
-        liveTv.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_center_user));
+
     }
 
     @Override
@@ -328,11 +332,18 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
 
     @Override
     public void onPopupWindowCreated(BasePopupWindow pop, int center) {
-        pop.setV(fl_top_content);
-        pop.setWidth(AfbUtils.getScreenWidth(this));
-        if (pop instanceof BetPop)
-            ((BetPop) pop).getLlSingleMix().setVisibility(View.GONE);
         onPopupWindowCreatedAndShow(pop, -2);
+    }
+
+    BetPop betPop;
+
+    @Override
+    public BetPop getBetContent() {
+        if (betPop == null) {
+            betPop = new BetPop(mContext, bet_pop_parent_ll);
+            betPop.getLlSingleMix().setVisibility(View.GONE);
+        }
+        return betPop;
     }
 
     public String getBallG() {

@@ -2,10 +2,7 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.support.annotation.NonNull;
 import android.util.Log;
-import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
@@ -13,8 +10,8 @@ import com.google.gson.reflect.TypeToken;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
-import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.main.home.sport.betOrder.IBetOrderView;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
@@ -86,53 +83,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         back.callBack(odds);
     }
 
-    protected void updateFirstStake() {
-
-//        Disposable d = Api.getService(ApiService.class).getData(
-//                AppConstant.getInstance().URL_STAKE).subscribeOn(Schedulers.io()).observeOn(Schedulers.computation())
-//                .map(new Function<String, StakeListBean.DicAllBean>() {
-//
-//                    @Override
-//                    public StakeListBean.DicAllBean apply(String data) throws Exception {
-//                        Gson gson = new Gson();
-//                        data = Html.fromHtml(data).toString();
-//                        String[] data1 = data.split("nyhxkj");
-//                        StakeListBean stakeListBean = gson.fromJson(data1[0], StakeListBean.class);
-//                        List<StakeListBean.DicAllBean> list1 = stakeListBean.getDicAll();
-//                        if (list1 != null)
-//                            return list1.get(0);
-//                        return new StakeListBean.DicAllBean();
-//                    }
-//                }).observeOn(AndroidSchedulers.mainThread())
-//
-//                .subscribe(new Consumer<StakeListBean.DicAllBean>() {
-//                    @Override
-//                    public void accept(StakeListBean.DicAllBean dicAllBean) throws Exception {
-//                        handleDicAllBean(dicAllBean);
-//                        baseView.getIBaseContext().hideLoadingDialog();
-//                    }
-//                }, new Consumer<Throwable>() {
-//                    @Override
-//                    public void accept(Throwable throwable) throws Exception {
-//                        baseView.getIBaseContext().hideLoadingDialog();
-//                        baseView.onFailed(throwable.getMessage());
-//                    }
-//                }, new Action() {
-//                    @Override
-//                    public void run() throws Exception {
-//                        baseView.getIBaseContext().hideLoadingDialog();
-//                    }
-//                }, new Consumer<Subscription>() {
-//                    @Override
-//                    public void accept(Subscription subscription) throws Exception {
-//                        baseView.getIBaseContext().showLoadingDialog();
-//                        subscription.request(Integer.MAX_VALUE);
-//                    }
-//                });
-//        if (compositeSubscription != null)
-//            compositeSubscription.add(d);
-    }
-
 
     protected OddsClickBean getOddsUrl(B item, String type, boolean isHf, String odds, String sc) {
         return null;
@@ -156,7 +106,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                             baseView.onBetSuccess(allData);
                             if (betPop != null)
                                 betPop.clearSingleHashMap();
-                            updateFirstStake();
+//                            updateFirstStake();
                         } else {
                             baseView.onFailed(allData);
                         }
@@ -189,27 +139,23 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
 
     public BetPop betPop;
 
-    protected void createBetPop(List<AfbClickBetBean> bean, View v) {
+    protected void showBetPopView(List<AfbClickBetBean> bean, View v) {
+        if (bean == null || bean.size() < 1)
+            return;
         BaseActivity baseActivity = baseView.getIBaseContext().getBaseActivity();
-        if (betPop == null) {
-            betPop = new BetPop(baseActivity, v);
+
+        if (baseActivity instanceof IBetOrderView) {
+            betPop = ((IBetOrderView) baseActivity).getBetContent();
         }
         betPop.setBetData(bean, this);
-        if (!betPop.isShowing()) {
-            baseView.onPopupWindowCreated(betPop, Gravity.CENTER);
+        if (betPop.v != null && betPop.v.getVisibility() == View.GONE && baseActivity.isHasAttached()) {
+            if (baseActivity instanceof SportActivity) {
+                if (!((SportActivity) baseActivity).currentFragment.isVisible()) {
+                    return;
+                }
+            }
+            betPop.v.setVisibility(View.VISIBLE);
         }
-    }
-
-    private void test(View  v) {
-        final PopupWindow popupWindow = new PopupWindow(v,
-                300, 300, false);
-        View inflate = LayoutInflater.from(getBaseView().getIBaseContext().getBaseActivity()).inflate(R.layout.item_bet, null);
-        popupWindow.setContentView(inflate);
-        popupWindow.setTouchable(true);
-        popupWindow.setBackgroundDrawable(null);
-        popupWindow.setOutsideTouchable(true);
-
-        popupWindow.showAtLocation(v, Gravity.CENTER, 0, 0);
     }
 
 
@@ -269,7 +215,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         if (bean == null || bean.getList() == null || bean.getList().size() == 0) {
 
                         } else if (bean.getList().size() >= 1) {
-                            createBetPop(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
+                            showBetPopView(bean.getList(), v == null ? new View(getBaseView().getIBaseContext().getBaseActivity()) : v);
                         }
                         updateMixList(url);
                     }
@@ -369,11 +315,10 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     }
 
     private boolean checkSameScore(AfbClickBetBean afbClickBetBean, String runAwayScore_fh, String runHomeScore_fh) {
-        String[] split = afbClickBetBean.getScore().split("-");
-        if (split.length < 2)
-            return true;
-        if (split[0].trim().equals(runHomeScore_fh) && split[1].trim().equals(runAwayScore_fh)
-                || split[0].trim().equals(runAwayScore_fh) && split[1].trim().equals(runHomeScore_fh)) {
+        String hScore = afbClickBetBean.getHScore();
+        String aScore = afbClickBetBean.getAScore();
+
+        if (hScore.equals(runHomeScore_fh) && aScore.equals(runAwayScore_fh)) {
             return true;
         }
         return false;

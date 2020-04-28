@@ -55,6 +55,10 @@ public abstract class BaseRecyclerAdapter<T> extends RecyclerView.Adapter<MyRecy
 
     }
 
+    public List<T> getmDatas() {
+        return mDatas;
+    }
+
     protected List<T> mDatas = new ArrayList<T>();
     private int mLayoutId;
     private LayoutInflater mLayoutInflater;

@@ -1,7 +1,6 @@
 package com.unkonw.testapp.libs.base;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -77,7 +76,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
 
         super.onCreate(savedInstanceState);
         // 设置不能横屏
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
+//        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_NOSENSOR);
         mContext = this;
         //Activity管理
         ActivityPageManager.getInstance().addActivity(this);

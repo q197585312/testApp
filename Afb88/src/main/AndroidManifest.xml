@@ -69,7 +69,9 @@
         <activity
             android:name=".main.home.sport.main.SportActivity"
             android:launchMode="singleTask"
-            android:windowSoftInputMode="stateHidden|stateUnchanged" />
+            android:windowSoftInputMode="stateHidden|stateUnchanged"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            />
 
         <activity android:name=".main.home.huayThai.HuayThaiActivity" />
         <activity android:name=".main.home.keno.WebActivity" />

@@ -52,7 +52,6 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
     @Override
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
-        ((BaseToolbarActivity) getBaseActivity()).initLanguage();
         if (!hidden)
             showContent();
         LogUtil.d("showContent", getClass().getSimpleName() + ",hidden:" + hidden);

@@ -19,9 +19,9 @@ public class MyanmarRunningBetHelper extends MyanmarBetHelper {
 
 
     @Override
-    protected void createBetPop(List<AfbClickBetBean> bean, View v) {
+    protected void showBetPopView(List<AfbClickBetBean> bean, View v) {
 
-        super.createBetPop(bean,v);
+        super.showBetPopView(bean,v);
         betPop.setrTMatchInfo(item);
 
     }

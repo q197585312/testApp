@@ -18,6 +18,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_home"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -62,6 +63,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_away"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -113,6 +115,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_over"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -157,6 +160,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_under"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"

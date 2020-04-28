@@ -1,6 +1,9 @@
 apply plugin: 'com.android.application'
 
 android {
+    dexOptions {
+        jumboMode true
+    }
     signingConfigs {
         config {
             keyAlias 'nykj'

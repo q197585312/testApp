@@ -289,19 +289,36 @@ public class AfbApplication extends BaseApplication {
             mixBetList.add(oddsUrlBean);
             return true;
         }
-
     }
 
     public List<OddsClickBean> getMixBetList() {
         return mixBetList;
     }
 
+
     public void clearMixBetList() {
         mixBetList = new ArrayList<>();
+        singleBet = null;
     }
 
     public synchronized void setNoShowRts(boolean noShowRts) {
         this.noShowRts = noShowRts;
+    }
+
+    public boolean isSingleBet = true;
+
+    public OddsClickBean getSingleBet() {
+        return singleBet;
+    }
+
+    public void setSingleBet(OddsClickBean singleBet) {
+        this.singleBet = singleBet;
+    }
+
+    OddsClickBean singleBet;
+
+    public void saveSingleBet(OddsClickBean oddsUrlBean) {
+        singleBet = oddsUrlBean;
     }
 }
 

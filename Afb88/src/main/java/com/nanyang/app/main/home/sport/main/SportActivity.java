@@ -50,6 +50,7 @@ import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.huayThai.HuayThaiFragment;
 import com.nanyang.app.main.home.sport.WebSocketManager;
 import com.nanyang.app.main.home.sport.allRunning.AllRunningFragment;
+import com.nanyang.app.main.home.sport.betOrder.IBetOrderView;
 import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
 import com.nanyang.app.main.home.sport.live.LivePlayHelper;
@@ -73,9 +74,10 @@ import java.util.Iterator;
 import java.util.List;
 
 import butterknife.Bind;
+import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.logger.Logger;
 
-public class SportActivity extends BaseToolbarActivity<MainPresenter> implements ILanguageView<String> {
+public class SportActivity extends BaseToolbarActivity<MainPresenter> implements ILanguageView<String>, IBetOrderView {
     private final String GUIDE_KEY = "GUIDE";
 
     HuayThaiFragment huayThaiFragment = new HuayThaiFragment();
@@ -83,6 +85,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Bind(R.id.drawer_more)
     DrawerLayout drawerLayout;
 
+    @Bind(R.id.bet_pop_parent_ll)
+    public View bet_pop_parent_ll;
     @Bind(R.id.sport_header_ll)
     public View sportHeaderLl;
     @Bind(R.id.fl_top_content)
@@ -187,7 +191,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.savedInstanceState = savedInstanceState;
-
         setContentView(R.layout.activity_sport);
         toolbar.setVisibility(View.GONE);
         edtSearchContent.addTextChangedListener(new TextWatcher() {
@@ -273,7 +276,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             final ViewHolder viewHolder = new ViewHolder(fl_top_content);
             helper = new LivePlayHelper(viewHolder, this);
         }
-
+        tvRecord.setText(R.string.TabMyBets);
+        tvMix.setText(R.string.bet_slip);
+        tvMenu.setText(R.string.more);
         tvRecord.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -572,10 +577,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         createWebSocket();
 
         startRefreshMenu();
-        if (popWindow instanceof BetPop && popWindow.isShowing()) {
-            LogUtil.d("BetPop", "updateOdds50");
-            ((BetPop) popWindow).updateOdds(0);
-        }
+        if (getBetContent().v.getVisibility() == View.VISIBLE)
+            getBetContent().updateOdds(0);
+
 
     }
 
@@ -590,9 +594,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     protected void onStop() {
         setStopCloseWindow(false);
         super.onStop();
-        if (popWindow instanceof BetPop && popWindow.isShowing()) {
-            ((BetPop) popWindow).stopUpdateOdds();
-        }
+        if (getBetContent().v.getVisibility() == View.VISIBLE)
+            getBetContent().stopUpdateOdds();
+
         stopRefreshMenu();
         WebSocketManager.getInstance().stopUpdateData();
         closeTv(fl_top_content);
@@ -773,6 +777,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                                     super.initView(view);
 
                                     RecyclerView rv_list = view.findViewById(R.id.rv_list);
+                                    View iv_home_back = view.findViewById(R.id.iv_home_back);
                                     final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
                                     checkBox.setChecked(getApp().getSort() == 1);
                                     final View ll_sort = view.findViewById(R.id.ll_sort);
@@ -782,6 +787,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                                         public void onClick(View view) {
                                             changeTimeSort();
                                             checkBox.setChecked(getApp().getSort() == 1);
+                                        }
+                                    });
+                                    iv_home_back.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            finish();
                                         }
                                     });
                                 }
@@ -942,16 +953,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         changeTimeSort();
     }
 
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-    }
 
     @Override
     public String getOtType() {
         String ot = "Running";
-        if (isHasAttached() && currentFragment != null &&currentFragment.isAdded()) {
+        if (isHasAttached() && currentFragment != null && currentFragment.isAdded()) {
             String type = currentFragment.presenter.getStateHelper().getStateType().getType();
             if (!StringUtils.isNull(type))
                 ot = type;
@@ -978,21 +984,60 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }
     }
 
-    public void onPopupWindowCreatedAndShow(BasePopupWindow pop, int center) {
-        if (pop instanceof BetPop && fl_top_content.getVisibility() == View.VISIBLE) {
-            pop.setV(fl_top_content);
-            createPopupWindow(pop);
-            popWindow.showAtLocation(Gravity.TOP, AfbUtils.dp2px(mContext, 2), AfbUtils.dp2px(mContext, 200));
-        } else {
-            super.onPopupWindowCreatedAndShow(pop, center);
-        }
-    }
 
     @Override
     public void recreate() {
         AfbUtils.switchLanguage(AfbUtils.getLanguage(mContext), mContext);
         super.recreate();
         super.recreate();
+
+    }
+
+    BetPop betPop;
+
+    @Override
+    public BetPop getBetContent() {
+        if (betPop == null)
+            betPop = new BetPop(mContext, bet_pop_parent_ll);
+        return betPop;
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        //你的代码
+        super.onConfigurationChanged(newConfig);
+        if (fl_top_content.getVisibility() == View.VISIBLE && currentFragment != null && currentFragment.isVisible()) {
+            configurationChanged(newConfig);
+        }
+    }
+
+    private void configurationChanged(Configuration newConfig) {
+        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) fl_top_content.getLayoutParams();
+        if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {//切换为横屏
+            lp.height = DeviceUtils.getScreenPix(mContext).heightPixels;
+
+            LogUtil.d("height", "ORIENTATION_LANDSCAPE  lp.height:" + lp.height);
+            fl_top_content.setLayoutParams(lp);
+            otherVisible(View.GONE);
+        } else {
+            lp.height = DeviceUtils.getScreenPix(mContext).widthPixels * 9 / 16;
+            LogUtil.d("height", "ORIENTATION_PORTRAIT  lp.height:" + lp.height);
+            fl_top_content.setLayoutParams(lp);
+            otherVisible(View.VISIBLE);
+        }
+    }
+
+    private void otherVisible(int visible) {
+ /*       sv_bottom_content.setVisibility(visible);
+        ll_title_list.setVisibility(visible);
+        ll_back.setVisibility(visible);*/
+    }
+
+    public void onBetSuccess(String betResult) {
+        super.onBetSuccess(betResult);
+        if (betPop != null)
+            betPop.closePopupWindow();
+
 
     }
 }

@@ -5,17 +5,16 @@ import android.support.annotation.IdRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbUtils;
+import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.BetCenter.Bean.RunningBean;
@@ -33,6 +32,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -85,34 +85,28 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 presenter.getRunningList(type);
             }
         });
-
-    }
-
-    @Override
-    public void initWaitData() {
-        type = "W";
-        RadioButton rb = (RadioButton) rgType.getChildAt(0);
-        rb.setChecked(true);
         presenter.getRunningList(type);
+        setAdapter();
+
     }
 
-    public void setRvlist(List<RunningBean> list) {
-        if (list != null && list.size() > 0) {
-            llNote.setVisibility(View.VISIBLE);
-        } else {
-            llNote.setVisibility(View.GONE);
-        }
-        if (type.equals("W")) {
-            if (list.size() > 0) {
-                tvWaiteCount.setText(list.size() + "");
-                tvWaiteCount.setVisibility(View.VISIBLE);
-            } else {
-                tvWaiteCount.setVisibility(View.GONE);
+    BaseRecyclerAdapter<RunningBean> adapter;
+
+    BaseRecyclerAdapter<StatementOpen2ListDataBean> adapter1;
+
+    private void setAdapter() {
+
+
+
+        adapter1 = new BaseRecyclerAdapter<StatementOpen2ListDataBean>(mContext, new ArrayList<StatementOpen2ListDataBean>(), R.layout.item_statement_open2) {
+            @Override
+            public void convert(MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
+                updateRc1(getmDatas(), view, position, bean);
             }
-        }
-        LinearLayoutManager llm = new LinearLayoutManager(mContext);
-        rv.setLayoutManager(llm);
-        BaseRecyclerAdapter<RunningBean> adapter = new BaseRecyclerAdapter<RunningBean>(mContext, list, R.layout.item_running) {
+        };
+
+        rv.setLayoutManager( new LinearLayoutManager(mContext));
+        adapter = new BaseRecyclerAdapter<RunningBean>(mContext, new ArrayList<RunningBean>(), R.layout.item_running) {
             @Override
             public void convert(final MyRecyclerViewHolder holder, final int position, final RunningBean item) {
                 String isRun5 = item.getIsRun5();
@@ -122,11 +116,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     holder.getHolderView().setBackgroundResource(R.color.white);
                 }
                 LinearLayout ll1 = holder.getLinearLayout(R.id.ll_running_par);
-                LinearLayout ll2 = holder.getLinearLayout(R.id.ll_running_hdp);
-                LinearLayout l = holder.getLinearLayout(R.id.ll_running_detail_1);
-                LinearLayout l2 = holder.getLinearLayout(R.id.ll_running_detail_2);
+                View ll2 = holder.getView(R.id.ll_running_hdp);
+                final LinearLayout l = holder.getLinearLayout(R.id.ll_running_detail_1);
+                final LinearLayout l2 = holder.getLinearLayout(R.id.ll_running_detail_2);
                 l.setVisibility(View.GONE);
-                l2.setVisibility(View.GONE);
 
                 if (item.getBetType18().equals("PAR") || item.getBetType18().equals("PAM")) {
                     holder.getHolderView().setBackgroundResource(R.color.white);
@@ -141,7 +134,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_par_Amt = holder.getTextView(R.id.running_par_Amt);
                     TextView running_par_DangerStatus = holder.getTextView(R.id.running_par_DangerStatus);
                     TextView running_par_IdAndTransDate = holder.getTextView(R.id.running_par_IdAndTransDate);
-                    ImageView running_par_load = holder.getImageView(R.id.running_par_load);
+
                     TextView par_id = holder.getTextView(R.id.par_id);
                     TextView par_type = holder.getTextView(R.id.par_type);
                     running_par_IdAndTransDate.setText("ID[" + item.getRefNo12() + "]" + item.getTransDate0());
@@ -149,8 +142,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     String dangerStatus8 = item.getDangerStatus8();
                     dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
                     if (dangerStatus8.equals("A") || dangerStatus8.equals("D")) {
-                        running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.green_dark));
-
+                        running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.transparent));
+                        running_par_DangerStatus.setTextColor(ContextCompat.getColor(mContext, R.color.green500));
                     } else if (dangerStatus8.equals("W")) {
                         running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
                     } else {
@@ -165,51 +158,56 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_par_Odds2.setText(getString(R.string.Odds) + ":" + odds);
 
                     running_par_CombInfo.setText(item.getCombInfo16());
+
                     TextView running_Amt_text = holder.getTextView(R.id.running_Amt_text);
                     running_Amt_text.setText(getString(R.string.Amt) + ":");
                     running_par_Amt.setText(item.getAmt9());
                     par_id.setText(item.getSocTransId17());
                     par_type.setText(item.getBetType18());
-                    TextView open_detail_list = holder.getTextView(R.id.open_detail_list);
+                    final TextView open_detail_list = holder.getTextView(R.id.open_detail_list);
+                    if (StringUtils.isNull(item.getCombInfo16()) || item.getCombInfo16().endsWith("1")) {
+                        open_detail_list.setVisibility(View.GONE);
+                    } else {
+                        open_detail_list.setVisibility(View.VISIBLE);
+                    }
+
+                    if (openDetailMap.get(item.getSocTransId17()) != null && !StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getType())) {
+                        l.setVisibility(View.VISIBLE);
+                        l1Content(openDetailMap.get(item.getSocTransId17()).getType(), holder);
+                        if (openDetailMap.get(item.getSocTransId17()).getParent() != null) {
+                            open_detail_list.setText(getString(R.string.CloseDetail));
+                            l2.setVisibility(View.VISIBLE);
+                            if (!StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getParent())) {
+                                l2content(openDetailMap.get(item.getSocTransId17()).getParent(), holder);
+                            }
+                        } else {
+                            open_detail_list.setText(getString(R.string.OpenDetail));
+                            l2.setVisibility(View.GONE);
+                        }
+                    } else {
+                        l.setVisibility(View.GONE);
+                    }
                     ll1.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            LinearLayout l = holder.getLinearLayout(R.id.ll_running_detail_1);
-                            LinearLayout l2 = holder.getLinearLayout(R.id.ll_running_detail_2);
-                            TextView open_detail = holder.getTextView(R.id.open_detail_list);
+
+                            open_detail_list.setText(getString(R.string.OpenDetail));
                             if (l.getVisibility() == View.VISIBLE) {
                                 l.setVisibility(View.GONE);
-                                open_detail.setText(getString(R.string.OpenDetail));
-                                l2.setVisibility(View.GONE);
+                                openDetailMap.put(item.getSocTransId17(), null);
                             } else {
-                                l.setVisibility(View.VISIBLE);
-                                open_detail.setText(getString(R.string.OpenDetail));
-                                String id = holder.getTextView(R.id.par_id).getText().toString();
                                 showLoadingDialog();
-                                presenter.getParList(id, new BaseConsumer<String>(getIBaseContext()) {
+                                presenter.getParList(item.getSocTransId17(), new BaseConsumer<String>(getIBaseContext()) {
                                     @Override
                                     protected void onBaseGetData(String data) throws JSONException {
-                                        String updateString = data.replace("&nbsp;", " ");
-                                        JSONArray jsonArray = new JSONArray(updateString);
-                                        if (jsonArray.length() > 3) {
-                                            final List<StatementOpen2ListDataBean> list = presenter.getBeanList2(jsonArray);
-                                            RecyclerView rc1 = holder.getView(R.id.rc_par_1);
-                                            LinearLayoutManager llm = new LinearLayoutManager(mContext) {
-                                                @Override
-                                                public boolean canScrollVertically() {
-                                                    return false;
-                                                }
-                                            };
-                                            rc1.setLayoutManager(llm);
-                                            BaseRecyclerAdapter<StatementOpen2ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen2ListDataBean>(mContext, list, R.layout.item_statement_open2) {
-                                                @Override
-                                                public void convert(MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
-                                                    updateRc1(list, view, position, bean);
-                                                }
-                                            };
-                                            rc1.setAdapter(adapter);
+                                        l.setVisibility(View.VISIBLE);
+                                        MenuItemInfo<String> stringMenuItemInfo1 = openDetailMap.get(item.getSocTransId17());
+                                        if (stringMenuItemInfo1 != null) {
+                                            stringMenuItemInfo1.setType(data);
+                                        } else {
+                                            openDetailMap.put(item.getSocTransId17(), new MenuItemInfo<String>(0, 0, data, null));
                                         }
-                                        hideLoadingDialog();
+                                        l1Content(data, holder);
                                     }
                                 });
                             }
@@ -219,41 +217,21 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     open_detail_list.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            LinearLayout l = holder.getLinearLayout(R.id.ll_running_detail_2);
-                            TextView open_detail = holder.getTextView(R.id.open_detail_list);
-                            if (l.getVisibility() == View.VISIBLE && open_detail.getText().equals(getString(R.string.CloseDetail))) {
-                                open_detail.setText(getString(R.string.OpenDetail));
-                                l.setVisibility(View.GONE);
+                            if (openDetailMap.get(item.getSocTransId17()) != null && !StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getType()) && !StringUtils.isNull(openDetailMap.get(item.getSocTransId17()).getParent())) {
+                                open_detail_list.setText(getString(R.string.OpenDetail));
+                                l2.setVisibility(View.GONE);
+                                openDetailMap.get(item.getSocTransId17()).setParent(null);
                             } else {
-                                open_detail.setText(getString(R.string.CloseDetail));
-                                l.setVisibility(View.VISIBLE);
+
                                 showLoadingDialog();
-                                String id = holder.getTextView(R.id.par_id).getText().toString();
-                                String par_type = holder.getTextView(R.id.par_type).getText().toString();
-                                presenter.getParList2(id, par_type, new BaseConsumer<String>(getIBaseContext()) {
+                                presenter.getParList2(item.getSocTransId17(), item.getBetType18(), new BaseConsumer<String>(getIBaseContext()) {
                                     @Override
                                     protected void onBaseGetData(String data) throws JSONException {
-                                        String updateString = data.replace("&nbsp;", " ");
-                                        JSONArray jsonArray = new JSONArray(updateString);
-                                        if (jsonArray.length() > 3) {
-                                            final List<StatementOpen3ListDataBean> list = presenter.getBeanList3(jsonArray);
-                                            RecyclerView rc1 = holder.getView(R.id.rc_par_2);
-                                            LinearLayoutManager llm = new LinearLayoutManager(mContext) {
-                                                @Override
-                                                public boolean canScrollVertically() {
-                                                    return false;
-                                                }
-                                            };
-                                            rc1.setLayoutManager(llm);
-                                            BaseRecyclerAdapter<StatementOpen3ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen3ListDataBean>(mContext, list, R.layout.item_statement_open2) {
-                                                @Override
-                                                public void convert(MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
-                                                    updateRc2(list, view, position, bean);
-                                                }
-                                            };
-                                            rc1.setAdapter(adapter);
-                                        }
-                                        hideLoadingDialog();
+                                        openDetailMap.get(item.getSocTransId17()).setParent(data);
+                                        open_detail_list.setText(getString(R.string.CloseDetail));
+                                        openDetailMap.put(item.getSocTransId17(), openDetailMap.get(item.getSocTransId17()));
+                                        l2content(data, holder);
+                                        l2.setVisibility(View.VISIBLE);
                                     }
                                 });
                             }
@@ -261,17 +239,14 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     });
                     View view = holder.getView(R.id.ll_live_parent1);
                     TextView tv_running_status = holder.getView(R.id.tv_running_status1);
-                    TextView tv_running_score_home = holder.getView(R.id.tv_running_score_home1);
-                    TextView tv_running_score_away = holder.getView(R.id.tv_running_score_away1);
-
-                    setLiveView(item, view, tv_running_status, tv_running_score_home, tv_running_score_away);
+                    TextView tv_running_score = holder.getView(R.id.tv_running_score1);
+                    setLiveView(item, view, tv_running_status, tv_running_score);
                 } else {
                     View view = holder.getView(R.id.ll_live_parent);
                     TextView tv_running_status = holder.getView(R.id.tv_running_status);
-                    TextView tv_running_score_home = holder.getView(R.id.tv_running_score_home);
-                    TextView tv_running_score_away = holder.getView(R.id.tv_running_score_away);
+                    TextView tv_running_score = holder.getView(R.id.tv_running_score);
 
-                    setLiveView(item, view, tv_running_status, tv_running_score_home, tv_running_score_away);
+                    setLiveView(item, view, tv_running_status, tv_running_score);
                     ll1.setVisibility(View.GONE);
                     ll2.setVisibility(View.VISIBLE);
 
@@ -289,9 +264,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_Away.setText(item.getAway2());
                     TextView running_FullTimeId = holder.getTextView(R.id.running_FullTimeId);
                     String fullTimeId13 = item.getFullTimeId13();
-                    if (fullTimeId13.toUpperCase().contains("HT")||fullTimeId13.toUpperCase().contains("HF")) {
+                    if (fullTimeId13.toUpperCase().contains("HT") || fullTimeId13.toUpperCase().contains("FH")) {
                         running_FullTimeId.setVisibility(View.VISIBLE);
-                        running_FullTimeId.setText("HF.");
+                        running_FullTimeId.setText("FH.");
                     } else {
                         running_FullTimeId.setVisibility(View.GONE);
                     }
@@ -306,15 +281,15 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                             break;
                         case "HDP":
                         case "MMH":
-//                            transType10 = "HDP";
+                            transType10 = "HDP";
                             break;
                         case "OU":
                         case "MMO":
                             isOu = true;
-//                            transType10 = "O/U";
+                            transType10 = "O/U";
                             break;
                         case "OE":
-//                            transType10 = "O/E";
+                            transType10 = "O/E";
                             break;
                         case "DC":
                             transType10 = "DC";
@@ -363,7 +338,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     View running_split = holder.getImageView(R.id.running_split);
                     if (TextUtils.isEmpty(item.getOldStatus22())) {
                         running_OldStatus.setVisibility(View.GONE);
-                        running_split.setVisibility(View.INVISIBLE);
+                        running_split.setVisibility(View.GONE);
                     } else {
                         running_OldStatus.setVisibility(View.VISIBLE);
                         running_split.setVisibility(View.VISIBLE);
@@ -402,10 +377,87 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             }
         };
         rv.setAdapter(adapter);
+    }
+
+    @Override
+    public void initWaitData() {
+        type = "W";
+        RadioButton rb = (RadioButton) rgType.getChildAt(0);
+        rb.setChecked(true);
+        presenter.getRunningList(type);
+    }
+
+    Map<String, MenuItemInfo<String>> openDetailMap = new HashMap<>();
+
+    public void setRvlist(List<RunningBean> list) {
+        if (list != null && list.size() > 0) {
+            llNote.setVisibility(View.VISIBLE);
+        } else {
+            llNote.setVisibility(View.GONE);
+        }
+        if (type.equals("W")) {
+            if (list.size() > 0) {
+                tvWaiteCount.setText(list.size() + "");
+                tvWaiteCount.setVisibility(View.VISIBLE);
+            } else {
+                tvWaiteCount.setVisibility(View.GONE);
+            }
+        }
+        adapter.addAllAndClear(list);
         if (list != null && list.size() > 0)
             rv.setVisibility(View.VISIBLE);
         else
             rv.setVisibility(View.GONE);
+    }
+
+    private void l2content(String data, MyRecyclerViewHolder holder) {
+        String updateString = data.replace("&nbsp;", " ");
+        JSONArray jsonArray = null;
+        try {
+            jsonArray = new JSONArray(updateString);
+            if (jsonArray.length() > 3) {
+                final List<StatementOpen3ListDataBean> list = presenter.getBeanList3(jsonArray);
+                RecyclerView rc1 = holder.getView(R.id.rc_par_2);
+                LinearLayoutManager llm = new LinearLayoutManager(mContext) {
+                    @Override
+                    public boolean canScrollVertically() {
+                        return false;
+                    }
+                };
+                rc1.setLayoutManager(llm);
+                BaseRecyclerAdapter<StatementOpen3ListDataBean> adapter = new BaseRecyclerAdapter<StatementOpen3ListDataBean>(mContext, list, R.layout.item_statement_open2) {
+                    @Override
+                    public void convert(MyRecyclerViewHolder view, int position, StatementOpen3ListDataBean bean) {
+                        updateRc2(list, view, position, bean);
+                    }
+                };
+                rc1.setAdapter(adapter);
+            }
+            hideLoadingDialog();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    List<StatementOpen2ListDataBean> list;
+
+    private void l1Content(String data, MyRecyclerViewHolder holder) {
+        String updateString = data.replace("&nbsp;", " ");
+        try {
+            JSONArray jsonArray = new JSONArray(updateString);
+            if (jsonArray.length() > 3) {
+                list = presenter.getBeanList2(jsonArray);
+                RecyclerView rc1 = holder.getView(R.id.rc_par_1);
+                rc1.setLayoutManager(new LinearLayoutManager(mContext));
+                rc1.setAdapter(adapter1);
+                adapter1.addAllAndClear(list);
+            }
+            hideLoadingDialog();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void showDetail(RunningBean item, TextView refNo, TextView running_transDate, TextView running_moduleTitle, TextView running_oddsType, boolean isOu, View view2) {
@@ -430,81 +482,21 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
 
     }
 
-
-    private void setLiveView(RunningBean item, View view, TextView tv_running_status, TextView tv_running_score_home, TextView tv_running_score_away) {
+    private void setLiveView(RunningBean item, View view, TextView tv_running_status, TextView tv_running_score) {
         if (item.getTeamIsRun27().equals("True")) {
-            if (SoccerRunningGoalManager.getInstance().isHomeGoal(item.getSocTransId17(), item.getHomeScore25(), item.getAwayScore26(), item.getIsHomeGoal32())) {
-                tv_running_score_home.setTextColor(Color.RED);
-            } else {
-                tv_running_score_home.setTextColor(Color.BLACK);
-            }
-            if (SoccerRunningGoalManager.getInstance().isAwayGoal(item.getSocTransId17(), item.getHomeScore25(), item.getAwayScore26(), item.getIsHomeGoal32())) {
-                tv_running_score_away.setTextColor(Color.RED);
-            } else {
-                tv_running_score_away.setTextColor(Color.BLACK);
-            }
-            tv_running_score_home.setText(item.getHomeScore25());
-            tv_running_score_away.setText(item.getAwayScore26());
+            SoccerRunningGoalManager.getInstance().runScoreStyle(item.getSocTransId17(), tv_running_score, item.getHomeScore25(), item.getAwayScore26(), item.getScore19(), item.getIsHomeGoal32());
+//            tv_running_score.setText( item.getHomeScore25()+" - "+item.getAwayScore26());
             view.setVisibility(View.VISIBLE);
-            String spanned = Html.fromHtml(item.getLive31()).toString();
-            if (spanned.contains("\n")) {
-                String[] split = spanned.split("\\n");
-                tv_running_status.setText(split[1]);
-            } else
-                noContainsLive(item, tv_running_status);
+            String mExtraTime30 = item.getMExtraTime30();
+            String teamStatus28 = item.getTeamStatus28();
+            String curMinute29 = item.getCurMinute29();
+            String live31 = item.getLive31();
+            SoccerRunningGoalManager.getInstance().runTimeStyle(tv_running_status, mExtraTime30, teamStatus28, curMinute29, live31);
         } else {
             view.setVisibility(View.GONE);
         }
     }
 
-    protected void noContainsLive(RunningBean item, TextView timeTv) {
-        /*    String HomeScore25;
-    String AwayScore26;
-    String TeamIsRun27;
-    String TeamStatus28;
-    String CurMinute29;
-    String MExtraTime30;
-    String Live31;
-    String IsHomeGoal32;*/
-        String matchDate = item.getTransDate0();
-        timeTv.setText("");
-        int min;
-        try {
-            String mExtraTime = item.getMExtraTime30();
-            String timeStr;
-            switch (item.getTeamStatus28()) {
-                case "0":
-                    break;
-                case "2":
-                    min = Integer.valueOf(item.getCurMinute29());
-                    if (min < 130 && min > 0) {
-                        timeStr = "2H " + min + "'";
-                        if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
-                            timeStr += "+" + mExtraTime;
-                        }
-                    } else {
-                        timeStr = "";
-                    }
-                    timeTv.setText(timeStr);
-                    break;
-                default:
-                    min = Integer.valueOf(item.getCurMinute29());
-                    if (min < 130 && min > 0) {
-                        timeStr = "1H " + min + "'";
-                        if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
-                            timeStr += "+" + mExtraTime;
-                        }
-                    } else {
-                        timeStr = "";
-                    }
-                    timeTv.setText(timeStr);
-                    break;
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            timeTv.setText("");
-        }
-    }
 
     @Override
     public void initView() {
@@ -542,52 +534,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         }
         tvIdDate.setText(bean.getIndex22() + "(" + bean.getIndex5() + ")");
         tvMatchType.setText(bean.getIndex1());
-        tvMatchVs.setText(bean.getIndex3() + "-VS-" + bean.getIndex4());
+        tvMatchVs.setText(bean.getIndex3() + "-vs-" + bean.getIndex4());
         String matchAtStr1 = bean.getIndex16();
         tvMatchAt1.setText(HtmlTagHandler.spanFontHtml(matchAtStr1));
-      /*  if (matchAtStr1.contains("gbGive")) {
-            tvMatchAt1.setTextColor(Color.RED);
-        } else if (matchAtStr1.contains("gbTake2")) {
-            tvMatchAt1.setTextColor(Color.BLUE);
-        } else {
-            tvMatchAt1.setTextColor(Color.BLACK);
-        }*/
-
-//        String matchAtStr2 = AfbUtils.delHTMLTag(index22);
-       /* if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
-            if (index22.contains("red")) {
-                tv_match_at2_1.setTextColor(Color.RED);
-            } else if (index22.contains("blue")) {
-                tv_match_at2_1.setTextColor(Color.BLUE);
-            } else {
-                tv_match_at2_1.setTextColor(Color.BLACK);
-            }
-            tv_match_at2_1.setText(matchAtStr2);
-            tv_match_at2_2.setText("");
-        } else {
-            if (matchAtStr2.contains(" ")) {
-                String[] split = matchAtStr2.split(" ");
-                tv_match_at2_1.setText(split[0] + " ");
-                tv_match_at2_2.setText(split[1]);
-                if (index22.contains("red")) {
-                    tv_match_at2_2.setTextColor(Color.RED);
-                } else if (index22.contains("blue")) {
-                    tv_match_at2_2.setTextColor(Color.BLUE);
-                } else {
-                    tv_match_at2_2.setTextColor(Color.BLACK);
-                }
-            } else {
-                if (index22.contains("red")) {
-                    tv_match_at2_1.setTextColor(Color.RED);
-                } else if (index22.contains("blue")) {
-                    tv_match_at2_1.setTextColor(Color.BLUE);
-                } else {
-                    tv_match_at2_1.setTextColor(Color.BLACK);
-                }
-                tv_match_at2_1.setText(matchAtStr2);
-                tv_match_at2_2.setText("");
-            }
-        }*/
         String index22 = bean.getIndex23();
         Spanned spanned = HtmlTagHandler.spanFontHtml(index22);
         tv_match_at2_1.setText(spanned);
@@ -625,6 +574,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         }
     }
 
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+    }
 
     public void updateRc1(List<StatementOpen2ListDataBean> list, MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
 
@@ -651,53 +604,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         String idDate = bean.getIndex21() + "(" + bean.getIndex5() + ")";
         tvIdDate.setText(idDate);
         tvMatchType.setText(bean.getIndex1());
-        tvMatchVs.setText(bean.getIndex3() + "-VS-" + bean.getIndex4());
+        tvMatchVs.setText(bean.getIndex3() + "-vs-" + bean.getIndex4());
         String matchAtStr1 = bean.getIndex16();
         tvMatchAt1.setText(HtmlTagHandler.spanFontHtml(matchAtStr1));
-      /*  if (matchAtStr1.contains("gbGive")) {
-            tvMatchAt1.setTextColor(Color.RED);
-        } else if (matchAtStr1.contains("gbTake2")) {
-            tvMatchAt1.setTextColor(Color.BLUE);
-        } else {
-            tvMatchAt1.setTextColor(Color.BLACK);
-        }*/
 
-
-      /*  String matchAtStr2 = AfbUtils.delHTMLTag(index22);
-        if (matchAtStr2.contains("Over") || matchAtStr2.contains("Under")) {
-            if (index22.contains("red")) {
-                tv_match_at2_1.setTextColor(Color.RED);
-            } else if (index22.contains("blue")) {
-                tv_match_at2_1.setTextColor(Color.BLUE);
-            } else {
-                tv_match_at2_1.setTextColor(Color.BLACK);
-            }
-            tv_match_at2_1.setText(matchAtStr2);
-            tv_match_at2_2.setText("");
-        } else {
-            if (matchAtStr2.contains(" ")) {
-                String[] split = matchAtStr2.split(" ");
-                tv_match_at2_1.setText(split[0] + " ");
-                tv_match_at2_2.setText(split[1]);
-                if (index22.contains("red")) {
-                    tv_match_at2_2.setTextColor(Color.RED);
-                } else if (index22.contains("blue")) {
-                    tv_match_at2_2.setTextColor(Color.BLUE);
-                } else {
-                    tv_match_at2_2.setTextColor(Color.BLACK);
-                }
-            } else {
-                if (index22.contains("red")) {
-                    tv_match_at2_1.setTextColor(Color.RED);
-                } else if (index22.contains("blue")) {
-                    tv_match_at2_1.setTextColor(Color.BLUE);
-                } else {
-                    tv_match_at2_1.setTextColor(Color.BLACK);
-                }
-                tv_match_at2_1.setText(matchAtStr2);
-                tv_match_at2_2.setText("");
-            }
-        }*/
         String index22 = bean.getIndex22();
         tv_match_at2_1.setText(HtmlTagHandler.spanFontHtml(index22));
         String index20 = bean.getIndex20();

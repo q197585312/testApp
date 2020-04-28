@@ -37,10 +37,6 @@ public abstract class BasePopupWindow {
     protected int width;
     protected int height;
 
-    public void setV(View v) {
-        this.v = v;
-    }
-
     protected View v;
     protected View contentView;
 

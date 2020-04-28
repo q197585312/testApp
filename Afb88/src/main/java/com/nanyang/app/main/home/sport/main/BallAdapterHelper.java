@@ -26,6 +26,7 @@ import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
 import com.nanyang.app.main.home.sport.live.LiveSelectedHelper;
 import com.nanyang.app.main.home.sport.live.LiveWebActivity;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
@@ -52,6 +53,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     final int red_black = Color.RED;
     final int black_grey = Color.BLACK;
     private final BaseToolbarActivity act;
+    private BaseMixStyleHandler handler;
     private String curCode = "";
     protected Context context;
     private AddMBean additionData;
@@ -80,14 +82,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         if (!StringUtils.isNull(additionMap.get(true))) {
             getBaseRecyclerAdapter().notifyDataSetChanged();
         }
-       /* if (getBaseRecyclerAdapter().getHeader() != null)//有头部
-            getBaseRecyclerAdapter().notifyItemChanged(position + 1);
-        else
-            getBaseRecyclerAdapter().notifyItemChanged(position);
-        if (getBaseRecyclerAdapter().getHeader() != null && oldAdditionPosition >= 0)
-            getBaseRecyclerAdapter().notifyItemChanged(oldAdditionPosition + 1);
-        else if (getBaseRecyclerAdapter().getHeader() == null && oldAdditionPosition >= 0)
-            getBaseRecyclerAdapter().notifyItemChanged(oldAdditionPosition);*/
 
     }
 
@@ -96,6 +90,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         act = (BaseToolbarActivity) this.context;
         if (act != null && act.getApp().getSettingAllDataBean() != null)
             curCode = act.getApp().getSettingAllDataBean().getCurCode();
+        this.handler = new BaseMixStyleHandler(act);
     }
 
     /**
@@ -120,6 +115,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         }
     }
 
+    Map<String, MenuItemInfo> scrollPositionMap = new HashMap<>();
+
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
         final LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
@@ -136,11 +133,35 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
             });
 
+
             createAddedData(item, parent, additionData, liveSelectedHelper.getLinkMap());
-            int ps = liveSelectedHelper.getPositionSelected() - 2;
-            if (ps < 0)
-                ps = 0;
-            MoveToPosition((LinearLayoutManager) rv_title_list.getLayoutManager(), rv_title_list, ps);
+            final String socOddsId = item.getSocOddsId();
+            rv_title_list.addOnScrollListener(new RecyclerView.OnScrollListener() {
+                @Override
+                public void onScrollStateChanged(RecyclerView recyclerView, int newState) {
+                    super.onScrollStateChanged(recyclerView, newState);
+                    if (recyclerView.getLayoutManager() != null) {
+                        LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                        //获取可视的第一个view
+                        View topView = layoutManager.getChildAt(0);
+                        if (topView != null) {
+                            //获取与该view的顶部的偏移量
+                            int lastOffset = topView.getLeft();
+                            //得到该View的数组位置
+                            int lastPosition = layoutManager.getPosition(topView);
+                            scrollPositionMap.put(socOddsId, new MenuItemInfo(lastPosition, lastOffset));
+
+                        }
+                    }
+                }
+            });
+            MenuItemInfo menuItemInfo = scrollPositionMap.get(socOddsId);
+            if (menuItemInfo != null) {
+                if (rv_title_list.getLayoutManager() != null && menuItemInfo.getRes() >= 0) {
+                    ((LinearLayoutManager) rv_title_list.getLayoutManager()).scrollToPositionWithOffset(menuItemInfo.getRes(), menuItemInfo.getText());
+                }
+            }
+
         } else {
             parent.setVisibility(View.GONE);
             ll_title_list.setVisibility(View.GONE);
@@ -334,9 +355,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 }
             }
         }
-    /*    BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
-        handler.updateAfbMixBackground(item.getSocOddsId(), 0, sl, "1", "2", "home", "away", "NULL", "NULL");
-        handler.updateAfbMixBackground(item.getSocOddsId(), 1, sl, "over", "under", "odd", "even", "NULL", "NULL");*/
         updateMixNormalBackground(helper, item);
 
     }
@@ -365,7 +383,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     public void createAddedData(I item, LinearLayout parent, AddMBean additionData, HashMap<Boolean, MenuItemInfo> selectedMap) {
 
         LogUtil.d("additionMap", "--------------additionBallItem:" + item);
-
         parent.removeAllViews();
 
         int sizeFT = 0;
@@ -405,7 +422,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     View titleLL = LayoutInflater.from(context).inflate(R.layout.addition_hdp_ou_title_item, null);
                     parent.addView(titleLL);
                 }
-                addAddedView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item, i % 2 == 0 ? R.layout.addition_hdp_ou_sport_item : R.layout.addition_hdp_ou_sport_item_green);
+                addAddedView(parent, i < sizeFT ? additionData.getFTodds().get(i) : null, i < sizeFH ? additionData.getFHodds().get(i) : null, item, i % 2 == 0 ? R.layout.addition_hdp_ou_sport_item : R.layout.addition_hdp_ou_sport_item_green
+                        , i % 2 == 0 ? R.drawable.match_odds_content_bg_mix : R.drawable.match_odds_content_bg_green_mix);
             }
         }
 
@@ -420,13 +438,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         , additionData.getHasPar().equals("True")
                         , additionData.getHasPar().equals("True")
                         , additionData.getHasPar().equals("True")
-
                         , additionData.getValue1IsInetBet().equals("True")
                         , additionData.getXIsInetBet().equals("True")
                         , additionData.getValue2IsInetBet().equals("True")
                         , additionData.getF1_ishowOdds().equals("True")
                         , additionData.getFX_ishowOdds().equals("True")
                         , additionData.getF2_ishowOdds().equals("True")
+                        , item.getIsHomeGive()
                 );
             }
             if (additionData.getH1X2_CNT() != null && !additionData.getH1X2_CNT().equals("0") && (isAll || res == R.string.X1X2)) {
@@ -438,13 +456,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         , additionData.getHHasPar().equals("True")
                         , additionData.getHHasPar().equals("True")
                         , additionData.getHHasPar().equals("True")
-
                         , additionData.getH1IsInetBet().equals("True")
                         , additionData.getHXIsInetBet().equals("True")
                         , additionData.getH2IsInetBet().equals("True")
                         , additionData.getH1_ishowOdds().equals("True")
                         , additionData.getHX_ishowOdds().equals("True")
                         , additionData.getH2_ishowOdds().equals("True")
+                        , item.getIsHomeGive_FH()
                 );
             }
 
@@ -1074,7 +1092,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                                 boolean isHalf,
                                 LinearLayout parent,
                                 I item, String hdpShow1, String ouShow2,
-                                String mmaway, String mmunder,
+                                String type1, String type2,
                                 String hdp1, String ou2
             ,
                                 boolean hasHdp,
@@ -1088,11 +1106,20 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         subStringsMModds(hdpShow1, hdp1, ouShow2, ou2, inflate1X2);
         down1_tv.setTextColor(getValueColor(oddsLeft));
         down2_tv.setTextColor(getValueColor(oddsRight));
-
-        setTextValueClick(down1_tv, oddsLeft, mmaway, socOddsId, item, isHalf, "", false, hasHdp, false);
-        setTextValueClick(down2_tv, oddsRight, mmunder, socOddsId, item, isHalf, "", false, hasOu, false);
+        setMMHdpOuMixStyle(socOddsId, inflate1X2,type1,type2);
+        setTextValueClick(down1_tv, oddsLeft, type1, socOddsId, item, isHalf, "", false, hasHdp, false);
+        setTextValueClick(down2_tv, oddsRight, type2, socOddsId, item, isHalf, "", false, hasOu, false);
         parent.addView(inflate1X2);
 
+    }
+
+    private void setMMHdpOuMixStyle(String socOddsId, View inflate1X2, String type1, String type2) {
+        View ll_content1 = inflate1X2.findViewById(R.id.ll_content1);
+        View ll_content2 = inflate1X2.findViewById(R.id.ll_content2);
+        HashMap<String, View> map = new HashMap<>();
+        map.put(type1, ll_content1);
+        map.put(type2, ll_content2);
+        setMixBg(R.drawable.match_odds_content_bg_mix, map, socOddsId);
     }
 
     private void subStringsMModds(String hdpTitle, String hdp, String ouTitle, String ou, View inflate1X2) {
@@ -1244,6 +1271,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             , boolean isShowBet1
             , boolean isShowBet2
             , boolean isShowBet3
+            , String isHomeGive
+
     ) {
         LogUtil.d("additionMap", "--------------addAddedFor1X2:");
         View inflate1X2 = LayoutInflater.from(context).inflate(itemRes, null);
@@ -1253,7 +1282,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView down2_tv = inflate1X2.findViewById(R.id.down2_tv);
         TextView up3_tv = inflate1X2.findViewById(R.id.up3_tv);
         TextView down3_tv = inflate1X2.findViewById(R.id.down3_tv);
-        String isHomeGive = item.getIsHomeGive();
+
         if (isHomeGive.equals("1")) {
             up1_tv.setTextColor(ContextCompat.getColor(context, R.color.red));
             down1_tv.setTextColor(ContextCompat.getColor(context, R.color.red));
@@ -1265,6 +1294,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             up3_tv.setTextColor(ContextCompat.getColor(context, R.color.red));
             down3_tv.setTextColor(ContextCompat.getColor(context, R.color.red));
         }
+        set1x2MixStyle(oid, type1, type2, type3, sc1, sc2, sc3, inflate1X2);
+
         setTextValue(up1_tv, up1);
         setTextValue(up2_tv, up2);
         setTextValue(up3_tv, up3);
@@ -1294,6 +1325,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView down2_tv = inflate1X2.findViewById(R.id.down2_tv);
         TextView up3_tv = inflate1X2.findViewById(R.id.up3_tv);
         TextView down3_tv = inflate1X2.findViewById(R.id.down3_tv);
+
+        set1x2MixStyle(oid, type1, type2, type3, sc1, sc2, sc3, inflate1X2);
+
         setTextValue(up1_tv, up1);
         setTextValue(up2_tv, up2);
         setTextValue(up3_tv, up3);
@@ -1301,6 +1335,17 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         setTextValueClick(down2_tv, x, type2, oid, item, isHalf, sc2, hasPar2, hasBet2, isShowBet2);
         setTextValueClick(down3_tv, f2, type3, oid, item, isHalf, sc3, hasPar3, hasBet3, isShowBet3);
         parent.addView(inflate1X2);
+    }
+
+    private void set1x2MixStyle(String oid, String type1, String type2, String type3, String sc1, String sc2, String sc3, View inflate1X2) {
+        View content1_ll = inflate1X2.findViewById(R.id.content1_ll);
+        View content2_ll = inflate1X2.findViewById(R.id.content2_ll);
+        View content3_ll = inflate1X2.findViewById(R.id.content3_ll);
+        HashMap<String, View> map = new HashMap<>();
+        map.put(type1 + sc1, content1_ll);
+        map.put(type2 + sc2, content2_ll);
+        map.put(type3 + sc3, content3_ll);
+        setMixBg(R.drawable.match_odds_content_bg_mix, map, oid);
     }
 
     private void addAddedByColor(String down1, String down2, String down3, String oid, boolean isHalf, LinearLayout parent, I item,
@@ -1348,6 +1393,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         setTextValue(up11_tv, up11);
         setTextValue(up21_tv, up21);
+        set1x2MixStyle(oid, type1, type2, type3, sc1, sc2, sc3, inflate1X2);
 
         setTextValueClick(down1_tv, down1, type1, oid, item, isHalf, sc1, hasPar1, hasBet1, isShowBet1);
         setTextValueClick(down2_tv, down2, type2, oid, item, isHalf, sc2, hasPar2, hasBet2, isShowBet2);
@@ -1398,7 +1444,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         home_odds_tv.setTextColor(getValueColor(homeOdds));
         away_odds_tv.setTextColor(getValueColor(awayOdds));
-
+        setCommonHdpOuMixStyle(oid, inflate1X2);
         setTextValue(over_tv, changeValueF(ou));
         setTextValue(under_tv, "");
         String homeHdp = "";
@@ -1413,11 +1459,19 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         setTextValueClick(over_odds_tv, overOdds, "over", oid, item, isHalf, "", false, hasBetOver, isShowBetOu);
         setTextValueClick(under_odds_tv, underOdds, "under", oid, item, isHalf, "", false, hasBetUnder, isShowBetOu);
-
         setTextValueClick(home_odds_tv, homeOdds, "home", oid, item, isHalf, "", false, hasBetHDPH, isShowBetHDP);
         setTextValueClick(away_odds_tv, awayOdds, "away", oid, item, isHalf, "", false, hasBetHDPA, isShowBetHDP);
 
+
         parent.addView(inflate1X2);
+    }
+
+    private void setCommonHdpOuMixStyle(String oid, View inflate1X2) {
+        View ll_home = inflate1X2.findViewById(R.id.ll_home);
+        View ll_away = inflate1X2.findViewById(R.id.ll_away);
+        View ll_over = inflate1X2.findViewById(R.id.ll_over);
+        View ll_under = inflate1X2.findViewById(R.id.ll_under);
+        setHdpOuMixStyle(R.drawable.match_odds_content_bg_mix,ll_home,ll_away,ll_over,ll_under,oid);
     }
 
     private int getValueColor(String value) {
@@ -1504,7 +1558,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         tv.setText(s);
     }
 
-    private void addAddedView(LinearLayout parent, AddMBean.OddsBean fTodds, AddMBean.OddsBean fHodds, I item, int res) {
+    private void addAddedView(LinearLayout parent, AddMBean.OddsBean fTodds, AddMBean.OddsBean fHodds, I item, int res, int mixBg) {
         View inflate = LayoutInflater.from(context).inflate(res, null);
         TextView home_tv = inflate.findViewById(R.id.home_tv);
 
@@ -1532,6 +1586,19 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView hf_under_tv = inflate.findViewById(R.id.hf_under_tv);
         TextView hf_under_odd_tv = inflate.findViewById(R.id.hf_under_odd_tv);
 
+        LinearLayout ll_home_ft = inflate.findViewById(R.id.ll_home_ft);
+        LinearLayout ll_away_ft = inflate.findViewById(R.id.ll_away_ft);
+        LinearLayout ll_over_ft = inflate.findViewById(R.id.ll_over_ft);
+        LinearLayout ll_under_ft = inflate.findViewById(R.id.ll_under_ft);
+
+        LinearLayout ll_home_fh = inflate.findViewById(R.id.ll_home_fh);
+        LinearLayout ll_away_fh = inflate.findViewById(R.id.ll_away_fh);
+        LinearLayout ll_over_fh = inflate.findViewById(R.id.ll_over_fh);
+        LinearLayout ll_under_fh = inflate.findViewById(R.id.ll_under_fh);
+
+
+
+
          /*       ballInfo.setHome(fTodds.getHome());
         ballInfo.setAway(fTodds.getAway());*/
    /*      ballInfo.setOver(fTodds.getOver());
@@ -1550,7 +1617,11 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
 
         if (fTodds != null) {
-            ballInfo.setSocOddsId(fTodds.getSocOddsId());
+            String socOddsId = fTodds.getSocOddsId();
+
+            setHdpOuMixStyle(mixBg, ll_home_ft, ll_away_ft, ll_over_ft, ll_under_ft, socOddsId);
+
+            ballInfo.setSocOddsId(socOddsId);
             ballInfo.setHdp(fTodds.getHDP());
             ballInfo.setHOdds(fTodds.getHomeOdds());
             ballInfo.setAOdds(fTodds.getAwayOdds());
@@ -1589,6 +1660,10 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setRunAwayScore("");
         }
         if (fHodds != null) {
+            String socOddsId = fHodds.getSocOddsId();
+
+            setHdpOuMixStyle(mixBg, ll_home_fh, ll_away_fh, ll_over_fh, ll_under_fh, socOddsId);
+
             ballInfo.setSocOddsId_FH(fHodds.getSocOddsId());
             ballInfo.setHdp_FH(fHodds.getHDP());
             ballInfo.setHOdds_FH(fHodds.getHomeOdds());
@@ -1645,8 +1720,36 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         parent.addView(inflate);
     }
 
+    private void setHdpOuMixStyle(int mixBg, View ll_home_fh, View ll_away_fh, View ll_over_fh, View ll_under_fh, String socOddsId) {
+        HashMap<String, View> map = new HashMap<>();
+        map.put("home", ll_home_fh);
+        map.put("away", ll_away_fh);
+        map.put("over", ll_over_fh);
+        map.put("under", ll_under_fh);
+        setMixBg(mixBg, map, socOddsId);
+    }
+
+    private void setMixBg(int mixBg, HashMap<String, View> map, String socOddsId) {
+        OddsClickBean mixItem = handler.getMixItem(socOddsId);
+        if (mixItem == null)
+            return;
+        String type = mixItem.getType();
+        if (StringUtils.isNull(type))
+            return;
+        String types = "";
+        String sc = mixItem.getSc();
+        if (!StringUtils.isNull(sc))
+            types = type + sc;
+        else
+            types = type;
+        View view = map.get(types);
+        if (view != null) {
+            view.setBackgroundResource(mixBg);
+        }
+
+    }
+
     protected void updateMixBackground(BallInfo item, ScrollLayout sl, String type01, String type02, String type11, String type12, String type21, String type22) {
-        BaseMixStyleHandler handler = new BaseMixStyleHandler((BaseToolbarActivity) context);
         handler.updateMixBackground(item, sl, type01, type02, type11, type12, type21, type22);
     }
 
@@ -1693,7 +1796,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             downOddsTv.setVisibility(View.VISIBLE);
             String upStr = "";
             String downStr = "";
-            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) <=0.3 || Math.abs(Float.valueOf(downOdds)) <=0.3) {
+            if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) <= 0.3 || Math.abs(Float.valueOf(downOdds)) <= 0.3) {
                 hasUpDown = "0";
             }
             int resUp = R.mipmap.arrow_up_update_green;

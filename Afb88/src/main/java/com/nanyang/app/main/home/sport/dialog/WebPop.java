@@ -52,6 +52,8 @@ public class WebPop extends BasePopupWindow {
 
 
     public void setUrl(String url) {
+        webView.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
+        webView.getSettings().setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
         AfbUtils.synCookies(context, webView, url);
     }
 

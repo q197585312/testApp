@@ -337,6 +337,7 @@ public class AddMBean implements Serializable {
     private String FOE_SocOddsId;
     private String FOE_IsRun;
     private String FOE_HasPar;
+    private String HOE_HasPar;
     private String FOddIsInetBet;
     private String FOE_ishowOdds;
     private String FOdd;

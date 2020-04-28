@@ -6,312 +6,332 @@
     android:background="@color/white"
     android:orientation="vertical">
 
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/toolbar_layout" />
+        <include
+            layout="@layout/toolbar_layout"
+            android:visibility="gone" />
 
-        <LinearLayout
-            android:id="@+id/sport_header_ll"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/green_dark"
-            android:orientation="vertical">
+            android:layout_height="wrap_content">
 
             <LinearLayout
+                android:id="@+id/sport_header_ll"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp">
-
-                <TextView
-                    android:id="@+id/sport_title_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/trans_white"
-                    android:textAllCaps="true"
-                    android:textSize="13sp" />
-                <TextView
-                    android:id="@+id/sports_selected_tv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:textAllCaps="true"
-                    android:textColor="@color/white"
-                    android:textSize="13sp" />
-                <TextView
-                    android:id="@+id/tv_balance"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="right"
-                    android:textColor="@color/yellow2"
-                    android:textSize="13sp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:paddingBottom="5dp"
-                android:paddingTop="5dp">
-
-                <ImageView
-                    android:id="@+id/iv_home_back"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:contentDescription="@null"
-                    android:drawablePadding="5dp"
-                    android:onClick="clickBack"
-                    android:src="@mipmap/sport_home_white_24dp" />
+                android:background="@color/green_dark"
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/sport_game_rectangle_green_dark_trans_gradient_line"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
+                    android:layout_width="match_parent"
+                    android:layout_height="25dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:gravity="center"
-                    android:orientation="horizontal"
-                    android:padding="7dp">
+                    android:orientation="horizontal">
 
-                    <EditText
-
-                        android:id="@+id/edt_match_search_content"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="10dp"
-                        android:layout_weight="1"
-                        android:background="@null"
-                        android:cursorVisible="false"
-                        android:drawableLeft="@mipmap/sport_game_search_green"
-                        android:drawablePadding="5dp"
-                        android:hint="@string/select_league"
-                        android:singleLine="true"
-                        android:textColorHint="@color/trans_white"
-                        android:textSize="13.5sp" />
-
-                    <ImageView
-                        android:id="@+id/iv_delete_search"
+                    <TextView
+                        android:id="@+id/sport_title_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:onClick="clickDeleteSearch"
-                        android:src="@mipmap/vs_oval_error_white"
-                        android:visibility="gone" />
+                        android:textAllCaps="true"
+                        android:textColor="@color/trans_white"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/sports_selected_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_balance"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:gravity="right"
+                        android:textColor="@color/yellow2"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:id="@+id/iv_home_back"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:contentDescription="@null"
+                        android:drawablePadding="5dp"
+                        android:onClick="clickBack"
+                        android:src="@mipmap/sport_home_white_24dp" />
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/sport_game_rectangle_green_dark_trans_gradient_line"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:padding="4dp">
+
+                        <EditText
+
+                            android:id="@+id/edt_match_search_content"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:background="@null"
+                            android:cursorVisible="false"
+                            android:drawableLeft="@mipmap/sport_game_search_green"
+                            android:drawablePadding="5dp"
+                            android:hint="@string/select_league"
+                            android:singleLine="true"
+                            android:textColorHint="@color/trans_white"
+                            android:textSize="13.5sp" />
+
+                        <ImageView
+                            android:id="@+id/iv_delete_search"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="clickDeleteSearch"
+                            android:src="@mipmap/vs_oval_error_white"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+
+                    <ImageView
+                        android:id="@+id/match_cup_iv"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="10dp"
+                        android:onClick="clickCup"
+                        android:src="@mipmap/sport_game_cup_white" />
+
+
+                    <FrameLayout
+                        android:id="@+id/match_collection_fl"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="10dp"
+                        android:background="@mipmap/sport_game_star_yellow"
+                        android:onClick="clickCollectionStar">
+
+                        <TextView
+                            android:id="@+id/match_collection_num_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right"
+                            android:background="@drawable/oval_red_stroke_black"
+                            android:maxLines="1"
+                            android:onClick="clickCollectionStar"
+                            android:paddingBottom="1dp"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
+                            android:paddingTop="1dp"
+                            android:text="0"
+                            android:textColor="@color/white"
+                            android:textSize="8sp"
+                            android:visibility="gone" />
+
+                    </FrameLayout>
+
 
                 </LinearLayout>
 
-
-                <ImageView
-                    android:id="@+id/match_cup_iv"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="35dp"
                     android:layout_marginLeft="10dp"
-                    android:onClick="clickCup"
-                    android:src="@mipmap/sport_game_cup_white" />
-
-
-               <FrameLayout
-                   android:id="@+id/match_collection_fl"
-                   android:layout_width="25dp"
-                   android:layout_height="25dp"
-                   android:layout_marginLeft="10dp"
-                   android:background="@mipmap/sport_game_star_yellow"
-                   android:onClick="clickCollectionStar" >
-                   <TextView
-                       android:id="@+id/match_collection_num_tv"
-                       android:layout_width="wrap_content"
-                       android:layout_height="wrap_content"
-                       android:layout_gravity="right"
-                       android:text="0"
-                       android:textSize="8sp"
-                       android:paddingRight="3dp"
-                       android:maxLines="1"
-                       android:visibility="gone"
-                       android:paddingTop="1dp"
-                       android:paddingBottom="1dp"
-                       android:paddingLeft="3dp"
-                       android:textColor="@color/white"
-                       android:background="@drawable/oval_red_stroke_black"
-                       android:onClick="clickCollectionStar" />
-
-               </FrameLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/running_iv"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:background="@mipmap/sport_game_run_white"
-                    android:onClick="clickAllRunning" />
-
-                <TextView
-                    android:id="@+id/iv_all_add"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="5dp"
-                    android:layout_weight="1"
-                    android:textAllCaps="true"
-                    android:drawableBottom="@drawable/line_white"
-                    android:drawableRight="@mipmap/arrow_down_drop_white"
-                    android:gravity="center_vertical"
-                    android:text="@string/All_Market"
-                    android:textColor="@color/white"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/tv_odds_type"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="0.6"
-                    android:drawablePadding="5dp"
-                    android:textAllCaps="true"
-                    android:drawableRight="@mipmap/arrow_down_drop_white"
-                    android:gravity="center_vertical"
-                    android:onClick="clickOddsType"
-                    android:padding="5dp"
-                    android:text="@string/MY_ODDS"
-                    android:textColor="@color/white"
-                    android:textSize="13sp" />
-
-                <TextView
-                    android:id="@+id/tv_league_major"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:drawablePadding="5dp"
-                    android:textAllCaps="true"
-                    android:drawableRight="@mipmap/sport_game_cup_white"
-                    android:gravity="center_vertical|right"
-                    android:onClick="clickMajor"
-                    android:padding="5dp"
-                    android:text="@string/league"
-                    android:textColor="@color/white"
-                    android:textSize="13sp" />
-
-                <FrameLayout
-                    android:layout_width="42dp"
-                    android:layout_height="match_parent"
-                    android:gravity="center">
+                    android:layout_marginRight="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
                     <ImageView
-                        android:id="@+id/iv_order_top"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:contentDescription="@null"
-                        android:onClick="clickOrderTop"
-                        android:src="@mipmap/sport_shopping_top_gray" />
+                        android:id="@+id/running_iv"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:background="@mipmap/sport_game_run_white"
+                        android:onClick="clickAllRunning" />
 
                     <TextView
-                        android:id="@+id/tv_order_count_top"
-                        android:layout_width="18dp"
-                        android:layout_height="18dp"
-                        android:layout_gravity="right|top"
-                        android:layout_marginLeft="12dp"
-                        android:background="@drawable/oval_red_stroke_black"
-                        android:gravity="center"
-                        android:text="10"
+                        android:id="@+id/iv_all_add"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:drawableBottom="@drawable/line_white"
+                        android:drawableRight="@mipmap/arrow_down_drop_white"
+                        android:gravity="center_vertical"
+                        android:text="@string/All_Market"
+                        android:textAllCaps="true"
                         android:textColor="@color/white"
-                        android:textSize="9dp"
-                        android:textStyle="bold"
-                        android:visibility="gone" />
-                </FrameLayout>
+                        android:textSize="13sp" />
 
-                <ImageView
-                    android:id="@+id/iv_sort_time"
-                    android:layout_width="wrap_content"
+                    <TextView
+                        android:id="@+id/tv_odds_type"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.6"
+                        android:drawablePadding="5dp"
+                        android:drawableRight="@mipmap/arrow_down_drop_white"
+                        android:gravity="center_vertical"
+                        android:onClick="clickOddsType"
+                        android:padding="5dp"
+                        android:text="@string/MY_ODDS"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/tv_league_major"
+                        android:layout_width="wrap_content"
+                        android:layout_height="22dp"
+                        android:drawablePadding="5dp"
+                        android:drawableRight="@mipmap/sport_game_cup_white"
+                        android:gravity="center_vertical|right"
+                        android:onClick="clickMajor"
+                        android:text="@string/league"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="13sp" />
+
+                    <FrameLayout
+                        android:layout_width="42dp"
+                        android:layout_height="match_parent"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_order_top"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_gravity="center"
+                            android:contentDescription="@null"
+                            android:onClick="clickOrderTop"
+                            android:src="@mipmap/sport_shopping_top_gray" />
+
+                        <TextView
+                            android:id="@+id/tv_order_count_top"
+                            android:layout_width="18dp"
+                            android:layout_height="18dp"
+                            android:layout_gravity="right|top"
+                            android:layout_marginLeft="12dp"
+                            android:background="@drawable/oval_red_stroke_black"
+                            android:gravity="center"
+                            android:text="10"
+                            android:textColor="@color/white"
+                            android:textSize="9dp"
+                            android:textStyle="bold"
+                            android:visibility="gone" />
+                    </FrameLayout>
+
+                    <ImageView
+                        android:id="@+id/iv_sort_time"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+
+                        android:contentDescription="@null"
+                        android:onClick="clickSortByTime"
+                        android:src="@mipmap/sport_game_clock_white" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_header_sport"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="3dp"
-                    android:contentDescription="@null"
-                    android:onClick="clickSortByTime"
-                    android:src="@mipmap/sport_game_clock_white" />
+                    android:orientation="vertical" />
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/ll_header_sport"
+            <FrameLayout
+                android:id="@+id/fl_top_content"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" />
-        </LinearLayout>
-
-        <FrameLayout
-            android:id="@+id/fl_top_content"
-            android:layout_width="match_parent"
-            android:visibility="gone"
-            android:layout_height="200dp">
+                android:layout_height="200dp"
+                android:visibility="gone">
 
 
-            <com.unkonw.testapp.libs.widget.VideoPlayer
-                android:id="@+id/video_player_stream"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent" />
+                <com.unkonw.testapp.libs.widget.VideoPlayer
+                    android:id="@+id/video_player_stream"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
 
-            <LinearLayout
-                android:id="@+id/ll_status"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom"
-                android:background="@color/grey_trans"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:padding="5dp">
-
-                <ImageView
-                    android:id="@+id/iv_play_status"
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
-                    android:layout_marginLeft="8dp"
-                    android:src="@mipmap/play_pause_white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:id="@+id/ll_status"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:text="0:00"
-                    android:textSize="18sp" />
+                    android:layout_gravity="bottom"
+                    android:background="@color/grey_trans"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:padding="5dp">
 
-                <View
-                    android:layout_width="0dp"
-                    android:layout_height="1dp"
-                    android:layout_weight="1" />
+                    <ImageView
+                        android:id="@+id/iv_play_status"
+                        android:layout_width="22dp"
+                        android:layout_height="22dp"
+                        android:layout_marginLeft="8dp"
+                        android:src="@mipmap/play_pause_white" />
 
-                <ImageView
-                    android:id="@+id/iv_voice"
-                    android:layout_width="27dp"
-                    android:layout_height="27dp"
-                    android:src="@mipmap/play_mute_white" />
-                <ImageView
-                    android:layout_marginLeft="5dp"
-                    android:id="@+id/iv_full_screen"
-                    android:onClick="closeTv"
-                    android:src="@mipmap/play_close_tv"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp" />
-            </LinearLayout>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:text="0:00"
+                        android:textSize="18sp" />
+
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="1dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/iv_voice"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"
+                        android:src="@mipmap/play_mute_white" />
+
+                    <ImageView
+                        android:id="@+id/iv_full_screen"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_marginLeft="5dp"
+                        android:onClick="closeTv"
+                        android:src="@mipmap/play_close_tv" />
+                </LinearLayout>
+            </FrameLayout>
+
+            <FrameLayout
+                android:id="@+id/fl_parent_bet_pop"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+               >
+
+                <include
+                    layout="@layout/popupwindow_match_betting"
+                    android:visibility="gone" />
+            </FrameLayout>
         </FrameLayout>
+
+
         <FrameLayout
             android:id="@+id/fl_main_content"
             android:layout_width="match_parent"
@@ -341,14 +361,13 @@
             android:layout_height="wrap_content"
             android:background="@color/grey_dialog_background"
             android:orientation="horizontal"
-            android:paddingBottom="2dp"
-          >
+            android:paddingBottom="2dp">
 
             <FrameLayout
-                android:paddingTop="5dp"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_weight="1">
+                android:layout_weight="1"
+                android:paddingTop="5dp">
 
                 <TextView
 
@@ -359,8 +378,8 @@
                     android:drawableTop="@mipmap/sport_botton_teb_statement"
                     android:gravity="center"
                     android:onClick="clickBets"
-                    android:textAllCaps="true"
                     android:text="@string/TabMyBets"
+                    android:textAllCaps="true"
                     android:textColor="@color/gray_dark"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -381,7 +400,6 @@
             </FrameLayout>
 
             <TextView
-                android:paddingTop="5dp"
                 android:id="@+id/tv_sport_select"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -390,18 +408,19 @@
                 android:drawableTop="@mipmap/sport_botton_teb_soccer"
                 android:gravity="center"
                 android:onClick="clickSportSelect"
+                android:paddingTop="5dp"
                 android:text="@string/Soccer"
+                android:textAllCaps="true"
                 android:textColor="@color/gray_dark"
                 android:textSize="12sp"
-                android:textAllCaps="true"
                 android:textStyle="bold" />
 
             <FrameLayout
-                android:paddingTop="5dp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:gravity="center">
+                android:gravity="center"
+                android:paddingTop="5dp">
 
 
                 <TextView
@@ -415,9 +434,9 @@
                     android:gravity="center"
                     android:onClick="clickOrder"
                     android:text="@string/bet_slip"
+                    android:textAllCaps="true"
                     android:textColor="@color/grey_light"
                     android:textSize="12sp"
-                    android:textAllCaps="true"
                     android:textStyle="bold" />
 
                 <TextView
@@ -437,19 +456,19 @@
 
 
             <TextView
-                android:paddingTop="5dp"
                 android:id="@+id/tv_way_run"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:drawablePadding="2dp"
-                android:textAllCaps="true"
                 android:drawableTop="@mipmap/date_running_green"
-                android:gravity="center"
-                android:onClick="clickSportWayRun"
                 android:ellipsize="start"
+                android:gravity="center"
                 android:maxLines="1"
+                android:onClick="clickSportWayRun"
+                android:paddingTop="5dp"
                 android:text="@string/running"
+                android:textAllCaps="true"
                 android:textColor="@color/grey_dark"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -468,16 +487,16 @@
                     android:src="@mipmap/message_small" />
 
                 <TextView
-                    android:paddingTop="5dp"
                     android:id="@+id/tv_menu"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:textAllCaps="true"
                     android:drawablePadding="2dp"
                     android:drawableTop="@mipmap/sport_botton_teb_more_menu"
                     android:gravity="center"
                     android:onClick="clickMoreMenu"
+                    android:paddingTop="5dp"
                     android:text="@string/more"
+                    android:textAllCaps="true"
                     android:textColor="@color/grey_dark"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -487,6 +506,7 @@
         </LinearLayout>
 
     </LinearLayout>
+
 
     <include layout="@layout/include_drawer_layout_right" />
 </android.support.v4.widget.DrawerLayout>

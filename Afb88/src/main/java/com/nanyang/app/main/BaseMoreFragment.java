@@ -23,6 +23,7 @@ public abstract class BaseMoreFragment<P extends IBasePresenter> extends BaseSwi
         baseToolbarActivity.getToolbar().setNavigationIcon(R.mipmap.go_back_left_white);
         if (baseToolbarActivity instanceof SportActivity) {
             ((SportActivity) baseToolbarActivity).sportHeaderLl.setVisibility(View.GONE);
+            ((SportActivity) baseToolbarActivity).bet_pop_parent_ll.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).ll_footer_sport.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).llSportMenuBottom.setVisibility(View.GONE);
         }

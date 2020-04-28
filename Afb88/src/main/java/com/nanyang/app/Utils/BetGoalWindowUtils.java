@@ -21,7 +21,10 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.main.BetCenter.Bean.StatementListDataBean;
+import com.nanyang.app.main.BetCenter.HtmlTagHandler;
+import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
 import com.unkonw.testapp.libs.api.Api;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,15 +44,15 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public class BetGoalWindowUtils {
-    private  Handler handler;
-    private  LinearLayout llContent;
-    private  LayoutInflater layoutInflater;
+    private Handler handler;
+    private LinearLayout llContent;
+    private LayoutInflater layoutInflater;
 
-    private  void initLayout(Activity activity) {
+    private void initLayout(Activity activity) {
         if (llContent == null) {
             FrameLayout view = (FrameLayout) activity.getWindow().getDecorView();
             llContent = new LinearLayout(activity);
-            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
             llContent.setLayoutParams(params);
             llContent.setOrientation(LinearLayout.VERTICAL);
             llContent.setPadding(AfbUtils.dp2px(activity, 10), AfbUtils.dp2px(activity, 10), AfbUtils.dp2px(activity, 10), AfbUtils.dp2px(activity, 10));
@@ -64,7 +67,7 @@ public class BetGoalWindowUtils {
         }
     }
 
-    public  void showBetWindow(String accType, String tidss, final Activity activity, final boolean isWA) {
+    public void showBetWindow(String accType, String tidss, final Activity activity, final boolean isWA) {
         initLayout(activity);
         LinkedHashMap<String, String> map = new LinkedHashMap<>();
         map.put("ACT", "GetTable");
@@ -78,6 +81,7 @@ public class BetGoalWindowUtils {
                         subscribe(new Consumer<String>() {//onNext
                             @Override
                             public void accept(String bean) throws Exception {
+                                LogUtil.d("accept", bean);
                                 StatementListDataBean dataBean = handleData(bean);
                                 if (dataBean != null) {
                                     final View view;
@@ -98,10 +102,11 @@ public class BetGoalWindowUtils {
                                         tvAmt.setText(activity.getString(R.string.Amt) + ": " + dataBean.getIndex9());
                                     } else {
                                         view = layoutInflater.inflate(R.layout.item_bet_result_window, null);
-                                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, AfbUtils.dp2px(activity, 90));
-                                        params.bottomMargin = AfbUtils.dp2px(activity, 10);
+                                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                                        params.bottomMargin = AfbUtils.dp2px(activity, 8);
                                         view.setLayoutParams(params);
                                         TextView tvTitle = view.findViewById(R.id.tv_title);
+                                        View ll_vs = view.findViewById(R.id.ll_vs);
                                         TextView tvMatch = view.findViewById(R.id.tv_match);
                                         TextView tvHome = view.findViewById(R.id.tv_home);
                                         TextView tvAway = view.findViewById(R.id.tv_away);
@@ -109,15 +114,25 @@ public class BetGoalWindowUtils {
                                         TextView tvData2 = view.findViewById(R.id.tv_data2);
                                         TextView tvData3 = view.findViewById(R.id.tv_data3);
                                         TextView tvData4 = view.findViewById(R.id.tv_data4);
+                                        TextView tv_score = view.findViewById(R.id.tv_score);
+                                        TextView tvDataContent = view.findViewById(R.id.tv_data_content);
+
                                         TextView tvData5 = view.findViewById(R.id.tv_data5);
                                         TextView tvData7 = view.findViewById(R.id.tv_data7);
                                         tvTitle.setText(dataBean.getIndex12() + "(" + dataBean.getIndex0() + ")");
                                         tvMatch.setText(dataBean.getIndex11());
+
                                         tvHome.setText(dataBean.getIndex1());
                                         tvAway.setText(dataBean.getIndex2());
-                                        String index13 = dataBean.getIndex13().replace("(", "").replace(")", "");
-                                        tvData1.setText(index13);
+                                        String index13 = dataBean.getIndex13();
+                                        if (index13.toUpperCase().contains("HT") || index13.toUpperCase().contains("FH")) {
+                                            tvData1.setVisibility(View.VISIBLE);
+                                            tvData1.setText("FH.");
+                                        } else {
+                                            tvData1.setVisibility(View.GONE);
+                                        }
                                         String transType10 = dataBean.getIndex10();
+                                        boolean isOu = false;
                                         switch (transType10) {
                                             case "1":
                                             case "2":
@@ -131,6 +146,7 @@ public class BetGoalWindowUtils {
                                             case "OU":
                                             case "MMO":
                                                 transType10 = "O/U";
+                                                isOu = true;
                                                 break;
                                             case "OE":
                                                 transType10 = "O/E";
@@ -151,23 +167,36 @@ public class BetGoalWindowUtils {
                                                 transType10 = "HT/FT";
                                                 break;
                                         }
-                                        tvData2.setText("." + transType10 + " ");
+
+                                        tvData2.setText(transType10 + " ");
                                         String isRun5 = dataBean.getIndex5();
                                         String betType2 = dataBean.getIndex23();
-                                        if (betType2.contains("red") || dataBean.getIndex24().contains("gbGive")) {
-                                            tvData3.setTextColor(Color.RED);
-                                        } else if (betType2.contains("blue") || dataBean.getIndex24().contains("gbTake2")) {
-                                            tvData3.setTextColor(Color.BLUE);
+                                        if (isOu) {
+                                            ll_vs.setVisibility(View.VISIBLE);
                                         } else {
-                                            tvData3.setTextColor(Color.BLACK);
+                                            ll_vs.setVisibility(View.GONE);
                                         }
-                                        betType2 = AfbUtils.delHTMLTag(betType2);
+
                                         String gameType314 = dataBean.getIndex14();
-                                        tvData3.setText(AfbUtils.delHTMLTag(dataBean.getIndex24()) + (gameType314.equals("O") ? "Outright" : betType2));
+                                        tvDataContent.setText(HtmlTagHandler.spanFontHtml(dataBean.getIndex24()));
+                                        tvData3.setText(HtmlTagHandler.spanFontHtml("(" + (gameType314.equals("O") ? "Outright" : betType2) + ")"));
+                                        View v_space = view.findViewById(R.id.v_space);
+                                        TextView tv_time = view.findViewById(R.id.tv_time);
+                                        if (isRun5.equals("True")) {
+                                            tv_score.setVisibility(View.VISIBLE);
+                                            v_space.setVisibility(View.VISIBLE);
+                                            tv_time.setVisibility(View.VISIBLE);
+                                            SoccerRunningGoalManager.getInstance().runScoreStyle(dataBean.getIndex17(), tv_score, dataBean.getIndex25(), dataBean.AwayScore26, dataBean.getIndex19(), dataBean.IsHomeGoal32);
+                                            SoccerRunningGoalManager.getInstance().runTimeStyle(tv_time, dataBean.MExtraTime30, dataBean.TEAMSTATUS28, dataBean.CurMinute29, dataBean.Live31);
+                                        } else {
+                                            tv_score.setVisibility(View.GONE);
+                                            v_space.setVisibility(View.GONE);
+                                            tv_time.setVisibility(View.GONE);
+                                        }
                                         tvData4.setText((isRun5.equals("False") ? "" : dataBean.getIndex19()));
                                         TextView tv_odds = view.findViewById(R.id.tv_odds);
                                         Log.d("getIndex3", "getIndex3: " + dataBean.getIndex3());
-                                        tv_odds.setText("@" + AfbUtils.delHTMLTag(dataBean.getIndex3()) + " ");
+                                        tv_odds.setText(HtmlTagHandler.spanFontHtml("@" + dataBean.getIndex3() + " "));
                                         String index15 = dataBean.getIndex15();
                                         if (!TextUtils.isEmpty(index15)) {
                                             tvData5.setText("(" + index15 + ")");
@@ -270,7 +299,7 @@ public class BetGoalWindowUtils {
         mCompositeSubscription.add(subscribe);
     }
 
-    public  void showGoalWindow(BaseToolbarActivity activity, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {
+    public void showGoalWindow(BaseToolbarActivity activity, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {
         if (activity == null || SoundPlayUtils.getSoundIndex().getSound() == 0)
             return;
         initLayout(activity);
@@ -331,7 +360,7 @@ public class BetGoalWindowUtils {
         });
     }
 
-    private  StatementListDataBean handleData(String data) {
+    private StatementListDataBean handleData(String data) {
         try {
             JSONArray jsonArray = new JSONArray(data);
             JSONArray jsonArray1 = jsonArray.getJSONArray(3);
@@ -344,7 +373,10 @@ public class BetGoalWindowUtils {
                     jsonArrayArr.getString(10), jsonArrayArr.getString(11), jsonArrayArr.getString(12), jsonArrayArr.getString(13),
                     jsonArrayArr.getString(14), jsonArrayArr.getString(15), jsonArrayArr.getString(16), jsonArrayArr.getString(17),
                     jsonArrayArr.getString(18), jsonArrayArr.getString(19), jsonArrayArr.getString(20), jsonArrayArr.getString(21),
-                    jsonArrayArr.getString(22), jsonArrayArr.getString(23), jsonArrayArr.getString(24), "");
+                    jsonArrayArr.getString(22), jsonArrayArr.getString(23), jsonArrayArr.getString(24), jsonArrayArr.optString(25),
+                    jsonArrayArr.optString(26), jsonArrayArr.optString(27), jsonArrayArr.optString(28), jsonArrayArr.optString(29),
+                    jsonArrayArr.optString(30), jsonArrayArr.optString(31), jsonArrayArr.optString(32)
+            );
             return bean;
         } catch (JSONException e) {
             e.printStackTrace();
@@ -352,7 +384,7 @@ public class BetGoalWindowUtils {
         }
     }
 
-    public  void clear() {
+    public void clear() {
         if (llContent != null) {
             llContent.removeAllViews();
         }

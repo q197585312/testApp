@@ -1,1 +1,1 @@
-include ':baseLibs', ':Afb88', ':dongnao'
+include ':baseLibs', ':Afb88'

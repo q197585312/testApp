@@ -18,6 +18,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_home_ft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -62,6 +63,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_away_ft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -108,12 +110,14 @@
 
 
         <LinearLayout
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_over_ft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -158,6 +162,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_under_ft"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -203,12 +208,14 @@
         </LinearLayout>
 
         <LinearLayout
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_home_fh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -253,6 +260,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_away_fh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -305,6 +313,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/ll_over_fh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"
@@ -349,6 +358,7 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/ll_under_fh"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="1dp"

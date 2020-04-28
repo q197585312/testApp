@@ -27,6 +27,7 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
      * 使用CompositeSubscription来持有所有的Subscriptions
      */
     public CompositeDisposable mCompositeSubscription;
+    public boolean parentHidden;
 
     public T getPresenter() {
         return presenter;
@@ -187,5 +188,9 @@ public abstract class BaseFragment<T extends IBasePresenter> extends Fragment im
 
     public void refreshData(String item) {
 
+    }
+
+    public void setParentHidden(boolean hidden) {
+        this.parentHidden =hidden;
     }
 }

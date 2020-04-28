@@ -1,9 +1,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/bet_pop_parent_ll"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/yellow_white_bg"
     android:gravity="center"
+    android:layout_marginTop="52dp"
     android:orientation="vertical">
 
     <LinearLayout
@@ -87,9 +88,9 @@
                 android:id="@+id/my_bets"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:layout_marginRight="3dp"
                 android:gravity="center"
                 android:padding="3dp"
-                android:layout_marginRight="3dp"
                 android:text="@string/TabMyBets"
                 android:textAllCaps="true"
                 android:textColor="@color/white" />
@@ -142,8 +143,7 @@
             android:id="@+id/rc_bet_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-
-            android:padding="5dp" />
+            android:padding="2dp" />
 
         <LinearLayout
             android:id="@+id/ll_mix"
@@ -232,11 +232,12 @@
                 android:layout_weight="1"
                 android:background="@color/white"
                 android:elevation="3dp"
-                android:gravity="right|center_vertical"
+                android:gravity="center"
                 android:inputType="number"
                 android:paddingRight="8dp"
                 android:text="0"
                 android:textColor="@color/black"
+                android:textColorHint="@color/grey_background"
                 android:translationZ="5dp" />
 
             <TextView
@@ -256,7 +257,7 @@
                 android:layout_width="0dp"
                 android:layout_height="30dp"
                 android:layout_marginLeft="4dp"
-                android:layout_weight="0.6"
+                android:layout_weight="0.4"
                 android:background="@drawable/shape_bet_bg4"
                 android:gravity="center"
                 android:text="@string/cancel"

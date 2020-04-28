@@ -2,7 +2,6 @@ package com.nanyang.app.main.BetCenter;
 
 import android.support.annotation.IdRes;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -29,8 +28,7 @@ public class BetCenterFragment extends BaseMoreFragment {
     RadioButton rbStatement;
     @Bind(R.id.rb_grade)
     RadioButton rbGrade;
-    @Bind(R.id.SwipeRefreshLayout)
-    SwipeRefreshLayout swipeRefreshLayout;
+
     List<BaseFragment> baseFragmentList;
     BaseFragment unsettledFragment = new UnsettledFragment();
     BaseFragment statementNewFragment = new StatementNewFragment();
@@ -48,15 +46,16 @@ public class BetCenterFragment extends BaseMoreFragment {
     public void initData() {
         super.initData();
         createPresenter(new BaseSwitchPresenter(this));
-        swipeRefreshLayout.setColorSchemeResources(R.color.green900);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                baseFragmentList.get(currentIndex).refreshData();
-                swipeRefreshLayout.setRefreshing(false);
-            }
-        });
     }
+
+    @Override
+    public void onHiddenChanged(boolean hidden) {
+        super.onHiddenChanged(hidden);
+        for (BaseFragment baseFragment : baseFragmentList) {
+            baseFragment.setParentHidden(hidden);
+        }
+    }
+
 
     @Override
     public void initView() {

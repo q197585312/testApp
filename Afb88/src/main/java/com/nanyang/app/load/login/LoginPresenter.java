@@ -1,6 +1,10 @@
 package com.nanyang.app.load.login;
 
 
+import android.media.MediaPlayer;
+import android.net.Uri;
+import android.widget.MediaController;
+
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
@@ -39,5 +43,25 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
         }
         return true;
     }
+    public void playVideoRaw(final CustomVideoView c_video_bg) {
+        MediaController mediaController = new MediaController(baseContext);
+        //获取raw.mp4的uri地址
+        String uri = "android.resource://" + baseContext.getPackageName() + "/" + R.raw.login;
+        c_video_bg.setVideoURI(Uri.parse(uri));
+        //让video和mediaController建立关联
+        c_video_bg.setMediaController(mediaController);
+        mediaController.setMediaPlayer(c_video_bg);
+        //让video获取焦点
+        c_video_bg.requestFocus();
+        //监听播放完成，
+        c_video_bg.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                //重新开始播放
+                c_video_bg.start();
+            }
+        });
+    }
+
 
 }

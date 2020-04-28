@@ -626,4 +626,6 @@
     <string name="e">E</string>
     <string name="live_score">LIVE SCORE:</string>
     <string name="All">ALL</string>
+    <string name="single">SINGLE</string>
+    <string name="mix_parlay">MIX PARLAY</string>
 </resources>

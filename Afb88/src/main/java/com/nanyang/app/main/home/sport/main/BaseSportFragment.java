@@ -118,7 +118,8 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onHiddenChanged(boolean hidden) {
         super.onHiddenChanged(hidden);
         if (hidden) {// 不在最前端界面显示
-//            presenter.getStateHelper().stopUpdateData();
+            if (getBaseActivity().getBetContent().v.getVisibility() == View.VISIBLE)
+                getBaseActivity().getBetContent().stopUpdateOdds();
             presenter.getStateHelper().setIsHide(true, additionPresenter);
             getBaseActivity().closeTv(tvNoGames);
         } else {// 重新显示到最前端中
@@ -127,6 +128,8 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             presenter.getStateHelper().setIsHide(false, additionPresenter);
             String type = ((SportActivity) getActivity()).getType();
             switchType(type);
+            if (getBaseActivity().getBetContent().v.getVisibility() == View.VISIBLE)
+                getBaseActivity().getBetContent().updateOdds(0);
 //            presenter.getStateHelper().refresh();
         }
         Log.d(TAG, "onHiddenChanged: " + hidden + "," + getClass().getSimpleName());
@@ -532,6 +535,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 //        }
 //    }
 
+
     public void clickOrder() {
         if (getApp().getMixBetList() == null || getApp().getMixBetList().size() < 1)
             return;
@@ -592,7 +596,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onBetSuccess(String betResult) {
         getBaseActivity().onBetSuccess(betResult);
         updateMixOrderCount();
-        baseRecyclerAdapter.notifyDataSetChanged();
 //        ToastUtils.showShort(betResult);
     }
 
@@ -696,5 +699,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
         getBaseActivity().llSportMenuBottom.setVisibility(View.VISIBLE);
     }
+
 
 }

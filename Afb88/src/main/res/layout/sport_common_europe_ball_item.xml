@@ -652,8 +652,9 @@
         android:visibility="gone">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:src="@mipmap/arrow_left_green_double" />
 
         <android.support.v7.widget.RecyclerView
@@ -662,10 +663,6 @@
             android:layout_height="wrap_content"
             android:layout_weight="1" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@mipmap/arrow_right_green_double" />
     </LinearLayout>
 
     <LinearLayout

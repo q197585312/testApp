@@ -5,8 +5,6 @@ import android.widget.TextView;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.model.AfbClickBetBean;
-import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
@@ -56,24 +54,21 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 || type.equalsIgnoreCase("1")
                 || type.equalsIgnoreCase("X")
                 || type.equalsIgnoreCase("2");
-        if (((AfbApplication) AfbApplication.getInstance()).getMixBetList() == null
-                || ((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 0
-                || (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1 && (isOneTeamBoolean(item, ((AfbApplication) AfbApplication.getInstance()).getMixBetList())
-                || !hasPar))) {
+        if (((AfbApplication) AfbApplication.getInstance()).isSingleBet) {
             if (!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
                 betOddsUrl = AppConstant.getInstance().URL_ODDS + "BTMD=S&coupon=0&BETID=" + oddsUrlBean.getBETID();
                 LogUtil.d("typeHasPar", "typeHasPar:" + typeHasPar + ",hasPar:" + hasPar);
                 if (hasPar && typeHasPar) {
-                    saveCurrentBet(oddsUrlBean);
+                    saveCurrentMixBet(oddsUrlBean);
                 }
-                if (!hasPar || ((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1)
-                    return getDisposable(v, isHf, betOddsUrl);
+                saveCurrentSingleBet(oddsUrlBean);
+
+                return getDisposable(v, isHf, betOddsUrl);
             }
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
             ToastUtils.showShort(R.string.can_not_mixparly);
         } else {
-
-            saveCurrentBet(oddsUrlBean);
+            saveCurrentMixBet(oddsUrlBean);
             betOddsUrl = ((AfbApplication) AfbApplication.getInstance()).getRefreshMixOddsUrl();
             if (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1 || ((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() > 14) {
                 return getDisposable(v, isHf, betOddsUrl);
@@ -83,7 +78,12 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         return new CompositeDisposable();
     }
 
-    private void saveCurrentBet(OddsClickBean oddsUrlBean) {
+    private void saveCurrentSingleBet(OddsClickBean oddsUrlBean) {
+        ((AfbApplication) AfbApplication.getInstance()).saveSingleBet(oddsUrlBean);
+
+    }
+
+    private void saveCurrentMixBet(OddsClickBean oddsUrlBean) {
         boolean listHasChanged = ((AfbApplication) AfbApplication.getInstance()).saveCurrentBet(oddsUrlBean);
         if (listHasChanged) {
             BaseActivity baseActivity = getBaseView().getIBaseContext().getBaseActivity();
@@ -105,29 +105,5 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         return new OddsClickBean<>(type, getBallG(), socId + "", isHf ? socId + "" : "", sc, item);
     }
 
-    protected AfbClickResponseBean initHasPar(AfbClickResponseBean bean) {
-        if (bean == null) {
-            return null;
-        }
-        if (bean.getList().size() == 1) {
-            for (AfbClickBetBean afbClickBetBean : bean.getList()) {
-                String strPar = "";
-                if (!hasPar) {
-                    strPar = "0";
-                } else if (isHf && !StringUtils.isEmpty(item.getHasPar_FH())) {
-                    strPar = item.getHasPar_FH();
-                } else {
-                    strPar = item.getHasPar();
-                }
-                afbClickBetBean.setHasPar(strPar);
-            }
-        } else {
-            for (AfbClickBetBean afbClickBetBean : bean.getList()) {
-                String hasPar = "1";
-                afbClickBetBean.setHasPar(hasPar);
-            }
-        }
-        return bean;
-    }
 
 }

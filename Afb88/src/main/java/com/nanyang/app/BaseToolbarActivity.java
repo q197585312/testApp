@@ -82,8 +82,9 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     @Override
     public void init() {
-        super.init();
         initLanguage();
+        super.init();
+
     }
 
     @Override
@@ -318,11 +319,8 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
 
     public void onBetSuccess(String betResult) {
-        if (popWindow != null)
-            popWindow.closePopupWindow();
         LogUtil.d("BetPop", "setBetAfbList:onBetSuccess:" + null);
         getApp().setBetAfbList(null);
-
         updateBalance();
 
     }

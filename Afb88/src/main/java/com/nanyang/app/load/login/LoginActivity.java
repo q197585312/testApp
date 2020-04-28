@@ -58,6 +58,8 @@ import cn.finalteam.toolsfinal.AppCacheUtils;
 public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
 
 
+    @Bind(R.id.c_video_bg)
+    CustomVideoView c_video_bg;
     @Bind(R.id.tv_all_right)
     TextView tv_all_right;
     @Bind(R.id.tv_remember_me)
@@ -123,7 +125,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         edtLoginUsername.requestFocus();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE);
         inputMove();
-
+        presenter.playVideoRaw(c_video_bg);
 
     }
 
@@ -144,6 +146,14 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
             loginLanguage.setText(languageItem.getText());
         }
         restart();
+    }
+
+    @Override
+    public void init() {
+        initFromWhere();
+        initView();
+        initData();
+        initLanguage();
     }
 
     public void onFailed(String error) {
@@ -342,8 +352,14 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     @Override
     protected void onResume() {
         super.onResume();
+        c_video_bg.start();
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        c_video_bg.pause();
+    }
 
     @Override
     protected void onDestroy() {

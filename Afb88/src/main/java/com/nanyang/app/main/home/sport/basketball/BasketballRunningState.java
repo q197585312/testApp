@@ -1,6 +1,7 @@
 package com.nanyang.app.main.home.sport.basketball;
 
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.AppConstant;
@@ -60,8 +61,8 @@ public class BasketballRunningState extends BasketballCommonState {
     protected IAdapterHelper<BallInfo> onSetCommonAdapterHelper() {
         return new SoccerRunningAdapterHelper(getBaseView().getIBaseContext().getBaseActivity()) {
             @Override
-            protected void noContainsLive(BallInfo item, TextView timeTv) {
-                timeTv.setText("");
+            protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
+                timeTv.setVisibility(View.INVISIBLE);
             }
         };
     }

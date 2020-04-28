@@ -1,11 +1,18 @@
 package com.nanyang.app.main.home.sport.football;
 
 import android.graphics.Color;
+import android.text.Html;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.TextUtils;
+import android.text.style.ForegroundColorSpan;
 import android.widget.TextView;
 
 import com.nanyang.app.main.home.sport.model.BallInfo;
 
 import java.util.HashMap;
+
+import cn.finalteam.toolsfinal.StringUtils;
 
 /**
  * Created by ASUS on 2019/7/1.
@@ -29,6 +36,22 @@ public class SoccerRunningGoalManager {
         return instance;
     }
 
+    public void runScoreStyle(String socOddsId, TextView tvScore, String hScore, String aScore, String score, String isHomeGoal) {
+        if (!StringUtils.isEmpty(hScore) && !StringUtils.isEmpty(aScore)) {
+            SpannableString spanString = new SpannableString(hScore + " - " + aScore + " ");
+            //构造一个改变字体颜色的Span
+            ForegroundColorSpan span = new ForegroundColorSpan(Color.RED);
+            if (isHomeGoal(socOddsId, hScore, aScore, isHomeGoal)) {
+                spanString.setSpan(span, 0, hScore.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+            } else if (isAwayGoal(socOddsId, hScore, aScore, isHomeGoal)) {
+                spanString.setSpan(span, hScore.length() + 3, spanString.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+            }
+            tvScore.setText(spanString);
+        } else {
+            tvScore.setText(score + " ");
+        }
+    }
+
     public boolean isHomeGoal(BallInfo item) {
       /*  Boolean isHomeGoal = homeGoal.get(item.getSocOddsId());
         if (isHomeGoal != null)
@@ -43,9 +66,10 @@ public class SoccerRunningGoalManager {
         if (item.getIsHomeGoal().equals("1"))
             return true;
         return false;*/
-       return isHomeGoal(item.getSocOddsId(),item.getRunHomeScore(),item.getRunAwayScore(),item.getIsHomeGoal());
+        return isHomeGoal(item.getSocOddsId(), item.getRunHomeScore(), item.getRunAwayScore(), item.getIsHomeGoal());
     }
-    public boolean isHomeGoal(String sid,String runHomeScore,String runAwayScore,String HomeGoal) {
+
+    public boolean isHomeGoal(String sid, String runHomeScore, String runAwayScore, String HomeGoal) {
         Boolean isHomeGoal = homeGoal.get(sid);
         if (isHomeGoal != null)
             return isHomeGoal;
@@ -55,28 +79,16 @@ public class SoccerRunningGoalManager {
         if (runAwayScore.equals("0")) {
             return true;
         }
-        if (HomeGoal.equals("1")||HomeGoal.equals("True"))
+        if (HomeGoal.equals("1") || HomeGoal.equals("True"))
             return true;
         return false;
     }
 
     public boolean isAwayGoal(BallInfo item) {
-     /*   Boolean isHomeGoal = awayGoal.get(item.getSocOddsId());
-        if (isHomeGoal != null)
-            return isHomeGoal;
-        String runHomeScore = item.getRunHomeScore();
-        String runAwayScore = item.getRunAwayScore();
-        if (runHomeScore.equals("0") && runAwayScore.equals("0"))
-            return false;
-        if (runHomeScore.equals("0")) {
-            return true;
-        }
-        if (item.getIsHomeGoal().equals("0"))
-            return true;
-        return false;*/
-        return isAwayGoal(item.getSocOddsId(),item.getRunHomeScore(),item.getRunAwayScore(),item.getIsHomeGoal());
+        return isAwayGoal(item.getSocOddsId(), item.getRunHomeScore(), item.getRunAwayScore(), item.getIsHomeGoal());
     }
-    public boolean isAwayGoal(String sid,String runHomeScore,String runAwayScore,String HomeGoal) {
+
+    public boolean isAwayGoal(String sid, String runHomeScore, String runAwayScore, String HomeGoal) {
         Boolean isHomeGoal = awayGoal.get(sid);
         if (isHomeGoal != null)
             return isHomeGoal;
@@ -86,7 +98,7 @@ public class SoccerRunningGoalManager {
         if (runHomeScore.equals("0")) {
             return true;
         }
-        if (HomeGoal.equals("0")||HomeGoal.equals("False"))
+        if (HomeGoal.equals("0") || HomeGoal.equals("False"))
             return true;
         return false;
     }
@@ -133,5 +145,55 @@ public class SoccerRunningGoalManager {
         }
     }
 
+    public void runTime(TextView timeTv, String mExtraTime30, String teamStatus28, String curMinute29) {
+        timeTv.setText("");
+        int min;
+        try {
+            String mExtraTime = mExtraTime30;
+            String timeStr;
+            switch (teamStatus28) {
+                case "0":
+                    break;
+                case "2":
+                    min = Integer.valueOf(curMinute29);
+                    if (min < 130 && min > 0) {
+                        timeStr = "2H " + min + "'";
+                        if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
+                            timeStr += "+" + mExtraTime;
+                        }
+                    } else {
+                        timeStr = "";
+                    }
+                    timeTv.setText(timeStr);
+                    break;
+                default:
+                    min = Integer.valueOf(curMinute29);
+                    if (min < 130 && min > 0) {
+                        timeStr = "1H " + min + "'";
+                        if (!TextUtils.isEmpty(mExtraTime) && !mExtraTime.equals("0")) {
+                            timeStr += "+" + mExtraTime;
+                        }
+                    } else {
+                        timeStr = "";
+                    }
+                    timeTv.setText(timeStr);
+                    break;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            timeTv.setText("");
+        }
+    }
 
+    public void runTimeStyle(TextView tv_running_status, String mExtraTime30, String teamStatus28, String curMinute29, String live31) {
+        String spanned = Html.fromHtml(live31).toString();
+        if (spanned.contains("\n")) {
+            String[] split = spanned.split("\\n");
+            tv_running_status.setText(split[1]);
+            tv_running_status.setTextColor(Color.RED);
+        } else {
+            SoccerRunningGoalManager.getInstance().runTime(tv_running_status, mExtraTime30, teamStatus28, curMinute29);
+            tv_running_status.setTextColor(Color.BLACK);
+        }
+    }
 }

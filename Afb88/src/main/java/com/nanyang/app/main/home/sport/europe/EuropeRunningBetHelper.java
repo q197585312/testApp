@@ -19,8 +19,8 @@ public class EuropeRunningBetHelper extends EuropeBetHelper {
 
 
     @Override
-    protected void createBetPop(List<AfbClickBetBean> bean, View v) {
-        super.createBetPop(bean,v);
+    protected void showBetPopView(List<AfbClickBetBean> bean, View v) {
+        super.showBetPopView(bean,v);
         betPop.setrTMatchInfo(item);
 
     }

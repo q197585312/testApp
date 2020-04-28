@@ -25,12 +25,16 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
 
     @Override
     public OddsClickBean getMixItem(String itemId) {
-        if (act.getApp().getMixBetList() != null && act.getApp().getMixBetList().size() > 0)
+        if (act.getApp().getMixBetList() != null && act.getApp().getMixBetList().size() > 0) {
             for (OddsClickBean betParBean : act.getApp().getMixBetList()) {
                 if (itemId.equals(betParBean.getOid())) {
                     return betParBean;
                 }
             }
+        }
+        if (act.getApp().getSingleBet() != null && itemId.equals(act.getApp().getSingleBet().getOid())) {
+            return act.getApp().getSingleBet();
+        }
         return null;
     }
 
@@ -126,12 +130,21 @@ public class BaseMixStyleHandler implements IMixStyleHandler {
 
         OddsClickBean mixItem = getMixItem(itemFullSocOddsId);
         int index = 0;
-
         if (mixItem != null) {
             parseMixBackground(mixItem, index, sl, type01, type02, type11, type12, type21, type22);
         } else {
             parseCommonBackground(0, sl);
             parseCommonBackground(1, sl);
+        }
+    }
+
+    public void updateBackgroundStyle(String sId, View parent, String type, String sc) {
+
+        OddsClickBean mixItem = getMixItem(sId);
+        if (mixItem != null && type.equals(type) && sc.equals(sc)) {
+            parent.setBackgroundResource(R.drawable.sport_mix_parlay_bet_green_bg);
+        } else {
+            parent.setBackgroundResource(0);
         }
     }
 }
