@@ -49,6 +49,7 @@ import java.util.regex.Pattern;
 import butterknife.Bind;
 import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
+import cn.finalteam.toolsfinal.DeviceUtils;
 
 
 /**
@@ -395,7 +396,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                 int screenHeight = llContainer.getRootView().getHeight();
                 int softHeight = screenHeight - r.bottom;
                 if (scrollHeight == 0 && softHeight > 120)
-                    scrollHeight = sc[1] + btnLoginLogin.getHeight() - (screenHeight - softHeight);//可以加个5dp的距离这样，按钮不会挨着输入法
+                    scrollHeight = sc[1] + btnLoginLogin.getHeight() - (screenHeight - softHeight)+ DeviceUtils.dip2px(mContext,10);//可以加个5dp的距离这样，按钮不会挨着输入法
 
                 if (scrollHeight < 1)
                     return;

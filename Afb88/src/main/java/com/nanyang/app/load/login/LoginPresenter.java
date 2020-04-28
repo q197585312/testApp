@@ -49,7 +49,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
         String uri = "android.resource://" + baseContext.getPackageName() + "/" + R.raw.login;
         c_video_bg.setVideoURI(Uri.parse(uri));
         //让video和mediaController建立关联
-        c_video_bg.setMediaController(mediaController);
+//        c_video_bg.setMediaController(mediaController);
         mediaController.setMediaPlayer(c_video_bg);
         //让video获取焦点
         c_video_bg.requestFocus();
