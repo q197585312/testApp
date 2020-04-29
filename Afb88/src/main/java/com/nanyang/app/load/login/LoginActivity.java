@@ -395,12 +395,13 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                 //r.top 是状态栏高度
                 int screenHeight = llContainer.getRootView().getHeight();
                 int softHeight = screenHeight - r.bottom;
-                if (scrollHeight == 0 && softHeight > 120)
-                    scrollHeight = sc[1] + btnLoginLogin.getHeight() - (screenHeight - softHeight)+ DeviceUtils.dip2px(mContext,10);//可以加个5dp的距离这样，按钮不会挨着输入法
+                if (scrollHeight == 0 && softHeight > 200) {
+                    scrollHeight = sc[1] + btnLoginLogin.getHeight() - (screenHeight - softHeight) + DeviceUtils.dip2px(mContext, 20);
+                }
 
                 if (scrollHeight < 1)
                     return;
-                if (softHeight > 120) {//当输入法高度大于100判定为输入法打开了  设置大点，有虚拟键的会超过100
+                if (softHeight > 200) {//当输入法高度大于100判定为输入法打开了  设置大点，有虚拟键的会超过100
                     if (llContainer.getScrollY() != scrollHeight)
                         scrollToPos(0, scrollHeight);
                 } else {//否则判断为输入法隐藏了

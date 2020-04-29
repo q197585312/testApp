@@ -320,6 +320,21 @@ public class AfbApplication extends BaseApplication {
     public void saveSingleBet(OddsClickBean oddsUrlBean) {
         singleBet = oddsUrlBean;
     }
+
+    public boolean removeSameMix(OddsClickBean oddsUrlBean) {
+        Iterator<OddsClickBean> iterator = mixBetList.iterator();
+        while (iterator.hasNext()) {
+            OddsClickBean mixBetBean = iterator.next();
+            if (mixBetBean.getItem().getMainModuleId().trim().equalsIgnoreCase(oddsUrlBean.getItem().getMainModuleId().trim())
+                    && mixBetBean.getItem().getMainHomeId().trim().equalsIgnoreCase(oddsUrlBean.getItem().getMainHomeId().trim())
+                    && mixBetBean.getItem().getMainAwayId().equalsIgnoreCase(oddsUrlBean.getItem().getMainAwayId().trim())) {
+                iterator.remove();
+                return true;
+            }
+        }
+        return false;
+    }
 }
+
 
 

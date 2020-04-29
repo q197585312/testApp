@@ -212,10 +212,7 @@ public class BetPop {
         llBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() > 0)
-                    afbApplication.isSingleBet = false;
-                stopUpdateOdds();
-                closePopupWindow();
+                goMixAndClose();
             }
         });
 
@@ -247,7 +244,13 @@ public class BetPop {
         tvMixBet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                goChooseBetSingle(false);
+
+
+                if (afbApplication.getMixBetList().size() == 1) {
+                    goMixAndClose();
+                } else {
+                    goChooseBetSingle(false);
+                }
            /*     stopUpdateOdds();
                 closePopupWindow();*/
             }
@@ -273,6 +276,13 @@ public class BetPop {
                 llBetFailedHint.setVisibility(View.GONE);
             }
         });
+    }
+
+    private void goMixAndClose() {
+        if (afbApplication.getMixBetList() != null && afbApplication.getMixBetList().size() > 0)
+            afbApplication.isSingleBet = false;
+        stopUpdateOdds();
+        closePopupWindow();
     }
 
     public void closePopupWindow() {
@@ -753,22 +763,20 @@ public class BetPop {
                     View vLine = holder.getView(R.id.v_line);
                     View ll_second = holder.getView(R.id.ll_second);
                     String typeOdds = item.getOddsType();
-                    if (typeOdds != null && typeOdds.toLowerCase().contains("over") || typeOdds.toLowerCase().contains("under")) {
-                        tv_vs.setVisibility(View.VISIBLE);
-                        tvBetHome.setVisibility(View.VISIBLE);
-                        tvBetAway.setVisibility(View.VISIBLE);
-                    } else {
+                    if (typeOdds != null && typeOdds.toLowerCase().contains("home") || typeOdds.toLowerCase().contains("away")) {
                         tv_vs.setVisibility(View.GONE);
                         tvBetHome.setVisibility(View.GONE);
                         tvBetAway.setVisibility(View.GONE);
+                    } else {
+                        tv_vs.setVisibility(View.VISIBLE);
+                        tvBetHome.setVisibility(View.VISIBLE);
+                        tvBetAway.setVisibility(View.VISIBLE);
                     }
                     final String socOddsId = item.getSocOddsId();
                     if (list.size() < 2) {
                         edt_single_bet.setVisibility(View.GONE);
                         tv_order_index.setVisibility(View.GONE);
-                        if (item.getIsRun() != 1) {
-                            ll_second.setVisibility(View.GONE);
-                        }
+
                     } else {
                         int res = position % 2 == 0 ? R.drawable.bet_item_white_shadow_bottom : R.drawable.bet_item_grey_shadow_bottom;
                         holder.getHolderView().setBackgroundResource(res);

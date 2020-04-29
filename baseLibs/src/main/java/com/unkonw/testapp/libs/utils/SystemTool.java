@@ -1,6 +1,7 @@
 /*** Eclipse Class Decompiler plugin, copyright (c) 2012 Chao Chen (cnfree2000@hotmail.com) ***/
 package com.unkonw.testapp.libs.utils;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.KeyguardManager;
@@ -18,6 +19,9 @@ import android.support.v4.content.FileProvider;
 import android.telephony.TelephonyManager;
 import android.text.TextUtils;
 import android.util.DisplayMetrics;
+import android.view.KeyCharacterMap;
+import android.view.KeyEvent;
+import android.view.ViewConfiguration;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
@@ -95,7 +99,7 @@ public final class SystemTool {
         return isSleeping;
     }
 
-    public static void installApk(Context context, File file,String appPackage) {
+    public static void installApk(Context context, File file, String appPackage) {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 /*        String path = file.getAbsolutePath();
@@ -106,7 +110,7 @@ public final class SystemTool {
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             String fileprovider = appPackage + ".fileprovider";
-            Uri apkUri = FileProvider.getUriForFile(context,fileprovider, file);
+            Uri apkUri = FileProvider.getUriForFile(context, fileprovider, file);
             intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
             intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
         } else {
@@ -114,7 +118,7 @@ public final class SystemTool {
         }
         try {
             context.startActivity(intent);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
@@ -196,5 +200,44 @@ public final class SystemTool {
 
     public static String getLanguage(Context context) {
         return SharePreferenceUtil.getString(context, "language");
+    }
+
+    @TargetApi(Build.VERSION_CODES.ICE_CREAM_SANDWICH)
+    public static boolean checkDeviceHasNavigationBar(Context activity) {
+
+        //通过判断设备是否有返回键、菜单键(不是虚拟键,是手机屏幕外的按键)来确定是否有navigation bar
+        boolean hasMenuKey = ViewConfiguration.get(activity)
+                .hasPermanentMenuKey();
+        boolean hasBackKey = KeyCharacterMap
+                .deviceHasKey(KeyEvent.KEYCODE_BACK);
+
+        if (!hasMenuKey && !hasBackKey) {
+            // 做任何你需要做的,这个设备有一个导航栏
+            return true;
+        }
+        return false;
+    }
+
+    public static int getStatusBarHeight(Context context) {
+        int result = 0;
+        try {
+            int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                result = context.getResources().getDimensionPixelSize(resourceId);
+            }
+        } catch (Resources.NotFoundException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public static int getNavigationBarHeight(Context context) {
+        if (!checkDeviceHasNavigationBar(context))
+            return 0;
+        Resources resources = context.getResources();
+        int resourceId = resources.getIdentifier("navigation_bar_height", "dimen", "android");
+        int height = resources.getDimensionPixelSize(resourceId);
+
+        return height;
     }
 }

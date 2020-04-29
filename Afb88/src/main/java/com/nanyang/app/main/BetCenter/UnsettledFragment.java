@@ -278,6 +278,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                         case "2":
                         case "X":
                             transType10 = "1X2";
+                            isOu=true;
                             break;
                         case "HDP":
                         case "MMH":

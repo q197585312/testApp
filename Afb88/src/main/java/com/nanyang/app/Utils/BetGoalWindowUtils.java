@@ -138,6 +138,7 @@ public class BetGoalWindowUtils {
                                             case "2":
                                             case "X":
                                                 transType10 = "1X2";
+                                                isOu=true;
                                                 break;
                                             case "HDP":
                                             case "MMH":

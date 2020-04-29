@@ -54,12 +54,17 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 || type.equalsIgnoreCase("1")
                 || type.equalsIgnoreCase("X")
                 || type.equalsIgnoreCase("2");
+        if (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() < 1) {
+            ((AfbApplication) AfbApplication.getInstance()).isSingleBet = true;
+        }
         if (((AfbApplication) AfbApplication.getInstance()).isSingleBet) {
             if (!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
                 betOddsUrl = AppConstant.getInstance().URL_ODDS + "BTMD=S&coupon=0&BETID=" + oddsUrlBean.getBETID();
                 LogUtil.d("typeHasPar", "typeHasPar:" + typeHasPar + ",hasPar:" + hasPar);
                 if (hasPar && typeHasPar) {
                     saveCurrentMixBet(oddsUrlBean);
+                } else {
+                    onChangeSuccess(((AfbApplication) AfbApplication.getInstance()).removeSameMix(oddsUrlBean));
                 }
                 saveCurrentSingleBet(oddsUrlBean);
 
@@ -85,6 +90,10 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
 
     private void saveCurrentMixBet(OddsClickBean oddsUrlBean) {
         boolean listHasChanged = ((AfbApplication) AfbApplication.getInstance()).saveCurrentBet(oddsUrlBean);
+        onChangeSuccess(listHasChanged);
+    }
+
+    public void onChangeSuccess(boolean listHasChanged) {
         if (listHasChanged) {
             BaseActivity baseActivity = getBaseView().getIBaseContext().getBaseActivity();
             if (baseActivity != null && baseActivity instanceof SportActivity) {
