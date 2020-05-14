@@ -35,6 +35,7 @@ public class AppConstant {
     public String WebSocket_HOST = "http://wsapp.afb1188.com:8888/";
     //http://www.afb1188.com/W0/Pub/pcode.axd
     public String URL_LOGIN = HOST + "H50/Pub/pcode.axd";///W0/Pub/pcode.axd
+    public String URL_RUN_MATCH_LIST = HOST + "api/pgGetTVID";///W0/Pub/pcode.axd
     //    、、/W0/Pub/wfMain0.html
     public String URL_MAIN = HOST + "H50/Pub/wfMain0.html";
 
@@ -65,6 +66,8 @@ public class AppConstant {
     public String URL_UPDATE_BALANCE = HOST + "Bet/PanelStakeBalance_App.aspx";//http://103.206.122.65/Bet/BetStake.ashx
     public String URL_UPDATE_STATE = HOST + "pgajaxS.axd?T=CHKST&P=001";
     public String URL_ODDS_TYPE = HOST + "H50/Pub/wfMain0.html?accType=";//http://103.206.122.65/W0/Pub/wfMain0.html?accType=HK
+    public String URL_PC = HOST + "W0/Pub/wfMain0.html";//http://103.206.122.65/W0/Pub/wfMain0.html?accType=HK
+
 
     public String URL_ODDS_AFB1188 = HOST + "Bet/hBetOdds.ashx?";
     //    public String URL_ODDS = HOST + "Bet/JRecPanel_App.aspx?";

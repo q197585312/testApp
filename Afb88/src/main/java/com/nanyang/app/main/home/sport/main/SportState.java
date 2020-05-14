@@ -950,7 +950,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                                 LogUtil.d("SocketAdd", "新添加了比赛:联赛第一位的preSocOddsId错误直接更新：" + leagueBean.getModuleTitle()
                                         + ",主队：" + b.getHome()
                                         + ",客队：" + b.getAway()
-                                       );
+                                );
                                 return true;
                             }
                         }
@@ -1232,22 +1232,24 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     }
 
 
-    protected void onTypeWayClick(MenuItemInfo item, int position) {
+    public void onTypeWayClick(MenuItemInfo item, int position) {
+        if(item.getRes() == R.mipmap.sport_game_cup_white){
+            SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
+            sportActivity.clickTop();
+            return;
+        }
         runWayItem(item);
         SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
         if (item.getRes() == R.mipmap.date_day_grey) {
             sportActivity.setType("Early");
-            onTypeClick(new MenuItemInfo<Integer>(R.mipmap.date_early_grey, (R.string.Early)
+            onTypeClick(new MenuItemInfo<>(R.mipmap.date_early_grey, (R.string.Early)
                     , "Early", R.mipmap.date_early_green, item.getDay(), item.getDateParam()), position);
         } else {
             sportActivity.setType(item.getType());
             onTypeClick(item, position);
         }
-
         sportActivity.dateClickPosition = position;
         sportActivity.stopPopupWindow();
-
-
     }
 
     public void runWayItem(MenuItemInfo item) {
@@ -1276,19 +1278,22 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         MenuItemInfo<Integer> item4 = new MenuItemInfo<Integer>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d4.split("-")[1]), context.getString(AfbUtils.getLangMonth(d4.split("-")[1])), R.mipmap.date_day_green, d4.split("-")[2], d4);
         MenuItemInfo<Integer> item5 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d5.split("-")[1]), context.getString(AfbUtils.getLangMonth(d5.split("-")[1])), R.mipmap.date_day_green, d5.split("-")[2], d5);
         MenuItemInfo<Integer> item6 = new MenuItemInfo<>(R.mipmap.date_day_grey, AfbUtils.getLangMonth(d6.split("-")[1]), context.getString(AfbUtils.getLangMonth(d6.split("-")[1])), R.mipmap.date_day_green, d6.split("-")[2], d6);
-        MenuItemInfo<Integer> itemRunning = new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
+        MenuItemInfo<Integer> itemTop = new MenuItemInfo<>(R.mipmap.sport_game_cup_white, (R.string.TOP), "Top", R.mipmap.sport_game_cup_white);
+
+        MenuItemInfo<Integer> itemRunning = new MenuItemInfo<>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
         itemRunning.setDateParam("");
+
+
+
         MenuItemInfo<Integer> itemToday = new MenuItemInfo<Integer>(R.mipmap.date_today_grey, (R.string.Today), "Today", R.mipmap.date_today_green);
         itemToday.setDateParam("");
-        TextView tv = new TextView(context);
 
         MenuItemInfo<Integer> itemEarly = new MenuItemInfo<Integer>(R.mipmap.date_early_grey,
                 R.string.Early_All
-              /*  getBaseView().getIBaseContext().getBaseActivity().getString(R.string.Early)
-                + "(" + getBaseView().getIBaseContext().getBaseActivity().getString(R.string.all) + ")"*/
                 , "Early", R.mipmap.date_early_green, "", "7");
 
         List<MenuItemInfo<Integer>> types = new ArrayList<>();
+        types.add(itemTop);
         types.add(itemRunning);
         types.add(itemToday);
         types.add(itemEarly);
@@ -1299,7 +1304,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 item4,
                 item5,
                 item6
-
         ));
         return types;
     }

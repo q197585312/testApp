@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/ll_home_left"
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/grey_default_bg"
+    android:orientation="vertical"
+    android:visibility="gone">
+
+    <RadioGroup
+        android:id="@+id/games_switch_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/green_dark"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="4dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="4dp">
+
+        <RadioButton
+            android:id="@+id/sports_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="4dp"
+            android:background="@null"
+            android:button="@null"
+            android:checked="true"
+            android:onClick="clickSport"
+            android:text="@string/Sport"
+            android:textAllCaps="true"
+            android:textColor="@color/keno_text_color1"
+            android:textStyle="bold" />
+
+        <RadioButton
+            android:id="@+id/others_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="4dp"
+            android:background="@null"
+            android:button="@null"
+            android:checked="false"
+            android:onClick="clickOther"
+            android:text="@string/OTHER"
+            android:textColor="@color/keno_text_color1"
+            android:textStyle="bold" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:paddingBottom="2dp"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="2dp">
+
+        <TextView
+            android:id="@+id/tv_early"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:background="@drawable/match_btn_shadow_back"
+            android:gravity="center"
+            android:onClick="clickEarly"
+            android:padding="3dp"
+            android:text="@string/EARLY"
+            android:textAllCaps="true"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_today"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="3dp"
+            android:layout_marginRight="3dp"
+            android:background="@drawable/match_btn_shadow_back"
+            android:gravity="center"
+            android:onClick="clickToday"
+            android:padding="3dp"
+            android:text="@string/TODAY"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/tv_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/match_btn_shadow_back"
+            android:drawableLeft="@mipmap/sport_game_cup_white"
+            android:drawablePadding="4dp"
+            android:gravity="center"
+            android:onClick="clickTopLeft"
+            android:padding="3dp"
+            android:text="@string/TOP"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rc_sport_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="2dp"
+        android:background="@color/white" />
+</LinearLayout>

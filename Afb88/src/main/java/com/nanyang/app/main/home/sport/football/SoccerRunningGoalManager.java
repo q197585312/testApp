@@ -186,7 +186,11 @@ public class SoccerRunningGoalManager {
     }
 
     public void runTimeStyle(TextView tv_running_status, String mExtraTime30, String teamStatus28, String curMinute29, String live31) {
-        String spanned = Html.fromHtml(live31).toString();
+        //0 - 0<br><font color=red>PEN</font>
+        String spanned = live31;
+        if(live31.contains("br")||live31.contains("BR")||live31.contains("Br")){
+            spanned= Html.fromHtml(live31).toString();
+        }
         if (spanned.contains("\n")) {
             String[] split = spanned.split("\\n");
             tv_running_status.setText(split[1]);

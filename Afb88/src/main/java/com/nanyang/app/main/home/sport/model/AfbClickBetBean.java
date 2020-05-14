@@ -309,6 +309,9 @@ public class AfbClickBetBean implements Serializable {
     public String getOddsType() {
         return new AfbParseHelper<>().getBetTypeFromId(id);
     }
+    public String getSc() {
+        return new AfbParseHelper<>().getScFormId(id);
+    }
 
     public String getOddsG() {
         return new AfbParseHelper<>().getSocOddsG(id);

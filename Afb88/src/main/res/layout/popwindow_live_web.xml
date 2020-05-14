@@ -35,7 +35,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:padding="5dp"
-            android:src="@mipmap/tv_play_sport_white"
+            android:src="@mipmap/sport_tv_play_white"
             android:text="@string/live_stream"
             android:textAllCaps="true"
             android:textColor="@color/white"
@@ -51,7 +51,7 @@
             android:drawablePadding="5dp"
             android:gravity="center"
             android:padding="5dp"
-            android:src="@mipmap/live_sport_hall_white"
+            android:src="@mipmap/sport_live_hall_white"
             android:text="@string/live_center"
             android:textAllCaps="true"
             android:textColor="@color/white"
@@ -59,7 +59,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/fl_top_content"
+        android:id="@+id/fl_top_video"
         android:layout_width="match_parent"
         android:layout_height="200dp">
 

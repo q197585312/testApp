@@ -16,7 +16,8 @@ import java.util.Map;
 
 public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapterHelper<B> {
 
-    protected Map<Boolean, String> additionMap;
+    public Map<Boolean, String> additionMap;
+    public boolean onlyShowAdded;
 
     public BaseRecyclerAdapter<B> getBaseRecyclerAdapter() {
         return baseRecyclerAdapter;
@@ -38,6 +39,10 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
 
     public void bindAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter) {
         this.baseRecyclerAdapter = baseRecyclerAdapter;
+    }
+
+    public void setOnlyShowAdded(boolean onlyShowAdded) {
+        this.onlyShowAdded = onlyShowAdded;
     }
 
 

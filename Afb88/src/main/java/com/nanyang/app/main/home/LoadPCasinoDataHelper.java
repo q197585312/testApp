@@ -73,7 +73,7 @@ public class LoadPCasinoDataHelper<T extends LoginInfo.LanguageWfBean> {
             p = url;
         }
 
-        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).doPostMap(p,languageWfBean.getMap()), new BaseConsumer<String>(baseContext) {
+        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).doPostMap(p, languageWfBean.getMap()), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 Log.d("doRetrofitApiOnUiThread", "data: " + data);
@@ -84,6 +84,9 @@ public class LoadPCasinoDataHelper<T extends LoginInfo.LanguageWfBean> {
                         back.onBack(group);
                         return;
                     }
+                } else {
+                    back.onBack(updateString);
+                    return;
                 }
                 back.onError(updateString);
             }

@@ -1,10 +1,11 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.view.View;
 import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
-import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.betOrder.IBetOrderView;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
@@ -35,6 +36,12 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
 
     @Override
     public Disposable clickOdds(B item, int oid, String type, String odds, TextView v, boolean isHf, String sc, boolean hasPar) {
+        BaseActivity baseActivity = baseView.getIBaseContext().getBaseActivity();
+        if (baseActivity instanceof IBetOrderView) {
+            if (((IBetOrderView) baseActivity).getBetContent().v.getVisibility() == View.VISIBLE)
+                ((IBetOrderView) baseActivity).getBetContent().stopUpdateOdds();
+        }
+
         this.hasPar = hasPar;
         this.item = item;
         this.isHf = isHf;
@@ -54,28 +61,27 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 || type.equalsIgnoreCase("1")
                 || type.equalsIgnoreCase("X")
                 || type.equalsIgnoreCase("2");
-        if (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() < 1) {
-            ((AfbApplication) AfbApplication.getInstance()).isSingleBet = true;
+        AfbApplication app = (AfbApplication) AfbApplication.getInstance();
+        if (app.getMixBetList().size() < 1) {
+            app.isSingleBet = true;
         }
-        if (((AfbApplication) AfbApplication.getInstance()).isSingleBet) {
+        if (app.isSingleBet) {
             if (!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
-                betOddsUrl = AppConstant.getInstance().URL_ODDS + "BTMD=S&coupon=0&BETID=" + oddsUrlBean.getBETID();
                 LogUtil.d("typeHasPar", "typeHasPar:" + typeHasPar + ",hasPar:" + hasPar);
                 if (hasPar && typeHasPar) {
                     saveCurrentMixBet(oddsUrlBean);
                 } else {
-                    onChangeSuccess(((AfbApplication) AfbApplication.getInstance()).removeSameMix(oddsUrlBean));
+                    onChangeSuccess(app.removeSameMix(oddsUrlBean));
                 }
                 saveCurrentSingleBet(oddsUrlBean);
-
-                return getDisposable(v, isHf, betOddsUrl);
+                return getDisposable(v, isHf, app.getRefreshSingleOddsUrl());
             }
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
             ToastUtils.showShort(R.string.can_not_mixparly);
         } else {
             saveCurrentMixBet(oddsUrlBean);
-            betOddsUrl = ((AfbApplication) AfbApplication.getInstance()).getRefreshMixOddsUrl();
-            if (((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() == 1 || ((AfbApplication) AfbApplication.getInstance()).getMixBetList().size() > 14) {
+            betOddsUrl = app.getRefreshMixOddsUrl();
+            if (app.getMixBetList().size() == 1 || app.getMixBetList().size() > 14) {
                 return getDisposable(v, isHf, betOddsUrl);
             }
         }

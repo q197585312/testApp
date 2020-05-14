@@ -13,7 +13,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -21,6 +20,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -56,6 +56,7 @@ import com.nanyang.app.main.home.sport.football.SoccerFragment;
 import com.nanyang.app.main.home.sport.live.LivePlayHelper;
 import com.nanyang.app.main.home.sport.live.ViewHolder;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -63,6 +64,7 @@ import com.unkonw.testapp.libs.utils.GZipUtil;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.MyFileUtils;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import org.json.JSONException;
@@ -72,6 +74,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import butterknife.Bind;
 import cn.finalteam.toolsfinal.DeviceUtils;
@@ -82,14 +85,27 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     HuayThaiFragment huayThaiFragment = new HuayThaiFragment();
     BaseSportFragment localCurrentFragment;
+    @Bind(R.id.iv_home_menu)
+    View iv_home_menu;
+    @Bind(R.id.tv_match_play)
+    TextView tv_match_play;
+    @Bind(R.id.ll_line1)
+    public View ll_line1;
+    @Bind(R.id.ll_line2)
+    public View ll_line2;
+    @Bind(R.id.ll_line3)
+    public View ll_line3;
+    @Bind(R.id.right_ll)
+    View right_ll;
     @Bind(R.id.drawer_more)
     DrawerLayout drawerLayout;
 
+    @Bind(R.id.rc_sport_list)
+    RecyclerView rc_sport_list;
     @Bind(R.id.bet_pop_parent_ll)
     public View bet_pop_parent_ll;
-    @Bind(R.id.sport_header_ll)
-    public View sportHeaderLl;
-    @Bind(R.id.fl_top_content)
+
+    @Bind(R.id.fl_top_video)
     View fl_top_content;
     @Bind(R.id.tv_toolbar_left)
     TextView tvToolbarLeft;
@@ -99,8 +115,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     TextView tvToolbarRight1;
     @Bind(R.id.tv_toolbar_right)
     TextView tvToolbarRight;
-    @Bind(R.id.toolbar)
-    Toolbar toolbar;
+
     @Bind(R.id.iv_home_back)
     ImageView ivHomeBack;
     @Bind(R.id.match_cup_iv)
@@ -158,11 +173,17 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     @Bind(R.id.match_collection_num_tv)
     public TextView collectionNumTv;
+    @Bind(R.id.ll_home_left)
+    View ll_home_left;
     @Bind(R.id.match_collection_fl)
     View collectionFl;
 
-    @Bind(R.id.main_more)
-    RecyclerView reContent;
+    @Bind(R.id.sports_selected)
+    RadioButton sports_selected;
+    @Bind(R.id.others_selected)
+    RadioButton others_selected;
+    @Bind(R.id.games_switch_rg)
+    RadioGroup games_switch_rg;
 
 
     public MenuItemInfo<String> item;
@@ -171,9 +192,10 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public AfbDrawerViewHolder afbDrawerViewHolder;
     private SportIdBean currentIdBean;
     private boolean notClickType = false;
-    private boolean stopCloseWindow;
     private LivePlayHelper helper;
-    private Bundle savedInstanceState;
+    private BallInfo itemBallAdded;
+    private int positionBallAdded;
+    private boolean onlyShowOne;
 
 
     public TextView getIvAllAdd() {
@@ -190,18 +212,15 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.savedInstanceState = savedInstanceState;
         setContentView(R.layout.activity_sport);
         toolbar.setVisibility(View.GONE);
         edtSearchContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-
             }
 
             @Override
@@ -258,7 +277,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
             initFragment(item.getParent());
             int res = R.mipmap.date_running_green;
-            dateClickPosition = 0;
+            dateClickPosition = 1;
             String day = "", dateParam = "";
             switch (type) {
                 case "Early":
@@ -279,12 +298,110 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         tvRecord.setText(R.string.TabMyBets);
         tvMix.setText(R.string.bet_slip);
         tvMenu.setText(R.string.more);
-        tvRecord.setOnClickListener(new View.OnClickListener() {
+
+        initLeftMenu();
+        right_ll.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                afbDrawerViewHolder.goRecord();
+            public boolean onTouch(View v, MotionEvent event) {
+                LogUtil.d("MotionEvent", v.getId());
+                ll_home_left.setVisibility(View.GONE);
+                return false;
             }
         });
+    }
+
+    BaseRecyclerAdapter<SportIdBean> leftSportAdapter;
+
+    private void initLeftMenu() {
+
+        leftSportAdapter = new BaseRecyclerAdapter<SportIdBean>(mContext, new ArrayList<SportIdBean>(), R.layout.item_sport_switch) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, final SportIdBean item) {
+                LinearLayout llContent = holder.getView(R.id.ll_content);
+                final TextView imgGamePic = holder.getView(R.id.img_game_pic);
+                TextView tvGameName = holder.getView(R.id.tv_game_name);
+                TextView tvGameCount = holder.getView(R.id.tv_game_count);
+
+                llContent.setBackgroundColor(Color.WHITE);
+                imgGamePic.setBackgroundResource(item.getSportPic());
+                tvGameName.setText(item.getTextRes());
+                tvGameName.setTextColor(item.getTextColor());
+                tvGameCount.setText("0");
+                String num = numMap.get(item.getDbid());
+
+                if (StringUtils.isNull(num) || Integer.parseInt(num) < 1) {
+                    tvGameCount.setVisibility(View.INVISIBLE);
+                } else {
+                    tvGameCount.setText(num);
+                    tvGameCount.setVisibility(View.VISIBLE);
+                    if (item.getTextRes() == R.string.Soccer_Runing && !currentFragment.presenter.getStateHelper().getStateType().getType().toLowerCase().startsWith("r")) {
+                        tvGameCount.setVisibility(View.INVISIBLE);
+                    }
+                }
+                if (item.getTextColor() != Color.RED) {
+                    if (tvSportSelect.getText().toString().equals(getString(item.getTextRes()))) {
+                        tvGameName.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
+                        llContent.setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
+                    }
+                } else {
+                    if (tvSportSelect.getText().toString().equals(getString(item.getTextRes()))) {
+                        llContent.setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
+                    }
+                }
+            }
+        };
+        rc_sport_list.setAdapter(leftSportAdapter);
+        leftSportAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
+            @Override
+            public void onItemClick(View view, SportIdBean item, int position) {
+                String g = item.getId();
+                if (getApp().updateOtherMap().containsKey(g)) {
+                    (getBaseActivity().presenter).clickGdGameItem(g);
+                    return;
+                } else {
+                    initSportFragment(item);
+                    tvLeagueMain.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+                }
+                ll_home_left.setVisibility(View.GONE);
+            }
+        });
+
+        games_switch_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, @IdRes int id) {
+                changeSportRadioButton(id);
+            }
+        });
+
+    }
+
+    private void changeSportRadioButton(@IdRes int id) {
+        switch (id) {
+            case R.id.sports_selected:
+                loadLeftMenuSports();
+                break;
+            case R.id.others_selected:
+                loadLeftMenuOthers();
+                break;
+        }
+    }
+
+    private void loadLeftMenuOthers() {
+        Map<String, String> enableMap = getApp().updateOtherMap();
+        Iterator<SportIdBean> iterator = AfbUtils.othersMap.values().iterator();
+        final List<SportIdBean> listOther = new ArrayList<>();
+        while (iterator.hasNext()) {
+            SportIdBean next = iterator.next();
+            String enable = enableMap.get(next.getId());
+            if (enable != null && enable.equals("True")) {
+                listOther.add(next);
+            }
+        }
+        leftSportAdapter.addAllAndClear(listOther);
+    }
+
+    private void changeLeftMenuVisible() {
+
 
     }
 
@@ -390,6 +507,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         } else {
             currentFragment.onResume();
         }
+        changeFragmentInit(tag, localCurrentFragment);
+//        sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);
+    }
+
+    private void changeFragmentInit(String tag, BaseSportFragment localCurrentFragment) {
         afbDrawerViewHolder.initDefaultFragment(localCurrentFragment);
         deleteHeadAndFoot();
         sportTitleTv.setText(getString(R.string.sport_match) + " > ");
@@ -398,10 +520,17 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         currentFragment = localCurrentFragment;
         currentTag = tag;
         tvSportSelect.setText(tag);
-//        sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);
-
     }
 
+    public void selectFragmentTag(String tag, BaseSportFragment localCurrentFragment, String type) {
+
+        if (currentTag.isEmpty()) {
+        } else {
+            setType(type);
+        }
+        changeFragmentInit(tag, localCurrentFragment);
+//        sportTitleTv.setText(getString(R.string.sport_match) + " > " + currentTag);
+    }
 
     private void deleteHeadAndFoot() {
         ll_footer_sport.removeAllViews();
@@ -552,8 +681,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickBets(View view) {
-        Bundle b = new Bundle();
-        b.putString(AppConstant.KEY_STRING, getString(R.string.stake));
+        afbDrawerViewHolder.goRecord();
 //        skipAct(PersonCenterActivity.class, b);
     }
 
@@ -600,117 +728,57 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         stopRefreshMenu();
         WebSocketManager.getInstance().stopUpdateData();
         closeTv(fl_top_content);
-
     }
 
-    public void clickSportSelect(final View view) {
+    Map<String, String> numMap = new HashMap<>();
+
+    public void clickLeftMenu(final View view) {
+
+        boolean hasGone = ll_home_left.getVisibility() == View.GONE;
+        if (hasGone) {
+            int checkedRadioButtonId = games_switch_rg.getCheckedRadioButtonId();
+            changeSportRadioButton(checkedRadioButtonId);
+        }
+        ll_home_left.setVisibility(hasGone ? View.VISIBLE : View.GONE);
+    }
+
+    private void loadLeftMenuSports() {
         presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {
                     final JSONObject jsonObjectNum = new JSONObject(data);
-                    createPopupWindow(new BasePopupWindow(mContext, view, AfbUtils.dp2px(mContext, 200), AfbUtils.dp2px(mContext, 300)) {
-                        @Override
-                        protected int onSetLayoutRes() {
-                            return R.layout.sport_game_switch_bottom_popupwindow;
-                        }
+                    RecyclerView rv = rc_sport_list;
+                    rv.setLayoutManager(new LinearLayoutManager(mContext));
+                    final List<SportIdBean> listSport = new ArrayList<>();
 
-                        @Override
-                        protected void initView(View view) {
-                            super.initView(view);
-                            RecyclerView rv = view.findViewById(R.id.game_list_rcv);
-                            RadioGroup games_switch_rg = view.findViewById(R.id.games_switch_rg);
-                            final RadioButton sports_selected = view.findViewById(R.id.sports_selected);
-                            final RadioButton others_selected = view.findViewById(R.id.others_selected);
-                            rv.setLayoutManager(new LinearLayoutManager(mContext));
-                            final List<SportIdBean> listSport = new ArrayList<>();
-                            final List<SportIdBean> listOther = new ArrayList<>();
-                            Iterator<SportIdBean> iterator = AfbUtils.sportMap.values().iterator();
-                            while (iterator.hasNext()) {
-                                listSport.add(iterator.next());
-                            }
-                            Iterator<SportIdBean> iterator1 = AfbUtils.othersMap.values().iterator();
-                            while (iterator1.hasNext()) {
-                                listOther.add(iterator1.next());
-                            }
-                            final BaseRecyclerAdapter<SportIdBean> baseRecyclerAdapter = new BaseRecyclerAdapter<SportIdBean>(mContext, new ArrayList<SportIdBean>(), R.layout.item_sport_switch) {
-                                @Override
-                                public void convert(MyRecyclerViewHolder holder, int position, SportIdBean item) {
-                                    LinearLayout llContent = holder.getView(R.id.ll_content);
-                                    TextView imgGamePic = holder.getView(R.id.img_game_pic);
-                                    TextView tvGameName = holder.getView(R.id.tv_game_name);
-                                    TextView tvGameCount = holder.getView(R.id.tv_game_count);
-                                    llContent.setBackgroundColor(Color.WHITE);
-                                    imgGamePic.setBackgroundResource(item.getSportPic());
-                                    tvGameName.setText(item.getTextRes());
-                                    tvGameName.setTextColor(item.getTextColor());
-                                    tvGameCount.setText("0");
-                                    MenuItemInfo stateType = currentFragment.getPresenter().getStateHelper().getStateType();
-                                    String type = stateType.getType();
-                                    if (type.equals("Running")) {
-                                        if (jsonObjectNum != null) {
-                                            if (!StringUtils.isNull(jsonObjectNum.optString("M_RAm" + item.getDbid()))) {
-                                                tvGameCount.setText(jsonObjectNum.optString("M_RAm" + item.getDbid()));
-                                            }
-                                        }
-                                    } else if (type.equals("Today")) {
-                                        if (!StringUtils.isNull(jsonObjectNum.optString("M_TAm" + item.getDbid()))) {
-                                            tvGameCount.setText(jsonObjectNum.optString("M_TAm" + item.getDbid()));
-                                        }
-                                    } else {
-                                        if (!StringUtils.isNull(jsonObjectNum.optString("M_EAm" + item.getDbid()))) {
-                                            tvGameCount.setText(jsonObjectNum.optString("M_EAm" + item.getDbid()));
-                                        }
-                                    }
-                                    String trim = tvGameCount.getText().toString().trim();
-                                    if (TextUtils.isEmpty(trim) || Integer.parseInt(trim) < 1) {
-                                        tvGameCount.setVisibility(View.INVISIBLE);
-                                    } else {
-                                        tvGameCount.setVisibility(View.VISIBLE);
-                                    }
-                                    if (item.getTextColor() != Color.RED) {
-                                        if (tvSportSelect.getText().toString().equals(getString(item.getTextRes()))) {
-                                            tvGameName.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
-                                            llContent.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
-                                        }
-                                    } else {
-                                        if (tvSportSelect.getText().toString().equals(getString(item.getTextRes()))) {
-                                            llContent.setBackgroundColor(ContextCompat.getColor(context, R.color.gary1));
-                                        }
-                                    }
-                                }
-                            };
+                    MenuItemInfo stateType = currentFragment.getPresenter().getStateHelper().getStateType();
+                    String type = stateType.getType();
+                    String typeStr;
+                    if (type.equals("Running")) {
+                        typeStr = "M_RAm";
+                    } else if (type.equals("Today")) {
+                        typeStr = "M_TAm";
 
-                            rv.setAdapter(baseRecyclerAdapter);
-                            baseRecyclerAdapter.addAllAndClear(listSport);
-                            baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<SportIdBean>() {
-                                @Override
-                                public void onItemClick(View view, SportIdBean item, int position) {
-                                    initSportFragment(item);
-                                    closePopupWindow();
-                                }
-                            });
+                    } else {
+                        typeStr = "M_EAm";
+                    }
 
-                            games_switch_rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-                                @Override
-                                public void onCheckedChanged(RadioGroup radioGroup, @IdRes int id) {
-                                    sports_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                                    others_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
-                                    switch (id) {
-                                        case R.id.sports_selected:
-                                            baseRecyclerAdapter.addAllAndClear(listSport);
-                                            sports_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_blue);
-                                            break;
-                                        case R.id.others_selected:
-                                            baseRecyclerAdapter.addAllAndClear(listOther);
-                                            others_selected.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_blue);
-                                            break;
-                                    }
-                                }
-                            });
-                        }
-                    });
-                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 300 + 15), AfbUtils.dp2px(mContext, 200));
+                    Iterator<SportIdBean> iterator = AfbUtils.sportMap.values().iterator();
+                    while (iterator.hasNext()) {
+                        SportIdBean next = iterator.next();
+                        String num = jsonObjectNum.optString(typeStr + next.getDbid());
+                        numMap.put(next.getDbid(), num);
+                        if (next.getId().equals("1,9,21,29,51,182") || (next.getId().equals("1") && next.getTextRes() == R.string.Soccer_Runing) || (!StringUtils.isNull(num) && Integer.valueOf(num) > 0))
+                            listSport.add(next);
+                    }
+              /*    Iterator<SportIdBean> iterator1 = AfbUtils.othersMap.values().iterator();
+                    while (iterator1.hasNext()) {
+                        SportIdBean next = iterator1.next();
+                        if (!StringUtils.isNull(jsonObjectNum.optString(typeStr + next.getDbid())))
+                            listSport.add(next);
+                    }*/
+                    leftSportAdapter.addAllAndClear(listSport);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -720,7 +788,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void clickAllRunning(View view) {
         setType("Running");
-        dateClickPosition = 0;
+        dateClickPosition = 1;
         MenuItemInfo<Integer> item = new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green);
         runWayItem(item);
         SportIdBean sportIdBean = AfbUtils.sportMap.get("1,9,21,29,51,182");
@@ -731,11 +799,18 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         tvSportSelect.setCompoundDrawablesWithIntrinsicBounds(0, item.getSportPic(), 0, 0);
         tvSportSelect.setText(getString(item.getTextRes()));
         notClickType = false;
+
         if (!item.getDbid().startsWith("33"))
             currentIdBean = item;
-        if (item.getDbid().equals("0")) {
+        if (item.getTextRes() == R.string.Soccer_Runing) {
             setType("Running");
-            dateClickPosition = 0;
+            dateClickPosition = 1;
+            runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green));
+            selectFragmentTag(getString(R.string.Soccer), item.getBaseFragment(), "Running");
+            return;
+        } else if (item.getDbid().equals("1") && item.getTextRes() == R.string.Soccer_Runing) {
+            setType("Running");
+            dateClickPosition = 1;
             runWayItem(new MenuItemInfo<Integer>(R.mipmap.date_running_green, (R.string.running), "Running", R.mipmap.date_running_green));
         } else if (item.getDbid().startsWith("33")) {
             MenuItemInfo<String> stringMenuItemInfo = new MenuItemInfo<>(R.mipmap.thai_thousand_1d, (R.string.game1d), item.getDbid(), "1");
@@ -751,7 +826,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             return;
         }
         selectFragmentTag(getString(item.getTextRes()), item.getBaseFragment());
-
     }
 
     public void clickSportWayRun(final View view) {
@@ -787,6 +861,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                                         public void onClick(View view) {
                                             changeTimeSort();
                                             checkBox.setChecked(getApp().getSort() == 1);
+                                            closePopupWindow();
                                         }
                                     });
                                     iv_home_back.setOnClickListener(new View.OnClickListener() {
@@ -812,7 +887,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         ivSortTime.setImageResource(getApp().getSort() == 0 ? R.mipmap.sport_game_clock_white : R.mipmap.sport_game_clock_exit_white);
     }
 
-    public int dateClickPosition = 0;
+    public int dateClickPosition = 1;
 
     private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView, JSONObject jsonObjectNum) {
         rv_list.setLayoutManager(new LinearLayoutManager(mContext));
@@ -864,10 +939,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }
     }
 
-    public void clickMajor(View view) {
-        TextView tx = (TextView) view;
+    public void clickTop(View view) {
+        clickTop();
+    }
 
-        currentFragment.checkMajor(tx);
+    public void clickTop() {
+        currentFragment.checkTop(tvLeagueMain);
     }
 
     @Override
@@ -968,20 +1045,52 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void closeTv(View view) {
         fl_top_content.setVisibility(View.GONE);
+        this.onlyShowOne = false;
         helper.onStopPlay();
         helper.onDestroy();
-        if (currentFragment instanceof BaseSportFragment && !currentFragment.isHidden())
-            sportHeaderLl.setVisibility(View.VISIBLE);
+        if (currentFragment.isVisible()) {
+            ll_line1.setVisibility(View.VISIBLE);
+            ll_line2.setVisibility(View.VISIBLE);
+            ll_line3.setVisibility(View.VISIBLE);
+            llSportMenuBottom.setVisibility(View.VISIBLE);
+            BallAdapterHelper adapterHelper = (BallAdapterHelper) currentFragment.getPresenter().getStateHelper().getAdapterHelper();
+            adapterHelper.setOnlyShowAdded(onlyShowOne);
+        }
     }
 
-    public void chooseSingle(BallInfo itemBall) {
+    public void clickMatch(BallInfo itemBall, int positionBall, boolean onlyOne) {
 
-        fl_top_content.setVisibility(View.VISIBLE);
-        sportHeaderLl.setVisibility(View.GONE);
-        if (!StringUtils.isNull(itemBall.getTvPathIBC()) && !itemBall.getTvPathIBC().equals("0")) {
-            helper.initPlayer(itemBall.getTvPathIBC());
-            helper.onResumePlay();
+
+        if (itemBall != null && currentFragment.isVisible()) {
+            if (!(currentFragment.presenter.getStateHelper().getStateType().getType().charAt(0) + "").toLowerCase().startsWith("r")) {
+                closeTv(ll_header_sport);
+                return;
+            }
+            if (itemBallAdded != null && itemBall.getSocOddsId().equals(itemBallAdded.getSocOddsId()) && onlyShowOne == onlyOne && fl_top_content.getVisibility() == View.VISIBLE)
+                return;
+            this.itemBallAdded = itemBall;
+            this.positionBallAdded = positionBall;
+            this.onlyShowOne = onlyOne;
+            if (onlyShowOne) {
+                tv_match_play.setText(R.string.all_match);
+                llSportMenuBottom.setVisibility(View.GONE);
+            } else {
+                tv_match_play.setText(R.string.Match);
+                llSportMenuBottom.setVisibility(View.VISIBLE);
+            }
+            currentFragment.presenter.getStateHelper().getAdapterHelper().additionMap.put(true, "");
+            currentFragment.clickItemAdd(fl_top_content, itemBall, positionBall);
+            fl_top_content.setVisibility(View.VISIBLE);
+            ll_line1.setVisibility(View.GONE);
+            ll_line2.setVisibility(View.GONE);
+            ll_line3.setVisibility(View.GONE);
+            if (!StringUtils.isNull(itemBall.getTvPathIBC()) && !itemBall.getTvPathIBC().equals("0")) {
+                helper.initPlayer(itemBall.getTvPathIBC());
+                helper.onResumePlay();
+            }
+            currentFragment.presenter.getStateHelper().getAdapterHelper().setOnlyShowAdded(onlyOne);
         }
+
     }
 
 
@@ -1015,7 +1124,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) fl_top_content.getLayoutParams();
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {//切换为横屏
             lp.height = DeviceUtils.getScreenPix(mContext).heightPixels;
-
             LogUtil.d("height", "ORIENTATION_LANDSCAPE  lp.height:" + lp.height);
             fl_top_content.setLayoutParams(lp);
             otherVisible(View.GONE);
@@ -1028,9 +1136,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     private void otherVisible(int visible) {
- /*       sv_bottom_content.setVisibility(visible);
-        ll_title_list.setVisibility(visible);
-        ll_back.setVisibility(visible);*/
+ /*sv_bottom_content.setVisibility(visible);
+   ll_title_list.setVisibility(visible);
+   ll_back.setVisibility(visible);*/
     }
 
     public void onBetSuccess(String betResult) {
@@ -1039,5 +1147,116 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             betPop.closePopupWindow();
 
 
+    }
+
+
+    public void clickEarly(View view) {
+        if (currentFragment != null && currentFragment.isVisible()) {
+            MenuItemInfo<Integer> itemEarly = new MenuItemInfo<Integer>(R.mipmap.date_early_grey,
+                    R.string.Early_All
+                    , "Early", R.mipmap.date_early_green, "", "7");
+            currentFragment.presenter.getStateHelper().onTypeWayClick(itemEarly, 3);
+            loadLeftMenuSports();
+        }
+    }
+
+    public void clickToday(View view) {
+        if (currentFragment != null && currentFragment.isVisible()) {
+            MenuItemInfo<Integer> itemToday = new MenuItemInfo<>(R.mipmap.date_today_grey, (R.string.Today), "Today", R.mipmap.date_today_green);
+            itemToday.setDateParam("");
+            currentFragment.presenter.getStateHelper().onTypeWayClick(itemToday, 2);
+            loadLeftMenuSports();
+        }
+    }
+
+    public void clickTopLeft(View view) {
+        clickTop();
+        ll_home_left.setVisibility(View.GONE);
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        if (ll_home_left.getVisibility() == View.VISIBLE) {
+            switch (ev.getAction()) {
+                case MotionEvent.ACTION_DOWN:
+
+
+                    int x1 = (int) ev.getX();
+                    int y1 = (int) ev.getY();
+                    int left = right_ll.getLeft();
+                    int right = right_ll.getRight();
+
+                    int topSport = llSportMenuBottom.getTop();
+
+                    int[] location = new int[2];
+                    iv_home_menu.getLocationOnScreen(location);
+                    int x = location[0];
+                    int y = location[1];
+                    int leftIv = x;
+                    int topIv = y;
+                    int rightIv = iv_home_menu.getWidth() + x;
+                    int bottomIv = iv_home_menu.getHeight() + y;
+                    boolean contains = containsPoint(x1, y1, leftIv, rightIv, topIv, bottomIv);
+                    if (!contains && (y1 > topSport || (left < x1 && x1 < right))) {
+                        ll_home_left.setVisibility(View.GONE);
+                        if (currentFragment.isVisible() && currentFragment.getPresenter().getStateHelper().baseRecyclerAdapter != null) {
+                            currentFragment.getPresenter().getStateHelper().baseRecyclerAdapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    LogUtil.d("dispatchTouchEvent",
+                            "x1:" + x1 +
+                                    "y1:" + y1 +
+                                    "leftIv:" + leftIv +
+                                    "rightIv:" + rightIv +
+                                    "topIv:" + topIv +
+                                    "bottomIv:" + bottomIv
+                    );
+
+                    break;
+            }
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+    private boolean containsPoint(int x1, int y1, int leftIv, int rightIv, int topIv, int bottomIv) {
+        if (x1 > leftIv && x1 < rightIv && y1 > topIv && y1 < bottomIv)
+            return true;
+        return false;
+    }
+
+
+    public void clickPcType(View view) {
+        presenter.goWebPc(AppConstant.getInstance().URL_PC);
+    }
+
+    public void onChangeMatchClick(View view) {
+        clickMatch(itemBallAdded, positionBallAdded, !onlyShowOne);
+    }
+
+    public void clickCLosePlay(View view) {
+        closeTv(view);
+    }
+
+    public void clickRunTitle(final View view) {
+        presenter.loadAllRunMatches(new MainPresenter.CallBack<List<RunMatchInfo>>() {
+            @Override
+            public void onBack(List<RunMatchInfo> data) throws JSONException {
+                BaseListPopupWindow<RunMatchInfo> popWindow = new BaseListPopupWindow<RunMatchInfo>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, (TextView) view) {
+                    @Override
+                    public int getRecyclerViewId() {
+                        return R.id.base_rv;
+                    }
+
+                    @Override
+                    protected void clickItem(TextView tv, RunMatchInfo item) {
+                        super.clickItem(tv, item);
+                    }
+                };
+//                popWindow.setData(presenter.currencyList);
+                popWindow.setTrans(1f);
+                popWindow.showPopupDownWindow();
+            }
+        });
     }
 }

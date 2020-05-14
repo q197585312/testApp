@@ -22,7 +22,9 @@ public abstract class BaseMoreFragment<P extends IBasePresenter> extends BaseSwi
         baseToolbarActivity.getTvToolbarTitle().setVisibility(View.GONE);
         baseToolbarActivity.getToolbar().setNavigationIcon(R.mipmap.go_back_left_white);
         if (baseToolbarActivity instanceof SportActivity) {
-            ((SportActivity) baseToolbarActivity).sportHeaderLl.setVisibility(View.GONE);
+            ((SportActivity) baseToolbarActivity).ll_line1.setVisibility(View.GONE);
+            ((SportActivity) baseToolbarActivity).ll_line2.setVisibility(View.GONE);
+            ((SportActivity) baseToolbarActivity).ll_line3.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).bet_pop_parent_ll.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).ll_footer_sport.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).llSportMenuBottom.setVisibility(View.GONE);

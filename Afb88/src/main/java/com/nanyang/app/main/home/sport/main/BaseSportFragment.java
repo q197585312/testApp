@@ -47,10 +47,8 @@ import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnLoadMoreListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.OnRefreshListener;
 import com.unkonw.testapp.libs.view.swipetoloadlayout.SwipeToLoadLayout;
-import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
@@ -81,7 +79,12 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public BaseRecyclerAdapter baseRecyclerAdapter;
     private boolean isInit = false;
     private TextView ivAllAdd;
-    private boolean isMajor;
+
+    public boolean isTop() {
+        return isTop;
+    }
+
+    private boolean isTop;
     private AdditionPresenter additionPresenter;
 
     @Override
@@ -183,6 +186,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     private void showLiveSelect(View v, final BallInfo itemBall, final int positionBall) {
         if (!StringUtils.isNull(itemBall.getTvPathIBC()) && !itemBall.getTvPathIBC().equals("0")) {
+            getBaseActivity().clickMatch(itemBall, positionBall, true);
+//            clickLivePop(v, itemBall, positionBall);
+/*
+            clickLivePop(v, itemBall, positionBall);
             BaseListPopupWindow<MenuItemInfo> popu = new BaseListPopupWindow<MenuItemInfo>(mContext, v, AfbUtils.dp2px(mContext, 100), AfbUtils.dp2px(mContext, 60)) {
                 @Override
                 protected void convertTv(TextView tv, MenuItemInfo item) {
@@ -202,9 +209,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                 @Override
                 protected void clickItem(TextView tv, MenuItemInfo item) {
                     if (item.getType().equals("Single")) {
-                        getBaseActivity().chooseSingle(itemBall);
+                        getBaseActivity().clickMatch(itemBall);
                     } else {
-                        clickLivePop(v, itemBall, positionBall);
+
                     }
                 }
 
@@ -224,6 +231,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             menuItemInfos.add(new MenuItemInfo(R.mipmap.tv_play, (R.string.MATCH_TV), "Match"));
             popu.setData(menuItemInfos);
             popu.showPopupCenterWindow();
+*/
         } else {
             clickLivePop(v, itemBall, positionBall);
         }
@@ -292,18 +300,24 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         }, 5000);
     }
 
-    public void checkMajor(TextView tx) {
-        isMajor = !isMajor;
-        if (isMajor)
-            tx.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_button));
-        else
-            tx.setTextColor(ContextCompat.getColor(mContext, R.color.white));
+    public void checkTop(TextView tx) {
+
+        setTopLog(tx,!isTop);
         MenuItemInfo stateType = presenter.getStateHelper().getStateType();
-        if (isMajor) {
+        if (isTop) {
             switchMajorType(stateType.getType());
         } else {
             switchType(stateType.getType());
         }
+    }
+
+
+    public void setTopLog(TextView tx, boolean isTop) {
+        this.isTop = isTop;
+        if (this.isTop)
+            tx.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_button));
+        else
+            tx.setTextColor(ContextCompat.getColor(mContext, R.color.white));
     }
 
 
@@ -604,10 +618,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         getBaseActivity().onPopupWindowCreatedAndShow(pop, center);
     }
 
-    public void switchParentType(MenuItemInfo stateType) {
-        if (isInit)
-            switchType(stateType.getType());
-    }
 
     public abstract void switchType(String type);
 
@@ -623,7 +633,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         String dbid = getSportDbid();
 
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
-            Log.e(TAG, "clickItemAdd: 点击的位置-------" + position);
             String type = getBaseActivity().getOtType();
             AddedParamsInfo info = new AddedParamsInfo((BallInfo) item, dbid, type);
             additionPresenter.addition(info, new IAdded() {
@@ -695,7 +704,9 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void showContent() {
         super.showContent();
         getBaseActivity().setToolbarVisibility(View.GONE);
-        getBaseActivity().sportHeaderLl.setVisibility(View.VISIBLE);
+        getBaseActivity().ll_line1.setVisibility(View.VISIBLE);
+        getBaseActivity().ll_line2.setVisibility(View.VISIBLE);
+        getBaseActivity().ll_line3.setVisibility(View.VISIBLE);
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
         getBaseActivity().llSportMenuBottom.setVisibility(View.VISIBLE);
     }

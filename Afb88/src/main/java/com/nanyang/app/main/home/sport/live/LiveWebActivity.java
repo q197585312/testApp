@@ -52,7 +52,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     ImageView ivFullScreen;
     @Bind(R.id.sv_bottom_content)
     ScrollView sv_bottom_content;
-    @Bind(R.id.fl_top_content)
+    @Bind(R.id.fl_top_video)
     FrameLayout fl_top_content;
     @Bind(R.id.web_wv)
     WebView webView;

@@ -27,6 +27,7 @@ import com.nanyang.app.main.BetCenter.Presenter.StatementNewPresenter;
 import com.unkonw.testapp.libs.base.BaseFragment;
 import com.unkonw.testapp.libs.utils.LogUtil;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import butterknife.Bind;
@@ -348,7 +349,15 @@ public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
                 else {
                     tvWl.setTextColor(ContextCompat.getColor(mContext, R.color.blue2));
                 }
-                tvWl.setText(" " + winLose.replace("-", ""));
+                String replace = winLose.replace("-", "").trim();
+                tvWl.setText(" " +replace);
+                if(!StringUtils.isNull(replace)&&Float.valueOf(replace)>0f){
+                    BigDecimal b = new BigDecimal(replace);
+                    //保留2位小数
+                    double f1 = b.setScale(2,BigDecimal.ROUND_HALF_UP).doubleValue();
+                    tvWl.setText(" " +f1);
+                }
+
 
                 if(index11.startsWith("G")){
                     tvMatchVs.setVisibility(View.GONE);

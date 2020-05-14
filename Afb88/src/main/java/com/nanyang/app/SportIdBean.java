@@ -42,6 +42,12 @@ public class SportIdBean implements Serializable {
 
 
     String id;
+
+    public String getImgUrl() {
+        return imgUrl;
+    }
+
+    String imgUrl="";
     int textRes;
     int sportCount;
     int sportPic;
@@ -68,7 +74,7 @@ public class SportIdBean implements Serializable {
         return textColor;
     }
 
-    public SportIdBean(String g, String dbid, int textRes, String type, Class<? extends BaseToolbarActivity> cls, BaseSportFragment baseFragment, int textColor) {
+    public SportIdBean(String g, String dbid, int textRes, String type, Class<? extends BaseToolbarActivity> cls, BaseSportFragment baseFragment, int textColor,String imgUrl) {
         this.dbid = dbid;
         this.id = g;
         this.textRes = textRes;
@@ -76,6 +82,7 @@ public class SportIdBean implements Serializable {
         this.cls = cls;
         this.baseFragment = baseFragment;
         this.textColor = textColor;
+        this.imgUrl = imgUrl;
     }
 
     public SportIdBean(String g, String dbid, int textRes, String type, Class<? extends BaseToolbarActivity> cls, BaseSportFragment baseFragment, int textColor, int sportPic) {

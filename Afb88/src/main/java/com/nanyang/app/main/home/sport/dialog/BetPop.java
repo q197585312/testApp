@@ -226,12 +226,7 @@ public class BetPop {
             @Override
             public void onClick(View v) {
                 stopUpdateOdds();
-                if (list.size() > 1) {
-                    goCancel();
-                } else if (list.size() == 1) {
-                    goCancel();
-//                    deletedOne(list.get(0));
-                }
+                goCancel();
             }
         });
         tvSingleBet.setOnClickListener(new View.OnClickListener() {
@@ -658,6 +653,9 @@ public class BetPop {
                 BallInfo item = oddsClickBean.getItem();
                 setrTMatchInfo(item);
             }
+            if (list.get(0).getIsRun() != 1) {
+                webViewPause();
+            }
         }
         ((BaseActivity) context).hideLoadingDialog();
 //        showInput();
@@ -744,7 +742,9 @@ public class BetPop {
 
                 @Override
                 public void convert(final MyRecyclerViewHolder holder, final int position, final AfbClickBetBean item) {
-                    TextView tvBetModuleTitle = holder.getView(R.id.bet_module_title_tv);
+                    TextView bet_module_title_tv = holder.getView(R.id.bet_module_title_tv);
+                    TextView bet_module_result_tv = holder.getView(R.id.bet_module_result_tv);
+                    View ll_bottom = holder.getView(R.id.ll_bottom);
                     final EditText edt_single_bet = holder.getView(R.id.edt_single_bet);
 
                     ImageView imgDelete = holder.getView(R.id.img_delete);
@@ -866,13 +866,40 @@ public class BetPop {
                     } else {
                         tvScore.setText("");
                     }
-                    tvBetModuleTitle.setText(item.getLeague());
+                    if (item.getId().contains("fglg")) {
+                        ll_bottom.setVisibility(View.VISIBLE);
+                        String sc = item.getSc();
+                        bet_module_title_tv.setTextColor(Color.BLACK);
+                        switch (sc) {
+                            case "1":
+                            case "10":
+                                bet_module_title_tv.setText(item.getHome());
+                                if (item.getIsGive() == 1) {
+                                    bet_module_title_tv.setTextColor(Color.RED);
+                                }
+                                break;
+                            case "2":
+                            case "20":
+                                bet_module_title_tv.setText(item.getAway());
+                                if (item.getIsGive() != 1) {
+                                    bet_module_title_tv.setTextColor(Color.RED);
+                                }
+                                break;
+                            default:
+                                bet_module_title_tv.setText("");
+                                break;
+                        }
+                        bet_module_result_tv.setText(item.getBTT().replace("@", ""));
+                    } else {
+                        ll_bottom.setVisibility(View.GONE);
+                    }
+
                     tvBetHome.setText(item.getHome());
                     tvBetAway.setText(item.getAway());
                     String hdp = item.getHdp();
 
 
-                    if (item.getIsGive() == 1 && item.getId().toLowerCase().contains("home") || (item.getIsGive() == 0 && item.getId().toLowerCase().contains("away"))) {
+                    if (hdp.contains("-")) {
                         tvHdp.setTextColor(Color.RED);
                     } else {
                         tvHdp.setTextColor(Color.BLACK);

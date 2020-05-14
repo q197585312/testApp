@@ -34,7 +34,6 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
@@ -70,7 +69,7 @@ public class HomeFragment extends BaseSwitchFragment {
     }
 
     private void loadingUrlPics() {
-        ((MainActivity) getBaseActivity()).presenter.loadAllImages(new MainPresenter.CallBack<AllBannerImagesBean>() {
+        ((MainPresenter) getBaseActivity().presenter).loadAllImages(new MainPresenter.CallBack<AllBannerImagesBean>() {
             @Override
             public void onBack(AllBannerImagesBean data) throws JSONException {
 
@@ -135,7 +134,6 @@ public class HomeFragment extends BaseSwitchFragment {
         }
     }
 
-    Map<String, String> enableMap = new HashMap<>();
 
     private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
 /*        ArrayList<AllBannerImagesBean.MainBannersBean> mainBannersBeen = new ArrayList<>();
@@ -150,22 +148,7 @@ public class HomeFragment extends BaseSwitchFragment {
         )));
         mainBannersBeen.addAll(data);*/
 
-        String isLDEnabled = ((MainActivity) getBaseActivity()).getApp().getUser().getIsLDEnabled();
-        enableMap.put("Casino", isLDEnabled);
-        String isEnabledPG = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledPG();
-        enableMap.put("PG CASINO", isEnabledPG);
-        String isEnabledPRG = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledPRG();
-        enableMap.put("PRAGMATIC CASINO", isEnabledPRG);
-        String isEnabledPS = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledPS();
-        enableMap.put("PS GAMING", isEnabledPS);
-        String isEnabledSA = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledSA();
-        enableMap.put("SEXY CASINO", isEnabledSA);
-        String isEnabledSG = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledSG();
-        enableMap.put("SA CASINO", isEnabledSG);
-        String isEnabledEV = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledEV();
-        enableMap.put("EVCashio", isEnabledEV);
-        String isEnabledDG = ((MainActivity) getBaseActivity()).getApp().getUser().getIsEnabledDG();
-        enableMap.put("DGCashio", isEnabledDG);
+        Map<String, String> enableMap = getBaseToolbarActivity().getApp().updateOtherMap();
 
 
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
@@ -212,33 +195,12 @@ public class HomeFragment extends BaseSwitchFragment {
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<AllBannerImagesBean.MainBannersBean>() {
             @Override
             public void onItemClick(View view, AllBannerImagesBean.MainBannersBean item, int position) {
-                if (item.getG().equals("Casino")) {
-                    ((MainActivity) getBaseActivity()).presenter.getSkipGd88Data();
-                    return;
-                } else if (item.getG().equals("PRAGMATIC CASINO")) {
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("GetTT", "", "wfPragmatic"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
-                    return;
-                } else if (item.getG().equals("PG CASINO")) {
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("GetTT", "", "wfPGHome"), "", "^.*(http[^\"]+)\"\\}.*$");
-                    return;
-                } else if (item.getG().equals("PS GAMING")) {
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("GetTT", "", "wfPSLogin"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
-                    return;
-                } else if (item.getG().equals("SEXY CASINO")) {
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("post", AppConstant.getInstance().HOST + "api/SGCheckonline", item.getG(), new SaCasinoWfBean("", "", "SGCheckonline"), "", "^.*\"(http[^\"]+)\",.*$");
-//                    ((MainActivity) getBaseActivity()).presenter.skipPCashio(item.getG(),"GetTT",  "wfPGHome","","^.*(http[^\"]+)\"\\}.*$");
-                    return;
-                } else if (item.getG().equals("SA CASINO")) {
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("post", AppConstant.getInstance().HOST + "api/SACheckonline", item.getG(), new SaCasinoWfBean("", "", "SACheckonline"), "", "^.*\"(http[^\"]+)\",.*$");
-                    return;
-                } else if (item.getG().equals("EVOPLAY")) {
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("GetTT", "", "wfEVLogin"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
-                    return;
-                } else if (item.getG().equals("DG CASINO")) {
-                    ((MainActivity) getBaseActivity()).presenter.skipPCashio("get", "", item.getG(), new LoginInfo.LanguageWfBean("OpenDGGamee", "", "wfDGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
+                String g = item.getG();
+                if (getBaseToolbarActivity().getApp().updateOtherMap().containsKey(g)) {
+                    ((MainPresenter) getBaseActivity().presenter).clickGdGameItem(g);
                     return;
                 }
-                SportIdBean sportIdBean = AfbUtils.getSportByG(item.getG());
+                SportIdBean sportIdBean = AfbUtils.getSportByG(g);
                 MenuItemInfo<String> menuItemInfo = new MenuItemInfo<>(0, (R.string.running));
                 menuItemInfo.setType("Running");
 
@@ -267,6 +229,7 @@ public class HomeFragment extends BaseSwitchFragment {
         });
     }
 
+
     void updateTimer() {
         updateHandler.post(timeUpdateRunnable);
         updateHandler.post(mainAllDataUpdateRunnable);
@@ -288,7 +251,7 @@ public class HomeFragment extends BaseSwitchFragment {
     Runnable mainAllDataUpdateRunnable = new Runnable() {
         @Override
         public void run() {
-            ((MainActivity) getBaseActivity()).presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
+            ((MainPresenter) getBaseActivity().presenter).loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
 
                 @Override
                 public void onBack(String data) {

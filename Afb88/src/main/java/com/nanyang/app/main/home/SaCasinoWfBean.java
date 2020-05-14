@@ -9,7 +9,7 @@ import com.nanyang.app.load.login.LoginInfo;
         RSource: "PCW"
         pgLable: "0.7191179352234081"
         _sPageName: "wfMainH50"}*/
-class SaCasinoWfBean extends LoginInfo.LanguageWfBean {
+public class SaCasinoWfBean extends LoginInfo.LanguageWfBean {
     public SaCasinoWfBean(String ACT, String lang, String PT) {
         super(ACT, lang, PT);
     }

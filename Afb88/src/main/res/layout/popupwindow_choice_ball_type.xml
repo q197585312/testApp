@@ -10,6 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="35dp"
         android:gravity="center_vertical"
+        android:background="@color/green"
         android:orientation="horizontal"
         android:paddingLeft="10dp">
 
@@ -23,19 +24,20 @@
             android:clickable="false" />
 
         <TextView
+            android:layout_marginLeft="5dp"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/sort_by_time"
             android:textAllCaps="true"
-            android:textColor="@color/black_grey" />
+            android:textColor="@color/white" />
 
         <ImageView
             android:id="@+id/iv_home_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginRight="5dp"
-            android:src="@mipmap/home_grey" />
+            android:src="@mipmap/sport_home_white_24dp" />
     </LinearLayout>
 
     <View

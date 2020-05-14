@@ -24,13 +24,16 @@ import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.home.LoadPCasinoDataHelper;
+import com.nanyang.app.main.home.SaCasinoWfBean;
 import com.nanyang.app.main.home.keno.WebActivity;
+import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
@@ -113,6 +116,28 @@ public class MainPresenter extends BaseSwitchPresenter {
                 }
             }
         }, "^.*wsParam=([^;]+);.*?");
+    }
+
+    public void clickGdGameItem(String g) {
+
+        if (g.equals("Casino")) {
+            getSkipGd88Data();
+        } else if (g.equals("PRAGMATIC CASINO")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPragmatic"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+        } else if (g.equals("PG CASINO")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPGHome"), "", "^.*(http[^\"]+)\"\\}.*$");
+        } else if (g.equals("PS GAMING")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfPSLogin"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+        } else if (g.equals("SEXY CASINO")) {
+            skipPCashio("post", AppConstant.getInstance().HOST + "api/SGCheckonline", g, new SaCasinoWfBean("", "", "SGCheckonline"), "", "^.*\"(http[^\"]+)\",.*$");
+//                    skipPCashio(item.getG(),"GetTT",  "wfPGHome","","^.*(http[^\"]+)\"\\}.*$");
+        } else if (g.equals("SA CASINO")) {
+            skipPCashio("post", AppConstant.getInstance().HOST + "api/SACheckonline", g, new SaCasinoWfBean("", "", "SACheckonline"), "", "^.*\"(http[^\"]+)\",.*$");
+        } else if (g.equals("EVOPLAY")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfEVLogin"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
+        } else if (g.equals("DG CASINO")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenDGGamee", "", "wfDGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
+        }
     }
 
     public void getSkipGd88Data() {
@@ -282,6 +307,14 @@ public class MainPresenter extends BaseSwitchPresenter {
             protected void onBaseGetData(String data) throws JSONException {
                 JSONArray jsonArray = new JSONArray(data);
                 if (jsonArray.length() > 3) {
+
+                    if (data.contains("_delay=20")) {
+                        ((AfbApplication) baseContext.getBaseActivity().getApplication()).setDelayBet(5);
+                    } else if (data.contains("_delay=30")) {
+                        ((AfbApplication) baseContext.getBaseActivity().getApplication()).setDelayBet(7);
+                    } else {
+                        ((AfbApplication) baseContext.getBaseActivity().getApplication()).setDelayBet(0);
+                    }
                     JSONArray jsonArrayData1 = jsonArray.getJSONArray(3);
                     JSONArray jsonArrayData2 = jsonArrayData1.getJSONArray(3);
                     JSONArray jsonArrayData3 = jsonArrayData2.getJSONArray(2);
@@ -310,6 +343,7 @@ public class MainPresenter extends BaseSwitchPresenter {
         LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
         helper.doRetrofitApiOnUiThread(languageWfBean, back);
     }
+
     public void loadAllImages(final CallBack<AllBannerImagesBean> back) {
 //        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
         doRetrofitApiOnUiThread(getService(ApiService.class).getAllImagesData(BuildConfig.ImgConfig_URL), new BaseConsumer<AllBannerImagesBean>(baseContext) {
@@ -318,6 +352,11 @@ public class MainPresenter extends BaseSwitchPresenter {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
                 back.onBack(data);
 
+            }
+
+            @Override
+            protected void onError(Throwable throwable) {
+                super.onError(throwable);
             }
         });
     }
@@ -351,7 +390,7 @@ public class MainPresenter extends BaseSwitchPresenter {
     }
 
     //
-    public void skipPCashio(String Method, String url, final String itemG, LoginInfo.LanguageWfBean wfBean, final String host, String matchs) {
+    public void skipPCashio(String Method, String url, final String itemG, LoginInfo.LanguageWfBean wfBean, final String host, String matches) {
 
 
         LoadPCasinoDataHelper<LoginInfo.LanguageWfBean> helper = new LoadPCasinoDataHelper<>(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
@@ -366,7 +405,7 @@ public class MainPresenter extends BaseSwitchPresenter {
                 public void onError(String data) throws JSONException {
                     ToastUtils.showLong(data);
                 }
-            }, matchs);
+            }, matches);
         } else {
 
             helper.doRetrofitApiOnUiThreadBackPost(url, wfBean, new CallBackError<String>() {
@@ -379,7 +418,7 @@ public class MainPresenter extends BaseSwitchPresenter {
                 public void onError(String data) throws JSONException {
                     ToastUtils.showLong(data);
                 }
-            }, matchs);
+            }, matches);
 
 
         }
@@ -393,6 +432,53 @@ public class MainPresenter extends BaseSwitchPresenter {
         bundle.putString(AppConstant.KEY_STRING, baseContext.getBaseActivity().getString(sportIdBean.getTextRes()));
         baseContext.getBaseActivity().skipAct(WebActivity.class, bundle);
     }
+
+    public void goWebPc(String url) {
+
+        Bundle bundle = new Bundle();
+        bundle.putString("url", url);
+        bundle.putString(AppConstant.KEY_STRING, baseContext.getBaseActivity().getString(R.string.app_name));
+        baseContext.getBaseActivity().skipAct(WebActivity.class, bundle);
+    }
+
+    public void loadAllRunMatches(final CallBack<List<RunMatchInfo>> back) {
+//        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
+
+        LoadPCasinoDataHelper<LoginInfo.LanguageWfBean> helper = new LoadPCasinoDataHelper<>(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
+        helper.doRetrofitApiOnUiThreadBackPost(AppConstant.getInstance().URL_RUN_MATCH_LIST, new SaCasinoWfBean("GETTV", "", "pgGetTVID"), new CallBackError<String>() {
+            @Override
+            public void onBack(String data) throws JSONException {
+                JSONObject jsonObject = new JSONObject(data);
+                JSONArray jsonArray = jsonObject.optJSONArray("db");
+                ArrayList<RunMatchInfo> runMatchInfoList = new ArrayList<>();
+                if (jsonArray != null && jsonArray.length() > 0) {
+                    JSONArray jsonArray1 = jsonArray.optJSONObject(0).optJSONArray("data");
+                    for (int i = 0; i < jsonArray1.length(); i++) {
+                        JSONArray jsonArray2 = jsonArray1.optJSONArray(i);
+                        if (jsonArray2 != null && jsonArray2.length() > 7) {
+                            runMatchInfoList.add(new RunMatchInfo(
+                                    jsonArray2.optString(0),
+                                    jsonArray2.optString(1),
+                                    jsonArray2.optString(2),
+                                    jsonArray2.optString(3),
+                                    jsonArray2.optString(4),
+                                    jsonArray2.optString(5),
+                                    jsonArray2.optString(6),
+                                    jsonArray2.optString(7)
+                            ));
+                        }
+                    }
+                }
+                back.onBack(runMatchInfoList);
+            }
+
+            @Override
+            public void onError(String data) throws JSONException {
+                ToastUtils.showLong(data);
+            }
+        }, "");
+    }
+
 
     public interface CallBack<T> {
         void onBack(T data) throws JSONException;

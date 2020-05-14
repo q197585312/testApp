@@ -17,8 +17,10 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import cn.finalteam.toolsfinal.logger.Logger;
 
@@ -34,6 +36,7 @@ public class AfbApplication extends BaseApplication {
     private SettingAllDataBean settingAllDataBean;
 
     private List<OddsClickBean> mixBetList = new ArrayList<>();
+    private int delayBet;
 
     public boolean isNoShowRts() {
         return noShowRts;
@@ -153,7 +156,7 @@ public class AfbApplication extends BaseApplication {
     }
 
 
-    public String getRefreshCurrentOddsUrl() {
+    public synchronized String getRefreshCurrentOddsUrl() {
 
         if (betAfbList == null || betAfbList.getList() == null || betAfbList.getList().size() == 0)
             return "";
@@ -174,7 +177,7 @@ public class AfbApplication extends BaseApplication {
 
     }
 
-    public String getRefreshMixOddsUrl() {
+    public synchronized String getRefreshMixOddsUrl() {
 
         if (getMixBetList() == null || getMixBetList().size() == 0)
             return "";
@@ -182,7 +185,7 @@ public class AfbApplication extends BaseApplication {
         String betOddsUrl = "BTMD=S&coupon=0&BETID=";
         if (getMixBetList().size() == 1) {
 
-            betOddsUrl = "BTMD=S&coupon=0&BETID=" + getMixBetList().get(0).getBETID() + "&_par=";
+            betOddsUrl = "BTMD=S&coupon=0&BETID=" + getMixBetList().get(0).getBETID().trim() + "&_par=";
         } else {
             for (OddsClickBean afbClickBetBean : getMixBetList()) {
                 String itemId = afbClickBetBean.getBETID_PAR();
@@ -195,12 +198,12 @@ public class AfbApplication extends BaseApplication {
 
     }
 
-    public String getRefreshSingleOddsUrl() {
-
-        if (getMixBetList() == null || getMixBetList().size() == 0)
-            return "";
-        String ids = "";
+    public synchronized String getRefreshSingleOddsUrl() {
         String betOddsUrl = "BTMD=S&coupon=0&BETID=";
+        if (singleBet != null) {
+            betOddsUrl = "BTMD=S&coupon=0&BETID=" + singleBet.getBETID();
+            return AppConstant.getInstance().URL_ODDS + betOddsUrl;
+        }
         if (getMixBetList().size() >= 1) {
             betOddsUrl = "BTMD=S&coupon=0&BETID=" + getMixBetList().get(getMixBetList().size() - 1).getBETID();
             return AppConstant.getInstance().URL_ODDS + betOddsUrl;
@@ -298,7 +301,7 @@ public class AfbApplication extends BaseApplication {
 
     public void clearMixBetList() {
         mixBetList = new ArrayList<>();
-        singleBet = null;
+        setSingleBet(null);
     }
 
     public synchronized void setNoShowRts(boolean noShowRts) {
@@ -318,7 +321,17 @@ public class AfbApplication extends BaseApplication {
     OddsClickBean singleBet;
 
     public void saveSingleBet(OddsClickBean oddsUrlBean) {
-        singleBet = oddsUrlBean;
+        if (singleBet != null && singleBet.getBETID().equals(oddsUrlBean.getBETID())) {
+            if (getMixBetList().size() > 0) {
+                setSingleBet(getMixBetList().get(getMixBetList().size() - 1));
+            } else {
+                setSingleBet(null);
+            }
+        } else {
+            setSingleBet(oddsUrlBean);
+        }
+
+
     }
 
     public boolean removeSameMix(OddsClickBean oddsUrlBean) {
@@ -333,6 +346,32 @@ public class AfbApplication extends BaseApplication {
             }
         }
         return false;
+    }
+
+    Map<String, String> enableMap = new HashMap<>();
+
+    public Map<String, String> updateOtherMap() {
+        String isLDEnabled = getUser().getIsLDEnabled();
+        enableMap.put("Casino", isLDEnabled);
+        String isEnabledPG = getUser().getIsEnabledPG();
+        enableMap.put("PG CASINO", isEnabledPG);
+        String isEnabledPRG = getUser().getIsEnabledPRG();
+        enableMap.put("PRAGMATIC CASINO", isEnabledPRG);
+        String isEnabledPS = getUser().getIsEnabledPS();
+        enableMap.put("PS GAMING", isEnabledPS);
+        String isEnabledSA = getUser().getIsEnabledSA();
+        enableMap.put("SEXY CASINO", isEnabledSA);
+        String isEnabledSG = getUser().getIsEnabledSG();
+        enableMap.put("SA CASINO", isEnabledSG);
+        String isEnabledEV = getUser().getIsEnabledEV();
+        enableMap.put("EVCashio", isEnabledEV);
+        String isEnabledDG = getUser().getIsEnabledDG();
+        enableMap.put("DGCashio", isEnabledDG);
+        return enableMap;
+    }
+
+    public void setDelayBet(int delayBet) {
+        this.delayBet = delayBet;
     }
 }
 

@@ -174,4 +174,12 @@ public class AfbParseHelper<T extends BallInfo> {
         }
         return "";
     }
+
+    public String getScFormId(String itemId) {
+        String[] split = itemId.split("\\|");
+        if (split.length > 5) {
+            return split[5];
+        }
+        return "";
+    }
 }

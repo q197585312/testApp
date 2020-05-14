@@ -1,5 +1,7 @@
 package com.nanyang.app.main;
 
+import android.support.v7.widget.Toolbar;
+
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Utils.StringUtils;
@@ -23,6 +25,9 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
         baseToolbarActivity = (BaseToolbarActivity) getBaseActivity();
     }
 
+    public BaseToolbarActivity getBaseToolbarActivity() {
+        return baseToolbarActivity;
+    }
 
     public void setToolbarVisibility(int b) {
         baseToolbarActivity.setToolbarVisibility(b);
@@ -30,8 +35,10 @@ public abstract class BaseSwitchFragment<P extends IBasePresenter> extends BaseF
 
 
     public void setBackTitle(String title) {
-
-        baseToolbarActivity.getToolbar().setTitle(StringUtils.isNull(title) ? "" : title.toUpperCase());
+        Toolbar toolbar = baseToolbarActivity.getToolbar();
+        int visibility = toolbar.getVisibility();
+        LogUtil.d("visibility", visibility);
+        toolbar.setTitle(StringUtils.isNull(title) ? "" : title.toUpperCase());
     }
 
 

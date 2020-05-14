@@ -67,7 +67,6 @@ public class UnsettledPresenter extends BaseRetrofitPresenter<UnsettledFragment>
                     dataList.add(rb);
                 }
                 unsettledFragment.setRvlist(dataList);
-
                 if (!unsettledFragment.parentHidden) {
                     new Handler().postDelayed(new Runnable() {
                         @Override

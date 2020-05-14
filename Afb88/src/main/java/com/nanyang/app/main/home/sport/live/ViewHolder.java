@@ -22,7 +22,7 @@ public class ViewHolder {
         ImageView ivFullScreen;
         @Bind(R.id.ll_status)
         LinearLayout llStatus;
-        @Bind(R.id.fl_top_content)
+        @Bind(R.id.fl_top_video)
         FrameLayout flTopContent;
 
         public ViewHolder(View view) {

@@ -134,7 +134,7 @@
     <string name="ad">AD</string>
     <string name="aa">AA</string>
     <string name="Modify_Avatar">Modify Avatar</string>
-    <!--FirstFragment-->
+
     <string name="encounter">교전</string>
     <string name="home_and_away">주님 승객</string>
     <string name="single_double">하나의/双</string>
@@ -445,4 +445,5 @@
     <string name="stake_is_less_than_min_limit">Stake is less than min limit</string>
     <string name="all_host" >@string/all</string>
     <string name="Early_All" >초기 거래에서(모든)</string>
+    <string name="Soccer_Runing">Soccer Running</string>
 </resources>

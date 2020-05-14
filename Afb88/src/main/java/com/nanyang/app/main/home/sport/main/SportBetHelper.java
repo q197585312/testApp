@@ -92,7 +92,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     @Override
     public Disposable bet(String url) {
 
-        url = url + "&_=" + System.currentTimeMillis();
+        url = url.trim() + "&_=" + System.currentTimeMillis();
         Log.d("betUrl", url);
         Disposable subscription = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -171,7 +171,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     @NonNull
     @Override
     public Disposable getRefreshOdds(final String urlBet) {
-        final String url = urlBet + "&_=" + System.currentTimeMillis();
+        final String url = urlBet.trim() + "&_=" + System.currentTimeMillis();
         Log.d("updateMixListText", "betUrl:" + url);
 
         Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
@@ -249,11 +249,13 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
 
     public void updateMixList(String url) {
         LogUtil.d("updateMixListText", "url:" + url);
+        AfbApplication afbApplication = (AfbApplication) AfbApplication.getInstance();
+        AfbClickResponseBean betAfbList = afbApplication.getBetAfbList();
+
         if (!StringUtils.isNull(url) && url.contains("_par")) {
-            AfbClickResponseBean betAfbList = ((AfbApplication) AfbApplication.getInstance()).getBetAfbList();
-            List<OddsClickBean> mixBetList = ((AfbApplication) AfbApplication.getInstance()).getMixBetList();
+            List<OddsClickBean> mixBetList = afbApplication.getMixBetList();
             if (betAfbList == null || betAfbList.getList() == null || betAfbList.getList().size() < 1) {
-                ((AfbApplication) AfbApplication.getInstance()).clearMixBetList();
+                afbApplication.clearMixBetList();
                 updateMixListText();
             } else if (betAfbList.getList().size() > 0 && mixBetList.size() > 0) {
                 LogUtil.d("updateMixListText", betAfbList.getList().size() + "---" + mixBetList.size());
@@ -263,12 +265,20 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                     OddsClickBean next = iterator.next();
                     boolean hasFound = findInBetList(next, betAfbList.getList());
                     LogUtil.d("updateMixListText", "hasFound:" + hasFound + ",item:" + next.getItem().getModuleTitle() + "---" + next.getItem().getHome() + "-----" + next.getItem().getAway());
-                    if (!hasFound)
+                    if (!hasFound) {
                         iterator.remove();
+                    }
                     deleted = deleted || !hasFound;
                 }
+
                 if (deleted)
                     updateMixListText();
+            }
+        } else if (betAfbList!=null&&!StringUtils.isNull(url) && betAfbList.getList() != null && betAfbList.getList().size() == 1) {
+            boolean hasFound = findInBetList(afbApplication.getSingleBet(), betAfbList.getList());
+            if (!hasFound) {
+                afbApplication.clearMixBetList();
+                updateMixListText();
             }
         }
     }

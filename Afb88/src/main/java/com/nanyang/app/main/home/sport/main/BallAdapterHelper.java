@@ -2,6 +2,7 @@ package com.nanyang.app.main.home.sport.main;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -93,28 +94,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         this.handler = new BaseMixStyleHandler(act);
     }
 
-    /**
-     * RecyclerView 移动到当前位置，
-     *
-     * @param manager       设置RecyclerView对应的manager
-     * @param mRecyclerView 当前的RecyclerView
-     * @param n             要跳转的位置
-     */
-    public static void MoveToPosition(LinearLayoutManager manager, RecyclerView mRecyclerView, int n) {
-
-
-        int firstItem = manager.findFirstVisibleItemPosition();
-        int lastItem = manager.findLastVisibleItemPosition();
-        if (n <= firstItem) {
-            mRecyclerView.scrollToPosition(n);
-        } else if (n <= lastItem) {
-            int top = mRecyclerView.getChildAt(n - firstItem).getTop();
-            mRecyclerView.scrollBy(0, top);
-        } else {
-            mRecyclerView.scrollToPosition(n);
-        }
-    }
-
     Map<String, MenuItemInfo> scrollPositionMap = new HashMap<>();
 
     @Override
@@ -122,6 +101,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         final LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
         View ll_title_list = helper.getView(R.id.ll_title_list);
+        View ll_match_outside = helper.getView(R.id.ll_match_outside);
+        if (onlyShowAdded) {
+            ll_match_outside.setVisibility(View.GONE);
+        } else {
+            ll_match_outside.setVisibility(View.VISIBLE);
+        }
 
         if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
             ll_title_list.setVisibility(View.VISIBLE);
@@ -1106,7 +1091,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         subStringsMModds(hdpShow1, hdp1, ouShow2, ou2, inflate1X2);
         down1_tv.setTextColor(getValueColor(oddsLeft));
         down2_tv.setTextColor(getValueColor(oddsRight));
-        setMMHdpOuMixStyle(socOddsId, inflate1X2,type1,type2);
+        setMMHdpOuMixStyle(socOddsId, inflate1X2, type1, type2);
         setTextValueClick(down1_tv, oddsLeft, type1, socOddsId, item, isHalf, "", false, hasHdp, false);
         setTextValueClick(down2_tv, oddsRight, type2, socOddsId, item, isHalf, "", false, hasOu, false);
         parent.addView(inflate1X2);
@@ -1471,7 +1456,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         View ll_away = inflate1X2.findViewById(R.id.ll_away);
         View ll_over = inflate1X2.findViewById(R.id.ll_over);
         View ll_under = inflate1X2.findViewById(R.id.ll_under);
-        setHdpOuMixStyle(R.drawable.match_odds_content_bg_mix,ll_home,ll_away,ll_over,ll_under,oid);
+        setHdpOuMixStyle(R.drawable.match_odds_content_bg_mix, ll_home, ll_away, ll_over, ll_under, oid);
     }
 
     private int getValueColor(String value) {
@@ -1778,9 +1763,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         vp.setVisibility(View.VISIBLE);
         ViewHolder holder = new ViewHolder(vp);
 //        Log.d(TAG, "sid: " + item.getSocOddsId() + ",item.isOverBigger:" + item.isOverBigger + ",item.isHomeBigger:" + item.isHomeBigger + ",item.isAwayBigger:" + item.isAwayBigger + ",item.isUnderBigger:" + item.isUnderBigger);
-        setUpDownOddsForOut(hapVisiable, item, isFh, isHdpNew, hasHdp, hdp, holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv, holder.viewpagerMatchVisitHdpoddsTv
+        setUpDownOdds(hapVisiable, item, isFh, isHdpNew, hasHdp, hdp, holder.viewpagerMatchHomeHdpTv, holder.viewpagerMatchVisitHdpTv, holder.viewpagerMatchHomeHdpoddsTv, holder.viewpagerMatchVisitHdpoddsTv
                 , homeHdpOdds, awayHdpOdds, homeOddsType, awayOddsType, 0, holder.imgUpDownUp1, holder.imgUpDownDown1);
-        setUpDownOddsForOut(ouVisiable, item, isFh, isOUNew, hasOU, ou, holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv, holder.viewpagerMatchUnderoddsTv
+        setUpDownOdds(ouVisiable, item, isFh, isOUNew, hasOU, ou, holder.viewpagerMatchOuTv, holder.viewpagerMatchOu2Tv, holder.viewpagerMatchOveroddsTv, holder.viewpagerMatchUnderoddsTv
                 , overOdds, underOdds, overOddsType, underOddsType, 0, holder.imgUpDownUp2, holder.imgUpDownDown2);
     /*    setUpDownOdds(oeVisiable, item, isFh, isOENew, hasOE, "", holder.viewpagerOddLabelTv, holder.viewpagerEvenLabelTv, holder.viewpagerMatchOddTv, holder.viewpagerMatchEvenTv
                 , OddOdds, EvenOdds, OddOddsType, EvenOddsType);*/
@@ -1799,8 +1784,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             if (upOdds.trim().isEmpty() || downOdds.trim().isEmpty() || upOdds.equals("0") || downOdds.equals("0") || Math.abs(Float.valueOf(upOdds)) <= 0.3 || Math.abs(Float.valueOf(downOdds)) <= 0.3) {
                 hasUpDown = "0";
             }
+
             int resUp = R.mipmap.arrow_up_update_green;
             int resDown = R.mipmap.arrow_up_update_green;
+            String isHomeGive = item.getIsHomeGive();
+            if (isFh) {
+                isHomeGive = item.getIsHomeGive_FH();
+            }
             switch (upType) {
                 case "home":
                 case "mmhome":
@@ -1810,7 +1800,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     String hdpS = upDown;
                     if (!upDown.equals("0"))
                         hdpS = "-" + upDown;
-                    if (item.getIsHomeGive().equals("1")) {
+                    if (isHomeGive.equals("1")) {
                         upStr = hdpS;
                         downStr = "";
                     } else {
@@ -2148,6 +2138,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     protected String setValue(final I item, final TextView textView, final String f, boolean isAnimation, final String type, final boolean isHf, final int resBg, boolean isShowText, final int resUpdate, final ImageView imgUpDown) {
         String value = f;
+        textView.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
         if (StringUtils.isNull(f) || f.equals("0")) {
             textView.setText("");
         } else {
@@ -2251,10 +2242,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         getBaseRecyclerAdapter().notifyDataSetChanged();
     }
 
-    public void closeAllAdded() {
-        additionMap.put(true, "");
-    }
-
 
     public static class ViewHolder {
         @Bind(R.id.viewpager_match_home_hdp_tv)
@@ -2322,5 +2309,14 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             lastGif.setVisibility(View.VISIBLE);
 
         }
+    }
+
+    public void setOnlyShowAdded(boolean onlyShowAdded) {
+        if (this.onlyShowAdded != onlyShowAdded) {
+            super.setOnlyShowAdded(onlyShowAdded);
+            getBaseRecyclerAdapter().notifyDataSetChanged();
+        }
+
+
     }
 }
