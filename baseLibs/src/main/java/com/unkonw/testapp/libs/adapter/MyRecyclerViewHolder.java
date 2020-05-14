@@ -16,9 +16,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
-import com.nostra13.universalimageloader.core.display.FadeInBitmapDisplayer;
 import com.nostra13.universalimageloader.core.listener.SimpleImageLoadingListener;
-import com.unkonw.testapp.R;
 
 /**
  * Created by zzho on 2015/12/30.
@@ -139,17 +137,8 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder {
     public MyRecyclerViewHolder setImageByUrl(int viewId, String url) {
         if (!TextUtils.isEmpty(url)) {
             ImageView img = getView(viewId);
-            if (options == null)
-                options = new DisplayImageOptions.Builder()
-                        .showImageOnLoading(R.mipmap.ic_launcher)
-                        .showImageForEmptyUri(R.mipmap.ic_launcher)
-                        .showImageOnFail(R.mipmap.ic_launcher)
-                        .cacheInMemory(true)
-                        .cacheOnDisc(true)
-                        .displayer(new FadeInBitmapDisplayer(200))// 淡入
-                        .bitmapConfig(Bitmap.Config.RGB_565)
-                        .considerExifParams(true).build();
-            ImageLoader.getInstance().displayImage(url, img, options);
+
+            ImageLoader.getInstance().displayImage(url, img);
         } else {
             //TODO 默认图片
         }
@@ -187,9 +176,11 @@ public class MyRecyclerViewHolder extends RecyclerView.ViewHolder {
         else
             getView(id).setVisibility(View.GONE);
     }
-    public void  setVisibility(int id, int Visibility){
+
+    public void setVisibility(int id, int Visibility) {
         getView(id).setVisibility(Visibility);
     }
+
     public void setClickLisenter(int id, View.OnClickListener clickListener) {
         getView(id).setOnClickListener(clickListener);
     }

@@ -1,27 +1,23 @@
 package com.nanyang.app.Utils;
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.support.v4.view.PagerAdapter;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
-import com.nostra13.universalimageloader.core.DisplayImageOptions;
-import com.nostra13.universalimageloader.core.ImageLoader;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewPagerAdapter extends PagerAdapter {
     private ArrayList<ImageView> reusableImgViews = new ArrayList<>();
-    private List<String> lists;
+    private List<Integer> lists;
     public LinearLayout layout;
     public int itemTrueAmount;
     private Context context;
 
-    public ViewPagerAdapter(List<String> lists, LinearLayout layout, Context context) {
+    public ViewPagerAdapter(List<Integer> lists, LinearLayout layout, Context context) {
         super();
         this.lists = lists;
         this.layout = layout;
@@ -49,8 +45,8 @@ public class ViewPagerAdapter extends PagerAdapter {
             imgView = reusableImgViews.remove(reusableImgViews.size() - 1);
         }
 
-        String url = lists.get(getBannerIndexOfPosition(position));
-        ImageLoader.getInstance().displayImage(url, imgView, displayImageOptions);
+        Integer url = lists.get(getBannerIndexOfPosition(position));
+        imgView.setImageResource(url);
         container.addView(imgView);
         return imgView;
     }
@@ -65,10 +61,5 @@ public class ViewPagerAdapter extends PagerAdapter {
         return position % lists.size();
     }
 
-    private DisplayImageOptions displayImageOptions = new DisplayImageOptions.Builder()
-            .cacheInMemory(true).cacheOnDisk(true)
-            .bitmapConfig(Bitmap.Config.RGB_565)
-            .resetViewBeforeLoading(true)
-            .considerExifParams(true)
-            .build();
+
 }

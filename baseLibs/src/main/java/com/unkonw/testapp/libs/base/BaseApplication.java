@@ -6,15 +6,14 @@
 package com.unkonw.testapp.libs.base;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
-import com.nostra13.universalimageloader.core.assist.ImageScaleType;
 import com.nostra13.universalimageloader.utils.L;
-import com.unkonw.testapp.R;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 
 import solid.ren.skinlibrary.base.SkinBaseApplication;
@@ -75,13 +74,11 @@ public class BaseApplication extends SkinBaseApplication {
         int mCacheSize = maxMemory / 8;
         //给LruCache分配1/8 4M
 
-        options = new DisplayImageOptions.Builder()
-                .showImageForEmptyUri(R.mipmap.ic_launcher)
-                .showImageOnFail(R.mipmap.ic_launcher)
-                .showImageOnLoading(R.mipmap.ic_launcher)
-                .imageScaleType(ImageScaleType.EXACTLY)
-                .cacheInMemory(true)
-                .cacheOnDisk(true)
+        options =new DisplayImageOptions.Builder()
+                .cacheInMemory(true).cacheOnDisk(true)
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .resetViewBeforeLoading(true)
+                .considerExifParams(true)
                 .build();
 
         //初始化图片下载组件
@@ -91,9 +88,10 @@ public class BaseApplication extends SkinBaseApplication {
                 .diskCacheSize(100 * 1024 * 1024)
                 .diskCacheFileNameGenerator(new Md5FileNameGenerator())
                 .memoryCache(new LruMemoryCache(mCacheSize))
+                .imageDownloader(new AuthImageDownloader(this))
                 .defaultDisplayImageOptions(options)
-                .build();
 
+                .build();
         ImageLoader.getInstance().init(config);
         imageLoader = ImageLoader.getInstance();
         //关闭 打开log  imgelog

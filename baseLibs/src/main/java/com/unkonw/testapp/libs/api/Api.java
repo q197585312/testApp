@@ -2,6 +2,8 @@ package com.unkonw.testapp.libs.api;
 
 //import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -10,7 +12,15 @@ import com.unkonw.testapp.libs.utils.ToStringConverterFactory;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.security.SecureRandom;
 import java.util.concurrent.TimeUnit;
+
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManager;
+import javax.net.ssl.X509TrustManager;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
@@ -26,6 +36,8 @@ import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+import static android.content.ContentValues.TAG;
 
 
 /**
@@ -46,6 +58,7 @@ public class Api {
 
     private static Retrofit retrofit;
     private static Object service;
+    private static OkHttpClient client;
 
     public static <T> T getService(Class<T> cls) {
         if (service == null) {
@@ -69,7 +82,6 @@ public class Api {
             return chain.proceed(request);
         }
     };
-
     public static Retrofit getRetrofit() {
         if (retrofit == null) {
             // log拦截器  打印所有的log
@@ -87,7 +99,7 @@ public class Api {
 //                    .addInterceptor(mInterceptor)
                     .cache(cache)
                     .build();*/
-            OkHttpClient client = new OkHttpClient.Builder()
+         client = new OkHttpClient.Builder()
                     .connectTimeout(30, TimeUnit.SECONDS)
                     .writeTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
@@ -101,6 +113,7 @@ public class Api {
             Gson gson = new GsonBuilder()
                     .setLenient()
                     .create();
+            ignoreSSLCheck();
             retrofit = new Retrofit.Builder()
                     .client(client)
                     .baseUrl(BASE_URL)
@@ -110,6 +123,53 @@ public class Api {
                     .build();
         }
         return retrofit;
+    }
+
+    private static void ignoreSSLCheck() {
+        Log.e(TAG, "ignoreSSLCheck()");
+        SSLContext sc = null;
+        try {
+            sc = SSLContext.getInstance("SSL");
+            sc.init(null, new TrustManager[]{new X509TrustManager() {
+                @Override
+                public void checkClientTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {
+
+                }
+
+                @Override
+                public void checkServerTrusted(java.security.cert.X509Certificate[] chain, String authType) throws java.security.cert.CertificateException {
+
+                }
+
+                @Override
+                public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+            }}, new SecureRandom());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        HostnameVerifier hv1 = new HostnameVerifier() {
+            @Override
+            public boolean verify(String hostname, SSLSession session) {
+                return true;
+            }
+        };
+
+        String workerClassName = "okhttp3.OkHttpClient";
+        try {
+            Class workerClass = Class.forName(workerClassName);
+            Field hostnameVerifier = workerClass.getDeclaredField("hostnameVerifier");
+            hostnameVerifier.setAccessible(true);
+            hostnameVerifier.set(client, hv1);
+
+            Field sslSocketFactory = workerClass.getDeclaredField("sslSocketFactory");
+            sslSocketFactory.setAccessible(true);
+            sslSocketFactory.set(client, sc.getSocketFactory());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**

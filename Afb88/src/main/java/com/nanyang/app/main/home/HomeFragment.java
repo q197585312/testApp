@@ -31,6 +31,7 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import org.reactivestreams.Subscription;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import butterknife.Bind;
@@ -58,7 +59,8 @@ public class HomeFragment extends BaseFragment {
     @Override
     public void initView() {
         super.initView();
-        initBanner();
+//        initBanner();
+        initBannerLocal();
         BaseRecyclerAdapter adapter = AfbUtils.getGamesAdapter(mContext, rvContent);
         adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
             @Override
@@ -112,6 +114,11 @@ public class HomeFragment extends BaseFragment {
         });
 
 
+    }
+
+    private void initBannerLocal() {
+        lists = new ArrayList<>(Arrays.asList(R.mipmap.home_banner_1, R.mipmap.home_banner_2, R.mipmap.home_banner_3));
+        initViewPager();
     }
 
 
@@ -190,7 +197,7 @@ public class HomeFragment extends BaseFragment {
         };
     }
 
-    private List<String> lists;
+    private List<Integer> lists;
 
     private void initViewPager() {
         ViewPagerAdapter adapter = new ViewPagerAdapter(lists, inLayout, getActivity());
@@ -205,8 +212,8 @@ public class HomeFragment extends BaseFragment {
                 .subscribe(new Consumer<List<String>>() {
                     @Override
                     public void accept(List<String> strings) throws Exception {
-                        lists = strings;
-                        initViewPager();
+                       /* lists = strings;
+                        initViewPager();*/
                     }
                 }, new Consumer<Throwable>() {
                     @Override
