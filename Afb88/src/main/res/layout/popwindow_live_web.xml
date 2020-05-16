@@ -10,7 +10,7 @@
         android:visibility="gone" />
 
     <LinearLayout
-        android:id="@+id/ll_back"
+        android:id="@+id/ll_back_title_line"
         android:layout_width="match_parent"
         android:layout_height="32dp"
         android:background="@color/green_dark"
@@ -26,7 +26,7 @@
             android:onClick="onBackCLick" />
 
         <ImageView
-            android:id="@+id/tv_title_live_stream"
+            android:id="@+id/iv_title_live_stream"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -42,7 +42,7 @@
             android:textStyle="bold" />
 
         <ImageView
-            android:id="@+id/tv_title_live_center"
+            android:id="@+id/iv_title_live_center"
             android:layout_width="0dp"
             android:layout_height="26dp"
             android:layout_gravity="center"
@@ -151,7 +151,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1" />
-
+        <ImageView
+            android:layout_width="15dp"
+            android:layout_height="15dp"
+            android:layout_marginRight="5dp"
+            android:src="@mipmap/arrow_right_green_double" />
     </LinearLayout>
 
 

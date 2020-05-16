@@ -1,11 +1,9 @@
 package com.nanyang.app.main.home.sport.main;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.IdRes;
@@ -14,7 +12,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
@@ -22,6 +19,7 @@ import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.FrameLayout;
@@ -55,8 +53,8 @@ import com.nanyang.app.main.home.sport.dialog.BetPop;
 import com.nanyang.app.main.home.sport.football.SoccerFragment;
 import com.nanyang.app.main.home.sport.live.LivePlayHelper;
 import com.nanyang.app.main.home.sport.live.ViewHolder;
-import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.RunMatchInfo;
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
@@ -85,10 +83,20 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     HuayThaiFragment huayThaiFragment = new HuayThaiFragment();
     BaseSportFragment localCurrentFragment;
+    @Bind(R.id.web_wv)
+    WebView webView;
+    @Bind(R.id.iv_title_live_stream)
+    ImageView tv_title_live_stream;
+    @Bind(R.id.iv_title_live_center)
+    ImageView tv_title_live_center;
+    @Bind(R.id.ll_back_title_line)
+    View ll_back;
     @Bind(R.id.iv_home_menu)
     View iv_home_menu;
     @Bind(R.id.tv_match_play)
     TextView tv_match_play;
+    @Bind(R.id.tv_run_match_title)
+    TextView tv_run_match_title;
     @Bind(R.id.ll_line1)
     public View ll_line1;
     @Bind(R.id.ll_line2)
@@ -106,7 +114,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public View bet_pop_parent_ll;
 
     @Bind(R.id.fl_top_video)
-    View fl_top_content;
+    View fl_top_video;
     @Bind(R.id.tv_toolbar_left)
     TextView tvToolbarLeft;
     @Bind(R.id.tv_toolbar_title)
@@ -192,10 +200,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public AfbDrawerViewHolder afbDrawerViewHolder;
     private SportIdBean currentIdBean;
     private boolean notClickType = false;
-    private LivePlayHelper helper;
-    private BallInfo itemBallAdded;
+    private LivePlayHelper liveMatchHelper;
+    private IRTMatchInfo itemBallAdded;
     private int positionBallAdded;
     private boolean onlyShowOne;
+    private boolean isPlay;
 
 
     public TextView getIvAllAdd() {
@@ -260,6 +269,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     String type = "";
     AfbApplication app;
+    ViewHolder viewHolder;
 
     @Override
     public void initData() {
@@ -292,8 +302,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             }
             runWayItem(new MenuItemInfo<>(res, item.getText(), type, res, day, dateParam));
 //            currentFragment.presenter.getStateHelper().switchOddsType(getApp().getOddsType().getType());
-            final ViewHolder viewHolder = new ViewHolder(fl_top_content);
-            helper = new LivePlayHelper(viewHolder, this);
+            viewHolder = new ViewHolder(fl_top_video);
+            liveMatchHelper = new LivePlayHelper(viewHolder, this);
+
         }
         tvRecord.setText(R.string.TabMyBets);
         tvMix.setText(R.string.bet_slip);
@@ -400,10 +411,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         leftSportAdapter.addAllAndClear(listOther);
     }
 
-    private void changeLeftMenuVisible() {
-
-
-    }
 
     private void createWebSocket() {
         WebSocketManager.getInstance().createWebSocket(new MainPresenter.CallBack<String>() {
@@ -469,7 +476,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     protected void onDestroy() {
         super.onDestroy();
         BetGoalWindowUtils.clear();
-        helper.onDestroy();
+        liveMatchHelper.onDestroy();
         unregisterReceiver(myGoHomeBroadcastReceiver);
 
     }
@@ -545,23 +552,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         tvBalance.setText(getApp().getUser().getCurCode2() + ": " + s);
     }
 
-//    public void loginGD() {
-//        if (ApkUtils.isAvilible(this, "gaming178.com.baccaratgame")) {
-//            presenter.skipGd88(new BaseView<SportActivity, String>(this) {
-//                @Override
-//                public void onGetData(String data) {
-//                    SportActivity.this.onGetData(data);
-//                }
-//            });
-//        } else {
-//            Intent intent = new Intent();
-//            intent.setAction("android.intent.action.VIEW");
-//            Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
-//            intent.setData(content_url);
-//            startActivity(intent);
-//        }
-//    }
-
 
     @Override
     public void onBackCLick(View v) {
@@ -573,12 +563,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     @Override
     public void onGetData(final String data) {
-//        presenter.getTransferMoneyData(new BaseConsumer<TransferMoneyBean>(this) {
-//            @Override
-//            protected void onBaseGetData(TransferMoneyBean transferMoneyBean) {
-//                getMoneyMsg(transferMoneyBean, data);
-//            }
-//        });
+
     }
 
     @Override
@@ -592,51 +577,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         popWindow.closePopupWindow();
     }
 
-
-    private void startApp(String data) {
-        if (data.length() > 0) {
-            Bundle bundle = new Bundle();
-            bundle.putInt("gameType", 3);
-            bundle.putString("web_id", "-1");
-            bundle.putString("k", data);
-            bundle.putString("us", getApp().getUser().getLoginName());
-            bundle.putString("lang", AfbUtils.getLanguage(mContext));
-            bundle.putInt("homeColor", getHomeColor());
-            try {
-//                AfbUtils.appJump(mContext, "gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity", bundle);
-                Intent intent = new Intent(Intent.ACTION_MAIN);
-                ComponentName comp = new ComponentName("gaming178.com.baccaratgame",
-                        "gaming178.com.casinogame.Activity.WelcomeActivity");
-                intent.setComponent(comp);
-                if (bundle != null) {
-                    intent.putExtras(bundle);
-                }
-                startActivityForResult(intent, 7);
-            } catch (Exception e) {
-                Intent intent = new Intent();
-                intent.setAction("android.intent.action.VIEW");
-                Uri content_url = Uri.parse(AppConstant.DownLoadDig88AppUrl);
-                intent.setData(content_url);
-                startActivity(intent);
-            }
-        }
-    }
-
-    private SpannableStringBuilder isStartWithTag(String str) {
-        if (str.startsWith("<SPAN")) {
-            String needStr = AfbUtils.delHTMLTag(str);
-            if (needStr.startsWith("-")) {
-                return AfbUtils.handleStringTextColor(needStr, Color.RED);
-            }
-            return new SpannableStringBuilder(needStr);
-        } else {
-            if (str.startsWith("-")) {
-                return AfbUtils.handleStringTextColor(str, Color.RED);
-            } else {
-                return new SpannableStringBuilder(str);
-            }
-        }
-    }
 
     public void setOddsType(MenuItemInfo oddsType) {
         getApp().setOddsType(oddsType);
@@ -670,9 +610,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickCup(View view) {
-
         currentFragment.presenter.getStateHelper().createChoosePop(presenter.mApiWrapper, view);
-//        test();
     }
 
 
@@ -682,7 +620,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public void clickBets(View view) {
         afbDrawerViewHolder.goRecord();
-//        skipAct(PersonCenterActivity.class, b);
     }
 
 
@@ -714,8 +651,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Override
     protected void onPause() {
         super.onPause();
-        if (helper != null)
-            helper.onPausePlay();
+        if (liveMatchHelper != null)
+            liveMatchHelper.onPausePlay();
     }
 
     @Override
@@ -727,7 +664,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
         stopRefreshMenu();
         WebSocketManager.getInstance().stopUpdateData();
-        closeTv(fl_top_content);
+        closeTv(fl_top_video);
     }
 
     Map<String, String> numMap = new HashMap<>();
@@ -915,27 +852,11 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         MenuItemInfo oddsType = getOddsType();
         if (oddsType != null) {
             tvOddsType.setText(oddsType.getText());
-           /* if (oddsType.getType().equals("HK")) {
-                tvOddsType.setText(R.string.HK_ODDS);
-            } else if (oddsType.getType().equals("MY")) {
-                tvOddsType.setText(R.string.MY_ODDS);
-            } else if (oddsType.getType().equals("EU")) {
-                tvOddsType.setText(R.string.EU_ODDS);
-            } else if (oddsType.getType().equals("ID")) {
-                tvOddsType.setText(R.string.ID_ODDS);
-            }*/
 
         }
         MenuItemInfo<String> allOddsType = getMarketType();
         if (allOddsType != null) {
             ivAllAdd.setText(allOddsType.getParent());
-           /* if (allOddsType.getType().equals("0")) {
-                ivAllAdd.setText(R.string.All_Markets);
-            } else if (oddsType.getType().equals("1")) {
-                ivAllAdd.setText(R.string.Main_Markets);
-            } else if (oddsType.getType().equals("2")) {
-                ivAllAdd.setText(R.string.Other_Bet_Markets);
-            }*/
         }
     }
 
@@ -1044,10 +965,10 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void closeTv(View view) {
-        fl_top_content.setVisibility(View.GONE);
+        fl_top_video.setVisibility(View.GONE);
         this.onlyShowOne = false;
-        helper.onStopPlay();
-        helper.onDestroy();
+        liveMatchHelper.onStopPlay();
+        liveMatchHelper.onDestroy();
         if (currentFragment.isVisible()) {
             ll_line1.setVisibility(View.VISIBLE);
             ll_line2.setVisibility(View.VISIBLE);
@@ -1058,7 +979,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         }
     }
 
-    public void clickMatch(BallInfo itemBall, int positionBall, boolean onlyOne) {
+    public void clickRunMatchPlay(IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
 
 
         if (itemBall != null && currentFragment.isVisible()) {
@@ -1066,11 +987,15 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 closeTv(ll_header_sport);
                 return;
             }
-            if (itemBallAdded != null && itemBall.getSocOddsId().equals(itemBallAdded.getSocOddsId()) && onlyShowOne == onlyOne && fl_top_content.getVisibility() == View.VISIBLE)
+            if (!liveMatchHelper.checkLivePlayVisible(itemBall)&&!liveMatchHelper.checkWebRtsVisible(itemBall)) {
+                return;
+            }
+            if (itemBallAdded != null && itemBall.getSocOddsId().equals(itemBallAdded.getSocOddsId()) && onlyShowOne == onlyOne && fl_top_video.getVisibility() == View.VISIBLE)
                 return;
             this.itemBallAdded = itemBall;
             this.positionBallAdded = positionBall;
             this.onlyShowOne = onlyOne;
+
             if (onlyShowOne) {
                 tv_match_play.setText(R.string.all_match);
                 llSportMenuBottom.setVisibility(View.GONE);
@@ -1079,16 +1004,15 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 llSportMenuBottom.setVisibility(View.VISIBLE);
             }
             currentFragment.presenter.getStateHelper().getAdapterHelper().additionMap.put(true, "");
-            currentFragment.clickItemAdd(fl_top_content, itemBall, positionBall);
-            fl_top_content.setVisibility(View.VISIBLE);
+            currentFragment.clickItemAdd(fl_top_video, itemBall, positionBall);
+            ;
             ll_line1.setVisibility(View.GONE);
             ll_line2.setVisibility(View.GONE);
             ll_line3.setVisibility(View.GONE);
-            if (!StringUtils.isNull(itemBall.getTvPathIBC()) && !itemBall.getTvPathIBC().equals("0")) {
-                helper.initPlayer(itemBall.getTvPathIBC());
-                helper.onResumePlay();
-            }
             currentFragment.presenter.getStateHelper().getAdapterHelper().setOnlyShowAdded(onlyOne);
+
+            liveMatchHelper.openRunMatch(itemBall);
+
         }
 
     }
@@ -1115,30 +1039,29 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public void onConfigurationChanged(Configuration newConfig) {
         //你的代码
         super.onConfigurationChanged(newConfig);
-        if (fl_top_content.getVisibility() == View.VISIBLE && currentFragment != null && currentFragment.isVisible()) {
+        if (fl_top_video.getVisibility() == View.VISIBLE && currentFragment != null && currentFragment.isVisible()) {
             configurationChanged(newConfig);
         }
     }
 
     private void configurationChanged(Configuration newConfig) {
-        FrameLayout.LayoutParams lp = (FrameLayout.LayoutParams) fl_top_content.getLayoutParams();
+        LinearLayout.LayoutParams lp = (LinearLayout.LayoutParams) fl_top_video.getLayoutParams();
         if (newConfig.orientation == Configuration.ORIENTATION_LANDSCAPE) {//切换为横屏
             lp.height = DeviceUtils.getScreenPix(mContext).heightPixels;
             LogUtil.d("height", "ORIENTATION_LANDSCAPE  lp.height:" + lp.height);
-            fl_top_content.setLayoutParams(lp);
+            fl_top_video.setLayoutParams(lp);
             otherVisible(View.GONE);
         } else {
             lp.height = DeviceUtils.getScreenPix(mContext).widthPixels * 9 / 16;
             LogUtil.d("height", "ORIENTATION_PORTRAIT  lp.height:" + lp.height);
-            fl_top_content.setLayoutParams(lp);
+            fl_top_video.setLayoutParams(lp);
             otherVisible(View.VISIBLE);
         }
     }
 
     private void otherVisible(int visible) {
- /*sv_bottom_content.setVisibility(visible);
-   ll_title_list.setVisibility(visible);
-   ll_back.setVisibility(visible);*/
+        ll_back.setVisibility(visible);
+
     }
 
     public void onBetSuccess(String betResult) {
@@ -1231,7 +1154,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void onChangeMatchClick(View view) {
-        clickMatch(itemBallAdded, positionBallAdded, !onlyShowOne);
+        clickRunMatchPlay(itemBallAdded, positionBallAdded, !onlyShowOne);
     }
 
     public void clickCLosePlay(View view) {
@@ -1242,19 +1165,41 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         presenter.loadAllRunMatches(new MainPresenter.CallBack<List<RunMatchInfo>>() {
             @Override
             public void onBack(List<RunMatchInfo> data) throws JSONException {
-                BaseListPopupWindow<RunMatchInfo> popWindow = new BaseListPopupWindow<RunMatchInfo>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, (TextView) view) {
+                BaseListPopupWindow<RunMatchInfo> popWindow = new BaseListPopupWindow<RunMatchInfo>(mContext, view, view.getWidth(), AfbUtils.dp2px(mContext, 200), (TextView) view) {
+
+                    public int getItemLayoutRes() {
+                        return R.layout.sport_paly_run_match_info;
+
+                    }
+
                     @Override
-                    public int getRecyclerViewId() {
-                        return R.id.base_rv;
+                    public void onConvert(MyRecyclerViewHolder holder, int position, RunMatchInfo item) {
+                        TextView tv = holder.getView(R.id.text_tv);
+                        ImageView play_iv = holder.getView(R.id.play_iv);
+                        tv.setText(item.getHome() + " -vs- " + item.getAway());
+                        if (item.getIsRun().equals("True") || item.getIsRun().equals("1")) {
+                            play_iv.setImageResource(R.mipmap.play_green);
+                        } else {
+                            play_iv.setImageResource(R.mipmap.play_grey);
+                        }
+
                     }
 
                     @Override
                     protected void clickItem(TextView tv, RunMatchInfo item) {
                         super.clickItem(tv, item);
+
+                        closePopupWindow();
+                        if (item.getIsRun().equals("True") || item.getIsRun().equals("1")) {
+                            tv.setText(item.getHome() + " -vs- " + item.getAway());
+                            clickRunMatchPlay(item, positionBallAdded, onlyShowOne);
+                        }
+
                     }
                 };
 //                popWindow.setData(presenter.currencyList);
                 popWindow.setTrans(1f);
+                popWindow.setData(data);
                 popWindow.showPopupDownWindow();
             }
         });

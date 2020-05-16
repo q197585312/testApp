@@ -36,6 +36,11 @@ public class AfbApplication extends BaseApplication {
     private SettingAllDataBean settingAllDataBean;
 
     private List<OddsClickBean> mixBetList = new ArrayList<>();
+
+    public int getDelayBet() {
+        return delayBet;
+    }
+
     private int delayBet;
 
     public boolean isNoShowRts() {

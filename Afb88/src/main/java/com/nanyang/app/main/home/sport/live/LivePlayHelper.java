@@ -4,8 +4,11 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 
+import com.nanyang.app.AfbUtils;
+import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.widget.listener.VideoListener;
 
 import java.io.IOException;
@@ -20,6 +23,9 @@ public class LivePlayHelper {
     ViewHolder holder;
     private boolean playing;
     private boolean voiceOpen;
+    private IRTMatchInfo itemBall;
+    private int playType = 0;
+
 
     public LivePlayHelper(ViewHolder holder, Context context) {
         this.holder = holder;
@@ -40,8 +46,20 @@ public class LivePlayHelper {
                 turnPause();
             }
         });
-
+        holder.tv_title_live_center.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onResumeWeb();
+            }
+        });
+        holder.tv_title_live_stream.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onResumePlay();
+            }
+        });
     }
+
 
     public void turnPause() {
         playing = !playing;
@@ -51,6 +69,7 @@ public class LivePlayHelper {
             onPausePlay();
         }
     }
+
     public void onStartPlay() {
         if (holder.videoPlayerStream != null) {
             Log.d("ijk", "onPause");
@@ -99,17 +118,25 @@ public class LivePlayHelper {
         }
     }
 
-    public void onResumePlay() {
-        playVideo();
-    }
 
-    protected void playVideo() {
-        try {
-            if (holder.videoPlayerStream != null && holder.videoPlayerStream.getmPath() != null)
-                holder.videoPlayerStream.load();
-        } catch (IOException e) {
-            e.printStackTrace();
+    protected void onResumePlay() {
+
+        if (checkLivePlayVisible(itemBall)) {
+            if (playType == 2) {
+                holder.web_wv.onPause();
+            }
+            holder.videoPlayerStream.setVisibility(View.VISIBLE);
+            holder.web_wv.setVisibility(View.GONE);
+            holder.llStatus.setVisibility(View.VISIBLE);
+            playType = 1;
+            try {
+                if (holder.videoPlayerStream != null && holder.videoPlayerStream.getmPath() != null)
+                    holder.videoPlayerStream.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
+
     }
 
     public void initPlayer(String livePlayUrlId) {
@@ -173,4 +200,51 @@ public class LivePlayHelper {
         }
         holder.videoPlayerStream.setPath(path);
     }
+
+    public void openRunMatch(IRTMatchInfo itemBall) {
+        this.itemBall = itemBall;
+        holder.fl_top_video.setVisibility(View.VISIBLE);
+        if (checkLivePlayVisible(itemBall)) {
+            initPlayer(itemBall.getTvPathIBC());
+            onResumePlay();
+        } else {
+            onResumeWeb();
+        }
+
+        holder.tv_run_match_title.setText(itemBall.getHome() + " -vs- " + itemBall.getAway());
+    }
+
+    private void onResumeWeb() {
+        if (checkWebRtsVisible(itemBall)) {
+            holder.videoPlayerStream.setVisibility(View.GONE);
+            holder.web_wv.setVisibility(View.VISIBLE);
+            holder.llStatus.setVisibility(View.GONE);
+            if (playing) {
+                onPausePlay();
+            }
+            webLoad();
+            ;
+        }
+    }
+
+    private void webLoad() {
+        playType = 2;
+        String lag = AfbUtils.getLanguage(context);
+        String l = "en";
+        if (lag.equals("zh")) {
+            l = "zh";
+        }
+        String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + itemBall.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(itemBall.getHome()) + "&Away=" + StringUtils.URLEncode(itemBall.getAway()) + "&L=" + l;
+        AfbUtils.synCookies(context, holder.web_wv, gameUrl);
+        holder.web_wv.onResume();
+    }
+
+    public boolean checkWebRtsVisible(IRTMatchInfo itemBall) {
+        return (itemBall != null && !StringUtils.isNull(itemBall.getRTSMatchId()) && !itemBall.getRTSMatchId().equals("0"));
+    }
+
+    public boolean checkLivePlayVisible(IRTMatchInfo itemBall) {
+        return (itemBall != null && (!StringUtils.isNull(itemBall.getTvPathIBC()) && !itemBall.getTvPathIBC().equals("0")));
+    }
+
 }

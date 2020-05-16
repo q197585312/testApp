@@ -6,7 +6,7 @@
     android:orientation="vertical">
 
     <LinearLayout
-        android:id="@+id/ll_back"
+        android:id="@+id/ll_back_title_line"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green_dark"

@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
+import android.os.Handler;
 import android.view.View;
 import android.widget.TextView;
 
@@ -16,8 +17,6 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import java.util.List;
 
 import cn.finalteam.toolsfinal.StringUtils;
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
 
 /**
  * Created by Administrator on 2017/3/15.
@@ -33,9 +32,11 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         super(baseView);
     }
 
-
+    OddsClickBean oddsUrlBean;
+    String betOddsUrl = "";
     @Override
-    public Disposable clickOdds(B item, int oid, String type, String odds, TextView v, boolean isHf, String sc, boolean hasPar) {
+    public void clickOdds(B item, int oid, String type, String odds, final TextView v, final boolean isHf, String sc, final boolean hasPar) {
+        final Handler handler = new Handler();
         BaseActivity baseActivity = baseView.getIBaseContext().getBaseActivity();
         if (baseActivity instanceof IBetOrderView) {
             if (((IBetOrderView) baseActivity).getBetContent().v.getVisibility() == View.VISIBLE)
@@ -46,13 +47,10 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         this.item = item;
         this.isHf = isHf;
 
+        oddsUrlBean = getOddsUrl(oid, type, isHf, odds, sc, item);
 
-        OddsClickBean oddsUrlBean = getOddsUrl(oid, type, isHf, odds, sc, item);
 
-
-        String betOddsUrl = "";
-
-        boolean typeHasPar = type.equalsIgnoreCase("over")
+        final boolean typeHasPar = type.equalsIgnoreCase("over")
                 || type.equalsIgnoreCase("under")
                 || type.equalsIgnoreCase("even")
                 || type.equalsIgnoreCase("odd")
@@ -61,32 +59,55 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 || type.equalsIgnoreCase("1")
                 || type.equalsIgnoreCase("X")
                 || type.equalsIgnoreCase("2");
-        AfbApplication app = (AfbApplication) AfbApplication.getInstance();
+        final AfbApplication app = (AfbApplication) AfbApplication.getInstance();
         if (app.getMixBetList().size() < 1) {
             app.isSingleBet = true;
         }
         if (app.isSingleBet) {
-            if (!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
-                LogUtil.d("typeHasPar", "typeHasPar:" + typeHasPar + ",hasPar:" + hasPar);
-                if (hasPar && typeHasPar) {
-                    saveCurrentMixBet(oddsUrlBean);
-                } else {
-                    onChangeSuccess(app.removeSameMix(oddsUrlBean));
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    if (!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
+                        LogUtil.d("typeHasPar", "typeHasPar:" + typeHasPar + ",hasPar:" + hasPar);
+                        if (hasPar && typeHasPar) {
+                            saveCurrentMixBet(oddsUrlBean);
+                        } else {
+                            onChangeSuccess(app.removeSameMix(oddsUrlBean));
+                        }
+                        saveCurrentSingleBet(oddsUrlBean);
+                        betOrderDelay(v, isHf, handler, app);
+                        return;
+                    }
+
                 }
-                saveCurrentSingleBet(oddsUrlBean);
-                return getDisposable(v, isHf, app.getRefreshSingleOddsUrl());
-            }
+            }, app.getDelayBet());
         } else if ((isHf && item.getHasPar_FH() != null && item.getHasPar_FH().equals("0")) || (!isHf && item.getHasPar().equals("0")) || !typeHasPar || !hasPar || getBallG().equals("50")) {
             ToastUtils.showShort(R.string.can_not_mixparly);
         } else {
-            saveCurrentMixBet(oddsUrlBean);
-            betOddsUrl = app.getRefreshMixOddsUrl();
-            if (app.getMixBetList().size() == 1 || app.getMixBetList().size() > 14) {
-                return getDisposable(v, isHf, betOddsUrl);
-            }
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    saveCurrentMixBet(oddsUrlBean);
+                    betOddsUrl = app.getRefreshMixOddsUrl();
+                    if (app.getMixBetList().size() == 1 || app.getMixBetList().size() > 14) {
+                        getDisposable(v, isHf, betOddsUrl);
+                        return;
+                    }
+                }
+            }, app.getDelayBet());
+
         }
 
-        return new CompositeDisposable();
+        return;
+    }
+
+    private void betOrderDelay(final TextView v, final boolean isHf, Handler handler, final AfbApplication app) {
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                getDisposable(v, isHf, app.getRefreshSingleOddsUrl());
+            }
+        }, app.getDelayBet());
     }
 
     private void saveCurrentSingleBet(OddsClickBean oddsUrlBean) {

@@ -274,7 +274,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 if (deleted)
                     updateMixListText();
             }
-        } else if (betAfbList!=null&&!StringUtils.isNull(url) && betAfbList.getList() != null && betAfbList.getList().size() == 1) {
+        } else if (betAfbList != null && !StringUtils.isNull(url) && betAfbList.getList() != null && betAfbList.getList().size() == 1) {
             boolean hasFound = findInBetList(afbApplication.getSingleBet(), betAfbList.getList());
             if (!hasFound) {
                 afbApplication.clearMixBetList();
@@ -295,13 +295,10 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
             String socOddsId = betAfbList.get(i).getSocOddsId();
             String parId = betAfbList.get(i).getId();
             OddsClickBean oddsClickBean = next;
-            if (oddsClickBean.getBETID().equals(parId)
-                    || oddsClickBean.getBETID_PAR().equals(parId)
-                    || socOddsId.equals(oddsClickBean.getOid())
-                    || socOddsId.equals(oddsClickBean.getOid_fh())) {
+            if (oddsClickBean.getBETID().equals(parId) || oddsClickBean.getBETID_PAR().equals(parId) || socOddsId.equals(oddsClickBean.getOid()) || socOddsId.equals(oddsClickBean.getOid_fh())) {
                 if (betAfbList.get(i).getIsRun() == 1) {
-                    LogUtil.d("updateMixListText", betAfbList.get(i).getHome() + "---" + betAfbList.get(i).getAway() + "isRun:1");
                     boolean isSame = isScoreSame(next.getItem(), betAfbList.get(i));
+                    LogUtil.d("updateMixListText", betAfbList.get(i).getHome() + "---" + betAfbList.get(i).getAway() + "isRun:1" + ",isSame:" + isSame);
                     return isSame;
                 }
                 return true;
@@ -311,6 +308,12 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     }
 
     private boolean isScoreSame(BallInfo item, AfbClickBetBean afbClickBetBean) {
+        String socOddsId = item.getSocOddsId();
+        String socOddsId_fh = item.getSocOddsId_FH();
+        String socOddsId1 = afbClickBetBean.getSocOddsId();
+        if (!socOddsId.equals(socOddsId1) && !socOddsId_fh.equals(socOddsId1)) {
+            return true;
+        }
         if (!afbClickBetBean.getScore().contains("-"))
             return false;
         if (afbClickBetBean.getBeturl().contains("isFH=True")) {

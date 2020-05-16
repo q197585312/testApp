@@ -152,13 +152,6 @@
                     android:textSize="13sp" />
             </RelativeLayout>
         </LinearLayout>
-
-        <View
-            android:id="@+id/v_line"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="3dp"
-            android:background="#EAEDEB" />
         <LinearLayout
             android:id="@+id/ll_bottom"
             android:layout_width="match_parent"
@@ -167,7 +160,7 @@
             android:orientation="horizontal"
             android:paddingBottom="1dp"
             android:paddingTop="1dp"
-            android:visibility="gone">
+            android:visibility="visible">
 
             <TextView
                 android:id="@+id/bet_module_title_tv"
@@ -185,6 +178,12 @@
                 android:textSize="13sp" />
 
         </LinearLayout>
+        <View
+            android:id="@+id/v_line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="3dp"
+            android:background="#EAEDEB" />
     </LinearLayout>
 
     <LinearLayout

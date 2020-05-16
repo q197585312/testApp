@@ -13,4 +13,6 @@ public interface IRTMatchInfo {
 
     String getAway();
 
+    String getTvPathIBC();
+
 }

@@ -1,5 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
+import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
@@ -14,11 +15,11 @@ public interface SportContract {
 
         void switchState(SportState state);
 
-        void clickItemAdd(android.view.View v, B item, int position);
+        void clickItemAdd(android.view.View v, IRTMatchInfo item, int position);
 
         void reLoginPrompt(String str, CallBack back);
 
-        void onWebShow(int nextNotRepeat, int position, IRTMatchInfo item, android.view.View v);
+        void onWebShow(int nextNotRepeat, int position, BallInfo item, android.view.View v);
     }
 
     interface Presenter extends IBasePresenter {

@@ -445,7 +445,7 @@ public class MainPresenter extends BaseSwitchPresenter {
 //        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
 
         LoadPCasinoDataHelper<LoginInfo.LanguageWfBean> helper = new LoadPCasinoDataHelper<>(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
-        helper.doRetrofitApiOnUiThreadBackPost(AppConstant.getInstance().URL_RUN_MATCH_LIST, new SaCasinoWfBean("GETTV", "", "pgGetTVID"), new CallBackError<String>() {
+        helper.doRetrofitApiOnUiThreadBackPostJson(AppConstant.getInstance().HOST+"api/pgGetTVID", new SaCasinoWfBean("GETTV", "", "pgGetTVID"), new CallBackError<String>() {
             @Override
             public void onBack(String data) throws JSONException {
                 JSONObject jsonObject = new JSONObject(data);

@@ -1,6 +1,6 @@
 package com.nanyang.app.main.home.sport.additional;
 
-import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 
 import java.io.Serializable;
 
@@ -9,18 +9,18 @@ import java.io.Serializable;
  */
 
 public class AddedParamsInfo implements Serializable {
-    private BallInfo bean;
+    private IRTMatchInfo bean;
 
     private String dbid;
     private String oddsType;
 
-    public AddedParamsInfo(BallInfo bean, String dbid, String oddsType) {
+    public AddedParamsInfo(IRTMatchInfo bean, String dbid, String oddsType) {
         this.bean = bean;
         this.dbid = dbid;
         this.oddsType = oddsType;
     }
 
-    public BallInfo getBean() {
+    public IRTMatchInfo getBean() {
         return bean;
     }
 

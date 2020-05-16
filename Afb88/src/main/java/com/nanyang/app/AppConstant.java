@@ -35,7 +35,6 @@ public class AppConstant {
     public String WebSocket_HOST = "http://wsapp.afb1188.com:8888/";
     //http://www.afb1188.com/W0/Pub/pcode.axd
     public String URL_LOGIN = HOST + "H50/Pub/pcode.axd";///W0/Pub/pcode.axd
-    public String URL_RUN_MATCH_LIST = HOST + "api/pgGetTVID";///W0/Pub/pcode.axd
     //    、、/W0/Pub/wfMain0.html
     public String URL_MAIN = HOST + "H50/Pub/wfMain0.html";
 

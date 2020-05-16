@@ -3,7 +3,6 @@ package com.nanyang.app.main.home.sport.main;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.LinearLayoutManager;
@@ -25,14 +24,11 @@ import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.SportIdBean;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.BaseSwitchFragment;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.additional.AddedParamsInfo;
 import com.nanyang.app.main.home.sport.additional.AdditionPresenter;
 import com.nanyang.app.main.home.sport.additional.IAdded;
-import com.nanyang.app.main.home.sport.live.LiveParamsInfo;
-import com.nanyang.app.main.home.sport.live.LiveWebActivity;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorEarlyState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorRunningState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorTodayState;
@@ -172,137 +168,20 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
 
     @Override
-    public void onWebShow(int nextNotRepeat, int position, IRTMatchInfo item, View view) {
+    public void onWebShow(int nextNotRepeat, int position, BallInfo item, View view) {
         if (presenter.getStateHelper().getStateType().getType().toLowerCase().startsWith("r")) {
             View v = rvContent.getChildAt(nextNotRepeat);
             if (v == null) {
                 v = view;
             }
-            showLiveSelect(v, (BallInfo) item, position);
+            getBaseActivity().clickRunMatchPlay(item, position, true);
         }
-
-
     }
 
-    private void showLiveSelect(View v, final BallInfo itemBall, final int positionBall) {
-        if (!StringUtils.isNull(itemBall.getTvPathIBC()) && !itemBall.getTvPathIBC().equals("0")) {
-            getBaseActivity().clickMatch(itemBall, positionBall, true);
-//            clickLivePop(v, itemBall, positionBall);
-/*
-            clickLivePop(v, itemBall, positionBall);
-            BaseListPopupWindow<MenuItemInfo> popu = new BaseListPopupWindow<MenuItemInfo>(mContext, v, AfbUtils.dp2px(mContext, 100), AfbUtils.dp2px(mContext, 60)) {
-                @Override
-                protected void convertTv(TextView tv, MenuItemInfo item) {
-                    tv.setText(item.getText());
-                }
-
-                @Override
-                public int getItemLayoutRes() {
-                    return R.layout.item_base_live;
-                }
-
-                @Override
-                public int getRecyclerViewId() {
-                    return super.getRecyclerViewId();
-                }
-
-                @Override
-                protected void clickItem(TextView tv, MenuItemInfo item) {
-                    if (item.getType().equals("Single")) {
-                        getBaseActivity().clickMatch(itemBall);
-                    } else {
-
-                    }
-                }
-
-                @Override
-                protected int onSetLayoutRes() {
-                    return R.layout.layout_base_recycler_live;
-                }
-
-                @Override
-                protected void initView(View view) {
-                    super.initView(view);
-                    view.setBackgroundResource(R.color.white);
-                }
-            };
-            ArrayList<MenuItemInfo> menuItemInfos = new ArrayList<>();
-            menuItemInfos.add(new MenuItemInfo(R.mipmap.tv_play, (R.string.Single_TV), "Single"));
-            menuItemInfos.add(new MenuItemInfo(R.mipmap.tv_play, (R.string.MATCH_TV), "Match"));
-            popu.setData(menuItemInfos);
-            popu.showPopupCenterWindow();
-*/
-        } else {
-            clickLivePop(v, itemBall, positionBall);
-        }
-
-    }
-
-
-    private void showWebLivePop(int position, IRTMatchInfo item, View view, View v) {
-        showLoadingDialog();
-     /*   int heightPixels = DeviceUtils.getScreenPix(mContext).heightPixels;
-        int[] location = new int[2];
-
-        v.getLocationOnScreen(location);
-        WebPop betPop;
-        if (location[1] < heightPixels / 2) {
-            int popWidth = DeviceUtils.dip2px(mContext, 350);
-            int popHeight = heightPixels - location[1] - v.getHeight();
-            betPop = new WebPop(mContext, v, popWidth, popHeight);
-            betPop.getWebView().setWebViewClient(new DigWebViewClient());
-            betPop.setTrans(1);
-            String lag = AfbUtils.getLanguage(mContext);
-            String l = "eng";
-            if (lag.equals("zh")) {
-                l = "en";
-            } else {
-                l = "en";
-            }
-
-            String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
-            Log.d(TAG, "onWebShow: " + gameUrl);
-            betPop.setUrl(gameUrl);
-            int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
-            int y = location[1] + v.getHeight();
-            betPop.showPopupAtLocation(x, y);
-
-        } else {
-            v = rvContent.getChildAt(position);
-            if (v == null) {
-                v = view;
-            }
-            v.getLocationOnScreen(location);
-            int popWidth = DeviceUtils.dip2px(mContext, 350);
-            int popHeight = location[1];
-            betPop = new WebPop(mContext, v, popWidth, popHeight);
-            betPop.getWebView().setWebViewClient(new DigWebViewClient());
-            betPop.setTrans(1);
-            String lag = AfbUtils.getLanguage(mContext);
-            String l = "eng";
-            if (lag.equals("zh")) {
-                l = "eng";
-            } else {
-                l = "EN-US";
-            }
-
-            String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
-            betPop.setUrl(gameUrl);
-            int x = (location[0] + v.getWidth() / 2) - popWidth / 2;
-            int y = 0;
-            betPop.showPopupAtLocation(x, y);
-        }*/
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                hideLoadingDialog();
-            }
-        }, 5000);
-    }
 
     public void checkTop(TextView tx) {
 
-        setTopLog(tx,!isTop);
+        setTopLog(tx, !isTop);
         MenuItemInfo stateType = presenter.getStateHelper().getStateType();
         if (isTop) {
             switchMajorType(stateType.getType());
@@ -629,51 +508,24 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     }
 
     @Override
-    public void clickItemAdd(View v, SportInfo item, int position) {
+    public void clickItemAdd(View v, IRTMatchInfo item, int position) {
         String dbid = getSportDbid();
 
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             String type = getBaseActivity().getOtType();
-            AddedParamsInfo info = new AddedParamsInfo((BallInfo) item, dbid, type);
+            AddedParamsInfo info = new AddedParamsInfo(item, dbid, type);
             additionPresenter.addition(info, new IAdded() {
                 @Override
-                public void onAdded(AddMBean addMBean, BallInfo ballInfo) {
+                public void onAdded(AddMBean addMBean, IRTMatchInfo ballInfo) {
                     onAddition(addMBean, ballInfo);
                 }
             });
             BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
-            adapterHelper.changeAdded((BallInfo) item);
+            adapterHelper.changeAdded(item);
 
         }
     }
 
-
-    public void clickLivePop(View v, BallInfo item, int position) {
-        MenuItemInfo stateType = getPresenter().getStateHelper().getStateType();
-        LogUtil.d("clickLivePop", "stateType:" + stateType.getType() + "item.getRTSMatchId():" + item.getRTSMatchId() + ",item.getTvPathIBC():" + item.getTvPathIBC());
-        if (!stateType.getType().equals("Running") || (item.getRTSMatchId().equals("0") && StringUtils.isNull(item.getTvPathIBC())))
-            return;
-        String lag = AfbUtils.getLanguage(mContext);
-        String l = "eng";
-        if (lag.equals("zh")) {
-            l = "en";
-        } else {
-            l = "en";
-        }
-        String gameUrl = "";
-        if (!StringUtils.isNull(item.getRTSMatchId()) && !item.getRTSMatchId().equals("0"))
-            gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + item.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(item.getHome()) + "&Away=" + StringUtils.URLEncode(item.getAway()) + "&L=" + l;
-        Log.d(TAG, "onWebShow: " + gameUrl);
-        String dbid = getSportDbid();
-        String type = getBaseActivity().getOddsType().getType();
-        LiveParamsInfo info = new LiveParamsInfo(item, dbid, type);
-        info.setGameUrl(gameUrl);
-        info.setLivePlayUrlId(item.getTvPathIBC());
-        info.setBallG(presenter.getStateHelper().getBetHelper().getBallG());
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(AppConstant.KEY_DATA, info);
-        getBaseActivity().skipAct(LiveWebActivity.class, bundle);
-    }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
@@ -694,7 +546,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         return dbid;
     }
 
-    public void onAddition(AddMBean data, BallInfo item) {
+    public void onAddition(AddMBean data, IRTMatchInfo item) {
         if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
             BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
             adapterHelper.notifyPositionAdded(data, item);

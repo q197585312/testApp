@@ -41,7 +41,7 @@ public class WebPop extends BasePopupWindow {
     protected void initView(View view) {
         super.initView(view);
         webView = view.findViewById(R.id.web_wv);
-        LinearLayout llBack = view.findViewById(R.id.ll_back);
+        LinearLayout llBack = view.findViewById(R.id.ll_back_title_line);
         llBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

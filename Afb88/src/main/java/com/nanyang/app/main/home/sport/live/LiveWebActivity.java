@@ -28,6 +28,7 @@ import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.VideoPlayer;
@@ -56,7 +57,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     FrameLayout fl_top_content;
     @Bind(R.id.web_wv)
     WebView webView;
-    @Bind(R.id.ll_back)
+    @Bind(R.id.ll_back_title_line)
     View ll_back;
     @Bind(R.id.ll_status)
     LinearLayout llStatus;
@@ -102,8 +103,8 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         ll_title_list = findViewById(R.id.ll_title_list);
         videoPlayer = (VideoPlayer) findViewById(R.id.video_player_stream);
 
-        tv_title_live_stream = (ImageView) findViewById(R.id.tv_title_live_stream);
-        tv_title_live_center = (ImageView) findViewById(R.id.tv_title_live_center);
+        tv_title_live_stream = (ImageView) findViewById(R.id.iv_title_live_stream);
+        tv_title_live_center = (ImageView) findViewById(R.id.iv_title_live_center);
         final ViewHolder viewHolder = new ViewHolder(fl_top_content);
         helper = new LivePlayHelper(viewHolder, this);
         tv_title_live_center.setOnClickListener(new View.OnClickListener() {
@@ -139,8 +140,8 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         createPresenter(new AdditionPresenter(this));
         presenter.addition(liveParamsInfo, new IAdded() {
             @Override
-            public void onAdded(AddMBean addMBean, BallInfo ballInfo) {
-                LiveWebActivity.this.item = ballInfo;
+            public void onAdded(AddMBean addMBean, IRTMatchInfo ballInfo) {
+                LiveWebActivity.this.item = (BallInfo) ballInfo;
                 LiveWebActivity.this.additionData = addMBean;
                 refreshAddedData();
             }
@@ -228,15 +229,11 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
 
 
     private boolean isNotEnable(ImageView tv_title_live_stream, String livePlayUrl) {
-
         if (StringUtils.isNull(livePlayUrl)) {
             tv_title_live_stream.setEnabled(false);
-
             return true;
         } else {
             tv_title_live_stream.setEnabled(true);
-
-
         }
         return false;
     }
@@ -244,11 +241,6 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
 
     private void visibleLive(ImageView liveTv, View liveView, boolean isPlay) {
         this.isPlay = isPlay;
-/*        tv_title_live_center.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
-        tv_title_live_stream.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, R.drawable.line_trans);
-
-        tv_title_live_center.setTextColor(ContextCompat.getColor(mContext, R.color.white));
-        tv_title_live_stream.setTextColor(ContextCompat.getColor(mContext, R.color.white));*/
         isNotEnable(tv_title_live_center, gameUrl);
         isNotEnable(tv_title_live_stream, livePlayUrl);
         enableView(liveTv, liveView);
@@ -279,7 +271,6 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         webView.setVisibility(View.GONE);
         videoPlayer.setVisibility(View.GONE);
         liveView.setVisibility(View.VISIBLE);
-
     }
 
     @Override

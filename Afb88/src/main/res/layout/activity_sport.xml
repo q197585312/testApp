@@ -317,7 +317,7 @@
                             android:visibility="gone">
 
                             <LinearLayout
-                                android:id="@+id/ll_back"
+                                android:id="@+id/ll_back_title_line"
                                 android:layout_width="match_parent"
                                 android:layout_height="30dp"
                                 android:background="@color/green_dark"
@@ -344,7 +344,7 @@
                                     android:textColor="@color/white" />
 
                                 <ImageView
-                                    android:id="@+id/tv_title_live_stream"
+                                    android:id="@+id/iv_title_live_stream"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_gravity="center"
@@ -360,7 +360,7 @@
                                     android:textStyle="bold" />
 
                                 <ImageView
-                                    android:id="@+id/tv_title_live_center"
+                                    android:id="@+id/iv_title_live_center"
                                     android:layout_width="0dp"
                                     android:layout_height="26dp"
                                     android:layout_gravity="center"
@@ -386,24 +386,33 @@
                                     android:padding="6dp"
                                     android:src="@mipmap/sport_bet_list" />
                             </LinearLayout>
+
                             <TextView
                                 android:id="@+id/tv_run_match_title"
+                                android:layout_width="match_parent"
+                                android:layout_height="18dp"
                                 android:layout_marginTop="30dp"
                                 android:background="@color/black"
-                                android:layout_width="match_parent"
-                                android:textColor="@color/white"
-                                android:text="111-vs-"
                                 android:drawableRight="@mipmap/arrow_down_drop_white"
-                                android:textSize="12sp"
                                 android:gravity="center"
                                 android:onClick="clickRunTitle"
-                                android:layout_height="18dp" />
+                                android:paddingRight="10dp"
+                                android:text="111-vs-"
+                                android:textColor="@color/white"
+                                android:textSize="12sp" />
 
                             <com.unkonw.testapp.libs.widget.VideoPlayer
                                 android:id="@+id/video_player_stream"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_marginTop="48dp" />
+
+                            <WebView
+                                android:id="@+id/web_wv"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="48dp"
+                                android:visibility="gone" />
 
                             <LinearLayout
                                 android:id="@+id/ll_status"

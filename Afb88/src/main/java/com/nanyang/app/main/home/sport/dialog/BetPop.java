@@ -86,6 +86,8 @@ public class BetPop {
     TextView betSureBtn;
     @Bind(R.id.rc_bet_chip)
     RecyclerView rcBetChip;
+    @Bind(R.id.fl_rc_content)
+    FrameLayout fl_rc_content;
     @Bind(R.id.rc_bet_content)
     RecyclerView rcBetContent;
     @Bind(R.id.ll_mix)
@@ -114,7 +116,7 @@ public class BetPop {
     TextView tvMixBet;
     @Bind(R.id.tv_delete)
     TextView tvDelete;
-    @Bind(R.id.ll_back)
+    @Bind(R.id.ll_back_title_line)
     ImageView llBack;
     @Bind(R.id.ll_1x2)
     LinearLayout ll1x2;
@@ -618,6 +620,7 @@ public class BetPop {
         this.list = list;
         if (list != null && listSize != list.size()) {
             this.listSize = list.size();
+            setListLayoutParams();
             isRefreshEd = false;
         }
         this.presenter = mPresenter;
@@ -663,7 +666,7 @@ public class BetPop {
         if (!TextUtils.isEmpty(writeMoney)) {
             tvMaxWin.setText(AfbUtils.scientificCountingToString(AfbUtils.decimalValue((float) countMaxPayout(Double.parseDouble(writeMoney)), "0.00")));
         }
-        setListLayoutParams();
+
         if (afbApplication.getBetAfbList() != null && !StringUtils.isEmpty(afbApplication.getBetAfbList().getPayoutOdds()))
             tv1x2Odds.setText(AfbUtils.decimalValue(Float.parseFloat(afbApplication.getBetAfbList().getPayoutOdds()), "0.00"));
         stopUpdateOdds();
@@ -692,17 +695,13 @@ public class BetPop {
     }
 
     private void setListLayoutParams() {
-
-        ViewGroup.LayoutParams layoutParams = rcBetContent.getLayoutParams();
-        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT;
-        if (list.size() > 1) {
-            int height = 55;
-            layoutParams.height = AfbUtils.dp2px(context, height * 2 + 5);
-            if (list.size() > 2) {
-                layoutParams.height = AfbUtils.dp2px(context, height * 3 + 5);
-            }
+        ViewGroup.LayoutParams layoutParams = fl_rc_content.getLayoutParams();
+        if (list.size() > 2) {
+            layoutParams.height = AfbUtils.dp2px(context, 50 * 3 + 5);
+        } else {
+            layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
         }
-        rcBetContent.setLayoutParams(layoutParams);
+
     }
 
     BaseRecyclerAdapter<AfbClickBetBean> contentAdapter;
@@ -730,6 +729,7 @@ public class BetPop {
             startAlphaColor(tvSingleBet, tvMixBet);
             tvMixBet.setTextColor(Color.WHITE);
         }
+
         if (contentAdapter == null) {
             objectAnimatorMap = new HashMap<>();
             contentAdapter = new BaseRecyclerAdapter<AfbClickBetBean>(context, list, R.layout.item_bet) {
@@ -866,6 +866,7 @@ public class BetPop {
                     } else {
                         tvScore.setText("");
                     }
+                    bet_module_title_tv.setText(item.getLeague());
                     if (item.getId().contains("fglg")) {
                         ll_bottom.setVisibility(View.VISIBLE);
                         String sc = item.getSc();
@@ -976,6 +977,7 @@ public class BetPop {
         } else {
             contentAdapter.setData(list);
         }
+
     }
 
     private void deletedOne(AfbClickBetBean afbClickBetBean) {

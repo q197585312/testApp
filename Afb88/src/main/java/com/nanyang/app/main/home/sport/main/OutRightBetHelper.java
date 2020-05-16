@@ -9,9 +9,6 @@ import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BetView;
 
-import io.reactivex.disposables.CompositeDisposable;
-import io.reactivex.disposables.Disposable;
-
 /**
  * Created by Administrator on 2017/3/15.
  */
@@ -23,7 +20,7 @@ public class OutRightBetHelper extends SportBetHelper<SportInfo, BetView> {
     }
 
     @Override
-    public Disposable clickOdds(SportInfo item, int oid, String type, String odds, TextView v, boolean isHf, String sc, boolean hasPar) {
+    public void clickOdds(SportInfo item, int oid, String type, String odds, TextView v, boolean isHf, String sc, boolean hasPar) {
         AfbClickResponseBean betAfbList = ((AfbApplication) AfbApplication.getInstance()).getBetAfbList();
         String betOddsUrl = "";
         //http://www.afb1188.com/Bet/hBetOdds.ashx?BTMD=S&coupon=0&BETID=|1|50|473355||&_=1543560701987
@@ -31,10 +28,10 @@ public class OutRightBetHelper extends SportBetHelper<SportInfo, BetView> {
             betOddsUrl = AppConstant.getInstance().URL_ODDS + "BTMD=S&coupon=0&BETID=" + "|1|50|" + item.getSocOddsId() + "||";
         } else {
             getBaseView().onFailed(getBaseView().getIBaseContext().getBaseActivity().getString(R.string.can_not_mixparly));
-            return new CompositeDisposable();
+            return ;
         }
         //http://www.afb1188.com/Bet/hBetOdds.ashx?BTMD=S&coupon=0&BETID=s|home|1|469195||&_=1543457322841
-        return getDisposable(v, isHf, betOddsUrl);
+        getDisposable(v, isHf, betOddsUrl);
     }
 
     @Override

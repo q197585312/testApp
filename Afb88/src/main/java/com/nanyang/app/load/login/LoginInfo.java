@@ -198,7 +198,7 @@ public class LoginInfo {
 
         String accType = "";
         String lang = "";
-        String pgLable = "0.8565494885673504";
+        String pgLable = "0.6398654664343417";
         String vsn = "4.0.12";
         String PT = AppConstant.wfMain;
 

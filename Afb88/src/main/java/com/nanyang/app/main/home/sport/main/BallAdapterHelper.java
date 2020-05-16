@@ -11,6 +11,7 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -31,6 +32,7 @@ import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.BallItemCallBack;
 import com.nanyang.app.main.home.sportInterface.BaseMixStyleHandler;
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.training.ScrollLayout;
@@ -59,7 +61,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     protected Context context;
     private AddMBean additionData;
 
-    private BallInfo additionBallItem;
+    private IRTMatchInfo additionBallItem;
 
 
     public Set<ScrollLayout> getSlFollowers() {
@@ -75,7 +77,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     private int slIndex = 0;
     final LiveSelectedHelper liveSelectedHelper = new LiveSelectedHelper();
 
-    synchronized void notifyPositionAdded(AddMBean data, BallInfo item) {
+    synchronized void notifyPositionAdded(AddMBean data, IRTMatchInfo item) {
         this.additionData = data;
         LogUtil.d("additionMap", additionData.toString());
         LogUtil.d("additionMap", "-------------->" + additionMap.get(true));
@@ -102,6 +104,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
         View ll_title_list = helper.getView(R.id.ll_title_list);
         View ll_match_outside = helper.getView(R.id.ll_match_outside);
+        ViewGroup.LayoutParams layoutParams = ll_match_outside.getLayoutParams();
         if (onlyShowAdded) {
             ll_match_outside.setVisibility(View.GONE);
         } else {
@@ -2228,7 +2231,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     }
 
 
-    public void changeAdded(BallInfo item) {
+    public void changeAdded(IRTMatchInfo item) {
         String id = additionMap.get(true);
         if (!StringUtils.isNull(id) && id.trim().equals(item.getSocOddsId().trim())) {
             LogUtil.d("additionMap", additionMap.get(true) + ",点击两次关闭");

@@ -7,7 +7,7 @@ import com.google.gson.Gson;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Utils.StringUtils;
-import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
@@ -21,7 +21,7 @@ import java.util.TimerTask;
 import static com.unkonw.testapp.libs.api.Api.getService;
 
 public class AdditionPresenter extends BaseRetrofitPresenter<IBaseContext> implements IBasePresenter {
-    private BallInfo bean;
+    private IRTMatchInfo bean;
 
     private String dbid;
     private String oddsType;

@@ -14,8 +14,11 @@ import com.unkonw.testapp.libs.base.BaseConsumer;
 
 import org.json.JSONException;
 
+import java.util.HashMap;
+
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
+import okhttp3.RequestBody;
 
 /**
  * Created by ASUS on 2019/4/16.
@@ -72,23 +75,11 @@ public class LoadPCasinoDataHelper<T extends LoginInfo.LanguageWfBean> {
         if (!StringUtils.isNull(url)) {
             p = url;
         }
-
-        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).doPostMap(p, languageWfBean.getMap()), new BaseConsumer<String>(baseContext) {
+        HashMap<String, String> map = languageWfBean.getMap();
+        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).doPostMap(p, map), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
-                Log.d("doRetrofitApiOnUiThread", "data: " + data);
-                String updateString = AfbUtils.delHTMLTag(data);
-                if (!StringUtils.isNull(matches)) {
-                    String group = StringUtils.findGroup(updateString, matches, 1);
-                    if (!StringUtils.isNull(group)) {
-                        back.onBack(group);
-                        return;
-                    }
-                } else {
-                    back.onBack(updateString);
-                    return;
-                }
-                back.onError(updateString);
+                onSuccessPost(data, matches, back);
             }
 
             @Override
@@ -97,5 +88,42 @@ public class LoadPCasinoDataHelper<T extends LoginInfo.LanguageWfBean> {
             }
         });
         mCompositeSubscription.add(disposable);
+    }
+
+    public void doRetrofitApiOnUiThreadBackPostJson(String url, T languageWfBean, final MainPresenter.CallBackError<String> back, final String matches) {
+        String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd";
+        if (!StringUtils.isNull(url)) {
+            p = url;
+        }
+        String json = languageWfBean.getJson();
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), json);
+        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).doPostJson(p, body), new BaseConsumer<String>(baseContext) {
+            @Override
+            protected void onBaseGetData(String data) throws JSONException {
+                onSuccessPost(data, matches, back);
+            }
+
+            @Override
+            protected void onAccept() {
+//                super.onAccept();
+            }
+        });
+        mCompositeSubscription.add(disposable);
+    }
+
+    private void onSuccessPost(String data, String matches, MainPresenter.CallBackError<String> back) throws JSONException {
+        Log.d("doRetrofitApiOnUiThread", "data: " + data);
+        String updateString = AfbUtils.delHTMLTag(data);
+        if (!StringUtils.isNull(matches)) {
+            String group = StringUtils.findGroup(updateString, matches, 1);
+            if (!StringUtils.isNull(group)) {
+                back.onBack(group);
+                return;
+            }
+        } else {
+            back.onBack(updateString);
+            return;
+        }
+        back.onError(updateString);
     }
 }
