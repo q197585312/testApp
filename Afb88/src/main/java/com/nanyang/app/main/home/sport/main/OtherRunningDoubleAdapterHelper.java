@@ -25,6 +25,6 @@ public class OtherRunningDoubleAdapterHelper extends SoccerRunningAdapterHelper 
 
     @Override
     protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
-        timeTv.setVisibility(View.INVISIBLE);
+        timeTv.setVisibility(View.GONE);
     }
 }

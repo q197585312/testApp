@@ -7,7 +7,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
@@ -54,7 +53,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
     @Bind(R.id.sv_bottom_content)
     ScrollView sv_bottom_content;
     @Bind(R.id.fl_top_video)
-    FrameLayout fl_top_content;
+    LinearLayout fl_top_content;
     @Bind(R.id.web_wv)
     WebView webView;
     @Bind(R.id.ll_back_title_line)

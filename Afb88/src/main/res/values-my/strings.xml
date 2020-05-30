@@ -536,10 +536,7 @@
     <string name="bet_limit">Bet Credit:</string>
     <string name="Select_League">Select League</string>
     <string name="normal">Normal</string>
-    <string name="FT_HDP">FT.HDP</string>
-    <string name="FT_OU">FT.OU</string>
-    <string name="HT_HDP">1H.HDP</string>
-    <string name="HT_OU">1H.OU</string>
+
     <string name="Bet_Slip">Bet Slip</string>
     <string name="Note_">Nota:</string>
     <string name="GMT_8">Sila ambil perhatian bahawa masa yang dipaparkan adalah berdasarkan GMT +8 jam</string>
@@ -571,5 +568,33 @@
     <string name="all_host" >@string/all</string>
     <string name="Early_All" >Awal(All)</string>
     <string name="Soccer_Runing">Soccer Running</string>
+    <string name="view2">Gaya 2</string>
+    <string name="language_zh">PASUNDAN (BASAJAN)</string>
+    <string name="language_en">INGGRIS</string>
+    <string name="language_th">THAILAND</string>
+    <string name="language_ko">KORÉA</string>
+    <string name="language_vi">VIETNAM</string>
+    <string name="language_tr">TURKI</string>
+    <string name="language_my">BAHASA INDONESIA</string>
 
+    <string name="FT_HDP">FT.HDP</string>
+    <string name="FT_OU">FT.ATAS BAWAH</string>
+    <string name="HT_HDP">FH.HDP</string>
+    <string name="HT_OU">FH.ATAS BAWAH</string>
+    <string name="HFG">HFG</string>
+    <string name="NG">NG</string>
+    <string name="AFG">AFG</string>
+    <string name="HLG">HLG</string>
+    <string name="ALG">ALG</string>
+    <string name="FT_O">Penonton penuh.Besar</string>
+    <string name="FT_U">Penonton penuh.Kecil</string>
+    <string name="FH_O">Babak pertama.Besar</string>
+    <string name="FH_U">Babak pertama.Kecil</string>
+    <string name="Over_7">7&#038;OVER</string>
+    <string name="h">H</string>
+    <string name="o">O</string>
+    <string name="a">A</string>
+    <string name="u">U</string>
+    <string name="language_zh_tw">PASUNDAN (TRADISIONAL)</string>
+    <string name="single">@string/single_bet</string>
 </resources>

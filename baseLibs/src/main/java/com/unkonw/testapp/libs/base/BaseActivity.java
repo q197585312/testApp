@@ -6,6 +6,7 @@ import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -240,7 +241,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         transaction.commit();
     }
 
-    protected void removeFragmentToActivity(@NonNull Fragment fragment) {
+    public void removeFragmentToActivity(@NonNull Fragment fragment) {
         checkNotNull(fragment);
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         if (fragment.isAdded()) {
@@ -248,6 +249,16 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         }
         transaction.commit();
     }
+
+    public void removeAllFromActivity() {
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        int count = fragmentManager.getBackStackEntryCount();
+        for (int i = 0; i < count; ++i) {
+            fragmentManager.popBackStack();
+        }
+    }
+
 
     /**
      * 显示一个Toast信息

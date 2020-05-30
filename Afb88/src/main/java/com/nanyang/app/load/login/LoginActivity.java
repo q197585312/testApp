@@ -8,6 +8,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewTreeObserver;
@@ -37,12 +38,11 @@ import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.ToastUtils;
+import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -177,7 +177,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                 login();
                 break;
             case R.id.login_language:
-                if (popLanguage == null) {
+              /*  if (popLanguage == null) {
                     popLanguage = new PopChoiceLanguage(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT) {
                         @Override
                         public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
@@ -226,7 +226,31 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                     popLanguage.setData(languageList);
                 }
                 popLanguage.showPopupDownWindow();
-                break;
+                break;*/
+            BaseListPopupWindow<MenuItemInfo<String>> popWindow = new BaseListPopupWindow<MenuItemInfo<String>>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, (TextView) view) {
+
+                @Override
+                public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
+                    TextView tv = holder.getView(com.unkonw.testapp.R.id.item_regist_text_tv);
+                    tv.setAllCaps(true);
+                    tv.setText(item.getText());
+                    tv.setGravity(Gravity.LEFT);
+                }
+
+                @Override
+                protected void clickItem(TextView tv, MenuItemInfo<String> item) {
+                    super.clickItem(tv, item);
+                    closePopupWindow();
+                    tv.setText(item.getText());
+                    AfbUtils.switchLanguage(item.getType(), mContext);
+                    restart();
+                }
+            };
+//                popWindow.setData(presenter.currencyList);
+            popWindow.setTrans(1f);
+            popWindow.setData(new LanguageHelper(mContext).getLanguageItems());
+            popWindow.showPopupDownWindow();
+            break;
         }
     }
 

@@ -9,6 +9,7 @@ import com.nanyang.app.AppConstant;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.widget.listener.VideoListener;
 
 import java.io.IOException;
@@ -128,6 +129,7 @@ public class LivePlayHelper {
             holder.videoPlayerStream.setVisibility(View.VISIBLE);
             holder.web_wv.setVisibility(View.GONE);
             holder.llStatus.setVisibility(View.VISIBLE);
+            LogUtil.d("");
             playType = 1;
             try {
                 if (holder.videoPlayerStream != null && holder.videoPlayerStream.getmPath() != null)
@@ -223,7 +225,6 @@ public class LivePlayHelper {
                 onPausePlay();
             }
             webLoad();
-            ;
         }
     }
 

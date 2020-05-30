@@ -456,4 +456,33 @@
     <string name="all_host" >@string/all</string>
     <string name="Early_All" >erken(Herşey)</string>
     <string name="Soccer_Runing">Soccer Running</string>
+    <string name="view2">Görünüm 2</string>
+    <string name="language_zh">ÇINCE (BASITLEŞTIRILMIŞ)</string>
+    <string name="language_en">İNGILIZCE</string>
+    <string name="language_th">TAYLAND</string>
+    <string name="language_ko">KORELI</string>
+    <string name="language_vi">VIETNAM</string>
+    <string name="language_tr">TÜRK DILI</string>
+    <string name="language_my">ENDONEZYA</string>
+
+    <string name="FT_HDP">FT.HDP</string>
+    <string name="FT_OU">FT.OU</string>
+    <string name="HT_HDP">FT.HDP</string>
+    <string name="HT_OU">FH.OU</string>
+    <string name="HFG">HFG</string>
+    <string name="NG">NG</string>
+    <string name="AFG">AFG</string>
+    <string name="HLG">HLG</string>
+    <string name="ALG">ALG</string>
+    <string name="FT_O">Tam kitle.Büyük</string>
+    <string name="FT_U">Tam kitle.Küçük</string>
+    <string name="FH_O">İlk yarı.Büyük</string>
+    <string name="FH_U">İlk yarı.Küçük</string>
+    <string name="Over_7">7üst</string>
+    <string name="h">H</string>
+    <string name="o">O</string>
+    <string name="a">A</string>
+    <string name="u">U</string>
+    <string name="language_zh_tw">TRUNG QUỐC (TRUYỀN THỐNG)</string>
+    <string name="single">@string/single_bet</string>
 </resources>

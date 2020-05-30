@@ -62,7 +62,7 @@ public class BasketballRunningState extends BasketballCommonState {
         return new SoccerRunningAdapterHelper(getBaseView().getIBaseContext().getBaseActivity()) {
             @Override
             protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
-                timeTv.setVisibility(View.INVISIBLE);
+                timeTv.setVisibility(View.GONE);
             }
         };
     }

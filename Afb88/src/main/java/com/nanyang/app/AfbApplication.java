@@ -369,9 +369,12 @@ public class AfbApplication extends BaseApplication {
         String isEnabledSG = getUser().getIsEnabledSG();
         enableMap.put("SA CASINO", isEnabledSG);
         String isEnabledEV = getUser().getIsEnabledEV();
-        enableMap.put("EVCashio", isEnabledEV);
+        enableMap.put("EVOPLAY", isEnabledEV);
         String isEnabledDG = getUser().getIsEnabledDG();
-        enableMap.put("DGCashio", isEnabledDG);
+        enableMap.put("DG CASINO", isEnabledDG);
+
+        String isEnabledWM = getUser().getIsEnabledWM();
+        enableMap.put("WM CASINO", isEnabledWM);
         return enableMap;
     }
 

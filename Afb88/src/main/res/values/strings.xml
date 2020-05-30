@@ -76,8 +76,8 @@
     <string name="first_goal">First Goal</string>
     <string name="last_goal">Last Goal</string>
     <string name="no_goal">No Goal</string>
-    <string name="under">Under</string>
-    <string name="over">Over</string>
+    <string name="under">U</string>
+    <string name="over">O</string>
     <string name="Input_the_amount_of_bets_please">Input the amount of bets please</string>
     <string name="invalid_amount_bet">Invalid amount bet</string>
     <string name="full_time">FT</string>
@@ -331,8 +331,8 @@
     <string name="SuperCombo">SuperCombo</string>
     <string name="hot_sort">Normal Sorting</string>
     <string name="result">Result</string>
-    <string name="Home">Home</string>
-    <string name="Away">Away</string>
+    <string name="Home">H</string>
+    <string name="Away">A</string>
     <string name="HT">HT</string>
     <string name="league">Top</string>
     <string name="winner">Winner</string>
@@ -590,13 +590,13 @@
     <string name="OVER">OVER</string>
     <string name="Single_TV">SINGLE TV</string>
     <string name="MATCH_TV"><![CDATA[MATCH & TV]]></string>
-    <string name="language_zh">简体中文</string>
-    <string name="language_en">English</string>
-    <string name="language_th">ภาษาไทย</string>
+    <string name="language_zh">CHINESE (SIMPLIFIED)</string>
+    <string name="language_en">ENGLISH</string>
+    <string name="language_th">THAI</string>
     <string name="language_ko">KOREAN</string>
-    <string name="language_vi">Tiếng Việt</string>
+    <string name="language_vi">VIETNAM</string>
     <string name="language_tr">TURKISH</string>
-    <string name="language_my">INDONESIAN</string>
+    <string name="language_my">INDONESIA</string>
     <string name="Jan">Jan</string>
     <string name="Feb">Feb</string>
     <string name="Mar">Mar</string>
@@ -626,7 +626,7 @@
     <string name="e">E</string>
     <string name="live_score">LIVE SCORE:</string>
     <string name="All">ALL</string>
-    <string name="single">SINGLE</string>
+
     <string name="mix_parlay">MIX PARLAY</string>
     <string name="Sport">Sport</string>
     <string name="OTHER">OTHER</string>
@@ -635,4 +635,19 @@
     <string name="EARLY">EARLY</string>
     <string name="Match">Match</string>
     <string name="Soccer_Runing">Soccer Running</string>
+    <string name="WM_Cashio">WM CASINO</string>
+    <string name="All_Match">All Matches</string>
+    <string name="view2">View2</string>
+    <string name="HFG">HFG</string>
+    <string name="NG">NG</string>
+    <string name="AFG">AFG</string>
+    <string name="HLG">HLG</string>
+    <string name="ALG">ALG</string>
+    <string name="FT_O">FT.O&#160;</string>
+    <string name="FT_U">FT.U&#160;</string>
+    <string name="FH_O">FH.O&#160;</string>
+    <string name="FH_U">FH.U&#160;</string>
+    <string name="Over_7">7&#038;Over</string>
+    <string name="language_zh_tw">CHINESE(TRADITIONAL)</string>
+    <string name="single">SINGLE</string>
 </resources>

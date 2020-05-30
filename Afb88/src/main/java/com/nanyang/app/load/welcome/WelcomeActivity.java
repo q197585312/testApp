@@ -96,6 +96,10 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
         this.loadFile = file;
         checkIsAndroidO();
     }
+    @Override
+    public void startUpdateState() {
+
+    }
 
     public void checkIsAndroidO() {
         if (Build.VERSION.SDK_INT >= 26) {

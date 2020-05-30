@@ -281,6 +281,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                 updateMixListText();
             }
         }
+
     }
 
     public void updateMixListText() {

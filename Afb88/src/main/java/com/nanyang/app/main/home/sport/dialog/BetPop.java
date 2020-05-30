@@ -36,6 +36,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.main.AfbDrawerViewHolder;
 import com.nanyang.app.main.BetCenter.HtmlTagHandler;
 import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
@@ -73,7 +74,7 @@ public class BetPop {
     public View v;
     private Handler handler;
     Context context;
-    BaseToolbarActivity activity;
+    SportActivity activity;
     AfbApplication afbApplication;
     private int listSize;
 
@@ -156,7 +157,7 @@ public class BetPop {
     public void initContent() {
 
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
-        activity = (BaseToolbarActivity) context;
+        activity = (SportActivity) context;
         handler = new Handler();
         afbApplication = activity.getApp();
         betAmountEdt.setOnEditorActionListener(new EditText.OnEditorActionListener() {
@@ -242,7 +243,6 @@ public class BetPop {
             @Override
             public void onClick(View v) {
 
-
                 if (afbApplication.getMixBetList().size() == 1) {
                     goMixAndClose();
                 } else {
@@ -283,8 +283,10 @@ public class BetPop {
     }
 
     public void closePopupWindow() {
-        v.setVisibility(View.GONE);
-        onClose();
+        if (v != null && v.getVisibility() == View.VISIBLE) {
+            v.setVisibility(View.GONE);
+            onClose();
+        }
 
     }
 
@@ -762,7 +764,7 @@ public class BetPop {
 
                     View vLine = holder.getView(R.id.v_line);
                     View ll_second = holder.getView(R.id.ll_second);
-                    String typeOdds = item.getOddsType();
+                   /* String typeOdds = item.getOddsType();
                     if (typeOdds != null && typeOdds.toLowerCase().contains("home") || typeOdds.toLowerCase().contains("away")) {
                         tv_vs.setVisibility(View.GONE);
                         tvBetHome.setVisibility(View.GONE);
@@ -771,7 +773,7 @@ public class BetPop {
                         tv_vs.setVisibility(View.VISIBLE);
                         tvBetHome.setVisibility(View.VISIBLE);
                         tvBetAway.setVisibility(View.VISIBLE);
-                    }
+                    }*/
                     final String socOddsId = item.getSocOddsId();
                     if (list.size() < 2) {
                         edt_single_bet.setVisibility(View.GONE);
@@ -1019,7 +1021,7 @@ public class BetPop {
         if (list.size() <= 1)
             betAmountEdt.setHint(R.string.single);
         else {
-            betAmountEdt.setHint(R.string.mix_parlay);
+            betAmountEdt.setHint(R.string.mix);
         }
     }
 
@@ -1087,6 +1089,10 @@ public class BetPop {
             webViewPause();
             return;
         }
+        if (activity.fl_top_video.getVisibility() == View.VISIBLE) {
+            webViewPause();
+            return;
+        }
         if (list.size() > 1) {
             webViewPause();
             return;
@@ -1099,15 +1105,9 @@ public class BetPop {
             return;
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty()) {
-            String lag = AfbUtils.getLanguage(context);
-            String l = "eng";
-            if (lag.equals("zh")) {
-                l = "eng";
-            } else {
-                l = "EN-US";
-            }
+            String language = new LanguageHelper(activity).getLanguage();
             webViewResume();
-            String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + l;
+            String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + language;
             AfbUtils.synCookies(context, webView, gameUrl);
             LogUtil.d("gameUrl", gameUrl);
         } else {

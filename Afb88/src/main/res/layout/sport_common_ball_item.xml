@@ -35,7 +35,7 @@
                 android:layout_height="24dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="2dp"
-                android:background="@mipmap/star_red_not_solid"
+                android:background="@mipmap/sport_game_star_yellow"
                 android:gravity="center"
                 android:textColor="@color/grey_dark_word"
                 android:textSize="10sp" />
@@ -73,7 +73,7 @@
                     android:layout_height="20dp"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="2dp"
-                    android:background="@mipmap/star_red_not_solid"
+                    android:background="@mipmap/sport_game_star_yellow"
                     android:gravity="center"
                     android:textColor="@color/grey_dark_word" />
 

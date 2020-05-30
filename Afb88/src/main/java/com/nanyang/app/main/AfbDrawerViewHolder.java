@@ -221,4 +221,5 @@ public class AfbDrawerViewHolder implements IDrawerView {
         statementFragment.setSwitchTypeIndex(BetCenterFragment.unsettled);
         switchFragment(statementFragment);
     }
+
 }

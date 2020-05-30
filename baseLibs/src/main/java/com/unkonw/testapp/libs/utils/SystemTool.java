@@ -182,7 +182,7 @@ public final class SystemTool {
 
 
     }
-
+//11[{"token":"uz10asc0lca5zvwdckhoyulf","um":"1|1317|22080|26573","delay":"0","pn":"1","tf":"-1","betable":true,"lang":"ZH-CN","LangCol":"C2","accType":"HK","CTOddsDiff":"-0.2","CTSpreadDiff":"-1","oddsDiff":"0","spreadDiff":"0","ACT":"LOS","DBID":"1","ot":"r","timess":"2020-05-29","ov":0,"mt":"0","TransMax":50,"FAV":"","SL":"","fh":false,"isToday":false,"tp":1}]
     public static void switchLanguage(String lag, Context context) {
         Resources resources = context.getResources();// 获得res资源对象
         Configuration config = resources.getConfiguration();// 获得设置对象
@@ -192,6 +192,8 @@ public final class SystemTool {
                 config.locale = Locale.SIMPLIFIED_CHINESE; // 简体中文
             } else if (lag.equals("en")) {
                 config.locale = Locale.ENGLISH;
+            } else if (lag.equals("zh-rTW")) {
+                config.locale = Locale.TAIWAN;
             } else {
                 config.locale = new Locale(lag);
             }
@@ -236,6 +238,7 @@ public final class SystemTool {
 
         return height;
     }
+
     /**
      * 通过设置全屏，设置状态栏透明
      *

@@ -456,4 +456,35 @@
     <string name="all_host" >@string/all</string>
     <string name="Early_All" >Sớm(Tất cả các)</string>
     <string name="Soccer_Runing">Soccer Running</string>
+    <string name="view2">Phong cách 2</string>
+
+    <string name="language_zh">TIẾNG TRUNG (ĐƠN GIẢN HÓA)</string>
+    <string name="language_en">TIẾNG ANH</string>
+    <string name="language_th">THÁI LAN</string>
+    <string name="language_ko">TIẾNG HÀN</string>
+    <string name="language_vi">TIẾNG VIỆT</string>
+    <string name="language_tr">THỔ NHĨ KỲ</string>
+    <string name="language_my">TIẾNG INDONESIA</string>
+    <string name="HFG">Mục tiêu đầu tiên ở nhà</string>
+    <string name="NG">Không ghi bàn</string>
+    <string name="AFG">Ngay lập tức</string>
+    <string name="HLG">Mục tiêu cuối cùng ở nhà</string>
+    <string name="ALG">Mục tiêu cuối cùng</string>
+    <string name="FT_O">FT.Lớn</string>
+    <string name="FT_U">FT.Nhỏ</string>
+    <string name="FH_O">FH.Lớn</string>
+    <string name="FH_U">FH.Nhỏ</string>
+    <string name="Over_7"><![CDATA[7&Over]]></string>
+
+    <string name="FT_HDP">FT.HDP</string>
+    <string name="FT_OU">FT.OU</string>
+    <string name="HT_HDP">FT.HDP</string>
+    <string name="HT_OU">FH.OU</string>
+
+    <string name="h">H</string>
+    <string name="o">O</string>
+    <string name="a">A</string>
+    <string name="u">U</string>
+    <string name="language_zh_tw">ÇINCE (GELENEKSEL)</string>
+    <string name="single">@string/single_bet</string>
 </resources>

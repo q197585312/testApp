@@ -1,7 +1,6 @@
 package com.nanyang.app.main.BetCenter;
 
 import android.support.annotation.IdRes;
-import android.support.v4.app.FragmentTransaction;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -36,6 +35,8 @@ public class BetCenterFragment extends BaseMoreFragment {
     public static String unsettled = "unsettled";
     public static String statementNew = "statementNew";
     public static String grade = "grade";
+    private BaseFragment indexFragment = unsettledFragment;
+    private BaseFragment lastIndexFragment;
 
     @Override
     public int onSetLayoutId() {
@@ -84,7 +85,7 @@ public class BetCenterFragment extends BaseMoreFragment {
         });
     }
 
-    private int lastIndex = -1;
+
     private int currentIndex = 0;
 
     public void switchFragment() {
@@ -98,32 +99,24 @@ public class BetCenterFragment extends BaseMoreFragment {
         } else {
             rbGrade.setChecked(true);
         }
-        if (lastIndex == currentIndex) {
-            if (currentIndex == 0 && unsettledFragment.isAdded()) {
-                if (unsettledFragment != null) {
-                    unsettledFragment.initWaitData();
-                }
-            }
-            return;
-        }
+
         BaseFragment fragment = baseFragmentList.get(currentIndex);
-        FragmentTransaction transaction = mContext.getSupportFragmentManager().beginTransaction();
-        if (!fragment.isAdded()) {
-            transaction.add(R.id.fl_betCenter_content, fragment);
-        } else {
-            transaction.show(fragment);
+        if (lastIndexFragment == null||(fragment!=null&&!fragment .equals(indexFragment) ) ) {
+            indexFragment = fragment;
+            getBaseActivity().showFragmentToActivity(fragment, R.id.fl_betCenter_content);
+            if (lastIndexFragment != null && lastIndexFragment .equals(indexFragment) ) {
+                getBaseActivity().hideFragmentToActivity(lastIndexFragment);
+            }
+            lastIndexFragment = indexFragment;
+        }
+        if (fragment.isAdded()) {
             if (fragment.equals(unsettledFragment)) {
-                if (unsettledFragment != null) {
-                    unsettledFragment.initWaitData();
-                }
+                unsettledFragment.initWaitData();
             }
         }
-        if (lastIndex != -1) {
-            transaction.hide(baseFragmentList.get(lastIndex));
-        }
-        lastIndex = currentIndex;
-        transaction.commit();
+
     }
+
 
     @Override
     public void showContent() {

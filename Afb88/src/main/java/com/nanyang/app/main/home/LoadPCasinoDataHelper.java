@@ -76,7 +76,8 @@ public class LoadPCasinoDataHelper<T extends LoginInfo.LanguageWfBean> {
             p = url;
         }
         HashMap<String, String> map = languageWfBean.getMap();
-        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).doPostMap(p, map), new BaseConsumer<String>(baseContext) {
+        RequestBody body = RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"), languageWfBean.getJson());
+        Disposable disposable = mApiWrapper.applyDisposable(Api.getService(ApiService.class).doPostJson(p, body), new BaseConsumer<String>(baseContext) {
             @Override
             protected void onBaseGetData(String data) throws JSONException {
                 onSuccessPost(data, matches, back);

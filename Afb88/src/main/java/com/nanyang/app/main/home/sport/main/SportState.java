@@ -224,8 +224,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         MenuItemInfo oddsType = ((SportActivity) getBaseView().getIBaseContext().getBaseActivity()).getOddsType();
         if (oddsType != null)
             refreshDataBean.setAccType(oddsType.getType());
-
-
         if (StringUtils.isNull(dBId))
             return;
         String t = (getStateType().getType().charAt(0) + "").toLowerCase();

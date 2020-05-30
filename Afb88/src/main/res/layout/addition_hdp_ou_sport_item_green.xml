@@ -26,8 +26,8 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -35,7 +35,7 @@
                         android:id="@+id/home_title_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="center_vertical"
                         android:padding="1dp"
                         android:text="@string/h"
                         android:textColor="@color/red"
@@ -45,10 +45,11 @@
                         android:id="@+id/home_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <TextView
@@ -72,8 +73,8 @@
                 android:orientation="vertical">
 
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -81,7 +82,7 @@
                         android:id="@+id/away_title_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="center_vertical"
                         android:padding="1dp"
                         android:text="@string/a"
                         android:textColor="@color/black_grey"
@@ -91,10 +92,12 @@
                         android:id="@+id/away_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:gravity="center_vertical"
                         android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
-                </LinearLayout>
+                </RelativeLayout>
 
                 <TextView
                     android:id="@+id/away_odd_tv"
@@ -110,6 +113,7 @@
 
 
         <LinearLayout
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -124,16 +128,17 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
 
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:gravity="right"
+                        android:gravity="center_vertical"
                         android:padding="1dp"
                         android:text="@string/o"
                         android:textColor="@color/black_grey"
@@ -143,10 +148,11 @@
                         android:id="@+id/over_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <TextView
@@ -169,8 +175,8 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -188,10 +194,11 @@
                         android:id="@+id/under_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <TextView
@@ -207,6 +214,7 @@
         </LinearLayout>
 
         <LinearLayout
+
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -221,8 +229,8 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -240,10 +248,11 @@
                         android:id="@+id/hf_home_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <TextView
@@ -266,8 +275,8 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -285,10 +294,11 @@
                         android:id="@+id/hf_away_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <TextView
@@ -319,8 +329,8 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
@@ -338,10 +348,11 @@
                         android:id="@+id/hf_over_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <TextView
@@ -364,13 +375,12 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <LinearLayout
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
 
                     <TextView
-
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:gravity="right"
@@ -383,10 +393,11 @@
                         android:id="@+id/hf_under_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
                         android:padding="1dp"
                         android:textColor="@color/red"
                         android:textSize="12sp" />
-                </LinearLayout>
+                </RelativeLayout>
 
 
                 <TextView

@@ -2,7 +2,6 @@ package com.nanyang.app.main.home.sport.live;
 
 import android.view.View;
 import android.webkit.WebView;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -27,7 +26,7 @@ public class ViewHolder {
     @Bind(R.id.ll_status)
     public LinearLayout llStatus;
     @Bind(R.id.fl_top_video)
-    public FrameLayout fl_top_video;
+    public LinearLayout fl_top_video;
     @Bind(R.id.ll_back_title_line)
     public View ll_back;
 

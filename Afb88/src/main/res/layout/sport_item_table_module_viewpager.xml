@@ -32,7 +32,6 @@
                     android:id="@+id/img_up_down_up1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginLeft="1.5dp"
                     android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
@@ -46,9 +45,9 @@
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingLeft="1.5dp"
+                    android:paddingLeft="0.2dp"
                     android:textColor="@color/green_dark"
-                    android:textSize="13.5sp" />
+                    android:textSize="12.5sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_home_hdpodds_tv"
@@ -82,7 +81,6 @@
                     android:id="@+id/img_up_down_up2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginLeft="1.5dp"
                     android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
@@ -96,9 +94,9 @@
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingLeft="1.5dp"
+                    android:paddingLeft="0.2dp"
                     android:textColor="#616161"
-                    android:textSize="13.5sp" />
+                    android:textSize="12.5sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_overodds_tv"
@@ -163,7 +161,6 @@
                     android:id="@+id/img_up_down_down1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
                     android:layout_marginLeft="1.5dp"
                     android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
@@ -177,9 +174,9 @@
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingLeft="1.5dp"
+                    android:paddingLeft="0.2dp"
                     android:textColor="@color/green_dark"
-                    android:textSize="13.5sp" />
+                    android:textSize="12.5sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_visit_hdpodds_tv"
@@ -211,7 +208,7 @@
                     android:id="@+id/img_up_down_down2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
+
                     android:layout_marginLeft="1.5dp"
                     android:layout_marginRight="1.5dp"
                     android:src="@mipmap/arrow_down_update_red"
@@ -225,9 +222,9 @@
                     android:background="@null"
                     android:gravity="center_vertical"
                     android:maxLines="1"
-                    android:paddingLeft="1.5dp"
+                    android:paddingLeft="0.2dp"
                     android:textColor="#616161"
-                    android:textSize="13.5sp" />
+                    android:textSize="12.5sp" />
 
                 <TextView
                     android:id="@+id/viewpager_match_underodds_tv"

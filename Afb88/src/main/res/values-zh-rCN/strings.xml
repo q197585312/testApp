@@ -68,9 +68,8 @@
     <string name="x1">X1</string>
     <string name="x2">2X</string>
     <string name="x12">12</string>
-    <string name="X1X2">1 X 2</string>
+    <string name="X1X2">主和客</string>
     <string name="half_full_time">半场/全场</string>
-
     <string name="first_last_goal">最先得分/最后得分</string>
     <string name="total_goals">总进球</string>
     <string name="correct_full">全场波膽</string>
@@ -85,7 +84,6 @@
     <string name="full_time">全场</string>
     <string name="half_time">半场</string>
     <string name="odd_even">单/双</string>
-
     <string name="bet_amount">数量</string>
     <string name="betting_amount">下注金额</string>
     <string name="max_bet">最大下注:</string>
@@ -101,7 +99,6 @@
     <string name="clearance_should_be_more_than_three">过关最少需要下2注</string>
     <string name="bet_failed">下注失败</string>
     <string name="bet_succeed">下注成功</string>
-
     <string name="confirm_or_not">确认?</string>
     <string name="do_you_bet_again">重新下注?</string>
     <string name="sure">确定</string>
@@ -120,13 +117,10 @@
     <string name="Back">返回</string>
     <string name="not_settled">未结算</string>
     <string name="settled">已结算</string>
-
     <!--VsActivity-->
     <string name="scaleplate_asianplate">  标盘/亚盘  </string>
     <string name="half_full_court_single_double">  半场全场/单双  </string>
     <string name="correct_score">  波膽  </string>
-
-
     <string name="h1">主</string>
     <string name="dx">和</string>
     <string name="a2">客</string>
@@ -141,10 +135,8 @@
     <string name="ad">客和</string>
     <string name="aa">客客</string>
     <string name="Modify_Avatar">Modify Avatar</string>
-
     <string name="encounter">Encounter</string>
     <string name="home_and_away">主和客</string>
-
     <string name="single_double">单/双</string>
     <string name="check_empty_password">请输入密码</string>
     <string name="check_length_password">密码至少要求8位</string>
@@ -157,7 +149,7 @@
     <string name="stake">投注状况</string>
     <string name="event">Event</string>
     <string name="detail">详情</string>
-    <string name="other">其他</string>
+    <string name="other">更多玩法</string>
     <string name="Choose">选择比赛</string>
     <string name="Common_Game">Common Game</string>
     <string name="E_Sport">电子竞技</string>
@@ -168,7 +160,6 @@
     <string name="reverse_selection">反选</string>
     <string name="Huay_Thai">泰式千字</string>
     <string name="Myanmar_Odds">缅甸赔率</string>
-
     <string name="FULL_O_E">全场 单/双</string>
     <string name="HALF_O_E">半场 单/双</string>
     <string name="HANDICAP">亚州盤</string>
@@ -397,7 +388,7 @@
     <string name="language_switch">中文(简体)</string>
     <string name="gd88_casino">gd88娱乐城</string>
     <string name="basketball">篮球</string>
-    <string name="Snooker" >撞球/桌球</string>
+    <string name="Snooker">撞球/桌球</string>
     <string name="my_account">我的账户</string>
     <string name="messages">信息</string>
     <string name="contact">联系我们</string>
@@ -407,7 +398,6 @@
     <string name="more">更多</string>
     <string name="last_login_date">登录时间</string>
     <string name="nike_name">昵称</string>
-
     <!--主页home pop-->
     <string name="home_user_name">戶口</string>
     <string name="home_currency">货币</string>
@@ -475,7 +465,6 @@
     <string name="Muay_Thai_name">泰拳</string>
     <string name="Parlay">过关</string>
     <string name="Parlay1">混合过关</string>
-
     <string name="Amt">Amt</string>
     <string name="WL">W/L</string>
     <string name="Com">Com</string>
@@ -533,7 +522,6 @@
     <string name="bet_limit">投注额度:</string>
     <string name="Select_League">选择联赛</string>
     <string name="normal">一般</string>
-
     <string name="Bet_Slip">注单</string>
     <string name="Note_">注意:</string>
     <string name="GMT_8">请注意显示时间为GMT+8时区</string>
@@ -562,23 +550,23 @@
     <string name="speed_way">SPEEDWAY</string>
     <string name="switching_market_failure">切换盘口失败</string>
     <string name="All_Market">全部盘口</string>
-    <string name="single_bet" >单注</string>
+    <string name="single_bet">单注</string>
     <string name="can_not_more_than_10">过关注单不能超过10</string>
     <string name="live_stream">live streaming</string>
     <string name="live_center">live center</string>
-    <string name="HDP_OU" >HDP/OU</string>
-    <string name="OE">O/E</string>
-    <string name="DC">DC</string>
-    <string name="CS">CS</string>
-    <string name="TG">TG</string>
-    <string name="HTFT">HTFT</string>
-    <string name="FGLG">FGLG</string>
-    <string name="MM_HDP_OU">MM HDP/OU</string>
-    <string name="Home_Away_TG">Home/Away Team TG</string>
-    <string name="FT15" >FT15</string>
+    <string name="HDP_OU">亚州盤</string>
+    <string name="OE">全场单双</string>
+    <string name="DC">双重机会</string>
+    <string name="CS">波胆</string>
+    <string name="TG">总进球</string>
+    <string name="HTFT">半场/全场</string>
+    <string name="FGLG">最先进球/最后进球</string>
+    <string name="MM_HDP_OU">缅甸亚州盤</string>
+    <string name="Home_Away_TG">最先得分/最后得分</string>
+    <string name="FT15">FT15 MINS</string>
     <string name="stake_is_more_than_max_limit">金额应小于最大注码</string>
     <string name="stake_is_less_than_min_limit">金额应大于最小注码</string>
-    <string name="all_host" >@string/all</string>
+    <string name="all_host">@string/all</string>
     <string name="Jan">1月</string>
     <string name="Feb">2月</string>
     <string name="Mar">3月</string>
@@ -591,6 +579,34 @@
     <string name="Oct">10月</string>
     <string name="Nov">11月</string>
     <string name="Dec">12月</string>
-    <string name="Early_All" >早盘(全部)</string>
+    <string name="Early_All">早盘(全部)</string>
     <string name="Soccer_Runing">足球滚球</string>
+    <string name="view2">样式2</string>
+    <string name="language_zh">中文(简体)</string>
+    <string name="language_en">英语</string>
+    <string name="language_th">泰语</string>
+    <string name="language_ko">韩语</string>
+    <string name="language_vi">越南文</string>
+    <string name="language_tr">土耳其语</string>
+    <string name="language_my">印尼语</string>
+    <string name="FT_HDP">全场.让球</string>
+    <string name="FT_OU">全场.大小</string>
+    <string name="HT_HDP">上半场.让球</string>
+    <string name="HT_OU">上半场.大小</string>
+    <string name="HFG">主场最先进球</string>
+    <string name="NG">无进球</string>
+    <string name="AFG">客场最先进球</string>
+    <string name="HLG">主场最后进球</string>
+    <string name="ALG">客场最后进球</string>
+    <string name="FT_O">全场.大</string>
+    <string name="FT_U">全场.小</string>
+    <string name="FH_O">半场.大</string>
+    <string name="FH_U">半场.小</string>
+    <string name="Over_7">7或以上</string>
+    <string name="h">主</string>
+    <string name="o">大</string>
+    <string name="a">客</string>
+    <string name="u">小</string>
+    <string name="language_zh_tw">中文(繁体)</string>
+    <string name="single">@string/single_bet</string>
 </resources>

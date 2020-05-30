@@ -29,6 +29,7 @@ public class LiveSelectedHelper {
     }
 
     List<MenuItemInfo> list;
+    BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter;
 
     public HashMap<Boolean, MenuItemInfo> getLinkMap() {
         return linkMap;
@@ -39,7 +40,7 @@ public class LiveSelectedHelper {
     public LiveSelectedHelper() {
         list = new ArrayList<>();
         linkMap = new HashMap<>();
-        list.add(new MenuItemInfo(R.string.All, (R.string.All)));
+        list.add(new MenuItemInfo(R.string.all, (R.string.all)));
         list.add(new MenuItemInfo(R.string.HDP_OU, (R.string.HDP_OU)));
         list.add(new MenuItemInfo(R.string.X1X2, (R.string.X1X2)));
         list.add(new MenuItemInfo(R.string.OE, (R.string.OE)));
@@ -72,36 +73,41 @@ public class LiveSelectedHelper {
 
     }
 
-    public void iniSelectedHelper( RecyclerView rv_title_list, Context mContext, final MainPresenter.CallBack<MenuItemInfo> back) {
-        LinearLayoutManager layoutManager=new LinearLayoutManager(mContext);
-        layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
-        rv_title_list.setLayoutManager(layoutManager);
-        final BaseRecyclerAdapter<MenuItemInfo> baseRecyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo>(mContext, getList(), R.layout.text_wrap_wrap) {
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                TextView textView = holder.getTextView(R.id.item_text_tv);
-                textView.setTextColor(ContextCompat.getColor(mContext, R.color.black_grey));
-                textView.setText(item.getRes());
-                if (isPositionSelected(position)) {
-                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.yellow1));
+    public void iniSelectedHelper(RecyclerView rv_title_list, Context mContext, final MainPresenter.CallBack<MenuItemInfo> back) {
+        RecyclerView.Adapter adapter = rv_title_list.getAdapter();
+        if (adapter == null) {
+            LinearLayoutManager layoutManager = new LinearLayoutManager(mContext);
+            layoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
+            rv_title_list.setLayoutManager(layoutManager);
+            baseRecyclerAdapter= new BaseRecyclerAdapter<MenuItemInfo>(mContext, getList(), R.layout.text_wrap_wrap) {
+                @Override
+                public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
+                    TextView textView = holder.getTextView(R.id.item_text_tv);
+                    textView.setTextColor(ContextCompat.getColor(mContext, R.color.black_grey));
+                    textView.setText(item.getRes());
+                    if (isPositionSelected(position)) {
+                        textView.setTextColor(ContextCompat.getColor(mContext, R.color.yellow1));
+                    }
                 }
-            }
-        };
-        baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-            @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                putIndex(position);
-                baseRecyclerAdapter.notifyDataSetChanged();
-                try {
-                    back.onBack(item);
-                } catch (JSONException e) {
-                    e.printStackTrace();
+            };
+            baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+                @Override
+                public void onItemClick(View view, MenuItemInfo item, int position) {
+                    putIndex(position);
+                    baseRecyclerAdapter.notifyDataSetChanged();
+                    try {
+                        back.onBack(item);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
                 }
-
-            }
-        });
-        rv_title_list.setAdapter(baseRecyclerAdapter);
-
+            });
+            rv_title_list.setAdapter(baseRecyclerAdapter);
+        }else{
+            baseRecyclerAdapter= (BaseRecyclerAdapter<MenuItemInfo>) adapter;
+            baseRecyclerAdapter.notifyDataSetChanged();
+        }
 
     }
 

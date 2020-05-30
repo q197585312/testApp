@@ -34,7 +34,8 @@
 
             <TextView
                 android:id="@+id/bet_home_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:textColor="@color/black"
@@ -52,16 +53,14 @@
 
             <TextView
                 android:id="@+id/bet_away_tv"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
                 android:textColor="@color/black"
                 android:textSize="12sp" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="1dp"
-                android:layout_weight="1" />
+
 
             <EditText
                 android:id="@+id/edt_single_bet"
@@ -156,13 +155,14 @@
             android:id="@+id/ll_bottom"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal"
             android:paddingBottom="1dp"
             android:paddingTop="1dp"
             android:visibility="visible">
 
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/bet_module_title_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -170,6 +170,7 @@
                 android:textColor="@color/black"
                 android:textSize="13sp" />
             <TextView
+                android:textStyle="bold"
                 android:id="@+id/bet_module_result_tv"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

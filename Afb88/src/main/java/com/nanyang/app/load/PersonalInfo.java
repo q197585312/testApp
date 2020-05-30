@@ -11,6 +11,7 @@ import java.text.DecimalFormatSymbols;
 public class PersonalInfo {
 
     String password = "";
+    private String IsEnabledWM;
 
     public String getLastLoginDate() {
         return lastLoginDate;
@@ -286,5 +287,9 @@ public class PersonalInfo {
 
     public void setTotalCredit(String TotalCredit) {
         this.TotalCredit = TotalCredit;
+    }
+
+    public String getIsEnabledWM() {
+        return IsEnabledWM;
     }
 }

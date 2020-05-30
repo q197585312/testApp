@@ -34,6 +34,7 @@ import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorRunningState;
 import com.nanyang.app.main.home.sport.majorLeagues.FiveMajorTodayState;
 import com.nanyang.app.main.home.sport.model.AfbClickResponseBean;
 import com.nanyang.app.main.home.sport.model.BallInfo;
+import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.IBetHelper;
 import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
@@ -343,6 +344,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         } else {
             tvNoGames.setVisibility(View.GONE);
         }
+        if (getBaseActivity().liveMatchHelper != null && getBaseActivity().itemBall != null && getBaseActivity().itemBall instanceof RunMatchInfo && ((RunMatchInfo) getBaseActivity().itemBall).getDbid().equals(getBallDbid())) {
+            getBaseActivity().liveMatchHelper.openRunMatch(getBaseActivity().itemBall);
+            getBaseActivity().itemBall = null;
+        }
     }
 
     public AfbApplication getApp() {
@@ -520,8 +525,10 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
                     onAddition(addMBean, ballInfo);
                 }
             });
-            BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
-            adapterHelper.changeAdded(item);
+            if ((presenter.getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
+                BallAdapterHelper adapterHelper = (BallAdapterHelper) (presenter.getStateHelper()).getAdapterHelper();
+                adapterHelper.changeAdded(item);
+            }
 
         }
     }
@@ -560,6 +567,7 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
         getBaseActivity().ll_line2.setVisibility(View.VISIBLE);
         getBaseActivity().ll_line3.setVisibility(View.VISIBLE);
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
+        getBaseActivity().ll_header_sport.setVisibility(View.VISIBLE);
         getBaseActivity().llSportMenuBottom.setVisibility(View.VISIBLE);
     }
 

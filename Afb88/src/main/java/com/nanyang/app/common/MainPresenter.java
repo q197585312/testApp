@@ -10,6 +10,7 @@ import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
+import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.Been.AppVersionBean;
 import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
@@ -20,7 +21,6 @@ import com.nanyang.app.load.login.LoginInfo;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BaseSwitchPresenter;
 import com.nanyang.app.main.LoadMainDataHelper;
-import com.nanyang.app.main.MainActivity;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.home.LoadPCasinoDataHelper;
@@ -29,6 +29,7 @@ import com.nanyang.app.main.home.keno.WebActivity;
 import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
+import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import org.json.JSONArray;
@@ -137,6 +138,8 @@ public class MainPresenter extends BaseSwitchPresenter {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("GetTT", "", "wfEVLogin"), AppConstant.getInstance().HOST, "^.*window.open\\(\\'\\.\\./\\.\\./([^\\']+)\\'.*$");
         } else if (g.equals("DG CASINO")) {
             skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenDGGamee", "", "wfDGLogin"), "", "^.*\"(http[^\"]+)\",.*$");
+        } else if (g.equals("WM CASINO")) {
+            skipPCashio("get", "", g, new LoginInfo.LanguageWfBean("OpenWMGamee", "", "wfWMLogin"), "", "^.*\"(http[^\"]+)\",.*$");
         }
     }
 
@@ -153,7 +156,7 @@ public class MainPresenter extends BaseSwitchPresenter {
                         if (response != null) {
                             Request request = response.request();
                             String url = request.url().toString();
-                            MainActivity mainActivity = (MainActivity) baseContext;
+                            BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseContext.getBaseActivity();
                             if (ApkUtils.isAvilible(mainActivity, "gaming178.com.baccaratgame")) {
                                 Intent intent = new Intent();
                                 ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
@@ -309,9 +312,9 @@ public class MainPresenter extends BaseSwitchPresenter {
                 if (jsonArray.length() > 3) {
 
                     if (data.contains("_delay=20")) {
-                        ((AfbApplication) baseContext.getBaseActivity().getApplication()).setDelayBet(5);
+                        ((AfbApplication) baseContext.getBaseActivity().getApplication()).setDelayBet(5000);
                     } else if (data.contains("_delay=30")) {
-                        ((AfbApplication) baseContext.getBaseActivity().getApplication()).setDelayBet(7);
+                        ((AfbApplication) baseContext.getBaseActivity().getApplication()).setDelayBet(7000);
                     } else {
                         ((AfbApplication) baseContext.getBaseActivity().getApplication()).setDelayBet(0);
                     }
@@ -445,9 +448,10 @@ public class MainPresenter extends BaseSwitchPresenter {
 //        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
 
         LoadPCasinoDataHelper<LoginInfo.LanguageWfBean> helper = new LoadPCasinoDataHelper<>(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
-        helper.doRetrofitApiOnUiThreadBackPostJson(AppConstant.getInstance().HOST+"api/pgGetTVID", new SaCasinoWfBean("GETTV", "", "pgGetTVID"), new CallBackError<String>() {
+        helper.doRetrofitApiOnUiThreadBackPostJson(AppConstant.getInstance().HOST + "api/pgGetTVID", new SaCasinoWfBean("GETTV", "", "pgGetTVID"), new CallBackError<String>() {
             @Override
             public void onBack(String data) throws JSONException {
+                LogUtil.d("RunMatchInfo", data);
                 JSONObject jsonObject = new JSONObject(data);
                 JSONArray jsonArray = jsonObject.optJSONArray("db");
                 ArrayList<RunMatchInfo> runMatchInfoList = new ArrayList<>();
@@ -464,7 +468,8 @@ public class MainPresenter extends BaseSwitchPresenter {
                                     jsonArray2.optString(4),
                                     jsonArray2.optString(5),
                                     jsonArray2.optString(6),
-                                    jsonArray2.optString(7)
+                                    jsonArray2.optString(7),
+                                    jsonArray2.length() > 8 ? jsonArray2.optString(8) : jsonArray2.optString(5)
                             ));
                         }
                     }

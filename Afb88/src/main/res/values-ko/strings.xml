@@ -446,4 +446,35 @@
     <string name="all_host" >@string/all</string>
     <string name="Early_All" >초기 거래에서(모든)</string>
     <string name="Soccer_Runing">Soccer Running</string>
+    <string name="view2">스타일 2</string>
+    <string name="language_zh">중국어 (간체)</string>
+    <string name="language_en">영어</string>
+    <string name="language_th">타이</string>
+    <string name="language_ko">한국어</string>
+    <string name="language_vi">베트남어</string>
+    <string name="language_tr">터키어</string>
+    <string name="language_my">인도네시아어</string>
+
+    <string name="HFG">홈 목표</string>
+    <string name="NG">목표 없음</string>
+    <string name="AFG">최첨단의 거리</string>
+    <string name="HLG">홈 골</string>
+    <string name="ALG">어 웨 이 인</string>
+    <string name="FT_O">전체 청중.</string>
+    <string name="FT_U">전체 작은.</string>
+    <string name="FH_O">반 시간 큰</string>
+    <string name="FH_U">하프 타임</string>
+    <string name="Over_7"><![CDATA[7&Over]]></string>
+
+    <string name="FT_HDP">FT.공을 양보하다</string>
+    <string name="FT_OU">FT.크기</string>
+    <string name="HT_HDP">FH.공을 양보하다</string>
+    <string name="HT_OU">FH.크기</string>
+
+    <string name="h">H</string>
+    <string name="o">O</string>
+    <string name="a">A</string>
+    <string name="u">U</string>
+    <string name="language_zh_tw">중국어 (번체)</string>
+    <string name="single">@string/single_bet</string>
 </resources>

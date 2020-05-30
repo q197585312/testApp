@@ -10,6 +10,16 @@ import com.nanyang.app.main.home.sportInterface.IRTMatchInfo;
 public class RunMatchInfo implements IRTMatchInfo {
 
     private static final String TAG = "BallInfo";
+
+    public String getDbid() {
+        return Dbid;
+    }
+
+    public void setDbid(String dbid) {
+        Dbid = dbid;
+    }
+
+    private String Dbid;
     String TvPathIBC;
 
     public String getTvPathIBC() {
@@ -88,7 +98,7 @@ public class RunMatchInfo implements IRTMatchInfo {
     String SocOddsId;
     String IsRun;
 
-    public RunMatchInfo(String tvPathIBC, String RTSMatchId, String league, String home, String away, String gameId, String socOddsId, String isRun) {
+    public RunMatchInfo(String tvPathIBC, String RTSMatchId, String league, String home, String away, String gameId, String socOddsId, String isRun,String dbid) {
         TvPathIBC = tvPathIBC;
         this.RTSMatchId = RTSMatchId;
         League = league;
@@ -97,5 +107,6 @@ public class RunMatchInfo implements IRTMatchInfo {
         GameId = gameId;
         SocOddsId = socOddsId;
         IsRun = isRun;
+        Dbid = dbid;
     }
 }

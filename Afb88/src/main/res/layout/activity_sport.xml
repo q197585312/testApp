@@ -63,7 +63,25 @@
                             android:id="@+id/sports_selected_tv"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_weight="1"
+                            android:textAllCaps="true"
+                            android:textColor="@color/white"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5dp"
+                            android:text=">"
+                            android:textColor="@color/trans_white"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/sports_language_tv"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:onClick="clickLanguage"
+                            android:paddingLeft="5dp"
+                            android:paddingRight="15dp"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
@@ -221,7 +239,7 @@
                             android:gravity="center"
                             android:onClick="clickPcType"
                             android:padding="5dp"
-                            android:text="View2"
+                            android:text="@string/view2"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
                             android:textSize="13sp" />
@@ -310,10 +328,11 @@
                         app:layout_constraintRight_toRightOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/ll_line2">
 
-                        <FrameLayout
+                        <LinearLayout
                             android:id="@+id/fl_top_video"
                             android:layout_width="match_parent"
                             android:layout_height="200dp"
+                            android:orientation="vertical"
                             android:visibility="gone">
 
                             <LinearLayout
@@ -336,12 +355,15 @@
                                     android:id="@+id/tv_match_play"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
+                                    android:layout_gravity="center_vertical"
                                     android:layout_marginLeft="5dp"
                                     android:layout_weight="1"
+                                    android:gravity="center"
                                     android:onClick="onChangeMatchClick"
-                                    android:text="@string/all_match"
+                                    android:text="@string/All_Match"
                                     android:textAllCaps="true"
-                                    android:textColor="@color/white" />
+                                    android:textColor="@color/white"
+                                    android:textSize="13sp" />
 
                                 <ImageView
                                     android:id="@+id/iv_title_live_stream"
@@ -391,7 +413,6 @@
                                 android:id="@+id/tv_run_match_title"
                                 android:layout_width="match_parent"
                                 android:layout_height="18dp"
-                                android:layout_marginTop="30dp"
                                 android:background="@color/black"
                                 android:drawableRight="@mipmap/arrow_down_drop_white"
                                 android:gravity="center"
@@ -401,63 +422,69 @@
                                 android:textColor="@color/white"
                                 android:textSize="12sp" />
 
-                            <com.unkonw.testapp.libs.widget.VideoPlayer
-                                android:id="@+id/video_player_stream"
+                            <FrameLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="48dp" />
+                                android:layout_weight="1"
+                                android:layout_height="0dp">
 
-                            <WebView
-                                android:id="@+id/web_wv"
-                                android:layout_width="match_parent"
-                                android:layout_height="match_parent"
-                                android:layout_marginTop="48dp"
-                                android:visibility="gone" />
+                                <com.unkonw.testapp.libs.widget.VideoPlayer
+                                    android:id="@+id/video_player_stream"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent" />
 
-                            <LinearLayout
-                                android:id="@+id/ll_status"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="bottom"
-                                android:background="@color/grey_trans"
-                                android:gravity="center_vertical"
-                                android:orientation="horizontal"
-                                android:padding="5dp">
-
-                                <ImageView
-                                    android:id="@+id/iv_play_status"
-                                    android:layout_width="22dp"
-                                    android:layout_height="22dp"
-                                    android:layout_marginLeft="8dp"
-                                    android:src="@mipmap/play_pause_white" />
-
-                                <TextView
-                                    android:layout_width="wrap_content"
+                                <WebView
+                                    android:id="@+id/web_wv"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:visibility="gone" />
+                                <LinearLayout
+                                    android:id="@+id/ll_status"
+                                    android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginLeft="5dp"
-                                    android:text="0:00"
-                                    android:textSize="18sp" />
+                                    android:layout_gravity="bottom"
+                                    android:background="@color/grey_trans"
+                                    android:gravity="center_vertical"
+                                    android:orientation="horizontal"
+                                    android:padding="5dp">
 
-                                <View
-                                    android:layout_width="0dp"
-                                    android:layout_height="1dp"
-                                    android:layout_weight="1" />
+                                    <ImageView
+                                        android:id="@+id/iv_play_status"
+                                        android:layout_width="22dp"
+                                        android:layout_height="22dp"
+                                        android:layout_marginLeft="8dp"
+                                        android:src="@mipmap/play_pause_white" />
 
-                                <ImageView
-                                    android:id="@+id/iv_voice"
-                                    android:layout_width="27dp"
-                                    android:layout_height="27dp"
-                                    android:src="@mipmap/play_mute_white" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="5dp"
+                                        android:text="0:00"
+                                        android:textSize="18sp" />
 
-                                <ImageView
-                                    android:id="@+id/iv_full_screen"
-                                    android:layout_width="24dp"
-                                    android:layout_height="24dp"
-                                    android:layout_marginLeft="5dp"
-                                    android:onClick="closeTv"
-                                    android:src="@mipmap/play_close_tv" />
-                            </LinearLayout>
-                        </FrameLayout>
+                                    <View
+                                        android:layout_width="0dp"
+                                        android:layout_height="1dp"
+                                        android:layout_weight="1" />
+
+                                    <ImageView
+                                        android:id="@+id/iv_voice"
+                                        android:layout_width="27dp"
+                                        android:layout_height="27dp"
+                                        android:src="@mipmap/play_mute_white" />
+
+                                    <ImageView
+                                        android:id="@+id/iv_full_screen"
+                                        android:layout_width="24dp"
+                                        android:layout_height="24dp"
+                                        android:layout_marginLeft="5dp"
+                                        android:onClick="closeTv"
+                                        android:src="@mipmap/play_close_tv" />
+                                </LinearLayout>
+                            </FrameLayout>
+
+
+
+                        </LinearLayout>
 
                         <include
                             layout="@layout/popupwindow_match_betting"

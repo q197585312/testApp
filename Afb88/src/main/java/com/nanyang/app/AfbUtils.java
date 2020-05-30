@@ -89,6 +89,7 @@ import java.math.RoundingMode;
 import java.text.DateFormat;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -97,6 +98,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 import java.util.TimeZone;
 import java.util.regex.Matcher;
@@ -153,7 +155,7 @@ public class AfbUtils {
             if (Math.abs(Float.valueOf(v)) <= 0.3) {
                 return "";
             }
-            p = decimalValue(Float.valueOf(v) / 10, "0.00");
+            p = scientificCountingToString(Float.valueOf(v) / 10f + "", "0.00");
 
         } catch (NumberFormatException e) {
             e.printStackTrace();
@@ -162,11 +164,12 @@ public class AfbUtils {
     }
 
     public static String decimalValue(float v, String format) {
-        DecimalFormat decimalFormat = new DecimalFormat(format);//构造方法的字符格式这里如果小数不足2位,会以0补足.
+        return scientificCountingToString(v+"",format);
+     /*   DecimalFormat decimalFormat = new DecimalFormat(format);//构造方法的字符格式这里如果小数不足2位,会以0补足.
         DecimalFormatSymbols dfs = new DecimalFormatSymbols();
         dfs.setDecimalSeparator('.');
         decimalFormat.setDecimalFormatSymbols(dfs);
-        return decimalFormat.format(v);//format 返回的是字符串
+        return decimalFormat.format(v);//format 返回的是字符串*/
     }
 
     public static void appJump(Context context, String packageName, String cls, Bundle bundle) {
@@ -532,13 +535,16 @@ public class AfbUtils {
     //            ["dbid"=>"","g"=> "DG CASINO",   "img" =>"http://13.112.86.40/H50/Img/DG.png"],//DG*/
     private static void putOtherMap(LinkedHashMap<String, SportIdBean> map, BaseSportFragment soccerFragment) {
         map.put("Casino", new SportIdBean("Casino", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_baccarat));
+        map.put("SEXY CASINO", new SportIdBean("SEXY CASINO", "", R.string.SEXY_CASINO, "SEXY CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sg_gaming));
+        map.put("SA CASINO", new SportIdBean("SA CASINO", "", R.string.SA_CASINO, "SA CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sa_gaming));
+        map.put("DG CASINO", new SportIdBean("DG CASINO", "", R.string.DG_Cashio, "DG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_dg));
+        map.put("WM CASINO", new SportIdBean("WM CASINO", "", R.string.WM_Cashio, "WM CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_wm_gaming));
+
         map.put("PG CASINO", new SportIdBean("PG CASINO", "", R.string.PGCashio, "PG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_pg_symbol));
         map.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_prg));
         map.put("PS GAMING", new SportIdBean("PS GAMING", "", R.string.PS_GAMING, "PS GAMING", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_ps_gaming));
-        map.put("SEXY CASINO", new SportIdBean("SEXY CASINO", "", R.string.SEXY_CASINO, "SEXY CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sg_gaming));
-        map.put("SA CASINO", new SportIdBean("SA CASINO", "", R.string.SA_CASINO, "SA CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_sa_gaming));
         map.put("EVOPLAY", new SportIdBean("EVOPLAY", "", R.string.EV_Cashio, "EVOPLAY", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_evoplay));
-        map.put("DG CASINO", new SportIdBean("DG CASINO", "", R.string.DG_Cashio, "DG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_dg));
+
     }
 
     //("1", "9", "21", "29", "14", "5");
@@ -556,6 +562,16 @@ public class AfbUtils {
         while (iterator.hasNext()) {
             SportIdBean next = iterator.next().getValue();
             if (next.getType().equals(type))
+                return next;
+        }
+        return null;
+    }
+
+    public static SportIdBean getSportByDbid(String dbid) {
+        Iterator<Map.Entry<String, SportIdBean>> iterator = beanHashMap.entrySet().iterator();
+        while (iterator.hasNext()) {
+            SportIdBean next = iterator.next().getValue();
+            if (next.getDbid().equals(dbid))
                 return next;
         }
         return null;
@@ -846,10 +862,25 @@ public class AfbUtils {
         scientificCounting = scientificCounting.toString().replace(",", "");
         BigDecimal bd = new BigDecimal(scientificCounting);
         String s = bd.toPlainString();
-        DecimalFormat df = new DecimalFormat(format);
-        DecimalFormatSymbols dfs = new DecimalFormatSymbols();
+        Locale enlocale = Locale.US;
+        DecimalFormat df = (DecimalFormat)
+                NumberFormat.getNumberInstance(enlocale);
+        df.applyPattern(format);
+//        DecimalFormat df = new DecimalFormat(format);
+
+      /*  DecimalFormatSymbols dfs = new DecimalFormatSymbols();
         dfs.setDecimalSeparator('.');
-        df.setDecimalFormatSymbols(dfs);
+        df.setDecimalFormatSymbols(dfs);*/
+        return df.format(Double.parseDouble(s));
+    }
+
+    public static String scientificToString(String scientificCounting, String format) {
+
+
+        scientificCounting = scientificCounting.toString().replace(",", "");
+        BigDecimal bd = new BigDecimal(scientificCounting);
+        String s = bd.toPlainString();
+        DecimalFormat df = new DecimalFormat(format);
         return df.format(Double.parseDouble(s));
     }
 

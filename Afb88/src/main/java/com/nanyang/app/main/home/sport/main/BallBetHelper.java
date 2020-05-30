@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.R;
-import com.nanyang.app.main.home.sport.betOrder.IBetOrderView;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sportInterface.BetView;
@@ -34,14 +33,11 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
 
     OddsClickBean oddsUrlBean;
     String betOddsUrl = "";
+
     @Override
     public void clickOdds(B item, int oid, String type, String odds, final TextView v, final boolean isHf, String sc, final boolean hasPar) {
         final Handler handler = new Handler();
-        BaseActivity baseActivity = baseView.getIBaseContext().getBaseActivity();
-        if (baseActivity instanceof IBetOrderView) {
-            if (((IBetOrderView) baseActivity).getBetContent().v.getVisibility() == View.VISIBLE)
-                ((IBetOrderView) baseActivity).getBetContent().stopUpdateOdds();
-        }
+
 
         this.hasPar = hasPar;
         this.item = item;
@@ -67,16 +63,23 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    SportActivity baseActivity = (SportActivity) baseView.getIBaseContext().getBaseActivity();
+                    if ((baseActivity).getBetContent().v.getVisibility() == View.VISIBLE)
+                        (baseActivity).getBetContent().stopUpdateOdds();
+
                     if (!StringUtils.isEmpty(oddsUrlBean.getBETID())) {
                         LogUtil.d("typeHasPar", "typeHasPar:" + typeHasPar + ",hasPar:" + hasPar);
                         if (hasPar && typeHasPar) {
                             saveCurrentMixBet(oddsUrlBean);
-                        } else {
+                        }/* else {
                             onChangeSuccess(app.removeSameMix(oddsUrlBean));
-                        }
+                        }*/
                         saveCurrentSingleBet(oddsUrlBean);
-                        betOrderDelay(v, isHf, handler, app);
-                        return;
+                        if (StringUtils.isEmpty(app.getRefreshSingleOddsUrl())) {
+                            (baseActivity).getBetContent().closePopupWindow();
+                        } else {
+                            getDisposable(v, isHf, app.getRefreshSingleOddsUrl());
+                        }
                     }
 
                 }
@@ -88,27 +91,18 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
                 @Override
                 public void run() {
                     saveCurrentMixBet(oddsUrlBean);
+                    saveCurrentSingleBet(oddsUrlBean);
                     betOddsUrl = app.getRefreshMixOddsUrl();
                     if (app.getMixBetList().size() == 1 || app.getMixBetList().size() > 14) {
                         getDisposable(v, isHf, betOddsUrl);
-                        return;
                     }
                 }
             }, app.getDelayBet());
 
         }
 
-        return;
     }
 
-    private void betOrderDelay(final TextView v, final boolean isHf, Handler handler, final AfbApplication app) {
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                getDisposable(v, isHf, app.getRefreshSingleOddsUrl());
-            }
-        }, app.getDelayBet());
-    }
 
     private void saveCurrentSingleBet(OddsClickBean oddsUrlBean) {
         ((AfbApplication) AfbApplication.getInstance()).saveSingleBet(oddsUrlBean);

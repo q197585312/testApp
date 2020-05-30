@@ -443,5 +443,34 @@
     <string name="sound">เสียง</string>
     <string name="Early_All" >เช้า(ทั้งหมด)</string>
     <string name="Soccer_Runing">Soccer Running</string>
+    <string name="view2">ดู 2</string>
 
+    <string name="language_zh">ภาษาจีน (ประยุกต์)</string>
+    <string name="language_en">อังกฤษ</string>
+    <string name="language_th">จีน (ดั้งเดิม)</string>
+    <string name="language_ko">เกาหลี</string>
+    <string name="language_vi">เวียตนาม</string>
+    <string name="language_tr">ภาษาตุรกี</string>
+    <string name="language_my">ชาวอินโดนีเซีย</string>
+
+    <string name="FT_HDP">เต็มเวลา.ราคาต่อรอง</string>
+    <string name="FT_OU">เต็มเวลา.สูง/ต่ำ</string>
+    <string name="HT_HDP">FH.ราคาต่อรอง</string>
+    <string name="HT_OU">FH.สูง/ต่ำ</string>
+    <string name="HFG">เป้าหมายแรกในบ้าน</string>
+    <string name="NG">ไม่มีเป้าหมาย</string>
+    <string name="AFG">เป้าหมายแรกบนถนน</string>
+    <string name="HLG">เป้าหมายสุดท้ายที่บ้าน</string>
+    <string name="ALG">เป้าหมายสุดท้ายบนถนน</string>
+    <string name="FT_O">ผู้ชมเต็มขนาดใหญ่</string>
+    <string name="FT_U">ผู้ชมเต็มขนาดเล็ก</string>
+    <string name="FH_O">ครึ่งเวลาใหญ่</string>
+    <string name="FH_U">ช่วงพักครึ่งเล็ก</string>
+    <string name="Over_7">มากกว่า 7</string>
+    <string name="h">@string/Home</string>
+    <string name="o">@string/over</string>
+    <string name="a">@string/Away</string>
+    <string name="u">@string/under</string>
+    <string name="language_zh_tw">中文(繁体)</string>
+    <string name="single">@string/single_bet</string>
 </resources>
