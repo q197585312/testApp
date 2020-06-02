@@ -52,6 +52,7 @@ public class SoccerRunningGoalManager {
         }
     }
 
+
     public boolean isHomeGoal(BallInfo item) {
       /*  Boolean isHomeGoal = homeGoal.get(item.getSocOddsId());
         if (isHomeGoal != null)

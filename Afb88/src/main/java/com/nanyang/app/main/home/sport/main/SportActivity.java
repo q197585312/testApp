@@ -12,8 +12,11 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
+import android.text.Spannable;
+import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -222,6 +225,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     MyGoHomeBroadcastReceiver myGoHomeBroadcastReceiver;
     public String wd = "";
     private static final String BUNDLE_FRAGMENTS_KEY = "android:support:fragments";
+
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -1006,11 +1010,13 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             if ((currentFragment.getPresenter().getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
                 BallAdapterHelper adapterHelper = (BallAdapterHelper) currentFragment.getPresenter().getStateHelper().getAdapterHelper();
                 adapterHelper.setOnlyShowAdded(onlyShowOne);
+                if (viewHolder != null)
+                    viewHolder.ll_bet_title.setVisibility(onlyShowOne ? View.GONE : View.VISIBLE);
             }
         }
     }
 
-    public void clickRunMatchPlay(IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
+    public void clickRunMatchPlay(final IRTMatchInfo itemBall, int positionBall, boolean onlyOne) {
         if (itemBall != null && currentFragment.isVisible()) {
             if (!(currentFragment.presenter.getStateHelper().getStateType().getType().charAt(0) + "").toLowerCase().startsWith("r")) {
                 closeTv(ll_header_sport);
@@ -1039,6 +1045,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             ll_line3.setVisibility(View.GONE);
             ll_header_sport.setVisibility(View.GONE);
             currentFragment.presenter.getStateHelper().getAdapterHelper().setOnlyShowAdded(onlyOne);
+            if (viewHolder != null)
+                viewHolder.ll_bet_title.setVisibility(onlyShowOne ? View.GONE : View.VISIBLE);
 
 
             if (itemBall instanceof RunMatchInfo && !currentFragment.getBallDbid().equals(((RunMatchInfo) itemBall).getDbid())) {
@@ -1046,6 +1054,68 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     initSportFragment(AfbUtils.getSportByDbid(((RunMatchInfo) itemBall).getDbid()), itemBall);
             } else {
                 liveMatchHelper.openRunMatch(itemBall);
+                presenter.loadAllRunMatches(fl_top_video, handler, new MainPresenter.CallBack<List<RunMatchInfo>>() {
+                    @Override
+                    public void onBack(List<RunMatchInfo> data) throws JSONException {
+                        if( itemBallAdded !=null)
+                            updateRunMatch(data,itemBallAdded);
+                        popWindowRun = new BaseListPopupWindow<RunMatchInfo>(mContext, tv_run_match_title, tv_run_match_title.getWidth(), AfbUtils.dp2px(mContext, 200), tv_run_match_title) {
+                            public int getItemLayoutRes() {
+                                return R.layout.sport_paly_run_match_info;
+                            }
+
+                            @Override
+                            public void onConvert(MyRecyclerViewHolder holder, int position, RunMatchInfo item) {
+                                TextView tv = holder.getView(R.id.text_tv);
+                                ImageView play_iv = holder.getView(R.id.play_iv);
+                                ImageView ball_iv = holder.getView(R.id.ball_iv);
+                                SportIdBean sportByDbid = AfbUtils.getSportByDbid(item.getDbid());
+                                if (sportByDbid != null) {
+                                    ball_iv.setImageResource(sportByDbid.getSportPic());
+                                }
+                                tv.setText(item.getHome() + " -vs- " + item.getAway());
+                                if (item.getIsRun().equals("True") || item.getIsRun().equals("1")) {
+                                    play_iv.setImageResource(R.mipmap.play_green);
+                                } else {
+                                    play_iv.setImageResource(R.mipmap.play_grey);
+                                }
+
+                            }
+
+                            @Override
+                            protected void clickItem(TextView tv, RunMatchInfo item) {
+                                super.clickItem(tv, item);
+                                closePopupWindow();
+                                if (item.getIsRun().equals("True") || item.getIsRun().equals("1")) {
+                                    tv.setText(item.getHome() + " -vs- " + item.getAway());
+                                    clickRunMatchPlay(item, positionBallAdded, onlyShowOne);
+                                }
+                            }
+                        };
+//                popWindow.setData(presenter.currencyList);
+                        popWindowRun.setTrans(1f);
+                        popWindowRun.setData(data);
+
+                    }
+                });
+            }
+        }
+    }
+
+    private void updateRunMatch(List<RunMatchInfo> data, IRTMatchInfo itemBallAdded) {
+        for (RunMatchInfo runMatchInfo : data) {
+            if(runMatchInfo.getSocOddsId().equals(itemBallAdded.getSocOddsId())){
+                this.itemBallAdded=runMatchInfo;
+                String home = runMatchInfo.getHome();
+                String away = runMatchInfo.getAway();
+                String isRun = runMatchInfo.getIsRun();
+                SpannableString spanString = new SpannableString(home + " - " + aScore + " ");
+                //构造一个改变字体颜色的Span
+                ForegroundColorSpan span = new ForegroundColorSpan(Color.RED);
+                if (isHomeGoal(socOddsId, hScore, aScore, isHomeGoal)) {
+                    spanString.setSpan(span, 0, hScore.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
+                }
+                tv_run_match_title.setText();
             }
         }
     }
@@ -1094,17 +1164,14 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     private void otherVisible(int visible) {
         ll_back.setVisibility(visible);
-        tv_run_match_title.setVisibility(visible);
+        viewHolder.tv_run_match_title.setVisibility(visible);
     }
 
     public void onBetSuccess(String betResult) {
         super.onBetSuccess(betResult);
         if (betPop != null)
             betPop.closePopupWindow();
-
-
     }
-
 
     public void clickEarly(View view) {
         if (currentFragment != null && currentFragment.isVisible()) {
@@ -1198,50 +1265,14 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickRunTitle(final View view) {
-        presenter.loadAllRunMatches(new MainPresenter.CallBack<List<RunMatchInfo>>() {
-            @Override
-            public void onBack(List<RunMatchInfo> data) throws JSONException {
+        showRunMatchesPop();
+    }
 
-                BaseListPopupWindow<RunMatchInfo> popWindow = new BaseListPopupWindow<RunMatchInfo>(mContext, view, view.getWidth(), AfbUtils.dp2px(mContext, 200), (TextView) view) {
+    BaseListPopupWindow<RunMatchInfo> popWindowRun;
 
-                    public int getItemLayoutRes() {
-                        return R.layout.sport_paly_run_match_info;
-                    }
-
-                    @Override
-                    public void onConvert(MyRecyclerViewHolder holder, int position, RunMatchInfo item) {
-                        TextView tv = holder.getView(R.id.text_tv);
-                        ImageView play_iv = holder.getView(R.id.play_iv);
-                        ImageView ball_iv = holder.getView(R.id.ball_iv);
-                        SportIdBean sportByDbid = AfbUtils.getSportByDbid(item.getDbid());
-                        if (sportByDbid != null) {
-                            ball_iv.setImageResource(sportByDbid.getSportPic());
-                        }
-                        tv.setText(item.getHome() + " -vs- " + item.getAway());
-                        if (item.getIsRun().equals("True") || item.getIsRun().equals("1")) {
-                            play_iv.setImageResource(R.mipmap.play_green);
-                        } else {
-                            play_iv.setImageResource(R.mipmap.play_grey);
-                        }
-
-                    }
-
-                    @Override
-                    protected void clickItem(TextView tv, RunMatchInfo item) {
-                        super.clickItem(tv, item);
-                        closePopupWindow();
-                        if (item.getIsRun().equals("True") || item.getIsRun().equals("1")) {
-                            tv.setText(item.getHome() + " -vs- " + item.getAway());
-                            clickRunMatchPlay(item, positionBallAdded, onlyShowOne);
-                        }
-                    }
-                };
-//                popWindow.setData(presenter.currencyList);
-                popWindow.setTrans(1f);
-                popWindow.setData(data);
-                popWindow.showPopupDownWindow();
-            }
-        });
+    private void showRunMatchesPop() {
+        if (popWindowRun != null)
+            popWindowRun.showPopupDownWindow();
     }
 
     public void clickLanguage(View view) {

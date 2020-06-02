@@ -4,7 +4,9 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.view.View;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -444,9 +446,16 @@ public class MainPresenter extends BaseSwitchPresenter {
         baseContext.getBaseActivity().skipAct(WebActivity.class, bundle);
     }
 
-    public void loadAllRunMatches(final CallBack<List<RunMatchInfo>> back) {
-//        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
+    Runnable runnable;
 
+    public void loadAllRunMatches(final View fl_top_video, final Handler handler, final CallBack<List<RunMatchInfo>> back) {
+//        http://www.appgd88.com/api/afb1188.php?app=afb88&lang=EN-CA
+        runnable = new Runnable() {
+            @Override
+            public void run() {
+                loadAllRunMatches(fl_top_video, handler, back);
+            }
+        };
         LoadPCasinoDataHelper<LoginInfo.LanguageWfBean> helper = new LoadPCasinoDataHelper<>(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
         helper.doRetrofitApiOnUiThreadBackPostJson(AppConstant.getInstance().HOST + "api/pgGetTVID", new SaCasinoWfBean("GETTV", "", "pgGetTVID"), new CallBackError<String>() {
             @Override
@@ -469,12 +478,19 @@ public class MainPresenter extends BaseSwitchPresenter {
                                     jsonArray2.optString(5),
                                     jsonArray2.optString(6),
                                     jsonArray2.optString(7),
-                                    jsonArray2.length() > 8 ? jsonArray2.optString(8) : jsonArray2.optString(5)
+                                    jsonArray2.length() > 8 ? jsonArray2.optString(8) : jsonArray2.optString(5),
+                                    jsonArray2.length() > 10 ? jsonArray2.optString(9) : "0",
+                                    jsonArray2.length() > 10 ? jsonArray2.optString(10) : "0"
                             ));
                         }
                     }
                 }
                 back.onBack(runMatchInfoList);
+                if (fl_top_video != null && fl_top_video.getVisibility() == View.VISIBLE) {
+                    handler.postDelayed(runnable, 3000);
+                } else {
+                    handler.removeCallbacks(runnable);
+                }
             }
 
             @Override

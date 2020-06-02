@@ -97,8 +97,10 @@ public class RunMatchInfo implements IRTMatchInfo {
     String GameId;
     String SocOddsId;
     String IsRun;
+    String HomeSocre;
+    String AwaySocre;
 
-    public RunMatchInfo(String tvPathIBC, String RTSMatchId, String league, String home, String away, String gameId, String socOddsId, String isRun,String dbid) {
+    public RunMatchInfo(String tvPathIBC, String RTSMatchId, String league, String home, String away, String gameId, String socOddsId, String isRun,String dbid,  String homeSocre,String awaySocre) {
         TvPathIBC = tvPathIBC;
         this.RTSMatchId = RTSMatchId;
         League = league;
@@ -106,7 +108,8 @@ public class RunMatchInfo implements IRTMatchInfo {
         Away = away;
         GameId = gameId;
         SocOddsId = socOddsId;
-        IsRun = isRun;
-        Dbid = dbid;
+        HomeSocre = isRun;
+        AwaySocre = awaySocre;
+
     }
 }

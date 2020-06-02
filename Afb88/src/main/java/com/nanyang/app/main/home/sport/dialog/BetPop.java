@@ -764,7 +764,7 @@ public class BetPop {
 
                     View vLine = holder.getView(R.id.v_line);
                     View ll_second = holder.getView(R.id.ll_second);
-                   /* String typeOdds = item.getOddsType();
+                    String typeOdds = item.getOddsType();
                     if (typeOdds != null && typeOdds.toLowerCase().contains("home") || typeOdds.toLowerCase().contains("away")) {
                         tv_vs.setVisibility(View.GONE);
                         tvBetHome.setVisibility(View.GONE);
@@ -773,7 +773,7 @@ public class BetPop {
                         tv_vs.setVisibility(View.VISIBLE);
                         tvBetHome.setVisibility(View.VISIBLE);
                         tvBetAway.setVisibility(View.VISIBLE);
-                    }*/
+                    }
                     final String socOddsId = item.getSocOddsId();
                     if (list.size() < 2) {
                         edt_single_bet.setVisibility(View.GONE);

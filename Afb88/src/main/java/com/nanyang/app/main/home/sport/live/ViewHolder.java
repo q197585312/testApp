@@ -7,6 +7,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.unkonw.testapp.libs.widget.VideoPlayer;
 
 import butterknife.Bind;
@@ -27,6 +28,8 @@ public class ViewHolder {
     public LinearLayout llStatus;
     @Bind(R.id.fl_top_video)
     public LinearLayout fl_top_video;
+    @Bind(R.id.ll_bet_title)
+    public View ll_bet_title;
     @Bind(R.id.ll_back_title_line)
     public View ll_back;
 
@@ -51,5 +54,9 @@ public class ViewHolder {
 
     public ViewHolder(View view) {
         ButterKnife.bind(this, view);
+    }
+
+    public void updateRunTitle(AddMBean data) {
+        tv_run_match_title.setText(data.getHomeName() + " "+data.go+" " + data.getHomeName());
     }
 }
