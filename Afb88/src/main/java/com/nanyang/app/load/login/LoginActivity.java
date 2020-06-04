@@ -27,7 +27,6 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.Pop.PopChoiceLanguage;
 import com.nanyang.app.R;
-import com.nanyang.app.Utils.AutoScrollViewPager;
 import com.nanyang.app.Utils.DateUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.LanguageHelper;
@@ -84,10 +83,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     LinearLayout llContainer;
     @Bind(R.id.ll_login_remember)
     LinearLayout llLoginRemember;
-    @Bind(R.id.login_images_vp)
-    AutoScrollViewPager loginImagesvp;
-    @Bind(R.id.login_indicator_cpi)
-    LinearLayout loginIndicatorCpi;
+
     @Bind(R.id.login_language)
     TextView loginLanguage;
     private PopChoiceLanguage popLanguage;
@@ -227,30 +223,30 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                 }
                 popLanguage.showPopupDownWindow();
                 break;*/
-            BaseListPopupWindow<MenuItemInfo<String>> popWindow = new BaseListPopupWindow<MenuItemInfo<String>>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, (TextView) view) {
+                BaseListPopupWindow<MenuItemInfo<String>> popWindow = new BaseListPopupWindow<MenuItemInfo<String>>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, (TextView) view) {
 
-                @Override
-                public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
-                    TextView tv = holder.getView(com.unkonw.testapp.R.id.item_regist_text_tv);
-                    tv.setAllCaps(true);
-                    tv.setText(item.getText());
-                    tv.setGravity(Gravity.LEFT);
-                }
+                    @Override
+                    public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
+                        TextView tv = holder.getView(com.unkonw.testapp.R.id.item_regist_text_tv);
+                        tv.setAllCaps(true);
+                        tv.setText(item.getText());
+                        tv.setGravity(Gravity.LEFT);
+                    }
 
-                @Override
-                protected void clickItem(TextView tv, MenuItemInfo<String> item) {
-                    super.clickItem(tv, item);
-                    closePopupWindow();
-                    tv.setText(item.getText());
-                    AfbUtils.switchLanguage(item.getType(), mContext);
-                    restart();
-                }
-            };
+                    @Override
+                    protected void clickItem(TextView tv, MenuItemInfo<String> item) {
+                        super.clickItem(tv, item);
+                        closePopupWindow();
+                        tv.setText(item.getText());
+                        AfbUtils.switchLanguage(item.getType(), mContext);
+                        restart();
+                    }
+                };
 //                popWindow.setData(presenter.currencyList);
-            popWindow.setTrans(1f);
-            popWindow.setData(new LanguageHelper(mContext).getLanguageItems());
-            popWindow.showPopupDownWindow();
-            break;
+                popWindow.setTrans(1f);
+                popWindow.setData(new LanguageHelper(mContext).getLanguageItems());
+                popWindow.showPopupDownWindow();
+                break;
         }
     }
 
@@ -390,8 +386,7 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     protected void onDestroy() {
         super.onDestroy();
 
-        if (loginImagesvp != null)
-            loginImagesvp.stopTask();
+
     }
 
     public void clickDesktop(View view) {
@@ -426,8 +421,9 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                 if (scrollHeight < 1)
                     return;
                 if (softHeight > 200) {//当输入法高度大于100判定为输入法打开了  设置大点，有虚拟键的会超过100
-                    if (llContainer.getScrollY() != scrollHeight)
+                    if (llContainer.getScrollY() != scrollHeight) {
                         scrollToPos(0, scrollHeight);
+                    }
                 } else {//否则判断为输入法隐藏了
                     if (llContainer.getScrollY() != 0)
                         scrollToPos(scrollHeight, 0);

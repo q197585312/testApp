@@ -13,45 +13,27 @@
         layout="@layout/toolbar_layout"
         android:visibility="gone" />
 
-
-
-    <RelativeLayout
-        android:visibility="gone"
+    <ImageView
+        android:layout_marginTop="110dp"
         android:layout_width="match_parent"
-        android:layout_height="160dp">
+        android:layout_height="113dp"
+        android:layout_marginBottom="15dp"
+        android:src="@mipmap/logo" />
 
-        <com.nanyang.app.Utils.AutoScrollViewPager
-            android:id="@+id/login_images_vp"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
 
-        <LinearLayout
-            android:id="@+id/login_indicator_cpi"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginBottom="5dp"
-            android:orientation="horizontal" />
-    </RelativeLayout>
+
 
 
     <LinearLayout
         android:id="@+id/ll_container"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="53dp"
+        android:layout_marginTop="40dp"
         android:gravity="center"
         android:orientation="vertical">
-
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="85dp"
-            android:src="@mipmap/logo" />
 
         <TextView
             android:id="@+id/login_language"

@@ -78,7 +78,8 @@ public class BetPop {
     AfbApplication afbApplication;
     private int listSize;
 
-
+    @Bind(R.id.ll_bet_title)
+    public View ll_bet_title;
     @Bind(R.id.bet_balance_tv)
     TextView betBalanceTv;
     @Bind(R.id.bet_amount_edt)
@@ -135,7 +136,16 @@ public class BetPop {
     FrameLayout betPopParentTopFl;
     @Bind(R.id.my_bets)
     TextView my_bets;
-
+    @Bind(R.id.max_bet)
+    TextView max_bet;
+    @Bind(R.id.min_bet)
+    TextView min_bet;
+    @Bind(R.id.max_single_bet)
+    TextView max_single_bet;
+    @Bind(R.id.max_win)
+    TextView max_win;
+    @Bind(R.id.bet_amount)
+    TextView bet_amount;
 
     private SportBetHelper presenter;
     private int coupon;
@@ -155,6 +165,13 @@ public class BetPop {
     }
 
     public void initContent() {
+        tvMixBet.setText(R.string.Parlay1);
+        tvSingleBet.setText(R.string.single_bet);
+        max_win.setText(R.string.max_win);
+        max_bet.setText(R.string.max_bet_money);
+        min_bet.setText(R.string.min_bet_money);
+        max_single_bet.setText(R.string.max_single_money);
+        bet_amount.setText(R.string.bet_limit);
 
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
         activity = (SportActivity) context;

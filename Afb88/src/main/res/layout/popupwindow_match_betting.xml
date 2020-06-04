@@ -289,6 +289,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/max_win"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/max_win"
@@ -311,6 +312,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/min_bet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/min_bet_money"
@@ -340,6 +342,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/max_bet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/max_bet_money"
@@ -362,6 +365,7 @@
                 android:orientation="horizontal">
 
                 <TextView
+                    android:id="@+id/max_single_bet"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/max_single_money"
@@ -385,6 +389,7 @@
             android:orientation="horizontal">
 
             <TextView
+                android:id="@+id/bet_amount"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/bet_limit"

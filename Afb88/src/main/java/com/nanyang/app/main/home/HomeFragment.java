@@ -155,11 +155,13 @@ public class HomeFragment extends BaseSwitchFragment {
 //        data.add(new AllBannerImagesBean.MainBannersBean())
         rvContent.setLayoutManager(layoutManager);
         Iterator<AllBannerImagesBean.MainBannersBean> iterator = data.iterator();
-        while (iterator.hasNext()) {
-            AllBannerImagesBean.MainBannersBean next = iterator.next();
-            String enable = enableMap.get(next.getG());
-            if (enable != null && enable.equals("False")) {
-                iterator.remove();
+        if (AppConstant.IS_AGENT) {
+            while (iterator.hasNext()) {
+                AllBannerImagesBean.MainBannersBean next = iterator.next();
+                if (StringUtils.isNull(next.getDbid()))
+
+                    iterator.remove();
+
             }
         }
         adapter = new BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean>(mContext, data, R.layout.home_sport_item_image_text) {

@@ -39,3 +39,5 @@ proguard/
 /.idea/misc.xml
 /build.gradle
 
+autolayout/
+gestrueLibrary/

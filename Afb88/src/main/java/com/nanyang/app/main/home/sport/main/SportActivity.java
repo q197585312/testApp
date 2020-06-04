@@ -12,11 +12,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
-import android.text.Spannable;
-import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.TextWatcher;
-import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -243,6 +240,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport);
         toolbar.setVisibility(View.GONE);
+
         edtSearchContent.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -420,6 +418,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     private void loadLeftMenuOthers() {
+        if (AppConstant.IS_AGENT)
+            return;
         Map<String, String> enableMap = getApp().updateOtherMap();
         Iterator<SportIdBean> iterator = AfbUtils.othersMap.values().iterator();
         final List<SportIdBean> listOther = new ArrayList<>();
@@ -653,6 +653,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Override
     protected void onResume() {
         super.onResume();
+        if (AppConstant.IS_AGENT) {
+            others_selected.setVisibility(View.GONE);
+            loadLeftMenuSports();
+        } else {
+            others_selected.setVisibility(View.VISIBLE);
+        }
         if (getApp().getOddsType() != null)
             presenter.switchOddsType(getApp().getOddsType().getType());
         else {
@@ -872,6 +878,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickBack(View view) {
+
         finish();
     }
 
@@ -1010,8 +1017,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             if ((currentFragment.getPresenter().getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
                 BallAdapterHelper adapterHelper = (BallAdapterHelper) currentFragment.getPresenter().getStateHelper().getAdapterHelper();
                 adapterHelper.setOnlyShowAdded(onlyShowOne);
-                if (viewHolder != null)
-                    viewHolder.ll_bet_title.setVisibility(onlyShowOne ? View.GONE : View.VISIBLE);
+                if (getBetContent() != null)
+                    getBetContent().ll_bet_title.setVisibility(onlyShowOne ? View.GONE : View.VISIBLE);
             }
         }
     }
@@ -1045,8 +1052,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             ll_line3.setVisibility(View.GONE);
             ll_header_sport.setVisibility(View.GONE);
             currentFragment.presenter.getStateHelper().getAdapterHelper().setOnlyShowAdded(onlyOne);
-            if (viewHolder != null)
-                viewHolder.ll_bet_title.setVisibility(onlyShowOne ? View.GONE : View.VISIBLE);
+            if (getBetContent() != null)
+                getBetContent().ll_bet_title.setVisibility(onlyShowOne ? View.GONE : View.VISIBLE);
 
 
             if (itemBall instanceof RunMatchInfo && !currentFragment.getBallDbid().equals(((RunMatchInfo) itemBall).getDbid())) {
@@ -1057,8 +1064,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 presenter.loadAllRunMatches(fl_top_video, handler, new MainPresenter.CallBack<List<RunMatchInfo>>() {
                     @Override
                     public void onBack(List<RunMatchInfo> data) throws JSONException {
-                        if( itemBallAdded !=null)
-                            updateRunMatch(data,itemBallAdded);
+                        if (itemBallAdded != null)
+                            updateRunMatch(data, itemBallAdded);
                         popWindowRun = new BaseListPopupWindow<RunMatchInfo>(mContext, tv_run_match_title, tv_run_match_title.getWidth(), AfbUtils.dp2px(mContext, 200), tv_run_match_title) {
                             public int getItemLayoutRes() {
                                 return R.layout.sport_paly_run_match_info;
@@ -1087,7 +1094,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                                 super.clickItem(tv, item);
                                 closePopupWindow();
                                 if (item.getIsRun().equals("True") || item.getIsRun().equals("1")) {
-                                    tv.setText(item.getHome() + " -vs- " + item.getAway());
+                                    tv.setText(item.getHome() + "  " + item.getHomeSocre() + " - " + item.getAwaySocre() + "  " + item.getAway());
                                     clickRunMatchPlay(item, positionBallAdded, onlyShowOne);
                                 }
                             }
@@ -1104,18 +1111,16 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     private void updateRunMatch(List<RunMatchInfo> data, IRTMatchInfo itemBallAdded) {
         for (RunMatchInfo runMatchInfo : data) {
-            if(runMatchInfo.getSocOddsId().equals(itemBallAdded.getSocOddsId())){
-                this.itemBallAdded=runMatchInfo;
+            if (runMatchInfo.getSocOddsId().equals(itemBallAdded.getSocOddsId())) {
+                this.itemBallAdded = runMatchInfo;
                 String home = runMatchInfo.getHome();
                 String away = runMatchInfo.getAway();
                 String isRun = runMatchInfo.getIsRun();
-                SpannableString spanString = new SpannableString(home + " - " + aScore + " ");
-                //构造一个改变字体颜色的Span
-                ForegroundColorSpan span = new ForegroundColorSpan(Color.RED);
-                if (isHomeGoal(socOddsId, hScore, aScore, isHomeGoal)) {
-                    spanString.setSpan(span, 0, hScore.length(), Spannable.SPAN_EXCLUSIVE_INCLUSIVE);
-                }
-                tv_run_match_title.setText();
+                String homeSocre = runMatchInfo.getHomeSocre();
+                String awaySocre = runMatchInfo.getAwaySocre();
+
+
+                tv_run_match_title.setText(home + "  " + homeSocre + " - " + awaySocre + "  " + away);
             }
         }
     }

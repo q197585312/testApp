@@ -35,8 +35,7 @@ public class BetCenterFragment extends BaseMoreFragment {
     public static String unsettled = "unsettled";
     public static String statementNew = "statementNew";
     public static String grade = "grade";
-    private BaseFragment indexFragment = unsettledFragment;
-    private BaseFragment lastIndexFragment;
+    private BaseFragment indexFragment ;
 
     @Override
     public int onSetLayoutId() {
@@ -101,13 +100,13 @@ public class BetCenterFragment extends BaseMoreFragment {
         }
 
         BaseFragment fragment = baseFragmentList.get(currentIndex);
-        if (lastIndexFragment == null||(fragment!=null&&!fragment .equals(indexFragment) ) ) {
-            indexFragment = fragment;
+        if (indexFragment == null||(fragment!=null&&!fragment .equals(indexFragment) ) ) {
             getBaseActivity().showFragmentToActivity(fragment, R.id.fl_betCenter_content);
-            if (lastIndexFragment != null && lastIndexFragment .equals(indexFragment) ) {
-                getBaseActivity().hideFragmentToActivity(lastIndexFragment);
+            if (indexFragment != null  ) {
+                getBaseActivity().hideFragmentToActivity(indexFragment);
             }
-            lastIndexFragment = indexFragment;
+            indexFragment = fragment;
+
         }
         if (fragment.isAdded()) {
             if (fragment.equals(unsettledFragment)) {

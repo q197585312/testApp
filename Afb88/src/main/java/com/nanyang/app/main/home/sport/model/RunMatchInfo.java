@@ -97,18 +97,37 @@ public class RunMatchInfo implements IRTMatchInfo {
     String GameId;
     String SocOddsId;
     String IsRun;
+
+    public String getHomeSocre() {
+        return HomeSocre;
+    }
+
+    public void setHomeSocre(String homeSocre) {
+        HomeSocre = homeSocre;
+    }
+
+    public String getAwaySocre() {
+        return AwaySocre;
+    }
+
+    public void setAwaySocre(String awaySocre) {
+        AwaySocre = awaySocre;
+    }
+
     String HomeSocre;
     String AwaySocre;
 
-    public RunMatchInfo(String tvPathIBC, String RTSMatchId, String league, String home, String away, String gameId, String socOddsId, String isRun,String dbid,  String homeSocre,String awaySocre) {
+    public RunMatchInfo(String tvPathIBC, String RTSMatchId, String league, String home, String away, String gameId, String socOddsId, String isRun, String dbid, String homeSocre, String awaySocre) {
         TvPathIBC = tvPathIBC;
         this.RTSMatchId = RTSMatchId;
         League = league;
         Home = home;
         Away = away;
         GameId = gameId;
+        this.IsRun = isRun;
+        this.Dbid = dbid;
         SocOddsId = socOddsId;
-        HomeSocre = isRun;
+        HomeSocre = homeSocre;
         AwaySocre = awaySocre;
 
     }
