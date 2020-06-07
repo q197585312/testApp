@@ -6,13 +6,12 @@
     android:gravity="center"
     android:orientation="vertical">
 
-    <LinearLayout
+    <FrameLayout
         android:id="@+id/ll_bet_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/green_dark"
-        android:gravity="center_vertical"
-        android:orientation="horizontal">
+        android:gravity="center_vertical">
 
         <ImageView
             android:id="@+id/ll_back_title_line"
@@ -26,8 +25,9 @@
         <LinearLayout
             android:id="@+id/ll_single_mix"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:gravity="center_vertical"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:gravity="center"
             android:orientation="horizontal">
 
             <TextView
@@ -77,10 +77,9 @@
 
         <LinearLayout
 
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center_vertical|right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
             android:orientation="horizontal">
 
             <TextView
@@ -102,14 +101,17 @@
                 android:paddingRight="5dp"
                 android:visibility="gone" />
         </LinearLayout>
-    </LinearLayout>
+    </FrameLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:padding="8dp">
+        android:paddingBottom="8dp"
+        android:paddingLeft="8dp"
+        android:paddingTop="2dp"
+        android:paddingRight="8dp">
 
         <LinearLayout
             android:id="@+id/ll_bet_failed_hint"
@@ -142,7 +144,8 @@
             android:id="@+id/fl_rc_content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="2dp">
+            android:paddingLeft="2dp"
+            android:paddingRight="2dp">
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rc_bet_content"

@@ -471,6 +471,6 @@
     <string name="o">@string/over</string>
     <string name="a">@string/Away</string>
     <string name="u">@string/under</string>
-    <string name="language_zh_tw">中文(繁体)</string>
+    <string name="language_zh_tw">จีน (ดั้งเดิม)</string>
     <string name="single">@string/single_bet</string>
 </resources>

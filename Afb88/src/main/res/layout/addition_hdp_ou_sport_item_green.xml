@@ -38,7 +38,8 @@
                         android:gravity="center_vertical"
                         android:padding="1dp"
                         android:text="@string/h"
-                        android:textColor="@color/red"
+                        android:textStyle="bold"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -85,6 +86,7 @@
                         android:gravity="center_vertical"
                         android:padding="1dp"
                         android:text="@string/a"
+                        android:textStyle="bold"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
@@ -141,6 +143,7 @@
                         android:gravity="center_vertical"
                         android:padding="1dp"
                         android:text="@string/o"
+                        android:textStyle="bold"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
@@ -187,6 +190,7 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/u"
+                        android:textStyle="bold"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
@@ -241,7 +245,8 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/h"
-                        android:textColor="@color/red"
+                        android:textStyle="bold"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -287,6 +292,7 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/a"
+                        android:textStyle="bold"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
@@ -341,6 +347,7 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/o"
+                        android:textStyle="bold"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
@@ -386,6 +393,7 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/u"
+                        android:textStyle="bold"
                         android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 

@@ -212,8 +212,10 @@ public class LivePlayHelper {
         } else {
             onResumeWeb();
         }
-
-        holder.tv_run_match_title.setText(itemBall.getHome() + " -vs- " + itemBall.getAway());
+        holder.tv_run_match_home.setText(itemBall.getHome());
+        holder.tv_run_match_away.setText(itemBall.getAway());
+        holder.tv_run_match_home_score.setText(itemBall.getRunHomeScore());
+        holder.tv_run_match_away_score.setText(itemBall.getRunAwayScore());
     }
 
     private void onResumeWeb() {
@@ -236,7 +238,7 @@ public class LivePlayHelper {
             l = "zh";
         }
         String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + itemBall.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(itemBall.getHome()) + "&Away=" + StringUtils.URLEncode(itemBall.getAway()) + "&L=" + l;
-        AfbUtils.synCookies(context, holder.web_wv, gameUrl);
+        AfbUtils.synCookies(context, holder.web_wv, gameUrl,false);
         holder.web_wv.onResume();
     }
 

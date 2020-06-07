@@ -9,6 +9,7 @@ import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.R;
+import com.nanyang.app.main.home.AndroidBug5497Workaround;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 
@@ -23,6 +24,7 @@ public class WebActivity extends BaseToolbarActivity {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_web);
+        AndroidBug5497Workaround.assistActivity(this);
         webView = (WebView) findViewById(R.id.web_wv);
         String url = getIntent().getStringExtra("url");
         String title = getIntent().getStringExtra(AppConstant.KEY_STRING);
@@ -31,17 +33,16 @@ public class WebActivity extends BaseToolbarActivity {
             finish();
             return;
         }
-        tvToolbarTitle.setText(title);
-        tvToolbarRight.setVisibility(View.GONE);
+//        toolbar.setTitle(title);
+//        tvToolbarTitle.setText(title);
+        toolbar.setVisibility(View.GONE);
         showLoadingDialog();
         loadWebView(url);
     }
 
     private void loadWebView(String url) {
         LogUtil.d("url---", "-------" + url);
-        webView.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
-        webView.getSettings().setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
-        AfbUtils.synCookies(this, webView, url);
+        AfbUtils.synCookies(this, webView, url, true);
     }
 
     public void onResume() {
@@ -70,7 +71,15 @@ public class WebActivity extends BaseToolbarActivity {
     }
 
 
-  /*  public boolean onKeyDown(int keyCode, KeyEvent event) {
+    @Override
+    public void onBackCLick(View v) {
+        if (webView.canGoBack()) {
+            webView.goBack();//返回上一页面
+        } else {
+            super.onBackCLick(v);
+        }
+    }
+    /*  public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
             if (webView.canGoBack()) {
                 webView.goBack();//返回上一页面

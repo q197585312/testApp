@@ -172,7 +172,7 @@ public class BetPop {
         min_bet.setText(R.string.min_bet_money);
         max_single_bet.setText(R.string.max_single_money);
         bet_amount.setText(R.string.bet_limit);
-
+        my_bets.setText(R.string.TabMyBets);
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
         activity = (SportActivity) context;
         handler = new Handler();
@@ -290,6 +290,7 @@ public class BetPop {
                 llBetFailedHint.setVisibility(View.GONE);
             }
         });
+        initBetChip();
     }
 
     private void goMixAndClose() {
@@ -396,24 +397,18 @@ public class BetPop {
         return maxWin;
     }
 
+    BaseRecyclerAdapter<PopChipBean> adapterChip;
+    List<PopChipBean> allListChip;
+
     private void initBetChip() {
-        HashMap<String, Boolean> chipStatusMap = AfbUtils.getChipStatusMap();
-        List<PopChipBean> allList = Arrays.asList(new PopChipBean(R.mipmap.chips1, 1, "1"), new PopChipBean(R.mipmap.chips10, 10, "10"),
+        allListChip = Arrays.asList(new PopChipBean(R.mipmap.chips_setting, -1, "set"), new PopChipBean(R.mipmap.chips1, 1, "1"), new PopChipBean(R.mipmap.chips10, 10, "10"),
                 new PopChipBean(R.mipmap.chips50, 50, "50"), new PopChipBean(R.mipmap.chips100, 100, "100"), new PopChipBean(R.mipmap.chips500, 500, "500"),
                 new PopChipBean(R.mipmap.chips1000, 1000, "1000"), new PopChipBean(R.mipmap.chips5000, 5000, "5000"), new PopChipBean(R.mipmap.chips10000, 10000, "10000"),
                 new PopChipBean(R.mipmap.chips30000, 30000, "30000"), new PopChipBean(R.mipmap.chips50000, 50000, "50000"), new PopChipBean(R.mipmap.chips100000, 100000, "100000"),
                 new PopChipBean(R.mipmap.chips_max, 0, "max"));
-        List<PopChipBean> beanList = new ArrayList<>();
-        for (PopChipBean popChipBean : allList) {
-            if (chipStatusMap.get(popChipBean.getKey())) {
-                beanList.add(popChipBean);
-            }
-        }
-        if (beanList.size() < 1) {
-            beanList = allList;
-        }
 
-        BaseRecyclerAdapter<PopChipBean> adapter = new BaseRecyclerAdapter<PopChipBean>(context, beanList, R.layout.item_bet_chip) {
+
+        adapterChip = new BaseRecyclerAdapter<PopChipBean>(context, new ArrayList<PopChipBean>(), R.layout.item_bet_chip) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, PopChipBean item) {
                 ImageView imgContent = holder.getView(R.id.img_content);
@@ -423,11 +418,14 @@ public class BetPop {
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         rcBetChip.setLayoutManager(linearLayoutManager);
-        rcBetChip.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<PopChipBean>() {
+        rcBetChip.setAdapter(adapterChip);
+        adapterChip.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<PopChipBean>() {
             @Override
             public void onItemClick(View view, PopChipBean item, int position) {
-
+                if (item.getKey().equals("set")) {
+                    activity.afbDrawerViewHolder.switchFragment(activity.afbDrawerViewHolder.getSettingFragment());
+                    return;
+                }
                 EditText edt = betAmountEdt;
                 CursorEditView cursorEditView = cursorMap.get(true);
                 if (cursorEditView != null && cursorEditView.getEditView() != null) {
@@ -652,7 +650,6 @@ public class BetPop {
         initRcBetContent();
         if (!isRefreshEd) {
             setEditNum();
-            initBetChip();
         }
 
         tvCurrency.setText(afbApplication.getUser().getCurCode2());
@@ -701,6 +698,20 @@ public class BetPop {
         }
     }
 
+    public void refreshChip() {
+        HashMap<String, Boolean> chipStatusMap = AfbUtils.getChipStatusMap();
+        List<PopChipBean> beanList = new ArrayList<>();
+        for (PopChipBean popChipBean : allListChip) {
+            if (popChipBean.getKey().equals("set") || chipStatusMap.get(popChipBean.getKey())) {
+                beanList.add(popChipBean);
+            }
+        }
+        if (beanList.size() < 2) {
+            beanList = allListChip;
+        }
+        adapterChip.addAllAndClear(beanList);
+    }
+
     private void webViewPause() {
         betPopParentTopFl.setVisibility(View.GONE);
         webView.onPause();
@@ -733,7 +744,7 @@ public class BetPop {
     HashMap<Boolean, CursorEditView> cursorMap = new HashMap();
 
     private void initRcBetContent() {
-
+        refreshChip();
         if (list.size() > 1) {
             tvSingleBet.setTextColor(Color.WHITE);
             tvMixBet.setTextColor(context.getResources().getColor(R.color.yellow_gold));
@@ -889,7 +900,7 @@ public class BetPop {
                     if (item.getId().contains("fglg")) {
                         ll_bottom.setVisibility(View.VISIBLE);
                         String sc = item.getSc();
-                        bet_module_title_tv.setTextColor(Color.BLACK);
+                        bet_module_title_tv.setTextColor(ContextCompat.getColor(activity, R.color.grey_dark));
                         switch (sc) {
                             case "1":
                             case "10":
@@ -922,7 +933,7 @@ public class BetPop {
                     if (hdp.contains("-")) {
                         tvHdp.setTextColor(Color.RED);
                     } else {
-                        tvHdp.setTextColor(Color.BLACK);
+                        tvHdp.setTextColor(ContextCompat.getColor(activity, R.color.grey_dark));
                     }
                     tvHdp.setText(HtmlTagHandler.spanFontHtml(hdp));
                     tvBetHdp.setText(HtmlTagHandler.spanFontHtml(item.getBTT()));
@@ -946,16 +957,30 @@ public class BetPop {
                         if (tvBetName.getText().toString().equals(item.getHome())) {
                             tvBetName.setTextColor(Color.RED);
                         } else {
-                            tvBetName.setTextColor(Color.BLACK);
+                            tvBetName.setTextColor(ContextCompat.getColor(activity, R.color.grey_dark));
                         }
                     } else {
                         if (tvBetName.getText().toString().equals(item.getHome())) {
-                            tvBetName.setTextColor(Color.BLACK);
+                            tvBetName.setTextColor(ContextCompat.getColor(activity, R.color.grey_dark));
                         } else {
                             tvBetName.setTextColor(Color.RED);
                         }
                         tvBetAway.setTextColor(Color.RED);
-                        tvBetHome.setTextColor(Color.BLACK);
+                        tvBetHome.setTextColor(ContextCompat.getColor(activity, R.color.grey_dark));
+                    }
+                    String typeId = item.getOddsType().toLowerCase();
+                    LogUtil.d("itemid", "itemid:" + typeId);
+                    if (StringUtils.isEmpty(typeId) || (!typeId.contains("home")
+                            && !typeId.contains("away")
+                            && !typeId.contains("over")
+                            && !typeId.contains("under")
+                            && !typeId.equals("1")
+                            && !typeId.equals("2")
+                            && !typeId.equals("odd")
+                            && !typeId.equals("even")
+                    )) {
+                        LogUtil.d("itemid", "grey_dark:");
+                        tvBetName.setTextColor(ContextCompat.getColor(activity, R.color.grey_dark));
                     }
                     Animation animation = tvBetOddsAnimation.getAnimation();
                     if (animation != null) {
@@ -1036,7 +1061,7 @@ public class BetPop {
         if (list == null)
             return;
         if (list.size() <= 1)
-            betAmountEdt.setHint(R.string.single);
+            betAmountEdt.setHint(R.string.single_bet);
         else {
             betAmountEdt.setHint(R.string.mix);
         }
@@ -1125,7 +1150,7 @@ public class BetPop {
             String language = new LanguageHelper(activity).getLanguage();
             webViewResume();
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + language;
-            AfbUtils.synCookies(context, webView, gameUrl);
+            AfbUtils.synCookies(context, webView, gameUrl, false);
             LogUtil.d("gameUrl", gameUrl);
         } else {
             webViewPause();

@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.NonNull;
@@ -73,7 +74,6 @@ import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
 import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.api.CookieManger;
 import com.unkonw.testapp.libs.api.PersistentCookieStore;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.SystemTool;
@@ -164,7 +164,7 @@ public class AfbUtils {
     }
 
     public static String decimalValue(float v, String format) {
-        return scientificCountingToString(v+"",format);
+        return scientificCountingToString(v + "", format);
      /*   DecimalFormat decimalFormat = new DecimalFormat(format);//构造方法的字符格式这里如果小数不足2位,会以0补足.
         DecimalFormatSymbols dfs = new DecimalFormatSymbols();
         dfs.setDecimalSeparator('.');
@@ -242,14 +242,6 @@ public class AfbUtils {
         return language;
     }
 
-    public static void synCookies(Context context, String url, String cookies) {
-        CookieSyncManager.createInstance(context);
-        CookieManager cookieManager = CookieManager.getInstance();
-        cookieManager.setAcceptCookie(true);
-        cookieManager.removeSessionCookie();//移除
-        cookieManager.setCookie(url, cookies);//cookies是在HttpClient中获得的cookie
-        CookieSyncManager.getInstance().sync();
-    }
 
     public static SpannableStringBuilder setColorStyle(String str, int[] color, String[] strColors) {
 
@@ -280,16 +272,22 @@ public class AfbUtils {
         return style;
     }
 
-    public static void synCookies(Context context, WebView webView, String url) {
+    public static void synCookies(Context context, WebView webView, String url,boolean isZoom) {
 
+        webView.getSettings().setUseWideViewPort(isZoom);
+//设置可以支持缩放
+        webView.getSettings().setSupportZoom(isZoom);
+//设置出现缩放工具
+        webView.getSettings().setBuiltInZoomControls(isZoom);
+    //设定缩放控件隐藏
+        if(isZoom){
+            webView.setInitialScale(100);
+        }
+        webView.getSettings().setDisplayZoomControls(false);
         //开启javascript
         webView.getSettings().setDomStorageEnabled(true);
         webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);//设置js可以直接打开窗口，如window.open()，默认为false
         webView.getSettings().setJavaScriptEnabled(true);//是否允许执行js，默认为false。设置true时，会提醒可能造成XSS漏洞
-        webView.getSettings().setSupportZoom(false);//是否可以缩放，默认true
-        webView.getSettings().setBuiltInZoomControls(false);//是否显示缩放按钮，默认false
-        webView.getSettings().setDisplayZoomControls(false);
-
         webView.getSettings().setAppCacheEnabled(true);//是否使用缓存
         webView.getSettings().setDomStorageEnabled(true);//DOM Storage
         webView.setWebChromeClient(new WebChromeClient());
@@ -308,26 +306,9 @@ public class AfbUtils {
                 //handleMessage(Message msg); 其他处理
             }
         });
-        StringBuffer sb = new StringBuffer();
-        List<Cookie> cookies = CookieManger.getCookieStore().get(url);
-        if (cookies != null && cookies.size() > 0) {
-            for (Cookie cookie1 : cookies) {
 
-                String cookieName = cookie1.name();
-                String cookieValue = cookie1.value();
-                if (!StringUtils.isNull(cookieName)
-                        && !StringUtils.isNull(cookieValue)) {
-                    sb.append(cookieName + "=");
-                    sb.append(cookieValue + ";");
-                }
-            }
-//            cookie = cookies.get(0).toString();
-        }
-        LogUtil.d("url---", "cookie-------:" + sb.toString());
-        String[] cookie = sb.toString().split(";");
-        for (int i = 0; i < cookie.length; i++) {
-            AfbUtils.synCookies(context, url, cookie[i]);
-        }
+//        LogUtil.d("url---", "cookie-------:" + sb.toString());
+        syncCookie(context, url);
 
         webView.loadUrl(url);
 
@@ -342,18 +323,41 @@ public class AfbUtils {
      * @param url     可以使用[domain][host]
      */
 
-    private void syncCookie(Context context, String url) {
-        CookieSyncManager.createInstance(context);
+    private static void syncCookie(Context context, String url) {
+
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            CookieSyncManager.createInstance(context);
+        }
         CookieManager cookieManager = CookieManager.getInstance();
-        cookieManager.setAcceptCookie(true);
-        cookieManager.removeSessionCookie();// 移除旧的[可以省略]
-        List<Cookie> cookies = new PersistentCookieStore(context).getCookies();// 获取Cookie[可以是其他的方式获取]
+        cookieManager.setAcceptCookie(true);// 允许接受 Cookie
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            cookieManager.removeSessionCookie();// 移除
+        } else {
+            cookieManager.removeSessionCookies(null);// 移除
+        }
+        List<Cookie> cookies = new PersistentCookieStore(context).getCookies();//;
         for (int i = 0; i < cookies.size(); i++) {
             Cookie cookie = cookies.get(i);
             String value = cookie.name() + "=" + cookie.value();
-            cookieManager.setCookie(url, value);
+            cookieManager.setCookie(BuildConfig.Domain, value);
         }
-        CookieSyncManager.getInstance().sync();// To get instant sync instead of waiting for the timer to trigger, the host can call this.
+        cookieManager.setCookie(BuildConfig.Domain, "Domain="+BuildConfig.Domain);
+        cookieManager.setCookie(BuildConfig.Domain, "Path=/");
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            CookieSyncManager.getInstance().sync();
+        } else {
+            cookieManager.flush();
+
+        }
+    }
+
+    public static void synCookies(Context context, String url, String cookies) {
+        CookieSyncManager.createInstance(context);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+        cookieManager.removeSessionCookie();//移除
+        cookieManager.setCookie(url, cookies);//cookies是在HttpClient中获得的cookie
+        CookieSyncManager.getInstance().sync();
     }
 
     /*	"id": "25",

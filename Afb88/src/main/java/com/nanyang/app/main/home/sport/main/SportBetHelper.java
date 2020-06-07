@@ -228,6 +228,7 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
                         LogUtil.d("BetPop", "setBetAfbList:getRefreshOdds错误:" + null);
                         ((AfbApplication) AfbApplication.getInstance()).setBetAfbList(null);
                         updateMixList(url);
+                        throwable.printStackTrace();
                     }
                 }, new Action() {//完成
                     @Override

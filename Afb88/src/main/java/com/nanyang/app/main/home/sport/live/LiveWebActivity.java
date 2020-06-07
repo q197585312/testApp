@@ -152,7 +152,7 @@ public class LiveWebActivity extends BaseToolbarActivity<AdditionPresenter> impl
         if (isNotEnable(tv_title_live_center, gameUrl)) return;
         webView.getSettings().setUseWideViewPort(true);//设置此属性，可任意比例缩放。大视图模式
         webView.getSettings().setLoadWithOverviewMode(true);//和setUseWideViewPort(true)一起解决网页自适应问题
-        AfbUtils.synCookies(mContext, webView, gameUrl);
+        AfbUtils.synCookies(mContext, webView, gameUrl,false);
     }
 
     @Override

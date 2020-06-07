@@ -283,7 +283,7 @@
                                 android:layout_gravity="center"
                                 android:contentDescription="@null"
                                 android:onClick="clickOrderTop"
-                                android:src="@mipmap/sport_shopping_top_gray" />
+                                android:src="@mipmap/sport_bottom_teb_shopping_null" />
 
                             <TextView
                                 android:id="@+id/tv_order_count_top"
@@ -408,19 +408,73 @@
                                     android:padding="6dp"
                                     android:src="@mipmap/sport_bet_list" />
                             </LinearLayout>
-
-                            <TextView
-                                android:id="@+id/tv_run_match_title"
-                                android:layout_width="match_parent"
-                                android:layout_height="18dp"
-                                android:background="@color/black"
-                                android:drawableRight="@mipmap/arrow_down_drop_white"
-                                android:gravity="center"
+                            <LinearLayout
                                 android:onClick="clickRunTitle"
-                                android:paddingRight="10dp"
-                                android:text="111-vs-"
-                                android:textColor="@color/white"
-                                android:textSize="12sp" />
+                                android:id="@+id/ll_run_match_title"
+                                android:orientation="horizontal"
+                                android:layout_gravity="center"
+                                android:background="@color/black"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/tv_run_match_home"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="18dp"
+                                    android:gravity="right"
+                                    android:paddingRight="10dp"
+                                    android:textColor="@color/white"
+                                    android:textSize="12sp" />
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/oval_red_stroke_black"
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp" />
+                                <TextView
+                                    android:id="@+id/tv_run_match_home_score"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                   />
+                                <TextView
+
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:text="-"
+                                    android:textColor="@color/grey_dark"
+                                    android:textStyle="bold"
+                                    />
+                                <TextView
+                                    android:id="@+id/tv_run_match_away_score"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:gravity="center"
+                                    android:paddingLeft="5dp"
+                                    android:paddingRight="5dp"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold"
+                                    />
+                                <ImageView
+                                    android:layout_gravity="center"
+                                    android:src="@drawable/oval_blue_stroke_black"
+                                    android:layout_width="12dp"
+                                    android:layout_height="12dp" />
+                                <TextView
+                                    android:id="@+id/tv_run_match_away"
+                                    android:layout_width="0dp"
+                                    android:layout_weight="1"
+                                    android:layout_height="18dp"
+                                    android:paddingRight="10dp"
+                                    android:textColor="@color/white"
+                                    android:drawableRight="@mipmap/arrow_down_drop_white"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
 
                             <FrameLayout
                                 android:layout_width="match_parent"
@@ -453,13 +507,6 @@
                                         android:layout_height="22dp"
                                         android:layout_marginLeft="8dp"
                                         android:src="@mipmap/play_pause_white" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="5dp"
-                                        android:text="0:00"
-                                        android:textSize="18sp" />
 
                                     <View
                                         android:layout_width="0dp"

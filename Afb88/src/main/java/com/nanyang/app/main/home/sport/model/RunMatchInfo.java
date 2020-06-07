@@ -98,26 +98,26 @@ public class RunMatchInfo implements IRTMatchInfo {
     String SocOddsId;
     String IsRun;
 
-    public String getHomeSocre() {
-        return HomeSocre;
+    public String getRunHomeScore() {
+        return RunHomeScore;
     }
 
-    public void setHomeSocre(String homeSocre) {
-        HomeSocre = homeSocre;
+    public void setRunHomeScore(String runHomeScore) {
+        RunHomeScore = runHomeScore;
     }
 
-    public String getAwaySocre() {
-        return AwaySocre;
+    public String getRunAwayScore() {
+        return RunAwayScore;
     }
 
-    public void setAwaySocre(String awaySocre) {
-        AwaySocre = awaySocre;
+    public void setRunAwayScore(String runAwayScore) {
+        RunAwayScore = runAwayScore;
     }
 
-    String HomeSocre;
-    String AwaySocre;
+    String RunHomeScore;
+    String RunAwayScore;
 
-    public RunMatchInfo(String tvPathIBC, String RTSMatchId, String league, String home, String away, String gameId, String socOddsId, String isRun, String dbid, String homeSocre, String awaySocre) {
+    public RunMatchInfo(String tvPathIBC, String RTSMatchId, String league, String home, String away, String gameId, String socOddsId, String isRun, String dbid, String runHomeScore, String runAwayScore) {
         TvPathIBC = tvPathIBC;
         this.RTSMatchId = RTSMatchId;
         League = league;
@@ -127,8 +127,8 @@ public class RunMatchInfo implements IRTMatchInfo {
         this.IsRun = isRun;
         this.Dbid = dbid;
         SocOddsId = socOddsId;
-        HomeSocre = homeSocre;
-        AwaySocre = awaySocre;
+        RunHomeScore = runHomeScore;
+        RunAwayScore = runAwayScore;
 
     }
 }

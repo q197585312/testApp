@@ -47,8 +47,8 @@ public class AfbDrawerViewHolder implements IDrawerView {
         return contactFragment;
     }
 
-    public BaseSwitchFragment getChangeLanguageFragment() {
-        return changeLanguageFragment;
+    public BaseSwitchFragment getSettingFragment() {
+        return settingFragment;
     }
 
     public BaseSwitchFragment getPersonFragment() {
@@ -66,7 +66,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
     private BaseSwitchFragment homeFragment;
     private BaseSwitchFragment statementFragment = new BetCenterFragment();
     private BaseSwitchFragment contactFragment = new ContactFragment();
-    private BaseSwitchFragment changeLanguageFragment = new SettingFragment();
+    private BaseSwitchFragment settingFragment = new SettingFragment();
     private BaseSwitchFragment personFragment = new PersonCenterFragment();
     private BaseSwitchFragment howToUseFragment = new HowToUseFragment();
     private BaseSwitchFragment messageFragment = new MessageFragment();
@@ -94,7 +94,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
         messageFragment.setHolder(this);
         statementFragment.setHolder(this);
         contactFragment.setHolder(this);
-        changeLanguageFragment.setHolder(this);
+        settingFragment.setHolder(this);
         howToUseFragment.setHolder(this);
         drawerLayoutRightRc = drawerLayout.findViewById(R.id.main_more);
         More m1 = new More(R.mipmap.myacount, baseToolbarActivity.getString(R.string.my_account), 0, personFragment);
@@ -102,7 +102,7 @@ public class AfbDrawerViewHolder implements IDrawerView {
         More m3 = new More(R.mipmap.main_statement, baseToolbarActivity.getString(R.string.statement), 0, statementFragment, BetCenterFragment.statementNew);
         More m4 = new More(R.mipmap.result, baseToolbarActivity.getString(R.string.result), 0, statementFragment, BetCenterFragment.grade);
         More m5 = new More(R.mipmap.contactus, baseToolbarActivity.getString(R.string.contact), 0, contactFragment);
-        More m6 = new More(R.mipmap.setting, baseToolbarActivity.getString(R.string.setting), 0, changeLanguageFragment);
+        More m6 = new More(R.mipmap.setting, baseToolbarActivity.getString(R.string.setting), 0, settingFragment);
         More m7 = new More(R.mipmap.setting, baseToolbarActivity.getString(R.string.how_to_use), 0, howToUseFragment);
         More m8 = new More(R.mipmap.logout, baseToolbarActivity.getString(R.string.logout), 0);
         List<More> dataList = new ArrayList<>();

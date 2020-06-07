@@ -46,9 +46,16 @@ public class ViewHolder {
     @Bind(R.id.iv_bet_list)
     public View iv_bet_list;
 
-    @Bind(R.id.tv_run_match_title)
-    public TextView tv_run_match_title;
-
+    @Bind(R.id.ll_run_match_title)
+    public View tv_run_match_title;
+    @Bind(R.id.tv_run_match_home)
+    public TextView tv_run_match_home;
+    @Bind(R.id.tv_run_match_home_score)
+    public TextView tv_run_match_home_score;
+    @Bind(R.id.tv_run_match_away)
+    public TextView tv_run_match_away;
+    @Bind(R.id.tv_run_match_away_score)
+    public TextView tv_run_match_away_score;
 
     public ViewHolder(View view) {
         ButterKnife.bind(this, view);

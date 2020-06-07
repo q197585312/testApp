@@ -30,12 +30,12 @@
             android:background="@color/grey_background"
             android:gravity="center"
             android:orientation="horizontal"
-            android:padding="5dp">
+            android:padding="4dp">
 
             <TextView
                 android:id="@+id/module_League_collection_tv"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="19dp"
+                android:layout_height="19dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="2dp"
                 android:background="@mipmap/sport_game_star_yellow"
@@ -50,11 +50,9 @@
                 android:layout_weight="1"
                 android:gravity="center_vertical"
                 android:maxLines="1"
-                android:paddingBottom="2dp"
                 android:paddingLeft="10dp"
-                android:paddingTop="2dp"
                 android:textColor="@color/black_grey"
-                android:textSize="14sp" />
+               />
         </LinearLayout>
 
         <View
@@ -144,22 +142,23 @@
                     android:text="P"
                     android:textAllCaps="true"
                     android:textColor="@color/green"
-                    android:textStyle="bold" />
+                    android:textSize="13sp"
+                    />
 
 
                 <ImageView
                     android:id="@+id/iv_hall_btn"
-                    android:layout_width="18dp"
-                    android:layout_height="12dp"
+                    android:layout_width="23dp"
+                    android:layout_height="18dp"
                     android:layout_marginLeft="5dp"
-                    android:scaleType="center"
+                    android:scaleType="fitXY"
                     android:src="@mipmap/soccer_hall"
                     android:visibility="visible" />
 
                 <TextView
                     android:id="@+id/module_right_mark_tv"
-                    android:layout_width="35dp"
-                    android:layout_height="19dp"
+                    android:layout_width="31dp"
+                    android:layout_height="18dp"
                     android:layout_marginLeft="5dp"
                     android:layout_marginRight="4dp"
                     android:background="@drawable/match_btn_shadow_bottom"
@@ -167,7 +166,7 @@
                     android:gravity="center_vertical"
                     android:text="155"
                     android:textColor="@color/black_grey"
-                    android:textSize="11sp"
+                    android:textSize="12sp"
                     android:visibility="visible" />
 
                 <View
@@ -562,8 +561,6 @@
                                 android:id="@+id/img_up_down_ft_1"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="1dp"
                                 android:src="@mipmap/arrow_down_update_red"
                                 android:visibility="invisible" />
@@ -597,8 +594,6 @@
                                 android:id="@+id/img_up_down_ft_x"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="1dp"
                                 android:src="@mipmap/arrow_down_update_red"
                                 android:visibility="invisible" />
@@ -633,8 +628,6 @@
                                 android:id="@+id/img_up_down_ft_2"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_centerVertical="true"
-                                android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="1dp"
                                 android:src="@mipmap/arrow_down_update_red"
                                 android:visibility="invisible" />

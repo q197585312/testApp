@@ -185,7 +185,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ll_title_list.setVisibility(View.GONE);
         }
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
-        ivHall.setVisibility(View.INVISIBLE);
+        ivHall.setVisibility(View.GONE);
         onConvertHall(item, ivHall, position);
 
         TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
@@ -394,7 +394,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 ivHall.setImageResource(R.mipmap.tv_play);
             }
         } else {
-            ivHall.setVisibility(View.INVISIBLE);
+            ivHall.setVisibility(View.GONE);
         }
     }
 
@@ -902,7 +902,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 addTitle(parent, inflate, context.getString(R.string.AWAY_TEAM_TOTAL_GOALS));
 
                 addAddedByColor(AfbUtils.changeValueS(additionData.getFAOOdds()), AfbUtils.changeValueS(additionData.getFAUOdds()), additionData.getATTG_SocOddsId(), false, parent, item,
-                        act.getString(R.string.FH_O), act.getString(R.string.FH_U), "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
+                        act.getString(R.string.FT_O), act.getString(R.string.FT_U), "over", "under", "", "", R.layout.addition_1x2_sport_item, "3"
                         , false
                         , false
                         , additionData.getFAOOddsIsInetBet().equals("True")
@@ -1647,13 +1647,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOOdds(fTodds.getOverOdds());
             ballInfo.setUOdds(fTodds.getUnderOdds());
             ballInfo.setIsHomeGive(fTodds.getIsHomeGive().equals("True") ? "1" : "0");
-            if (StringUtils.isNull(fTodds.getIsHomeGive()) || fTodds.getIsHomeGive().equals("True")) {
-                home_title_tv.setTextColor(red_black);
-                away_title_tv.setTextColor(black_grey);
-            } else {
-                home_title_tv.setTextColor(black_grey);
-                away_title_tv.setTextColor(red_black);
-            }
+            home_title_tv.setTextColor(black_grey);
+            away_title_tv.setTextColor(black_grey);
+
             ballInfo.setHasPar(fTodds.getHasPar() != null && fTodds.getHasPar().equals("True") ? "1" : "0");
             ballInfo.setHdpOdds(fTodds.getHdpOdds());
             ballInfo.setOUOdds(fTodds.getOUOdds());
@@ -1692,26 +1688,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             ballInfo.setOOdds_FH(fHodds.getOverOdds());
             ballInfo.setUOdds_FH(fHodds.getUnderOdds());
             ballInfo.setIsHomeGive_FH(fHodds.getIsHomeGive().equals("True") ? "1" : "0");
-            if (StringUtils.isNull(fHodds.getIsHomeGive())) {
-                if (fTodds.getIsHomeGive() != null) {
-                    hf_home_title_tv.setTextColor(black_grey);
-                    hf_away_title_tv.setTextColor(black_grey);
-                } else if (fTodds.getIsHomeGive().equals("True")) {
-                    hf_home_title_tv.setTextColor(red_black);
-                    hf_away_title_tv.setTextColor(black_grey);
-                } else {
-                    hf_home_title_tv.setTextColor(black_grey);
-                    hf_away_title_tv.setTextColor(red_black);
-                }
-            } else {
-                if (StringUtils.isNull(fHodds.getIsHomeGive()) || fHodds.getIsHomeGive().equals("True")) {
-                    hf_home_title_tv.setTextColor(red_black);
-                    hf_away_title_tv.setTextColor(black_grey);
-                } else {
-                    hf_home_title_tv.setTextColor(black_grey);
-                    hf_away_title_tv.setTextColor(red_black);
-                }
-            }
+            hf_home_title_tv.setTextColor(black_grey);
+            hf_away_title_tv.setTextColor(black_grey);
 
 
             ballInfo.setHasPar_FH(fHodds.getHasPar() != null && fHodds.getHasPar().equals("True") ? "1" : "0");
@@ -2065,7 +2043,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         }
                     } else {
 
-                        if (!StringUtils.isNull(item.getIsHomeGive_FH())&&item.getIsHomeGive_FH().equals("1")) {
+                        if (!StringUtils.isNull(item.getIsHomeGive_FH()) && item.getIsHomeGive_FH().equals("1")) {
                             upStr = hdpS;
                             downStr = "";
                         } else {
@@ -2074,7 +2052,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         }
                     }
 
-                    upTextTv.setTextColor(Color.RED);
+                    upTextTv.setTextColor(ContextCompat.getColor(context,R.color.red_background));
                     resUp = getResUpdate(item.isHomeBigger, isFh);
 
                     break;
@@ -2086,7 +2064,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     String ouf = upDown;
                     upStr = ouf;
                     downStr = "";
-                    upTextTv.setTextColor(Color.BLACK);
+                    upTextTv.setTextColor(ContextCompat.getColor(context,R.color.grey_dark_word));
                     resUp = getResUpdate(item.isOverBigger, isFh);
                     break;
 
@@ -2103,12 +2081,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             switch (downType) {
                 case "away":
                 case "mmaway":
-                    downTextTv.setTextColor(Color.RED);
+                    downTextTv.setTextColor(ContextCompat.getColor(context,R.color.red_background));
                     resDown = getResUpdate(item.isAwayBigger, isFh);
                     break;
                 case "under":
                 case "mmunder":
-                    downTextTv.setTextColor(Color.BLACK);
+                    downTextTv.setTextColor(ContextCompat.getColor(context,R.color.grey_dark_word));
                     resDown = getResUpdate(item.isUnderBigger, isFh);
                     break;
             }

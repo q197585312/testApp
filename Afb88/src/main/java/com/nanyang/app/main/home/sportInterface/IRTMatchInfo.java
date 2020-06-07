@@ -11,7 +11,11 @@ public interface IRTMatchInfo {
 
     String getHome();
 
+    String getRunHomeScore();
+
     String getAway();
+
+    String getRunAwayScore();
 
     String getTvPathIBC();
 
