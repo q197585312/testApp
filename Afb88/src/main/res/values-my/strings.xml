@@ -40,7 +40,7 @@
     <string name="refresh">Refresh</string>
     <string name="collection">Pengumpulan</string>
     <string name="menu">Menu</string>
-    <string name="mix">Mix Parlay</string>
+    <string name="mix">MIX PARLAY</string>
     <string name="Soccer">Bola sepak</string>
     <string name="Basketball">Bola Keranjang</string>
     <string name="Volleyball">Bola Tampar</string>
@@ -597,4 +597,6 @@
     <string name="u">U</string>
     <string name="language_zh_tw">PASUNDAN (TRADISIONAL)</string>
     <string name="single">@string/single_bet</string>
+    <string name="HDP">HDP</string>
+    <string name="FH_">Babak.</string>
 </resources>

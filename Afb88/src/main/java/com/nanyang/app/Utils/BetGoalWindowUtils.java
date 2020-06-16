@@ -86,6 +86,8 @@ public class BetGoalWindowUtils {
                                 if (dataBean != null) {
                                     final View view;
                                     String index10 = dataBean.getIndex10();
+
+                                    String index20 = dataBean.getIndex20();
                                     if (index10.equals("PAM") || index10.equals("PAR")) {
                                         view = layoutInflater.inflate(R.layout.item_bet_result_window_par, null);
                                         TextView tvTitle = view.findViewById(R.id.tv_title);
@@ -125,51 +127,9 @@ public class BetGoalWindowUtils {
                                         tvHome.setText(dataBean.getIndex1());
                                         tvAway.setText(dataBean.getIndex2());
                                         String index13 = dataBean.getIndex13();
-                                        if (index13.toUpperCase().contains("HT") || index13.toUpperCase().contains("FH")) {
-                                            tvData1.setVisibility(View.VISIBLE);
-                                            tvData1.setText("FH.");
-                                        } else {
-                                            tvData1.setVisibility(View.GONE);
-                                        }
                                         String transType10 = dataBean.getIndex10();
                                         boolean isOu = false;
-                                        switch (transType10) {
-                                            case "1":
-                                            case "2":
-                                            case "X":
-                                                transType10 = "1X2";
-                                                isOu=true;
-                                                break;
-                                            case "HDP":
-                                            case "MMH":
-                                                transType10 = "HDP";
-                                                break;
-                                            case "OU":
-                                            case "MMO":
-                                                transType10 = "O/U";
-                                                isOu = true;
-                                                break;
-                                            case "OE":
-                                                transType10 = "O/E";
-                                                break;
-                                            case "DC":
-                                                transType10 = "DC";
-                                                break;
-                                            case "CSR":
-                                                transType10 = "CSR";
-                                                break;
-                                            case "FLG":
-                                                transType10 = "FG/LG";
-                                                break;
-                                            case "TG":
-                                                transType10 = "TG";
-                                                break;
-                                            case "HFT":
-                                                transType10 = "HT/FT";
-                                                break;
-                                        }
-
-                                        tvData2.setText(transType10 + " ");
+                                        isOu = showBetType(activity,tvData1, tvData2, index13, transType10, isOu);
                                         String isRun5 = dataBean.getIndex5();
                                         String betType2 = dataBean.getIndex23();
                                         if (isOu) {
@@ -209,6 +169,7 @@ public class BetGoalWindowUtils {
                                     final ImageView imgClose = view.findViewById(R.id.img_close);
                                     final TextView tvCount = view.findViewById(R.id.tv_count);
                                     TextView tvData6 = view.findViewById(R.id.tv_data6);
+                                    showStatus(activity, index20,tvData6);
                                     String index8 = dataBean.getIndex8();
                                     String index22 = dataBean.getIndex22();
                                     String showStr;
@@ -230,22 +191,15 @@ public class BetGoalWindowUtils {
                                             sportActivity.onAddWaiteCount(0);
                                         }
                                         int endColor;
-                                        if (showStr.contains("A")) {
+
+                                        if (index20.contains("N")||index20.contains("A")) {
                                             endColor = ContextCompat.getColor(activity, R.color.green_dark);
                                         } else {
                                             endColor = Color.RED;
                                         }
                                         SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(showStr, "/", Color.YELLOW, endColor);
                                         tvData6.setText(spannableStringBuilder);
-                                    } else {
-                                        if (showStr.contains("A")) {
-                                            tvData6.setTextColor(Color.WHITE);
-                                            tvData6.setBackgroundColor(ContextCompat.getColor(activity, R.color.green_dark));
-                                        } else if (showStr.contains("W")) {
-                                            tvData6.setBackgroundColor(Color.YELLOW);
-                                        } else {
-                                            tvData6.setBackgroundColor(Color.RED);
-                                        }
+                                    }else {
                                         tvData6.setText(showStr);
                                     }
                                     Log.d("onGetRefreshMenu", "showStr: " + showStr);
@@ -298,6 +252,66 @@ public class BetGoalWindowUtils {
                         });
         CompositeDisposable mCompositeSubscription = new CompositeDisposable();
         mCompositeSubscription.add(subscribe);
+    }
+
+    public boolean showBetType(Activity activity, TextView tvData1, TextView tvData2, String index13, String transType10, boolean isOu) {
+        if (index13.toUpperCase().contains("HT") || index13.toUpperCase().contains("FH")) {
+            tvData1.setVisibility(View.VISIBLE);
+            tvData1.setText(R.string.FH_);
+        } else {
+            tvData1.setVisibility(View.GONE);
+        }
+        switch (transType10) {
+            case "1":
+            case "2":
+            case "X":
+                transType10 = activity.getString(R.string.X1X2);
+                isOu=true;
+                break;
+            case "HDP":
+            case "MMH":
+                transType10 = activity.getString(R.string.HDP);
+                break;
+            case "OU":
+            case "MMO":
+                transType10 =activity.getString(R.string.O_U);
+                isOu = true;
+                break;
+            case "OE":
+                transType10 = activity.getString(R.string.OE);
+                break;
+            case "DC":
+                transType10 = activity.getString(R.string.DC);
+                break;
+            case "CSR":
+                transType10 = activity.getString(R.string.CS);
+                break;
+            case "FLG":
+                transType10 = activity.getString(R.string.FGLG);
+                break;
+            case "TG":
+                transType10 = activity.getString(R.string.TG);
+                break;
+            case "HFT":
+                transType10 = activity.getString(R.string.HTFT);
+                break;
+        }
+
+        tvData2.setText(transType10 );
+
+
+        return isOu;
+    }
+    public void showStatus(Activity activity, String status, TextView running_Status){
+
+        if (status.trim().equals("N") || status.trim().equals("A")) {
+            running_Status.setBackgroundColor(ContextCompat.getColor(activity, R.color.transparent));
+            running_Status.setTextColor(ContextCompat.getColor(activity, R.color.green500));
+        } else if (status.trim().equals("D")) {
+            running_Status.setBackgroundColor(ContextCompat.getColor(activity, R.color.yellow_button));
+        } else {
+            running_Status.setBackgroundColor(ContextCompat.getColor(activity, R.color.red));
+        }
     }
 
     public void showGoalWindow(BaseToolbarActivity activity, String match, String homeTeam, int homeTextColor, String awayTeam, int awayTextColor, String homeScore, String awayScore, int type) {

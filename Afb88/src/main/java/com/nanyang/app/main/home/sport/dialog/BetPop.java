@@ -173,6 +173,8 @@ public class BetPop {
         max_single_bet.setText(R.string.max_single_money);
         bet_amount.setText(R.string.bet_limit);
         my_bets.setText(R.string.TabMyBets);
+        betSureBtn.setText(R.string.bet1);
+        betCancelBtn.setText(R.string.cancel);
         AfbUtils.switchLanguage(AfbUtils.getLanguage(context), context);
         activity = (SportActivity) context;
         handler = new Handler();

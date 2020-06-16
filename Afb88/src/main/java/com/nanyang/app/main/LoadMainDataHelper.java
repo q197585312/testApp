@@ -36,11 +36,11 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
         this.mCompositeSubscription = mCompositeSubscription;
     }
 
-    public void doRetrofitApiOnUiThread(T languageWfBean, final MainPresenter.CallBack<String> back) {
-        doRetrofitApiOnUiThread(languageWfBean, back, "");
+    public Disposable doRetrofitApiOnUiThread(T languageWfBean, final MainPresenter.CallBack<String> back) {
+        return doRetrofitApiOnUiThread(languageWfBean, back, "");
     }
 
-    public void doRetrofitApiOnUiThread(T languageWfBean, final MainPresenter.CallBack<String> back, final String matches) {
+    public Disposable doRetrofitApiOnUiThread(T languageWfBean, final MainPresenter.CallBack<String> back, final String matches) {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 
         Log.d("doRetrofitApiOnUiThread", "doRetrofitApiOnUiThread: " + p);
@@ -80,7 +80,9 @@ public class LoadMainDataHelper<T extends LoginInfo.LanguageWfBean> {
             }
         });
         mCompositeSubscription.add(disposable);
+        return disposable;
     }
+
     public void doRetrofitApiOnUiThreadHTML(T languageWfBean, final MainPresenter.CallBack<String> back) {
         String p = AppConstant.getInstance().HOST + "H50/Pub/pcode.axd?_fm=" + languageWfBean.getJson();
 

@@ -38,6 +38,12 @@ public class SoccerRunningAdapterHelper extends SoccerCommonAdapterHelper {
 
     protected void handleLiveTimeTv(BallInfo item, TextView timeTv) {
         SoccerRunningGoalManager.getInstance().runTimeStyle(timeTv, item.getMExtraTime(), item.getStatus(), item.getCurMinute(), item.getLive());
+
+        if (act != null && act.videoHolder != null && act.fl_top_video.getVisibility() == View.VISIBLE && act.videoHolder.tv_run_time.getVisibility() == View.VISIBLE
+                && act.itemBallAdded != null && act.itemBallAdded.getSocOddsId().equals(item.getSocOddsId())
+                ) {
+            SoccerRunningGoalManager.getInstance().runTimeStyleColor(act.videoHolder.tv_run_time, item.getMExtraTime(), item.getStatus(), item.getCurMinute(), item.getLive(), Color.WHITE);
+        }
     }
 
 

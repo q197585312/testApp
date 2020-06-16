@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.view.MotionEvent;
 import android.view.View;
 
 import com.nanyang.app.AfbApplication;
@@ -432,17 +433,20 @@ public class MainPresenter extends BaseSwitchPresenter {
     private void goPCasino(String data, String itemG, String host) {
         final SportIdBean sportIdBean = AfbUtils.getSportByG(itemG);
         String url = host + data;
-        Bundle bundle = new Bundle();
-        bundle.putString("url", url);
-        bundle.putString(AppConstant.KEY_STRING, baseContext.getBaseActivity().getString(sportIdBean.getTextRes()));
-        baseContext.getBaseActivity().skipAct(WebActivity.class, bundle);
+        String string = baseContext.getBaseActivity().getString(sportIdBean.getTextRes());
+        goWebActivity(url, string, false);
     }
 
     public void goWebPc(String url) {
+        String string = baseContext.getBaseActivity().getString(R.string.app_name);
+        goWebActivity(url, string, true);
+    }
 
+    private void goWebActivity(String url, String string, boolean canFinish) {
         Bundle bundle = new Bundle();
         bundle.putString("url", url);
-        bundle.putString(AppConstant.KEY_STRING, baseContext.getBaseActivity().getString(R.string.app_name));
+        bundle.putString(AppConstant.KEY_STRING, string);
+        bundle.putBoolean(AppConstant.KEY_BOOLEAN, canFinish);
         baseContext.getBaseActivity().skipAct(WebActivity.class, bundle);
     }
 
@@ -498,6 +502,27 @@ public class MainPresenter extends BaseSwitchPresenter {
                 ToastUtils.showLong(data);
             }
         }, "");
+    }
+
+    public boolean isTouchInView(MotionEvent ev, View view) {
+        if (view == null) {
+            return false;
+        }
+        int x = (int) ev.getRawX();
+        int y = (int) ev.getRawY();
+        int[] location = new int[2];
+        view.getLocationOnScreen(location);
+        int left = location[0];
+        int top = location[1];
+        int right = left + view.getMeasuredWidth();
+        int bottom = top + view.getMeasuredHeight();
+        //view.isClickable() &&
+        if (y >= top && y <= bottom && x >= left
+                && x <= right) {
+            return true;
+        }
+        return false;
+
     }
 
 

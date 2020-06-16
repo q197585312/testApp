@@ -25,12 +25,12 @@ android {
     }
     buildTypes {
         release {
-            minifyEnabled true
+            minifyEnabled false
             zipAlignEnabled true
             buildConfigField "boolean", "LOG_DEBUG", "false"
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
 //            signingConfig signingConfigs.config
-            debuggable true
+            debuggable false
             signingConfig signingConfigs.config
         }
         debug {
@@ -54,7 +54,7 @@ android {
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '2.67'
+            versionName '2.68'
             buildConfigField "String", "Domain", '".afb1188.com"'
             buildConfigField "String", "H5_URL", '"https://wsapp.afb1188.com/H50/Pub/wfLoginH50.html"'
             buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.com/"' //app专用服务器

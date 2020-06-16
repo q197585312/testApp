@@ -23,6 +23,8 @@ public class ViewHolder {
     public ImageView ivVoice;
     @Bind(R.id.iv_full_screen)
     public ImageView ivFullScreen;
+    @Bind(R.id.tv_run_time)
+    public TextView tv_run_time;
     @Bind(R.id.ll_status)
     public LinearLayout llStatus;
     @Bind(R.id.fl_top_video)
@@ -46,8 +48,10 @@ public class ViewHolder {
     @Bind(R.id.iv_bet_list)
     public View iv_bet_list;
 
+    @Bind(R.id.fl_run_match_title)
+    public View fl_run_match_title;
     @Bind(R.id.ll_run_match_title)
-    public View tv_run_match_title;
+    public View ll_run_match_title;
     @Bind(R.id.tv_run_match_home)
     public TextView tv_run_match_home;
     @Bind(R.id.tv_run_match_home_score)

@@ -38,7 +38,8 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/h"
-                        android:textColor="@color/grey_dark_word"
+                        android:textStyle="bold"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -46,6 +47,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="1dp"
+                        android:textStyle="bold"
                         android:textColor="@color/grey_dark_word"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -83,7 +85,8 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/a"
-                        android:textColor="@color/grey_dark_word"
+                        android:textStyle="bold"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -91,6 +94,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="1dp"
+                        android:textStyle="bold"
                         android:textColor="@color/grey_dark_word"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -135,7 +139,8 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/o"
-                        android:textColor="@color/grey_dark_word"
+                        android:textStyle="bold"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -143,6 +148,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="1dp"
+                        android:textStyle="bold"
                         android:textColor="@color/grey_dark_word"
                         android:textSize="12sp" />
                 </LinearLayout>
@@ -180,7 +186,8 @@
                         android:gravity="right"
                         android:padding="1dp"
                         android:text="@string/u"
-                        android:textColor="@color/grey_dark_word"
+                        android:textStyle="bold"
+                        android:textColor="@color/black_grey"
                         android:textSize="12sp" />
 
                     <TextView
@@ -188,6 +195,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:padding="1dp"
+                        android:textStyle="bold"
                         android:textColor="@color/grey_dark_word"
                         android:textSize="12sp" />
                 </LinearLayout>

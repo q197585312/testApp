@@ -38,7 +38,7 @@
     <string name="refresh">Refresh</string>
     <string name="collection">Collection</string>
     <string name="menu">Menu</string>
-    <string name="mix">Mix Parlay</string>
+    <string name="mix">MIX PARLAY</string>
     <string name="Soccer">Soccer</string>
     <string name="Basketball">Basketball</string>
     <string name="Volleyball">Volleyball</string>
@@ -569,7 +569,7 @@
     <string name="switching_market_failure">Switching market failure</string>
     <string name="All_Market">@string/All_Markets</string>
     <string name="disable_sound">Disable Sound</string>
-    <string name="single_bet">Single Bet</string>
+    <string name="single_bet">SINGLE BET</string>
     <string name="can_not_more_than_10">Mix parlay can not more than 15</string>
     <string name="live_stream">live streaming</string>
     <string name="live_center">live center</string>
@@ -582,7 +582,7 @@
     <string name="FGLG">FGLG</string>
     <string name="MM_HDP_OU">MM HDP/OU</string>
     <string name="Home_Away_TG">Home/Away Team TG</string>
-    <string name="FT15">FT15</string>
+    <string name="FT15">FT15 MINS</string>
     <string name="stake_is_more_than_max_limit">Stake is more than max limit</string>
     <string name="stake_is_less_than_min_limit">Stake is less than min limit</string>
     <string name="all_host">@string/all</string>
@@ -650,4 +650,6 @@
     <string name="Over_7">7&#038;Over</string>
     <string name="language_zh_tw">CHINESE(TRADITIONAL)</string>
     <string name="single">SINGLE</string>
+    <string name="HDP">HDP</string>
+    <string name="FH_">FH.</string>
 </resources>

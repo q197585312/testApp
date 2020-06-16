@@ -1,7 +1,6 @@
 package com.nanyang.app.load.login;
 
 import android.animation.ValueAnimator;
-import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Rect;
 import android.net.Uri;
@@ -18,7 +17,6 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.gson.Gson;
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
@@ -28,22 +26,11 @@ import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.Pop.PopChoiceLanguage;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.DateUtils;
-import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.LanguageHelper;
-import com.nanyang.app.common.MainPresenter;
-import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.main.MainActivity;
-import com.nanyang.app.main.Setting.SettingAllDataBean;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -94,7 +81,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_login);
         createPresenter(new LoginPresenter(this));
         tv_all_right.setText(String.format(getString(R.string.copyright_2018_afb88_all_rights_reserved), DateUtils.getCurrentDate("yyyy"),
@@ -277,74 +263,11 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         String us = edtLoginUsername.getText().toString();
         String k = edtLoginPassword.getText().toString();//"a7c7366ecd6041489d08ecb9ac1f39c9"
         if (!TextUtils.isEmpty(us) && !TextUtils.isEmpty(k)) {
-            presenter.login(new LoginInfo(us, k), new BaseConsumer<String>(this) {
-                        @Override
-                        protected void onBaseGetData(String s) throws JSONException {
-                            JSONArray jsonArray = new JSONArray(s);
-
-                            if (s.contains("Maintenance")) {
-                                Exception exception = new Exception(((Activity) baseContext).getString(R.string.System_maintenance));
-                                onError(exception);
-                            } else if (jsonArray.optString(2) != null && StringUtils.matches(jsonArray.optString(2), "^.*\\(\\'([^\\']+)\\'\\);.*?")) {
-                                Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2), "^.*\\(\\'([^\\']+)\\'\\);.*?", 1));
-                                onError(exception);
-                            } else {
-                                String regex = "window.location";
-                                Pattern p = Pattern.compile(regex);
-                                Matcher m = p.matcher(s);
-                                if (m.find()) {
-                                    final MainPresenter switchLanguage = new MainPresenter(baseContext);
-                                    switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
-                                                                  @Override
-                                                                  public void onBack(SettingAllDataBean data) throws JSONException {
-                                                                      onAppGetData(switchLanguage);
-                                                                  }
-                                                              }
-                                    );
-                                } else {
-                                    Exception exception1 = new Exception(s);
-                                    onError(exception1);
-                                }
-                            }
-
-
-                        }
-
-                        @Override
-                        protected void onHideDialog() {
-                        }
-
-                        @Override
-                        protected void onError(final Throwable throwable) {
-                            super.onError(throwable);
-                            runOnUiThread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    ToastUtils.showShort(throwable.getMessage());
-                                }
-                            });
-
-                        }
-                    }
-            );
+            presenter.login(new LoginInfo(us, k)          );
         } else {
             ToastUtils.showShort(getString(R.string.enter_username_or_password));
         }
     }
-
-    private void onAppGetData(MainPresenter switchLanguage) {
-        String language = new LanguageHelper(mContext).getLanguage();
-        switchLanguage.loadAllMainData(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.getInstance().wfMain), new MainPresenter.CallBack<String>() {
-            @Override
-            public void onBack(String data) {
-                PersonalInfo personalInfo = new Gson().fromJson(data, PersonalInfo.class);
-                personalInfo.setPassword(getApp().getUser().getPassword());
-                getApp().setUser(personalInfo);
-                onLanguageSwitchSucceed(personalInfo.getLoginName());
-            }
-        });
-    }
-
 
     public void onLanguageSwitchSucceed(String str) {
         ToastUtils.showShort(R.string.Login_Success);

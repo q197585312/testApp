@@ -244,6 +244,7 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:paddingRight="8dp"
+                android:textAllCaps="true"
                 android:text="0"
                 android:textColor="@color/black"
                 android:textColorHint="@color/grey_background"
@@ -411,13 +412,13 @@
     <FrameLayout
         android:id="@+id/bet_pop_parent_top_fl"
         android:layout_width="match_parent"
-        android:layout_height="175dp"
+        android:layout_height="205dp"
         android:visibility="gone">
 
         <WebView
             android:id="@+id/bet_pop_parent_web_ll"
             android:layout_width="match_parent"
-            android:layout_height="175dp"
+            android:layout_height="match_parent"
             android:background="@color/black_grey" />
     </FrameLayout>
 

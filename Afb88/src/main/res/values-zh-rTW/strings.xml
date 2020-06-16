@@ -338,7 +338,7 @@
     <string name="FIRST5_H_A">先5局亞州盤</string>
     <string name="FIRST5_O_U">先5局大小</string>
     <string name="A_TIE_B">A-TIE-B</string>
-    <string name="O_U">大小</string><!--keno-->
+    <string name="O_U">大/小</string><!--keno-->
     <string name="china">中國</string>
     <string name="canada1">加拿大1</string>
     <string name="canada2">加拿大2</string>
@@ -602,4 +602,6 @@
     <string name="u">小</string>
     <string name="language_zh_tw">中文(繁體)</string>
     <string name="single">@string/single_bet</string>
+    <string name="HDP">讓球</string>
+    <string name="FH_">半場.</string>
 </resources>

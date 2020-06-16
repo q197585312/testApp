@@ -477,4 +477,6 @@
     <string name="u">U</string>
     <string name="language_zh_tw">중국어 (번체)</string>
     <string name="single">@string/single_bet</string>
+    <string name="HDP">양보하다</string>
+    <string name="FH_">FH.</string>
 </resources>

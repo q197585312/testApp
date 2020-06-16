@@ -473,4 +473,6 @@
     <string name="u">@string/under</string>
     <string name="language_zh_tw">จีน (ดั้งเดิม)</string>
     <string name="single">@string/single_bet</string>
+    <string name="HDP">ราคาต่อรอง</string>
+    <string name="FH_">FH.</string>
 </resources>

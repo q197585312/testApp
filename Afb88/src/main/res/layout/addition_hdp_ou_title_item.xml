@@ -17,6 +17,7 @@
             android:gravity="center"
             android:padding="5dp"
             android:text="@string/FT_HDP"
+            android:textAllCaps="true"
             android:textColor="@color/black_grey"
             android:textSize="12sp" />
 
@@ -28,6 +29,7 @@
             android:gravity="center"
             android:padding="5dp"
             android:text="@string/FT_OU"
+            android:textAllCaps="true"
             android:textColor="@color/black_grey"
             android:textSize="12sp" />
 
@@ -38,6 +40,7 @@
             android:layout_weight="1"
             android:gravity="center"
             android:padding="5dp"
+            android:textAllCaps="true"
             android:text="@string/HT_HDP"
             android:textColor="@color/black_grey"
             android:textSize="12sp" />
@@ -48,6 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
+            android:textAllCaps="true"
             android:padding="5dp"
             android:text="@string/HT_OU"
             android:textColor="@color/black_grey"

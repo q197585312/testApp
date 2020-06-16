@@ -24,6 +24,7 @@ import com.nanyang.app.BuildConfig;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.load.login.LoginActivity;
+import com.unkonw.testapp.libs.api.CookieManger;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.utils.LogUtil;
@@ -51,6 +52,7 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
 
         setContentView(R.layout.activity_welcome);
         createPresenter(new WelcomePresenter(this));
+        CookieManger.getInstance().getCookieStore().removeAll();
         try {
             presenter.checkVersion(new BaseConsumer<CheckVersionBean>(this) {
                 @Override
@@ -96,6 +98,7 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
         this.loadFile = file;
         checkIsAndroidO();
     }
+
     @Override
     public void startUpdateState() {
 
@@ -147,7 +150,7 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        LogUtil.d("onRequestPermissionsResult","权限code："+requestCode);
+        LogUtil.d("onRequestPermissionsResult", "权限code：" + requestCode);
 
         switch (requestCode) {
             case READ_CODE:
@@ -181,7 +184,7 @@ public class WelcomeActivity extends BaseToolbarActivity<WelcomePresenter> {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        switch (requestCode){
+        switch (requestCode) {
             case INSTALL_AFB_CODE:
                 SystemTool.installApk(mContext, loadFile, BuildConfig.APPLICATION_ID);
                 break;

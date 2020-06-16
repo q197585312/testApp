@@ -76,13 +76,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
         this.back = back;
     }
 
-    //CHG|Odds has changed to 1.69!|1.69|1
-    protected void handleOddsUpdate(String allData) {
-        String substring = allData.substring(allData.indexOf("!|") + 2);
-        String odds = substring.substring(0, substring.indexOf("|"));
-        back.callBack(odds);
-    }
-
 
     protected OddsClickBean getOddsUrl(B item, String type, boolean isHf, String odds, String sc) {
         return null;

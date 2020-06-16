@@ -34,10 +34,10 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 
 import butterknife.Bind;
 
@@ -54,6 +54,7 @@ public class HomeFragment extends BaseSwitchFragment {
     private String lastAllMainData;
     private BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean> adapter;
     private String language;
+    private List<AllBannerImagesBean.MainBannersBean> mainList;
 
     @Override
     public int onSetLayoutId() {
@@ -72,7 +73,6 @@ public class HomeFragment extends BaseSwitchFragment {
         ((MainPresenter) getBaseActivity().presenter).loadAllImages(new MainPresenter.CallBack<AllBannerImagesBean>() {
             @Override
             public void onBack(AllBannerImagesBean data) throws JSONException {
-
                 LogUtil.d(getClass().getSimpleName(), "sendEvent--------------->" + data.toString());
                 ((MainActivity) getBaseActivity()).getApp().setListMainPictures(data.getMain());
                 ((MainActivity) getBaseActivity()).getApp().setListMainBanners(data.getMainBanners());
@@ -136,32 +136,15 @@ public class HomeFragment extends BaseSwitchFragment {
 
 
     private void initContent(List<AllBannerImagesBean.MainBannersBean> data) {
-/*        ArrayList<AllBannerImagesBean.MainBannersBean> mainBannersBeen = new ArrayList<>();
-        mainBannersBeen.addAll(new ArrayList<>(Arrays.asList(
-           beanHashMap.put("PG CASINO", new SportIdBean("PG CASINO", "", R.string.PGCashio, "PG CASINO", SportActivity.class, soccerFragment, Color.BLACK));
-        beanHashMap.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK));
-
-                new AllBannerImagesBean.MainBannersBean("","PS GAMING","http://13.112.86.40/H50/Img/PSGaming.png"),
-                new AllBannerImagesBean.MainBannersBean("","SEXY CASINO","http://13.112.86.40/H50/Img/SGGaming.png"),
-                new AllBannerImagesBean.MainBannersBean("","SA CASINO","http://13.112.86.40/H50/Img/SAGaming.png")
-                  beanHashMap.put("Casino", new SportIdBean("Casino", "", R.string.gd88_casino, "Casino", SportActivity.class, soccerFragment, Color.BLACK));c
-        )));
-        mainBannersBeen.addAll(data);*/
-
-        Map<String, String> enableMap = getBaseToolbarActivity().getApp().updateOtherMap();
-
-
+        this.mainList = data;
         GridLayoutManager layoutManager = new GridLayoutManager(mContext, 3);//设置为一个3列的纵向网格布局
-//        data.add(new AllBannerImagesBean.MainBannersBean())
         rvContent.setLayoutManager(layoutManager);
         Iterator<AllBannerImagesBean.MainBannersBean> iterator = data.iterator();
         if (AppConstant.IS_AGENT) {
             while (iterator.hasNext()) {
                 AllBannerImagesBean.MainBannersBean next = iterator.next();
                 if (StringUtils.isNull(next.getDbid()))
-
                     iterator.remove();
-
             }
         }
         adapter = new BaseRecyclerAdapter<AllBannerImagesBean.MainBannersBean>(mContext, data, R.layout.home_sport_item_image_text) {
@@ -226,9 +209,38 @@ public class HomeFragment extends BaseSwitchFragment {
                 Bundle b1 = new Bundle();
                 b1.putSerializable(AppConstant.KEY_DATA, menuItemInfo);
                 skipAct(sportIdBean.getCls(), b1);
-
             }
         });
+    }
+
+    private List<AllBannerImagesBean.MainBannersBean> sortNotEmptyData(List<AllBannerImagesBean.MainBannersBean> data) {
+        Iterator<AllBannerImagesBean.MainBannersBean> iterator = data.iterator();
+        List<AllBannerImagesBean.MainBannersBean> hasData = new ArrayList<>();
+        List<AllBannerImagesBean.MainBannersBean> noData = new ArrayList<>();
+        while (iterator.hasNext()) {
+            AllBannerImagesBean.MainBannersBean next = iterator.next();
+            if (hasData("M_RAm", next) || hasData("M_TAm", next) || hasData("M_EAm", next)) {
+                LogUtil.d("addData", "hasData::::next.getDbid()" + next.getDbid() + "," + "next.getImg()" + next.getImg());
+                hasData.add(next);
+            } else {
+                LogUtil.d("addData", "nodata::::next.getDbid()" + next.getDbid() + "," + "next.getImg()" + next.getImg());
+                noData.add(next);
+            }
+        }
+
+        List<AllBannerImagesBean.MainBannersBean> allData = new ArrayList<>();
+        allData.addAll(hasData);
+        allData.addAll(noData);
+        return allData;
+
+    }
+
+    private boolean hasData(String m_rAm, AllBannerImagesBean.MainBannersBean next) {
+        if (jsonObjectNum == null)
+            return false;
+        String string = jsonObjectNum.optString(m_rAm + next.getDbid());
+        return !StringUtils.isNull(string) && !string.equals("0");
+
     }
 
 
@@ -268,7 +280,8 @@ public class HomeFragment extends BaseSwitchFragment {
                     try {
                         LogUtil.d("mainAllDataUpdateRunnable", "不同——刷新");
                         jsonObjectNum = new JSONObject(data);
-                        adapter.notifyDataSetChanged();
+                        List<AllBannerImagesBean.MainBannersBean> list = sortNotEmptyData(mainList);
+                        adapter.addAllAndClear(list);
                         lastAllMainData = data;
                     } catch (JSONException e) {
                         e.printStackTrace();

@@ -5,6 +5,8 @@ import android.content.SharedPreferences;
 import android.text.TextUtils;
 import android.util.Log;
 
+import com.unkonw.testapp.libs.base.BaseApplication;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -33,7 +35,8 @@ public class PersistentCookieStore {
     private final SharedPreferences cookiePrefs;
 
 
-    public PersistentCookieStore(Context context) {
+    public PersistentCookieStore() {
+        Context context = BaseApplication.getInstance();
         cookiePrefs = context.getSharedPreferences(COOKIE_PREFS, 0);
         cookies = new HashMap<>();
 

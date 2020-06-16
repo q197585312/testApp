@@ -27,6 +27,7 @@ import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
 import android.webkit.SslErrorHandler;
 import android.webkit.WebChromeClient;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
@@ -74,7 +75,7 @@ import com.nanyang.app.main.home.sport.volleyball.VolleyballFragment;
 import com.nanyang.app.main.home.sport.winterSport.WinterSportFragment;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.libs.api.PersistentCookieStore;
+import com.unkonw.testapp.libs.api.CookieManger;
 import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.SystemTool;
 
@@ -272,15 +273,18 @@ public class AfbUtils {
         return style;
     }
 
-    public static void synCookies(Context context, WebView webView, String url,boolean isZoom) {
+    public static void synCookies(Context context, WebView webView, String url, boolean isZoom) {
+        synCookies(context, webView, url, isZoom, null);
+    }
 
+    public static void synCookies(Context context, WebView webView, String url, boolean isZoom, WebViewClient webViewClient) {
         webView.getSettings().setUseWideViewPort(isZoom);
 //设置可以支持缩放
         webView.getSettings().setSupportZoom(isZoom);
 //设置出现缩放工具
         webView.getSettings().setBuiltInZoomControls(isZoom);
-    //设定缩放控件隐藏
-        if(isZoom){
+        //设定缩放控件隐藏
+        if (isZoom) {
             webView.setInitialScale(100);
         }
         webView.getSettings().setDisplayZoomControls(false);
@@ -291,30 +295,30 @@ public class AfbUtils {
         webView.getSettings().setAppCacheEnabled(true);//是否使用缓存
         webView.getSettings().setDomStorageEnabled(true);//DOM Storage
         webView.setWebChromeClient(new WebChromeClient());
-        webView.setWebViewClient(new WebViewClient() {
-            @Override
-            public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                view.loadUrl(url);
-                return super.shouldOverrideUrlLoading(view, url);
-            }
+        if (webViewClient == null) {
+            webView.setWebViewClient(new WebViewClient() {
 
-            @Override
-            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
-                //handler.cancel(); 默认的处理方式，WebView变成空白页
-                handler.proceed();//接受证书
-//                dismissBlockDialog();
-                //handleMessage(Message msg); 其他处理
-            }
-        });
+                @Override
+                public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                        view.loadUrl(request.getUrl().toString());
+                    } else {
+                        view.loadUrl(request.toString());
+                    }
+                    return true;
+                }
 
-//        LogUtil.d("url---", "cookie-------:" + sb.toString());
+                @Override
+                public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                    handler.proceed();//接受证书
+                }
+            });
+        } else {
+            webView.setWebViewClient(webViewClient);
+        }
         syncCookie(context, url);
-
         webView.loadUrl(url);
-
-//        webView.loadUrl(url);
     }
-
 
     /**
      * 给WebView同步Cookie
@@ -335,13 +339,13 @@ public class AfbUtils {
         } else {
             cookieManager.removeSessionCookies(null);// 移除
         }
-        List<Cookie> cookies = new PersistentCookieStore(context).getCookies();//;
+        List<Cookie> cookies = CookieManger.getInstance().getCookieStore().getCookies();//;
         for (int i = 0; i < cookies.size(); i++) {
             Cookie cookie = cookies.get(i);
             String value = cookie.name() + "=" + cookie.value();
             cookieManager.setCookie(BuildConfig.Domain, value);
         }
-        cookieManager.setCookie(BuildConfig.Domain, "Domain="+BuildConfig.Domain);
+        cookieManager.setCookie(BuildConfig.Domain, "Domain=" + BuildConfig.Domain);
         cookieManager.setCookie(BuildConfig.Domain, "Path=/");
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
             CookieSyncManager.getInstance().sync();
@@ -479,9 +483,10 @@ public class AfbUtils {
         beanHashMap.put("108", new SportIdBean("108", "35", R.string.Muay_Thai, "Muay_Thai", SportActivity.class, muayThaiFragment, Color.BLACK, R.mipmap.financial));
         beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running));
         beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright));
-
+        SportIdBean soccerRunning = new SportIdBean("1", "1", R.string.Soccer_Runing, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football);
+        soccerRunning.setKey("0");
         sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running));
-        sportMap.put("0", new SportIdBean("1", "1", R.string.Soccer_Runing, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
+        sportMap.put("0", soccerRunning);
         sportMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.BLACK, R.mipmap.football));
         sportMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
         sportMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball));

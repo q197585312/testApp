@@ -85,6 +85,7 @@ public class LiveSelectedHelper {
                     TextView textView = holder.getTextView(R.id.item_text_tv);
                     textView.setTextColor(ContextCompat.getColor(mContext, R.color.black_grey));
                     textView.setText(item.getRes());
+                    textView.setAllCaps(true);
                     if (isPositionSelected(position)) {
                         textView.setTextColor(ContextCompat.getColor(mContext, R.color.yellow1));
                     }

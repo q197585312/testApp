@@ -108,7 +108,7 @@ public class Api {
                     .retryOnConnectionFailure(true)
                     .addNetworkInterceptor(
                             interceptor)
-                    .cookieJar(new CookieManger(BaseApplication.getInstance()))
+                    .cookieJar( CookieManger.getInstance())
                     .cache(cache)
 //                    .addInterceptor( mInterceptor)
                     .build();

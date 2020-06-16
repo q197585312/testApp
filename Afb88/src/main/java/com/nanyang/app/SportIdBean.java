@@ -1,5 +1,6 @@
 package com.nanyang.app;
 
+import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.home.sport.main.BaseSportFragment;
 
 import java.io.Serializable;
@@ -11,6 +12,14 @@ import java.io.Serializable;
 public class SportIdBean implements Serializable {
     private Class<? extends BaseToolbarActivity> cls;
     private int textColor;
+
+    public String getKey() {
+        if (StringUtils.isNull(key))
+            return dbid;
+        return key;
+    }
+
+    private String key;
 
     public String getDbid() {
         return dbid;
@@ -47,7 +56,7 @@ public class SportIdBean implements Serializable {
         return imgUrl;
     }
 
-    String imgUrl="";
+    String imgUrl = "";
     int textRes;
     int sportCount;
     int sportPic;
@@ -74,7 +83,7 @@ public class SportIdBean implements Serializable {
         return textColor;
     }
 
-    public SportIdBean(String g, String dbid, int textRes, String type, Class<? extends BaseToolbarActivity> cls, BaseSportFragment baseFragment, int textColor,String imgUrl) {
+    public SportIdBean(String g, String dbid, int textRes, String type, Class<? extends BaseToolbarActivity> cls, BaseSportFragment baseFragment, int textColor, String imgUrl) {
         this.dbid = dbid;
         this.id = g;
         this.textRes = textRes;
@@ -133,5 +142,9 @@ public class SportIdBean implements Serializable {
                 ", sportPic=" + sportPic +
                 ", type='" + type + '\'' +
                 '}';
+    }
+
+    public void setKey(String key) {
+        this.key = key;
     }
 }

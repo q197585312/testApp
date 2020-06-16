@@ -79,6 +79,7 @@
             android:background="@drawable/match_btn_shadow_back"
             android:gravity="center"
             android:onClick="clickToday"
+            android:textAllCaps="true"
             android:padding="3dp"
             android:text="@string/Today"
             android:textColor="@color/white" />
@@ -90,6 +91,7 @@
             android:background="@drawable/match_btn_shadow_back"
             android:drawablePadding="4dp"
             android:gravity="center"
+            android:textAllCaps="true"
             android:onClick="clickTopLeft"
             android:padding="3dp"
             android:text="@string/Five_Major_Match"

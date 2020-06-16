@@ -1,7 +1,5 @@
 package com.unkonw.testapp.libs.api;
 
-import android.content.Context;
-
 import java.util.List;
 
 import okhttp3.Cookie;
@@ -13,21 +11,25 @@ public class CookieManger implements CookieJar {
 
     public static String APP_PLATFORM = "app-platform";
 
-
-    private static Context mContext;
-
-    public static PersistentCookieStore getCookieStore() {
+    public PersistentCookieStore getCookieStore() {
         return cookieStore;
     }
 
-    private static PersistentCookieStore cookieStore;
+    private PersistentCookieStore cookieStore;
+    private static CookieManger instance;
 
-    public CookieManger(Context context) {
-        mContext = context;
+    private CookieManger() {
         if (cookieStore == null) {
-            cookieStore = new PersistentCookieStore(mContext);
+            cookieStore = new PersistentCookieStore();
         }
+    }
 
+    public static CookieManger getInstance() {
+
+        if (instance == null) {
+            instance = new CookieManger();
+        }
+        return instance;
     }
 
     @Override

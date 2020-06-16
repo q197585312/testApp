@@ -14,6 +14,8 @@ import com.nanyang.app.ApiService;
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.Been.CheckVersionBean;
 import com.nanyang.app.BuildConfig;
+import com.nanyang.app.MenuItemInfo;
+import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
@@ -32,6 +34,7 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.util.Iterator;
 
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
@@ -40,10 +43,11 @@ import static com.unkonw.testapp.libs.api.Api.getService;
 
 class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
     private File file;
-
+    LanguageHelper helper;
     //构造 （activity implements v, 然后WelcomePresenter(this)构造出来）
     WelcomePresenter(WelcomeActivity view) {
         super(view);
+        helper = new LanguageHelper(baseContext.getBaseActivity());
     }
 
 
@@ -109,9 +113,7 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
             String webId = extras.getString("webId");
             String currencyName = extras.getString("currencyName");
             String oddsType = extras.getString("oddsType");
-
             Log.d(getClass().getSimpleName(), "checkInitCheck: " + language);
-            LanguageHelper helper = new LanguageHelper(baseContext.getBaseActivity());
             helper.switchLanguage(language);
             String language1 = helper.getLanguage();
             skipLogin(companyKey, userName, us, language1, webId, currencyName, oddsType);
@@ -168,10 +170,20 @@ class WelcomePresenter extends BaseRetrofitPresenter<WelcomeActivity> {
         String us = StringUtils.findGroup(url_login, "^.*us=([^&]+)&.*?", 1);
         app.getUser().setLoginName(us);
         app.getUser().setPassword("");
+        Iterator<MenuItemInfo<String>> iterator = helper.getLanguageItems().iterator();
+        MenuItemInfo<String> en = new MenuItemInfo<>(R.mipmap.lang_en_flag, (R.string.language_en), "en", "EN-US");
+        while (iterator.hasNext()){
+            MenuItemInfo<String> next = iterator.next();
+            if(url_login.contains(next.getParent())){
+                en=next;
+                break;
+            }
+        }
+        helper.switchLanguage(en.getType());
         switchLanguage.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
             @Override
             public void onBack(SettingAllDataBean data) throws JSONException {
-                String language = new LanguageHelper(baseContext.getBaseActivity()).getLanguage();
+                String language = helper.getLanguage();
                 LoadMainDataHelper helper = new LoadMainDataHelper(mApiWrapper, baseContext.getBaseActivity(), mCompositeSubscription);
                 helper.doRetrofitApiOnUiThread(new LoginInfo.LanguageWfBean("AppGetDate", language, AppConstant.wfMain), new MainPresenter.CallBack<String>() {
                     @Override

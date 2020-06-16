@@ -327,6 +327,14 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
     @Override
     public void onFailed(final String message) {
+        if (message != null && message.contains("Guest")) {
+            reLoginPrompt(getBaseActivity().getString(R.string.failed_to_connect), new SportContract.CallBack() {
+                @Override
+                public void clickCancel(View v) {
+                    refresh();
+                }
+            });
+        }
 
 //        handler.post(new Runnable() {
 //            @Override

@@ -17,7 +17,6 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.StringUtils;
@@ -25,7 +24,6 @@ import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.football.SoccerRunningGoalManager;
 import com.nanyang.app.main.home.sport.live.LiveSelectedHelper;
-import com.nanyang.app.main.home.sport.live.LiveWebActivity;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.nanyang.app.main.home.sport.model.OddsClickBean;
 import com.nanyang.app.main.home.sport.model.SportInfo;
@@ -54,7 +52,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
     private static final String TAG = "BallInfo";
     final int red_black = Color.RED;
     final int black_grey = Color.BLACK;
-    private final BaseToolbarActivity act;
+    public final SportActivity act;
     private BaseMixStyleHandler handler;
     private String curCode = "";
     protected Context context;
@@ -90,7 +88,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public BallAdapterHelper(Context context) {
         this.context = context;
-        act = (BaseToolbarActivity) this.context;
+        act = (SportActivity) this.context;
         if (act != null && act.getApp().getSettingAllDataBean() != null)
             curCode = act.getApp().getSettingAllDataBean().getCurCode();
         this.handler = new BaseMixStyleHandler(act);
@@ -363,10 +361,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         TextView homeScoreTv = helper.getView(R.id.module_match_home_score_tv);
         TextView awayScoreTv = helper.getView(R.id.module_match_away_score_tv);
         SoccerRunningGoalManager.getInstance().handleGoalStyle(item, homeScoreTv, awayScoreTv);
-        if (act instanceof SportActivity) {
-            SportActivity sportActivity = (SportActivity) act;
-            if (sportActivity != null && sportActivity.currentFragment.presenter != null && sportActivity.currentFragment.presenter.getStateHelper().getStateType() != null) {
-                String type = sportActivity.currentFragment.presenter.getStateHelper().getStateType().getType();
+        if (act != null) {
+            if (act.currentFragment.presenter != null && act.currentFragment.isVisible() && act.currentFragment.presenter.getStateHelper().getStateType() != null ) {
+                String type = act.currentFragment.presenter.getStateHelper().getStateType().getType();
                 if (!type.toLowerCase().startsWith("r")) {
                     homeScoreTv.setVisibility(View.GONE);
                     awayScoreTv.setVisibility(View.GONE);
@@ -1552,20 +1549,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     if (back != null) {
                         back.clickOdds(textView, item, type, isHalf, finalContent, Integer.valueOf(oid), sc, hasHar);
                         getBaseRecyclerAdapter().notifyDataSetChanged();
-                    } else {
-                        final LiveWebActivity liveWebActivity = (LiveWebActivity) context;
-                        BallBetHelper helper = new BallBetHelper(liveWebActivity) {
-                            @Override
-                            public String getBallG() {
-                                return liveWebActivity.getBallG();
-                            }
-
-                        };
-                        helper.setCompositeSubscription(liveWebActivity.mCompositeSubscription);
-                      /*  clickOdds(TextView v, B item, String type, boolean isHf, String odds, int oid, String sc, boolean hasPar);
-                        (B item, int oid, String type, String odds, TextView v, boolean isHf, String sc, boolean hasPar) {*/
-                        helper.clickOdds(item, Integer.valueOf(oid), type, finalContent, (TextView) textView, isHalf, sc, hasHar);
-
                     }
                 }
             });
@@ -2052,7 +2035,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                         }
                     }
 
-                    upTextTv.setTextColor(ContextCompat.getColor(context,R.color.red_background));
+                    upTextTv.setTextColor(ContextCompat.getColor(context, R.color.red_background));
                     resUp = getResUpdate(item.isHomeBigger, isFh);
 
                     break;
@@ -2064,7 +2047,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                     String ouf = upDown;
                     upStr = ouf;
                     downStr = "";
-                    upTextTv.setTextColor(ContextCompat.getColor(context,R.color.grey_dark_word));
+                    upTextTv.setTextColor(ContextCompat.getColor(context, R.color.grey_dark_word));
                     resUp = getResUpdate(item.isOverBigger, isFh);
                     break;
 
@@ -2081,12 +2064,12 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             switch (downType) {
                 case "away":
                 case "mmaway":
-                    downTextTv.setTextColor(ContextCompat.getColor(context,R.color.red_background));
+                    downTextTv.setTextColor(ContextCompat.getColor(context, R.color.red_background));
                     resDown = getResUpdate(item.isAwayBigger, isFh);
                     break;
                 case "under":
                 case "mmunder":
-                    downTextTv.setTextColor(ContextCompat.getColor(context,R.color.grey_dark_word));
+                    downTextTv.setTextColor(ContextCompat.getColor(context, R.color.grey_dark_word));
                     resDown = getResUpdate(item.isUnderBigger, isFh);
                     break;
             }
@@ -2217,22 +2200,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                             if (item.getIsInetBet() == null || !item.getIsInetBet().equals("1"))
                                 return;
                         }
-                        if (back == null) {
-                            final LiveWebActivity liveWebActivity = (LiveWebActivity) context;
-                            BallBetHelper helper = new BallBetHelper(liveWebActivity) {
-                                @Override
-                                public String getBallG() {
-                                    return liveWebActivity.getBallG();
-                                }
-
-                            };
-                            helper.setCompositeSubscription(liveWebActivity.mCompositeSubscription);
-
-                            helper.clickOdds(item, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), type, f, (TextView) v, isHf, "", isHf ? item.getHasPar_FH().equals("1") : item.getHasPar().equals("1"));
-                        } else {
-                            back.clickOdds((TextView) v, item, type, isHf, f, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), "", isHf ? item.getHasPar_FH().equals("1") : item.getHasPar().equals("1"));
-                            getBaseRecyclerAdapter().notifyDataSetChanged();
-                        }
+                        back.clickOdds((TextView) v, item, type, isHf, f, Integer.valueOf(isHf ? item.getSocOddsId_FH() : item.getSocOddsId()), "", isHf ? item.getHasPar_FH().equals("1") : item.getHasPar().equals("1"));
+                        getBaseRecyclerAdapter().notifyDataSetChanged();
 
                     }
                 });

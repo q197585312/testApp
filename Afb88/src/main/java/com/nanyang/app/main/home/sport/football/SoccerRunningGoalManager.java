@@ -188,9 +188,14 @@ public class SoccerRunningGoalManager {
 
     public void runTimeStyle(TextView tv_running_status, String mExtraTime30, String teamStatus28, String curMinute29, String live31) {
         //0 - 0<br><font color=red>PEN</font>
+        runTimeStyleColor(tv_running_status, mExtraTime30, teamStatus28, curMinute29, live31, Color.BLACK);
+    }
+
+    public void runTimeStyleColor(TextView tv_running_status, String mExtraTime30, String teamStatus28, String curMinute29, String live31, int color) {
+        //0 - 0<br><font color=red>PEN</font>
         String spanned = live31;
-        if(live31.contains("br")||live31.contains("BR")||live31.contains("Br")){
-            spanned= Html.fromHtml(live31).toString();
+        if (live31.contains("br") || live31.contains("BR") || live31.contains("Br")) {
+            spanned = Html.fromHtml(live31).toString();
         }
         if (spanned.contains("\n")) {
             String[] split = spanned.split("\\n");
@@ -198,7 +203,7 @@ public class SoccerRunningGoalManager {
             tv_running_status.setTextColor(Color.RED);
         } else {
             SoccerRunningGoalManager.getInstance().runTime(tv_running_status, mExtraTime30, teamStatus28, curMinute29);
-            tv_running_status.setTextColor(Color.BLACK);
+            tv_running_status.setTextColor(color);
         }
     }
 }

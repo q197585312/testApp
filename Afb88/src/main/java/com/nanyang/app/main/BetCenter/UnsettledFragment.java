@@ -16,6 +16,7 @@ import android.widget.TextView;
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
+import com.nanyang.app.Utils.BetGoalWindowUtils;
 import com.nanyang.app.Utils.StringUtils;
 import com.nanyang.app.main.BetCenter.Bean.RunningBean;
 import com.nanyang.app.main.BetCenter.Bean.StatementOpen2ListDataBean;
@@ -54,7 +55,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     @Bind(R.id.ll_note)
     LinearLayout llNote;
     Map<String, Boolean> showDetailMap = new HashMap<>();
-
+    BetGoalWindowUtils utils=new BetGoalWindowUtils();
     @Override
     public int onSetLayoutId() {
         return R.layout.fragment_running;
@@ -119,8 +120,9 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 View ll2 = holder.getView(R.id.ll_running_hdp);
                 final LinearLayout l = holder.getLinearLayout(R.id.ll_running_detail_1);
                 final LinearLayout l2 = holder.getLinearLayout(R.id.ll_running_detail_2);
+                 TextView running_par_DangerStatus = holder.getView(R.id.running_par_DangerStatus);
+                TextView tv_running_status = holder.getView(R.id.running_Status);
                 l.setVisibility(View.GONE);
-
                 if (item.getBetType18().equals("PAR") || item.getBetType18().equals("PAM")) {
                     holder.getHolderView().setBackgroundResource(R.color.white);
                     ll1.setVisibility(View.VISIBLE);
@@ -132,23 +134,14 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     TextView running_par_Odds2 = holder.getTextView(R.id.running_par_Odds2);
                     TextView running_par_CombInfo = holder.getTextView(R.id.running_par_CombInfo);
                     TextView running_par_Amt = holder.getTextView(R.id.running_par_Amt);
-                    TextView running_par_DangerStatus = holder.getTextView(R.id.running_par_DangerStatus);
+
                     TextView running_par_IdAndTransDate = holder.getTextView(R.id.running_par_IdAndTransDate);
 
                     TextView par_id = holder.getTextView(R.id.par_id);
                     TextView par_type = holder.getTextView(R.id.par_type);
                     running_par_IdAndTransDate.setText("ID[" + item.getRefNo12() + "]" + item.getTransDate0());
                     running_par_DangerStatus.setText(item.getDangerStatus8());
-                    String dangerStatus8 = item.getDangerStatus8();
-                    dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
-                    if (dangerStatus8.equals("A") || dangerStatus8.equals("D")) {
-                        running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.transparent));
-                        running_par_DangerStatus.setTextColor(ContextCompat.getColor(mContext, R.color.green500));
-                    } else if (dangerStatus8.equals("W")) {
-                        running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
-                    } else {
-                        running_par_DangerStatus.setBackgroundColor(ContextCompat.getColor(mContext, R.color.red));
-                    }
+
                     running_bet_num.setText((getItemCount() - position) + "");
                     String odds = item.getOdds3();
                     BigDecimal bd = new BigDecimal(odds);
@@ -238,15 +231,10 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                         }
                     });
                     View view = holder.getView(R.id.ll_live_parent1);
-                    TextView tv_running_status = holder.getView(R.id.tv_running_status1);
-                    TextView tv_running_score = holder.getView(R.id.tv_running_score1);
-                    setLiveView(item, view, tv_running_status, tv_running_score);
-                } else {
-                    View view = holder.getView(R.id.ll_live_parent);
-                    TextView tv_running_status = holder.getView(R.id.tv_running_status);
-                    TextView tv_running_score = holder.getView(R.id.tv_running_score);
 
-                    setLiveView(item, view, tv_running_status, tv_running_score);
+
+                } else {
+
                     ll1.setVisibility(View.GONE);
                     ll2.setVisibility(View.VISIBLE);
 
@@ -264,53 +252,12 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     running_Away.setText(item.getAway2());
                     TextView running_FullTimeId = holder.getTextView(R.id.running_FullTimeId);
                     String fullTimeId13 = item.getFullTimeId13();
-                    if (fullTimeId13.toUpperCase().contains("HT") || fullTimeId13.toUpperCase().contains("FH")) {
-                        running_FullTimeId.setVisibility(View.VISIBLE);
-                        running_FullTimeId.setText("FH.");
-                    } else {
-                        running_FullTimeId.setVisibility(View.GONE);
-                    }
+                    boolean isOu = false;
                     TextView running_BetType = holder.getTextView(R.id.running_BetType);
                     String transType10 = item.getTransType10();
-                    boolean isOu = false;
-                    switch (transType10) {
-                        case "1":
-                        case "2":
-                        case "X":
-                            transType10 = "1X2";
-                            isOu=true;
-                            break;
-                        case "HDP":
-                        case "MMH":
-                            transType10 = "HDP";
-                            break;
-                        case "OU":
-                        case "MMO":
-                            isOu = true;
-                            transType10 = "O/U";
-                            break;
-                        case "OE":
-                            transType10 = "O/E";
-                            break;
-                        case "DC":
-                            transType10 = "DC";
-                            break;
-                        case "CSR":
-                            transType10 = "CSR";
-                            break;
-                        case "FLG":
-                            transType10 = "FG/LG";
-                            break;
-                        case "TG":
-                            transType10 = "TG";
-                            break;
-                        case "HFT":
-                            transType10 = "HT/FT";
-                            break;
-                    }
-                    running_BetType.setText(transType10 + " ");
-                    TextView running_Score = holder.getTextView(R.id.running_Score);
+                    utils.showBetType(getBaseActivity(),running_FullTimeId,running_BetType,fullTimeId13,transType10,isOu);
 
+                    TextView running_Score = holder.getTextView(R.id.running_Score);
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
                     TextView running_BetType2_odds = holder.getTextView(R.id.running_BetType2_odds);
                     String betType2 = item.getBetType323();
@@ -344,19 +291,11 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                         running_OldStatus.setVisibility(View.VISIBLE);
                         running_split.setVisibility(View.VISIBLE);
                     }
-                    running_OldStatus.setText(item.getOldStatus22());
-                    TextView running_Status = holder.getTextView(R.id.running_Status);
                     String dangerStatus8 = item.getDangerStatus8();
                     dangerStatus8 = dangerStatus8.replace("&nbsp;", " ");
-                    if (dangerStatus8.equals("A") || dangerStatus8.equals("D")) {
-                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.transparent));
-                        running_Status.setTextColor(ContextCompat.getColor(mContext, R.color.green500));
-                    } else if (dangerStatus8.equals("W")) {
-                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.yellow_button));
-                    } else {
-                        running_Status.setBackgroundColor(ContextCompat.getColor(mContext, R.color.red));
-                    }
-                    running_Status.setText(dangerStatus8);
+
+                    running_OldStatus.setText(item.getOldStatus22());
+                    tv_running_status.setText(dangerStatus8);
                     TextView running_Amt = holder.getTextView(R.id.running_Amt);
                     running_Amt.setText(item.getAmt9());
                     View view2 = holder.getView(R.id.ll_content_3);
@@ -375,6 +314,16 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     });
                     showDetail(item, refNo, running_TransDate, running_ModuleTitle, running_OddsType, isOu, view2);
                 }
+                View view = holder.getView(R.id.ll_live_parent);
+                View view1 = holder.getView(R.id.ll_live_parent1);
+                TextView tv_running_score = holder.getView(R.id.tv_running_score);
+                TextView tv_running_score1 = holder.getView(R.id.tv_running_score1);
+                TextView tv_running_time = holder.getView(R.id.tv_running_time);
+                TextView tv_running_time1 = holder.getView(R.id.tv_running_time1);
+                setLiveView(item, view, tv_running_time, tv_running_score);
+                setLiveView(item, view1, tv_running_time1, tv_running_score1);
+                utils.showStatus(getBaseActivity(),item.getStatus20(),running_par_DangerStatus);
+                utils.showStatus(getBaseActivity(),item.getStatus20(),tv_running_status);
             }
         };
         rv.setAdapter(adapter);
@@ -587,7 +536,6 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
         TextView tvMatchVs = view.getTextView(R.id.tv_match_vs);
         TextView tvMatchAt1 = view.getTextView(R.id.tv_match_at1);
         TextView tv_match_at2_1 = view.getTextView(R.id.tv_match_at2_1);
-        TextView tv_match_at2_2 = view.getTextView(R.id.tv_match_at2_2);
         TextView tvMatchAt3 = view.getTextView(R.id.tv_match_at3);
         TextView tvMatchAt4 = view.getTextView(R.id.tv_match_at4);
         TextView tvMatchScore = view.getTextView(R.id.tv_match_score);

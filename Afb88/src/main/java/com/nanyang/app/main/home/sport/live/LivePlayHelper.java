@@ -121,14 +121,15 @@ public class LivePlayHelper {
 
 
     protected void onResumePlay() {
-
         if (checkLivePlayVisible(itemBall)) {
             if (playType == 2) {
                 holder.web_wv.onPause();
             }
+            holder.ll_run_match_title.setVisibility(View.VISIBLE);
             holder.videoPlayerStream.setVisibility(View.VISIBLE);
             holder.web_wv.setVisibility(View.GONE);
             holder.llStatus.setVisibility(View.VISIBLE);
+            holder.tv_run_time.setVisibility(View.VISIBLE);
             LogUtil.d("");
             playType = 1;
             try {
@@ -223,6 +224,8 @@ public class LivePlayHelper {
             holder.videoPlayerStream.setVisibility(View.GONE);
             holder.web_wv.setVisibility(View.VISIBLE);
             holder.llStatus.setVisibility(View.GONE);
+            holder.tv_run_time.setVisibility(View.GONE);
+            holder.ll_run_match_title.setVisibility(View.GONE);
             if (playing) {
                 onPausePlay();
             }

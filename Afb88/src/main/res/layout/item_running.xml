@@ -134,6 +134,7 @@
 
 
                 <TextView
+                    android:paddingLeft="4dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="("
@@ -194,8 +195,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
                 <TextView
-
-                    android:id="@+id/tv_running_status"
+                    android:id="@+id/tv_running_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
@@ -210,10 +210,6 @@
                     android:textColor="@color/black_grey"
                     android:textSize="13sp"
                     android:textStyle="bold" />
-
-
-
-
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -246,7 +242,6 @@
                     android:paddingLeft="4dp"
                     android:paddingRight="4dp"
                     android:text="A"
-
                     android:textColor="@color/white"
                     android:textSize="13sp"
                     android:textStyle="bold" />
@@ -537,7 +532,7 @@
 
             <TextView
                 android:paddingLeft="4dp"
-                android:id="@+id/tv_running_status1"
+                android:id="@+id/tv_running_time1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="right"

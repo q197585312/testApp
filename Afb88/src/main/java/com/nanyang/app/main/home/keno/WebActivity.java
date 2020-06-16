@@ -1,9 +1,14 @@
 package com.nanyang.app.main.home.keno;
 
+import android.net.http.SslError;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.webkit.SslErrorHandler;
+import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
@@ -19,6 +24,7 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 
 public class WebActivity extends BaseToolbarActivity {
     WebView webView;
+    private boolean canFinish;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,6 +34,7 @@ public class WebActivity extends BaseToolbarActivity {
         webView = (WebView) findViewById(R.id.web_wv);
         String url = getIntent().getStringExtra("url");
         String title = getIntent().getStringExtra(AppConstant.KEY_STRING);
+        canFinish = getIntent().getBooleanExtra(AppConstant.KEY_BOOLEAN, false);
         if (title == null) {
             ToastUtils.showLong(R.string.failed_to_connect);
             finish();
@@ -42,7 +49,29 @@ public class WebActivity extends BaseToolbarActivity {
 
     private void loadWebView(String url) {
         LogUtil.d("url---", "-------" + url);
-        AfbUtils.synCookies(this, webView, url, true);
+        AfbUtils.synCookies(this, webView, url, true, new WebViewClient() {
+
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+                String url;
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    url = request.getUrl().toString();
+                } else {
+                    url = request.toString();
+                }
+                LogUtil.d("requesturl", url);
+                if (url.contains("html?ispc=1"))
+                    finish();
+                else
+                    view.loadUrl(url);
+                return true;
+            }
+
+            @Override
+            public void onReceivedSslError(WebView view, SslErrorHandler handler, SslError error) {
+                handler.proceed();//接受证书
+            }
+        });
     }
 
     public void onResume() {
@@ -73,7 +102,7 @@ public class WebActivity extends BaseToolbarActivity {
 
     @Override
     public void onBackCLick(View v) {
-        if (webView.canGoBack()) {
+        if (canFinish && webView.canGoBack()) {
             webView.goBack();//返回上一页面
         } else {
             super.onBackCLick(v);

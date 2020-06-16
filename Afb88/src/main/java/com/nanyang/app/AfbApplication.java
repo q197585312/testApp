@@ -65,7 +65,7 @@ public class AfbApplication extends BaseApplication {
     public MenuItemInfo getOddsType() {
         if (oddsType != null && getSettingAllDataBean() != null)
             return AfbUtils.getOddsTypeByType(this, oddsType.getType(), getSettingAllDataBean().getCurCode());
-        return null;
+        return  new MenuItemInfo(0, (R.string.MY_ODDS), "MY");
     }
 
     public void setOddsType(MenuItemInfo oddsType) {
@@ -372,7 +372,6 @@ public class AfbApplication extends BaseApplication {
         enableMap.put("EVOPLAY", isEnabledEV);
         String isEnabledDG = getUser().getIsEnabledDG();
         enableMap.put("DG CASINO", isEnabledDG);
-
         String isEnabledWM = getUser().getIsEnabledWM();
         enableMap.put("WM CASINO", isEnabledWM);
         return enableMap;

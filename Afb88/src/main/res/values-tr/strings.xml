@@ -485,4 +485,6 @@
     <string name="u">U</string>
     <string name="language_zh_tw">TRUNG QUỐC (TRUYỀN THỐNG)</string>
     <string name="single">@string/single_bet</string>
+    <string name="HDP">HDP</string>
+    <string name="FH_">FT.</string>
 </resources>
