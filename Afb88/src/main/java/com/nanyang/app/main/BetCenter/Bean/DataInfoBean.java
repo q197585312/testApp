@@ -1,6 +1,6 @@
 package com.nanyang.app.main.BetCenter.Bean;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 
 /**
  * Created by Administrator on 2019/4/6.

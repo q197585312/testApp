@@ -3,7 +3,7 @@
     android:background="@color/yellow_gold"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<android.support.v7.widget.RecyclerView
+<androidx.recyclerview.widget.RecyclerView
     android:layout_margin="3dp"
     android:background="@color/green_black"
     android:layout_width="match_parent"
@@ -14,5 +14,5 @@
     android:divider="@null"
     android:layout_gravity="bottom"
     >
-</android.support.v7.widget.RecyclerView>
+</androidx.recyclerview.widget.RecyclerView>
 </FrameLayout>

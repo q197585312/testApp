@@ -1,9 +1,6 @@
 package com.nanyang.app.main.Setting;
 
 import android.content.Intent;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
@@ -12,6 +9,10 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
@@ -516,7 +517,7 @@ public class SettingFragment extends BaseMoreFragment<MainPresenter> implements 
                 if (value)
                     n++;
             }
-            if (n > 0 && (n < 5 || n > 8)) {
+            if (n != 6) {
                 ToastUtils.showShort(R.string.no_less_5_no_more_8);
                 return false;
             }

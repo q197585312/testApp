@@ -46,7 +46,7 @@
 -keep public class * extends android.preference.Preference
 -keep public class com.google.vending.licensing.ILicensingService
 -keep public class com.android.vending.licensing.ILicensingService
--keep public class * extends android.support.v4.app.Fragment
+-keep public class * extends androidx.fragment.app.Fragment
 -keep public class * extends android.app.Fragment
 -keep class sun.misc.Unsafe { *; }
 -keep class com.google.gson.examples.android.model.** { *; }

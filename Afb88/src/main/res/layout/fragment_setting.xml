@@ -5,11 +5,11 @@
     android:background="@color/contact_back"
     android:orientation="vertical">
 
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/person_center_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="5dp">
 
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

@@ -147,7 +147,7 @@
             android:paddingLeft="2dp"
             android:paddingRight="2dp">
 
-            <android.support.v7.widget.RecyclerView
+            <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rc_bet_content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
@@ -276,7 +276,7 @@
 
         </LinearLayout>
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rc_bet_chip"
             android:layout_width="match_parent"
             android:layout_height="40dp" />

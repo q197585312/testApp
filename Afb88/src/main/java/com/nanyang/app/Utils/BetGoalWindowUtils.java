@@ -3,7 +3,7 @@ package com.nanyang.app.Utils;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Handler;
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Log;

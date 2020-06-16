@@ -1,8 +1,9 @@
 package com.nanyang.app.main.BetCenter;
 
-import android.support.annotation.IdRes;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+
+import androidx.annotation.IdRes;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.BaseMoreFragment;

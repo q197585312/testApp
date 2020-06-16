@@ -9,7 +9,7 @@ import android.view.MotionEvent;
  * Created by Administrator on 2017/7/19.
  */
 
-public class MyButton extends android.support.v7.widget.AppCompatButton {
+public class MyButton extends androidx.recyclerview.widget.AppCompatButton {
     public MyButton(Context context, AttributeSet attrs) {
         super(context, attrs);
     }

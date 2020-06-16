@@ -12,16 +12,22 @@ android {
             storePassword '123456'
         }
     }
-    compileSdkVersion 26
-    buildToolsVersion "27.0.3"
+    compileSdkVersion 28
+
     defaultConfig {
         applicationId "com.nanyang.app"
         minSdkVersion 14
         targetSdkVersion 26
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         buildConfigField "String", "HOST_AFB", '"http;//wsapp.afb1188.com"'
         buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
         signingConfig signingConfigs.config
+        flavorDimensions "versionCode"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath true
+            }
+        }
+        multiDexEnabled true
     }
     buildTypes {
         release {
@@ -80,11 +86,15 @@ android {
     }
 
     applicationVariants.all { variant ->
-        variant.outputs.each { output ->
+        variant.outputs.all { output ->
+            def outputFile = output.outputFile
             String flavorName = variant.productFlavors[0].manifestPlaceholders.values().toString();
+
             String flavorReallyName = flavorName.substring(1, flavorName.length() - 1);
             String appName = flavorReallyName + ".apk";
-            output.outputFile = new File(output.outputFile.parent, appName)
+            if (outputFile != null && outputFile.name.endsWith('.apk')) {
+                outputFileName = appName
+            }
         }
     }
 
@@ -94,19 +104,22 @@ android {
         // but continue the build even when errors are found:
         abortOnError false
     }
+    buildToolsVersion = '28.0.3'
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    //    compile 'com.android.support:appcompat-v7:25.1.0'
-    testCompile 'junit:junit:4.12'
-    compile project(':baseLibs')
-    compile 'com.tencent.bugly:crashreport:latest.release'
-    compile 'com.tencent.bugly:nativecrashreport:latest.release'
-    compile 'com.github.bumptech.glide:glide:3.7.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    //    implementation 'com.android.support:appcompat-v7:25.1.0'
+    testImplementation 'junit:junit:4.12'
+    implementation project(':baseLibs')
+    implementation 'com.tencent.bugly:crashreport:latest.release'
+    implementation 'com.tencent.bugly:nativecrashreport:latest.release'
+    implementation 'com.github.bumptech.glide:glide:3.7.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    implementation 'com.android.support:multidex:1.0.3'
 
 }

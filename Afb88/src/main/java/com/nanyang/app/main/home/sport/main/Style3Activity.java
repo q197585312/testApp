@@ -1,6 +1,6 @@
 package com.nanyang.app.main.home.sport.main;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
 
 /**

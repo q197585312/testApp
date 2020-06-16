@@ -1,6 +1,6 @@
 package com.nanyang.app.main.home.sport.e_sport;
 
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 
 import com.nanyang.app.AppConstant;
 import com.nanyang.app.MenuItemInfo;

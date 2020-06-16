@@ -3,10 +3,6 @@ package com.nanyang.app.main.home.sport.main;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +12,11 @@ import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -571,9 +572,11 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void showContent() {
         super.showContent();
         getBaseActivity().setToolbarVisibility(View.GONE);
-        getBaseActivity().ll_line1.setVisibility(View.VISIBLE);
-        getBaseActivity().ll_line2.setVisibility(View.VISIBLE);
-        getBaseActivity().ll_line3.setVisibility(View.VISIBLE);
+        if (getBaseActivity().fl_top_video.getVisibility() == View.GONE) {
+            getBaseActivity().ll_line1.setVisibility(View.VISIBLE);
+            getBaseActivity().ll_line2.setVisibility(View.VISIBLE);
+            getBaseActivity().ll_line3.setVisibility(View.VISIBLE);
+        }
         getBaseActivity().ll_footer_sport.setVisibility(View.VISIBLE);
         getBaseActivity().ll_header_sport.setVisibility(View.VISIBLE);
         getBaseActivity().llSportMenuBottom.setVisibility(View.VISIBLE);

@@ -1,6 +1,7 @@
 package com.nanyang.app.main;
 
-import android.support.v7.widget.Toolbar;
+
+import android.widget.Toolbar;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.BaseToolbarActivity;

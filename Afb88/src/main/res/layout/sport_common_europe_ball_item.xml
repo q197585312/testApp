@@ -663,7 +663,7 @@
             android:layout_marginLeft="5dp"
             android:src="@mipmap/arrow_left_green_double" />
 
-        <android.support.v7.widget.RecyclerView
+        <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_title_list"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

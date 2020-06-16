@@ -2,8 +2,6 @@ package com.unkonw.testapp.libs.view.swipetoloadlayout;
 
 import android.content.Context;
 import android.content.res.TypedArray;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.ViewCompat;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -12,6 +10,9 @@ import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.Scroller;
+
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.ViewCompat;
 
 import com.unkonw.testapp.R;
 
@@ -960,7 +961,6 @@ public class SwipeToLoadLayout extends ViewGroup {
     }
 
     /**
-     * copy from {@link android.support.v4.widget.SwipeRefreshLayout#canChildScrollUp()}
      *
      * @return Whether it is possible for the child contentView of this layout to
      * scroll up. Override this if the child contentView is a custom contentView.

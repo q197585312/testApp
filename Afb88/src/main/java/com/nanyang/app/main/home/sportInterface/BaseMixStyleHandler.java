@@ -1,6 +1,6 @@
 package com.nanyang.app.main.home.sportInterface;
 
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;

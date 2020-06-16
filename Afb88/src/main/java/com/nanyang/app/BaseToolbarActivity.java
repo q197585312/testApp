@@ -7,15 +7,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.StrictMode;
-import android.support.annotation.Nullable;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
+
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 
 import com.google.gson.Gson;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
@@ -101,12 +102,14 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         llRight = (LinearLayout) findViewById(R.id.ll_right);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
         toolbar.setBackgroundResource(R.color.green_black_word);
+        toolbar.setTitleTextColor(getColor(R.color.white));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackCLick(v);
             }
         });
+
         assert tvToolbarTitle != null;
 //        tvToolbarTitle.setBackgroundResource(R.mipmap.logo);
 //        tvToolbarTitle.getLayoutParams().width = DeviceUtils.dip2px(mContext, 100);

@@ -4,26 +4,24 @@ import android.content.Intent;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.presenter.IBasePresenter;
 import com.unkonw.testapp.libs.utils.AutoUtils;
-import com.unkonw.testapp.libs.utils.LogUtil;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import com.unkonw.testapp.libs.widget.DialogLoading;
-
-import org.greenrobot.eventbus.Subscribe;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -347,13 +345,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     public IBaseContext getIBaseContext() {
         return this;
     }
-
-    @Subscribe
-    public void onEvent(Object obj) {
-        if (obj != null)
-            LogUtil.d(getLocalClassName() + "接收消息----------------->" + obj.toString());
-    }
-
     public Map<Boolean, String> getAdditionMap() {
         return additionMap;
     }

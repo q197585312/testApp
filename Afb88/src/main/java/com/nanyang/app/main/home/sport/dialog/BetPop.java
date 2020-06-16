@@ -6,10 +6,6 @@ import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Handler;
-import android.support.annotation.NonNull;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.Spanned;
 import android.text.TextUtils;
@@ -30,6 +26,11 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AfbApplication;
 import com.nanyang.app.AfbUtils;
@@ -65,6 +66,7 @@ import java.util.Map;
 import butterknife.Bind;
 import butterknife.BindString;
 import butterknife.ButterKnife;
+import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
 
 /**
@@ -413,6 +415,11 @@ public class BetPop {
         adapterChip = new BaseRecyclerAdapter<PopChipBean>(context, new ArrayList<PopChipBean>(), R.layout.item_bet_chip) {
             @Override
             public void convert(MyRecyclerViewHolder holder, int position, PopChipBean item) {
+                View holderView = holder.getHolderView();
+                int widthPixels = DeviceUtils.getScreenPix(activity).widthPixels;
+                int width = (widthPixels - DeviceUtils.dip2px(activity, 20)) / 7;
+                ViewGroup.LayoutParams layoutParams = holderView.getLayoutParams();
+                layoutParams.width = width;
                 ImageView imgContent = holder.getView(R.id.img_content);
                 imgContent.setImageResource(item.getImgRes());
             }
@@ -711,7 +718,11 @@ public class BetPop {
         if (beanList.size() < 2) {
             beanList = allListChip;
         }
-        adapterChip.addAllAndClear(beanList);
+        List<PopChipBean> popChipBeans = beanList;
+        if (beanList.size() > 7) {
+            popChipBeans = beanList.subList(0, 7);
+        }
+        adapterChip.addAllAndClear(popChipBeans);
     }
 
     private void webViewPause() {

@@ -1018,13 +1018,13 @@
                 android:background="@mipmap/keno_bet_right" />
         </RelativeLayout>
 
-        <android.support.v4.view.ViewPager
+        <androidx.viewpager.widget.ViewPager
             android:id="@+id/vp_way"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:paddingTop="2dp"></android.support.v4.view.ViewPager>
+            android:paddingTop="2dp"></androidx.viewpager.widget.ViewPager>
     </LinearLayout>
 
 </LinearLayout>

@@ -1,6 +1,6 @@
 package com.nanyang.app.main.home.sportInterface;
 
-import android.support.annotation.NonNull;
+import androidx.annotation.NonNull;
 import android.widget.TextView;
 
 import io.reactivex.disposables.CompositeDisposable;

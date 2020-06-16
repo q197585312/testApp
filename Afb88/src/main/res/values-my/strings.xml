@@ -599,4 +599,7 @@
     <string name="single">@string/single_bet</string>
     <string name="HDP">HDP</string>
     <string name="FH_">Babak.</string>
+    <string name="min">m</string>
+    <string name="dd">DD</string>
+    <string name="O">O</string>
 </resources>

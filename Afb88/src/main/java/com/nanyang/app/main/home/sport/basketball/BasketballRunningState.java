@@ -1,6 +1,6 @@
 package com.nanyang.app.main.home.sport.basketball;
 
-import android.support.v4.content.ContextCompat;
+import androidx.core.content.ContextCompat;
 import android.view.View;
 import android.widget.TextView;
 

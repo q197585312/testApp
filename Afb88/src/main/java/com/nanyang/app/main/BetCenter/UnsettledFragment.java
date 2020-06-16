@@ -1,10 +1,10 @@
 package com.nanyang.app.main.BetCenter;
 
 import android.graphics.Color;
-import android.support.annotation.IdRes;
-import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.IdRes;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
