@@ -8,45 +8,19 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
-    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="ijk" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="No Filters" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="36c291fc-3efc-4659-9c07-03298ad876ea" name="Default" comment="删除无用项目">
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Afb88/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/Afb88/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Afb88/src/main/java/com/nanyang/app/main/home/sport/live/LivePlayHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/Afb88/src/main/java/com/nanyang/app/main/home/sport/live/LivePlayHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/apng/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/apng/build.gradle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/BaccaratActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/BaccaratActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/DragonTigerActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/DragonTigerActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/RouletteActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/RouletteActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/SicboActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/SicboActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/VideoHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/VideoHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autolayout/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/autolayout/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autolayout/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/autolayout/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autolayout/build/.transforms/6cef38e11263477dd8ee99712acc3481.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/autolayout/build/.transforms/ad3edc47daca95fc42bbcba38b38dbac.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/autolayout/build/.transforms/eb61ed66df983bc4a4102ee253429b28.bin" beforeDir="false" afterPath="$PROJECT_DIR$/mylibrary/build/.transforms/d2707cc471d48f325f710d4769892f8d.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autolayout/build/.transforms/eb61ed66df983bc4a4102ee253429b28/jetified-full.jar" beforeDir="false" afterPath="$PROJECT_DIR$/autolayout/build/.transforms/96b5edd6be642f49282b69fdca23f683/jetified-full.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autolayout/build/intermediates/compile_library_classes/debug/classes.jar" beforeDir="false" afterPath="$PROJECT_DIR$/autolayout/build/intermediates/compile_library_classes/debug/classes.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autolayout/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" beforeDir="false" afterPath="$PROJECT_DIR$/autolayout/build/intermediates/compile_only_not_namespaced_r_class_jar/debug/R.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autolayout/build/intermediates/compile_symbol_list/debug/R.txt" beforeDir="false" afterPath="$PROJECT_DIR$/autolayout/build/intermediates/compile_symbol_list/debug/R.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/autolayout/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/autolayout/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseLibs/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/baseLibs/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/baseLibs/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/baseLibs/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/gestrueLibrary/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/gestrueLibrary/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mylibrary/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/mylibrary/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mylibrary/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/mylibrary/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mylibrary/build/.transforms/1ad16b764d3276edd169ca82cfa186c3.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mylibrary/build/.transforms/ad0b09e208d64322e1f4334dee7f5c2b.bin" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mylibrary/build/.transforms/c7954a58fb956c2853a2f724143503b8.bin" beforeDir="false" afterPath="$PROJECT_DIR$/autolayout/build/.transforms/96b5edd6be642f49282b69fdca23f683.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mylibrary/build/.transforms/c7954a58fb956c2853a2f724143503b8/jetified-full.jar" beforeDir="false" afterPath="$PROJECT_DIR$/mylibrary/build/.transforms/d2707cc471d48f325f710d4769892f8d/jetified-full.jar" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mylibrary/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" beforeDir="false" afterPath="$PROJECT_DIR$/mylibrary/build/intermediates/incremental/packageDebugResources/compile-file-map.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mylibrary/build/intermediates/incremental/packageDebugResources/merger.xml" beforeDir="false" afterPath="$PROJECT_DIR$/mylibrary/build/intermediates/incremental/packageDebugResources/merger.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -545,13 +519,6 @@
       <option name="presentableId" value="Default" />
       <updated>1546745911000</updated>
     </task>
-    <task id="LOCAL-00091" summary="ap889跳转">
-      <created>1573881437353</created>
-      <option name="number" value="00091" />
-      <option name="presentableId" value="LOCAL-00091" />
-      <option name="project" value="LOCAL" />
-      <updated>1573881437354</updated>
-    </task>
     <task id="LOCAL-00092" summary="加p修复mix比赛消失注单还在的bug">
       <created>1574078046818</created>
       <option name="number" value="00092" />
@@ -888,8 +855,25 @@
       <option name="project" value="LOCAL" />
       <updated>1592793157291</updated>
     </task>
-    <option name="localTasksCounter" value="140" />
+    <task id="LOCAL-00140" summary="删除无用项目">
+      <created>1592811225061</created>
+      <option name="number" value="00140" />
+      <option name="presentableId" value="LOCAL-00140" />
+      <option name="project" value="LOCAL" />
+      <updated>1592811225061</updated>
+    </task>
+    <option name="localTasksCounter" value="141" />
     <servers />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -1160,7 +1144,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/gaming178/com/casinogame/Activity/VideoHelper.java</url>
-          <line>85</line>
+          <line>80</line>
           <option name="timeStamp" value="56" />
         </line-breakpoint>
       </breakpoints>

@@ -2180,7 +2180,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
             }
         }, 1000);
-        videoHelper.startVideo();
+        videoHelper.loadVideo();
 //        handler.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {

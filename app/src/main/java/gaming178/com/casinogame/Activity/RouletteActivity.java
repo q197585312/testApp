@@ -2706,7 +2706,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             }
         }, 1000);
 //        startUpdateStatusThread();
-        videoHelper.startVideo();
+        videoHelper.loadVideo();
     }
 
 

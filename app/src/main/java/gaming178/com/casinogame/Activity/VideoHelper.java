@@ -67,12 +67,7 @@ public class VideoHelper {
                 Log.d("ijk", "onVideoSizeChanged");
             }
         });
-        try {
-            if (sv != null && sv.getmPath() != null)
-                sv.load();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
     }
 
 
@@ -84,7 +79,14 @@ public class VideoHelper {
 
     public void startVideo() {
         sv.start();
-
+    }
+    public void loadVideo(){
+        try {
+            if (sv != null && sv.getmPath() != null)
+                sv.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void pauseVideo() {

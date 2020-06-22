@@ -1728,7 +1728,7 @@ public class DragonTigerActivity extends BaseActivity {
             }
         }, 1000);
 //        startUpdateStatusThread();
-        videoHelper.startVideo();
+        videoHelper.loadVideo();
     }
 
     @Override
