@@ -1,71 +1,71 @@
 -- Merging decision tree log ---
 manifest
-ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
+ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
 	package
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:70-103
-		INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
-		INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:70-103
+		INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
 	android:versionName
-		INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
-		INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
+		INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
 	android:versionCode
-		INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
-		INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:1-13:12
+		INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:1:11-69
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:1:11-69
 application
-ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:3:5-12:19
+ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:3:5-12:19
 	android:label
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:3:45-77
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:3:45-77
 	android:allowBackup
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:3:18-44
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:3:18-44
 activity#gaming178.com.mylibrary.myview.miscwidgets.Test
-ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:4:5-79
+ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:4:5-79
 	android:name
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:4:15-77
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:4:15-77
 activity#gaming178.com.mylibrary.myview.miscwidgets.TestCustomTitle
-ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:5:9-94
+ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:5:9-94
 	android:name
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:5:19-92
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:5:19-92
 activity#gaming178.com.mylibrary.myview.miscwidgets.TestPanels
-ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:6:9-89
+ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:6:9-89
 	android:name
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:6:19-87
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:6:19-87
 activity#gaming178.com.mylibrary.myview.miscwidgets.TestInterpolators
-ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:7:9-96
+ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:7:9-96
 	android:name
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:7:19-94
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:7:19-94
 activity#gaming178.com.mylibrary.myview.miscwidgets.TestSmoothButton
-ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:8:9-95
+ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:8:9-95
 	android:name
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:8:19-93
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:8:19-93
 activity#gaming178.com.mylibrary.myview.miscwidgets.TestSwitcher
-ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:9:9-91
+ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:9:9-91
 	android:name
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:9:19-89
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:9:19-89
 activity#gaming178.com.mylibrary.myview.miscwidgets.TestTheme
-ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:10:9-88
+ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:10:9-88
 	android:name
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml:10:19-86
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml:10:19-86
 uses-sdk
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
-INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
+INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
-		INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
-		ADDED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
-		INJECTED from E:\testApp\mylibrary\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
+		ADDED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
+		INJECTED from C:\AndroidStudio\project\testApp\mylibrary\src\main\AndroidManifest.xml
