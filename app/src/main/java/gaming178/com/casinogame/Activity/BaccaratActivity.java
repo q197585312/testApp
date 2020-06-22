@@ -3438,7 +3438,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             }
         }
 //        path = "rtmp://202.36.58.169/live/M01";
-        //测试提交
         videoHelper.setPlayUrl(path);
     }
 
