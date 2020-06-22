@@ -1,0 +1,227 @@
+<resources>
+    <!-- 程序异常处理字符串 -->
+    <string name="crash_mail">xiaoshuai@178gaming.com</string>
+    <string name="crash_mail_passwd">Nangyangkeji123</string>
+    <string name="crash_mail_smtphost">smtp.exmail.qq.com</string>
+    <string name="crash_mail_port">465</string>
+    <string name="update_msg">亲, 有新版本可以下载更新了!</string>
+    <string name="version_update">版本更新</string>
+    <string name="update">更新</string>
+    <string name="app_update">更新App</string>
+    <!--lig365不同-->
+    <string name="login_site">登录网站</string>
+    <string name="remember_me">记住我</string>
+    <string name="error_site">错误的网址</string>
+    <!--afb88跳转-->
+    <string name="SportBook">体育博彩</string>
+    <string name="Live_Casino">真人娱乐城</string>
+    <string name="Financial">股市</string>
+    <string name="Europe_View">欧洲</string>
+    <string name="Specials_4D">4D游戏</string>
+    <string name="Huay_Thai">泰式千字</string>
+    <string name="Muay_Thai">泰拳</string>
+    <string name="E_Sport">电子竞技</string>
+    <string name="Myanmar_Odds">缅甸赔率</string>
+    <string name="Keno">奇乐</string>
+    <string name="Poker">扑克</string>
+    <string name="Lottery">彩票</string>
+    <string name="coming_soon">正在建设中...</string>
+    <!--登录 -->
+    <string name="input_username">用户名</string>
+    <string name="input_password">密码</string>
+    <string name="login">登录</string>
+    <string name="logining">登录.....</string>
+    <string name="afb88_right">Copyright © gd88.org  2014   Powered only receive aged 18 players</string>
+
+    <!--大厅-->
+    <string name="baccarat">百家乐</string>
+    <string name="roulette">轮盘</string>
+    <string name="sicbo">骰宝</string>
+    <string name="dragon_tiger">龙虎</string>
+
+    <!--轮盘大厅 -->
+    <string name="red">红</string>
+    <string name="black">黑</string>
+    <string name="zero">零</string>
+    <string name="even">双</string>
+    <string name="odd">单</string>
+    <string name="big">大</string>
+    <string name="small">小</string>
+    <string name="big_ac">大</string>
+    <string name="small_ac">小</string>
+    <string name="orphelins"> 轮上孤注</string>
+    <string name="red_acronym">红</string>
+    <string name="black_acronym">黑</string>
+    <string name="zero_acronym">零</string>
+    <string name="even_acronym">双</string>
+    <string name="odd_acronym">单</string>
+    <string name="left_bet">轮盘下角注</string>
+    <string name="right_bet">轮旁注上角</string>
+    <string name="zero_roulette">轮上零旁</string>
+
+    <!--百家乐 -->
+    <string name="show_bet_sucess">下注成功 : </string>
+    <string name="show_bet_error">下注失败</string>
+    <string name="show_win">你赢了 </string>
+    <string name="show_loss">你输了 </string>
+    <string name="show_back_lobby">你有5次没有下注,\n 将返回大厅</string>
+    <string name="banker">庄</string>
+    <string name="banker_home">庄家</string>
+    <string name="player">闲</string>
+    <string name="player_home">闲家</string>
+    <string name="tie">和</string>
+    <string name="tie_dragon_tiger">和</string>
+    <string name="dragon_dragon_tiger">龙</string>
+    <string name="tiger_dragon_tiger">虎</string>
+    <string name="banker1">庄 </string>
+    <string name="player1">闲 </string>
+    <string name="tie1">和 </string>
+    <string name="total">总数 </string>
+    <string name="total_m">总.</string>
+    <string name="BP1">庄对 </string>
+    <string name="PP1">闲对 </string>
+    <string name="BP">庄对 </string>
+    <string name="PP">闲对 </string>
+    <string name="POOL">彩池 </string>
+    <string name="LIMIT">限红 </string>
+    <string name="ALL">全部 </string>
+    <string name="select_limit">限红</string>
+    <string name="START_DEALING">开牌</string>
+    <string name="OK">确定 </string>
+    <string name="Cancel">取消 </string>
+    <string name="Repeat">重复 </string>
+    <string name="banker_m">庄</string>
+    <string name="player_m">闲</string>
+    <string name="tie_m">和</string>
+    <!--登录失败 -->
+    <string name="login_network_error">登录服务器失败</string>
+    <string name="login_username_error">用户名或密码错误</string>
+    <string name="login_already">用户已经登录</string>
+    <string name="login_data_error">登录失败数据格式有误</string>
+    <!--sicbo -->
+    <string name="min_max_sicbo">最小/最大</string>
+    <string name="big_small">大/小</string>
+    <string name="even_odd">单/双</string>
+    <string name="threeforce">三军</string>
+    <string name="ninewaycard">短牌</string>
+    <string name="pairs">长牌</string>
+    <string name="wai_dice">围骰</string>
+    <string name="all_dice">全围</string>
+    <string name="combination">点数</string>
+    <string name="points">点</string>
+    <string name="number">局号</string>
+    <string name="E">双</string>
+    <string name="S">小</string>
+    <string name="T">围</string>
+    <string name="B">大</string>
+    <string name="O">单</string>
+    <string name="other">其他</string>
+    <!--轮盘 -->
+    <string name="min_max">最小/最大</string>
+    <string name="single">直注</string>
+    <string name="split">分注</string>
+    <string name="street">三个号码</string>
+    <string name="corner">四个号码</string>
+    <string name="line">线注</string>
+    <string name="dozen">打注</string>
+    <string name="colume">列注</string>
+    <string name="even_lp">单双</string>
+    <string name="result">结果:</string>
+    <string name="show_limit_over_max">下注金额高于本局上限</string>
+
+    <string name="show_limit_column">不能同局下注全部列注</string>
+    <string name="show_limit_row">不能同局下注全部行注</string>
+    <string name="show_limit_big_small">不能同局下注大小</string>
+    <string name="show_limit_odd_even">不能同局下注单双</string>
+    <string name="show_limit_red_black">不能同局下注红黑</string>
+    <string name="show_limit_banker_player">不能同局下注庄闲</string>
+
+    <string name="server_network_error">连接服务器失败</string>
+    <string name="choose_language">选择语言</string>
+    <string name="language">语言&#160;&#160;</string>
+    <string name="report">报表&#160;&#160;</string>
+    <string name="setting">设置&#160;&#160;</string>
+    <string name="logout">退出&#160;&#160;</string>
+
+    <string name="sure">确定?</string>
+    <string name="sure_logout">你确定要退出吗?</string>
+    <string name="yes">是</string>
+    <string name="no">否</string>
+
+    <string name="music_setting">音乐设置</string>
+    <string name="music1">音乐 1</string>
+    <string name="music2">音乐 2</string>
+    <string name="music3">音乐 3</string>
+    <string name="music_background_volume">背景音乐音量</string>
+    <string name="music_front_volume">界面音乐音量</string>
+
+    <!--龙虎 -->
+    <string name="dragon1">龍  </string>
+    <string name="tiger1">虎  </string>
+    <string name="dragon_odd1">龍 单 </string>
+    <string name="tiger_odd1">虎 单 </string>
+    <string name="dragon_red1">龍 红 </string>
+    <string name="tiger_red1">虎 红 </string>
+    <string name="dragon_even1">龍 双 </string>
+    <string name="tiger_even1">虎 双 </string>
+    <string name="dragon_black1">龍 黑 </string>
+    <string name="tiger_black1">虎 黑 </string>
+    <string name="dragon">龍</string>
+    <string name="tiger">虎</string>
+    <string name="show_limit_dragon_tiger">龍,虎不能同时下注</string>
+
+    <string name="enter">进入</string>
+    <string name="chat">聊天</string>
+    <string name="emoticons">表情</string>
+    <string name="records">记录</string>
+    <string name="nice_to_meet">Hello everyone ,nice to meet you!</string>
+    <string name="sure_to_win">Ha ha ha ,Sure to win!</string>
+    <string name="bad_luck">Oh no ,Bad luck.</string>
+    <string name="make_friends">Let\'s make a friend.</string>
+    <string name="see_you">See you everyone.</string>
+    <string name="game_to_end">Let\'s game to the end.</string>
+    <string name="one_more_banker">Come on,one more banker.</string>
+    <string name="one_more_player">Come on,one more player.</string>
+    <string name="no_commission_baccarat" >没有佣金的百家乐</string>
+    <string name="please_select_chips">请选择筹码!</string>
+    <string name="MUSIC">音乐</string>
+    <string name="TABLE">换桌</string>
+    <string name="b">庄</string>
+    <string name="p">闲</string>
+    <string name="flip_0">点击按钮以调整扑克的横竖状态</string>
+    <string name="flip_l">单指向上滑动即可开牌</string>
+    <string name="flip_t">双手单指向上滑动即可开牌</string>
+    <string name="o_t_t">单骰 1：1 双骰 1：2 三骰 1：3</string>
+    <string name="Insufficient">余额不足</string>
+    <string name="game_close">已关闭</string>
+    <string name="start_bet">开始下注</string>
+    <string name="end_bet">结束下注</string>
+    <string name="slots">BG电子游戏</string>
+    <string name="cq">CQ9电子游戏</string>
+    <string name="cock_fighting">斗鸡</string>
+    <string name="dragon_tiger_game_number_limit">过了30局只能下注龙、虎、和</string>
+    <string name="Shuffling">洗牌</string>
+    <string name="loading">正在加载...</string>
+    <string name="Genre">类型</string>
+    <string name="afb1188">Afb体育</string>
+    <string name="DSV_Casino">DSV旗舰厅</string>
+    <string name="PPA" >闲对</string>
+    <string name="BPA" >庄对</string>
+    <string name="dr">@string/dragon</string>
+    <string name="ti">@string/tiger</string>
+    <string name="ID">用户</string>
+    <string name="BET">下注</string>
+    <string name="W_L">输/赢</string>
+    <string name="LIMIT_POP">限红</string>
+    <string name="ask">问路</string>
+    <string name="GoodRoad_1">长庄</string>
+    <string name="GoodRoad_2">长闲</string>
+    <string name="GoodRoad_3">一闲俩庄</string>
+    <string name="GoodRoad_4">一庄俩闲</string>
+    <string name="GoodRoad_5">大路单跳</string>
+    <string name="GoodRoad_6">大路双挑</string>
+    <string name="good_road">好路</string>
+    <string name="wait_good_road">等待好路中</string>
+    <string name="three_no_bet">你已有3次没下注</string>
+    <string name="friendly_message">友善提醒</string>
+</resources>

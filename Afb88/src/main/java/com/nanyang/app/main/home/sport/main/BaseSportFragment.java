@@ -391,6 +391,8 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
             stateHelper.setIsHide(true, additionPresenter);
         state.setIsHide(false, additionPresenter);
         presenter.setStateHelper(state);
+        getBaseActivity().initMatchTypePop();
+        getBaseActivity().loadTypeData();
         (presenter.getStateHelper()).initAllOdds(ivAllAdd);
         presenter.getStateHelper().refresh();
 //        presenter.getStateHelper().startUpdateData();

@@ -3,17 +3,17 @@ package com.nanyang.app.main.home.sport.main;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.Typeface;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Html;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.nanyang.app.AfbUtils;
@@ -325,10 +325,9 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             matchTitleLl.setVisibility(View.VISIBLE);
             headV.setVisibility(View.VISIBLE);
             matchTitleTv.setText(item.getModuleTitle());
-//            if (position == 0) {
-//                headV.setVisibility(View.GONE);
-//            }
         }
+        setClickOneTeam(helper, item);
+        updateContractedMatch(helper, item);
         handleOddsContent(helper, item, position);
         String away = item.getAway();
         String home = item.getHome();
@@ -343,26 +342,27 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             liveTv.setVisibility(View.GONE);
             liveTv1.setVisibility(View.VISIBLE);
         }
-        String oldHomeName = "";
-        String oldAwayName = "";
+        String oldHomeId = "";
+        String oldAwayId = "";
         String oldHomeGive = "";
-        String oldModuleTitle = "";
+        String oldModuleId = "";
         if (position > 0) {
-            oldHomeName = back.getItem(position - 1).getHome();
-            oldAwayName = back.getItem(position - 1).getAway();
+            oldHomeId = back.getItem(position - 1).getHomeId();
+            oldAwayId = back.getItem(position - 1).getAwayId();
             oldHomeGive = back.getItem(position - 1).getIsHomeGive();
-            oldModuleTitle = back.getItem(position - 1).getModuleTitle().toString();
+            oldModuleId = back.getItem(position - 1).getModuleId();
         }
-        if (item.getModuleTitle().equals(oldModuleTitle) && position != 0 && oldHomeName.equals(item.getHome()) && oldAwayName.equals(item.getAway()) && oldHomeGive.equals(item.getIsHomeGive())) {
+        if (item.getModuleId().equals(oldModuleId) && position != 0 && oldHomeId.equals(item.getHomeId()) && oldAwayId.equals(item.getAwayId()) && oldHomeGive.equals(item.getIsHomeGive())) {
             onMatchRepeat(helper, item, position);
         } else {
             onMatchNotRepeat(helper, item, position);
         }
+
         TextView homeScoreTv = helper.getView(R.id.module_match_home_score_tv);
         TextView awayScoreTv = helper.getView(R.id.module_match_away_score_tv);
         SoccerRunningGoalManager.getInstance().handleGoalStyle(item, homeScoreTv, awayScoreTv);
         if (act != null) {
-            if (act.currentFragment.presenter != null && act.currentFragment.isVisible() && act.currentFragment.presenter.getStateHelper().getStateType() != null ) {
+            if (act.currentFragment.presenter != null && act.currentFragment.isVisible() && act.currentFragment.presenter.getStateHelper().getStateType() != null) {
                 String type = act.currentFragment.presenter.getStateHelper().getStateType().getType();
                 if (!type.toLowerCase().startsWith("r")) {
                     homeScoreTv.setVisibility(View.GONE);
@@ -373,6 +373,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         updateMixNormalBackground(helper, item);
 
     }
+
 
     private void onConvertHall(final I item, ImageView ivHall, final int position) {
 
@@ -423,7 +424,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 || (!StringUtils.isNull(additionData.getATTG_CNT()) && !additionData.getATTG_CNT().equals("0"))
                 || (additionData.getFTMModds() != null && additionData.getFTMModds().size() > 0)
                 || (additionData.getFHMModds() != null && additionData.getFHMModds().size() > 0)
-                ) {
+        ) {
             parent.setVisibility(View.VISIBLE);
         } else {
             parent.setVisibility(View.GONE);
@@ -1201,7 +1202,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         getBaseRecyclerAdapter().getItem(position).setIsHdpNew("0");
         getBaseRecyclerAdapter().getItem(position).setIsOUNew("0");
 
-        sl.setOnTouchListener(new View.OnTouchListener() {
+     /*   sl.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
 
@@ -1217,8 +1218,8 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
                 return false;
             }
-        });
-        sl.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
+        });*/
+       /* sl.setIndexChangeListener(new ScrollLayout.IndexChangeCallBack() {
             @Override
             public void changePosition(int index) {
                 if (slIndex != index) {
@@ -1226,7 +1227,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
                 }
             }
-        });
+        });*/
 
         if (sl.getTargetIndex() != slIndex)
             sl.setCurrentIndex(slIndex);
@@ -1254,8 +1255,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             , boolean isShowBet1
             , boolean isShowBet2
             , String up11, String up21
-
-
     ) {
         addAddedByColor(f1, f2, "", oid, isHalf, parent, item,
                 up1, up2, "", type1, type2, "", sc1, sc2, "", colorType
@@ -1742,12 +1741,13 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         handler.updateMixBackground(item, sl, type01, type02, type11, type12, type21, type22);
     }
 
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, I item, int position) {
+    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, final I item, final int position) {
         View tvRightMark = helper.getView(R.id.module_right_mark_tv);
         tvRightMark.setVisibility(View.VISIBLE);
         View collectionTv = helper.getView(R.id.module_match_collection_tv);
         collectionTv.setVisibility(View.VISIBLE);
     }
+
 
     protected void onMatchRepeat(MyRecyclerViewHolder helper, I item, int position) {
       /*  View tvRightMark = helper.getView(R.id.module_right_mark_tv);

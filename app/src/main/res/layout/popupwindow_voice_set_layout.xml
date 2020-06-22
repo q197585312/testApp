@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_white_corners8"
+        android:orientation="vertical">
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:padding="5dp"
+            android:textStyle="bold"
+            android:text="@string/music_setting"
+            android:textColor="@color/black_grey"
+            android:textSize="16sp" />
+
+        <ImageView
+            android:id="@+id/view_set_close"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|right"
+            android:layout_marginRight="5dp"
+            android:background="@drawable/abc_ic_clear_mtrl_alpha" />
+    </FrameLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/grey_default_bg"/>
+
+        <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="10dp"
+        android:text="@string/Genre"
+        android:textColor="@color/black_grey" />
+
+    <RadioGroup
+        android:id="@+id/rg_music_rg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/rb_set_muzic1"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:button="@drawable/oval_white_red_center_check_bnt_selector"
+            android:checked="true"
+            android:text="@string/music1"
+            android:textColor="@color/black_grey" />
+
+        <RadioButton
+            android:id="@+id/rb_set_muzic2"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:button="@drawable/oval_white_red_center_check_bnt_selector"
+            android:text="@string/music2"
+            android:textColor="@color/black_grey" />
+
+        <RadioButton
+            android:id="@+id/rb_set_muzic3"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:button="@drawable/oval_white_red_center_check_bnt_selector"
+            android:text="@string/music3"
+            android:textColor="@color/black_grey" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="10dp"
+        android:text="@string/music_background_volume"
+        android:textColor="@color/black_grey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <SeekBar
+            android:id="@+id/sb_background_voice"
+            style="@android:style/Widget.Holo.Light.SeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="6dp"
+            android:maxHeight="6dp"
+            android:progressDrawable="@drawable/layer_seek_progress"
+            android:thumb="@mipmap/slider_oval"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="8dp"
+        android:drawablePadding="1dp"
+        android:text="@string/music_front_volume"
+        android:textColor="@color/black_grey" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+
+        <SeekBar
+            android:id="@+id/sb_front_voice"
+            style="@android:style/Widget.Holo.Light.SeekBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:progressDrawable="@drawable/layer_seek_progress"
+            android:minHeight="6dp"
+            android:maxHeight="6dp"
+            android:thumb="@mipmap/slider_oval"
+            android:paddingBottom="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp" />
+    </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+
+        android:id="@+id/ll_triangle_white_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="2" />
+
+        <View
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_gravity="center_horizontal"
+            android:background="@drawable/triangle_white_bottom" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_weight="0.75" />
+
+    </LinearLayout>
+
+</LinearLayout>

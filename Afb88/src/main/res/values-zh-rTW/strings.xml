@@ -169,6 +169,8 @@
     <string name="date">日期</string>
     <string name="six_day">6 天</string>
     <string name="all">全部</string><!--statement-->
+    <string name="All_Match">全部賽事</string>
+    <string name="Match">賽事</string>
     <string name="statement_stake">投注狀況</string>
     <string name="valid_amount">有效數額</string>
     <string name="w_l">贏/輸</string>
@@ -556,7 +558,7 @@
     <string name="FGLG">最先進球/最後進球</string>
     <string name="MM_HDP_OU">緬甸亞州盤</string>
     <string name="Home_Away_TG">最先得分/最後得分</string>
-    <string name="FT15">FT15 MINS</string>
+    <string name="FT15">15分鐘盤口</string>
     <string name="stake_is_more_than_max_limit">金額應小於最大注碼</string>
     <string name="stake_is_less_than_min_limit">金額應大於最小注碼</string>
     <string name="all_host">@string/all</string>

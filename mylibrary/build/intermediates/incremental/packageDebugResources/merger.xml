@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="E:\testApp\mylibrary\src\main\res"/><source path="E:\testApp\mylibrary\build\generated\res\rs\debug"/><source path="E:\testApp\mylibrary\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="main" generated-set="main$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="E:\testApp\mylibrary\src\main\res"><file name="i_slide_in_left" path="E:\testApp\mylibrary\src\main\res\anim\i_slide_in_left.xml" qualifiers="" type="anim"/><file name="i_slide_in_right" path="E:\testApp\mylibrary\src\main\res\anim\i_slide_in_right.xml" qualifiers="" type="anim"/><file name="i_slide_out_left" path="E:\testApp\mylibrary\src\main\res\anim\i_slide_out_left.xml" qualifiers="" type="anim"/><file name="i_slide_out_right" path="E:\testApp\mylibrary\src\main\res\anim\i_slide_out_right.xml" qualifiers="" type="anim"/><file name="reverse_anim" path="E:\testApp\mylibrary\src\main\res\anim\reverse_anim.xml" qualifiers="" type="anim"/><file name="rotating" path="E:\testApp\mylibrary\src\main\res\anim\rotating.xml" qualifiers="" type="anim"/><file name="slide_in_from_bottom" path="E:\testApp\mylibrary\src\main\res\anim\slide_in_from_bottom.xml" qualifiers="" type="anim"/><file name="slide_in_from_top" path="E:\testApp\mylibrary\src\main\res\anim\slide_in_from_top.xml" qualifiers="" type="anim"/><file name="slide_in_left" path="E:\testApp\mylibrary\src\main\res\anim\slide_in_left.xml" qualifiers="" type="anim"/><file name="slide_in_right" path="E:\testApp\mylibrary\src\main\res\anim\slide_in_right.xml" qualifiers="" type="anim"/><file name="slide_in_top" path="E:\testApp\mylibrary\src\main\res\anim\slide_in_top.xml" qualifiers="" type="anim"/><file name="slide_out_to_bottom" path="E:\testApp\mylibrary\src\main\res\anim\slide_out_to_bottom.xml" qualifiers="" type="anim"/><file name="slide_out_to_top" path="E:\testApp\mylibrary\src\main\res\anim\slide_out_to_top.xml" qualifiers="" type="anim"/><file name="arrow_down" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_down.xml" qualifiers="" type="drawable"/><file name="arrow_down_disabled" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_down_disabled.png" qualifiers="" type="drawable"/><file name="arrow_down_normal" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_down_normal.png" qualifiers="" type="drawable"/><file name="arrow_down_pressed" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_down_pressed.png" qualifiers="" type="drawable"/><file name="arrow_left" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_left.xml" qualifiers="" type="drawable"/><file name="arrow_left_disabled" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_left_disabled.png" qualifiers="" type="drawable"/><file name="arrow_left_normal" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_left_normal.png" qualifiers="" type="drawable"/><file name="arrow_left_pressed" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_left_pressed.png" qualifiers="" type="drawable"/><file name="arrow_right" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_right.xml" qualifiers="" type="drawable"/><file name="arrow_right_disabled" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_right_disabled.png" qualifiers="" type="drawable"/><file name="arrow_right_normal" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_right_normal.png" qualifiers="" type="drawable"/><file name="arrow_right_pressed" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_right_pressed.png" qualifiers="" type="drawable"/><file name="arrow_up" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_up.xml" qualifiers="" type="drawable"/><file name="arrow_up_disabled" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_up_disabled.png" qualifiers="" type="drawable"/><file name="arrow_up_normal" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_up_normal.png" qualifiers="" type="drawable"/><file name="arrow_up_pressed" path="E:\testApp\mylibrary\src\main\res\drawable\arrow_up_pressed.png" qualifiers="" type="drawable"/><file name="background_tab" path="E:\testApp\mylibrary\src\main\res\drawable\background_tab.xml" qualifiers="" type="drawable"/><file name="bottom_switcher_collapsed" path="E:\testApp\mylibrary\src\main\res\drawable\bottom_switcher_collapsed.9.png" qualifiers="" type="drawable"/><file name="bottom_switcher_collapsed_background" path="E:\testApp\mylibrary\src\main\res\drawable\bottom_switcher_collapsed_background.xml" qualifiers="" type="drawable"/><file name="bottom_switcher_collapsed_focused" path="E:\testApp\mylibrary\src\main\res\drawable\bottom_switcher_collapsed_focused.9.png" qualifiers="" type="drawable"/><file name="bottom_switcher_collapsed_selected" path="E:\testApp\mylibrary\src\main\res\drawable\bottom_switcher_collapsed_selected.9.png" qualifiers="" type="drawable"/><file name="bottom_switcher_expanded" path="E:\testApp\mylibrary\src\main\res\drawable\bottom_switcher_expanded.9.png" qualifiers="" type="drawable"/><file name="bottom_switcher_expanded_background" path="E:\testApp\mylibrary\src\main\res\drawable\bottom_switcher_expanded_background.xml" qualifiers="" type="drawable"/><file name="bottom_switcher_expanded_focused" path="E:\testApp\mylibrary\src\main\res\drawable\bottom_switcher_expanded_focused.9.png" qualifiers="" type="drawable"/><file name="bottom_switcher_expanded_selected" path="E:\testApp\mylibrary\src\main\res\drawable\bottom_switcher_expanded_selected.9.png" qualifiers="" type="drawable"/><file name="btn_default" path="E:\testApp\mylibrary\src\main\res\drawable\btn_default.xml" qualifiers="" type="drawable"/><file name="btn_default_normal" path="E:\testApp\mylibrary\src\main\res\drawable\btn_default_normal.9.png" qualifiers="" type="drawable"/><file name="btn_default_normal_disable" path="E:\testApp\mylibrary\src\main\res\drawable\btn_default_normal_disable.9.png" qualifiers="" type="drawable"/><file name="btn_default_normal_disable_focused" path="E:\testApp\mylibrary\src\main\res\drawable\btn_default_normal_disable_focused.9.png" qualifiers="" type="drawable"/><file name="btn_default_pressed" path="E:\testApp\mylibrary\src\main\res\drawable\btn_default_pressed.9.png" qualifiers="" type="drawable"/><file name="btn_default_selected" path="E:\testApp\mylibrary\src\main\res\drawable\btn_default_selected.9.png" qualifiers="" type="drawable"/><file name="btn_dropdown" path="E:\testApp\mylibrary\src\main\res\drawable\btn_dropdown.xml" qualifiers="" type="drawable"/><file name="btn_dropdown_normal" path="E:\testApp\mylibrary\src\main\res\drawable\btn_dropdown_normal.9.png" qualifiers="" type="drawable"/><file name="btn_dropdown_pressed" path="E:\testApp\mylibrary\src\main\res\drawable\btn_dropdown_pressed.9.png" qualifiers="" type="drawable"/><file name="btn_dropdown_selected" path="E:\testApp\mylibrary\src\main\res\drawable\btn_dropdown_selected.9.png" qualifiers="" type="drawable"/><file name="checkbox_style" path="E:\testApp\mylibrary\src\main\res\drawable\checkbox_style.xml" qualifiers="" type="drawable"/><file name="checkbox_switch_style_seletor" path="E:\testApp\mylibrary\src\main\res\drawable\checkbox_switch_style_seletor.xml" qualifiers="" type="drawable"/><file name="edit_text" path="E:\testApp\mylibrary\src\main\res\drawable\edit_text.xml" qualifiers="" type="drawable"/><file name="frame" path="E:\testApp\mylibrary\src\main\res\drawable\frame.9.png" qualifiers="" type="drawable"/><file name="icon" path="E:\testApp\mylibrary\src\main\res\drawable\icon.png" qualifiers="" type="drawable"/><file name="indicator_bg_bottom" path="E:\testApp\mylibrary\src\main\res\drawable\indicator_bg_bottom.xml" qualifiers="" type="drawable"/><file name="indicator_bg_top" path="E:\testApp\mylibrary\src\main\res\drawable\indicator_bg_top.xml" qualifiers="" type="drawable"/><file name="i_btn" path="E:\testApp\mylibrary\src\main\res\drawable\i_btn.xml" qualifiers="" type="drawable"/><file name="i_btn_normal" path="E:\testApp\mylibrary\src\main\res\drawable\i_btn_normal.9.png" qualifiers="" type="drawable"/><file name="i_btn_pressed" path="E:\testApp\mylibrary\src\main\res\drawable\i_btn_pressed.9.png" qualifiers="" type="drawable"/><file name="i_title_gradient" path="E:\testApp\mylibrary\src\main\res\drawable\i_title_gradient.xml" qualifiers="" type="drawable"/><file name="left_switcher_collapsed" path="E:\testApp\mylibrary\src\main\res\drawable\left_switcher_collapsed.9.png" qualifiers="" type="drawable"/><file name="left_switcher_collapsed_background" path="E:\testApp\mylibrary\src\main\res\drawable\left_switcher_collapsed_background.xml" qualifiers="" type="drawable"/><file name="left_switcher_collapsed_focused" path="E:\testApp\mylibrary\src\main\res\drawable\left_switcher_collapsed_focused.9.png" qualifiers="" type="drawable"/><file name="left_switcher_collapsed_selected" path="E:\testApp\mylibrary\src\main\res\drawable\left_switcher_collapsed_selected.9.png" qualifiers="" type="drawable"/><file name="left_switcher_expanded" path="E:\testApp\mylibrary\src\main\res\drawable\left_switcher_expanded.9.png" qualifiers="" type="drawable"/><file name="left_switcher_expanded_background" path="E:\testApp\mylibrary\src\main\res\drawable\left_switcher_expanded_background.xml" qualifiers="" type="drawable"/><file name="left_switcher_expanded_focused" path="E:\testApp\mylibrary\src\main\res\drawable\left_switcher_expanded_focused.9.png" qualifiers="" type="drawable"/><file name="left_switcher_expanded_selected" path="E:\testApp\mylibrary\src\main\res\drawable\left_switcher_expanded_selected.9.png" qualifiers="" type="drawable"/><file name="oval_white_graystroke_radius0" path="E:\testApp\mylibrary\src\main\res\drawable\oval_white_graystroke_radius0.xml" qualifiers="" type="drawable"/><file name="progress_large" path="E:\testApp\mylibrary\src\main\res\drawable\progress_large.xml" qualifiers="" type="drawable"/><file name="rectangle_black_corner5" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_black_corner5.xml" qualifiers="" type="drawable"/><file name="rectangle_blue_allradius5" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_blue_allradius5.xml" qualifiers="" type="drawable"/><file name="rectangle_blue_table_corners5" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_blue_table_corners5.xml" qualifiers="" type="drawable"/><file name="rectangle_blue_table_top_corners8" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_blue_table_top_corners8.xml" qualifiers="" type="drawable"/><file name="rectangle_gray_graystroke" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_gray_graystroke.xml" qualifiers="" type="drawable"/><file name="rectangle_gray_graystroke_radius5" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_gray_graystroke_radius5.xml" qualifiers="" type="drawable"/><file name="rectangle_grey_corners5" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_grey_corners5.xml" qualifiers="" type="drawable"/><file name="rectangle_red" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_red.xml" qualifiers="" type="drawable"/><file name="rectangle_roulette_green" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_roulette_green.xml" qualifiers="" type="drawable"/><file name="rectangle_sicbo_black" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_sicbo_black.xml" qualifiers="" type="drawable"/><file name="rectangle_sicbo_blue" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_sicbo_blue.xml" qualifiers="" type="drawable"/><file name="rectangle_sicbo_green" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_sicbo_green.xml" qualifiers="" type="drawable"/><file name="rectangle_sicbo_red" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_sicbo_red.xml" qualifiers="" type="drawable"/><file name="rectangle_trans" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_trans.xml" qualifiers="" type="drawable"/><file name="rectangle_transparent" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_transparent.xml" qualifiers="" type="drawable"/><file name="rectangle_transparent_radius5" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_transparent_radius5.xml" qualifiers="" type="drawable"/><file name="rectangle_trans_black" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_trans_black.xml" qualifiers="" type="drawable"/><file name="rectangle_trans_grey_seleter" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_trans_grey_seleter.xml" qualifiers="" type="drawable"/><file name="rectangle_trans_yellow" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_trans_yellow.xml" qualifiers="" type="drawable"/><file name="rectangle_white_corners8" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_white_corners8.xml" qualifiers="" type="drawable"/><file name="rectangle_white_graystroke_radius0" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_white_graystroke_radius0.xml" qualifiers="" type="drawable"/><file name="rectangle_white_graystroke_radius5" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_white_graystroke_radius5.xml" qualifiers="" type="drawable"/><file name="rectangle_white_stroken_gray_selector" path="E:\testApp\mylibrary\src\main\res\drawable\rectangle_white_stroken_gray_selector.xml" qualifiers="" type="drawable"/><file name="red_button" path="E:\testApp\mylibrary\src\main\res\drawable\red_button.xml" qualifiers="" type="drawable"/><file name="red_button0" path="E:\testApp\mylibrary\src\main\res\drawable\red_button0.9.png" qualifiers="" type="drawable"/><file name="red_button1" path="E:\testApp\mylibrary\src\main\res\drawable\red_button1.9.png" qualifiers="" type="drawable"/><file name="red_button2" path="E:\testApp\mylibrary\src\main\res\drawable\red_button2.9.png" qualifiers="" type="drawable"/><file name="red_button3" path="E:\testApp\mylibrary\src\main\res\drawable\red_button3.9.png" qualifiers="" type="drawable"/><file name="red_button4" path="E:\testApp\mylibrary\src\main\res\drawable\red_button4.9.png" qualifiers="" type="drawable"/><file name="red_button5" path="E:\testApp\mylibrary\src\main\res\drawable\red_button5.9.png" qualifiers="" type="drawable"/><file name="red_button6" path="E:\testApp\mylibrary\src\main\res\drawable\red_button6.9.png" qualifiers="" type="drawable"/><file name="red_button7" path="E:\testApp\mylibrary\src\main\res\drawable\red_button7.9.png" qualifiers="" type="drawable"/><file name="red_button_selected" path="E:\testApp\mylibrary\src\main\res\drawable\red_button_selected.9.png" qualifiers="" type="drawable"/><file name="red_transition_list" path="E:\testApp\mylibrary\src\main\res\drawable\red_transition_list.xml" qualifiers="" type="drawable"/><file name="right_switcher_collapsed" path="E:\testApp\mylibrary\src\main\res\drawable\right_switcher_collapsed.9.png" qualifiers="" type="drawable"/><file name="right_switcher_collapsed_background" path="E:\testApp\mylibrary\src\main\res\drawable\right_switcher_collapsed_background.xml" qualifiers="" type="drawable"/><file name="right_switcher_collapsed_focused" path="E:\testApp\mylibrary\src\main\res\drawable\right_switcher_collapsed_focused.9.png" qualifiers="" type="drawable"/><file name="right_switcher_collapsed_selected" path="E:\testApp\mylibrary\src\main\res\drawable\right_switcher_collapsed_selected.9.png" qualifiers="" type="drawable"/><file name="right_switcher_expanded" path="E:\testApp\mylibrary\src\main\res\drawable\right_switcher_expanded.9.png" qualifiers="" type="drawable"/><file name="right_switcher_expanded_background" path="E:\testApp\mylibrary\src\main\res\drawable\right_switcher_expanded_background.xml" qualifiers="" type="drawable"/><file name="right_switcher_expanded_focused" path="E:\testApp\mylibrary\src\main\res\drawable\right_switcher_expanded_focused.9.png" qualifiers="" type="drawable"/><file name="right_switcher_expanded_selected" path="E:\testApp\mylibrary\src\main\res\drawable\right_switcher_expanded_selected.9.png" qualifiers="" type="drawable"/><file name="scrollbar_handle_vertical" path="E:\testApp\mylibrary\src\main\res\drawable\scrollbar_handle_vertical.9.png" qualifiers="" type="drawable"/><file name="scrollbar_vertical" path="E:\testApp\mylibrary\src\main\res\drawable\scrollbar_vertical.9.png" qualifiers="" type="drawable"/><file name="shadow_bottom" path="E:\testApp\mylibrary\src\main\res\drawable\shadow_bottom.xml" qualifiers="" type="drawable"/><file name="shadow_left" path="E:\testApp\mylibrary\src\main\res\drawable\shadow_left.xml" qualifiers="" type="drawable"/><file name="shadow_right" path="E:\testApp\mylibrary\src\main\res\drawable\shadow_right.xml" qualifiers="" type="drawable"/><file name="shadow_top" path="E:\testApp\mylibrary\src\main\res\drawable\shadow_top.xml" qualifiers="" type="drawable"/><file name="shape_bet_total_bg" path="E:\testApp\mylibrary\src\main\res\drawable\shape_bet_total_bg.xml" qualifiers="" type="drawable"/><file name="silver_button" path="E:\testApp\mylibrary\src\main\res\drawable\silver_button.xml" qualifiers="" type="drawable"/><file name="silver_button0" path="E:\testApp\mylibrary\src\main\res\drawable\silver_button0.9.png" qualifiers="" type="drawable"/><file name="silver_button1" path="E:\testApp\mylibrary\src\main\res\drawable\silver_button1.9.png" qualifiers="" type="drawable"/><file name="silver_button2" path="E:\testApp\mylibrary\src\main\res\drawable\silver_button2.9.png" qualifiers="" type="drawable"/><file name="silver_button3" path="E:\testApp\mylibrary\src\main\res\drawable\silver_button3.9.png" qualifiers="" type="drawable"/><file name="silver_button4" path="E:\testApp\mylibrary\src\main\res\drawable\silver_button4.9.png" qualifiers="" type="drawable"/><file name="silver_button5" path="E:\testApp\mylibrary\src\main\res\drawable\silver_button5.9.png" qualifiers="" type="drawable"/><file name="silver_button6" path="E:\testApp\mylibrary\src\main\res\drawable\silver_button6.9.png" qualifiers="" type="drawable"/><file name="silver_button7" path="E:\testApp\mylibrary\src\main\res\drawable\silver_button7.9.png" qualifiers="" type="drawable"/><file name="silver_button_selected" path="E:\testApp\mylibrary\src\main\res\drawable\silver_button_selected.9.png" qualifiers="" type="drawable"/><file name="silver_transition_list" path="E:\testApp\mylibrary\src\main\res\drawable\silver_transition_list.xml" qualifiers="" type="drawable"/><file name="textfield_default" path="E:\testApp\mylibrary\src\main\res\drawable\textfield_default.9.png" qualifiers="" type="drawable"/><file name="textfield_disabled" path="E:\testApp\mylibrary\src\main\res\drawable\textfield_disabled.9.png" qualifiers="" type="drawable"/><file name="textfield_disabled_selected" path="E:\testApp\mylibrary\src\main\res\drawable\textfield_disabled_selected.9.png" qualifiers="" type="drawable"/><file name="textfield_pressed" path="E:\testApp\mylibrary\src\main\res\drawable\textfield_pressed.9.png" qualifiers="" type="drawable"/><file name="textfield_selected" path="E:\testApp\mylibrary\src\main\res\drawable\textfield_selected.9.png" qualifiers="" type="drawable"/><file name="title_bar" path="E:\testApp\mylibrary\src\main\res\drawable\title_bar.9.png" qualifiers="" type="drawable"/><file name="top_switcher_collapsed" path="E:\testApp\mylibrary\src\main\res\drawable\top_switcher_collapsed.9.png" qualifiers="" type="drawable"/><file name="top_switcher_collapsed_background" path="E:\testApp\mylibrary\src\main\res\drawable\top_switcher_collapsed_background.xml" qualifiers="" type="drawable"/><file name="top_switcher_collapsed_focused" path="E:\testApp\mylibrary\src\main\res\drawable\top_switcher_collapsed_focused.9.png" qualifiers="" type="drawable"/><file name="top_switcher_collapsed_selected" path="E:\testApp\mylibrary\src\main\res\drawable\top_switcher_collapsed_selected.9.png" qualifiers="" type="drawable"/><file name="top_switcher_expanded" path="E:\testApp\mylibrary\src\main\res\drawable\top_switcher_expanded.9.png" qualifiers="" type="drawable"/><file name="top_switcher_expanded_background" path="E:\testApp\mylibrary\src\main\res\drawable\top_switcher_expanded_background.xml" qualifiers="" type="drawable"/><file name="top_switcher_expanded_focused" path="E:\testApp\mylibrary\src\main\res\drawable\top_switcher_expanded_focused.9.png" qualifiers="" type="drawable"/><file name="top_switcher_expanded_selected" path="E:\testApp\mylibrary\src\main\res\drawable\top_switcher_expanded_selected.9.png" qualifiers="" type="drawable"/><file name="vk_backspace" path="E:\testApp\mylibrary\src\main\res\drawable\vk_backspace.png" qualifiers="" type="drawable"/><file name="vk_button" path="E:\testApp\mylibrary\src\main\res\drawable\vk_button.9.png" qualifiers="" type="drawable"/><file name="vk_button_ctrl" path="E:\testApp\mylibrary\src\main\res\drawable\vk_button_ctrl.9.png" qualifiers="" type="drawable"/><file name="vk_button_selected" path="E:\testApp\mylibrary\src\main\res\drawable\vk_button_selected.9.png" qualifiers="" type="drawable"/><file name="vk_button_toggle_selected" path="E:\testApp\mylibrary\src\main\res\drawable\vk_button_toggle_selected.9.png" qualifiers="" type="drawable"/><file name="vk_enter" path="E:\testApp\mylibrary\src\main\res\drawable\vk_enter.png" qualifiers="" type="drawable"/><file name="vk_shift" path="E:\testApp\mylibrary\src\main\res\drawable\vk_shift.png" qualifiers="" type="drawable"/><file name="vk_tab" path="E:\testApp\mylibrary\src\main\res\drawable\vk_tab.png" qualifiers="" type="drawable"/><file name="vk_zoom" path="E:\testApp\mylibrary\src\main\res\drawable\vk_zoom.png" qualifiers="" type="drawable"/><file name="vk_zoom_handle" path="E:\testApp\mylibrary\src\main\res\drawable\vk_zoom_handle.png" qualifiers="" type="drawable"/><file name="vpi__tab_indicator" path="E:\testApp\mylibrary\src\main\res\drawable\vpi__tab_indicator.xml" qualifiers="" type="drawable"/><file name="default_ptr_rotate" path="E:\testApp\mylibrary\src\main\res\drawable-hdpi\default_ptr_rotate.png" qualifiers="hdpi-v4" type="drawable"/><file name="vpi__tab_selected_focused_holo" path="E:\testApp\mylibrary\src\main\res\drawable-hdpi\vpi__tab_selected_focused_holo.9.png" qualifiers="hdpi-v4" type="drawable"/><file name="vpi__tab_selected_holo" path="E:\testApp\mylibrary\src\main\res\drawable-hdpi\vpi__tab_selected_holo.9.png" qualifiers="hdpi-v4" type="drawable"/><file name="vpi__tab_selected_pressed_holo" path="E:\testApp\mylibrary\src\main\res\drawable-hdpi\vpi__tab_selected_pressed_holo.9.png" qualifiers="hdpi-v4" type="drawable"/><file name="vpi__tab_unselected_focused_holo" path="E:\testApp\mylibrary\src\main\res\drawable-hdpi\vpi__tab_unselected_focused_holo.9.png" qualifiers="hdpi-v4" type="drawable"/><file name="vpi__tab_unselected_holo" path="E:\testApp\mylibrary\src\main\res\drawable-hdpi\vpi__tab_unselected_holo.9.png" qualifiers="hdpi-v4" type="drawable"/><file name="vpi__tab_unselected_pressed_holo" path="E:\testApp\mylibrary\src\main\res\drawable-hdpi\vpi__tab_unselected_pressed_holo.9.png" qualifiers="hdpi-v4" type="drawable"/><file name="dialog_spinner" path="E:\testApp\mylibrary\src\main\res\drawable-mdpi\dialog_spinner.png" qualifiers="mdpi-v4" type="drawable"/><file name="dialog_spinner_bg" path="E:\testApp\mylibrary\src\main\res\drawable-mdpi\dialog_spinner_bg.9.png" qualifiers="mdpi-v4" type="drawable"/><file name="progress_loading_cicle" path="E:\testApp\mylibrary\src\main\res\drawable-mdpi\progress_loading_cicle.xml" qualifiers="mdpi-v4" type="drawable"/><file name="vpi__tab_selected_focused_holo" path="E:\testApp\mylibrary\src\main\res\drawable-mdpi\vpi__tab_selected_focused_holo.9.png" qualifiers="mdpi-v4" type="drawable"/><file name="vpi__tab_selected_holo" path="E:\testApp\mylibrary\src\main\res\drawable-mdpi\vpi__tab_selected_holo.9.png" qualifiers="mdpi-v4" type="drawable"/><file name="vpi__tab_selected_pressed_holo" path="E:\testApp\mylibrary\src\main\res\drawable-mdpi\vpi__tab_selected_pressed_holo.9.png" qualifiers="mdpi-v4" type="drawable"/><file name="vpi__tab_unselected_focused_holo" path="E:\testApp\mylibrary\src\main\res\drawable-mdpi\vpi__tab_unselected_focused_holo.9.png" qualifiers="mdpi-v4" type="drawable"/><file name="vpi__tab_unselected_holo" path="E:\testApp\mylibrary\src\main\res\drawable-mdpi\vpi__tab_unselected_holo.9.png" qualifiers="mdpi-v4" type="drawable"/><file name="vpi__tab_unselected_pressed_holo" path="E:\testApp\mylibrary\src\main\res\drawable-mdpi\vpi__tab_unselected_pressed_holo.9.png" qualifiers="mdpi-v4" type="drawable"/><file name="checkbox_normal" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\checkbox_normal.png" qualifiers="xhdpi-v4" type="drawable"/><file name="checkbox_pressed" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\checkbox_pressed.png" qualifiers="xhdpi-v4" type="drawable"/><file name="default_head_img" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\default_head_img.png" qualifiers="xhdpi-v4" type="drawable"/><file name="hook_red_small" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\hook_red_small.png" qualifiers="xhdpi-v4" type="drawable"/><file name="loading" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\loading.png" qualifiers="xhdpi-v4" type="drawable"/><file name="load_failed" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\load_failed.png" qualifiers="xhdpi-v4" type="drawable"/><file name="load_succeed" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\load_succeed.png" qualifiers="xhdpi-v4" type="drawable"/><file name="menu_switch_off" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\menu_switch_off.png" qualifiers="xhdpi-v4" type="drawable"/><file name="menu_switch_on" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\menu_switch_on.png" qualifiers="xhdpi-v4" type="drawable"/><file name="progressbar_mini" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\progressbar_mini.xml" qualifiers="xhdpi-v4" type="drawable"/><file name="progress_dialog_bg" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\progress_dialog_bg.xml" qualifiers="xhdpi-v4" type="drawable"/><file name="progress_round" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\progress_round.xml" qualifiers="xhdpi-v4" type="drawable"/><file name="pullup_icon_big" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\pullup_icon_big.png" qualifiers="xhdpi-v4" type="drawable"/><file name="pull_icon_big" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\pull_icon_big.png" qualifiers="xhdpi-v4" type="drawable"/><file name="rectangle_geen_corner5" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\rectangle_geen_corner5.xml" qualifiers="xhdpi-v4" type="drawable"/><file name="refreshing" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\refreshing.png" qualifiers="xhdpi-v4" type="drawable"/><file name="refresh_failed" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\refresh_failed.png" qualifiers="xhdpi-v4" type="drawable"/><file name="refresh_succeed" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\refresh_succeed.png" qualifiers="xhdpi-v4" type="drawable"/><file name="vpi__tab_selected_focused_holo" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\vpi__tab_selected_focused_holo.9.png" qualifiers="xhdpi-v4" type="drawable"/><file name="vpi__tab_selected_holo" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\vpi__tab_selected_holo.9.png" qualifiers="xhdpi-v4" type="drawable"/><file name="vpi__tab_selected_pressed_holo" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\vpi__tab_selected_pressed_holo.9.png" qualifiers="xhdpi-v4" type="drawable"/><file name="vpi__tab_unselected_focused_holo" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\vpi__tab_unselected_focused_holo.9.png" qualifiers="xhdpi-v4" type="drawable"/><file name="vpi__tab_unselected_holo" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\vpi__tab_unselected_holo.9.png" qualifiers="xhdpi-v4" type="drawable"/><file name="vpi__tab_unselected_pressed_holo" path="E:\testApp\mylibrary\src\main\res\drawable-xhdpi\vpi__tab_unselected_pressed_holo.9.png" qualifiers="xhdpi-v4" type="drawable"/><file name="base_center_loading" path="E:\testApp\mylibrary\src\main\res\layout\base_center_loading.xml" qualifiers="" type="layout"/><file name="base_menu_item" path="E:\testApp\mylibrary\src\main\res\layout\base_menu_item.xml" qualifiers="" type="layout"/><file name="def_toast" path="E:\testApp\mylibrary\src\main\res\layout\def_toast.xml" qualifiers="" type="layout"/><file name="download_progress_layout" path="E:\testApp\mylibrary\src\main\res\layout\download_progress_layout.xml" qualifiers="" type="layout"/><file name="include_gridview" path="E:\testApp\mylibrary\src\main\res\layout\include_gridview.xml" qualifiers="" type="layout"/><file name="include_head_binar" path="E:\testApp\mylibrary\src\main\res\layout\include_head_binar.xml" qualifiers="" type="layout"/><file name="include_listview" path="E:\testApp\mylibrary\src\main\res\layout\include_listview.xml" qualifiers="" type="layout"/><file name="include_mygridview" path="E:\testApp\mylibrary\src\main\res\layout\include_mygridview.xml" qualifiers="" type="layout"/><file name="include_mylistview" path="E:\testApp\mylibrary\src\main\res\layout\include_mylistview.xml" qualifiers="" type="layout"/><file name="include_pulltorefresh_listview" path="E:\testApp\mylibrary\src\main\res\layout\include_pulltorefresh_listview.xml" qualifiers="" type="layout"/><file name="include_search_layout" path="E:\testApp\mylibrary\src\main\res\layout\include_search_layout.xml" qualifiers="" type="layout"/><file name="interpolator_main" path="E:\testApp\mylibrary\src\main\res\layout\interpolator_main.xml" qualifiers="" type="layout"/><file name="item_text" path="E:\testApp\mylibrary\src\main\res\layout\item_text.xml" qualifiers="" type="layout"/><file name="i_main" path="E:\testApp\mylibrary\src\main\res\layout\i_main.xml" qualifiers="" type="layout"/><file name="i_title" path="E:\testApp\mylibrary\src\main\res\layout\i_title.xml" qualifiers="" type="layout"/><file name="layout_block_dialog_demo" path="E:\testApp\mylibrary\src\main\res\layout\layout_block_dialog_demo.xml" qualifiers="" type="layout"/><file name="load_more" path="E:\testApp\mylibrary\src\main\res\layout\load_more.xml" qualifiers="" type="layout"/><file name="panel_main" path="E:\testApp\mylibrary\src\main\res\layout\panel_main.xml" qualifiers="" type="layout"/><file name="popupwindow_base_yes_choose" path="E:\testApp\mylibrary\src\main\res\layout\popupwindow_base_yes_choose.xml" qualifiers="" type="layout"/><file name="pull_to_refresh_header_horizontal" path="E:\testApp\mylibrary\src\main\res\layout\pull_to_refresh_header_horizontal.xml" qualifiers="" type="layout"/><file name="pull_to_refresh_header_vertical" path="E:\testApp\mylibrary\src\main\res\layout\pull_to_refresh_header_vertical.xml" qualifiers="" type="layout"/><file name="refresh_head" path="E:\testApp\mylibrary\src\main\res\layout\refresh_head.xml" qualifiers="" type="layout"/><file name="smooth_button_main" path="E:\testApp\mylibrary\src\main\res\layout\smooth_button_main.xml" qualifiers="" type="layout"/><file name="switcher_main" path="E:\testApp\mylibrary\src\main\res\layout\switcher_main.xml" qualifiers="" type="layout"/><file name="switcher_view" path="E:\testApp\mylibrary\src\main\res\layout\switcher_view.xml" qualifiers="" type="layout"/><file name="theme_main" path="E:\testApp\mylibrary\src\main\res\layout\theme_main.xml" qualifiers="" type="layout"/><file name="toolbar_layout" path="E:\testApp\mylibrary\src\main\res\layout\toolbar_layout.xml" qualifiers="" type="layout"/><file name="virtual_keyboard_main" path="E:\testApp\mylibrary\src\main\res\layout\virtual_keyboard_main.xml" qualifiers="" type="layout"/><file name="win_toast" path="E:\testApp\mylibrary\src\main\res\layout\win_toast.xml" qualifiers="" type="layout"/><file name="search_grey" path="E:\testApp\mylibrary\src\main\res\mipmap\search_grey.png" qualifiers="" type="mipmap"/><file name="arrow_left_brown" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\arrow_left_brown.png" qualifiers="hdpi-v4" type="mipmap"/><file name="arrow_left_white" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\arrow_left_white.png" qualifiers="hdpi-v4" type="mipmap"/><file name="default_indicator_rotate" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\default_indicator_rotate.png" qualifiers="hdpi-v4" type="mipmap"/><file name="default_ptr_flip" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\default_ptr_flip.png" qualifiers="hdpi-v4" type="mipmap"/><file name="default_ptr_rotate" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\default_ptr_rotate.png" qualifiers="hdpi-v4" type="mipmap"/><file name="ic_cloud_download_black_18dp" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\ic_cloud_download_black_18dp.png" qualifiers="hdpi-v4" type="mipmap"/><file name="oval_blue_not_solid_11" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\oval_blue_not_solid_11.png" qualifiers="hdpi-v4" type="mipmap"/><file name="oval_blue_not_solid_20" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\oval_blue_not_solid_20.png" qualifiers="hdpi-v4" type="mipmap"/><file name="oval_blue_point_12" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\oval_blue_point_12.png" qualifiers="hdpi-v4" type="mipmap"/><file name="oval_green_draw_white" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\oval_green_draw_white.png" qualifiers="hdpi-v4" type="mipmap"/><file name="oval_red_not_solid_11" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\oval_red_not_solid_11.png" qualifiers="hdpi-v4" type="mipmap"/><file name="oval_red_not_solid_20" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\oval_red_not_solid_20.png" qualifiers="hdpi-v4" type="mipmap"/><file name="oval_red_point_12" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\oval_red_point_12.png" qualifiers="hdpi-v4" type="mipmap"/><file name="page1" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\page1.jpg" qualifiers="hdpi-v4" type="mipmap"/><file name="page2" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\page2.jpg" qualifiers="hdpi-v4" type="mipmap"/><file name="rectangle_white_arrow_up_pop" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\rectangle_white_arrow_up_pop.png" qualifiers="hdpi-v4" type="mipmap"/><file name="toolbar_bg" path="E:\testApp\mylibrary\src\main\res\mipmap-hdpi\toolbar_bg.jpg" qualifiers="hdpi-v4" type="mipmap"/><file name="bet_success_bg" path="E:\testApp\mylibrary\src\main\res\mipmap-xxhdpi\bet_success_bg.png" qualifiers="xxhdpi-v4" type="mipmap"/><file name="progressbar_oval_orange" path="E:\testApp\mylibrary\src\main\res\mipmap-xxhdpi\progressbar_oval_orange.png" qualifiers="xxhdpi-v4" type="mipmap"/><file name="toast_bg" path="E:\testApp\mylibrary\src\main\res\mipmap-xxhdpi\toast_bg.png" qualifiers="xxhdpi-v4" type="mipmap"/><file name="win_bg" path="E:\testApp\mylibrary\src\main\res\mipmap-xxhdpi\win_bg.png" qualifiers="xxhdpi-v4" type="mipmap"/><file path="E:\testApp\mylibrary\src\main\res\values\arrays.xml" qualifiers=""><string-array name="easings">
+        <item>Back-In</item>  
+        <item>Back-Out</item>
+        <item>Back-In-Out</item>
+        <item>Elastic-In</item>  
+        <item>Elastic-Out</item>
+        <item>Elastic-In-Out</item>
+        <item>Bounce-In</item>  
+        <item>Bounce-Out</item>
+        <item>Bounce-In-Out</item>
+        <item>Circ-In</item>  
+        <item>Circ-Out</item>
+        <item>Circ-In-Out</item>
+        <item>Expo-In</item>  
+        <item>Expo-Out</item>
+        <item>Expo-In-Out</item>
+        <item>Quad-In</item>  
+        <item>Quad-Out</item>
+        <item>Quad-In-Out</item>
+        <item>Cubic-In</item>  
+        <item>Cubic-Out</item>
+        <item>Cubic-In-Out</item>
+        <item>Quart-In</item>  
+        <item>Quart-Out</item>
+        <item>Quart-In-Out</item>
+        <item>Quint-In</item>
+        <item>Quint-Out</item>
+        <item>Quint-In-Out</item>
+        <item>Sine-In</item>
+        <item>Sine-Out</item>
+        <item>Sine-In-Out</item>
+    </string-array><string-array name="months">
+        <item>january</item>
+        <item>february</item>
+        <item>march</item>
+        <item>april</item>
+        <item>may</item>
+        <item>june</item>
+        <item>july</item>
+        <item>august</item>
+        <item>september</item>
+        <item>october</item>
+        <item>november</item>
+        <item>december</item>
+    </string-array><string-array name="seasons">
+        <item>spring</item>
+        <item>summer</item>
+        <item>autumn</item>
+        <item>winter</item>
+    </string-array></file><file path="E:\testApp\mylibrary\src\main\res\values\attrs.xml" qualifiers=""><declare-styleable name="PullToRefresh">
+
+        
+        <attr format="reference|color" name="ptrRefreshableViewBackground"/>
+
+        
+        <attr format="reference|color" name="ptrHeaderBackground"/>
+
+        
+        <attr format="reference|color" name="ptrHeaderTextColor"/>
+
+        
+        <attr format="reference|color" name="ptrHeaderSubTextColor"/>
+
+        
+        <attr name="ptrMode">
+            <flag name="disabled" value="0x0"/>
+            <flag name="pullFromStart" value="0x1"/>
+            <flag name="pullFromEnd" value="0x2"/>
+            <flag name="both" value="0x3"/>
+            <flag name="manualOnly" value="0x4"/>
+
+            
+            <flag name="pullDownFromTop" value="0x1"/>
+            <flag name="pullUpFromBottom" value="0x2"/>
+        </attr>
+
+        
+        <attr format="reference|boolean" name="ptrShowIndicator"/>
+
+        
+        <attr format="reference" name="ptrDrawable"/>
+
+        
+        <attr format="reference" name="ptrDrawableStart"/>
+
+        
+        <attr format="reference" name="ptrDrawableEnd"/>
+
+        
+        <attr format="reference|boolean" name="ptrOverScroll"/>
+
+        
+        <attr format="reference" name="ptrHeaderTextAppearance"/>
+
+        
+        <attr format="reference" name="ptrSubHeaderTextAppearance"/>
+
+        
+        <attr name="ptrAnimationStyle">
+            <flag name="rotate" value="0x0"/>
+            <flag name="flip" value="0x1"/>
+        </attr>
+
+        
+        <attr format="reference|boolean" name="ptrScrollingWhileRefreshingEnabled"/>
+
+        
+        <attr format="reference|boolean" name="ptrListViewExtrasEnabled"/>
+
+        
+        <attr format="reference|boolean" name="ptrRotateDrawableWhilePulling"/>
+
+        
+        <attr format="reference|color" name="ptrAdapterViewBackground"/>
+        <attr format="reference" name="ptrDrawableTop"/>
+        <attr format="reference" name="ptrDrawableBottom"/>
+    </declare-styleable><declare-styleable name="PagerSlidingTabStrip">
+        <attr format="color" name="indicatorColor"/>
+        <attr format="color" name="underlineColor"/>
+        <attr format="color" name="dividerColor"/>
+        <attr format="dimension" name="indicatorHeight"/>
+        <attr format="dimension" name="underlineHeight"/>
+
+        <attr format="dimension" name="dividerPad"/>
+        <attr format="dimension" name="tabPaddingLeftRight"/>
+        <attr format="dimension" name="scrollOffset"/>
+        <attr format="reference" name="tabBground"/>
+        <attr format="boolean" name="shouldExpand"/>
+        <attr format="boolean" name="allCaps"/>
+    </declare-styleable><declare-styleable name="ViewPagerIndicator">
+        
+        <attr format="reference" name="vpiCirclePageIndicatorStyle"/>
+        
+        <attr format="reference" name="vpiIconPageIndicatorStyle"/>
+        
+        <attr format="reference" name="vpiLinePageIndicatorStyle"/>
+        
+        <attr format="reference" name="vpiTitlePageIndicatorStyle"/>
+        
+        <attr format="reference" name="vpiTabPageIndicatorStyle"/>
+        
+        <attr format="reference" name="vpiUnderlinePageIndicatorStyle"/>
+    </declare-styleable><attr format="boolean" name="centered"/><attr format="color" name="selectedColor"/><attr format="dimension" name="strokeWidth"/><attr format="color" name="unselectedColor"/><declare-styleable name="CirclePageIndicator">
+        
+        <attr name="centered"/>
+        
+        <attr format="color" name="fillColor"/>
+        
+        <attr format="color" name="pageColor"/>
+        
+        <attr name="android:orientation"/>
+        
+        <attr format="dimension" name="radius"/>
+        
+        <attr format="boolean" name="snap"/>
+        
+        <attr format="color" name="strokeColor"/>
+        
+        <attr name="strokeWidth"/>
+        
+        <attr name="android:background"/>
+    </declare-styleable><declare-styleable name="LinePageIndicator">
+        
+        <attr name="centered"/>
+        
+        <attr name="unselectedColor"/>
+        
+        <attr name="selectedColor"/>
+        
+        <attr format="dimension" name="lineWidth"/>
+        
+        <attr name="strokeWidth"/>
+        
+        <attr format="dimension" name="gapWidth"/>
+        
+        <attr name="android:background"/>
+    </declare-styleable><declare-styleable name="TitlePageIndicator">
+        
+        <attr format="dimension" name="clipPadding"/>
+        
+        <attr format="color" name="footerColor"/>
+        
+        <attr format="dimension" name="footerLineHeight"/>
+        
+        <attr name="footerIndicatorStyle">
+            <enum name="none" value="0"/>
+            <enum name="triangle" value="1"/>
+            <enum name="underline" value="2"/>
+        </attr>
+        
+        <attr format="dimension" name="footerIndicatorHeight"/>
+        
+        <attr format="dimension" name="footerIndicatorUnderlinePadding"/>
+        
+        <attr format="dimension" name="footerPadding"/>
+        
+        <attr name="linePosition">
+            <enum name="bottom" value="0"/>
+            <enum name="top" value="1"/>
+        </attr>
+        
+        <attr name="selectedColor"/>
+        
+        <attr format="boolean" name="selectedBold"/>
+        
+        <attr name="android:textColor"/>
+        
+        <attr name="android:textSize"/>
+        
+        <attr format="dimension" name="titlePadding"/>
+        
+        <attr format="dimension" name="topPadding"/>
+        
+        <attr name="android:background"/>
+    </declare-styleable><declare-styleable name="UnderlinePageIndicator">
+        
+        <attr format="boolean" name="fades"/>
+        
+        <attr format="integer" name="fadeDelay"/>
+        
+        <attr format="integer" name="fadeLength"/>
+        
+        <attr name="selectedColor"/>
+        
+        <attr name="android:background"/>
+    </declare-styleable><declare-styleable name="PopSeekbarView">
+        <attr format="reference" name="pop_button_drawable"/>
+        <attr format="reference" name="pop_push_drawable"/>
+    </declare-styleable><attr format="dimension" name="dividing_line_spacing"/><attr format="color" name="line_color"/><declare-styleable name="GridBackgroundView">
+        <attr name="dividing_line_spacing"/>
+        <attr name="line_color"/>
+    </declare-styleable><declare-styleable name="DiagonalView">
+        <attr format="float" name="line_corner_startX"/>
+        <attr format="float" name="line_corner_startY"/>
+        <attr format="float" name="line_corner_endX"/>
+        <attr format="float" name="line_corner_endY"/>
+        <attr name="line_color"/>
+    </declare-styleable><declare-styleable name="Panel">
+        
+        <attr format="integer" name="animationDuration"/>
+        
+        <attr name="position">
+            
+            <enum name="top" value="0"/>
+            
+            <enum name="bottom" value="1"/>
+            
+            <enum name="left" value="2"/>
+            
+            <enum name="right" value="3"/>
+        </attr>
+        
+        <attr format="reference" name="handle"/>
+        
+        <attr format="reference" name="content"/>
+        
+        <attr format="boolean" name="linearFlying"/>
+        
+        <attr format="fraction" name="weight"/>
+        
+        <attr format="reference|color" name="openedHandle"/>
+        
+        <attr format="reference|color" name="closedHandle"/>
+    </declare-styleable><declare-styleable name="SmoothButton">
+        <attr format="reference" name="transitionDrawable"/>
+        <attr format="integer" name="transitionDrawableLength"/>
+        <attr format="color" name="transitionTextColorUp"/>
+        <attr format="color" name="transitionTextColorDown"/>
+    </declare-styleable><declare-styleable name="Switcher">
+        
+        <attr name="animationDuration"/>
+        
+        <attr format="integer" name="idleTimeout"/>
+        
+        <attr format="reference" name="decreaseButton"/>
+        
+        <attr format="reference" name="increaseButton"/>
+    </declare-styleable></file><file path="E:\testApp\mylibrary\src\main\res\values\colors.xml" qualifiers=""><color name="blue_bet">#4d93c6</color><color name="blue_dark">#4578e4</color><color name="blue">#4285f4</color><color name="gold">#FFD700</color><color name="bet_color">#000000</color><color name="blue_height">#0449be</color><color name="blue_word">#009fe8</color><color name="blue1">#5a96dd</color><color name="trans_blue_dark">#bb5a96dd</color><color name="trans_blue_light">#225a96dd</color><color name="blue_300">#42c6ff</color><color name="blue_max">#181761</color><color name="white">@android:color/white</color><color name="black">@android:color/black</color><color name="black_grey">#333333</color><color name="grey_dark">#7f7f7f</color><color name="grey_born">#dd656060</color><color name="grey_light">#bfbfbf</color><color name="grey_background">#e5e5e5</color><color name="grey_background_trans">#aae5e5e5</color><color name="grey_thick_line">#ededed</color><color name="grey_button">#bebebe</color><color name="grey_line_button">#9f9f9f</color><color name="grey_dark_word">#4c4c4c</color><color name="grey_dialog_background">#f0f0f0</color><color name="grey_default_bg">#ecebf1</color><color name="grey_6e6e63">#664c4c4c</color><color name="grey_303030">#303030</color><color name="trans_white_dark">#ccffffff</color><color name="trans_white_light">#33ffffff</color><color name="white_grey_bg_dark">#DCDCDC</color><color name="white_grey_bg_light">#F1F1F1</color><color name="transparent">@android:color/transparent</color><color name="trans_black">#77000000</color><color name="trans_black_dark">#bb000000</color><color name="trans_black_light">#33000000</color><color name="red">#ff0000</color><color name="red_background">#ff4a4a</color><color name="orange_dark">#ff3300</color><color name="orange">#C95C4E</color><color name="red_title">#ff0000</color><color name="yellow_dark_d2560b">#d2560b</color><color name="yellow_gold">#FFFDD26A</color><color name="yellow_brown_word">#a2a40e</color><color name="colorAccent">#ffc107</color><color name="yellow_brown_white_word">#f4cc7f</color><color name="yellow_brown_a3721a">#a3721a</color><color name="brown_dark_bg">#685b46</color><color name="brown_black_bg">#cc000000</color><color name="brown_black_bg1">#544b3a</color><color name="orange_text_balance">#d2560b</color><color name="orange_dealer_name">#f97704</color><color name="colorPrimary">#607d8b</color><color name="colorPrimaryDark">#455a64</color><color name="colorPrimaryLight">#cfd8dc</color><color name="gray_dark">#616161</color><color name="brown">#5d4037</color><color name="indicator_1">#55B3C2</color><color name="indicator_2">#64A4A4</color><color name="indicator_3">#66D7B9</color><color name="indicator_4">#FDBC7D</color><color name="trans_white">#66ffffff</color><color name="green500">#4CAF50</color><color name="green_light">#19a890</color><color name="green900">#379e48</color><color name="green_table_dark_bg">#FF01534E</color><color name="green_brown_dark">#003366</color><color name="blue_table_bg">#FF009B8D</color><color name="background_tab_pressed">#6633B5E5</color><color name="vpi__background_holo_dark">#ff000000</color><color name="vpi__background_holo_light">#fff3f3f3</color><color name="vpi__bright_foreground_holo_dark">@color/vpi__background_holo_light</color><color name="vpi__bright_foreground_holo_light">@color/vpi__background_holo_dark</color><color name="vpi__bright_foreground_disabled_holo_dark">#0ab627</color><color name="vpi__bright_foreground_disabled_holo_light">#ffb2b2b2</color><color name="vpi__bright_foreground_inverse_holo_dark">
+        @color/vpi__bright_foreground_holo_light
+    </color><color name="vpi__bright_foreground_inverse_holo_light">
+        @color/vpi__bright_foreground_holo_dark
+    </color><color name="default_shadow_color">#88757575</color><color name="default_fill_color">#ffffff</color><color name="tie_color">#0a968e</color><color name="player_color">#0449be</color><color name="win_color">#00BFFF</color><color name="banker_color">#ff0000</color><color name="lose_color">#fd3a5c</color></file><file path="E:\testApp\mylibrary\src\main\res\values\dimens.xml" qualifiers=""><dimen name="indicator_right_padding">10dp</dimen><dimen name="indicator_corner_radius">12dp</dimen><dimen name="indicator_internal_padding">4dp</dimen><dimen name="header_footer_left_right_padding">24dp</dimen><dimen name="header_footer_top_bottom_padding">12dp</dimen><dimen name="shadow_size">4dip</dimen><dimen name="default_corner_radius">4dp</dimen><dimen name="default_shadow_radius">4dp</dimen></file><file path="E:\testApp\mylibrary\src\main\res\values\ids.xml" qualifiers=""><item name="gridview" type="id"/><item name="webview" type="id"/><item name="scrollview" type="id"/><item name="tag_first" type="id"/><item name="tag_second" type="id"/><item name="tag_type_view" type="id"/><item name="tag_row" type="id"/><item name="tag_column" type="id"/></file><file path="E:\testApp\mylibrary\src\main\res\values\pull_refresh_strings.xml" qualifiers=""><string name="pull_to_refresh_pull_label">Pull to refresh…</string><string name="pull_to_refresh_release_label">Release to refresh…</string><string name="pull_to_refresh_refreshing_label">Loading…</string><string name="pull_to_refresh_from_bottom_pull_label">@string/pull_to_refresh_pull_label</string><string name="pull_to_refresh_from_bottom_release_label">@string/pull_to_refresh_release_label</string><string name="pull_to_refresh_from_bottom_refreshing_label">@string/pull_to_refresh_refreshing_label</string></file><file path="E:\testApp\mylibrary\src\main\res\values\strings.xml" qualifiers=""><string name="app_name">My Library</string><string name="search">搜索</string><string name="head">这里是HeadView</string><string name="pull_to_refresh">Pull to refresh</string><string name="release_to_refresh">释放立即刷新</string><string name="refreshing">正在刷新...</string><string name="refresh_succeed">Refresh Success</string><string name="refresh_fail">Refresh complete</string><string name="pull_up_to_load">Pull up to load</string><string name="release_to_load">Release to load</string><string name="loading">loading...</string><string name="load_succeed">Load Succeed</string><string name="load_fail">Load fail</string><string name="panels_app_name">Test Panels</string><string name="switcher_app_name">Test Switcher</string><string name="smoothbutton_app_name">Test SmoothButton</string><string name="interpolators_app_name">Test Interpolators</string><string name="theme_app_name">Test Theme</string><string name="virtual_keyboard_app_name">Test Virtual Keyboard</string><string name="custom_title_app_name">Test Custom Title</string><string name="b0"><b>press me</b> - left animation - 750 msec</string><string name="b1"><b>press me</b> - right animation - 1500 msec</string></file><file path="E:\testApp\mylibrary\src\main\res\values\styles.xml" qualifiers=""><style name="AppBaseTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorPrimary">@color/white</item>
+        <item name="colorPrimaryDark">@color/black</item>
+        <item name="colorAccent">@color/abc_background_cache_hint_selector_material_dark</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="vpiCirclePageIndicatorStyle">@style/TabStyle</item>
+        
+        <item name="searchViewStyle">@style/MySearchViewStyle</item>
+    </style><style name="TabStyle" parent="Widget.AppCompat.ActionBar.TabBar">
+        <item name="android:textColor">#FF33AA33</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">italic</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:paddingRight">5dp</item>
+        <item name="android:fadingEdge">horizontal</item>
+        <item name="android:fadingEdgeLength">5dp</item>
+    </style><style name="MySearchViewStyle" parent="Widget.AppCompat.SearchView"/><style name="style_wrap_wrap">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+    </style><style name="style_match_match">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style><style name="style_match_wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style><style name="style_match_wrap_padding5">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">5dp</item>
+    </style><style name="style_wrap_wrap_padding5">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:padding">5dp</item>
+    </style><style name="line_horizontal_grey1">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0.5dp</item>
+        <item name="android:background">@color/grey_thick_line</item>
+    </style><style name="line_horizontal_grey5">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">5dp</item>
+        <item name="android:background">@color/grey_thick_line</item>
+    </style><style name="line_vertical_grey1">
+        <item name="android:layout_width">0.5dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@color/grey_thick_line</item>
+    </style><style name="text_wrap_bold_black14">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black_grey</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_wrap_grey14">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_match_grey14">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_match_black14">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:textColor">@color/black_grey</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_wrap_home_away_size">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/black_grey</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_wrap_black12">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/black_grey</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_match_black12">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/black_grey</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_wrap_black10">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:textColor">@color/black_grey</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_match_black10">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textColor">@color/black_grey</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_match_bold_black14">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/black_grey</item>
+        <item name="android:textSize">14sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="style_weight_horizontal">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style><style name="style_weight_vertical">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style><style name="text_wrap_grey12">
+        <item name="android:textSize">12sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_wrap_grey10">
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_wrap_dark_grey10">
+        <item name="android:textSize">10sp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_dark</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_match_blue12">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blue_word</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_wrap_blue12">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/blue_word</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_wrap_orange12">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/orange_dark</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_bold">
+        <item name="android:textSize">12sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:paddingBottom">5dp</item>
+    </style><style name="text_normal">
+        <item name="android:paddingBottom">0dp</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">normal</item>
+    </style><style name="text_match_grey12">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_match_grey10">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_match_dark_grey10">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_dark_word</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_match_grey18">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_match_bold_grey18">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_warp_bold_grey20">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="text_wrap_bold_grey18">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/grey_light</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:drawablePadding">5dp</item>
+    </style><style name="Theme.PageIndicatorDefaults" parent="android:Theme">
+        <item name="vpiIconPageIndicatorStyle">@style/Widget.IconPageIndicator</item>
+        <item name="vpiTabPageIndicatorStyle">@style/Widget.TabPageIndicator</item>
+    </style><style name="Widget">
+    </style><style name="Widget.TabPageIndicator" parent="Widget">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/vpi__tab_indicator</item>
+        <item name="android:paddingLeft">22dip</item>
+        <item name="android:paddingRight">22dip</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:textAppearance">@style/TextAppearance.TabPageIndicator</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:maxLines">1</item>
+    </style><style name="TextAppearance.TabPageIndicator" parent="Widget">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/white</item>
+    </style><style name="Widget.IconPageIndicator" parent="Widget">
+        <item name="android:layout_marginLeft">6dp</item>
+        <item name="android:layout_marginRight">6dp</item>
+    </style><style name="Theme_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style><style name="CustomCheckboxTheme" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/checkbox_style</item>
+    </style><style name="myprogress">
+        　　<item name="android:indeterminateDrawable">@drawable/progress_large</item>
+        <item name="android:maxWidth">18dip</item>
+        <item name="android:maxHeight">18dip</item>
+        <item name="android:minHeight">18dip</item>
+        <item name="android:minWidth">18dip</item>
+    </style><declare-styleable name="ShadowLayout">
+        <attr format="dimension" name="sl_cornerRadius"/>
+        <attr format="dimension" name="sl_shadowRadius"/>
+        <attr format="color" name="sl_shadowColor"/>
+        <attr format="dimension" name="sl_dx"/>
+        <attr format="dimension" name="sl_dy"/>
+    </declare-styleable><style name="ProgressBar_Mini" parent="@android:style/Widget.ProgressBar.Horizontal">
+        <item name="android:maxHeight">50dip</item>
+        <item name="android:minHeight">8dip</item>
+        <item name="android:indeterminateOnly">false</item>
+        <item name="android:indeterminateDrawable">@android:drawable/progress_indeterminate_horizontal</item>
+        <item name="android:progressDrawable">@drawable/progressbar_mini</item>
+    </style><style name="iBtn">
+        <item name="android:background">@drawable/i_btn</item>
+        <item name="android:paddingLeft">16dip</item>
+        <item name="android:paddingRight">16dip</item>
+        <item name="android:paddingTop">8dip</item>
+        <item name="android:paddingBottom">8dip</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textSize">18dip</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#eee</item>
+        <item name="android:shadowColor">#444</item>
+        <item name="android:shadowRadius">2</item>
+    </style><style name="text_shadow">
+        <item name="android:textStyle">bold</item>
+        <item name="android:shadowColor">@color/black</item>
+        <item name="android:shadowRadius">5</item>
+        <item name="android:shadowDx">6</item>
+        <item name="android:shadowDy">0</item>
+
+    </style><style name="myToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:scaleType">centerInside</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style></file><file path="E:\testApp\mylibrary\src\main\res\values\vpi__defaults.xml" qualifiers=""><bool name="default_circle_indicator_centered">true</bool><color name="default_circle_indicator_fill_color">#FFFFFFFF</color><color name="default_circle_indicator_page_color">#00000000</color><integer name="default_circle_indicator_orientation">0</integer><dimen name="default_circle_indicator_radius">3dp</dimen><bool name="default_circle_indicator_snap">false</bool><color name="default_circle_indicator_stroke_color">#FFDDDDDD</color><dimen name="default_circle_indicator_stroke_width">1dp</dimen><dimen name="default_line_indicator_line_width">12dp</dimen><dimen name="default_line_indicator_gap_width">4dp</dimen><dimen name="default_line_indicator_stroke_width">1dp</dimen><color name="default_line_indicator_selected_color">#FF33B5E5</color><color name="default_line_indicator_unselected_color">#FFBBBBBB</color><bool name="default_line_indicator_centered">true</bool><dimen name="default_title_indicator_clip_padding">4dp</dimen><color name="default_title_indicator_footer_color">#FF33B5E5</color><dimen name="default_title_indicator_footer_line_height">2dp</dimen><integer name="default_title_indicator_footer_indicator_style">2</integer><dimen name="default_title_indicator_footer_indicator_height">4dp</dimen><dimen name="default_title_indicator_footer_indicator_underline_padding">20dp</dimen><dimen name="default_title_indicator_footer_padding">7dp</dimen><integer name="default_title_indicator_line_position">0</integer><color name="default_title_indicator_selected_color">#FFFFFFFF</color><bool name="default_title_indicator_selected_bold">true</bool><color name="default_title_indicator_text_color">#BBFFFFFF</color><dimen name="default_title_indicator_text_size">15dp</dimen><dimen name="default_title_indicator_title_padding">5dp</dimen><dimen name="default_title_indicator_top_padding">7dp</dimen><bool name="default_underline_indicator_fades">true</bool><integer name="default_underline_indicator_fade_delay">300</integer><integer name="default_underline_indicator_fade_length">400</integer><color name="default_underline_indicator_selected_color">#FF33B5E5</color></file><file name="layout" path="E:\testApp\mylibrary\src\main\res\xml\layout.xml" qualifiers="" type="xml"/><file name="normal_toast" path="E:\testApp\mylibrary\src\main\res\layout\normal_toast.xml" qualifiers="" type="layout"/></source><source path="E:\testApp\mylibrary\build\generated\res\rs\debug"/><source path="E:\testApp\mylibrary\build\generated\res\resValues\debug"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug$Generated" generated="true" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="E:\testApp\mylibrary\src\debug\res"/></dataSet><dataSet aapt-namespace="http://schemas.android.com/apk/res-auto" config="debug" generated-set="debug$Generated" ignore_pattern="!.svn:!.git:!.ds_store:!*.scc:.*:&lt;dir>_*:!CVS:!thumbs.db:!picasa.ini:!*~"><source path="E:\testApp\mylibrary\src\debug\res"/></dataSet><mergedItems><configuration qualifiers=""><declare-styleable name="PullToRefresh">
+
+        
+        <attr format="reference|color" name="ptrRefreshableViewBackground"/>
+
+        
+        <attr format="reference|color" name="ptrHeaderBackground"/>
+
+        
+        <attr format="reference|color" name="ptrHeaderTextColor"/>
+
+        
+        <attr format="reference|color" name="ptrHeaderSubTextColor"/>
+
+        
+        <attr name="ptrMode">
+            <flag name="disabled" value="0x0"/>
+            <flag name="pullFromStart" value="0x1"/>
+            <flag name="pullFromEnd" value="0x2"/>
+            <flag name="both" value="0x3"/>
+            <flag name="manualOnly" value="0x4"/>
+
+            
+            <flag name="pullDownFromTop" value="0x1"/>
+            <flag name="pullUpFromBottom" value="0x2"/>
+        </attr>
+
+        
+        <attr format="reference|boolean" name="ptrShowIndicator"/>
+
+        
+        <attr format="reference" name="ptrDrawable"/>
+
+        
+        <attr format="reference" name="ptrDrawableStart"/>
+
+        
+        <attr format="reference" name="ptrDrawableEnd"/>
+
+        
+        <attr format="reference|boolean" name="ptrOverScroll"/>
+
+        
+        <attr format="reference" name="ptrHeaderTextAppearance"/>
+
+        
+        <attr format="reference" name="ptrSubHeaderTextAppearance"/>
+
+        
+        <attr name="ptrAnimationStyle">
+            <flag name="rotate" value="0x0"/>
+            <flag name="flip" value="0x1"/>
+        </attr>
+
+        
+        <attr format="reference|boolean" name="ptrScrollingWhileRefreshingEnabled"/>
+
+        
+        <attr format="reference|boolean" name="ptrListViewExtrasEnabled"/>
+
+        
+        <attr format="reference|boolean" name="ptrRotateDrawableWhilePulling"/>
+
+        
+        <attr format="reference|color" name="ptrAdapterViewBackground"/>
+        <attr format="reference" name="ptrDrawableTop"/>
+        <attr format="reference" name="ptrDrawableBottom"/>
+    </declare-styleable><declare-styleable name="PopSeekbarView">
+        <attr format="reference" name="pop_button_drawable"/>
+        <attr format="reference" name="pop_push_drawable"/>
+    </declare-styleable><declare-styleable name="PagerSlidingTabStrip">
+        <attr format="color" name="indicatorColor"/>
+        <attr format="color" name="underlineColor"/>
+        <attr format="color" name="dividerColor"/>
+        <attr format="dimension" name="indicatorHeight"/>
+        <attr format="dimension" name="underlineHeight"/>
+
+        <attr format="dimension" name="dividerPad"/>
+        <attr format="dimension" name="tabPaddingLeftRight"/>
+        <attr format="dimension" name="scrollOffset"/>
+        <attr format="reference" name="tabBground"/>
+        <attr format="boolean" name="shouldExpand"/>
+        <attr format="boolean" name="allCaps"/>
+    </declare-styleable><declare-styleable name="Switcher">
+        
+        <attr name="animationDuration"/>
+        
+        <attr format="integer" name="idleTimeout"/>
+        
+        <attr format="reference" name="decreaseButton"/>
+        
+        <attr format="reference" name="increaseButton"/>
+    </declare-styleable><declare-styleable name="ViewPagerIndicator">
+        
+        <attr format="reference" name="vpiCirclePageIndicatorStyle"/>
+        
+        <attr format="reference" name="vpiIconPageIndicatorStyle"/>
+        
+        <attr format="reference" name="vpiLinePageIndicatorStyle"/>
+        
+        <attr format="reference" name="vpiTitlePageIndicatorStyle"/>
+        
+        <attr format="reference" name="vpiTabPageIndicatorStyle"/>
+        
+        <attr format="reference" name="vpiUnderlinePageIndicatorStyle"/>
+    </declare-styleable><declare-styleable name="LinePageIndicator">
+        
+        <attr name="centered"/>
+        
+        <attr name="unselectedColor"/>
+        
+        <attr name="selectedColor"/>
+        
+        <attr format="dimension" name="lineWidth"/>
+        
+        <attr name="strokeWidth"/>
+        
+        <attr format="dimension" name="gapWidth"/>
+        
+        <attr name="android:background"/>
+    </declare-styleable><declare-styleable name="DiagonalView">
+        <attr format="float" name="line_corner_startX"/>
+        <attr format="float" name="line_corner_startY"/>
+        <attr format="float" name="line_corner_endX"/>
+        <attr format="float" name="line_corner_endY"/>
+        <attr name="line_color"/>
+    </declare-styleable><declare-styleable name="Panel">
+        
+        <attr format="integer" name="animationDuration"/>
+        
+        <attr name="position">
+            
+            <enum name="top" value="0"/>
+            
+            <enum name="bottom" value="1"/>
+            
+            <enum name="left" value="2"/>
+            
+            <enum name="right" value="3"/>
+        </attr>
+        
+        <attr format="reference" name="handle"/>
+        
+        <attr format="reference" name="content"/>
+        
+        <attr format="boolean" name="linearFlying"/>
+        
+        <attr format="fraction" name="weight"/>
+        
+        <attr format="reference|color" name="openedHandle"/>
+        
+        <attr format="reference|color" name="closedHandle"/>
+    </declare-styleable><declare-styleable name="ShadowLayout">
+        <attr format="dimension" name="sl_cornerRadius"/>
+        <attr format="dimension" name="sl_shadowRadius"/>
+        <attr format="color" name="sl_shadowColor"/>
+        <attr format="dimension" name="sl_dx"/>
+        <attr format="dimension" name="sl_dy"/>
+    </declare-styleable><declare-styleable name="SmoothButton">
+        <attr format="reference" name="transitionDrawable"/>
+        <attr format="integer" name="transitionDrawableLength"/>
+        <attr format="color" name="transitionTextColorUp"/>
+        <attr format="color" name="transitionTextColorDown"/>
+    </declare-styleable><declare-styleable name="GridBackgroundView">
+        <attr name="dividing_line_spacing"/>
+        <attr name="line_color"/>
+    </declare-styleable><declare-styleable name="UnderlinePageIndicator">
+        
+        <attr format="boolean" name="fades"/>
+        
+        <attr format="integer" name="fadeDelay"/>
+        
+        <attr format="integer" name="fadeLength"/>
+        
+        <attr name="selectedColor"/>
+        
+        <attr name="android:background"/>
+    </declare-styleable><declare-styleable name="TitlePageIndicator">
+        
+        <attr format="dimension" name="clipPadding"/>
+        
+        <attr format="color" name="footerColor"/>
+        
+        <attr format="dimension" name="footerLineHeight"/>
+        
+        <attr name="footerIndicatorStyle">
+            <enum name="none" value="0"/>
+            <enum name="triangle" value="1"/>
+            <enum name="underline" value="2"/>
+        </attr>
+        
+        <attr format="dimension" name="footerIndicatorHeight"/>
+        
+        <attr format="dimension" name="footerIndicatorUnderlinePadding"/>
+        
+        <attr format="dimension" name="footerPadding"/>
+        
+        <attr name="linePosition">
+            <enum name="bottom" value="0"/>
+            <enum name="top" value="1"/>
+        </attr>
+        
+        <attr name="selectedColor"/>
+        
+        <attr format="boolean" name="selectedBold"/>
+        
+        <attr name="android:textColor"/>
+        
+        <attr name="android:textSize"/>
+        
+        <attr format="dimension" name="titlePadding"/>
+        
+        <attr format="dimension" name="topPadding"/>
+        
+        <attr name="android:background"/>
+    </declare-styleable><declare-styleable name="CirclePageIndicator">
+        
+        <attr name="centered"/>
+        
+        <attr format="color" name="fillColor"/>
+        
+        <attr format="color" name="pageColor"/>
+        
+        <attr name="android:orientation"/>
+        
+        <attr format="dimension" name="radius"/>
+        
+        <attr format="boolean" name="snap"/>
+        
+        <attr format="color" name="strokeColor"/>
+        
+        <attr name="strokeWidth"/>
+        
+        <attr name="android:background"/>
+    </declare-styleable></configuration></mergedItems></merger>

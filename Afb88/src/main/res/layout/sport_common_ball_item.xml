@@ -42,7 +42,7 @@
 
             <TextView
                 android:id="@+id/module_match_title_tv"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center_vertical"
@@ -50,6 +50,19 @@
                 android:paddingLeft="10dp"
                 android:textColor="@color/black_grey"
               />
+            <TextView
+                android:id="@+id/module_League_child_count_tv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="2dp"
+                android:paddingLeft="2dp"
+                android:paddingRight="2dp"
+                android:background="@drawable/oval_green_stroke_black"
+                android:gravity="center"
+
+                android:textColor="@color/white"
+                android:textSize="12sp" />
         </LinearLayout>
 
         <LinearLayout

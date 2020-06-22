@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/search_parent_ll"
+    android:layout_width="match_parent"
+    android:visibility="gone"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rectangle_white_graystroke_radius0"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <AutoCompleteTextView
+        android:id="@+id/search_content_edt"
+        style="@style/style_weight_horizontal"
+        android:background="@null"
+        android:drawableLeft="@mipmap/search_grey"
+        android:gravity="center_vertical"
+        android:hint="@string/search"
+        android:padding="5dp"
+        android:textSize="14sp" />
+
+    <Button
+        android:id="@+id/search_submit_btn"
+        style="@style/text_wrap_grey14"
+        android:text="@string/search" />
+</LinearLayout>

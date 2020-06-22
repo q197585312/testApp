@@ -170,6 +170,8 @@
     <string name="date">日期</string>
     <string name="six_day">6 天</string>
     <string name="all">全部</string>
+    <string name="All_Match">全部赛事</string>
+    <string name="Match">赛事</string>
     <!--statement-->
     <string name="statement_stake">投注状况</string>
     <string name="valid_amount">有效数额</string>
@@ -563,7 +565,7 @@
     <string name="FGLG">最先进球/最后进球</string>
     <string name="MM_HDP_OU">缅甸亚州盤</string>
     <string name="Home_Away_TG">最先得分/最后得分</string>
-    <string name="FT15">FT15 MINS</string>
+    <string name="FT15">15分钟盘口</string>
     <string name="stake_is_more_than_max_limit">金额应小于最大注码</string>
     <string name="stake_is_less_than_min_limit">金额应大于最小注码</string>
     <string name="all_host">@string/all</string>

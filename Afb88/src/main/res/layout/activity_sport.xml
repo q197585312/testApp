@@ -170,7 +170,13 @@
                             android:onClick="clickCup"
                             android:src="@mipmap/sport_game_cup_white" />
 
-
+                        <ImageView
+                            android:id="@+id/match_contracted_iv"
+                            android:layout_width="22dp"
+                            android:layout_height="22dp"
+                            android:layout_marginLeft="10dp"
+                            android:onClick="clickAllContracted"
+                            android:src="@mipmap/add_all_yellow" />
                         <FrameLayout
                             android:id="@+id/match_collection_fl"
                             android:layout_width="22dp"
@@ -223,7 +229,6 @@
                             android:layout_height="match_parent"
                             android:layout_marginLeft="5dp"
                             android:layout_weight="1"
-                            android:drawableRight="@mipmap/arrow_down_drop_white"
                             android:gravity="center_vertical"
                             android:text="@string/All_Market"
                             android:textAllCaps="true"
@@ -248,7 +253,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:drawablePadding="5dp"
-                            android:drawableRight="@mipmap/arrow_down_drop_white"
                             android:gravity="center_vertical"
                             android:onClick="clickOddsType"
                             android:padding="5dp"
@@ -390,7 +394,7 @@
                                     android:drawablePadding="5dp"
                                     android:gravity="center"
                                     android:padding="5dp"
-                                    android:src="@mipmap/sport_live_hall_white"
+                                    android:src="@mipmap/soccer_hall"
                                     android:text="@string/live_center"
                                     android:textAllCaps="true"
                                     android:textColor="@color/white"
@@ -702,14 +706,14 @@
                 android:drawableTop="@mipmap/date_running_green"
                 android:ellipsize="start"
                 android:gravity="center"
-                android:maxLines="1"
                 android:onClick="clickSportWayRun"
                 android:paddingTop="5dp"
                 android:text="@string/running"
                 android:textAllCaps="true"
                 android:textColor="@color/grey_dark"
                 android:textSize="12sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:singleLine="true" />
 
             <FrameLayout
                 android:layout_width="0dp"

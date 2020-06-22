@@ -3,7 +3,12 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Afb88/Afb88.iml" filepath="$PROJECT_DIR$/Afb88/Afb88.iml" group="testApp/Afb88" />
+      <module fileurl="file://$PROJECT_DIR$/apng/apng.iml" filepath="$PROJECT_DIR$/apng/apng.iml" group="testApp/apng" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="testApp/app" />
+      <module fileurl="file://$PROJECT_DIR$/autolayout/autolayout.iml" filepath="$PROJECT_DIR$/autolayout/autolayout.iml" group="testApp/autolayout" />
       <module fileurl="file://$PROJECT_DIR$/baseLibs/baseLibs.iml" filepath="$PROJECT_DIR$/baseLibs/baseLibs.iml" group="testApp/baseLibs" />
+      <module fileurl="file://$PROJECT_DIR$/gestrueLibrary/gestrueLibrary.iml" filepath="$PROJECT_DIR$/gestrueLibrary/gestrueLibrary.iml" group="testApp/gestrueLibrary" />
+      <module fileurl="file://$PROJECT_DIR$/mylibrary/mylibrary.iml" filepath="$PROJECT_DIR$/mylibrary/mylibrary.iml" group="testApp/mylibrary" />
       <module fileurl="file://$PROJECT_DIR$/testApp.iml" filepath="$PROJECT_DIR$/testApp.iml" group="testApp" />
     </modules>
   </component>

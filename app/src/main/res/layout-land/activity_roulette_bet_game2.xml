@@ -1,0 +1,658 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_baccarat_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout
+        android:id="@+id/fl_baccarat_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green_table_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar_layout" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:paddingRight="3dp">
+
+            <FrameLayout
+                android:id="@+id/fl_vedio_location_parent"
+                android:layout_width="125dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:background="@drawable/rectangle_trans_stroke_yellow"
+                android:onClick="clickLimitList"
+                android:orientation="vertical"
+                android:padding="2dp">
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/black"></View>
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="2"
+                android:background="#70000000"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tv_black_percentage"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_roulette_black_bg"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_red_percentage"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_roulette_red_bg"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_odd_percentage"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_roulette_black_bg"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/tv_even_percentage"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/shape_roulette_red_bg"
+                        android:gravity="center"
+                        android:textColor="@color/white"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="5dp"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1.1"
+                    android:orientation="horizontal">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rc_road"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"/>
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="bottom"
+                        android:src="@mipmap/roulette_right"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_hot_ice"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/hot" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rc_hot"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"></View>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/shape_hot_ice"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="3dp">
+
+                    <ImageView
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:src="@mipmap/ice" />
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rc_ice"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"></androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="42dp"
+            android:layout_marginTop="5dp">
+
+            <TextView
+                android:id="@+id/tv_service_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="265px"
+                android:layout_marginLeft="210px"
+                android:background="@mipmap/image_xue_no"
+                android:drawableLeft="@mipmap/dollar_yellow"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textColor="@color/yellow_gold"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/text_shoe_game_number"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginBottom="265px"
+                android:layout_marginRight="210px"
+                android:background="@mipmap/image_xue_no"
+                android:drawablePadding="4dp"
+                android:gravity="center"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:text="0 - 0"
+                android:textColor="@color/yellow_gold"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:id="@+id/bottonPanel1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top">
+
+                <include
+                    android:id="@+id/content2"
+                    layout="@layout/layout_roulette_board_content_panel2" />
+
+            </FrameLayout>
+
+
+            <!--<ListView-->
+            <!--android:id="@+id/lv_pool"-->
+            <!--android:layout_width="140px"-->
+            <!--android:layout_height="152px"-->
+            <!--android:layout_gravity="right"-->
+            <!--android:layout_marginLeft="30dp"-->
+            <!--android:layout_marginRight="5dp"-->
+            <!--android:layout_marginTop="80dp"-->
+            <!--android:background="@drawable/rectangle_grey_corner5_pop"-->
+            <!--android:dividerHeight="0dp"-->
+            <!--android:visibility="gone"-->
+            <!--android:scrollbars="none" />-->
+
+            <ImageView
+                android:id="@+id/iv_roulette_road_handle"
+                android:layout_width="30px"
+                android:layout_height="150px"
+                android:layout_marginLeft="140px"
+                android:layout_marginTop="30px"
+                android:clickable="true"
+                android:onClick="clickLeftPanel"
+                android:scaleType="fitXY"
+                android:src="@mipmap/handle_road_open"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/btn_table_limit_red_title"
+                android:layout_width="170px"
+                android:layout_height="30px"
+                android:layout_marginLeft="30dp"
+                android:background="@drawable/rectangle_grey6e6e6e_top_corner5_bet_btn"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="clickLiveList"
+                android:text="@string/POOL"
+                android:textColor="@color/white"
+                android:textSize="16px"
+
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/btn_table_pool_title"
+                android:layout_width="130px"
+                android:layout_height="20dp"
+                android:layout_gravity="right"
+                android:layout_marginLeft="30px"
+                android:layout_marginRight="50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/rectangle_grey6e6e6e_top_corner5_bet_btn"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="Limit"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ll_bet_btn_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="right"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+
+                <LinearLayout
+                    android:id="@+id/ll_chip_parent"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:background="@color/trans_black"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="30px"
+                        android:src="@mipmap/arrow_up_grey_light" />
+
+                    <ListView
+                        android:id="@+id/lv_baccarat_chips"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"
+                        android:layout_weight="1"
+                        android:divider="@null"
+                        android:scrollbars="none">
+
+                    </ListView>
+
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="30px"
+                        android:src="@mipmap/arrow_down_grey_light" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <ListView
+                android:id="@+id/lv_limit"
+                android:layout_width="130px"
+                android:layout_height="152px"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="80dp"
+                android:background="@drawable/rectangle_grey_corner5_pop"
+                android:padding="5dp"
+                android:scrollbars="none"
+                android:visibility="gone" />
+        </FrameLayout>
+
+    </LinearLayout>
+    <!-- <com.capricorn.ArcMenu
+         android:id="@+id/arc_menu"
+         android:layout_marginLeft="180px"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         app:fromDegrees="0.0"
+
+         app:toDegrees="180.0"
+         app:childSize="40dp"/>-->
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginLeft="186px"
+        android:paddingLeft="58dp">
+
+        <TextView
+            android:id="@+id/tv_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|center_vertical"
+            android:background="@mipmap/set_icon_trans"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text=""
+            android:textColor="#394e04"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="41dp"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_chip"
+            android:layout_width="0dp"
+            android:layout_height="41dp"
+            android:layout_marginBottom="-43dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+
+            <gaming178.com.mylibrary.myview.mylistview.HorizontalListView
+                android:id="@+id/lv_baccarat_chips_h"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:divider="@null"
+                android:scrollbars="none" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"></View>
+
+            <TextView
+                android:id="@+id/tv_table_bet_sure"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@mipmap/sureimg"
+                android:clickable="true"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_table_bet_cancel"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="5dp"
+                android:background="@mipmap/noimg"
+                android:clickable="true"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tv_table_bet_replay"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_marginLeft="5dp"
+                android:background="@mipmap/replayimg"
+                android:clickable="true"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/iv_baccarat_change_table"
+        android:layout_width="35dp"
+        android:layout_height="25dp"
+        android:layout_gravity="right"
+        android:layout_marginRight="5px"
+        android:layout_marginTop="44dp"
+        android:background="@mipmap/table_p"
+        android:clickable="true"
+        android:visibility="gone" />
+
+    <gaming178.com.mylibrary.myview.miscwidgets.widget.Panel
+        android:id="@+id/leftPanel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:visibility="gone"
+        app:closedHandle="@mipmap/handle_road_close"
+        app:content="@+id/content"
+        app:handle="@+id/handle1"
+        app:openedHandle="@mipmap/handle_road_open"
+        app:position="left">
+
+        <ImageView
+            android:id="@+id/handle1"
+            android:layout_width="18dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical" />
+
+        <include
+            android:id="@+id/content"
+            layout="@layout/layout_roulette_left_content_panel" />
+    </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
+
+    <LinearLayout
+        android:id="@+id/ll_info"
+        android:layout_width="240dp"
+        android:layout_height="0dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/bg_slide"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="26dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.1"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"></View>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#113532"></View>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"></View>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#113532"></View>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/tv_table_game_number"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="0.5dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ListView
+                    android:id="@+id/lv_user_info"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.1"
+                    android:divider="@null"
+                    android:scrollbars="none"></ListView>
+
+                <ListView
+                    android:id="@+id/lv_pool"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:divider="@null"
+                    android:scrollbars="none"></ListView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="2dp">
+
+        <gaming178.com.casinogame.Util.CountDownView
+            android:id="@+id/countdown_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_table_timer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="22px"
+            android:textStyle="bold"
+            app:layout_auto_basewidth="height" />
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_vedio_parent"
+        android:layout_width="125dp"
+        android:layout_height="50dp"
+        android:layout_gravity="left"
+        android:layout_marginTop="44dp"
+        android:onClick="clickLimitList"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <FrameLayout
+            android:id="@+id/fl_surface_parent"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="top|center_horizontal"
+            android:background="@drawable/rectangle_trans_stroke_yellow"
+            android:padding="2dp">
+
+            <gaming178.com.casinogame.Util.VideoPlayer
+                android:id="@+id/surface"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"/>
+        </FrameLayout>
+
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_roulette_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="50dp"
+        android:visibility="gone">
+
+        <include layout="@layout/layout_pop_center_roulette"></include>
+    </FrameLayout>
+
+</FrameLayout>

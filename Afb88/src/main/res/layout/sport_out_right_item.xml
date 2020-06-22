@@ -12,23 +12,40 @@
         android:layout_height="5dp"
         android:background="@color/grey_white_bg"
         android:padding="5dp" />
-
+<FrameLayout
+    android:id="@+id/module_match_title_ll"
+    android:paddingTop="6dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
     <TextView
+        android:layout_gravity="center_vertical"
         android:id="@+id/out_right_title_tv"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="wrap_content"
         android:layout_weight="1"
         android:background="@color/grey_background"
-
         android:maxLines="1"
-
         android:paddingBottom="6dp"
         android:paddingLeft="12dp"
-        android:paddingTop="6dp"
         android:textStyle="bold"
         android:text="联赛名称"
         android:textColor="@color/black_grey"
         android:textSize="11sp" />
+    <TextView
+        android:id="@+id/module_League_child_count_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical|right"
+        android:layout_marginRight="2dp"
+        android:paddingLeft="2dp"
+        android:paddingRight="2dp"
+        android:background="@drawable/oval_green_stroke_black"
+        android:gravity="center"
+        android:text="2"
+        android:textColor="@color/white"
+        android:textSize="12sp" />
+</FrameLayout>
+
 
     <LinearLayout
         android:id="@+id/ll_match_content"

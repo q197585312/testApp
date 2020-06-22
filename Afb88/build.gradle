@@ -13,7 +13,7 @@ android {
         }
     }
     compileSdkVersion 28
-
+    buildToolsVersion = '28.0.3'
     defaultConfig {
         applicationId "com.nanyang.app"
         minSdkVersion 14
@@ -60,7 +60,7 @@ android {
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '2.68'
+            versionName '2.69'
             buildConfigField "String", "Domain", '".afb1188.com"'
             buildConfigField "String", "H5_URL", '"https://wsapp.afb1188.com/H50/Pub/wfLoginH50.html"'
             buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.com/"' //app专用服务器
@@ -75,7 +75,7 @@ android {
         i1bet99 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet99"]
             applicationId 'com.nanyang.i1bet99'
-            versionName '2.64'
+            versionName '2.65'
             buildConfigField "String", "Domain", '".i1bet99.com"'
             buildConfigField "String", "H5_URL", '"https://www.i1bet99.com/H52/Pub/wfLoginH50.html"'
             buildConfigField "String", "HOST_AFB", '"https://www.i1bet99.com/"'
@@ -104,7 +104,7 @@ android {
         // but continue the build even when errors are found:
         abortOnError false
     }
-    buildToolsVersion = '28.0.3'
+
 }
 
 dependencies {

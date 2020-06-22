@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?><!--  android:background="@drawable/rectangle_green_green_black_corner_hall_selector_"-->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:layout_marginBottom="20dp"
+        android:id="@+id/hall_game_pic_iv"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:scaleType="fitXY"
+        android:src="@mipmap/chips_dice_trans" />
+
+    <TextView
+        android:id="@+id/hall_game_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="23dp"
+        android:layout_gravity="bottom"
+        android:background="@drawable/rectangle_grey_corner5_pop"
+        android:gravity="center"
+        android:paddingBottom="2dp"
+        android:paddingTop="2dp"
+        android:text="12"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+</FrameLayout>

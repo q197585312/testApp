@@ -114,12 +114,14 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
     private String oldOpid;
     private String type;
 
+    public SportState() {
+    }
 
     public int getPageSize() {
         return pageSize;
     }
 
-    private int pageSize = 15;
+    private int pageSize = 10;
 
     public SportAdapterHelper<B> getAdapterHelper() {
         return adapterHelper;
@@ -167,9 +169,81 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
+    SportActivity activity;
+
     public SportState(V baseView) {
         setBaseView(baseView);
         handleAdapter();
+        activity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
+        switchTypeAdapter = new BaseRecyclerAdapter<MenuItemInfo<Integer>>(activity, getTypes(), R.layout.item_sport_switch) {
+            @Override
+            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<Integer> item) {
+                TextView tvGamePic = holder.getTextView(R.id.img_game_pic);
+                TextView tv = holder.getView(R.id.tv_game_name);
+                int res = item.getRes();
+                if (res == R.mipmap.date_day_grey) {
+                    tvGamePic.setText(item.getDay());
+                    tv.setText(item.getText());
+                    tv.setText(tv.getText() + " " + item.getDay());
+                } else {
+                    tvGamePic.setText("");
+                    tv.setText(item.getText());
+                }
+                if (activity.dateClickPosition == position) {
+                    tvGamePic.setBackgroundResource(item.getParent());
+                    holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
+                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
+                } else {
+                    tvGamePic.setBackgroundResource(res);
+                    holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));
+                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.black_grey));
+                }
+                TextView tv_game_count = holder.getView(R.id.tv_game_count);
+                tv_game_count.setVisibility(View.GONE);
+
+                String dBId = getDbId();
+                if (StringUtils.isNull(dBId))
+                    return;
+                String type = item.getType();
+                Log.d("getType", "dbid:" + dBId + ",currentIdBean.getDbid()" + dBId + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum);
+                String runningStr = "M_RAm" + dBId;
+                String todayStr = "M_TAm" + dBId;
+                String earlyStr = "M_EAm" + dBId;
+                String numGame = "";
+                if (jsonObjectNum != null) {
+                    if (type.equals("Running")) {
+                        if (!TextUtils.isEmpty(jsonObjectNum.optString(runningStr))) {
+                            numGame = jsonObjectNum.optString(runningStr);
+                        }
+                    } else if (type.equals("Today")) {
+                        if (!TextUtils.isEmpty(jsonObjectNum.optString(todayStr))) {
+                            numGame = jsonObjectNum.optString(todayStr);
+                        }
+                    } else if (type.equals("Early")) {
+                        if (!TextUtils.isEmpty(jsonObjectNum.optString(earlyStr))) {
+                            numGame = jsonObjectNum.optString(earlyStr);
+                        }
+                    } else {
+                        numGame = "";
+                    }
+                } else {
+                    numGame = "";
+                }
+                if (!TextUtils.isEmpty(numGame)) {
+                    tv_game_count.setVisibility(View.VISIBLE);
+                    tv_game_count.setText(numGame);
+                } else {
+                    tv_game_count.setVisibility(View.GONE);
+                    tv_game_count.setText("");
+                }
+            }
+        };
+        switchTypeAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
+            @Override
+            public void onItemClick(View view, MenuItemInfo item, int position) {
+                onTypeWayClick(item, position);
+            }
+        });
     }
 
     protected V baseView;
@@ -280,6 +354,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             List<B> rows = item.getRows();
             for (int j = 0; j < rows.size(); j++) {
                 B cell = rows.get(j);
+                cell.setChildCount(rows.size());
                 if (j == 0) {
                     cell.setContentColor(getTitleContentColor());
                     cell.setType(SportInfo.Type.TITLE);
@@ -293,8 +368,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 }
                 cell.setModuleId(item.getLeagueBean().getModuleId());
                 cell.setModuleTitle(item.getLeagueBean().getModuleTitle());
-                if (item.getLeagueBean().getModuleId() == null || item.getLeagueBean().getModuleTitle() == null)
-                    LogUtil.e("xxxx", "null---" + item.toString());
                 pageMatch.add(cell);
                 Map<String, Boolean> moduleMap = localCollectionMap.get(cell.getModuleTitle().toString());
                 if (moduleMap == null)
@@ -1150,89 +1223,23 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         }
     }
 
+    public BaseRecyclerAdapter<MenuItemInfo<Integer>> getSwitchTypeAdapter() {
+        return switchTypeAdapter;
+    }
+
     public BaseRecyclerAdapter<MenuItemInfo<Integer>> switchTypeAdapter;
+    JSONObject jsonObjectNum;
 
     @Override
-    public BaseRecyclerAdapter switchTypeAdapter(final TextView textView, final JSONObject jsonObjectNum) {
-        final SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
-        switchTypeAdapter = new BaseRecyclerAdapter<MenuItemInfo<Integer>>(getBaseView().getIBaseContext().getBaseActivity(), getTypes(), R.layout.item_sport_switch) {
-
-            @Override
-            public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<Integer> item) {
-                TextView tvGamePic = holder.getTextView(R.id.img_game_pic);
-                TextView tv = holder.getView(R.id.tv_game_name);
-                String day = item.getDay();
-                if (!TextUtils.isEmpty(day)) {
-                    tvGamePic.setText(item.getDay());
-                    tv.setText(item.getText());
-                    tv.setText(tv.getText() + " " + item.getDay());
-                } else {
-                    tv.setText(item.getText());
-                }
-                if (sportActivity.dateClickPosition == position) {
-                    tvGamePic.setBackgroundResource(item.getParent());
-                    holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.gary1));
-                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.google_green));
-                } else {
-                    tvGamePic.setBackgroundResource(item.getRes());
-                    holder.getView(R.id.ll_content).setBackgroundColor(ContextCompat.getColor(mContext, R.color.white));
-                    tv.setTextColor(ContextCompat.getColor(mContext, R.color.black_grey));
-                }
-                TextView tv_game_count = holder.getView(R.id.tv_game_count);
-                tv_game_count.setVisibility(View.GONE);
-
-                String dBId = getDbId();
-                if (StringUtils.isNull(dBId))
-                    return;
-          /*      SportIdBean sportIdBean = AfbUtils.getSportByDbid(dbid);
-                if (sportIdBean == null || StringUtils.isNull(sportIdBean.getDbid()))
-                    return;*/
-                String type = item.getType();
-                Log.d("getType", "dbid:" + dBId + ",currentIdBean.getDbid()" + dBId + ".type: " + type + ",jsonObjectNum:" + jsonObjectNum);
-                String runningStr = "M_RAm" + dBId;
-                String todayStr = "M_TAm" + dBId;
-                String earlyStr = "M_EAm" + dBId;
-                String numGame = "";
-                if (jsonObjectNum != null) {
-                    if (type.equals("Running")) {
-                        if (!TextUtils.isEmpty(jsonObjectNum.optString(runningStr))) {
-                            numGame = jsonObjectNum.optString(runningStr);
-                        }
-                    } else if (type.equals("Today")) {
-                        if (!TextUtils.isEmpty(jsonObjectNum.optString(todayStr))) {
-                            numGame = jsonObjectNum.optString(todayStr);
-                        }
-                    } else if (type.equals("Early")) {
-                        if (!TextUtils.isEmpty(jsonObjectNum.optString(earlyStr))) {
-                            numGame = jsonObjectNum.optString(earlyStr);
-                        }
-                    } else {
-                        numGame = "";
-                    }
-                } else {
-                    numGame = "";
-                }
-                if (!TextUtils.isEmpty(numGame)) {
-                    tv_game_count.setVisibility(View.VISIBLE);
-                    tv_game_count.setText(numGame);
-                } else {
-                    tv_game_count.setVisibility(View.GONE);
-                    tv_game_count.setText("");
-                }
-            }
-        };
-        switchTypeAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo>() {
-            @Override
-            public void onItemClick(View view, MenuItemInfo item, int position) {
-                onTypeWayClick(item, position);
-            }
-        });
+    public BaseRecyclerAdapter switchTypeAdapter(JSONObject jsonObjectNum) {
+        this.jsonObjectNum = jsonObjectNum;
+        switchTypeAdapter.notifyDataSetChanged();
         return switchTypeAdapter;
     }
 
 
     public void onTypeWayClick(MenuItemInfo item, int position) {
-        if(item.getRes() == R.mipmap.sport_game_cup_white){
+        if (item.getRes() == R.mipmap.sport_game_cup_white) {
             SportActivity sportActivity = (SportActivity) getBaseView().getIBaseContext().getBaseActivity();
             sportActivity.clickTop();
             return;
@@ -1283,7 +1290,6 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         itemRunning.setDateParam("");
 
 
-
         MenuItemInfo<Integer> itemToday = new MenuItemInfo<Integer>(R.mipmap.date_today_grey, (R.string.Today), "Today", R.mipmap.date_today_green);
         itemToday.setDateParam("");
 
@@ -1326,12 +1332,12 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         Disposable subscription = getService(ApiService.class).doPostMap(AppConstant.getInstance().URL_LOGIN, map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(Schedulers.io())
-           /*     .flatMap(new Function<String, Flowable<String>>() {
-                    @Override
-                    public Flowable<String> apply(String s) throws Exception {
-                        return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
-                    }
-                })*/
+                /*     .flatMap(new Function<String, Flowable<String>>() {
+                         @Override
+                         public Flowable<String> apply(String s) throws Exception {
+                             return getService(ApiService.class).getData(AppConstant.getInstance().URL_ODDS_TYPE + oddsType);
+                         }
+                     })*/
                 .subscribe(new Consumer<String>() {//onNext
                     @Override
                     public void accept(String str) throws Exception {

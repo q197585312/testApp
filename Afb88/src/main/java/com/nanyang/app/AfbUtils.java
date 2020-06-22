@@ -12,9 +12,6 @@ import android.net.http.SslError;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import android.text.Spannable;
 import android.text.SpannableStringBuilder;
 import android.text.style.BackgroundColorSpan;
@@ -32,6 +29,10 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.nanyang.app.Utils.StringUtils;
@@ -1149,5 +1150,15 @@ public class AfbUtils {
         }
         Log.d("end17", "end17:" + end17 + "," + nn);
         return AfbUtils.decimalValue(Float.parseFloat(index3) * Float.parseFloat(index9) / nn, "0.00");
+    }
+    public static void getMethodName() {
+        StackTraceElement[] temp = Thread.currentThread().getStackTrace();
+        if (temp.length > 3) {
+            for (int i = 3; i < (temp.length > 7 ? 7 : temp.length); i++) {
+                StackTraceElement a = temp[i];
+                LogUtil.d("getMethodName", a.getMethodName()+",class:"+  a.getClassName());
+            }
+
+        }
     }
 }

@@ -3,11 +3,15 @@ package com.nanyang.app.main.home.sport.main;
 import android.view.View;
 import android.widget.TextView;
 
+import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.model.SportInfo;
 import com.nanyang.app.main.home.sportInterface.IAdapterHelper;
 import com.unkonw.testapp.libs.adapter.BaseRecyclerAdapter;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
+import com.unkonw.testapp.libs.utils.LogUtil;
 
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -36,9 +40,11 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
 
     }
 
+    boolean isContracted;
 
     public void bindAdapter(BaseRecyclerAdapter<B> baseRecyclerAdapter) {
         this.baseRecyclerAdapter = baseRecyclerAdapter;
+        isContracted = false;
     }
 
     public void setOnlyShowAdded(boolean onlyShowAdded) {
@@ -65,7 +71,59 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
     public <I extends ItemCallBack<B>> void setItemCallBack(I back) {
         this.back = back;
     }
-    public void setAdditionMap(Map<Boolean, String> additionMap){
-        this.additionMap=additionMap;
+
+    public void setAdditionMap(Map<Boolean, String> additionMap) {
+        this.additionMap = additionMap;
+    }
+
+    public void updateContractedMatch(MyRecyclerViewHolder helper, B item) {
+        Boolean aBoolean = contractedMap.get(item.getModuleId());
+        View ll_match_content = helper.getView(R.id.ll_match_content);
+        TextView module_League_child_count_tv = helper.getView(R.id.module_League_child_count_tv);
+        if (aBoolean == null || !aBoolean) {
+            ll_match_content.setVisibility(View.VISIBLE);
+            module_League_child_count_tv.setVisibility(View.GONE);
+        } else {
+            ll_match_content.setVisibility(View.GONE);
+            module_League_child_count_tv.setText(item.getChildCount() + "");
+            module_League_child_count_tv.setVisibility(View.VISIBLE);
+        }
+    }
+
+    public void setClickOneTeam(MyRecyclerViewHolder helper, final B item) {
+        View matchTitleLl = helper.getView(R.id.module_match_title_ll);
+        matchTitleLl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                clickOneTeamContracted(item);
+            }
+        });
+    }
+
+
+    Map<String, Boolean> contractedMap = new HashMap<>();
+
+
+    public void clickOneTeamContracted(B item) {
+        String moduleId = item.getModuleId();
+        Boolean isContracted = contractedMap.get(moduleId);
+        if (isContracted == null)
+            isContracted = false;
+        boolean b = !isContracted;
+        contractedMap.put(moduleId, b);
+        getBaseRecyclerAdapter().notifyDataSetChanged();
+        LogUtil.d("contractedMap", "getModuleId:" + moduleId + ",isContracted:" + b);
+    }
+
+    public boolean clickAllContracted() {
+        isContracted = !isContracted;
+        List<B> bs = getBaseRecyclerAdapter().getmDatas();
+        if (bs == null)
+            return false;
+        for (B b : bs) {
+            contractedMap.put(b.getModuleId(), isContracted);
+        }
+        getBaseRecyclerAdapter().notifyDataSetChanged();
+        return isContracted;
     }
 }

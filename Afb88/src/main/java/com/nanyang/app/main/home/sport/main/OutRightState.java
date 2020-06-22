@@ -86,6 +86,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                 View headV = holder.getView(R.id.module_match_head_v);
                 TextView homeTv = holder.getView(R.id.out_right_home_tv);
                 View contentParentLl = holder.getView(R.id.ll_match_content);
+                View module_match_title_ll = holder.getView(R.id.module_match_title_ll);
                 contentParentLl.setBackgroundColor(item.getContentColor());
                 final TextView markTv = holder.getView(R.id.out_right_mark_tv);
                 homeTv.setText(item.getHome());
@@ -99,7 +100,7 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                 if (item.getType() == SportInfo.Type.ITME) {
                     matchTitleTv.setVisibility(View.GONE);
                     headV.setVisibility(View.GONE);
-
+                    module_match_title_ll.setVisibility(View.GONE);
                 } else {
                     matchTitleTv.setVisibility(View.VISIBLE);
                     headV.setVisibility(View.VISIBLE);
@@ -107,7 +108,10 @@ public abstract class OutRightState extends SportState<BallInfo, SportContract.V
                     if (position == 0) {
                         headV.setVisibility(View.GONE);
                     }
+                    module_match_title_ll.setVisibility(View.VISIBLE);
                 }
+                setClickOneTeam(holder,item);
+                updateContractedMatch(holder, item);
             }
 
             @Override

@@ -68,15 +68,4 @@ public class SoccerMixAdapterHelper extends BallAdapterHelper<BallInfo> {
 
     }
 
-    @Override
-    protected void onMatchNotRepeat(MyRecyclerViewHolder helper, BallInfo item, int position) {
-        super.onMatchNotRepeat(helper, item, position);
-
-    }
-
-    @Override
-    protected void onMatchRepeat(MyRecyclerViewHolder helper, BallInfo item, int position) {
-        super.onMatchRepeat(helper, item, position);
-
-    }
 }

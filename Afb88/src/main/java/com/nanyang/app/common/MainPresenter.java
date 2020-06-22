@@ -526,6 +526,10 @@ public class MainPresenter extends BaseSwitchPresenter {
 
     }
 
+    public void initMatchTypePop() {
+
+    }
+
 
     public interface CallBack<T> {
         void onBack(T data) throws JSONException;

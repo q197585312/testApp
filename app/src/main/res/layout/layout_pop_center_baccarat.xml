@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="170dp"
+    android:layout_height="wrap_content"
+    android:background="@drawable/rectangle_trans_black"
+    android:orientation="horizontal">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/rectangle_trans_stroke_yellow_corner4_left"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_poker_center_left"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="0.5dp"
+            android:background="@drawable/rectangle_blue_top_corner4"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/player_home"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/yellow_brown_white_word"></View>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_poker_center_player1"
+                    android:layout_width="28dp"
+                    android:layout_height="37dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/pk_1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/iv_poker_center_player2"
+                    android:layout_width="28dp"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/pk_1"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/iv_poker_center_player3"
+            android:layout_width="37dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="4dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/pk_1"
+            android:visibility="invisible" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:background="@drawable/rectangle_trans_stroke_yellow_corner4_right"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_poker_center_right"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="0.5dp"
+            android:background="@drawable/rectangle_red_top_corner4"
+            android:gravity="center"
+            android:padding="3dp"
+            android:text="@string/banker_home"
+            android:textColor="@color/white" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/yellow_brown_white_word"></View>
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="3dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/iv_poker_center_banker1"
+                    android:layout_width="28dp"
+                    android:layout_height="37dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/pk_1"
+                    android:visibility="invisible" />
+
+                <ImageView
+                    android:id="@+id/iv_poker_center_banker2"
+                    android:layout_width="28dp"
+                    android:layout_height="37dp"
+                    android:layout_marginLeft="3dp"
+                    android:scaleType="fitXY"
+                    android:src="@mipmap/pk_1"
+                    android:visibility="invisible" />
+            </LinearLayout>
+        </FrameLayout>
+
+        <ImageView
+            android:id="@+id/iv_poker_center_banker3"
+            android:layout_width="37dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="4dp"
+            android:layout_marginLeft="3dp"
+            android:scaleType="fitXY"
+            android:src="@mipmap/pk_1"
+            android:visibility="invisible" />
+    </LinearLayout>
+</LinearLayout>

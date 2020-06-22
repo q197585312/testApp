@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fl_baccarat_parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <gaming178.com.casinogame.Util.VideoPlayer
+        android:id="@+id/surface"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center" />
+
+    <FrameLayout
+        android:id="@+id/fl_baccarat_bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/green_table_color" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/toolbar_layout" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <gaming178.com.mylibrary.myview.miscwidgets.widget.Panel
+                android:id="@+id/bottonPanel1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|center_horizontal"
+                android:layout_marginLeft="1px"
+                app:closedHandle="@drawable/rectangle_transparent"
+                app:content="@+id/content2"
+                app:handle="@+id/handle2"
+                app:openedHandle="@drawable/rectangle_transparent"
+                app:position="bottom">
+
+                <ImageView
+                    android:id="@+id/handle2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="10dp" />
+
+                <include
+                    android:id="@+id/content2"
+                    layout="@layout/layout_sicbo_content_panel" />
+
+            </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
+
+            <ImageView
+                android:layout_width="30px"
+                android:layout_height="150px"
+                android:layout_marginLeft="170px"
+                android:layout_marginTop="35px"
+                android:clickable="true"
+                android:onClick="clickLeftPanel"
+                android:scaleType="fitXY"
+                android:src="@mipmap/handle_road_open"
+                android:visibility="gone" />
+
+            <!--<TextView-->
+            <!--android:id="@+id/tv_table_game_number"-->
+            <!--style="@style/text_shadow"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="20dp"-->
+            <!--android:layout_marginLeft="130px"-->
+            <!--android:layout_marginTop="209px"-->
+            <!--android:paddingRight="4dp"-->
+            <!--android:textColor="@color/white"-->
+            <!--android:visibility="gone" />-->
+
+            <TextView
+                android:id="@+id/btn_table_limit_red_title"
+                android:layout_width="200px"
+                android:layout_height="30px"
+                android:layout_marginLeft="80dp"
+                android:background="@drawable/rectangle_grey6e6e6e_top_corner5_bet_btn"
+                android:clickable="true"
+                android:gravity="center"
+                android:text="@string/LIMIT"
+                android:textColor="@color/white"
+
+                android:textSize="16px"
+                android:visibility="gone" />
+
+
+            <LinearLayout
+                android:id="@+id/ll_bet_btn_parent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="5dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_service_time"
+                android:layout_width="135px"
+                android:layout_height="20dp"
+                android:layout_gravity="right"
+                android:drawableLeft="@mipmap/dollar_yellow"
+                android:drawablePadding="2dp"
+                android:textColor="@color/yellow_gold"
+                android:visibility="gone" />
+
+        </FrameLayout>
+    </LinearLayout>
+    <!--  <com.capricorn.ArcMenu
+          android:id="@+id/arc_menu"
+          android:layout_marginLeft="180px"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          app:fromDegrees="0.0"
+          app:toDegrees="180.0"
+          app:childSize="40dp"/>-->
+
+    <FrameLayout
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginLeft="180px"
+        android:paddingLeft="58dp">
+
+        <TextView
+            android:id="@+id/tv_menu"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="right|center_vertical"
+            android:background="@mipmap/set_icon_trans"
+            android:clickable="true"
+            android:gravity="center"
+            android:paddingBottom="3dp"
+            android:paddingLeft="7dp"
+            android:paddingRight="5dp"
+            android:paddingTop="2dp"
+            android:text=""
+            android:textColor="#394e04"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:visibility="invisible" />
+    </FrameLayout>
+
+    <gaming178.com.mylibrary.myview.miscwidgets.widget.Panel
+        android:id="@+id/leftPanel1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="left"
+        android:visibility="gone"
+        app:closedHandle="@mipmap/handle_road_close"
+        app:content="@+id/content"
+        app:handle="@+id/handle1"
+        app:openedHandle="@mipmap/handle_road_open"
+        app:position="left">
+
+        <ImageView
+            android:id="@+id/handle1"
+            android:layout_width="18dp"
+            android:layout_height="70dp"
+            android:layout_gravity="center_vertical" />
+
+        <include
+            android:id="@+id/content"
+            layout="@layout/layout_item_sicbo_panel" />
+
+    </gaming178.com.mylibrary.myview.miscwidgets.widget.Panel>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="42dp"
+        android:layout_gravity="bottom"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:id="@+id/ll_chip"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginBottom="-44dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <gaming178.com.mylibrary.myview.mylistview.HorizontalListView
+                android:id="@+id/lv_baccarat_chips_h"
+                android:layout_width="0dp"
+                android:layout_height="39dp"
+                android:layout_weight="1"
+                android:divider="@null"
+                android:scrollbars="none" />
+
+            <TextView
+                android:id="@+id/tv_table_bet_sure"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:background="@mipmap/sureimg"
+                android:clickable="true" />
+
+            <TextView
+                android:id="@+id/tv_table_bet_cancel"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="4dp"
+                android:background="@mipmap/noimg"
+                android:clickable="true" />
+
+            <TextView
+                android:id="@+id/tv_table_bet_replay"
+                android:layout_width="37dp"
+                android:layout_height="37dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:background="@mipmap/replayimg"
+                android:clickable="true" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/iv_baccarat_change_table"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:background="@mipmap/muenimg"
+            android:clickable="true"
+            android:visibility="gone" />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="44dp">
+
+        <ListView
+            android:id="@+id/lv_table_pool"
+            android:layout_width="200px"
+            android:layout_height="160px"
+            android:background="@drawable/rectangle_grey_corner5_pop"
+            android:padding="5dp"
+            android:scrollbars="none"
+            android:textColor="@color/yellow_brown_white_word"
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/lv_table_bet_limit_red"
+            android:layout_width="200px"
+            android:layout_height="160px"
+            android:layout_below="@id/lv_table_pool"
+            android:layout_marginTop="3dp"
+            android:background="@drawable/rectangle_grey_corner5_pop"
+            android:divider="@null"
+            android:dividerHeight="0dp"
+            android:scrollbars="none"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="130dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginRight="57dp"
+        android:layout_marginTop="37dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/btn_results"
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:layout_gravity="right"
+            android:background="@drawable/rectangle_grey6e6e6e_top_corner5_bet_btn"
+            android:clickable="true"
+            android:gravity="center"
+            android:onClick="clickResults"
+            android:text="Number:"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+
+            android:visibility="gone" />
+
+        <ListView
+            android:id="@+id/lv_table_results"
+            android:layout_width="match_parent"
+            android:layout_height="135dp"
+            android:layout_gravity="right"
+            android:background="@drawable/rectangle_trans"
+            android:scrollbars="none"
+            android:textColor="@color/yellow_brown_white_word"
+            android:visibility="visible" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="2dp">
+
+        <gaming178.com.casinogame.Util.CountDownView
+            android:id="@+id/countdown_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/tv_table_timer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:text="0"
+            android:textColor="@color/white"
+            android:textSize="22px"
+            android:textStyle="bold"
+            app:layout_auto_basewidth="height" />
+
+    </FrameLayout>
+
+    <ListView
+        android:id="@+id/lv_percentage"
+        android:layout_width="57dp"
+        android:layout_height="135dp"
+        android:layout_gravity="right"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/rectangle_trans"
+        android:scrollbars="none"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="44dp"
+        android:layout_marginLeft="31dp"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv_time"
+            android:layout_width="wrap_content"
+            android:layout_height="44dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/tv_table_game_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="-8dp"
+            android:gravity="center_vertical"
+            android:textColor="@color/white"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ll_info"
+        android:layout_width="202dp"
+        android:layout_height="0dp"
+        android:layout_gravity="left"
+        android:layout_marginTop="37dp"
+        android:background="@drawable/bg_slide"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="26dp"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1.1"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"></View>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#113532"></View>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="vertical"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp">
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"></View>
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="0.5dp"
+                            android:background="#113532"></View>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="0.5dp"
+                    android:layout_marginLeft="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginBottom="0.5dp"
+                    android:layout_marginRight="10dp"
+                    android:gravity="center_vertical"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ListView
+                    android:id="@+id/lv_user_info"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1.1"
+                    android:divider="@null"
+                    android:scrollbars="none"></ListView>
+
+                <ListView
+                    android:id="@+id/lv_pool"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:divider="@null"
+                    android:scrollbars="none"></ListView>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/fl_sicbo_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="245px"
+        android:visibility="gone">
+
+        <include layout="@layout/popupwindow_sicbo_result_dice"></include>
+    </FrameLayout>
+
+</FrameLayout>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <gaming178.com.mylibrary.myview.View.GridBackgroundView
+        app:line_color="@color/grey_default_bg"
+        app:dividing_line_spacing="20dp"
+        android:layout_width="721dp"
+        android:layout_height="121dp" />
+<GridLayout
+    android:id="@+id/sicbo_gridlayout1"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:columnCount="36"
+    android:rowCount="6"
+    android:layout_height="match_parent">
+
+</GridLayout>
+</FrameLayout>

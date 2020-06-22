@@ -69,6 +69,8 @@ import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
 
+import static com.nanyang.app.AfbUtils.getMethodName;
+
 /**
  * Created by Administrator on 2015/10/27.
  */
@@ -373,6 +375,10 @@ public class BetPop {
         }
         afbApplication.isSingleBet = isSingle;
         presenter.getRefreshOdds(refreshOddsUrl);
+        if (isSingle) {
+            getMethodName();
+        }
+
     }
 
 
@@ -651,9 +657,13 @@ public class BetPop {
         }
         this.presenter = mPresenter;
         if (list.size() == 1) {
-            afbApplication.isSingleBet = true;
+            if (afbApplication.getMixBetList().size() < 2) {
+                afbApplication.isSingleBet = true;
+                getMethodName();
+            }
             rcBetContent.setBackgroundResource(R.color.transparent);
         } else {
+            afbApplication.isSingleBet = false;
             rcBetContent.setBackgroundResource(R.color.grey_dialog_background);
         }
         initRcBetContent();

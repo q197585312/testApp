@@ -1,18 +1,11 @@
 package com.example.dongnao;
 
 import android.content.Context;
-import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.Path;
-import android.graphics.Rect;
-import android.graphics.Typeface;
-import android.os.Build;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by Administrator on 2017/8/2.

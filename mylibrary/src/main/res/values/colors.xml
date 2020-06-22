@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--blue-->
+    <color name="blue_bet">#4d93c6</color>
+    <color name="blue_dark">#4578e4</color>
+    <color name="blue">#4285f4</color>
+    <color name="gold">#FFD700</color>
+    <color name="bet_color">#000000</color>
+    <color name="blue_height">#0449be</color>
+    <color name="blue_word">#009fe8</color>
+    <color name="blue1">#5a96dd</color>
+    <color name="trans_blue_dark">#bb5a96dd</color>
+    <color name="trans_blue_light">#225a96dd</color>
+    <color name="blue_300">#42c6ff</color>
+    <color name="blue_max">#181761</color>
+    <color name="white">@android:color/white</color>
+    <!--black-grey-->
+    <color name="black">@android:color/black</color>
+    <color name="black_grey">#333333</color>
+    <color name="grey_dark">#7f7f7f</color>
+    <color name="grey_born">#dd656060</color>
+
+    <color name="grey_light">#bfbfbf</color>
+    <color name="grey_background">#e5e5e5</color>
+    <color name="grey_background_trans">#aae5e5e5</color>
+    <color name="grey_thick_line">#ededed</color>
+    <color name="grey_button">#bebebe</color>
+    <color name="grey_line_button">#9f9f9f</color>
+    <color name="grey_dark_word">#4c4c4c</color>
+    <color name="grey_dialog_background">#f0f0f0</color>
+    <color name="grey_default_bg">#ecebf1</color>
+    <color name="grey_6e6e63">#664c4c4c</color>
+    <color name="grey_303030">#303030</color>
+    <color name="trans_white_dark">#ccffffff</color>
+    <color name="trans_white_light">#33ffffff</color>
+    <color name="white_grey_bg_dark">#DCDCDC</color>
+    <color name="white_grey_bg_light">#F1F1F1</color>
+
+
+    <!--transparent-->
+    <color name="transparent">@android:color/transparent</color>
+    <color name="trans_black">#77000000</color>
+    <color name="trans_black_dark">#bb000000</color>
+    <color name="trans_black_light">#33000000</color>
+    <!--red-->
+    <color name="red">#ff0000</color>
+    <color name="red_background">#ff4a4a</color>
+    <color name="orange_dark">#ff3300</color>
+    <color name="orange">#C95C4E</color>
+    <color name="red_title">#ff0000</color>
+   <!--yellow-->
+    <color name="yellow_dark_d2560b">#d2560b</color>
+    <color name="yellow_gold">#FFFDD26A</color>
+    <color name="yellow_brown_word">#a2a40e</color>
+    <color name="colorAccent">#ffc107</color>
+    <color name="yellow_brown_white_word">#f4cc7f</color>
+    <color name="yellow_brown_a3721a">#a3721a</color>
+    <color name="brown_dark_bg">#685b46</color>
+    <color name="brown_black_bg">#cc000000</color>
+    <color name="brown_black_bg1">#544b3a</color>
+    <color name="orange_text_balance">#d2560b</color>
+    <color name="orange_dealer_name">#f97704</color>
+
+    <color name="colorPrimary">#607d8b</color>
+    <color name="colorPrimaryDark">#455a64</color>
+    <color name="colorPrimaryLight">#cfd8dc</color>
+
+    <color name="gray_dark">#616161</color>
+    <color name="brown">#5d4037</color>
+    <color name="indicator_1">#55B3C2</color>
+    <color name="indicator_2">#64A4A4</color>
+    <color name="indicator_3">#66D7B9</color>
+    <color name="indicator_4">#FDBC7D</color>
+    <!--orange-->
+
+    <!--white-->
+    <color name="trans_white">#66ffffff</color>
+    <!--green-->
+    <color name="green500">#4CAF50</color>
+    <color name="green_light">#19a890</color>
+    <color name="green900">#379e48</color>
+    <color name="green_table_dark_bg">#FF01534E</color>
+    <color name="green_brown_dark">#003366</color>
+    <color name="blue_table_bg">#FF009B8D</color>
+    <!--other-->
+    <color name="background_tab_pressed">#6633B5E5</color>
+    <!--vpi-->
+    <color name="vpi__background_holo_dark">#ff000000</color>
+    <color name="vpi__background_holo_light">#fff3f3f3</color>
+    <color name="vpi__bright_foreground_holo_dark">@color/vpi__background_holo_light</color>
+    <color name="vpi__bright_foreground_holo_light">@color/vpi__background_holo_dark</color>
+    <color name="vpi__bright_foreground_disabled_holo_dark">#0ab627</color>
+    <color name="vpi__bright_foreground_disabled_holo_light">#ffb2b2b2</color>
+    <color name="vpi__bright_foreground_inverse_holo_dark">
+        @color/vpi__bright_foreground_holo_light
+    </color>
+    <color name="vpi__bright_foreground_inverse_holo_light">
+        @color/vpi__bright_foreground_holo_dark
+    </color>
+
+    <color name="default_shadow_color">#88757575</color>
+    <color name="default_fill_color">#ffffff</color>
+    <color name="tie_color">#0a968e</color>
+    <color name="player_color">#0449be</color>
+    <color name="win_color">#00BFFF</color>
+    <color name="banker_color">#ff0000</color>
+    <color name="lose_color">#fd3a5c</color>
+</resources>

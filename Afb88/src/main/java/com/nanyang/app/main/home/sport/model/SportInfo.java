@@ -14,6 +14,12 @@ public class SportInfo implements Serializable {
 
     private boolean notify;
 
+    public int getChildCount() {
+        return childCount;
+    }
+
+    private int childCount;
+
 
     public void setValue(int i, String s) {
         switch (i) {
@@ -49,6 +55,10 @@ public class SportInfo implements Serializable {
         } else {
             setIsX12New("0");
         }
+    }
+
+    public void setChildCount(int size) {
+        this.childCount=size;
     }
 
     public enum Type {

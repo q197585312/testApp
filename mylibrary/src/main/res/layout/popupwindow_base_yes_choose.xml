@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true"
+    android:layout_margin="10dp"
+    android:background="@drawable/rectangle_white_graystroke_radius5"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/choose_title_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:padding="5dp"
+        android:text="确定?"
+        android:textColor="@color/black_grey"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/choose_message_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="提示信息"
+        android:textColor="@color/black_grey"
+        android:textSize="14sp" />
+    <View style="@style/line_horizontal_grey1"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:id="@+id/choose_sure_tv"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="确定"
+            android:textColor="@color/blue"
+            android:textSize="15sp" />
+        <View style="@style/line_vertical_grey1"/>
+        <TextView
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:id="@+id/choose_cancel_tv"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="@color/blue"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+</LinearLayout>

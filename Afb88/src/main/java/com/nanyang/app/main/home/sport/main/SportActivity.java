@@ -212,6 +212,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private boolean onlyShowOne;
     private boolean isPlay;
     public IRTMatchInfo itemBall;
+    private List<SportIdBean> listSport;
+    private volatile boolean isOther;
 
 
     public TextView getIvAllAdd() {
@@ -292,6 +294,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     AfbApplication app;
     public ViewHolder videoHolder;
     MyGestureDetector gestureDetector;
+
 
     class MyGestureDetector extends GestureDetector {
         public boolean isIgnore() {
@@ -451,6 +454,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                 listOther.add(next);
             }*/
         }
+        isOther = true;
         leftSportAdapter.addAllAndClear(listOther);
     }
 
@@ -678,10 +682,10 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         super.onResume();
         if (AppConstant.IS_AGENT) {
             others_selected.setVisibility(View.GONE);
-            loadLeftMenuSports();
         } else {
             others_selected.setVisibility(View.VISIBLE);
         }
+        loadLeftMenuSports();
         if (getApp().getOddsType() != null)
             presenter.switchOddsType(getApp().getOddsType().getType());
         else {
@@ -738,6 +742,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     private void loadLeftMenuSports() {
         LogUtil.d("type", "--->>" + type);
+        isOther = false;
+        if (listSport != null)
+            leftSportAdapter.addAllAndClear(listSport);
         presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
@@ -783,7 +790,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                         if (!StringUtils.isNull(jsonObjectNum.optString(typeStr + next.getDbid())))
                             listSport.add(next);
                     }*/
-                    leftSportAdapter.addAllAndClear(listSport);
+                    SportActivity.this.listSport = listSport;
+                    if (!isOther)
+                        leftSportAdapter.addAllAndClear(listSport);
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -838,50 +847,21 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickSportWayRun(final View view) {
-
         if (currentFragment != null && currentFragment instanceof AllRunningFragment || notClickType) {
             return;
         }
+        createPopupWindow(typePop);
+        typePop.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 356 + 15), AfbUtils.getScreenWidth(mContext) / 2);
+        loadTypeData();
+    }
 
+    public void loadTypeData() {
         presenter.loadAllMainData(new LoginInfo.LanguageWfBean("Getmenu", new LanguageHelper(mContext).getLanguage(), AppConstant.wfMain), new MainPresenter.CallBack<String>() {
             @Override
             public void onBack(String data) {
                 try {
                     final JSONObject jsonObjectNum = new JSONObject(data);
-                    createPopupWindow(
-                            new BasePopupWindow(mContext, tvMatchType, AfbUtils.getScreenWidth(mContext) / 2, AfbUtils.dp2px(mContext, 356)) {
-                                @Override
-                                protected int onSetLayoutRes() {
-                                    return R.layout.popupwindow_choice_ball_type;
-                                }
-
-                                @Override
-                                protected void initView(View view) {
-                                    super.initView(view);
-
-                                    RecyclerView rv_list = view.findViewById(R.id.rv_list);
-                                    View iv_home_back = view.findViewById(R.id.iv_home_back);
-                                    final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
-                                    checkBox.setChecked(getApp().getSort() == 1);
-                                    final View ll_sort = view.findViewById(R.id.ll_sort);
-                                    setChooseTypeAdapter(rv_list, tvMatchType, jsonObjectNum);
-                                    ll_sort.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View view) {
-                                            changeTimeSort();
-                                            checkBox.setChecked(getApp().getSort() == 1);
-                                            closePopupWindow();
-                                        }
-                                    });
-                                    iv_home_back.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            finish();
-                                        }
-                                    });
-                                }
-                            });
-                    popWindow.showPopupWindowUpCenter(view, AfbUtils.dp2px(mContext, 356 + 15), AfbUtils.getScreenWidth(mContext) / 2);
+                    typePop.updateNumber(jsonObjectNum);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -889,6 +869,58 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
         });
     }
+
+    TypePop typePop;
+
+    public void initMatchTypePop() {
+        typePop = new TypePop(mContext, tvMatchType, AfbUtils.getScreenWidth(mContext) / 2, AfbUtils.dp2px(mContext, 356));
+    }
+
+    class TypePop extends BasePopupWindow {
+        BaseRecyclerAdapter switchTypeAdapter;
+
+        public TypePop(Context context, View v, int width, int height) {
+            super(context, v, width, height);
+
+        }
+
+        @Override
+        protected int onSetLayoutRes() {
+            return R.layout.popupwindow_choice_ball_type;
+        }
+
+        @Override
+        protected void initView(View view) {
+            super.initView(view);
+
+            RecyclerView rv_list = view.findViewById(R.id.rv_list);
+            View iv_home_back = view.findViewById(R.id.iv_home_back);
+            final CheckBox checkBox = view.findViewById(R.id.cb_sort_time);
+            checkBox.setChecked(getApp().getSort() == 1);
+            final View ll_sort = view.findViewById(R.id.ll_sort);
+            rv_list.setLayoutManager(new LinearLayoutManager(mContext));
+            rv_list.setAdapter(currentFragment.presenter.getStateHelper().getSwitchTypeAdapter());
+            ll_sort.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    changeTimeSort();
+                    checkBox.setChecked(getApp().getSort() == 1);
+                    closePopupWindow();
+                }
+            });
+            iv_home_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    finish();
+                }
+            });
+        }
+
+        public void updateNumber(JSONObject jsonObjectNum) {
+            currentFragment.presenter.getStateHelper().switchTypeAdapter(jsonObjectNum);
+        }
+    }
+
 
     private void changeTimeSort() {
         getApp().setSort(1 - getApp().getSort());
@@ -898,10 +930,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     public int dateClickPosition = 1;
 
-    private void setChooseTypeAdapter(RecyclerView rv_list, TextView textView, JSONObject jsonObjectNum) {
-        rv_list.setLayoutManager(new LinearLayoutManager(mContext));
-        rv_list.setAdapter(currentFragment.presenter.getStateHelper().switchTypeAdapter(textView, jsonObjectNum));
-    }
 
     public void clickMoreMenu(View view) {
         drawerLayout.openDrawer(Gravity.RIGHT);
@@ -1307,6 +1335,18 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         popWindow.setTrans(1f);
         popWindow.setData(new LanguageHelper(mContext).getLanguageItems());
         popWindow.showPopupDownWindow();
+    }
+
+
+    public void clickAllContracted(View view) {
+        boolean contracted = currentFragment.getPresenter().getStateHelper().getAdapterHelper().clickAllContracted();
+
+        if (contracted) {
+            ((ImageView) view).setImageResource(R.mipmap.delete_all_yellow);
+        } else {
+            ((ImageView) view).setImageResource(R.mipmap.add_all_yellow);
+        }
+
 
     }
 }

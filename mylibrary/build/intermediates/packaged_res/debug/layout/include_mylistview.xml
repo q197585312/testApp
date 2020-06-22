@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    >
+<gaming178.com.mylibrary.myview.mylistview.FSVListView
+    android:id="@+id/mylist_content_flv"
+    android:layout_width="match_parent"
+    android:scrollbars="none"
+    android:layout_height="wrap_content"/>
+</merge>

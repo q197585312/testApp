@@ -1,11 +1,8 @@
 package com.example.dongnao;
 
 import android.content.Context;
-import androidx.viewpager.widget.ViewConfigurationCompat;
-import androidx.viewpager.widget.ViewPager;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
-import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
 import android.widget.Scroller;

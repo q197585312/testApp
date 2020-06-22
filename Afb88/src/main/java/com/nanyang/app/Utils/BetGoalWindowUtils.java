@@ -3,7 +3,6 @@ package com.nanyang.app.Utils;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Handler;
-import androidx.core.content.ContextCompat;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
 import android.util.Log;
@@ -13,6 +12,8 @@ import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import androidx.core.content.ContextCompat;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.ApiService;
@@ -208,13 +209,13 @@ public class BetGoalWindowUtils {
                                     for (int i = 0; i < llContent.getChildCount(); i++) {
                                         llContent.getChildAt(i).measure(0, 0);
                                     }
-                                    view.setTag(5);
+                                    view.setTag(3);
                                     handler.post(new Runnable() {
                                         @Override
                                         public void run() {
                                             int tag = (int) view.getTag();
                                             tvCount.setText(tag + "s");
-                                            if (tag == 5) {
+                                            if (tag == 3) {
                                                 imgClose.setOnClickListener(new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View v) {
@@ -349,13 +350,13 @@ public class BetGoalWindowUtils {
         }
         SoundPlayUtils.play();
 
-        view.setTag(4);
+        view.setTag(3);
         handler.post(new Runnable() {
             @Override
             public void run() {
                 int tag = (int) view.getTag();
                 tvCount.setText(tag + "s");
-                if (tag == 4) {
+                if (tag == 3) {
                     imgClose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

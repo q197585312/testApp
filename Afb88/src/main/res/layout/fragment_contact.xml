@@ -6,7 +6,7 @@
     android:background="@color/contact_back"
     android:orientation="vertical">
 
-    <androidx.drawerlayout.widget.NestedScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/ll_parent_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -70,6 +70,6 @@
                 android:layout_height="wrap_content"
                 android:background="@color/white"></androidx.recyclerview.widget.RecyclerView>
         </LinearLayout>
-    </androidx.drawerlayout.widget.NestedScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>

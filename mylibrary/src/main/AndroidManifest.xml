@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="gaming178.com.mylibrary">
+
+    <application android:allowBackup="true" android:label="@string/app_name">
+    <activity android:name="gaming178.com.mylibrary.myview.miscwidgets.Test"/>
+        <activity android:name="gaming178.com.mylibrary.myview.miscwidgets.TestCustomTitle"/>
+        <activity android:name="gaming178.com.mylibrary.myview.miscwidgets.TestPanels"/>
+        <activity android:name="gaming178.com.mylibrary.myview.miscwidgets.TestInterpolators"/>
+        <activity android:name="gaming178.com.mylibrary.myview.miscwidgets.TestSmoothButton"/>
+        <activity android:name="gaming178.com.mylibrary.myview.miscwidgets.TestSwitcher"/>
+        <activity android:name="gaming178.com.mylibrary.myview.miscwidgets.TestTheme"/>
+
+    </application>
+</manifest>

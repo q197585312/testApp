@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <item name="gridview" type="id" />
+    <item name="webview" type="id" />
+    <item name="scrollview" type="id" />
+    <item name="tag_first" type="id"></item>
+    <item name="tag_second" type="id"></item>
+    <!--head table-->
+    <item name="tag_type_view" type="id"/>
+    <item name="tag_row" type="id"/>
+    <item name="tag_column" type="id"/>
+</resources>

@@ -1,0 +1,11 @@
+R_DEF: Internal format may change without notice
+local
+attr? layout_auto_baseheight
+attr? layout_auto_basewidth
+attr? metro_divider
+id id_tag_autolayout_margin
+id id_tag_autolayout_padding
+id id_tag_autolayout_size
+string app_name
+styleable AutoLayout_Layout layout_auto_basewidth layout_auto_baseheight
+styleable MetroLayout metro_divider

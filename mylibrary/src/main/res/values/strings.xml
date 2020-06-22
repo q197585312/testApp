@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">My Library</string>
+    <string name="search">搜索</string>
+    <string name="head">这里是HeadView</string>
+    <string name="pull_to_refresh">Pull to refresh</string>
+    <string name="release_to_refresh">释放立即刷新</string>
+    <string name="refreshing">正在刷新...</string>
+    <string name="refresh_succeed">Refresh Success</string>
+    <string name="refresh_fail">Refresh complete</string>
+    <string name="pull_up_to_load">Pull up to load</string>
+    <string name="release_to_load">Release to load</string>
+    <string name="loading">loading...</string>
+    <string name="load_succeed">Load Succeed</string>
+    <string name="load_fail">Load fail</string>
+    <string name="panels_app_name">Test Panels</string>
+    <string name="switcher_app_name">Test Switcher</string>
+    <string name="smoothbutton_app_name">Test SmoothButton</string>
+    <string name="interpolators_app_name">Test Interpolators</string>
+    <string name="theme_app_name">Test Theme</string>
+    <string name="virtual_keyboard_app_name">Test Virtual Keyboard</string>
+    <string name="custom_title_app_name">Test Custom Title</string>
+    <string name="b0"><b>press me</b> - left animation - 750 msec</string>
+    <string name="b1"><b>press me</b> - right animation - 1500 msec</string>
+
+</resources>

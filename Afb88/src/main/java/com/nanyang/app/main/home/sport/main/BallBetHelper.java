@@ -17,6 +17,8 @@ import java.util.List;
 
 import cn.finalteam.toolsfinal.StringUtils;
 
+import static com.nanyang.app.AfbUtils.getMethodName;
+
 /**
  * Created by Administrator on 2017/3/15.
  */
@@ -58,6 +60,7 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
         final AfbApplication app = (AfbApplication) AfbApplication.getInstance();
         if (app.getMixBetList().size() < 1) {
             app.isSingleBet = true;
+            getMethodName();
         }
         if (app.isSingleBet) {
             handler.postDelayed(new Runnable() {
@@ -90,10 +93,13 @@ public abstract class BallBetHelper<B extends BallInfo, V extends BetView> exten
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
+                    SportActivity baseActivity = (SportActivity) baseView.getIBaseContext().getBaseActivity();
+                    if ((baseActivity).getBetContent().v.getVisibility() == View.VISIBLE)
+                        (baseActivity).getBetContent().stopUpdateOdds();
                     saveCurrentMixBet(oddsUrlBean);
                     saveCurrentSingleBet(oddsUrlBean);
                     betOddsUrl = app.getRefreshMixOddsUrl();
-                    if (app.getMixBetList().size() == 1 || app.getMixBetList().size() > 14) {
+                    if (app.getMixBetList().size() == 1 || app.getMixBetList().size() > 14 || (baseActivity).getBetContent().v.getVisibility() == View.VISIBLE) {
                         getDisposable(v, isHf, betOddsUrl);
                     }
                 }

@@ -1,0 +1,85 @@
+<resources>
+
+    <!--
+        Base application theme, dependent on API level. This theme is replaced
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+    -->
+    <!--
+        Theme customizations available in newer API levels can go in
+        res/values-vXX/styles.xml, while customizations related to
+        backward-compatibility can go here.
+    -->
+    <style name="RegisterEditTextTip">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12dip</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:padding">6dp</item>
+    </style>
+    <style name="text_baccarat_village">
+        <item name="android:gravity">center</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:text">庄</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/oval_red_solid</item>
+    </style>
+
+    <style name="text_baccarat_leisure">
+        <item name="android:text">闲</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/oval_blue_solid</item>
+    </style>
+
+    <style name="text_baccarat_dice">
+        <item name="android:text">和</item>
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@drawable/oval_green_solid</item>
+    </style>
+
+    <style name="text_point_blue">
+        <item name="android:layout_width">6dp</item>
+        <item name="android:layout_height">6dp</item>
+        <item name="android:background">@drawable/oval_blue_solid</item>
+    </style>
+
+    <style name="text_point_red">
+        <item name="android:layout_width">6dp</item>
+        <item name="android:layout_height">6dp</item>
+        <item name="android:background">@drawable/oval_red_solid</item>
+    </style>
+
+    <style name="text_slash_red">
+        <item name="android:textSize">7sp</item>
+        <item name="android:text">/</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">@color/red</item>
+    </style>
+
+    <style name="text_slash_blue">
+        <item name="android:textSize">7sp</item>
+        <item name="android:text">/</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="text_oval_sold_not_blue_margin1">
+        <item name="android:background">@drawable/oval_blue_solid_not</item>
+        <item name="android:layout_margin">1dp</item>
+    </style>
+    <style name="text_oval_sold_not_red_margin1">
+        <item name="android:background">@drawable/oval_red_solid_not</item>
+        <item name="android:layout_margin">1dp</item>
+    </style>
+
+</resources>
