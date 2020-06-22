@@ -156,7 +156,7 @@ public class UpdateManager {
      * 显示版本更新对话框
      */
     private void showNoticeDialog() {
-        Builder builder = new Builder(mContext, R.style.Base_Theme_AppCompat_Dialog_Alert);
+        Builder builder = new Builder(mContext, R.style.Base_Theme_AppCompat_Light_Dialog);
         builder.setTitle(title);
         builder.setMessage(updateMsg);
         builder.setPositiveButton(update, new OnClickListener() {
