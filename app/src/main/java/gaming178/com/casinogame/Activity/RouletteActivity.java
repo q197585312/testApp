@@ -11,7 +11,6 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -2691,7 +2690,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     @Override
     protected void onPause() {
         super.onPause();
-        videoHelper.stopVideo();
+        videoHelper.pauseVideo();
 //        stopUpdateStatusThread();
     }
 
@@ -2707,15 +2706,11 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
             }
         }, 1000);
 //        startUpdateStatusThread();
-        videoHelper.playVideo();
+        videoHelper.loadVideo();
     }
 
 
-   /* @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        stopUpdateStatusThread();
-    }*/
+
 
 
     public void clickSplit(View v) {
@@ -6635,6 +6630,7 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        videoHelper.stopVideo();
         stopUpdateStatusThread();
         handler.removeCallbacksAndMessages(null);
     }

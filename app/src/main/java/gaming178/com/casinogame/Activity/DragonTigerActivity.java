@@ -1728,7 +1728,7 @@ public class DragonTigerActivity extends BaseActivity {
             }
         }, 1000);
 //        startUpdateStatusThread();
-        videoHelper.playVideo();
+        videoHelper.loadVideo();
     }
 
     @Override
@@ -2425,7 +2425,7 @@ public class DragonTigerActivity extends BaseActivity {
         super.onPause();
         //   hidePoker();
 
-        videoHelper.stopVideo();
+        videoHelper.pauseVideo();
 
         afbApp.getDragonTiger(afbApp.getTableId()).setGameStatus(1);
         if (isBottomOpen)//正好在发牌的时候锁频，再次打开屏幕的时候要先隐藏
@@ -2435,6 +2435,7 @@ public class DragonTigerActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        videoHelper.stopVideo();
         stopUpdateStatusThread();
     }
     /*    @Override

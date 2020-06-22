@@ -3,6 +3,8 @@ package gaming178.com.casinogame.Activity;
 import android.content.Context;
 import android.util.Log;
 
+import java.io.IOException;
+
 import gaming178.com.casinogame.Util.VideoListener;
 import gaming178.com.casinogame.Util.VideoPlayer;
 import tv.danmaku.ijk.media.player.IMediaPlayer;
@@ -16,6 +18,7 @@ public class VideoHelper {
 
     public void setPlayUrl(String playUrl) {
         this.playUrl = playUrl;
+        sv.setPath(playUrl);
         initPlayer();
     }
 
@@ -48,7 +51,8 @@ public class VideoHelper {
 
             @Override
             public void onPrepared(IMediaPlayer iMediaPlayer) {
-                onStartPlay();
+
+                startVideo();
                 Log.d("ijk", "onPrepared");
                 doVideoFix();
             }
@@ -63,15 +67,9 @@ public class VideoHelper {
                 Log.d("ijk", "onVideoSizeChanged");
             }
         });
-        sv.setPath(playUrl);
+
     }
 
-    public void onStartPlay() {
-        if (sv != null) {
-            Log.d("ijk", "onPause");
-            sv.start();
-        }
-    }
 
     public VideoHelper(Context mContext, VideoPlayer sv) {
         this.mContext = mContext;
@@ -79,9 +77,16 @@ public class VideoHelper {
 
     }
 
-    public void playVideo() {
+    public void startVideo() {
         sv.start();
-
+    }
+    public void loadVideo(){
+        try {
+            if (sv != null && sv.getmPath() != null)
+                sv.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void pauseVideo() {
@@ -91,6 +96,7 @@ public class VideoHelper {
 
     public void stopVideo() {
         sv.stop();
+        destroyVideo();
     }
 
     public void destroyVideo() {

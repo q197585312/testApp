@@ -19,7 +19,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.SurfaceHolder;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
@@ -2181,7 +2180,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
             }
         }, 1000);
-        videoHelper.playVideo();
+        videoHelper.loadVideo();
 //        handler.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
@@ -3447,7 +3446,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     protected void onPause() {
         super.onPause();
 //        stopUpdateStatusThread();
-        videoHelper.stopVideo();
+        videoHelper.pauseVideo();
 //        afbApp.getBaccarat(afbApp.getTableId()).setGameStatus(1);
         afbApp.closeMuzicService(mContext, BackgroudMuzicService.class);
         afbApp.closeMuzicService(mContext, FrontMuzicService.class);
@@ -4129,6 +4128,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        videoHelper.stopVideo();
         stopUpdateStatusThread();
     }
 

@@ -25,11 +25,11 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    compile 'com.google.code.gson:gson:2.2.4'
-    compile 'com.jakewharton:butterknife:7.0.1'
-    compile 'com.nhaarman.listviewanimations:library:2.6.0'
-    compile project(':autolayout')
-    compile project(':gestrueLibrary')
-    compile project(':apng')
+    api fileTree(include: ['*.jar'], dir: 'libs')
+    api 'com.google.code.gson:gson:2.2.4'
+    api 'com.jakewharton:butterknife:7.0.1'
+    api 'com.nhaarman.listviewanimations:library:2.6.0'
+    api project(':autolayout')
+    api project(':gestrueLibrary')
+    api project(':apng')
 }

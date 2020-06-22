@@ -201,6 +201,7 @@ public class LivePlayHelper {
             }
 
         }
+        path="rtmp://pull.1234326.cn/live/L01new";
         holder.videoPlayerStream.setPath(path);
     }
 

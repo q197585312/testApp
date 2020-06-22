@@ -3,7 +3,7 @@ apply plugin: 'com.android.library'
 version = "1.4.3"
 
 android {
-    compileSdkVersion 22
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
     buildToolsVersion rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
         minSdkVersion 11
@@ -48,9 +48,9 @@ Properties properties = new Properties()
 properties.load(project.rootProject.file('local.properties').newDataInputStream())
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    compile 'com.android.support:appcompat-v7:22.2.1'
-    compile 'com.android.support:design:22.2.1'
-    compile 'com.android.support:cardview-v7:22.2.1'
-    compile 'com.android.support:recyclerview-v7:22.2.1'
+    api fileTree(dir: 'libs', include: ['*.jar'])
+    api 'com.android.support:appcompat-v7:22.2.1'
+    api 'com.android.support:design:22.2.1'
+    api 'com.android.support:cardview-v7:22.2.1'
+    api 'com.android.support:recyclerview-v7:22.2.1'
 }
