@@ -12,8 +12,8 @@ android {
             storePassword '123456'
         }
     }
-    compileSdkVersion 28
-    buildToolsVersion = '28.0.3'
+    compileSdkVersion rootProject.ext.android["compileSdkVersion"]
+    buildToolsVersion = rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
         applicationId "com.nanyang.app"
         minSdkVersion 14

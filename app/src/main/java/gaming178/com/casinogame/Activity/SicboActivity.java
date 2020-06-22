@@ -10,7 +10,6 @@ import android.os.Message;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.Gravity;
-import android.view.SurfaceView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -1643,7 +1642,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             }
         }, 1000);
 //        startUpdateStatusThread();
-        videoHelper.playVideo();
+        videoHelper.startVideo();
 
     }
 
@@ -2311,7 +2310,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     protected void onPause() {
         super.onPause();
 //        stopUpdateStatusThread();
-        videoHelper.stopVideo();
+        videoHelper.pauseVideo();
     }
 
 
@@ -2319,6 +2318,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        videoHelper.stopVideo();
         stopUpdateStatusThread();
     }
 
