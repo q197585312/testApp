@@ -42,6 +42,7 @@ import com.zhy.autolayout.utils.AutoUtils;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
@@ -2097,29 +2098,13 @@ public class DragonTigerActivity extends BaseActivity {
         tvTableBetCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (listBetDetail.size() > 0)
-                    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
-                clearNoBetChip();
-
+                clearAllBet();
             }
         });
         tvTableBetSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)
-                    return;
-                if (afbApp.getUser().getBalance() <= 0) {
-                    ToastUtils.showToast(mContext, getString(R.string.Insufficient));
-                    return;
-                }
-                if (listBetDetail.size() > 0) {
-                    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, afbApp.getFrontVolume());
-                    //执行下注的线程
-                    drangonTigerBet = new DrangonTigerBet(DtBetType.All);
-                    threadDrangonTigerBet = new Thread(drangonTigerBet);
-                    showBlockDialog();
-                    Executors.newSingleThreadExecutor().execute(threadDrangonTigerBet);
-                }
+                betAll();
             }
         });
 
@@ -2138,6 +2123,29 @@ public class DragonTigerActivity extends BaseActivity {
             }
         });
         leftPanel1.setInterpolator(new BounceInterpolator(EasingType.Type.OUT));
+    }
+
+    private void clearAllBet() {
+        if (listBetDetail.size() > 0)
+            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
+        clearNoBetChip();
+    }
+
+    private void betAll() {
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)
+            return;
+        if (afbApp.getUser().getBalance() <= 0) {
+            ToastUtils.showToast(mContext, getString(R.string.Insufficient));
+            return;
+        }
+        if (listBetDetail.size() > 0) {
+            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, afbApp.getFrontVolume());
+            //执行下注的线程
+            drangonTigerBet = new DrangonTigerBet(DtBetType.All);
+            threadDrangonTigerBet = new Thread(drangonTigerBet);
+            showBlockDialog();
+            Executors.newSingleThreadExecutor().execute(threadDrangonTigerBet);
+        }
     }
 
     volatile boolean isCanbet = true;
@@ -3015,14 +3023,12 @@ public class DragonTigerActivity extends BaseActivity {
             chipHelper.setOperationButton(0, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DtBetType type = getTypeFrom(f);
-                    singleBet(type);
+                    betAll();
                 }
             }, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    DtBetType type = getTypeFrom(f);
-                    clearNoBetChip(type);
+                    clearAllBet();
                 }
             }, new View.OnClickListener() {
                 @Override
@@ -3039,7 +3045,16 @@ public class DragonTigerActivity extends BaseActivity {
         //   money= chipHelper.getMoneyCount()+money;
         if (isShow && money > 0) {
             checkOperationButton();
+            Iterator<Map.Entry<FrameLayout, ChipShowHelper>> it = ChipMap.entrySet().iterator();
+            while (it.hasNext()) {
+                Map.Entry<FrameLayout, ChipShowHelper> entry = it.next();
+                ChipShowHelper value = entry.getValue();
+                if (value != null) {
+                    value.setOperationButtonDisplay(false);
+                }
+            }
             BetUiHelper.betStateColor(tvTableBetSure, true);
+            chipHelper.setOperationButtonDisplay(true);
             chipHelper.showChip(money, 0, y, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), 0, y + AutoUtils.getPercentHeightSize(4), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
         } else {
             chipHelper.setOperationButtonDisplay(false);

@@ -1,5 +1,6 @@
 package gaming178.com.casinogame.Util;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.text.TextPaint;
@@ -14,7 +15,9 @@ import com.zhy.autolayout.utils.AutoUtils;
 import java.util.List;
 
 import gaming178.com.baccaratgame.R;
+import gaming178.com.casinogame.Activity.DragonTigerActivity;
 import gaming178.com.casinogame.Bean.ChipBean;
+import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.myview.View.AutofitTextView;
 
@@ -28,6 +31,7 @@ public class ChipShowHelper {
     TextView cancelText;
     TextView repeatText;
     TextView sureText;
+    BaseActivity baseActivity;
 
     private boolean isButtonShow;
     private int operationWidth;
@@ -78,6 +82,7 @@ public class ChipShowHelper {
         this.chips = chips;
         this.framelayout = framelayout;
         this.context = ctx;
+        baseActivity = (BaseActivity) ctx;
         this.firstIndex = framelayout.getChildCount();
     }
 
@@ -200,9 +205,14 @@ public class ChipShowHelper {
 
     }
 
+    @SuppressLint("RtlHardcoded")
     public void setOperationButton(int x, View.OnClickListener clickSure, View.OnClickListener clickCancel, View.OnClickListener clickRepaet) {
-        int w = AutoUtils.getPercentHeightSize(40);
-        int h = AutoUtils.getPercentHeightSize(40);
+        int w = AutoUtils.getPercentHeightSize(52);
+        int h = AutoUtils.getPercentHeightSize(52);
+        if (baseActivity instanceof DragonTigerActivity){
+             w = AutoUtils.getPercentHeightSize(40);
+             h = AutoUtils.getPercentHeightSize(40);
+        }
         if (operationWidth > 0 && operationHeight > 0) {
             w = AutoUtils.getPercentHeightSize(operationWidth);
             h = AutoUtils.getPercentHeightSize(operationHeight);
@@ -223,11 +233,15 @@ public class ChipShowHelper {
             paramsTextRepeat.gravity = Gravity.CENTER;
             paramsTextSure.gravity = Gravity.RIGHT;
         } else {
-            paramsTextCancel.rightMargin = x + 35;
+            int margin = 52;
+            if (baseActivity instanceof DragonTigerActivity){
+                margin = 35;
+            }
+            paramsTextCancel.rightMargin = x + margin;
             paramsTextCancel.gravity = chipGravity;
             paramsTextRepeat.rightMargin = 0;
             paramsTextRepeat.gravity = chipGravity;
-            paramsTextSure.leftMargin = x + 35;
+            paramsTextSure.leftMargin = x + margin;
             paramsTextSure.gravity = chipGravity;
             paramsTextCancel.bottomMargin = AutoUtils.getPercentHeightSize(15);
             paramsTextRepeat.bottomMargin = AutoUtils.getPercentHeightSize(15);
