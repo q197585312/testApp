@@ -2,10 +2,10 @@ package gaming178.com.casinogame.Util;
 
 import android.content.Context;
 import android.content.res.Configuration;
-import android.graphics.Color;
-import android.os.CountDownTimer;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -29,7 +30,6 @@ import gaming178.com.casinogame.Bean.GameMenuItem;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
 import gaming178.com.casinogame.base.BaseActivity;
-import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.base.ItemCLickImp;
 import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
@@ -40,13 +40,14 @@ import gaming178.com.mylibrary.popupwindow.BasePopupWindow;
 
 public class TableChangePop extends BasePopupWindow {
     private ArrayList<GameMenuItem> tables;
-
     private BaseRecyclerAdapter<String> adapter;
-    private ImageView ivClose;
-    private TextView tv_id;
-    private TextView tv_balance;
     private LinearLayout parent;
     private List<TableTimerBean> list;
+    private TextView tv_b, tv_r, tv_s, tv_d;
+
+    public TableChangePop(Context context, View v, int width, int height) {
+        super(context, v, width, height);
+    }
 
     public int getParentCount() {
         if (parent != null) {
@@ -63,10 +64,6 @@ public class TableChangePop extends BasePopupWindow {
     ItemCLickImp cLickImp;
 
 
-    public TableChangePop(Context context, View v) {
-        super(context, v, LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-    }
-
     @Override
     protected int getContentViewLayoutRes() {
         return R.layout.layout_framelayout_table;
@@ -78,24 +75,66 @@ public class TableChangePop extends BasePopupWindow {
         baccaratTableChangeViewBeenList = new ArrayList<>();
         list = new ArrayList<>();
         parent = (LinearLayout) view.findViewById(R.id.ll_change_table_parent);
-        ivClose = (ImageView) view.findViewById(R.id.iv_table_change_close);
-        tv_id = view.findViewById(R.id.tv_id);
-        tv_balance = view.findViewById(R.id.tv_balance);
-        ivClose.setOnClickListener(new View.OnClickListener() {
+        view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 closePopupWindow();
             }
         });
-
+        tv_b = view.findViewById(R.id.tv_b);
+        tv_r = view.findViewById(R.id.tv_r);
+        tv_s = view.findViewById(R.id.tv_s);
+        tv_d = view.findViewById(R.id.tv_d);
+        tv_b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.VISIBLE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.VISIBLE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+            }
+        });
+        tv_r.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+            }
+        });
+        tv_s.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.GONE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.VISIBLE);
+            }
+        });
+        tv_d.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                for (int i = 0; i < baccaratTableChangeViewBeenList.size(); i++) {
+                    baccaratTableChangeViewBeenList.get(i).getView_Parent().setVisibility(View.GONE);
+                }
+                dragonTigerTableChangeViewBeen.getView_Parent().setVisibility(View.VISIBLE);
+                rouletteTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+                sicboTableChangeViewBean.getView_Parent().setVisibility(View.GONE);
+            }
+        });
     }
 
     private boolean isNeedRefenshTimer;
 
-    public void setPopTopContent(String name, String balance) {
+    public void setPopTopContent() {
         refreshTimer((BaseActivity) context);
-        tv_id.setText(name);
-        tv_balance.setText(balance);
     }
 
     private void refreshTimer(final BaseActivity baseActivity) {
@@ -133,7 +172,7 @@ public class TableChangePop extends BasePopupWindow {
                                         ((ImageView) diceView.findViewById(R.id.iv_dice_3)).setImageResource(dice.getList().get(2).getResDrawable());
                                         sicboTableChangeViewBean.getLinearlayout().addView(diceView);
                                     }
-                                    afbApp.updateGameNumber(afbApp.getSicbo01(), sicboTableChangeViewBean.getTv_sicbo_number01(), sicboTableChangeViewBean.getTv_even01(), sicboTableChangeViewBean.getTv_small01(), sicboTableChangeViewBean.getTv_waidic01(), sicboTableChangeViewBean.getTv_big01(), sicboTableChangeViewBean.getTv_odd01());
+//                                    afbApp.updateGameNumber(afbApp.getSicbo01(), sicboTableChangeViewBean.getTv_sicbo_number01(), sicboTableChangeViewBean.getTv_even01(), sicboTableChangeViewBean.getTv_small01(), sicboTableChangeViewBean.getTv_waidic01(), sicboTableChangeViewBean.getTv_big01(), sicboTableChangeViewBean.getTv_odd01());
                                 }
                             }
                         }
@@ -301,12 +340,17 @@ public class TableChangePop extends BasePopupWindow {
                 TextView tv_baccarat_bp_number = (TextView) aB1.findViewById(R.id.text_bp);
                 TextView tv_baccarat_pp_number = (TextView) aB1.findViewById(R.id.text_pp);
                 View ll_good_road_parent = aB1.findViewById(R.id.ll_good_road_parent);
+                View view_you_here = aB1.findViewById(R.id.view_you_here);
+                if (afbApp.getTableId() == item.getDrawableRes()) {
+                    view_you_here.setVisibility(View.VISIBLE);
+                }
                 TextView tv_good_road_name = (TextView) ll_good_road_parent.findViewById(R.id.tv_good_road_name);
                 BaccaratTableChangeViewBean bean = new BaccaratTableChangeViewBean(item.getDrawableRes(), layout,
                         tv_baccarat_shoe_number, tv_baccarat_total_number, tv_baccarat_banker_number, tv_baccarat_player_number, tv_baccarat_tie_number
                         , tv_baccarat_bp_number, tv_baccarat_pp_number);
                 bean.setLl_good_road_parent(ll_good_road_parent);
                 bean.setTv_good_road_name(tv_good_road_name);
+                bean.setView_Parent(aB1);
                 baccaratTableChangeViewBeenList.add(bean);
             } else if (item.getDrawableRes() == 21) {
                 aB1 = LayoutInflater.from(context).inflate(R.layout.layout_scrollview_h_table_roultette, null);
@@ -324,7 +368,10 @@ public class TableChangePop extends BasePopupWindow {
                 TextView tv_roulette_odd01 = (TextView) aB1.findViewById(R.id.text_odd);
                 TextView tv_roulette_big01 = (TextView) aB1.findViewById(R.id.text_big);
                 TextView tv_roulette_small01 = (TextView) aB1.findViewById(R.id.text_small);
-
+                View view_you_here = aB1.findViewById(R.id.view_you_here);
+                if (afbApp.getTableId() == item.getDrawableRes()) {
+                    view_you_here.setVisibility(View.VISIBLE);
+                }
                 setValue(layout);
 
                 adapter = new BaseRecyclerAdapter<String>(context, new ArrayList<String>(), R.layout.item_change_table_roulette_content) {
@@ -365,13 +412,13 @@ public class TableChangePop extends BasePopupWindow {
                 adapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
                     @Override
                     public void onItemClick(View view, String bb, int position) {
-                        closePopupWindow();
                         cLickImp.itemCLick(v, item, 0);
                     }
                 });
                 layout.setAdapter(adapter);
 
                 rouletteTableChangeViewBean = new RouletteTableChangeViewBean(tv_game_number01, tv_roulette_red01, tv_roulette_black01, tv_roulette_zero01, tv_roulette_even01, tv_roulette_odd01, tv_roulette_big01, tv_roulette_small01);
+                rouletteTableChangeViewBean.setView_Parent(aB1);
             } else if (item.getDrawableRes() == 31) {
                 aB1 = LayoutInflater.from(context).inflate(R.layout.layout_scrollview_h_table_scibao, null);
                 TextView tv_timer = (TextView) aB1.findViewById(R.id.tv_timer);
@@ -385,9 +432,11 @@ public class TableChangePop extends BasePopupWindow {
                 TextView tv_big01 = (TextView) aB1.findViewById(R.id.text_big);
                 TextView tv_small01 = (TextView) aB1.findViewById(R.id.text_small);
                 TextView tv_waidic01 = (TextView) aB1.findViewById(R.id.text_waidic);
-
                 LinearLayout linearlayout = (LinearLayout) aB1.findViewById(R.id.layout2);
-
+                View view_you_here = aB1.findViewById(R.id.view_you_here);
+                if (afbApp.getTableId() == item.getDrawableRes()) {
+                    view_you_here.setVisibility(View.VISIBLE);
+                }
 
                 for (DiceContentBean dice : getSicboResultsData(afbApp)) {
                     View diceView = LayoutInflater.from(context).inflate(R.layout.item_table_bet_dice_info, null);
@@ -397,7 +446,7 @@ public class TableChangePop extends BasePopupWindow {
                     linearlayout.addView(diceView);
                 }
                 sicboTableChangeViewBean = new SicboTableChangeViewBean(linearlayout, tv_sicbo_number01, tv_even01, tv_small01, tv_waidic01, tv_big01, tv_odd01);
-
+                sicboTableChangeViewBean.setView_Parent(aB1);
             } else if (item.getDrawableRes() == 5) {
                 aB1 = LayoutInflater.from(context).inflate(R.layout.layout_scrollview_h_table_brccarat, null);
                 TextView tv_timer = (TextView) aB1.findViewById(R.id.tv_timer);
@@ -424,52 +473,38 @@ public class TableChangePop extends BasePopupWindow {
                 ll_pp.setVisibility(View.GONE);
                 LinearLayout ll_bp = (LinearLayout) aB1.findViewById(R.id.ll_bp);
                 ll_bp.setVisibility(View.GONE);
+                View view_you_here = aB1.findViewById(R.id.view_you_here);
+                if (afbApp.getTableId() == item.getDrawableRes()) {
+                    view_you_here.setVisibility(View.VISIBLE);
+                }
                 GridLayout layout = (GridLayout) aB1.findViewById(R.id.baccarat_gridlayout2);
                 dragonTigerTableChangeViewBeen = new BaccaratTableChangeViewBean(item.getDrawableRes(), layout, tv_shoe, tv_total, text_banker, text_player, tv_tie, tv_bp, tv_pp);
+                dragonTigerTableChangeViewBeen.setView_Parent(aB1);
             }
             textView.setText(item.getTitle());
             View v = aB1.findViewById(R.id.layout2);
             v.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    closePopupWindow();
                     cLickImp.itemCLick(v, item, 0);
                 }
             });
             aB1.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    closePopupWindow();
                     cLickImp.itemCLick(v, item, 0);
                 }
             });
             LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT);
             layoutParams.weight = 1;
-//            if(context.getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE){
-//                if(i%6==0){
-//                    parentLine= (LinearLayout) LayoutInflater.from(context).inflate(R.layout.include_linearlayout,null);
-//                }
-//                parentLine.addView(aB1,layoutParams);
-//                if(i%6==5||i==tables.size()-1){
-//                    parent.addView(parentLine);
-//                }
-//            }else{
-//                if(i%2==0){
-//                    parentLine= (LinearLayout) LayoutInflater.from(context).inflate(R.layout.include_linearlayout,null);
-//                }
-//                parentLine.addView(aB1,layoutParams);
-//                if(i%2==1||i==tables.size()-1){
-//                    parent.addView(parentLine);
-//                }
-//            }
             if (context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 if (i % 2 == 0) {
                     parentLine = (LinearLayout) LayoutInflater.from(context).inflate(R.layout.include_linearlayout, null);
                 }
                 parentLine.addView(aB1, layoutParams);
-                if (i == tables.size() - 1) {
-                    parentLine.addView(new View(context), layoutParams);
-                }
+//                if (i == tables.size() - 1) {
+//                    parentLine.addView(new View(context), layoutParams);
+//                }
                 if (i % 2 == 1 || i == tables.size() - 1) {
                     parent.addView(parentLine);
                 }

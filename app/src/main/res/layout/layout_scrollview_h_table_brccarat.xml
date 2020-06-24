@@ -27,9 +27,10 @@
                 <TextView
 
                     android:id="@+id/tv_table_title"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:gravity="center"
                     android:text="BM1"
                     android:textColor="@color/white"
@@ -43,15 +44,17 @@
                     android:layout_marginLeft="5dp"
                     android:text="0-0"
                     android:textColor="@color/white"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/tv_total_name"
                     style="@style/text_wrap_black12"
                     android:text="@string/total"
-
                     android:textColor="@color/white"
-                    android:textSize="10sp" />
+
+                    android:textSize="10sp"
+                    android:visibility="gone" />
 
                 <TextView
                     android:id="@+id/text_total"
@@ -59,7 +62,8 @@
                     android:layout_marginLeft="3dp"
                     android:text="0"
                     android:textColor="@color/white"
-                    android:textSize="10sp" />
+                    android:textSize="10sp"
+                    android:visibility="gone" />
 
                 <LinearLayout
                     android:layout_width="35dp"
@@ -67,7 +71,8 @@
                     android:background="@drawable/rectangle_b_shape"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
-                    android:paddingRight="3dp">
+                    android:paddingRight="3dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv_banker"
@@ -93,7 +98,8 @@
                     android:background="@drawable/rectangle_p_shape"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
-                    android:paddingRight="3dp">
+                    android:paddingRight="3dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv_player"
@@ -119,7 +125,8 @@
                     android:background="@drawable/rectangle_tie_shape"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
-                    android:paddingRight="3dp">
+                    android:paddingRight="3dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv_tie"
@@ -146,7 +153,8 @@
                     android:background="@drawable/rectangle_bp_shape"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
-                    android:paddingRight="3dp">
+                    android:paddingRight="3dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv_banker_pair"
@@ -173,7 +181,8 @@
                     android:background="@drawable/rectangle_pp_shape"
                     android:orientation="horizontal"
                     android:paddingLeft="3dp"
-                    android:paddingRight="3dp">
+                    android:paddingRight="3dp"
+                    android:visibility="gone">
 
                     <TextView
                         android:id="@+id/tv_player_pair"
@@ -195,12 +204,14 @@
                 <View
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"></View>
+                    android:layout_weight="1"
+                    android:visibility="gone"></View>
 
                 <TextView
                     android:id="@+id/tv_timer"
-                    android:layout_width="20dp"
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
+                    android:layout_weight="1"
                     android:background="@color/timer_color"
                     android:gravity="center"
                     android:singleLine="true"
@@ -223,5 +234,11 @@
         </LinearLayout>
 
         <include layout="@layout/good_road_bg"></include>
+
+        <include
+            layout="@layout/you_here_bg"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20dp"></include>
     </FrameLayout>
 </LinearLayout>

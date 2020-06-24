@@ -1433,15 +1433,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     protected void showChangeTable(View v) {
-        String name = usName;
-        String c = currency;
-        if (TextUtils.isEmpty(c)) {
-            c = getString(R.string.BAL);
-        }
         initOldBigRoad();
-        tablePop.setPopTopContent(getString(R.string.ID) + " :" + name.toUpperCase(), c + " :" + getApp().getUser().getBalance() + "");
+        tablePop.setPopTopContent();
         if (tablePop.getParentCount() > 0) {
-            tablePop.showPopupCenterWindow();
+            tablePop.showPopupGravityWindow(Gravity.RIGHT, 0, 0);
         }
     }
 
@@ -1548,10 +1543,19 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             }
 
         }
-        tablePop = new TableChangePop(mContext, v);
+        int with = ScreenUtil.dip2px(mContext, 150);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            with = with * 2;
+        }
+        tablePop = new TableChangePop(mContext, v, with, ViewGroup.LayoutParams.MATCH_PARENT);
         tablePop.setClickImp(new ItemCLickImp<GameMenuItem>() {
             @Override
             public void itemCLick(View view, GameMenuItem gameMenuItem, int position) {
+                if (getApp().getTableId() == gameMenuItem.getDrawableRes()) {
+                    Toast.makeText(mContext, getString(R.string.your_here), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                tablePop.closePopupWindow();
                 String menuStr = gameMenuItem.getTitle();
                 if (menuStr.equals("LB1")) {
                     if (afbApp.getBaccarat(1).getStatus() != 1) {
@@ -1821,8 +1825,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     }
 
     private void addGame(ArrayList<GameMenuItem> games1, GameMenuItem item, String removeStr) {
-        if (!item.getTitle().equals(removeStr))
-            games1.add(item);
+//        if (!item.getTitle().equals(removeStr))
+//            games1.add(item);
+        games1.add(item);
     }
 
     public void changeSeatGame(int tId) {
@@ -1947,7 +1952,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             }
         }
         list.add(new ChipBean(R.mipmap.chip_choose, "CHOOSE", -101));
-        if (isNeedAddSure){
+        if (isNeedAddSure) {
             list.add(new ChipBean(R.mipmap.sureimg, "", -1));
             list.add(new ChipBean(R.mipmap.noimg, "", -2));
             list.add(new ChipBean(R.mipmap.replayimg, "", -3));

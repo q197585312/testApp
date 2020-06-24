@@ -1916,13 +1916,21 @@ public class AfbApp extends Application {
         return false;
     }
 
-    public void updateDragenTigerBigRoad(Context mContext, DragonTiger baccarat, GridLayout gridLayoutBigRoad, TextView tv_shoe, TextView tv_total, TextView tv_banker, TextView tv_player, TextView tv_tie, TextView tv_bp, TextView tv_pp) {
+    public void updateDragenTigerBigRoad(final Context mContext, DragonTiger baccarat, final GridLayout gridLayoutBigRoad, TextView tv_shoe, TextView tv_total, TextView tv_banker, TextView tv_player, TextView tv_tie, TextView tv_bp, TextView tv_pp) {
 
         if (baccarat.getBigRoad() != null && !baccarat.getBigRoad().equals(baccarat.getBigRoadOld()) && !baccarat.getGameNumber().equals("0")) {
             //        Log.i(WebSiteUrl.Tag,"updateRoad(),TableID="+baccarat.getTableName()+",Luzi roads="+baccarat.getBigRoadOld()+ ",BigRoad="+baccarat.getBigRoad());
             baccarat.setBigRoadOld(baccarat.getBigRoad());
             ShowBaccaratBigRoad(baccarat.getBigRoadOld(), mContext, gridLayoutBigRoad, 6, ScreenUtil.getDisplayMetrics(mContext).density, 1, 1);
-            updateDragonTigerGameNumber(baccarat, tv_shoe, tv_total, tv_banker, tv_player, tv_tie, tv_bp, tv_pp);
+            if (gridLayoutBigRoad != null) {
+                gridLayoutBigRoad.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollTableRoad(gridLayoutBigRoad,mContext);
+                    }
+                });
+            }
+            //            updateDragonTigerGameNumber(baccarat, tv_shoe, tv_total, tv_banker, tv_player, tv_tie, tv_bp, tv_pp);
 
         }
     }
@@ -2106,25 +2114,22 @@ public class AfbApp extends Application {
                     listItem.add(roadDetail[i]);
                 }
                 adapter.addAllAndClear(listItem);
-                roulette.getTotal(roulette.getRoad());
-                tv_roulette_number.setText("" + roulette.getGameNumber());
-                tv_red.setText("" + roulette.getRed());
-                tv_black.setText("" + roulette.getBlack());
-                tv_zero.setText("" + roulette.getZero());
-                tv_even.setText("" + roulette.getEven());
-                tv_odd.setText("" + roulette.getOdd());
-                tv_big.setText("" + roulette.getBig());
-                tv_small.setText("" + roulette.getSmall());
+//                roulette.getTotal(roulette.getRoad());
+//                tv_roulette_number.setText("" + roulette.getGameNumber());
+//                tv_red.setText("" + roulette.getRed());
+//                tv_black.setText("" + roulette.getBlack());
+//                tv_zero.setText("" + roulette.getZero());
+//                tv_even.setText("" + roulette.getEven());
+//                tv_odd.setText("" + roulette.getOdd());
+//                tv_big.setText("" + roulette.getBig());
+//                tv_small.setText("" + roulette.getSmall());
             }
 
         }
     }
 
-    public void updateBigRoad(Context mContext, Baccarat baccarat, GridLayout gridLayoutBigRoad,
+    public void updateBigRoad(final Context mContext, Baccarat baccarat, final GridLayout gridLayoutBigRoad,
                               TextView tv_shoe, TextView tv_total, TextView tv_banker, TextView tv_player, TextView tv_tie, TextView tv_bp, TextView tv_pp, View ll_parent, TextView tvName) {
-        Log.d("updateBigRoad", "getBigRoad: " + baccarat.getBigRoad());
-        Log.d("updateBigRoad", "getBigRoadOld: " + baccarat.getBigRoadOld());
-        Log.d("updateBigRoad", "updateBigRoad: " + baccarat.getBigRoad().equals(baccarat.getBigRoadOld()));
         if (baccarat.getBigRoad() != null && !baccarat.getBigRoad().equals(baccarat.getBigRoadOld()) && !baccarat.getGameNumber().equals("0")) {
             baccarat.setBigRoadOld(baccarat.getBigRoad());
             String s = updateGoodRoad(mContext, baccarat.getBigRoad());
@@ -2138,7 +2143,15 @@ public class AfbApp extends Application {
             baccarat.setBigRoadOld(baccarat.getBigRoad());
 
             ShowBaccaratBigRoad(baccarat.getBigRoadOld(), mContext, gridLayoutBigRoad, 6, ScreenUtil.getDisplayMetrics(mContext).density, 1, 1);
-            updateGameNumber(baccarat, tv_shoe, tv_total, tv_banker, tv_player, tv_tie, tv_bp, tv_pp);
+            if (gridLayoutBigRoad != null) {
+                gridLayoutBigRoad.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        scrollTableRoad(gridLayoutBigRoad,mContext);
+                    }
+                });
+            }
+            //            updateGameNumber(baccarat, tv_shoe, tv_total, tv_banker, tv_player, tv_tie, tv_bp, tv_pp);
         }
     }
 
@@ -2246,6 +2259,15 @@ public class AfbApp extends Application {
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+    }
+
+    public void scrollTableRoad(GridLayout baccarat_big_road,Context mContext) {
+        int bigRoadParent2width = ScreenUtil.dip2px(mContext, 140);
+        int bigRoadWidth = baccarat_big_road.getWidth();
+        if (bigRoadWidth > bigRoadParent2width) {
+            baccarat_big_road.scrollTo(0, 0);
+            baccarat_big_road.scrollTo(bigRoadWidth - bigRoadParent2width, 0);
         }
     }
 
@@ -3039,7 +3061,7 @@ public class AfbApp extends Application {
     public void startFrontMuzicService(String action, int index, ComponentName component, Context ctx, int volume) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (WidgetUtil.isRunBackground(activity)){
+            if (WidgetUtil.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;
@@ -3060,7 +3082,7 @@ public class AfbApp extends Application {
     public void startBackgroudMuzicService(int index, ComponentName component, Context ctx, int volume) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (WidgetUtil.isRunBackground(activity)){
+            if (WidgetUtil.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;
@@ -3091,7 +3113,7 @@ public class AfbApp extends Application {
     public void changeMuzicVolumeService(ComponentName component, Context ctx, int volume, String action) {
         try {
             BaseActivity activity = (BaseActivity) ctx;
-            if (WidgetUtil.isRunBackground(activity)){
+            if (WidgetUtil.isRunBackground(activity)) {
                 return;
             }
             Intent mIntent = null;
