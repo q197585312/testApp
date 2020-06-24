@@ -94,6 +94,7 @@ public class DragonTigerActivity extends BaseActivity {
     public void clickTable(View v) {
         showChangeTable(v);
     }
+
     @Bind(R.id.handle1)
     View handle1;
     @Bind(R.id.tv_service_time)
@@ -198,7 +199,7 @@ public class DragonTigerActivity extends BaseActivity {
     private TextView tv_table_game_number1;
     private VideoPlayer mPreview;
     private String path;
-    private boolean isFirstBet =true;
+    private boolean isFirstBet = true;
 
     private boolean personInfoShowAble = false;
     static boolean isActive = false;
@@ -675,8 +676,8 @@ public class DragonTigerActivity extends BaseActivity {
                     String strInfo[] = strRes.split("#");
                     if (strRes.startsWith("Results=ok")) {
                         if (strInfo.length >= 10) {
-                            if (isFirstBet){
-                                isFirstBet =false;
+                            if (isFirstBet) {
+                                isFirstBet = false;
                             }
                             afbApp.getUser().setBalance(Double.parseDouble(strInfo[1]));
                             double resMoney = 0;
@@ -797,13 +798,13 @@ public class DragonTigerActivity extends BaseActivity {
                 String strInfo[] = strRes.split("#");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 3) {
-                        if (dragonTigerTimer==0&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5){
+                        if (dragonTigerTimer == 0 && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5) {
                             afbApp.getDragonTiger(afbApp.getTableId()).setWonMoney(Double.parseDouble(strInfo[2]));
-                        }else {
+                        } else {
                             afbApp.getDragonTiger(afbApp.getTableId()).setWonMoney(0);
                         }
                         afbApp.getUser().setBalance(Double.parseDouble(strInfo[1]));
-                        if (isShowWinLose){
+                        if (isShowWinLose) {
                             handler.sendEmptyMessage(HandlerCode.SHOW_WIN_LOSS);
                         }
                     }
@@ -855,7 +856,7 @@ public class DragonTigerActivity extends BaseActivity {
                     backLobby = new BackLobby();
                     threadBackLobby = new Thread(backLobby);
                     threadBackLobby.start();
-                }else if (betTimeCount==4){
+                } else if (betTimeCount == 4) {
                     ToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
                 }
                 tvTableBetSure.setEnabled(true);
@@ -874,7 +875,7 @@ public class DragonTigerActivity extends BaseActivity {
         } else if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)//延迟3秒调用路子接口
         {
             showPoker();
-            if (bUpdateRoad){
+            if (bUpdateRoad) {
                 bUpdateRoad = false;
                 //更新路子
 //                updateRoad = new UpdateRoad();
@@ -907,7 +908,7 @@ public class DragonTigerActivity extends BaseActivity {
        /* if (!gameNumber.equals(afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber())) {
             clearAllChips();
         }*/
-        if ("0".equals(afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber())){
+        if ("0".equals(afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber())) {
             tv_table_game_number.setText(tableName + afbApp.getDragonTiger(afbApp.getTableId()).getShoeNumber() + " - 0");
             tv_table_game_number1.setText(tv_table_game_number.getText().toString());
         }
@@ -922,7 +923,7 @@ public class DragonTigerActivity extends BaseActivity {
     public void updateInterface() {
         if (dragonTigerTimer > 0 && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() != 2) {
             for (int i = 0; i < apngPlayBeanList.size(); i++) {
-                if (apngPlayBeanList.get(i).getApngImageView().getVisibility()==View.VISIBLE){
+                if (apngPlayBeanList.get(i).getApngImageView().getVisibility() == View.VISIBLE) {
                     apngPlayBeanList.get(i).getApngImageView().stop();
                     apngPlayBeanList.get(i).getApngImageView().setVisibility(View.INVISIBLE);
                     break;
@@ -931,7 +932,7 @@ public class DragonTigerActivity extends BaseActivity {
             Drawable dragonBackground = iv_dragon.getBackground();
             Drawable tieBackground = iv_tie.getBackground();
             Drawable tigerBackground = iv_tiger.getBackground();
-            if (dragonBackground!=null||tieBackground!=null||tigerBackground!=null){
+            if (dragonBackground != null || tieBackground != null || tigerBackground != null) {
                 iv_dragon.setBackgroundResource(0);
                 iv_dragon_odd.setBackgroundResource(0);
                 iv_dragon_even.setBackgroundResource(0);
@@ -948,13 +949,13 @@ public class DragonTigerActivity extends BaseActivity {
                 animationTiger.stop();
                 animationTiger.selectDrawable(0);
             }
-            if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 final int heightPixels = WidgetUtil.getScreenHeight(this);
-                final int[] location2 = new int[2] ;
+                final int[] location2 = new int[2];
                 lv_baccarat_chips.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
-                int[] location3 = new int[2] ;
+                int[] location3 = new int[2];
                 ll_result.getLocationOnScreen(location3);//获取在整个屏幕内的绝对坐标
-                if (location3[1]<heightPixels&&isCanHideResult&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
+                if (location3[1] < heightPixels && isCanHideResult && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1) {
                     isCanHideResult = false;
                     WidgetUtil.chipTranslateAnimation(ll_result, ScreenUtil.dip2px(mContext, -46), 0, new Animator.AnimatorListener() {
                         @Override
@@ -965,9 +966,9 @@ public class DragonTigerActivity extends BaseActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             isCanHideResult = true;
-                            if (location2[1]>=heightPixels&&isCanShowChip&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
-                                isCanShowChip =false;
-                                WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0,ScreenUtil.dip2px(mContext, -52), new Animator.AnimatorListener() {
+                            if (location2[1] >= heightPixels && isCanShowChip && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1) {
+                                isCanShowChip = false;
+                                WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0, ScreenUtil.dip2px(mContext, -52), new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
 
@@ -1001,10 +1002,10 @@ public class DragonTigerActivity extends BaseActivity {
 
                         }
                     });
-                }else {
-                    if (location2[1]>=heightPixels&&isCanShowChip&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
-                        isCanShowChip =false;
-                        WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0,ScreenUtil.dip2px(mContext, -52), new Animator.AnimatorListener() {
+                } else {
+                    if (location2[1] >= heightPixels && isCanShowChip && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1) {
+                        isCanShowChip = false;
+                        WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0, ScreenUtil.dip2px(mContext, -52), new Animator.AnimatorListener() {
                             @Override
                             public void onAnimationStart(Animator animation) {
 
@@ -1027,11 +1028,11 @@ public class DragonTigerActivity extends BaseActivity {
                         });
                     }
                 }
-            }else {
+            } else {
                 int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
-                int[] location2 = new int[2] ;
+                int[] location2 = new int[2];
                 ll_result.getLocationOnScreen(location2);
-                if (location2[0]==0&&isCanHideResult&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
+                if (location2[0] == 0 && isCanHideResult && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1) {
                     isCanHideResult = false;
                     WidgetUtil.chipPortraitTranslateAnimation(ll_result, 0, portraitScreenWidth, new Animator.AnimatorListener() {
                         @Override
@@ -1042,11 +1043,11 @@ public class DragonTigerActivity extends BaseActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             isCanHideResult = true;
-                            int[] location = new int[2] ;
+                            int[] location = new int[2];
                             lv_baccarat_chips.getLocationOnScreen(location);
                             int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(DragonTigerActivity.this);
-                            if (location[0]>=portraitScreenWidth&&isCanShowChip&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
-                                isCanShowChip =false;
+                            if (location[0] >= portraitScreenWidth && isCanShowChip && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1) {
+                                isCanShowChip = false;
                                 WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
@@ -1081,11 +1082,11 @@ public class DragonTigerActivity extends BaseActivity {
 
                         }
                     });
-                }else {
-                    int[] location = new int[2] ;
+                } else {
+                    int[] location = new int[2];
                     lv_baccarat_chips.getLocationOnScreen(location);
-                    if (location[0]>=portraitScreenWidth&&isCanShowChip&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
-                        isCanShowChip =false;
+                    if (location[0] >= portraitScreenWidth && isCanShowChip && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1) {
+                        isCanShowChip = false;
                         WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                             @Override
                             public void onAnimationStart(Animator animation) {
@@ -1126,15 +1127,15 @@ public class DragonTigerActivity extends BaseActivity {
             //
 
         } else {
-            if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                 final int heightPixels = WidgetUtil.getScreenHeight(this);
-                int[] location2 = new int[2] ;
+                int[] location2 = new int[2];
                 lv_baccarat_chips.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
-                final int[] location3 = new int[2] ;
+                final int[] location3 = new int[2];
                 ll_result.getLocationOnScreen(location3);//获取在整个屏幕内的绝对坐标
-                if (location2[1]<heightPixels&&isCanHideChip&&(afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2||afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)){
-                    isCanHideChip =false;
-                    WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, ScreenUtil.dip2px(mContext, -52),0, new Animator.AnimatorListener() {
+                if (location2[1] < heightPixels && isCanHideChip && (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)) {
+                    isCanHideChip = false;
+                    WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, ScreenUtil.dip2px(mContext, -52), 0, new Animator.AnimatorListener() {
                         @Override
                         public void onAnimationStart(Animator animation) {
 
@@ -1143,8 +1144,8 @@ public class DragonTigerActivity extends BaseActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             isCanHideChip = true;
-                            if (location3[1]>=heightPixels&&isCanShowResult&&(afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2||afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)){
-                                isCanShowResult=false;
+                            if (location3[1] >= heightPixels && isCanShowResult && (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)) {
+                                isCanShowResult = false;
                                 WidgetUtil.chipTranslateAnimation(ll_result, 0, ScreenUtil.dip2px(mContext, -46), new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
@@ -1153,12 +1154,12 @@ public class DragonTigerActivity extends BaseActivity {
 
                                     @Override
                                     public void onAnimationEnd(Animator animation) {
-                                        isCanShowResult=true;
+                                        isCanShowResult = true;
                                     }
 
                                     @Override
                                     public void onAnimationCancel(Animator animation) {
-                                        isCanShowResult=true;
+                                        isCanShowResult = true;
                                     }
 
                                     @Override
@@ -1179,9 +1180,9 @@ public class DragonTigerActivity extends BaseActivity {
 
                         }
                     });
-                }else {
-                    if (location3[1]>=heightPixels&&isCanShowResult&&(afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2||afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)){
-                        isCanShowResult=false;
+                } else {
+                    if (location3[1] >= heightPixels && isCanShowResult && (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)) {
+                        isCanShowResult = false;
                         WidgetUtil.chipTranslateAnimation(ll_result, 0, ScreenUtil.dip2px(mContext, -46), new Animator.AnimatorListener() {
                             @Override
                             public void onAnimationStart(Animator animation) {
@@ -1190,12 +1191,12 @@ public class DragonTigerActivity extends BaseActivity {
 
                             @Override
                             public void onAnimationEnd(Animator animation) {
-                                isCanShowResult=true;
+                                isCanShowResult = true;
                             }
 
                             @Override
                             public void onAnimationCancel(Animator animation) {
-                                isCanShowResult=true;
+                                isCanShowResult = true;
                             }
 
                             @Override
@@ -1205,12 +1206,12 @@ public class DragonTigerActivity extends BaseActivity {
                         });
                     }
                 }
-            }else {
-                int[] location = new int[2] ;
+            } else {
+                int[] location = new int[2];
                 lv_baccarat_chips.getLocationOnScreen(location);
                 int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
-                if (location[0]==0&&isCanHideChip&&(afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2||afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)){
-                    isCanHideChip =false;
+                if (location[0] == 0 && isCanHideChip && (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)) {
+                    isCanHideChip = false;
                     WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, 0, portraitScreenWidth, new Animator.AnimatorListener() {
                         @Override
                         public void onAnimationStart(Animator animation) {
@@ -1221,12 +1222,12 @@ public class DragonTigerActivity extends BaseActivity {
                         public void onAnimationEnd(Animator animation) {
                             isCanHideChip = true;
                             int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(DragonTigerActivity.this);
-                            if (isCanShowResult&&(afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2||afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)){
+                            if (isCanShowResult && (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)) {
                                 isCanShowResult = false;
-                                WidgetUtil.chipPortraitTranslateAnimation(ll_result, portraitScreenWidth,0, new Animator.AnimatorListener() {
+                                WidgetUtil.chipPortraitTranslateAnimation(ll_result, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                                     @Override
                                     public void onAnimationStart(Animator animation) {
-                                        if (ll_result!=null){
+                                        if (ll_result != null) {
                                             ll_result.setVisibility(View.VISIBLE);
                                         }
                                     }
@@ -1280,7 +1281,7 @@ public class DragonTigerActivity extends BaseActivity {
         if (!isShowAskRoad) {
             afbApp.updateDragenTigerRoad(mContext, density, afbApp.getDragonTiger(afbApp.getTableId()), baccarat_head_road, baccarat_big_road, baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road
                     , tv_baccarat_shoe_number, tv_baccarat_total_number, tv_baccarat_banker_number, tv_baccarat_player_number, tv_baccarat_tie_number
-                    , tv_baccarat_bp_number, tv_baccarat_pp_number,isBigShow, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3);
+                    , tv_baccarat_bp_number, tv_baccarat_pp_number, isBigShow, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3);
         }
         if (popGoodRoad != null) {
             updateGoodRoadUi();
@@ -1666,9 +1667,9 @@ public class DragonTigerActivity extends BaseActivity {
 //                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_win) + " " + afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney(), ContextCompat.getColor(mContext,R.color.blue_word));
 //                        } else
 //                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (-afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()), Color.RED);
-                        if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney() > 0){
+                        if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney() > 0) {
                             afbApp.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, afbApp.getFrontVolume());
-                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney(), ContextCompat.getColor(mContext,R.color.gold));
+                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney(), ContextCompat.getColor(mContext, R.color.gold));
                         }
 
                     }
@@ -1738,10 +1739,11 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     private boolean isNeedGetWidth = true;
+
     @Override
     public void onWindowFocusChanged(boolean hasFocus) {
         super.onWindowFocusChanged(hasFocus);
-        if (isNeedGetWidth){
+        if (isNeedGetWidth) {
             isNeedGetWidth = false;
             ViewGroup.LayoutParams layoutParams1 = img_dragon_animation.getLayoutParams();
             layoutParams1.width = rl_dragon_parent.getWidth();
@@ -1874,7 +1876,7 @@ public class DragonTigerActivity extends BaseActivity {
 
     @Override
     protected void initData(Bundle savedInstanceState) {
-        if (savedInstanceState!=null){
+        if (savedInstanceState != null) {
             isFirstBet = savedInstanceState.getBoolean("isFirstBet");
         }
         initUI();
@@ -1882,14 +1884,14 @@ public class DragonTigerActivity extends BaseActivity {
         animationTiger = (AnimationDrawable) img_tiger_animation.getBackground();
         apngPlayBeanList.clear();
         String lg = AppTool.getAppLanguage(mContext);
-        if (lg.equals("zh")||lg.equals("zh_TW")){
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon,"assets://dragon_win_zh.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie,"assets://tie_win_cn.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger,"assets://tiger_win_zh.png"));
-        }else {
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon,"assets://dragon_win_en.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie,"assets://tie_win_en.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger,"assets://tiger_win_en.png"));
+        if (lg.equals("zh") || lg.equals("zh_TW")) {
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon, "assets://dragon_win_zh.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_cn.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger, "assets://tiger_win_zh.png"));
+        } else {
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon, "assets://dragon_win_en.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_en.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger, "assets://tiger_win_en.png"));
         }
         findViewById(R.id.ll_pp).setVisibility(View.GONE);
         findViewById(R.id.ll_bp).setVisibility(View.GONE);
@@ -2142,13 +2144,22 @@ public class DragonTigerActivity extends BaseActivity {
 
 
     public void parentClick() {
-        if (toolbar_right_bottom_tv.getVisibility()==View.VISIBLE){
+        if (toolbar_right_bottom_tv.getVisibility() == View.VISIBLE) {
             displayAll(false);
-        }else {
+        } else {
             displayAll(true);
         }
         showHideUserInfo();
         closeAll();
+    }
+
+    @Override
+    public void onSwitchChipFinish() {
+        chooseChip = 0;
+        if (selectedMap != null) {
+            selectedMap.clear();
+        }
+        setChip();
     }
 
     public void setChip() {
@@ -2163,12 +2174,13 @@ public class DragonTigerActivity extends BaseActivity {
             public void convert(final ViewHolder helper, ChipBean item, final int position) {
                 ImageView chipImg = helper.retrieveView(R.id.iv_chip_pic);
                 final LinearLayout llParent = helper.retrieveView(R.id.ll_chip_parent);
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     llParent.post(new Runnable() {
                         @Override
                         public void run() {
-                            if (position==0){
-                                int padding =  ScreenUtil.dip2px(mContext, 75);
+                            if (position == 0) {
+                                int screenWidth = WidgetUtil.getScreenWidth(DragonTigerActivity.this);
+                                int padding = (screenWidth - ScreenUtil.dip2px(mContext, 60) * 7) / 2;
                                 FrameLayout.LayoutParams layoutParams1 = (FrameLayout.LayoutParams) lv_baccarat_chips.getLayoutParams();
                                 layoutParams1.leftMargin = padding;
                                 layoutParams1.rightMargin = padding;
@@ -2176,45 +2188,37 @@ public class DragonTigerActivity extends BaseActivity {
                             }
                         }
                     });
-                    int screenWidth = WidgetUtil.getScreenWidth(DragonTigerActivity.this);
-                    int margin = ((screenWidth-ScreenUtil.dip2px(mContext, 75)*2)/9-ScreenUtil.dip2px(mContext, 50))/2;
+                    int margin = ScreenUtil.dip2px(mContext, 5);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams.width=ScreenUtil.dip2px(mContext, 50);
-                    layoutParams.height=ScreenUtil.dip2px(mContext, 50);
-                    layoutParams.leftMargin=margin;
-                    layoutParams.rightMargin=margin;
+                    layoutParams.width = ScreenUtil.dip2px(mContext, 50);
+                    layoutParams.height = ScreenUtil.dip2px(mContext, 50);
+                    layoutParams.leftMargin = margin;
+                    layoutParams.rightMargin = margin;
                     llParent.setLayoutParams(layoutParams);
                     chipImg.setImageResource(item.getDrawableRes());
-                }else {
+                } else {
                     int screenWidth = WidgetUtil.getPortraitScreenWidth(DragonTigerActivity.this);
-                    int margin = (screenWidth/6-ScreenUtil.dip2px(mContext, 60))/2;
+                    int margin = (screenWidth / 7 - ScreenUtil.dip2px(mContext, 50)) / 2;
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams.width=ScreenUtil.dip2px(mContext, 60);
-                    layoutParams.height=ScreenUtil.dip2px(mContext, 60);
-                    layoutParams.leftMargin=margin;
-                    layoutParams.rightMargin=margin;
+                    layoutParams.width = ScreenUtil.dip2px(mContext, 50);
+                    layoutParams.height = ScreenUtil.dip2px(mContext, 50);
+                    layoutParams.leftMargin = margin;
+                    layoutParams.rightMargin = margin;
                     llParent.setLayoutParams(layoutParams);
                     chipImg.setImageResource(item.getDrawableRes());
                 }
                 if (currentShufflingStatus == 1) {
                     if (selectedMap.get(true) != null && position == selectedMap.get(true).intValue()) {
                         LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
-                        layoutParams.width = (int)(layoutParams.width*1.2);
-                        layoutParams.height = (int)(layoutParams.height*1.2);
+                        layoutParams.width = (int) (layoutParams.width * 1.2);
+                        layoutParams.height = (int) (layoutParams.height * 1.2);
                         chipImg.setLayoutParams(layoutParams);
                         helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
                     } else {
-                        if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_PORTRAIT){
-                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
-                            layoutParams.width = ScreenUtil.dip2px(mContext, 60);
-                            layoutParams.height =ScreenUtil.dip2px(mContext, 60);
-                            chipImg.setLayoutParams(layoutParams);
-                        }else {
-                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
-                            layoutParams.width = ScreenUtil.dip2px(mContext, 50);
-                            layoutParams.height =ScreenUtil.dip2px(mContext, 50);
-                            chipImg.setLayoutParams(layoutParams);
-                        }
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 50);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, 50);
+                        chipImg.setLayoutParams(layoutParams);
                         helper.setBackgroundRes(R.id.ll_chip_parent, 0);
                     }
                 } else {
@@ -2228,14 +2232,18 @@ public class DragonTigerActivity extends BaseActivity {
             chips.setItemClick(new ItemCLickImp<ChipBean>() {
                 @Override
                 public void itemCLick(View view, ChipBean chipBean, int position) {
-                    selectedMap.put(true, position);
-                    chips.notifyDataSetChanged();
-                    chooseChip = chipBean.getValue();
-                    initClickCount();
-                    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, afbApp.getFrontVolume());
+                    if (chipBean.getValue() != -101) {
+                        selectedMap.put(true, position);
+                        chips.notifyDataSetChanged();
+                        chooseChip = chipBean.getValue();
+                        initClickCount();
+                        afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, afbApp.getFrontVolume());
+                    } else {
+                        showChooseChip(view);
+                    }
                 }
             });
-            chips.setData(chipListChoice);
+            chips.setData(getCurrentChip(false));
         } else {
             chooseChip = 0;
             chips.setItemClick(new ItemCLickImp<ChipBean>() {
@@ -2244,7 +2252,7 @@ public class DragonTigerActivity extends BaseActivity {
 
                 }
             });
-            chips.setData(chipListCanNotChoice);
+            chips.setData(getCurrentChip(false));
         }
     }
 
@@ -2308,15 +2316,15 @@ public class DragonTigerActivity extends BaseActivity {
                 TextView tvValue = helper.retrieveView(R.id.tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
-                switch (position){
+                switch (position) {
                     case 0:
-                        tvType.setTextColor(ContextCompat.getColor(mContext,R.color.banker_color));
+                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
                         break;
                     case 2:
-                        tvType.setTextColor(ContextCompat.getColor(mContext,R.color.player_color));
+                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.player_color));
                         break;
                     case 4:
-                        tvType.setTextColor(ContextCompat.getColor(mContext,R.color.tie_color));
+                        tvType.setTextColor(ContextCompat.getColor(mContext, R.color.tie_color));
                         break;
                 }
             }
@@ -2334,15 +2342,15 @@ public class DragonTigerActivity extends BaseActivity {
         if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getDragon() > 0)
             data = new LiveInfoBean(getString(R.string.dragon_dragon_tiger), afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getDragon() + "", "");
         else
-            data = new LiveInfoBean(getString(R.string.dragon_dragon_tiger) , "0", "");
+            data = new LiveInfoBean(getString(R.string.dragon_dragon_tiger), "0", "");
         strData.add(data);
-        strData.add(new LiveInfoBean("","",""));
+        strData.add(new LiveInfoBean("", "", ""));
         if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getTiger() > 0)
             data = new LiveInfoBean(getString(R.string.tiger_dragon_tiger), afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getTiger() + "", "");
         else
             data = new LiveInfoBean(getString(R.string.tiger_dragon_tiger), "0", "");
         strData.add(data);
-        strData.add(new LiveInfoBean("","",""));
+        strData.add(new LiveInfoBean("", "", ""));
         if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getTie() > 0)
             data = new LiveInfoBean(getString(R.string.tie), afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getTie() + "", "");
         else
@@ -2403,7 +2411,7 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     public void startPlayVideo() {
-        mPreview =  findViewById(R.id.surface);
+        mPreview = findViewById(R.id.surface);
         videoHelper = new VideoHelper(mContext, mPreview) {
             @Override
             public void doVideoFix() {
@@ -2482,7 +2490,7 @@ public class DragonTigerActivity extends BaseActivity {
         super.showLimit();
         if (lvTableBetLimitRed.getVisibility() == View.VISIBLE) {
             lvTableBetLimitRed.setVisibility(View.GONE);
-        }else {
+        } else {
             lvTableBetLimitRed.setVisibility(View.VISIBLE);
         }
     }
@@ -2574,16 +2582,16 @@ public class DragonTigerActivity extends BaseActivity {
         showBetChip(fl_tie, false, 0);
     }
 
-    private void showApng(int position){
+    private void showApng(int position) {
         for (int i = 0; i < apngPlayBeanList.size(); i++) {
             ApngImageView apngImageView = apngPlayBeanList.get(i).getApngImageView();
             String uri = apngPlayBeanList.get(i).getUri();
-            if (i==position){
+            if (i == position) {
                 File file = FileUtils.processApngFile(uri, mContext);
                 ApngLoader.getInstance().loadApng(file.getAbsolutePath(), apngImageView);
                 apngImageView.setVisibility(View.VISIBLE);
-                apngImageView.positon=i;
-            }else {
+                apngImageView.positon = i;
+            } else {
                 apngImageView.stop();
                 apngImageView.setVisibility(View.INVISIBLE);
             }
@@ -2596,27 +2604,27 @@ public class DragonTigerActivity extends BaseActivity {
     public void showResultsOnUI() {
         if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5 && (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() != 0)) {
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 1) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_dragon.setBackgroundResource(R.mipmap.long_03);
-                }else {
+                } else {
                     iv_dragon.setBackgroundResource(R.mipmap.long_03_portrait);
                 }
                 animationDragon.start();
                 showApng(0);
                 afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 11, componentFront, mContext, afbApp.getFrontVolume());
             } else if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 2) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_tiger.setBackgroundResource(R.mipmap.hu_03);
-                }else {
+                } else {
                     iv_tiger.setBackgroundResource(R.mipmap.hu_03_portrait);
                 }
                 showApng(2);
                 animationTiger.start();
                 afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 12, componentFront, mContext, afbApp.getFrontVolume());
             } else if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 3) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_tie.setBackgroundResource(R.mipmap.he_03);
-                }else {
+                } else {
                     iv_tie.setBackgroundResource(R.mipmap.he_03_portrait);
                 }
                 showApng(1);
@@ -2624,58 +2632,58 @@ public class DragonTigerActivity extends BaseActivity {
             }
 
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_odd_even() == 1) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03);
-                }else {
+                } else {
                     iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03_portrait);
                 }
-            } else if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_odd_even() == 2){
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+            } else if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_odd_even() == 2) {
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_dragon_even.setBackgroundResource(R.mipmap.zuo4_03);
-                }else {
+                } else {
                     iv_dragon_even.setBackgroundResource(R.mipmap.normal_dragon_tiger);
                 }
             }
 
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_red_black() == 1) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_dragon_red.setBackgroundResource(R.mipmap.zuo1_03);
-                }else {
+                } else {
                     iv_dragon_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
                 }
-            } else{
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+            } else {
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_dragon_black.setBackgroundResource(R.mipmap.zuo2_03);
-                }else {
+                } else {
                     iv_dragon_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
                 }
             }
 
 
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getTiger_odd_even() == 1) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_tiger_odd.setBackgroundResource(R.mipmap.zuo7_03);
-                }else {
+                } else {
                     iv_tiger_odd.setBackgroundResource(R.mipmap.normal_dragon_tiger);
                 }
-            } else{
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+            } else {
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03);
-                }else {
+                } else {
                     iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03_portrait);
                 }
             }
 
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getTiger_red_black() == 1) {
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_tiger_red.setBackgroundResource(R.mipmap.zuo5_03);
-                }else {
+                } else {
                     iv_tiger_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
                 }
-            } else{
-                if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
+            } else {
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     iv_tiger_black.setBackgroundResource(R.mipmap.zuo6_03);
-                }else {
+                } else {
                     iv_tiger_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
                 }
             }
@@ -2735,7 +2743,7 @@ public class DragonTigerActivity extends BaseActivity {
         tv_point_tiger.setText(getString(R.string.tiger) + " 0");
         tv_dragon_result.setText("0");
         tv_tiger_result.setText("0");
-        isShowWinLose= false;
+        isShowWinLose = false;
         updateWonMoney = new UpdateWonMoney();
         threadUpdateWonMoney = new Thread(updateWonMoney);
         threadUpdateWonMoney.start();
@@ -2985,8 +2993,8 @@ public class DragonTigerActivity extends BaseActivity {
 
     private void showBetChip(FrameLayout f, boolean isShow, int money) {
         int height = AutoUtils.getPercentHeightSize(60);
-        if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
-            height=  AutoUtils.getPercentHeightSize(80);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            height = AutoUtils.getPercentHeightSize(80);
         }
         showBetChip(f, isShow, money, height, Gravity.TOP);
     }
@@ -3019,7 +3027,7 @@ public class DragonTigerActivity extends BaseActivity {
             }, new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (!isFirstBet){
+                    if (!isFirstBet) {
                         DtBetType type = getTypeFrom(f);
                         clearNoBetChip(type);
                         showBetMoney(true);
@@ -3032,7 +3040,7 @@ public class DragonTigerActivity extends BaseActivity {
         if (isShow && money > 0) {
             checkOperationButton();
             BetUiHelper.betStateColor(tvTableBetSure, true);
-            chipHelper.showChip(money, 0, y, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), 0, y + AutoUtils.getPercentHeightSize(4), AutoUtils.getPercentHeightSize(32)*2, AutoUtils.getPercentHeightSize(20));
+            chipHelper.showChip(money, 0, y, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), 0, y + AutoUtils.getPercentHeightSize(4), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
         } else {
             chipHelper.setOperationButtonDisplay(false);
             chipHelper.clearAllChips();
@@ -3292,7 +3300,7 @@ public class DragonTigerActivity extends BaseActivity {
                 @Override
                 public void run() {
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) toolbar.getLayoutParams();
-                    layoutParams.leftMargin =ScreenUtil.dip2px(mContext, 12);
+                    layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 12);
                     toolbar.setLayoutParams(layoutParams);
                 }
             });
@@ -3319,7 +3327,7 @@ public class DragonTigerActivity extends BaseActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putBoolean("isFirstBet",isFirstBet);
+        outState.putBoolean("isFirstBet", isFirstBet);
     }
 
     @Bind(R.id.ll_info)
@@ -3354,52 +3362,52 @@ public class DragonTigerActivity extends BaseActivity {
         showHideUserInfo();
     }
 
-    private void showHideUserInfo(){
-        if (ll_info.getLayoutParams().height>0){
-            WidgetUtil.shrinkAnimation(ll_info,ScreenUtil.dip2px(mContext, 165),0);
-        }else {
-            WidgetUtil.shrinkAnimation(ll_info,0,ScreenUtil.dip2px(mContext, 165));
+    private void showHideUserInfo() {
+        if (ll_info.getLayoutParams().height > 0) {
+            WidgetUtil.shrinkAnimation(ll_info, ScreenUtil.dip2px(mContext, 165), 0);
+        } else {
+            WidgetUtil.shrinkAnimation(ll_info, 0, ScreenUtil.dip2px(mContext, 165));
         }
     }
 
-    private List<LiveInfoBean> updateInfoData(){
+    private List<LiveInfoBean> updateInfoData() {
         AppTool.setAppLanguage(this, AppTool.getAppLanguage(this));
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         LiveInfoBean data;
         data = new LiveInfoBean(getString(R.string.ID), usName, "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.BET), afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getAllBetMoney()+"", "");
-        if (Integer.parseInt(data.getValue1())>0){
-            tv_total_bet.setText(afbApp.covertLimit(Integer.parseInt(data.getValue1()))+"");
-            rightBetTv.setText(afbApp.covertLimit(Integer.parseInt(data.getValue1()))+"");
-        }else {
-            tv_total_bet.setText(getString(R.string.BET)+" :0");
-            rightBetTv.setText(getString(R.string.BET)+" :0");
+        data = new LiveInfoBean(getString(R.string.BET), afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getAllBetMoney() + "", "");
+        if (Integer.parseInt(data.getValue1()) > 0) {
+            tv_total_bet.setText(afbApp.covertLimit(Integer.parseInt(data.getValue1())) + "");
+            rightBetTv.setText(afbApp.covertLimit(Integer.parseInt(data.getValue1())) + "");
+        } else {
+            tv_total_bet.setText(getString(R.string.BET) + " :0");
+            rightBetTv.setText(getString(R.string.BET) + " :0");
         }
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.W_L), afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()+"", "");
-        if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()>0){
-            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext,R.color.win_color));
-            tv_win_lose_bet.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney())+"");
-            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext,R.color.black));
-            rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney())+"");
-        }else if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()==0){
-            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext,R.color.yellow_gold));
-            tv_win_lose_bet.setText(getString(R.string.W_L)+" :0");
-            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext,R.color.bet_color));
-            rightWinLoseTv.setText(getString(R.string.W_L)+" :0");
-        }else {
-            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext,R.color.lose_color));
-            tv_win_lose_bet.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney())+"");
-            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext,R.color.banker_color));
-            rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney())+"");
+        data = new LiveInfoBean(getString(R.string.W_L), afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney() + "", "");
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney() > 0) {
+            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.win_color));
+            tv_win_lose_bet.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()) + "");
+            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.black));
+            rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()) + "");
+        } else if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney() == 0) {
+            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.yellow_gold));
+            tv_win_lose_bet.setText(getString(R.string.W_L) + " :0");
+            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.bet_color));
+            rightWinLoseTv.setText(getString(R.string.W_L) + " :0");
+        } else {
+            tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext, R.color.lose_color));
+            tv_win_lose_bet.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()) + "");
+            rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext, R.color.banker_color));
+            rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()) + "");
         }
         strData.add(data);
         data = new LiveInfoBean(TextUtils.isEmpty(currency) ? getString(R.string.BAL) : currency, getApp().getUser().getBalance() + "", "");
-        rightBalanceTv.setText(getApp().getUser().getBalance()+"");
+        rightBalanceTv.setText(getApp().getUser().getBalance() + "");
         strData.add(data);
         data = new LiveInfoBean(getString(R.string.LIMIT_POP), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet())
-                +"-"+ afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet()), "");
+                + "-" + afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet()), "");
         strData.add(data);
         strData.add(new LiveInfoBean(getString(R.string.dragon1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet())
                 , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet())));
@@ -3442,16 +3450,16 @@ public class DragonTigerActivity extends BaseActivity {
                 TextView tvValue = helper.retrieveView(R.id.tv_value);
                 tvType.setText(item.getType());
                 tvValue.setText(item.getValue1());
-                if (position>4){
+                if (position > 4) {
                     tvValue.setText(item.getValue1() + "-" + item.getValue2());
-                }else {
-                    if (position==2){
-                        if (item.getValue1().startsWith("-")){
-                            tvValue.setTextColor(ContextCompat.getColor(mContext,R.color.red_background));
-                        } else if (Double.parseDouble(item.getValue1())>0){
-                            tvValue.setTextColor(ContextCompat.getColor(mContext,R.color.blue_bet));
+                } else {
+                    if (position == 2) {
+                        if (item.getValue1().startsWith("-")) {
+                            tvValue.setTextColor(ContextCompat.getColor(mContext, R.color.red_background));
+                        } else if (Double.parseDouble(item.getValue1()) > 0) {
+                            tvValue.setTextColor(ContextCompat.getColor(mContext, R.color.blue_bet));
                         } else {
-                            tvValue.setTextColor(ContextCompat.getColor(mContext,R.color.gold));
+                            tvValue.setTextColor(ContextCompat.getColor(mContext, R.color.gold));
                         }
                     }
                     tvValue.setText(item.getValue1());

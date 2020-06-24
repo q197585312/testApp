@@ -2961,6 +2961,15 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         }
     }
 
+    @Override
+    public void onSwitchChipFinish() {
+        chooseChip = 0;
+        if (selectedMap != null) {
+            selectedMap.clear();
+        }
+        setChip();
+    }
+
     public void setChip() {
 
 
@@ -2980,7 +2989,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         @Override
                         public void run() {
                             if (position == 0) {
-                                int padding = ScreenUtil.dip2px(mContext, 75);
+                                int screenWidth = WidgetUtil.getScreenWidth(BaccaratActivity.this);
+                                int padding = (screenWidth - ScreenUtil.dip2px(mContext, 60) * 7) / 2;
                                 FrameLayout.LayoutParams layoutParams1 = (FrameLayout.LayoutParams) lv_baccarat_chips.getLayoutParams();
                                 layoutParams1.leftMargin = padding;
                                 layoutParams1.rightMargin = padding;
@@ -2988,8 +2998,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                             }
                         }
                     });
-                    int screenWidth = WidgetUtil.getScreenWidth(BaccaratActivity.this);
-                    int margin = ((screenWidth - ScreenUtil.dip2px(mContext, 75) * 2) / 9 - ScreenUtil.dip2px(mContext, 50)) / 2;
+                    int margin = ScreenUtil.dip2px(mContext, 5);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
                     layoutParams.width = ScreenUtil.dip2px(mContext, 50);
                     layoutParams.height = ScreenUtil.dip2px(mContext, 50);
@@ -2999,10 +3008,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     chipImg.setImageResource(item.getDrawableRes());
                 } else {
                     int screenWidth = WidgetUtil.getPortraitScreenWidth(BaccaratActivity.this);
-                    int margin = (screenWidth / 6 - ScreenUtil.dip2px(mContext, 60)) / 2;
+                    int margin = (screenWidth / 7 - ScreenUtil.dip2px(mContext, 50)) / 2;
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams.width = ScreenUtil.dip2px(mContext, 60);
-                    layoutParams.height = ScreenUtil.dip2px(mContext, 60);
+                    layoutParams.width = ScreenUtil.dip2px(mContext, 50);
+                    layoutParams.height = ScreenUtil.dip2px(mContext, 50);
                     layoutParams.leftMargin = margin;
                     layoutParams.rightMargin = margin;
                     llParent.setLayoutParams(layoutParams);
@@ -3017,17 +3026,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         chipImg.setLayoutParams(layoutParams);
                         helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
                     } else {
-                        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
-                            layoutParams.width = ScreenUtil.dip2px(mContext, 60);
-                            layoutParams.height = ScreenUtil.dip2px(mContext, 60);
-                            chipImg.setLayoutParams(layoutParams);
-                        } else {
-                            LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
-                            layoutParams.width = ScreenUtil.dip2px(mContext, 50);
-                            layoutParams.height = ScreenUtil.dip2px(mContext, 50);
-                            chipImg.setLayoutParams(layoutParams);
-                        }
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) chipImg.getLayoutParams();
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 50);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, 50);
+                        chipImg.setLayoutParams(layoutParams);
                         helper.setBackgroundRes(R.id.ll_chip_parent, 0);
                     }
                 } else {
@@ -3040,14 +3042,18 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             chips.setItemClick(new ItemCLickImp<ChipBean>() {
                 @Override
                 public void itemCLick(View view, ChipBean chipBean, int position) {
-                    chooseChip = chipBean.getValue();
-                    selectedMap.put(true, position);
-                    chips.notifyDataSetChanged();
-                    initClickCount();
-                    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, afbApp.getFrontVolume());
+                    if (chipBean.getValue() != -101) {
+                        chooseChip = chipBean.getValue();
+                        selectedMap.put(true, position);
+                        chips.notifyDataSetChanged();
+                        initClickCount();
+                        afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, afbApp.getFrontVolume());
+                    } else {
+                        showChooseChip(view);
+                    }
                 }
             });
-            chips.setData(chipListChoice);
+            chips.setData(getCurrentChip(false));
         } else {
             chooseChip = 0;
             chips.setItemClick(new ItemCLickImp<ChipBean>() {
@@ -3056,7 +3062,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
                 }
             });
-            chips.setData(chipListCanNotChoice);
+            chips.setData(getCurrentChip(false));
         }
         chipHelperPlayer = new ChipShowHelper(mContext, fl_baccarat_table_player_bg, chipList);
         chipHelperBanker = new ChipShowHelper(mContext, fl_baccarat_table_banker_bg, chipList);
@@ -3381,7 +3387,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void startPlayVideo() {
-        mPreview =  findViewById(R.id.surface);
+        mPreview = findViewById(R.id.surface);
         videoHelper = new VideoHelper(mContext, mPreview) {
             @Override
             public void doVideoFix() {
@@ -5109,9 +5115,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             clickTieCount = 0;
             chipHelperTie.setOperationButtonDisplay(false);
         }
-        if (type == BaccaratBetType.All || type == BaccaratBetType.PlayerPair)
-
-        {
+        if (type == BaccaratBetType.All || type == BaccaratBetType.PlayerPair) {
             chipHelperPlayerPair.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair(), chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerPairBet = 0;
             clickPlayerPairCount = 0;

@@ -59,7 +59,9 @@ import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.BackgroudMuzicService;
 import gaming178.com.casinogame.Util.ErrorCode;
 import gaming178.com.casinogame.Util.FrontMuzicService;
+import gaming178.com.casinogame.Util.Gd88Utils;
 import gaming178.com.casinogame.Util.HandlerCode;
+import gaming178.com.casinogame.Util.PopChooseChip;
 import gaming178.com.casinogame.Util.PopReferrer;
 import gaming178.com.casinogame.Util.TableChangePop;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -1416,6 +1418,20 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         }
     }
 
+    public void showChooseChip(View v) {
+        PopChooseChip popChooseChip = new PopChooseChip(mContext, v, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT) {
+            @Override
+            public void onChooseChipFinish() {
+                onSwitchChipFinish();
+            }
+        };
+        popChooseChip.showPopupCenterWindow();
+    }
+
+    public void onSwitchChipFinish() {
+
+    }
+
     protected void showChangeTable(View v) {
         String name = usName;
         String c = currency;
@@ -1911,6 +1927,32 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         LogUtil.d("Life", getClass().getSimpleName() + ":" + a.getMethodName() + "-" + b.getMethodName());
         return a.getMethodName() + "-" + b.getMethodName();
 
+    }
+
+    public List<ChipBean> getCurrentChip(boolean isNeedAddSure) {
+        List<ChipBean> list = new ArrayList<>();
+        String chipContent = Gd88Utils.getChipContent(this);
+        String[] split = chipContent.split("-");
+        for (int i = 0; i < split.length; i++) {
+            String chipSize = split[i];
+            A:
+            for (int j = 0; j < chipListChoice.size(); j++) {
+                ChipBean chipBean = chipListChoice.get(j);
+                String name = chipBean.getName();
+                if (name.equals(chipSize)) {
+                    list.add(chipBean);
+                    break A;
+                }
+
+            }
+        }
+        list.add(new ChipBean(R.mipmap.chip_choose, "CHOOSE", -101));
+        if (isNeedAddSure){
+            list.add(new ChipBean(R.mipmap.sureimg, "", -1));
+            list.add(new ChipBean(R.mipmap.noimg, "", -2));
+            list.add(new ChipBean(R.mipmap.replayimg, "", -3));
+        }
+        return list;
     }
 
     public void initBetImg() {

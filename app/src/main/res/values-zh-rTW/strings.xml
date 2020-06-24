@@ -143,7 +143,7 @@
     <string name="setting">設置&#160;&#160;</string>
     <string name="logout">退出&#160;&#160;</string>
 
-    <string name="sure">確定?</string>
+    <string name="sure">確定</string>
     <string name="sure_logout">你確定要退出嗎?</string>
     <string name="yes">是</string>
     <string name="no">否</string>
@@ -223,4 +223,5 @@
     <string name="wait_good_road">等待好路中</string>
     <string name="three_no_bet">你已有3次没下注</string>
     <string name="friendly_message">友善提醒</string>
+    <string name="please_choose_chip">请选择 6 个筹码</string>
 </resources>

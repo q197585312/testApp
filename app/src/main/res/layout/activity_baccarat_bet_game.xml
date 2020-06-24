@@ -127,7 +127,7 @@
                         <gaming178.com.mylibrary.myview.mylistview.HorizontalListView
                             android:id="@+id/lv_baccarat_chips_h"
                             android:layout_width="match_parent"
-                            android:layout_height="62dp"
+                            android:layout_height="52dp"
                             android:divider="@null"
                             android:scrollbars="none" />
 
@@ -135,7 +135,7 @@
                             android:id="@+id/ll_result"
                             android:layout_width="wrap_content"
                             android:layout_height="42px"
-                            android:layout_marginTop="8px"
+                            android:layout_marginTop="4px"
                             android:background="@mipmap/bg_result"
                             android:clickable="false"
                             android:gravity="center"

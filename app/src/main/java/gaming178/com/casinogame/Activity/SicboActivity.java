@@ -1293,7 +1293,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     backLobby = new BackLobby();
                     threadBackLobby = new Thread(backLobby);
                     threadBackLobby.start();
-                }else if (betTimeCount==4){
+                } else if (betTimeCount == 4) {
                     ToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
                 }
                 tvTableBetSure.setEnabled(true);
@@ -1535,8 +1535,14 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
                     break;
                 case HandlerCode.SHOW_BET_SUCCESS:
-                    tvTableBetSure.setBackgroundResource(R.mipmap.sureimg);
-                    tvTableBetCancel.setBackgroundResource(R.mipmap.noimg);
+                    int sure = R.mipmap.sureimg;
+                    if (currentSure != null && sure != 0) {
+                        currentSure.setBackgroundResource(sure);
+                    }
+                    int no = R.mipmap.noimg;
+                    if (currentCancel != null && no != 0) {
+                        currentCancel.setBackgroundResource(no);
+                    }
                     clearBetChip(type);
                     dismissBlockDialog();
                     ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + afbApp.getSicbo01().getSicboBetInformation().getAllBetMoney());
@@ -1731,7 +1737,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
         toolbar.setBackgroundResource(R.color.transparent);
         setTablePool(lv_pool);
         setInfoData(lv_user_info);
-        mPreview =  findViewById(R.id.surface);
+        mPreview = findViewById(R.id.surface);
         setPlayVideo();
         setTableLimit();
         initDiceList();
@@ -2089,6 +2095,18 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             displayAll(true);
     }
 
+    ImageView currentSure;
+    ImageView currentCancel;
+
+    @Override
+    public void onSwitchChipFinish() {
+        chooseChip = 0;
+        if (selectedMap != null) {
+            selectedMap.clear();
+        }
+        setChip();
+    }
+
     public void setChip() {
         final AdapterViewContent<ChipBean> chips = new AdapterViewContent<>(mContext, lv_baccarat_chips);
         chips.setBaseAdapter(new QuickAdapterImp<ChipBean>() {
@@ -2106,13 +2124,12 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                         llParent.post(new Runnable() {
                             @Override
                             public void run() {
-                                int width = llParent.getWidth() * (chipListChoice.size() + 4);
+                                int width = ScreenUtil.dip2px(mContext, 45) * 10;
                                 int screenWidth = WidgetUtil.getScreenWidth(SicboActivity.this);
-                                int padding = (int) ((screenWidth - width) / 2.3);
+                                int padding = (screenWidth - width) / 2;
                                 if (padding > 0) {
                                     LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) ll_chip.getLayoutParams();
-                                    layoutParams1.leftMargin = padding / 2;
-                                    layoutParams1.rightMargin = padding / 2;
+                                    layoutParams1.leftMargin = padding;
                                     ll_chip.setLayoutParams(layoutParams1);
                                 }
                             }
@@ -2121,8 +2138,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) llParent.getLayoutParams();
                     layoutParams1.width = ScreenUtil.dip2px(mContext, 39);
                     layoutParams1.height = ScreenUtil.dip2px(mContext, 39);
-                    layoutParams1.leftMargin = ScreenUtil.dip2px(mContext, 2);
-                    layoutParams1.rightMargin = ScreenUtil.dip2px(mContext, 2);
+                    layoutParams1.leftMargin = ScreenUtil.dip2px(mContext, 3);
+                    layoutParams1.rightMargin = ScreenUtil.dip2px(mContext, 3);
                     llParent.setLayoutParams(layoutParams1);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
                     layoutParams.width = ScreenUtil.dip2px(mContext, 39);
@@ -2143,20 +2160,41 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                 }
                 imgChip.setBackgroundResource(item.getDrawableRes());
                 helper.setText(R.id.tv_chip_amount, item.getName());
-
+                if (item.getValue() == -1) {
+                    currentSure = imgChip;
+                } else if (item.getValue() == -2) {
+                    currentCancel = imgChip;
+                }
             }
         });
         chips.setItemClick(new ItemCLickImp<ChipBean>() {
             @Override
             public void itemCLick(View view, ChipBean chipBean, int position) {
-                chooseChip = chipBean.getValue();
-                selectedMap.put(true, position);
-                chips.notifyDataSetChanged();
-                initClickCount();
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, afbApp.getFrontVolume());
+                if (chipBean.getValue() > 0) {
+                    chooseChip = chipBean.getValue();
+                    selectedMap.put(true, position);
+                    chips.notifyDataSetChanged();
+                    initClickCount();
+                    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, afbApp.getFrontVolume());
+                } else {
+                    switch (chipBean.getValue()) {
+                        case -1:
+                            bet();
+                            break;
+                        case -2:
+                            cancelBet();
+                            break;
+                        case -3:
+                            repeatBet();
+                            break;
+                        case -101:
+                            showChooseChip(view);
+                            break;
+                    }
+                }
             }
         });
-        chips.setData(chipListChoice);
+        chips.setData(getCurrentChip(true));
     }
 
     public void setTableLimit() {
@@ -2312,7 +2350,6 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 //        stopUpdateStatusThread();
         videoHelper.pauseVideo();
     }
-
 
 
     @Override
@@ -2543,8 +2580,14 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 
     public void clearAllChips() {
         try {
-            tvTableBetSure.setBackgroundResource(R.mipmap.sureimg);
-            tvTableBetCancel.setBackgroundResource(R.mipmap.noimg);
+            int sure = R.mipmap.sureimg;
+            if (currentSure != null && sure != 0) {
+                currentSure.setBackgroundResource(sure);
+            }
+            int no = R.mipmap.noimg;
+            if (currentCancel != null && no != 0) {
+                currentCancel.setBackgroundResource(no);
+            }
             showBetChipOld(flSicboBigF1, false, 0);
             showBetChipOld(flSicboSmallF1, false, 0);
             showBetChipOld(flSicboOddF1, false, 0);
@@ -2650,8 +2693,14 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             ChipMap.put(f, chipHelper);
         }
         if (isShow && money > 0) {
-            tvTableBetSure.setBackgroundResource(R.mipmap.sureimg_light);
-            tvTableBetCancel.setBackgroundResource(R.mipmap.noimg_light);
+            int sure = R.mipmap.sureimg_light;
+            if (currentSure != null && sure != 0) {
+                currentSure.setBackgroundResource(sure);
+            }
+            int no = R.mipmap.noimg_light;
+            if (currentCancel != null && no != 0) {
+                currentCancel.setBackgroundResource(no);
+            }
             chipHelper.showChip(money, 0, AutoUtils.getPercentHeightSize(10), AutoUtils.getPercentHeightSize(24), AutoUtils.getPercentHeightSize(12), 0, -AutoUtils.getPercentHeightSize(10), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(15));
         } else {
             chipHelper.clearAllChips();
@@ -3090,8 +3139,14 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     }
 
     private void clearBetChip(SbBetType type) {
-        tvTableBetSure.setBackgroundResource(R.mipmap.sureimg);
-        tvTableBetCancel.setBackgroundResource(R.mipmap.noimg);
+        int sure = R.mipmap.sureimg;
+        if (currentSure != null && sure != 0) {
+            currentSure.setBackgroundResource(sure);
+        }
+        int no = R.mipmap.noimg;
+        if (currentCancel != null && no != 0) {
+            currentCancel.setBackgroundResource(no);
+        }
         FrameLayout fl = getFrameLayout(type);
         ChipShowHelper chipHelper = ChipMap.get(fl);
         if (chipHelper != null)
@@ -4732,28 +4787,36 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     bet();
                     break;
                 case R.id.tv_table_bet_cancel:
-                    //有任何一个下注，没有点确定之前，都要清除筹码，并显示声音特效
-                    if (bigBet > 0 || smallBet > 0 || oddBet > 0 || evenBet > 0 || alldiceBet > 0 || waidiceBet1 > 0 || waidiceBet2 > 0 || waidiceBet3 > 0 || waidiceBet4 > 0 || waidiceBet5 > 0
-                            || waidiceBet6 > 0 || pairsBet1 > 0 || pairsBet2 > 0 || pairsBet3 > 0 || pairsBet4 > 0 || pairsBet5 > 0 || pairsBet6 > 0
-                            || pointsBet4 > 0 || pointsBet5 > 0 || pointsBet6 > 0 || pointsBet7 > 0 || pointsBet8 > 0 || pointsBet9 > 0 || pointsBet10 > 0
-                            || pointsBet11 > 0 || pointsBet12 > 0 || pointsBet13 > 0 || pointsBet14 > 0 || pointsBet15 > 0 || pointsBet16 > 0 || pointsBet17 > 0
-                            || ninewayBet12 > 0 || ninewayBet13 > 0 || ninewayBet14 > 0 || ninewayBet15 > 0 || ninewayBet16 > 0 || ninewayBet23 > 0 || ninewayBet24 > 0 || ninewayBet25 > 0
-                            || ninewayBet26 > 0 || ninewayBet34 > 0 || ninewayBet35 > 0 || ninewayBet36 > 0 || ninewayBet45 > 0 || ninewayBet46 > 0 || ninewayBet56 > 0 || threeBet1 > 0
-                            || threeBet2 > 0 || threeBet3 > 0 || threeBet4 > 0 || threeBet5 > 0 || threeBet6 > 0) {
-                        afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
-                    }
-                    clearBetChip(SbBetType.All);
-                    tvTableBetSure.setBackgroundResource(R.mipmap.sureimg);
-                    tvTableBetCancel.setBackgroundResource(R.mipmap.noimg);
+                    cancelBet();
                     break;
-
-
                 default:
                     break;
             }
         }
 
 
+    }
+
+    public void cancelBet() {
+        //有任何一个下注，没有点确定之前，都要清除筹码，并显示声音特效
+        if (bigBet > 0 || smallBet > 0 || oddBet > 0 || evenBet > 0 || alldiceBet > 0 || waidiceBet1 > 0 || waidiceBet2 > 0 || waidiceBet3 > 0 || waidiceBet4 > 0 || waidiceBet5 > 0
+                || waidiceBet6 > 0 || pairsBet1 > 0 || pairsBet2 > 0 || pairsBet3 > 0 || pairsBet4 > 0 || pairsBet5 > 0 || pairsBet6 > 0
+                || pointsBet4 > 0 || pointsBet5 > 0 || pointsBet6 > 0 || pointsBet7 > 0 || pointsBet8 > 0 || pointsBet9 > 0 || pointsBet10 > 0
+                || pointsBet11 > 0 || pointsBet12 > 0 || pointsBet13 > 0 || pointsBet14 > 0 || pointsBet15 > 0 || pointsBet16 > 0 || pointsBet17 > 0
+                || ninewayBet12 > 0 || ninewayBet13 > 0 || ninewayBet14 > 0 || ninewayBet15 > 0 || ninewayBet16 > 0 || ninewayBet23 > 0 || ninewayBet24 > 0 || ninewayBet25 > 0
+                || ninewayBet26 > 0 || ninewayBet34 > 0 || ninewayBet35 > 0 || ninewayBet36 > 0 || ninewayBet45 > 0 || ninewayBet46 > 0 || ninewayBet56 > 0 || threeBet1 > 0
+                || threeBet2 > 0 || threeBet3 > 0 || threeBet4 > 0 || threeBet5 > 0 || threeBet6 > 0) {
+            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
+        }
+        clearBetChip(SbBetType.All);
+        int sure = R.mipmap.sureimg;
+        if (currentSure != null && sure != 0) {
+            currentSure.setBackgroundResource(sure);
+        }
+        int no = R.mipmap.noimg;
+        if (currentCancel != null && no != 0) {
+            currentCancel.setBackgroundResource(no);
+        }
     }
 
     public void repeatBet() {
@@ -5004,8 +5067,14 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     || ninewayBet12 > 0 || ninewayBet13 > 0 || ninewayBet14 > 0 || ninewayBet15 > 0 || ninewayBet16 > 0 || ninewayBet23 > 0 || ninewayBet24 > 0 || ninewayBet25 > 0
                     || ninewayBet26 > 0 || ninewayBet34 > 0 || ninewayBet35 > 0 || ninewayBet36 > 0 || ninewayBet45 > 0 || ninewayBet46 > 0 || ninewayBet56 > 0 || threeBet1 > 0
                     || threeBet2 > 0 || threeBet3 > 0 || threeBet4 > 0 || threeBet5 > 0 || threeBet6 > 0) {
-                tvTableBetSure.setBackgroundResource(R.mipmap.sureimg_light);
-                tvTableBetCancel.setBackgroundResource(R.mipmap.noimg_light);
+                int sure = R.mipmap.sureimg_light;
+                if (currentSure != null && sure != 0) {
+                    currentSure.setBackgroundResource(sure);
+                }
+                int no = R.mipmap.noimg_light;
+                if (currentCancel != null && no != 0) {
+                    currentCancel.setBackgroundResource(no);
+                }
                 afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
             }
 
@@ -5520,9 +5589,7 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
 //                }
 //            });
         } else {
-            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
-
-            {
+            if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                 lv_table_results = (AdapterView) findViewById(R.id.lv_table_results_h);
                 leftPanel1.setOpen(true, true);
                 bottonPanel1.setOpen(true, true);

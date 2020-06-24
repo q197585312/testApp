@@ -141,7 +141,7 @@
                 <gaming178.com.mylibrary.myview.mylistview.HorizontalListView
                     android:id="@+id/lv_baccarat_chips_h"
                     android:layout_width="match_parent"
-                    android:layout_height="62dp"
+                    android:layout_height="52dp"
                     android:divider="@null"
                     android:scrollbars="none" />
 
@@ -269,7 +269,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="545px"
+                android:layout_marginTop="534px"
                 android:background="@color/white">
 
                 <gaming178.com.mylibrary.myview.miscwidgets.widget.Panel
