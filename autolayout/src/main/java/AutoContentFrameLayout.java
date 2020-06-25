@@ -1,3 +1,4 @@
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 
@@ -9,6 +10,7 @@ import com.zhy.autolayout.utils.AutoLayoutHelper;
 /**
  * Created by zhy on 16/2/25.
  */
+@SuppressLint("RestrictedApi")
 public class AutoContentFrameLayout extends ContentFrameLayout
 {
     private final AutoLayoutHelper mHelper = new AutoLayoutHelper(this);
