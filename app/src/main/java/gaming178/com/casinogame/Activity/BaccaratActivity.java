@@ -1824,7 +1824,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     }
                     break;
                 case HandlerCode.SHOW_WIN_LOSS:
-                    serviceTime.setText(getApp().getUser().getBalance() + "");
+                    serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
                     //提示输赢
                     if (bBetSucess) {
 //                        if (afbApp.getBaccarat(afbApp.getTableId()).getWonMoney() >= 0) {
@@ -1869,7 +1869,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                     dismissBlockDialog();
                     ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getAllBetMoney());
 
-                    serviceTime.setText(getApp().getUser().getBalance() + "");
+                    serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
                     break;
                 case HandlerCode.SHOW_BET_MONEY:
                     showBetMoney();
@@ -2449,7 +2449,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         initControl();
         ////////////////////
 
-        serviceTime.setText(getApp().getUser().getBalance() + "");
+        serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
 
         rightTv.setTextColor(getResources().getColor(R.color.white));
         toolbar.setBackgroundResource(R.color.transparent);

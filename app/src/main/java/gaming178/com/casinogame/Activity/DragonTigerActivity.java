@@ -1659,7 +1659,7 @@ public class DragonTigerActivity extends BaseActivity {
                     }
                     break;
                 case HandlerCode.SHOW_WIN_LOSS:
-                    serviceTime.setText(getApp().getUser().getBalance() + "");
+                    serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
                     //提示输赢
                     if (bBetSucess) {
 //                        if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney() >= 0) {
@@ -1682,7 +1682,7 @@ public class DragonTigerActivity extends BaseActivity {
                     dismissBlockDialog();
                     initBetInformation(type);
                     ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getAllBetMoney());
-                    serviceTime.setText(getApp().getUser().getBalance() + "");
+                    serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
                     break;
                 case HandlerCode.SHOW_BET_MONEY:
                     showBetMoney(false);
@@ -1917,7 +1917,7 @@ public class DragonTigerActivity extends BaseActivity {
         ////////////////////
 //        serviceTime.setVisibility(View.GONE);
 
-        serviceTime.setText(getApp().getUser().getBalance() + "");
+        serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
 
         rightTv.setTextColor(getResources().getColor(R.color.white));
         toolbar.setBackgroundResource(R.color.transparent);

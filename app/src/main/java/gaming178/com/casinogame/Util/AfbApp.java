@@ -1926,7 +1926,7 @@ public class AfbApp extends Application {
                 gridLayoutBigRoad.post(new Runnable() {
                     @Override
                     public void run() {
-                        scrollTableRoad(gridLayoutBigRoad,mContext);
+                        scrollTableRoad(gridLayoutBigRoad, mContext);
                     }
                 });
             }
@@ -2147,7 +2147,7 @@ public class AfbApp extends Application {
                 gridLayoutBigRoad.post(new Runnable() {
                     @Override
                     public void run() {
-                        scrollTableRoad(gridLayoutBigRoad,mContext);
+                        scrollTableRoad(gridLayoutBigRoad, mContext);
                     }
                 });
             }
@@ -2262,7 +2262,7 @@ public class AfbApp extends Application {
         }
     }
 
-    public void scrollTableRoad(GridLayout baccarat_big_road,Context mContext) {
+    public void scrollTableRoad(GridLayout baccarat_big_road, Context mContext) {
         int bigRoadParent2width = ScreenUtil.dip2px(mContext, 140);
         int bigRoadWidth = baccarat_big_road.getWidth();
         if (bigRoadWidth > bigRoadParent2width) {
@@ -3134,6 +3134,22 @@ public class AfbApp extends Application {
         if (limitValue >= 10000) {
             iValue = limitValue / 1000;
             resValue = "" + iValue + "k";
+        } else {
+            resValue = "" + limitValue;
+        }
+        return resValue;
+    }
+
+    public String covertBalance(int limitValue) {
+        String resValue = "";
+        int iValue = 0;
+        if (limitValue >= 10000) {
+            iValue = limitValue / 1000;
+            String end = limitValue % 1000 + "";
+            if (end.length() > 2) {
+                end = end.substring(0, 2);
+            }
+            resValue = "" + iValue + "." + end + "k";
         } else {
             resValue = "" + limitValue;
         }
