@@ -1947,9 +1947,16 @@ public class DragonTigerActivity extends BaseActivity {
         otherTableIdList.add(62);
         otherTableIdList.add(63);
         otherTableIdList.add(71);
-        tv_ask1.setText(getString(R.string.dragon_dragon_tiger));
+        tv_ask1.setText(getString(R.string.dragon_big));
         tv_ask2.setText(getString(R.string.tiger_dragon_tiger));
         setAskClick();
+        afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPoker().setDragon(0);
+        afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPoker().setTiger(0);
+        afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().setDragon_tiger_tie(-100);
+        afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().setDragon_odd_even(-100);
+        afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().setDragon_red_black(-100);
+        afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().setTiger_odd_even(-100);
+        afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().setTiger_red_black(-100);
         startUpdateStatusThread();
     }
 
@@ -3054,7 +3061,11 @@ public class DragonTigerActivity extends BaseActivity {
                 }
             }
             BetUiHelper.betStateColor(tvTableBetSure, true);
-            chipHelper.setOperationButtonDisplay(true);
+            if (chooseChip > 0) {
+                chipHelper.setOperationButtonDisplay(true);
+            } else {
+                chipHelper.setOperationButtonDisplay(false);
+            }
             chipHelper.showChip(money, 0, y, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), 0, y + AutoUtils.getPercentHeightSize(4), AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
         } else {
             chipHelper.setOperationButtonDisplay(false);

@@ -571,9 +571,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="126px"
+        android:layout_height="146px"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="265px"
+        android:layout_marginTop="245px"
         android:layout_weight="1"
         android:orientation="horizontal">
 
@@ -618,9 +618,9 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="126px"
+        android:layout_height="146px"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="331px"
+        android:layout_marginTop="311px"
         android:layout_weight="1">
 
 

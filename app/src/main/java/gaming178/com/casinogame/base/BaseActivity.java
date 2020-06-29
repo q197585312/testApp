@@ -1564,7 +1564,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     }
                     afbApp.setTableId(1);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat01().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                        if (afbApp.getBaccarat01().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat01().getLimitIndex() == i) {
                             afbApp.getBaccarat01().setLimitIndex(i);
                             break;
                         }
@@ -1579,7 +1579,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     tableId = 2;
                     afbApp.setTableId(2);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat02().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                        if (afbApp.getBaccarat02().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat02().getLimitIndex() == i) {
                             afbApp.getBaccarat02().setLimitIndex(i);
                             break;
                         }
@@ -1593,7 +1593,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     tableId = 3;
                     afbApp.setTableId(3);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat03().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                        if (afbApp.getBaccarat03().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat03().getLimitIndex() == i) {
                             afbApp.getBaccarat03().setLimitIndex(i);
                             break;
                         }
@@ -1607,7 +1607,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     tableId = 71;
                     afbApp.setTableId(71);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat71().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                        if (afbApp.getBaccarat71().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat71().getLimitIndex() == i) {
                             afbApp.getBaccarat71().setLimitIndex(i);
                             break;
                         }
@@ -1686,7 +1686,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     tableId = 61;
                     afbApp.setTableId(61);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat61().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                        if (afbApp.getBaccarat61().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat61().getLimitIndex() == i) {
                             afbApp.getBaccarat61().setLimitIndex(i);
                             break;
                         }
@@ -1700,7 +1700,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     tableId = 62;
                     afbApp.setTableId(62);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat62().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                        if (afbApp.getBaccarat62().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat62().getLimitIndex() == i) {
                             afbApp.getBaccarat62().setLimitIndex(i);
                             break;
                         }
@@ -1714,7 +1714,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     tableId = 63;
                     afbApp.setTableId(63);
                     for (int i = 1; i <= 4; i++) {
-                        if (afbApp.getBaccarat63().getBaccaratLimit(i).getMaxTotalBet() > 0) {
+                        if (afbApp.getBaccarat63().getBaccaratLimit(i).getMaxTotalBet() > 0 && afbApp.getBaccarat63().getLimitIndex() == i) {
                             afbApp.getBaccarat63().setLimitIndex(i);
                             break;
                         }

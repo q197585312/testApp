@@ -688,6 +688,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                             //提示下注成功,清除下注信息
                             bBetSucess = true;
                             betTimeCount = 0;
+                            clearAllShowChip();
                             handler.sendEmptyMessage(HandlerCode.SHOW_BET_SUCCESS);
 
 
@@ -850,6 +851,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 threadUpdateGameNumber.start();
             }*/
             if (!gameNumber.equals(afbApp.getBaccarat(afbApp.getTableId()).getGameNumber())) {
+                clearAllShowChip();
                 gameNumber = afbApp.getBaccarat(afbApp.getTableId()).getGameNumber();
                 baccaratTimer = afbApp.getBaccarat(afbApp.getTableId()).getTimer();
                 countdown_view.setCountdownTime(baccaratTimer);
@@ -2518,6 +2520,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer1(0);
         afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer2(0);
         afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer3(0);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBanker_palyer_tie(-100);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBankerPair(-100);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setPlayerPair(-100);
+
         setAskClick();
         startUpdateStatusThread();
     }
@@ -2903,14 +2909,15 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         });
     }
 
-    private void clearAllBet(){
+    private void clearAllBet() {
         if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0) {
             afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
         }
+        clearAllShowChip();
         clearNoBetChip();
     }
 
-    private void betAll(){
+    private void betAll() {
         if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() == 5)
             return;
         if (afbApp.getUser().getBalance() <= 0) {
@@ -3750,6 +3757,20 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         showUpPop();
     }
 
+    int bankerShowChip;
+    int playerShowChip;
+    int tieShowChip;
+    int bbShowChip;
+    int ppShowChip;
+
+    private void clearAllShowChip() {
+        bankerShowChip = 0;
+        playerShowChip = 0;
+        tieShowChip = 0;
+        bbShowChip = 0;
+        ppShowChip = 0;
+    }
+
     public void clickBetPlayer(final View fl) {
         if (checkChoose()) return;
         chipHelperCurrent = chipHelperPlayer;
@@ -3765,18 +3786,20 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxBankerPlayerBet(), clickPlayerCount,
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer(),
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        playerShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "P");
         if (betMoney > 0) {
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             chipHelperCurrent.showChip(betMoney, chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerBet = betMoney;
             //    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP,9,componentFront,this,afbApp.getFrontVolume());
+            closeOtherSure();
         } else {
-            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+//            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             clickPlayerCount = 0;
             playerBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
-        closeOtherSure();
 
     }
 
@@ -3818,17 +3841,54 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxBankerPlayerBet(), clickBankerCount,
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker(),
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        bankerShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "B");
         if (betMoney > 0) {
             chipHelperCurrent.showChip(betMoney, -chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             bankerBet = betMoney;
+            closeOtherSure();
         } else {
-            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+//            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker(), AutoUtils.getPercentHeightSize(4), chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             clickBankerCount = 0;
             bankerBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
-        closeOtherSure();
+
+    }
+
+    private int getBetMoney(int betMoney, String type) {
+        int allShowChip = 0;
+        int tie = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie();
+        int playerPair = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair();
+        int bankerPair = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair();
+        int banker = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker();
+        int player = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer();
+        switch (type) {
+            case "B":
+                allShowChip = playerShowChip + tieShowChip + bbShowChip + ppShowChip + player + tie + playerPair + bankerPair;
+                break;
+            case "P":
+                allShowChip = bankerShowChip + tieShowChip + bbShowChip + ppShowChip + banker + tie + playerPair + bankerPair;
+                break;
+            case "T":
+                allShowChip = bankerShowChip + playerShowChip + bbShowChip + ppShowChip + player + banker + playerPair + bankerPair;
+                break;
+            case "BB":
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + ppShowChip + player + tie + playerPair + banker;
+                break;
+            case "PP":
+                allShowChip = bankerShowChip + playerShowChip + tieShowChip + bbShowChip + player + tie + banker + bankerPair;
+                break;
+        }
+        int maxTotalBet = afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet();
+
+        int canBet = maxTotalBet - allShowChip;
+        Log.d("getBetMoney", "betMoney: " + betMoney + "----" + "maxTotalBet: " + maxTotalBet + "----" + "allShowChip: " + allShowChip + "----" + "canBet: " + canBet);
+        if (betMoney > canBet) {
+            betMoney = canBet;
+        }
+        return betMoney;
     }
 
     public void clickBetTie(final View f) {
@@ -3841,19 +3901,21 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTieBet(), clickTieCount,
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie(),
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
-
+        tieShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "T");
         if (betMoney > 0) {
 
             chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             tieBet = betMoney;
+            closeOtherSure();
         } else {
-            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+//            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             clickTieCount = 0;
             tieBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
-        closeOtherSure();
+
     }
 
     public void clickBetPlayerPair(final View fl2) {
@@ -3866,17 +3928,20 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxPairBet(), clickPlayerPairCount,
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair(),
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        ppShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "PP");
         if (betMoney > 0) {
             chipHelperCurrent.showChip(betMoney, chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerPairBet = betMoney;
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
+            closeOtherSure();
         } else {
-            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+//            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             clickPlayerPairCount = 0;
             playerPairBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
-        closeOtherSure();
+
     }
 
     public void clickBetBankerPair(final View fl) {
@@ -3889,17 +3954,20 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxPairBet(), clickBankerPairCount,
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair(),
                 afbApp.getBaccarat(afbApp.getTableId()).getBaccaratLimit(afbApp.getBaccarat(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), mContext, componentFront);
+        bbShowChip = betMoney;
+        betMoney = getBetMoney(betMoney, "BB");
         if (betMoney > 0) {
             chipHelperCurrent.showChip(betMoney, -chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             bankerPairBet = betMoney;
+            closeOtherSure();
         } else {
-            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
+//            chipHelperCurrent.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             clickBankerPairCount = 0;
             bankerPairBet = 0;
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         }
-        closeOtherSure();
+
     }
 
     @Override

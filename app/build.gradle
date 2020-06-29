@@ -1,6 +1,6 @@
 apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     signingConfigs {
@@ -431,6 +431,7 @@ android {
     }
     applicationVariants.all { variant ->
         variant.outputs.all { output ->
+//            variant.getPackageApplication().outputDirectory = new File("D:/MyBuildFile")
             def outputFile = output.outputFile
             String flavorName = variant.productFlavors[0].manifestPlaceholders.values().toString();
 
