@@ -39,6 +39,7 @@ public abstract class BaseActivity extends AutoLayoutActivity {
     protected boolean isAttached;
     protected View baseContentView;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

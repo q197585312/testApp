@@ -1806,22 +1806,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     protected void initArcMenu(TextView tvMenu, String removeStr, int hallId) {
 
-      /*  AssetManager mgr = getAssets();//得到AssetManager
-        Typeface tf = Typeface.createFromAsset(mgr, "fonts/ttf.ttf");//根据路径得到Typeface
-        tvMenu.setTypeface(tf);//设置字体
-        tvMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-//                arcMenu.clickMenu();\
-//                if(isAttached)
-//                    popupWindow.showPopupDownWindow();
-                if (isAttached)
-                    showMenuPop(v);
-            }
-        });*/
         initChangeTable(tvMenu, removeStr);
-
-
     }
 
     private void addGame(ArrayList<GameMenuItem> games1, GameMenuItem item, String removeStr) {

@@ -15,7 +15,12 @@ import android.widget.FrameLayout;
 import android.widget.GridLayout;
 import android.widget.TextView;
 
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStore;
+
 import com.tencent.bugly.crashreport.CrashReport;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -48,6 +53,7 @@ import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Chat.FaceConversionUtil;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.base.BaseActivity;
+import gaming178.com.casinogame.base.IViewModelStoreOwner;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.ThreadPoolUtils;
@@ -59,7 +65,7 @@ import gaming178.com.mylibrary.lib.util.LogUtil;
 /**
  * Created by Administrator on 2016/3/29.
  */
-public class AfbApp extends Application {
+public class AfbApp extends Application implements IViewModelStoreOwner {
     private HttpClient httpClient;
     private String cookie;
     private User user;
@@ -81,6 +87,8 @@ public class AfbApp extends Application {
     private Sicbo sicbo01 = new Sicbo();
     private DragonTiger dragonTiger01 = new DragonTiger();
     private String announcement;
+    private ViewModelStore mAppViewModelStore;
+    private ViewModelProvider.AndroidViewModelFactory mFactory;
 
     public void setHeadMargin(int headMargin) {
 
@@ -3502,6 +3510,8 @@ public class AfbApp extends Application {
     public void onCreate() {
         super.onCreate();
 //        handleSSLHandshake();
+        mAppViewModelStore = new ViewModelStore();
+        mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(this);
         closeAndroidPDialog();
         CrashReport.UserStrategy strategy = new CrashReport.UserStrategy(getApplicationContext());
         strategy.setAppChannel(BuildConfig.FLAVOR);  //设置渠道
@@ -3767,4 +3777,16 @@ public class AfbApp extends Application {
     }
 
     public int homeColor = 0;
+
+    @NotNull
+    @Override
+    public ViewModelStore getViewModelStore() {
+        return mAppViewModelStore;
+    }
+
+    @NotNull
+    @Override
+    public ViewModelProvider.Factory getViewModelFactory() {
+        return mFactory;
+    }
 }
