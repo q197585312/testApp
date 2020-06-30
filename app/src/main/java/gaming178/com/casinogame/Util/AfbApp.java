@@ -3153,11 +3153,14 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
         int iValue = 0;
         if (limitValue >= 10000) {
             iValue = limitValue / 1000;
-            String end = limitValue % 1000 + "";
-            if (end.length() > 2) {
-                end = end.substring(0, 2);
+            double end = limitValue % 1000;
+            end = end / 1000;
+            String endStr = end + "";
+            if (endStr.length() > 4) {
+                endStr = endStr.substring(0, 4);
             }
-            resValue = "" + iValue + "." + end + "k";
+            end = Double.parseDouble(endStr);
+            resValue = "" + (iValue + end) + "k";
         } else {
             resValue = "" + limitValue;
         }

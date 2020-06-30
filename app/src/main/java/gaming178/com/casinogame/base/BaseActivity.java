@@ -43,9 +43,11 @@ import gaming178.com.casinogame.Activity.DragonTigerActivity;
 import gaming178.com.casinogame.Activity.ReportFormActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
+import gaming178.com.casinogame.Bean.Baccarat;
 import gaming178.com.casinogame.Bean.BaccaratOtherUserBetInfomation;
 import gaming178.com.casinogame.Bean.BaccaratPlayer;
 import gaming178.com.casinogame.Bean.ChipBean;
+import gaming178.com.casinogame.Bean.DragonTiger;
 import gaming178.com.casinogame.Bean.GameMenuItem;
 import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Popupwindow.DepositPop;
@@ -1300,6 +1302,47 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 
     }
 
+    private ArrayList<String> getSetLimitData(int tableId) {
+        Baccarat baccarat;
+        String limit1 = "0 - 0";
+        String limit2 = "0 - 0";
+        String limit3 = "0 - 0";
+        String limit4 = "0 - 0";
+        if (tableId == 1 || tableId == 2 || tableId == 3 || tableId == 61 || tableId == 62 || tableId == 63 || tableId == 71) {
+            baccarat = getApp().getBaccarat(tableId);
+            if (baccarat != null) {
+                limit1 = "" + (int) baccarat.getBaccaratLimit1().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit1().getMaxTotalBet();
+                limit2 = "" + (int) baccarat.getBaccaratLimit2().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit2().getMaxTotalBet();
+                limit3 = "" + (int) baccarat.getBaccaratLimit3().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit3().getMaxTotalBet();
+                limit4 = "" + (int) baccarat.getBaccaratLimit4().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit4().getMaxTotalBet();
+            }
+        } else if (tableId == 5) {
+            DragonTiger dragonTiger = getApp().getDragonTiger01();
+            if (dragonTiger != null) {
+                limit1 = "" + (int) dragonTiger.getDragonTigerLimit1().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit1().getMaxTotalBet();
+                limit2 = "" + (int) dragonTiger.getDragonTigerLimit2().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit2().getMaxTotalBet();
+                limit3 = "" + (int) dragonTiger.getDragonTigerLimit3().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit3().getMaxTotalBet();
+                limit4 = "" + (int) dragonTiger.getDragonTigerLimit4().getMinTotalBet() + " - " + (int) dragonTiger.getDragonTigerLimit4().getMaxTotalBet();
+            }
+        } else if (tableId == 21) {
+            if (getApp().getRoulette01() != null) {
+                limit1 = "" + (int) getApp().getRoulette01().getRouletteLimit1().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit1().getMaxTotalBet();
+                limit2 = "" + (int) getApp().getRoulette01().getRouletteLimit2().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit2().getMaxTotalBet();
+                limit3 = "" + (int) getApp().getRoulette01().getRouletteLimit3().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit3().getMaxTotalBet();
+                limit4 = "" + (int) getApp().getRoulette01().getRouletteLimit4().getMinTotalBet() + " - " + (int) getApp().getRoulette01().getRouletteLimit4().getMaxTotalBet();
+            }
+        } else if (tableId == 31) {
+            if (getApp().getSicbo01() != null) {
+                limit1 = "" + (int) getApp().getSicbo01().getSicboLimit1().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit1().getMaxTotalBet();
+                limit2 = "" + (int) getApp().getSicbo01().getSicboLimit2().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit2().getMaxTotalBet();
+                limit3 = "" + (int) getApp().getSicbo01().getSicboLimit3().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit3().getMaxTotalBet();
+                limit4 = "" + (int) getApp().getSicbo01().getSicboLimit4().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit4().getMaxTotalBet();
+            }
+        }
+        return new ArrayList<>(Arrays.asList(limit1, limit2, limit3, limit4));
+//        centerPop.setData());
+    }
+
     public void showSetPop(final View v, int gravity) {
         View center = v;
         if (v == null) {
@@ -1318,6 +1361,57 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             @Override
             protected void initView(View view) {
                 super.initView(view);
+                RadioGroup rg_switch = (RadioGroup) view.findViewById(R.id.rg_switch);
+                final LinearLayout ll_music = view.findViewById(R.id.ll_music);
+                final RecyclerView recyclerView = view.findViewById(R.id.base_rv);
+                recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
+                BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getSetLimitData(afbApp.getTableId()), R.layout.item_popupwindow_text_select) {
+                    @Override
+                    public void convert(MyRecyclerViewHolder holder, int position, String item) {
+                        holder.setText(R.id.pop_text_tv, item);
+                    }
+
+                };
+                baseRecyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<String>() {
+                    @Override
+                    public void onItemClick(View view, String s, int position) {
+                        if ("0 - 0".endsWith(s)) {
+                            return;
+                        }
+                        if (afbApp.getTableId() == 1 || afbApp.getTableId() == 2 || afbApp.getTableId() == 3 || afbApp.getTableId() == 61 || afbApp.getTableId() == 62 || afbApp.getTableId() == 63 || afbApp.getTableId() == 71) {
+                            getApp().getBaccarat(1).setLimitIndex(position + 1);
+                            getApp().getBaccarat(2).setLimitIndex(position + 1);
+                            getApp().getBaccarat(3).setLimitIndex(position + 1);
+                            getApp().getBaccarat(61).setLimitIndex(position + 1);
+                            getApp().getBaccarat(62).setLimitIndex(position + 1);
+                            getApp().getBaccarat(63).setLimitIndex(position + 1);
+                            getApp().getBaccarat(71).setLimitIndex(position + 1);
+                        } else if (afbApp.getTableId() == 5) {
+                            getApp().getDragonTiger01().setLimitIndex(position + 1);
+                        } else if (afbApp.getTableId() == 21) {
+                            getApp().getRoulette01().setLimitIndex(position + 1);
+                        } else if (afbApp.getTableId() == 31) {
+                            getApp().getSicbo01().setLimitIndex(position + 1);
+                        }
+                        closePopupWindow();
+                    }
+                });
+                recyclerView.setAdapter(baseRecyclerAdapter);
+                rg_switch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+                    @Override
+                    public void onCheckedChanged(RadioGroup group, int checkedId) {
+                        switch (checkedId) {
+                            case R.id.rb_music:
+                                ll_music.setVisibility(View.VISIBLE);
+                                recyclerView.setVisibility(View.GONE);
+                                break;
+                            case R.id.rb_limit:
+                                ll_music.setVisibility(View.INVISIBLE);
+                                recyclerView.setVisibility(View.VISIBLE);
+                                break;
+                        }
+                    }
+                });
                 RadioGroup rg_music_rg = (RadioGroup) view.findViewById(R.id.rg_music_rg);
                 //         final  ComponentName componentBack = new ComponentName(mContext,
                 //                 BackgroudMuzicService.class);
@@ -2075,7 +2169,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         rightReportTv.setVisibility(View.VISIBLE);
         rightReportTv.setBackgroundResource(R.mipmap.report_top);
         rightTv.setBackgroundResource(R.mipmap.pool_top);
-        rightMusicTv.setBackgroundResource(R.mipmap.set_music_green);
+        rightMusicTv.setBackgroundResource(R.mipmap.set_black);
         rightTableTv.setBackgroundResource(R.mipmap.table_top);
         rightReportTv.setOnClickListener(new View.OnClickListener() {
             @Override

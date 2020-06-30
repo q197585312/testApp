@@ -153,7 +153,8 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
-    <string name="music_setting">Music setting</string>
+    <string name="music_setting">MUSIC SETTING</string>
+    <string name="limit_setting">LIMIT SETTING</string>
     <string name="music1">Music 1</string>
     <string name="music2">Music 2</string>
     <string name="music3">Music 3</string>
