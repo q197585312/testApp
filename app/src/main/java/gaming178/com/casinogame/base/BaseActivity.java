@@ -40,6 +40,7 @@ import gaming178.com.baccaratgame.R;
 import gaming178.com.casinogame.Activity.BaccaratActivity;
 import gaming178.com.casinogame.Activity.ChangePasswordActivity;
 import gaming178.com.casinogame.Activity.DragonTigerActivity;
+import gaming178.com.casinogame.Activity.LobbyActivity;
 import gaming178.com.casinogame.Activity.ReportFormActivity;
 import gaming178.com.casinogame.Activity.RouletteActivity;
 import gaming178.com.casinogame.Activity.SicboActivity;
@@ -1362,6 +1363,11 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             protected void initView(View view) {
                 super.initView(view);
                 RadioGroup rg_switch = (RadioGroup) view.findViewById(R.id.rg_switch);
+                TextView tv_music_title = (TextView) view.findViewById(R.id.tv_music_title);
+                if (BaseActivity.this instanceof LobbyActivity) {
+                    rg_switch.setVisibility(View.GONE);
+                    tv_music_title.setVisibility(View.VISIBLE);
+                }
                 final LinearLayout ll_music = view.findViewById(R.id.ll_music);
                 final RecyclerView recyclerView = view.findViewById(R.id.base_rv);
                 recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
