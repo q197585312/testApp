@@ -66,6 +66,7 @@ import java.util.TimerTask;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import cn.finalteam.toolsfinal.DeviceUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -443,7 +444,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     protected List<TableSportInfo<B>> pageData(List<TableSportInfo<B>> filterData) {
         List<TableSportInfo<B>> pageList;
-        if (page * pageSize > filterData.size() - 1) {
+       /* if (page * pageSize > filterData.size() - 1) {
             if (page > 0)
                 page = 0;
             else
@@ -454,7 +455,8 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
             pageList = filterData.subList(page * pageSize, (page + 1) * pageSize);
         } else {
             pageList = filterData.subList(page * pageSize, filterData.size());
-        }
+        }*/
+        pageList=filterData;
         LogUtil.d("current", "page:" + page);
 
         return pageList;
@@ -1503,7 +1505,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     private void showAllOdds(final TextView textView) {
 
-        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), textView, textView.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT) {
+        BasePopupWindow basePopupWindow = new BasePopupWindow(getBaseView().getIBaseContext().getBaseActivity(), textView, textView.getWidth()+ DeviceUtils.dip2px(activity,20), LinearLayout.LayoutParams.WRAP_CONTENT) {
             @Override
             protected int onSetLayoutRes() {
                 return R.layout.popupwindow_choice;

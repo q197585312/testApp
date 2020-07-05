@@ -167,7 +167,6 @@ public abstract class SportBetHelper<B extends SportInfo, V extends BetView> imp
     public Disposable getRefreshOdds(final String urlBet) {
         final String url = urlBet.trim() + "&_=" + System.currentTimeMillis();
         Log.d("updateMixListText", "betUrl:" + url);
-        AfbUtils.getMethodName();
         Disposable subscribe = getService(ApiService.class).getData(url).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread()).map(new Function<String, AfbClickResponseBean>() {
                     @Override

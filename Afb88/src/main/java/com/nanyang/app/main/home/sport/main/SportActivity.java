@@ -685,7 +685,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         } else {
             others_selected.setVisibility(View.VISIBLE);
         }
-        loadLeftMenuSports();
+        if (!isOther)
+            loadLeftMenuSports();
         if (getApp().getOddsType() != null)
             presenter.switchOddsType(getApp().getOddsType().getType());
         else {
@@ -770,8 +771,9 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     Iterator<SportIdBean> iterator = AfbUtils.sportMap.values().iterator();
                     while (iterator.hasNext()) {
                         SportIdBean next = iterator.next();
+
                         String num = jsonObjectNum.optString(typeStr + next.getDbid());
-                        if (next.getTextRes() == R.string.Soccer_Runing) {
+                        if (next.getTextRes() == R.string.Soccer_Runing||next.getTextRes() == R.string.all_running) {
                             num = jsonObjectNum.optString("M_RAm" + next.getDbid());
                         }
                         numMap.put(next.getKey(), num);

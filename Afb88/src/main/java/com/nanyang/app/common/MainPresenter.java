@@ -90,7 +90,6 @@ public class MainPresenter extends BaseSwitchPresenter {
         }
     }
 
-    //    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","lang":"ZH-CN","pgLable":"0.18120996831154568","vsn":"4.0.12","PT":"wfLoginH50"}&_db={}
 /*    public void switchLanguage(String lang) {
         doRetrofitApiOnDefaultThread(switchLanguage.switchLanguage(lang), new BaseConsumer<String>(baseContext) {
             @Override
@@ -357,7 +356,11 @@ public class MainPresenter extends BaseSwitchPresenter {
             @Override
             protected void onBaseGetData(AllBannerImagesBean data) throws JSONException {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
-                back.onBack(data);
+                LogUtil.d(getClass().getSimpleName(), "sendEvent--------------->" + data.toString());
+                ((BaseToolbarActivity) baseContext.getBaseActivity()).getApp().setListMainPictures(data.getMain());
+                ((BaseToolbarActivity) baseContext.getBaseActivity()).getApp().setListMainBanners(data.getMainBanners());
+                if (back != null)
+                    back.onBack(data);
 
             }
 

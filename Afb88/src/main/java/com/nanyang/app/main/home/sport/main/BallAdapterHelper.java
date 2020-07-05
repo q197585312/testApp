@@ -121,6 +121,39 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final I item) {
+
+
+        TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
+        TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
+
+        View matchTitleLl = helper.getView(R.id.module_match_title_ll);
+
+        View headV = helper.getView(R.id.module_match_head_v);
+        LeagueCollectionTv.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        back.clickView(view, item, position);
+                    }
+                }
+        );
+        View contentParentLl = helper.getView(R.id.ll_match_content);
+        contentParentLl.setBackgroundColor(item.getContentColor());
+        if (item.getType() == SportInfo.Type.ITME) {
+            matchTitleLl.setVisibility(View.GONE);
+            headV.setVisibility(View.GONE);
+            LeagueCollectionTv.setBackgroundResource(R.mipmap.sport_game_star_yellow);
+        } else {
+            LeagueCollectionTv.setBackgroundResource(((BallItemCallBack) back).isLeagueCollection(item) ? R.mipmap.sport_game_star_yellow_open : R.mipmap.sport_game_star_yellow);
+            matchTitleLl.setVisibility(View.VISIBLE);
+            headV.setVisibility(View.VISIBLE);
+            matchTitleTv.setText(item.getModuleTitle());
+        }
+        setClickOneTeam(helper, item);
+        boolean contractedMatch = updateContractedMatch(helper, item);
+        if (contractedMatch)
+            return;
+
         final LinearLayout parent = helper.getView(R.id.common_ball_parent_ll);
         RecyclerView rv_title_list = helper.getView(R.id.rv_title_list);
         View ll_title_list = helper.getView(R.id.ll_title_list);
@@ -133,7 +166,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
         if (additionBallItem != null && additionMap.get(true) != null && item.getSocOddsId().equals(additionBallItem.getSocOddsId()) && additionMap.get(true).equals(additionBallItem.getSocOddsId())) {
             ll_title_list.setVisibility(View.VISIBLE);
-
             liveSelectedHelper.iniSelectedHelper(rv_title_list, context, new MainPresenter.CallBack<MenuItemInfo>() {
                 @Override
                 public void onBack(MenuItemInfo data) throws JSONException {
@@ -185,13 +217,6 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
         ImageView ivHall = helper.getView(R.id.iv_hall_btn);
         ivHall.setVisibility(View.GONE);
         onConvertHall(item, ivHall, position);
-
-        TextView matchTitleTv = helper.getView(R.id.module_match_title_tv);
-        TextView LeagueCollectionTv = helper.getView(R.id.module_League_collection_tv);
-
-        View matchTitleLl = helper.getView(R.id.module_match_title_ll);
-
-        View headV = helper.getView(R.id.module_match_head_v);
         TextView dateTv = helper.getView(R.id.module_match_date_tv);
         ImageView lastGif = helper.getView(R.id.iv_last_call_gif);
         TextView dateTv1 = helper.getView(R.id.module_match_date_tv1);
@@ -279,14 +304,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
                 back.clickView(v, item, position);
             }
         });
-        LeagueCollectionTv.setOnClickListener(
-                new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        back.clickView(view, item, position);
-                    }
-                }
-        );
+
         String isHomeGive = item.getIsHomeGive();
         String hdp = item.getHdp();
         if (isHomeGive.equals("1")) {
@@ -314,20 +332,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
             }
         });
         gameSumTv.setText(item.getGamesSum());
-        View contentParentLl = helper.getView(R.id.ll_match_content);
-        contentParentLl.setBackgroundColor(item.getContentColor());
-        if (item.getType() == SportInfo.Type.ITME) {
-            matchTitleLl.setVisibility(View.GONE);
-            headV.setVisibility(View.GONE);
-            LeagueCollectionTv.setBackgroundResource(R.mipmap.sport_game_star_yellow);
-        } else {
-            LeagueCollectionTv.setBackgroundResource(((BallItemCallBack) back).isLeagueCollection(item) ? R.mipmap.sport_game_star_yellow_open : R.mipmap.sport_game_star_yellow);
-            matchTitleLl.setVisibility(View.VISIBLE);
-            headV.setVisibility(View.VISIBLE);
-            matchTitleTv.setText(item.getModuleTitle());
-        }
-        setClickOneTeam(helper, item);
-        updateContractedMatch(helper, item);
+
         handleOddsContent(helper, item, position);
         String away = item.getAway();
         String home = item.getHome();

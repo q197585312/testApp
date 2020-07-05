@@ -159,56 +159,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
                 login();
                 break;
             case R.id.login_language:
-              /*  if (popLanguage == null) {
-                    popLanguage = new PopChoiceLanguage(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT) {
-                        @Override
-                        public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo item) {
-                            TextView tv = holder.getView(R.id.item_regist_text_tv);
-                            tv.setText(item.getText());
-                        }
-
-                        @Override
-                        public void onClickItem(MenuItemInfo item, int position) {
-                            loginLanguage.setText(item.getText());
-                            AfbUtils.switchLanguage(item.getType(), mContext);
-                            restart();
-                        }
-                    };
-                    List<MenuItemInfo> languageList = new ArrayList<>();
-                    MenuItemInfo info = new MenuItemInfo();
-                    info.setText(R.string.language_en);
-                    info.setType("en");
-                    languageList.add(info);
-                    MenuItemInfo info1 = new MenuItemInfo();
-                    info1.setText(R.string.language_zh);
-                    info1.setType("zh");
-                    languageList.add(info1);
-                    MenuItemInfo info3 = new MenuItemInfo();
-                    info3.setText(R.string.language_th);
-                    info3.setType("th");
-                    languageList.add(info3);
-                    MenuItemInfo info4 = new MenuItemInfo();
-                    info4.setText(R.string.language_vi);
-                    info4.setType("vi");
-                    languageList.add(info4);
-                    MenuItemInfo info5 = new MenuItemInfo();
-                    info5.setText(R.string.language_ko);
-                    info5.setType("ko");
-                    languageList.add(info5);
-                    MenuItemInfo info6 = new MenuItemInfo();
-                    info6.setText(R.string.language_tr);
-                    info6.setType("tr");
-                    languageList.add(info6);
-
-                    MenuItemInfo info7 = new MenuItemInfo();
-                    info7.setText(R.string.language_my);
-                    info7.setType("my");
-                    languageList.add(info7);
-
-                    popLanguage.setData(languageList);
-                }
-                popLanguage.showPopupDownWindow();
-                break;*/
                 BaseListPopupWindow<MenuItemInfo<String>> popWindow = new BaseListPopupWindow<MenuItemInfo<String>>(mContext, view, view.getWidth(), LinearLayout.LayoutParams.WRAP_CONTENT, (TextView) view) {
 
                     @Override
@@ -316,7 +266,6 @@ public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
         //代码实现跳转
         Intent intent = new Intent();
         intent.setAction("android.intent.action.VIEW");
-        //https://www.afb1188.com/H50/Pub/wfMainH50.html
         Uri content_url = Uri.parse(BuildConfig.H5_URL);//此处填链接
         intent.setData(content_url);
         startActivity(intent);

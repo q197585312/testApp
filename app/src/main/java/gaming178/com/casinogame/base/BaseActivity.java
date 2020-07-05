@@ -905,7 +905,8 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         if (toolbar != null) {
             toolbar.setNavigationIcon(R.mipmap.arrow_left_back);
 //            backTv.setText(getResources().getString(R.string.back));
-            backTv.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
+            if (backTv != null)
+                backTv.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
 //            backTv.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
@@ -926,15 +927,16 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 rightTv.setGravity(Gravity.RIGHT);
                 rightTv.setTextColor(getResources().getColor(R.color.yellow_brown_white_word));
                 rightTv.setCompoundDrawablePadding(3);
-            }
-        rightTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                rightTv.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
 
-                clickRight(v);
+                        clickRight(v);
+                    }
+
+                });
             }
 
-        });
         appUserName = getApp().getUser().getName();
         usName = appUserName;
         if (WebSiteUrl.isDomain) {

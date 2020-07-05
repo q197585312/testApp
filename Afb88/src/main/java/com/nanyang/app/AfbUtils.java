@@ -485,9 +485,9 @@ public class AfbUtils {
         beanHashMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running));
         beanHashMap.put("43,104,61,58,64,54,91,69,37,91,61,63,102", new SportIdBean("43,104,61,58,64,54,91,69,37,91,61,63,102", "999", R.string.OutRight, "OutRight", SportActivity.class, outRightFragment, Color.BLACK, R.mipmap.outright));
         SportIdBean soccerRunning = new SportIdBean("1", "1", R.string.Soccer_Runing, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football);
-        soccerRunning.setKey("0");
+        soccerRunning.setKey("-1");
         sportMap.put("1,9,21,29,51,182", new SportIdBean("1,9,21,29,51,182", "0", R.string.all_running, "AllRunning", SportActivity.class, allRunningFragment, Color.BLACK, R.mipmap.all_running));
-        sportMap.put("0", soccerRunning);
+        sportMap.put("-1", soccerRunning);
         sportMap.put("182", new SportIdBean("182", "36", R.string.Europe_View, "Europe", SportActivity.class, europeFragment, Color.BLACK, R.mipmap.football));
         sportMap.put("1", new SportIdBean("1", "1", R.string.Soccer, "SportBook", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.football));
         sportMap.put("9", new SportIdBean("9", "2", R.string.Basketball, "Basketball", SportActivity.class, basketballFragment, Color.BLACK, R.mipmap.basketball));
@@ -1150,15 +1150,5 @@ public class AfbUtils {
         }
         Log.d("end17", "end17:" + end17 + "," + nn);
         return AfbUtils.decimalValue(Float.parseFloat(index3) * Float.parseFloat(index9) / nn, "0.00");
-    }
-    public static void getMethodName() {
-        StackTraceElement[] temp = Thread.currentThread().getStackTrace();
-        if (temp.length > 3) {
-            for (int i = 3; i < (temp.length > 7 ? 7 : temp.length); i++) {
-                StackTraceElement a = temp[i];
-                LogUtil.d("getMethodName", a.getMethodName()+",class:"+  a.getClassName());
-            }
-
-        }
     }
 }

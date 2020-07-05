@@ -193,15 +193,14 @@ public class LivePlayHelper {
         if (StringUtils.isNull(BID) || BID.equals("0")) {
             return;
         } else {
-            path = "rtmp://pull.afb1188.com/live/" + BID;
+            path = "rtmp://pull.prosportslive.net/live/" + BID;
             if (BID.startsWith("1")) {
-                path = "rtmp://pull3.afb1188.com/live/" + BID;
+                path = "rtmp://pull3.prosportslive.net/live/" + BID;
             } else if (BID.startsWith("8")) {
-                path = "rtmp://pull2.afb1188.com/live/" + BID;
+                path = "rtmp://pull2.prosportslive.net/live/" + BID;
             }
 
         }
-        path="rtmp://pull.1234326.cn/live/L01new";
         holder.videoPlayerStream.setPath(path);
     }
 

@@ -130,7 +130,7 @@ public class BetGoalWindowUtils {
                                         String index13 = dataBean.getIndex13();
                                         String transType10 = dataBean.getIndex10();
                                         boolean isOu = false;
-                                        isOu = showBetType(activity,tvData1, tvData2, index13, transType10, isOu);
+                                        isOu = showBetType(activity, tvData1, tvData2, index13, transType10, isOu);
                                         String isRun5 = dataBean.getIndex5();
                                         String betType2 = dataBean.getIndex23();
                                         if (isOu) {
@@ -170,7 +170,7 @@ public class BetGoalWindowUtils {
                                     final ImageView imgClose = view.findViewById(R.id.img_close);
                                     final TextView tvCount = view.findViewById(R.id.tv_count);
                                     TextView tvData6 = view.findViewById(R.id.tv_data6);
-                                    showStatus(activity, index20,tvData6);
+                                    showStatus(activity, index20, tvData6);
                                     String index8 = dataBean.getIndex8();
                                     String index22 = dataBean.getIndex22();
                                     String showStr;
@@ -193,14 +193,16 @@ public class BetGoalWindowUtils {
                                         }
                                         int endColor;
 
-                                        if (index20.contains("N")||index20.contains("A")) {
+                                        if (index20.contains("N") || index20.contains("A")) {
                                             endColor = ContextCompat.getColor(activity, R.color.green_dark);
                                         } else {
                                             endColor = Color.RED;
                                         }
                                         SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(showStr, "/", Color.YELLOW, endColor);
+                                        tvData6.setTextColor(ContextCompat.getColor(activity, R.color.black));
                                         tvData6.setText(spannableStringBuilder);
-                                    }else {
+
+                                    } else {
                                         tvData6.setText(showStr);
                                     }
                                     Log.d("onGetRefreshMenu", "showStr: " + showStr);
@@ -267,7 +269,7 @@ public class BetGoalWindowUtils {
             case "2":
             case "X":
                 transType10 = activity.getString(R.string.X1X2);
-                isOu=true;
+                isOu = true;
                 break;
             case "HDP":
             case "MMH":
@@ -275,7 +277,7 @@ public class BetGoalWindowUtils {
                 break;
             case "OU":
             case "MMO":
-                transType10 =activity.getString(R.string.O_U);
+                transType10 = activity.getString(R.string.O_U);
                 isOu = true;
                 break;
             case "OE":
@@ -298,12 +300,13 @@ public class BetGoalWindowUtils {
                 break;
         }
 
-        tvData2.setText(transType10 );
+        tvData2.setText(transType10);
 
 
         return isOu;
     }
-    public void showStatus(Activity activity, String status, TextView running_Status){
+
+    public void showStatus(Activity activity, String status, TextView running_Status) {
 
         if (status.trim().equals("N") || status.trim().equals("A")) {
             running_Status.setBackgroundColor(ContextCompat.getColor(activity, R.color.transparent));

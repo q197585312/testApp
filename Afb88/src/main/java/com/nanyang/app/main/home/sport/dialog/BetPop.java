@@ -69,8 +69,6 @@ import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
 
-import static com.nanyang.app.AfbUtils.getMethodName;
-
 /**
  * Created by Administrator on 2015/10/27.
  */
@@ -375,9 +373,7 @@ public class BetPop {
         }
         afbApplication.isSingleBet = isSingle;
         presenter.getRefreshOdds(refreshOddsUrl);
-        if (isSingle) {
-            getMethodName();
-        }
+
 
     }
 
@@ -659,7 +655,6 @@ public class BetPop {
         if (list.size() == 1) {
             if (afbApplication.getMixBetList().size() < 2) {
                 afbApplication.isSingleBet = true;
-                getMethodName();
             }
             rcBetContent.setBackgroundResource(R.color.transparent);
         } else {
@@ -739,9 +734,11 @@ public class BetPop {
         betPopParentTopFl.setVisibility(View.GONE);
         webView.onPause();
         webView.pauseTimers();
+        webView.stopLoading();
     }
 
     private void webViewResume() {
+        webView.stopLoading();
         betPopParentTopFl.setVisibility(View.VISIBLE);
         webView.resumeTimers();
         webView.onResume();
@@ -749,8 +746,8 @@ public class BetPop {
 
     private void setListLayoutParams() {
         ViewGroup.LayoutParams layoutParams = fl_rc_content.getLayoutParams();
-        if (list.size() > 2) {
-            layoutParams.height = AfbUtils.dp2px(context, 50 * 3 + 5);
+        if (list.size() > 3) {
+            layoutParams.height = AfbUtils.dp2px(context, 50 * 4 + 5);
         } else {
             layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
         }
@@ -1143,7 +1140,7 @@ public class BetPop {
         }
     }
 
-    private boolean isNeedInitWeb = true;
+    public boolean isNeedInitWeb = true;
 
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
 
@@ -1155,7 +1152,7 @@ public class BetPop {
             return;
         }
         if (activity.fl_top_video.getVisibility() == View.VISIBLE) {
-            webViewPause();
+            betPopParentTopFl.setVisibility(View.GONE);
             return;
         }
         if (list.size() > 1) {
@@ -1171,6 +1168,7 @@ public class BetPop {
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty()) {
             String language = new LanguageHelper(activity).getLanguage();
+
             webViewResume();
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + language;
             AfbUtils.synCookies(context, webView, gameUrl, false);

@@ -2,34 +2,21 @@ package gaming178.com.casinogame.base
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.ViewModelProvider
+import androidx.databinding.ViewDataBinding
+import com.unkonw.testapp.libs.base.BaseVMActivity
+import com.unkonw.testapp.libs.base.BaseViewModel
 
 
 @SuppressLint("Registered")
-public open class BaseKtActivity(@LayoutRes contentLayoutId: Int) :
-    AppCompatActivity(contentLayoutId) {
+abstract class BaseKtActivity<VM : BaseViewModel, DB : ViewDataBinding> :
+    BaseVMActivity<VM, DB>() {
+    public lateinit var mAppViewModel: AppViewModel
 
-
-    public lateinit var mSharedViewModel: SharedViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        mSharedViewModel = getAppViewModelProvider().get<SharedViewModel>(SharedViewModel::class.java)
-    }
-    public inline fun <reified T : ViewModel> getViewModel(): T {
-       return getActivityViewModelProvider().get(T::class.java)
-    }
-
-    fun getAppViewModelProvider(): ViewModelProvider {
-        var app = application as IViewModelStoreOwner
-        return ViewModelProvider(app.getViewModelStore(), app.getViewModelFactory())
-    }
-
-    fun getActivityViewModelProvider(): ViewModelProvider {
-        return ViewModelProvider(this, this.defaultViewModelProviderFactory)
+        mAppViewModel =
+            getAppViewModelProvider().get<AppViewModel>(AppViewModel::class.java)
     }
 
 

@@ -76,17 +76,19 @@ public abstract class SportAdapterHelper<B extends SportInfo> implements IAdapte
         this.additionMap = additionMap;
     }
 
-    public void updateContractedMatch(MyRecyclerViewHolder helper, B item) {
+    public boolean updateContractedMatch(MyRecyclerViewHolder helper, B item) {
         Boolean aBoolean = contractedMap.get(item.getModuleId());
         View ll_match_content = helper.getView(R.id.ll_match_content);
         TextView module_League_child_count_tv = helper.getView(R.id.module_League_child_count_tv);
         if (aBoolean == null || !aBoolean) {
             ll_match_content.setVisibility(View.VISIBLE);
             module_League_child_count_tv.setVisibility(View.GONE);
+            return false;
         } else {
             ll_match_content.setVisibility(View.GONE);
             module_League_child_count_tv.setText(item.getChildCount() + "");
             module_League_child_count_tv.setVisibility(View.VISIBLE);
+            return true;
         }
     }
 
