@@ -169,7 +169,7 @@ public class ChipShowHelper {
         TextPaint paint = textView.getPaint();
         paint.setFakeBoldText(true);
         textView.setText("" + money);
-        paramsText.topMargin = y/2;
+        paramsText.topMargin = y / 2;
         paramsText.gravity = Gravity.CENTER;
         if (textGravity == Gravity.TOP)
             paramsText.topMargin = chipTop - high - 10;
@@ -207,11 +207,15 @@ public class ChipShowHelper {
 
     @SuppressLint("RtlHardcoded")
     public void setOperationButton(int x, View.OnClickListener clickSure, View.OnClickListener clickCancel, View.OnClickListener clickRepaet) {
-        int w = AutoUtils.getPercentHeightSize(46);
-        int h = AutoUtils.getPercentHeightSize(46);
-        if (baseActivity instanceof DragonTigerActivity){
-             w = AutoUtils.getPercentHeightSize(40);
-             h = AutoUtils.getPercentHeightSize(40);
+        int w = AutoUtils.getPercentHeightSize(38);
+        int h = AutoUtils.getPercentHeightSize(38);
+        int w1 = AutoUtils.getPercentHeightSize(53);
+        int h1 = AutoUtils.getPercentHeightSize(28);
+        if (baseActivity instanceof DragonTigerActivity) {
+            w = AutoUtils.getPercentHeightSize(35);
+            h = AutoUtils.getPercentHeightSize(35);
+            w1 = AutoUtils.getPercentHeightSize(45);
+            h1 = AutoUtils.getPercentHeightSize(24);
         }
         if (operationWidth > 0 && operationHeight > 0) {
             w = AutoUtils.getPercentHeightSize(operationWidth);
@@ -225,16 +229,16 @@ public class ChipShowHelper {
         cancelText = new TextView(context);
         repeatText = new TextView(context);
         sureText = new TextView(context);
-        FrameLayout.LayoutParams paramsTextCancel = new FrameLayout.LayoutParams(w, h);
+        FrameLayout.LayoutParams paramsTextCancel = new FrameLayout.LayoutParams(w1, h1);
         FrameLayout.LayoutParams paramsTextRepeat = new FrameLayout.LayoutParams(w, h);
-        FrameLayout.LayoutParams paramsTextSure = new FrameLayout.LayoutParams(w, h);
+        FrameLayout.LayoutParams paramsTextSure = new FrameLayout.LayoutParams(w1, h1);
         if (operationWidth > 0 && operationHeight > 0) {
             paramsTextCancel.gravity = Gravity.LEFT;
             paramsTextRepeat.gravity = Gravity.CENTER;
             paramsTextSure.gravity = Gravity.RIGHT;
         } else {
-            int margin = 47;
-            if (baseActivity instanceof DragonTigerActivity){
+            int margin = 42;
+            if (baseActivity instanceof DragonTigerActivity) {
                 margin = 35;
             }
             paramsTextCancel.rightMargin = x + margin;
@@ -243,17 +247,17 @@ public class ChipShowHelper {
             paramsTextRepeat.gravity = chipGravity;
             paramsTextSure.leftMargin = x + margin;
             paramsTextSure.gravity = chipGravity;
-            paramsTextCancel.bottomMargin = AutoUtils.getPercentHeightSize(15);
-            paramsTextRepeat.bottomMargin = AutoUtils.getPercentHeightSize(15);
-            paramsTextSure.bottomMargin = AutoUtils.getPercentHeightSize(15);
+            paramsTextCancel.bottomMargin = AutoUtils.getPercentHeightSize(11);
+            paramsTextRepeat.bottomMargin = AutoUtils.getPercentHeightSize(11);
+            paramsTextSure.bottomMargin = AutoUtils.getPercentHeightSize(11);
         }
 
         cancelText.setLayoutParams(paramsTextCancel);
         repeatText.setLayoutParams(paramsTextRepeat);
         sureText.setLayoutParams(paramsTextSure);
-        sureText.setBackgroundResource(R.mipmap.tick_white_oval);
-        repeatText.setBackgroundResource(R.mipmap.bg_repeat);
-        cancelText.setBackgroundResource(R.mipmap.cross_red_oval);
+        sureText.setBackgroundResource(R.mipmap.new_sure);
+        repeatText.setBackgroundResource(R.mipmap.new_repeat);
+        cancelText.setBackgroundResource(R.mipmap.new_cancel);
         framelayout.setClipChildren(false);
         framelayout.addView(cancelText);
         framelayout.addView(repeatText);

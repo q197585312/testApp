@@ -192,6 +192,29 @@ public class DragonTigerActivity extends BaseActivity {
     @Bind(R.id.tv_ask2)
     TextView tv_ask2;
 
+    @Bind(R.id.img_bet_bg_dragon)
+    ImageView img_bet_bg_dragon;
+    @Bind(R.id.img_bet_bg_tiger)
+    ImageView img_bet_bg_tiger;
+    @Bind(R.id.img_bet_bg_tie)
+    ImageView img_bet_bg_tie;
+    @Bind(R.id.img_bet_bg_dragon_red)
+    ImageView img_bet_bg_dragon_red;
+    @Bind(R.id.img_bet_bg_dragon_black)
+    ImageView img_bet_bg_dragon_black;
+    @Bind(R.id.img_bet_bg_tiger_red)
+    ImageView img_bet_bg_tiger_red;
+    @Bind(R.id.img_bet_bg_tiger_black)
+    ImageView img_bet_bg_tiger_black;
+    @Bind(R.id.img_bet_bg_dragon_odd)
+    ImageView img_bet_bg_dragon_odd;
+    @Bind(R.id.img_bet_bg_dragon_even)
+    ImageView img_bet_bg_dragon_even;
+    @Bind(R.id.img_bet_bg_tiger_odd)
+    ImageView img_bet_bg_tiger_odd;
+    @Bind(R.id.img_bet_bg_tiger_even)
+    ImageView img_bet_bg_tiger_even;
+
     List<GoodRoadDataBean> goodRoadDataBeenList = new ArrayList<>();
     List<Integer> otherTableIdList = new ArrayList<>();
 
@@ -295,11 +318,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "Dragon";
-
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_d;
+        } else {
+            bg = R.mipmap.dt_h_d;
+        }
         clickChipBet(number, "Dragon", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_dragon, bg
         );
     }
 
@@ -309,19 +337,31 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "Tiger";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_t;
+        } else {
+            bg = R.mipmap.dt_h_t;
+        }
         clickChipBet(number, "Tiger", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tiger, bg
         );
     }
 
     public void clickTie(final View f) {
         String number = "Tie";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_tie;
+        } else {
+            bg = R.mipmap.dt_h_tie;
+        }
         clickChipBet(number, "Tie", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTieBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTieBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tie, bg
         );
 
     }
@@ -337,10 +377,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "DragonOdd";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_o;
+        } else {
+            bg = R.mipmap.dt_h_d_o;
+        }
         clickChipBet(number, "DragonOdd", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_dragon_odd, bg
         );
     }
 
@@ -355,10 +401,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "DragonEven";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_r;
+        } else {
+            bg = R.mipmap.dt_h_d_e;
+        }
         clickChipBet(number, "DragonEven", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_dragon_even, bg
         );
     }
 
@@ -373,10 +425,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "DragonRed";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_r;
+        } else {
+            bg = R.mipmap.dt_h_d_r;
+        }
         clickChipBet(number, "DragonRed", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_dragon_red, bg
         );
     }
 
@@ -391,10 +449,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "DragonBlack";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_r;
+        } else {
+            bg = R.mipmap.dt_h_d_b;
+        }
         clickChipBet(number, "DragonBlack", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_dragon_black, bg
         );
     }
 
@@ -409,10 +473,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "TigerOdd";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_b;
+        } else {
+            bg = R.mipmap.dt_h_t_o;
+        }
         clickChipBet(number, "TigerOdd", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tiger_odd, bg
         );
     }
 
@@ -427,10 +497,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "TigerEven";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_e;
+        } else {
+            bg = R.mipmap.dt_h_t_e;
+        }
         clickChipBet(number, "TigerEven", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tiger_even, bg
         );
     }
 
@@ -445,10 +521,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "TigerRed";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_b;
+        } else {
+            bg = R.mipmap.dt_h_t_r;
+        }
         clickChipBet(number, "TigerRed", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tiger_red, bg
         );
     }
 
@@ -463,10 +545,16 @@ public class DragonTigerActivity extends BaseActivity {
             return;
         }
         String number = "TigerBlack";
+        int bg;
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            bg = R.mipmap.dt_v_b;
+        } else {
+            bg = R.mipmap.dt_h_t_b;
+        }
         clickChipBet(number, "TigerBlack", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
                 afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number), img_bet_bg_tiger_black, bg
         );
     }
 
@@ -2515,13 +2603,191 @@ public class DragonTigerActivity extends BaseActivity {
         clearNoBetChip();
     }
 
+    private void clearBetBg() {
+        img_bet_bg_dragon.setBackgroundResource(0);
+        img_bet_bg_dragon_black.setBackgroundResource(0);
+        img_bet_bg_dragon_even.setBackgroundResource(0);
+        img_bet_bg_dragon_odd.setBackgroundResource(0);
+        img_bet_bg_dragon_red.setBackgroundResource(0);
+        img_bet_bg_tie.setBackgroundResource(0);
+        img_bet_bg_tiger.setBackgroundResource(0);
+        img_bet_bg_tiger_black.setBackgroundResource(0);
+        img_bet_bg_tiger_even.setBackgroundResource(0);
+        img_bet_bg_tiger_odd.setBackgroundResource(0);
+        img_bet_bg_tiger_red.setBackgroundResource(0);
+    }
+
+    private void showBetBg() {
+        clearBetBg();
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Dragon") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_v_d);
+            } else {
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_h_d);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Tiger") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_v_t);
+            } else {
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_h_t);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonEven") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_h_d_e);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonOdd") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_v_o);
+            } else {
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_h_d_o);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonBlack") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_h_d_b);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonRed") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_h_d_r);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerEven") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_v_e);
+            } else {
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_h_t_e);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerOdd") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_h_t_o);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerBlack") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_h_t_b);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerRed") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_h_t_r);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Tie") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_v_tie);
+            } else {
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_h_tie);
+            }
+        }
+    }
+
+    private void showRepeatBetBg() {
+        clearBetBg();
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("Dragon") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_v_d);
+            } else {
+                img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_h_d);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("Tiger") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_v_t);
+            } else {
+                img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_h_t);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonEven") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_h_d_e);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonOdd") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_v_o);
+            } else {
+                img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_h_d_o);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonBlack") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_h_d_b);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("DragonRed") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_v_r);
+            } else {
+                img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_h_d_r);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerEven") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_v_e);
+            } else {
+                img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_h_t_e);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerOdd") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_h_t_o);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerBlack") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_h_t_b);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("TigerRed") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_v_b);
+            } else {
+                img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_h_t_r);
+            }
+        }
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getNumberBetMoney("Tie") > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_v_tie);
+            } else {
+                img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_h_tie);
+            }
+        }
+    }
+
     public void clearNoBetChip() {
+        showBetBg();
         clearAllChips();
         showBetMoney(false);
         initBetInformation(DtBetType.All);
     }
 
     public void clearNoBetChip(DtBetType type) {
+        showBetBg();
         showBetChip(getFrameLayout(type.toString()), false, 0);
         initBetInformation(type);
         showBetMoney(false);
@@ -2583,6 +2849,7 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     public void clearAllChips() {
+        clearBetBg();
         BetUiHelper.betStateColor(tvTableBetSure, false);
         showBetChip(fl_dragon, false, 0);
         showBetChip(fl_dragon_odd, false, 0);
@@ -3003,6 +3270,9 @@ public class DragonTigerActivity extends BaseActivity {
         }
         if (!bRepeat) {
             BetUiHelper.betStateColor(tvTableBetSure, false);
+            showBetBg();
+        }else {
+            showRepeatBetBg();
         }
     }
 
@@ -3178,7 +3448,7 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     public void clickChipBet(String number, String type, int chooseChip, int minLimit, int maxLimit,
-                             int alreadyBet, int totalbet, FrameLayout fl_chip) {
+                             int alreadyBet, int totalbet, FrameLayout fl_chip, ImageView img_bet_bg, int bg) {
         if (checkChoose()) return;
         if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() != 1)
             return;
@@ -3224,6 +3494,7 @@ public class DragonTigerActivity extends BaseActivity {
             //超过了最大的值，要提醒
             handler.sendEmptyMessage(HandlerCode.SHOW_LIMIT_OVER_MAX);
         } else {
+            img_bet_bg.setBackgroundResource(bg);
             showBetChip(fl_chip, true, betMoney);
 
         }

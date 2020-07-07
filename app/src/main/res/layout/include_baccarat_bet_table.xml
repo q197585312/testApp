@@ -6,12 +6,109 @@
     android:layout_gravity="center_horizontal">
 
     <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="237px"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="240px"
+        android:layout_marginBottom="5px"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="92px"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="bottom"
+                android:layout_marginLeft="3px"
+                android:layout_marginTop="2px"
+                android:layout_weight="1.01">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_pp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3px"
+                android:layout_marginTop="2px"
+                android:layout_marginRight="3px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_bp"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="2px"
+            android:layout_marginBottom="3px"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="3px"
+                android:layout_weight="1.26">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_p"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal|top"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="1px"
+                android:layout_weight="1">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_t"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+            <FrameLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginRight="3px"
+                android:layout_weight="1.22">
+
+                <ImageView
+                    android:id="@+id/img_bet_bg_b"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
         android:id="@+id/fl_baccarat_a_table"
         android:layout_width="match_parent"
         android:layout_height="237px"
         android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="5px"
         android:layout_marginTop="240px"
+        android:layout_marginBottom="5px"
         android:background="@mipmap/baccarat_bg_h"
         android:orientation="vertical">
 
@@ -26,9 +123,9 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="bottom"
-                android:layout_marginLeft="7px"
-                android:layout_marginTop="5px"
-                android:layout_weight="1"
+                android:layout_marginLeft="3px"
+                android:layout_marginTop="2px"
+                android:layout_weight="1.01"
                 android:clickable="true"
                 android:onClick="clickBetPlayerPair">
 
@@ -63,8 +160,8 @@
                     android:id="@+id/tv_player_pair_bet_money"
                     style="@style/style_wrap_wrap"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="3px"
                     android:layout_marginRight="60px"
+                    android:layout_marginBottom="3px"
                     android:drawableLeft="@mipmap/dollar_white"
                     android:text="0"
                     android:textColor="@color/white"
@@ -77,14 +174,14 @@
                     style="@style/style_wrap_wrap"
                     android:layout_gravity="center_horizontal|bottom"
 
-                    android:layout_marginBottom="3px"
                     android:layout_marginLeft="58px"
+                    android:layout_marginBottom="3px"
                     android:drawableLeft="@mipmap/home_user_head_white"
                     android:gravity="center"
                     android:onClick="clickPlayerPair"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="5dp"
+                    android:paddingRight="5dp"
                     android:text="0"
                     android:textColor="@color/white"
                     android:textSize="16px" />
@@ -99,9 +196,9 @@
             <FrameLayout
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="2px"
-                android:layout_marginRight="6px"
-                android:layout_marginTop="5px"
+                android:layout_marginLeft="3px"
+                android:layout_marginTop="2px"
+                android:layout_marginRight="3px"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:onClick="clickBetBankerPair">
@@ -137,8 +234,8 @@
                     android:id="@+id/tv_banker_pair_bet_money"
                     style="@style/style_wrap_wrap"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="3px"
                     android:layout_marginRight="60px"
+                    android:layout_marginBottom="3px"
                     android:drawableLeft="@mipmap/dollar_white"
                     android:text="0"
                     android:textColor="@color/white"
@@ -149,14 +246,14 @@
                     android:id="@+id/tv_banker_pair_bet_count"
                     style="@style/style_wrap_wrap"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="3px"
                     android:layout_marginLeft="58px"
+                    android:layout_marginBottom="3px"
                     android:drawableLeft="@mipmap/home_user_head_white"
                     android:gravity="center"
                     android:onClick="clickBankerPair"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="5dp"
+                    android:paddingRight="5dp"
                     android:text="0"
                     android:textColor="@color/white"
                     android:textSize="16px" />
@@ -177,16 +274,16 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginBottom="3px"
             android:layout_marginTop="2px"
+            android:layout_marginBottom="3px"
             android:orientation="horizontal">
 
             <FrameLayout
                 android:id="@+id/fl_baccarat_table_player"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginLeft="7px"
-                android:layout_weight="1.23"
+                android:layout_marginLeft="3px"
+                android:layout_weight="1.26"
                 android:clickable="true"
                 android:onClick="clickBetPlayer">
 
@@ -224,8 +321,8 @@
                     android:id="@+id/tv_player_bet_money"
                     style="@style/style_wrap_wrap"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="10px"
                     android:layout_marginRight="38px"
+                    android:layout_marginBottom="10px"
                     android:drawableLeft="@mipmap/dollar_white"
                     android:text="0"
                     android:textColor="@color/white"
@@ -236,13 +333,13 @@
                     android:id="@+id/tv_player_bet_count"
                     style="@style/style_wrap_wrap"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="10px"
                     android:layout_marginLeft="40px"
+                    android:layout_marginBottom="10px"
                     android:drawableLeft="@mipmap/home_user_head_white"
                     android:gravity="center"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="5dp"
+                    android:paddingRight="5dp"
                     android:text="0"
                     android:textColor="@color/white"
                     android:textSize="16px" />
@@ -258,8 +355,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_gravity="center_horizontal|top"
-                android:layout_marginLeft="5px"
-                android:layout_marginRight="3px"
+                android:layout_marginLeft="1px"
+                android:layout_marginRight="1px"
                 android:layout_weight="1"
                 android:clickable="true"
                 android:onClick="clickBetTie">
@@ -298,8 +395,8 @@
                     android:id="@+id/tv_tie_bet_money"
                     style="@style/style_wrap_wrap"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="10px"
                     android:layout_marginRight="38px"
+                    android:layout_marginBottom="10px"
                     android:drawableLeft="@mipmap/dollar_white"
                     android:text="0"
                     android:textColor="@color/white"
@@ -309,13 +406,13 @@
                     android:id="@+id/tv_tie_bet_count"
                     style="@style/style_wrap_wrap"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="10px"
                     android:layout_marginLeft="40px"
+                    android:layout_marginBottom="10px"
                     android:drawableLeft="@mipmap/home_user_head_white"
                     android:gravity="center"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="5dp"
+                    android:paddingRight="5dp"
                     android:text="0"
                     android:textColor="@color/white"
                     android:textSize="16px" />
@@ -331,8 +428,8 @@
                 android:id="@+id/fl_baccarat_table_banker"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
-                android:layout_marginRight="6px"
-                android:layout_weight="1.2"
+                android:layout_marginRight="3px"
+                android:layout_weight="1.22"
                 android:clickable="true"
                 android:onClick="clickBetBanker">
 
@@ -370,8 +467,8 @@
                     android:id="@+id/tv_banker_bet_money"
                     style="@style/style_wrap_wrap"
                     android:layout_gravity="center_horizontal|bottom"
-                    android:layout_marginBottom="10px"
                     android:layout_marginRight="38px"
+                    android:layout_marginBottom="10px"
                     android:drawableLeft="@mipmap/dollar_white"
                     android:text="0"
                     android:textColor="@color/white"
@@ -382,13 +479,13 @@
                     style="@style/style_wrap_wrap"
                     android:layout_gravity="center_horizontal|bottom"
 
-                    android:layout_marginBottom="10px"
                     android:layout_marginLeft="40px"
+                    android:layout_marginBottom="10px"
                     android:drawableLeft="@mipmap/home_user_head_white"
                     android:gravity="center"
                     android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
                     android:paddingTop="5dp"
+                    android:paddingRight="5dp"
                     android:text="0"
                     android:textColor="@color/white"
                     android:textSize="16px"

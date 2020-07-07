@@ -375,6 +375,18 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     RelativeLayout rl_player_parent;
     @Bind(R.id.rl_banker_parent)
     RelativeLayout rl_banker_parent;
+
+    @Bind(R.id.img_bet_bg_pp)
+    ImageView img_bet_bg_pp;
+    @Bind(R.id.img_bet_bg_bp)
+    ImageView img_bet_bg_bp;
+    @Bind(R.id.img_bet_bg_p)
+    ImageView img_bet_bg_p;
+    @Bind(R.id.img_bet_bg_t)
+    ImageView img_bet_bg_t;
+    @Bind(R.id.img_bet_bg_b)
+    ImageView img_bet_bg_b;
+
     private AnimationDrawable animationPlayer;
     private AnimationDrawable animationBanker;
     List<ApngPlayBean> apngPlayBeanList = new ArrayList<>();
@@ -2761,7 +2773,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     public void setOnRepeatListener() {
         //    showPopBottom(lv_table_pool);
-
+        showRepeatBetBg();
         if (bBetSucess == false)//当前局还没有下注的时候允许重复下注
         {
             if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair() > 0)//清楚未下注的筹码
@@ -2913,6 +2925,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         if (playerBet > 0 || bankerBet > 0 || tieBet > 0 || bankerPairBet > 0 || playerPairBet > 0) {
             afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
         }
+        img_bet_bg_b.setBackgroundResource(0);
+        img_bet_bg_p.setBackgroundResource(0);
+        img_bet_bg_t.setBackgroundResource(0);
+        img_bet_bg_bp.setBackgroundResource(0);
+        img_bet_bg_pp.setBackgroundResource(0);
         clearAllShowChip();
         clearNoBetChip();
     }
@@ -3789,6 +3806,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         playerShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "P");
         if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
+            } else {
+                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
+            }
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             chipHelperCurrent.showChip(betMoney, chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerBet = betMoney;
@@ -3844,6 +3866,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         bankerShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "B");
         if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
+            } else {
+                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
+            }
             chipHelperCurrent.showChip(betMoney, -chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             bankerBet = betMoney;
@@ -3904,7 +3931,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         tieShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "T");
         if (betMoney > 0) {
-
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
+            } else {
+                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
+            }
             chipHelperCurrent.showChip(betMoney, tieX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             tieBet = betMoney;
@@ -3931,6 +3962,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         ppShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "PP");
         if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
+            } else {
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
+            }
             chipHelperCurrent.showChip(betMoney, chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerPairBet = betMoney;
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
@@ -3945,8 +3981,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void clickBetBankerPair(final View fl) {
-        chipHelperCurrent = chipHelperBankerPair;
         if (checkChoose()) return;
+        chipHelperCurrent = chipHelperBankerPair;
         if (afbApp.getBaccarat(afbApp.getTableId()).getGameStatus() != 1)
             return;
         clickBankerPairCount++;
@@ -3957,6 +3993,11 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         bbShowChip = betMoney;
         betMoney = getBetMoney(betMoney, "BB");
         if (betMoney > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
+            } else {
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
+            }
             chipHelperCurrent.showChip(betMoney, -chipX, chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             BetUiHelper.betStateColor(chipHelperCurrent, tvTableBetSure, true);
             bankerPairBet = betMoney;
@@ -4016,6 +4057,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         chipHelperPlayerPair.clearAllChips();
         chipHelperBankerPair.clearAllChips();
 
+        clearBetBg();
+
     }
 
     public void showBetMoney() {
@@ -4045,6 +4088,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
             chipHelperBankerPair.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair(), AutoUtils.getPercentHeightSize(4), chipY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
 
         }
+        showBetBg();
     }
 
     private void showApng(int position) {
@@ -5202,6 +5246,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
     public void clearNoBetChip(BaccaratBetType type) {
         chipHelperCurrent = null;
+        showBetBg();
         if (type == BaccaratBetType.All || type == Player) {
             chipHelperPlayer.showChip(afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer(), chipPlayerBankerX, chipPlayerBankerY, AutoUtils.getPercentHeightSize(40), AutoUtils.getPercentHeightSize(20), AutoUtils.getPercentHeightSize(46), tipY, AutoUtils.getPercentHeightSize(32) * 2, AutoUtils.getPercentHeightSize(20));
             playerBet = 0;
@@ -5244,6 +5289,92 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 clickPlayerPairCount == 0 &&
                 clickTieCount == 0) {
             BetUiHelper.betStateColor(tvTableBetSure, false);
+        }
+    }
+
+    private void clearBetBg() {
+        img_bet_bg_p.setBackgroundResource(0);
+        img_bet_bg_b.setBackgroundResource(0);
+        img_bet_bg_t.setBackgroundResource(0);
+        img_bet_bg_pp.setBackgroundResource(0);
+        img_bet_bg_bp.setBackgroundResource(0);
+    }
+
+    private void showBetBg() {
+        clearBetBg();
+        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayer() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
+            } else {
+                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
+            }
+        }
+        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBanker() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
+            } else {
+                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
+            }
+        }
+        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getTie() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
+            } else {
+                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
+            }
+        }
+        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getPlayerPair() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
+            } else {
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
+            }
+        }
+        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratBetInformation().getBankerPair() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
+            } else {
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
+            }
+        }
+    }
+
+    private void showRepeatBetBg() {
+        clearBetBg();
+        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayer() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_v_p);
+            } else {
+                img_bet_bg_p.setBackgroundResource(R.mipmap.bet_h_p);
+            }
+        }
+        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBanker() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_v_b);
+            } else {
+                img_bet_bg_b.setBackgroundResource(R.mipmap.bet_h_b);
+            }
+        }
+        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getTie() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_v_t);
+            } else {
+                img_bet_bg_t.setBackgroundResource(R.mipmap.bet_h_t);
+            }
+        }
+        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getPlayerPair() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_v_pp);
+            } else {
+                img_bet_bg_pp.setBackgroundResource(R.mipmap.bet_h_pp);
+            }
+        }
+        if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratRepeatBetInformation().getBankerPair() > 0) {
+            if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_v_bp);
+            } else {
+                img_bet_bg_bp.setBackgroundResource(R.mipmap.bet_h_bp);
+            }
         }
     }
 
