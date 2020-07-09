@@ -289,7 +289,8 @@
                     android:layout_marginTop="10dp"
                     android:text="1:1"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -320,7 +321,8 @@
                     android:layout_marginTop="10dp"
                     android:text="1:8"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="gone" />
 
                 <gaming178.com.casinogame.Util.SkewTexView
                     android:id="@+id/tv_tie_dragon_tiger"
@@ -377,7 +379,8 @@
                     android:layout_marginTop="10dp"
                     android:text="1:1"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="20sp" />
+                    android:textSize="20sp"
+                    android:visibility="gone" />
             </FrameLayout>
         </LinearLayout>
 
@@ -428,7 +431,8 @@
                     android:layout_marginTop="9dp"
                     android:text="1:0.9"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -472,7 +476,8 @@
                     android:layout_marginTop="9dp"
                     android:text="1:0.9"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -516,7 +521,8 @@
                     android:layout_marginTop="9dp"
                     android:text="1:0.9"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -561,7 +567,8 @@
                     android:layout_marginTop="9dp"
                     android:text="1:0.9"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
 
@@ -615,7 +622,8 @@
                     android:layout_marginTop="8dp"
                     android:text="1:0.75"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -659,7 +667,8 @@
                     android:layout_marginTop="8dp"
                     android:text="1:1.05"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -703,7 +712,8 @@
                     android:layout_marginTop="8dp"
                     android:text="1:0.75"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
             <!--<View-->
@@ -749,7 +759,8 @@
                     android:layout_marginTop="8dp"
                     android:text="1:1.05"
                     android:textColor="@color/yellow_gold"
-                    android:textSize="13sp" />
+                    android:textSize="13sp"
+                    android:visibility="gone" />
             </FrameLayout>
 
         </LinearLayout>

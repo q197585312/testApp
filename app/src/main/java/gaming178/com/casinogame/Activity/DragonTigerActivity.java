@@ -112,6 +112,8 @@ public class DragonTigerActivity extends BaseActivity {
     Panel bottomPanel1;
     @Bind(R.id.fl_baccarat_parent)
     View fl_baccarat_parent;
+    @Bind(R.id.fl_baccarat_b_table)
+    View fl_baccarat_b_table;
     private TextView shufflingTv;
     AdapterView lv_baccarat_chips;
 
@@ -191,6 +193,12 @@ public class DragonTigerActivity extends BaseActivity {
     TextView tv_ask1;
     @Bind(R.id.tv_ask2)
     TextView tv_ask2;
+    @Bind(R.id.tv_ask1_name)
+    TextView tv_ask1_name;
+    @Bind(R.id.tv_ask2_name)
+    TextView tv_ask2_name;
+    @Bind(R.id.tv_good_road_name)
+    TextView tv_good_road_name;
 
     @Bind(R.id.img_bet_bg_dragon)
     ImageView img_bet_bg_dragon;
@@ -1018,21 +1026,20 @@ public class DragonTigerActivity extends BaseActivity {
                     break;
                 }
             }
-            Drawable dragonBackground = iv_dragon.getBackground();
-            Drawable tieBackground = iv_tie.getBackground();
-            Drawable tigerBackground = iv_tiger.getBackground();
-            if (dragonBackground != null || tieBackground != null || tigerBackground != null) {
-                iv_dragon.setBackgroundResource(0);
-                iv_dragon_odd.setBackgroundResource(0);
-                iv_dragon_even.setBackgroundResource(0);
-                iv_dragon_red.setBackgroundResource(0);
-                iv_dragon_black.setBackgroundResource(0);
-                iv_tiger.setBackgroundResource(0);
-                iv_tiger_odd.setBackgroundResource(0);
-                iv_tiger_even.setBackgroundResource(0);
-                iv_tiger_red.setBackgroundResource(0);
-                iv_tiger_black.setBackgroundResource(0);
-                iv_tie.setBackgroundResource(0);
+            if ((objectAnimatorDragon.isRunning() || objectAnimatorTiger.isRunning() || objectAnimatorTie.isRunning()) &&
+                    dragonTigerTimer > 0 && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1) {
+                objectAnimatorDragon.cancel();
+                objectAnimatorDragonOdd.cancel();
+                objectAnimatorDragonEven.cancel();
+                objectAnimatorDragonBlack.cancel();
+                objectAnimatorDragonRed.cancel();
+                objectAnimatorTiger.cancel();
+                objectAnimatorTigerRed.cancel();
+                objectAnimatorTigerOdd.cancel();
+                objectAnimatorTigerEven.cancel();
+                objectAnimatorTigerBlack.cancel();
+                objectAnimatorTie.cancel();
+                clearBetBg();
                 animationDragon.stop();
                 animationDragon.selectDrawable(0);
                 animationTiger.stop();
@@ -1968,20 +1975,21 @@ public class DragonTigerActivity extends BaseActivity {
         if (savedInstanceState != null) {
             isFirstBet = savedInstanceState.getBoolean("isFirstBet");
         }
+        objectAnimatorDragon = WidgetUtil.startAlphaAnimation(img_bet_bg_dragon);
+        objectAnimatorDragonBlack = WidgetUtil.startAlphaAnimation(img_bet_bg_dragon_black);
+        objectAnimatorDragonEven = WidgetUtil.startAlphaAnimation(img_bet_bg_dragon_even);
+        objectAnimatorDragonOdd = WidgetUtil.startAlphaAnimation(img_bet_bg_dragon_odd);
+        objectAnimatorDragonRed = WidgetUtil.startAlphaAnimation(img_bet_bg_dragon_red);
+        objectAnimatorTie = WidgetUtil.startAlphaAnimation(img_bet_bg_tie);
+        objectAnimatorTiger = WidgetUtil.startAlphaAnimation(img_bet_bg_tiger);
+        objectAnimatorTigerBlack = WidgetUtil.startAlphaAnimation(img_bet_bg_tiger_black);
+        objectAnimatorTigerEven = WidgetUtil.startAlphaAnimation(img_bet_bg_tiger_even);
+        objectAnimatorTigerOdd = WidgetUtil.startAlphaAnimation(img_bet_bg_tiger_odd);
+        objectAnimatorTigerRed = WidgetUtil.startAlphaAnimation(img_bet_bg_tiger_red);
         initUI();
         animationDragon = (AnimationDrawable) img_dragon_animation.getBackground();
         animationTiger = (AnimationDrawable) img_tiger_animation.getBackground();
-        apngPlayBeanList.clear();
-        String lg = AppTool.getAppLanguage(mContext);
-        if (lg.equals("zh") || lg.equals("zh_TW")) {
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon, "assets://dragon_win_zh.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_cn.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger, "assets://tiger_win_zh.png"));
-        } else {
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon, "assets://dragon_win_en.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_en.png"));
-            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger, "assets://tiger_win_en.png"));
-        }
+        initApngList();
         findViewById(R.id.ll_pp).setVisibility(View.GONE);
         findViewById(R.id.ll_bp).setVisibility(View.GONE);
         toolbar_right_bottom_tv.setVisibility(View.GONE);
@@ -2046,6 +2054,20 @@ public class DragonTigerActivity extends BaseActivity {
         afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().setTiger_odd_even(-100);
         afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().setTiger_red_black(-100);
         startUpdateStatusThread();
+    }
+
+    private void initApngList() {
+        apngPlayBeanList.clear();
+        String lg = AppTool.getAppLanguage(mContext);
+        if (lg.equals("zh") || lg.equals("zh_TW")) {
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon, "assets://dragon_win_zh.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_cn.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger, "assets://tiger_win_zh.png"));
+        } else {
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_dragon, "assets://dragon_win_en.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tie, "assets://tie_win_en.png"));
+            apngPlayBeanList.add(new ApngPlayBean(img_apng_tiger, "assets://tiger_win_en.png"));
+        }
     }
 
     private void initName() {
@@ -2780,14 +2802,18 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     public void clearNoBetChip() {
-        showBetBg();
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() != 5) {
+            showBetBg();
+        }
         clearAllChips();
         showBetMoney(false);
         initBetInformation(DtBetType.All);
     }
 
     public void clearNoBetChip(DtBetType type) {
-        showBetBg();
+        if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() != 5) {
+            showBetBg();
+        }
         showBetChip(getFrameLayout(type.toString()), false, 0);
         initBetInformation(type);
         showBetMoney(false);
@@ -2849,7 +2875,6 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     public void clearAllChips() {
-        clearBetBg();
         BetUiHelper.betStateColor(tvTableBetSure, false);
         showBetChip(fl_dragon, false, 0);
         showBetChip(fl_dragon_odd, false, 0);
@@ -2883,90 +2908,224 @@ public class DragonTigerActivity extends BaseActivity {
     private AnimationDrawable animationDragon;
     private AnimationDrawable animationTiger;
 
+    ObjectAnimator objectAnimatorDragon;
+    ObjectAnimator objectAnimatorDragonOdd;
+    ObjectAnimator objectAnimatorDragonEven;
+    ObjectAnimator objectAnimatorDragonBlack;
+    ObjectAnimator objectAnimatorDragonRed;
+    ObjectAnimator objectAnimatorTiger;
+    ObjectAnimator objectAnimatorTigerRed;
+    ObjectAnimator objectAnimatorTigerOdd;
+    ObjectAnimator objectAnimatorTigerEven;
+    ObjectAnimator objectAnimatorTigerBlack;
+    ObjectAnimator objectAnimatorTie;
+
     public void showResultsOnUI() {
+        clearBetBg();
         if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5 && (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() != 0)) {
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 1) {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_dragon.setBackgroundResource(R.mipmap.long_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_dragon.setBackgroundResource(R.mipmap.long_03);
+//                } else {
+//                    iv_dragon.setBackgroundResource(R.mipmap.long_03_portrait);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_v_d);
                 } else {
-                    iv_dragon.setBackgroundResource(R.mipmap.long_03_portrait);
+                    img_bet_bg_dragon.setBackgroundResource(R.mipmap.dt_h_d);
+                }
+                if (objectAnimatorDragon.isRunning()) {
+                    objectAnimatorDragon.cancel();
+                    objectAnimatorDragon.start();
+                } else {
+                    objectAnimatorDragon.start();
                 }
                 animationDragon.start();
                 showApng(0);
                 afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 11, componentFront, mContext, afbApp.getFrontVolume());
             } else if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 2) {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_tiger.setBackgroundResource(R.mipmap.hu_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tiger.setBackgroundResource(R.mipmap.hu_03);
+//                } else {
+//                    iv_tiger.setBackgroundResource(R.mipmap.hu_03_portrait);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_v_t);
                 } else {
-                    iv_tiger.setBackgroundResource(R.mipmap.hu_03_portrait);
+                    img_bet_bg_tiger.setBackgroundResource(R.mipmap.dt_h_t);
+                }
+                if (objectAnimatorTiger.isRunning()) {
+                    objectAnimatorTiger.cancel();
+                    objectAnimatorTiger.start();
+                } else {
+                    objectAnimatorTiger.start();
                 }
                 showApng(2);
                 animationTiger.start();
                 afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 12, componentFront, mContext, afbApp.getFrontVolume());
             } else if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 3) {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_tie.setBackgroundResource(R.mipmap.he_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tie.setBackgroundResource(R.mipmap.he_03);
+//                } else {
+//                    iv_tie.setBackgroundResource(R.mipmap.he_03_portrait);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_v_tie);
                 } else {
-                    iv_tie.setBackgroundResource(R.mipmap.he_03_portrait);
+                    img_bet_bg_tie.setBackgroundResource(R.mipmap.dt_h_tie);
+                }
+                if (objectAnimatorTie.isRunning()) {
+                    objectAnimatorTie.cancel();
+                    objectAnimatorTie.start();
+                } else {
+                    objectAnimatorTie.start();
                 }
                 showApng(1);
                 afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 13, componentFront, mContext, afbApp.getFrontVolume());
             }
 
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_odd_even() == 1) {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03);
+//                } else {
+//                    iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03_portrait);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_v_o);
                 } else {
-                    iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03_portrait);
+                    img_bet_bg_dragon_odd.setBackgroundResource(R.mipmap.dt_h_d_o);
+                }
+                if (objectAnimatorDragonOdd.isRunning()) {
+                    objectAnimatorDragonOdd.cancel();
+                    objectAnimatorDragonOdd.start();
+                } else {
+                    objectAnimatorDragonOdd.start();
                 }
             } else if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_odd_even() == 2) {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_dragon_even.setBackgroundResource(R.mipmap.zuo4_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_dragon_even.setBackgroundResource(R.mipmap.zuo4_03);
+//                } else {
+//                    iv_dragon_even.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_v_r);
                 } else {
-                    iv_dragon_even.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+                    img_bet_bg_dragon_even.setBackgroundResource(R.mipmap.dt_h_d_e);
+                }
+                if (objectAnimatorDragonEven.isRunning()) {
+                    objectAnimatorDragonEven.cancel();
+                    objectAnimatorDragonEven.start();
+                } else {
+                    objectAnimatorDragonEven.start();
                 }
             }
 
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_red_black() == 1) {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_dragon_red.setBackgroundResource(R.mipmap.zuo1_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_dragon_red.setBackgroundResource(R.mipmap.zuo1_03);
+//                } else {
+//                    iv_dragon_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_v_r);
                 } else {
-                    iv_dragon_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+                    img_bet_bg_dragon_red.setBackgroundResource(R.mipmap.dt_h_d_r);
+                }
+                if (objectAnimatorDragonRed.isRunning()) {
+                    objectAnimatorDragonRed.cancel();
+                    objectAnimatorDragonRed.start();
+                } else {
+                    objectAnimatorDragonRed.start();
                 }
             } else {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_dragon_black.setBackgroundResource(R.mipmap.zuo2_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_dragon_black.setBackgroundResource(R.mipmap.zuo2_03);
+//                } else {
+//                    iv_dragon_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_v_r);
                 } else {
-                    iv_dragon_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+                    img_bet_bg_dragon_black.setBackgroundResource(R.mipmap.dt_h_d_b);
+                }
+                if (objectAnimatorDragonBlack.isRunning()) {
+                    objectAnimatorDragonBlack.cancel();
+                    objectAnimatorDragonBlack.start();
+                } else {
+                    objectAnimatorDragonBlack.start();
                 }
             }
 
 
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getTiger_odd_even() == 1) {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_tiger_odd.setBackgroundResource(R.mipmap.zuo7_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tiger_odd.setBackgroundResource(R.mipmap.zuo7_03);
+//                } else {
+//                    iv_tiger_odd.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_v_b);
                 } else {
-                    iv_tiger_odd.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+                    img_bet_bg_tiger_odd.setBackgroundResource(R.mipmap.dt_h_t_o);
+                }
+                if (objectAnimatorTigerOdd.isRunning()) {
+                    objectAnimatorTigerOdd.cancel();
+                    objectAnimatorTigerOdd.start();
+                } else {
+                    objectAnimatorTigerOdd.start();
                 }
             } else {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03);
+//                } else {
+//                    iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03_portrait);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_v_e);
                 } else {
-                    iv_tiger_even.setBackgroundResource(R.mipmap.zuo8_03_portrait);
+                    img_bet_bg_tiger_even.setBackgroundResource(R.mipmap.dt_h_t_e);
+                }
+                if (objectAnimatorTigerEven.isRunning()) {
+                    objectAnimatorTigerEven.cancel();
+                    objectAnimatorTigerEven.start();
+                } else {
+                    objectAnimatorTigerEven.start();
                 }
             }
 
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getTiger_red_black() == 1) {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_tiger_red.setBackgroundResource(R.mipmap.zuo5_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tiger_red.setBackgroundResource(R.mipmap.zuo5_03);
+//                } else {
+//                    iv_tiger_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_v_b);
                 } else {
-                    iv_tiger_red.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+                    img_bet_bg_tiger_red.setBackgroundResource(R.mipmap.dt_h_t_r);
+                }
+                if (objectAnimatorTigerRed.isRunning()) {
+                    objectAnimatorTigerRed.cancel();
+                    objectAnimatorTigerRed.start();
+                } else {
+                    objectAnimatorTigerRed.start();
                 }
             } else {
-                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-                    iv_tiger_black.setBackgroundResource(R.mipmap.zuo6_03);
+//                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+//                    iv_tiger_black.setBackgroundResource(R.mipmap.zuo6_03);
+//                } else {
+//                    iv_tiger_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+//                }
+                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+                    img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_v_b);
                 } else {
-                    iv_tiger_black.setBackgroundResource(R.mipmap.normal_dragon_tiger);
+                    img_bet_bg_tiger_black.setBackgroundResource(R.mipmap.dt_h_t_b);
+                }
+                if (objectAnimatorTigerBlack.isRunning()) {
+                    objectAnimatorTigerBlack.cancel();
+                    objectAnimatorTigerBlack.start();
+                } else {
+                    objectAnimatorTigerBlack.start();
                 }
             }
 
@@ -3270,9 +3429,13 @@ public class DragonTigerActivity extends BaseActivity {
         }
         if (!bRepeat) {
             BetUiHelper.betStateColor(tvTableBetSure, false);
-            showBetBg();
-        }else {
-            showRepeatBetBg();
+            if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() != 5) {
+                showBetBg();
+            }
+        } else {
+            if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() != 5) {
+                showRepeatBetBg();
+            }
         }
     }
 
@@ -3764,5 +3927,28 @@ public class DragonTigerActivity extends BaseActivity {
             }
         });
         contentInfo.setData(updateInfoData());
+    }
+
+    @Override
+    public void onInGameChooseLanguage() {
+        initApngList();
+        afbApp.getDragonTiger(afbApp.getTableId()).setBigRoadOld("");
+        fl_baccarat_b_table.setBackgroundResource(0);
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            fl_baccarat_b_table.setBackgroundResource(R.mipmap.dragon_tiger_bet_bg);
+        } else {
+            fl_baccarat_b_table.setBackgroundResource(R.mipmap.dragon_tiger_bg);
+        }
+        tv_ask1.setText(getString(R.string.dragon_big));
+        tv_ask2.setText(getString(R.string.tiger_dragon_tiger));
+        tv_ask1_name.setText(getString(R.string.ask));
+        tv_ask2_name.setText(getString(R.string.ask));
+        tv_good_road_name.setText(getString(R.string.good_road));
+        ((TextView) findViewById(R.id.tv_banker)).setText(getString(R.string.dr));
+        ((TextView) findViewById(R.id.tv_player)).setText(getString(R.string.ti));
+        ((TextView) findViewById(R.id.tv_tie)).setText(getString(R.string.tie));
+        ((TextView) findViewById(R.id.tv_total)).setText(getString(R.string.total_m));
+        ((TextView) findViewById(R.id.tv_dragon_result_name)).setText(getString(R.string.dragon));
+        ((TextView) findViewById(R.id.tv_tiger_result_name)).setText(getString(R.string.tiger));
     }
 }

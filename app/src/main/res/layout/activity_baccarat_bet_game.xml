@@ -156,6 +156,7 @@
                                     android:background="@drawable/animation_player" />
 
                                 <TextView
+                                    android:id="@+id/tv_player_result_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/shape_result_name_player"
@@ -235,6 +236,7 @@
                                     android:background="@drawable/animation_banker" />
 
                                 <TextView
+                                    android:id="@+id/tv_banker_result_name"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:background="@drawable/shape_result_name"

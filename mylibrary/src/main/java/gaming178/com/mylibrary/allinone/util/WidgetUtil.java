@@ -1,6 +1,7 @@
 package gaming178.com.mylibrary.allinone.util;
 
 import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
 import android.app.Activity;
@@ -146,7 +147,7 @@ public class WidgetUtil {
             @Override
             public void onAnimationEnd(Animation animation) {
                 Activity activity = (Activity) v.getContext();
-                if (v != null&&activity.getResources().getConfiguration().orientation== Configuration.ORIENTATION_LANDSCAPE) {
+                if (v != null && activity.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
                     ObjectAnimator animator1 = ObjectAnimator.ofFloat(v, "rotationX", 0, 12);
                     animator1.setDuration(0).start();
                 }
@@ -175,11 +176,18 @@ public class WidgetUtil {
         objectAnimator.start();
     }
 
-    public ObjectAnimator startAlphaAnimation(View view) {
-        ObjectAnimator animator = ObjectAnimator.ofFloat(view, "alpha", 1, (float) 0.5, 1);
+    public static ObjectAnimator startAlphaAnimation(final View view) {
+        final ObjectAnimator animator = ObjectAnimator.ofFloat(view, "alpha", 1, (float) 0.3, 1);
         animator.setRepeatCount(Animation.INFINITE);
         animator.setDuration(1000);
-        animator.start();
+        animator.addListener(new AnimatorListenerAdapter() {
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (animator != null && view != null) {
+                    view.setAlpha(1.0f);
+                }
+            }
+        });
         return animator;
     }
 
@@ -238,6 +246,7 @@ public class WidgetUtil {
         });
         animator.start();
     }
+
     /**
      * 判断程序是否在后台运行
      *

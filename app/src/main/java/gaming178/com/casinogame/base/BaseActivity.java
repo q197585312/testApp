@@ -22,11 +22,13 @@ import android.view.WindowManager;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -1202,7 +1204,6 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
     PopChoiceLanguage popLanguage;
 
     public void showLanguagePop(View v, final float weight) {
-
         if (popLanguage == null) {
             popLanguage = new PopChoiceLanguage<MenuItemInfo<String>>(mContext, v, ScreenUtil.getScreenWidthPix(mContext) - ScreenUtil.dip2px(mContext, 20), ScreenUtil.dip2px(mContext, 200)) {
                 @Override
@@ -1344,6 +1345,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
 //        centerPop.setData());
     }
 
+    public void onInGameChooseLanguage() {
+
+    }
+
     public void showSetPop(final View v, int gravity) {
         View center = v;
         if (v == null) {
@@ -1363,6 +1368,12 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
             protected void initView(View view) {
                 super.initView(view);
                 RadioGroup rg_switch = (RadioGroup) view.findViewById(R.id.rg_switch);
+                RadioButton rb_limit = (RadioButton) view.findViewById(R.id.rb_limit);
+                RadioButton rb_language = (RadioButton) view.findViewById(R.id.rb_language);
+                if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+                    rb_limit.setBackgroundResource(R.drawable.selector_music_choose_right);
+                    rb_language.setVisibility(View.GONE);
+                }
                 TextView tv_music_title = (TextView) view.findViewById(R.id.tv_music_title);
                 if (BaseActivity.this instanceof LobbyActivity) {
                     rg_switch.setVisibility(View.GONE);
@@ -1370,6 +1381,7 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                 }
                 final LinearLayout ll_music = view.findViewById(R.id.ll_music);
                 final RecyclerView recyclerView = view.findViewById(R.id.base_rv);
+                final RecyclerView rc_lg = view.findViewById(R.id.rc_lg);
                 recyclerView.setLayoutManager(new GridLayoutManager(mContext, 2));
                 BaseRecyclerAdapter<String> baseRecyclerAdapter = new BaseRecyclerAdapter<String>(mContext, getSetLimitData(afbApp.getTableId()), R.layout.item_popupwindow_text_select) {
                     @Override
@@ -1403,6 +1415,33 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     }
                 });
                 recyclerView.setAdapter(baseRecyclerAdapter);
+
+                rc_lg.setLayoutManager(new GridLayoutManager(mContext, 2));
+                BaseRecyclerAdapter<MenuItemInfo<String>> recyclerAdapter = new BaseRecyclerAdapter<MenuItemInfo<String>>(mContext, new LanguageHelper(mContext).getLanguageItems(), R.layout.item_language_selected) {
+                    @Override
+                    public void convert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
+                        ImageView ivFlag = holder.getView(R.id.iv_flag_country);
+                        TextView tvContent = holder.getView(R.id.selectable_text_content_tv);
+                        tvContent.setText(item.getText());
+                        ivFlag.setImageResource(item.getRes());
+                        boolean itemLanguageSelected = new LanguageHelper(mContext).isItemLanguageSelected(item.getType());
+                        if (itemLanguageSelected) {
+                            tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.mipmap.oval_blue_point_12, 0);
+                        } else {
+                            tvContent.setCompoundDrawablesWithIntrinsicBounds(0, 0, 0, 0);
+                        }
+                    }
+                };
+                recyclerAdapter.setOnItemClickListener(new BaseRecyclerAdapter.OnItemClickListener<MenuItemInfo<String>>() {
+                    @Override
+                    public void onItemClick(View view, MenuItemInfo<String> item, int position) {
+                        AppTool.setAppLanguage(BaseActivity.this, item.getType());
+                        closePopupWindow();
+                        onInGameChooseLanguage();
+                    }
+                });
+                rc_lg.setAdapter(recyclerAdapter);
+
                 rg_switch.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
                     @Override
                     public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -1410,10 +1449,17 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                             case R.id.rb_music:
                                 ll_music.setVisibility(View.VISIBLE);
                                 recyclerView.setVisibility(View.GONE);
+                                rc_lg.setVisibility(View.GONE);
                                 break;
                             case R.id.rb_limit:
                                 ll_music.setVisibility(View.INVISIBLE);
                                 recyclerView.setVisibility(View.VISIBLE);
+                                rc_lg.setVisibility(View.GONE);
+                                break;
+                            case R.id.rb_language:
+                                ll_music.setVisibility(View.INVISIBLE);
+                                recyclerView.setVisibility(View.GONE);
+                                rc_lg.setVisibility(View.VISIBLE);
                                 break;
                         }
                     }

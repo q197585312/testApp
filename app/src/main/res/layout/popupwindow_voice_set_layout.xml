@@ -41,7 +41,7 @@
                 android:checked="true"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="@string/music_setting"
+                android:text="@string/MUSIC"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="16sp"></RadioButton>
@@ -51,11 +51,25 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:background="@drawable/selector_music_choose_mid"
+                android:button="@null"
+                android:gravity="center"
+                android:padding="5dp"
+                android:text="@string/LIMIT"
+                android:textAllCaps="true"
+                android:textColor="@color/black"
+                android:textSize="16sp"></RadioButton>
+
+            <RadioButton
+                android:id="@+id/rb_language"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:background="@drawable/selector_music_choose_right"
                 android:button="@null"
                 android:gravity="center"
                 android:padding="5dp"
-                android:text="@string/limit_setting"
+                android:text="@string/language"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
                 android:textSize="16sp"></RadioButton>
@@ -189,6 +203,16 @@
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/base_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:background="@drawable/rectangle_white_bottom_corner5"
+                android:divider="@null"
+                android:scrollbars="none"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rc_lg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"

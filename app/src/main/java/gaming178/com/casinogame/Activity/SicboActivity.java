@@ -98,6 +98,8 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
     View handle1;
     @Bind(R.id.ll_bet_btn_parent)
     View ll_bet_btn_parent;
+    @Bind(R.id.sibao_bet_bg)
+    View sibao_bet_bg;
     @Bind(R.id.tv_menu)
     TextView tvMenu;
     /* @Bind(R.id.tv_table_pool)
@@ -5795,5 +5797,15 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
             }
         });
         contentInfo.setData(updateInfoData());
+    }
+
+    @Override
+    public void onInGameChooseLanguage() {
+        sibao_bet_bg.setBackgroundResource(0);
+        sibao_bet_bg.setBackgroundResource(R.mipmap.sicbo_bet_bg);
+        contentPercentage.setData(updatePercentageData());
+        contentPercentage.notifyDataSetChanged();
+        contentResults.setData(getResultsData());
+        contentResults.notifyDataSetChanged();
     }
 }

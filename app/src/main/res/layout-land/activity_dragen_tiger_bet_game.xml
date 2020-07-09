@@ -92,6 +92,7 @@
                 android:background="@drawable/animation_banker" />
 
             <TextView
+                android:id="@+id/tv_dragon_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_result_name"
@@ -174,6 +175,7 @@
                 android:background="@drawable/animation_player" />
 
             <TextView
+                android:id="@+id/tv_tiger_result_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/shape_result_name_player"
@@ -269,6 +271,7 @@
                 android:textColor="@color/yellow_gold"
                 android:textSize="12sp"
                 android:visibility="gone" />
+
             <FrameLayout
                 android:layout_width="660px"
                 android:layout_height="315px"
@@ -421,6 +424,7 @@
             </FrameLayout>
 
             <FrameLayout
+                android:id="@+id/fl_baccarat_b_table"
                 android:layout_width="620px"
                 android:layout_height="115px"
                 android:layout_gravity="bottom|center_horizontal"
