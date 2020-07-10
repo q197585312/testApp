@@ -51,7 +51,7 @@ android {
     }
     productFlavors {
         gd88 {
-            versionName '3.56'
+            versionName '3.57'
             buildConfigField "String", "Labelid", '"48"'
             applicationId 'gaming178.com.baccaratgame'
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "gd88"]

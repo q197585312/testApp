@@ -1883,7 +1883,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                         }
                     }
                     //清除所有的下注的筹码
-                    clearAllChips();
+//                    clearAllChips();
 
                     break;
                 case HandlerCode.SHOW_BET_SUCCESS:
@@ -4134,7 +4134,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     ObjectAnimator objectAnimatorPP;
 
     public void showResultsOnUI() {
-        clearBetBg();
+//        clearBetBg();
         if (afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().getBanker_palyer_tie() == 1) {
 //            iv_baccarat_table_banker.setVisibility(View.VISIBLE);
             if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {

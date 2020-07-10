@@ -481,12 +481,13 @@
             </LinearLayout>
         </LinearLayout>
 
+        <include layout="@layout/good_road_bg"></include>
+
         <include
             layout="@layout/popupwindow_limit_select_layout"
             android:visibility="gone" />
 
         <include layout="@layout/shuffling" />
 
-        <include layout="@layout/good_road_bg"></include>
     </FrameLayout>
 </LinearLayout>

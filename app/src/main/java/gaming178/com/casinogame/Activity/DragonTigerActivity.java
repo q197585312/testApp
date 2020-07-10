@@ -1770,7 +1770,7 @@ public class DragonTigerActivity extends BaseActivity {
 
                     }
                     //清除所有的下注的筹码
-                    clearAllChips();
+//                    clearAllChips();
 
                     break;
                 case HandlerCode.SHOW_BET_SUCCESS:
@@ -2921,7 +2921,7 @@ public class DragonTigerActivity extends BaseActivity {
     ObjectAnimator objectAnimatorTie;
 
     public void showResultsOnUI() {
-        clearBetBg();
+//        clearBetBg();
         if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5 && (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() != 0)) {
             if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 1) {
 //                if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
