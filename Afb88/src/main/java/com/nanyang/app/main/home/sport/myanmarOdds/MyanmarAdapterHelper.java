@@ -2,13 +2,13 @@ package com.nanyang.app.main.home.sport.myanmarOdds;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.training.ScrollLayout;
 
 /**
  * Created by Administrator on 2017/3/14.
@@ -32,8 +32,7 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
         TextView homeRedCardTv = helper.getView(R.id.module_match_home_red_card_tv);
         tvCollection.setVisibility(View.GONE);
 
-        ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), "0", "0", item.getUOdds_FH(), item.getOOdds_FH(), item.getHOdds_FH(), item.getAOdds_FH());
+        FrameLayout sl = helper.getView(R.id.module_center_sl);
 
         String hasMMHdp = "0";
         if (!item.MMHdpOdds.equals("0") && Integer.valueOf(item.MMHdpPct) != -1) {
@@ -77,7 +76,7 @@ public class MyanmarAdapterHelper extends BallAdapterHelper<MyanmarInfo> {
             awayTv1.setText(away);
             checkRedCards(awayRedCardTv1, rcAway);
             checkRedCards(homeRedCardTv1, rcHome);
-            ScrollLayout sl1 = helper.getView(R.id.module_center_sl1);
+            FrameLayout sl1 = helper.getView(R.id.module_center_sl1);
             scrollChild(sl1.getChildAt(0), false, item, item.getMMIsHomeGive(), hasMMHdp, hdpMM, hasMMOu, ouMM, "0", "0", item.getMMOUOdds(), item.getMMOUOdds(), item.getMMHdpOdds(), item.getMMHdpOdds(),
                     "mmhome", "mmaway", "mmover", "mmunder",
                     true, true, false, "", "", "", "", "", ""

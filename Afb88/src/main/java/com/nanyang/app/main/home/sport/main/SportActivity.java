@@ -7,9 +7,7 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
-import android.text.Editable;
 import android.text.TextUtils;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -18,7 +16,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -105,8 +102,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public View ll_line1;
     @Bind(R.id.ll_line2)
     public View ll_line2;
-    @Bind(R.id.ll_line3)
-    public View ll_line3;
+
     @Bind(R.id.right_ll)
     View right_ll;
     @Bind(R.id.drawer_more)
@@ -166,19 +162,14 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     public
     LinearLayout llSportMenuBottom;
     @Bind(R.id.sports_language_tv)
-    TextView sports_language_tv;
+    ImageView sports_language_tv;
     @Bind(R.id.sports_selected_tv)
     TextView getTvSportSelect;
-    @Bind(R.id.sport_title_tv)
-    TextView sportTitleTv;
     @Bind(R.id.tv_balance)
     TextView tvBalance;
     @Bind(R.id.tv_waite_count)
-    TextView tvWaiteCount;
-    @Bind(R.id.iv_delete_search)
-    ImageView ivDeleteSearch;
-    @Bind(R.id.edt_match_search_content)
-    EditText edtSearchContent;
+    public TextView tvWaiteCount;
+
 
     @Bind(R.id.ll_header_sport)
     public LinearLayout ll_header_sport;
@@ -190,7 +181,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     @Bind(R.id.ll_home_left)
     View ll_home_left;
     @Bind(R.id.match_collection_fl)
-    View collectionFl;
+    ImageView collectionFl;
 
     @Bind(R.id.sports_selected)
     RadioButton sports_selected;
@@ -245,35 +236,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport);
         toolbar.setVisibility(View.GONE);
-
-        edtSearchContent.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
-            }
-
-            @Override
-            public void afterTextChanged(Editable editable) {
-                String s = editable.toString().trim();
-                if (TextUtils.isEmpty(s)) {
-                    edtSearchContent.setCursorVisible(false);
-                } else {
-                    edtSearchContent.setCursorVisible(true);
-                }
-                if (!StringUtils.isNull(s)) {
-                    ivDeleteSearch.setVisibility(View.VISIBLE);
-                    currentFragment.searchMatch(true, s);
-                } else {
-                    ivDeleteSearch.setVisibility(View.GONE);
-                    currentFragment.searchMatch(false, "");
-                }
-                currentFragment.checkBg(collectionFl, currentFragment.presenter.getStateHelper().isCollection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_yellow);
-
-            }
-        });
+        ;
         myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 //        presenter.getStateHelper().switchOddsType(item.getType());
@@ -369,7 +332,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         });
 
         MenuItemInfo<String> languageItem = new LanguageHelper(mContext).getLanguageItem();
-        sports_language_tv.setText(languageItem.getText());
     }
 
     BaseRecyclerAdapter<SportIdBean> leftSportAdapter;
@@ -512,7 +474,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvMix.setTextColor(ContextCompat.getColor(mContext, R.color.grey_dark));
         } else {
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping_null, 0, 0);
-            ivOrderTop.setImageResource(R.mipmap.sport_bottom_teb_shopping_null);
+            ivOrderTop.setImageResource(R.mipmap.sport_bottom_teb_shopping_white);
             tvMixCount.setVisibility(View.GONE);
             tvOrderCount.setVisibility(View.GONE);
             tvMixCount.setText("0");
@@ -572,7 +534,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private void changeFragmentInit(String tag, BaseSportFragment localCurrentFragment) {
         afbDrawerViewHolder.initDefaultFragment(localCurrentFragment);
         deleteHeadAndFoot();
-        sportTitleTv.setText(getString(R.string.sport_match) + " > ");
         getTvSportSelect.setText(tag);
         afbDrawerViewHolder.switchFragment(localCurrentFragment);
         currentFragment = localCurrentFragment;
@@ -669,7 +630,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void clickCollectionStar(View view) {
-        currentFragment.collection(view);
+        currentFragment.collection((ImageView) view);
     }
 
     public void clickBets(View view) {
@@ -773,7 +734,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                         SportIdBean next = iterator.next();
 
                         String num = jsonObjectNum.optString(typeStr + next.getDbid());
-                        if (next.getTextRes() == R.string.Soccer_Runing||next.getTextRes() == R.string.all_running) {
+                        if (next.getTextRes() == R.string.Soccer_Runing || next.getTextRes() == R.string.all_running) {
                             num = jsonObjectNum.optString("M_RAm" + next.getDbid());
                         }
                         numMap.put(next.getKey(), num);
@@ -976,12 +937,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         return afbDrawerViewHolder.onKeyDown(keyCode, event);
     }
 
-
-    public void clickDeleteSearch(View view) {
-        currentFragment.searchMatch(false, "");
-        edtSearchContent.setText("");
-    }
-
     public void clickOrderTop(View view) {
         currentFragment.clickOrder();
     }
@@ -993,7 +948,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void onGetRefreshMenu(List<String> beanList) {
-        int waitSize = beanList.size();
+        this.waitSize = beanList.size();
         if (waitSize > 0) {
             tvWaiteCount.setVisibility(View.VISIBLE);
             tvWaiteCount.setText(waitSize + "");
@@ -1075,7 +1030,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (currentFragment.isVisible()) {
             ll_line1.setVisibility(View.VISIBLE);
             ll_line2.setVisibility(View.VISIBLE);
-            ll_line3.setVisibility(View.VISIBLE);
             ll_header_sport.setVisibility(View.VISIBLE);
             llSportMenuBottom.setVisibility(View.VISIBLE);
             if ((currentFragment.getPresenter().getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
@@ -1113,7 +1067,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             currentFragment.clickItemAdd(fl_top_video, itemBall, positionBall);
             ll_line1.setVisibility(View.GONE);
             ll_line2.setVisibility(View.GONE);
-            ll_line3.setVisibility(View.GONE);
+            collectionNumTv.setVisibility(View.GONE);
             ll_header_sport.setVisibility(View.GONE);
             currentFragment.presenter.getStateHelper().getAdapterHelper().setOnlyShowAdded(onlyOne);
             if (getBetContent() != null)
@@ -1308,7 +1262,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickLanguage(View view) {
-        BaseListPopupWindow<MenuItemInfo<String>> popWindow = new BaseListPopupWindow<MenuItemInfo<String>>(mContext, view, AfbUtils.dp2px(mContext, 200), AfbUtils.dp2px(mContext, 300), (TextView) view) {
+        BaseListPopupWindow<MenuItemInfo<String>> popWindow = new BaseListPopupWindow<MenuItemInfo<String>>(mContext, view, AfbUtils.dp2px(mContext, 200), AfbUtils.dp2px(mContext, 300)) {
 
             @Override
             public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
@@ -1323,7 +1277,6 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             protected void clickItem(TextView tv, MenuItemInfo<String> item) {
                 super.clickItem(tv, item);
                 closePopupWindow();
-                tv.setText(item.getText());
                 AfbUtils.switchLanguage(item.getType(), mContext);
                 presenter.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
                     @Override

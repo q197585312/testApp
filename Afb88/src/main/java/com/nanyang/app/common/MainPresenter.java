@@ -30,6 +30,7 @@ import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.home.LoadPCasinoDataHelper;
 import com.nanyang.app.main.home.SaCasinoWfBean;
 import com.nanyang.app.main.home.keno.WebActivity;
+import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
@@ -156,10 +157,11 @@ public class MainPresenter extends BaseSwitchPresenter {
 
                         LogIntervalUtils.logTime("请求数据完成开始解析");
                         okhttp3.Response response = responseBodyResponse.raw().priorResponse();
+                        BaseToolbarActivity baseActivity = (BaseToolbarActivity) baseContext.getBaseActivity();
                         if (response != null) {
                             Request request = response.request();
                             String url = request.url().toString();
-                            BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseContext.getBaseActivity();
+                            BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseActivity;
                             if (ApkUtils.isAvilible(mainActivity, "gaming178.com.baccaratgame")) {
                                 Intent intent = new Intent();
                                 ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
@@ -173,12 +175,17 @@ public class MainPresenter extends BaseSwitchPresenter {
                                 intent.putExtra("gameType", 5);
                                 intent.putExtra("balance", info.getCredit2());
                                 LogIntervalUtils.logTime("请求数据完成开始跳转");
-                                baseContext.getBaseActivity().startActivity(intent);
+                                baseActivity.startActivity(intent);
                             } else {
                                 downloadGd88();
                             }
                         } else {
-                            ToastUtils.showShort("not find agent!");
+                            baseActivity.reLoginPrompt(baseActivity.getString(R.string.failed_to_connect), new SportContract.CallBack() {
+                                @Override
+                                public void clickCancel(View v) {
+                                    ToastUtils.showShort("not find agent!");
+                                }
+                            });
                         }
                         baseContext.hideLoadingDialog();
                     }

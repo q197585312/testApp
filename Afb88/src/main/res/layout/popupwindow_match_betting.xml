@@ -244,10 +244,9 @@
                 android:gravity="center"
                 android:inputType="number"
                 android:paddingRight="8dp"
-                android:text="0"
+                android:textColorHint="@color/grey_light"
                 android:textAllCaps="true"
                 android:textColor="@color/black"
-                android:textColorHint="@color/grey_background"
                 android:translationZ="5dp" />
 
             <TextView
@@ -418,7 +417,7 @@
         android:layout_height="205dp"
         android:visibility="gone">
 
-        <WebView
+        <com.unkonw.testapp.libs.widget.LollipopFixedWebView
             android:id="@+id/bet_pop_parent_web_ll"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

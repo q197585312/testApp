@@ -41,7 +41,7 @@
             android:layout_width="30dp"
             android:layout_height="28dp"
             android:layout_marginRight="12dp"
-            android:background="@drawable/trans_shadow_layer"
+            android:background="@mipmap/rectangle_bg_shadow"
             android:layout_gravity="center"
             android:padding="5dp"
 
@@ -57,7 +57,7 @@
             android:layout_width="30dp"
             android:layout_height="28dp"
             android:layout_marginRight="12dp"
-            android:background="@drawable/trans_shadow_layer"
+            android:background="@mipmap/rectangle_bg_shadow"
             android:layout_gravity="center"
             android:padding="5dp"
             android:gravity="center"
@@ -72,7 +72,7 @@
             android:layout_width="30dp"
             android:layout_height="28dp"
             android:layout_marginRight="12dp"
-            android:background="@drawable/trans_shadow_layer"
+            android:background="@mipmap/rectangle_bg_shadow"
             android:layout_gravity="center"
             android:padding="5dp"
             android:gravity="center"
@@ -184,7 +184,7 @@
             android:textSize="12sp"
             android:textStyle="bold" />
 
-        <WebView
+        <com.unkonw.testapp.libs.widget.LollipopFixedWebView
             android:id="@+id/web_wv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

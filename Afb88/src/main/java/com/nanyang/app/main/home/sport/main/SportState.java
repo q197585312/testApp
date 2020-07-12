@@ -1199,7 +1199,9 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
     @Override
     public void onPrevious(SwipeToLoadLayout swipeToLoadLayout) {
-        this.swipeToLoadLayout = swipeToLoadLayout;
+        refresh();
+        swipeToLoadLayout.setRefreshing(false);
+      /*  this.swipeToLoadLayout = swipeToLoadLayout;
         if (page == 0) {
             refresh();
         } else {
@@ -1209,12 +1211,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
                 swipeToLoadLayout.setLoadMoreEnabled(true);
             }
         }
-        swipeToLoadLayout.setRefreshing(false);
+        swipeToLoadLayout.setRefreshing(false);*/
     }
 
     @Override
     public void onNext(SwipeToLoadLayout swipeToLoadLayout) {
-        this.swipeToLoadLayout = swipeToLoadLayout;
+        swipeToLoadLayout.setLoadingMore(false);
+    /*    this.swipeToLoadLayout = swipeToLoadLayout;
         if (filterData != null && (page + 1) * pageSize < filterData.size()) {
             page++;
             showCurrentData();
@@ -1222,7 +1225,7 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
         } else {
             swipeToLoadLayout.setLoadingMore(false);
 //            swipeToLoadLayout.setLoadMoreEnabled(false);
-        }
+        }*/
     }
 
     public BaseRecyclerAdapter<MenuItemInfo<Integer>> getSwitchTypeAdapter() {

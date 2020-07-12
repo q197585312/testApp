@@ -2,13 +2,13 @@ package com.nanyang.app.main.home.sport.football;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.home.sport.main.BallAdapterHelper;
 import com.nanyang.app.main.home.sport.model.BallInfo;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
-import com.unkonw.testapp.training.ScrollLayout;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -32,8 +32,7 @@ public class SoccerCommonAdapterHelper extends BallAdapterHelper<BallInfo> {
     @Override
     public void onConvert(MyRecyclerViewHolder helper, final int position, final BallInfo item) {
         super.onConvert(helper, position, item);
-        ScrollLayout sl = helper.getView(R.id.module_center_sl);
-        scrollChild(sl.getChildAt(1), true, item, item.getIsHomeGive_FH(), item.getHasHdp_FH(), item.getHdp_FH(), item.getHasOU_FH(), item.getOU_FH(), item.getIsHdpNew_FH(), item.getIsOUNew_FH(), item.getUOdds_FH(), item.getOOdds_FH(), item.getHOdds_FH(), item.getAOdds_FH());
+        FrameLayout sl = helper.getView(R.id.module_center_sl);
         updateMixBackground(item, sl, "home", "away", "over", "under", "odd", "even");
     }
 

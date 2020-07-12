@@ -5,6 +5,7 @@ import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.Spanned;
@@ -28,6 +29,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -790,6 +792,7 @@ public class BetPop {
                     holder.setIsRecyclable(false);
                 }
 
+                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void convert(final MyRecyclerViewHolder holder, final int position, final AfbClickBetBean item) {
                     TextView bet_module_title_tv = holder.getView(R.id.bet_module_title_tv);
@@ -962,6 +965,7 @@ public class BetPop {
                     tvBetOdds.setText(spanned);
                     tvBetOddsAnimation.setText(spanned);
 
+
                     String bTeam = item.getBTeam();
                     if (bTeam.equals("Home")) {
                         tvBetName.setText(item.getHome());
@@ -1006,7 +1010,18 @@ public class BetPop {
                     if (animation != null) {
                         animation.cancel();
                     }
-                    ValueAnimator objectAnimator = startAlphaColor(tvBetOddsAnimation);
+                    ValueAnimator objectAnimator = objectAnimatorMap.get(position);
+
+                    String oddsed = oddsMap.get(position);
+                    if (oddsed != null && oddsed.equals(odds)) {
+                        LogUtil.d("oddsed", "======oddsed:" + oddsed + "===spanned:" + spanned);
+                        objectAnimator = startAlphaColor(tvBetOddsAnimation, R.color.update_bg1);
+                    } else {
+                        LogUtil.d("oddsed", "!!!!======oddsed:" + oddsed + "===spanned:" + spanned);
+                        objectAnimator = startAlphaColor(tvBetOddsAnimation, R.color.yellow_gold);
+                        oddsMap.put(position, odds);
+                    }
+
                     objectAnimatorMap.put(position, objectAnimator);
                     imgDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -1273,9 +1288,12 @@ public class BetPop {
     }
 
     private Map<Integer, ValueAnimator> objectAnimatorMap;
+    private Map<Integer, String> oddsMap = new HashMap<>();
 
-    public ValueAnimator startAlphaColor(final View view) {
-        ValueAnimator animator = ValueAnimator.ofArgb(ContextCompat.getColor(context, R.color.pink_light_bg), Color.TRANSPARENT);
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public ValueAnimator startAlphaColor(final View view, int color) {
+        //
+        ValueAnimator animator = ValueAnimator.ofArgb(ContextCompat.getColor(context, color), Color.TRANSPARENT);
 
         animator.setRepeatCount(Animation.INFINITE);
         animator.setDuration(2000);
