@@ -179,12 +179,16 @@ public class BetGoalWindowUtils {
                                     } else {
                                         showStr = index8;
                                     }
+                                    final int tagSecond;
                                     showStr = showStr.replace("&nbsp;", " ");
                                     if (showStr.contains("W") && !showStr.contains("/")) {
                                         if (activity instanceof BaseToolbarActivity) {
                                             BaseToolbarActivity sportActivity = (BaseToolbarActivity) activity;
                                             sportActivity.onAddWaiteCount(1);
                                         }
+                                        tagSecond = 2;
+                                    } else {
+                                        tagSecond = 1;
                                     }
                                     if (showStr.contains("/") && !TextUtils.isEmpty(index22)) {
                                         if (activity instanceof BaseToolbarActivity) {
@@ -211,13 +215,13 @@ public class BetGoalWindowUtils {
                                     for (int i = 0; i < llContent.getChildCount(); i++) {
                                         llContent.getChildAt(i).measure(0, 0);
                                     }
-                                    view.setTag(3);
+                                    view.setTag(tagSecond);
                                     handler.post(new Runnable() {
                                         @Override
                                         public void run() {
                                             int tag = (int) view.getTag();
                                             tvCount.setText(tag + "s");
-                                            if (tag == 3) {
+                                            if (tag == tagSecond) {
                                                 imgClose.setOnClickListener(new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View v) {
@@ -353,13 +357,13 @@ public class BetGoalWindowUtils {
         }
         SoundPlayUtils.play();
 
-        view.setTag(3);
+        view.setTag(1);
         handler.post(new Runnable() {
             @Override
             public void run() {
                 int tag = (int) view.getTag();
                 tvCount.setText(tag + "s");
-                if (tag == 3) {
+                if (tag == 1) {
                     imgClose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

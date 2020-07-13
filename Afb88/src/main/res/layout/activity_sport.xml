@@ -53,7 +53,6 @@
                         app:layout_constraintTop_toTopOf="parent">
 
 
-
                         <TextView
                             android:id="@+id/sports_selected_tv"
                             android:layout_width="wrap_content"
@@ -65,7 +64,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="3dp"
                             android:text=">"
                             android:textColor="@color/trans_white"
                             android:textSize="13sp" />
@@ -75,76 +74,79 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:gravity="center_vertical"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
                             android:text="@string/All_Market"
-                            android:paddingLeft="4dp"
-                            android:paddingRight="4dp"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
-                            android:textSize="13sp"
-                           />
+                            android:textSize="13sp" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="3dp"
                             android:text=">"
                             android:textColor="@color/trans_white"
                             android:textSize="13sp" />
+
                         <TextView
                             android:id="@+id/tv_odds_type"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="4dp"
-                            android:paddingRight="4dp"
                             android:gravity="center_vertical"
                             android:onClick="clickOddsType"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
                             android:text="@string/MY_ODDS"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
-                            android:textSize="13sp"
-                           />
+                            android:textSize="13sp" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="3dp"
                             android:text=">"
                             android:textColor="@color/trans_white"
                             android:textSize="13sp" />
+
                         <TextView
                             android:id="@+id/tv_league_major"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:paddingLeft="4dp"
-                            android:paddingRight="4dp"
                             android:contentDescription="@null"
                             android:onClick="clickTop"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
                             android:text="@string/Five_Major_Match"
                             android:textColor="@color/white"
                             android:textSize="13sp"
-                            app:layout_constraintEnd_toEndOf="@+id/ll_line1"
                             app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
+                            app:layout_constraintEnd_toEndOf="@+id/ll_line1"
                             app:layout_constraintLeft_toRightOf="@+id/iv_sort_time"
-                            app:layout_constraintTop_toTopOf="@+id/iv_home_back"/>
+                            app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
+
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
+                            android:layout_marginLeft="3dp"
                             android:text=">"
                             android:textColor="@color/trans_white"
                             android:textSize="13sp" />
+
                         <TextView
                             android:id="@+id/tv_pc_type"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:paddingLeft="4dp"
-                            android:paddingRight="4dp"
                             android:gravity="center"
                             android:onClick="clickPcType"
+                            android:paddingLeft="3dp"
+                            android:paddingRight="3dp"
                             android:text="@string/view2"
                             android:textAllCaps="true"
                             android:textColor="@color/white"
-                            android:textSize="13sp"
-                            />
+                            android:textSize="13sp" />
+
                         <TextView
                             android:id="@+id/tv_balance"
                             android:layout_width="wrap_content"
@@ -165,74 +167,72 @@
                     <View
                         android:id="@+id/guideline1"
                         android:layout_width="match_parent"
-                        android:layout_marginTop="4dp"
                         android:layout_height="0.1dp"
+                        android:layout_marginTop="4dp"
                         app:layout_constraintTop_toBottomOf="@+id/ll_line1" />
 
                     <ImageView
-                        android:id="@+id/running_iv"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:src="@mipmap/sport_game_run_white"
+                        android:id="@+id/iv_home_menu"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/rectangle_bg_shadow"
-                        android:onClick="clickAllRunning"
+                        android:contentDescription="@null"
+                        android:onClick="clickLeftMenu"
                         android:padding="5dp"
+                        android:src="@mipmap/home_menu_nav"
                         app:layout_constraintHorizontal_chainStyle="spread"
-                        app:layout_constraintRight_toLeftOf="@+id/iv_home_menu"
+                        app:layout_constraintRight_toLeftOf="@+id/iv_home_back"
                         app:layout_constraintStart_toStartOf="@+id/ll_line1"
                         app:layout_constraintTop_toBottomOf="@+id/guideline1"
 
                         />
 
                     <ImageView
-                        android:id="@+id/iv_home_menu"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:background="@mipmap/rectangle_bg_shadow"
-                        android:contentDescription="@null"
-                        android:onClick="clickLeftMenu"
-                        android:padding="5dp"
-                        android:src="@mipmap/home_menu_nav"
-
-                        app:layout_constraintRight_toLeftOf="@+id/iv_home_back"
-                        app:layout_constraintLeft_toRightOf="@+id/running_iv"
-                        app:layout_constraintTop_toBottomOf="@+id/guideline1" />
-
-                    <ImageView
                         android:id="@+id/iv_home_back"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/rectangle_bg_shadow"
                         android:contentDescription="@null"
                         android:onClick="clickBack"
                         android:padding="5dp"
-
                         android:src="@mipmap/sport_home_white_24dp"
-                        app:layout_constraintBottom_toBottomOf="@+id/iv_home_menu"
                         app:layout_constraintLeft_toRightOf="@+id/iv_home_menu"
+                        app:layout_constraintRight_toLeftOf="@+id/running_iv"
+                        app:layout_constraintTop_toBottomOf="@+id/guideline1" />
+
+                    <ImageView
+                        android:id="@+id/running_iv"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:background="@mipmap/rectangle_bg_shadow"
+                        android:onClick="clickAllRunning"
+                        android:padding="5dp"
+                        android:src="@mipmap/sport_game_run_white"
+
+                        app:layout_constraintBottom_toBottomOf="@+id/iv_home_menu"
+                        app:layout_constraintLeft_toRightOf="@+id/iv_home_back"
                         app:layout_constraintRight_toLeftOf="@+id/match_cup_iv"
                         app:layout_constraintTop_toBottomOf="@+id/guideline1"
                         tools:ignore="MissingConstraints" />
 
                     <ImageView
                         android:id="@+id/match_cup_iv"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/rectangle_bg_shadow"
                         android:onClick="clickCup"
                         android:padding="6dp"
                         android:src="@mipmap/sport_game_cup_white"
                         app:layout_constraintBottom_toBottomOf="@+id/iv_home_menu"
-                        app:layout_constraintLeft_toRightOf="@+id/iv_home_back"
+                        app:layout_constraintLeft_toRightOf="@+id/running_iv"
                         app:layout_constraintRight_toLeftOf="@+id/match_contracted_iv"
                         app:layout_constraintTop_toBottomOf="@+id/guideline1" />
 
 
                     <ImageView
                         android:id="@+id/match_contracted_iv"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/rectangle_bg_shadow"
                         android:onClick="clickAllContracted"
                         android:padding="5dp"
@@ -256,8 +256,8 @@
 
                         <ImageView
                             android:id="@+id/iv_order_top"
-                            android:layout_width="26dp"
-                            android:layout_height="26dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
                             android:layout_gravity="center"
                             android:background="@mipmap/rectangle_bg_shadow"
                             android:contentDescription="@null"
@@ -282,12 +282,12 @@
 
                     <ImageView
                         android:id="@+id/sports_language_tv"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
-                        android:padding="6dp"
-                        android:onClick="clickLanguage"
-                        android:src="@mipmap/sport_flag_white"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/rectangle_bg_shadow"
+                        android:onClick="clickLanguage"
+                        android:padding="6dp"
+                        android:src="@mipmap/sport_flag_white"
                         app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
                         app:layout_constraintLeft_toRightOf="@+id/frameLayout"
                         app:layout_constraintRight_toLeftOf="@+id/match_collection_fl"
@@ -295,8 +295,8 @@
 
                     <ImageView
                         android:id="@+id/match_collection_fl"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/rectangle_bg_shadow"
                         android:onClick="clickCollectionStar"
                         android:padding="5dp"
@@ -305,10 +305,11 @@
                         app:layout_constraintLeft_toRightOf="@+id/sports_language_tv"
                         app:layout_constraintRight_toLeftOf="@+id/iv_sort_time"
                         app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
+
                     <ImageView
                         android:id="@+id/iv_sort_time"
-                        android:layout_width="26dp"
-                        android:layout_height="26dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
                         android:background="@mipmap/rectangle_bg_shadow"
                         android:contentDescription="@null"
                         android:onClick="clickSortByTime"
@@ -316,8 +317,8 @@
                         android:src="@mipmap/sport_game_clock_white"
 
                         app:layout_constraintBottom_toBottomOf="@+id/iv_home_back"
-                        app:layout_constraintLeft_toRightOf="@+id/match_collection_fl"
                         app:layout_constraintEnd_toEndOf="@+id/ll_line1"
+                        app:layout_constraintLeft_toRightOf="@+id/match_collection_fl"
                         app:layout_constraintTop_toTopOf="@+id/iv_home_back" />
 
 
@@ -344,9 +345,8 @@
                         android:id="@+id/guideline2"
                         android:layout_width="match_parent"
                         android:layout_height="0.1dp"
-                        app:layout_constraintTop_toBottomOf="@+id/running_iv"
                         android:layout_marginTop="6dp"
-                        />
+                        app:layout_constraintTop_toBottomOf="@+id/running_iv" />
 
                     <androidx.constraintlayout.widget.Group
                         android:id="@+id/ll_line2"
