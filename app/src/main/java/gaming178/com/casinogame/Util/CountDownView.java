@@ -105,9 +105,20 @@ public class CountDownView extends View {
         return isRunning;
     }
 
+    ValueAnimator valueAnimator;
+
+    public void stopCountDown() {
+        isRunning = false;
+        if (valueAnimator != null) {
+            valueAnimator.cancel();
+        }
+        mCurrentProgress = 360;
+        invalidate();
+    }
+
     public void startCountDown() {
         setClickable(false);
-        ValueAnimator valueAnimator = getValA(mCountdownTime * 1000);
+        valueAnimator = getValA(mCountdownTime * 1000);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {

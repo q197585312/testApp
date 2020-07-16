@@ -255,9 +255,9 @@ public class ChipShowHelper {
         cancelText.setLayoutParams(paramsTextCancel);
         repeatText.setLayoutParams(paramsTextRepeat);
         sureText.setLayoutParams(paramsTextSure);
-        sureText.setBackgroundResource(R.mipmap.new_sure);
-        repeatText.setBackgroundResource(R.mipmap.new_repeat);
-        cancelText.setBackgroundResource(R.mipmap.new_cancel);
+        sureText.setBackgroundResource(R.mipmap.sureimg);
+        repeatText.setBackgroundResource(R.mipmap.replayimg);
+        cancelText.setBackgroundResource(R.mipmap.noimg);
         framelayout.setClipChildren(false);
         framelayout.addView(cancelText);
         framelayout.addView(repeatText);

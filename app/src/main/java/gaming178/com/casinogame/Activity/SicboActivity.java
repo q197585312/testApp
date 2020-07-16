@@ -2137,15 +2137,33 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                             }
                         });
                     }
+                    int w = 39;
+                    int h = 39;
+                    if (position == 7 || position == 9) {
+                        w = 60;
+                        h = 30;
+                    }
+                    int m = 3;
                     LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams1.width = ScreenUtil.dip2px(mContext, 39);
+                    layoutParams1.width = ScreenUtil.dip2px(mContext, w);
                     layoutParams1.height = ScreenUtil.dip2px(mContext, 39);
-                    layoutParams1.leftMargin = ScreenUtil.dip2px(mContext, 3);
-                    layoutParams1.rightMargin = ScreenUtil.dip2px(mContext, 3);
+                    if (position == 7) {
+                        layoutParams1.leftMargin = ScreenUtil.dip2px(mContext, m);
+                        layoutParams1.rightMargin = ScreenUtil.dip2px(mContext, 0);
+                    } else if (position == 8) {
+                        layoutParams1.leftMargin = ScreenUtil.dip2px(mContext, 0);
+                        layoutParams1.rightMargin = ScreenUtil.dip2px(mContext, 0);
+                    } else if (position == 9) {
+                        layoutParams1.leftMargin = ScreenUtil.dip2px(mContext, 0);
+                        layoutParams1.rightMargin = ScreenUtil.dip2px(mContext, m);
+                    } else {
+                        layoutParams1.leftMargin = ScreenUtil.dip2px(mContext, m);
+                        layoutParams1.rightMargin = ScreenUtil.dip2px(mContext, m);
+                    }
                     llParent.setLayoutParams(layoutParams1);
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                    layoutParams.width = ScreenUtil.dip2px(mContext, 39);
-                    layoutParams.height = ScreenUtil.dip2px(mContext, 39);
+                    layoutParams.width = ScreenUtil.dip2px(mContext, w);
+                    layoutParams.height = ScreenUtil.dip2px(mContext, h);
                 }
                 if (selectedMap.get(true) != null && position == selectedMap.get(true).intValue()) {
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
@@ -2154,11 +2172,21 @@ public class SicboActivity extends BaseActivity implements UseLandscape {
                     imgChip.setLayoutParams(layoutParams);
                     helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
                 } else {
-                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                    layoutParams.width = ScreenUtil.dip2px(mContext, 39);
-                    layoutParams.height = ScreenUtil.dip2px(mContext, 39);
-                    imgChip.setLayoutParams(layoutParams);
-                    helper.setBackgroundRes(R.id.ll_chip_parent, 0);
+                    if (position == 7 || position == 9) {
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 60);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, 30);
+                        imgChip.setLayoutParams(layoutParams);
+                        imgChip.setLayoutParams(layoutParams);
+                        helper.setBackgroundRes(R.id.ll_chip_parent, 0);
+                    } else {
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 39);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, 39);
+                        imgChip.setLayoutParams(layoutParams);
+                        imgChip.setLayoutParams(layoutParams);
+                        helper.setBackgroundRes(R.id.ll_chip_parent, 0);
+                    }
                 }
                 imgChip.setBackgroundResource(item.getDrawableRes());
                 helper.setText(R.id.tv_chip_amount, item.getName());

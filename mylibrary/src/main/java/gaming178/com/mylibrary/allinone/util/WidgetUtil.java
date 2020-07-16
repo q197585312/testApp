@@ -177,9 +177,9 @@ public class WidgetUtil {
     }
 
     public static ObjectAnimator startAlphaAnimation(final View view) {
-        final ObjectAnimator animator = ObjectAnimator.ofFloat(view, "alpha", 1, (float) 0.3, 1);
+        final ObjectAnimator animator = ObjectAnimator.ofFloat(view, "alpha", 1, 0, 1);
         animator.setRepeatCount(Animation.INFINITE);
-        animator.setDuration(700);
+        animator.setDuration(500);
         animator.addListener(new AnimatorListenerAdapter() {
             @Override
             public void onAnimationEnd(Animator animation) {

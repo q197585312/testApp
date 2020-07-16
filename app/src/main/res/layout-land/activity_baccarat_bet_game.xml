@@ -6,6 +6,7 @@
     android:layout_height="match_parent">
 
     <FrameLayout
+        android:background="@color/table_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal">
@@ -347,7 +348,17 @@
                     android:id="@+id/countdown_view"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent" />
-
+                <TextView
+                    android:id="@+id/tv_mi_timer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:text="0"
+                    android:textColor="@color/red"
+                    android:textSize="22px"
+                    android:textStyle="bold"
+                    app:layout_auto_basewidth="height" />
                 <TextView
                     android:id="@+id/tv_table_timer"
                     android:layout_width="match_parent"

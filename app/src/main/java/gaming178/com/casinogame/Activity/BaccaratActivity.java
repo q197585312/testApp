@@ -331,6 +331,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
       LinearLayout ll_chip_parent;*/
     @Bind(R.id.tv_table_timer)
     TextView tv_table_timer;
+    @Bind(R.id.tv_mi_timer)
+    TextView tv_mi_timer;
     @Bind(R.id.countdown_view)
     CountDownView countdown_view;
     @Bind(R.id.tv_menu)
@@ -525,7 +527,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
 
     public class UpdateStatus implements Runnable {
-        int iError = 0;
 
         public void run() {
             while (bGetStatus) {
@@ -1826,6 +1827,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 case HandlerCode.UPDATE_STATUS:
                     updateTimer();
                     updateInterface();
+                    if (isChangeTable) {
+                        isChangeTable = false;
+                        dismissBlockDialog();
+                    }
                     break;
                 case HandlerCode.SHOW_LIMIT_OVER_MAX:
                     Toast.makeText(mContext, R.string.show_limit_over_max, Toast.LENGTH_LONG).show();
@@ -2289,7 +2294,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
 
         if (updateStatus != null) {
             bGetStatus = false;
-
             updateStatus = null;
             threadStatus = null;
 
@@ -2413,7 +2417,7 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         toolbar_right_top_tv.setVisibility(View.GONE);
         toolbar.setNavigationIcon(null);
         hallId = afbApp.getHallId();
-        tableId = Integer.parseInt(getIntent().getExtras().getString(AppConfig.ACTION_KEY_INITENT_DATA));
+        tableId = afbApp.getTableId();
         areaId = getIntent().getIntExtra("areaId", -1);
         if (!WebSiteUrl.isDomain) {
             baccaratA = getIntent().getBooleanExtra("baccaratA", true);
@@ -2432,15 +2436,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 }
             });
         }
-//        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-//            ll_baccarat_parent = (FrameLayout) findViewById(R.id.ll_baccarat_parent);
-//            if (tableId >= 1 && tableId <= 3) {
-//                ll_baccarat_parent.setBackgroundColor(getResources().getColor(R.color.baccarat_dragon_tiger_bg));
-//            } else {
-//                ll_baccarat_parent.setBackgroundColor(getResources().getColor(R.color.green_table));
-//            }
-//        }
-
 
         if (tableId == 71 && getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
@@ -2541,12 +2536,149 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBanker_palyer_tie(-100);
         afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBankerPair(-100);
         afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setPlayerPair(-100);
-
+        afbApp.getBaccarat(afbApp.getTableId()).setGameStatus(-1);
         setAskClick();
         startUpdateStatusThread();
     }
 
-    private void initApngList(){
+    private boolean isChangeTable = false;
+
+    @Override
+    public void initBaccarat() {
+        showBlockDialog();
+        isChangeTable = true;
+        tableId = afbApp.getTableId();
+        clearAllShowChip();
+        clearAllChips();
+        clearBetBg();
+        initPokerState();
+        hidePoker(3);
+        bUpdateRoad = true;
+        for (int i = 0; i < apngPlayBeanList.size(); i++) {
+            if (apngPlayBeanList.get(i).getApngImageView().getVisibility() == View.VISIBLE) {
+                apngPlayBeanList.get(i).getApngImageView().stop();
+                apngPlayBeanList.get(i).getApngImageView().setVisibility(View.INVISIBLE);
+                break;
+            }
+        }
+        objectAnimatorB.cancel();
+        objectAnimatorP.cancel();
+        objectAnimatorT.cancel();
+        objectAnimatorBP.cancel();
+        objectAnimatorPP.cancel();
+        animationPlayer.stop();
+        animationPlayer.selectDrawable(0);
+        animationBanker.stop();
+        animationBanker.selectDrawable(0);
+        countdown_view.stopCountDown();
+        betTimeCount = 0;
+        videoHelper.pauseVideo();
+        mPreview.setVisibility(View.INVISIBLE);
+        stopUpdateStatusThread();
+        initUI();
+        if (tableId == 71 && getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+        } else {
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED);
+        }
+        if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            shufflingTv.post(new Runnable() {
+                @Override
+                public void run() {
+                    FrameLayout.LayoutParams layoutParams = (FrameLayout.LayoutParams) shufflingTv.getLayoutParams();
+                    layoutParams.topMargin = UIUtil.dip2px(mContext, 60);
+                    shufflingTv.setLayoutParams(layoutParams);
+                }
+            });
+        }
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
+            chipY = AutoUtils.getPercentHeightSize(50);
+            chipPlayerBankerY = AutoUtils.getPercentHeightSize(50);
+        } else {
+            chipY = AutoUtils.getPercentHeightSize(82);
+            chipPlayerBankerY = AutoUtils.getPercentHeightSize(82);
+        }
+        tipY = AutoUtils.getPercentHeightSize(30);
+        chipX = AutoUtils.getPercentHeightSize(4);
+        tieX = AutoUtils.getPercentHeightSize(4);
+        chipPlayerBankerX = AutoUtils.getPercentHeightSize(4);
+        initControl();
+        serviceTime.setText(afbApp.covertBalance((int) getApp().getUser().getBalance()));
+        afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
+        setTablePool(lv_pool);
+        setInfoData(lv_user_info);
+        setTableBetPool(lv_person_bet_info, "Banker");
+        setTableLimit();
+        setClickListener();
+        afbApp.getBaccarat(afbApp.getTableId()).setBigRoadOld("");
+        gameIdNumber = afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber();
+        otherTableIdList.clear();
+        if (tableId == 1) {
+            tableName = "LB1";
+        } else if (tableId == 2) {
+            tableName = "LB2";
+        } else if (tableId == 3) {
+            tableName = "LB3";
+        } else if (tableId == 61) {
+            tableName = "LB5";
+        } else if (tableId == 62) {
+            tableName = "LB6";
+        } else if (tableId == 63) {
+            tableName = "LB7";
+        } else if (tableId == 71) {
+            tableName = "BM1";
+        }
+        if (tableId != 1) {
+            otherTableIdList.add(1);
+        }
+        if (tableId != 2) {
+            otherTableIdList.add(2);
+        }
+        if (tableId != 3) {
+            otherTableIdList.add(3);
+        }
+        if (tableId != 61) {
+            otherTableIdList.add(61);
+        }
+        if (tableId != 62) {
+            otherTableIdList.add(62);
+        }
+        if (tableId != 63) {
+            otherTableIdList.add(63);
+        }
+        if (tableId != 71) {
+            otherTableIdList.add(71);
+        }
+        if (tableId != 71) {
+            if (tv_mi_timer.getVisibility() == View.VISIBLE) {
+                tv_mi_timer.setVisibility(View.GONE);
+                tv_table_timer.setVisibility(View.VISIBLE);
+            }
+        }
+        initArcMenu(tvMenu, tableName, hallId);
+        tv_table_game_number.setText(tableName + ":" + afbApp.getBaccarat(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getBaccarat(afbApp.getTableId()).getGameNumber());
+        tv_table_game_number1.setText(tv_table_game_number.getText().toString());
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker1(0);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker2(0);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setBanker3(0);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer1(0);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer2(0);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratPoker().setPlayer3(0);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBanker_palyer_tie(-100);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setBankerPair(-100);
+        afbApp.getBaccarat(afbApp.getTableId()).getBaccaratResults().setPlayerPair(-100);
+        afbApp.getBaccarat(afbApp.getTableId()).setGameStatus(-1);
+        startPlayVideo();
+        videoHelper.loadVideo();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startUpdateStatusThread();
+            }
+        }, 1500);
+    }
+
+    private void initApngList() {
         apngPlayBeanList.clear();
         String lg = AppTool.getAppLanguage(mContext);
         if (lg.equals("zh") || lg.equals("zh_TW")) {
@@ -3453,15 +3585,25 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     }
 
     public void startPlayVideo() {
-        mPreview = findViewById(R.id.surface);
-        videoHelper = new VideoHelper(mContext, mPreview) {
-            @Override
-            public void doVideoFix() {
-                super.doVideoFix();
-                if (findViewById(R.id.fl_baccarat_bg) != null)
-                    findViewById(R.id.fl_baccarat_bg).setVisibility(View.GONE);
-            }
-        };
+        if (mPreview==null){
+            mPreview = findViewById(R.id.surface);
+            videoHelper = new VideoHelper(mContext, mPreview) {
+                @Override
+                public void doVideoFix() {
+                    super.doVideoFix();
+                    if (mPreview.getVisibility()==View.INVISIBLE){
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                mPreview.setVisibility(View.VISIBLE);
+                            }
+                        },500);
+                    }
+                    if (findViewById(R.id.fl_baccarat_bg) != null)
+                        findViewById(R.id.fl_baccarat_bg).setVisibility(View.GONE);
+                }
+            };
+        }
         String localPath = "/myvideo1";
         if (afbApp.getTableId() > 3) {
             localPath = "/b" + afbApp.getTableId() + "1";
@@ -4220,7 +4362,12 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
                 showPoker71();
                 return;
             }
-            bottomPanel1.setOpen(true, true);
+            if (!bottomPanel1.isOpen()) {
+                bottomPanel1.setOpen(true, true);
+            }
+            fl_poker_parent.setVisibility(View.VISIBLE);
+            ll_poker_parent.setVisibility(View.VISIBLE);
+            ll_poker_pw.setVisibility(View.GONE);
             BitmapFactory.Options opts = new BitmapFactory.Options();
 // 缩放的比例，缩放是很难按准备的比例进行缩放的，其值表明缩放的倍数，SDK中建议其值是2的指数值,值越大会导致图片不清晰
             opts.inSampleSize = 2;
@@ -4314,22 +4461,31 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     protected void pokerFlipTimeCount(int duration, final TextView timerTv, final List<PageWidgetT> pws) {
         timerOnFinish();
         startTimer(duration, timerTv, pws);
-
+        if (!countdown_view.viewIsRunning()) {
+            countdown_view.setCountdownTime(duration);
+            countdown_view.startCountDown();
+        }
     }
 
     private void startTimer(final int duration, final TextView timerTv, final List<PageWidgetT> pws) {
         timerTv.setVisibility(View.VISIBLE);
+        tv_table_timer.setVisibility(View.GONE);
+        tv_mi_timer.setVisibility(View.VISIBLE);
         timer = new CountDownTimer(duration * 1000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
                 timerTv.setVisibility(View.VISIBLE);
-                timerTv.setText("" + millisUntilFinished / 1000);
-
+                String time = "" + millisUntilFinished / 1000;
+                timerTv.setText(time);
+                tv_mi_timer.setText(time);
             }
 
             @Override
             public void onFinish() {
                 timerTv.setText("0");
+                tv_mi_timer.setText("0");
+                tv_mi_timer.setVisibility(View.GONE);
+                tv_table_timer.setVisibility(View.VISIBLE);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {

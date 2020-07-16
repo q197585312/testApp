@@ -2507,15 +2507,33 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                             }
                         });
                     }
+                    int w = 40;
+                    int h = 40;
+                    if (position == 7 || position == 9) {
+                        w = 60;
+                        h = 30;
+                    }
+                    int m = 3;
                     LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) llParent.getLayoutParams();
-                    layoutParams.width = ScreenUtil.dip2px(mContext, 40);
+                    layoutParams.width = ScreenUtil.dip2px(mContext, w);
                     layoutParams.height = ScreenUtil.dip2px(mContext, 40);
-                    layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 3);
-                    layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 3);
+                    if (position == 7) {
+                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, m);
+                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 0);
+                    } else if (position == 8) {
+                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 0);
+                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, 0);
+                    } else if (position == 9) {
+                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, 0);
+                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, m);
+                    } else {
+                        layoutParams.leftMargin = ScreenUtil.dip2px(mContext, m);
+                        layoutParams.rightMargin = ScreenUtil.dip2px(mContext, m);
+                    }
                     llParent.setLayoutParams(layoutParams);
                     LinearLayout.LayoutParams layoutParams1 = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                    layoutParams1.width = ScreenUtil.dip2px(mContext, 40);
-                    layoutParams1.height = ScreenUtil.dip2px(mContext, 40);
+                    layoutParams1.width = ScreenUtil.dip2px(mContext, w);
+                    layoutParams1.height = ScreenUtil.dip2px(mContext, h);
                     imgChip.setLayoutParams(layoutParams1);
                 }
                 if (selectedMap.get(true) != null && position == selectedMap.get(true).intValue()) {
@@ -2525,10 +2543,17 @@ public class RouletteActivity extends BaseActivity implements UseLandscape {
                     imgChip.setLayoutParams(layoutParams);
                     helper.setBackgroundRes(R.id.ll_chip_parent, R.drawable.rectangle_trans_stroke_yellow);
                 } else {
-                    LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
-                    layoutParams.width = ScreenUtil.dip2px(mContext, 40);
-                    layoutParams.height = ScreenUtil.dip2px(mContext, 40);
-                    imgChip.setLayoutParams(layoutParams);
+                    if (position == 7 || position == 9) {
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 60);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, 30);
+                        imgChip.setLayoutParams(layoutParams);
+                    } else {
+                        LinearLayout.LayoutParams layoutParams = (LinearLayout.LayoutParams) imgChip.getLayoutParams();
+                        layoutParams.width = ScreenUtil.dip2px(mContext, 40);
+                        layoutParams.height = ScreenUtil.dip2px(mContext, 40);
+                        imgChip.setLayoutParams(layoutParams);
+                    }
                 }
                 imgChip.setBackgroundResource(item.getDrawableRes());
                 helper.setText(R.id.tv_chip_amount, item.getName());

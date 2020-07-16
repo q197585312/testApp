@@ -1661,6 +1661,10 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         finish();
     }
 
+    public void initBaccarat() {
+
+    }
+
     private void initChangeTable(View v, String removeStr) {
         games = new ArrayList<>();
         if (WebSiteUrl.HEADER.equals("http://202.178.114.15/")) {
@@ -1702,6 +1706,17 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
                     return;
                 }
                 tablePop.closePopupWindow();
+                if (getApp().getTableId() == 1 || getApp().getTableId() == 2 || getApp().getTableId() == 3 ||
+                        getApp().getTableId() == 71 || getApp().getTableId() == 61 || getApp().getTableId() == 62 || getApp().getTableId() == 63) {
+                    if (gameMenuItem.getDrawableRes() == 1 || gameMenuItem.getDrawableRes() == 2 || gameMenuItem.getDrawableRes() == 3 ||
+                            gameMenuItem.getDrawableRes() == 71 || gameMenuItem.getDrawableRes() == 61 || gameMenuItem.getDrawableRes() == 62 ||
+                            gameMenuItem.getDrawableRes() == 63) {
+                        afbApp.setTableId(gameMenuItem.getDrawableRes());
+                        tableId = gameMenuItem.getDrawableRes();
+                        initBaccarat();
+                        return;
+                    }
+                }
                 String menuStr = gameMenuItem.getTitle();
                 if (menuStr.equals("LB1")) {
                     if (afbApp.getBaccarat(1).getStatus() != 1) {
@@ -2084,9 +2099,9 @@ public abstract class BaseActivity extends gaming178.com.mylibrary.base.componen
         }
         list.add(new ChipBean(R.mipmap.chip_choose, "CHOOSE", -101));
         if (isNeedAddSure) {
-            list.add(new ChipBean(R.mipmap.sureimg, "", -1));
             list.add(new ChipBean(R.mipmap.noimg, "", -2));
             list.add(new ChipBean(R.mipmap.replayimg, "", -3));
+            list.add(new ChipBean(R.mipmap.sureimg, "", -1));
         }
         return list;
     }

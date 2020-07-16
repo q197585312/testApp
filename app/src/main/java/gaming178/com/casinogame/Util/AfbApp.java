@@ -2286,24 +2286,32 @@ public class AfbApp extends Application implements IViewModelStoreOwner {
         if (bigRoadWidth > bigRoadParent2width) {
             baccarat_big_road.scrollTo(0, 0);
             baccarat_big_road.scrollTo(bigRoadWidth - bigRoadParent2width, 0);
+        } else {
+            baccarat_big_road.scrollTo(0, 0);
         }
         int hsvSmallRoadWidth1 = hsv_small_road1.getWidth();
         int gridLayoutBigEyesRoadWidth = gridLayoutBigEyesRoad.getWidth();
         if (gridLayoutBigEyesRoadWidth > hsvSmallRoadWidth1) {
             gridLayoutBigEyesRoad.scrollTo(0, 0);
             gridLayoutBigEyesRoad.scrollTo(gridLayoutBigEyesRoadWidth - hsvSmallRoadWidth1, 0);
+        } else {
+            gridLayoutBigEyesRoad.scrollTo(0, 0);
         }
         int hsvSmallRoadWidth2 = hsv_small_road2.getWidth();
         int gridLayoutSmallEyesRoadWidth = gridLayoutSmallEyesRoad.getWidth();
         if (gridLayoutSmallEyesRoadWidth > hsvSmallRoadWidth2) {
             gridLayoutSmallEyesRoad.scrollTo(0, 0);
             gridLayoutSmallEyesRoad.scrollTo(gridLayoutSmallEyesRoadWidth - hsvSmallRoadWidth2, 0);
+        } else {
+            gridLayoutSmallEyesRoad.scrollTo(0, 0);
         }
         int hsvSmallRoadWidth3 = hsv_small_road3.getWidth();
         int gridLayoutRoachRoadWidth = gridLayoutRoachRoad.getWidth();
         if (gridLayoutRoachRoadWidth > hsvSmallRoadWidth3) {
             gridLayoutRoachRoad.scrollTo(0, 0);
             gridLayoutRoachRoad.scrollTo(gridLayoutRoachRoadWidth - hsvSmallRoadWidth3, 0);
+        } else {
+            gridLayoutRoachRoad.scrollTo(0, 0);
         }
     }
 
