@@ -13,20 +13,21 @@ import com.unkonw.testapp.libs.base.BaseFragment;
 import java.util.Arrays;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 /**
  * Created by Administrator on 2019/4/4.
  */
 
 public class BetCenterFragment extends BaseMoreFragment {
-    @Bind(R.id.rg_bet_center)
+    @BindView(R.id.rg_bet_center)
     RadioGroup rgBetCenter;
-    @Bind(R.id.rb_unsettled)
+    @BindView(R.id.rb_unsettled)
     RadioButton rbUnsettled;
-    @Bind(R.id.rb_statement)
+    @BindView(R.id.rb_statement)
     RadioButton rbStatement;
-    @Bind(R.id.rb_grade)
+    @BindView(R.id.rb_grade)
     RadioButton rbGrade;
 
     List<BaseFragment> baseFragmentList;

@@ -130,13 +130,6 @@ public abstract class BaseActivity extends AutoLayoutActivity {
 
     protected abstract int getLayoutRes();
 
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        ButterKnife.unbind(this);
-    }
-
     public void setDialog(BlockDialog dialog) {
         this.dialog = dialog;
     }

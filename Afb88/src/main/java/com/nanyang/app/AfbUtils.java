@@ -553,7 +553,7 @@ public class AfbUtils {
         map.put("PG CASINO", new SportIdBean("PG CASINO", "", R.string.PGCashio, "PG CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_pg_symbol));
         map.put("PRAGMATIC CASINO", new SportIdBean("PRAGMATIC CASINO", "", R.string.PRGCashio, "PRAGMATIC CASINO", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_prg));
         map.put("PS GAMING", new SportIdBean("PS GAMING", "", R.string.PS_GAMING, "PS GAMING", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_ps_gaming));
-//        map.put("EVOPLAY", new SportIdBean("EVOPLAY", "", R.string.EV_Cashio, "EVOPLAY", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_evoplay));
+        map.put("EVOPLAY", new SportIdBean("EVOPLAY", "", R.string.EV_Cashio, "EVOPLAY", SportActivity.class, soccerFragment, Color.BLACK, R.mipmap.other_evoplay));
 
     }
 
@@ -749,7 +749,8 @@ public class AfbUtils {
     }
 
     public static void GildLoadResForImg(Context context, ImageView img, int res) {
-        Glide.with(context).load(res).asBitmap().into(img);
+
+        Glide.with(context).load(res).into(img);
     }
 
     public static String touzi_ed_values22 = "";

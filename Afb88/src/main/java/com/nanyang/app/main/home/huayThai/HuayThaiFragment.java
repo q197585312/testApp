@@ -16,7 +16,7 @@ import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 /**
@@ -24,46 +24,46 @@ import butterknife.OnClick;
  */
 
 public class HuayThaiFragment extends BaseMoreFragment<HuayThaiPresenter> {
-    @Bind(R.id.tv_grade_date)
+    @BindView(R.id.tv_grade_date)
     TextView tvGradeDate;
-    @Bind(R.id.layout_bet1)
+    @BindView(R.id.layout_bet1)
     LinearLayout layoutBet1;
 
-    @Bind(R.id.layout_bet2)
+    @BindView(R.id.layout_bet2)
     LinearLayout layoutBet2;
 
-    @Bind(R.id.layout_bet3)
+    @BindView(R.id.layout_bet3)
     LinearLayout layoutBet3;
 
-    @Bind(R.id.layout_bet4)
+    @BindView(R.id.layout_bet4)
     LinearLayout layoutBet4;
 
-    @Bind(R.id.layout_bet5)
+    @BindView(R.id.layout_bet5)
     LinearLayout layoutBet5;
 
-    @Bind(R.id.layout_bet6)
+    @BindView(R.id.layout_bet6)
     LinearLayout layoutBet6;
 
-    @Bind(R.id.layout_bet7)
+    @BindView(R.id.layout_bet7)
     LinearLayout layoutBet7;
 
-    @Bind(R.id.layout_bet8)
+    @BindView(R.id.layout_bet8)
     LinearLayout layoutBet8;
 
-    @Bind(R.id.layout_bet9)
+    @BindView(R.id.layout_bet9)
     LinearLayout layoutBet9;
 
-    @Bind(R.id.layout_bet10)
+    @BindView(R.id.layout_bet10)
     LinearLayout layoutBet10;
 
-    @Bind(R.id.tv_submit)
+    @BindView(R.id.tv_submit)
     TextView tvSubmit;
-    @Bind(R.id.tv_refresh)
+    @BindView(R.id.tv_refresh)
     TextView tvRefresh;
 
-    @Bind(R.id.tv_limit_num)
+    @BindView(R.id.tv_limit_num)
     TextView tvLimitNun;
-    @Bind(R.id.layout_introduce)
+    @BindView(R.id.layout_introduce)
     LinearLayout layoutIntroduce;
     TextView tvIntroduceNmae;
     TextView tvIntroduceContent;

@@ -49,7 +49,7 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 
 import java.util.List;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.DeviceUtils;
 
@@ -61,18 +61,18 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
 
 
     private static final String TAG = "updateTableDate";
-    @Bind(R.id.swipe_target)
+    @BindView(R.id.swipe_target)
     protected RecyclerView rvContent;
-    @Bind(R.id.tv_no_games)
+    @BindView(R.id.tv_no_games)
     protected TextView tvNoGames;
 
-    //    @Bind(R.id.tv_mix_parlay_order)
+    //    @BindView(R.id.tv_mix_parlay_order)
 //    protected TextView tvMixParlayOrder;
-//    @Bind(R.id.ll_mix_parlay_order)
+//    @BindView(R.id.ll_mix_parlay_order)
 //    protected LinearLayout llMixParlayOrder;
     protected abstract String getBallDbid();
 
-    @Bind(R.id.swipeToLoadLayout)
+    @BindView(R.id.swipeToLoadLayout)
     protected SwipeToLoadLayout swipeToLoadLayout;
     private boolean isFirstIn;
     public BaseRecyclerAdapter baseRecyclerAdapter;
@@ -421,7 +421,6 @@ public abstract class BaseSportFragment extends BaseSwitchFragment<SportPresente
     public void onDestroyView() {
         super.onDestroyView();
 //        presenter.getStateHelper().stopUpdateData();
-        ButterKnife.unbind(this);
         isInit = false;
     }
 

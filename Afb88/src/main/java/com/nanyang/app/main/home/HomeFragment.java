@@ -40,16 +40,17 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 public class HomeFragment extends BaseSwitchFragment {
 
-    @Bind(R.id.auto_viewpager)
+    @BindView(R.id.auto_viewpager)
     AutoScrollViewPager viewPager;
-    @Bind(R.id.rv_content)
+    @BindView(R.id.rv_content)
     RecyclerView rvContent;
 
-    @Bind(R.id.in_layout)
+    @BindView(R.id.in_layout)
     LinearLayout inLayout;
     private JSONObject jsonObjectNum;
     private String lastAllMainData;

@@ -39,8 +39,9 @@ import org.json.JSONException;
 import java.util.HashMap;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
+
 
 /**
  * Created by Administrator on 2017/3/12 0012.
@@ -2213,37 +2214,37 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
 
     public static class ViewHolder {
-        @Bind(R.id.viewpager_match_home_hdp_tv)
+        @BindView(R.id.viewpager_match_home_hdp_tv)
         public TextView viewpagerMatchHomeHdpTv;
-        @Bind(R.id.viewpager_match_home_hdpodds_tv)
+        @BindView(R.id.viewpager_match_home_hdpodds_tv)
         public TextView viewpagerMatchHomeHdpoddsTv;
-        @Bind(R.id.viewpager_match_ou_tv)
+        @BindView(R.id.viewpager_match_ou_tv)
         public TextView viewpagerMatchOuTv;
-        @Bind(R.id.viewpager_match_overodds_tv)
+        @BindView(R.id.viewpager_match_overodds_tv)
         public TextView viewpagerMatchOveroddsTv;
-        @Bind(R.id.viewpager_odd_label_tv)
+        @BindView(R.id.viewpager_odd_label_tv)
         public TextView viewpagerOddLabelTv;
-        @Bind(R.id.viewpager_match_odd_tv)
+        @BindView(R.id.viewpager_match_odd_tv)
         public TextView viewpagerMatchOddTv;
-        @Bind(R.id.viewpager_match_visit_hdp_tv)
+        @BindView(R.id.viewpager_match_visit_hdp_tv)
         public TextView viewpagerMatchVisitHdpTv;
-        @Bind(R.id.viewpager_match_visit_hdpodds_tv)
+        @BindView(R.id.viewpager_match_visit_hdpodds_tv)
         public TextView viewpagerMatchVisitHdpoddsTv;
-        @Bind(R.id.viewpager_match_ou2_tv)
+        @BindView(R.id.viewpager_match_ou2_tv)
         public TextView viewpagerMatchOu2Tv;
-        @Bind(R.id.viewpager_match_underodds_tv)
+        @BindView(R.id.viewpager_match_underodds_tv)
         public TextView viewpagerMatchUnderoddsTv;
-        @Bind(R.id.viewpager_even_label_tv)
+        @BindView(R.id.viewpager_even_label_tv)
         public TextView viewpagerEvenLabelTv;
-        @Bind(R.id.viewpager_match_even_tv)
+        @BindView(R.id.viewpager_match_even_tv)
         public TextView viewpagerMatchEvenTv;
-        @Bind(R.id.img_up_down_up1)
+        @BindView(R.id.img_up_down_up1)
         public ImageView imgUpDownUp1;
-        @Bind(R.id.img_up_down_up2)
+        @BindView(R.id.img_up_down_up2)
         public ImageView imgUpDownUp2;
-        @Bind(R.id.img_up_down_down1)
+        @BindView(R.id.img_up_down_down1)
         public ImageView imgUpDownDown1;
-        @Bind(R.id.img_up_down_down2)
+        @BindView(R.id.img_up_down_down2)
         public ImageView imgUpDownDown2;
 
         public ViewHolder(View view) {
@@ -2268,7 +2269,7 @@ public class BallAdapterHelper<I extends BallInfo> extends SportAdapterHelper<I>
 
     public void showLastCall(I item, TextView dateTv, ImageView lastGif, TextView dateTv1, TextView timeTv, TextView timeTv1, TextView liveTv, TextView liveTv1) {
         if (item.getIsLastCall() != null && item.getIsLastCall().equals("1")) {
-            Glide.with(context).load(R.mipmap.lastcall).asGif().into(lastGif);
+            Glide.with(context).load(R.mipmap.lastcall).into(lastGif);
             dateTv.setVisibility(View.GONE);
             dateTv1.setVisibility(View.GONE);
             liveTv.setVisibility(View.GONE);

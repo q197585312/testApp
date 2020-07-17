@@ -40,21 +40,22 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
+
 
 /**
  * Created by Administrator on 2019/4/4.
  */
 
 public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
-    @Bind(R.id.running_list)
+    @BindView(R.id.running_list)
     RecyclerView rv;
-    @Bind(R.id.running_group)
+    @BindView(R.id.running_group)
     RadioGroup rgType;
     String type = "W";
-    @Bind(R.id.tv_waite_count)
+    @BindView(R.id.tv_waite_count)
     TextView tvWaiteCount;
-    @Bind(R.id.ll_note)
+    @BindView(R.id.ll_note)
     LinearLayout llNote;
     Map<String, Boolean> showDetailMap = new HashMap<>();
     BetGoalWindowUtils utils = new BetGoalWindowUtils();

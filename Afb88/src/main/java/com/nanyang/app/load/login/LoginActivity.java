@@ -32,7 +32,7 @@ import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
 import com.unkonw.testapp.libs.utils.ToastUtils;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import cn.finalteam.toolsfinal.AppCacheUtils;
 import cn.finalteam.toolsfinal.DeviceUtils;
@@ -45,33 +45,33 @@ import cn.finalteam.toolsfinal.DeviceUtils;
 public class LoginActivity extends BaseToolbarActivity<LoginPresenter> {
 
 
-    @Bind(R.id.c_video_bg)
+    @BindView(R.id.c_video_bg)
     CustomVideoView c_video_bg;
-    @Bind(R.id.tv_all_right)
+    @BindView(R.id.tv_all_right)
     TextView tv_all_right;
-    @Bind(R.id.tv_remember_me)
+    @BindView(R.id.tv_remember_me)
     TextView tv_remember_me;
-    @Bind(R.id.edt_login_username)
+    @BindView(R.id.edt_login_username)
     EditText edtLoginUsername;
-    @Bind(R.id.edt_login_password)
+    @BindView(R.id.edt_login_password)
     EditText edtLoginPassword;
-    @Bind(R.id.ll_bottom_btn)
+    @BindView(R.id.ll_bottom_btn)
     View llBottomBtn;
-    @Bind(R.id.btn_login_login)
+    @BindView(R.id.btn_login_login)
     TextView btnLoginLogin;
-    @Bind(R.id.btn_desktop)
+    @BindView(R.id.btn_desktop)
     TextView btn_desktop;
-    //    @Bind(R.id.tv_login_forget)
+    //    @BindView(R.id.tv_login_forget)
 //    TextView tvLoginForget;
     AfbApplication app;
-    @Bind(R.id.cb_login_remember)
+    @BindView(R.id.cb_login_remember)
     CheckBox cbLoginRemember;
-    @Bind(R.id.ll_container)
+    @BindView(R.id.ll_container)
     LinearLayout llContainer;
-    @Bind(R.id.ll_login_remember)
+    @BindView(R.id.ll_login_remember)
     LinearLayout llLoginRemember;
 
-    @Bind(R.id.login_language)
+    @BindView(R.id.login_language)
     TextView loginLanguage;
     private PopChoiceLanguage popLanguage;
     private int[] sc;

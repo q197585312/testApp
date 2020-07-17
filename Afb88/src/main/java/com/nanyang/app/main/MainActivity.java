@@ -39,24 +39,24 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 
 
 public class MainActivity extends BaseToolbarActivity<MainPresenter> implements ILanguageView<String> {
-    @Bind(R.id.fl_menu_home)
+    @BindView(R.id.fl_menu_home)
     FrameLayout flMenuHome;
-    @Bind(R.id.fl_menu_center)
+    @BindView(R.id.fl_menu_center)
     FrameLayout flContact;
-    @Bind(R.id.fl_menu_login_out)
+    @BindView(R.id.fl_menu_login_out)
     FrameLayout flLoginOut;
-    @Bind(R.id.home_pop)
+    @BindView(R.id.home_pop)
     TextView homePop;
-    @Bind(R.id.ll_tab_menu_bottom)
+    @BindView(R.id.ll_tab_menu_bottom)
     LinearLayout ll_tab_menu_bottom;
     @Nullable
     protected
-    @Bind(R.id.drawer_more)
+    @BindView(R.id.drawer_more)
     DrawerLayout drawerLayout;
     private AfbDrawerViewHolder afbDrawerViewHolder;
 

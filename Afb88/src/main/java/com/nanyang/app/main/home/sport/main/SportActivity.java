@@ -76,7 +76,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.logger.Logger;
 
@@ -85,109 +85,109 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     HuayThaiFragment huayThaiFragment = new HuayThaiFragment();
     BaseSportFragment localCurrentFragment;
-    @Bind(R.id.web_wv)
+    @BindView(R.id.web_wv)
     WebView webView;
-    @Bind(R.id.iv_title_live_stream)
+    @BindView(R.id.iv_title_live_stream)
     ImageView tv_title_live_stream;
-    @Bind(R.id.iv_title_live_center)
+    @BindView(R.id.iv_title_live_center)
     ImageView tv_title_live_center;
-    @Bind(R.id.ll_back_title_line)
+    @BindView(R.id.ll_back_title_line)
     View ll_back;
-    @Bind(R.id.iv_home_menu)
+    @BindView(R.id.iv_home_menu)
     View iv_home_menu;
-    @Bind(R.id.tv_match_play)
+    @BindView(R.id.tv_match_play)
     TextView tv_match_play;
 
-    @Bind(R.id.ll_line1)
+    @BindView(R.id.ll_line1)
     public View ll_line1;
-    @Bind(R.id.ll_line2)
+    @BindView(R.id.ll_line2)
     public View ll_line2;
 
-    @Bind(R.id.right_ll)
+    @BindView(R.id.right_ll)
     View right_ll;
-    @Bind(R.id.drawer_more)
+    @BindView(R.id.drawer_more)
     DrawerLayout drawerLayout;
 
-    @Bind(R.id.rc_sport_list)
+    @BindView(R.id.rc_sport_list)
     RecyclerView rc_sport_list;
-    @Bind(R.id.bet_pop_parent_ll)
+    @BindView(R.id.bet_pop_parent_ll)
     public View bet_pop_parent_ll;
 
-    @Bind(R.id.fl_top_video)
+    @BindView(R.id.fl_top_video)
     public View fl_top_video;
-    @Bind(R.id.tv_toolbar_left)
+    @BindView(R.id.tv_toolbar_left)
     TextView tvToolbarLeft;
-    @Bind(R.id.tv_toolbar_title)
+    @BindView(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
-    @Bind(R.id.tv_toolbar_right1)
+    @BindView(R.id.tv_toolbar_right1)
     TextView tvToolbarRight1;
-    @Bind(R.id.tv_toolbar_right)
+    @BindView(R.id.tv_toolbar_right)
     TextView tvToolbarRight;
 
-    @Bind(R.id.iv_home_back)
+    @BindView(R.id.iv_home_back)
     ImageView ivHomeBack;
-    @Bind(R.id.match_cup_iv)
+    @BindView(R.id.match_cup_iv)
     ImageView matchCupIv;
 
-    @Bind(R.id.running_iv)
+    @BindView(R.id.running_iv)
     ImageView runningIv;
-    @Bind(R.id.iv_all_add)
+    @BindView(R.id.iv_all_add)
     TextView ivAllAdd;
-    @Bind(R.id.tv_odds_type)
+    @BindView(R.id.tv_odds_type)
     public TextView tvOddsType;
-    @Bind(R.id.tv_league_major)
+    @BindView(R.id.tv_league_major)
     TextView tvLeagueMain;
-    @Bind(R.id.iv_sort_time)
+    @BindView(R.id.iv_sort_time)
     ImageView ivSortTime;
-    @Bind(R.id.fl_main_content)
+    @BindView(R.id.fl_main_content)
     FrameLayout flContent;
-    @Bind(R.id.tv_record)
+    @BindView(R.id.tv_record)
     TextView tvRecord;
-    @Bind(R.id.tv_sport_select)
+    @BindView(R.id.tv_sport_select)
     TextView tvSportSelect;
-    @Bind(R.id.iv_order_top)
+    @BindView(R.id.iv_order_top)
     ImageView ivOrderTop;
-    @Bind(R.id.tv_mix)
+    @BindView(R.id.tv_mix)
     TextView tvMix;
-    @Bind(R.id.tv_order_count_top)
+    @BindView(R.id.tv_order_count_top)
     TextView tvOrderCount;
-    @Bind(R.id.tv_mix_count)
+    @BindView(R.id.tv_mix_count)
     TextView tvMixCount;
 
-    @Bind(R.id.tv_way_run)
+    @BindView(R.id.tv_way_run)
     public TextView tvMatchType;
-    @Bind(R.id.tv_menu)
+    @BindView(R.id.tv_menu)
     TextView tvMenu;
-    @Bind(R.id.ll_sport_menu_bottom)
+    @BindView(R.id.ll_sport_menu_bottom)
     public
     LinearLayout llSportMenuBottom;
-    @Bind(R.id.sports_language_tv)
+    @BindView(R.id.sports_language_tv)
     ImageView sports_language_tv;
-    @Bind(R.id.sports_selected_tv)
+    @BindView(R.id.sports_selected_tv)
     TextView getTvSportSelect;
-    @Bind(R.id.tv_balance)
+    @BindView(R.id.tv_balance)
     TextView tvBalance;
-    @Bind(R.id.tv_waite_count)
+    @BindView(R.id.tv_waite_count)
     public TextView tvWaiteCount;
 
 
-    @Bind(R.id.ll_header_sport)
+    @BindView(R.id.ll_header_sport)
     public LinearLayout ll_header_sport;
-    @Bind(R.id.ll_footer_sport)
+    @BindView(R.id.ll_footer_sport)
     public LinearLayout ll_footer_sport;
 
-    @Bind(R.id.match_collection_num_tv)
+    @BindView(R.id.match_collection_num_tv)
     public TextView collectionNumTv;
-    @Bind(R.id.ll_home_left)
+    @BindView(R.id.ll_home_left)
     View ll_home_left;
-    @Bind(R.id.match_collection_fl)
+    @BindView(R.id.match_collection_fl)
     ImageView collectionFl;
 
-    @Bind(R.id.sports_selected)
+    @BindView(R.id.sports_selected)
     RadioButton sports_selected;
-    @Bind(R.id.others_selected)
+    @BindView(R.id.others_selected)
     RadioButton others_selected;
-    @Bind(R.id.games_switch_rg)
+    @BindView(R.id.games_switch_rg)
     RadioGroup games_switch_rg;
 
 

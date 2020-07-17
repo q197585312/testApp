@@ -64,7 +64,7 @@ import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -1477,13 +1477,13 @@ public abstract class SportState<B extends SportInfo, V extends SportContract.Vi
 
 
     static class ViewHolder {
-        @Bind(R.id.tv_head_left)
+        @BindView(R.id.tv_head_left)
         TextView tvHeadLeft;
-        @Bind(R.id.tv_head_right)
+        @BindView(R.id.tv_head_right)
         TextView tvHeadRight;
-        @Bind(R.id.tv_head_3)
+        @BindView(R.id.tv_head_3)
         TextView tvHead3;
-        @Bind(R.id.ll_head_parent)
+        @BindView(R.id.ll_head_parent)
         LinearLayout llHeadParent;
 
         ViewHolder(View view) {

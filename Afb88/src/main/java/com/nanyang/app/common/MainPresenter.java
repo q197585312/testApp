@@ -1,6 +1,5 @@
 package com.nanyang.app.common;
 
-import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -52,7 +51,6 @@ import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import cn.finalteam.toolsfinal.ApkUtils;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -162,23 +160,23 @@ public class MainPresenter extends BaseSwitchPresenter {
                             Request request = response.request();
                             String url = request.url().toString();
                             BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseActivity;
-                            if (ApkUtils.isAvilible(mainActivity, "gaming178.com.baccaratgame")) {
-                                Intent intent = new Intent();
-                                ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
-                                intent.setComponent(comp);
-                                PersonalInfo info = mainActivity.getApp().getUser();
-                                intent.putExtra("username", info.getLoginName());
-                                intent.putExtra("password", info.getPassword());
-                                intent.putExtra("language", "en");
-                                intent.putExtra("web_id", "-1");
-                                intent.putExtra("webUrl", url);
-                                intent.putExtra("gameType", 5);
-                                intent.putExtra("balance", info.getCredit2());
-                                LogIntervalUtils.logTime("请求数据完成开始跳转");
-                                baseActivity.startActivity(intent);
-                            } else {
-                                downloadGd88();
-                            }
+
+                            Bundle intent = new Bundle();
+
+                            //ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
+
+
+                            PersonalInfo info = mainActivity.getApp().getUser();
+                            intent.putString("username", info.getLoginName());
+                            intent.putString("password", info.getPassword());
+                            intent.putString("language", "en");
+                            intent.putString("web_id", "-1");
+                            intent.putString("webUrl", url);
+                            intent.putInt("gameType", 5);
+                            intent.putString("balance", info.getCredit2());
+                            LogIntervalUtils.logTime("请求数据完成开始跳转");
+                            baseActivity.skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.WelcomeActivity");
+
                         } else {
                             baseActivity.reLoginPrompt(baseActivity.getString(R.string.failed_to_connect), new SportContract.CallBack() {
                                 @Override

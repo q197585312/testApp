@@ -46,9 +46,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Executors;
 
-import butterknife.Bind;
+import butterknife.BindView;
 import butterknife.OnClick;
 import gaming178.com.baccaratgame.R;
+import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Activity.entity.ApngPlayBean;
 import gaming178.com.casinogame.Activity.entity.GoodRoadDataBean;
 import gaming178.com.casinogame.Bean.Baccarat;
@@ -90,104 +91,104 @@ public class DragonTigerActivity extends BaseActivity {
     Map<FrameLayout, ChipShowHelper> ChipMap = new HashMap<>();
 
 
-    @OnClick(R.id.iv_baccarat_change_table)
+    @OnClick(R2.id.iv_baccarat_change_table)
     public void clickTable(View v) {
         showChangeTable(v);
     }
-    @Bind(R.id.handle1)
+    @BindView(R2.id.handle1)
     View handle1;
-    @Bind(R.id.tv_service_time)
+    @BindView(R2.id.tv_service_time)
     TextView serviceTime;
-    @Bind(R.id.tv_menu)
+    @BindView(R2.id.tv_menu)
     TextView tvMenu;
     int chipCount = 0;
     View ll_poker_parent;
-    @Bind(R.id.tv_bottom_panel_left)
+    @BindView(R2.id.tv_bottom_panel_left)
     TextView tv_point_dragon;
-    @Bind(R.id.tv_bottom_panel_right)
+    @BindView(R2.id.tv_bottom_panel_right)
     TextView tv_point_tiger;
-    @Bind(R.id.bottomPanel1)
+    @BindView(R2.id.bottomPanel1)
     Panel bottomPanel1;
-    @Bind(R.id.fl_baccarat_parent)
+    @BindView(R2.id.fl_baccarat_parent)
     View fl_baccarat_parent;
     private TextView shufflingTv;
     AdapterView lv_baccarat_chips;
 
-    @Bind(R.id.tv_table_bet_replay)
+    @BindView(R2.id.tv_table_bet_replay)
     TextView tvTableBetReplay;
-    @Bind(R.id.tv_table_bet_sure)
+    @BindView(R2.id.tv_table_bet_sure)
     TextView tvTableBetSure;
-    @Bind(R.id.tv_table_bet_cancel)
+    @BindView(R2.id.tv_table_bet_cancel)
     TextView tvTableBetCancel;
-    /* @Bind(R.id.tv_table_bet_pol)
+    /* @BindView(R2.id.tv_table_bet_pol)
      TextView tvTableBetPol;*/
-    @Bind(R.id.leftPanel1)
+    @BindView(R2.id.leftPanel1)
     Panel leftPanel1;
-    @Bind(R.id.lv_table_pool)
+    @BindView(R2.id.lv_table_pool)
     ListView lv_table_pool;
-    @Bind(R.id.lv_person_bet_info)
+    @BindView(R2.id.lv_person_bet_info)
     ListView lv_person_bet_info;
-    @Bind(R.id.lv_table_bet_limit_red)
+    @BindView(R2.id.lv_table_bet_limit_red)
     ListView lvTableBetLimitRed;
-    @Bind(R.id.tv_table_timer)
+    @BindView(R2.id.tv_table_timer)
     TextView tv_table_timer;
-    @Bind(R.id.countdown_view)
+    @BindView(R2.id.countdown_view)
     CountDownView countdown_view;
-    @Bind(R.id.ll_result)
+    @BindView(R2.id.ll_result)
     LinearLayout ll_result;
-    @Bind(R.id.tv_dragon_result)
+    @BindView(R2.id.tv_dragon_result)
     TextView tv_dragon_result;
-    @Bind(R.id.tv_tiger_result)
+    @BindView(R2.id.tv_tiger_result)
     TextView tv_tiger_result;
 
-    @Bind(R.id.ll_banker_ask)
+    @BindView(R2.id.ll_banker_ask)
     View ll_banker_ask;
-    @Bind(R.id.ll_player_ask)
+    @BindView(R2.id.ll_player_ask)
     View ll_player_ask;
-    @Bind(R.id.rl_good_road)
+    @BindView(R2.id.rl_good_road)
     View rl_good_road;
-    @Bind(R.id.tv_good_road_count)
+    @BindView(R2.id.tv_good_road_count)
     TextView tv_good_road_count;
 
-    @Bind(R.id.layout1)
+    @BindView(R2.id.layout1)
     HorizontalScrollView layout1;
-    @Bind(R.id.baccarat_background_gridlayout1)
+    @BindView(R2.id.baccarat_background_gridlayout1)
     GridBackgroundView baccarat_background_gridlayout1;
-    @Bind(R.id.baccarat_background_gridlayout1_big)
+    @BindView(R2.id.baccarat_background_gridlayout1_big)
     GridBackgroundView baccarat_background_gridlayout1_big;
-    @Bind(R.id.ll_big_road_parent2)
+    @BindView(R2.id.ll_big_road_parent2)
     LinearLayout ll_big_road_parent2;
-    @Bind(R.id.ll_small_road_parent)
+    @BindView(R2.id.ll_small_road_parent)
     LinearLayout ll_small_road_parent;
-    @Bind(R.id.fl_big_road1)
+    @BindView(R2.id.fl_big_road1)
     View fl_big_road1;
 
-    @Bind(R.id.hsv_small_road_1)
+    @BindView(R2.id.hsv_small_road_1)
     HorizontalScrollView hsv_small_road_1;
     View fl_small_road_parent1;
     GridBackgroundView smallway_item1;
     GridBackgroundView smallway_item1_big;
-    @Bind(R.id.hsv_small_road_2)
+    @BindView(R2.id.hsv_small_road_2)
     HorizontalScrollView hsv_small_road_2;
     FrameLayout fl_small_road_parent2;
     GridBackgroundView smallway_item2;
     GridBackgroundView smallway_item2_big;
-    @Bind(R.id.hsv_small_road_3)
+    @BindView(R2.id.hsv_small_road_3)
     HorizontalScrollView hsv_small_road_3;
     View fl_small_road_parent3;
     GridBackgroundView smallway_item3;
     GridBackgroundView smallway_item3_big;
 
-    @Bind(R.id.layout2)
+    @BindView(R2.id.layout2)
     View layout2;
-    @Bind(R.id.baccarat_background_gridlayout2)
+    @BindView(R2.id.baccarat_background_gridlayout2)
     GridBackgroundView baccarat_background_gridlayout2;
-    @Bind(R.id.baccarat_background_gridlayout2_big)
+    @BindView(R2.id.baccarat_background_gridlayout2_big)
     GridBackgroundView baccarat_background_gridlayout2_big;
 
-    @Bind(R.id.tv_ask1)
+    @BindView(R2.id.tv_ask1)
     TextView tv_ask1;
-    @Bind(R.id.tv_ask2)
+    @BindView(R2.id.tv_ask2)
     TextView tv_ask2;
 
     List<GoodRoadDataBean> goodRoadDataBeenList = new ArrayList<>();
@@ -273,9 +274,9 @@ public class DragonTigerActivity extends BaseActivity {
     private boolean isResultEnd = false;
     private boolean isBottomOpen = false;
     private VideoHelper videoHelper;
-    @Bind(R.id.ll_chip_parent)
+    @BindView(R2.id.ll_chip_parent)
     View ll_chip_parent;
-    @Bind(R.id.ll_bet_btn_parent)
+    @BindView(R2.id.ll_bet_btn_parent)
     View ll_bet_btn_parent;
     private boolean stateinit;
     private boolean allClose;
@@ -288,183 +289,183 @@ public class DragonTigerActivity extends BaseActivity {
     private float playerX;
 
     public void clickDragon(View view) {
-        if (getNumberBetMoney("Tiger") > 0 || afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Tiger") > 0) {
+        if (getNumberBetMoney("Tiger") > 0 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Tiger") > 0) {
             Toast.makeText(mContext, R.string.show_limit_dragon_tiger, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "Dragon";
 
-        clickChipBet(number, "Dragon", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "Dragon", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickTiger(View view) {
-        if (getNumberBetMoney("Dragon") > 0 || afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Dragon") > 0) {
+        if (getNumberBetMoney("Dragon") > 0 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("Dragon") > 0) {
             Toast.makeText(mContext, R.string.show_limit_dragon_tiger, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "Tiger";
-        clickChipBet(number, "Tiger", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "Tiger", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickTie(final View f) {
         String number = "Tie";
-        clickChipBet(number, "Tie", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTieBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTieBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "Tie", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
 
     }
 
     public void clickDragonOdd(View view) {
-        int gameNumber = Integer.parseInt(afbApp.getDragonTiger01().getGameNumber());
+        int gameNumber = Integer.parseInt(mAppViewModel.getDragonTiger01().getGameNumber());
         if (gameNumber > 30) {
             handler.sendEmptyMessage(HandlerCode.DRAGON_TIGER_GAME_NUMBER_LIMIT);
             return;
         }
-        if (getNumberBetMoney("DragonEven") > 0 || afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonEven") > 0) {
+        if (getNumberBetMoney("DragonEven") > 0 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonEven") > 0) {
             Toast.makeText(mContext, R.string.show_limit_odd_even, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "DragonOdd";
-        clickChipBet(number, "DragonOdd", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DragonOdd", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickDragonEven(View view) {
-        int gameNumber = Integer.parseInt(afbApp.getDragonTiger01().getGameNumber());
+        int gameNumber = Integer.parseInt(mAppViewModel.getDragonTiger01().getGameNumber());
         if (gameNumber > 30) {
             handler.sendEmptyMessage(HandlerCode.DRAGON_TIGER_GAME_NUMBER_LIMIT);
             return;
         }
-        if (getNumberBetMoney("DragonOdd") > 0 || afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonOdd") > 0) {
+        if (getNumberBetMoney("DragonOdd") > 0 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonOdd") > 0) {
             Toast.makeText(mContext, R.string.show_limit_odd_even, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "DragonEven";
-        clickChipBet(number, "DragonEven", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DragonEven", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickDragonRed(View view) {
-        int gameNumber = Integer.parseInt(afbApp.getDragonTiger01().getGameNumber());
+        int gameNumber = Integer.parseInt(mAppViewModel.getDragonTiger01().getGameNumber());
         if (gameNumber > 30) {
             handler.sendEmptyMessage(HandlerCode.DRAGON_TIGER_GAME_NUMBER_LIMIT);
             return;
         }
-        if (getNumberBetMoney("DragonBlack") > 0 || afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonBlack") > 0) {
+        if (getNumberBetMoney("DragonBlack") > 0 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonBlack") > 0) {
             Toast.makeText(mContext, R.string.show_limit_red_black, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "DragonRed";
-        clickChipBet(number, "DragonRed", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DragonRed", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickDragonBlack(View view) {
-        int gameNumber = Integer.parseInt(afbApp.getDragonTiger01().getGameNumber());
+        int gameNumber = Integer.parseInt(mAppViewModel.getDragonTiger01().getGameNumber());
         if (gameNumber > 30) {
             handler.sendEmptyMessage(HandlerCode.DRAGON_TIGER_GAME_NUMBER_LIMIT);
             return;
         }
-        if (getNumberBetMoney("DragonRed") > 0 || afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonRed") > 0) {
+        if (getNumberBetMoney("DragonRed") > 0 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("DragonRed") > 0) {
             Toast.makeText(mContext, R.string.show_limit_red_black, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "DragonBlack";
-        clickChipBet(number, "DragonBlack", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "DragonBlack", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickTigerOdd(View view) {
-        int gameNumber = Integer.parseInt(afbApp.getDragonTiger01().getGameNumber());
+        int gameNumber = Integer.parseInt(mAppViewModel.getDragonTiger01().getGameNumber());
         if (gameNumber > 30) {
             handler.sendEmptyMessage(HandlerCode.DRAGON_TIGER_GAME_NUMBER_LIMIT);
             return;
         }
-        if (getNumberBetMoney("TigerEven") > 0 || afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerEven") > 0) {
+        if (getNumberBetMoney("TigerEven") > 0 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerEven") > 0) {
             Toast.makeText(mContext, R.string.show_limit_odd_even, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "TigerOdd";
-        clickChipBet(number, "TigerOdd", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "TigerOdd", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickTigerEven(View view) {
-        int gameNumber = Integer.parseInt(afbApp.getDragonTiger01().getGameNumber());
+        int gameNumber = Integer.parseInt(mAppViewModel.getDragonTiger01().getGameNumber());
         if (gameNumber > 30) {
             handler.sendEmptyMessage(HandlerCode.DRAGON_TIGER_GAME_NUMBER_LIMIT);
             return;
         }
-        if (getNumberBetMoney("TigerOdd") > 0 || afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerOdd") > 0) {
+        if (getNumberBetMoney("TigerOdd") > 0 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerOdd") > 0) {
             Toast.makeText(mContext, R.string.show_limit_odd_even, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "TigerEven";
-        clickChipBet(number, "TigerEven", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "TigerEven", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickTigerRed(View view) {
-        int gameNumber = Integer.parseInt(afbApp.getDragonTiger01().getGameNumber());
+        int gameNumber = Integer.parseInt(mAppViewModel.getDragonTiger01().getGameNumber());
         if (gameNumber > 30) {
             handler.sendEmptyMessage(HandlerCode.DRAGON_TIGER_GAME_NUMBER_LIMIT);
             return;
         }
-        if (getNumberBetMoney("TigerBlack") > 0 || afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerBlack") > 0) {
+        if (getNumberBetMoney("TigerBlack") > 0 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerBlack") > 0) {
             Toast.makeText(mContext, R.string.show_limit_red_black, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "TigerRed";
-        clickChipBet(number, "TigerRed", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "TigerRed", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
     public void clickTigerBlack(View view) {
-        int gameNumber = Integer.parseInt(afbApp.getDragonTiger01().getGameNumber());
+        int gameNumber = Integer.parseInt(mAppViewModel.getDragonTiger01().getGameNumber());
         if (gameNumber > 30) {
             handler.sendEmptyMessage(HandlerCode.DRAGON_TIGER_GAME_NUMBER_LIMIT);
             return;
         }
-        if (getNumberBetMoney("TigerRed") > 0 || afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerRed") > 0) {
+        if (getNumberBetMoney("TigerRed") > 0 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney("TigerRed") > 0) {
             Toast.makeText(mContext, R.string.show_limit_red_black, Toast.LENGTH_LONG).show();
             return;
         }
         String number = "TigerBlack";
-        clickChipBet(number, "TigerBlack", chooseChip, afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
+        clickChipBet(number, "TigerBlack", chooseChip, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(number),
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet(), getFrameLayout(number)
         );
     }
 
@@ -518,10 +519,10 @@ public class DragonTigerActivity extends BaseActivity {
 
             try {
                 Thread.sleep(1500);//必须延迟2秒，否则下注信息先得到的话，后面倒计时开始的时候会被清除掉
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName()
-                        + "&Xhid=" + afbApp.getDragonTiger(afbApp.getTableId()).getShoeNumber() + "&Blid=" + afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber() +
-                        "&Xh=" + afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LH_BET_MONEY_URL, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
+                        + "&Xhid=" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getShoeNumber() + "&Blid=" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber() +
+                        "&Xh=" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LH_BET_MONEY_URL, params);
                 Log.i(WebSiteUrl.Tag, "UpdateBetMoney params= " + params);
                 Log.i(WebSiteUrl.Tag, "UpdateBetMoney = " + strRes);
 
@@ -529,14 +530,14 @@ public class DragonTigerActivity extends BaseActivity {
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 10) {
                         if ("".equals(strInfo[2]) || strInfo[2] == null)
-                            afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().setAllBetMoney(0);
+                            mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().setAllBetMoney(0);
                         else {
-                            afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().setAllBetMoney((int) Double.parseDouble(strInfo[2]));
-                            if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getAllBetMoney() > 0)
+                            mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().setAllBetMoney((int) Double.parseDouble(strInfo[2]));
+                            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getAllBetMoney() > 0)
                                 bBetSucess = true;
                         }
 
-                        afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getBetDetail().clear();
+                        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getBetDetail().clear();
 
                         saveBetInformation("Dragon", strInfo[4], true);
                         saveBetInformation("Tiger", strInfo[3], true);
@@ -589,47 +590,47 @@ public class DragonTigerActivity extends BaseActivity {
                             switch (listBetDetail.get(i).getType()) {
                                 case "Dragon":
                                     if (type == DtBetType.Dragon || type == DtBetType.All)
-                                        Dragon = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        Dragon = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "Tiger":
                                     if (type == DtBetType.Tiger || type == DtBetType.All)
-                                        Tiger = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        Tiger = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "Tie":
                                     if (type == DtBetType.Tie || type == DtBetType.All)
-                                        Tie = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        Tie = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "DragonOdd":
                                     if (type == DtBetType.DragonOdd || type == DtBetType.All)
-                                        DragonOdd = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        DragonOdd = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "DragonEven":
                                     if (type == DtBetType.DragonEven || type == DtBetType.All)
-                                        DragonEven = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        DragonEven = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "DragonRed":
                                     if (type == DtBetType.DragonRed || type == DtBetType.All)
-                                        DragonRed = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        DragonRed = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "DragonBlack":
                                     if (type == DtBetType.DragonBlack || type == DtBetType.All)
-                                        DragonBlack = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        DragonBlack = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "TigerEven":
                                     if (type == DtBetType.TigerEven || type == DtBetType.All)
-                                        TigerEven = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        TigerEven = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "TigerOdd":
                                     if (type == DtBetType.TigerOdd || type == DtBetType.All)
-                                        TigerOdd = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        TigerOdd = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "TigerRed":
                                     if (type == DtBetType.TigerRed || type == DtBetType.All)
-                                        TigerRed = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        TigerRed = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
                                 case "TigerBlack":
                                     if (type == DtBetType.TigerBlack || type == DtBetType.All)
-                                        TigerBlack = "" + (listBetDetail.get(i).getMoney() - afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
+                                        TigerBlack = "" + (listBetDetail.get(i).getMoney() - mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getNumberBetMoney(listBetDetail.get(i).getNumber()));
                                     break;
 
                             }
@@ -660,16 +661,16 @@ public class DragonTigerActivity extends BaseActivity {
                         Tie = "0";
 
 
-                    String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName()
-                            + "&Xhid=" + afbApp.getDragonTiger(afbApp.getTableId()).getShoeNumber() + "&Blid=" + afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber()
-                            + "&Xh=" + afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet()
-                            + "&Areaid=" + afbApp.getAreaId() + "&Serial=" + afbApp.getSerialId() + "&Hl=1"
+                    String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
+                            + "&Xhid=" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getShoeNumber() + "&Blid=" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber()
+                            + "&Xh=" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet()
+                            + "&Areaid=" + mAppViewModel.getAreaId() + "&Serial=" + mAppViewModel.getSerialId() + "&Hl=1"
                             + "&Dragon=" + Dragon + "&Tiger=" + Tiger + "&Tie=" + Tie + "&DragonOdd=" + DragonOdd + "&DragonEven=" + DragonEven
                             + "&DragonRed=" + DragonRed + "&DragonBlack=" + DragonBlack
                             + "&TigerRed=" + TigerRed + "&TigerBlack=" + TigerBlack
                             + "&TigerOdd=" + TigerOdd + "&TigerEven=" + TigerEven;
 
-                    String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LH_BET_URL, params);
+                    String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LH_BET_URL, params);
                     Log.i(WebSiteUrl.Tag, "DrangonTigerBet params= " + params);
                     Log.i(WebSiteUrl.Tag, "DrangonTigerBet = " + strRes);
                     String strInfo[] = strRes.split("#");
@@ -678,17 +679,17 @@ public class DragonTigerActivity extends BaseActivity {
                             if (isFirstBet){
                                 isFirstBet =false;
                             }
-                            afbApp.getUser().setBalance(Double.parseDouble(strInfo[1]));
+                            mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
                             double resMoney = 0;
                             //清除之前的下注记录
-                            afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().Init();
+                            mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().Init();
 
 
                             resMoney = Double.parseDouble(strInfo[2]);
-                            afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().setAllBetMoney((int) resMoney);
-                            afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().setAllBetMoney((int) resMoney);
-                            afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getBetDetail().clear();
-                            afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getBetDetail().clear();
+                            mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().setAllBetMoney((int) resMoney);
+                            mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().setAllBetMoney((int) resMoney);
+                            mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getBetDetail().clear();
+                            mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getBetDetail().clear();
 
                             saveBetInformation("Dragon", strInfo[4], true);
                             saveBetInformation("Tiger", strInfo[3], true);
@@ -732,14 +733,14 @@ public class DragonTigerActivity extends BaseActivity {
             try {
                 if (bUpdateRoad == false)
                     Thread.sleep(3000);
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LH_LUZI_URL, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LH_LUZI_URL, params);
                 Log.i(WebSiteUrl.Tag, "UpdateRoad params= " + params);
                 Log.i(WebSiteUrl.Tag, "UpdateRoad = " + strRes);
                 String strInfo[] = strRes.split("\\|");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 3) {
-                        afbApp.getDragonTiger(afbApp.getTableId()).setBigRoad(strInfo[1]);
+                        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoad(strInfo[1]);
                         isActive = true;
                     }
                 }
@@ -758,15 +759,15 @@ public class DragonTigerActivity extends BaseActivity {
         public void run() {
 
             try {
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LH_TABLE_GAMENUM, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LH_TABLE_GAMENUM, params);
                 Log.i(WebSiteUrl.Tag, "UpdateGameNumber params= " + params);
                 Log.i(WebSiteUrl.Tag, "UpdateGameNumber = " + strRes);
                 String strInfo[] = strRes.split("#");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 3) {
-                        afbApp.getDragonTiger(afbApp.getTableId()).setShoeNumber(strInfo[1]);
-                        afbApp.getDragonTiger(afbApp.getTableId()).setGameNumber(strInfo[2]);
+                        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setShoeNumber(strInfo[1]);
+                        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setGameNumber(strInfo[2]);
                         handler.sendEmptyMessage(HandlerCode.UPDATE_GAME_NUMBER);
                     }
                 } else
@@ -787,22 +788,22 @@ public class DragonTigerActivity extends BaseActivity {
 
             try {
                 Thread.sleep(2000);
-                String params = "GameType=11&Tbid=" + afbApp.getTableId() + "&Usid=" + afbApp.getUser().getName()
-                        + "&Xhid=" + afbApp.getDragonTiger(afbApp.getTableId()).getShoeNumber() + "&Blid=" + afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber() +
-                        "&Xh=" + afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet();
-                String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LH_WON_MONEY_URL, params);
+                String params = "GameType=11&Tbid=" + mAppViewModel.getTableId() + "&Usid=" + mAppViewModel.getUser().getName()
+                        + "&Xhid=" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getShoeNumber() + "&Blid=" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber() +
+                        "&Xh=" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet();
+                String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LH_WON_MONEY_URL, params);
                 Log.i(WebSiteUrl.Tag, "UpdateWonMoney params= " + params);
                 Log.i(WebSiteUrl.Tag, "UpdateWonMoney = " + strRes);
 
                 String strInfo[] = strRes.split("#");
                 if (strRes.startsWith("Results=ok")) {
                     if (strInfo.length >= 3) {
-                        if (dragonTigerTimer==0&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5){
-                            afbApp.getDragonTiger(afbApp.getTableId()).setWonMoney(Double.parseDouble(strInfo[2]));
+                        if (dragonTigerTimer==0&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5){
+                            mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setWonMoney(Double.parseDouble(strInfo[2]));
                         }else {
-                            afbApp.getDragonTiger(afbApp.getTableId()).setWonMoney(0);
+                            mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setWonMoney(0);
                         }
-                        afbApp.getUser().setBalance(Double.parseDouble(strInfo[1]));
+                        mAppViewModel.getUser().setBalance(Double.parseDouble(strInfo[1]));
                         if (isShowWinLose){
                             handler.sendEmptyMessage(HandlerCode.SHOW_WIN_LOSS);
                         }
@@ -820,7 +821,7 @@ public class DragonTigerActivity extends BaseActivity {
     private int finalShufflingStatus = -1;
 
     public void updateTimer() {
-        if (afbApp.getDragonTiger01().getGameStatus() == 8) {
+        if (mAppViewModel.getDragonTiger01().getGameStatus() == 8) {
             shufflingTv.setVisibility(View.VISIBLE);
             currentShufflingStatus = 2;
         } else {
@@ -831,19 +832,19 @@ public class DragonTigerActivity extends BaseActivity {
             setChip();
             finalShufflingStatus = currentShufflingStatus;
         }
-        //    Log.i(WebSiteUrl.Tag,"updateTimer timer="+afbApp.getDragonTiger(afbApp.getTableId()).getTimer()+",status="+afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus());
-        if (dragonTigerTimer == 0 && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1 && afbApp.getDragonTiger(afbApp.getTableId()).getTimer() > 0) {
+        //    Log.i(WebSiteUrl.Tag,"updateTimer timer="+mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getTimer()+",status="+mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus());
+        if (dragonTigerTimer == 0 && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1 && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getTimer() > 0) {
          /*   if(updateGameNumber == null){
                 updateGameNumber = new UpdateGameNumber();
                 threadUpdateGameNumber = new Thread(updateGameNumber);
                 threadUpdateGameNumber.start();
             }*/
-            if (!gameNumber.equals(afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber())) {
-                gameNumber = afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber();
-                afbApp.getDragonTiger(afbApp.getTableId()).Init();
+            if (!gameNumber.equals(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber())) {
+                gameNumber = mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber();
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).Init();
                 clearAllChips();
                 hidePoker();
-                dragonTigerTimer = afbApp.getDragonTiger(afbApp.getTableId()).getTimer();
+                dragonTigerTimer = mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getTimer();
                 countdown_view.setCountdownTime(dragonTigerTimer);
                 countdown_view.startCountDown();
                 bUpdateRoad = true;
@@ -859,10 +860,10 @@ public class DragonTigerActivity extends BaseActivity {
                     ToastUtils.showBackToast(mContext, getString(R.string.friendly_message), getString(R.string.three_no_bet));
                 }
                 tvTableBetSure.setEnabled(true);
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 16, componentFront, mContext, afbApp.getFrontVolume());
-                tv_table_game_number.setText(tableName + afbApp.getDragonTiger(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber());
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 16, componentFront, mContext, mAppViewModel.getFrontVolume());
+                tv_table_game_number.setText(tableName + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber());
                 tv_table_game_number1.setText(tv_table_game_number.getText().toString());
-                tv_baccarat_shoe_number.setText("" + afbApp.getDragonTiger(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber());
+                tv_baccarat_shoe_number.setText("" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber());
 
             }
 
@@ -871,7 +872,7 @@ public class DragonTigerActivity extends BaseActivity {
                 hidePoker();
 
 
-        } else if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)//延迟3秒调用路子接口
+        } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)//延迟3秒调用路子接口
         {
             showPoker();
             if (bUpdateRoad){
@@ -890,7 +891,7 @@ public class DragonTigerActivity extends BaseActivity {
 //                tablePop.setTablesData(afbApp, games);
             }
 
-        } else if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2) {
+        } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2) {
             if (listBetDetail.size() > 0) {
                 Log.i(WebSiteUrl.Tag, "clearNoBetChip()");
                 clearNoBetChip();
@@ -899,16 +900,16 @@ public class DragonTigerActivity extends BaseActivity {
             showPoker();
             if (tvTableBetSure != null && tvTableBetSure.isEnabled()) {
                 tvTableBetSure.setEnabled(false);
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_NOMOREBETS, 14, componentFront, mContext, afbApp.getFrontVolume());
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_NOMOREBETS, 14, componentFront, mContext, mAppViewModel.getFrontVolume());
             }
 
 
         }
-       /* if (!gameNumber.equals(afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber())) {
+       /* if (!gameNumber.equals(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber())) {
             clearAllChips();
         }*/
-        if ("0".equals(afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber())){
-            tv_table_game_number.setText(tableName + afbApp.getDragonTiger(afbApp.getTableId()).getShoeNumber() + " - 0");
+        if ("0".equals(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber())){
+            tv_table_game_number.setText(tableName + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getShoeNumber() + " - 0");
             tv_table_game_number1.setText(tv_table_game_number.getText().toString());
         }
 
@@ -920,7 +921,7 @@ public class DragonTigerActivity extends BaseActivity {
     boolean isCanHideResult = true;
 
     public void updateInterface() {
-        if (dragonTigerTimer > 0 && afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() != 2) {
+        if (dragonTigerTimer > 0 && mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() != 2) {
             for (int i = 0; i < apngPlayBeanList.size(); i++) {
                 if (apngPlayBeanList.get(i).getApngImageView().getVisibility()==View.VISIBLE){
                     apngPlayBeanList.get(i).getApngImageView().stop();
@@ -954,7 +955,7 @@ public class DragonTigerActivity extends BaseActivity {
                 lv_baccarat_chips.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
                 int[] location3 = new int[2] ;
                 ll_result.getLocationOnScreen(location3);//获取在整个屏幕内的绝对坐标
-                if (location3[1]<heightPixels&&isCanHideResult&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
+                if (location3[1]<heightPixels&&isCanHideResult&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
                     isCanHideResult = false;
                     WidgetUtil.chipTranslateAnimation(ll_result, ScreenUtil.dip2px(mContext, -46), 0, new Animator.AnimatorListener() {
                         @Override
@@ -965,7 +966,7 @@ public class DragonTigerActivity extends BaseActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             isCanHideResult = true;
-                            if (location2[1]>=heightPixels&&isCanShowChip&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
+                            if (location2[1]>=heightPixels&&isCanShowChip&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
                                 isCanShowChip =false;
                                 WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0,ScreenUtil.dip2px(mContext, -52), new Animator.AnimatorListener() {
                                     @Override
@@ -1002,7 +1003,7 @@ public class DragonTigerActivity extends BaseActivity {
                         }
                     });
                 }else {
-                    if (location2[1]>=heightPixels&&isCanShowChip&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
+                    if (location2[1]>=heightPixels&&isCanShowChip&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
                         isCanShowChip =false;
                         WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, 0,ScreenUtil.dip2px(mContext, -52), new Animator.AnimatorListener() {
                             @Override
@@ -1031,7 +1032,7 @@ public class DragonTigerActivity extends BaseActivity {
                 int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
                 int[] location2 = new int[2] ;
                 ll_result.getLocationOnScreen(location2);
-                if (location2[0]==0&&isCanHideResult&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
+                if (location2[0]==0&&isCanHideResult&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
                     isCanHideResult = false;
                     WidgetUtil.chipPortraitTranslateAnimation(ll_result, 0, portraitScreenWidth, new Animator.AnimatorListener() {
                         @Override
@@ -1045,7 +1046,7 @@ public class DragonTigerActivity extends BaseActivity {
                             int[] location = new int[2] ;
                             lv_baccarat_chips.getLocationOnScreen(location);
                             int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(DragonTigerActivity.this);
-                            if (location[0]>=portraitScreenWidth&&isCanShowChip&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
+                            if (location[0]>=portraitScreenWidth&&isCanShowChip&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
                                 isCanShowChip =false;
                                 WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                                     @Override
@@ -1084,7 +1085,7 @@ public class DragonTigerActivity extends BaseActivity {
                 }else {
                     int[] location = new int[2] ;
                     lv_baccarat_chips.getLocationOnScreen(location);
-                    if (location[0]>=portraitScreenWidth&&isCanShowChip&&afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 1){
+                    if (location[0]>=portraitScreenWidth&&isCanShowChip&&mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 1){
                         isCanShowChip =false;
                         WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, portraitScreenWidth, 0, new Animator.AnimatorListener() {
                             @Override
@@ -1113,11 +1114,11 @@ public class DragonTigerActivity extends BaseActivity {
             dragonTigerTimer--;
             tv_table_timer.setText("" + dragonTigerTimer);
 //            if (dragonTigerTimer == 10) {
-//                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_TIMER, 0, componentFront, mContext, afbApp.getFrontVolume());
+//                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_TIMER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
 //            }
             if (dragonTigerTimer < 6) {
                 tv_table_timer.setTextColor(getResources().getColor(R.color.red));
-                afbApp.startFrontMuzicService("TIMER", 1, componentFront, mContext, afbApp.getFrontVolume());
+                mAppViewModel.startFrontMuzicService("TIMER", 1, componentFront, mContext, mAppViewModel.getFrontVolume());
             } else
                 tv_table_timer.setTextColor(getResources().getColor(R.color.white));
             //    tv_table_timer.setTextColor(getResources().getColor(R.color.green500));
@@ -1132,7 +1133,7 @@ public class DragonTigerActivity extends BaseActivity {
                 lv_baccarat_chips.getLocationOnScreen(location2);//获取在整个屏幕内的绝对坐标
                 final int[] location3 = new int[2] ;
                 ll_result.getLocationOnScreen(location3);//获取在整个屏幕内的绝对坐标
-                if (location2[1]<heightPixels&&isCanHideChip&&(afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2||afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)){
+                if (location2[1]<heightPixels&&isCanHideChip&&(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2||mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)){
                     isCanHideChip =false;
                     WidgetUtil.chipTranslateAnimation(lv_baccarat_chips, ScreenUtil.dip2px(mContext, -52),0, new Animator.AnimatorListener() {
                         @Override
@@ -1143,7 +1144,7 @@ public class DragonTigerActivity extends BaseActivity {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             isCanHideChip = true;
-                            if (location3[1]>=heightPixels&&isCanShowResult&&(afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2||afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)){
+                            if (location3[1]>=heightPixels&&isCanShowResult&&(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2||mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)){
                                 isCanShowResult=false;
                                 WidgetUtil.chipTranslateAnimation(ll_result, 0, ScreenUtil.dip2px(mContext, -46), new Animator.AnimatorListener() {
                                     @Override
@@ -1180,7 +1181,7 @@ public class DragonTigerActivity extends BaseActivity {
                         }
                     });
                 }else {
-                    if (location3[1]>=heightPixels&&isCanShowResult&&(afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2||afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)){
+                    if (location3[1]>=heightPixels&&isCanShowResult&&(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2||mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)){
                         isCanShowResult=false;
                         WidgetUtil.chipTranslateAnimation(ll_result, 0, ScreenUtil.dip2px(mContext, -46), new Animator.AnimatorListener() {
                             @Override
@@ -1209,7 +1210,7 @@ public class DragonTigerActivity extends BaseActivity {
                 int[] location = new int[2] ;
                 lv_baccarat_chips.getLocationOnScreen(location);
                 int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(this);
-                if (location[0]==0&&isCanHideChip&&(afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2||afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)){
+                if (location[0]==0&&isCanHideChip&&(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2||mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)){
                     isCanHideChip =false;
                     WidgetUtil.chipPortraitTranslateAnimation(lv_baccarat_chips, 0, portraitScreenWidth, new Animator.AnimatorListener() {
                         @Override
@@ -1221,7 +1222,7 @@ public class DragonTigerActivity extends BaseActivity {
                         public void onAnimationEnd(Animator animation) {
                             isCanHideChip = true;
                             int portraitScreenWidth = WidgetUtil.getPortraitScreenWidth(DragonTigerActivity.this);
-                            if (isCanShowResult&&(afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2||afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)){
+                            if (isCanShowResult&&(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2||mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)){
                                 isCanShowResult = false;
                                 WidgetUtil.chipPortraitTranslateAnimation(ll_result, portraitScreenWidth,0, new Animator.AnimatorListener() {
                                     @Override
@@ -1264,7 +1265,7 @@ public class DragonTigerActivity extends BaseActivity {
             dragonTigerTimer = 0;
             tv_table_timer.setText("" + dragonTigerTimer);
         }
-        String serverTimer = afbApp.getDragonTiger(afbApp.getTableId()).getServerTime();
+        String serverTimer = mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getServerTime();
         String time = "";
         if (serverTimer != null && serverTimer.indexOf("-") > 0)
             time = "GMT+7  " + serverTimer.substring(serverTimer.indexOf("-") + 1, serverTimer.length());
@@ -1278,7 +1279,7 @@ public class DragonTigerActivity extends BaseActivity {
         //   if(showRoad)
 
         if (!isShowAskRoad) {
-            afbApp.updateDragenTigerRoad(mContext, density, afbApp.getDragonTiger(afbApp.getTableId()), baccarat_head_road, baccarat_big_road, baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road
+            mAppViewModel.updateDragenTigerRoad(mContext, density, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road, baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road
                     , tv_baccarat_shoe_number, tv_baccarat_total_number, tv_baccarat_banker_number, tv_baccarat_player_number, tv_baccarat_tie_number
                     , tv_baccarat_bp_number, tv_baccarat_pp_number,isBigShow, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3);
         }
@@ -1324,7 +1325,7 @@ public class DragonTigerActivity extends BaseActivity {
                     layout1.setLayoutParams(layoutParams);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;
                 }
-                afbApp.getDragonTiger(afbApp.getTableId()).setBigRoadOld("");
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
             }
         });
 
@@ -1347,7 +1348,7 @@ public class DragonTigerActivity extends BaseActivity {
                     baccarat_background_gridlayout2_big.setVisibility(View.GONE);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;
                 }
-                afbApp.getDragonTiger(afbApp.getTableId()).setBigRoadOld("");
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
             }
         });
 
@@ -1374,7 +1375,7 @@ public class DragonTigerActivity extends BaseActivity {
                     smallway_item1_big.setVisibility(View.GONE);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;
                 }
-                afbApp.getDragonTiger(afbApp.getTableId()).setBigRoadOld("");
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
             }
         });
         fl_small_road_parent2.setOnClickListener(new View.OnClickListener() {
@@ -1400,7 +1401,7 @@ public class DragonTigerActivity extends BaseActivity {
                     smallway_item2_big.setVisibility(View.GONE);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;
                 }
-                afbApp.getDragonTiger(afbApp.getTableId()).setBigRoadOld("");
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
             }
         });
         fl_small_road_parent3.setOnClickListener(new View.OnClickListener() {
@@ -1426,7 +1427,7 @@ public class DragonTigerActivity extends BaseActivity {
                     smallway_item3_big.setVisibility(View.GONE);
                     density = ScreenUtil.getDisplayMetrics(mContext).density;
                 }
-                afbApp.getDragonTiger(afbApp.getTableId()).setBigRoadOld("");
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
             }
         });
 
@@ -1471,8 +1472,8 @@ public class DragonTigerActivity extends BaseActivity {
         goodRoadDataBeenList.clear();
         for (int i = 0; i < otherTableIdList.size(); i++) {
             int otherTableId = otherTableIdList.get(i);
-            Baccarat baccarat = afbApp.getBaccarat(otherTableId);
-            String goodRoad = afbApp.updateGoodRoad(mContext, baccarat.getBigRoad());
+            Baccarat baccarat = mAppViewModel.getBaccarat(otherTableId);
+            String goodRoad = mAppViewModel.updateGoodRoad(mContext, baccarat.getBigRoad());
             if (!TextUtils.isEmpty(goodRoad)) {
                 String tableName = getTableName(otherTableId);
                 int goodRoadPic = getGoodRoadPic(goodRoad);
@@ -1547,46 +1548,46 @@ public class DragonTigerActivity extends BaseActivity {
     private void showAskRoadAnimation(final String type) {
         if (!isShowAskRoad) {
             isShowAskRoad = true;
-            afbApp.updateDragenTigerAskRoad(mContext, density, afbApp.getDragonTiger(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                    baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getDragonTiger(afbApp.getTableId()).getBigRoad() + type,
+            mAppViewModel.updateDragenTigerAskRoad(mContext, density, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                    baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getBigRoad() + type,
                     isBigShow, true, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, true);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    afbApp.updateDragenTigerAskRoad(mContext, density, afbApp.getDragonTiger(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getDragonTiger(afbApp.getTableId()).getBigRoad(),
+                    mAppViewModel.updateDragenTigerAskRoad(mContext, density, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getBigRoad(),
                             isBigShow, false, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, false);
                 }
             }, 500);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    afbApp.updateDragenTigerAskRoad(mContext, density, afbApp.getDragonTiger(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getDragonTiger(afbApp.getTableId()).getBigRoad() + type,
+                    mAppViewModel.updateDragenTigerAskRoad(mContext, density, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getBigRoad() + type,
                             isBigShow, true, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, false);
                 }
             }, 1000);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    afbApp.updateDragenTigerAskRoad(mContext, density, afbApp.getDragonTiger(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getDragonTiger(afbApp.getTableId()).getBigRoad(),
+                    mAppViewModel.updateDragenTigerAskRoad(mContext, density, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getBigRoad(),
                             isBigShow, false, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, false);
                 }
             }, 1500);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    afbApp.updateDragenTigerAskRoad(mContext, density, afbApp.getDragonTiger(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getDragonTiger(afbApp.getTableId()).getBigRoad() + type,
+                    mAppViewModel.updateDragenTigerAskRoad(mContext, density, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getBigRoad() + type,
                             isBigShow, true, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, false);
                 }
             }, 2000);
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    afbApp.updateDragenTigerAskRoad(mContext, density, afbApp.getDragonTiger(afbApp.getTableId()), baccarat_head_road, baccarat_big_road,
-                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, afbApp.getDragonTiger(afbApp.getTableId()).getBigRoad(),
+                    mAppViewModel.updateDragenTigerAskRoad(mContext, density, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()), baccarat_head_road, baccarat_big_road,
+                            baccarat_bigeyes_road, baccarat_smalleyes_road, baccarat_roach_road, mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getBigRoad(),
                             isBigShow, false, ll_big_road_parent2, hsv_small_road_1, hsv_small_road_2, hsv_small_road_3, true);
                     isShowAskRoad = false;
                 }
@@ -1648,27 +1649,27 @@ public class DragonTigerActivity extends BaseActivity {
                     break;
                 case HandlerCode.UPDATE_GAME_NUMBER:
                     updateGameNumber = null;
-                    tv_table_game_number.setText(tableName + afbApp.getDragonTiger(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber());
+                    tv_table_game_number.setText(tableName + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber());
                     tv_table_game_number1.setText(tv_table_game_number.getText().toString());
                     //     if(showRoad)
-                    tv_baccarat_shoe_number.setText("" + afbApp.getDragonTiger(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber());
-                    if (!gameNumber.equals(afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber())) {
+                    tv_baccarat_shoe_number.setText("" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber());
+                    if (!gameNumber.equals(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber())) {
                         clearAllChips();
                     }
                     break;
                 case HandlerCode.SHOW_WIN_LOSS:
-                    serviceTime.setText(getApp().getUser().getBalance() + "");
+                    serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
                     //提示输赢
                     if (bBetSucess) {
-//                        if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney() >= 0) {
-//                            if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney() > 0)
-//                                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 15, componentFront, mContext, afbApp.getFrontVolume());
-//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_win) + " " + afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney(), ContextCompat.getColor(mContext,R.color.blue_word));
+//                        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() >= 0) {
+//                            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() > 0)
+//                                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 15, componentFront, mContext, mAppViewModel.getFrontVolume());
+//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney(), ContextCompat.getColor(mContext,R.color.blue_word));
 //                        } else
-//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (-afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()), Color.RED);
-                        if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney() > 0){
-                            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, afbApp.getFrontVolume());
-                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney(), ContextCompat.getColor(mContext,R.color.gold));
+//                            ToastUtils.showToast(mContext, getResources().getString(R.string.show_loss) + " " + (-mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()), Color.RED);
+                        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney() > 0){
+                            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_RESULTS, 7, componentFront, mContext, mAppViewModel.getFrontVolume());
+                            ToastUtils.showWinningToast(mContext, getResources().getString(R.string.show_win) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney(), ContextCompat.getColor(mContext,R.color.gold));
                         }
 
                     }
@@ -1679,8 +1680,8 @@ public class DragonTigerActivity extends BaseActivity {
                 case HandlerCode.SHOW_BET_SUCCESS:
                     dismissBlockDialog();
                     initBetInformation(type);
-                    ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getAllBetMoney());
-                    serviceTime.setText(getApp().getUser().getBalance() + "");
+                    ToastUtils.showBetSuccessToast(mContext, getResources().getString(R.string.show_bet_sucess) + " " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getAllBetMoney());
+                    serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
                     break;
                 case HandlerCode.SHOW_BET_MONEY:
                     showBetMoney(false);
@@ -1707,8 +1708,8 @@ public class DragonTigerActivity extends BaseActivity {
 
     public void initUI() {
         dragonTigerTimer = 0;
-        afbApp.getDragonTiger(afbApp.getTableId()).setTimer(0);
-        //  afbApp.getDragonTiger(afbApp.getTableId()).setGameStatus(1);
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setTimer(0);
+        //  mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setGameStatus(1);
         gameNumber = "0";
         tv_table_timer.setText("0");
         bBetSucess = false;
@@ -1724,7 +1725,7 @@ public class DragonTigerActivity extends BaseActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                afbApp.startBackgroudMuzicService(afbApp.getMuzicIndex(), componentBack, mContext, afbApp.getBackgroudVolume());
+                mAppViewModel.startBackgroudMuzicService(mAppViewModel.getMuzicIndex(), componentBack, mContext, mAppViewModel.getBackgroudVolume());
             }
         }, 1000);
 //        startUpdateStatusThread();
@@ -1762,8 +1763,8 @@ public class DragonTigerActivity extends BaseActivity {
 
     @Override
     protected void leftClick() {
-        afbApp.setbLobby(true);
-        afbApp.getDragonTiger(afbApp.getTableId()).setBigRoadOld("");
+        mAppViewModel.setbLobby(true);
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
         AppTool.activiyJump(mContext, LobbyDragonTigerActivity.class);
         finish();
     }
@@ -1812,8 +1813,8 @@ public class DragonTigerActivity extends BaseActivity {
 //            threadUpdateGameNumber = null;
 
         }
-        afbApp.closeMuzicService(mContext, BackgroudMuzicService.class);
-        afbApp.closeMuzicService(mContext, FrontMuzicService.class);
+        mAppViewModel.closeMuzicService(mContext, BackgroudMuzicService.class);
+        mAppViewModel.closeMuzicService(mContext, FrontMuzicService.class);
     }
 
     @Override
@@ -1914,7 +1915,7 @@ public class DragonTigerActivity extends BaseActivity {
         ////////////////////
 //        serviceTime.setVisibility(View.GONE);
 
-        serviceTime.setText(getApp().getUser().getBalance() + "");
+        serviceTime.setText(mAppViewModel.getUser().getBalance() + "");
 
         rightTv.setTextColor(getResources().getColor(R.color.white));
         toolbar.setBackgroundResource(R.color.transparent);
@@ -1929,11 +1930,11 @@ public class DragonTigerActivity extends BaseActivity {
         setTableLimit();
         setClickListener();
         setChip();
-        afbApp.getDragonTiger(afbApp.getTableId()).setBigRoadOld("");
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
 
-        tv_table_game_number.setText(tableName + afbApp.getDragonTiger(afbApp.getTableId()).getShoeNumber() + " - " + afbApp.getDragonTiger(afbApp.getTableId()).getGameNumber());
+        tv_table_game_number.setText(tableName + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getShoeNumber() + " - " + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameNumber());
         initArcMenu(tvMenu, "DT1", 1);
-        tv_table_game_number.setText("DT1" + ":" + afbApp.getDragonTiger01().getGameNumber());
+        tv_table_game_number.setText("DT1" + ":" + mAppViewModel.getDragonTiger01().getGameNumber());
         tv_table_game_number1.setText(tv_table_game_number.getText().toString());
         initName();
         otherTableIdList.clear();
@@ -2096,7 +2097,7 @@ public class DragonTigerActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 if (listBetDetail.size() > 0)
-                    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
                 clearNoBetChip();
 
             }
@@ -2104,14 +2105,14 @@ public class DragonTigerActivity extends BaseActivity {
         tvTableBetSure.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)
+                if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)
                     return;
-                if (afbApp.getUser().getBalance() <= 0) {
+                if (mAppViewModel.getUser().getBalance() <= 0) {
                     ToastUtils.showToast(mContext, getString(R.string.Insufficient));
                     return;
                 }
                 if (listBetDetail.size() > 0) {
-                    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, mAppViewModel.getFrontVolume());
                     //执行下注的线程
                     drangonTigerBet = new DrangonTigerBet(DtBetType.All);
                     threadDrangonTigerBet = new Thread(drangonTigerBet);
@@ -2131,7 +2132,7 @@ public class DragonTigerActivity extends BaseActivity {
 
             @Override
             public void onPanelOpened(Panel panel) {
-                //  afbApp.getDragonTiger(afbApp.getTableId()).setBigRoadOld("");
+                //  mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
 //                btn_limit.setVisibility(View.GONE);
             }
         });
@@ -2232,7 +2233,7 @@ public class DragonTigerActivity extends BaseActivity {
                     chips.notifyDataSetChanged();
                     chooseChip = chipBean.getValue();
                     initClickCount();
-                    afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 8, componentFront, mContext, mAppViewModel.getFrontVolume());
                 }
             });
             chips.setData(chipListChoice);
@@ -2267,28 +2268,28 @@ public class DragonTigerActivity extends BaseActivity {
             }
         });
         List<LiveInfoBean> limit = new ArrayList<LiveInfoBean>();
-        limit.add(new LiveInfoBean(getString(R.string.dragon1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet())));
-        limit.add(new LiveInfoBean(getString(R.string.tiger1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet())));
-        limit.add(new LiveInfoBean(getString(R.string.tie_dragon_tiger), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTieBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTieBet())));
-        limit.add(new LiveInfoBean(getString(R.string.dragon_odd1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        limit.add(new LiveInfoBean(getString(R.string.dragon_even1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        limit.add(new LiveInfoBean(getString(R.string.dragon_red1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        limit.add(new LiveInfoBean(getString(R.string.dragon_black1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        limit.add(new LiveInfoBean(getString(R.string.tiger_odd1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        limit.add(new LiveInfoBean(getString(R.string.tiger_even1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        limit.add(new LiveInfoBean(getString(R.string.tiger_red1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        limit.add(new LiveInfoBean(getString(R.string.tiger_black1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        limit.add(new LiveInfoBean(getString(R.string.dragon1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet())));
+        limit.add(new LiveInfoBean(getString(R.string.tiger1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet())));
+        limit.add(new LiveInfoBean(getString(R.string.tie_dragon_tiger), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet())));
+        limit.add(new LiveInfoBean(getString(R.string.dragon_odd1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        limit.add(new LiveInfoBean(getString(R.string.dragon_even1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        limit.add(new LiveInfoBean(getString(R.string.dragon_red1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        limit.add(new LiveInfoBean(getString(R.string.dragon_black1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        limit.add(new LiveInfoBean(getString(R.string.tiger_odd1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        limit.add(new LiveInfoBean(getString(R.string.tiger_even1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        limit.add(new LiveInfoBean(getString(R.string.tiger_red1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        limit.add(new LiveInfoBean(getString(R.string.tiger_black1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
         contentList.setData(limit);
         btn_limit.setText("DT1:" + getString(R.string.LIMIT));
     }
@@ -2329,22 +2330,22 @@ public class DragonTigerActivity extends BaseActivity {
     public List<LiveInfoBean> getPoolData() {
         List<LiveInfoBean> strData = new ArrayList<LiveInfoBean>();
         LiveInfoBean data = new LiveInfoBean();
-        //    Log.i(WebSiteUrl.Tag,"GetBankerPool = "+afbApp.getTableId());
-        //   Log.i(WebSiteUrl.Tag,"GetBankerPool = "+afbApp.getDragonTiger(afbApp.getTableId()).getBaccaratPool().getBanker());
-        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getDragon() > 0)
-            data = new LiveInfoBean(getString(R.string.dragon_dragon_tiger), afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getDragon() + "", "");
+        //    Log.i(WebSiteUrl.Tag,"GetBankerPool = "+mAppViewModel.getTableId());
+        //   Log.i(WebSiteUrl.Tag,"GetBankerPool = "+mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getBaccaratPool().getBanker());
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getDragon() > 0)
+            data = new LiveInfoBean(getString(R.string.dragon_dragon_tiger), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getDragon() + "", "");
         else
             data = new LiveInfoBean(getString(R.string.dragon_dragon_tiger) , "0", "");
         strData.add(data);
         strData.add(new LiveInfoBean("","",""));
-        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getTiger() > 0)
-            data = new LiveInfoBean(getString(R.string.tiger_dragon_tiger), afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getTiger() + "", "");
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getTiger() > 0)
+            data = new LiveInfoBean(getString(R.string.tiger_dragon_tiger), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getTiger() + "", "");
         else
             data = new LiveInfoBean(getString(R.string.tiger_dragon_tiger), "0", "");
         strData.add(data);
         strData.add(new LiveInfoBean("","",""));
-        if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getTie() > 0)
-            data = new LiveInfoBean(getString(R.string.tie), afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPool().getTie() + "", "");
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getTie() > 0)
+            data = new LiveInfoBean(getString(R.string.tie), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPool().getTie() + "", "");
         else
             data = new LiveInfoBean(getString(R.string.tie), "0", "");
         strData.add(data);
@@ -2356,17 +2357,17 @@ public class DragonTigerActivity extends BaseActivity {
         List<String> strData = new ArrayList<String>();
         String data = "";
 
-        //   afbApp.getDragonTiger(afbApp.getTableId()).getOtherUserBetInfomation()
-      /*      for(int i =0;i<afbApp.getDragonTiger(afbApp.getTableId()).getOtherUserBetInfomation().size();i++)
+        //   mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getOtherUserBetInfomation()
+      /*      for(int i =0;i<mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getOtherUserBetInfomation().size();i++)
             {
-                if(afbApp.getDragonTiger(afbApp.getTableId()).getOtherUserBetInfomation().get(i).getType().equals(type))
+                if(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getOtherUserBetInfomation().get(i).getType().equals(type))
                 {
-                    for(int j =0;j<afbApp.getDragonTiger(afbApp.getTableId()).getBaccaratPlayer().size();j++)
+                    for(int j =0;j<mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getBaccaratPlayer().size();j++)
                     {
-                        if(afbApp.getDragonTiger(afbApp.getTableId()).getBaccaratPlayer().get(j).getNumber().contains(afbApp.getDragonTiger(afbApp.getTableId()).getOtherUserBetInfomation().get(i).getAreaId()))
+                        if(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getBaccaratPlayer().get(j).getNumber().contains(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getOtherUserBetInfomation().get(i).getAreaId()))
                         {
-                            data = afbApp.hideName(afbApp.getDragonTiger(afbApp.getTableId()).getBaccaratPlayer().get(j).getName()) + " : " +
-                                    afbApp.getDragonTiger(afbApp.getTableId()).getOtherUserBetInfomation().get(i).getBetMoney();
+                            data = mAppViewModel.hideName(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getBaccaratPlayer().get(j).getName()) + " : " +
+                                    mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getOtherUserBetInfomation().get(i).getBetMoney();
                             strData.add(data);
                             break;
                         }
@@ -2412,9 +2413,9 @@ public class DragonTigerActivity extends BaseActivity {
                     findViewById(R.id.fl_baccarat_bg).setVisibility(View.GONE);
             }
         };
-        path = afbApp.getUser().getVideoUrl() + "/" + afbApp.getDragonTiger(afbApp.getTableId()).getVideoUrlIndex() + "/L05";
+        path = mAppViewModel.getUser().getVideoUrl() + "/" + mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getVideoUrlIndex() + "/L05";
         if (this.getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
-            path = afbApp.getUser().getVideoUrl() + "/" + "live/L05new";
+            path = mAppViewModel.getUser().getVideoUrl() + "/" + "live/L05new";
         }
 //        path="rtmp://202.36.58.169/live/L05";
         videoHelper.setPlayUrl(path);
@@ -2427,7 +2428,7 @@ public class DragonTigerActivity extends BaseActivity {
 
         videoHelper.pauseVideo();
 
-        afbApp.getDragonTiger(afbApp.getTableId()).setGameStatus(1);
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setGameStatus(1);
         if (isBottomOpen)//正好在发牌的时候锁频，再次打开屏幕的时候要先隐藏
             hidePoker();
     }
@@ -2594,8 +2595,8 @@ public class DragonTigerActivity extends BaseActivity {
     private AnimationDrawable animationTiger;
 
     public void showResultsOnUI() {
-        if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5 && (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() != 0)) {
-            if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 1) {
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5 && (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() != 0)) {
+            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 1) {
                 if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
                     iv_dragon.setBackgroundResource(R.mipmap.long_03);
                 }else {
@@ -2603,8 +2604,8 @@ public class DragonTigerActivity extends BaseActivity {
                 }
                 animationDragon.start();
                 showApng(0);
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 11, componentFront, mContext, afbApp.getFrontVolume());
-            } else if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 2) {
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 11, componentFront, mContext, mAppViewModel.getFrontVolume());
+            } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 2) {
                 if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
                     iv_tiger.setBackgroundResource(R.mipmap.hu_03);
                 }else {
@@ -2612,24 +2613,24 @@ public class DragonTigerActivity extends BaseActivity {
                 }
                 showApng(2);
                 animationTiger.start();
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 12, componentFront, mContext, afbApp.getFrontVolume());
-            } else if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 3) {
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 12, componentFront, mContext, mAppViewModel.getFrontVolume());
+            } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_tiger_tie() == 3) {
                 if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
                     iv_tie.setBackgroundResource(R.mipmap.he_03);
                 }else {
                     iv_tie.setBackgroundResource(R.mipmap.he_03_portrait);
                 }
                 showApng(1);
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 13, componentFront, mContext, afbApp.getFrontVolume());
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_START_BETTING, 13, componentFront, mContext, mAppViewModel.getFrontVolume());
             }
 
-            if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_odd_even() == 1) {
+            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_odd_even() == 1) {
                 if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
                     iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03);
                 }else {
                     iv_dragon_odd.setBackgroundResource(R.mipmap.zuo3_03_portrait);
                 }
-            } else if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_odd_even() == 2){
+            } else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_odd_even() == 2){
                 if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
                     iv_dragon_even.setBackgroundResource(R.mipmap.zuo4_03);
                 }else {
@@ -2637,7 +2638,7 @@ public class DragonTigerActivity extends BaseActivity {
                 }
             }
 
-            if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getDragon_red_black() == 1) {
+            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getDragon_red_black() == 1) {
                 if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
                     iv_dragon_red.setBackgroundResource(R.mipmap.zuo1_03);
                 }else {
@@ -2652,7 +2653,7 @@ public class DragonTigerActivity extends BaseActivity {
             }
 
 
-            if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getTiger_odd_even() == 1) {
+            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_odd_even() == 1) {
                 if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
                     iv_tiger_odd.setBackgroundResource(R.mipmap.zuo7_03);
                 }else {
@@ -2666,7 +2667,7 @@ public class DragonTigerActivity extends BaseActivity {
                 }
             }
 
-            if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerResults().getTiger_red_black() == 1) {
+            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerResults().getTiger_red_black() == 1) {
                 if (getResources().getConfiguration().orientation==Configuration.ORIENTATION_LANDSCAPE){
                     iv_tiger_red.setBackgroundResource(R.mipmap.zuo5_03);
                 }else {
@@ -2689,32 +2690,32 @@ public class DragonTigerActivity extends BaseActivity {
         if (isResultEnd) {
             isBottomOpen = true;
             bottomPanel1.setOpen(isBottomOpen, true);
-            if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPoker().getDragon() > 0) {
-                /*iv_poker_banker1.setImageResource(getPokerResource(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPoker().getDragon()));
+            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPoker().getDragon() > 0) {
+                /*iv_poker_banker1.setImageResource(getPokerResource(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPoker().getDragon()));
                 iv_poker_banker1.setVisibility(View.VISIBLE);*/
                 if (iv_poker_banker1.getVisibility() == View.GONE) {
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), getPokerResource(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPoker().getDragon()));
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), getPokerResource(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPoker().getDragon()));
                     iv_poker_banker1.setVisibility(View.VISIBLE);
                     iv_poker_banker1.setImageBitmap(BitmapTool.skewBitmap(bitmap, xSkizeB1, 0f));
                     WidgetUtil.translateAnimation(iv_poker_banker1, bankerX, 0f, AutoUtils.getPercentWidthSize(animationHeight), 0f, animationTime);
-                    afbApp.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
                 }
             }
 
-            if (afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPoker().getTiger() > 0) {
-               /* iv_poker_player1.setImageResource(getPokerResource(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPoker().getTiger()));
+            if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPoker().getTiger() > 0) {
+               /* iv_poker_player1.setImageResource(getPokerResource(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPoker().getTiger()));
                 iv_poker_player1.setVisibility(View.VISIBLE);*/
                 if (iv_poker_player1.getVisibility() == View.GONE) {
-                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), getPokerResource(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPoker().getTiger()));
+                    Bitmap bitmap = BitmapFactory.decodeResource(getResources(), getPokerResource(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPoker().getTiger()));
                     iv_poker_player1.setVisibility(View.VISIBLE);
                     iv_poker_player1.setImageBitmap(BitmapTool.skewBitmap(bitmap, -xSkizeP1, 0f));
                     WidgetUtil.translateAnimation(iv_poker_player1, playerX, 0f, AutoUtils.getPercentWidthSize(animationHeight), 0f, animationTime);
-                    afbApp.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, afbApp.getFrontVolume());
+                    mAppViewModel.startFrontMuzicService(FrontMuzicService.GET_POKER, 0, componentFront, mContext, mAppViewModel.getFrontVolume());
                 }
             }
-            afbApp.showPoint(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPoker().getDragon(),
+            mAppViewModel.showPoint(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPoker().getDragon(),
 
-                    afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerPoker().getTiger(),
+                    mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerPoker().getTiger(),
 
                     tv_dragon_result, tv_tiger_result, "", "");
 
@@ -2905,12 +2906,12 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     public void gotoLobby() {
-        afbApp.getDragonTiger(afbApp.getTableId()).Init();
-        //   afbApp.setTableId(0);
-        afbApp.setSerialId(0);
-        afbApp.setAreaId(0);
-        afbApp.setbLobby(true);
-        afbApp.getDragonTiger(afbApp.getTableId()).setBigRoadOld("");
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).Init();
+        //   mAppViewModel.setTableId(0);
+        mAppViewModel.setSerialId(0);
+        mAppViewModel.setAreaId(0);
+        mAppViewModel.setbLobby(true);
+        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).setBigRoadOld("");
 
 
         Bundle bundle = new Bundle();
@@ -2934,9 +2935,9 @@ public class DragonTigerActivity extends BaseActivity {
                 betDetail.setNumber(type);
                 betDetail.setType(type);
                 //   Log.i(WebSiteUrl.Tag,"type="+type+",betInfo="+betInfo);
-                afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getBetDetail().add(betDetail);
+                mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getBetDetail().add(betDetail);
                 if (isRepeat)
-                    afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getBetDetail().add(betDetail);
+                    mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getBetDetail().add(betDetail);
             } else {
                 String strThree[] = betInfo.split("\\|");
 
@@ -2948,9 +2949,9 @@ public class DragonTigerActivity extends BaseActivity {
                         betDetail.setMoney((int) Double.parseDouble(strThreeDetail[1]));
                         betDetail.setNumber(strThreeDetail[0]);
                         betDetail.setType(type);
-                        afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getBetDetail().add(betDetail);
+                        mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getBetDetail().add(betDetail);
                         if (isRepeat)
-                            afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getBetDetail().add(betDetail);
+                            mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getBetDetail().add(betDetail);
                     }
 
                 }
@@ -2962,13 +2963,13 @@ public class DragonTigerActivity extends BaseActivity {
     public void showBetMoney(boolean bRepeat) {
         List<BetDetail> betDetails = null;
         if (bRepeat) {
-            betDetails = afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetRepeatInformation().getBetDetail();
+            betDetails = mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetRepeatInformation().getBetDetail();
             if (betDetails.size() > 0) {
                 BetUiHelper.betStateColor(tvTableBetSure, true);
-                afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, afbApp.getFrontVolume());
+                mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 9, componentFront, mContext, mAppViewModel.getFrontVolume());
             }
         } else {
-            betDetails = afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getBetDetail();
+            betDetails = mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getBetDetail();
         }
         for (int i = 0; i < betDetails.size(); i++) {
             if (bRepeat)
@@ -3040,14 +3041,14 @@ public class DragonTigerActivity extends BaseActivity {
     }
 
     private void singleBet(DtBetType type) {
-        if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 2 || afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() == 5)
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 2 || mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() == 5)
             return;
-        if (afbApp.getUser().getBalance() <= 0) {
+        if (mAppViewModel.getUser().getBalance() <= 0) {
             ToastUtils.showToast(mContext, getString(R.string.Insufficient));
             return;
         }
         if (listBetDetail.size() > 0) {
-            afbApp.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, afbApp.getFrontVolume());
+            mAppViewModel.startFrontMuzicService(FrontMuzicService.PLAY_CHIP, 10, componentFront, mContext, mAppViewModel.getFrontVolume());
             //执行下注的线程
             drangonTigerBet = new DrangonTigerBet(type);
             threadDrangonTigerBet = new Thread(drangonTigerBet);
@@ -3146,7 +3147,7 @@ public class DragonTigerActivity extends BaseActivity {
     public void clickChipBet(String number, String type, int chooseChip, int minLimit, int maxLimit,
                              int alreadyBet, int totalbet, FrameLayout fl_chip) {
         if (checkChoose()) return;
-        if (afbApp.getDragonTiger(afbApp.getTableId()).getGameStatus() != 1)
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getGameStatus() != 1)
             return;
         Log.i(WebSiteUrl.Tag, "alreadyBet = " + alreadyBet);
         boolean isIn = false;
@@ -3156,7 +3157,7 @@ public class DragonTigerActivity extends BaseActivity {
             if (number.equals(listBetDetail.get(i).getNumber())) {
                 isIn = true;
                 listBetDetail.get(i).setClickCount(listBetDetail.get(i).getClickCount() + 1);
-                betMoney = afbApp.getBetMoney(chooseChip, minLimit,
+                betMoney = mAppViewModel.getBetMoney(chooseChip, minLimit,
                         maxLimit, listBetDetail.get(i).getClickCount(),
                         alreadyBet, totalbet, mContext, componentFront);
                 if (betMoney > 0) {
@@ -3174,7 +3175,7 @@ public class DragonTigerActivity extends BaseActivity {
             betDetail.setNumber(number);
             betDetail.setClickCount(1);
 
-            betMoney = afbApp.getBetMoney(chooseChip, minLimit,
+            betMoney = mAppViewModel.getBetMoney(chooseChip, minLimit,
                     maxLimit, 1,
                     alreadyBet, totalbet, mContext, componentFront);
             betDetail.setMoney(betMoney);
@@ -3322,31 +3323,31 @@ public class DragonTigerActivity extends BaseActivity {
         outState.putBoolean("isFirstBet",isFirstBet);
     }
 
-    @Bind(R.id.ll_info)
+    @BindView(R2.id.ll_info)
     LinearLayout ll_info;
-    @Bind(R.id.lv_user_info)
+    @BindView(R2.id.lv_user_info)
     ListView lv_user_info;
-    @Bind(R.id.lv_pool)
+    @BindView(R2.id.lv_pool)
     ListView lv_pool;
-    @Bind(R.id.tv_time)
+    @BindView(R2.id.tv_time)
     TextView tv_time;
-    @Bind(R.id.tv_total_bet)
+    @BindView(R2.id.tv_total_bet)
     TextView tv_total_bet;
-    @Bind(R.id.tv_win_lose_bet)
+    @BindView(R2.id.tv_win_lose_bet)
     TextView tv_win_lose_bet;
-    @Bind(R.id.rl_dragon_parent)
+    @BindView(R2.id.rl_dragon_parent)
     RelativeLayout rl_dragon_parent;
-    @Bind(R.id.img_dragon_animation)
+    @BindView(R2.id.img_dragon_animation)
     ImageView img_dragon_animation;
-    @Bind(R.id.rl_tiger_parent)
+    @BindView(R2.id.rl_tiger_parent)
     RelativeLayout rl_tiger_parent;
-    @Bind(R.id.img_tiger_animation)
+    @BindView(R2.id.img_tiger_animation)
     ImageView img_tiger_animation;
-    @Bind(R.id.img_apng_dragon)
+    @BindView(R2.id.img_apng_dragon)
     ApngImageView img_apng_dragon;
-    @Bind(R.id.img_apng_tie)
+    @BindView(R2.id.img_apng_tie)
     ApngImageView img_apng_tie;
-    @Bind(R.id.img_apng_tiger)
+    @BindView(R2.id.img_apng_tiger)
     ApngImageView img_apng_tiger;
 
     @Override
@@ -3368,61 +3369,61 @@ public class DragonTigerActivity extends BaseActivity {
         LiveInfoBean data;
         data = new LiveInfoBean(getString(R.string.ID), usName, "");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.BET), afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerBetInformation().getAllBetMoney()+"", "");
+        data = new LiveInfoBean(getString(R.string.BET), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerBetInformation().getAllBetMoney()+"", "");
         if (Integer.parseInt(data.getValue1())>0){
-            tv_total_bet.setText(afbApp.covertLimit(Integer.parseInt(data.getValue1()))+"");
-            rightBetTv.setText(afbApp.covertLimit(Integer.parseInt(data.getValue1()))+"");
+            tv_total_bet.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1()))+"");
+            rightBetTv.setText(mAppViewModel.covertLimit(Integer.parseInt(data.getValue1()))+"");
         }else {
             tv_total_bet.setText(getString(R.string.BET)+" :0");
             rightBetTv.setText(getString(R.string.BET)+" :0");
         }
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.W_L), afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()+"", "");
-        if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()>0){
+        data = new LiveInfoBean(getString(R.string.W_L), mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()+"", "");
+        if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()>0){
             tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext,R.color.win_color));
-            tv_win_lose_bet.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney())+"");
+            tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney())+"");
             rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext,R.color.black));
-            rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney())+"");
-        }else if (afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney()==0){
+            rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney())+"");
+        }else if (mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney()==0){
             tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext,R.color.yellow_gold));
             tv_win_lose_bet.setText(getString(R.string.W_L)+" :0");
             rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext,R.color.bet_color));
             rightWinLoseTv.setText(getString(R.string.W_L)+" :0");
         }else {
             tv_win_lose_bet.setTextColor(ContextCompat.getColor(mContext,R.color.lose_color));
-            tv_win_lose_bet.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney())+"");
+            tv_win_lose_bet.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney())+"");
             rightWinLoseTv.setTextColor(ContextCompat.getColor(mContext,R.color.banker_color));
-            rightWinLoseTv.setText(afbApp.covertWinLose(afbApp.getDragonTiger(afbApp.getTableId()).getWonMoney())+"");
+            rightWinLoseTv.setText(mAppViewModel.covertWinLose(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getWonMoney())+"");
         }
         strData.add(data);
-        data = new LiveInfoBean(TextUtils.isEmpty(currency) ? getString(R.string.BAL) : currency, getApp().getUser().getBalance() + "", "");
-        rightBalanceTv.setText(getApp().getUser().getBalance()+"");
+        data = new LiveInfoBean(TextUtils.isEmpty(currency) ? getString(R.string.BAL) : currency, mAppViewModel.getUser().getBalance() + "", "");
+        rightBalanceTv.setText(mAppViewModel.getUser().getBalance()+"");
         strData.add(data);
-        data = new LiveInfoBean(getString(R.string.LIMIT_POP), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet())
-                +"-"+ afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet()), "");
+        data = new LiveInfoBean(getString(R.string.LIMIT_POP), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet())
+                +"-"+ mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet()), "");
         strData.add(data);
-        strData.add(new LiveInfoBean(getString(R.string.dragon1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet())));
-        strData.add(new LiveInfoBean(getString(R.string.tiger1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinDragonTigerBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxDragonTigerBet())));
-        strData.add(new LiveInfoBean(getString(R.string.tie_dragon_tiger), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTieBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTieBet())));
-        strData.add(new LiveInfoBean(getString(R.string.dragon_odd1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        strData.add(new LiveInfoBean(getString(R.string.dragon_even1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        strData.add(new LiveInfoBean(getString(R.string.dragon_red1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        strData.add(new LiveInfoBean(getString(R.string.dragon_black1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        strData.add(new LiveInfoBean(getString(R.string.tiger_odd1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        strData.add(new LiveInfoBean(getString(R.string.tiger_even1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        strData.add(new LiveInfoBean(getString(R.string.tiger_red1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
-        strData.add(new LiveInfoBean(getString(R.string.tiger_black1), afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMinTotalBet())
-                , afbApp.covertLimit(afbApp.getDragonTiger(afbApp.getTableId()).getDragonTigerLimit(afbApp.getDragonTiger(afbApp.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        strData.add(new LiveInfoBean(getString(R.string.dragon1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet())));
+        strData.add(new LiveInfoBean(getString(R.string.tiger1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinDragonTigerBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxDragonTigerBet())));
+        strData.add(new LiveInfoBean(getString(R.string.tie_dragon_tiger), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTieBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTieBet())));
+        strData.add(new LiveInfoBean(getString(R.string.dragon_odd1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        strData.add(new LiveInfoBean(getString(R.string.dragon_even1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        strData.add(new LiveInfoBean(getString(R.string.dragon_red1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        strData.add(new LiveInfoBean(getString(R.string.dragon_black1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        strData.add(new LiveInfoBean(getString(R.string.tiger_odd1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        strData.add(new LiveInfoBean(getString(R.string.tiger_even1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        strData.add(new LiveInfoBean(getString(R.string.tiger_red1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
+        strData.add(new LiveInfoBean(getString(R.string.tiger_black1), mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMinTotalBet())
+                , mAppViewModel.covertLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getDragonTigerLimit(mAppViewModel.getDragonTiger(mAppViewModel.getTableId()).getLimitIndex()).getMaxTotalBet())));
         return strData;
     }
 
