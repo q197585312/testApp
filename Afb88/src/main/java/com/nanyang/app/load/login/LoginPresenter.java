@@ -14,6 +14,7 @@ import com.nanyang.app.common.LanguageHelper;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.main.Setting.SettingAllDataBean;
+import com.nanyang.app.main.home.sport.main.SportActivity;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.presenter.BaseRetrofitPresenter;
 import com.unkonw.testapp.libs.utils.ToastUtils;
@@ -38,6 +39,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
 
     public void login(final LoginInfo info) {
         if (checkUserAvailable(info)) {
+            //http://www.afb1188.com/W0/Pub/pcode.axd
             final String url_login = AppConstant.getInstance().URL_LOGIN;
             String infoWfmain = info.getWfmainJson("Login", new LanguageHelper(baseContext).getLanguage());
             String url = url_login + "?_fm=" + infoWfmain;
@@ -48,7 +50,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                             JSONArray jsonArray = new JSONArray(s);
 
                             if (s.contains("Maintenance")) {
-                                Exception exception = new Exception((baseContext.getBaseActivity()).getString(R.string.System_maintenance));
+                                Exception exception = new Exception(((SportActivity) baseContext).getString(R.string.System_maintenance));
                                 onError(exception);
                             } else if (jsonArray.optString(2) != null && StringUtils.matches(jsonArray.optString(2), "^.*\\(\\'([^\\']+)\\'\\);.*?")) {
                                 Exception exception = new Exception(StringUtils.findGroup(jsonArray.optString(2), "^.*\\(\\'([^\\']+)\\'\\);.*?", 1));
@@ -95,7 +97,7 @@ class LoginPresenter extends BaseRetrofitPresenter<LoginActivity> {
                         @Override
                         protected void onError(final Throwable throwable) {
                             super.onError(throwable);
-                            (baseContext.getBaseActivity()).runOnUiThread(new Runnable() {
+                            ((SportActivity) baseContext).runOnUiThread(new Runnable() {
                                 @Override
                                 public void run() {
                                     ToastUtils.showShort(throwable.getMessage());

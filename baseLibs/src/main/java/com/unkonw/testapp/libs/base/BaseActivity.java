@@ -207,6 +207,7 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         if (presenter != null) {
             presenter.unSubscribe();
         }
+        ButterKnife.unbind(this);
     }
 
     /**
@@ -305,19 +306,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
         startActivity(intent);
     }
 
-    /**
-     * 跳转到对应activity
-     */
-    public void skipFullNameActivity(Bundle bundle, String fullName) {
-        if (fullName != null && fullName.length() > 0) {
-            try {
-                skipAct(Class.forName(fullName), bundle);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-    }
-
     public void skipAct(Class clazz, Bundle bundle, int flags) {
         Intent intent = new Intent(this, clazz);
         intent.putExtras(bundle);
@@ -357,7 +345,6 @@ public abstract class BaseActivity<T extends IBasePresenter> extends AppCompatAc
     public IBaseContext getIBaseContext() {
         return this;
     }
-
     public Map<Boolean, String> getAdditionMap() {
         return additionMap;
     }

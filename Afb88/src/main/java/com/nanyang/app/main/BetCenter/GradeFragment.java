@@ -1,5 +1,8 @@
 package com.nanyang.app.main.BetCenter;
 
+import androidx.annotation.IdRes;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +10,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-
-import androidx.annotation.IdRes;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
@@ -30,7 +29,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -38,19 +37,19 @@ import butterknife.OnClick;
  */
 
 public class GradeFragment extends BaseFragment<GradePresenter> {
-    @BindView(R.id.rc_content)
+    @Bind(R.id.rc_content)
     RecyclerView rcContent;
-    @BindView(R.id.tv_sports)
+    @Bind(R.id.tv_sports)
     TextView tvSports;
-    @BindView(R.id.tv_date)
+    @Bind(R.id.tv_date)
     TextView tvDate;
-    @BindView(R.id.tv_football)
+    @Bind(R.id.tv_football)
     TextView tvFootball;
-    @BindView(R.id.tv_all_match)
+    @Bind(R.id.tv_all_match)
     TextView tvAllMatch;
-    @BindView(R.id.ll_all_match)
+    @Bind(R.id.ll_all_match)
     LinearLayout llAllMatch;
-    @BindView(R.id.rg_type)
+    @Bind(R.id.rg_type)
     RadioGroup rgType;
     private int currentRequestType = 1;//1是一般2是冠军
     private PopGradeSwitchType popSports;

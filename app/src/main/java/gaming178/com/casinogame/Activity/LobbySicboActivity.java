@@ -117,8 +117,8 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
     };
 
     public void initUI() {
-        mAppViewModel.getSicbo01().setRoadOld("");
-        mAppViewModel.getSicbo01().setTimer(0);
+        afbApp.getSicbo01().setRoadOld("");
+        afbApp.getSicbo01().setTimer(0);
         sicboTimer01 = 0;
         gameNumber = "";
 
@@ -163,10 +163,10 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
     }
 
     public void updateTimer() {
-        if (sicboTimer01 == 0 && mAppViewModel.getSicbo01().getTimer() > 0) {
-            if (!gameNumber.equals(mAppViewModel.getSicbo01().getGameNumber())) {
-                gameNumber = mAppViewModel.getSicbo01().getGameNumber();
-                sicboTimer01 = mAppViewModel.getSicbo01().getTimer();
+        if (sicboTimer01 == 0 && afbApp.getSicbo01().getTimer() > 0) {
+            if (!gameNumber.equals(afbApp.getSicbo01().getGameNumber())) {
+                gameNumber = afbApp.getSicbo01().getGameNumber();
+                sicboTimer01 = afbApp.getSicbo01().getTimer();
             }
         }
 
@@ -177,9 +177,9 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
             sicboTimer01--;
             tv_sicbo_timer01.setText("" + sicboTimer01);
             tv_sicbo_timer01.setTextSize(18);
-            tv_sicbo_number01.setText("" + mAppViewModel.getSicbo01().getGameNumber());
+            tv_sicbo_number01.setText("" + afbApp.getSicbo01().getGameNumber());
         } else {
-//            if (mAppViewModel.getSicbo01().getGameStatus() == 2) {
+//            if (afbApp.getSicbo01().getGameStatus() == 2) {
 //                tv_sicbo_timer01.setText(getString(R.string.START_DEALING));
 //                int mCurrentOrientation = getResources().getConfiguration().orientation;
 //                if (mCurrentOrientation == Configuration.ORIENTATION_PORTRAIT)
@@ -195,15 +195,15 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
 
     @Override
     protected void leftClick() {
-        mAppViewModel.getSicbo01().setRoadOld("");
+        afbApp.getSicbo01().setRoadOld("");
         AppTool.activiyJump(mContext, LobbyActivity.class);
         finish();
 
     }
 
     public void InitRoad() {
-        //    mAppViewModel.getSicbo01().setRoad("13-445-0#13-256-0#7-223-0#10-136-0#4-112-0#13-166-0#13-346-0#16-466-0#13-256-0#10-235-0#11-146-0#12-444-1#7-124-0#10-244-0#12-246-0#12-246-0#8-134-0#8-134-0#10-145-0#12-156-0#11-146-0#10-136-0#12-156-0#7-124-0#14-446-0#7-133-0#11-146-0#8-224-0#14-356-0#12-336-0#10-226-0#16-466-0#13-355-0#15-456-0#12-156-0#9-234-0#5-122-0#12-156-0#9-126-0#14-455-0#6-222-1#11-245-0#9-135-0#5-113-0#11-236-0#14-455-0#11-245-0#13-346-0#10-136-0#10-235-0#9-144-0#12-345-0#12-156-0#13-256-0#9-333-1#17-566-0#13-346-0#14-455-0#6-123-0#13-166-0#13-346-0#13-166-0#10-145-0#8-125-0#6-123-0#6-114-0#13-256-0#12-336-0#11-335-0#14-455-0#11-344-0#18-666-1#3-111-1#9-135-0#6-123-0#10-235-0#4-112-0#8-125-0#10-145-0#10-136-0#12-156-0#8-125-0#7-223-0#10-235-0#7-124-0#6-123-0#10-145-0#7-223-0#9-126-0#9-234-0#9-234-0#10-244-0#8-116-0#15-456-0#11-344-0#7-223-0#13-445-0#12-345-0#14-455-0#9-333-1#");
-        mAppViewModel.updateRoad(mAppViewModel.getSicbo01(), sicbo_bigsmall_road, sicbo_evenodd_road, tv_sicbo_number01, tv_even01, tv_small01, tv_waidic01, tv_big01, tv_odd01, mContext, density);
+        //    afbApp.getSicbo01().setRoad("13-445-0#13-256-0#7-223-0#10-136-0#4-112-0#13-166-0#13-346-0#16-466-0#13-256-0#10-235-0#11-146-0#12-444-1#7-124-0#10-244-0#12-246-0#12-246-0#8-134-0#8-134-0#10-145-0#12-156-0#11-146-0#10-136-0#12-156-0#7-124-0#14-446-0#7-133-0#11-146-0#8-224-0#14-356-0#12-336-0#10-226-0#16-466-0#13-355-0#15-456-0#12-156-0#9-234-0#5-122-0#12-156-0#9-126-0#14-455-0#6-222-1#11-245-0#9-135-0#5-113-0#11-236-0#14-455-0#11-245-0#13-346-0#10-136-0#10-235-0#9-144-0#12-345-0#12-156-0#13-256-0#9-333-1#17-566-0#13-346-0#14-455-0#6-123-0#13-166-0#13-346-0#13-166-0#10-145-0#8-125-0#6-123-0#6-114-0#13-256-0#12-336-0#11-335-0#14-455-0#11-344-0#18-666-1#3-111-1#9-135-0#6-123-0#10-235-0#4-112-0#8-125-0#10-145-0#10-136-0#12-156-0#8-125-0#7-223-0#10-235-0#7-124-0#6-123-0#10-145-0#7-223-0#9-126-0#9-234-0#9-234-0#10-244-0#8-116-0#15-456-0#11-344-0#7-223-0#13-445-0#12-345-0#14-455-0#9-333-1#");
+        afbApp.updateRoad(afbApp.getSicbo01(), sicbo_bigsmall_road, sicbo_evenodd_road, tv_sicbo_number01, tv_even01, tv_small01, tv_waidic01, tv_big01, tv_odd01, mContext, density);
     }
 
 
@@ -287,13 +287,13 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
             public void onItemClick(View view, String s, int position) {
                 if ("0 - 0".endsWith(s))
                     return;
-                mAppViewModel.getSicbo01().setLimitIndex(position + 1);
+                getApp().getSicbo01().setLimitIndex(position + 1);
                 Bundle bundle = new Bundle();
                 bundle.putString("limit",s);
                 bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + 31);
                 //   AppTool.activiyJump(AutoNumberActivity.this, NumberGameSingleTableActivity.class, bundle);
-                mAppViewModel.setTableId(31);
-                mAppViewModel.setbLobby(false);
+                afbApp.setTableId(31);
+                afbApp.setbLobby(false);
                 AppTool.activiyJump(mContext, SicboActivity.class, bundle);
 
             }
@@ -317,11 +317,11 @@ public class LobbySicboActivity extends BaseActivity implements View.OnClickList
         String limit4 = "0 - 0";
 
 
-        if (mAppViewModel.getSicbo01() != null) {
-            limit1 = "" + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit1().getMaxTotalBet();
-            limit2 = "" + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit2().getMaxTotalBet();
-            limit3 = "" + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit3().getMaxTotalBet();
-            limit4 = "" + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMinTotalBet() + " - " + (int) mAppViewModel.getSicbo01().getSicboLimit4().getMaxTotalBet();
+        if (getApp().getSicbo01() != null) {
+            limit1 = "" + (int) getApp().getSicbo01().getSicboLimit1().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit1().getMaxTotalBet();
+            limit2 = "" + (int) getApp().getSicbo01().getSicboLimit2().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit2().getMaxTotalBet();
+            limit3 = "" + (int) getApp().getSicbo01().getSicboLimit3().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit3().getMaxTotalBet();
+            limit4 = "" + (int) getApp().getSicbo01().getSicboLimit4().getMinTotalBet() + " - " + (int) getApp().getSicbo01().getSicboLimit4().getMaxTotalBet();
         }
 
         return new ArrayList<>(Arrays.asList(limit1, limit2, limit3, limit4));

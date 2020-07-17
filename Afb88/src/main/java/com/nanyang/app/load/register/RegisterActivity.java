@@ -14,7 +14,7 @@ import com.nanyang.app.Utils.StringUtils;
 import com.unkonw.testapp.libs.base.BaseActivity;
 import com.unkonw.testapp.libs.widget.BaseListPopupWindow;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
@@ -23,45 +23,45 @@ import butterknife.OnClick;
 public class RegisterActivity extends BaseActivity<RegisterPresenter> implements View.OnFocusChangeListener {
 
 
-    @BindView(R.id.edt_account)
+    @Bind(R.id.edt_account)
     EditText edtAccount;
-    @BindView(R.id.tv_account_prompt)
+    @Bind(R.id.tv_account_prompt)
     TextView tvAccountPrompt;
-    @BindView(R.id.edt_password)
+    @Bind(R.id.edt_password)
     EditText edtPassword;
-    @BindView(R.id.tv_password_prompt)
+    @Bind(R.id.tv_password_prompt)
     TextView tvPasswordPrompt;
-    @BindView(R.id.edt_password_repeat)
+    @Bind(R.id.edt_password_repeat)
     EditText edtPasswordRepeat;
-    @BindView(R.id.tv_password_repeat_prompt)
+    @Bind(R.id.tv_password_repeat_prompt)
     TextView tvPasswordRepeatPrompt;
-    @BindView(R.id.edt_email)
+    @Bind(R.id.edt_email)
     EditText edtEmail;
-    @BindView(R.id.tv_email_prompt)
+    @Bind(R.id.tv_email_prompt)
     TextView tvEmailPrompt;
-    @BindView(R.id.btn_submit)
+    @Bind(R.id.btn_submit)
     Button btnSubmit;
 
 
-    @BindView(R.id.tv_currency)
+    @Bind(R.id.tv_currency)
     TextView tvCurrency;
-    @BindView(R.id.tv_currency_prompt)
+    @Bind(R.id.tv_currency_prompt)
     TextView tvCurrencyPorompt;
-    @BindView(R.id.edt_contactnum)
+    @Bind(R.id.edt_contactnum)
     EditText edtContactnum;
-    @BindView(R.id.tv_contactnum_prompt)
+    @Bind(R.id.tv_contactnum_prompt)
     TextView tvContactnumPrompt;
-    @BindView(R.id.tv_bankname)
+    @Bind(R.id.tv_bankname)
     TextView tvBankName;
-    @BindView(R.id.tv_bankname_prompt)
+    @Bind(R.id.tv_bankname_prompt)
     TextView tvBankNamePrompt;
-    @BindView(R.id.edt_accountname)
+    @Bind(R.id.edt_accountname)
     EditText edtAccountname;
-    @BindView(R.id.tv_accountname_prompt)
+    @Bind(R.id.tv_accountname_prompt)
     TextView tvAccountnamePrompt;
-    @BindView(R.id.edt_accountnumber)
+    @Bind(R.id.edt_accountnumber)
     EditText edtAccountnumber;
-    @BindView(R.id.tv_accountnumber_prompt)
+    @Bind(R.id.tv_accountnumber_prompt)
     TextView tvAccountnumberPrompt;
 
 

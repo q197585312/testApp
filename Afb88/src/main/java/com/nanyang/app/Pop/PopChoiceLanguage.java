@@ -1,10 +1,9 @@
 package com.nanyang.app.Pop;
 
 import android.content.Context;
-import android.view.View;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
 
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
@@ -15,9 +14,8 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
-
 
 /**
  * Created by Administrator on 2019/4/3.
@@ -34,7 +32,7 @@ public abstract class PopChoiceLanguage extends BasePopupWindow {
         return R.layout.layout_base_recycler_view;
     }
 
-    @BindView(R.id.base_rv)
+    @Bind(R.id.base_rv)
     RecyclerView recyclerView;
 
     @Override

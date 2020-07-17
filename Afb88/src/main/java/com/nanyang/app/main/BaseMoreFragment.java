@@ -24,11 +24,11 @@ public abstract class BaseMoreFragment<P extends IBasePresenter> extends BaseSwi
         if (baseToolbarActivity instanceof SportActivity) {
             ((SportActivity) baseToolbarActivity).ll_line1.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).ll_line2.setVisibility(View.GONE);
+            ((SportActivity) baseToolbarActivity).ll_line3.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).ll_header_sport.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).bet_pop_parent_ll.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).ll_footer_sport.setVisibility(View.GONE);
             ((SportActivity) baseToolbarActivity).llSportMenuBottom.setVisibility(View.GONE);
-            ((SportActivity) baseToolbarActivity).collectionNumTv.setVisibility(View.GONE);
         }
     }
 

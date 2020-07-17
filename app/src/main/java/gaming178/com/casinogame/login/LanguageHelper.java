@@ -21,7 +21,7 @@ public class LanguageHelper {
     public LanguageHelper(Context context) {
         this.context = context;
         languageItems = new ArrayList<>();
-        if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88")) {
+        if (BuildConfig.FLAVOR.equals("gd88")) {
             languageItems.add(new MenuItemInfo<>(R.mipmap.lang_zh_flag, "简体中文", "zh", "ZH-CN"));
             languageItems.add(new MenuItemInfo<>(R.mipmap.lang_en_flag, "English", "en", "EN-US"));
             languageItems.add(new MenuItemInfo<>(R.mipmap.lang_th_flag, "ภาษาไทย", "th", "TH-TH"));

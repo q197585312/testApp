@@ -1,6 +1,8 @@
 package com.nanyang.app;
 
 
+import android.text.Html;
+
 import com.nanyang.app.Been.CheckVersionBean;
 import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BetCenter.Bean.Contact;
@@ -8,8 +10,11 @@ import com.nanyang.app.main.home.huayThai.HuayDrawDateInfo;
 import com.nanyang.app.main.home.huayThai.ResultBean;
 import com.nanyang.app.main.home.keno.bean.KenoBetLimitBean;
 import com.nanyang.app.main.home.keno.bean.KenoDataBean;
+import com.nanyang.app.main.home.sport.additional.AddMBean;
 import com.nanyang.app.main.home.sport.model.BettingParPromptBean;
 import com.nanyang.app.main.home.sport.model.BettingPromptBean;
+import com.unkonw.testapp.login.DataBean;
+import com.unkonw.testapp.login.ResBaseBean;
 
 import java.util.List;
 import java.util.Map;
@@ -24,6 +29,7 @@ import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -76,13 +82,13 @@ public interface ApiService {
     @Headers({"Content-Type: application/json", "Accept: application/json"})//需要添加头
     @POST
     Flowable<String> doPostJson(@Url String url, @Body RequestBody info);
-    @GET
-    Flowable<String> getData(@Url String url);
+
     @FormUrlEncoded
     @POST
     Flowable<ResultBean> doHuayMap(@Url String url, @FieldMap Map<String, String> info);
 
-
+    @GET
+    Flowable<String> getData(@Url String url);
 
     @GET
     Flowable<Response<String>> getResponse(@Url String url);

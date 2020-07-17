@@ -1,12 +1,8 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.jakewharton.butterknife'
+
 android {
     dexOptions {
         jumboMode true
-    }
-    compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
     }
     signingConfigs {
         config {
@@ -20,7 +16,7 @@ android {
     buildToolsVersion = rootProject.ext.android["buildToolsVersion"]
     defaultConfig {
         applicationId "com.nanyang.app"
-        minSdkVersion 18
+        minSdkVersion 14
         targetSdkVersion 26
         buildConfigField "String", "HOST_AFB", '"http;//wsapp.afb1188.com"'
         buildConfigField "String", "HOST_SPORT", '"http://wsapp.afb1188.com:8888/fnOddsGen"'
@@ -64,10 +60,10 @@ android {
         afb1188 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "afb1188"]
             applicationId 'com.nanyang.afb1188'
-            versionName '2.71'
-            buildConfigField "String", "Domain", '".afb1188.net"'
-            buildConfigField "String", "H5_URL", '"http://wsapp.afb1188.net/H50/Pub/wfLoginH50.html"'
-            buildConfigField "String", "HOST_AFB", '"http://wsapp.afb1188.net/"' //app专用服务器
+            versionName '2.69'
+            buildConfigField "String", "Domain", '".afb1188.com"'
+            buildConfigField "String", "H5_URL", '"https://wsapp.afb1188.com/H50/Pub/wfLoginH50.html"'
+            buildConfigField "String", "HOST_AFB", '"https://wsapp.afb1188.com/"' //app专用服务器
             buildConfigField "String", "HOST_SPORT", '"ws://app.afb1188.com:8888/fnOddsGen"'
             buildConfigField "String", "ImgConfig_URL", '"http://www.appgd88.com/app/afb1188.php"'
 //ws://wsapp.afb1188.com:8888/fnOddsGen
@@ -79,7 +75,7 @@ android {
         i1bet99 {
             manifestPlaceholders = [UMENG_CHANNEL_VALUE: "i1bet99"]
             applicationId 'com.nanyang.i1bet99'
-            versionName '2.67'
+            versionName '2.65'
             buildConfigField "String", "Domain", '".i1bet99.com"'
             buildConfigField "String", "H5_URL", '"https://www.i1bet99.com/H52/Pub/wfLoginH50.html"'
             buildConfigField "String", "HOST_AFB", '"https://www.i1bet99.com/"'
@@ -119,16 +115,11 @@ dependencies {
     //    implementation 'com.android.support:appcompat-v7:25.1.0'
     testImplementation 'junit:junit:4.12'
     implementation project(':baseLibs')
-    implementation rootProject.ext.dependencies["butterknife"]
-    annotationProcessor rootProject.ext.dependencies["butterknife-compiler"]
     implementation 'com.tencent.bugly:crashreport:latest.release'
     implementation 'com.tencent.bugly:nativecrashreport:latest.release'
     implementation 'com.github.bumptech.glide:glide:3.7.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
     implementation 'com.android.support:multidex:1.0.3'
-    if (rootProject.ext.isGd88LibraryModule.toBoolean()) {
-        implementation project(':app')
-    }
 
 }

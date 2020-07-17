@@ -28,7 +28,6 @@ import com.nanyang.app.common.ILanguageView;
 import com.nanyang.app.common.MainPresenter;
 import com.nanyang.app.load.PersonalInfo;
 import com.nanyang.app.load.login.LoginInfo;
-import com.nanyang.app.load.welcome.AllBannerImagesBean;
 import com.nanyang.app.main.BetCenter.BetCenterFragment;
 import com.nanyang.app.main.home.HomeFragment;
 import com.unkonw.testapp.libs.adapter.MyRecyclerViewHolder;
@@ -39,24 +38,24 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.OnClick;
 
 
 public class MainActivity extends BaseToolbarActivity<MainPresenter> implements ILanguageView<String> {
-    @BindView(R.id.fl_menu_home)
+    @Bind(R.id.fl_menu_home)
     FrameLayout flMenuHome;
-    @BindView(R.id.fl_menu_center)
+    @Bind(R.id.fl_menu_center)
     FrameLayout flContact;
-    @BindView(R.id.fl_menu_login_out)
+    @Bind(R.id.fl_menu_login_out)
     FrameLayout flLoginOut;
-    @BindView(R.id.home_pop)
+    @Bind(R.id.home_pop)
     TextView homePop;
-    @BindView(R.id.ll_tab_menu_bottom)
+    @Bind(R.id.ll_tab_menu_bottom)
     LinearLayout ll_tab_menu_bottom;
     @Nullable
     protected
-    @BindView(R.id.drawer_more)
+    @Bind(R.id.drawer_more)
     DrawerLayout drawerLayout;
     private AfbDrawerViewHolder afbDrawerViewHolder;
 
@@ -70,10 +69,10 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
         setContentView(R.layout.activity_main_tab);
         createPresenter(new MainPresenter(this));
         toolbar.setNavigationIcon(null);
+
         afbDrawerViewHolder = new AfbDrawerViewHolder(drawerLayout, this, R.id.fl_main_content);
         afbDrawerViewHolder.initDefaultFragment(homeFragment);
         afbDrawerViewHolder.switchFragment(homeFragment);
-
         myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
         new Handler().postDelayed(new Runnable() {
@@ -85,7 +84,6 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
                 }
             }
         }, 100);
-
 
 
     }
@@ -226,7 +224,4 @@ public class MainActivity extends BaseToolbarActivity<MainPresenter> implements 
 
     }
 
-    public void loadingUrlPics(MainPresenter.CallBack<AllBannerImagesBean> callBack) {
-        (presenter).loadAllImages(callBack);
-    }
 }

@@ -1,6 +1,10 @@
 package com.nanyang.app.main.BetCenter;
 
 import android.graphics.Color;
+import androidx.annotation.IdRes;
+import androidx.core.content.ContextCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.text.Spanned;
 import android.text.TextUtils;
 import android.view.View;
@@ -9,13 +13,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import androidx.annotation.IdRes;
-import androidx.core.content.ContextCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import com.nanyang.app.AfbUtils;
-import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.MenuItemInfo;
 import com.nanyang.app.R;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
@@ -40,26 +38,24 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
-
+import butterknife.Bind;
 
 /**
  * Created by Administrator on 2019/4/4.
  */
 
 public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
-    @BindView(R.id.running_list)
+    @Bind(R.id.running_list)
     RecyclerView rv;
-    @BindView(R.id.running_group)
+    @Bind(R.id.running_group)
     RadioGroup rgType;
     String type = "W";
-    @BindView(R.id.tv_waite_count)
+    @Bind(R.id.tv_waite_count)
     TextView tvWaiteCount;
-    @BindView(R.id.ll_note)
+    @Bind(R.id.ll_note)
     LinearLayout llNote;
     Map<String, Boolean> showDetailMap = new HashMap<>();
-    BetGoalWindowUtils utils = new BetGoalWindowUtils();
-
+    BetGoalWindowUtils utils=new BetGoalWindowUtils();
     @Override
     public int onSetLayoutId() {
         return R.layout.fragment_running;
@@ -102,6 +98,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
     private void setAdapter() {
 
 
+
         adapter1 = new BaseRecyclerAdapter<StatementOpen2ListDataBean>(mContext, new ArrayList<StatementOpen2ListDataBean>(), R.layout.item_statement_open2) {
             @Override
             public void convert(MyRecyclerViewHolder view, int position, StatementOpen2ListDataBean bean) {
@@ -109,7 +106,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
             }
         };
 
-        rv.setLayoutManager(new LinearLayoutManager(mContext));
+        rv.setLayoutManager( new LinearLayoutManager(mContext));
         adapter = new BaseRecyclerAdapter<RunningBean>(mContext, new ArrayList<RunningBean>(), R.layout.item_running) {
             @Override
             public void convert(final MyRecyclerViewHolder holder, final int position, final RunningBean item) {
@@ -123,7 +120,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 View ll2 = holder.getView(R.id.ll_running_hdp);
                 final LinearLayout l = holder.getLinearLayout(R.id.ll_running_detail_1);
                 final LinearLayout l2 = holder.getLinearLayout(R.id.ll_running_detail_2);
-                TextView running_par_DangerStatus = holder.getView(R.id.running_par_DangerStatus);
+                 TextView running_par_DangerStatus = holder.getView(R.id.running_par_DangerStatus);
                 TextView tv_running_status = holder.getView(R.id.running_Status);
                 l.setVisibility(View.GONE);
                 if (item.getBetType18().equals("PAR") || item.getBetType18().equals("PAM")) {
@@ -258,7 +255,7 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                     boolean isOu = false;
                     TextView running_BetType = holder.getTextView(R.id.running_BetType);
                     String transType10 = item.getTransType10();
-                    utils.showBetType(getBaseActivity(), running_FullTimeId, running_BetType, fullTimeId13, transType10, isOu);
+                    utils.showBetType(getBaseActivity(),running_FullTimeId,running_BetType,fullTimeId13,transType10,isOu);
 
                     TextView running_Score = holder.getTextView(R.id.running_Score);
                     TextView running_BetType2 = holder.getTextView(R.id.running_BetType2);
@@ -325,8 +322,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
                 TextView tv_running_time1 = holder.getView(R.id.tv_running_time1);
                 setLiveView(item, view, tv_running_time, tv_running_score);
                 setLiveView(item, view1, tv_running_time1, tv_running_score1);
-                utils.showStatus(getBaseActivity(), item.getStatus20(), running_par_DangerStatus);
-                utils.showStatus(getBaseActivity(), item.getStatus20(), tv_running_status);
+                utils.showStatus(getBaseActivity(),item.getStatus20(),running_par_DangerStatus);
+                utils.showStatus(getBaseActivity(),item.getStatus20(),tv_running_status);
             }
         };
         rv.setAdapter(adapter);
@@ -334,14 +331,8 @@ public class UnsettledFragment extends BaseFragment<UnsettledPresenter> {
 
     @Override
     public void initWaitData() {
-        int index = 0;
-        if (((BaseToolbarActivity) getActivity()).waitSize == 0) {
-            type = "A";
-            index = 1;
-        } else {
-            type = "W";
-        }
-        RadioButton rb = (RadioButton) rgType.getChildAt(index);
+        type = "W";
+        RadioButton rb = (RadioButton) rgType.getChildAt(0);
         rb.setChecked(true);
         presenter.getRunningList(type);
     }

@@ -170,7 +170,7 @@
                     android:paddingLeft="0.5dp"
                     android:text="44"
                     android:textColor="@color/black_grey"
-                    android:textSize="13sp"
+                    android:textSize="12sp"
                     android:visibility="visible" />
 
 
@@ -350,7 +350,7 @@
                         android:layout_height="match_parent"
                         android:background="@color/grey_dialog_background" />
 
-                    <FrameLayout
+                    <com.unkonw.testapp.training.ScrollLayout
                         android:id="@+id/module_center_sl1"
                         android:layout_width="140dp"
                         android:layout_height="match_parent">
@@ -359,8 +359,15 @@
                             layout="@layout/sport_item_table_module_viewpager"
                             android:visibility="gone" />
 
+                        <include
+                            layout="@layout/sport_item_table_module_viewpager"
+                            android:visibility="gone" />
 
-                    </FrameLayout>
+                        <include
+                            layout="@layout/sport_item_table_module_viewpager"
+                            android:visibility="gone" />
+
+                    </com.unkonw.testapp.training.ScrollLayout>
 
 
                     <FrameLayout
@@ -520,31 +527,40 @@
                 </LinearLayout>
 
 
-                <FrameLayout
+                <com.unkonw.testapp.training.ScrollLayout
                     android:id="@+id/module_center_sl"
-                    android:layout_width="174dp"
+                    android:layout_width="170dp"
                     android:layout_height="match_parent">
 
                     <include
                         layout="@layout/sport_item_table_module_viewpager"
                         android:visibility="gone" />
 
-                </FrameLayout>
+                    <include
+                        layout="@layout/sport_item_table_module_viewpager"
+                        android:visibility="gone" />
+
+                    <include
+                        layout="@layout/sport_item_table_module_viewpager"
+                        android:visibility="gone" />
+
+                </com.unkonw.testapp.training.ScrollLayout>
 
 
             </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.1dp"
-                android:background="@color/grey_button" />
-
-
-            <View
-                android:id="@+id/view_line"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/grey_thick_line" />
         </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.1dp"
+            android:background="@color/grey_button" />
+
+
+        <View
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/grey_thick_line" />
     </LinearLayout>
 
     <LinearLayout

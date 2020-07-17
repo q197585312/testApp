@@ -25,9 +25,8 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import gaming178.com.baccaratgame.R;
-import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Bean.Baccarat;
 import gaming178.com.casinogame.Util.AppConfig;
 import gaming178.com.casinogame.Util.HandlerCode;
@@ -44,23 +43,23 @@ import gaming178.com.mylibrary.myview.View.GridBackgroundView;
  */
 public class LobbyBaccaratActivity extends BaseActivity {
 
-    @BindView(R2.id.baccarat_content_parent_ll)
+    @Bind(R.id.baccarat_content_parent_ll)
     LinearLayout baccaratContentParentLl;
-    @BindView(R2.id.baccarat_gridlayout1)
+    @Bind(R.id.baccarat_gridlayout1)
     GridLayout baccarat_head_road1;
-    @BindView(R2.id.ll_good_road_parent)
+    @Bind(R.id.ll_good_road_parent)
     View ll_good_road_parent1;
-    @BindView(R2.id.tv_good_road_name)
+    @Bind(R.id.tv_good_road_name)
     TextView tv_good_road_name1;
-    //    @BindView(R2.id.baccarat_background_gridlayout1)
+    //    @Bind(R.id.baccarat_background_gridlayout1)
 //    GridBackgroundView baccarat_background_head_road1;
-    @BindView(R2.id.baccarat_gridlayout2)
+    @Bind(R.id.baccarat_gridlayout2)
     GridLayout baccarat_big_road1;
-    @BindView(R2.id.baccarat_gridlayout3)
+    @Bind(R.id.baccarat_gridlayout3)
     GridLayout baccarat_bigeyes_road1;
-    @BindView(R2.id.baccarat_gridlayout4)
+    @Bind(R.id.baccarat_gridlayout4)
     FrameLayout fl4;//baccarat_smalleyes_road1
-    @BindView(R2.id.baccarat_gridlayout5)
+    @Bind(R.id.baccarat_gridlayout5)
     FrameLayout fl5;//baccarat_roach_road1
     private float density;
     private GridLayout baccarat_head_road2;
@@ -309,38 +308,38 @@ public class LobbyBaccaratActivity extends BaseActivity {
     };
 
     private void updateShuffling() {
-        if (mAppViewModel.getBaccarat(1).getGameStatus() == 8) {
+        if (afbApp.getBaccarat(1).getGameStatus() == 8) {
             shuffling1.setVisibility(View.VISIBLE);
         } else {
             shuffling1.setVisibility(View.GONE);
         }
-        if (mAppViewModel.getBaccarat(2).getGameStatus() == 8) {
+        if (afbApp.getBaccarat(2).getGameStatus() == 8) {
             shuffling2.setVisibility(View.VISIBLE);
         } else {
             shuffling2.setVisibility(View.GONE);
         }
-        if (mAppViewModel.getBaccarat(3).getGameStatus() == 8) {
+        if (afbApp.getBaccarat(3).getGameStatus() == 8) {
             shuffling3.setVisibility(View.VISIBLE);
         } else {
             shuffling3.setVisibility(View.GONE);
         }
-        if (mAppViewModel.getBaccarat(61).getGameStatus() == 8) {
+        if (afbApp.getBaccarat(61).getGameStatus() == 8) {
             shuffling61.setVisibility(View.VISIBLE);
         } else {
             shuffling61.setVisibility(View.GONE);
         }
-        if (mAppViewModel.getBaccarat(62).getGameStatus() == 8) {
+        if (afbApp.getBaccarat(62).getGameStatus() == 8) {
             shuffling62.setVisibility(View.VISIBLE);
         } else {
             shuffling62.setVisibility(View.GONE);
         }
-        if (mAppViewModel.getBaccarat(63).getGameStatus() == 8) {
+        if (afbApp.getBaccarat(63).getGameStatus() == 8) {
             shuffling63.setVisibility(View.VISIBLE);
         } else {
             shuffling63.setVisibility(View.GONE);
         }
         if (shuffling7 != null) {
-            if (mAppViewModel.getBaccarat(71).getGameStatus() == 8) {
+            if (afbApp.getBaccarat(71).getGameStatus() == 8) {
                 shuffling7.setVisibility(View.VISIBLE);
             } else {
                 shuffling7.setVisibility(View.GONE);
@@ -350,12 +349,12 @@ public class LobbyBaccaratActivity extends BaseActivity {
 
     public void initUI() {
         for (int i = 1; i <= 3; i++) {
-            mAppViewModel.getBaccarat(i).setTimer(0);
-            mAppViewModel.getBaccarat(i).setBigRoadOld("");
+            afbApp.getBaccarat(i).setTimer(0);
+            afbApp.getBaccarat(i).setBigRoadOld("");
         }
         for (int i = 61; i <= 63; i++) {
-            mAppViewModel.getBaccarat(i).setTimer(0);
-            mAppViewModel.getBaccarat(i).setBigRoadOld("");
+            afbApp.getBaccarat(i).setTimer(0);
+            afbApp.getBaccarat(i).setBigRoadOld("");
         }
         initUI71();
 
@@ -381,8 +380,8 @@ public class LobbyBaccaratActivity extends BaseActivity {
     }
 
     private void initUI71() {
-        mAppViewModel.getBaccarat71().setTimer(0);
-        mAppViewModel.getBaccarat71().setBigRoadOld("");
+        afbApp.getBaccarat71().setTimer(0);
+        afbApp.getBaccarat71().setBigRoadOld("");
         baccaratTimer71 = 0;
         baccaratGameNumber71 = "";
         tv_baccarat_timer71.setText("0");
@@ -535,15 +534,15 @@ public class LobbyBaccaratActivity extends BaseActivity {
     @Override
     protected void leftClick() {
         for (int i = 1; i <= 3; i++) {
-            mAppViewModel.getBaccarat(i).setBigRoadOld("");
+            afbApp.getBaccarat(i).setBigRoadOld("");
         }
         for (int i = 61; i <= 63; i++) {
-            mAppViewModel.getBaccarat(i).setBigRoadOld("");
+            afbApp.getBaccarat(i).setBigRoadOld("");
         }
         if (!(WebSiteUrl.isDomain && WebSiteUrl.GameType == 1))
             AppTool.activiyJump(mContext, LobbyActivity.class);
         else {
-            mAppViewModel.setbLogin(false);
+            afbApp.setbLogin(false);
         }
         finish();
     }
@@ -573,10 +572,10 @@ public class LobbyBaccaratActivity extends BaseActivity {
 
     public void updateTimer(int start, int end) {
         for (int i = start; i <= end; i++) {
-            if (getBaccaratTimer(i) == 0 && mAppViewModel.getBaccarat(i).getTimer() > 0) {
-                if (!getBaccaratGameNumber(i).equals(mAppViewModel.getBaccarat(i).getShoeNumber() + mAppViewModel.getBaccarat(i).getGameNumber())) {
-                    setBaccaratGameNumber(i, mAppViewModel.getBaccarat(i).getShoeNumber() + mAppViewModel.getBaccarat(i).getGameNumber());
-                    setBaccaratTimer(i, mAppViewModel.getBaccarat(i).getTimer());
+            if (getBaccaratTimer(i) == 0 && afbApp.getBaccarat(i).getTimer() > 0) {
+                if (!getBaccaratGameNumber(i).equals(afbApp.getBaccarat(i).getShoeNumber() + afbApp.getBaccarat(i).getGameNumber())) {
+                    setBaccaratGameNumber(i, afbApp.getBaccarat(i).getShoeNumber() + afbApp.getBaccarat(i).getGameNumber());
+                    setBaccaratTimer(i, afbApp.getBaccarat(i).getTimer());
                 }
             }
         }
@@ -596,9 +595,9 @@ public class LobbyBaccaratActivity extends BaseActivity {
                 setBaccaratTimer(i, getBaccaratTimer(i) - 1);
                 getBaccaratTimerTextView(i).setText("" + getBaccaratTimer(i));
                 getBaccaratTimerTextView(i).setTextSize(18);
-                getBaccaratShoeGameNumberTextView(i).setText("" + mAppViewModel.getBaccarat(i).getShoeNumber() + " - " + mAppViewModel.getBaccarat(i).getGameNumber());
+                getBaccaratShoeGameNumberTextView(i).setText("" + afbApp.getBaccarat(i).getShoeNumber() + " - " + afbApp.getBaccarat(i).getGameNumber());
             } else {
-//                if (mAppViewModel.getBaccarat(i).getGameStatus() == 2) {
+//                if (afbApp.getBaccarat(i).getGameStatus() == 2) {
 //                    getBaccaratTimerTextView(i).setText(getString(R.string.START_DEALING));
 //                    getBaccaratTimerTextView(i).setTextSize(12);
 //                }
@@ -616,9 +615,9 @@ public class LobbyBaccaratActivity extends BaseActivity {
             baccaratTimer71--;
             tv_baccarat_timer71.setText("" + baccaratTimer71);
             tv_baccarat_timer71.setTextSize(18);
-            tv_baccarat_shoe_number71.setText("" + mAppViewModel.getBaccarat71().getShoeNumber() + " - " + mAppViewModel.getBaccarat71().getGameNumber());
+            tv_baccarat_shoe_number71.setText("" + afbApp.getBaccarat71().getShoeNumber() + " - " + afbApp.getBaccarat71().getGameNumber());
         } else {
-//            if (mAppViewModel.getBaccarat71().getGameStatus() == 2) {
+//            if (afbApp.getBaccarat71().getGameStatus() == 2) {
 //                tv_baccarat_timer71.setText(getString(R.string.START_DEALING));
 //                tv_baccarat_timer71.setTextSize(12);
 //            }
@@ -626,10 +625,10 @@ public class LobbyBaccaratActivity extends BaseActivity {
     }
 
     public void updateTimer71() {
-        if (baccaratTimer71 == 0 && mAppViewModel.getBaccarat71().getTimer() > 0) {
-            if (!baccaratGameNumber71.equals(mAppViewModel.getBaccarat71().getShoeNumber() + mAppViewModel.getBaccarat71().getGameNumber())) {
-                baccaratGameNumber71 = mAppViewModel.getBaccarat71().getShoeNumber() + mAppViewModel.getBaccarat71().getGameNumber();
-                baccaratTimer71 = mAppViewModel.getBaccarat71().getTimer();
+        if (baccaratTimer71 == 0 && afbApp.getBaccarat71().getTimer() > 0) {
+            if (!baccaratGameNumber71.equals(afbApp.getBaccarat71().getShoeNumber() + afbApp.getBaccarat71().getGameNumber())) {
+                baccaratGameNumber71 = afbApp.getBaccarat71().getShoeNumber() + afbApp.getBaccarat71().getGameNumber();
+                baccaratTimer71 = afbApp.getBaccarat71().getTimer();
                 Log.d("Afb88", "updateTimer71--->" + baccaratTimer71);
             }
         }
@@ -652,42 +651,42 @@ public class LobbyBaccaratActivity extends BaseActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         InitControl();
         for (int i = 1; i <= 3; i++) {
-            mAppViewModel.getBaccarat(i).setShoeNumberOld(mAppViewModel.getBaccarat(i).getShoeNumber());
+            afbApp.getBaccarat(i).setShoeNumberOld(afbApp.getBaccarat(i).getShoeNumber());
         }
         for (int i = 61; i <= 63; i++) {
-            mAppViewModel.getBaccarat(i).setShoeNumberOld(mAppViewModel.getBaccarat(i).getShoeNumber());
+            afbApp.getBaccarat(i).setShoeNumberOld(afbApp.getBaccarat(i).getShoeNumber());
         }
-        mAppViewModel.getBaccarat71().setShoeNumberOld(mAppViewModel.getBaccarat71().getShoeNumber());
+        afbApp.getBaccarat71().setShoeNumberOld(afbApp.getBaccarat71().getShoeNumber());
 
     }
 
     public void InitRoad() {
-//        road = mAppViewModel.getBaccarat02().ShowBaccaratBigRoad("5#5#7#1#5#1#1#1#1#5#5#1#5#1#1#2#1#6#9#7#1#1#5#1#1#5#9#9#1#1#1#1#3#1#1#1#1#5#3#5#5#5#1#5#1#1#7#1#",
+//        road = getApp().getBaccarat02().ShowBaccaratBigRoad("5#5#7#1#5#1#1#1#1#5#5#1#5#1#1#2#1#6#9#7#1#1#5#1#1#5#9#9#1#1#1#1#3#1#1#1#1#5#3#5#5#5#1#5#1#1#7#1#",
 //                mContext,baccarat_big_road2,6,density,1);
-        mAppViewModel.updateRoad(mContext, density, mAppViewModel.getBaccarat(1), baccarat_head_road1, baccarat_big_road1, baccarat_bigeyes_road1, baccarat_smalleyes_road1, baccarat_roach_road1
+        afbApp.updateRoad(mContext, density, getApp().getBaccarat(1), baccarat_head_road1, baccarat_big_road1, baccarat_bigeyes_road1, baccarat_smalleyes_road1, baccarat_roach_road1
                 , tv_baccarat_shoe_number01, tv_baccarat_total_number01, tv_baccarat_banker_number01, tv_baccarat_player_number01, tv_baccarat_tie_number01, tv_baccarat_bp_number01,
                 tv_baccarat_pp_number01, ll_good_road_parent1, tv_good_road_name1, false, ll_big_road_parent2_1, hsv_small_road_1_1, hsv_small_road_2_1, hsv_small_road_3_1);
-        mAppViewModel.updateRoad(mContext, density, mAppViewModel.getBaccarat(2), baccarat_head_road2, baccarat_big_road2, baccarat_bigeyes_road2, baccarat_smalleyes_road2, baccarat_roach_road2
+        afbApp.updateRoad(mContext, density, getApp().getBaccarat(2), baccarat_head_road2, baccarat_big_road2, baccarat_bigeyes_road2, baccarat_smalleyes_road2, baccarat_roach_road2
                 , tv_baccarat_shoe_number02, tv_baccarat_total_number02, tv_baccarat_banker_number02, tv_baccarat_player_number02, tv_baccarat_tie_number02, tv_baccarat_bp_number02,
                 tv_baccarat_pp_number02, ll_good_road_parent2, tv_good_road_name2, false, ll_big_road_parent2_2, hsv_small_road_1_2, hsv_small_road_2_2, hsv_small_road_3_2);
-        mAppViewModel.updateRoad(mContext, density, mAppViewModel.getBaccarat(3), baccarat_head_road3, baccarat_big_road3, baccarat_bigeyes_road3, baccarat_smalleyes_road3, baccarat_roach_road3
+        afbApp.updateRoad(mContext, density, getApp().getBaccarat(3), baccarat_head_road3, baccarat_big_road3, baccarat_bigeyes_road3, baccarat_smalleyes_road3, baccarat_roach_road3
                 , tv_baccarat_shoe_number03, tv_baccarat_total_number03, tv_baccarat_banker_number03, tv_baccarat_player_number03, tv_baccarat_tie_number03, tv_baccarat_bp_number03,
                 tv_baccarat_pp_number03, ll_good_road_parent3, tv_good_road_name3, false, ll_big_road_parent2_3, hsv_small_road_1_3, hsv_small_road_2_3, hsv_small_road_3_3);
 
-        mAppViewModel.updateRoad(mContext, density, mAppViewModel.getBaccarat(61), baccarat_head_road61, baccarat_big_road61, baccarat_bigeyes_road61, baccarat_smalleyes_road61, baccarat_roach_road61
+        afbApp.updateRoad(mContext, density, getApp().getBaccarat(61), baccarat_head_road61, baccarat_big_road61, baccarat_bigeyes_road61, baccarat_smalleyes_road61, baccarat_roach_road61
                 , tv_baccarat_shoe_number61, tv_baccarat_total_number61, tv_baccarat_banker_number61, tv_baccarat_player_number61, tv_baccarat_tie_number61, tv_baccarat_bp_number61,
                 tv_baccarat_pp_number61, ll_good_road_parent61, tv_good_road_name61, false, ll_big_road_parent2_61, hsv_small_road_1_61, hsv_small_road_2_61, hsv_small_road_3_61);
-        mAppViewModel.updateRoad(mContext, density, mAppViewModel.getBaccarat(62), baccarat_head_road62, baccarat_big_road62, baccarat_bigeyes_road62, baccarat_smalleyes_road62, baccarat_roach_road62
+        afbApp.updateRoad(mContext, density, getApp().getBaccarat(62), baccarat_head_road62, baccarat_big_road62, baccarat_bigeyes_road62, baccarat_smalleyes_road62, baccarat_roach_road62
                 , tv_baccarat_shoe_number62, tv_baccarat_total_number62, tv_baccarat_banker_number62, tv_baccarat_player_number62, tv_baccarat_tie_number62, tv_baccarat_bp_number62,
                 tv_baccarat_pp_number62, ll_good_road_parent62, tv_good_road_name62, false, ll_big_road_parent2_62, hsv_small_road_1_62, hsv_small_road_2_62, hsv_small_road_3_62);
-        mAppViewModel.updateRoad(mContext, density, mAppViewModel.getBaccarat(63), baccarat_head_road63, baccarat_big_road63, baccarat_bigeyes_road63, baccarat_smalleyes_road63, baccarat_roach_road63
+        afbApp.updateRoad(mContext, density, getApp().getBaccarat(63), baccarat_head_road63, baccarat_big_road63, baccarat_bigeyes_road63, baccarat_smalleyes_road63, baccarat_roach_road63
                 , tv_baccarat_shoe_number63, tv_baccarat_total_number63, tv_baccarat_banker_number63, tv_baccarat_player_number63, tv_baccarat_tie_number63, tv_baccarat_bp_number63,
                 tv_baccarat_pp_number63, ll_good_road_parent63, tv_good_road_name63, false, ll_big_road_parent2_63, hsv_small_road_1_63, hsv_small_road_2_63, hsv_small_road_3_63);
         initRoad71();
     }
 
     private void initRoad71() {
-        mAppViewModel.updateRoad(mContext, density, mAppViewModel.getBaccarat(71), baccarat_head_road71, baccarat_big_road71, baccarat_bigeyes_road71, baccarat_smalleyes_road71, baccarat_roach_road71
+        afbApp.updateRoad(mContext, density, getApp().getBaccarat(71), baccarat_head_road71, baccarat_big_road71, baccarat_bigeyes_road71, baccarat_smalleyes_road71, baccarat_roach_road71
                 , tv_baccarat_shoe_number71, tv_baccarat_total_number71, tv_baccarat_banker_number71, tv_baccarat_player_number71, tv_baccarat_tie_number71, tv_baccarat_bp_number71,
                 tv_baccarat_pp_number71, ll_good_road_parent71, tv_good_road_name71, false, ll_big_road_parent2_71, hsv_small_road_1_71, hsv_small_road_2_71, hsv_small_road_3_71);
     }
@@ -728,7 +727,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
     }
 
 
-    @BindView(R2.id.layout1)
+    @Bind(R.id.layout1)
     HorizontalScrollView scrollView1;
     HorizontalScrollView scrollView2;
     HorizontalScrollView scrollView3;
@@ -1343,7 +1342,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
     }
 
     public void clickGrid(View v, final int tableId, final String tableNumber, View top_v) {
-        if (mAppViewModel.getBaccarat(tableId).getStatus() != 1) {
+        if (afbApp.getBaccarat(tableId).getStatus() != 1) {
             Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
             return;
         }
@@ -1380,12 +1379,18 @@ public class LobbyBaccaratActivity extends BaseActivity {
             public void onItemClick(View view, String s, int position) {
                 if ("0 - 0".endsWith(s))
                     return;
-                mAppViewModel.getBaccarat(tableId).setLimitIndex(position + 1);
+                getApp().getBaccarat(1).setLimitIndex(position + 1);
+                getApp().getBaccarat(2).setLimitIndex(position + 1);
+                getApp().getBaccarat(3).setLimitIndex(position + 1);
+                getApp().getBaccarat(61).setLimitIndex(position + 1);
+                getApp().getBaccarat(62).setLimitIndex(position + 1);
+                getApp().getBaccarat(63).setLimitIndex(position + 1);
+                getApp().getBaccarat(71).setLimitIndex(position + 1);
                 if (WebSiteUrl.isDomain) {
-                    mAppViewModel.setTableId(tableId);
-                    mAppViewModel.setSerialId(0);
-                    mAppViewModel.setAreaId(0);
-                    mAppViewModel.setbLobby(false);
+                    afbApp.setTableId(tableId);
+                    afbApp.setSerialId(0);
+                    afbApp.setAreaId(0);
+                    afbApp.setbLobby(false);
                     Bundle bundle = new Bundle();
                     bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + tableId);
 //                    if (tableId <= 3 || tableId == 71) {
@@ -1401,11 +1406,11 @@ public class LobbyBaccaratActivity extends BaseActivity {
                      * */
                     Bundle bundle = new Bundle();
                     bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA, "" + tableId);
-                    mAppViewModel.setTableId(tableId);
+                    afbApp.setTableId(tableId);
                     bundle.putBoolean("baccaratA", true);
-//                mAppViewModel.setSerialId(serialId);
-//                mAppViewModel.setAreaId(areaId);
-                    mAppViewModel.setbLobby(false);
+//                afbApp.setSerialId(serialId);
+//                afbApp.setAreaId(areaId);
+                    afbApp.setbLobby(false);
                     AppTool.activiyJump(mContext, BaccaratActivity.class, bundle);
 
                 }
@@ -1430,7 +1435,7 @@ public class LobbyBaccaratActivity extends BaseActivity {
         String limit2 = "0 - 0";
         String limit3 = "0 - 0";
         String limit4 = "0 - 0";
-        baccarat = mAppViewModel.getBaccarat(tableId);
+        baccarat = getApp().getBaccarat(tableId);
 
         if (baccarat != null) {
             limit1 = "" + (int) baccarat.getBaccaratLimit1().getMinTotalBet() + " - " + (int) baccarat.getBaccaratLimit1().getMaxTotalBet();

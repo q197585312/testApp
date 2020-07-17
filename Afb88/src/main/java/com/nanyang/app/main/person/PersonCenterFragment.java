@@ -1,14 +1,13 @@
 package com.nanyang.app.main.person;
 
 import android.graphics.Color;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.AppConstant;
@@ -30,8 +29,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-
+import butterknife.Bind;
 
 /**
  * Created by 47184 on 2019/3/18.
@@ -39,9 +37,9 @@ import butterknife.BindView;
 
 public class PersonCenterFragment extends BaseMoreFragment<PersonPresenter> {
 
-    @BindView(R.id.edt_text)
+    @Bind(R.id.edt_text)
     EditText edt_text;
-    @BindView(R.id.person_center_view)
+    @Bind(R.id.person_center_view)
     RecyclerView rcContent;
     BaseToolbarActivity aty;
     BaseRecyclerAdapter<PersonCenter> adapter;

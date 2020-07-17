@@ -26,7 +26,7 @@ public abstract class GdThreadHander extends ThreadHandler<String, RequestBean<S
     }
 
 
-    /*  String loginParams = "txtLang=0&txtAcctid="+mAppViewModel.getUser().getName()+"&txtPwd="+mAppViewModel.getUser().getPassword()+"&OsType=Android&OsVersion="+localVersion;*/
+    /*  String loginParams = "txtLang=0&txtAcctid="+afbApp.getUser().getName()+"&txtPwd="+afbApp.getUser().getPassword()+"&OsType=Android&OsVersion="+localVersion;*/
     @Override
     protected void handleHttp(final RequestBean<String> bean, String obj) {
 

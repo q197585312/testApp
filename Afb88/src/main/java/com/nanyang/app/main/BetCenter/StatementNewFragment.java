@@ -31,19 +31,18 @@ import com.unkonw.testapp.libs.utils.LogUtil;
 import java.math.BigDecimal;
 import java.util.List;
 
-import butterknife.BindView;
-
+import butterknife.Bind;
 
 /**
  * Created by Administrator on 2019/4/4.
  */
 
 public class StatementNewFragment extends BaseFragment<StatementNewPresenter> {
-    @BindView(R.id.ll_note)
+    @Bind(R.id.ll_note)
     LinearLayout llNote;
-    @BindView(R.id.nsc_content)
+    @Bind(R.id.nsc_content)
     NestedScrollView nscContent;
-    @BindView(R.id.ll_content)
+    @Bind(R.id.ll_content)
     LinearLayout llContent;
     private LinearLayout currentLlAddView;
     private LayoutInflater layoutInflater;

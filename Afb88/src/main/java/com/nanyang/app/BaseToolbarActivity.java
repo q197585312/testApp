@@ -13,12 +13,10 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toolbar;
 
 import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
-import androidx.core.content.ContextCompat;
 
 import com.google.gson.Gson;
 import com.nanyang.app.Utils.BetGoalWindowUtils;
@@ -79,7 +77,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
 
     protected List<String> lastWaitDataBeanList;
     public CompositeDisposable mCompositeSubscription;
-    public int waitSize;
     int errorCount = 0;
     public TextView tvToolbarRight1;
     public TextView tvToolbarLeft;
@@ -105,7 +102,7 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         llRight = (LinearLayout) findViewById(R.id.ll_right);
         toolbar.setNavigationIcon(R.mipmap.arrow_white_back);
         toolbar.setBackgroundResource(R.color.green_black_word);
-        toolbar.setTitleTextColor(ContextCompat.getColor(this,R.color.white));
+        toolbar.setTitleTextColor(getColor(R.color.white));
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -483,9 +480,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
                 if (!beanList.contains(waitNum)) {
                     String accType = getOtType();
                     BetGoalWindowUtils.showBetWindow(accType, waitNum, this, true);
-                    waitSize=Integer.parseInt(waitNum);
-                }else{
-                    waitSize=0;
                 }
             }
             lastWaitDataBeanList = beanList;
@@ -497,7 +491,6 @@ public abstract class BaseToolbarActivity<T extends IBasePresenter> extends Base
         startRefreshMenu();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     public boolean requestPermission(String[] PERMISSIONS, int PERMISSIONS_CODE) {
         boolean isGranted = true;
         if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {

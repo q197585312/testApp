@@ -5,7 +5,6 @@ import android.animation.ValueAnimator;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
-import android.os.Build;
 import android.os.Handler;
 import android.text.Editable;
 import android.text.Spanned;
@@ -29,7 +28,6 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -65,11 +63,13 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import butterknife.Bind;
 import butterknife.BindString;
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.StringUtils;
+
+import static com.nanyang.app.AfbUtils.getMethodName;
 
 /**
  * Created by Administrator on 2015/10/27.
@@ -82,73 +82,73 @@ public class BetPop {
     AfbApplication afbApplication;
     private int listSize;
 
-    @BindView(R.id.ll_bet_title)
+    @Bind(R.id.ll_bet_title)
     public View ll_bet_title;
-    @BindView(R.id.bet_balance_tv)
+    @Bind(R.id.bet_balance_tv)
     TextView betBalanceTv;
-    @BindView(R.id.bet_amount_edt)
+    @Bind(R.id.bet_amount_edt)
     EditText betAmountEdt;
-    @BindView(R.id.bet_sure_btn)
+    @Bind(R.id.bet_sure_btn)
     TextView betSureBtn;
-    @BindView(R.id.rc_bet_chip)
+    @Bind(R.id.rc_bet_chip)
     RecyclerView rcBetChip;
-    @BindView(R.id.fl_rc_content)
+    @Bind(R.id.fl_rc_content)
     FrameLayout fl_rc_content;
-    @BindView(R.id.rc_bet_content)
+    @Bind(R.id.rc_bet_content)
     RecyclerView rcBetContent;
-    @BindView(R.id.ll_mix)
+    @Bind(R.id.ll_mix)
     LinearLayout llMix;
-    @BindView(R.id.bet_sure_cancel)
+    @Bind(R.id.bet_sure_cancel)
     TextView betCancelBtn;
-    @BindView(R.id.bet_max_win_tv)
+    @Bind(R.id.bet_max_win_tv)
     TextView betMaxWinTv;
-    @BindView(R.id.tv_currency)
+    @Bind(R.id.tv_currency)
     TextView tvCurrency;
-    @BindView(R.id.tv_single_max_bet)
+    @Bind(R.id.tv_single_max_bet)
     TextView tvSingleMaxBet;
-    @BindView(R.id.bet_max_bet_tv)
+    @Bind(R.id.bet_max_bet_tv)
     TextView betMaxBetTv;
-    @BindView(R.id.tv_max_win)
+    @Bind(R.id.tv_max_win)
     TextView tvMaxWin;
-    @BindView(R.id.tv_1x2)
+    @Bind(R.id.tv_1x2)
     TextView tv1x2;
-    @BindView(R.id.tv_1x2_odds)
+    @Bind(R.id.tv_1x2_odds)
     TextView tv1x2Odds;
-    @BindView(R.id.tv_single_bet)
+    @Bind(R.id.tv_single_bet)
     TextView tvSingleBet;
-    @BindView(R.id.ll_single_mix)
+    @Bind(R.id.ll_single_mix)
     View llSingleMix;
-    @BindView(R.id.tv_mix_bet)
+    @Bind(R.id.tv_mix_bet)
     TextView tvMixBet;
-    @BindView(R.id.tv_delete)
+    @Bind(R.id.tv_delete)
     TextView tvDelete;
-    @BindView(R.id.ll_back_title_line)
+    @Bind(R.id.ll_back_title_line)
     ImageView llBack;
-    @BindView(R.id.ll_1x2)
+    @Bind(R.id.ll_1x2)
     LinearLayout ll1x2;
-    @BindView(R.id.ll_bet_failed_hint)
+    @Bind(R.id.ll_bet_failed_hint)
     LinearLayout llBetFailedHint;
-    @BindView(R.id.tv_bet_failed_hint)
+    @Bind(R.id.tv_bet_failed_hint)
     TextView tvBetFailedHint;
-    @BindView(R.id.img_failed)
+    @Bind(R.id.img_failed)
     ImageView imgFailed;
-    @BindView(R.id.bet_pop_parent_web_ll)
+    @Bind(R.id.bet_pop_parent_web_ll)
     WebView webView;
     @BindString(R.string.loading)
     String loading;
-    @BindView(R.id.bet_pop_parent_top_fl)
+    @Bind(R.id.bet_pop_parent_top_fl)
     FrameLayout betPopParentTopFl;
-    @BindView(R.id.my_bets)
+    @Bind(R.id.my_bets)
     TextView my_bets;
-    @BindView(R.id.max_bet)
+    @Bind(R.id.max_bet)
     TextView max_bet;
-    @BindView(R.id.min_bet)
+    @Bind(R.id.min_bet)
     TextView min_bet;
-    @BindView(R.id.max_single_bet)
+    @Bind(R.id.max_single_bet)
     TextView max_single_bet;
-    @BindView(R.id.max_win)
+    @Bind(R.id.max_win)
     TextView max_win;
-    @BindView(R.id.bet_amount)
+    @Bind(R.id.bet_amount)
     TextView bet_amount;
 
     private SportBetHelper presenter;
@@ -375,7 +375,9 @@ public class BetPop {
         }
         afbApplication.isSingleBet = isSingle;
         presenter.getRefreshOdds(refreshOddsUrl);
-
+        if (isSingle) {
+            getMethodName();
+        }
 
     }
 
@@ -657,6 +659,7 @@ public class BetPop {
         if (list.size() == 1) {
             if (afbApplication.getMixBetList().size() < 2) {
                 afbApplication.isSingleBet = true;
+                getMethodName();
             }
             rcBetContent.setBackgroundResource(R.color.transparent);
         } else {
@@ -736,11 +739,9 @@ public class BetPop {
         betPopParentTopFl.setVisibility(View.GONE);
         webView.onPause();
         webView.pauseTimers();
-        webView.stopLoading();
     }
 
     private void webViewResume() {
-        webView.stopLoading();
         betPopParentTopFl.setVisibility(View.VISIBLE);
         webView.resumeTimers();
         webView.onResume();
@@ -748,8 +749,8 @@ public class BetPop {
 
     private void setListLayoutParams() {
         ViewGroup.LayoutParams layoutParams = fl_rc_content.getLayoutParams();
-        if (list.size() > 3) {
-            layoutParams.height = AfbUtils.dp2px(context, 50 * 4 + 5);
+        if (list.size() > 2) {
+            layoutParams.height = AfbUtils.dp2px(context, 50 * 3 + 5);
         } else {
             layoutParams.height = LinearLayout.LayoutParams.WRAP_CONTENT;
         }
@@ -792,7 +793,6 @@ public class BetPop {
                     holder.setIsRecyclable(false);
                 }
 
-                @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
                 @Override
                 public void convert(final MyRecyclerViewHolder holder, final int position, final AfbClickBetBean item) {
                     TextView bet_module_title_tv = holder.getView(R.id.bet_module_title_tv);
@@ -965,7 +965,6 @@ public class BetPop {
                     tvBetOdds.setText(spanned);
                     tvBetOddsAnimation.setText(spanned);
 
-
                     String bTeam = item.getBTeam();
                     if (bTeam.equals("Home")) {
                         tvBetName.setText(item.getHome());
@@ -1010,18 +1009,7 @@ public class BetPop {
                     if (animation != null) {
                         animation.cancel();
                     }
-                    ValueAnimator objectAnimator = objectAnimatorMap.get(position);
-
-                    String oddsed = oddsMap.get(position);
-                    if (oddsed != null && oddsed.equals(odds)) {
-                        LogUtil.d("oddsed", "======oddsed:" + oddsed + "===spanned:" + spanned);
-                        objectAnimator = startAlphaColor(tvBetOddsAnimation, R.color.update_bg1);
-                    } else {
-                        LogUtil.d("oddsed", "!!!!======oddsed:" + oddsed + "===spanned:" + spanned);
-                        objectAnimator = startAlphaColor(tvBetOddsAnimation, R.color.yellow_gold);
-                        oddsMap.put(position, odds);
-                    }
-
+                    ValueAnimator objectAnimator = startAlphaColor(tvBetOddsAnimation);
                     objectAnimatorMap.put(position, objectAnimator);
                     imgDelete.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -1155,7 +1143,7 @@ public class BetPop {
         }
     }
 
-    public boolean isNeedInitWeb = true;
+    private boolean isNeedInitWeb = true;
 
     public void setrTMatchInfo(IRTMatchInfo rTMatchInfo) {
 
@@ -1167,7 +1155,7 @@ public class BetPop {
             return;
         }
         if (activity.fl_top_video.getVisibility() == View.VISIBLE) {
-            betPopParentTopFl.setVisibility(View.GONE);
+            webViewPause();
             return;
         }
         if (list.size() > 1) {
@@ -1183,7 +1171,6 @@ public class BetPop {
         String rtsMatchId = rTMatchInfo.getRTSMatchId();
         if (rtsMatchId != null && !rtsMatchId.isEmpty()) {
             String language = new LanguageHelper(activity).getLanguage();
-
             webViewResume();
             String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + rTMatchInfo.getRTSMatchId() + "&Home=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getHome()) + "&Away=" + com.nanyang.app.Utils.StringUtils.URLEncode(rTMatchInfo.getAway()) + "&L=" + language;
             AfbUtils.synCookies(context, webView, gameUrl, false);
@@ -1288,12 +1275,9 @@ public class BetPop {
     }
 
     private Map<Integer, ValueAnimator> objectAnimatorMap;
-    private Map<Integer, String> oddsMap = new HashMap<>();
 
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
-    public ValueAnimator startAlphaColor(final View view, int color) {
-        //
-        ValueAnimator animator = ValueAnimator.ofArgb(ContextCompat.getColor(context, color), Color.TRANSPARENT);
+    public ValueAnimator startAlphaColor(final View view) {
+        ValueAnimator animator = ValueAnimator.ofArgb(ContextCompat.getColor(context, R.color.pink_light_bg), Color.TRANSPARENT);
 
         animator.setRepeatCount(Animation.INFINITE);
         animator.setDuration(2000);

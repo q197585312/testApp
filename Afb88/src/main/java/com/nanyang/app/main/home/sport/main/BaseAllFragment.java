@@ -1,14 +1,13 @@
 package com.nanyang.app.main.home.sport.main;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.AfbUtils;
 import com.nanyang.app.R;
@@ -20,8 +19,7 @@ import com.unkonw.testapp.libs.utils.ToastUtils;
 
 import java.util.List;
 
-import butterknife.BindView;
-
+import butterknife.Bind;
 
 /**
  * Created by ASUS on 2019/4/23.
@@ -36,11 +34,11 @@ public abstract class BaseAllFragment extends BaseSportFragment {
         return "";
     }
 
-    @BindView(R.id.ll_footer_sport)
+    @Bind(R.id.ll_footer_sport)
     protected LinearLayout ll_footer_sport;
-    @BindView(R.id.ll_header_sport)
+    @Bind(R.id.ll_header_sport)
     protected LinearLayout ll_header_sport;
-    @BindView(R.id.base_rv)
+    @Bind(R.id.base_rv)
     protected RecyclerView rvAll;
 
     @Override

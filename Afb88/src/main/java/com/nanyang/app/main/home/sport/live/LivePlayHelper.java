@@ -26,7 +26,6 @@ public class LivePlayHelper {
     private boolean voiceOpen;
     private IRTMatchInfo itemBall;
     private int playType = 0;
-    private boolean webloading;
 
 
     public LivePlayHelper(ViewHolder holder, Context context) {
@@ -129,7 +128,6 @@ public class LivePlayHelper {
             holder.ll_run_match_title.setVisibility(View.VISIBLE);
             holder.videoPlayerStream.setVisibility(View.VISIBLE);
             holder.web_wv.setVisibility(View.GONE);
-            webloading = false;
             holder.llStatus.setVisibility(View.VISIBLE);
             holder.tv_run_time.setVisibility(View.VISIBLE);
             LogUtil.d("");
@@ -195,21 +193,22 @@ public class LivePlayHelper {
         if (StringUtils.isNull(BID) || BID.equals("0")) {
             return;
         } else {
-            path = "rtmp://pull.prosportslive.net/live/" + BID;
+            path = "rtmp://pull.afb1188.com/live/" + BID;
             if (BID.startsWith("1")) {
-                path = "rtmp://pull3.prosportslive.net/live/" + BID;
+                path = "rtmp://pull3.afb1188.com/live/" + BID;
             } else if (BID.startsWith("8")) {
-                path = "rtmp://pull2.prosportslive.net/live/" + BID;
+                path = "rtmp://pull2.afb1188.com/live/" + BID;
             }
 
         }
+        path="rtmp://pull.1234326.cn/live/L01new";
         holder.videoPlayerStream.setPath(path);
     }
 
     public void openRunMatch(IRTMatchInfo itemBall) {
         this.itemBall = itemBall;
         holder.fl_top_video.setVisibility(View.VISIBLE);
-        if (checkLivePlayVisible(itemBall) && !webloading) {
+        if (checkLivePlayVisible(itemBall)) {
             initPlayer(itemBall.getTvPathIBC());
             onResumePlay();
         } else {
@@ -231,7 +230,6 @@ public class LivePlayHelper {
             if (playing) {
                 onPausePlay();
             }
-            webloading = true;
             webLoad();
         }
     }
@@ -244,7 +242,7 @@ public class LivePlayHelper {
             l = "zh";
         }
         String gameUrl = AppConstant.getInstance().URL_RUNNING_MATCH_WEB + "?Id=" + itemBall.getRTSMatchId() + "&Home=" + StringUtils.URLEncode(itemBall.getHome()) + "&Away=" + StringUtils.URLEncode(itemBall.getAway()) + "&L=" + l;
-        AfbUtils.synCookies(context, holder.web_wv, gameUrl, false);
+        AfbUtils.synCookies(context, holder.web_wv, gameUrl,false);
         holder.web_wv.onResume();
     }
 

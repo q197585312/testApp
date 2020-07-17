@@ -8,9 +8,6 @@ package com.unkonw.testapp.libs.base;
 import android.app.Application;
 import android.content.Context;
 
-import androidx.lifecycle.ViewModelProvider;
-import androidx.lifecycle.ViewModelStore;
-
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -22,19 +19,15 @@ import com.unkonw.testapp.R;
 import com.unkonw.testapp.libs.common.ActivityPageManager;
 import com.unkonw.testapp.libs.common.AuthImageDownloader;
 
-import org.jetbrains.annotations.NotNull;
-
 
 /**
  * 基础的Application
  **/
-public class BaseApplication extends Application implements IViewModelStoreOwner{
+public class BaseApplication extends Application {
     private final String tag = BaseApplication.class.getSimpleName();
     private static DisplayImageOptions options;
     private static BaseApplication instance;
     public static Context myContext;
-    private ViewModelStore mAppViewModelStore;
-    private ViewModelProvider.AndroidViewModelFactory mFactory;
     /*
      * 是否完成  整个项目
      */
@@ -52,7 +45,6 @@ public class BaseApplication extends Application implements IViewModelStoreOwner
     @Override
     public void onCreate() {
         super.onCreate();
-
         instance = this;
         myContext = this;
         init();
@@ -63,8 +55,6 @@ public class BaseApplication extends Application implements IViewModelStoreOwner
      * 初始化
      */
     private void init() {
-        mAppViewModelStore = new ViewModelStore();
-        mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(this);
         initImageLoader();
 //        CrashHandler.create(this);
 //        JPushInterface.init(this); // 初始化JPush
@@ -123,15 +113,4 @@ public class BaseApplication extends Application implements IViewModelStoreOwner
     }
 
 
-    @NotNull
-    @Override
-    public ViewModelStore getViewModelStore() {
-        return mAppViewModelStore;
-    }
-
-    @NotNull
-    @Override
-    public ViewModelProvider.Factory getViewModelFactory() {
-        return mFactory;
-    }
 }

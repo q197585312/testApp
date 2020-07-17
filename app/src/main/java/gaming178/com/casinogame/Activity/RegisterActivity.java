@@ -12,10 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
-import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Control.GdThreadHander;
 import gaming178.com.casinogame.Util.HttpClient;
 import gaming178.com.casinogame.Util.WebSiteUrl;
@@ -32,51 +31,51 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
 
     private boolean confirmed = false;
 
-    @BindView(R2.id.edt_register_username)
+    @Bind(R.id.edt_register_username)
     EditText edtRegisterUsername;
-    @BindView(R2.id.tv_register_username_hint)
+    @Bind(R.id.tv_register_username_hint)
     TextView tvRegisterUsernameHint;
-    @BindView(R2.id.edt_register_password)
+    @Bind(R.id.edt_register_password)
     EditText edtRegisterPassword;
-    @BindView(R2.id.tv_register_password_hint)
+    @Bind(R.id.tv_register_password_hint)
     TextView tvRegisterPasswordHint;
-    @BindView(R2.id.edt_register_password_confirm)
+    @Bind(R.id.edt_register_password_confirm)
     EditText edtRegisterPasswordConfirm;
-    @BindView(R2.id.tv_register_password_confirm_hint)
+    @Bind(R.id.tv_register_password_confirm_hint)
     TextView tvRegisterPasswordConfirmHint;
-    @BindView(R2.id.edt_register_telephone)
+    @Bind(R.id.edt_register_telephone)
     EditText edtRegisterTelephone;
-    @BindView(R2.id.edt_register_email)
+    @Bind(R.id.edt_register_email)
     EditText edtRegisterEmail;
-    @BindView(R2.id.tv_register_email_hint)
+    @Bind(R.id.tv_register_email_hint)
     TextView tvRegisterEmailHint;
-    @BindView(R2.id.tv_register_telephone_hint)
+    @Bind(R.id.tv_register_telephone_hint)
     TextView tvRegisterTelephoneHint;
-    @BindView(R2.id.edt_register_full_name)
+    @Bind(R.id.edt_register_full_name)
     EditText edtRegisterFullName;
-    @BindView(R2.id.tv_register_choice_bank)
+    @Bind(R.id.tv_register_choice_bank)
     TextView tvRegisterChoiceBank;
-    @BindView(R2.id.tv_register_full_name_hint)
+    @Bind(R.id.tv_register_full_name_hint)
     TextView tvRegisterFullNameHint;
-    @BindView(R2.id.tv_register_bank_account_hint)
+    @Bind(R.id.tv_register_bank_account_hint)
     TextView tvRegisterBankAccountHint;
-    @BindView(R2.id.tv_bizhong)
+    @Bind(R.id.tv_bizhong)
     TextView tvBizhong;
-    @BindView(R2.id.tv_bizhong1)
+    @Bind(R.id.tv_bizhong1)
     TextView tvBizhong1;
-    @BindView(R2.id.ll_bizhong)
+    @Bind(R.id.ll_bizhong)
     LinearLayout llBizhong;
-    @BindView(R2.id.edt_register_bank_account)
+    @Bind(R.id.edt_register_bank_account)
     EditText edtRegisterBankAccount;
-    @BindView(R2.id.edt_register_bank_number)
+    @Bind(R.id.edt_register_bank_number)
     EditText edtRegisterBankNumber;
-    @BindView(R2.id.edt_register_verify_code)
+    @Bind(R.id.edt_register_verify_code)
     EditText edtRegisterVerifyCode;
-    @BindView(R2.id.tv_register_verify_code)
+    @Bind(R.id.tv_register_verify_code)
     TextView tvRegisterVerifyCode;
-    @BindView(R2.id.tv_register_verify_code_hint)
+    @Bind(R.id.tv_register_verify_code_hint)
     TextView tvRegisterVerifyCodeHint;
-    @BindView(R2.id.btn_register)
+    @Bind(R.id.btn_register)
     Button btnRegist;
 
 
@@ -115,7 +114,7 @@ public class RegisterActivity extends gaming178.com.casinogame.base.BaseActivity
     List<CurrencyBean> currencyBeanList;
 
     private void getBank() {
-        httpClient = new HttpClient(WebSiteUrl.INDEX, mAppViewModel.getCookie());
+        httpClient = new HttpClient(WebSiteUrl.INDEX, afbApp.getCookie());
         currencyBeanList = new ArrayList<>();
         new Thread() {
             @Override

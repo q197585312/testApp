@@ -1,6 +1,7 @@
 package gaming178.com.casinogame.Util;
 
 import android.annotation.TargetApi;
+import android.app.Application;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -18,7 +19,8 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStore;
 
 import com.tencent.bugly.crashreport.CrashReport;
-import com.unkonw.testapp.libs.base.BaseApplication;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -51,6 +53,7 @@ import gaming178.com.casinogame.Bean.User;
 import gaming178.com.casinogame.Chat.FaceConversionUtil;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.base.BaseActivity;
+import gaming178.com.casinogame.base.IViewModelStoreOwner;
 import gaming178.com.mylibrary.allinone.util.AppTool;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.allinone.util.ThreadPoolUtils;
@@ -62,7 +65,7 @@ import gaming178.com.mylibrary.lib.util.LogUtil;
 /**
  * Created by Administrator on 2016/3/29.
  */
-public class AfbApp extends BaseApplication {
+public class AfbApp extends Application implements IViewModelStoreOwner {
     private HttpClient httpClient;
     private String cookie;
     private User user;
@@ -3785,4 +3788,16 @@ public class AfbApp extends BaseApplication {
     }
 
     public int homeColor = 0;
+
+    @NotNull
+    @Override
+    public ViewModelStore getViewModelStore() {
+        return mAppViewModelStore;
+    }
+
+    @NotNull
+    @Override
+    public ViewModelProvider.Factory getViewModelFactory() {
+        return mFactory;
+    }
 }

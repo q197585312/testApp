@@ -7,7 +7,9 @@ import android.content.res.Configuration;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.Gravity;
@@ -16,6 +18,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -76,7 +79,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import cn.finalteam.toolsfinal.DeviceUtils;
 import cn.finalteam.toolsfinal.logger.Logger;
 
@@ -85,109 +88,115 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
     HuayThaiFragment huayThaiFragment = new HuayThaiFragment();
     BaseSportFragment localCurrentFragment;
-    @BindView(R.id.web_wv)
+    @Bind(R.id.web_wv)
     WebView webView;
-    @BindView(R.id.iv_title_live_stream)
+    @Bind(R.id.iv_title_live_stream)
     ImageView tv_title_live_stream;
-    @BindView(R.id.iv_title_live_center)
+    @Bind(R.id.iv_title_live_center)
     ImageView tv_title_live_center;
-    @BindView(R.id.ll_back_title_line)
+    @Bind(R.id.ll_back_title_line)
     View ll_back;
-    @BindView(R.id.iv_home_menu)
+    @Bind(R.id.iv_home_menu)
     View iv_home_menu;
-    @BindView(R.id.tv_match_play)
+    @Bind(R.id.tv_match_play)
     TextView tv_match_play;
 
-    @BindView(R.id.ll_line1)
+    @Bind(R.id.ll_line1)
     public View ll_line1;
-    @BindView(R.id.ll_line2)
+    @Bind(R.id.ll_line2)
     public View ll_line2;
-
-    @BindView(R.id.right_ll)
+    @Bind(R.id.ll_line3)
+    public View ll_line3;
+    @Bind(R.id.right_ll)
     View right_ll;
-    @BindView(R.id.drawer_more)
+    @Bind(R.id.drawer_more)
     DrawerLayout drawerLayout;
 
-    @BindView(R.id.rc_sport_list)
+    @Bind(R.id.rc_sport_list)
     RecyclerView rc_sport_list;
-    @BindView(R.id.bet_pop_parent_ll)
+    @Bind(R.id.bet_pop_parent_ll)
     public View bet_pop_parent_ll;
 
-    @BindView(R.id.fl_top_video)
+    @Bind(R.id.fl_top_video)
     public View fl_top_video;
-    @BindView(R.id.tv_toolbar_left)
+    @Bind(R.id.tv_toolbar_left)
     TextView tvToolbarLeft;
-    @BindView(R.id.tv_toolbar_title)
+    @Bind(R.id.tv_toolbar_title)
     TextView tvToolbarTitle;
-    @BindView(R.id.tv_toolbar_right1)
+    @Bind(R.id.tv_toolbar_right1)
     TextView tvToolbarRight1;
-    @BindView(R.id.tv_toolbar_right)
+    @Bind(R.id.tv_toolbar_right)
     TextView tvToolbarRight;
 
-    @BindView(R.id.iv_home_back)
+    @Bind(R.id.iv_home_back)
     ImageView ivHomeBack;
-    @BindView(R.id.match_cup_iv)
+    @Bind(R.id.match_cup_iv)
     ImageView matchCupIv;
 
-    @BindView(R.id.running_iv)
+    @Bind(R.id.running_iv)
     ImageView runningIv;
-    @BindView(R.id.iv_all_add)
+    @Bind(R.id.iv_all_add)
     TextView ivAllAdd;
-    @BindView(R.id.tv_odds_type)
+    @Bind(R.id.tv_odds_type)
     public TextView tvOddsType;
-    @BindView(R.id.tv_league_major)
+    @Bind(R.id.tv_league_major)
     TextView tvLeagueMain;
-    @BindView(R.id.iv_sort_time)
+    @Bind(R.id.iv_sort_time)
     ImageView ivSortTime;
-    @BindView(R.id.fl_main_content)
+    @Bind(R.id.fl_main_content)
     FrameLayout flContent;
-    @BindView(R.id.tv_record)
+    @Bind(R.id.tv_record)
     TextView tvRecord;
-    @BindView(R.id.tv_sport_select)
+    @Bind(R.id.tv_sport_select)
     TextView tvSportSelect;
-    @BindView(R.id.iv_order_top)
+    @Bind(R.id.iv_order_top)
     ImageView ivOrderTop;
-    @BindView(R.id.tv_mix)
+    @Bind(R.id.tv_mix)
     TextView tvMix;
-    @BindView(R.id.tv_order_count_top)
+    @Bind(R.id.tv_order_count_top)
     TextView tvOrderCount;
-    @BindView(R.id.tv_mix_count)
+    @Bind(R.id.tv_mix_count)
     TextView tvMixCount;
 
-    @BindView(R.id.tv_way_run)
+    @Bind(R.id.tv_way_run)
     public TextView tvMatchType;
-    @BindView(R.id.tv_menu)
+    @Bind(R.id.tv_menu)
     TextView tvMenu;
-    @BindView(R.id.ll_sport_menu_bottom)
+    @Bind(R.id.ll_sport_menu_bottom)
     public
     LinearLayout llSportMenuBottom;
-    @BindView(R.id.sports_language_tv)
-    ImageView sports_language_tv;
-    @BindView(R.id.sports_selected_tv)
+    @Bind(R.id.sports_language_tv)
+    TextView sports_language_tv;
+    @Bind(R.id.sports_selected_tv)
     TextView getTvSportSelect;
-    @BindView(R.id.tv_balance)
+    @Bind(R.id.sport_title_tv)
+    TextView sportTitleTv;
+    @Bind(R.id.tv_balance)
     TextView tvBalance;
-    @BindView(R.id.tv_waite_count)
-    public TextView tvWaiteCount;
+    @Bind(R.id.tv_waite_count)
+    TextView tvWaiteCount;
+    @Bind(R.id.iv_delete_search)
+    ImageView ivDeleteSearch;
+    @Bind(R.id.edt_match_search_content)
+    EditText edtSearchContent;
 
-
-    @BindView(R.id.ll_header_sport)
+    @Bind(R.id.ll_header_sport)
     public LinearLayout ll_header_sport;
-    @BindView(R.id.ll_footer_sport)
+    @Bind(R.id.ll_footer_sport)
     public LinearLayout ll_footer_sport;
 
-    @BindView(R.id.match_collection_num_tv)
+    @Bind(R.id.match_collection_num_tv)
     public TextView collectionNumTv;
-    @BindView(R.id.ll_home_left)
+    @Bind(R.id.ll_home_left)
     View ll_home_left;
-    @BindView(R.id.match_collection_fl)
-    ImageView collectionFl;
+    @Bind(R.id.match_collection_fl)
+    View collectionFl;
 
-    @BindView(R.id.sports_selected)
+    @Bind(R.id.sports_selected)
     RadioButton sports_selected;
-    @BindView(R.id.others_selected)
+    @Bind(R.id.others_selected)
     RadioButton others_selected;
-    @BindView(R.id.games_switch_rg)
+    @Bind(R.id.games_switch_rg)
     RadioGroup games_switch_rg;
 
 
@@ -236,7 +245,35 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sport);
         toolbar.setVisibility(View.GONE);
-        ;
+
+        edtSearchContent.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                String s = editable.toString().trim();
+                if (TextUtils.isEmpty(s)) {
+                    edtSearchContent.setCursorVisible(false);
+                } else {
+                    edtSearchContent.setCursorVisible(true);
+                }
+                if (!StringUtils.isNull(s)) {
+                    ivDeleteSearch.setVisibility(View.VISIBLE);
+                    currentFragment.searchMatch(true, s);
+                } else {
+                    ivDeleteSearch.setVisibility(View.GONE);
+                    currentFragment.searchMatch(false, "");
+                }
+                currentFragment.checkBg(collectionFl, currentFragment.presenter.getStateHelper().isCollection(), R.mipmap.sport_game_star_yellow_open, R.mipmap.sport_game_star_yellow);
+
+            }
+        });
         myGoHomeBroadcastReceiver = new MyGoHomeBroadcastReceiver(getApp());
         registerReceiver(myGoHomeBroadcastReceiver, new IntentFilter(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
 //        presenter.getStateHelper().switchOddsType(item.getType());
@@ -332,6 +369,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         });
 
         MenuItemInfo<String> languageItem = new LanguageHelper(mContext).getLanguageItem();
+        sports_language_tv.setText(languageItem.getText());
     }
 
     BaseRecyclerAdapter<SportIdBean> leftSportAdapter;
@@ -474,7 +512,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             tvMix.setTextColor(ContextCompat.getColor(mContext, R.color.grey_dark));
         } else {
             tvMix.setCompoundDrawablesWithIntrinsicBounds(0, R.mipmap.sport_bottom_teb_shopping_null, 0, 0);
-            ivOrderTop.setImageResource(R.mipmap.sport_bottom_teb_shopping_white);
+            ivOrderTop.setImageResource(R.mipmap.sport_bottom_teb_shopping_null);
             tvMixCount.setVisibility(View.GONE);
             tvOrderCount.setVisibility(View.GONE);
             tvMixCount.setText("0");
@@ -534,6 +572,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     private void changeFragmentInit(String tag, BaseSportFragment localCurrentFragment) {
         afbDrawerViewHolder.initDefaultFragment(localCurrentFragment);
         deleteHeadAndFoot();
+        sportTitleTv.setText(getString(R.string.sport_match) + " > ");
         getTvSportSelect.setText(tag);
         afbDrawerViewHolder.switchFragment(localCurrentFragment);
         currentFragment = localCurrentFragment;
@@ -630,7 +669,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void clickCollectionStar(View view) {
-        currentFragment.collection((ImageView) view);
+        currentFragment.collection(view);
     }
 
     public void clickBets(View view) {
@@ -646,8 +685,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         } else {
             others_selected.setVisibility(View.VISIBLE);
         }
-        if (!isOther)
-            loadLeftMenuSports();
+        loadLeftMenuSports();
         if (getApp().getOddsType() != null)
             presenter.switchOddsType(getApp().getOddsType().getType());
         else {
@@ -732,9 +770,8 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
                     Iterator<SportIdBean> iterator = AfbUtils.sportMap.values().iterator();
                     while (iterator.hasNext()) {
                         SportIdBean next = iterator.next();
-
                         String num = jsonObjectNum.optString(typeStr + next.getDbid());
-                        if (next.getTextRes() == R.string.Soccer_Runing || next.getTextRes() == R.string.all_running) {
+                        if (next.getTextRes() == R.string.Soccer_Runing) {
                             num = jsonObjectNum.optString("M_RAm" + next.getDbid());
                         }
                         numMap.put(next.getKey(), num);
@@ -937,6 +974,12 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         return afbDrawerViewHolder.onKeyDown(keyCode, event);
     }
 
+
+    public void clickDeleteSearch(View view) {
+        currentFragment.searchMatch(false, "");
+        edtSearchContent.setText("");
+    }
+
     public void clickOrderTop(View view) {
         currentFragment.clickOrder();
     }
@@ -948,7 +991,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
 
 
     public void onGetRefreshMenu(List<String> beanList) {
-        this.waitSize = beanList.size();
+        int waitSize = beanList.size();
         if (waitSize > 0) {
             tvWaiteCount.setVisibility(View.VISIBLE);
             tvWaiteCount.setText(waitSize + "");
@@ -1030,6 +1073,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
         if (currentFragment.isVisible()) {
             ll_line1.setVisibility(View.VISIBLE);
             ll_line2.setVisibility(View.VISIBLE);
+            ll_line3.setVisibility(View.VISIBLE);
             ll_header_sport.setVisibility(View.VISIBLE);
             llSportMenuBottom.setVisibility(View.VISIBLE);
             if ((currentFragment.getPresenter().getStateHelper()).getAdapterHelper() instanceof BallAdapterHelper) {
@@ -1067,7 +1111,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             currentFragment.clickItemAdd(fl_top_video, itemBall, positionBall);
             ll_line1.setVisibility(View.GONE);
             ll_line2.setVisibility(View.GONE);
-            collectionNumTv.setVisibility(View.GONE);
+            ll_line3.setVisibility(View.GONE);
             ll_header_sport.setVisibility(View.GONE);
             currentFragment.presenter.getStateHelper().getAdapterHelper().setOnlyShowAdded(onlyOne);
             if (getBetContent() != null)
@@ -1262,7 +1306,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
     }
 
     public void clickLanguage(View view) {
-        BaseListPopupWindow<MenuItemInfo<String>> popWindow = new BaseListPopupWindow<MenuItemInfo<String>>(mContext, view, AfbUtils.dp2px(mContext, 200), AfbUtils.dp2px(mContext, 300)) {
+        BaseListPopupWindow<MenuItemInfo<String>> popWindow = new BaseListPopupWindow<MenuItemInfo<String>>(mContext, view, AfbUtils.dp2px(mContext, 200), AfbUtils.dp2px(mContext, 300), (TextView) view) {
 
             @Override
             public void onConvert(MyRecyclerViewHolder holder, int position, MenuItemInfo<String> item) {
@@ -1277,6 +1321,7 @@ public class SportActivity extends BaseToolbarActivity<MainPresenter> implements
             protected void clickItem(TextView tv, MenuItemInfo<String> item) {
                 super.clickItem(tv, item);
                 closePopupWindow();
+                tv.setText(item.getText());
                 AfbUtils.switchLanguage(item.getType(), mContext);
                 presenter.getSetting(new MainPresenter.CallBack<SettingAllDataBean>() {
                     @Override

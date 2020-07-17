@@ -82,9 +82,8 @@ public class WelcomeActivity extends BaseActivity {
     @Override
     protected void initData(Bundle savedInstanceState) {
         super.initData(savedInstanceState);
-
         String firstLg;
-        if (!BuildConfig.FLAVOR.isEmpty()&&!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
+        if (!BuildConfig.FLAVOR.equals("gd88") && !BuildConfig.FLAVOR.equals("liga365")) {
             firstLg = "my";
         } else {
             firstLg = "en";
@@ -97,7 +96,7 @@ public class WelcomeActivity extends BaseActivity {
         flWelcome = (FrameLayout) findViewById(R.id.fl_welcome);
         llLogin = (LinearLayout) findViewById(R.id.ll_login);
         bgImg = (ImageView) findViewById(R.id.welcome_img);
-        if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
+        if (BuildConfig.FLAVOR.equals("gd88") || BuildConfig.FLAVOR.equals("liga365")) {
             bgImg.setImageResource(R.mipmap.gd88_welcome_logo);
         }else {
             bgImg.setImageResource(R.mipmap.title_logo);
@@ -121,7 +120,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected int getLayoutRes() {
-        return R.layout.activity_welcome_gd;
+        return R.layout.activity_welcome;
     }
 
     @Override
@@ -157,7 +156,6 @@ public class WelcomeActivity extends BaseActivity {
         httpClient = new HttpClient("");
         hasWebsiteChecked = false;
         handler.sendEmptyMessage(ErrorCode.GET_WEBSITE);
-
         hasNewVersion();
 
     }
@@ -229,26 +227,26 @@ public class WelcomeActivity extends BaseActivity {
                                     AppTool.setAppLanguage(WelcomeActivity.this, "en");
                                     break;
                             }
-                            mAppViewModel.getUser().setName(userName);
-                            if (mAppViewModel.getCookie() == null || mAppViewModel.getCookie().equals("")) {
-                                mAppViewModel.setHttpClient(new HttpClient(WebSiteUrl.INDEX, mAppViewModel.getCookie()));
+                            afbApp.getUser().setName(userName);
+                            if (afbApp.getCookie() == null || afbApp.getCookie().equals("")) {
+                                afbApp.setHttpClient(new HttpClient(WebSiteUrl.INDEX, afbApp.getCookie()));
 
-                                if (mAppViewModel.getHttpClient().connect("POST") == false) {
+                                if (afbApp.getHttpClient().connect("POST") == false) {
                                     Log.i(WebSiteUrl.Tag, "HttpClient conn error");
                                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                                     return;
                                 }
                                 try {
-                                    mAppViewModel.getHttpClient().getBodyString("UTF-8");
+                                    afbApp.getHttpClient().getBodyString("UTF-8");
                                 } catch (IOException e11) {
                                     e11.printStackTrace();
                                 }
-                                mAppViewModel.setCookie(mAppViewModel.getHttpClient().getSessionId());
-                                //      Log.e(WebSiteUrl.Tag,"sessionid="+mAppViewModel.getHttpClient().getSessionId());
+                                afbApp.setCookie(afbApp.getHttpClient().getSessionId());
+                                //      Log.e(WebSiteUrl.Tag,"sessionid="+afbApp.getHttpClient().getSessionId());
                             }
 
 //
-                            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LOGOUT_URL/*"http://96.9.71.29/DIGKorean/main.jsp"*/, "membername=" + mAppViewModel.getUser().getName() + "&lang=0");
+                            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LOGOUT_URL/*"http://96.9.71.29/DIGKorean/main.jsp"*/, "membername=" + afbApp.getUser().getName() + "&lang=0");
                             //语言设定
                             loginInit(0, "", balance1);
                         } else {
@@ -296,39 +294,39 @@ public class WelcomeActivity extends BaseActivity {
             String str1 = strPost.substring(i, end);
 
 
-/*            if (mAppViewModel.getCookie() == null || mAppViewModel.getCookie().equals("")) {
-                mAppViewModel.setHttpClient(new HttpClient(str1, mAppViewModel.getCookie()));
+/*            if (afbApp.getCookie() == null || afbApp.getCookie().equals("")) {
+                afbApp.setHttpClient(new HttpClient(str1, afbApp.getCookie()));
 
-                if (mAppViewModel.getHttpClient().connect("POST") == false) {
+                if (afbApp.getHttpClient().connect("POST") == false) {
                     android.util.Log.i(WebSiteUrl.Tag, "HttpClient conn error");
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                     return;
                 }
-                mAppViewModel.getHttpClient().getBodyString("UTF-8");
-                mAppViewModel.setCookie(mAppViewModel.getHttpClient().getSessionId());
+                afbApp.getHttpClient().getBodyString("UTF-8");
+                afbApp.setCookie(afbApp.getHttpClient().getSessionId());
                 String userName=params.substring(params.indexOf("txtAcctid=")+10,params.indexOf("&txtPwd"));
-                mAppViewModel.getUser().setName(userName);
-                //      Log.e(WebSiteUrl.Tag,"sessionid="+mAppViewModel.getHttpClient().getSessionId());
+                afbApp.getUser().setName(userName);
+                //      Log.e(WebSiteUrl.Tag,"sessionid="+afbApp.getHttpClient().getSessionId());
             }
 
 //
-            strRess = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LOGOUT_URL, "");*/
+            strRess = afbApp.getHttpClient().sendPost(WebSiteUrl.LOGOUT_URL, "");*/
             String url = str1.replaceAll("&amp;", "&");
             String loginUrl = url.substring(0, url.indexOf("?"));
             String params = url.substring(url.indexOf("?") + 1);
 
             WebSiteUrl.setOther("http://23api.gd88.org/", "OLTGames/");
             String strRes;
-            mAppViewModel.setCookie("");
-            mAppViewModel.setHttpClient(new HttpClient(WebSiteUrl.INDEX, mAppViewModel.getCookie()));
+            afbApp.setCookie("");
+            afbApp.setHttpClient(new HttpClient(WebSiteUrl.INDEX, afbApp.getCookie()));
 
-            if (mAppViewModel.getHttpClient().connect("POST") == false) {
+            if (afbApp.getHttpClient().connect("POST") == false) {
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                 return;
             }
             try {
-                strRes = mAppViewModel.getHttpClient().getBodyString("UTF-8");
-                mAppViewModel.setCookie(mAppViewModel.getHttpClient().getSessionId());
+                strRes = afbApp.getHttpClient().getBodyString("UTF-8");
+                afbApp.setCookie(afbApp.getHttpClient().getSessionId());
             } catch (Exception e) {
                 e.printStackTrace();
 
@@ -337,14 +335,14 @@ public class WelcomeActivity extends BaseActivity {
             String loginParams = params;
             WebSiteUrl.LOGIN_URL = loginUrl;
             LogIntervalUtils.logCustomTime(currentTime, "解析完成开始登录" + WebSiteUrl.LOGIN_URL);
-            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LOGIN_URL, loginParams);
+            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LOGIN_URL, loginParams);
             LogIntervalUtils.logCustomTime(currentTime, WebSiteUrl.LOGIN_URL + "登录完成开始解析游戏数据");
-            mAppViewModel.getUser().setName(us);
+            afbApp.getUser().setName(us);
 /*            if(strRes.startsWith("Results=error"))//登录失败，没有失败原因
             {
                 //	Log.e(WebSiteUrl.Tag,strRes);
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_USERNAME);
-                mAppViewModel.setCookie("");
+                afbApp.setCookie("");
                 return ;
             }
             else if(!strRes.startsWith("Results=ok")){
@@ -353,13 +351,13 @@ public class WelcomeActivity extends BaseActivity {
                 return ;
             }else if(strRes.startsWith("Results=ok")){
                 String resultInfo[] = strRes.split("\\#");
-                mAppViewModel.getUser().setCurrency(resultInfo[1]);
+                afbApp.getUser().setCurrency(resultInfo[1]);
 
             }*/
             String language = "0";
-            String annoucementParams = "lng=" + language + "&Usid=" + mAppViewModel.getUser().getName();
+            String annoucementParams = "lng=" + language + "&Usid=" + afbApp.getUser().getName();
             LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.ANNOUNCEMENT_URL);
-            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
+            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
             LogIntervalUtils.logCustomTime(currentTime, WebSiteUrl.ANNOUNCEMENT_URL + "完成");
             if (strRes.equals("netError")) {
 
@@ -368,10 +366,10 @@ public class WelcomeActivity extends BaseActivity {
             }
             String ann[] = strRes.split("Results=ok\\|");
             if (ann.length > 1)
-                mAppViewModel.setAnnouncement(ann[1]);
+                afbApp.setAnnouncement(ann[1]);
             //	Log.i(WebSiteUrl.Tag,appData.getAnnouncement());
             LogIntervalUtils.logCustomTime(currentTime, "开始请求游戏Table数据" + WebSiteUrl.TABLEINFO_URL_A);
-            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
             LogIntervalUtils.logCustomTime(currentTime, WebSiteUrl.TABLEINFO_URL_A + "游戏Table数据完成，开始解析");
             if (strRes.equals("netError")) {
 
@@ -384,17 +382,17 @@ public class WelcomeActivity extends BaseActivity {
                 handler.sendEmptyMessage(ErrorCode.DATA_ERROR_LENGTH);
                 return;
             }
-            mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
+            afbApp.splitTableInfo(strRes, afbApp.getHallId());
             LogIntervalUtils.logCustomTime(currentTime, "Table解析完成，开始请求" + WebSiteUrl.COUNTDOWN_URL_A);
-            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
             LogIntervalUtils.logCustomTime(currentTime, WebSiteUrl.COUNTDOWN_URL_A + "完成，开始进入游戏");
             if (strRes.equals("netError")) {
                 handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                 return;
             }
-            mAppViewModel.splitTimer(strRes);
-            mAppViewModel.setbLogin(true);
-            mAppViewModel.setbLobby(true);
+            afbApp.splitTimer(strRes);
+            afbApp.setbLogin(true);
+            afbApp.setbLobby(true);
             WebSiteUrl.isDomain = true;
             handler.sendEmptyMessage(ErrorCode.LOGIN_SECCESS);
         }
@@ -410,7 +408,7 @@ public class WelcomeActivity extends BaseActivity {
         if (gameType == 3) {
             int homeColor = bundle.getInt("homeColor", 0xff0d5924);
             String language = bundle.getString("language");
-            mAppViewModel.setHomeColor(homeColor);
+            afbApp.setHomeColor(homeColor);
             if (!StringUtils.isNull(language)) {
                 switch (language) {
                     case "zh":
@@ -497,24 +495,24 @@ public class WelcomeActivity extends BaseActivity {
                 String webUrl = intent.getStringExtra("webUrl");
                 String resReturn = httpClient.sendPost(webUrl, "");
                 String strRes;
-                mAppViewModel.setCookie("");
+                afbApp.setCookie("");
                 LogIntervalUtils.logCustomTime(currentTime, "初始化cookie" + WebSiteUrl.INDEX);
-                mAppViewModel.setHttpClient(new HttpClient(WebSiteUrl.INDEX, mAppViewModel.getCookie()));
-                if (mAppViewModel.getHttpClient().connect("POST") == false) {
+                afbApp.setHttpClient(new HttpClient(WebSiteUrl.INDEX, afbApp.getCookie()));
+                if (afbApp.getHttpClient().connect("POST") == false) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                     return;
                 }
                 try {
-                    strRes = mAppViewModel.getHttpClient().getBodyString("UTF-8");
-                    mAppViewModel.setCookie(mAppViewModel.getHttpClient().getSessionId());
+                    strRes = afbApp.getHttpClient().getBodyString("UTF-8");
+                    afbApp.setCookie(afbApp.getHttpClient().getSessionId());
                     LogIntervalUtils.logCustomTime(currentTime, "初始化cookie完成");
                 } catch (Exception e) {
                     e.printStackTrace();
 
                 }
-                mAppViewModel.getUser().setName(username);
+                afbApp.getUser().setName(username);
                 String language1 = "0";
-                String annoucementParams = "lng=" + language1 + "&Usid=" + mAppViewModel.getUser().getName();
+                String annoucementParams = "lng=" + language1 + "&Usid=" + afbApp.getUser().getName();
                 LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.ANNOUNCEMENT_URL);
                 strRes = httpClient.sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
                 if (strRes.equals("netError")) {
@@ -525,10 +523,10 @@ public class WelcomeActivity extends BaseActivity {
                 LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.ANNOUNCEMENT_URL + "完成");
                 String ann[] = strRes.split("Results=ok\\|");
                 if (ann.length > 1)
-                    mAppViewModel.setAnnouncement(ann[1]);
+                    afbApp.setAnnouncement(ann[1]);
                 //	Log.i(WebSiteUrl.Tag,appData.getAnnouncement());
                 LogIntervalUtils.logCustomTime(currentTime, "开始Table数据" + WebSiteUrl.TABLEINFO_URL_A);
-                strRes = httpClient.sendPost(WebSiteUrl.TABLEINFO_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+                strRes = httpClient.sendPost(WebSiteUrl.TABLEINFO_URL_A, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
                 LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.TABLEINFO_URL_A + "完成");
                 if (strRes.equals("netError")) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -539,17 +537,17 @@ public class WelcomeActivity extends BaseActivity {
                     handler.sendEmptyMessage(ErrorCode.DATA_ERROR_LENGTH);
                     return;
                 }
-                mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
+                afbApp.splitTableInfo(strRes, afbApp.getHallId());
                 LogIntervalUtils.logCustomTime(currentTime, "开始" + WebSiteUrl.COUNTDOWN_URL_A);
-                strRes = httpClient.sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+                strRes = httpClient.sendPost(WebSiteUrl.COUNTDOWN_URL_A, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
                 if (strRes.equals("netError")) {
                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                     return;
                 }
                 LogIntervalUtils.logCustomTime(currentTime, "" + WebSiteUrl.COUNTDOWN_URL_A + "完成");
-                mAppViewModel.splitTimer(strRes);
-                mAppViewModel.setbLogin(true);
-                mAppViewModel.setbLobby(true);
+                afbApp.splitTimer(strRes);
+                afbApp.setbLogin(true);
+                afbApp.setbLobby(true);
                 SimpleDateFormat dff = new SimpleDateFormat("MMddHHmmss");
                 dff.setTimeZone(TimeZone.getTimeZone("GMT+08"));
                 String dateStr = dff.format(new Date());
@@ -686,22 +684,22 @@ public class WelcomeActivity extends BaseActivity {
                                                     AppTool.setAppLanguage(WelcomeActivity.this, "en");
                                                     break;
                                             }
-                                            mAppViewModel.getUser().setName(userName);
-                                            if (mAppViewModel.getCookie() == null || mAppViewModel.getCookie().equals("")) {
-                                                mAppViewModel.setHttpClient(new HttpClient(WebSiteUrl.INDEX, mAppViewModel.getCookie()));
+                                            afbApp.getUser().setName(userName);
+                                            if (afbApp.getCookie() == null || afbApp.getCookie().equals("")) {
+                                                afbApp.setHttpClient(new HttpClient(WebSiteUrl.INDEX, afbApp.getCookie()));
 
-                                                if (mAppViewModel.getHttpClient().connect("POST") == false) {
+                                                if (afbApp.getHttpClient().connect("POST") == false) {
                                                     Log.i(WebSiteUrl.Tag, "HttpClient conn error");
                                                     handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
                                                     return;
                                                 }
-                                                mAppViewModel.getHttpClient().getBodyString("UTF-8");
-                                                mAppViewModel.setCookie(mAppViewModel.getHttpClient().getSessionId());
-                                                //      Log.e(WebSiteUrl.Tag,"sessionid="+mAppViewModel.getHttpClient().getSessionId());
+                                                afbApp.getHttpClient().getBodyString("UTF-8");
+                                                afbApp.setCookie(afbApp.getHttpClient().getSessionId());
+                                                //      Log.e(WebSiteUrl.Tag,"sessionid="+afbApp.getHttpClient().getSessionId());
                                             }
 
 //
-                                            strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.LOGOUT_URL/*"http://96.9.71.29/DIGKorean/main.jsp"*/, "membername=" + mAppViewModel.getUser().getName() + "&lang=0");
+                                            strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.LOGOUT_URL/*"http://96.9.71.29/DIGKorean/main.jsp"*/, "membername=" + afbApp.getUser().getName() + "&lang=0");
                                             //语言设定
                                             loginInit(gameType, currency, balance);
                                             return;
@@ -738,8 +736,8 @@ public class WelcomeActivity extends BaseActivity {
 
     private void loginInit(int gameType, String currency, String balance) {
         String strRes;
-        String annoucementParams = "lng=" + 0 + "&Usid=" + mAppViewModel.getUser().getName();
-        strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
+        String annoucementParams = "lng=" + 0 + "&Usid=" + afbApp.getUser().getName();
+        strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.ANNOUNCEMENT_URL, annoucementParams);
         if (strRes.equals("netError")) {
             //	Log.e(WebSiteUrl.Tag,strRes);
             handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -748,10 +746,10 @@ public class WelcomeActivity extends BaseActivity {
 
         String ann[] = strRes.split("Results=ok\\|");
         if (ann.length > 1)
-            mAppViewModel.setAnnouncement(ann[1]);
+            afbApp.setAnnouncement(ann[1]);
 
         //	Log.i(WebSiteUrl.Tag,appData.getAnnouncement());
-        strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A/*"http://96.9.71.29/DIGKorean/select_tb_infoa.jsp"*/, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+        strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.TABLEINFO_URL_A/*"http://96.9.71.29/DIGKorean/select_tb_infoa.jsp"*/, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
         if (strRes.equals("netError")) {
             //	Log.e(WebSiteUrl.Tag,strRes);
             handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
@@ -763,20 +761,20 @@ public class WelcomeActivity extends BaseActivity {
             handler.sendEmptyMessage(ErrorCode.DATA_ERROR_LENGTH);
             return;
         }
-        mAppViewModel.setHallId(gameType + 1);
-        mAppViewModel.setbInitLimit(false);
-        mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
-        mAppViewModel.getUser().setCurrency(currency);
-        mAppViewModel.getUser().setBalance(DecimalUtils.round(Double.valueOf(balance), 2));
-        strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+        afbApp.setHallId(gameType + 1);
+        afbApp.setbInitLimit(false);
+        afbApp.splitTableInfo(strRes, afbApp.getHallId());
+        afbApp.getUser().setCurrency(currency);
+        afbApp.getUser().setBalance(DecimalUtils.round(Double.valueOf(balance), 2));
+        strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
         if (strRes.equals("netError")) {
             handler.sendEmptyMessage(ErrorCode.LOGIN_ERROR_NETWORK);
             return;
         }
         //	Log.i(WebSiteUrl.Tag,strRes);
-        mAppViewModel.splitTimer(strRes);
-        mAppViewModel.setbLogin(true);
-        mAppViewModel.setbLobby(true);
+        afbApp.splitTimer(strRes);
+        afbApp.setbLogin(true);
+        afbApp.setbLobby(true);
         handler.sendEmptyMessage(ErrorCode.LOGIN_AREADY);
         WebSiteUrl.isDomain = true;
         return;
@@ -918,8 +916,6 @@ public class WelcomeActivity extends BaseActivity {
     private Gson gson = new Gson();
 
     private void hasNewVersion() {
-        if(BuildConfig.FLAVOR.isEmpty())
-            return;
         updateUrl = null;
         hasVersionChecked = false;
         QuickCookieThreadHandler threadHandler = new QuickCookieThreadHandler(this) {
@@ -992,7 +988,7 @@ public class WelcomeActivity extends BaseActivity {
         Intent it = getIntent();
         Bundle bundle = it.getExtras();
         String action = it.getAction();
-        if (BuildConfig.FLAVOR.isEmpty()||BuildConfig.FLAVOR.equals("gd88")) {
+        if (BuildConfig.FLAVOR.equals("gd88")) {
             if (false)
                 testIntent();
             else {
@@ -1077,11 +1073,11 @@ public class WelcomeActivity extends BaseActivity {
         public void run() {
 
             try {
-                if (mAppViewModel.isbLogin()) {
+                if (afbApp.isbLogin()) {
                     //   Log.i(WebSiteUrl.Tag, "-------------- UpdateGameStatus 1");
                     String statusUrl = "";
                     statusUrl = WebSiteUrl.TABLEINFO_URL_A;
-                    String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+                    String strRes = afbApp.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
                     String tableInfo[] = strRes.split("\\^");
 
                     if (strRes.equals("netError") || strRes.equals("Results=no") || tableInfo.length < 9) {//连续5次拿不到数据就退出，返回到登录界面
@@ -1092,11 +1088,11 @@ public class WelcomeActivity extends BaseActivity {
                     }
 
                     if (iError == 0) {
-                        mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
+                        afbApp.splitTableInfo(strRes, afbApp.getHallId());
                         //拿公告信息
 
                     }
-                    switch (mAppViewModel.getHallId()) {
+                    switch (afbApp.getHallId()) {
                         case 1:
                             statusUrl = WebSiteUrl.COUNTDOWN_URL_A;
                             break;
@@ -1105,7 +1101,7 @@ public class WelcomeActivity extends BaseActivity {
                             break;
 
                     }
-                    strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+                    strRes = afbApp.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
                     if (strRes.equals("netError") || strRes.equals("Results=no")) {//连续10次拿不到数据就退出，返回到登录界面
 
                         iError++;
@@ -1115,7 +1111,7 @@ public class WelcomeActivity extends BaseActivity {
 
                     //  Log.i(WebSiteUrl.Tag, "++++++++++++++ "+strRes);
                     if (iError == 0) {
-                        mAppViewModel.splitTimer(strRes);
+                        afbApp.splitTimer(strRes);
                         handler.sendEmptyMessage(HandlerCode.SHOW_BACCARACT);
                     } else
                         handler.sendEmptyMessage(HandlerCode.SHOW_BACCARACT_FAIL);

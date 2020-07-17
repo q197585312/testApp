@@ -4,6 +4,8 @@ package com.nanyang.app.load.register;
 import com.nanyang.app.ApiService;
 import com.nanyang.app.load.UserInfo;
 import com.unkonw.testapp.libs.api.Api;
+import com.unkonw.testapp.login.DataBean;
+import com.unkonw.testapp.login.ResBaseBean;
 
 import java.util.Map;
 
@@ -15,8 +17,8 @@ import retrofit2.Call;
  */
 public class ApiRegister extends Api {
     /**
-     * String loginParams = "txtLang=0&txtAcctid="+getApp().getUser().getName()+"&txtPwd="+getApp().getUser().getPassword()+"&OsType=Android"+"&OsVersion="+version;
-     * strRes = getApp().getHttpClient().sendPost(WebSiteUrl.URL_LOGIN, loginParams);
+     * String loginParams = "txtLang=0&txtAcctid="+afbApp.getUser().getName()+"&txtPwd="+afbApp.getUser().getPassword()+"&OsType=Android"+"&OsVersion="+version;
+     * strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.URL_LOGIN, loginParams);
      */
     public Flowable<String> getPersonalInfo(UserInfo mLoginParams) {
         return applySchedulers(getService(ApiService.class).getPersonalInfo(mLoginParams.getMap()));

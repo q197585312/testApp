@@ -43,7 +43,7 @@ public class ReportFormActivity extends BaseActivity {
         tvCenterTitle.setText(getString(R.string.report).toUpperCase());
         if ("zh".equals(language))
             language = "cn";
-        url = WebSiteUrl.REPORT_URL + "?Usid=" + mAppViewModel.getUser().getName() + "&lng=" + language;
+        url = WebSiteUrl.REPORT_URL + "?Usid=" + afbApp.getUser().getName() + "&lng=" + language;
         Log.d("GFCB", url);
 //        http://112api.gd09.info/report.jsp?lng=en&Usid=TESTSHMYR02
         //http://www.gd88asia.vip/OLTGames//report.jsp?lng=en&Usid=LK00ADTEST99
@@ -101,10 +101,10 @@ public class ReportFormActivity extends BaseActivity {
         // 每次移除会有Cookie不一致问题，注释该地方
         //mCookieManager.removeSessionCookie();// 移除
         // Cookie是通过我们Volley活着HttpClient获取的
-        //  Log.i(WebSiteUrl.Tag,"cookie="+mAppViewModel.getHttpClient().getCookie());
-        if (mAppViewModel != null) {
-            if (mAppViewModel.getHttpClient() != null) {
-                String cookie = mAppViewModel.getHttpClient().getCookie();
+        //  Log.i(WebSiteUrl.Tag,"cookie="+afbApp.getHttpClient().getCookie());
+        if (afbApp != null) {
+            if (afbApp.getHttpClient() != null) {
+                String cookie = afbApp.getHttpClient().getCookie();
                 if (!TextUtils.isEmpty(cookie)) {
                     mCookieManager.setCookie(url, cookie);
                     CookieSyncManager.getInstance().sync();

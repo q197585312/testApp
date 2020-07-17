@@ -16,9 +16,6 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,7 +29,6 @@ import gaming178.com.casinogame.Activity.entity.TableTimerBean;
 import gaming178.com.casinogame.Bean.GameMenuItem;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
 import gaming178.com.casinogame.adapter.MyRecyclerViewHolder;
-import gaming178.com.casinogame.base.AppModel;
 import gaming178.com.casinogame.base.BaseActivity;
 import gaming178.com.mylibrary.allinone.util.ScreenUtil;
 import gaming178.com.mylibrary.base.ItemCLickImp;
@@ -48,7 +44,6 @@ public class TableChangePop extends BasePopupWindow {
     private LinearLayout parent;
     private List<TableTimerBean> list;
     private TextView tv_b, tv_r, tv_s, tv_d;
-    List<TextView> hereList = new ArrayList<>();
 
     public TableChangePop(Context context, View v, int width, int height) {
         super(context, v, width, height);
@@ -139,9 +134,6 @@ public class TableChangePop extends BasePopupWindow {
     private boolean isNeedRefenshTimer;
 
     public void setPopTopContent() {
-        for (int i = 0; i < hereList.size(); i++) {
-            hereList.get(i).setText(context.getString(R.string.your_here));
-        }
         refreshTimer((BaseActivity) context);
     }
 
@@ -157,35 +149,35 @@ public class TableChangePop extends BasePopupWindow {
                             if (baccaratTableChangeViewBeenList != null && baccaratTableChangeViewBeenList.size() > 0) {
                                 for (int j = 0; j < baccaratTableChangeViewBeenList.size(); j++) {
                                     BaccaratTableChangeViewBean baccaratTableChangeViewBean = baccaratTableChangeViewBeenList.get(j);
-                                    mAppViewModel.updateBigRoad(context, mAppViewModel.getBaccarat(baccaratTableChangeViewBean.getTableId()), baccaratTableChangeViewBean.getLayout(),
+                                    afbApp.updateBigRoad(context, afbApp.getBaccarat(baccaratTableChangeViewBean.getTableId()), baccaratTableChangeViewBean.getLayout(),
                                             baccaratTableChangeViewBean.getTv_baccarat_shoe_number(), baccaratTableChangeViewBean.getTv_baccarat_total_number(), baccaratTableChangeViewBean.getTv_baccarat_banker_number(), baccaratTableChangeViewBean.getTv_baccarat_player_number(), baccaratTableChangeViewBean.getTv_baccarat_tie_number()
                                             , baccaratTableChangeViewBean.getTv_baccarat_bp_number(), baccaratTableChangeViewBean.getTv_baccarat_pp_number(), baccaratTableChangeViewBean.getLl_good_road_parent(), baccaratTableChangeViewBean.getTv_good_road_name());
                                 }
                             }
                             if (dragonTigerTableChangeViewBeen != null) {
-                                mAppViewModel.updateDragenTigerBigRoad(context, mAppViewModel.getDragonTiger01(), dragonTigerTableChangeViewBeen.getLayout(), dragonTigerTableChangeViewBeen.getTv_baccarat_shoe_number(), dragonTigerTableChangeViewBeen.getTv_baccarat_total_number(), dragonTigerTableChangeViewBeen.getTv_baccarat_banker_number(), dragonTigerTableChangeViewBeen.getTv_baccarat_player_number(), dragonTigerTableChangeViewBeen.getTv_baccarat_tie_number()
+                                afbApp.updateDragenTigerBigRoad(context, afbApp.getDragonTiger01(), dragonTigerTableChangeViewBeen.getLayout(), dragonTigerTableChangeViewBeen.getTv_baccarat_shoe_number(), dragonTigerTableChangeViewBeen.getTv_baccarat_total_number(), dragonTigerTableChangeViewBeen.getTv_baccarat_banker_number(), dragonTigerTableChangeViewBeen.getTv_baccarat_player_number(), dragonTigerTableChangeViewBeen.getTv_baccarat_tie_number()
                                         , dragonTigerTableChangeViewBeen.getTv_baccarat_bp_number(), dragonTigerTableChangeViewBeen.getTv_baccarat_pp_number());
                             }
                             if (rouletteTableChangeViewBean != null && adapter != null) {
-                                mAppViewModel.updateRouletteBigRoad(mAppViewModel.getRoulette01(), adapter, rouletteTableChangeViewBean.getTv_game_number01(), rouletteTableChangeViewBean.getTv_roulette_red01(), rouletteTableChangeViewBean.getTv_roulette_black01(), rouletteTableChangeViewBean.getTv_roulette_zero01(), rouletteTableChangeViewBean.getTv_roulette_even01(), rouletteTableChangeViewBean.getTv_roulette_odd01(), rouletteTableChangeViewBean.getTv_roulette_big01(), rouletteTableChangeViewBean.getTv_roulette_small01());
+                                afbApp.updateRouletteBigRoad(afbApp.getRoulette01(), adapter, rouletteTableChangeViewBean.getTv_game_number01(), rouletteTableChangeViewBean.getTv_roulette_red01(), rouletteTableChangeViewBean.getTv_roulette_black01(), rouletteTableChangeViewBean.getTv_roulette_zero01(), rouletteTableChangeViewBean.getTv_roulette_even01(), rouletteTableChangeViewBean.getTv_roulette_odd01(), rouletteTableChangeViewBean.getTv_roulette_big01(), rouletteTableChangeViewBean.getTv_roulette_small01());
                             }
                             if (sicboTableChangeViewBean != null) {
-                                if (mAppViewModel.getSicbo01().getRoad() != null && !mAppViewModel.getSicbo01().getRoad().equals(mAppViewModel.getSicbo01().getRoadOld())) {
-                                    mAppViewModel.getSicbo01().setRoadOld(mAppViewModel.getSicbo01().getRoad());
+                                if (afbApp.getSicbo01().getRoad() != null && !afbApp.getSicbo01().getRoad().equals(afbApp.getSicbo01().getRoadOld())) {
+                                    afbApp.getSicbo01().setRoadOld(afbApp.getSicbo01().getRoad());
                                     sicboTableChangeViewBean.getLinearlayout().removeAllViewsInLayout();
-                                    for (DiceContentBean dice : getSicboResultsData(mAppViewModel)) {
+                                    for (DiceContentBean dice : getSicboResultsData(afbApp)) {
                                         View diceView = LayoutInflater.from(context).inflate(R.layout.item_table_bet_dice_info, null);
                                         ((ImageView) diceView.findViewById(R.id.iv_dice_1)).setImageResource(dice.getList().get(0).getResDrawable());
                                         ((ImageView) diceView.findViewById(R.id.iv_dice_2)).setImageResource(dice.getList().get(1).getResDrawable());
                                         ((ImageView) diceView.findViewById(R.id.iv_dice_3)).setImageResource(dice.getList().get(2).getResDrawable());
                                         sicboTableChangeViewBean.getLinearlayout().addView(diceView);
                                     }
-                                    mAppViewModel.updateGameNumber(mAppViewModel.getSicbo01(), sicboTableChangeViewBean.getTv_sicbo_number01(), sicboTableChangeViewBean.getTv_even01(), sicboTableChangeViewBean.getTv_small01(), sicboTableChangeViewBean.getTv_waidic01(), sicboTableChangeViewBean.getTv_big01(), sicboTableChangeViewBean.getTv_odd01());
+//                                    afbApp.updateGameNumber(afbApp.getSicbo01(), sicboTableChangeViewBean.getTv_sicbo_number01(), sicboTableChangeViewBean.getTv_even01(), sicboTableChangeViewBean.getTv_small01(), sicboTableChangeViewBean.getTv_waidic01(), sicboTableChangeViewBean.getTv_big01(), sicboTableChangeViewBean.getTv_odd01());
                                 }
                             }
                         }
                     });
-                    String strRes = baseActivity.mAppViewModel.getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A_B, "GameType=11&Tbid=0&Usid=" + baseActivity.mAppViewModel.getUser().getName());
+                    String strRes = baseActivity.getApp().getHttpClient().sendPost(WebSiteUrl.COUNTDOWN_URL_A_B, "GameType=11&Tbid=0&Usid=" + baseActivity.getApp().getUser().getName());
                     if (strRes.startsWith("Results=ok")) {
                         String[] split = strRes.split("\\^");
                         //Results=ok#^1#1#18#^2#2#0#^3#5#0#^5#2#0#^21#2#0#^31#1#10#^61#5#0#^62#5#0#^63#1#0#^64#5#0#^65#5#0#^66#5#0#^71#2#0#^
@@ -262,11 +254,11 @@ public class TableChangePop extends BasePopupWindow {
         return resMipmap;
     }
 
-    public List<DiceContentBean> getSicboResultsData(AppModel mAppViewModel) {
+    public List<DiceContentBean> getSicboResultsData(AfbApp afbApp) {
         List<DiceContentBean> list = new ArrayList<DiceContentBean>();
         //得到最近15局的结果
         try {
-            String luziInfo[] = mAppViewModel.getSicbo01().getRoad().split("\\#");
+            String luziInfo[] = afbApp.getSicbo01().getRoad().split("\\#");
             if (luziInfo.length <= 0 && luziInfo.length > 100) {//数据格式不对
                 return null;
             }
@@ -309,10 +301,10 @@ public class TableChangePop extends BasePopupWindow {
     BaccaratTableChangeViewBean dragonTigerTableChangeViewBeen;
     RouletteTableChangeViewBean rouletteTableChangeViewBean;
     SicboTableChangeViewBean sicboTableChangeViewBean;
-    AppModel mAppViewModel;
+    AfbApp afbApp;
 
-    public void setTablesData(AppModel appModel, ArrayList<GameMenuItem> tables) {
-        this.mAppViewModel = appModel;
+    public void setTablesData(AfbApp afbApp, ArrayList<GameMenuItem> tables) {
+        this.afbApp = afbApp;
         isNeedRefenshTimer = false;
         list.clear();
         this.tables = tables;
@@ -349,9 +341,7 @@ public class TableChangePop extends BasePopupWindow {
                 TextView tv_baccarat_pp_number = (TextView) aB1.findViewById(R.id.text_pp);
                 View ll_good_road_parent = aB1.findViewById(R.id.ll_good_road_parent);
                 View view_you_here = aB1.findViewById(R.id.view_you_here);
-                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
-                hereList.add(tv_here);
-                if (mAppViewModel.getTableId() == item.getDrawableRes()) {
+                if (afbApp.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
                 TextView tv_good_road_name = (TextView) ll_good_road_parent.findViewById(R.id.tv_good_road_name);
@@ -379,9 +369,7 @@ public class TableChangePop extends BasePopupWindow {
                 TextView tv_roulette_big01 = (TextView) aB1.findViewById(R.id.text_big);
                 TextView tv_roulette_small01 = (TextView) aB1.findViewById(R.id.text_small);
                 View view_you_here = aB1.findViewById(R.id.view_you_here);
-                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
-                hereList.add(tv_here);
-                if (mAppViewModel.getTableId() == item.getDrawableRes()) {
+                if (afbApp.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
                 setValue(layout);
@@ -446,13 +434,11 @@ public class TableChangePop extends BasePopupWindow {
                 TextView tv_waidic01 = (TextView) aB1.findViewById(R.id.text_waidic);
                 LinearLayout linearlayout = (LinearLayout) aB1.findViewById(R.id.layout2);
                 View view_you_here = aB1.findViewById(R.id.view_you_here);
-                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
-                hereList.add(tv_here);
                 if (afbApp.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }
 
-                for (DiceContentBean dice : getSicboResultsData(mAppViewModel)) {
+                for (DiceContentBean dice : getSicboResultsData(afbApp)) {
                     View diceView = LayoutInflater.from(context).inflate(R.layout.item_table_bet_dice_info, null);
                     ((ImageView) diceView.findViewById(R.id.iv_dice_1)).setImageResource(dice.getList().get(0).getResDrawable());
                     ((ImageView) diceView.findViewById(R.id.iv_dice_2)).setImageResource(dice.getList().get(1).getResDrawable());
@@ -488,8 +474,6 @@ public class TableChangePop extends BasePopupWindow {
                 LinearLayout ll_bp = (LinearLayout) aB1.findViewById(R.id.ll_bp);
                 ll_bp.setVisibility(View.GONE);
                 View view_you_here = aB1.findViewById(R.id.view_you_here);
-                TextView tv_here = view_you_here.findViewById(R.id.tv_here);
-                hereList.add(tv_here);
                 if (afbApp.getTableId() == item.getDrawableRes()) {
                     view_you_here.setVisibility(View.VISIBLE);
                 }

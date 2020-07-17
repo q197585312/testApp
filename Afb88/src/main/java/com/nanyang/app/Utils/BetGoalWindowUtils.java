@@ -130,7 +130,7 @@ public class BetGoalWindowUtils {
                                         String index13 = dataBean.getIndex13();
                                         String transType10 = dataBean.getIndex10();
                                         boolean isOu = false;
-                                        isOu = showBetType(activity, tvData1, tvData2, index13, transType10, isOu);
+                                        isOu = showBetType(activity,tvData1, tvData2, index13, transType10, isOu);
                                         String isRun5 = dataBean.getIndex5();
                                         String betType2 = dataBean.getIndex23();
                                         if (isOu) {
@@ -170,7 +170,7 @@ public class BetGoalWindowUtils {
                                     final ImageView imgClose = view.findViewById(R.id.img_close);
                                     final TextView tvCount = view.findViewById(R.id.tv_count);
                                     TextView tvData6 = view.findViewById(R.id.tv_data6);
-                                    showStatus(activity, index20, tvData6);
+                                    showStatus(activity, index20,tvData6);
                                     String index8 = dataBean.getIndex8();
                                     String index22 = dataBean.getIndex22();
                                     String showStr;
@@ -179,16 +179,12 @@ public class BetGoalWindowUtils {
                                     } else {
                                         showStr = index8;
                                     }
-                                    final int tagSecond;
                                     showStr = showStr.replace("&nbsp;", " ");
                                     if (showStr.contains("W") && !showStr.contains("/")) {
                                         if (activity instanceof BaseToolbarActivity) {
                                             BaseToolbarActivity sportActivity = (BaseToolbarActivity) activity;
                                             sportActivity.onAddWaiteCount(1);
                                         }
-                                        tagSecond = 2;
-                                    } else {
-                                        tagSecond = 1;
                                     }
                                     if (showStr.contains("/") && !TextUtils.isEmpty(index22)) {
                                         if (activity instanceof BaseToolbarActivity) {
@@ -197,16 +193,14 @@ public class BetGoalWindowUtils {
                                         }
                                         int endColor;
 
-                                        if (index20.contains("N") || index20.contains("A")) {
+                                        if (index20.contains("N")||index20.contains("A")) {
                                             endColor = ContextCompat.getColor(activity, R.color.green_dark);
                                         } else {
                                             endColor = Color.RED;
                                         }
                                         SpannableStringBuilder spannableStringBuilder = AfbUtils.handleStringColor(showStr, "/", Color.YELLOW, endColor);
-                                        tvData6.setTextColor(ContextCompat.getColor(activity, R.color.black));
                                         tvData6.setText(spannableStringBuilder);
-
-                                    } else {
+                                    }else {
                                         tvData6.setText(showStr);
                                     }
                                     Log.d("onGetRefreshMenu", "showStr: " + showStr);
@@ -215,13 +209,13 @@ public class BetGoalWindowUtils {
                                     for (int i = 0; i < llContent.getChildCount(); i++) {
                                         llContent.getChildAt(i).measure(0, 0);
                                     }
-                                    view.setTag(tagSecond);
+                                    view.setTag(3);
                                     handler.post(new Runnable() {
                                         @Override
                                         public void run() {
                                             int tag = (int) view.getTag();
                                             tvCount.setText(tag + "s");
-                                            if (tag == tagSecond) {
+                                            if (tag == 3) {
                                                 imgClose.setOnClickListener(new View.OnClickListener() {
                                                     @Override
                                                     public void onClick(View v) {
@@ -273,7 +267,7 @@ public class BetGoalWindowUtils {
             case "2":
             case "X":
                 transType10 = activity.getString(R.string.X1X2);
-                isOu = true;
+                isOu=true;
                 break;
             case "HDP":
             case "MMH":
@@ -281,7 +275,7 @@ public class BetGoalWindowUtils {
                 break;
             case "OU":
             case "MMO":
-                transType10 = activity.getString(R.string.O_U);
+                transType10 =activity.getString(R.string.O_U);
                 isOu = true;
                 break;
             case "OE":
@@ -304,13 +298,12 @@ public class BetGoalWindowUtils {
                 break;
         }
 
-        tvData2.setText(transType10);
+        tvData2.setText(transType10 );
 
 
         return isOu;
     }
-
-    public void showStatus(Activity activity, String status, TextView running_Status) {
+    public void showStatus(Activity activity, String status, TextView running_Status){
 
         if (status.trim().equals("N") || status.trim().equals("A")) {
             running_Status.setBackgroundColor(ContextCompat.getColor(activity, R.color.transparent));
@@ -357,13 +350,13 @@ public class BetGoalWindowUtils {
         }
         SoundPlayUtils.play();
 
-        view.setTag(1);
+        view.setTag(3);
         handler.post(new Runnable() {
             @Override
             public void run() {
                 int tag = (int) view.getTag();
                 tvCount.setText(tag + "s");
-                if (tag == 1) {
+                if (tag == 3) {
                     imgClose.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {

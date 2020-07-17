@@ -308,7 +308,6 @@ public class AfbApplication extends BaseApplication {
 
 
     public void clearMixBetList() {
-
         mixBetList = new ArrayList<>();
         setSingleBet(null);
     }

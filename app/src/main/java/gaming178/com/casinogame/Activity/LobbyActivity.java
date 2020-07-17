@@ -33,11 +33,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import gaming178.com.baccaratgame.BuildConfig;
 import gaming178.com.baccaratgame.R;
-import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Control.AutoScrollTextView;
+import gaming178.com.casinogame.Util.AfbApp;
 import gaming178.com.casinogame.Util.HandlerCode;
 import gaming178.com.casinogame.Util.WebSiteUrl;
 import gaming178.com.casinogame.adapter.BaseRecyclerAdapter;
@@ -54,35 +54,35 @@ import gaming178.com.mylibrary.allinone.util.UpdateManager;
  * Created by Administrator on 2016/3/22.
  */
 public class LobbyActivity extends BaseActivity {
-    @BindView(R2.id.img_head)
+    @Bind(R.id.img_head)
     ImageView imageView;
-    @BindView(R2.id.tv_home_user_name)
+    @Bind(R.id.tv_home_user_name)
     TextView tv_home_user_name;
-    @BindView(R2.id.tv_home_balance)
+    @Bind(R.id.tv_home_balance)
     TextView tv_home_balance;
 
-    @BindView(R2.id.iv_set)
+    @Bind(R.id.iv_set)
     ImageView iv_set;
-    @BindView(R2.id.iv_report)
+    @Bind(R.id.iv_report)
     ImageView iv_report;
 
-    @BindView(R2.id.iv_language)
+    @Bind(R.id.iv_language)
     ImageView iv_language;
 
-    @BindView(R2.id.view_center)
+    @Bind(R.id.view_center)
     View img_home;
-    @BindView(R2.id.iv_logout)
+    @Bind(R.id.iv_logout)
     ImageView iv_logout;
 
 
-    @BindView(R2.id.gridview_content_gv)
+    @Bind(R.id.gridview_content_gv)
     RecyclerView gridviewContentGv;
     BaseRecyclerAdapter<HallGameItemBean> adapterViewContent;
-    @BindView(R2.id.hall_game_bottom_prompt_tv)
+    @Bind(R.id.hall_game_bottom_prompt_tv)
     AutoScrollTextView hallGameBottomPromptTv;
     private BlockDialog dialog;
     private String announcement = "";
-
+    private AfbApp afbApp = null;
     private UpdateAnnouncement updateAnnouncement = null;
     private Thread threadAnnouncement = null;
     private boolean bGetAnnouncement = true;
@@ -121,12 +121,12 @@ public class LobbyActivity extends BaseActivity {
         public void run() {
 
             try {
-                if (mAppViewModel.isbLogin() && mAppViewModel.isbLobby()) {
+                if (afbApp.isbLogin() && afbApp.isbLobby()) {
                     //   Log.i(WebSiteUrl.Tag, "-------------- UpdateGameStatus 1");
                     String statusUrl = "";
                     statusUrl = WebSiteUrl.TABLEINFO_URL_A;
 
-                    String strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+                    String strRes = afbApp.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
                     String tableInfo[] = strRes.split("\\^");
 
                     if (strRes.equals("netError") || strRes.equals("Results=no") || tableInfo.length < 9) {//连续5次拿不到数据就退出，返回到登录界面
@@ -137,11 +137,11 @@ public class LobbyActivity extends BaseActivity {
                     }
 
                     if (iError == 0) {
-                        mAppViewModel.splitTableInfo(strRes, mAppViewModel.getHallId());
+                        afbApp.splitTableInfo(strRes, afbApp.getHallId());
                         //拿公告信息
 
                     }
-                    switch (mAppViewModel.getHallId()) {
+                    switch (afbApp.getHallId()) {
                         case 1:
                             statusUrl = WebSiteUrl.COUNTDOWN_URL_A;
                             break;
@@ -150,7 +150,7 @@ public class LobbyActivity extends BaseActivity {
                             break;
 
                     }
-                    strRes = mAppViewModel.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + mAppViewModel.getUser().getName());
+                    strRes = afbApp.getHttpClient().sendPost(statusUrl, "GameType=11&Tbid=0&Usid=" + afbApp.getUser().getName());
                     if (strRes.equals("netError") || strRes.equals("Results=no")) {//连续10次拿不到数据就退出，返回到登录界面
 
                         iError++;
@@ -160,7 +160,7 @@ public class LobbyActivity extends BaseActivity {
 
                     //  Log.i(WebSiteUrl.Tag, "++++++++++++++ "+strRes);
                     if (iError == 0) {
-                        mAppViewModel.splitTimer(strRes);
+                        afbApp.splitTimer(strRes);
                         handler.sendEmptyMessage(HandlerCode.SHOW_BACCARACT);
                     } else
                         handler.sendEmptyMessage(HandlerCode.SHOW_BACCARACT_FAIL);
@@ -186,8 +186,8 @@ public class LobbyActivity extends BaseActivity {
                 return;
             switch (msg.what) {
                 case 1:
-                    if (announcement != null && !announcement.equals(mAppViewModel.getAnnouncement())) {
-                        announcement = mAppViewModel.getAnnouncement();
+                    if (announcement != null && !announcement.equals(afbApp.getAnnouncement())) {
+                        announcement = afbApp.getAnnouncement();
                         hallGameBottomPromptTv.stopScroll();
                         hallGameBottomPromptTv.setText(announcement);
                         hallGameBottomPromptTv.setSpeed(0.8f);
@@ -268,9 +268,9 @@ public class LobbyActivity extends BaseActivity {
                 AppTool.setAppLanguage(LobbyActivity.this,AppTool.getAppLanguage(LobbyActivity.this));
               /*  if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat) )) {
                     tableIndex = 0;
-                    if (mAppViewModel.getHallId() != 1) {
-//                        mAppViewModel.setbInitLimit(false);
-                        mAppViewModel.setHallId(1);
+                    if (afbApp.getHallId() != 1) {
+//                        afbApp.setbInitLimit(false);
+                        afbApp.setHallId(1);
                         updateTableStatus();
                     } else
                         AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
@@ -278,9 +278,9 @@ public class LobbyActivity extends BaseActivity {
 
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat) + " B")) {
                     tableIndex = 1;
-                    if (mAppViewModel.getHallId() != 2) {
-//                        mAppViewModel.setbInitLimit(false);
-                        mAppViewModel.setHallId(2);
+                    if (afbApp.getHallId() != 2) {
+//                        afbApp.setbInitLimit(false);
+                        afbApp.setHallId(2);
                         updateTableStatus();
                     } else
                         AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
@@ -289,17 +289,17 @@ public class LobbyActivity extends BaseActivity {
                 if (hallGameItemBean.getTitle().equals(getString(R.string.baccarat))) {
 
                     tableIndex = 0;
-                    if (mAppViewModel.getHallId() != 1) {
-//                        mAppViewModel.setbInitLimit(false);
-                        mAppViewModel.setHallId(1);
+                    if (afbApp.getHallId() != 1) {
+//                        afbApp.setbInitLimit(false);
+                        afbApp.setHallId(1);
                         updateTableStatus();
                     } else
                         AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
                     /*else {
                         tableIndex = 1;
-                        if (mAppViewModel.getHallId() != 2) {
-//                        mAppViewModel.setbInitLimit(false);
-                            mAppViewModel.setHallId(2);
+                        if (afbApp.getHallId() != 2) {
+//                        afbApp.setbInitLimit(false);
+                            afbApp.setHallId(2);
                             updateTableStatus();
                         } else
                             AppTool.activiyJump(mContext, LobbyBaccaratActivity.class);
@@ -308,34 +308,34 @@ public class LobbyActivity extends BaseActivity {
 
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.roulette))) {
                     tableIndex = 3;
-                    if (mAppViewModel.getRoulette01().getStatus() != 1) {
+                    if (afbApp.getRoulette01().getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
-                    if (mAppViewModel.getHallId() != 1) {
-                        mAppViewModel.setHallId(1);
+                    if (afbApp.getHallId() != 1) {
+                        afbApp.setHallId(1);
                         updateTableStatus();
                     } else
                         AppTool.activiyJump(mContext, LobbyRouletteActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.sicbo))) {
-                    if (mAppViewModel.getSicbo01().getStatus() != 1) {
+                    if (afbApp.getSicbo01().getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableIndex = 4;
-                    if (mAppViewModel.getHallId() != 1) {
-                        mAppViewModel.setHallId(1);
+                    if (afbApp.getHallId() != 1) {
+                        afbApp.setHallId(1);
                         updateTableStatus();
                     } else
                         AppTool.activiyJump(mContext, LobbySicboActivity.class);
                 } else if (hallGameItemBean.getTitle().equals(getString(R.string.dragon_tiger))) {
-                    if (mAppViewModel.getDragonTiger01().getStatus() != 1) {
+                    if (afbApp.getDragonTiger01().getStatus() != 1) {
                         Toast.makeText(mContext, getString(R.string.game_close), Toast.LENGTH_SHORT).show();
                         return;
                     }
                     tableIndex = 5;
-                    if (mAppViewModel.getHallId() != 1) {
-                        mAppViewModel.setHallId(1);
+                    if (afbApp.getHallId() != 1) {
+                        afbApp.setHallId(1);
                         updateTableStatus();
                     } else
                         AppTool.activiyJump(mContext, LobbyDragonTigerActivity.class);
@@ -354,6 +354,7 @@ public class LobbyActivity extends BaseActivity {
             }
         });
         //设置公告
+        afbApp = getApp();
         announcement = "";
         hallGameBottomPromptTv.setText("  ");
 
@@ -367,7 +368,7 @@ public class LobbyActivity extends BaseActivity {
     private void initBar() {
         toolbar.setVisibility(View.GONE);
         tv_home_user_name.setText(usName);
-        tv_home_balance.setText(mAppViewModel.getUser().getBalance() + "");
+        tv_home_balance.setText(getApp().getUser().getBalance() + "");
         iv_language.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -413,10 +414,10 @@ public class LobbyActivity extends BaseActivity {
             @Override
             public void run() {
                 String dataUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "afb1188path.jsp";
-                if (TextUtils.isEmpty(dataUrl) || mAppViewModel.getHttpClient() == null) {
+                if (TextUtils.isEmpty(dataUrl) || afbApp.getHttpClient() == null) {
                     return;
                 }
-                final String result = mAppViewModel.getHttpClient().sendPost(dataUrl, "gameplat=APP");
+                final String result = afbApp.getHttpClient().sendPost(dataUrl, "gameplat=APP");
                 //Results=ok#https://www.sv33888.com/api/player/gd88/login?cert=Q1ltduaIEwBwkoVn&extension1=g1234567&user=RAJA01&key=fnmKjjnmoCIuPEnzAVRM4gHdxhDWvNnA7gI66aFWy2U%3D&balance=12416.314&language=1
                 if (result.startsWith("Results=ok")) {
                     String[] split = result.split("#");
@@ -596,7 +597,7 @@ public class LobbyActivity extends BaseActivity {
         super.leftClick();
         bGetGameStatus = false;
         bGetGameTimer = false;
-        mAppViewModel.setbLogin(false);
+        afbApp.setbLogin(false);
     }
 
 

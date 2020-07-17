@@ -60,10 +60,10 @@ public class CockFightingWebActivity extends SlotsWebActivity {
             @Override
             public void run() {
                 String dataUrl = WebSiteUrl.HEADER + WebSiteUrl.PROJECT + "sv338path.jsp";
-                if (TextUtils.isEmpty(dataUrl) || mAppViewModel.getHttpClient() == null) {
+                if (TextUtils.isEmpty(dataUrl) || afbApp.getHttpClient() == null) {
                     return;
                 }
-                String result = mAppViewModel.getHttpClient().sendPost(dataUrl, "");
+                String result = afbApp.getHttpClient().sendPost(dataUrl, "");
                 //Results=ok#https://www.sv33888.com/api/player/gd88/login?cert=Q1ltduaIEwBwkoVn&extension1=g1234567&user=RAJA01&key=fnmKjjnmoCIuPEnzAVRM4gHdxhDWvNnA7gI66aFWy2U%3D&balance=12416.314&language=1
                 if (result.startsWith("Results=ok")) {
                     String[] split = result.split("#");

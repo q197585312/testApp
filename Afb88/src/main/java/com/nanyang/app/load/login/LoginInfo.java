@@ -136,6 +136,19 @@ public class LoginInfo {
 
     }
 
+    public Map<String, String> getWfLanguage(String Lang) {
+        Map<String, String> map = new HashMap<>();
+        map.put("_fm", new LanguageWfBean(Lang).getJson());
+        return map;
+    }
+
+    public Map<String, String> getWfLanguage(String Lang, String acctype) {
+        Map<String, String> map = new HashMap<>();
+        LanguageWfBean languageWfBean = new LanguageWfBean(Lang);
+        languageWfBean.setAccType(acctype);
+        map.put("_fm", languageWfBean.getJson());
+        return map;
+    }
 
     public class LoginWfBean implements Serializable {
 //        _fm	{"ACT":"Login","ID":"Demoafba0310","PW":"123456aa","lang":"","pgLable":"0.15504609525960888","vsn":"4.0.12","PT":"wfDefault0"}

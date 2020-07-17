@@ -1,12 +1,11 @@
 package com.nanyang.app.main.contact;
 
 import android.graphics.Typeface;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
-import androidx.recyclerview.widget.RecyclerView;
 
 import com.nanyang.app.BaseToolbarActivity;
 import com.nanyang.app.BuildConfig;
@@ -21,8 +20,7 @@ import com.unkonw.testapp.libs.base.BaseConsumer;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-
+import butterknife.Bind;
 
 /**
  * Created by 47184 on 2019/3/14.
@@ -30,11 +28,11 @@ import butterknife.BindView;
 
 public class ContactFragment extends BaseMoreFragment<BaseSwitchPresenter> {
     private static final String TAG = "ContactFragment";
-    @BindView(R.id.ll_parent_content)
+    @Bind(R.id.ll_parent_content)
     View ll_parent_content;
-    @BindView(R.id.contact_list)
+    @Bind(R.id.contact_list)
     RecyclerView rvContent;
-    @BindView(R.id.contact_list_2)
+    @Bind(R.id.contact_list_2)
     RecyclerView rvContent2;
 
     List<Contact.ContactBean> dataList = new ArrayList<>();

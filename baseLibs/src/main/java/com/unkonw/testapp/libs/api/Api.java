@@ -106,7 +106,8 @@ public class Api {
                     .writeTimeout(30, TimeUnit.SECONDS)
                     .readTimeout(30, TimeUnit.SECONDS)
                     .retryOnConnectionFailure(true)
-                    .addNetworkInterceptor(interceptor)
+                    .addNetworkInterceptor(
+                            interceptor)
                     .cookieJar( CookieManger.getInstance())
                     .cache(cache)
 //                    .addInterceptor( mInterceptor)

@@ -13,9 +13,8 @@ import android.widget.GridView;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import gaming178.com.baccaratgame.R;
-import gaming178.com.baccaratgame.R2;
 import gaming178.com.casinogame.Activity.entity.SeatBean;
 import gaming178.com.casinogame.Activity.entity.TableStatusBean;
 import gaming178.com.casinogame.Util.AppConfig;
@@ -31,7 +30,7 @@ import gaming178.com.mylibrary.base.ViewHolder;
  * Created by Administrator on 2016/4/1.
  */
 public class SelectSeatActivity extends BaseActivity {
-    @BindView(R2.id.gridview_content_gv)
+    @Bind(R.id.gridview_content_gv)
     GridView gridviewContentGv;
     private AdapterViewContent<TableStatusBean> adapterViewContent;
     private int tableId=0;
@@ -81,8 +80,8 @@ public class SelectSeatActivity extends BaseActivity {
         public void run() {
 
                 try {
-                    Log.i(WebSiteUrl.Tag,"----------"+"GameType=11&Serialid="+serialId+"&Areaid="+areaId+"&Tbid="+tableId+"&Usid="+mAppViewModel.getUser().getName());
-                    String strRes = mAppViewModel.getHttpClient().sendPost(WebSiteUrl.BJL_TABLE_HALL_CHOOSE_SEAT_URL, "GameType=11&Serialid="+serialId+"&Areaid="+areaId+"&Tbid="+tableId+"&Usid="+mAppViewModel.getUser().getName());
+                    Log.i(WebSiteUrl.Tag,"----------"+"GameType=11&Serialid="+serialId+"&Areaid="+areaId+"&Tbid="+tableId+"&Usid="+afbApp.getUser().getName());
+                    String strRes = afbApp.getHttpClient().sendPost(WebSiteUrl.BJL_TABLE_HALL_CHOOSE_SEAT_URL, "GameType=11&Serialid="+serialId+"&Areaid="+areaId+"&Tbid="+tableId+"&Usid="+afbApp.getUser().getName());
 
 
                     if(strRes != null && strRes.startsWith("Results=ok")){
@@ -118,10 +117,10 @@ public class SelectSeatActivity extends BaseActivity {
 
                     break;
                 case HandlerCode.CHOOSE_SEAT_SUCESS:
-                    mAppViewModel.setTableId(tableId);
-                    mAppViewModel.setSerialId(serialId);
-                    mAppViewModel.setAreaId(areaId);
-                    mAppViewModel.setbLobby(false);
+                    afbApp.setTableId(tableId);
+                    afbApp.setSerialId(serialId);
+                    afbApp.setAreaId(areaId);
+                    afbApp.setbLobby(false);
 
                     Bundle bundle=new Bundle();
                     bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA,""+tableId);
@@ -305,10 +304,10 @@ public class SelectSeatActivity extends BaseActivity {
 //        adapterViewContent.setItemClick(new ItemCLickImp<TableStatusBean>() {
 //            @Override
 //            public void itemCLick(View view, TableStatusBean tableStatusBean, int position) {
-//                mAppViewModel.setTableId(tableId);
-//                mAppViewModel.setSerialId(0);
-//                mAppViewModel.setAreaId(tableStatusBean.getAreaId());
-//                mAppViewModel.setbLobby(false);
+//                afbApp.setTableId(tableId);
+//                afbApp.setSerialId(0);
+//                afbApp.setAreaId(tableStatusBean.getAreaId());
+//                afbApp.setbLobby(false);
 //
 //                Bundle bundle=new Bundle();
 //                bundle.putString(AppConfig.ACTION_KEY_INITENT_DATA,""+tableId);

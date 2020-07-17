@@ -1,5 +1,6 @@
 package com.nanyang.app.common;
 
+import android.content.ComponentName;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -29,7 +30,6 @@ import com.nanyang.app.main.Setting.SettingFragment;
 import com.nanyang.app.main.home.LoadPCasinoDataHelper;
 import com.nanyang.app.main.home.SaCasinoWfBean;
 import com.nanyang.app.main.home.keno.WebActivity;
-import com.nanyang.app.main.home.sport.main.SportContract;
 import com.nanyang.app.main.home.sport.model.RunMatchInfo;
 import com.unkonw.testapp.libs.base.BaseConsumer;
 import com.unkonw.testapp.libs.base.IBaseContext;
@@ -51,6 +51,7 @@ import java.util.TimerTask;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import cn.finalteam.toolsfinal.ApkUtils;
 import io.reactivex.Flowable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -89,6 +90,7 @@ public class MainPresenter extends BaseSwitchPresenter {
         }
     }
 
+    //    https://www.afb1188.com/H50/Pub/pcode.axd?_fm={"ACT":"GetTT","lang":"ZH-CN","pgLable":"0.18120996831154568","vsn":"4.0.12","PT":"wfLoginH50"}&_db={}
 /*    public void switchLanguage(String lang) {
         doRetrofitApiOnDefaultThread(switchLanguage.switchLanguage(lang), new BaseConsumer<String>(baseContext) {
             @Override
@@ -155,35 +157,29 @@ public class MainPresenter extends BaseSwitchPresenter {
 
                         LogIntervalUtils.logTime("请求数据完成开始解析");
                         okhttp3.Response response = responseBodyResponse.raw().priorResponse();
-                        BaseToolbarActivity baseActivity = (BaseToolbarActivity) baseContext.getBaseActivity();
                         if (response != null) {
                             Request request = response.request();
                             String url = request.url().toString();
-                            BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseActivity;
-
-                            Bundle intent = new Bundle();
-
-                            //ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
-
-
-                            PersonalInfo info = mainActivity.getApp().getUser();
-                            intent.putString("username", info.getLoginName());
-                            intent.putString("password", info.getPassword());
-                            intent.putString("language", "en");
-                            intent.putString("web_id", "-1");
-                            intent.putString("webUrl", url);
-                            intent.putInt("gameType", 5);
-                            intent.putString("balance", info.getCredit2());
-                            LogIntervalUtils.logTime("请求数据完成开始跳转");
-                            baseActivity.skipFullNameActivity(intent, "gaming178.com.casinogame.Activity.WelcomeActivity");
-
+                            BaseToolbarActivity mainActivity = (BaseToolbarActivity) baseContext.getBaseActivity();
+                            if (ApkUtils.isAvilible(mainActivity, "gaming178.com.baccaratgame")) {
+                                Intent intent = new Intent();
+                                ComponentName comp = new ComponentName("gaming178.com.baccaratgame", "gaming178.com.casinogame.Activity.WelcomeActivity");
+                                intent.setComponent(comp);
+                                PersonalInfo info = mainActivity.getApp().getUser();
+                                intent.putExtra("username", info.getLoginName());
+                                intent.putExtra("password", info.getPassword());
+                                intent.putExtra("language", "en");
+                                intent.putExtra("web_id", "-1");
+                                intent.putExtra("webUrl", url);
+                                intent.putExtra("gameType", 5);
+                                intent.putExtra("balance", info.getCredit2());
+                                LogIntervalUtils.logTime("请求数据完成开始跳转");
+                                baseContext.getBaseActivity().startActivity(intent);
+                            } else {
+                                downloadGd88();
+                            }
                         } else {
-                            baseActivity.reLoginPrompt(baseActivity.getString(R.string.failed_to_connect), new SportContract.CallBack() {
-                                @Override
-                                public void clickCancel(View v) {
-                                    ToastUtils.showShort("not find agent!");
-                                }
-                            });
+                            ToastUtils.showShort("not find agent!");
                         }
                         baseContext.hideLoadingDialog();
                     }
@@ -361,11 +357,7 @@ public class MainPresenter extends BaseSwitchPresenter {
             @Override
             protected void onBaseGetData(AllBannerImagesBean data) throws JSONException {
 //                @Subscribe(threadMode = ThreadMode.MainThread)
-                LogUtil.d(getClass().getSimpleName(), "sendEvent--------------->" + data.toString());
-                ((BaseToolbarActivity) baseContext.getBaseActivity()).getApp().setListMainPictures(data.getMain());
-                ((BaseToolbarActivity) baseContext.getBaseActivity()).getApp().setListMainBanners(data.getMainBanners());
-                if (back != null)
-                    back.onBack(data);
+                back.onBack(data);
 
             }
 

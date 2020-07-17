@@ -5,7 +5,7 @@
     android:background="@color/green_light_white"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_layout_1188" />
+    <include layout="@layout/toolbar_layout" />
 
     <FrameLayout
 

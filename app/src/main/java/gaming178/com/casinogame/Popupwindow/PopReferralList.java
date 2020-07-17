@@ -73,9 +73,9 @@ public class PopReferralList extends BasePopupWindow {
             public void run() {
                 LobbyActivity activity = (LobbyActivity) context;
                 String url = WebSiteUrl.REFERRAL_LIST;
-                String param = "Usid=" + activity.mAppViewModel.getUser().getName();
-                if (activity.mAppViewModel.getHttpClient() != null) {
-                    String s = activity.mAppViewModel.getHttpClient().sendPost(url, param);
+                String param = "Usid=" + activity.getApp().getUser().getName();
+                if (activity.getApp().getHttpClient() != null) {
+                    String s = activity.getApp().getHttpClient().sendPost(url, param);
                     //Results=ok,RAJA02,RAJA03,RAJA04,RAJA13,RAJA43,
                     List<String> dataList = new ArrayList<>();
                     if (s.startsWith("Results=ok")) {

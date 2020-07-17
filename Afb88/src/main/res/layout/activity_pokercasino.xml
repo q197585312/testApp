@@ -5,7 +5,7 @@
     android:background="@color/green_black"
     android:orientation="vertical">
 
-    <include layout="@layout/toolbar_layout_1188" />
+    <include layout="@layout/toolbar_layout" />
 
     <ImageView
         android:id="@+id/banner_Img"

@@ -1,11 +1,10 @@
 package com.nanyang.app.main.BetCenter.pop;
 
 import android.content.Context;
-import android.view.View;
-import android.widget.TextView;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.view.View;
+import android.widget.TextView;
 
 import com.nanyang.app.R;
 import com.nanyang.app.main.BetCenter.Bean.DataInfoBean;
@@ -16,9 +15,8 @@ import com.unkonw.testapp.libs.widget.BasePopupWindow;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
+import butterknife.Bind;
 import butterknife.ButterKnife;
-
 
 /**
  * Created by Administrator on 2019/4/6.
@@ -34,7 +32,7 @@ public abstract class PopGradeSwitchType extends BasePopupWindow {
         return R.layout.pop_grade_switch_type;
     }
 
-    @BindView(R.id.rc_content)
+    @Bind(R.id.rc_content)
     RecyclerView rcContent;
     BaseRecyclerAdapter<DataInfoBean> adapter;
 
