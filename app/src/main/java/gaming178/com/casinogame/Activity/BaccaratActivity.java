@@ -388,6 +388,10 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
     RelativeLayout rl_player_parent;
     @Bind(R.id.rl_banker_parent)
     RelativeLayout rl_banker_parent;
+    @Bind(R.id.tv_player_result_name)
+    TextView tv_player_result_name;
+    @Bind(R.id.tv_banker_result_name)
+    TextView tv_banker_result_name;
 
     @Bind(R.id.img_bet_bg_pp)
     ImageView img_bet_bg_pp;
@@ -2232,15 +2236,24 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         super.onWindowFocusChanged(hasFocus);
         if (isNeedGetWidth) {
             isNeedGetWidth = false;
-            ViewGroup.LayoutParams layoutParams1 = img_banker_animation.getLayoutParams();
-            layoutParams1.width = rl_banker_parent.getWidth();
-            layoutParams1.height = rl_banker_parent.getHeight();
-            img_banker_animation.setLayoutParams(layoutParams1);
-            ViewGroup.LayoutParams layoutParams2 = img_player_animation.getLayoutParams();
-            layoutParams2.width = rl_player_parent.getWidth();
-            layoutParams2.height = rl_player_parent.getHeight();
-            img_player_animation.setLayoutParams(layoutParams2);
+            initResultAnimation();
         }
+    }
+
+    private void initResultAnimation() {
+        tv_banker_result_name.measure(0,0);
+        tv_player_result_name.measure(0,0);
+        ViewGroup.LayoutParams layoutParams1 = img_banker_animation.getLayoutParams();
+        layoutParams1.width = tv_banker_result_name.getMeasuredWidth();
+        layoutParams1.height = tv_banker_result_name.getMeasuredHeight();
+        img_banker_animation.setLayoutParams(layoutParams1);
+        ViewGroup.LayoutParams layoutParams2 = img_player_animation.getLayoutParams();
+        layoutParams2.width = tv_player_result_name.getMeasuredWidth();
+        layoutParams2.height = tv_player_result_name.getMeasuredHeight();
+        img_player_animation.setLayoutParams(layoutParams2);
+
+        animationPlayer = (AnimationDrawable) img_player_animation.getBackground();
+        animationBanker = (AnimationDrawable) img_banker_animation.getBackground();
     }
 
     /**
@@ -2405,8 +2418,6 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         objectAnimatorBP = WidgetUtil.startAlphaAnimation(img_bet_bg_bp);
         objectAnimatorPP = WidgetUtil.startAlphaAnimation(img_bet_bg_pp);
         initUI();
-        animationPlayer = (AnimationDrawable) img_player_animation.getBackground();
-        animationBanker = (AnimationDrawable) img_banker_animation.getBackground();
         initApngList();
         initUserBetMsg();
         initOrientation();
@@ -5753,7 +5764,8 @@ public class BaccaratActivity extends BaseActivity implements UseLandscape {
         ((TextView) findViewById(R.id.tv_banker_pair)).setText(getString(R.string.BP));
         ((TextView) findViewById(R.id.tv_player_pair)).setText(getString(R.string.PP));
         ((TextView) findViewById(R.id.tv_total)).setText(getString(R.string.total_m));
-        ((TextView) findViewById(R.id.tv_player_result_name)).setText(getString(R.string.player_home));
-        ((TextView) findViewById(R.id.tv_banker_result_name)).setText(getString(R.string.banker_home));
+        tv_player_result_name.setText(getString(R.string.player_home));
+        tv_banker_result_name.setText(getString(R.string.banker_home));
+        initResultAnimation();
     }
 }

@@ -223,6 +223,11 @@ public class DragonTigerActivity extends BaseActivity {
     @Bind(R.id.img_bet_bg_tiger_even)
     ImageView img_bet_bg_tiger_even;
 
+    @Bind(R.id.tv_dragon_result_name)
+    TextView tv_dragon_result_name;
+    @Bind(R.id.tv_tiger_result_name)
+    TextView tv_tiger_result_name;
+
     List<GoodRoadDataBean> goodRoadDataBeenList = new ArrayList<>();
     List<Integer> otherTableIdList = new ArrayList<>();
 
@@ -1841,15 +1846,21 @@ public class DragonTigerActivity extends BaseActivity {
         super.onWindowFocusChanged(hasFocus);
         if (isNeedGetWidth) {
             isNeedGetWidth = false;
-            ViewGroup.LayoutParams layoutParams1 = img_dragon_animation.getLayoutParams();
-            layoutParams1.width = rl_dragon_parent.getWidth();
-            layoutParams1.height = rl_dragon_parent.getHeight();
-            img_dragon_animation.setLayoutParams(layoutParams1);
-            ViewGroup.LayoutParams layoutParams2 = img_tiger_animation.getLayoutParams();
-            layoutParams2.width = rl_tiger_parent.getWidth();
-            layoutParams2.height = rl_tiger_parent.getHeight();
-            img_tiger_animation.setLayoutParams(layoutParams2);
+            initResultAnimation();
         }
+    }
+
+    private void initResultAnimation() {
+        tv_dragon_result_name.measure(0,0);
+        tv_tiger_result_name.measure(0,0);
+        ViewGroup.LayoutParams layoutParams1 = img_dragon_animation.getLayoutParams();
+        layoutParams1.width = tv_dragon_result_name.getMeasuredWidth();
+        layoutParams1.height = tv_dragon_result_name.getMeasuredHeight();
+        img_dragon_animation.setLayoutParams(layoutParams1);
+        ViewGroup.LayoutParams layoutParams2 = img_tiger_animation.getLayoutParams();
+        layoutParams2.width = tv_tiger_result_name.getMeasuredWidth();
+        layoutParams2.height = tv_tiger_result_name.getMeasuredHeight();
+        img_tiger_animation.setLayoutParams(layoutParams2);
     }
 
     @Override
@@ -3950,5 +3961,8 @@ public class DragonTigerActivity extends BaseActivity {
         ((TextView) findViewById(R.id.tv_total)).setText(getString(R.string.total_m));
         ((TextView) findViewById(R.id.tv_dragon_result_name)).setText(getString(R.string.dragon));
         ((TextView) findViewById(R.id.tv_tiger_result_name)).setText(getString(R.string.tiger));
+        tv_dragon_result_name.setText(getString(R.string.dragon));
+        tv_tiger_result_name.setText(getString(R.string.tiger));
+        initResultAnimation();
     }
 }
